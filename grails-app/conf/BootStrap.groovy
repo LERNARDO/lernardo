@@ -1,7 +1,10 @@
 class BootStrap {
+     def profileDataService
 
-     def init = { servletContext ->
+     def init = {servletContext->
+      profileDataService.initProfiles() ; 
      }
+
      def destroy = {
      }
 } 
