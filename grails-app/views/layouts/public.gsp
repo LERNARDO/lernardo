@@ -12,6 +12,9 @@
     <div id="public">
       <div id="doc4" class="yui-t5">
         <div id="hd">
+          <div id="info">
+            <p>Nicht angemeldet</p>
+          </div>
           <div id="logo">
             <a href="${g.resource(dir:'')}">
               <img src="${resource(dir:'images', file:'leonardo-logo.png')}" width="270" height="70" alt="lernardo"/>
@@ -19,7 +22,13 @@
           </div>
         </div>
         <div id="nav">
-          <-- Navigation Content -->
+          <ul class="navigation" id="navigation_topmain">
+            <li class="navigation_first"><a href="/">Home</a></li>
+            <li><a href="/static/zielsetzung">Lernardo</a></li>
+            <li><a href="/static/einrichtungen">Einrichtungen</a></li>
+            <li><a href="/static/kontakt">Kontakt</a></li>
+            <li class="navigation_last"><a href="/static/register">Registrieren</a></li>
+          </ul>
         </div>
         <div id="banner">
           <img src="${resource(dir:'images', file:'banner.jpg')}" width="974" height="336" alt="lernardo"/>
