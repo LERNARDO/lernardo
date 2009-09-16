@@ -4,17 +4,130 @@ class ProfileDataService {
 
 
     def initProfiles () {
-      profiles.maxi = [name:'maxi', fullName:'Maxi Huber', type:'client', age:13, hoobies:'smoking cigars']
-      profiles.franzi = [name:'franzi', fullName:'Franzi Huber', type:'client', age:13, hoobies:'smoking cigars']
-
-      profiles.regina = [name:'regina', fullName:'Regina Toncourt', type:'paed', age:13, hoobies:'jumping around']
-      profiles.martin = [name:'martin', fullName:'Marting', type:'paed', age:13, hoobies:'organizing stuff']
-
-      profiles.weissenbach = [name:'weissenbach', fullName:'Nachmittagsbetreuung Weissenbach a.d. Triesting',
-                              type:'einrichting', address:'bla bla strasse 515', plz:'9276']
-
+      initEinrichtungen()
+      initPaedagogen()
+      initBetreute()
+      initBetreiber()
     }
 
+    def initEinrichtungen () {
+      profiles.loewenzahn = [type:'einrichtung',
+                             name:'loewenzahn',
+                             fullName:'Hort Löwenzahn',
+                             plz:'2564',
+                             ort:'Weissenbach',
+                             strasse:'Hauptstraße 12']
+      profiles.kaumberg = [type:'einrichtung',
+                           name:'kaumberg',
+                           fullName:'Hort Kaumberg',
+                           plz:'2572',
+                           ort:'Kaumberg',
+                           strasse:'???']
+    }
+
+    def initPaedagogen () {
+      profiles.regina = [type:'paed',
+                         name:'regina',
+                         title: '-',
+                         firstName:'Regina',
+                         lastName:'Toncourt',
+                         birthDate:'04.11.1962',
+                         plz:'2565',
+                         ort:'Neuhaus',
+                         strasse:'Hirschbahngasse 3',
+                         mail: 'regina.toncourt@gmx.at',
+                         tel: '0676 / 4303 145']
+      profiles.martin = [type:'paed',
+                         name:'martin',
+                         title: 'Mag.',
+                         firstName:'Martin',
+                         lastName:'Golja',
+                         birthDate:'31.12.1969',
+                         plz:'2563',
+                         ort:'Pottenstein',
+                         strasse:'Obere Marktfeldstraße 20',
+                         mail: '-',
+                         tel: '-']
+       profiles.rosa  = [type:'paed',
+                         name:'rosa',
+                         title: '-',
+                         firstName:'Rosa',
+                         lastName:'Gober',
+                         birthDate:'16.12.1961',
+                         plz:'2565',
+                         ort:'Neuhaus',
+                         strasse:'Schwarzenseer Straße 19',
+                         mail: '-',
+                         tel: '0664 / 3774 559']
+       profiles.birgit  = [type:'paed',
+                         name:'birgit',
+                         title: '-',
+                         firstName:'Birgit',
+                         lastName:'Blaesen',
+                         birthDate:'19.03.1970',
+                         plz:'2560',
+                         ort:'Hernstein',
+                         strasse:'Gartengasse 5',
+                         mail: '-',
+                         tel: '-']
+       profiles.hannah  = [type:'paed',
+                         name:'hannah',
+                         title: '-',
+                         firstName:'Hannah',
+                         lastName:'Mutzbauer',
+                         birthDate:'22.02.1985',
+                         plz:'2564',
+                         ort:'Weissenbach an der Triesting',
+                         strasse:'Hauptstraße 14',
+                         mail: '-',
+                         tel: '-']
+    }
+
+    def initBetreute () {
+      profiles.moritz = [type:'client',
+                       name:'moritz',
+                       firstName: 'Moritz',
+                       lastName:'Bauer',
+                       birthdate:'?',
+                       plz:'?',
+                       ort:'?',
+                       strasse:'?',
+                       mail: '?',
+                       tel: '?',
+                       schule: '?',
+                       klasse: '?']
+      profiles.sebastian = [type:'client',
+                       name:'sebastian',
+                       firstName: 'Sebastian',
+                       lastName:'Cettl',
+                       birthdate:'?',
+                       plz:'?',
+                       ort:'?',
+                       strasse:'?',
+                       mail: '?',
+                       tel: '?',
+                       schule: '?',
+                       klasse: '?']
+    }
+
+    def initBetreiber () {
+      profiles.alpha = [type:'betreiber',
+                         name:'alpha',
+                         fullName:'Verein Alpha - Frauen für die Zukunft',
+                         plz:'2563',
+                         ort:'Pottenstein',
+                         strasse:'Hainfelderstrasse 29',
+                         gemeinnutzigkeit: 'ja',
+                         ansprechperson: 'Stephanie Pirkfellner']
+      profiles.lernardo = [type:'betreiber',
+                         name:'lernardo',
+                         fullName:'LERNARDO Lernen - Wachsen',
+                         plz:'2560',
+                         ort:'Berndorf',
+                         strasse:'Leobersdorfer Straße 42',
+                         gemeinnutzigkeit: 'ja',
+                         ansprechperson: 'Johannes Zeitelberger']
+    }
 
     def addProfile(String name, Map attrs) {
       profiles[name] = attrs
@@ -26,6 +139,6 @@ class ProfileDataService {
 
     def listProfiles (String profileType, def nStart, def nMax) {
       // todo: apply filter
-      return profiles ;
+      return profiles
     }
 }
