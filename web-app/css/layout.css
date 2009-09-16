@@ -1,0 +1,64 @@
+root {
+    display: block;
+}
+
+#hd {
+    height: 70px;
+    background: #f00;
+}
+
+#nav {
+    height: 40px;
+    background: #0f0;
+}
+
+#banner {
+    height: 115px;
+    background: #00f;
+}
+
+#bd {
+    background: #ff0;
+}
+
+#ft {
+    background: #f0f;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.titles {
+    width: 100px;
+}
+
+
+/* BEGIN PUBBLIC */
+
+#public #hd {
+    height: 70px;
+    background: #f00;
+}
+
+#public #nav {
+    height: 40px;
+    background: #0f0;
+}
+
+#public #banner {
+    height: 345px;
+    background: #00f;
+}
+
+#public #main {
+    background: #ff0;
+}
+
+#public #sidebar {
+    background: #0ff;
+}
+
+#public #ft {
+    background: #f0f;
+}
