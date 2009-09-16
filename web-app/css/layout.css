@@ -4,11 +4,6 @@ root {
     display: block;
 }
 
-#hd {
-    height: 70px;
-    background: #f00;
-}
-
 #nav {
     height: 40px;
     background: #0f0;
@@ -154,11 +149,6 @@ root {
 
 /* BEGIN PUBLIC */
 
-#public #hd {
-    height: 70px;
-    background-color: #F0F0F0;
-}
-
 #public #banner {
     height: 336px;
 }
@@ -182,6 +172,11 @@ root {
 }
 
 /* GLOBAL */
+
+#hd {
+    height: 70px;
+    background-color: #F0F0F0;
+}
 
 #hd #info {
     text-align: right;
