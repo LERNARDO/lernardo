@@ -147,6 +147,26 @@ root {
     padding-bottom: 5px;
 }
 
+.imgmenu {
+    background:url(../images/head-bg.jpg) no-repeat scroll 0 0;
+    height:115px;
+    list-style-type:none;
+}
+
+.imgmenu li {
+    float:left;
+    padding: 50px 20px 0 50px;
+}
+
+.imgmenu li a {
+    color: #222222;
+    text-decoration: none;
+}
+
+.imgmenu li a:hover {
+    color: #aaa;
+}
+
 /* BEGIN PUBLIC */
 
 #public #banner {
@@ -209,4 +229,3 @@ root {
 #nav a:hover {
     color: #aaa;
 }
-

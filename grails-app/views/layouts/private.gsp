@@ -24,7 +24,53 @@
         <g:render template="/templates/navigation" />
       </div>
       <div id="banner">
-        <-- Banner Content -->
+        <ol class="imgmenu">
+          <li>
+            <div id="comm" class="imgbox">
+              <a href="#communications">
+                <img src="/images/iconex/book_red.png" alt="">
+                Ereignisse
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <div id="orga" class="imgbox">
+              <a href="#organisation">
+                <img src="/images/iconex/nut_and_bolt.png" alt="">
+                Kalender
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <div id="member" class="imgbox">
+              <a href="#member">
+                <img src="/images/iconex/users_family.png" alt="">
+                Profil
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <div id="paeds" class="imgbox">
+              <a href="#pädagogic">
+                <img src="/images/iconex/graduate.png" alt="" >
+                Interventionsverwaltung
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <div id="admin" class="imgbox">
+              <a href="#administration">
+                <img src="/images/iconex/cabinet.png" alt="" >
+                Admin
+              </a>
+            </div>
+          </li>
+
+        </ol>
       </div>
 
       <g:layoutBody />
