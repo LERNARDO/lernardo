@@ -35,7 +35,7 @@
           </div>
         </div>
         <div id="ft">
-          <-- Footer Content -->
+          Future Wings © 2009 - <g:link controller="pages" action='usage'>Nutzungsbedingungen - Datenschutzrichtlinien</g:link>
         </div>
       </div>
     </div>

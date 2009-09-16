@@ -59,5 +59,11 @@ root {
 }
 
 #public #ft {
-    background: #f0f;
+    background:#D9D9D9 none repeat scroll 0 0;
+    clear:both;
+    color:#000000;
+    font-family:verdana,arial,helvetica,sans-serif;
+    font-size:12px;
+    padding:10px;
+    text-align:center;
 }
