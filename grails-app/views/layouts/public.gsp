@@ -23,11 +23,11 @@
         </div>
         <div id="nav">
           <ul class="navigation" id="navigation_topmain">
-            <li class="navigation_first"><a href="/">Home</a></li>
-            <li><a href="/static/zielsetzung">Lernardo</a></li>
-            <li><a href="/static/einrichtungen">Einrichtungen</a></li>
-            <li><a href="/static/kontakt">Kontakt</a></li>
-            <li class="navigation_last"><a href="/static/register">Registrieren</a></li>
+            <li class="navigation_first"><g:link controller="pages" action='home'>Home</g:link></li>
+            <li><g:link controller="pages" action='purpose'>Lernardo</g:link></li>
+            <li><g:link controller="pages" action='facilities'>Einrichtungen</g:link></li>
+            <li><g:link controller="pages" action='contact'>Kontakt</g:link></li>
+            <li class="navigation_last"><g:link controller="pages" action='registration'>Registrieren</g:link></li>
           </ul>
         </div>
         <div id="banner">
