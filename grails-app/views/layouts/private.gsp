@@ -14,7 +14,7 @@
         <-- Header Content -->
       </div>
       <div id="nav">
-        <g:render template="templates/navigation" />
+        <g:render template="/templates/navigation" />
       </div>
       <div id="banner">
         <-- Banner Content -->

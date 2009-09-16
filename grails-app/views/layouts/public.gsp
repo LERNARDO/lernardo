@@ -22,7 +22,7 @@
           </div>
         </div>
         <div id="nav">
-          <g:render template="templates/navigation" />
+          <g:render template="/templates/navigation" />
         </div>
         <div id="banner">
           <img src="${resource(dir:'images', file:'banner.jpg')}" width="974" height="336" alt="lernardo"/>
