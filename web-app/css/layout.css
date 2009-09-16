@@ -1,3 +1,5 @@
+/* BEGIN PRIVATE */
+
 root {
     display: block;
 }
@@ -18,11 +20,13 @@ root {
 }
 
 #bd {
-    background: #ff0;
+    background: #f0f0f0;
 }
 
 #ft {
-    background: #f0f;
+    background: #d9d9d9;
+    text-align: center;
+    padding:10px;
 }
 
 .bold {
@@ -30,11 +34,125 @@ root {
 }
 
 .titles {
-    width: 100px;
+    width: 140px;
 }
 
+.profile-pic {
+    width: 180px;
+    height: 200px;
+    background: #000;
+}
 
-/* BEGIN PUBBLIC */
+.profile-box {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background-color:#E5E1B5;
+    border:1px solid #C5C29C;
+    padding:5px;
+}
+
+.profile-box ul li {
+    line-height:20px;
+    list-style-type:none;
+}
+
+.profile-group:hover {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:#639FD0 none repeat scroll 0 0;
+    border: 1px solid #417DB0;
+    cursor:pointer;
+}
+
+.profile-group {
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background-color:#DAD495;
+    border-color:#C6C187;
+    border-style:solid;
+    border-width:1px;
+    font-weight:bold;
+    margin:10px 0 0 5px;
+    padding:2px;
+    text-align:center;
+    width:120px;
+}
+
+#profile-content {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background-color:#E5E1B5;
+    border:1px solid #C5C29C;
+    padding: 10px;
+    margin: 10px;
+    vertical-align:top;
+}
+
+#profile-content .bezeichnung {
+    border-bottom:1px dotted #FFFFFF;
+    padding:5px 0;
+    text-align:left;
+    vertical-align:top;
+}
+
+#profile-navigation {
+    padding: 10px;
+}
+
+#profile-navigation a:hover {
+    text-decoration:underline;
+}
+
+#profile-navigation a {
+    color:#1F527B;
+    text-decoration:none;
+}
+
+#profile-navigation .profile-profil {
+	background:url(../images/icons/icon_profile.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-nachricht {
+	background:url(../images/icons/icon_mail.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-telefon {
+	background:url(../images/icons/icon_handy.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-leistung {
+	background:url(../images/icons/icon_star.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-netzwerk {
+	background:url(../images/icons/icon_contact.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-galerie {
+	background:url(../images/icons/icon_galerie.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-bericht {
+	background:url(../images/icons/079.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+.profile-box p {
+    padding-bottom: 5px;
+}
+
+/* BEGIN PUBLIC */
 
 #public #hd {
     height: 70px;

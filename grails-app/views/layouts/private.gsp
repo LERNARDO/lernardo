@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
   </head>
   <body>
-    <div id="doc4" class="yui-t7">
+    <div id="doc4">
       <div id="hd">
         <-- Header Content -->
       </div>
@@ -19,11 +19,16 @@
       <div id="banner">
         <-- Banner Content -->
       </div>
-      <div id="bd">
-        <g:layoutBody />
-      </div>
+
+      <g:layoutBody />
+      
       <div id="ft">
-        <-- Footer Content -->
+        <p>
+          Future Wings © 2009 -
+          <a href="#">Nutzungsbedingungen</a>
+          -
+          <a href="#">Datenschutzrichtlinien</a>
+        </p>
       </div>
     </div>
 
