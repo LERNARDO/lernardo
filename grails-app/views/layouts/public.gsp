@@ -5,21 +5,24 @@
 <html>
   <head>
     <title>Public Layout</title>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset-fonts-grids/reset-fonts-grids.css">
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/grids/grids-min.css">
+    <link rel="stylesheet" href="${g.resource (dir:'css', file:'yui-reset-fonts-grids.css')}" type="text/css">
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
   </head>
   <body>
     <div id="public">
-      <div id="doc4" class="yui-t<5">
+      <div id="doc4" class="yui-t5">
         <div id="hd">
-          <-- Header Content -->
+          <div id="logo">
+            <a href="${g.resource(dir:'')}">
+              <img src="${resource(dir:'images', file:'leonardo-logo.png')}" width="270" height="70" alt="lernardo"/>
+            </a>
+          </div>
         </div>
         <div id="nav">
           <-- Navigation Content -->
         </div>
         <div id="banner">
-          <-- Banner Content -->
+          <img src="${resource(dir:'images', file:'banner.jpg')}" width="974" height="336" alt="lernardo"/>
         </div>
         <div id="bd">
           <div id="yui-main">

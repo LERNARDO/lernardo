@@ -38,7 +38,7 @@ root {
 
 #public #hd {
     height: 70px;
-    background: #f00;
+    background-color: #F0F0F0;
 }
 
 #public #nav {
@@ -47,8 +47,7 @@ root {
 }
 
 #public #banner {
-    height: 345px;
-    background: #00f;
+    height: 336px;
 }
 
 #public #main {
