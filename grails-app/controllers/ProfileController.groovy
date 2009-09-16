@@ -5,17 +5,15 @@ class ProfileController {
 
     def list = {
       params.profileType = params.profileType ? params.profileType : "paed"
-      def res = ['profileType': params.profileType, 'profiles': profileDataService.listProfiles (params.profileType, "a", "b")]
+      def res = ['profileType': params.profileType, 'profileList': profileDataService.listProfiles (params.profileType, "a", "b")]
     }
 
     def show = {
       def prf = profileDataService.getProfile (params.name)
-      println "SHOW PRF: ${prf.dump()}"
       if (!prf) {
         response.sendError(404, "user profile not found")
         return ;
       }
-      println "attempt to render type: $prf.type"
       render (view:"show_${prf.type ? prf.type:'other'}", model:prf)
     }
 
