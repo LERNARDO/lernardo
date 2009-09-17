@@ -12,7 +12,7 @@
 
           <div class="profile-box">
             <table width="250" align="center">
-              <tr><th class="rang"><p>${fullName}</p></th></tr>
+              <tr><th class="rang"><p>${fullName} - ${role}</p></th></tr>
               <tr>
                 <td class="profile-pic"><img src="" /></td>
               </tr>
@@ -33,8 +33,8 @@
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
-              <li><a href="/lernardoV2/prf/loewenzahn">Löwenzahn</a></li>
-              <li><a href="/lernardoV2/prf/kaumberg">Kaumberg</a></li>
+              <li><a href="/lernardoV2/prf/loewenzahn">Hort Löwenzahn</a> (Einrichtung)</li>
+              <li><a href="/lernardoV2/prf/kaumberg">Hort Kaumberg</a> (Einrichtung)</li>
             </ul>
           </div><!--netzwerk-->
         </div>

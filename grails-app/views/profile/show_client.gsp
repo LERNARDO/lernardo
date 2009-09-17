@@ -12,7 +12,7 @@
 
           <div class="profile-box">
             <table width="250" align="center">
-              <tr><th class="rang"><p>${firstName} ${lastName}</p></th></tr>
+              <tr><th class="rang"><p>${firstName} ${lastName} - ${role}</p></th></tr>
               <tr>
                 <td class="profile-pic"><img src="" /></td>
               </tr>
@@ -33,8 +33,8 @@
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
-              <li><a href="/lernardoV2/prf/moritz">Moritz Bauer</a></li>
-              <li><a href="/lernardoV2/prf/sebastian">Sebastian Cettl</a></li>
+              <li><a href="/lernardoV2/prf/moritz">Moritz Bauer</a> (Betreuter)</li>
+              <li><a href="/lernardoV2/prf/sebastian">Sebastian Cettl</a> (Betreuter)</li>
             </ul>
           </div><!--netzwerk-->
         </div>
