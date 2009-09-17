@@ -1,7 +1,7 @@
 /* BEGIN PRIVATE */
 
-root {
-    display: block;
+#private {
+    background:url(../images/background_private.jpg) repeat-x;
 }
 
 #nav {
@@ -168,6 +168,10 @@ root {
 }
 
 /* BEGIN PUBLIC */
+
+#public {
+    background:url(../images/background_public.jpg) repeat-x;
+}
 
 #public #banner {
     height: 336px;
