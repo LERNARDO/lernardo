@@ -1,4 +1,4 @@
 
 <h2>List of -${profileType}- Profiles</h2>
 
-${profileList}
+<p>${profileList} Einträge gefunden</p>
