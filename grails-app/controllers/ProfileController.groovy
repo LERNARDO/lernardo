@@ -4,8 +4,9 @@ class ProfileController {
     def index = { }
 
     def list = {
-      params.profileType = params.profileType ? params.profileType : "paed"
-      def res = ['profileType': params.profileType, 'profileList': profileDataService.listProfiles (params.profileType, "a", "b")]
+      params.profileType = params.profileType ?: "all"
+      def res = ['profileType': params.profileType,
+                 'profileList': profileDataService.listProfiles (params.profileType, "a", "b")]
     }
 
     def show = {
