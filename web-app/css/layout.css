@@ -1,5 +1,50 @@
 /* BEGIN PRIVATE */
 
+.imgbox {
+  float: left;
+  vertical-align: middle;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.imgbox img {
+  overflow: hidden;
+  padding: 5px 8px 5px 8px;
+  border: none;
+  width: 60px;
+  height: 60px;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+}
+
+.imgbox.current img {
+  /*border:1px solid #0f0;*/
+  -moz-opacity: 1.0; /* "opacity" alone is a CSS3 keyword - not standardized yet */
+  /*margin-bottom: 0;
+  padding-bottom: 0;*/
+  opacity: 1.0;
+}
+
+.imgbox h3 {
+  text-align:center;
+  color: #000;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 120%;
+  font-style: normal;
+  -moz-opacity: .7;
+  margin-top: -5px;
+  border: 0;
+}
+
+.imgbox h3 a {
+    color: #000;
+}
+
+.imgbox.current h3 {
+  display:block;
+  font-weight: bold;
+}
+
 #private {
     background:url(../images/background_private.jpg) repeat-x;
 }
@@ -81,9 +126,9 @@
     -moz-border-radius-bottomright:5px;
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background-color:#E5E1B5;
+    background-color: #E5E1B5;
     border:1px solid #C5C29C;
-    padding: 10px;
+    padding: 5px 10px 10px 10px;
     margin: 10px;
     vertical-align:top;
 }
@@ -156,7 +201,8 @@
 
 .imgmenu li {
     float:left;
-    padding: 50px 20px 0 50px;
+    /*padding: 50px 20px 0 50px;*/
+    padding: 0 10px 0 10px;
 }
 
 .imgmenu li a {
