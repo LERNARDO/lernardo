@@ -148,7 +148,8 @@
 }
 
 .imgmenu {
-    background:url(../images/head-bg.jpg) no-repeat scroll 0 0;
+    background:url(../images/head-bg.jpg) no-repeat;
+    background-position: right;
     height:115px;
     list-style-type:none;
 }
