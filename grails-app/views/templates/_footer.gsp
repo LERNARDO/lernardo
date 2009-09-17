@@ -1,0 +1,1 @@
+Future Wings © 2009 - <g:link controller="pages" action='usage'>Nutzungsbedingungen</g:link> - <g:link controller="pages" action='usage'>Datenschutzrichtlinien</g:link>

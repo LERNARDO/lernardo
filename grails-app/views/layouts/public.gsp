@@ -12,15 +12,7 @@
     <div id="public">
       <div id="doc4" class="yui-t5">
         <div id="hd">
-          <div id="info">
-            <p>Nicht angemeldet</p>
-          </div>
-          <div id="logo">
-            <a href="${g.resource(dir:'')}">
-              <img src="${resource(dir:'images', file:'leonardo-logo.png')}" width="270" height="70" alt="lernardo"/>
-            </a>
-          </div>
-        </div>
+          <g:render template="/templates/header" />
         <div id="nav">
           <g:render template="/templates/navigation" />
         </div>
@@ -38,7 +30,7 @@
           </div>
         </div>
         <div id="ft">
-          Future Wings © 2009 - <g:link controller="pages" action='usage'>Nutzungsbedingungen - Datenschutzrichtlinien</g:link>
+          <g:render template="/templates/footer" />
         </div>
       </div>
     </div>

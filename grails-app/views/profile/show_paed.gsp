@@ -12,7 +12,7 @@
 
           <div class="profile-box">
             <table width="250" align="center">
-              <tr><th class="rang"><p>${firstName} ${lastName}</p></th></tr>
+              <tr><th class="rang"><p>${firstName} ${lastName} - ${role}</p></th></tr>
               <tr>
                 <td class="profile-pic"><img src="" /></td>
               </tr>
@@ -33,11 +33,11 @@
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
-              <li><a href="/lernardoV2/prf/regina">Regina Toncourt</a></li>
-              <li><a href="/lernardoV2/prf/martin">Martin Golja</a></li>
-              <li><a href="/lernardoV2/prf/rosa">Rosa Gober</a></li>
-              <li><a href="/lernardoV2/prf/birgit">Birgit Blaesen</a></li>
-              <li><a href="/lernardoV2/prf/hannah">Hannah Mutzbauer</a></li>
+              <li><a href="/lernardoV2/prf/regina">Regina Toncourt</a> (Pädagogin)</li>
+              <li><a href="/lernardoV2/prf/martin">Martin Golja</a> (Pädagoge)</li>
+              <li><a href="/lernardoV2/prf/rosa">Rosa Gober</a> (Pädagogin)</li>
+              <li><a href="/lernardoV2/prf/birgit">Birgit Blaesen</a> (Pädagogin)</li>
+              <li><a href="/lernardoV2/prf/hannah">Hannah Mutzbauer</a> (Pädagogin)</li>
             </ul>
           </div><!--netzwerk-->
         </div>

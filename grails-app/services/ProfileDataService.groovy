@@ -12,12 +12,14 @@ class ProfileDataService {
 
     def initEinrichtungen () {
         profiles.loewenzahn = [type:'einrichtung',
+            role:'Einrichtung',
             name:'loewenzahn',
             fullName:'Hort Löwenzahn',
             plz:'2564',
             ort:'Weissenbach',
             strasse:'Hauptstraße 12']
         profiles.kaumberg = [type:'einrichtung',
+            role:'Einrichtung',
             name:'kaumberg',
             fullName:'Hort Kaumberg',
             plz:'2572',
@@ -27,6 +29,7 @@ class ProfileDataService {
 
     def initPaedagogen () {
         profiles.regina = [type:'paed',
+            role:'Pädagogin',
             name:'regina',
             title: '-',
             firstName:'Regina',
@@ -38,6 +41,7 @@ class ProfileDataService {
             mail: 'regina.toncourt@gmx.at',
             tel: '0676 / 4303 145']
         profiles.martin = [type:'paed',
+            role:'Pädagoge',
             name:'martin',
             title: 'Mag.',
             firstName:'Martin',
@@ -49,6 +53,7 @@ class ProfileDataService {
             mail: '-',
             tel: '-']
         profiles.rosa  = [type:'paed',
+            role:'Pädagogin',
             name:'rosa',
             title: '-',
             firstName:'Rosa',
@@ -60,6 +65,7 @@ class ProfileDataService {
             mail: '-',
             tel: '0664 / 3774 559']
         profiles.birgit  = [type:'paed',
+            role:'Pädagogin',
             name:'birgit',
             title: '-',
             firstName:'Birgit',
@@ -71,6 +77,7 @@ class ProfileDataService {
             mail: '-',
             tel: '-']
         profiles.hannah  = [type:'paed',
+            role:'Pädagogin',
             name:'hannah',
             title: '-',
             firstName:'Hannah',
@@ -85,6 +92,7 @@ class ProfileDataService {
 
     def initBetreute () {
         profiles.moritz = [type:'client',
+            role:'Betreuter',
             name:'moritz',
             firstName: 'Moritz',
             lastName:'Bauer',
@@ -97,6 +105,7 @@ class ProfileDataService {
             schule: '?',
             klasse: '?']
         profiles.sebastian = [type:'client',
+            role:'Betreuter',
             name:'sebastian',
             firstName: 'Sebastian',
             lastName:'Cettl',
@@ -112,6 +121,7 @@ class ProfileDataService {
 
     def initBetreiber () {
         profiles.alpha = [type:'betreiber',
+            role:'Betreiber',
             name:'alpha',
             fullName:'Verein Alpha - Frauen für die Zukunft',
             plz:'2563',
@@ -120,6 +130,7 @@ class ProfileDataService {
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Stephanie Pirkfellner']
         profiles.lernardo = [type:'betreiber',
+            role:'Betreiber',
             name:'lernardo',
             fullName:'LERNARDO Lernen - Wachsen',
             plz:'2560',
