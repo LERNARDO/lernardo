@@ -1,7 +1,10 @@
-
-<h2>List of -${profileType}- Profiles</h2>
-
-<!--<p>${profileList} Einträge gefunden</p>-->
+<html>
+  <head>
+      <meta name="layout" content="private" />
+      <title>Liste der Pädagogen</title>
+  </head>
+<body>
+<h2>Liste der Pädagogen</h2>
 
 <table>
   <thead>
@@ -33,3 +36,5 @@
 </g:each>
 </tbody>
 </table>
+</body>
+</html>

@@ -1,7 +1,10 @@
-
-<h2>List of -${profileType}- Profiles</h2>
-
-<!--<p>${profileList} Einträge gefunden</p>-->
+<html>
+  <head>
+      <meta name="layout" content="private" />
+      <title>Liste der Einrichtungen</title>
+  </head>
+<body>
+<h2>Liste der Einrichtungen</h2>
 
 <table>
   <thead>
@@ -13,7 +16,7 @@
 </tr>
 </thead>
 <tbody>
-<g:each statis="i" in="${profileList}" var="profileInstance">
+<g:each status="i" in="${profileList}" var="profileInstance">
   <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
     <td>${profileInstance.value.fullName}</td>
     <td>${profileInstance.value.plz}</td>
@@ -23,3 +26,5 @@
 </g:each>
 </tbody>
 </table>
+</body>
+</html>
