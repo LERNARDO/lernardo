@@ -11,7 +11,7 @@
   <thead>
     <tr>
   <g:sortableColumn property="firstName" title="Vorname" />
-  <g:sortableColumn property="LastName" title="Nachname" />
+  <g:sortableColumn property="lastName" title="Nachname" />
   <g:sortableColumn property="birthDate" title="Geburtsdatum" />
   <g:sortableColumn property="plz" title="PLZ" />
   <g:sortableColumn property="ort" title="Ort" />
