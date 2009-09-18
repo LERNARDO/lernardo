@@ -7,6 +7,7 @@ class ProfileController {
       params.profileType = params.profileType ?: "all"
       def res = ['profileType': params.profileType,
                  'profileList': profileDataService.listProfiles (params.profileType, "a", "b")]
+       render (view:"list_${params.profileType}", model:res)
     }
 
     def show = {
