@@ -26,9 +26,14 @@
               <g:layoutBody />
             </div>
           </div>
-          <div id="ft">
-            <g:render template="/templates/footer" />
+          <div id="sidebar" class="yui-b">
+            <-- Sidebar Content -->
           </div>
+        </div>
+        <div id="ft">
+          <g:render template="/templates/footer" />
+        </div>
+            </div>
         </div>
       </div>
     </div>
