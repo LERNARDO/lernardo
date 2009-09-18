@@ -168,14 +168,7 @@ class ProfileDataService {
             }
         }
         return list
-        //        def profileCount = 0
-        //        for ( v in profiles.values() ) {
-        //            for ( w in v.values() ) {
-        //                if (w == profileType)
-        //                    profileCount++
-        //            }
-        //        }
-        //        return profileCount
+
     }
 
 }
