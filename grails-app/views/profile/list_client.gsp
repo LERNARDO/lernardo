@@ -24,7 +24,7 @@
 <tbody>
 <g:each status="i" in="${profileList}" var="profileInstance">
   <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-    <td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean:profileInstance, field:'value.firstName')}</g:link></td>
+    <td><g:link action="show" id="${profileInstance.value.name}">${fieldValue(bean:profileInstance, field:'value.firstName')}</g:link></td>
     <td>${profileInstance.value.lastName}</td>
     <td>${profileInstance.value.birthDate}</td>
     <td>${profileInstance.value.plz}</td>
