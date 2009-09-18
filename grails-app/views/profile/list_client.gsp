@@ -10,7 +10,7 @@
 <table>
   <thead>
     <tr>
-  <g:sortableColumn property="firstName" title="Vorname" />
+  <g:sortableColumn params="[profileType: 'client']" property="firstName" title="Vorname" />
   <g:sortableColumn property="lastName" title="Nachname" />
   <g:sortableColumn property="birthDate" title="Geburtsdatum" />
   <g:sortableColumn property="plz" title="PLZ" />
@@ -24,7 +24,7 @@
 <tbody>
 <g:each status="i" in="${profileList}" var="profileInstance">
   <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-    <td>${profileInstance.value.firstName}</td>
+    <td><g:link action="show" id="${albumInstance.id}">${fieldValue(bean:profileInstance, field:'value.firstName')}</g:link></td>
     <td>${profileInstance.value.lastName}</td>
     <td>${profileInstance.value.birthDate}</td>
     <td>${profileInstance.value.plz}</td>

@@ -38,6 +38,10 @@ div.errors li {
     padding-left: 30px;
 }
 
+td {
+    padding-right: 5px;
+}
+
 td.errors select {
     border: 1px solid red;
 }
