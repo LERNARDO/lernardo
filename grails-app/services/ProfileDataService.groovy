@@ -96,7 +96,7 @@ class ProfileDataService {
             name:'moritz',
             firstName: 'Moritz',
             lastName:'Bauer',
-            birthdate:'?',
+            birthDate:'?',
             plz:'?',
             ort:'?',
             strasse:'?',
@@ -109,7 +109,7 @@ class ProfileDataService {
             name:'sebastian',
             firstName: 'Sebastian',
             lastName:'Cettl',
-            birthdate:'?',
+            birthDate:'?',
             plz:'?',
             ort:'?',
             strasse:'?',
@@ -151,28 +151,32 @@ class ProfileDataService {
     def listProfiles (String profileType, def nStart, def nMax) {
         // todo: apply filter
 
-        if (profileType == 'all')
-            return profiles.size()
-
-//        def profileCount = 0
-//        for ( v in profiles.values() ) {
-//            for ( w in v.values() ) {
-//                if (w == profileType)
-//                    profileCount++
-//            }
-//        }
-//        return profileCount
-
         def list = []
-        for ( v in profiles ) {
-            for ( w in v.value.values() ) {
-                if (w == profileType) {
-                    //profileCount++
-                    list.add(v)
+
+        if (profileType == 'all') {
+            for ( v in profiles ) {
+                list.add(v)
+            }
+        }
+        else {
+            for ( v in profiles ) {
+                for ( w in v.value.values() ) {
+                    if (w == profileType) {
+                        list.add(v)
+                    }
                 }
             }
         }
+
         return list
+        //        def profileCount = 0
+        //        for ( v in profiles.values() ) {
+        //            for ( w in v.values() ) {
+        //                if (w == profileType)
+        //                    profileCount++
+        //            }
+        //        }
+        //        return profileCount
     }
 
 }
