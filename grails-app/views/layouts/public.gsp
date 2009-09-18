@@ -13,24 +13,25 @@
       <div id="doc4" class="yui-t5">
         <div id="hd">
           <g:render template="/templates/header" />
-        <div id="nav">
-          <g:render template="/templates/navigation" />
-        </div>
-        <div id="banner">
-          <img src="${resource(dir:'images', file:'banner.jpg')}" width="974" height="336" alt="lernardo"/>
-        </div>
-        <div id="bd">
-          <div id="yui-main">
-            <div id="main" class="yui-b">
-              <g:layoutBody />
+          <div id="nav">
+            <g:render template="/templates/navigation" />
+          </div>
+          <div id="banner">
+            <img src="${resource(dir:'images', file:'banner.jpg')}" width="974" height="336" alt="lernardo"/>
+          </div>
+          <div id="bd">
+            <div id="yui-main">
+              <div id="main" class="yui-b">
+                <g:layoutBody />
+              </div>
+            </div>
+            <div id="sidebar" class="yui-b">
+              <-- Sidebar Content -->
             </div>
           </div>
-          <div id="sidebar" class="yui-b">
-            <-- Sidebar Content -->
+          <div id="ft">
+            <g:render template="/templates/footer" />
           </div>
-        </div>
-        <div id="ft">
-          <g:render template="/templates/footer" />
         </div>
       </div>
     </div>
