@@ -1,5 +1,11 @@
+<html>
+  <head>
+      <meta name="layout" content="private" />
+      <title>Liste aller Profile</title>
+  </head>
+<body>
 
-<h2>List of -${profileType}- Profiles</h2>
+<h2>Liste der aller Profile</h2>
 
 <!--<p>${profileList} Einträge gefunden</p>-->
 
@@ -43,3 +49,5 @@
   </g:each>
 </tbody>
 </table>
+</body>
+</html>
