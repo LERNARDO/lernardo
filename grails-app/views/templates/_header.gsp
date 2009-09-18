@@ -6,4 +6,3 @@
     <img src="${resource(dir:'images', file:'leonardo-logo.png')}" width="270" height="70" alt="lernardo"/>
   </a>
 </div>
-</div>
