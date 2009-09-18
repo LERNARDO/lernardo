@@ -1,16 +1,5 @@
 /* ----- GLOBAL ----- */
 
-#ft {
-    background: #d9d9d9;
-    clear: both;
-    text-align: center;
-    padding:10px;
-}
-
-#ft a {
-    color: #444;
-}
-
 body {
     font-family:verdana,arial,helvetica,sans-serif;
     font-size:12px;
@@ -30,6 +19,19 @@ body {
 #bd {
     background: #f0f0f0;
 }
+
+#ft {
+    background: #d9d9d9;
+    clear: both;
+    text-align: center;
+    padding:10px;
+}
+
+#ft a {
+    color: #444;
+}
+
+/* ----- NAVIGATION -----*/
 
 #nav {
     background:#4D401A none repeat scroll 0 0;
