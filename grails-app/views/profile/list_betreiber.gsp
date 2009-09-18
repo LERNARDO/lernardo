@@ -1,6 +1,11 @@
-<h2>List of -${profileType}- Profiles</h2>
+<html>
+  <head>
+      <meta name="layout" content="private" />
+      <title>Liste der Betreiber</title>
+  </head>
+<body>
 
-<!--<p>${profileList} Einträge gefunden</p>-->
+<h2>Liste der Betreiber</h2>
 
 <table>
   <thead>
@@ -26,3 +31,5 @@
 </g:each>
 </tbody>
 </table>
+</body>
+</html>

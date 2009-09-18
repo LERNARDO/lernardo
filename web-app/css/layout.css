@@ -27,6 +27,10 @@ body {
     margin: 10px;
 }
 
+#bd {
+    background: #f0f0f0;
+}
+
 #nav {
     background:#4D401A none repeat scroll 0 0;
     height:40px;
@@ -58,6 +62,16 @@ body {
 
 #nav a:hover {
     color: #aaa;
+}
+
+/* ----- FONTS ----- */
+
+.bold {
+    font-weight: bold;
+}
+
+.titles {
+    width: 140px;
 }
 
 /* ----- BEGIN PRIVATE ----- */
@@ -111,26 +125,9 @@ body {
     background:url(../images/background_private.jpg) repeat-x;
 }
 
-#nav {
-    height: 40px;
-    background: #0f0;
-}
-
 #banner {
     height: 115px;
     background: #00f;
-}
-
-#bd {
-    background: #f0f0f0;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.titles {
-    width: 140px;
 }
 
 .profile-pic {
@@ -288,7 +285,7 @@ body {
     background: #0ff;
 }
 
-/* Tables */
+/* ----- TABLES ----- */
 
 .odd {
     background: #f7f7f7;

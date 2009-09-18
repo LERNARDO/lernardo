@@ -1,7 +1,11 @@
+<html>
+  <head>
+      <meta name="layout" content="private" />
+      <title>Liste der Betreuten</title>
+  </head>
+<body>
 
-<h2>List of -${profileType}- Profiles</h2>
-
-<!--<p>${profileList} Einträge gefunden</p>-->
+<h2>Liste der Betreuten</h2>
 
 <table>
   <thead>
@@ -34,3 +38,5 @@
 </g:each>
 </tbody>
 </table>
+</body>
+</html>
