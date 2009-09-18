@@ -1,4 +1,66 @@
-/* BEGIN PRIVATE */
+/* ----- GLOBAL ----- */
+
+#ft {
+    background: #d9d9d9;
+    clear: both;
+    text-align: center;
+    padding:10px;
+}
+
+#ft a {
+    color: #444;
+}
+
+body {
+    font-family:verdana,arial,helvetica,sans-serif;
+    font-size:12px;
+}
+
+#hd {
+    height: 70px;
+    background-color: #F0F0F0;
+}
+
+#hd #info {
+    text-align: right;
+    float: right;
+    margin: 10px;
+}
+
+#nav {
+    background:#4D401A none repeat scroll 0 0;
+    height:40px;
+}
+
+
+#nav ul {
+    list-style: none;
+    padding: 13px 0 0 10px;
+}
+
+#nav li {
+    display:inline;
+}
+
+#nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 30px 0 20px;
+}
+
+#nav li {
+       border-right: 1px solid #fff;
+}
+
+#nav li.navigation_last {
+    border-right: none;
+}
+
+#nav a:hover {
+    color: #aaa;
+}
+
+/* ----- BEGIN PRIVATE ----- */
 
 .imgbox {
   float: left;
@@ -208,7 +270,7 @@
     color: #aaa;
 }
 
-/* BEGIN PUBLIC */
+/* ----- BEGIN PUBLIC ----- */
 
 #public {
     background:url(../images/background_public.jpg) repeat-x;
@@ -226,64 +288,3 @@
     background: #0ff;
 }
 
-/* GLOBAL */
-
-#ft {
-    background: #d9d9d9;
-    clear: both;
-    text-align: center;
-    padding:10px;
-}
-
-#ft a {
-    color: #444;
-}
-
-body {
-    font-family:verdana,arial,helvetica,sans-serif;
-    font-size:12px;
-}
-
-#hd {
-    height: 70px;
-    background-color: #F0F0F0;
-}
-
-#hd #info {
-    text-align: right;
-    float: right;
-    margin: 10px;
-}
-
-#nav {
-    background:#4D401A none repeat scroll 0 0;
-    height:40px;
-}
-
-
-#nav ul {
-    list-style: none;
-    padding: 13px 0 0 10px;
-}
-
-#nav li {
-    display:inline;
-}
-
-#nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 30px 0 20px;
-}
-
-#nav li {
-       border-right: 1px solid #fff;
-}
-
-#nav li.navigation_last {
-    border-right: none;
-}
-
-#nav a:hover {
-    color: #aaa;
-}

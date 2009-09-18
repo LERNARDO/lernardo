@@ -154,15 +154,25 @@ class ProfileDataService {
         if (profileType == 'all')
             return profiles.size()
 
-        def profileCount = 0
-        for ( v in profiles.values() ) {
-            for ( w in v.values() ) {
-                if (w == profileType)
-                    profileCount++
+//        def profileCount = 0
+//        for ( v in profiles.values() ) {
+//            for ( w in v.values() ) {
+//                if (w == profileType)
+//                    profileCount++
+//            }
+//        }
+//        return profileCount
+
+        def list = []
+        for ( v in profiles ) {
+            for ( w in v.value.values() ) {
+                if (w == profileType) {
+                    //profileCount++
+                    list.add(v)
+                }
             }
         }
-        return profileCount
-
+        return list
     }
 
 }
