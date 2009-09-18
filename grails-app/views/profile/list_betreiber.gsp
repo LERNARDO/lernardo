@@ -1,4 +1,3 @@
-
 <h2>List of -${profileType}- Profiles</h2>
 
 <!--<p>${profileList} Einträge gefunden</p>-->
@@ -15,8 +14,8 @@
 </tr>
 </thead>
 <tbody>
-<g:each in="${profileList}" var="profileInstance">
-  <tr >
+<g:each status="i" in="${profileList}" var="profileInstance">
+  <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
     <td>${profileInstance.value.fullName}</td>
     <td>${profileInstance.value.plz}</td>
     <td>${profileInstance.value.ort}</td>

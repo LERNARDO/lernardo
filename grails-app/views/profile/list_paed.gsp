@@ -18,8 +18,8 @@
 </tr>
 </thead>
 <tbody>
-<g:each in="${profileList}" var="profileInstance">
-  <tr >
+<g:each status="i" in="${profileList}" var="profileInstance">
+  <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
     <td>${profileInstance.value.title}</td>
     <td>${profileInstance.value.firstName}</td>
     <td>${profileInstance.value.lastName}</td>

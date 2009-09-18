@@ -288,3 +288,12 @@ body {
     background: #0ff;
 }
 
+/* Tables */
+
+.odd {
+    background: #f7f7f7;
+}
+.even {
+    background: #fff;
+}
+
