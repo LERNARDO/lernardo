@@ -277,10 +277,6 @@ body {
     height: 336px;
 }
 
-#public #main {
-    background: #ff0;
-}
-
 #public #sidebar {
     background: #0ff;
 }
