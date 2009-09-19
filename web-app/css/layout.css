@@ -11,10 +11,20 @@ h2 {
     font-weight: bold;
 }
 
+p {
+    padding-bottom: 10px;
+    line-height: 17px;
+}
+
 #body-list {
     padding: 10px;
     background: #f0f0f0;
     overflow-x: scroll;
+}
+
+#body-default {
+    padding: 10px;
+    background: #f0f0f0;
 }
 
 #body-list table a {

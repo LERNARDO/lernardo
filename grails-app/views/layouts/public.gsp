@@ -4,7 +4,7 @@
   "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
-    <title>Public Layout</title>
+    <title><g:layoutTitle default="Lernardo" /></title>
     <link rel="stylesheet" href="${g.resource (dir:'css', file:'yui-reset-fonts-grids.css')}" type="text/css">
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
   </head>
