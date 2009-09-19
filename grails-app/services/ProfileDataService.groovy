@@ -2,7 +2,6 @@ class ProfileDataService {
     boolean transactional = false
     Map profiles = [:]
 
-
     def initProfiles () {
         initEinrichtungen()
         initPaedagogen()
@@ -17,14 +16,16 @@ class ProfileDataService {
             fullName:'Hort Löwenzahn',
             plz:'2564',
             ort:'Weissenbach',
-            strasse:'Hauptstraße 12']
+            strasse:'Hauptstraße 12',
+            friends:['regina','martin','rosa','birgit','moritz','alpha']]
         profiles.kaumberg = [type:'einrichtung',
             role:'Einrichtung',
             name:'kaumberg',
             fullName:'Hort Kaumberg',
             plz:'2572',
             ort:'Kaumberg',
-            strasse:'???']
+            strasse:'???',
+            friends:['hannah','sebastian','lernardo']]
     }
 
     def initPaedagogen () {
@@ -39,7 +40,8 @@ class ProfileDataService {
             ort:'Neuhaus',
             strasse:'Hirschbahngasse 3',
             mail: 'regina.toncourt@gmx.at',
-            tel: '0676 / 4303 145']
+            tel: '0676 / 4303 145',
+            friends:['loewenzahn','martin','rosa','birgit','moritz','alpha']]
         profiles.martin = [type:'paed',
             role:'Pädagoge',
             name:'martin',
@@ -51,7 +53,8 @@ class ProfileDataService {
             ort:'Pottenstein',
             strasse:'Obere Marktfeldstraße 20',
             mail: '-',
-            tel: '-']
+            tel: '-',
+            friends:['loewenzahn','regina','rosa','birgit','moritz','alpha']]
         profiles.rosa  = [type:'paed',
             role:'Pädagogin',
             name:'rosa',
@@ -63,7 +66,8 @@ class ProfileDataService {
             ort:'Neuhaus',
             strasse:'Schwarzenseer Straße 19',
             mail: '-',
-            tel: '0664 / 3774 559']
+            tel: '0664 / 3774 559',
+            friends:['loewenzahn','regina','martin','birgit','moritz','alpha']]
         profiles.birgit  = [type:'paed',
             role:'Pädagogin',
             name:'birgit',
@@ -75,7 +79,8 @@ class ProfileDataService {
             ort:'Hernstein',
             strasse:'Gartengasse 5',
             mail: '-',
-            tel: '-']
+            tel: '-',
+            friends:['loewenzahn','regina','martin','rosa','moritz','alpha']]
         profiles.hannah  = [type:'paed',
             role:'Pädagogin',
             name:'hannah',
@@ -87,7 +92,8 @@ class ProfileDataService {
             ort:'Weissenbach an der Triesting',
             strasse:'Hauptstraße 14',
             mail: '-',
-            tel: '-']
+            tel: '-',
+            friends:['kaumberg','sebastian','lernardo']]
     }
 
     def initBetreute () {
@@ -103,7 +109,8 @@ class ProfileDataService {
             mail: '?',
             tel: '?',
             schule: '?',
-            klasse: '?']
+            klasse: '?',
+            friends:['loewenzahn','regina','rosa','birgit','moritz']]
         profiles.sebastian = [type:'client',
             role:'Betreuter',
             name:'sebastian',
@@ -116,7 +123,8 @@ class ProfileDataService {
             mail: '?',
             tel: '?',
             schule: '?',
-            klasse: '?']
+            klasse: '?',
+            friends:['kaumberg','hannah','lernardo']]
     }
 
     def initBetreiber () {
@@ -128,7 +136,8 @@ class ProfileDataService {
             ort:'Pottenstein',
             strasse:'Hainfelderstrasse 29',
             gemeinnutzigkeit: 'ja',
-            ansprechperson: 'Stephanie Pirkfellner']
+            ansprechperson: 'Stephanie Pirkfellner',
+            friends:['loewenzahn']]
         profiles.lernardo = [type:'betreiber',
             role:'Betreiber',
             name:'lernardo',
@@ -137,7 +146,8 @@ class ProfileDataService {
             ort:'Berndorf',
             strasse:'Leobersdorfer Straße 42',
             gemeinnutzigkeit: 'ja',
-            ansprechperson: 'Johannes Zeitelberger']
+            ansprechperson: 'Johannes Zeitelberger',
+            friends:['kaumberg']]
     }
 
     def addProfile(String name, Map attrs) {
