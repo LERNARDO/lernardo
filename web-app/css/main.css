@@ -39,7 +39,7 @@ div.errors li {
 }
 
 td {
-    padding-right: 5px;
+    padding: 5px;
 }
 
 td.errors select {
