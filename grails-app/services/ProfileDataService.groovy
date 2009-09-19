@@ -17,7 +17,8 @@ class ProfileDataService {
             plz:'2564',
             ort:'Weissenbach',
             strasse:'Hauptstraße 12',
-            friends:['regina','martin','rosa','birgit','moritz','alpha']]
+            friends:['regina','martin','rosa','birgit','moritz','alpha'],
+            image:'../images/avatar/loewenzahn.jpg']
         profiles.kaumberg = [type:'einrichtung',
             role:'Einrichtung',
             name:'kaumberg',
@@ -25,7 +26,8 @@ class ProfileDataService {
             plz:'2572',
             ort:'Kaumberg',
             strasse:'???',
-            friends:['hannah','sebastian','lernardo']]
+            friends:['hannah','sebastian','lernardo'],
+            image:'../images/avatar/none.jpg']
     }
 
     def initPaedagogen () {
@@ -41,7 +43,8 @@ class ProfileDataService {
             strasse:'Hirschbahngasse 3',
             mail: 'regina.toncourt@gmx.at',
             tel: '0676 / 4303 145',
-            friends:['loewenzahn','martin','rosa','birgit','moritz','alpha']]
+            friends:['loewenzahn','martin','rosa','birgit','moritz','alpha'],
+            image:'../images/avatar/regina_toncourt.jpg']
         profiles.martin = [type:'paed',
             role:'Pädagoge',
             name:'martin',
@@ -54,7 +57,8 @@ class ProfileDataService {
             strasse:'Obere Marktfeldstraße 20',
             mail: '-',
             tel: '-',
-            friends:['loewenzahn','regina','rosa','birgit','moritz','alpha']]
+            friends:['loewenzahn','regina','rosa','birgit','moritz','alpha'],
+            image:'../images/avatar/martin_golja.jpg']
         profiles.rosa  = [type:'paed',
             role:'Pädagogin',
             name:'rosa',
@@ -67,7 +71,8 @@ class ProfileDataService {
             strasse:'Schwarzenseer Straße 19',
             mail: '-',
             tel: '0664 / 3774 559',
-            friends:['loewenzahn','regina','martin','birgit','moritz','alpha']]
+            friends:['loewenzahn','regina','martin','birgit','moritz','alpha'],
+            image:'../images/avatar/none.jpg']
         profiles.birgit  = [type:'paed',
             role:'Pädagogin',
             name:'birgit',
@@ -80,7 +85,8 @@ class ProfileDataService {
             strasse:'Gartengasse 5',
             mail: '-',
             tel: '-',
-            friends:['loewenzahn','regina','martin','rosa','moritz','alpha']]
+            friends:['loewenzahn','regina','martin','rosa','moritz','alpha'],
+            image:'../images/avatar/none.jpg']
         profiles.hannah  = [type:'paed',
             role:'Pädagogin',
             name:'hannah',
@@ -93,7 +99,8 @@ class ProfileDataService {
             strasse:'Hauptstraße 14',
             mail: '-',
             tel: '-',
-            friends:['kaumberg','sebastian','lernardo']]
+            friends:['kaumberg','sebastian','lernardo'],
+            image:'../images/avatar/none.jpg']
     }
 
     def initBetreute () {
@@ -110,7 +117,8 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['loewenzahn','regina','rosa','birgit','moritz']]
+            friends:['loewenzahn','regina','rosa','birgit','moritz'],
+            image:'../images/avatar/none.jpg']
         profiles.sebastian = [type:'client',
             role:'Betreuter',
             name:'sebastian',
@@ -124,7 +132,8 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['kaumberg','hannah','lernardo']]
+            friends:['kaumberg','hannah','lernardo'],
+            image:'../images/avatar/none.jpg']
     }
 
     def initBetreiber () {
@@ -137,7 +146,8 @@ class ProfileDataService {
             strasse:'Hainfelderstrasse 29',
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Stephanie Pirkfellner',
-            friends:['loewenzahn']]
+            friends:['loewenzahn'],
+            image:'../images/avatar/none.jpg']
         profiles.lernardo = [type:'betreiber',
             role:'Betreiber',
             name:'lernardo',
@@ -147,7 +157,8 @@ class ProfileDataService {
             strasse:'Leobersdorfer Straße 42',
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Johannes Zeitelberger',
-            friends:['kaumberg']]
+            friends:['kaumberg'],
+            image:'../images/avatar/none.jpg']
     }
 
     def addProfile(String name, Map attrs) {

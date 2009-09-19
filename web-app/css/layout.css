@@ -133,9 +133,7 @@ body {
 }
 
 .profile-pic {
-    width: 180px;
-    height: 200px;
-    background: #000;
+    text-align: center;
 }
 
 .profile-box {

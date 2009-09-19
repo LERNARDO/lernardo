@@ -13,9 +13,7 @@
           <div class="profile-box">
             <table width="250" align="center">
               <tr><th class="rang"><p>${firstName} ${lastName} - ${role}</p></th></tr>
-              <tr>
-                <td class="profile-pic"><img src="" /></td>
-              </tr>
+              <tr><td class="profile-pic"><img src="${image}"  width="150" height="150"/></td></tr>
             </table>
           </div><!--Bild&Rang-->
 
