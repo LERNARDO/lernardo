@@ -33,9 +33,7 @@
         <div id="ft">
           <g:render template="/templates/footer" />
         </div>
-            </div>
-        </div>
-      </div>
-    </div>
+      </div><!-- doc4 -->
+    </div><!-- public -->
   </body>
 </html>
