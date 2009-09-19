@@ -33,11 +33,9 @@
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
-              <li><a href="/lernardoV2/prf/regina">Regina Toncourt</a> (Pädagogin)</li>
-              <li><a href="/lernardoV2/prf/martin">Martin Golja</a> (Pädagoge)</li>
-              <li><a href="/lernardoV2/prf/rosa">Rosa Gober</a> (Pädagogin)</li>
-              <li><a href="/lernardoV2/prf/birgit">Birgit Blaesen</a> (Pädagogin)</li>
-              <li><a href="/lernardoV2/prf/hannah">Hannah Mutzbauer</a> (Pädagogin)</li>
+              <g:each in="${friends}" var="friend">
+                <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
+              </g:each>
             </ul>
           </div><!--netzwerk-->
         </div>
