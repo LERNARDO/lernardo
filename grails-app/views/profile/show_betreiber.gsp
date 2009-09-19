@@ -33,8 +33,9 @@
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
-              <li><a href="/lernardoV2/prf/alpha">Verein Alpha - Frauen für die Zukunft</a> (Betreiber)</li>
-              <li><a href="/lernardoV2/prf/lernardo">LERNARDO Lernen - Wachsen</a> (Betreiber)</li>
+              <g:each in="${friends}" var="friend">
+                <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
+              </g:each>
             </ul>
           </div><!--netzwerk-->
         </div>

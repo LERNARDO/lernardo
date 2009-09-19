@@ -33,8 +33,9 @@
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
-              <li><a href="/lernardoV2/prf/moritz">Moritz Bauer</a> (Betreuter)</li>
-              <li><a href="/lernardoV2/prf/sebastian">Sebastian Cettl</a> (Betreuter)</li>
+              <g:each in="${friends}" var="friend">
+                <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
+              </g:each>
             </ul>
           </div><!--netzwerk-->
         </div>
