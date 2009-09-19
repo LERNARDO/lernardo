@@ -30,8 +30,8 @@
   <g:each status="i" in="${profileList}" var="profileInstance">
     <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
       <td>${profileInstance.value.title}</td>
-      <td>${profileInstance.value.fullName}</td>
-      <td>${profileInstance.value.firstName}</td>
+      <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.fullName}</g:link></td>
+      <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.firstName}</g:link></td>
       <td>${profileInstance.value.lastName}</td>
       <td>${profileInstance.value.birthDate}</td>
       <td>${profileInstance.value.plz}</td>
