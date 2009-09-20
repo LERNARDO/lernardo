@@ -38,18 +38,4 @@ class ProfileController {
         redirect(url:"/lernardoV2/prf/lernardo")
     }
 
-    def paginate = {
-        def max = Math.min(params.max?.toInteger() ?: 10, 100)
-        def offset = params.offset?.toInteger() ?: 0
-
-        def profiles = profileDataService.listProfiles (params.profileType, "a", "b")
-        def total = profiles.count()
-
-        // AAZ: "withCriteria" method does not work on lists, need to find another solution here
-        def paginateList = profiles.withCriteria {
-            maxResults max
-            firstResult offset
-        }
-        return [profileList:paginateList,totalProfiles:total]
-    }
 }
