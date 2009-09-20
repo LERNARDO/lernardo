@@ -180,26 +180,56 @@ class ProfileDataService {
         return (profiles[name])
     }
 
-    def listProfiles (String profileType, def nStart, def nMax) {
-        // todo: apply filter
+    def listProfiles (String profileType, int noffset, int nmax) {
 
         def list = []
+        int offset = 0
+        int count = 0
 
         if (profileType == 'all') {
             for ( v in profiles ) {
-                list.add(v)
+                if (offset >= noffset && count < nmax) {
+                    list.add(v)
+                    count++
+                }
+                offset++
             }
         }
         else {
             for ( v in profiles ) {
                 for ( w in v.value.values() ) {
                     if (w == profileType) {
-                        list.add(v)
+                        if (offset >= noffset && count < nmax) {
+                            list.add(v)
+                            count++
+                        }
+                        offset++
                     }
                 }
             }
         }
         return list
+    }
+
+    def totalProfiles (String profileType) {
+
+        int count = 0
+
+        if (profileType == 'all') {
+            for ( v in profiles ) {
+                count++
+            }
+        }
+        else {
+            for ( v in profiles ) {
+                for ( w in v.value.values() ) {
+                    if (w == profileType) {
+                        count++
+                    }
+                }
+            }
+        }
+        return count
     }
 
 }

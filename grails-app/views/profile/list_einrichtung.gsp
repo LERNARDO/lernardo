@@ -6,7 +6,7 @@
   <body>
     <div id="body-list">
       <h2>Liste der Einrichtungen</h2>
-      <p>${profileList.size()} Profile gefunden</p>
+      <p>${totalProfiles} Profile gefunden</p>
 
       <div id="select-box"
            <g:form name="form1" action="list">
@@ -42,6 +42,14 @@
         </g:each>
         </tbody>
       </table>
+
+      <div class="paginateButtons">
+        <g:paginate controller="profile"
+                    action="list"
+                    params="[profileType:'betreiber']"
+                    total="${totalProfiles}" />
+      </div>
+
     </div>
   </body>
 </html>
