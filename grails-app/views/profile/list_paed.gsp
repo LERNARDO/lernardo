@@ -6,6 +6,7 @@
   <body>
     <div id="body-list">
       <h2>Liste der Pädagogen</h2>
+      <p>${profileList.size()} Profile gefunden</p>
 
       <table>
         <thead>
