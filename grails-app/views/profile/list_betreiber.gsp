@@ -46,6 +46,14 @@
         </g:each>
         </tbody>
       </table>
+
+      <div class="paginateButtons">
+        <g:paginate controller="profile"
+                    action="paginate"
+                    params="[profileType:'betreiber']"
+                    total="${profileList.size()}" />
+      </div>
+      
     </div>
   </body>
 </html>

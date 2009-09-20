@@ -159,6 +159,17 @@ class ProfileDataService {
             ansprechperson: 'Johannes Zeitelberger',
             friends:['kaumberg'],
             image:'../images/avatar/none.jpg']
+        profiles.a = [type:'betreiber',fullName:'dummy1']
+        profiles.b = [type:'betreiber',fullName:'dummy2']
+        profiles.c = [type:'betreiber',fullName:'dummy3']
+        profiles.d = [type:'betreiber',fullName:'dummy4']
+        profiles.e = [type:'betreiber',fullName:'dummy5']
+        profiles.f = [type:'betreiber',fullName:'dummy6']
+        profiles.g = [type:'betreiber',fullName:'dummy7']
+        profiles.h = [type:'betreiber',fullName:'dummy8']
+        profiles.i = [type:'betreiber',fullName:'dummy9']
+        profiles.j = [type:'betreiber',fullName:'dummy10']
+
     }
 
     def addProfile(String name, Map attrs) {
@@ -189,7 +200,6 @@ class ProfileDataService {
             }
         }
         return list
-
     }
 
 }
