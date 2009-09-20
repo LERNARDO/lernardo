@@ -8,6 +8,20 @@
       <h2>Liste der Pädagogen</h2>
       <p>${profileList.size()} Profile gefunden</p>
 
+      <div id="select-box"
+           <g:form name="form1" action="list">
+          <label>Auswahl
+            <select name="profileType">
+              <option value="all" selected="selected">Alle</option>
+              <option value="betreiber">Betreiber</option>
+              <option value="client">Betreute</option>
+              <option value="paed">Pädagogen</option>
+            </select>
+          </label>
+          <g:submitButton name="list" value="OK" />
+        </g:form>
+      </div>
+
       <table>
         <thead>
           <tr>

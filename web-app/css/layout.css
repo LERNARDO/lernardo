@@ -37,6 +37,10 @@ p {
     text-decoration: underline;
 }
 
+#body-list #select-box {
+    margin-bottom: 10px;
+}
+
 #hd {
     height: 70px;
     background-color: #F0F0F0;
