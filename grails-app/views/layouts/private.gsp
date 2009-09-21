@@ -58,10 +58,9 @@
 
             <li>
               <div id="admin" class="imgbox">
-                <a href="#administration">
-                  <img src="../images/iconex/cabinet.png" alt="" >
+                <g:link controller="admin" action="index"><img src="../images/iconex/cabinet.png" alt="" >
                   <h3>Admin</h3>
-                </a>
+                </g:link>
               </div>
             </li>
 
