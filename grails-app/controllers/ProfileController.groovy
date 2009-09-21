@@ -32,9 +32,10 @@ class ProfileController {
         render (view:"edit_${prf.type ? prf.type:'other'}", model:prf)
     }
 
+    // not working
     def save = {
+        profileDataService.addProfile(params.name, params)
         def prf = profileDataService.getProfile (params.name)
-        profileDataService.addProfile("lernardo", prf)
         render (view:"show_${prf.type ? prf.type:'other'}", model:prf)
     }
 

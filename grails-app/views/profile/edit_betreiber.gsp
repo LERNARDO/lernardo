@@ -48,23 +48,23 @@
                   </tr>
                   <tr>
                     <td class="bold titles bezeichnung">PLZ:</td>
-                    <td class="bezeichnung">${plz}</td>
+                    <td class="bezeichnung"><input type="text" id="fullName" name="plz" value="${plz}"/></td>
                   </tr>
                   <tr>
                     <td class="bold titles bezeichnung">Ort:</td>
-                    <td class="bezeichnung">${ort}</td>
+                    <td class="bezeichnung"><input type="text" id="fullName" name="ort" value="${ort}"/></td>
                   </tr>
                   <tr>
                     <td class="bold titles bezeichnung">Straße:</td>
-                    <td class="bezeichnung">${strasse}</td>
+                    <td class="bezeichnung" name="strasse"><input type="text" id="fullName" name="strasse" value="${strasse}"/></td>
                   </tr>
                   <tr>
                     <td class="bold titles bezeichnung">Gemeinnützigkeit:</td>
-                    <td class="bezeichnung">${gemeinnutzigkeit}</td>
+                    <td class="bezeichnung" name="gemeinnutzigkeit"><input type="text" id="fullName" name="gemeinnutzigkeit" value="${gemeinnutzigkeit}"/></td>
                   </tr>
                   <tr>
                     <td class="bold titles bezeichnung">Ansprechperson:</td>
-                    <td class="bezeichnung">${ansprechperson}</td>
+                    <td class="bezeichnung" name ="ansprechperson"><input type="text" id="fullName" name="ansprechperson" value="${ansprechperson}"/></td>
                   </tr>
                 </table>
                 <input name="name "type="hidden" value="${name}" />
