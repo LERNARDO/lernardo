@@ -323,6 +323,7 @@ p {
 
 #public #main {
     margin: 20px 0;
+    padding: 0 20px;
 }
 
 .sidebox {
@@ -332,7 +333,7 @@ p {
 -moz-border-radius-topright:5px;
 background:#DAD495 none repeat scroll 0 0;
 border:1px solid #C9C384;
-margin:0 0px 20px;
+margin:0 10px 20px;
 padding:10px;
 }
 
