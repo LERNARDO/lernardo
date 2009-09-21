@@ -35,14 +35,21 @@ body {
 }
 
 #hd {
-    height: 70px;
-    background-color: #F0F0F0;
+    height: 110px;
+    background: url(../images/head.jpg) #F0F0F0 no-repeat 0 0;
+    position: relative;
 }
 
 #hd #info {
     text-align: right;
     float: right;
     margin: 10px;
+}
+
+#hd #logo {
+    width: 210px;
+    height: 110px;
+    float: left;
 }
 
 #bd {
@@ -63,36 +70,46 @@ body {
 /* ----- NAVIGATION -----*/
 
 #nav {
-    background:#4D401A none repeat scroll 0 0;
-    height:40px;
+    float: right;
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
 }
 
 
 #nav ul {
     list-style: none;
-    padding: 13px 0 0 10px;
+    padding: 0;
 }
 
 #nav li {
     display:inline;
 }
 
-#nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 30px 0 20px;
-}
-
 #nav li {
-       border-right: 1px solid #fff;
+    float:left;
+    margin:0;
 }
 
-#nav li.navigation_last {
-    border-right: none;
+#nav li.navigation_last {}
+
+#nav li a {
+    background:#FFFFFF url(../images/menu-li.jpg) no-repeat scroll 0 0;
+    color:#FFFFFF;
+    display:block;
+    float:left;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    text-decoration:none;
+    text-transform:uppercase;
+    width:131px;
 }
 
-#nav a:hover {
-    color: #aaa;
+#nav li a:hover {
+    color: #FFFFFF;
+    background:#FFFFFF url(../images/menu-li.jpg) no-repeat scroll 0 -40px;
+    text-decoration: none !important;
 }
 
 /* ----- FONTS ----- */
@@ -333,6 +350,8 @@ p {
 
 #public #banner {
     height: 336px;
+    width: 974px;
+    background: url(../images/banner.jpg);
 }
 
 #public #sidebar {
@@ -372,14 +391,15 @@ p {
     -moz-border-radius-bottomright:5px;
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background:#e6e6e6 none repeat scroll 0 0;
+    background:#708dc2 none repeat scroll 0 0;
     border:1px solid #efefef;
     margin:0 10px 20px;
     padding:10px;
+    color: #ffffff;
 }
 
 .sideboxheader {
-    border-bottom:1px solid #A6A16D;
+    border-bottom:1px solid #8faad9;
     font-weight:bold;
     padding-bottom:2px;
 }
@@ -396,6 +416,10 @@ p {
     margin-left: 10px;
     height:20px;
     list-style-type: disc;
+}
+
+.sidebox a {
+    color: #ffffff;
 }
 
 /* ----- TABLES ----- */

@@ -14,13 +14,11 @@
       <div id="doc4" class="yui-t6">
         <div id="hd">
           <g:render template="/templates/header" />
+          <div id="nav">
+            <g:render template="/templates/navigation" />
+          </div>
         </div>
-        <div id="nav">
-          <g:render template="/templates/navigation" />
-        </div>
-        <div id="banner">
-          <img src="${resource(dir:'images', file:'banner.jpg')}" width="974" height="336" alt="lernardo"/>
-        </div>
+        <div id="banner"></div>
         <div id="bd">
           <div id="yui-main">
             <div id="main" class="yui-b">
