@@ -5,4 +5,8 @@ class StaticController {
     def nutzung = {}
 
     def datenschutz = {}
+
+    def facilities = {}
+
+    def contact = {}
 }
