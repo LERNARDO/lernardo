@@ -1,5 +1,6 @@
 class AdminController {
     def profileDataService
+    def actionsDataService
 
     def index = {}
 
@@ -13,5 +14,11 @@ class AdminController {
         render (view:"list_${params.profileType}", model:res)
     }
 
-    def listActions = {}
+    def listActions = {
+        params.offset = params.offset ? params.offset.toInteger(): 0
+        params.max = params.max ? params.max.toInteger(): 10
+        def res = ['actionList': actionsDataService.listActions (params.offset, params.max),
+                   'totalActions': actionsDataService.totalActions ()]
+        render (view:"list_actions", model:res)
+    }
 }
