@@ -58,7 +58,7 @@
       <div class="paginateButtons">
         <g:paginate controller="profile"
                     action="list"
-                    params="[profileType:'betreiber']"
+                    params="[profileType:'client']"
                     total="${totalProfiles}" />
       </div>
 
