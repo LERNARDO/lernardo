@@ -29,4 +29,6 @@ class StaticController {
     def futurewings = {}
 
     def kontakt = {}
+
+    def registration = {}
 }
