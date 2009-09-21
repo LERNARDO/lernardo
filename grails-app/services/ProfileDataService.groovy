@@ -2,6 +2,10 @@ class ProfileDataService {
     boolean transactional = false
     Map profiles = [:]
 
+    ProfileDataService () {
+        initProfiles()
+    }
+
     def initProfiles () {
         initEinrichtungen()
         initPaedagogen()
@@ -159,7 +163,7 @@ class ProfileDataService {
             ansprechperson: 'Johannes Zeitelberger',
             friends:['kaumberg'],
             image:'../images/avatar/none.jpg']
-        profiles.a = [type:'betreiber',fullName:'dummy1']
+        profiles.a = [type:'betreiber',fullName:'dummy1xy']
         profiles.b = [type:'betreiber',fullName:'dummy2']
         profiles.c = [type:'betreiber',fullName:'dummy3']
         profiles.d = [type:'betreiber',fullName:'dummy4']
