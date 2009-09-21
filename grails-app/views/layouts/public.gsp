@@ -38,7 +38,7 @@
                         <p>E-Mail:</p>
                       </td>
                       <td>
-                    <input id="j_username" name="j_username" type="text" tabindex="1" />
+                        <input id="j_username" name="j_username" type="text" tabindex="1" />
 
                       </td>
                     </tr>
@@ -47,7 +47,7 @@
                         <p>Passwort:</p>
                       </td>
                       <td>
-                    <input name="j_password" id="j_password" type="password" tabindex="2" />
+                        <input name="j_password" id="j_password" type="password" tabindex="2" />
 
                       </td>
                     </tr>
@@ -65,22 +65,20 @@
             <div class="sidebox">
               <div class="sideboxheader">Über Lernardo</div>
               <div class="sideboxcontent">
-              <ul>
-                <li><a href="/static/zielsetzung#anker">Zielsetzung</a></li>
-                <li><a href="/static/ueberblick#anker">Überblick</a></li>
-                <li><a href="/static/teilleistungstraining#anker">Teilleistungstraining</a></li>
-                <li><a href="/static/lernen#anker">Lernen lernen</a></li>
-
-                <li><a href="/static/bewegung#anker">Bewegung - Ernährung</a></li>
-                <li><a href="/static/intelligenz#anker">Soziale und emotionale Intelligenz</a></li>
-                <li><a href="/static/kompetenz#anker">Persönliche Kompetenz</a></li>
-                <li><a href="/static/handwerk#anker">Handwerk und Kunst</a></li>
-                <!--<li><a href="/static/kontakt#anker">Kontakt</a></li>-->
-                <li><a href="/static/impressum#anker">Impressum</a></li>
-
-                <!--<li><a href="/static/loewenzahn#anker">Hort Löwenzahn</a></li>-->
-                <li style="border-bottom: none"><a href="/static/futurewings#anker">Future Wings</a></li>
-              </ul>
+                <ul>
+                  <li><g:link controller="static" action="zielsetzung" fragment="anker">Zielsetzung</g:link></li>
+                  <li><g:link controller="static" action="ueberblick" fragment="anker">Überblick</g:link></li>
+                  <li><g:link controller="static" action="teilleistungstraining" fragment="anker">Teilleistungstraining</g:link></li>
+                  <li><g:link controller="static" action="lernen" fragment="anker">Lernen lernen</g:link></li>
+                  <li><g:link controller="static" action="bewegung" fragment="anker">Bewegung - Ernährung</g:link></li>
+                  <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale und emotionale Intelligenz</g:link></li>
+                  <li><g:link controller="static" action="kompetenz" fragment="anker">Persönliche Kompetenz</g:link></li>
+                  <li><g:link controller="static" action="handwerk" fragment="anker">Handwerk und Kunst</g:link></li>
+                  <!--<li><g:link controller="static" action="kontakt" fragment="anker">Kontakt</g:link></li>-->
+                  <li><g:link controller="static" action="impressum" fragment="anker">Impressum</g:link></li>
+                  <!--<li><g:link controller="static" action="loewenzahn" fragment="anker">Hort Löwenzahn</g:link></li>-->
+                  <li style="border-bottom: none"><g:link controller="static" action="futurewings" fragment="anker">Future Wings</g:link></li>
+                </ul>
               </div>
             </div><!-- sidebox -->
             <div class="sidebox">
@@ -92,7 +90,7 @@
             </div><!-- sidebox -->
             <div class="sidebox">
               <div class="sideboxheader">Bild des Tages</div>
-              <div class="sideboxcontent"><img src="/images/bild_des_tages.png" width="229" height="172" alt="bild des tages" id="randomPicture"/></div>
+              <div class="sideboxcontent"><img src="/lernardoV2/images/static/bild_des_tages.png" width="229" height="172" alt="bild des tages" id="randomPicture"/></div>
             </div><!-- sidebox -->
           </div>
         </div>

@@ -11,4 +11,26 @@ class StaticController {
     def facilities = {}
 
     def contact = {}
+
+    def zielsetzung = {}
+
+    def ueberblick = {}
+
+    def teilleistungstraining = {}
+
+    def lernen = {}
+
+    def bewegung = {}
+
+    def intelligenz = {}
+
+    def kompetenz = {}
+
+    def handwerk = {}
+
+    def impressum = {}
+
+    def futurewings = {}
+
+    def kontakt = {}
 }
