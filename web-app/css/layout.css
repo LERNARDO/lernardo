@@ -9,17 +9,6 @@ body {
     width: 974px;
 }
 
-h2 {
-    padding-bottom: 10px;
-    font-size: 120%;
-    font-weight: bold;
-}
-
-p {
-    padding-bottom: 10px;
-    line-height: 17px;
-}
-
 #body-list {
     padding: 10px;
     background: #f0f0f0;
@@ -125,6 +114,25 @@ a:link, a:visited {
     color:#222222;
     text-decoration:none;
 }
+
+h1 {
+    color:#656245;
+    font-size:20px;
+    font-weight:normal;
+    margin:0.8em 0 0.3em;
+}
+
+h2 {
+    padding-bottom: 10px;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+p {
+    padding-bottom: 10px;
+    line-height: 17px;
+}
+
 
 /* ----- BEGIN PRIVATE ----- */
 
@@ -334,6 +342,9 @@ a:link, a:visited {
 #public #main {
     margin: 20px 0;
     padding: 0 20px;
+    border-right:1px solid #CCCCCC;
+    line-height:18px;
+    width:655px;
 }
 
 .sidebox {
