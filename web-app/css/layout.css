@@ -347,6 +347,26 @@ p {
     width:655px;
 }
 
+#public #main h1 {
+    margin-bottom: 15px;
+}
+
+#public #main h2 {
+  margin: 5px 15px 5px 0;
+  padding: 10px 0 5px 0;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  text-decoration: none;
+}
+
+#public .note {
+    font-size: 10px;
+}
+
+#public .highlight {
+    font-weight: bold;
+}
+
 .sidebox {
     -moz-border-radius-bottomleft:5px;
     -moz-border-radius-bottomright:5px;
