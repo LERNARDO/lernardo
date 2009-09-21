@@ -216,8 +216,8 @@ p {
     -moz-border-radius-bottomright:5px;
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background-color:#E5E1B5;
-    border:1px solid #C5C29C;
+    background-color:#708dc2;
+    border:1px solid #efefef;
     padding:5px;
 }
 
@@ -238,8 +238,8 @@ p {
 .profile-group {
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background-color:#DAD495;
-    border-color:#C6C187;
+    background-color:#708dc2;
+    border-color:#efefef;
     border-style:solid;
     border-width:1px;
     font-weight:bold;
@@ -247,6 +247,7 @@ p {
     padding:2px;
     text-align:center;
     width:120px;
+    color: #ffffff;
 }
 
 #profile-content {
@@ -254,11 +255,12 @@ p {
     -moz-border-radius-bottomright:5px;
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background-color: #E5E1B5;
-    border:1px solid #C5C29C;
+    background-color: #708dc2;
+    border:1px solid #efefef;
     padding: 5px 10px 10px 10px;
     margin: 10px;
     vertical-align:top;
+    color: #ffffff;
 }
 
 #profile-content .bezeichnung {
@@ -277,7 +279,7 @@ p {
 }
 
 #profile-navigation a {
-    color:#1F527B;
+    color:#ffffff;
     text-decoration:none;
 }
 
