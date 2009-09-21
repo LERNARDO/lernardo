@@ -13,6 +13,7 @@
           <label>Auswahl
             <select name="profileType">
               <option value="all" selected="selected">Alle</option>
+              <option value="einrichtung">Einrichtungen</option>
               <option value="betreiber">Betreiber</option>
               <option value="client">Betreute</option>
               <option value="paed">Pädagogen</option>

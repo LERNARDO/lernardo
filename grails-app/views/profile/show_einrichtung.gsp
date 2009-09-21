@@ -46,6 +46,7 @@
                 <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${plz}</td></tr>
                 <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${ort}</td></tr>
                 <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${strasse}</td></tr>
+                <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${beschreibung}</td></tr>
               </table>
 
               <g:form>

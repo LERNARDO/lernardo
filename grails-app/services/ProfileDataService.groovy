@@ -22,7 +22,9 @@ class ProfileDataService {
             ort:'Weissenbach',
             strasse:'Hauptstraße 12',
             friends:['regina','martin','rosa','birgit','moritz','alpha'],
-            image:'../images/avatar/loewenzahn.jpg']
+            image:'../images/avatar/loewenzahn.jpg',
+            beschreibung:'''Hort Löwenzahn ist die erste Einrichtung die Lernardo anbietet. Auf
+            knapp 100m2 stehen den Kindern ...''']
         profiles.kaumberg = [type:'einrichtung',
             role:'Einrichtung',
             name:'kaumberg',
@@ -31,7 +33,8 @@ class ProfileDataService {
             ort:'Kaumberg',
             strasse:'???',
             friends:['hannah','sebastian','lernardo'],
-            image:'../images/avatar/none.jpg']
+            image:'../images/avatar/none.jpg',
+            beschreibung:'???']
     }
 
     def initPaedagogen () {
