@@ -39,7 +39,7 @@
 
       <div class="paginateButtons">
         <g:paginate controller="admin"
-                    action="list"
+                    action="listActions"
                     total="${totalActions}" />
       </div>
 
