@@ -26,6 +26,7 @@
       <table>
         <thead>
           <tr>
+        <g:sortableColumn property="role" title="Rolle" />
         <g:sortableColumn params="[profileType: 'betreiber']" property="fullName" title="Name" />
         <g:sortableColumn property="plz" title="PLZ" />
         <g:sortableColumn property="ort" title="Ort" />
@@ -37,6 +38,7 @@
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
+            <td>${profileInstance.value.role}</td>
             <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${fieldValue(bean:profileInstance, field:'value.fullName')}</g:link></td>
           <td>${profileInstance.value.plz}</td>
           <td>${profileInstance.value.ort}</td>
@@ -54,7 +56,7 @@
                     params="[profileType:'betreiber']"
                     total="${totalProfiles}" />
       </div>
-      
+
     </div>
   </body>
 </html>

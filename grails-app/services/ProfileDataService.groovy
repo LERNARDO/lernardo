@@ -51,7 +51,8 @@ class ProfileDataService {
             mail: 'regina.toncourt@gmx.at',
             tel: '0676 / 4303 145',
             friends:['loewenzahn','martin','rosa','birgit','moritz','alpha'],
-            image:'../images/avatar/regina_toncourt.jpg']
+            image:'../images/avatar/regina_toncourt.jpg',
+            lebenslauf:'?']
         profiles.martin = [type:'paed',
             role:'Pädagoge',
             name:'martin',
@@ -65,7 +66,8 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['loewenzahn','regina','rosa','birgit','moritz','alpha'],
-            image:'../images/avatar/martin_golja.jpg']
+            image:'../images/avatar/martin_golja.jpg',
+            lebenslauf:'?']
         profiles.rosa  = [type:'paed',
             role:'Pädagogin',
             name:'rosa',
@@ -79,7 +81,8 @@ class ProfileDataService {
             mail: '-',
             tel: '0664 / 3774 559',
             friends:['loewenzahn','regina','martin','birgit','moritz','alpha'],
-            image:'../images/avatar/none.jpg']
+            image:'../images/avatar/none.jpg',
+            lebenslauf:'?']
         profiles.birgit  = [type:'paed',
             role:'Pädagogin',
             name:'birgit',
@@ -93,7 +96,8 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['loewenzahn','regina','martin','rosa','moritz','alpha'],
-            image:'../images/avatar/none.jpg']
+            image:'../images/avatar/none.jpg',
+            lebenslauf:'?']
         profiles.hannah  = [type:'paed',
             role:'Pädagogin',
             name:'hannah',
@@ -107,7 +111,8 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['kaumberg','sebastian','lernardo'],
-            image:'../images/avatar/none.jpg']
+            image:'../images/avatar/none.jpg',
+            lebenslauf:'?']
     }
 
     def initBetreute () {
@@ -124,7 +129,7 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['loewenzahn','regina','rosa','birgit','moritz'],
+            friends:['loewenzahn','regina','rosa','birgit','julia'],
             image:'../images/avatar/none.jpg']
         profiles.sebastian = [type:'client',
             role:'Betreuter',
@@ -139,7 +144,37 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['kaumberg','hannah','lernardo'],
+            friends:['kaumberg','hannah','lernardo','michelle'],
+            image:'../images/avatar/none.jpg']
+        profiles.julia = [type:'client',
+            role:'Betreute',
+            name:'julia',
+            firstName: 'Julia',
+            lastName:'Drauch',
+            birthDate:'?',
+            plz:'?',
+            ort:'?',
+            strasse:'?',
+            mail: '?',
+            tel: '?',
+            schule: '?',
+            klasse: '?',
+            friends:['loewenzahn','regina','rosa','birgit','moritz'],
+            image:'../images/avatar/none.jpg']
+        profiles.michelle = [type:'client',
+            role:'Betreute',
+            name:'michelle',
+            firstName: 'Michelle',
+            lastName:'Fürlinger',
+            birthDate:'?',
+            plz:'?',
+            ort:'?',
+            strasse:'?',
+            mail: '?',
+            tel: '?',
+            schule: '?',
+            klasse: '?',
+            friends:['kaumberg','hannah','lernardo','sebastian]'],
             image:'../images/avatar/none.jpg']
     }
 
@@ -166,17 +201,6 @@ class ProfileDataService {
             ansprechperson: 'Johannes Zeitelberger',
             friends:['kaumberg'],
             image:'../images/avatar/none.jpg']
-        profiles.a = [type:'betreiber',fullName:'dummy1xy']
-        profiles.b = [type:'betreiber',fullName:'dummy2']
-        profiles.c = [type:'betreiber',fullName:'dummy3']
-        profiles.d = [type:'betreiber',fullName:'dummy4']
-        profiles.e = [type:'betreiber',fullName:'dummy5']
-        profiles.f = [type:'betreiber',fullName:'dummy6']
-        profiles.g = [type:'betreiber',fullName:'dummy7']
-        profiles.h = [type:'betreiber',fullName:'dummy8']
-        profiles.i = [type:'betreiber',fullName:'dummy9']
-        profiles.j = [type:'betreiber',fullName:'dummy10']
-
     }
 
     def addProfile(String name, Map attrs) {

@@ -26,6 +26,7 @@
       <table>
         <thead>
           <tr>
+        <g:sortableColumn property="role" title="Rolle" />
         <g:sortableColumn property="title" title="Title" />
         <g:sortableColumn property="firstName" title="Vorname" />
         <g:sortableColumn property="lastName" title="Nachname" />
@@ -40,6 +41,7 @@
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
+            <td>${profileInstance.value.role}</td>
             <td>${profileInstance.value.title}</td>
             <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.firstName}</g:link></td>
           <td>${profileInstance.value.lastName}</td>

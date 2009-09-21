@@ -378,11 +378,11 @@ margin-top:10px;
 .paginateButtons {
     background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
     border: 1px solid #ccc;
-    border-top: 0;
     color: #666;
     font-size: 10px;
     overflow: hidden;
     padding: 10px 3px;
+    margin-top: 5px;
 }
 .paginateButtons a {
     background: #fff;
