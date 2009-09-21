@@ -189,7 +189,7 @@ class ProfileDataService {
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Stephanie Pirkfellner',
             friends:['loewenzahn'],
-            image:'../images/avatar/none.jpg']
+            image:'../images/avatar/alpha.jpg']
         profiles.lernardo = [type:'betreiber',
             role:'Betreiber',
             name:'lernardo',
