@@ -67,7 +67,7 @@
       </table>
 
       <div class="paginateButtons">
-        <g:paginate controller="profile"
+        <g:paginate controller="admin"
                     action="list"
                     params="[profileType:'all']"
                     total="${totalProfiles}" />
