@@ -4,6 +4,7 @@
 - add some more real data in profiles
 - create favicon
 - redo banner graphic
-
+- implement login
+- implement blog
 
 # Done
