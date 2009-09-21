@@ -5,10 +5,10 @@
 - implement login
 - implement blog
 - tab navigation for profiles (paed)
-- ERP (Admin-Area)
 - Colorize Profiletypes (Lists and Profileboxes)
 - Implement new CSS-Design
 
 # Done
 - redo banner graphic
 - add favicon
+- move list views to admin area
