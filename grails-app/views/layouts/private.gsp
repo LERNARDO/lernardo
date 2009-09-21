@@ -14,9 +14,9 @@
       <div id="doc4">
         <div id="hd">
           <g:render template="/templates/header" />
-        </div>
-        <div id="nav">
-          <g:render template="/templates/navigation" />
+          <div id="nav">
+            <g:render template="/templates/navigation" />
+          </div>
         </div>
         <div id="banner">
           <ol class="imgmenu">
