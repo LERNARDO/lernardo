@@ -116,6 +116,16 @@ p {
     width: 140px;
 }
 
+a:hover {
+    color:#666600;
+    text-decoration:underline !important;
+}
+
+a:link, a:visited {
+    color:#222222;
+    text-decoration:none;
+}
+
 /* ----- BEGIN PRIVATE ----- */
 
 .imgbox {
@@ -327,24 +337,34 @@ p {
 }
 
 .sidebox {
--moz-border-radius-bottomleft:5px;
--moz-border-radius-bottomright:5px;
--moz-border-radius-topleft:5px;
--moz-border-radius-topright:5px;
-background:#DAD495 none repeat scroll 0 0;
-border:1px solid #C9C384;
-margin:0 10px 20px;
-padding:10px;
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background:#DAD495 none repeat scroll 0 0;
+    border:1px solid #C9C384;
+    margin:0 10px 20px;
+    padding:10px;
 }
 
 .sideboxheader {
-border-bottom:1px solid #A6A16D;
-font-weight:bold;
-padding-bottom:2px;
+    border-bottom:1px solid #A6A16D;
+    font-weight:bold;
+    padding-bottom:2px;
 }
 
 .sideboxcontent {
-margin-top:10px;
+    margin-top:10px;
+}
+
+.sideboxcontent ul {
+    margin-left:10px;
+}
+
+.sideboxcontent ul li {
+    margin-left: 10px;
+    height:20px;
+    list-style-type: disc;
 }
 
 /* ----- TABLES ----- */
