@@ -15,18 +15,16 @@
               <tr><th class="rang"><p>${fullName} - ${role}</p></th></tr>
               <tr><td class="profile-pic"><img src="${image}" width="150" height="150"/></td></tr>
             </table>
-          </div><!--Bild&Rang-->
+          </div>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
             <ul>
               <li class="profile-profil"><a href="#"><strong>Profil ansehen</strong></a></li>
               <li class="profile-nachricht"><a href="#">Nachricht schreiben</a></li>
-              <li class="profile-telefon"><a href="#">SMS senden</a></li>
-              <li class="profile-leistung"><a href="#">Leistungsfortschritt</a></li>
               <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
             </ul>
-          </div><!--persoenlich-->
+          </div>
 
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
@@ -35,7 +33,7 @@
                 <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
               </g:each>
             </ul>
-          </div><!--netzwerk-->
+          </div>
         </div>
 
         <div id="yui-main">

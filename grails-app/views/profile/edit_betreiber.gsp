@@ -5,41 +5,76 @@
     <title>Profil - Betreiber</title>
   </head>
   <body>
-    <h2>Profil für Betreiber: -${name}-</h2>
-  <g:form method="post" >
-    <table>
-      <tr>
-        <td class="bold titles">Name:</td>
-        <td><input type="text" id="fullName" name="fullName" value="${fieldValue(bean:prf,field:'fullName')}"/></td>
-      </tr>
-      <tr>
-        <td class="bold titles">PLZ:</td>
-        <td>${plz}</td>
-      </tr>
-      <tr>
-        <td class="bold titles">Ort:</td>
-        <td>${ort}</td>
-      </tr>
-      <tr>
-        <td class="bold titles">Straße:</td>
-        <td>${strasse}</td>
-      </tr>
-      <tr>
-        <td class="bold titles">Gemeinnützigkeit:</td>
-        <td>${gemeinnutzigkeit}</td>
-      </tr>
-      <tr>
-        <td class="bold titles">Ansprechperson:</td>
-        <td>${ansprechperson}</td>
-      </tr>
-    </table>
-    <ul>
-      <li><a href="/lernardoV2/prf/alpha">Verein Alpha - Frauen für die Zukunft</a></li>
-      <li><a href="/lernardoV2/prf/lernardo">LERNARDO Lernen - Wachsen</a></li>
-    </ul>
-    <input type="hidden" name="type" value="${type}" />
-    <input type="hidden" name="id" value="${name}" />
-    <span class="button"><g:actionSubmit class="save" value="Save" /></span>
-  </g:form>
-</body>
+
+    <div id="doc4" class="yui-t3">
+      <div id="bd">
+
+        <div class="yui-b" id="profile-navigation">
+
+          <div class="profile-box">
+            <table width="250" align="center">
+              <tr><th class="rang"><p>${fullName} - ${role}</p></th></tr>
+              <tr><td class="profile-pic"><img src="${image}" width="150" height="150"/></td></tr>
+            </table>
+          </div>
+
+          <div class="profile-group">Kommunikation</div>
+          <div class="profile-box">
+            <ul>
+              <li class="profile-profil"><a href="#"><strong>Profil ansehen</strong></a></li>
+              <li class="profile-nachricht"><a href="#">Nachricht schreiben</a></li>
+              <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
+            </ul>
+          </div>
+
+          <div class="profile-group">Netzwerk</div>
+          <div class="profile-box">
+            <ul>
+              <g:each in="${friends}" var="friend">
+                <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
+              </g:each>
+            </ul>
+          </div>
+        </div>
+
+        <div id="yui-main">
+          <div class="yui-b">
+            <div id="profile-content">
+              <g:form action="save" >
+                <table>
+                  <tr>
+                    <td class="bold titles bezeichnung">Name:</td>
+                    <td class="bezeichnung"><input type="text" id="fullName" name="fullName" value="${fullName}"/></td>
+                  </tr>
+                  <tr>
+                    <td class="bold titles bezeichnung">PLZ:</td>
+                    <td class="bezeichnung">${plz}</td>
+                  </tr>
+                  <tr>
+                    <td class="bold titles bezeichnung">Ort:</td>
+                    <td class="bezeichnung">${ort}</td>
+                  </tr>
+                  <tr>
+                    <td class="bold titles bezeichnung">Straße:</td>
+                    <td class="bezeichnung">${strasse}</td>
+                  </tr>
+                  <tr>
+                    <td class="bold titles bezeichnung">Gemeinnützigkeit:</td>
+                    <td class="bezeichnung">${gemeinnutzigkeit}</td>
+                  </tr>
+                  <tr>
+                    <td class="bold titles bezeichnung">Ansprechperson:</td>
+                    <td class="bezeichnung">${ansprechperson}</td>
+                  </tr>
+                </table>
+                <input name="name "type="hidden" value="${name}" />
+                <span class="button"><g:actionSubmit name="save" action="save" value="Speichern" /></span>
+              </g:form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
 </html>

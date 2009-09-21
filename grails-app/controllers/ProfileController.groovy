@@ -23,7 +23,7 @@ class ProfileController {
     }
 
     def edit = {
-        def prf = profileDataService.getProfile (params.id)
+        def prf = profileDataService.getProfile (params.name)
         if (!prf) {
             response.sendError(404, "user profile not found")
             return ;
@@ -33,9 +33,9 @@ class ProfileController {
     }
 
     def save = {
-        def prf = profileDataService.getProfile (params.id)
+        def prf = profileDataService.getProfile (params.name)
         profileDataService.addProfile("lernardo", prf)
-        redirect(url:"/lernardoV2/prf/lernardo")
+        render (view:"show_${prf.type ? prf.type:'other'}", model:prf)
     }
 
 }

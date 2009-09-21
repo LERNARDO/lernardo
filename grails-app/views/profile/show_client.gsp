@@ -15,7 +15,7 @@
               <tr><th class="rang"><p>${firstName} ${lastName} - ${role}</p></th></tr>
               <tr><td class="profile-pic"><img src="${image}"  width="150" height="150"/></td></tr>
             </table>
-          </div><!--Bild&Rang-->
+          </div>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
@@ -26,7 +26,7 @@
               <li class="profile-leistung"><a href="#">Leistungsfortschritt</a></li>
               <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
             </ul>
-          </div><!--persoenlich-->
+          </div>
 
           <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
@@ -35,7 +35,7 @@
                 <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
               </g:each>
             </ul>
-          </div><!--netzwerk-->
+          </div>
         </div>
 
         <div id="yui-main">
