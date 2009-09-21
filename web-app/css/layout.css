@@ -372,8 +372,8 @@ p {
     -moz-border-radius-bottomright:5px;
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background:#DAD495 none repeat scroll 0 0;
-    border:1px solid #C9C384;
+    background:#e6e6e6 none repeat scroll 0 0;
+    border:1px solid #efefef;
     margin:0 10px 20px;
     padding:10px;
 }
