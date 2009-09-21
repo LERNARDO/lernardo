@@ -6,11 +6,7 @@ class StaticController {
 
     def datenschutz = {}
 
-    def purpose = {}
-
-    def facilities = {}
-
-    def contact = {}
+    def einrichtungen = {}
 
     def zielsetzung = {}
 
