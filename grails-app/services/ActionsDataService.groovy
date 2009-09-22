@@ -1,8 +1,8 @@
-class ActionDataService {
+class ActionsDataService {
     boolean transactional = false
     Map actions = [:]
 
-    ActionDataService () {
+    ActionsDataService () {
         initActions()
     }
 
@@ -13,8 +13,28 @@ class ActionDataService {
                             es können möglichst viele Bewegungsformen ausprobiert werden''',
             dauer:'60 Minuten',
             sozialform:'Großgruppe',
-            materialien:'Hammer, Nagel, Stacheldraht, Nitroglycerin',
-            gewichtung:[LL:1,BE:2,PK:3,SI:2,HK:1,TLT:0],
+            materialien:'Bänke',
+            ll: '0',
+            be: '3',
+            pk: '1',
+            si: '2',
+            hk: '0',
+            tlt: '1',
+            qualifikationen:'keine',
+            anzahlPaedagogen:'1']
+
+        actions.id_2 = [name:'Weide mit Hindernissen',
+            beschreibung:'''Die Bänke werden in Reihen aufgestellt;
+                            es können möglichst viele Bewegungsformen ausprobiert werden''',
+            dauer:'60 Minuten',
+            sozialform:'Großgruppe',
+            materialien:'Bänke',
+            ll: '0',
+            be: '3',
+            pk: '1',
+            si: '2',
+            hk: '0',
+            tlt: '1',
             qualifikationen:'keine',
             anzahlPaedagogen:'1']
     }

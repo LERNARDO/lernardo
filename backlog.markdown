@@ -6,6 +6,8 @@
 - implement blog
 - tab navigation for profiles (paed)
 - Colorize Profiletypes (Lists and Profileboxes)
+- add views for "nachricht schreiben", "sms senden", "leistungsfortschritt"
+- implement "zu netzwerk hinzufügen"
 
 # Done
 - redo banner graphic

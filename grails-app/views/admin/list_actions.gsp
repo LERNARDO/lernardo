@@ -1,37 +1,47 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Liste aller Profile</title>
+    <title>Liste aller Aktivitätsvorlagen</title>
   </head>
   <body>
     <div id="body-list">
-      <h2>Liste aller Profile</h2>
-      <p>${totalActions} Profile gefunden</p>
+      <h2>Liste aller Aktivitätsvorlagen</h2>
+      <p>${totalActions} Aktivitätsvorlagen gefunden</p>
 
       <table>
         <thead>
           <tr>
-        <g:sortableColumn property="name" title="Rolle" />
-        <g:sortableColumn property="beschreibung" title="Title" />
-        <g:sortableColumn property="dauer" title="Name" />
-        <g:sortableColumn property="sozialform" title="Vorname" />
-        <g:sortableColumn property="materialien" title="Nachname" />
-        <g:sortableColumn property="gewichtung" title="Geburtsdatum" />
-        <g:sortableColumn property="qualifikationen" title="PLZ" />
-        <g:sortableColumn property="anzahlPaedagogen" title="Ort" />
+        <g:sortableColumn property="name" title="Name" />
+        <g:sortableColumn property="beschreibung" title="Beschreibung" />
+        <g:sortableColumn property="dauer" title="Dauer" />
+        <g:sortableColumn property="sozialform" title="Sozialform" />
+        <g:sortableColumn property="materialien" title="Materialien" />
+        <g:sortableColumn property="ll" title="Lernen lernen" />
+        <g:sortableColumn property="be" title="Bewegung & Ernährung" />
+        <g:sortableColumn property="pk" title="Persönliche Kompetenz" />
+        <g:sortableColumn property="si" title="Soziale und emotionale Intelligenz" />
+        <g:sortableColumn property="hk" title="Handwerk & Kunst" />
+        <g:sortableColumn property="tlt" title="Teilleistungstraining" />
+        <g:sortableColumn property="qualifikationen" title="Qualifikationen" />
+        <g:sortableColumn property="anzahlPaedagogen" title="Anzahl Pädagogen" />
         </tr>
         </thead>
         <tbody>
-        <g:each status="i" in="${actionList}" var="profileInstance">
+        <g:each status="i" in="${actionList}" var="actionInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td>${profileInstance.value.name}</td>
-            <td>${profileInstance.value.beschreibung}</td>
-            <td>${profileInstance.value.dauer}</td>
-            <td>${profileInstance.value.sozialform}</td>
-            <td>${profileInstance.value.materialien}</td>
-            <td>${profileInstance.value.gewichtung}</td>
-            <td>${profileInstance.value.qualifikationen}</td>
-            <td>${profileInstance.value.anzahlPaedagogen}</td>
+            <td>${actionInstance.value.name}</td>
+            <td>${actionInstance.value.beschreibung}</td>
+            <td>${actionInstance.value.dauer}</td>
+            <td>${actionInstance.value.sozialform}</td>
+            <td>${actionInstance.value.materialien}</td>
+            <td>${actionInstance.value.ll}</td>
+            <td>${actionInstance.value.be}</td>
+            <td>${actionInstance.value.pk}</td>
+            <td>${actionInstance.value.si}</td>
+            <td>${actionInstance.value.hk}</td>
+            <td>${actionInstance.value.tlt}</td>
+            <td>${actionInstance.value.qualifikationen}</td>
+            <td>${actionInstance.value.anzahlPaedagogen}</td>
           </tr>
         </g:each>
         </tbody>
