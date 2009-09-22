@@ -14,4 +14,4 @@
 - implement new CSS-Design
 - implement actions list
 - fix friends role in profiles
-- colorize each profily type differently
+- colorize each profile type differently
