@@ -9,7 +9,7 @@
     <h1>Kontakt</h1>
     <table width="335" border="0">
       <tr>
-        <td valign="top"><img src="${createLinkTo(dir:'images/static',file:'susanne.jpg')}" width="68" height="68" /></td>
+       <td valign="top"><img src="${createLinkTo(dir:'images/static',file:'susanne.jpg')}" width="68" height="68" /></td>
 <td>
 <p>Frau Susanne Stiedl<br />
 Projektleitung Lernardo</p>

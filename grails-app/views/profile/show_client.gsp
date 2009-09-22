@@ -12,17 +12,18 @@
 
           <div class="profile-box-client">
             <table width="250" align="center">
-              <tr><th class="rang"><h1>${firstName} ${lastName} - ${role}</h1></th></tr>
-              <tr><td class="profile-pic"><img src="${image}"  width="150" height="150"/></td></tr>
+              <tr><th class="rang"><h1>${profileInstance.firstName} ${profileInstance.lastName} - ${profileInstance.role}</h1></th></tr>
+              <tr><td class="profile-pic"><img src="${profileInstance.image}"  width="150" height="150"/></td></tr>
             </table>
           </div>
 
           <div class="profile-group-client">Kommunikation</div>
           <div class="profile-box-client">
             <ul>
-              <li class="profile-profil"><a href="#"><strong>Profil ansehen</strong></a></li>
-              <li class="profile-nachricht"><a href="#">Nachricht schreiben</a></li>
-              <li class="profile-telefon"><a href="#">SMS senden</a></li>
+              <g:def var="profileVar" value="${profileInstance.name}"/>
+              <li class="profile-profil"><g:link action="show" params="[content:'profile',name:profileVar]">Profil ansehen</g:link></li>
+              <li class="profile-nachricht"><g:link action="show" params="[content:'message',name:profileVar]">Nachricht schreiben</g:link></li>
+              <li class="profile-telefon"><g:link action="show" params="[content:'sms',name:profileVar]">SMS senden</g:link></li>
               <li class="profile-leistung"><a href="#">Leistungsfortschritt</a></li>
               <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
             </ul>
@@ -31,34 +32,15 @@
           <div class="profile-group-client">Netzwerk</div>
           <div class="profile-box-client">
             <ul>
-              <g:each in="${friends}" var="friend">
+              <g:each in="${profileInstance.friends}" var="friend">
                 <li><a href="/lernardoV2/prf/${friend.key}">${friend.key[0].toUpperCase() + friend.key.substring(1)}</a> (${friend.value})</li>
               </g:each>
             </ul>
           </div>
         </div>
 
-        <div id="yui-main">
-          <div class="yui-b">
-            <div id="profile-content-client">
-              <table width="100%">
-                <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${firstName}</td></tr>
-                <tr><td class="bold titles bezeichnung">Nachname:</td><td class="bezeichnung">${lastName}</td></tr>
-                <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${birthDate}</td></tr>
-                <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${plz}</td></tr>
-                <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${ort}</td></tr>
-                <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${strasse}</td></tr>
-                <tr><td class="bold titles bezeichnung">E-Mail:</td><td class="bezeichnung">${mail}</td></tr>
-                <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${tel}</td></tr>
-                <tr><td class="bold titles bezeichnung">Schule:</td><td class="bezeichnung">${schule}</td></tr>
-                <tr><td class="bold titles bezeichnung">Klasse:</td><td class="bezeichnung">${klasse}</td></tr>            </table>
-              %{--<g:form>
-                <input type="hidden" name="id" value="${name}" />
-                <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-              </g:form>--}%
-            </div>
-          </div>
-        </div>
+      <g:render template="/templates/client-content-${content}" model="${profileInstance}" />
+      
       </div>
     </div>
 

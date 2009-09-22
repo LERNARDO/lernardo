@@ -12,16 +12,17 @@
 
           <div class="profile-box-betreiber">
             <table width="250" align="center">
-              <tr><th class="rang"><h1>${fullName} - ${role}</h1></th></tr>
-              <tr><td class="profile-pic"><img src="${image}" width="150" height="150"/></td></tr>
+              <tr><th class="rang"><h1>${profileInstance.fullName} - ${profileInstance.role}</h1></th></tr>
+              <tr><td class="profile-pic"><img src="${profileInstance.image}" width="150" height="150"/></td></tr>
             </table>
           </div>
 
           <div class="profile-group-betreiber">Kommunikation</div>
           <div class="profile-box-betreiber">
             <ul>
-              <li class="profile-profil"><a href="#"><strong>Profil ansehen</strong></a></li>
-              <li class="profile-nachricht"><a href="#">Nachricht schreiben</a></li>
+              <g:def var="profileVar" value="${profileInstance.name}"/>
+              <li class="profile-profil"><g:link action="show" params="[content:'profile',name:profileVar]">Profil ansehen</g:link></li>
+              <li class="profile-nachricht"><g:link action="show" params="[content:'message',name:profileVar]">Nachricht schreiben</g:link></li>
               <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
             </ul>
           </div>
@@ -29,31 +30,15 @@
           <div class="profile-group-betreiber">Netzwerk</div>
           <div class="profile-box-betreiber">
             <ul>
-              <g:each in="${friends}" var="friend">
+              <g:each in="${profileInstance.friends}" var="friend">
                 <li><a href="/lernardoV2/prf/${friend.key}">${friend.key[0].toUpperCase() + friend.key.substring(1)}</a> (${friend.value})</li>
               </g:each>
             </ul>
           </div>
         </div>
 
-        <div id="yui-main">
-          <div class="yui-b">
-            <div id="profile-content-betreiber">
-              <table width="100%">
-                <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${fullName}</td></tr>
-                <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${plz}</td></tr>
-                <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${ort}</td></tr>
-                <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${strasse}</td></tr>
-                <tr><td class="bold titles bezeichnung">Gemeinnützigkeit:</td><td class="bezeichnung">${gemeinnutzigkeit}</td></tr>
-                <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${ansprechperson}</td></tr>
-              </table>
-              %{--<g:form action="edit">
-                <input name="name" type="hidden" value="${name}" />
-                <span class="button"><g:actionSubmit name="edit" action="edit" value="Bearbeiten" /></span>
-              </g:form>--}%
-            </div>
-          </div>
-        </div>
+        <g:render template="/templates/betreiber-content-${content}" model="${profileInstance}" />
+
       </div>
     </div>
 

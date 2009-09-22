@@ -281,6 +281,10 @@ p {
     vertical-align:top;
 }
 
+#profile-content-betreiber h1, #profile-content-paed h1, #profile-content-client h1, #profile-content-einrichtung h1 {
+    color: #fff;
+}
+
 /* Einrichtung Style */
 
 .profile-box-einrichtung {

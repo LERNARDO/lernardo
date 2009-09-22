@@ -4,7 +4,7 @@
 - implement "zu netzwerk hinzufügen"
 - fix sortable columns in profile lists
 - tab navigation for profiles (paed)
-- add views for "nachricht schreiben", "sms senden", "leistungsfortschritt"
+
 
 # Done
 - redo banner graphic
@@ -15,3 +15,4 @@
 - fix friends role in profiles
 - colorize each profile type differently
 - add more client profiles and real data
+- add view templates for "nachricht schreiben", "sms senden"

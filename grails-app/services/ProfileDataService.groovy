@@ -189,7 +189,7 @@ class ProfileDataService {
             tel: '0664-4500112',
             schule: 'VS Kaumberg',
             klasse: '-',
-            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','patrick':'Betreute'],
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','patrick':'Betreute','marianne':'Betreute'],
             image:'../images/avatar/none.jpg',
             allergien:'-',
             krankheiten:'-',

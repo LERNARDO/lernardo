@@ -5,11 +5,13 @@ class ProfileController {
 
     def show = {
         def prf = profileDataService.getProfile (params.name)
+        def content = params.content ?: "profile"
         if (!prf) {
             response.sendError(404, "user profile not found")
             return ;
         }
-        render (view:"show_${prf.type ? prf.type:'other'}", model:prf)
+        def bla = [profileInstance:prf,content:content]
+        render (view:"show_${prf.type ? prf.type:'other'}", model:bla)
     }
 
     def edit = {
