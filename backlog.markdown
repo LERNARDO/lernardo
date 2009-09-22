@@ -1,9 +1,8 @@
 # Backlog
-- implement login
-- implement blog
+- implement login (MK)
+- implement blog (MK)
 - implement "zu netzwerk hinzufügen"
 - fix sortable columns in profile lists
-- add some more real data in profiles
 - tab navigation for profiles (paed)
 - add views for "nachricht schreiben", "sms senden", "leistungsfortschritt"
 
@@ -15,3 +14,4 @@
 - implement actions list
 - fix friends role in profiles
 - colorize each profile type differently
+- add more client profiles and real data

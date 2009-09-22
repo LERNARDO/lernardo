@@ -21,7 +21,7 @@ class ProfileDataService {
             plz:'2564',
             ort:'Weissenbach',
             strasse:'Hauptstraße 12',
-            friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
+            friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/loewenzahn.jpg',
             beschreibung:'''Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
                             und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
@@ -39,7 +39,7 @@ class ProfileDataService {
             plz:'2572',
             ort:'Kaumberg',
             strasse:'-',
-            friends:['hannah':'Pädagogin','sebastian':'Betreuter','lernardo':'Betreiber'],
+            friends:['hannah':'Pädagogin','emil':'Betreuter','lernardo':'Betreiber','marianne':'Betreute','mathias':'Betreuter','patrick':'Betreuter'],
             image:'../images/avatar/none.jpg',
             beschreibung:'-']
     }
@@ -57,7 +57,7 @@ class ProfileDataService {
             strasse:'Hirschbahngasse 3',
             mail: 'regina.toncourt@gmx.at',
             tel: '0676 / 4303 145',
-            friends:['loewenzahn':'Einrichtung','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
+            friends:['loewenzahn':'Einrichtung','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/regina_toncourt.jpg',
             lebenslauf:'''<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> während der Ferienzeit Betreuerin beim Wr. Jugendhilfswerk<br>
@@ -84,7 +84,7 @@ class ProfileDataService {
             strasse:'Obere Marktfeldstraße 20',
             mail: '-',
             tel: '-',
-            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/martin_golja.jpg',
             lebenslauf:'''<b>1976-1980</b> Volksschule Pottenstein<br>
                           <b>1980-1988</b> Neusprachlicher Zweig des Bundesrealgymnasiums Berndorf<br>
@@ -118,13 +118,13 @@ class ProfileDataService {
             strasse:'Schwarzenseer Straße 19',
             mail: '-',
             tel: '0664 / 3774 559',
-            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/none.jpg',
             lebenslauf:'''<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
                           <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
                           <b>1996 – 2004:</b> Karenz und Hausfrau<br>
-                          <b>seit 2004:</b> Fa. L. Schumits & Co GmbH in Pfaffstätten (geringfügig)<br>''']
+                          <b>seit 2004:</b> Fa. L. Schumits & Co GmbH in Pfaffstätten (geringfügig)''']
         profiles.birgit  = [type:'paed',
             role:'Pädagogin',
             name:'birgit',
@@ -137,7 +137,7 @@ class ProfileDataService {
             strasse:'Gartengasse 5',
             mail: '-',
             tel: '-',
-            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/none.jpg',
             lebenslauf:'-']
         profiles.hannah  = [type:'paed',
@@ -152,72 +152,120 @@ class ProfileDataService {
             strasse:'Hauptstraße 14',
             mail: '-',
             tel: '-',
-            friends:['kaumberg':'Einrichtung','sebastian':'Betreuter','lernardo':'Betreiber'],
+            friends:['kaumberg':'Einrichtung','emil':'Betreuter','lernardo':'Betreiber'],
             image:'../images/avatar/none.jpg',
             lebenslauf:'-']
     }
 
     def initBetreute () {
-        profiles.moritz = [type:'client',
+        profiles.raphael = [type:'client',
             role:'Betreuter',
-            name:'moritz',
-            firstName: 'Moritz',
-            lastName:'Bauer',
-            birthDate:'-',
-            plz:'-',
-            ort:'-',
-            strasse:'-',
+            name:'raphael',
+            firstName: 'Raphael',
+            lastName:'Cucuiet',
+            birthDate:'05.05.2000',
+            plz:'2572',
+            ort:'Kaumberg',
+            strasse:'Unterer Sonnenhang 20',
             mail: '-',
-            tel: '-',
-            schule: '-',
+            tel: '02755-684',
+            schule: 'VS Kaumberg',
             klasse: '-',
-            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','julia':'Betreute'],
-            image:'../images/avatar/none.jpg']
-        profiles.sebastian = [type:'client',
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','pascal':'Betreute'],
+            image:'../images/avatar/none.jpg',
+            allergien:'nein',
+            krankheiten:'nein',
+            einschraenkungen:'-']
+        profiles.emil = [type:'client',
             role:'Betreuter',
-            name:'sebastian',
-            firstName: 'Sebastian',
-            lastName:'Cettl',
+            name:'emil',
+            firstName: 'Emil',
+            lastName:'Horny',
             birthDate:'-',
-            plz:'-',
-            ort:'-',
-            strasse:'-',
+            plz:'2572',
+            ort:'Kaumberg',
+            strasse:'Markt 144',
             mail: '-',
-            tel: '-',
-            schule: '-',
+            tel: '0664-4500112',
+            schule: 'VS Kaumberg',
             klasse: '-',
-            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','michelle':'Betreute'],
-            image:'../images/avatar/none.jpg']
-        profiles.julia = [type:'client',
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','patrick':'Betreute'],
+            image:'../images/avatar/none.jpg',
+            allergien:'-',
+            krankheiten:'-',
+            einschraenkungen:'-']
+        profiles.pascal = [type:'client',
+            role:'Betreuter',
+            name:'pascal',
+            firstName: 'Pascal',
+            lastName:'Jerabek',
+            birthDate:'08.04.2002',
+            plz:'2572',
+            ort:'Kaumberg',
+            strasse:'Bergsiedlung 27',
+            mail: '-',
+            tel: '0664-4085422',
+            schule: 'VS Kaumberg',
+            klasse: '-',
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter'],
+            image:'../images/avatar/none.jpg',
+            allergien:'-',
+            krankheiten:'-',
+            einschraenkungen:'-']
+        profiles.patrick = [type:'client',
+            role:'Betreuter',
+            name:'patrick',
+            firstName: 'Patrick',
+            lastName:'Lintner',
+            birthDate:'13.06.1999',
+            plz:'2572',
+            ort:'Kaumberg',
+            strasse:'Markt 30',
+            mail: '-',
+            tel: '0664-4022395',
+            schule: 'VS Kaumberg',
+            klasse: '-',
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter'],
+            image:'../images/avatar/none.jpg',
+            allergien:'nein',
+            krankheiten:'nein',
+            einschraenkungen:'-']
+        profiles.mathias = [type:'client',
+            role:'Betreuter',
+            name:'mathias',
+            firstName: 'Mathias',
+            lastName:'Lintner',
+            birthDate:'19.12.2000',
+            plz:'2572',
+            ort:'Kaumberg',
+            strasse:'Markt 30',
+            mail: '-',
+            tel: '0664-4022395',
+            schule: 'VS Kaumberg',
+            klasse: '-',
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter','patrick':'Betreuter'],
+            image:'../images/avatar/none.jpg',
+            allergien:'nein',
+            krankheiten:'nein',
+            einschraenkungen:'-']
+        profiles.marianne = [type:'client',
             role:'Betreute',
-            name:'julia',
-            firstName: 'Julia',
-            lastName:'Drauch',
-            birthDate:'-',
-            plz:'-',
-            ort:'-',
-            strasse:'-',
+            name:'marianne',
+            firstName: 'Marianne',
+            lastName:'Lintner',
+            birthDate:'07.11.2002',
+            plz:'2572',
+            ort:'Kaumberg',
+            strasse:'Markt 30',
             mail: '-',
-            tel: '-',
-            schule: '-',
+            tel: '0664-4022395',
+            schule: 'VS Kaumberg',
             klasse: '-',
-            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter'],
-            image:'../images/avatar/none.jpg']
-        profiles.michelle = [type:'client',
-            role:'Betreute',
-            name:'michelle',
-            firstName: 'Michelle',
-            lastName:'Fürlinger',
-            birthDate:'-',
-            plz:'-',
-            ort:'-',
-            strasse:'-',
-            mail: '-',
-            tel: '-',
-            schule: '-',
-            klasse: '-',
-            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','sebastian':'Betreuter'],
-            image:'../images/avatar/none.jpg']
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter','patrick':'Betreuter'],
+            image:'../images/avatar/none.jpg',
+            allergien:'nein',
+            krankheiten:'nein',
+            einschraenkungen:'-']
     }
 
     def initBetreiber () {
@@ -251,10 +299,6 @@ class ProfileDataService {
 
     def getProfile (String name){
         return (profiles[name])
-    }
-
-    def getProfiles () {
-        return profiles
     }
 
     // returns all profiles which match a certain profile type, inluding offset and max number
