@@ -4,7 +4,7 @@
 - implement "zu netzwerk hinzufügen"
 - fix sortable columns in profile lists
 - tab navigation for profiles (paed)
-
+- color list lines differently
 
 # Done
 - redo banner graphic
