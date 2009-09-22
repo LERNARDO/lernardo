@@ -318,8 +318,16 @@ p {
 	padding-left: 20px;
 	background-position:0 50%;
 }
-.profile-box p {
-    padding-bottom: 5px;
+.profile-box h1 {
+    padding: 0;
+    margin: 0 0 10px 0;
+    font-size: 120%;
+    font-weight: bold;
+    color: #fff;
+}
+
+.profile-box {
+    color: #ccc;
 }
 
 .imgmenu {

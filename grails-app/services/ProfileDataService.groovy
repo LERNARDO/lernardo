@@ -23,18 +23,25 @@ class ProfileDataService {
             strasse:'Hauptstraße 12',
             friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/loewenzahn.jpg',
-            beschreibung:'''Hort Löwenzahn ist die erste Einrichtung die Lernardo anbietet. Auf
-            knapp 100m2 stehen den Kindern ...''']
+            beschreibung:'''Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
+                            und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
+                            mit ca. 62m² und ein Aufenthaltsraum mit mehr als 24 m² sowie eine Garderobe
+                            und Toilettenanlagen getrennt für Mädchen und Buben zur Verfügung. Des Weiteren
+                            können in Kooperation mit der Gemeinde Schulräumlichkeiten in der örtlichen
+                            Volksschule, sowie Räume der Hauptschule und der Volksschulgarten bzw. Spielplatz
+                            genutzt werden.<br>
+                            Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
+                            Spielbereich und ein Ruhebereich zur Verfügung.''']
         profiles.kaumberg = [type:'einrichtung',
             role:'Einrichtung',
             name:'kaumberg',
             fullName:'Hort Kaumberg',
             plz:'2572',
             ort:'Kaumberg',
-            strasse:'???',
+            strasse:'-',
             friends:['hannah':'Pädagogin','sebastian':'Betreuter','lernardo':'Betreiber'],
             image:'../images/avatar/none.jpg',
-            beschreibung:'???']
+            beschreibung:'-']
     }
 
     def initPaedagogen () {
@@ -52,7 +59,19 @@ class ProfileDataService {
             tel: '0676 / 4303 145',
             friends:['loewenzahn':'Einrichtung','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/regina_toncourt.jpg',
-            lebenslauf:'?']
+            lebenslauf:'''<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
+                          <b>1980 – 1983:</b> während der Ferienzeit Betreuerin beim Wr. Jugendhilfswerk<br>
+                          <b>1984 – 1987:</b> Verkäuferin in einem Papierfachgeschäft, halbtags<br>
+                          <b>1987 - 1993:</b> Tennisschule „Team Tennis“ (Verkauf, Service, Werbung, Administration, Kinderbetreuung)<br>
+                          <b>1993 - 1997:</b> Verein Wr.Jugendzentren – Kinder- und Jugendbetreuung.<br>
+                          1jährige Fortbildung: „Soziokulturelle Animation“;<br>
+                          laufend Fort- und Weiterbildungen (u.a. sex. Missbrauch, Drogen- und
+                          Gewaltprävention, außergerichtlicher Tatausgleich, Konflikt als Chance,
+                          Outdoor- und Erlebnispädagogik)<br>
+                          <b>1998 - 2001:</b> verlängerte Karenz; Ausbildung bei Dr. Sindelar zur Trainerin bei TLS (Teilleistungsschwächen)<br>
+                          <b>2001 – 2004:</b> Karenz, Montessori-Ausbildung bei Claus-Dieter Kaul<br>
+                          <b>2005:</b> Montessori-Diplom<br>
+                          <b>seit 2005:</b> Tagesmutter und Trainerin bei TLS beim NÖ Hilfswerk''']
         profiles.martin = [type:'paed',
             role:'Pädagoge',
             name:'martin',
@@ -67,7 +86,26 @@ class ProfileDataService {
             tel: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/martin_golja.jpg',
-            lebenslauf:'?']
+            lebenslauf:'''<b>1976-1980</b> Volksschule Pottenstein<br>
+                          <b>1980-1988</b> Neusprachlicher Zweig des Bundesrealgymnasiums Berndorf<br>
+                          <b>1988</b> Matura<br>
+                          <b>1988-1989</b> Präsenzdienst in der Martinekkaserne in Baden<br>
+                          <b>1989-2006</b> Übungsleitertätigkeit bei der Union Pottenstein für Kinder und Jugendliche; Altersstufen 3-6, 6-10, 10-15<br>
+                          <b>1989</b> Inskription Geographie und Wirtschaftskunde, Germanistik<br>
+                          <b>1992</b> Inskription Geographie und Wirtschaftskunde, Leibeserziehung<br>
+                          <b>1995</b> Beginn Dienstverhältnis auf der Marktgemeinde Pottenstein<br>
+                          <b>1998</b> Ablegung der Prüfungen zum Standesbeamten und Staatsbürgerschaftsevidenzführer<br>
+                          <b>1998</b> Inskription von Geographie und Wirtschaftskunde, Psychologie, Pädagogik, Philosophie<br>
+                          <b>1998-2001</b> Standesbeamter und Staatsbürgerschaftsevidenzführer am Standesamt Pottenstein<br>
+                          <b>1990-2002</b> Mitgesellschafter als staatlich geprüfter Diplomskilehrer in der Skischule St.Anton am Arlberg<br>
+                          <b>1997-2002</b> Ausbildnertätigkeit Ski am Universitätssportinstitut Wien<br>
+                          <b>2001-2003</b> Skilehrerausbildner beim Wiener Ski- und Snowboardlehrerverband, sowie Snowsportsacademy Holland<br>
+                          <b>2002-2003</b> Beschäftigung als Disponent in der Neuwagendisposition Citroen Österreich<br>
+                          <b>2003</b> Ablegung der Diplomprüfung an der Universität Wien<br>
+                          <b>2004-2005</b> Beschäftigung als Erzieher im Landesjugendheim Pottenstein über den Verein „Jugend und Arbeit“ der NÖ Landesregierung (Lehrerbörse)<br>
+                          <b>2005-2006</b> Unterrichtspraktikum am BG/BRG Baden und am BG/BRG Berndorf<br>
+                          <b>2005-laufend</b> geschäftsführender Gemeinderat der Marktgemeinde Pottenstein<br>
+                          <b>2006-laufend</b> Beschäftigung als Springer in der schulischen Nachmittagsbetreuung beim Verein „Hand in Hand“ des NÖ Familienreferates''']
         profiles.rosa  = [type:'paed',
             role:'Pädagogin',
             name:'rosa',
@@ -82,7 +120,11 @@ class ProfileDataService {
             tel: '0664 / 3774 559',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/none.jpg',
-            lebenslauf:'?']
+            lebenslauf:'''<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
+                          <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
+                          <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
+                          <b>1996 – 2004:</b> Karenz und Hausfrau<br>
+                          <b>seit 2004:</b> Fa. L. Schumits & Co GmbH in Pfaffstätten (geringfügig)<br>''']
         profiles.birgit  = [type:'paed',
             role:'Pädagogin',
             name:'birgit',
@@ -97,7 +139,7 @@ class ProfileDataService {
             tel: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/none.jpg',
-            lebenslauf:'?']
+            lebenslauf:'-']
         profiles.hannah  = [type:'paed',
             role:'Pädagogin',
             name:'hannah',
@@ -112,7 +154,7 @@ class ProfileDataService {
             tel: '-',
             friends:['kaumberg':'Einrichtung','sebastian':'Betreuter','lernardo':'Betreiber'],
             image:'../images/avatar/none.jpg',
-            lebenslauf:'?']
+            lebenslauf:'-']
     }
 
     def initBetreute () {
@@ -121,14 +163,14 @@ class ProfileDataService {
             name:'moritz',
             firstName: 'Moritz',
             lastName:'Bauer',
-            birthDate:'?',
-            plz:'?',
-            ort:'?',
-            strasse:'?',
-            mail: '?',
-            tel: '?',
-            schule: '?',
-            klasse: '?',
+            birthDate:'-',
+            plz:'-',
+            ort:'-',
+            strasse:'-',
+            mail: '-',
+            tel: '-',
+            schule: '-',
+            klasse: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','julia':'Betreute'],
             image:'../images/avatar/none.jpg']
         profiles.sebastian = [type:'client',
@@ -136,14 +178,14 @@ class ProfileDataService {
             name:'sebastian',
             firstName: 'Sebastian',
             lastName:'Cettl',
-            birthDate:'?',
-            plz:'?',
-            ort:'?',
-            strasse:'?',
-            mail: '?',
-            tel: '?',
-            schule: '?',
-            klasse: '?',
+            birthDate:'-',
+            plz:'-',
+            ort:'-',
+            strasse:'-',
+            mail: '-',
+            tel: '-',
+            schule: '-',
+            klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','michelle':'Betreute'],
             image:'../images/avatar/none.jpg']
         profiles.julia = [type:'client',
@@ -151,14 +193,14 @@ class ProfileDataService {
             name:'julia',
             firstName: 'Julia',
             lastName:'Drauch',
-            birthDate:'?',
-            plz:'?',
-            ort:'?',
-            strasse:'?',
-            mail: '?',
-            tel: '?',
-            schule: '?',
-            klasse: '?',
+            birthDate:'-',
+            plz:'-',
+            ort:'-',
+            strasse:'-',
+            mail: '-',
+            tel: '-',
+            schule: '-',
+            klasse: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter'],
             image:'../images/avatar/none.jpg']
         profiles.michelle = [type:'client',
@@ -166,14 +208,14 @@ class ProfileDataService {
             name:'michelle',
             firstName: 'Michelle',
             lastName:'Fürlinger',
-            birthDate:'?',
-            plz:'?',
-            ort:'?',
-            strasse:'?',
-            mail: '?',
-            tel: '?',
-            schule: '?',
-            klasse: '?',
+            birthDate:'-',
+            plz:'-',
+            ort:'-',
+            strasse:'-',
+            mail: '-',
+            tel: '-',
+            schule: '-',
+            klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','sebastian':'Betreuter'],
             image:'../images/avatar/none.jpg']
     }

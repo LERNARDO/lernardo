@@ -12,7 +12,7 @@
 
           <div class="profile-box">
             <table align="center">
-              <tr><th class="rang"><p>${firstName} ${lastName} - ${role}</p></th></tr>
+              <tr><th class="rang"><h1>${firstName} ${lastName} - ${role}</h1></th></tr>
               <tr><td class="profile-pic"><img src="${image}" width="150" height="150"/></td></tr>
             </table>
           </div>
@@ -50,6 +50,7 @@
                 <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${strasse}</td></tr>
                 <tr><td class="bold titles bezeichnung">E-Mail:</td><td class="bezeichnung">${mail}</td></tr>
                 <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${tel}</td></tr>
+                <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${lebenslauf}</td></tr>
               </table>
               %{--<g:form>
                 <input type="hidden" name="id" value="${name}" />
