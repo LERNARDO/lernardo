@@ -8,8 +8,8 @@
       <h2>Liste aller Profile</h2>
       <p>${totalProfiles} Profile gefunden</p>
 
-      <div id="select-box"
-           <g:form name="form1" action="list">
+      <div id="select-box">
+           <g:form name="form1" action="listProfiles">
           <label>Auswahl
             <select name="profileType">
               <option value="all" selected="selected">Alle</option>
@@ -19,7 +19,7 @@
               <option value="paed">Pädagogen</option>
             </select>
           </label>
-          <g:submitButton name="list" value="OK" />
+          <g:submitButton name="listProfiles" value="OK" />
         </g:form>
       </div>
 
