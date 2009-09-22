@@ -10,15 +10,15 @@
 
         <div class="yui-b" id="profile-navigation">
 
-          <div class="profile-box">
+          <div class="profile-box-einrichtung">
             <table align="center">
-              <tr><th class="rang"><p>${fullName} - ${role}</p></th></tr>
+              <tr><th class="rang"><h1>${fullName} - ${role}</h1></th></tr>
               <tr><td class="profile-pic"><img src="${image}" width="150" height="150"/></td></tr>
             </table>
           </div>
 
-          <div class="profile-group">Kommunikation</div>
-          <div class="profile-box">
+          <div class="profile-group-einrichtung">Kommunikation</div>
+          <div class="profile-box-einrichtung">
             <ul>
               <li class="profile-profil"><a href="#"><strong>Profil ansehen</strong></a></li>
               <li class="profile-nachricht"><a href="#">Nachricht schreiben</a></li>
@@ -26,8 +26,8 @@
             </ul>
           </div>
 
-          <div class="profile-group">Netzwerk</div>
-          <div class="profile-box">
+          <div class="profile-group-einrichtung">Netzwerk</div>
+          <div class="profile-box-einrichtung">
             <ul>
               <g:each in="${friends}" var="friend">
                 <li><a href="/lernardoV2/prf/${friend.key}">${friend.key[0].toUpperCase() + friend.key.substring(1)}</a> (${friend.value})</li>
@@ -38,7 +38,7 @@
 
         <div id="yui-main">
           <div class="yui-b">
-            <div id="profile-content">
+            <div id="profile-content-einrichtung">
               <table width="100%">
                 <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${fullName}</td></tr>
                 <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${plz}</td></tr>
