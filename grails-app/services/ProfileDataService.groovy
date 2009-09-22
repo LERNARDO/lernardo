@@ -21,7 +21,7 @@ class ProfileDataService {
             plz:'2564',
             ort:'Weissenbach',
             strasse:'Hauptstraße 12',
-            friends:['regina','martin','rosa','birgit','moritz','alpha'],
+            friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/loewenzahn.jpg',
             beschreibung:'''Hort Löwenzahn ist die erste Einrichtung die Lernardo anbietet. Auf
             knapp 100m2 stehen den Kindern ...''']
@@ -32,7 +32,7 @@ class ProfileDataService {
             plz:'2572',
             ort:'Kaumberg',
             strasse:'???',
-            friends:['hannah','sebastian','lernardo'],
+            friends:['hannah':'Pädagogin','sebastian':'Betreuter','lernardo':'Betreiber'],
             image:'../images/avatar/none.jpg',
             beschreibung:'???']
     }
@@ -50,7 +50,7 @@ class ProfileDataService {
             strasse:'Hirschbahngasse 3',
             mail: 'regina.toncourt@gmx.at',
             tel: '0676 / 4303 145',
-            friends:['loewenzahn','martin','rosa','birgit','moritz','alpha'],
+            friends:['loewenzahn':'Einrichtung','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/regina_toncourt.jpg',
             lebenslauf:'?']
         profiles.martin = [type:'paed',
@@ -65,7 +65,7 @@ class ProfileDataService {
             strasse:'Obere Marktfeldstraße 20',
             mail: '-',
             tel: '-',
-            friends:['loewenzahn','regina','rosa','birgit','moritz','alpha'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/martin_golja.jpg',
             lebenslauf:'?']
         profiles.rosa  = [type:'paed',
@@ -80,7 +80,7 @@ class ProfileDataService {
             strasse:'Schwarzenseer Straße 19',
             mail: '-',
             tel: '0664 / 3774 559',
-            friends:['loewenzahn','regina','martin','birgit','moritz','alpha'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','birgit':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/none.jpg',
             lebenslauf:'?']
         profiles.birgit  = [type:'paed',
@@ -95,7 +95,7 @@ class ProfileDataService {
             strasse:'Gartengasse 5',
             mail: '-',
             tel: '-',
-            friends:['loewenzahn','regina','martin','rosa','moritz','alpha'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','moritz':'Betreuter','alpha':'Betreiber'],
             image:'../images/avatar/none.jpg',
             lebenslauf:'?']
         profiles.hannah  = [type:'paed',
@@ -110,7 +110,7 @@ class ProfileDataService {
             strasse:'Hauptstraße 14',
             mail: '-',
             tel: '-',
-            friends:['kaumberg','sebastian','lernardo'],
+            friends:['kaumberg':'Einrichtung','sebastian':'Betreuter','lernardo':'Betreiber'],
             image:'../images/avatar/none.jpg',
             lebenslauf:'?']
     }
@@ -129,7 +129,7 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['loewenzahn','regina','rosa','birgit','julia'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','julia':'Betreute'],
             image:'../images/avatar/none.jpg']
         profiles.sebastian = [type:'client',
             role:'Betreuter',
@@ -144,7 +144,7 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['kaumberg','hannah','lernardo','michelle'],
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','michelle':'Betreute'],
             image:'../images/avatar/none.jpg']
         profiles.julia = [type:'client',
             role:'Betreute',
@@ -159,7 +159,7 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['loewenzahn','regina','rosa','birgit','moritz'],
+            friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','moritz':'Betreuter'],
             image:'../images/avatar/none.jpg']
         profiles.michelle = [type:'client',
             role:'Betreute',
@@ -174,7 +174,7 @@ class ProfileDataService {
             tel: '?',
             schule: '?',
             klasse: '?',
-            friends:['kaumberg','hannah','lernardo','sebastian]'],
+            friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','sebastian':'Betreuter'],
             image:'../images/avatar/none.jpg']
     }
 
@@ -188,7 +188,7 @@ class ProfileDataService {
             strasse:'Hainfelderstrasse 29',
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Stephanie Pirkfellner',
-            friends:['loewenzahn'],
+            friends:['loewenzahn':'Einrichtung'],
             image:'../images/avatar/alpha.jpg']
         profiles.lernardo = [type:'betreiber',
             role:'Betreiber',
@@ -199,7 +199,7 @@ class ProfileDataService {
             strasse:'Leobersdorfer Straße 42',
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Johannes Zeitelberger',
-            friends:['kaumberg'],
+            friends:['kaumberg':'Einrichtung'],
             image:'../images/avatar/none.jpg']
     }
 
@@ -209,6 +209,10 @@ class ProfileDataService {
 
     def getProfile (String name){
         return (profiles[name])
+    }
+
+    def getProfiles () {
+        return profiles
     }
 
     // returns all profiles which match a certain profile type, inluding offset and max number

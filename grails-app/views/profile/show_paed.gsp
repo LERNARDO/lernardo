@@ -31,7 +31,7 @@
           <div class="profile-box">
             <ul>
               <g:each in="${friends}" var="friend">
-                <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
+                <li><a href="/lernardoV2/prf/${friend.key}">${friend.key[0].toUpperCase() + friend.key.substring(1)}</a> (${friend.value})</li>
               </g:each>
             </ul>
           </div>
@@ -51,10 +51,10 @@
                 <tr><td class="bold titles bezeichnung">E-Mail:</td><td class="bezeichnung">${mail}</td></tr>
                 <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${tel}</td></tr>
               </table>
-              <g:form>
+              %{--<g:form>
                 <input type="hidden" name="id" value="${name}" />
                 <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
-              </g:form>
+              </g:form>--}%
             </div>
           </div>
         </div>

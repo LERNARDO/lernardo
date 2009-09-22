@@ -24,7 +24,7 @@ class ActionsDataService {
             anzahlPaedagogen:'1']
 
         actions.id_2 = [name:'Weide mit Hindernissen',
-            beschreibung:'''Die Bänke werden in Reihen aufgestellt\n
+            beschreibung:'''Die Bänke werden in Reihen aufgestellt;
                             es können möglichst viele Bewegungsformen ausprobiert werden''',
             dauer:'60 Minuten',
             sozialform:'Großgruppe',

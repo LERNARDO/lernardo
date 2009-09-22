@@ -31,7 +31,7 @@
           <div class="profile-box">
             <ul>
               <g:each in="${friends}" var="friend">
-                <li><a href="/lernardoV2/prf/${friend}">${friend}</a> (role)</li>
+                <li><a href="/lernardoV2/prf/${friend.key}">${friend.key[0].toUpperCase() + friend.key.substring(1)}</a> (${friend.value})</li>
               </g:each>
             </ul>
           </div>
