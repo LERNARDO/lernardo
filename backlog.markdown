@@ -5,7 +5,7 @@
 - implement login
 - implement blog
 - tab navigation for profiles (paed)
-- Colorize Profiletypes (Lists and Profileboxes)
+- colorize profile types (Lists and Profileboxes)
 - add views for "nachricht schreiben", "sms senden", "leistungsfortschritt"
 - implement "zu netzwerk hinzufügen"
 
@@ -13,4 +13,5 @@
 - redo banner graphic
 - add favicon
 - move list views to admin area
-- Implement new CSS-Design
+- implement new CSS-Design
+- implement actions list
