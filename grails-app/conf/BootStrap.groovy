@@ -1,12 +1,12 @@
 class BootStrap {
      def profileDataService
-     def actionsDataService
-     def activitiesDataService
+     def templateDataService
+     def activityDataService
 
      def init = {servletContext->
-      profileDataService.initProfiles()
-      actionsDataService.initActions()
-      activitiesDataService.initActivities()
+      profileDataService.init()
+      templateDataService.init()
+      activityDataService.init()
      }
 
      def destroy = {

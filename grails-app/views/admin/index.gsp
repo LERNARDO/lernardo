@@ -7,9 +7,8 @@
     <div id="body-list">
       <ul>
         <li><g:link controller="profile" action="list">Liste der Profile anzeigen</g:link></li>
-        <li><g:link action="listActions">Liste der Aktivitätsvorlagen anzeigen</g:link></li>
-        <li><g:link action="listActivities">Liste der Aktivitäten anzeigen</g:link></li>
-        <li><g:link action="showWeek">Wochenansicht anzeigen</g:link></li>
+        <li><g:link controller="template" action="list">Liste der Aktivitätsvorlagen anzeigen</g:link></li>
+        <li><g:link controller="activity" action="list">Liste der Aktivitäten anzeigen</g:link></li>
       </ul>
     </div>
   </body>

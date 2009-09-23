@@ -3,10 +3,10 @@ class ProfileDataService {
     Map profiles = [:]
 
     ProfileDataService () {
-        initProfiles()
+        init()
     }
 
-    def initProfiles () {
+    def init () {
         initEinrichtungen()
         initPaedagogen()
         initBetreute()
@@ -308,7 +308,7 @@ class ProfileDataService {
         profiles[name] = attrs
     }
 
-    def getProfile (String name){
+    def getProfile (String name) {
         return (profiles[name])
     }
 
