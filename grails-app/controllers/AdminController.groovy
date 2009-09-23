@@ -11,7 +11,7 @@ class AdminController {
         def res = ['profileType': params.profileType,
                    'profileList': profileDataService.listProfiles (params.profileType, params.offset, params.max),
                    'totalProfiles': profileDataService.totalProfiles (params.profileType)]
-        render (view:"list_${params.profileType}", model:res)
+        render (view:"list_profiles", model:res)
     }
 
     def listActions = {

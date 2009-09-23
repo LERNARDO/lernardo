@@ -12,26 +12,11 @@ body {
 #body-list {
     padding: 10px;
     background: #f0f0f0;
-    overflow-x: scroll;
 }
 
 #body-default {
     padding: 10px;
     background: #f0f0f0;
-}
-
-#body-list table a {
-    text-decoration: none;
-    color: #009;
-}
-
-#body-list table a:hover {
-    color: #000;
-    text-decoration: underline;
-}
-
-#body-list #select-box {
-    margin-bottom: 10px;
 }
 
 #hd {
@@ -657,12 +642,6 @@ p {
     background: #fff;
 }
 
-#body-list table {
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-    width: 1500px;
-}
-
 #body-list td {
     padding: 2px 3px;
     border: 1px solid #ccc;
@@ -672,6 +651,25 @@ p {
     border: 1px solid #aaa;
     padding: 2px 3px;
     background: #ccc;
+}
+
+#body-list table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+#body-list table a {
+    text-decoration: none;
+    color: #009;
+}
+
+#body-list table a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+#body-list #select-box {
+    margin-bottom: 10px;
 }
 
 /* PAGINATION */

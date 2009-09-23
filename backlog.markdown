@@ -5,6 +5,9 @@
 - fix sortable columns in profile lists
 - tab navigation for profiles (paed)
 - color list lines differently
+- change profile list view to only display role and name
+- change activity template list view to only display name, duration, social form and paed count
+- change list views to only use one view
 
 # Done
 - redo banner graphic
