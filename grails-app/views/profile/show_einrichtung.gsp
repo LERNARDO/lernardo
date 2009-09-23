@@ -10,15 +10,15 @@
 
         <div class="yui-b" id="profile-navigation">
 
-          <div class="profile-box-einrichtung">
+          <div class="picture-box-einrichtung">
             <table align="center">
               <tr><th class="rang"><h1>${profileInstance.fullName} - ${profileInstance.role}</h1></th></tr>
               <tr><td class="profile-pic"><img src="${profileInstance.image}" width="150" height="150"/></td></tr>
             </table>
           </div>
 
-          <div class="profile-group-einrichtung">Kommunikation</div>
-          <div class="profile-box-einrichtung">
+          <div class="profile-group">Kommunikation</div>
+          <div class="profile-box">
             <ul>
               <g:def var="profileVar" value="${profileInstance.name}"/>
               <li class="profile-profil"><g:link action="show" params="[content:'profile',name:profileVar]">Profil ansehen</g:link></li>
@@ -27,8 +27,8 @@
             </ul>
           </div>
 
-          <div class="profile-group-einrichtung">Netzwerk</div>
-          <div class="profile-box-einrichtung">
+          <div class="profile-group">Netzwerk</div>
+          <div class="profile-box">
             <ul>
               <g:each in="${profileInstance.friends}" var="friend">
                 <li><a href="/lernardoV2/prf/${friend.key}">${friend.key[0].toUpperCase() + friend.key.substring(1)}</a> (${friend.value})</li>

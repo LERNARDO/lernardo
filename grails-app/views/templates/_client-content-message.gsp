@@ -1,6 +1,6 @@
 <div id="yui-main">
   <div class="yui-b">
-    <div id="profile-content-client">
+    <div id="profile-content">
       <h1>Nachricht:</h1>
       <table>
         <tr>

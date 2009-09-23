@@ -1,6 +1,6 @@
 <div id="yui-main">
   <div class="yui-b">
-    <div id="profile-content-paed">
+    <div id="profile-content">
       <table width="100%">
         <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${title}</td></tr>
         <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${firstName}</td></tr>

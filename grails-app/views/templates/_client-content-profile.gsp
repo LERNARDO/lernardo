@@ -1,6 +1,6 @@
 <div id="yui-main">
   <div class="yui-b">
-    <div id="profile-content-client">
+    <div id="profile-content">
       <table width="100%">
         <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${firstName}</td></tr>
         <tr><td class="bold titles bezeichnung">Nachname:</td><td class="bezeichnung">${lastName}</td></tr>

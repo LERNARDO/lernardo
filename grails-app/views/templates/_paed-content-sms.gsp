@@ -1,6 +1,6 @@
 <div id="yui-main">
   <div class="yui-b">
-    <div id="profile-content-paed">
+    <div id="profile-content">
       <h1>SMS senden:</h1>
       <textarea cols="40" rows="5" id="sms"></textarea>
       <table>
