@@ -8,6 +8,8 @@
       <ul>
         <li><g:link action="listProfiles">Liste der Profile anzeigen</g:link></li>
         <li><g:link action="listActions">Liste der Aktivitätsvorlagen anzeigen</g:link></li>
+        <li><g:link action="listActivities">Liste der Aktivitäten anzeigen</g:link></li>
+        <li><g:link action="showWeek">Wochenansicht anzeigen</g:link></li>
       </ul>
     </div>
   </body>
