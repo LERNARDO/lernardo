@@ -6,7 +6,7 @@
   <body>
     <div id="body-list">
       <h2>Liste der Profile</h2>
-      <p>${totalProfiles} Profile gefunden</p>
+      <p>${ProfileCount} Profile gefunden</p>
 
       <div id="select-box">
         <g:form name="form1" action="listProfiles">
@@ -44,7 +44,7 @@
         <g:paginate controller="admin"
                     action="listProfiles"
                     params="[profileType:'all']"
-                    total="${totalProfiles}" />
+                    total="${profileCount}" />
       </div>
 
     </div>

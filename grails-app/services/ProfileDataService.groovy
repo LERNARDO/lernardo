@@ -312,8 +312,9 @@ class ProfileDataService {
         return (profiles[name])
     }
 
-    // returns all profiles which match a certain profile type, inluding offset and max number
-    def listProfiles (String profileType, int noffset, int nmax) {
+    // returns all profiles which match a certain profile type
+    // accepts an offset and max number of profiles
+    def getProfiles (String profileType, int noffset, int nmax) {
 
         def list = []
         int offset = 0
@@ -345,7 +346,7 @@ class ProfileDataService {
     }
 
     // returns the number of profiles with a certain profile type
-    def totalProfiles (String profileType) {
+    def getProfileCount (String profileType) {
 
         int count = 0
 

@@ -3,6 +3,16 @@ class ProfileController {
 
     def index = { }
 
+    def list = {
+        params.profileType = params.profileType ?: "all"
+        params.offset = params.offset ? params.offset.toInteger(): 0
+        params.max = params.max ? params.max.toInteger(): 10
+        def res = ['profileType': params.profileType,
+                   'profileList': profileDataService.getProfiles (params.profileType, params.offset, params.max),
+                   'profileCount': profileDataService.getProfileCount (params.profileType)]
+        render (view:"list_profiles", model:res)
+    }
+
     def show = {
         def prf = profileDataService.getProfile (params.name)
         def content = params.content ?: "profile"
