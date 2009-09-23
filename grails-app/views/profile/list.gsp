@@ -6,10 +6,10 @@
   <body>
     <div id="body-list">
       <h2>Liste der Profile</h2>
-      <p>${ProfileCount} Profile gefunden</p>
+      <p>${profileCount} Profile gefunden</p>
 
       <div id="select-box">
-        <g:form name="form1" action="listProfiles">
+        <g:form name="form1" action="list">
           <label>Auswahl
             <select name="profileType">
               <option value="all" selected="selected">Alle</option>
@@ -19,7 +19,7 @@
               <option value="paed">Pädagogen</option>
             </select>
           </label>
-          <g:submitButton name="listProfiles" value="OK" />
+          <g:submitButton name="list" value="OK" />
         </g:form>
       </div>
 
@@ -41,9 +41,9 @@
       </table>
 
       <div class="paginateButtons">
-        <g:paginate controller="admin"
-                    action="listProfiles"
-                    params="[profileType:'all']"
+        <g:set var="pType" value="${profileType}" />
+        <g:paginate action="list"
+                    params="[profileType:pType]"
                     total="${profileCount}" />
       </div>
 

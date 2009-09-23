@@ -26,8 +26,16 @@
             <td>${activityInstance.value.date}</td>
             <td>${activityInstance.value.startTime}</td>
             <td>${activityInstance.value.duration}</td>
-            <td>${activityInstance.value.paedList}</td>
-            <td>${activityInstance.value.clientList}</td>
+            <td>
+          <g:each in="${activityInstance.value.paedList}" var="paedListInstance">
+${paedListInstance}<br>
+          </g:each>
+          </td>
+          <td>
+          <g:each in="${activityInstance.value.clientList}" var="clientListInstance">
+${clientListInstance}<br>
+          </g:each>
+          </td>
           </tr>
         </g:each>
         </tbody>

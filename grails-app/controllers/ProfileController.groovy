@@ -10,7 +10,7 @@ class ProfileController {
         def res = ['profileType': params.profileType,
                    'profileList': profileDataService.getProfiles (params.profileType, params.offset, params.max),
                    'profileCount': profileDataService.getProfileCount (params.profileType)]
-        render (view:"list_profiles", model:res)
+        render (view:"list", model:res)
     }
 
     def show = {
