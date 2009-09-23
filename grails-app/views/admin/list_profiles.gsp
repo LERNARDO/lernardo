@@ -32,7 +32,7 @@
         </thead>
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
-          <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
+          <tr class="row-${profileInstance.value.type}">
             <td>${profileInstance.value.role}</td>
             <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.fullName}</g:link></td>
           </tr>

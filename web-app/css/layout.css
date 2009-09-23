@@ -635,6 +635,22 @@ p {
 
 /* ----- TABLES ----- */
 
+.row-paed {
+    background: #b2b2ff;
+}
+
+.row-client {
+    background: #ffb2b2;
+}
+
+.row-einrichtung {
+    background: #b2ffb2;
+}
+
+.row-betreiber {
+    background: #ffffb2;
+}
+
 .odd {
     background: #f6f6f6;
 }
