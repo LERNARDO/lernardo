@@ -55,4 +55,13 @@ class ArticleDataService {
     def getArticles () {
         return articles
     }
+
+    def getArticle (def tID) {
+        for (v in articles) {
+            if (v.value.id == tID) {
+                return v
+            }
+        }
+    }
+
 }
