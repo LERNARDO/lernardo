@@ -32,11 +32,53 @@ class ActivityDataService {
             duration:'30',
             paedList:['birgit','regina'],
             clientList:['emil','pascal','marianne']]
+        activities.id_5 = [actionID:'Musikstopp',
+            date:setDate('25.11.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
+        activities.id_6 = [actionID:'Musikstopp',
+            date:setDate('25.04.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
+        activities.id_7 = [actionID:'Musikstopp',
+            date:setDate('25.04.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
+        activities.id_8 = [actionID:'Musikstopp',
+            date:setDate('25.03.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
+        activities.id_9 = [actionID:'Musikstopp',
+            date:setDate('25.02.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
+        activities.id_10 = [actionID:'Musikstopp',
+            date:setDate('25.01.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
+        activities.id_11 = [actionID:'Musikstopp',
+            date:setDate('25.01.2009'),
+            startTime:setTime('14:45'),
+            duration:'30',
+            paedList:['birgit','regina'],
+            clientList:['emil','pascal','marianne']]
     }
 
     def setDate (String sDate) {
-         def activityDate = Date.parse("dd.MM.yyyy", sDate).format("dd.MM.yyyy")
-         return activityDate
+        def activityDate = Date.parse("dd.MM.yyyy", sDate).format("dd.MM.yyyy")
+        return activityDate
     }
 
     def setTime (String sTime) {
@@ -46,17 +88,21 @@ class ActivityDataService {
 
 
     // returns all activities, inluding offset and max number
-    def getActivities (int noffset, int nmax, int nmonth) {
+    def getActivities (int noffset, int nmax, String nmonth) {
 
         def listMonthValue = []
         def listPaginationValue = []
 
-        for ( v in activities ) {
-          if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("mm")) {
-
-            listMonthValue.add(v)
-          }
-        } 
+        if (nmonth == "alle") {
+            listMonthValue = activities
+        }
+        else {
+            for ( v in activities ) {
+                if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("MM")) {
+                    listMonthValue.add(v)
+                }
+            }
+        }
 
         int offset = 0
         int count = 0
@@ -72,8 +118,20 @@ class ActivityDataService {
     }
 
     // returns the number of activities
-    def getActivityCount () {
-        return activities.size()
+    def getActivityCount (String nmonth) {
+
+        if (nmonth == "alle") {
+            return activities.size()
+        }
+        else {
+            int count = 0
+            for ( v in activities ) {
+                if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("MM")) {
+                    count ++
+                }
+            }
+            return count
+        }
     }
 
 }
