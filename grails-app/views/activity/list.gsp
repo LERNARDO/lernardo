@@ -53,12 +53,12 @@
             <td>${activityInstance.value.duration}</td>
             <td>
           <g:each in="${activityInstance.value.paedList}" var="paedListInstance">
-${paedListInstance}<br>
+${paedListInstance[0].toUpperCase()+paedListInstance.substring(1)}<br>
           </g:each>
-          </td>
+        </td>
           <td>
           <g:each in="${activityInstance.value.clientList}" var="clientListInstance">
-${clientListInstance}<br>
+${clientListInstance[0].toUpperCase()+clientListInstance.substring(1)}<br>
           </g:each>
           </td>
           </tr>

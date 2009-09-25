@@ -2,13 +2,13 @@
 <div class="article-links actionlinks">
 
   <div class="userlinks">
-    <g:if test="${isTeaser && article.teaser}">
+    <g:if test="${article.teaser}">
           <g:link class="more" action="show" id="${article.id}" >mehr lesen</g:link>
     </g:if>
   </div>
 
   <div>
-    <ub:meOrAdmin entityName="${article.author.name}">
+    <ub:meOrAdmin entityName="${article.author}">
       <g:link class="adminlinks" action="edit" id="${article.id}">bearbeiten</g:link>
       <g:link class="adminlinks" action="delete" id="${article.id}">löschen</g:link>
     </ub:meOrAdmin>

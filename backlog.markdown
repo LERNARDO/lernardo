@@ -6,13 +6,9 @@
 - implement "zu netzwerk hinzufŸgen"
 - fix sortable columns in profile lists
 - tab navigation for profiles (paed)
-- Views fŸr Artikel einbinden
-- Controller mit Hardcoded Values fŸr Views
 - Gesamtliste der AktivitŠten
   ShowMonth, ShowDay
-- Platz in den Views im Profil fŸr Kalender vorbereiten
 - Einrichtung -> PŠdagogen -> Betreute (Betreute haben die Termine von den PŠdagogen drin)
-
 
 # Done
 - redo banner graphic
@@ -28,3 +24,7 @@
 - change list views to only use one view
 - change activity template list view to only display name, duration, social form and paed count
 - color list lines differently
+- added empty calendar view in profiles
+- added views and styles for articles
+- formatted names in activities list view
+- added article controller and DataService

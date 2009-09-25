@@ -1,4 +1,4 @@
 <div class="article-header">
-  <div class="article-date"> ${g.formatDate(format:"dd. MMMM yyyy", date:article.lastUpdated)} by ${article.author.profile.fullName}</div>
+  <div class="article-date"> ${g.formatDate(format:"dd. MMMM yyyy", date:article.dateCreated)} by ${article.author}</div>
   <g:link action="show" id="${article.id}" >${article.title}</g:link>
 </div>
