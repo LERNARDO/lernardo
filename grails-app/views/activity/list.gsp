@@ -31,6 +31,22 @@
           </label>
           <g:submitButton name="list" value="OK" />
         </g:form>
+
+        %{-- Preparation for sorting by day
+
+        <g:form name="form2" action="list">
+          <label>Tag
+            <select name="perMonth">
+              <g:each in="dayCount">
+                <option value="Date(v.value.date).format("dd")">Date(v.value.date).format("dd")</option>
+              </g:each>
+            </select>
+          </label>
+          <g:submitButton name="list" value="OK" />
+        </g:form>
+
+        --}%
+
       </div>
 
       <table>
