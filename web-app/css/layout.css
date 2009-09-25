@@ -540,3 +540,103 @@ p {
 .paginateButtons span {
     padding: 2px 3px;
 }
+
+/*
+   article-index styles
+*/
+#article-index {
+  /*margin-top: 15px;*/
+  /*padding: 0 10px;*/
+  /*width: 619px;*/
+}
+
+#article-index h1 {
+    color: #7e7e7e;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+#article-index .article-index-item {
+    margin: 0px 0 30px 0;
+    border-top: 1px dashed #ccc;
+    padding: 5px;
+}
+
+#article-index .article-index-item:hover {
+  background-color:#e8e6e8;
+}
+
+#article-index .article-index-item .article-header {
+    margin-right:10px;
+    font-weight: bold;
+    color: #000;
+    font-size: 13pt;
+    /*padding-left:10px;*/
+}
+
+#article-index .article-index-item  a {
+  color: #7e7e7e;
+  text-decoration:none;
+}
+
+#article-index .article-index-item  a:hover {
+  text-decoration:underline;
+}
+
+#article-index .article-index-item .article-date {
+  font-weight:normal;
+  color: #7e7e7e;
+  text-align:right;
+  font-size: 10px;
+  margin-bottom:-14px;
+}
+
+#article-index .article-teaser {
+    padding: 15px 0 5px 0;
+    margin: 0;
+    color: #5a5a5a;
+    line-height:1.7;
+}
+
+#article-index .article-teaser p {
+    font-weight:bold;
+}
+
+#article-detail {
+  margin: 10px 0 10px 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0;
+}
+
+#article-detail .article-header {
+    margin-right:10px;
+    font-weight: bold;
+    color: #000;
+    font-size: 13pt;
+    padding-left:10px;
+}
+
+#article-detail .article-date {
+  font-weight:normal;
+  color: #7e7e7e;
+  text-align:right;
+  font-size: 10px;
+  margin-bottom:-14px;
+}
+
+#article-detail a {
+  color: #7e7e7e;
+  text-decoration:none;
+}
+
+#article-detail .article-content {
+    padding: 10px;
+    /*margin: 0;*/
+    color: #5a5a5a;
+    line-height:1.7;
+}
+
+#article-detail p.teaser {
+  font-weight:bold;
+}
