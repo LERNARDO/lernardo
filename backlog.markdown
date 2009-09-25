@@ -1,9 +1,18 @@
 # Backlog
 - implement login (MK)
 - implement blog (MK)
-- implement "zu netzwerk hinzufügen"
+- implement ubase plugin (MK)
+- implement jquery-calendar (MK)
+- implement "zu netzwerk hinzufŸgen"
 - fix sortable columns in profile lists
 - tab navigation for profiles (paed)
+- Views fŸr Artikel einbinden
+- Controller mit Hardcoded Values fŸr Views
+- Gesamtliste der AktivitŠten
+  ShowMonth, ShowDay
+- Platz in den Views im Profil fŸr Kalender vorbereiten
+- Einrichtung -> PŠdagogen -> Betreute (Betreute haben die Termine von den PŠdagogen drin)
+
 
 # Done
 - redo banner graphic
