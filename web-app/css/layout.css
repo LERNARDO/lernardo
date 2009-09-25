@@ -351,7 +351,12 @@ p {
 	background-position:0 50%;
 }
 #profile-navigation .profile-bericht {
-	background:url(../images/icons/079.png) no-repeat;
+	background:url(../images/icons/icon_report.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-calendar {
+	background:url(../images/icons/icon_calendar.png) no-repeat;
 	padding-left: 20px;
 	background-position:0 50%;
 }
