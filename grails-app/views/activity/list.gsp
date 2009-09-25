@@ -8,6 +8,31 @@
       <h2>Liste aller Aktivitäten</h2>
       <p>${activityCount} Aktivitäten gefunden</p>
 
+      <div id="select-box">
+      Filtern nach:
+        
+        <g:form name="form1" action="list">
+          <label>Monat
+            <select name="perMonth">
+              <option value="1">Jänner</option>
+              <option value="2">Februar</option>
+              <option value="3">März</option>
+              <option value="4">April</option>
+              <option value="5">Mai</option>
+              <option value="6">Juni</option>
+              <option value="7">Juli</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">Oktober</option>
+              <option value="11">November</option>
+              <option value="12">Dezember</option>
+            </select>
+          </label>
+          <g:submitButton name="list" value="OK" />
+        </g:form>
+      </div>
+
+
       <table>
         <thead>
           <tr>
