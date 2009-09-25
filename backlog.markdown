@@ -6,7 +6,6 @@
 - implement "zu netzwerk hinzufügen"
 - fix sortable columns in profile lists
 - tab navigation for profiles (paed)
-- Views für Artikel einbinden
 - Controller mit Hardcoded Values für Views
 - Gesamtliste der Aktivitäten
   ShowMonth, ShowDay
@@ -27,3 +26,5 @@
 - change activity template list view to only display name, duration, social form and paed count
 - color list lines differently
 - added empty calendar view in profiles
+- added views and styles for articles
+- formatted names in activities list view
