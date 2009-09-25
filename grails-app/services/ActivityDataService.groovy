@@ -44,21 +44,31 @@ class ActivityDataService {
         return activityTime
     }
 
-    // returns all activities, inluding offset and max number
-    def getActivities (int noffset, int nmax) {
 
-        def list = []
+    // returns all activities, inluding offset and max number
+    def getActivities (int noffset, int nmax, int nmonth) {
+
+        def listMonthValue = []
+        def listPaginationValue = []
+
+        for ( v in activities ) {
+          if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("mm")) {
+
+            listMonthValue.add(v)
+          }
+        } 
+
         int offset = 0
         int count = 0
 
-        for ( v in activities ) {
+        for ( v in listMonthValue ) {
             if (offset >= noffset && count < nmax) {
-                list.add(v)
+                listPaginationValue.add(v)
                 count++
             }
             offset++
         }
-        return list
+        return listPaginationValue
     }
 
     // returns the number of activities
