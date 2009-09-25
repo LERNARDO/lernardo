@@ -9,5 +9,6 @@ class ActivityController {
         def res = ['activityList': activityDataService.getActivities (params.offset, params.max),
                    'activityCount': activityDataService.getActivityCount ()]
         render (view:"list", model:res)
+        
     }
 }
