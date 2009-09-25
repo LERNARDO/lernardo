@@ -5,9 +5,8 @@
 - implement jquery-calendar (MK)
 - implement "zu netzwerk hinzufügen"
 - fix sortable columns in profile lists
-- Gesamtliste der Aktivitäten
-  ShowMonth, ShowDay
-- Einrichtung -> Pädagogen -> Betreute (Betreute haben die Termine von den Pädagogen drin)
+- Gesamtliste der Aktivitäten: ShowDay
+- View Events of Paed in Calendar of Clients (Structure: Einrichtung -> Pädagogen -> Betreute)
 
 # Done
 - redo banner graphic
@@ -28,3 +27,4 @@
 - formatted names in activities list view
 - added article controller and DataService
 - tab navigation for profiles (paed): fixed by adding "Kalender" to the Kommunikation-Box in profiles
+- Gesamtliste der Aktivitäten: ShowMonth
