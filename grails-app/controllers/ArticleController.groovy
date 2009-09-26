@@ -8,7 +8,7 @@ class ArticleController {
     }
 
     def show = {
-        params.id = params.id ?: 1
+        params.id = params.id ?: "1"
         def res = ['article': articleDataService.getArticle(params.id)]
         render (view:"show", model:res)
     }
