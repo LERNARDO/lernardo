@@ -1,5 +1,6 @@
 class ActivityController {
     def activityDataService
+    def profileDataService
 
     def index = {}
 
@@ -12,6 +13,18 @@ class ActivityController {
                    'activityList': activityDataService.getActivities (params.offset, params.max, params.perMonth),
                    'activityCount': activityDataService.getActivityCount(params.perMonth)]
         render (view:"list", model:res)
-        
+    }
+
+    def show = {
+      def activity = activityDataService.findById(params.id)
+
+      if (!activity) {
+        response.sendError(404, "'$params.id': no such activity")
+        return ;
+      }
+
+      def e = profileDataService.getProfile(activity.einrichtung ?: "")
+      
+      return [activity:activity, einrichtung:e]
     }
 }
