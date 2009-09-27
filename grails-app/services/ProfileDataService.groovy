@@ -22,7 +22,7 @@ class ProfileDataService {
             ort:'Weissenbach',
             strasse:'Hauptstraße 12',
             friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'../images/avatar/loewenzahn.jpg',
+            image:'loewenzahn.jpg',
             beschreibung:'''Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
                             und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
                             mit ca. 62m² und ein Aufenthaltsraum mit mehr als 24 m² sowie eine Garderobe
@@ -40,7 +40,7 @@ class ProfileDataService {
             ort:'Kaumberg',
             strasse:'-',
             friends:['hannah':'Pädagogin','emil':'Betreuter','lernardo':'Betreiber','marianne':'Betreute','mathias':'Betreuter','patrick':'Betreuter'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             beschreibung:'-']
     }
 
@@ -59,7 +59,7 @@ class ProfileDataService {
             mail: 'regina.toncourt@gmx.at',
             tel: '0676 / 4303 145',
             friends:['loewenzahn':'Einrichtung','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'../images/avatar/regina_toncourt.jpg',
+            image:'regina_toncourt.jpg',
             lebenslauf:'''<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> während der Ferienzeit Betreuerin beim Wr. Jugendhilfswerk<br>
                           <b>1984 – 1987:</b> Verkäuferin in einem Papierfachgeschäft, halbtags<br>
@@ -87,7 +87,7 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'../images/avatar/martin_golja.jpg',
+            image:'martin_golja.jpg',
             lebenslauf:'''<b>1976-1980</b> Volksschule Pottenstein<br>
                           <b>1980-1988</b> Neusprachlicher Zweig des Bundesrealgymnasiums Berndorf<br>
                           <b>1988</b> Matura<br>
@@ -122,7 +122,7 @@ class ProfileDataService {
             mail: '-',
             tel: '0664 / 3774 559',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             lebenslauf:'''<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
                           <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
@@ -142,7 +142,7 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             lebenslauf:'-']
         profiles.hannah  = [type:'paed',
             role:'Pädagogin',
@@ -158,7 +158,7 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['kaumberg':'Einrichtung','emil':'Betreuter','lernardo':'Betreiber'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             lebenslauf:'-']
     }
 
@@ -178,7 +178,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','pascal':'Betreute'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             allergien:'nein',
             krankheiten:'nein',
             einschraenkungen:'-']
@@ -197,7 +197,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','patrick':'Betreute','marianne':'Betreute'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             allergien:'-',
             krankheiten:'-',
             einschraenkungen:'-']
@@ -216,7 +216,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             allergien:'-',
             krankheiten:'-',
             einschraenkungen:'-']
@@ -235,7 +235,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             allergien:'nein',
             krankheiten:'nein',
             einschraenkungen:'-']
@@ -254,7 +254,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter','patrick':'Betreuter'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             allergien:'nein',
             krankheiten:'nein',
             einschraenkungen:'-']
@@ -273,7 +273,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter','patrick':'Betreuter'],
-            image:'../images/avatar/none.jpg',
+            image:'none.jpg',
             allergien:'nein',
             krankheiten:'nein',
             einschraenkungen:'-']
@@ -290,7 +290,7 @@ class ProfileDataService {
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Stephanie Pirkfellner',
             friends:['loewenzahn':'Einrichtung'],
-            image:'../images/avatar/alpha.jpg']
+            image:'alpha.jpg']
         profiles.lernardo = [type:'betreiber',
             role:'Betreiber',
             name:'lernardo',
@@ -301,7 +301,7 @@ class ProfileDataService {
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Johannes Zeitelberger',
             friends:['kaumberg':'Einrichtung'],
-            image:'../images/avatar/none.jpg']
+            image:'none.jpg']
     }
 
     def addProfile(String name, Map attrs) {
