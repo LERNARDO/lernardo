@@ -40,7 +40,12 @@
           </div>
         </div>
 
-      <g:render template="/templates/client-content-${content}" model="${profileInstance}" />
+        <g:if test="${content == 'calendar'}">
+          <g:render template="/templates/content-calendar" model="${profileInstance}" />
+        </g:if>
+        <g:else>
+          <g:render template="/templates/client-content-${content}" model="${profileInstance}" />
+        </g:else>
       
       </div>
     </div>

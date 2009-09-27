@@ -3,10 +3,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="private" />
 
-    %{--required wiring for all views where the calendar might be used --}%
-    <g:javascript library="jquery" />
-    <g:javascript src="jquery/jquery.fullcalendar.js"/>
-    <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />
 
     <title>Profil - Pädagoge</title>
   </head>
@@ -16,12 +12,8 @@
 
         <div class="yui-b" id="profile-navigation">
 
-          <div class="picture-box-paed">
-            <table align="center">
-              <tr><th class="rang"><h1>${profileInstance.firstName} ${profileInstance.lastName} - ${profileInstance.role}</h1></th></tr>
-              <tr><td class="profile-pic"><img src="${profileInstance.image}" width="150" height="150"/></td></tr>
-            </table>
-          </div>
+          <g:render template="picturebox" model="[name:profileInstance.firstName+' '+profileInstance.lastName+' - '+profileInstance.role,
+                                                  type:'paed', imageUrl:profileInstance.image]"/>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
@@ -45,7 +37,12 @@
           </div>
         </div>
 
-        <g:render template="/templates/paed-content-${content}" model="${profileInstance}" />
+        <g:if test="${content == 'calendar'}">
+          <g:render template="/templates/content-calendar" model="${profileInstance}" />
+        </g:if>
+        <g:else>
+          <g:render template="/templates/paed-content-${content}" model="${profileInstance}" />
+        </g:else>
 
       </div>
     </div>

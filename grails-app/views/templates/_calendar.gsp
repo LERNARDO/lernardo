@@ -1,10 +1,5 @@
-%{--
-renders calender content using the given model
---}%
-
 
 <jq:jquery>
-  console.info ("starting calendar init);
   $('#profile-content').fullCalendar({
     header: { left:'title', center:'today month basicWeek basicDay', right:'prev,next' },
     monthNames: ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
@@ -25,17 +20,12 @@ renders calender content using the given model
         day: 'dddd, d MMM yyyy'                       // Tuesday, Sep 8, 2009
     },
     aspectRatio: 1.35,
-    events: '${g.createLink (action:"my_events")}',
-
-    loading: function(bool) {
-      if (bool) $('#loading').show();
-      else $('#loading').hide();
-    },
+    events: '${g.createLink (controller:"calendar", action:"events", params:[name:"$name"])}',
 
     eventClick: function (calEvent, jsEvent, view) {
       console.info ("got a calEvent");
       console.dir (calEvent);
-      top.location.href = "${g.createLink (action:"show")}"+"/"+calEvent.id
+      top.location.href = "${g.createLink (controller:"activity",  action:"show")}"+"/"+calEvent.id
     }
   })
 

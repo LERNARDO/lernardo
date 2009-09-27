@@ -1,6 +1,6 @@
 class UrlMappings {
     static mappings = {
-      "/prf/$name"{
+      "/prf/$name/$content?"{
           controller = 'profile'
           action     = 'show'
 	      constraints {

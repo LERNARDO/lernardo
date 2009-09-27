@@ -10,12 +10,8 @@
 
         <div class="yui-b" id="profile-navigation">
 
-          <div class="picture-box-betreiber">
-            <table width="250" align="center">
-              <tr><th class="rang"><h1>${profileInstance.fullName} - ${profileInstance.role}</h1></th></tr>
-              <tr><td class="profile-pic"><img src="${profileInstance.image}" width="150" height="150"/></td></tr>
-            </table>
-          </div>
+          <g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
+                                                  type:'client', imageUrl:profileInstance.image]"/>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
@@ -38,8 +34,12 @@
           </div>
         </div>
 
-        <g:render template="/templates/betreiber-content-${content}" model="${profileInstance}" />
-
+        <g:if test="${content == 'calendar'}">
+          <g:render template="/templates/content-calendar" model="${profileInstance}" />
+        </g:if>
+        <g:else>
+          <g:render template="/templates/betreiber-content-${content}" model="${profileInstance}" />
+        </g:else>
       </div>
     </div>
 
