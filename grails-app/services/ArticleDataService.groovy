@@ -56,7 +56,7 @@ class ArticleDataService {
         return articles
     }
 
-    def getArticle (def tID) {
+    def getArticle (String tID) {
         for (v in articles) {
             if (v.value.id == tID) {
                 return v

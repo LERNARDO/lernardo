@@ -640,3 +640,50 @@ p {
 #article-detail p.teaser {
   font-weight:bold;
 }
+
+/*
+  global action-links
+*/
+.actionlinks .adminlinks {
+  text-align: center;
+  -moz-border-radius: 5px;
+  border: 1px solid #848fc9;
+  background: #8f9bda;
+  right: 0px;
+  padding: 2px 4px;
+  width: 230px;
+  margin: 5px 0 5px 0;
+}
+.actionlinks div.userlinks {
+  /*float:left;*/
+}
+
+.actionlinks a {
+  /*color: #700;*/
+  color: #fff;
+  font-size:10px;
+  text-decoration:none;
+}
+
+.actionlinks a:hover {
+  text-decoration:underline;
+}
+
+.actionlinks .adminlinks a {
+  color: #fff;
+  /*text-decoration:none*/
+}
+
+/*#content div.actionlinks div.adminlinks a:hover {*/
+  /*text-decoration:underline*/
+/*}*/
+
+div.actionlinks div.userlinks a {
+  color:green;
+  font-size:1em;
+  /*text-decoration:none*/
+}
+
+div.actionlinks div.userlinks a:hover {
+  text-decoration:underline
+}
