@@ -22,49 +22,49 @@
         <div id="banner">
           <ol class="imgmenu">
             <li>
-              <div id="comm" class="imgbox">
-                <a href="#communications">
-                  <img src="../images/iconex/book_red.png" alt="" />
-                  <h3>Ereignisse</h3>
-                </a>
-              </div>
-            </li>
-
-            <li>
-              <div id="orga" class="imgbox">
-                <a href="#organisation">
-                  <img src="../images/iconex/nut_and_bolt.png" alt="">
-                  <h3>Kalender</h3>
-                </a>
-              </div>
-            </li>
-
-            <li>
               <div id="member" class="imgbox">
-                <a href="#member">
-                  <img src="../images/iconex/users_family.png" alt="">
-                  <h3>Profil</h3>
-                </a>
+                <g:link controller="profile" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'users_family.png')}" alt="Profile" />
+                  <h3>Profile</h3>
+                </g:link>
               </div>
             </li>
 
             <li>
               <div id="paeds" class="imgbox">
-                <a href="#pädagogic">
-                  <img src="../images/iconex/graduate.png" alt="" >
-                  <h3>Interventionsverwaltung</h3>
-                </a>
+                <g:link controller="template" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'book_red.png')}" alt="Interventionen" />
+                  <h3>Interventionen</h3>
+                </g:link>
+              </div>
+            </li>
+
+            <li>
+              <div id="comm" class="imgbox">
+                <g:link controller="activity" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'graduate.png')}" alt="Aktivitäten" />
+                  <h3>Aktivitäten</h3>
+                </g:link>
+              </div>
+            </li>
+
+            <li>
+              <div id="orga" class="imgbox">
+                <g:link controller="calendar" action="showall">
+                  <img src="${g.resource(dir:'images/iconex', file:'nut_and_bolt.png')}" alt="Kalender" />
+                  <h3>Kalender</h3>
+                </g:link>
               </div>
             </li>
 
             <li>
               <div id="admin" class="imgbox">
-                <g:link controller="admin" action="index"><img src="../images/iconex/cabinet.png" alt="" >
+                <g:link controller="admin" action="index">
+                  <img src="${g.resource(dir:'images/iconex', file:'cabinet.png')}" alt="Admin" />
                   <h3>Admin</h3>
                 </g:link>
               </div>
             </li>
-
           </ol>
         </div>
 
