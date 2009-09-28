@@ -6,7 +6,6 @@
 - fix sortable columns in profile lists
 - Gesamtliste der AktivitŠten: ShowDay
 - View Events of Paed in Calendar of Clients (Structure: Einrichtung -> PŠdagogen -> Betreute)
-- 2 Profile Einrichtungen, Betreiber: Standort (google map)
 - 3 Die Links zu den Listen in Admin als (sub) menü ausführen (eigenes (admin-layout)
 - fix article links on public page
 - color links in list views
@@ -46,3 +45,4 @@
 - style activity view in profiles
 - style templates view
 - style "create activity" view
+- 2 Profile Einrichtungen, Standort (google map)
