@@ -9,6 +9,12 @@
 - 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
 - 2 Profile Einrichtungen, Betreiber: Standort (google map)
 - 3 Die Links zu den Listen in Admin als (sub) menü ausführen (eigenes (admin-layout)
+- fix article links on public page
+- redesign articles on public page
+- color links in list views
+- add more data into calendars
+- style "nachricht schreiben" and "sms senden" views
+- style activity view in profiles
  
 # Done
 - redo banner graphic

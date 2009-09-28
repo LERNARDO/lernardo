@@ -10,12 +10,8 @@
 
         <div class="yui-b" id="profile-navigation">
 
-          <div class="picture-box-client">
-            <table width="250" align="center">
-              <tr><th class="rang"><h1>${profileInstance.firstName} ${profileInstance.lastName} - ${profileInstance.role}</h1></th></tr>
-              <tr><td class="profile-pic"><img src="${profileInstance.image}"  width="150" height="150"/></td></tr>
-            </table>
-          </div>
+          <g:render template="picturebox" model="[name:profileInstance.firstName+' '+profileInstance.lastName+' - '+profileInstance.role,
+                    type:'client', imageUrl:profileInstance.image]"/>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
