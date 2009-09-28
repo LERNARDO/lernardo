@@ -23,7 +23,7 @@ class TemplateDataService {
             hk: '0',
             tlt: '1',
             qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+            anzahlPaedagogen:'2']
 
 
 	templates.id_2 = [name:'Schmetterlinge',
@@ -45,7 +45,7 @@ Kommt es zu einem Musikstopp, setzen sich alle „Schmetterlinge“
             hk: '1',
             tlt: '1',
             qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+            anzahlPaedagogen:'2']
 
 
 	templates.id_3 = [name:'Luftballonmeer',
@@ -259,7 +259,7 @@ runter – gehen
             hk: '0',
             tlt: '0',
             qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+            anzahlPaedagogen:'2']
 
 	templates.id_12 = [name:'Schatten',
             id:'12',
@@ -670,7 +670,7 @@ dürfen nicht mehr aufgelesen werden.
             hk: '0',
             tlt: '0',
             qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+            anzahlPaedagogen:'2']
     }
 
     // returns all templates, inluding offset and max number

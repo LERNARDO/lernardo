@@ -41,7 +41,7 @@ class CalendarController {
       activities.each {
         //  convert the @45%&  date/time back to something known in the rest of the universe
         def dtStart = new DateTime (Date.parse("dd.MM.yyyy HH:mm", "$it.date $it.startTime")) ;
-        def dtEnd   = dtStart.plusHours(2) ;
+        def dtEnd = dtStart.plusMinutes("$it.duration".toInteger()); //dtStart.plusHours(2) ;
         eventList << [id: it.id, title: it.title, start:dtStart.toDate() , end:dtEnd.toDate(), allDay:false]
       }
 
@@ -76,7 +76,7 @@ class CalendarController {
           break ;
 
         case 'mitarbeiter':
-          // todo: figure out if a MA should have a calendar at all (and if yes, what the §$% should be in it)
+          // todo: figure out if a MA should have a calendar at all (and if yes, what the ï¿½$% should be in it)
           activities = []
           break ;
 

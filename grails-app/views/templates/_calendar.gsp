@@ -8,14 +8,14 @@
     buttonText: {
         prev: '&nbsp;&#9668;&nbsp;', // left triangle
         next: '&nbsp;&#9658;&nbsp;', // right triangle
-        today: 'heute',
-        month: 'monat',
-        week: 'woche',
-        day: 'tag'
+        today: 'Heute',
+        month: 'Monat',
+        week: 'Woche',
+        day: 'Tag'
     },
     titleFormat: {
         month: 'MMMM yyyy',                            // September 2009
-        week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}", // Sep 7 - 13 2009
+        week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d, yyyy}", // Sep 7 - 13 2009
         day: 'dddd, d MMM yyyy'                       // Tuesday, Sep 8, 2009
     },
     aspectRatio: 1.35,
