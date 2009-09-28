@@ -75,6 +75,12 @@ class CalendarController {
           activities = MockUtil.asList(activityDataService.activities)
           break ;
 
+        case 'mitarbeiter':
+          // todo: figure out if a MA should have a calendar at all (and if yes, what the §$% should be in it)
+          activities = []
+          break ;
+
+
         default:
           activities = MockUtil.asList(activityDataService.activities)
       }
