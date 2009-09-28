@@ -1,0 +1,3 @@
+[submodule "plugins/ubase"]
+	path = plugins/ubase
+	url = git@github.com:mkuhl/ubase.git
