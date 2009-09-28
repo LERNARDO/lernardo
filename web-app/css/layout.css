@@ -304,6 +304,23 @@ p {
     vertical-align:top;
 }
 
+#profile-content h1 {
+    margin: 0;
+    padding: 0 0 15px 0;
+    color: #555;
+}
+
+#profile-content input, #profile-content textarea {
+    font-family: verdana;
+    font-size: 12px;
+    margin: 0 0 5px 5px;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+#profile-content input:hover, #profile-content textarea:hover {
+    border: 1px solid #000;
+}
 
 /* -- */
 
