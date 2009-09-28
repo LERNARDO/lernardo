@@ -2,7 +2,7 @@
   <div class="yui-b">
     <div id="profile-content">
       <h1>Meine Aktivitäten:</h1>
-      <g:if test="${activityList.size()} == 0">
+      <g:if test="${activityList.size() == 0}">
         <p>Keine Aktivitäten gefunden</p>
       </g:if>
       <g:else>
