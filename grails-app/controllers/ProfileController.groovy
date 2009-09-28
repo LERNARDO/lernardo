@@ -1,5 +1,6 @@
 class ProfileController {
     def profileDataService
+    def activityDataService
 
     def index = { }
 
@@ -20,7 +21,8 @@ class ProfileController {
         return ;
       }
       def content = params.content ?: "profile"
-      def bla = [profileInstance:prf,content:content]
+
+      def bla = [profileInstance:prf,content:content,activityList:activityDataService.getActivitiesOfOwner(params.name)]
         render (view:"show_${prf.type ? prf.type:'other'}", model:bla)
     }
 

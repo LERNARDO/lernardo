@@ -13,7 +13,7 @@
         <div class="yui-b" id="profile-navigation">
 
           <g:render template="picturebox" model="[name:profileInstance.firstName+' '+profileInstance.lastName+' - '+profileInstance.role,
-                                                  type:'paed', imageUrl:profileInstance.image]"/>
+                    type:'paed', imageUrl:profileInstance.image]"/>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
@@ -42,7 +42,9 @@
           <g:render template="/templates/content-calendar" model="${profileInstance}" />
         </g:if>
         <g:else>
-          <g:render template="/templates/paed-content-${content}" model="${profileInstance}" />
+          <g:set var="profileInstance" value="${profileInstance}"/>
+          <g:set var="activityList" value="${activityList}"/>
+          <g:render template="/templates/paed-content-${content}" model="[profileInstance:profileInstance,activityList:activityList]" />
         </g:else>
 
       </div>

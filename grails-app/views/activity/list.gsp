@@ -52,7 +52,7 @@
       <table>
         <thead>
           <tr>
-        <g:sortableColumn property="title" title="Aktivitätsvorlage" />
+        <g:sortableColumn property="title" title="Aktivität" />
         <g:sortableColumn property="date" title="Datum" />
         <g:sortableColumn property="startTime" title="Startzeit" />
         </tr>

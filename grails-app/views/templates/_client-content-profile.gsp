@@ -2,16 +2,16 @@
   <div class="yui-b">
     <div id="profile-content">
       <table width="100%">
-        <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${firstName}</td></tr>
-        <tr><td class="bold titles bezeichnung">Nachname:</td><td class="bezeichnung">${lastName}</td></tr>
-        <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${birthDate}</td></tr>
-        <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${plz}</td></tr>
-        <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${ort}</td></tr>
-        <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${strasse}</td></tr>
-        <tr><td class="bold titles bezeichnung">E-Mail:</td><td class="bezeichnung">${mail}</td></tr>
-        <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${tel}</td></tr>
-        <tr><td class="bold titles bezeichnung">Schule:</td><td class="bezeichnung">${schule}</td></tr>
-        <tr><td class="bold titles bezeichnung">Klasse:</td><td class="bezeichnung">${klasse}</td></tr>
+        <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${profileInstance.firstName}</td></tr>
+        <tr><td class="bold titles bezeichnung">Nachname:</td><td class="bezeichnung">${profileInstance.lastName}</td></tr>
+        <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${profileInstance.birthDate}</td></tr>
+        <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${profileInstance.plz}</td></tr>
+        <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${profileInstance.ort}</td></tr>
+        <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${profileInstance.strasse}</td></tr>
+        <tr><td class="bold titles bezeichnung">E-Mail:</td><td class="bezeichnung">${profileInstance.mail}</td></tr>
+        <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${profileInstance.tel}</td></tr>
+        <tr><td class="bold titles bezeichnung">Schule:</td><td class="bezeichnung">${profileInstance.schule}</td></tr>
+        <tr><td class="bold titles bezeichnung">Klasse:</td><td class="bezeichnung">${profileInstance.klasse}</td></tr>
       </table>
 %{--<g:form>
 <input type="hidden" name="id" value="${name}" />

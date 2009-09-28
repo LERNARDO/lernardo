@@ -45,9 +45,11 @@
           <g:render template="/templates/content-calendar" model="${profileInstance}" />
         </g:if>
         <g:else>
-          <g:render template="/templates/client-content-${content}" model="${profileInstance}" />
+          <g:set var="profileInstance" value="${profileInstance}"/>
+          <g:set var="activityList" value="${activityList}"/>
+          <g:render template="/templates/client-content-${content}" model="[profileInstance:profileInstance,activityList:activityList]" />
         </g:else>
-      
+
       </div>
     </div>
 

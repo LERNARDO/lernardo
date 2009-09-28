@@ -10,6 +10,7 @@ class ActivityDataService {
 
         activities.id_1 = [title:'Weide mit Hindernissen',
             id:'1',
+            owner:'regina',
             date:setDate('24.09.2009'),
             startTime:setTime('13:00'),
             duration:'60',
@@ -18,6 +19,7 @@ class ActivityDataService {
             einrichtung:'loewenzahn']
         activities.id_2 = [title:'Schmetterlinge',
             id:'2',
+            owner:'martin',
             date:setDate('24.09.2009'),
             startTime:setTime('11:30'),
             duration:'30',
@@ -26,6 +28,7 @@ class ActivityDataService {
             einrichtung:'loewenzahn']
         activities.id_3 = [title:'Luftballonmeer',
             id:'3',
+            owner:'hannah',
             date:setDate('26.09.2009'),
             startTime:setTime('16:00'),
             duration:'45',
@@ -34,6 +37,7 @@ class ActivityDataService {
             einrichtung:'loewenzahn']
         activities.id_4 = [title:'Musikstopp',
             id:'4',
+            owner:'marianne',
             date:setDate('25.09.2009'),
             startTime:setTime('14:45'),
             duration:'30',
@@ -52,6 +56,15 @@ class ActivityDataService {
         return activityTime
     }
 
+    def getActivitiesOfOwner(String owner) {
+        def activityList = []
+        for ( v in activities ) {
+            if (owner == v.value.owner) {
+                activityList.add(v)
+            }
+        }
+        return activityList
+    }
 
     // returns all activities, inluding offset and max number
     def getActivities (int noffset, int nmax, String nmonth) {
@@ -101,26 +114,26 @@ class ActivityDataService {
     }
 
     def findById (def idVal) {
-      def res = null
-      activities.each {key, val->
-        if (key == "id_${idVal}")
-          res = val ;
-      }
-      return res ;
+        def res = null
+        activities.each {key, val->
+            if (key == "id_${idVal}")
+            res = val ;
+        }
+        return res ;
     }
 
     List findActivitiesByNameAndType (String name, String type) {
-      def result = [] ;
+        def result = [] ;
 
-      activities.each {key, val->
-        def xlist = val["${type}List"]
-        if (xlist?.contains (name)) {
-          val.id = key.startsWith ("id_") ? key[3..-1] : "42"
-          result << val ;
+        activities.each {key, val->
+            def xlist = val["${type}List"]
+            if (xlist?.contains (name)) {
+                val.id = key.startsWith ("id_") ? key[3..-1] : "42"
+                result << val ;
+            }
         }
-      }
 
-      return result ;
+        return result ;
     }
 
 }
