@@ -31,9 +31,18 @@
             </li>
 
             <li>
+              <div id="activities" class="imgbox">
+                <g:link controller="activity" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'all_activities.png')}" alt="Aktivitäten" />
+                  <h3>Aktivitäten</h3>
+                </g:link>
+              </div>
+            </li>
+
+            <li>
               <div id="paeds" class="imgbox">
                 <g:link controller="template" action="list">
-                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Interventionen" />
+                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivitätsvorlagen" />
                   <h3>Aktivitätsvorlagen</h3>
                 </g:link>
               </div>
@@ -44,6 +53,15 @@
                 <g:link controller="calendar" action="showall">
                   <img src="${g.resource(dir:'images/iconex', file:'calendar.png')}" alt="Kalender" />
                   <h3>Kalender</h3>
+                </g:link>
+              </div>
+            </li>
+
+            <li>
+              <div id="profiles" class="imgbox">
+                <g:link controller="profile" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Alle Profile" />
+                  <h3>Alle Profile</h3>
                 </g:link>
               </div>
             </li>
