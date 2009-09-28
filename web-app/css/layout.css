@@ -661,6 +661,7 @@ table#profile-list tr {
 
 #article-index .article-index-item .article-date {
   font-weight:normal;
+  padding: 5px 0;
   color: #7e7e7e;
   text-align:right;
   font-size: 10px;
