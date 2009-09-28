@@ -6,14 +6,11 @@
 - fix sortable columns in profile lists
 - Gesamtliste der AktivitŠten: ShowDay
 - View Events of Paed in Calendar of Clients (Structure: Einrichtung -> PŠdagogen -> Betreute)
-- 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
 - 2 Profile Einrichtungen, Betreiber: Standort (google map)
 - 3 Die Links zu den Listen in Admin als (sub) menü ausführen (eigenes (admin-layout)
 - fix article links on public page
-- redesign articles on public page
 - color links in list views
 - add more data into calendars
-- style "nachricht schreiben" and "sms senden" views
 - style activity view in profiles
  
 # Done
@@ -42,3 +39,6 @@
 - 1 Aktivitäten Details: Team und Teilnehmer mit links auf die jeweiligen Profile
 - 1 Alle Profile:  Aktivitätenliste (wie Kalender, nur als
 - 1 Die Listen schauen alle nix gleich  - das geht besser . Notfalls nehmts  halt die Styles vom Grails scaffolding, wenn euch nichts besseres einfällt.
+- 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
+- redesign articles on public page
+- style "nachricht schreiben" and "sms senden" views
