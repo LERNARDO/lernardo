@@ -27,8 +27,8 @@
       events: '${g.createLink (controller:"calendar", action:"events", params:[name:"$name"])}',
 
       eventClick: function (calEvent, jsEvent, view) {
-        console.info ("got a calEvent");
-        console.dir (calEvent);
+        %{--console.info ("got a calEvent");--}%
+        %{--console.dir (calEvent);--}%
         top.location.href = "${g.createLink (controller:"activity",  action:"show")}"+"/"+calEvent.id
       }
     })
