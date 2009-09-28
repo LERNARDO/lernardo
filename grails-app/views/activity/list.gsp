@@ -51,6 +51,7 @@
       <table>
         <thead>
           <tr>
+            <g:sortableColumn property="owner" title="Geplant von" />
             <g:sortableColumn property="title" title="Aktivität" />
             <g:sortableColumn property="date" title="Datum" />
             <g:sortableColumn property="startTime" title="Startzeit" />
@@ -59,6 +60,7 @@
         <tbody>
         <g:each status="i" in="${activityList}" var="activityInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
+            <td>${activityInstance.value.owner[0].toUpperCase()+activityInstance.value.owner.substring(1)}</td>
             <td><g:link action="show" id="${activityInstance.value.id}">${activityInstance.value.title}</g:link></td>
             <td>${activityInstance.value.date}</td>
             <td>${activityInstance.value.startTime}</td>
