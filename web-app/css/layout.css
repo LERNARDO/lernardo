@@ -107,6 +107,22 @@ body {
     width: 140px;
 }
 
+.titles2 {
+    width:250px;
+}
+
+.bezeichnung {
+    border-bottom:1px dotted #999999;
+    padding:5px 0;
+    text-align:left;
+    vertical-align:top;
+}
+
+.separator {
+    border-bottom: 1px dashed #999;
+    padding-bottom: 5px;
+}
+
 a:hover {
     color:#666600;
     text-decoration:underline !important;
@@ -305,13 +321,6 @@ p {
     color: #333333;
 }
 
-#profile-content .bezeichnung {
-    border-bottom:1px dotted #999999;
-    padding:5px 0;
-    text-align:left;
-    vertical-align:top;
-}
-
 #profile-content h1 {
     margin: 0;
     padding: 0 0 15px 0;
@@ -382,6 +391,11 @@ p {
 }
 #profile-navigation .profile-calendar {
 	background:url(../images/icons/icon_calendar.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
+#profile-navigation .profile-location {
+	background:url(../images/icons/icon_location.png) no-repeat;
 	padding-left: 20px;
 	background-position:0 50%;
 }
@@ -762,4 +776,17 @@ div.actionlinks div.userlinks a {
 
 div.actionlinks div.userlinks a:hover {
   text-decoration:underline
+}
+
+#newActivity {
+    border: 1px solid #33f;
+    background: #66f;
+    padding: 5px;
+    margin: 10px;
+    width: 150px;
+    -moz-border-radius: 5px;
+}
+
+#newActivity a {
+    color: #fff;
 }

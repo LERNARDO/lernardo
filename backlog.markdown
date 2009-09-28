@@ -12,6 +12,8 @@
 - color links in list views
 - add more data into calendars
 - style activity view in profiles
+- style templates view
+- style "create activity" view
  
 # Done
 - redo banner graphic

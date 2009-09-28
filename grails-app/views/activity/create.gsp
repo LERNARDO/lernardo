@@ -55,6 +55,7 @@ To change this template use File | Settings | File Templates.
         </table>
         <input name="name "type="hidden" value="${name}" />
         <span class="button"><g:actionSubmit name="save" action="save" value="Speichern" /></span>
+        <span class="button"><g:actionSubmit name="cancel" action="cancel" value="Abbrechen" /></span>
       </g:form>
     </div>
 
