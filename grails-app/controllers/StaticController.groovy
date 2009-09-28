@@ -30,5 +30,7 @@ class StaticController {
 
     def kontakt = {}
 
+    def erpinfo = {}
+
     def registration = {}
 }

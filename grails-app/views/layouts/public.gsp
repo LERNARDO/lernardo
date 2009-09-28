@@ -30,7 +30,7 @@
               <div class="sideboxheader">Login</div>
 
               <div class="sideboxcontent">
-                <form action='/j_spring_security_check' method='POST' name="login-form" id='loginForm'>
+                <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
                   <table>
                     <tr>
                       <td width="100px">

@@ -30,7 +30,7 @@
         %{--console.info ("got a calEvent");--}%
         %{--console.dir (calEvent);--}%
         top.location.href = "${g.createLink (controller:"activity",  action:"show")}"+"/"+calEvent.id
-      }
+      }                   
     })
 
   </jq:jquery>

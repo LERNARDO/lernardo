@@ -68,7 +68,13 @@ log4j = {
 
     warn   'org.mortbay.log'
 
-    info   'grails.app'
+  info   'grails.app'
+  info   'grails.app.tagLib'
+  debug  'grails.app.bootstrap'
+  debug  'grails.app.dataSource'
+  debug  'grails.app.controller'
+  debug  'grails.app.service'
+
 }
 
 
