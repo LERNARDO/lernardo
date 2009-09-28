@@ -42,7 +42,7 @@ class CalendarController {
         //  convert the @45%&  date/time back to something known in the rest of the universe
         def dtStart = new DateTime (Date.parse("dd.MM.yyyy HH:mm", "$it.date $it.startTime")) ;
         def dtEnd   = dtStart.plusHours(2) ;
-        eventList << [id: it.id, title: it.actionID, start:dtStart.toDate() , end:dtEnd.toDate(), allDay:false]
+        eventList << [id: it.id, title: it.title, start:dtStart.toDate() , end:dtEnd.toDate(), allDay:false]
       }
 
       def json = eventList as JSON ;
