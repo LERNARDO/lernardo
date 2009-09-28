@@ -8,83 +8,38 @@ class ActivityDataService {
 
     def init () {
 
-        activities.id_1 = [actionID:'Weide mit Hindernissen',
+        activities.id_1 = [title:'Weide mit Hindernissen',
+            id:'1',
             date:setDate('24.09.2009'),
             startTime:setTime('13:00'),
             duration:'60',
             paedList:['regina','martin'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'loewenzahn']
-        activities.id_2 = [actionID:'Schmetterlinge',
+        activities.id_2 = [title:'Schmetterlinge',
+            id:'2',
             date:setDate('24.09.2009'),
             startTime:setTime('11:30'),
             duration:'30',
             paedList:['rosa','martin'],
             clientList:['emil','patrick','marianne'],
             einrichtung:'loewenzahn']
-        activities.id_3 = [actionID:'Luftballonmeer',
+        activities.id_3 = [title:'Luftballonmeer',
+            id:'3',
             date:setDate('26.09.2009'),
             startTime:setTime('16:00'),
             duration:'45',
             paedList:['birgit','rosa'],
             clientList:['emil','pascal','mathias'],
             einrichtung:'loewenzahn']
-        activities.id_4 = [actionID:'Musikstopp',
+        activities.id_4 = [title:'Musikstopp',
+            id:'4',
             date:setDate('25.09.2009'),
             startTime:setTime('14:45'),
             duration:'30',
             paedList:['birgit','regina'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'loewenzahn']
-        activities.id_5 = [actionID:'Musikstopp',
-            date:setDate('25.11.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'loewenzahn']
-        activities.id_6 = [actionID:'Musikstopp',
-            date:setDate('25.04.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'loewenzahn']
-        activities.id_7 = [actionID:'Musikstopp',
-            date:setDate('25.04.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'loewenzahn']
-        activities.id_8 = [actionID:'Musikstopp',
-            date:setDate('25.03.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'loewenzahn']
-        activities.id_9 = [actionID:'Musikstopp',
-            date:setDate('25.02.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'kaumberg']
-        activities.id_10 = [actionID:'Musikstopp',
-            date:setDate('25.01.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'kaumberg']
-        activities.id_11 = [actionID:'Musikstopp',
-            date:setDate('25.01.2009'),
-            startTime:setTime('14:45'),
-            duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
-            einrichtung:'kaumberg']
     }
 
     def setDate (String sDate) {

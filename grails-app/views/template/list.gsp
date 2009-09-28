@@ -20,7 +20,7 @@
         <tbody>
         <g:each status="i" in="${templateList}" var="templateInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td>${fieldValue(bean:templateInstance, field:'value.name')}</td>
+            <td><g:link action="show" id="${templateInstance.value.id}">${fieldValue(bean:templateInstance, field:'value.name')}</g:link></td>
             <td>${fieldValue(bean:templateInstance, field:'value.dauer')}</td>
             <td>${fieldValue(bean:templateInstance, field:'value.sozialform')}</td>
             <td>${fieldValue(bean:templateInstance, field:'value.anzahlPaedagogen')}</td>

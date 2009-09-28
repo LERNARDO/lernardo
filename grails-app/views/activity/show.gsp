@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>${activity.ActionID}</title>
+    <title>${activity.title}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="private" />    
   </head>
@@ -18,7 +18,7 @@
   <div class="profile-group">Aktivitätsdetail</div>
   <div class="profile-box">
     <table width="100%">
-      <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${activity.actionID}</td></tr>
+      <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${activity.title}</td></tr>
       <tr><td class="bold titles bezeichnung">Start:</td><td class="bezeichnung">${activity.date} um ${activity.startTime}</td></tr>
       <tr><td class="bold titles bezeichnung">Länge:</td><td class="bezeichnung">${activity.duration}</td></tr>
       <tr><td class="bold titles bezeichnung">Einrichtung:</td><td class="bezeichnung">${einrichtung?.fullName} (${einrichtung?.ort}) </td></tr>

@@ -52,18 +52,18 @@
       <table>
         <thead>
           <tr>
-        <g:sortableColumn property="actionID" title="Aktivitätsvorlage" />
+        <g:sortableColumn property="title" title="Aktivitätsvorlage" />
         <g:sortableColumn property="date" title="Datum" />
         <g:sortableColumn property="startTime" title="Startzeit" />
         <g:sortableColumn property="duration" title="Dauer" />
-        <g:sortableColumn property="paedList" title="teilnehmende Pädagogen" />
-        <g:sortableColumn property="clientList" title="teilnehmende Betreute" />
+        <g:sortableColumn property="paedList" title="Team" />
+        <g:sortableColumn property="clientList" title="Teilnehmer" />
         </tr>
         </thead>
         <tbody>
         <g:each status="i" in="${activityList}" var="activityInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td>${activityInstance.value.actionID}</td>
+            <td><g:link action="show" id="${activityInstance.value.id}">${activityInstance.value.title}</g:link></td>
             <td>${activityInstance.value.date}</td>
             <td>${activityInstance.value.startTime}</td>
             <td>${activityInstance.value.duration}</td>
