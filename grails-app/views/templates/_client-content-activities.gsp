@@ -18,7 +18,7 @@
 
           <g:each status="i" in="${activityList}" var="activityInstance">
             <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-              <td><g:link action="show" id="${activityInstance.value.id}">${activityInstance.value.title}</g:link></td>
+              <td><g:link controller="activity" action="show" id="${activityInstance.value.id}">${activityInstance.value.title}</g:link></td>
             <td>${activityInstance.value.date}</td>
             <td>${activityInstance.value.startTime}</td>
             </tr>
