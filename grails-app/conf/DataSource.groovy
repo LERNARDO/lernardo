@@ -14,6 +14,7 @@ environments {
 	development {
 		dataSource {
 			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+            showSql = true
 			url = "jdbc:hsqldb:mem:devDB"
 		}
 	}

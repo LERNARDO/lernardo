@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module relativePaths="false" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="GrailsWeb">
+      <configuration>
+        <webroots>
+          <root url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/navigation-1.1/web-app" relative="/" />
+        </webroots>
+        <sourceRoots />
+        <building>
+          <setting name="EXPLODED_URL" value="file://" />
+          <setting name="EXPLODED_ENABLED" value="false" />
+          <setting name="JAR_URL" value="file://" />
+          <setting name="JAR_ENABLED" value="false" />
+          <setting name="EXCLUDE_EXPLODED_DIRECTORY" value="true" />
+        </building>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2">
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/src/java" isTestSource="false" />
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/navigation-1.1">
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/navigation-1.1/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/navigation-1.1/grails-app/taglib" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="grails-1.2-M2" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library name="Grails User Library">
+        <CLASSES>
+          <root url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://C:/Dokumente und Einstellungen/mkuhl/.grails/1.2-M2/projects/ubase/plugins/acegi-0.5.2/lib" recursive="false" />
+      </library>
+    </orderEntry>
+  </component>
+</module>
+
