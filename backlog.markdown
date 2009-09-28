@@ -11,9 +11,10 @@
 - fix article links on public page
 - color links in list views
 - add more data into calendars
-- style activity view in profiles
 - style templates view
 - style "create activity" view
+- Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
+- Add a margin-bottom to TH«s of lists
  
 # Done
 - redo banner graphic
@@ -44,3 +45,4 @@
 - 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
 - redesign articles on public page
 - style "nachricht schreiben" and "sms senden" views
+- style activity view in profiles
