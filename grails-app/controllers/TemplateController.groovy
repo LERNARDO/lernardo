@@ -10,4 +10,15 @@ class TemplateController {
                    'templateCount': templateDataService.getTemplateCount ()]
         render (view:"list", model:res)
     }
+
+    def show = {
+        def template = templateDataService.findById(params.id)
+
+        if (!template) {
+            response.sendError(404, "'$params.id': no such template")
+            return ;
+        }
+
+        return [template:template]
+    }
 }
