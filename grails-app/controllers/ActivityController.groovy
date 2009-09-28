@@ -1,6 +1,7 @@
 class ActivityController {
     def activityDataService
     def profileDataService
+    def templateDataService
 
     def index = {}
 
@@ -26,5 +27,11 @@ class ActivityController {
       def e = profileDataService.getProfile(activity.einrichtung ?: "")
       
       return [activity:activity, einrichtung:e]
+    }
+
+    def create = {
+        def template = templateDataService.findById(params.id)
+
+        render (view:"create", model:template)
     }
 }

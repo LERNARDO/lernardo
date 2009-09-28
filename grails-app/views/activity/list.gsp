@@ -69,12 +69,14 @@
             <td>${activityInstance.value.duration}</td>
             <td>
           <g:each in="${activityInstance.value.paedList}" var="paedListInstance">
-${paedListInstance[0].toUpperCase()+paedListInstance.substring(1)}<br>
+            <g:set var="profileName" value="${paedListInstance}"/>
+<g:link controller="profile" action="show" params="[name:profileName]">${paedListInstance[0].toUpperCase()+paedListInstance.substring(1)}</g:link><br>
           </g:each>
         </td>
           <td>
           <g:each in="${activityInstance.value.clientList}" var="clientListInstance">
-${clientListInstance[0].toUpperCase()+clientListInstance.substring(1)}<br>
+            <g:set var="profileName" value="${clientListInstance}"/>
+<g:link controller="profile" action="show" params="[name:profileName]">${clientListInstance[0].toUpperCase()+clientListInstance.substring(1)}</g:link><br>
           </g:each>
           </td>
           </tr>

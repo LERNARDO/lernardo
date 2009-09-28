@@ -27,6 +27,8 @@
       </table>
     </div>
 
+    <p><g:link controller="activity" action="create" id="${template.id}">Neue Aktivität anlegen</g:link></p>
+
   </body>
 
 </html>
