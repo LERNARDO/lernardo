@@ -4,12 +4,12 @@
       <h1>Nachricht:</h1>
       <table>
         <tr>
-          <td>Titel:</td>
-          <td><input name="titel" type="text" size="40" /></td>
+          <td valign="top">Titel:</td>
+          <td><input name="titel" type="text" style="width: 402px;"/></td>
         </tr>
         <tr>
-          <td>Inhalt:</td>
-          <td><textarea cols="40" rows="7" id="nachricht"></textarea></td>
+          <td valign="top">Inhalt:</td>
+          <td><textarea cols="61" rows="10" id="nachricht"></textarea></td>
         </tr>
         <tr>
           <td></td>

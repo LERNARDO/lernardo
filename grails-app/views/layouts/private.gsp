@@ -24,7 +24,7 @@
             <li>
               <div id="member" class="imgbox">
                 <g:link controller="profile" action="show" params="[name:'johannes']">
-                  <img src="${g.resource(dir:'images/iconex', file:'users_family.png')}" alt="Profile" />
+                  <img src="${g.resource(dir:'images/iconex', file:'profile.png')}" alt="Profile" />
                   <h3>Mein Profil</h3>
                 </g:link>
               </div>
@@ -33,7 +33,7 @@
             <li>
               <div id="paeds" class="imgbox">
                 <g:link controller="template" action="list">
-                  <img src="${g.resource(dir:'images/iconex', file:'book_red.png')}" alt="Interventionen" />
+                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Interventionen" />
                   <h3>Aktivitätsvorlagen</h3>
                 </g:link>
               </div>
@@ -42,7 +42,7 @@
             <li>
               <div id="orga" class="imgbox">
                 <g:link controller="calendar" action="showall">
-                  <img src="${g.resource(dir:'images/iconex', file:'nut_and_bolt.png')}" alt="Kalender" />
+                  <img src="${g.resource(dir:'images/iconex', file:'calendar.png')}" alt="Kalender" />
                   <h3>Kalender</h3>
                 </g:link>
               </div>
@@ -51,7 +51,7 @@
             <li>
               <div id="admin" class="imgbox">
                 <g:link controller="admin" action="index">
-                  <img src="${g.resource(dir:'images/iconex', file:'cabinet.png')}" alt="Admin" />
+                  <img src="${g.resource(dir:'images/iconex', file:'admin.png')}" alt="Admin" />
                   <h3>Admin</h3>
                 </g:link>
               </div>

@@ -7,27 +7,29 @@
   </head>
 
   <body>
-    <div class="profile-group">Aktivitätsvorlagendetail</div>
+    <div class="profile-group" style="width:200px;">Aktivitätsvorlage - Details</div>
     <div class="profile-box">
       <table width="100%">
-        <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${template.name}</td></tr>
-        <tr><td class="bold titles bezeichnung">Zuordnung:</td><td class="bezeichnung">${template.zuordnung}</td></tr>
-        <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.beschreibung}</td></tr>
-        <tr><td class="bold titles bezeichnung">Dauer:</td><td class="bezeichnung">${template.dauer}</td></tr>
-        <tr><td class="bold titles bezeichnung">Sozialform:</td><td class="bezeichnung">${template.sozialform}</td></tr>
-        <tr><td class="bold titles bezeichnung">Materialien:</td><td class="bezeichnung">${template.materialien}</td></tr>
-        <tr><td class="bold titles bezeichnung">Lernen lernen:</td><td class="bezeichnung">${template.ll}</td></tr>
-        <tr><td class="bold titles bezeichnung">Bewegung & Ernährung:</td><td class="bezeichnung">${template.be}</td></tr>
-        <tr><td class="bold titles bezeichnung">Persönliche Kompetenz:</td><td class="bezeichnung">${template.pk}</td></tr>
-        <tr><td class="bold titles bezeichnung">Soziale & emotionale Intelligenz:</td><td class="bezeichnung">${template.si}</td></tr>
-        <tr><td class="bold titles bezeichnung">Handwerk & Kunst:</td><td class="bezeichnung">${template.hk}</td></tr>
-        <tr><td class="bold titles bezeichnung">Teilleistungstraining:</td><td class="bezeichnung">${template.tlt}</td></tr>
-        <tr><td class="bold titles bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.qualifikationen}</td></tr>
-        <tr><td class="bold titles bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.anzahlPaedagogen}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.name}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Zuordnung:</td><td class="bezeichnung">${template.zuordnung}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.beschreibung}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.dauer}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.sozialform}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materialien}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Lernen lernen:</td><td class="bezeichnung">${template.ll}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Bewegung & Ernährung:</td><td class="bezeichnung">${template.be}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Persönliche Kompetenz:</td><td class="bezeichnung">${template.pk}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Soziale & emotionale Intelligenz:</td><td class="bezeichnung">${template.si}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Handwerk & Kunst:</td><td class="bezeichnung">${template.hk}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Teilleistungstraining:</td><td class="bezeichnung">${template.tlt}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.qualifikationen}</td></tr>
+        <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.anzahlPaedagogen}</td></tr>
       </table>
     </div>
 
-    <p><g:link controller="activity" action="create" id="${template.id}">Neue Aktivität anlegen</g:link></p>
+    <div id="newActivity">
+      <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität anlegen</g:link>
+    </div>
 
   </body>
 

@@ -107,6 +107,22 @@ body {
     width: 140px;
 }
 
+.titles2 {
+    width:250px;
+}
+
+.bezeichnung {
+    border-bottom:1px dotted #999999;
+    padding:5px 0;
+    text-align:left;
+    vertical-align:top;
+}
+
+.separator {
+    border-bottom: 1px dashed #999;
+    padding-bottom: 5px;
+}
+
 a:hover {
     color:#666600;
     text-decoration:underline !important;
@@ -140,19 +156,19 @@ p {
 
 .imgbox {
   float: left;
-  vertical-align: middle;
-  margin-top: 5px;
-  text-align: center;
+  margin-top: 18px;
 }
 
 .imgbox img {
   overflow: hidden;
-  padding: 5px 8px 5px 8px;
+  float:left;
   border: none;
   width: 60px;
   height: 60px;
+  /*
   -moz-opacity: 0.5;
   opacity: 0.5;
+  */
 }
 
 .imgbox.current img {
@@ -164,18 +180,26 @@ p {
 }
 
 .imgbox h3 {
-  text-align:center;
+  text-align:left;
+  margin-left: 60px;
+  padding-top: 22px;
   color: #000;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  font-size: 120%;
-  font-style: normal;
-  -moz-opacity: .7;
-  margin-top: -5px;
+  font-size: 100%;
   border: 0;
+  height: 40px;
+  /*
+  -moz-opacity: .7;
+
+  */
 }
 
 .imgbox h3 a {
     color: #000;
+}
+
+.imgbox h3:hover {
+    text-decoration: underline;
 }
 
 .imgbox.current h3 {
@@ -189,7 +213,7 @@ p {
 
 #banner {
     height: 115px;
-    background: #00f;
+    background:url(../images/head-bg.jpg) no-repeat;
 }
 
 .profile-pic {
@@ -297,13 +321,23 @@ p {
     color: #333333;
 }
 
-#profile-content .bezeichnung {
-    border-bottom:1px dotted #999999;
-    padding:5px 0;
-    text-align:left;
-    vertical-align:top;
+#profile-content h1 {
+    margin: 0;
+    padding: 0 0 15px 0;
+    color: #555;
 }
 
+#profile-content input, #profile-content textarea {
+    font-family: verdana;
+    font-size: 12px;
+    margin: 0 0 5px 5px;
+    border: 1px solid #999;
+    padding: 2px;
+}
+
+#profile-content input:hover, #profile-content textarea:hover {
+    border: 1px solid #000;
+}
 
 /* -- */
 
@@ -360,18 +394,24 @@ p {
 	padding-left: 20px;
 	background-position:0 50%;
 }
+#profile-navigation .profile-location {
+	background:url(../images/icons/icon_location.png) no-repeat;
+	padding-left: 20px;
+	background-position:0 50%;
+}
 
 .imgmenu {
-    background:url(../images/head-bg.jpg) no-repeat;
     background-position: right;
     height:115px;
+    float:right;
+    margin-right: 15px;
     list-style-type:none;
 }
 
 .imgmenu li {
     float:left;
     /*padding: 50px 20px 0 50px;*/
-    padding: 0 10px 0 10px;
+    padding: 0 30px;
 }
 
 .imgmenu li a {
@@ -607,13 +647,14 @@ table#profile-list tr {
 }
 
 #article-index .article-index-item {
-    margin: 0px 0 30px 0;
+    margin: 0px 0 10px 0;
     border-top: 1px dashed #ccc;
-    padding: 5px;
+    padding: 0px 5px 10px;
 }
 
 #article-index .article-index-item:hover {
-  background-color:#e8e6e8;
+    background-color:#e8e6e8;
+    padding: 0px 5px 10px;
 }
 
 #article-index .article-index-item .article-header {
@@ -621,7 +662,6 @@ table#profile-list tr {
     font-weight: bold;
     color: #000;
     font-size: 13pt;
-    /*padding-left:10px;*/
 }
 
 #article-index .article-index-item  a {
@@ -635,10 +675,10 @@ table#profile-list tr {
 
 #article-index .article-index-item .article-date {
   font-weight:normal;
+  padding: 5px 0;
   color: #7e7e7e;
   text-align:right;
   font-size: 10px;
-  margin-bottom:-14px;
 }
 
 #article-index .article-teaser {
@@ -705,7 +745,7 @@ table#profile-list tr {
   margin: 5px 0 5px 0;
 }
 .actionlinks div.userlinks {
-  /*float:left;*/
+  margin: 0 0 10px 0;
 }
 
 .actionlinks a {
@@ -736,4 +776,17 @@ div.actionlinks div.userlinks a {
 
 div.actionlinks div.userlinks a:hover {
   text-decoration:underline
+}
+
+#newActivity {
+    border: 1px solid #33f;
+    background: #66f;
+    padding: 5px;
+    margin: 10px;
+    width: 150px;
+    -moz-border-radius: 5px;
+}
+
+#newActivity a {
+    color: #fff;
 }

@@ -11,7 +11,7 @@
   </head>
 
   <body>
-      <div class="profile-group">Lernardo - Gesamt</div>
+      <div class="profile-group" style="width:250px;">Lernardo - Gesamt</div>
       <div class="profile-box">
         <div id="profile-content"></div>
       </div>
