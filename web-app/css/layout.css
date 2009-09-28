@@ -482,40 +482,90 @@ p {
 }
 
 .odd {
-    background: #f6f6f6;
+    background: #f4f4f4;
 }
 .even {
     background: #fff;
 }
 
-#body-list td {
-    padding: 2px 3px;
-    border: 1px solid #ccc;
+/* LIST and TABLE overrides */
+
+#body-list table {
+    border:1px solid #CCCCCC;
+    width:100%;
+}
+
+#body-list td.col {
+    width: 200px;
+}
+
+#body-list td.col2 {
+    width: 150px;
+}
+
+#body-list td.col4 {
+    width: 150px;
+}
+
+#body-list .list th, .list td {
+    border-left: 1px solid #ddd;
 }
 
 #body-list th {
-    border: 1px solid #aaa;
-    padding: 2px 3px;
-    background: #ccc;
+    background:#FFFFFF url(../images/skin/shadow.jpg) repeat scroll 0 0;
+    color:#666666;
+    font-size:11px;
+    font-weight:bold;
+    line-height:17px;
+    padding:2px 6px;
+    border-left:1px solid #DDDDDD;
 }
 
-#body-list table {
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-}
-
-#body-list table a {
+#body-list th a:link, th a:visited, th a:hover {
+    color: #333;
+    display: block;
+    font-size: 10px;
     text-decoration: none;
-    color: #009;
+    width: 100%;
 }
 
-#body-list table a:hover {
-    color: #000;
-    text-decoration: underline;
+#body-list th.asc a, th.desc a {
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+#body-list th.asc a {
+    background-image: url(../images/skin/sorted_asc.gif);
+}
+
+#body-list th.desc a {
+    background-image: url(../images/skin/sorted_desc.gif);
+}
+
+#body-list tr {
+    font-size: 11px;
+}
+
+#body-list table tr a {
+    color:#333333;
+    text-decoration:none;
+}
+
+#body-list table tr a:hover {
+    color:#333333;
+    text-decoration:underline;
+}
+
+#body-list td {
+    padding: 5px;
 }
 
 #body-list #select-box {
     margin-bottom: 10px;
+}
+
+table#profile-list tr {
+    border: 1px solid #cccccc;
 }
 
 /* PAGINATION */

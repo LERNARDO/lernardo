@@ -10,7 +10,6 @@
 
       <div id="select-box">
         Filtern nach:
-
         <g:form name="form1" action="list">
           <label>Monat
             <select name="perMonth">
@@ -32,37 +31,37 @@
           <g:submitButton name="list" value="OK" />
         </g:form>
 
-%{-- Preparation for sorting by day
+        %{-- Preparation for sorting by day
 
-<g:form name="form2" action="list">
-<label>Tag
-<select name="perMonth">
-<g:each in="dayCount">
-<option value="Date(v.value.date).format("dd")">Date(v.value.date).format("dd")</option>
-</g:each>
-</select>
-</label>
-<g:submitButton name="list" value="OK" />
-</g:form>
+        <g:form name="form2" action="list">
+          <label>Tag
+            <select name="perMonth">
+              <g:each in="dayCount">
+                <option value="Date(v.value.date).format("dd")">Date(v.value.date).format("dd")</option>
+              </g:each>
+            </select>
+          </label>
+          <g:submitButton name="list" value="OK" />
+        </g:form>
 
---}%
+        --}%
 
       </div>
 
       <table>
         <thead>
           <tr>
-        <g:sortableColumn property="title" title="Aktivität" />
-        <g:sortableColumn property="date" title="Datum" />
-        <g:sortableColumn property="startTime" title="Startzeit" />
-        </tr>
+            <g:sortableColumn property="title" title="Aktivität" />
+            <g:sortableColumn property="date" title="Datum" />
+            <g:sortableColumn property="startTime" title="Startzeit" />
+          </tr>
         </thead>
         <tbody>
         <g:each status="i" in="${activityList}" var="activityInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
             <td><g:link action="show" id="${activityInstance.value.id}">${activityInstance.value.title}</g:link></td>
-          <td>${activityInstance.value.date}</td>
-          <td>${activityInstance.value.startTime}</td>
+            <td>${activityInstance.value.date}</td>
+            <td>${activityInstance.value.startTime}</td>
           </tr>
         </g:each>
         </tbody>
