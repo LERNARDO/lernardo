@@ -350,8 +350,8 @@ p {
 	padding-left: 20px;
 	background-position:0 50%;
 }
-#profile-navigation .profile-bericht {
-	background:url(../images/icons/icon_report.png) no-repeat;
+#profile-navigation .profile-activities {
+	background:url(../images/icons/icon_activities.png) no-repeat;
 	padding-left: 20px;
 	background-position:0 50%;
 }

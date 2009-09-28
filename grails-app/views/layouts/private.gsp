@@ -23,9 +23,9 @@
           <ol class="imgmenu">
             <li>
               <div id="member" class="imgbox">
-                <g:link controller="profile" action="list">
+                <g:link controller="profile" action="show" params="[name:'johannes']">
                   <img src="${g.resource(dir:'images/iconex', file:'users_family.png')}" alt="Profile" />
-                  <h3>Profile</h3>
+                  <h3>Mein Profil</h3>
                 </g:link>
               </div>
             </li>
@@ -34,16 +34,7 @@
               <div id="paeds" class="imgbox">
                 <g:link controller="template" action="list">
                   <img src="${g.resource(dir:'images/iconex', file:'book_red.png')}" alt="Interventionen" />
-                  <h3>Interventionen</h3>
-                </g:link>
-              </div>
-            </li>
-
-            <li>
-              <div id="comm" class="imgbox">
-                <g:link controller="activity" action="list">
-                  <img src="${g.resource(dir:'images/iconex', file:'graduate.png')}" alt="Aktivitäten" />
-                  <h3>Aktivitäten</h3>
+                  <h3>Aktivitätsvorlagen</h3>
                 </g:link>
               </div>
             </li>

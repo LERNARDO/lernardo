@@ -23,6 +23,7 @@
               <li class="profile-nachricht"><g:link action="show" params="[content:'message',name:profileVar]">Nachricht schreiben</g:link></li>
               <li class="profile-telefon"><g:link action="show" params="[content:'sms',name:profileVar]">SMS senden</g:link></li>
               <li class="profile-calendar"><g:link action="show" params="[content:'calendar',name:profileVar]">Kalender ansehen</g:link></li>
+              <li class="profile-activities"><g:link action="show" params="[content:'activities',name:profileVar]">Aktivitäten ansehen</g:link></li>
               <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
             </ul>
           </div>
