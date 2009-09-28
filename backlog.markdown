@@ -7,7 +7,15 @@
 - fix sortable columns in profile lists
 - Gesamtliste der AktivitŠten: ShowDay
 - View Events of Paed in Calendar of Clients (Structure: Einrichtung -> PŠdagogen -> Betreute)
-
+- 1 Eigenes Profil für JLZ (mit photo!) anlegen (eigenen Type -'Lernardo Mitarbeiter') und selbiges als ERP Startpunkt verlinken (statt admin)
+- 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
+- 1 Die Listen schauen alle nix gleich  - das geht besser . Notfalls nehmts  halt die Styles vom Grails scaffolding, wenn euch nichts besseres einfällt.
+- 1 Vorlagen-Detailview fehlt noch. Detto damit natürlich die Verlinkung der Records auf der Liste. Nicht vergessen, von dort muss der 'neue aktivität' view  aufrufbar (button/link) sein.
+- 1 Aktivitäten Details: Team und Teilnehmer mit links auf die jeweiligen Profile
+- 1 Alle Profile:  Aktivitätenliste (wie Kalender, nur als
+- 2 Profile Einrichtungen, Betreiber: Standort (google map)
+- 3 Die Links zu den Listen in Admin als (sub) menü ausführen (eigenes (admin-layout)
+ 
 # Done
 - redo banner graphic
 - add favicon

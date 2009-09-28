@@ -7,10 +7,29 @@ class ProfileDataService {
     }
 
     def init () {
+        initLernardoMitarbeiter()
         initEinrichtungen()
         initPaedagogen()
         initBetreute()
         initBetreiber()
+    }
+
+    def initLernardoMitarbeiter() {
+        profiles.johannes = [type:'mitarbeiter',
+            role:'Lernardo Mitarbeiter',
+            name:'johannes',
+            title: '-',
+            fullName:'Johannes Zeitelberger',
+            firstName:'Johannes',
+            lastName:'Zeitelberger',
+            birthDate:'04.09.1963',
+            plz:'2560',
+            ort:'Berndorf',
+            strasse:'Wankengasse 10',
+            mail: 'jlz@lkult.at',
+            tel: '0664 / 840 66 20',
+            friends:['lernardo':'Betreiber','alpha':'Betreiber'],
+            image:'johannes_zeitelberger.jpg']
     }
 
     def initEinrichtungen () {

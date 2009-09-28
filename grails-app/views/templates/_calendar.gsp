@@ -1,4 +1,3 @@
-
 <jq:jquery>
   $('#profile-content').fullCalendar({
     header: { left:'title', center:'today month basicWeek basicDay', right:'prev,next' },
