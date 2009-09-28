@@ -467,6 +467,18 @@ p {
     font-weight: bold;
 }
 
+#public .login-form-button {
+    margin-top:10px;
+    float: left;
+}
+
+#public #forgot-pwd {
+    padding-left: 90px;
+    padding-top: 14px;
+    height: 21px;
+    width: 150px;
+}
+
 .sidebox {
     -moz-border-radius-bottomleft:5px;
     -moz-border-radius-bottomright:5px;
@@ -494,7 +506,7 @@ p {
 }
 
 .sideboxcontent ul li {
-    margin-left: 10px;
+    margin-left: 5px;
     height:20px;
     list-style-type: disc;
 }
@@ -734,16 +746,16 @@ table#profile-list tr {
 /*
   global action-links
 */
-.actionlinks .adminlinks {
+.adminlinks {
   text-align: center;
-  -moz-border-radius: 5px;
-  border: 1px solid #848fc9;
-  background: #8f9bda;
-  right: 0px;
   padding: 2px 4px;
-  width: 230px;
   margin: 5px 0 5px 0;
+  font-weight: bold;
 }
+.adminlinks a {
+  color: #a00;
+}
+
 .actionlinks div.userlinks {
   margin: 0 0 10px 0;
 }
@@ -757,11 +769,6 @@ table#profile-list tr {
 
 .actionlinks a:hover {
   text-decoration:underline;
-}
-
-.actionlinks .adminlinks a {
-  color: #fff;
-  /*text-decoration:none*/
 }
 
 /*#content div.actionlinks div.adminlinks a:hover {*/

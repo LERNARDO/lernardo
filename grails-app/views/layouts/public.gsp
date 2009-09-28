@@ -73,9 +73,7 @@
                   <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale und emotionale Intelligenz</g:link></li>
                   <li><g:link controller="static" action="kompetenz" fragment="anker">Persönliche Kompetenz</g:link></li>
                   <li><g:link controller="static" action="handwerk" fragment="anker">Handwerk und Kunst</g:link></li>
-                  <!--<li><g:link controller="static" action="kontakt" fragment="anker">Kontakt</g:link></li>-->
                   <li><g:link controller="static" action="impressum" fragment="anker">Impressum</g:link></li>
-                  <!--<li><g:link controller="static" action="loewenzahn" fragment="anker">Hort Löwenzahn</g:link></li>-->
                   <li style="border-bottom: none"><g:link controller="static" action="futurewings" fragment="anker">Future Wings</g:link></li>
                 </ul>
               </div>
