@@ -1,13 +1,14 @@
 <div id="yui-main">
   <div class="yui-b">
     <div id="profile-content">
+      <div id="body-list" style="background-color: transparent">
       <h1>Meine Aktivitäten:</h1>
 
       <g:if test="${activityList.size() == 0}">
         <p>Keine Aktivitäten gefunden</p>
       </g:if>
       <g:else>
-        <table>
+        <table id="profile-list">
           <thead>
             <tr>
           <g:sortableColumn property="title" title="Aktivität" />
@@ -28,7 +29,7 @@
           </tbody>
         </table>
       </g:else>
-      
-    </div><!--profile-content-client"-->
+    </div>
+    </div><!--profile-content"-->
   </div><!--yui-b-->
 </div><!--yui-main-->
