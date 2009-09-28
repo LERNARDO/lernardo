@@ -140,19 +140,19 @@ p {
 
 .imgbox {
   float: left;
-  vertical-align: middle;
-  margin-top: 5px;
-  text-align: center;
+  margin-top: 18px;
 }
 
 .imgbox img {
   overflow: hidden;
-  padding: 5px 8px 5px 8px;
+  float:left;
   border: none;
   width: 60px;
   height: 60px;
+  /*
   -moz-opacity: 0.5;
   opacity: 0.5;
+  */
 }
 
 .imgbox.current img {
@@ -164,18 +164,26 @@ p {
 }
 
 .imgbox h3 {
-  text-align:center;
+  text-align:left;
+  margin-left: 60px;
+  padding-top: 22px;
   color: #000;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  font-size: 120%;
-  font-style: normal;
-  -moz-opacity: .7;
-  margin-top: -5px;
+  font-size: 100%;
   border: 0;
+  height: 40px;
+  /*
+  -moz-opacity: .7;
+
+  */
 }
 
 .imgbox h3 a {
     color: #000;
+}
+
+.imgbox h3:hover {
+    text-decoration: underline;
 }
 
 .imgbox.current h3 {
@@ -189,7 +197,7 @@ p {
 
 #banner {
     height: 115px;
-    background: #00f;
+    background:url(../images/head-bg.jpg) no-repeat;
 }
 
 .profile-pic {
@@ -379,16 +387,17 @@ p {
 }
 
 .imgmenu {
-    background:url(../images/head-bg.jpg) no-repeat;
     background-position: right;
     height:115px;
+    float:right;
+    margin-right: 15px;
     list-style-type:none;
 }
 
 .imgmenu li {
     float:left;
     /*padding: 50px 20px 0 50px;*/
-    padding: 0 10px 0 10px;
+    padding: 0 30px;
 }
 
 .imgmenu li a {
