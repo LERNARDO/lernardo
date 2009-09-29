@@ -818,10 +818,14 @@ div.actionlinks div.userlinks a:hover {
     background: #66f;
     padding: 5px;
     margin: 10px;
-    width: 100px;
+    width: 135px;
     -moz-border-radius: 5px;
 }
 
 #newActivity a {
     color: #fff;
+}
+
+.label {
+    width: 125px;
 }

@@ -36,7 +36,7 @@ class ActivityController {
     }
 
     def cancel = {
-        redirect (action:"list")
+        redirect (controller:"template", action:"list")
     }
 
     def save = {

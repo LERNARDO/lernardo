@@ -15,7 +15,7 @@ To change this template use File | Settings | File Templates.
   </head>
 
   <body>
-    <div class="profile-group">Aktivität planen</div>
+    <div class="profile-group" style="width: 175px;">Neue Aktivität planen</div>
     <div class="profile-box">
       <g:form action="save" >
         <table>
@@ -27,7 +27,6 @@ To change this template use File | Settings | File Templates.
             <td class="bold titles bezeichnung">Datum:</td>
             <td class="bezeichnung"><input type="text" id="data" name="date" value="${date}"/></td>
           </tr>
-          <tr>
           <tr>
             <td class="bold titles bezeichnung">Beginn:</td>
             <td class="bezeichnung"><input type="text" id="startTime" name="startTime" value="${startTime}"/></td>

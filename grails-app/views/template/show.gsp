@@ -40,7 +40,7 @@
     </div>
 
     <div id="newActivity">
-      <g:link controller="activity" action="create" id="${template.id}">Aktivität planen</g:link>
+      <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
     </div>
 
   </body>
