@@ -13,7 +13,6 @@
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH´s of lists
 
-- CSS in Mitarbeiter-Profil (Gelb?)
 - Avatar für Lernardo Betreiber
 - Login für Betreiber anlegen
 - Profile für Mitarbeiter anlegen
@@ -61,3 +60,4 @@
 - Avatar für Kaumberg als Avatar
 - Aktivität anlegen-View: "Typ" in "Vorlagenname" umbenennen
 - Redirect bei Abbrechen für "Aktivität planen"
+- colored Mitarbeiter profile and list view in orange

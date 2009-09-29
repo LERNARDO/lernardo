@@ -273,8 +273,8 @@ p {
     -moz-border-radius-bottomright:5px;
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
-    background-color:#bcbb86; /* color ? */
-    border:1px solid #abaa75; /* color ? */
+    background-color:#FFB45C;
+    border:1px solid #eea34b;
     padding:10px 5px 15px;
 }
 
@@ -555,6 +555,10 @@ p {
 
 .row-betreiber {
     background: #ffffb2;
+}
+
+.row-mitarbeiter {
+    background: #ffb200;
 }
 
 .odd {
