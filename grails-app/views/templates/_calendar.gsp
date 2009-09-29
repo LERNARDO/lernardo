@@ -19,6 +19,7 @@
         week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d, yyyy}", // Sep 7 - 13 2009
         day: 'dddd, d MMM yyyy'                       // Tuesday, Sep 8, 2009
     },
+    timeFormat: 'HH:mm',
     aspectRatio: 1.35,
     events: '${g.createLink (controller:"calendar", action:"events", params:[name:"$name"])}',
 
