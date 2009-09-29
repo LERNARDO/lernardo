@@ -49,10 +49,10 @@
 
         <div class="user-entry">
           <div class="user-pic">
-            <a href="#"><img src="${resource(dir:'images/avatar', file:'regina_toncourt.jpg')}" width="50" height="60" align="left" /></a>
+            <g:link action="show" controller="profile" params="[name:'regina']"><img src="${resource(dir:'images/avatar', file:'regina_toncourt.jpg')}" width="50" height="60" align="left" /></g:link>
           </div>
           <div class="community-entry-infobar">
-            <div class="name"><a href="#">Regina Toncourt</a></div>
+            <div class="name"><g:link action="show" controller="profile" params="[name:'regina']">Regina Toncourt</g:link></div>
             <div class="info">
               <div class="time">am Montag - 28. September 2009 , 16:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
@@ -68,11 +68,11 @@
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <a href="#"><img src="${resource(dir:'images/avatar', file:'patrizia_rosenkranz.jpg')}" width="50" height="60" /></a>
+              <g:link action="show" controller="profile" params="[name:'patrizia']"><img src="${resource(dir:'images/avatar', file:'patrizia_rosenkranz.jpg')}" width="50" height="60" /></g:link>
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Patrizia Rosenkranz</a></div>
+                <div class="user-name"><g:link action="show" controller="profile" params="[name:'patrizia']">Patrizia Rosenkranz</g:link></div>
                 <div class="time">am Dienstag - 29. September 2009, 16:39h</div>
               </div>
               <div class="comment">
@@ -86,11 +86,11 @@
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <a href="#"><img src="${resource(dir:'images/avatar', file:'martin_golja.jpg')}" width="50" height="60" /></a>
+              <g:link action="show" controller="profile" params="[name:'martin']"><img src="${resource(dir:'images/avatar', file:'martin_golja.jpg')}" width="50" height="60" /></g:link>
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Martin Golja</a></div>
+                <div class="user-name"><g:link action="show" controller="profile" params="[name:'martin']">Martin Golja</g:link></div>
                 <div class="time">am Dienstag - 29. September 2009, 17:00h</div>
               </div>
               <div class="comment">
@@ -106,10 +106,10 @@
       <div class="single-entry">
         <div class="user-entry">
           <div class="user-pic">
-            <a href="#"><img src="${resource(dir:'images/avatar', file:'johannes_zeitelberger.jpg')}" width="50" height="60" align="left" /></a>
+            <g:link action="show" controller="profile" params="[name:'johannes']"><img src="${resource(dir:'images/avatar', file:'johannes_zeitelberger.jpg')}" width="50" height="60" align="left" /></g:link>
           </div>
           <div class="community-entry-infobar">
-            <div class="name"><a href="#">Johannes Zeitelberger</a></div>
+            <div class="name"><g:link action="show" controller="profile" params="[name:'johannes']">Johannes Zeitelberger</g:link></div>
             <div class="info">
               <div class="time">am Dienstag - 29. September 2009 , 17:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
@@ -126,13 +126,13 @@
       <div class="single-entry">
         <div class="user-entry">
           <div class="user-pic">
-            <a href="#"><img src="${resource(dir:'images/avatar', file:'johannes_zeitelberger.jpg')}" width="50" height="60" align="left" /></a>
+            <g:link action="show" controller="profile" params="[name:'johannes']"><img src="${resource(dir:'images/avatar', file:'johannes_zeitelberger.jpg')}" width="50" height="60" align="left" /></g:link>
           </div>
           <div class="community-entry-infobar">
-            <div class="name"><a href="#">Johannes Zeitelberger</a></div>
+            <div class="name"><g:link action="show" controller="profile" params="[name:'johannes']">Johannes Zeitelberger</g:link></div>
             <div class="info">
               <div class="time">am Mittwoch - 30. September 2009, 08:30h</div>
-              <div class="actions"><a href="#">Kommentieren</a></div>
+              <div class="actions"><g:link action="show" controller="profile" params="[name:'johannes']">Kommentieren</g:link></div>
             </div>
           </div>
           <div class="clear"></div>
@@ -144,11 +144,11 @@
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <a href="#"><img src="${resource(dir:'images/avatar', file:'alexander_zeilinger.jpg')}" width="50" height="60" /></a>
+              <g:link action="show" controller="profile" params="[name:'alexander']"><img src="${resource(dir:'images/avatar', file:'alexander_zeilinger.jpg')}" width="50" height="60" /></g:link>
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Alexander Zeillinger</a></div>
+                <div class="user-name"><g:link action="show" controller="profile" params="[name:'alexander']">Alexander Zeillinger</g:link></div>
                 <div class="time">am Mittwoch - 30. September 2009, 08:45h</div>
               </div>
               <div class="comment">
