@@ -23,7 +23,9 @@
               <li class="profile-calendar"><g:link action="show" params="[content:'calendar',name:profileVar]">Kalender ansehen</g:link></li>
               <li class="profile-activities"><g:link action="show" params="[content:'activities',name:profileVar]">Aktivitäten ansehen</g:link></li>
               <li class="profile-leistung"><a href="#">Leistungsfortschritt</a></li>
-              <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
+              <ub:notMe entityName="${profileInstance.name}">
+                <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
+              </ub:notMe>
             </ul>
           </div>
 

@@ -11,7 +11,7 @@
         <div class="yui-b" id="profile-navigation">
 
           <g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
-                                                  type:'betreiber', imageUrl:profileInstance.image]"/>
+                    type:'betreiber', imageUrl:profileInstance.image]"/>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
@@ -20,7 +20,9 @@
               <li class="profile-profil"><g:link action="show" params="[content:'profile',name:profileVar]">Profil ansehen</g:link></li>
               <li class="profile-nachricht"><g:link action="show" params="[content:'message',name:profileVar]">Nachricht schreiben</g:link></li>
               <li class="profile-calendar"><g:link action="show" params="[content:'calendar',name:profileVar]">Kalender ansehen</g:link></li>
-              <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
+              <ub:notMe entityName="${profileInstance.name}">
+                <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
+              </ub:notMe>
             </ul>
           </div>
 
