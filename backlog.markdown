@@ -12,6 +12,21 @@
 - add more data into calendars
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH´s of lists
+
+- CSS in Mitarbeiter-Profil (Gelb?)
+- Avatar für Lernardo Betreiber
+- Login für Betreiber anlegen
+- Avatar für Kaumberg als Avatar
+- Profile für Mitarbeiter anlegen
+- Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
+- Menüicons vertauschen: Aktivität anstelle von Aktivitätsvorlagen
+- Redirect für "Neue Aktvität anlegen"
+- "Aktivität planen" <- Aktivitätsvorlagen
+- Detail-View von Aktivitätsvorlagen: Kommentarfunktion faken (Autor, Datum, Kommentar+Antwort)
+- Detail-View von Aktivitätsvorlagen: Name entfernen
+- Aktivität anlegen-View: "Typ" in "Vorlagenname" umbenennen
+- Einrichtungen im Profil und Public (Name, Öffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
+
  
 # Done
 - redo banner graphic
