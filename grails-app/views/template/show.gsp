@@ -38,6 +38,11 @@
         <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.anzahlPaedagogen}</td></tr>
       </table>
     </div>
+
+    <div id="newActivity">
+      <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
+    </div>
+  
     <div id="comments-block">
       <h1>Kommentare</h1>
       <div class="single-entry">
@@ -158,10 +163,6 @@
       <div class="comments-actions">
         <a href="#">Neuen Kommentar abgeben</a>
       </div>
-    </div>
-
-    <div id="newActivity">
-      <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
     </div>
 
   </body>

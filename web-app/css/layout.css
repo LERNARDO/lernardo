@@ -1,3 +1,4 @@
+<<<<<<< HEAD:web-app/css/layout.css
 /* ----- GLOBAL ----- */
 
 body {
@@ -835,10 +836,7 @@ div.actionlinks div.userlinks a:hover {
 .clear {clear: both; margin: 0; padding: 0;}
 
 #comments-block {
-    -moz-border-radius-bottomleft:5px;
-    -moz-border-radius-bottomright:5px;
-    -moz-border-radius-topleft:5px;
-    -moz-border-radius-topright:5px;
+    -moz-border-radius:5px;
     background-color: #dfdfdf;
     border:1px solid #cccccc;
     padding: 5px 10px 10px 10px;
@@ -863,10 +861,7 @@ div.actionlinks div.userlinks a:hover {
 .community-entry-infobar .actions {float: right;}
 
 .user-entry {
-    -moz-border-radius-bottomleft:5px;
-    -moz-border-radius-bottomright:5px;
-    -moz-border-radius-topleft:5px;
-    -moz-border-radius-topright:5px;
+    -moz-border-radius:5px;
     border: 1px solid #cccccc;
     background-color: #fdfdfd;
     padding: 8px 5px 8px;
@@ -876,10 +871,7 @@ div.actionlinks div.userlinks a:hover {
 .user-entry .entry-content {margin-left:60px;}
 
 .community-entry-comments .entry {
-    -moz-border-radius-bottomleft:5px;
-    -moz-border-radius-bottomright:5px;
-    -moz-border-radius-topleft:5px;
-    -moz-border-radius-topright:5px;
+    -moz-border-radius:5px;
     border: 1px solid #cccccc;
     background-color: #e8e6e8;
     padding: 5px;
