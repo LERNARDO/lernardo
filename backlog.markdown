@@ -13,10 +13,11 @@
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH´s of lists
 
-- Login für Betreiber anlegen
 - Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
 - Detail-View von Aktivitätsvorlagen: Kommentarfunktion faken (Autor, Datum, Kommentar+Antwort)
 - Einrichtungen im Profil und Public (Name, Öffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
+- add ERP info text on public page
+- show admin links for articles only when logged in
  
 # Done
 - redo banner graphic
@@ -59,4 +60,4 @@
 - Redirect bei Abbrechen für "Aktivität planen"
 - colored Mitarbeiter profile and list view in orange
 - added logo for betreiber Lernardo
-- added 2 additionale profiles of Lernardo mitarbeiter
+- added 2 additional profiles of Lernardo mitarbeiter
