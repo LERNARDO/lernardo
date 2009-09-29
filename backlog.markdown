@@ -12,7 +12,6 @@
 - add more data into calendars
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH«s of lists
-
 - Avatar fŸr Lernardo Betreiber
 - Login fŸr Betreiber anlegen
 - Profile fŸr Mitarbeiter anlegen
