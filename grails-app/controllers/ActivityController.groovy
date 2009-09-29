@@ -34,4 +34,12 @@ class ActivityController {
 
         render (view:"create", model:template)
     }
+
+    def cancel = {
+        redirect (action:"list")
+    }
+
+    def save = {
+        redirect (action:"create")
+    }
 }
