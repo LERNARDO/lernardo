@@ -177,7 +177,7 @@ class ProfileDataService {
             mail: '-',
             tel: '0664 / 3774 559',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'none.jpg',
+            image:'rosa_gober.jpg',
             lebenslauf:'''<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
                           <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
@@ -197,7 +197,7 @@ class ProfileDataService {
             mail: '-',
             tel: '-',
             friends:['loewenzahn':'Einrichtung','regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'none.jpg',
+            image:'birgit_blaesen.jpg',
             lebenslauf:'-']
         profiles.hannah  = [type:'paed',
             role:'Pädagogin',
@@ -252,7 +252,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','patrick':'Betreute','marianne':'Betreute'],
-            image:'none.jpg',
+            image:'emil_horny.jpg',
             allergien:'-',
             krankheiten:'-',
             einschraenkungen:'-']
@@ -290,7 +290,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter'],
-            image:'none.jpg',
+            image:'patrick_lintner.jpg',
             allergien:'nein',
             krankheiten:'nein',
             einschraenkungen:'-']
@@ -328,7 +328,7 @@ class ProfileDataService {
             schule: 'VS Kaumberg',
             klasse: '-',
             friends:['kaumberg':'Einrichtung','hannah':'Pädagogin','lernardo':'Betreiber','emil':'Betreuter','patrick':'Betreuter'],
-            image:'none.jpg',
+            image:'marianne_lintner.jpg',
             allergien:'nein',
             krankheiten:'nein',
             einschraenkungen:'-']
