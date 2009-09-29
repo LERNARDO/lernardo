@@ -14,7 +14,7 @@
         <g:sortableColumn property="name" title="Name" />
         <g:sortableColumn property="dauer" title="Dauer" />
         <g:sortableColumn property="sozialform" title="Sozialform" />
-        <g:sortableColumn property="anzahlPaedagogen" title="Anzahl Pädagogen" />
+        <g:sortableColumn property="anzahlPaedagogen" title="Anzahl P&auml;dagogen" />
         </tr>
         </thead>
         <tbody>

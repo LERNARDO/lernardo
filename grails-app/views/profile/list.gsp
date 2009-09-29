@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <meta name="layout" content="private" />
@@ -17,7 +18,7 @@
               <option value="betreiber">Betreiber</option>
               <option value="client">Betreute</option>
               <option value="paed">Pädagogen</option>
-            </select>
+            </select>                  
           </label>
           <g:submitButton name="list" value="OK" />
         </g:form>
@@ -34,7 +35,9 @@
         <g:each status="i" in="${profileList}" var="profileInstance">
           <tr class="row-${profileInstance.value.type}">
             <td class="col">${profileInstance.value.role}</td>
-            <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.fullName}</g:link></td>
+            <td><g:link controller="profile" action="show" params="[name:profileInstance.value.name]" >${profileInstance.value.fullName}</g:link></td>
+
+            %{--<td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.fullName}</g:link></td>--}%
           </tr>
         </g:each>
         </tbody>

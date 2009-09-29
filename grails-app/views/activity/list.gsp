@@ -51,7 +51,7 @@
       <table>
         <thead>
           <tr>
-            <g:sortableColumn property="title" title="Aktivität" />
+            <g:sortableColumn property="title" title="Aktivit&auml;t" />
             <g:sortableColumn property="einrichtung" title="Einrichtung" />
             <g:sortableColumn property="owner" title="Geplant von" />
             <g:sortableColumn property="date" title="Datum" />
