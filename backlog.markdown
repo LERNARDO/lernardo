@@ -12,6 +12,7 @@
 - add more data into calendars
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH«s of lists
+- fix hours in jquery-calendar (16:00h = 2pm)
 
 # Done
 - redo banner graphic
