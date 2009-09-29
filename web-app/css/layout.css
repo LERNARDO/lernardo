@@ -397,6 +397,23 @@ p {
 	background-position:0 50%;
 }
 
+/* admin area */
+#admin-content {
+    padding: 5px 10px 10px 10px;
+    margin: 10px;
+    color: #333333;
+}
+
+#admin-content h1 {
+    margin: 0;
+    padding: 0 0 15px 0;
+    color: #555;
+}
+
+#admin-navigation {
+    padding: 10px;
+}
+
 .imgmenu {
     background-position: right;
     height:115px;
