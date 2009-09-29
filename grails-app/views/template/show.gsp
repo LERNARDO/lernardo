@@ -54,7 +54,7 @@
           <div class="community-entry-infobar">
             <div class="name"><a href="#">Regina Toncourt</a></div>
             <div class="info">
-              <div class="time">am Montag, 16:30h</div>
+              <div class="time">am Montag - 28. September 2009 , 16:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
             </div>
           </div>
@@ -73,7 +73,7 @@
             <div class="user-comment">
               <div class="info">
                 <div class="user-name"><a href="#">Patrizia Rosenkranz</a></div>
-                <div class="time">am Dienstag, 16:39h</div>
+                <div class="time">am Dienstag - 29. September 2009, 16:39h</div>
               </div>
               <div class="comment">
                 Ja schon, finde ich auch!
@@ -91,7 +91,7 @@
             <div class="user-comment">
               <div class="info">
                 <div class="user-name"><a href="#">Martin Golja</a></div>
-                <div class="time">am Dienstag, 17:00h</div>
+                <div class="time">am Dienstag - 29. September 2009, 17:00h</div>
               </div>
               <div class="comment">
               So l&auml;sst es aber mehr Platz für individuelle Interpretation. Finde ich nicht schlecht!
@@ -111,7 +111,7 @@
           <div class="community-entry-infobar">
             <div class="name"><a href="#">Johannes Zeitelberger</a></div>
             <div class="info">
-              <div class="time">am Dienstag, 17:30h</div>
+              <div class="time">am Dienstag - 29. September 2009 , 17:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
             </div>
           </div>
@@ -131,7 +131,7 @@
           <div class="community-entry-infobar">
             <div class="name"><a href="#">Johannes Zeitelberger</a></div>
             <div class="info">
-              <div class="time">am Mittwoch, 08:30h</div>
+              <div class="time">am Mittwoch - 30. September 2009, 08:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
             </div>
           </div>
@@ -148,8 +148,8 @@
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Alexander Zeilinger</a></div>
-                <div class="time">am Mittwoch, 08:45h</div>
+                <div class="user-name"><a href="#">Alexander Zeillinger</a></div>
+                <div class="time">am Mittwoch - 30. September 2009, 08:45h</div>
               </div>
               <div class="comment">
               Haben ja auch wir gemacht!
