@@ -539,6 +539,13 @@ p {
     color: #ffffff;
 }
 
+/* REGISTER */
+#registerbox table td {
+    padding: 5px;
+    text-align: right;
+    width: 150px;
+}
+
 /* ----- TABLES ----- */
 
 .row-paed {
