@@ -64,7 +64,7 @@ class ActivityDataService {
             paedList:['birgit','regina'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'loewenzahn']
-         activities.id_7 = [title:'Fliegender Pilz',
+        activities.id_7 = [title:'Fliegender Pilz',
             id:'7',
             owner:'martin',
             date:setDate('19.10.2009'),
@@ -250,8 +250,10 @@ class ActivityDataService {
     def getActivitiesOfOwner(String owner) {
         def activityList = []
         for ( v in activities ) {
-            if (owner == v.value.owner) {
-                activityList.add(v)
+            for ( w in v.value.paedList) {
+                if (owner == w) {
+                    activityList.add(v)
+                }
             }
         }
         return activityList

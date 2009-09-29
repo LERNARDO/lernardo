@@ -5,6 +5,7 @@
     monthNamesShort: ['Jan','Feb','März','April','Mai','Jun','Jul','Aug','Sept','Okt','Nov','Dez'],
     dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
     dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+    firstDay: 1,
     buttonText: {
         prev: '&nbsp;&#9668;&nbsp;', // left triangle
         next: '&nbsp;&#9658;&nbsp;', // right triangle
