@@ -19,9 +19,7 @@
 - Avatar für Kaumberg als Avatar
 - Profile für Mitarbeiter anlegen
 - Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
-- Menüicons vertauschen: Aktivität anstelle von Aktivitätsvorlagen
 - Redirect für "Neue Aktvität anlegen"
-- "Aktivität planen" <- Aktivitätsvorlagen
 - Detail-View von Aktivitätsvorlagen: Kommentarfunktion faken (Autor, Datum, Kommentar+Antwort)
 - Detail-View von Aktivitätsvorlagen: Name entfernen
 - Aktivität anlegen-View: "Typ" in "Vorlagenname" umbenennen
@@ -61,3 +59,6 @@
 - style templates view
 - style "create activity" view
 - 2 Profile Einrichtungen, Standort (google map)
+
+- Menüicons vertauschen: Aktivität anstelle von Aktivitätsvorlagen
+- "Aktivität planen" <- Aktivitätsvorlagen
