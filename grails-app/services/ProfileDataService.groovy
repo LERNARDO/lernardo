@@ -59,7 +59,7 @@ class ProfileDataService {
             ort:'Kaumberg',
             strasse:'-',
             friends:['hannah':'Pädagogin','emil':'Betreuter','lernardo':'Betreiber','marianne':'Betreute','mathias':'Betreuter','patrick':'Betreuter'],
-            image:'none.jpg',
+            image:'hort_kaumberg.jpg',
             beschreibung:'-']
     }
 
