@@ -820,6 +820,7 @@ div.actionlinks div.userlinks a:hover {
     padding: 5px;
     margin: 10px;
     width: 135px;
+    text-align:center;
     -moz-border-radius: 5px;
 }
 
