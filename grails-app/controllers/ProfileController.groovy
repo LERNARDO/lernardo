@@ -26,7 +26,6 @@ class ProfileController {
         render (view:"show_${prf.type ? prf.type:'other'}", model:bla)
     }
 
-
     def edit = {
         def prf = profileDataService.getProfile (params.name)
         if (!prf) {
