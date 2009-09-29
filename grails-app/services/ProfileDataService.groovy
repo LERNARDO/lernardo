@@ -320,7 +320,7 @@ class ProfileDataService {
             gemeinnutzigkeit: 'ja',
             ansprechperson: 'Johannes Zeitelberger',
             friends:['kaumberg':'Einrichtung'],
-            image:'none.jpg']
+            image:'lernardo.jpg']
     }
 
     def addProfile(String name, Map attrs) {
