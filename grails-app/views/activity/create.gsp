@@ -15,7 +15,7 @@ To change this template use File | Settings | File Templates.
   </head>
 
   <body>
-    <div class="profile-group">Aktivität erstellen</div>
+    <div class="profile-group">Aktivität planen</div>
     <div class="profile-box">
       <g:form action="save" >
         <table>

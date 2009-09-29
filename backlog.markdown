@@ -12,12 +12,10 @@
 - add more data into calendars
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH´s of lists
-- Avatar für Lernardo Betreiber
+
 - Login für Betreiber anlegen
-- Profile für Mitarbeiter anlegen
 - Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
 - Detail-View von Aktivitätsvorlagen: Kommentarfunktion faken (Autor, Datum, Kommentar+Antwort)
-- Detail-View von Aktivitätsvorlagen: Name entfernen
 - Einrichtungen im Profil und Public (Name, Öffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
  
 # Done
@@ -60,3 +58,4 @@
 - Aktivität anlegen-View: "Typ" in "Vorlagenname" umbenennen
 - Redirect bei Abbrechen für "Aktivität planen"
 - colored Mitarbeiter profile and list view in orange
+- added logo for betreiber Lernardo
