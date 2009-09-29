@@ -1,6 +1,10 @@
 <div class="article-header">
-  <div class="article-date"> (<g:link style="color:#a00;" class="adminlinks" action="edit" id="${article.id}">bearbeiten</g:link> - <g:link style="color:#a00;" class="adminlinks" action="delete" id="${article.id}">löschen</g:link>)
-${article.dateCreated} by ${article.author}</div>
+  <div class="article-date">
+    <g:isLoggedIn>
+      (<g:link style="color:#a00;" class="adminlinks" action="edit" id="${article.id}">bearbeiten</g:link> - <g:link style="color:#a00;" class="adminlinks" action="delete" id="${article.id}">löschen</g:link>)
+    </g:isLoggedIn>
+${article.dateCreated} by ${article.author}
+  </div>
 
 %{-- Bug? This link doesn't output the controller and action --}%
   <g:link controller="article" action="show" id="${article.id}">${article.title}</g:link>

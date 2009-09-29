@@ -16,7 +16,6 @@
 - Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
 - Detail-View von Aktivitätsvorlagen: Kommentarfunktion faken (Autor, Datum, Kommentar+Antwort)
 - Einrichtungen im Profil und Public (Name, Öffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
-- show admin links for articles only when logged in
 - when the login person does not exist redirect back to overview
  
 # Done
@@ -62,3 +61,4 @@
 - added logo for betreiber Lernardo
 - added 2 additional profiles of Lernardo mitarbeiter
 - add ERP info text on public page
+- removed admin links for articles when not logged in
