@@ -80,7 +80,10 @@ class ProfileDataService {
                             Volksschule, sowie Räume der Hauptschule und der Volksschulgarten bzw. Spielplatz
                             genutzt werden.<br>
                             Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
-                            Spielbereich und ein Ruhebereich zur Verfügung.''']
+                            Spielbereich und ein Ruhebereich zur Verfügung.''',
+        telefon:'0676 / 880 604 001',
+        oeffnungszeiten:'Mo-Fr, 11 bis 18 Uhr',
+        ansprechperson:'Martin Golja']
         profiles.kaumberg = [type:'einrichtung',
             role:'Einrichtung',
             name:'kaumberg',
@@ -90,7 +93,10 @@ class ProfileDataService {
             strasse:'-',
             friends:['hannah':'Pädagogin','emil':'Betreuter','lernardo':'Betreiber','marianne':'Betreute','mathias':'Betreuter','patrick':'Betreuter'],
             image:'hort_kaumberg.jpg',
-            beschreibung:'-']
+            beschreibung:'-',
+            telefon:'0660 / 461 1106',
+            oeffnungszeiten:'-',
+            ansprechperson:'Hannah Mutzbauer']
     }
 
     def initPaedagogen () {
