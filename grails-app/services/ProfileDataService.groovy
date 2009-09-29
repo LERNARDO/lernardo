@@ -59,7 +59,7 @@ class ProfileDataService {
             mail: 'aaz@lkult.at',
             tel: '0664 / 840 66 32',
             friends:['lernardo':'Betreiber','alpha':'Betreiber','patrizia':'Lernardo Mitarbeiterin','johannes':'Lernardo Mitarbeiter'],
-            image:'none.jpg']
+            image:'alexander_zeillinger.jpg']
     }
 
     def initEinrichtungen () {

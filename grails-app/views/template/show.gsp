@@ -144,7 +144,7 @@
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <g:link action="show" controller="profile" params="[name:'alexander']"><img src="${resource(dir:'images/avatar', file:'alexander_zeilinger.jpg')}" width="50" height="60" /></g:link>
+              <g:link action="show" controller="profile" params="[name:'alexander']"><img src="${resource(dir:'images/avatar', file:'alexander_zeillinger.jpg')}" width="50" height="60" /></g:link>
             </div>
             <div class="user-comment">
               <div class="info">
