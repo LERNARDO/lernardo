@@ -59,3 +59,4 @@
 - Redirect bei Abbrechen für "Aktivität planen"
 - colored Mitarbeiter profile and list view in orange
 - added logo for betreiber Lernardo
+- added 2 additionale profiles of Lernardo mitarbeiter
