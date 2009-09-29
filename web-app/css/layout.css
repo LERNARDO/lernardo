@@ -829,3 +829,69 @@ div.actionlinks div.userlinks a:hover {
 .label {
     width: 125px;
 }
+
+/* Comments */
+
+.clear {clear: both; margin: 0; padding: 0;}
+
+#comments-block {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background-color: #dfdfdf;
+    border:1px solid #cccccc;
+    padding: 5px 10px 10px 10px;
+    margin: 10px;
+    vertical-align:top;
+    color: #333333;
+}
+
+#comments-block h1 {
+    margin: 0;
+    padding: 0 0 15px 0;
+    color: #555;
+}
+
+#comments-block {padding: 10px 8px 10px;}
+#comments-block .single-entry {border-bottom: 1px solid #efefef; margin-bottom: 10px;}
+
+.community-entry-infobar {margin-left: 60px;}
+.community-entry-infobar .name {font-size: 100%; font-weight: bold;}
+.community-entry-infobar .info {margin: 5px 0; font-size: 88%;}
+.community-entry-infobar .time {float: left; color: #666666;}
+.community-entry-infobar .actions {float: right;}
+
+.user-entry {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    border: 1px solid #cccccc;
+    background-color: #fdfdfd;
+    padding: 8px 5px 8px;
+    margin-bottom: 10px;
+}
+
+.user-entry .entry-content {margin-left:60px;}
+
+.community-entry-comments .entry {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    border: 1px solid #cccccc;
+    background-color: #e8e6e8;
+    padding: 5px;
+}
+
+.community-entry-comments {margin-bottom: 15px;}
+.community-entry-comments {clear: both; padding-left: 80px;}
+.community-entry-comments .user-pic {float: left;}
+.community-entry-comments .user-comment {margin-left: 60px; font-size: 88%;}
+.community-entry-comments .user-comment .info {color: #666666;}
+.community-entry-comments .user-comment .user-name {display: inline; font-weight: bold;}
+.community-entry-comments .user-comment .time {display: inline;}
+.community-entry-comments .user-comment .comment {margin-top: 10px;}
+
+.comments-actions {margin-top: 10px; font-weight: bold; text-align: center;}

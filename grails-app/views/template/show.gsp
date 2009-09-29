@@ -38,6 +38,127 @@
         <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.anzahlPaedagogen}</td></tr>
       </table>
     </div>
+    <div id="comments-block">
+      <h1>Kommentare</h1>
+      <div class="single-entry">
+
+        <div class="user-entry">
+          <div class="user-pic">
+            <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" align="left" /></a>
+          </div>
+          <div class="community-entry-infobar">
+            <div class="name"><a href="#">Vorname Nachname</a></div>
+            <div class="info">
+              <div class="time">16:30h</div>
+              <div class="actions"><a href="#">Kommentieren</a></div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="entry-content">
+            Eintrag mit Bild, etc...<br />
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<br /><br />
+          </div>
+        </div>
+
+        <div class="community-entry-comments">
+          <div class="entry">
+            <div class="user-pic">
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+            </div>
+            <div class="user-comment">
+              <div class="info">
+                <div class="user-name"><a href="#">Vorname Nachname</a></div>
+                <div class="time">am Dienstag, 16:39h</div>
+              </div>
+              <div class="comment">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+
+        <div class="community-entry-comments">
+          <div class="entry">
+            <div class="user-pic">
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+            </div>
+            <div class="user-comment">
+              <div class="info">
+                <div class="user-name"><a href="#">Vorname Nachname</a></div>
+                <div class="time">am Dienstag, 16:39h</div>
+              </div>
+              <div class="comment">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <!-- END single-entry -->
+
+      <div class="single-entry">
+
+        <div class="user-entry">
+          <div class="user-pic">
+            <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" align="left" /></a>
+          </div>
+          <div class="community-entry-infobar">
+            <div class="name"><a href="#">Vorname Nachname</a></div>
+            <div class="info">
+              <div class="time">16:30h</div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="entry-content">
+            Eintrag mit Bild, etc...<br />
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<br /><br />
+          </div>
+        </div>
+
+        <div class="community-entry-comments">
+          <div class="entry">
+            <div class="user-pic">
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+            </div>
+            <div class="user-comment">
+              <div class="info">
+                <div class="user-name"><a href="#">Vorname Nachname</a></div>
+                <div class="time">am Dienstag, 16:39h</div>
+              </div>
+              <div class="comment">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+
+        <div class="community-entry-comments">
+          <div class="entry">
+            <div class="user-pic">
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+            </div>
+            <div class="user-comment">
+              <div class="info">
+                <div class="user-name"><a href="#">Vorname Nachname</a></div>
+                <div class="time">am Dienstag, 16:39h</div>
+              </div>
+              <div class="comment">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <!-- END single-entry -->
+
+      <div class="comments-actions">
+        <a href="#">Neuen Kommentar abgeben</a>
+      </div>
+    </div>
 
     <div id="newActivity">
       <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
