@@ -16,6 +16,11 @@ class UrlMappings {
 	  }
       "/"(controller:'article')//view:"/index")
 
+      "/start"{
+        controller = 'app'
+        action     = 'start'
+       }
+
       "500"(view:'/error')
 	}
 }
