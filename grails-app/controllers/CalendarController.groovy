@@ -54,7 +54,7 @@ class CalendarController {
       if (name == 'all')
         return MockUtil.asList(activityDataService.activities)
 
-      def prf = profileDataService.getProfile (params.name)
+      def prf = profileDataService.getProfile (name)
       if (!prf)
         return null ;
 
@@ -62,12 +62,12 @@ class CalendarController {
       switch (prf.type) {
         case 'paed':
         case 'client':
-          activities = activityDataService.findActivitiesByNameAndType (params.name, prf.type)
+          activities = activityDataService.findActivitiesByNameAndType (name, prf.type)
           break ;
 
         case 'einrichtung':
           activities = MockUtil.asList(activityDataService.activities)
-          activities = MockUtil.filter(activities, "einrichtung", params.name)
+          activities = MockUtil.filter(activities, "einrichtung", name)
           break ;
 
         case 'betreiber':

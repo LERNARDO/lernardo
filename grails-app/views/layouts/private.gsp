@@ -31,19 +31,19 @@
             </li>
 
             <li>
-              <div id="activities" class="imgbox">
-                <g:link controller="activity" action="list">
-                  <img src="${g.resource(dir:'images/iconex', file:'all_activities.png')}" alt="Aktivitäten" />
-                  <h3>Aktivitäten</h3>
+              <div id="paeds" class="imgbox">
+                <g:link controller="template" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivität planen" />
+                  <h3>Aktivität planen</h3>
                 </g:link>
               </div>
             </li>
 
             <li>
-              <div id="paeds" class="imgbox">
-                <g:link controller="template" action="list">
-                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivitätsvorlagen" />
-                  <h3>Aktivitätsvorlagen</h3>
+              <div id="activities" class="imgbox">
+                <g:link controller="activity" action="list">
+                  <img src="${g.resource(dir:'images/iconex', file:'all_activities.png')}" alt="Aktivitäten" />
+                  <h3>Aktivitäten</h3>
                 </g:link>
               </div>
             </li>

@@ -11,7 +11,7 @@
         <div class="yui-b" id="profile-navigation">
 
           <g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
-                                                  type:'client', imageUrl:profileInstance.image]"/>
+                                                  type:'betreiber', imageUrl:profileInstance.image]"/>
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">

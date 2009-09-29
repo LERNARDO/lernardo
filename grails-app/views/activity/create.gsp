@@ -20,12 +20,8 @@ To change this template use File | Settings | File Templates.
       <g:form action="save" >
         <table>
           <tr>
-            <td class="bold titles bezeichnung">Typ:</td>
+            <td class="bold titles bezeichnung">Vorlagenname:</td>
             <td class="bezeichnung">${name}</td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Name:</td>
-            <td class="bezeichnung"><input type="text" id="fullName" name="fullName" value="${fullName}"/></td>
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Datum:</td>

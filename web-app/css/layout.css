@@ -218,7 +218,7 @@ p {
 }
 
 
-.picture-box-betreiber h1, .picture-box-paed h1, .picture-box-client h1, .picture-box-einrichtung h1 {
+.picture-box-betreiber h1, .picture-box-paed h1, .picture-box-client h1, .picture-box-einrichtung h1, .picture-box-mitarbeiter h1 {
     padding: 0;
     margin: 0 0 10px 0;
     font-size: 120%;
@@ -265,6 +265,16 @@ p {
     -moz-border-radius-topright:5px;
     background-color:#bcbb86;
     border:1px solid #abaa75;
+    padding:10px 5px 15px;
+}
+
+.picture-box-mitarbeiter {
+    -moz-border-radius-bottomleft:5px;
+    -moz-border-radius-bottomright:5px;
+    -moz-border-radius-topleft:5px;
+    -moz-border-radius-topright:5px;
+    background-color:#bcbb86; /* color ? */
+    border:1px solid #abaa75; /* color ? */
     padding:10px 5px 15px;
 }
 
@@ -395,6 +405,23 @@ p {
 	background:url(../images/icons/icon_location.png) no-repeat;
 	padding-left: 20px;
 	background-position:0 50%;
+}
+
+/* admin area */
+#admin-content {
+    padding: 5px 10px 10px 10px;
+    margin: 10px;
+    color: #333333;
+}
+
+#admin-content h1 {
+    margin: 0;
+    padding: 0 0 15px 0;
+    color: #555;
+}
+
+#admin-navigation {
+    padding: 10px;
 }
 
 .imgmenu {
