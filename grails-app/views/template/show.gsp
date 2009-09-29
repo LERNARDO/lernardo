@@ -49,10 +49,10 @@
 
         <div class="user-entry">
           <div class="user-pic">
-            <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" align="left" /></a>
+            <a href="#"><img src="${resource(dir:'images/avatar', file:'regina_toncourt.jpg')}" width="50" height="60" align="left" /></a>
           </div>
           <div class="community-entry-infobar">
-            <div class="name"><a href="#">Vorname Nachname</a></div>
+            <div class="name"><a href="#">Regina Toncourt</a></div>
             <div class="info">
               <div class="time">am Montag, 16:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
@@ -60,23 +60,23 @@
           </div>
           <div class="clear"></div>
           <div class="entry-content">
-            Eintrag mit Bild, etc...<br />
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<br /><br />
+            Sehr nette Aktivität! <br />
+            Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.
           </div>
         </div>
 
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'patrizia_rosenkranz.jpg')}" width="50" height="60" /></a>
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Vorname Nachname</a></div>
+                <div class="user-name"><a href="#">Patrizia Rosenkranz</a></div>
                 <div class="time">am Dienstag, 16:39h</div>
               </div>
               <div class="comment">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Ja schon, finde ich auch!
               </div>
             </div>
             <div class="clear"></div>
@@ -86,15 +86,15 @@
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'martin_golja.jpg')}" width="50" height="60" /></a>
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Vorname Nachname</a></div>
-                <div class="time">am Dienstag, 16:39h</div>
+                <div class="user-name"><a href="#">Martin Golja</a></div>
+                <div class="time">am Dienstag, 17:00h</div>
               </div>
               <div class="comment">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              So l&auml;sst es aber mehr Platz für individuelle Interpretation. Finde ich nicht schlecht!
               </div>
             </div>
             <div class="clear"></div>
@@ -106,19 +106,18 @@
       <div class="single-entry">
         <div class="user-entry">
           <div class="user-pic">
-            <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" align="left" /></a>
+            <a href="#"><img src="${resource(dir:'images/avatar', file:'johannes_zeitelberger.jpg')}" width="50" height="60" align="left" /></a>
           </div>
           <div class="community-entry-infobar">
-            <div class="name"><a href="#">Vorname Nachname</a></div>
+            <div class="name"><a href="#">Johannes Zeitelberger</a></div>
             <div class="info">
-              <div class="time">am Montag, 16:30h</div>
+              <div class="time">am Dienstag, 17:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
             </div>
           </div>
           <div class="clear"></div>
           <div class="entry-content">
-            Eintrag mit Bild, etc...<br />
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<br /><br />
+            Das Rating mit den Sternen ist sehr n&uuml;tzlich. Da sieht man gleich auf einem Blick die Zuordnung.
           </div>
         </div>
       </div>
@@ -127,34 +126,33 @@
       <div class="single-entry">
         <div class="user-entry">
           <div class="user-pic">
-            <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" align="left" /></a>
+            <a href="#"><img src="${resource(dir:'images/avatar', file:'johannes_zeitelberger.jpg')}" width="50" height="60" align="left" /></a>
           </div>
           <div class="community-entry-infobar">
-            <div class="name"><a href="#">Vorname Nachname</a></div>
+            <div class="name"><a href="#">Johannes Zeitelberger</a></div>
             <div class="info">
-              <div class="time">am Montag, 16:30h</div>
+              <div class="time">am Mittwoch, 08:30h</div>
               <div class="actions"><a href="#">Kommentieren</a></div>
             </div>
           </div>
           <div class="clear"></div>
           <div class="entry-content">
-            Eintrag mit Bild, etc...<br />
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.<br /><br />
+            Das Kommentarsystem finde ich auch sehr gelungen!
           </div>
         </div>
 
         <div class="community-entry-comments">
           <div class="entry">
             <div class="user-pic">
-              <a href="#"><img src="${resource(dir:'images/avatar', file:'lernardo.jpg')}" width="50" height="60" /></a>
+              <a href="#"><img src="${resource(dir:'images/avatar', file:'alexander_zeilinger.jpg')}" width="50" height="60" /></a>
             </div>
             <div class="user-comment">
               <div class="info">
-                <div class="user-name"><a href="#">Vorname Nachname</a></div>
-                <div class="time">am Dienstag, 16:39h</div>
+                <div class="user-name"><a href="#">Alexander Zeilinger</a></div>
+                <div class="time">am Mittwoch, 08:45h</div>
               </div>
               <div class="comment">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+              Haben ja auch wir gemacht!
               </div>
             </div>
             <div class="clear"></div>
