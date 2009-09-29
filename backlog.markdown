@@ -24,7 +24,6 @@
 - Detail-View von Aktivitätsvorlagen: Name entfernen
 - Aktivität anlegen-View: "Typ" in "Vorlagenname" umbenennen
 - Einrichtungen im Profil und Public (Name, Öffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
-
  
 # Done
 - redo banner graphic
