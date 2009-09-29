@@ -13,8 +13,6 @@
 - Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
 - Add a margin-bottom to TH´s of lists
 
-- Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
- 
 # Done
 - redo banner graphic
 - add favicon
@@ -61,3 +59,4 @@
 - removed admin links for articles when not logged in
 - Einrichtungen im Profil und Public (Name, Öffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
 - added more profile images
+- Mehrere Aktivitäten anlegen (auf mehrere Monate, aus Plänen entnehmen, Oktober füllen)
