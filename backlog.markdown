@@ -9,6 +9,8 @@
 - add a margin-bottom to table header of lists
 - implement messages
 - implement "bild des tages" and "zitat des tages"
+- JLZ: implement real user accounts for paeds
+- JLZ: make calendar functional for paeds so they can use it within a week 
 
 # Done
 - redo banner graphic
