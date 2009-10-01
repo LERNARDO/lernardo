@@ -60,7 +60,7 @@
         <g:elseif test="${content == 'location'}">
           <g:render template="/templates/content-location" />
         </g:elseif>
-        <g:elseif test="${content == 'profile'}">>
+        <g:elseif test="${content == 'profile'}">
           <g:render template="/templates/content-profile" model="${profileInstance}" />
         </g:elseif>
 

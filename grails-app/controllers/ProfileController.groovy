@@ -22,10 +22,13 @@ class ProfileController {
         }
         def content = params.content ?: "profile"
 
-        def bla = [profileInstance:prf,content:content,activityList:activityDataService.getActivitiesOfOwner(params.name)]
-        render (view:"show", model:bla)
+        def res = ['profileInstance':prf,
+                   'content':content,
+                   'activityList':activityDataService.getActivitiesOfOwner(params.name)]
+        render (view:"show", model:res)
     }
 
+    // not used atm
     def edit = {
         def prf = profileDataService.getProfile (params.name)
         if (!prf) {
@@ -36,7 +39,7 @@ class ProfileController {
         render (view:"edit_${prf.type ? prf.type:'other'}", model:prf)
     }
 
-    // not working
+    // not used atm
     def save = {
         profileDataService.addProfile(params.name, params)
         def prf = profileDataService.getProfile (params.name)

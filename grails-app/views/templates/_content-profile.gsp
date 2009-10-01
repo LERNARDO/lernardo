@@ -60,6 +60,6 @@
 <input type="hidden" name="id" value="${name}" />
 <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
 </g:form>--}%
-    </div><!--profile-content-client"-->
+    </div><!--profile-content-->
   </div><!--yui-b-->
 </div><!--yui-main-->

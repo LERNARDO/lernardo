@@ -616,13 +616,17 @@ p {
 }
 
 #body-list table tr a {
-    color:#333333;
+    color:#333;
     text-decoration:none;
 }
 
 #body-list table tr a:hover {
     color:#333333;
     text-decoration:underline;
+}
+
+#body-list table tbody a {
+    color: #03f;
 }
 
 #body-list td {

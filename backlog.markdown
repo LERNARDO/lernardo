@@ -5,7 +5,6 @@
 - add dropdown to list all activities of a single day
 - aggregate events down in profile hierarchy (einrichung -> paedagogen -> betreute -> eltern)
 - fix article header links on public page
-- color links in list views to make them more visible
 - add a margin-bottom to table header of lists
 - implement messages
 - implement "bild des tages" and "zitat des tages"
@@ -64,3 +63,4 @@
 - fix hours in jquery-calendar (16:00h = 2pm)
 - implement login (MK)
 - implement ubase plugin (MK)
+- color links in list views to make them more visible
