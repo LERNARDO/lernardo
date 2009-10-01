@@ -1,11 +1,3 @@
-<%--
-Created by IntelliJ IDEA.
-    User: mkuhl
-Date: 27.09.2009
-Time: 16:08:55
-To change this template use File | Settings | File Templates.
-    --%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
@@ -25,27 +17,27 @@ To change this template use File | Settings | File Templates.
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Datum:</td>
-            <td class="bezeichnung"><input type="text" id="data" name="date" value="${date}"/></td>
+            <td class="bezeichnung"><input type="text" id="data" name="date" value=""/></td>
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Beginn:</td>
-            <td class="bezeichnung"><input type="text" id="startTime" name="startTime" value="${startTime}"/></td>
+            <td class="bezeichnung"><input type="text" id="startTime" name="startTime" value=""/></td>
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Länge:</td>
-            <td class="bezeichnung"><input type="text" id="duration" name="duration" value="${duration}"/></td>
+            <td class="bezeichnung"><input type="text" id="duration" name="duration" value="${dauer}"/></td>
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Einrichtung:</td>
-            <td class="bezeichnung" name="strasse"><input type="text" id="einrichtung" name="einrichtung" value=""/></td>
+            <td class="bezeichnung"><input type="text" id="einrichtung" name="einrichtung" value=""/></td>
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Team:</td>
-            <td class="bezeichnung" name="gemeinnutzigkeit"><input type="text" id="fullName" name="gemeinnutzigkeit" value=""/></td>
+            <td class="bezeichnung"><input type="text" id="fullName" name="gemeinnutzigkeit" value=""/></td>
           </tr>
           <tr>
             <td class="bold titles bezeichnung">Teilnehmer:</td>
-            <td class="bezeichnung" name ="ansprechperson"><input type="text" id="fullName" name="ansprechperson" value=""/></td>
+            <td class="bezeichnung"><input type="text" id="fullName" name="ansprechperson" value=""/></td>
           </tr>
         </table>
         <input name="name "type="hidden" value="${name}" />

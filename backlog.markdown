@@ -1,7 +1,5 @@
 # Backlog
-- implement login (MK)
 - implement blog (MK)
-- implement ubase plugin (MK)
 - implement "zu netzwerk hinzufŸgen"
 - fix sortable columns in profile lists
 - Gesamtliste der AktivitŠten: ShowDay
@@ -9,10 +7,7 @@
 - 3 Die Links zu den Listen in Admin als (sub) menü ausführen (eigenes (admin-layout)
 - fix article links on public page
 - color links in list views
-- add more data into calendars
-- Put Profiles (Link to all Profiles in Admin) and Vorlagen into the IMG-Menu
-- Add a margin-bottom to TH«s of lists
-- fix hours in jquery-calendar (16:00h = 2pm)
+- add a margin-bottom to TH«s of lists
 
 # Done
 - redo banner graphic
@@ -61,3 +56,8 @@
 - Einrichtungen im Profil und Public (Name, …ffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
 - added more profile images
 - Mehrere AktivitŠten anlegen (auf mehrere Monate, aus PlŠnen entnehmen, Oktober fŸllen)
+- add more data into calendars
+- put Profiles and Templates into the IMG-Menu
+- fix hours in jquery-calendar (16:00h = 2pm)
+- implement login (MK)
+- implement ubase plugin (MK)
