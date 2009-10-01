@@ -48,9 +48,21 @@
         <g:if test="${content == 'calendar'}">
           <g:render template="/templates/content-calendar" model="${profileInstance}" />
         </g:if>
-        <g:else>
-          <g:render template="/templates/${profileInstance.type}-content-${content}" model="[profileInstance:profileInstance,activityList:activityList]" />
-        </g:else>
+        <g:elseif test="${content == 'message'}">
+          <g:render template="/templates/content-message" />
+        </g:elseif>
+        <g:elseif test="${content == 'sms'}">
+          <g:render template="/templates/content-sms" />
+        </g:elseif>
+        <g:elseif test="${content == 'activities'}">
+          <g:render template="/templates/content-activities" model="${activityList}" />
+        </g:elseif>
+        <g:elseif test="${content == 'location'}">
+          <g:render template="/templates/content-location" />
+        </g:elseif>
+        <g:elseif test="${content == 'profile'}">>
+          <g:render template="/templates/content-profile" model="${profileInstance}" />
+        </g:elseif>
 
       </div>
     </div>

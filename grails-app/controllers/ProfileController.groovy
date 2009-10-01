@@ -15,15 +15,14 @@ class ProfileController {
     }
 
     def show = {
-      def prf = profileDataService.getProfile (params.name)
-      if (!prf) {
-        response.sendError(404, "user profile not found")
-        return ;
-      }
-      def content = params.content ?: "profile"
+        def prf = profileDataService.getProfile (params.name)
+        if (!prf) {
+            response.sendError(404, "user profile not found")
+            return ;
+        }
+        def content = params.content ?: "profile"
 
-      def bla = [profileInstance:prf,content:content,activityList:activityDataService.getActivitiesOfOwner(params.name)]
-        //render (view:"show_${prf.type ? prf.type:'other'}", model:bla)
+        def bla = [profileInstance:prf,content:content,activityList:activityDataService.getActivitiesOfOwner(params.name)]
         render (view:"show", model:bla)
     }
 

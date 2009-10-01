@@ -7,7 +7,7 @@
           <p>Keine Aktivitäten gefunden</p>
         </g:if>
         <g:else>
-          <table>
+          <table id="profile-list">
             <thead>
               <tr>
             <g:sortableColumn property="title" title="Aktivität" />
@@ -29,6 +29,6 @@
           </table>
         </g:else>
       </div>
-    </div><!--profile-content-client"-->
+    </div><!--profile-content"-->
   </div><!--yui-b-->
 </div><!--yui-main-->
