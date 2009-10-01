@@ -3,7 +3,7 @@
 - implement "zu netzwerk hinzufuegen"
 - fix sortable columns in lists
 - add dropdown to list all activities of a single day
-- aggregate events down in profile hierarchy (einrichung -> paedagogen -> betreute -> eltern)
+- aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - fix article header links on public page
 - add a margin-bottom to table header of lists
 - implement messages
