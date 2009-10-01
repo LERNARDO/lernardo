@@ -23,7 +23,8 @@ class ProfileController {
       def content = params.content ?: "profile"
 
       def bla = [profileInstance:prf,content:content,activityList:activityDataService.getActivitiesOfOwner(params.name)]
-        render (view:"show_${prf.type ? prf.type:'other'}", model:bla)
+        //render (view:"show_${prf.type ? prf.type:'other'}", model:bla)
+        render (view:"show", model:bla)
     }
 
     def edit = {
