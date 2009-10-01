@@ -2,8 +2,13 @@ class ArticleController {
     def articleDataService
 
     def index = {
+        //def today = new Date()
+        //def day = today.getDay()
+
         def res = ['articles': articleDataService.getArticles(),
-                   'listTitle': 'Aktuelle Ereignisse']
+                   'listTitle': 'Aktuelle Ereignisse'
+                    /*'day':day*/]
+
         render (view:"index", model:res)
     }
 

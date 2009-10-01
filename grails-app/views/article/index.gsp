@@ -17,5 +17,9 @@
       </div>
     </g:each>
 
+    %{--<p>
+      <img src="/lernardoV2/images/static/bild_des_tages${day}.png" width="229" height="172" alt="bild des tages" id="randomPicture"/>
+    </p>--}%
+
   </div>
 </body>

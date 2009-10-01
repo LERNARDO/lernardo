@@ -1,13 +1,14 @@
 # Backlog
 - implement blog (MK)
-- implement "zu netzwerk hinzufŸgen"
-- fix sortable columns in profile lists
-- Gesamtliste der AktivitŠten: ShowDay
-- View Events of Paed in Calendar of Clients (Structure: Einrichtung -> PŠdagogen -> Betreute)
-- 3 Die Links zu den Listen in Admin als (sub) menü ausführen (eigenes (admin-layout)
-- fix article links on public page
-- color links in list views
-- add a margin-bottom to TH«s of lists
+- implement "zu netzwerk hinzufuegen"
+- fix sortable columns in lists
+- add dropdown to list all activities of a single day
+- aggregate events down in profile hierarchy (einrichung -> paedagogen -> betreute -> eltern)
+- fix article header links on public page
+- color links in list views to make them more visible
+- add a margin-bottom to table header of lists
+- implement messages
+- implement "bild des tages" and "zitat des tages"
 
 # Done
 - redo banner graphic
@@ -28,10 +29,10 @@
 - formatted names in activities list view
 - added article controller and DataService
 - tab navigation for profiles (paed): fixed by adding "Kalender" to the Kommunikation-Box in profiles
-- Gesamtliste der AktivitŠten: ShowMonth
+- Gesamtliste der Aktivitaeten: ShowMonth
 - 1 Eigenes Profil für JLZ (mit photo!) anlegen (eigenen Type -'Lernardo Mitarbeiter') und selbiges als ERP Startpunkt verlinken (statt admin)
 - implement jquery-calendar (MK)
-- 1 Vorlagen-Detailview fehlt noch. Detto damit natürlich die Verlinkung der Records auf der Liste. Nicht vergessen, von dort muss der 'neue aktivität' view  aufrufbar (button/link) sein.
+- 1 Vorlagen-Detailview fehlt noch. Detto damit natürlich die Verlinkung der Records auf der Liste. Nicht vergessen, von dort muss der 'neue aktivitaet' view  aufrufbar (button/link) sein.
 - 1 Aktivitäten Details: Team und Teilnehmer mit links auf die jeweiligen Profile
 - 1 Alle Profile:  Aktivitätenliste (wie Kalender, nur als
 - 1 Die Listen schauen alle nix gleich  - das geht besser . Notfalls nehmts  halt die Styles vom Grails scaffolding, wenn euch nichts besseres einfällt.
@@ -43,19 +44,19 @@
 - style "create activity" view
 - 2 Profile Einrichtungen, Standort (google map)
 
-- MenŸicons vertauschen: AktivitŠt anstelle von AktivitŠtsvorlagen
-- "AktivitŠt planen" <- AktivitŠtsvorlagen
-- Avatar fŸr Kaumberg als Avatar
-- AktivitŠt anlegen-View: "Typ" in "Vorlagenname" umbenennen
-- Redirect bei Abbrechen fŸr "AktivitŠt planen"
+- Menueicons vertauschen: Aktivitaet anstelle von Aktivitaetsvorlagen
+- "Aktivitaet planen" <- Aktivitaetsvorlagen
+- Avatar fuer Kaumberg als Avatar
+- Aktivitaet anlegen-View: "Typ" in "Vorlagenname" umbenennen
+- Redirect bei Abbrechen fuer "Aktivitaet planen"
 - colored Mitarbeiter profile and list view in orange
 - added logo for betreiber Lernardo
 - added 2 additional profiles of Lernardo mitarbeiter
 - add ERP info text on public page
 - removed admin links for articles when not logged in
-- Einrichtungen im Profil und Public (Name, …ffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
+- Einrichtungen im Profil und Public (Name, Oeffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
 - added more profile images
-- Mehrere AktivitŠten anlegen (auf mehrere Monate, aus PlŠnen entnehmen, Oktober fŸllen)
+- Mehrere Aktivitaeten anlegen (auf mehrere Monate, aus Plaenen entnehmen, Oktober fuellen)
 - add more data into calendars
 - put Profiles and Templates into the IMG-Menu
 - fix hours in jquery-calendar (16:00h = 2pm)
