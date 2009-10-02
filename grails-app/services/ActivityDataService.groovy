@@ -257,9 +257,9 @@ class ActivityDataService {
             listMonthValue = activities
         }
         else {
-            for ( v in activities ) {
-                if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("MM")) {
-                    listMonthValue.add(v)
+            activities.each {key, val->
+                if (nmonth == Date.parse("dd.MM.yyyy", val.date).format("MM")) {
+                    listMonthValue << val
                 }
             }
         }
@@ -284,9 +284,9 @@ class ActivityDataService {
         }
         else {
             int count = 0
-            for ( v in activities ) {
-                if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("MM")) {
-                    count ++
+            activities.each {key, val->
+                if (nmonth == Date.parse("dd.MM.yyyy", val.date).format("MM")) {
+                    count++
                 }
             }
             return count

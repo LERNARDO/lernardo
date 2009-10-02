@@ -9,8 +9,8 @@ class TemplateDataService {
     def init () {
 
         templates.id_1 = [name:'Weide mit Hindernissen',
-                            id:'1',
-			zuordnung:'Psychomotorik',
+            id:'1',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Die Bänke werden in Reihen aufgestellt;
                             es können möglichst viele Bewegungsformen ausprobiert werden''',
             dauer:'60 Minuten',
@@ -28,7 +28,7 @@ class TemplateDataService {
 
 	templates.id_2 = [name:'Schmetterlinge',
             id:'2',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Jedes Kind erhält ein Band und befestigt dies an einem Arm wie eine Art Flügel.
 			Die Kinder sind Schmetterlinge und bewegen sich  zur Musik (vorwärts/ rückwärts laufen,
 			beidbeinig/ einbeinig hüpfen etc.)
@@ -50,7 +50,7 @@ Kommt es zu einem Musikstopp, setzen sich alle „Schmetterlinge“
 
 	templates.id_3 = [name:'Luftballonmeer',
             id:'3',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Die Kinder blasen Luftballone auf, damit wird ein Bettbezug
 prall gefüllt.
 			Ein Luftballonmeer entsteht. Ein Kind legt sich
@@ -73,7 +73,7 @@ schwimmen.''',
 
 	templates.id_4 = [name:'Musikstopp',
             id:'4',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Zeitungsbögen auf dem Boden verteilen – solange die
 Musik läuft, werden die Bögen
 			umlaufen. Wird die Musik gestoppt, so gibt es verschiedene Möglichkeiten: in Bauchlage auf
@@ -93,7 +93,7 @@ Musik läuft, werden die Bögen
 
 	templates.id_5 = [name:'Zeitungshut',
             id:'5',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Jedes Kind faltet sich seinen Zeitungshut und setzt diesen
 auf. Alle Kinder laufen,
 			gehen und hüpfen (vorwärts,
@@ -114,7 +114,7 @@ am eigenen
 
 	templates.id_6 = [name:'Körperschema',
             id:'6',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Zwei Kinder bilden ein Paar. Ein Kind legt sich auf den Boden. Der Partner setzt
 			sich daneben und legt die Perlenschnur, Bleiband etc. am Rand des Körpers entlang (Variante:
 			den Körper mit Kreiden nachziehen bzw. auf Papier nachzeichnen). Das liegende Kind steht
@@ -134,7 +134,7 @@ am eigenen
 
 	templates.id_7 = [name:'Pizzamassage',
             id:'7',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Die Kinder tun sich paarweise zusammen und bekommen
 ein Matte bzw. Decke. Ein Kind legt
 			sich in Bauchlage auf
@@ -172,7 +172,7 @@ gereinigt
 
 	templates.id_8 = [name:'Heizdecke',
             id:'8',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Ein Kind liegt auf einer Matte (Decke) und wird von den anderen Kindern mit Bierdeckeln
 			zugedeckt. Diese legen die Bierdeckel vorsichtig auf das liegende Kind. Es hat die Augen geschlossen
 			und soll möglichst gar nichts von dem Auflegen der Bierdeckel spüren. Auch Hände und Füße sollen nicht
@@ -192,7 +192,7 @@ gereinigt
 
 	templates.id_9 = [name:'Autowäsche',
             id:'9',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Die Kinder stellen sich in einer Reihe gegenüber auf und bilden eine Autowaschstraße.
 			Ein Kind bestimmt, welcher Autotyp es sein will, welche Farbe es hat und welches Waschprogramm
 			es wünscht. Dann fährt es mit einem Rollbrett in die Waschstraße ein (oder kniet sich auf allen
@@ -213,7 +213,7 @@ gereinigt
 
 	templates.id_10 = [name:'Ballschaukel',
             id:'10',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Eine Teilnehmerin bzw. ein Teilnehmer legt sich auf einen
  großen Ball (z.B. Gymnastikball)
 			und wird vorsichtig hin
@@ -238,7 +238,7 @@ Bewegungen geeignet.''',
 
 	templates.id_11 = [name:'Bewegungslandschaft',
             id:'11',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Zuerst wird die Bewegungslandschaft gemeinsam besprochen, indem einzelne Kinder oder die
 			Lehrperson die Bewegungsaufgaben an den Geräten vorzeigen. Bei dem akustischen Signal mit dem
 			Tamburin erfolgt ein Richtungswechsel. <br /><br />
@@ -263,7 +263,7 @@ runter – gehen
 
 	templates.id_12 = [name:'Schatten',
             id:'12',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Es werden Paare gebildet. Jedes Paar erhält ein Material (Rollbrett, Skateboard, Sitzsack).
 			Ein Kind setzt sich auf das Material bzw. Gerät und das andere Kind schiebt oder zieht das Kind.
 			Der bzw. die SpielleiterIn oder ein Kind streckt die Arme waagrecht aus, dabei ändert diese Person
@@ -286,7 +286,7 @@ runter – gehen
 
 	templates.id_13 = [name:'Blättertanz',
             id:'13',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Jedes Kind sucht sich ein Blatt, von dem es denkt es sei das schönste Blatt der Welt. Alle Kinder
 			deponieren ihr Blatt an einer Stelle des Raums, wo sie es wieder finden. Im Weiteren können
 			verschiedene Spielvarianten (14-17) gewählt werden.''',
@@ -304,7 +304,7 @@ runter – gehen
 
 	templates.id_14 = [name:'Renn- und Schleichrunde',
             id:'14',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Alle rennen so schnell sie können im Kreis. Auf ein Kommando hin müssen alle so langsam wie
 			möglich gehen.
 Input: „Nun geht ihr über eine Herbstwiese, die übersät ist mit Schalen von Esskastanien.“
@@ -328,7 +328,7 @@ Hiervon gibt es mehrere Runden. Die Abschlussrunde beinhaltet folgende Aufgabe: 
 
 	templates.id_15 = [name:'Sinnliches Blatt',
             id:'15',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Alle setzen sich in einem Sitzkreis zusammen und beschreiben welche Farbe, Geruch, Klang und
 			Geschmack ihr Blatt hat.''',
             dauer:'10 Minuten',
@@ -345,7 +345,7 @@ Hiervon gibt es mehrere Runden. Die Abschlussrunde beinhaltet folgende Aufgabe: 
 
 	templates.id_16 = [name:'Blatt fällt solo',
             id:'16',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Alle Kinder verteilen sich im Raum. Sie halten ihr Blatt hoch und lassen es los.
 			Nun beobachtet jeder wie sein Blatt zu Boden fällt. Anschließend versucht jeder so zu Boden zu
 			fallen, wie es sein Blatt getan hat.''',
@@ -364,7 +364,7 @@ Hiervon gibt es mehrere Runden. Die Abschlussrunde beinhaltet folgende Aufgabe: 
 
 	templates.id_17 = [name:'Blatt fällt Gruppe',
             id:'17',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Alle Kinder stehen im Kreis. Ein Kind geht in die Mitte und lässt sein Blatt zu Boden
 			fallen. Alle beobachten dieses Blatt und versuchen genauso zu Boden zu fallen. Das Kind in der
 			Mitte beobachtet wie ""seine Blätter"" zu Boden fallen.
@@ -385,7 +385,7 @@ Zum Abschluss suchen sich die Kinder
 
 	templates.id_18 = [name:'ZeitungsträgerIn',
             id:'18',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Große einzelne Zeitungsblätter werden jeweils über den Körper gehängt (Kopf, Arme, ggf. Beine).
 			Ohne mit den Händen das Zeitungspapier zu halten, muss die Person die Zeitungsblätter ins Ziel
 			tragen. Dieses Spiel kann auch als Staffelspiel gespielt werden. Fällt eine Zeitung herunter, werden
@@ -405,7 +405,7 @@ Zum Abschluss suchen sich die Kinder
 
 	templates.id_19 = [name:'Faltzeitung',
             id:'19',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Jedes Kind versucht ein Zeitungsblatt so oft wie möglich zu falten.''',
             dauer:'15 Minuten',
             sozialform:'Einzelarbeit',
@@ -421,7 +421,7 @@ Zum Abschluss suchen sich die Kinder
 
 	templates.id_20 = [name:'Spiele mit Zeitungspapier',
             id:'20',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Die Zeitungen an die Kinder austeilen und die Kinder probieren lassen, was man alles damit machen
 			kann. Bsp.: Zeitungen auf den Boden legen und darauf hüpfen, Zeitungen zusammenknüllen und werfen
 			(z.B. in einen Eimer), Zeitungen in Stücke reißen, in einen Sack füllen und diesen Sack über einem
@@ -440,7 +440,7 @@ Zum Abschluss suchen sich die Kinder
 
 	templates.id_21 = [name:'Spiele mit Zeitungspapier',
             id:'21',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Kleine Zeitungsschnipsel werden mit einem Trinkhhalm
 angesaugt und von Schüssel A
 			nach Schüssel B gebracht.
@@ -461,7 +461,7 @@ chinesischen
 
 	templates.id_22 = [name:'Zeitungspuzzle',
             id:'22',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Eine Zeitungsseite wird zerschnitten und sodann wieder zusammengesetzt.''',
             dauer:'15 Minuten',
             sozialform:'Einzelarbeit',
@@ -477,7 +477,7 @@ chinesischen
 
 	templates.id_23 = [name:'Klopapierturm',
             id:'23',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Mehrere aufeinander gestapelte Klopapierrollen werden eine Strecke weit balanciert.
 			Wer schafft es am Weitesten ohne dass eine Rolle runter fällt? Wer kann die meisten Rollen auf
 			einmal bis zum Ziel tragen?''',
@@ -495,7 +495,7 @@ chinesischen
 
 	templates.id_24 = [name:'Zeitungsschlange',
             id:'24',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Das Kind versucht aus einer Zeitungsseite die längste Schlange zu reißen. Mit einem
 			Maßband wird die Länge der Schlange ermittelt.''',
             dauer:'15 Minuten',
@@ -512,7 +512,7 @@ chinesischen
 
 	templates.id_25 = [name:'Zeitungstanz',
             id:'25',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Jeweils zwei Personen tanzen auf einem Zeitungsblatt zur Musik, nach einer gewissen Zeit
 			wird jeweils die Zeitung halbiert/gefaltet und es wird weitergetanzt.''',
             dauer:'15 Minuten',
@@ -529,7 +529,7 @@ chinesischen
 
 	templates.id_26 = [name:'Bierdeckelspiele',
             id:'26',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Hier gibt es verschiedene Varianten, die im Weiteren beschrieben werden:
  <br />
 Alle Kinder sitzen
@@ -595,7 +595,7 @@ balanciert, der Boden soll nicht berührt werden!''',
 
 	templates.id_27 = [name:'Bierdeckel-Staffelspiele',
             id:'27',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Es werden zwei Gruppen gebildet, folgende Spiele eignen sich als Staffel:<br />
 
 
@@ -657,7 +657,7 @@ dürfen nicht mehr aufgelesen werden.
 
 	templates.id_28 = [name:'Fliegender Pilz',
             id:'28',
-			zuordnung:'Psychomotorik',
+            zuordnung:'Psychomotorik',
             beschreibung:'''Das Schwungtuch wird auf und ab bewegt. Wenn das Tuch nach oben schwingt, lassen alle los.
 			Wohin fällt das Tuch?''',
             dauer:'15 Minuten',
@@ -680,9 +680,9 @@ dürfen nicht mehr aufgelesen werden.
         int offset = 0
         int count = 0
 
-        for ( v in templates ) {
+        templates.each {key, val->
             if (offset >= noffset && count < nmax) {
-                list.add(v)
+                list << val
                 count++
             }
             offset++
@@ -696,12 +696,12 @@ dürfen nicht mehr aufgelesen werden.
     }
 
     def findById (def idVal) {
-      def res = null
-      templates.each {key, val->
-        if (key == "id_${idVal}")
-          res = val ;
-      }
-      return res ;
+        def res = null
+        templates.each {key, val->
+            if (key == "id_${idVal}")
+            res = val
+        }
+        return res
     }
 
 }

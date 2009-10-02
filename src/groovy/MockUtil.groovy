@@ -17,8 +17,11 @@ final class MockUtil {
   static List asList (Map map) {
     def result = []
     map.each {key, val->
+
+      // the next 2 lines makes only sense for profile maps, as they don't have an ID attribute
       def idval = key[0..2] == 'id_' ? key[3..-1] : key
       val.id = idval
+
       result << val
     }
 
