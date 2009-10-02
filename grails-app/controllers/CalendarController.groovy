@@ -58,7 +58,7 @@ class CalendarController {
         switch (prf.type) {
             case 'paed':
             case 'client':
-            activities = activityDataService.findActivitiesByNameAndType (name, prf.type)
+            activities = activityDataService.findByNameAndType (name, prf.type)
             break ;
 
             case 'einrichtung':

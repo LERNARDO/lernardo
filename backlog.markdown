@@ -6,7 +6,7 @@
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - fix article header links on public page
 - add a margin-bottom to table header of lists
-- implement messages
+- implement messages (MK)
 - implement "bild des tages" and "zitat des tages"
 - JLZ: implement real user accounts for paeds
 - JLZ: make calendar functional for paeds so they can use it within a week 

@@ -24,7 +24,7 @@ class ProfileController {
 
         def res = ['profileInstance':prf,
                    'content':content,
-                   'activityList':activityDataService.getActivitiesOfOwner(params.name)]
+                   'activityList':activityDataService.findByOwner(params.name)]
         render (view:"show", model:res)
     }
 
