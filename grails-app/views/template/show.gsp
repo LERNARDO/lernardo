@@ -17,23 +17,23 @@
         <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.sozialform}</td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materialien}</td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Lernen lernen:</td><td class="bezeichnung">
-        <g:each in="${ (0..<template.ll.toInteger()) }"><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}"/></g:each>
-        </td></tr>
+<% template.ll.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
+          </td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Bewegung & Ernährung:</td><td class="bezeichnung">
-        <g:each in="${ (0..<template.be.toInteger()) }"><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}"/></g:each>
-        </td></tr>
+  <% template.be.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
+          </td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Persönliche Kompetenz:</td><td class="bezeichnung">
-        <g:each in="${ (0..<template.pk.toInteger()) }"><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}"/></g:each>
-        </td></tr>
+    <% template.pk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
+          </td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Soziale & emotionale Intelligenz:</td><td class="bezeichnung">
-        <g:each in="${ (0..<template.si.toInteger()) }"><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}"/></g:each>
-        </td></tr>
+      <% template.si.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
+          </td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Handwerk & Kunst:</td><td class="bezeichnung">
-        <g:each in="${ (0..<template.hk.toInteger()) }"><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}"/></g:each>
-        </td></tr>
+        <% template.hk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
+          </td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Teilleistungstraining:</td><td class="bezeichnung">
-        <g:each in="${ (0..<template.tlt.toInteger()) }"><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}"/></g:each>
-        </td></tr>
+          <% template.tlt.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
+          </td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.qualifikationen}</td></tr>
         <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.anzahlPaedagogen}</td></tr>
       </table>
@@ -42,7 +42,7 @@
     <div id="newActivity">
       <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
     </div>
-  
+
     <div id="comments-block">
       <h1>Kommentare</h1>
       <div class="single-entry">
@@ -94,7 +94,7 @@
                 <div class="time">am Dienstag - 29. September 2009, 17:00h</div>
               </div>
               <div class="comment">
-              So l&auml;sst es aber mehr Platz für individuelle Interpretation. Finde ich nicht schlecht!
+                So l&auml;sst es aber mehr Platz für individuelle Interpretation. Finde ich nicht schlecht!
               </div>
             </div>
             <div class="clear"></div>
@@ -122,7 +122,7 @@
         </div>
       </div>
       <!-- END single-entry -->
-      
+
       <div class="single-entry">
         <div class="user-entry">
           <div class="user-pic">
@@ -152,7 +152,7 @@
                 <div class="time">am Mittwoch - 30. September 2009, 08:45h</div>
               </div>
               <div class="comment">
-              Haben ja auch wir gemacht!
+                Haben ja auch wir gemacht!
               </div>
             </div>
             <div class="clear"></div>

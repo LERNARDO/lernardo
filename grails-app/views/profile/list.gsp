@@ -27,17 +27,15 @@
       <table id="profile-list">
         <thead>
           <tr>
-            <g:sortableColumn property="role" title="Rolle" />
-            <g:sortableColumn property="fullName" title="Name" />
-          </tr>
+        <g:sortableColumn property="role" title="Rolle" />
+        <g:sortableColumn property="fullName" title="Name" />
+        </tr>
         </thead>
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
           <tr class="row-${profileInstance.value.type}">
             <td class="col">${profileInstance.value.role}</td>
             <td><g:link controller="profile" action="show" params="[name:profileInstance.value.name]" >${profileInstance.value.fullName}</g:link></td>
-
-            %{--<td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.fullName}</g:link></td>--}%
           </tr>
         </g:each>
         </tbody>
