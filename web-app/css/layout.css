@@ -491,18 +491,26 @@ p {
     background:#708dc2 none repeat scroll 0 0;
     border:1px solid #607cb1;
     margin:0 10px 20px;
-    padding:10px;
     color: #ffffff;
+}
+
+.innersidebox {
+    background: url(../images/gradient_1.png) repeat-x bottom;
+    border: 1px solid #708dc2;
+    -moz-border-radius: 5px;
+    padding: 5px 10px 10px 10px;
 }
 
 .sideboxheader {
     border-bottom:1px solid #8faad9;
     font-weight:bold;
-    padding-bottom:2px;
+    padding-bottom:3px;
+    text-align: center;
 }
 
 .sideboxcontent {
-    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid #5c77a6;
 }
 
 .sideboxcontent ul {
@@ -510,13 +518,23 @@ p {
 }
 
 .sideboxcontent ul li {
-    margin-left: 5px;
-    height:20px;
+    margin: 0 0 7px 5px;
     list-style-type: disc;
+}
+
+.quoter {
+    margin: 7px 0 0 0;
+    padding: 0;
+    text-align: right;
 }
 
 .sidebox a {
     color: #ffffff;
+}
+
+.quote {
+    font-style: italic;
+    line-height: 18px;
 }
 
 /* ----- REGISTER ----- */
