@@ -8,10 +8,9 @@ class ProfileController {
         params.profileType = params.profileType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
-        def res = ['profileType': params.profileType,
-                   'profileList': profileDataService.getProfiles (params.profileType, params.offset, params.max),
-                   'profileCount': profileDataService.getProfileCount (params.profileType)]
-        render (view:"list", model:res)
+        return ['profileType': params.profileType,
+                'profileList': profileDataService.getProfiles (params.profileType, params.offset, params.max),
+                'profileCount': profileDataService.getProfileCount (params.profileType)]
     }
 
     def show = {
@@ -21,11 +20,9 @@ class ProfileController {
             return ;
         }
         def content = params.content ?: "profile"
-
-        def res = ['profileInstance':prf,
-                   'content':content,
-                   'activityList':activityDataService.findByOwner(params.name)]
-        render (view:"show", model:res)
+        return ['profileInstance':prf,
+                'content':content,
+                'activityList':activityDataService.findByOwner(params.name)]
     }
 
     // not used atm

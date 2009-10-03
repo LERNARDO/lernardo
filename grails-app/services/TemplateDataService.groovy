@@ -690,11 +690,6 @@ dürfen nicht mehr aufgelesen werden.
         return list
     }
 
-    // returns the number of templates
-    def getTemplateCount () {
-        return templates.size()
-    }
-
     def findById (def idVal) {
         def res = null
         templates.each {key, val->
