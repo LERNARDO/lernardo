@@ -7,10 +7,14 @@
     <div id="body-list">
       <h2>Liste aller Aktivitäten</h2>
       <p>${activityCount} Aktivitäten gefunden</p>
-
+      
       <div id="select-box">
         Filtern nach:
         <g:form name="form1" action="list">
+          %{--Tag: <g:checkBox name="myDay" value="${true}" /><br>
+          Monat: <g:checkBox name="myMonth" value="${true}" /><br>
+          Jahr: <g:checkBox name="myYear" value="${true}" /><br>
+          <g:datePicker name="myDate" value="${new Date()}" precision="day" />--}%
           <label>Monat
             <select name="perMonth">
               <option value="alle">Alle</option>
