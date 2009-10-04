@@ -14,7 +14,11 @@ class UrlMappings {
 			 // apply constraints here
 		  }
 	  }
-      "/"(controller:'article')//view:"/index")
+
+      "/"{
+        controller = 'app'
+        action     = 'home'
+      }
 
       "/start"{
         controller = 'app'

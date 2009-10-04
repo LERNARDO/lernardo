@@ -13,4 +13,8 @@ class AppController {
         else
           redirect (action:'sorry') 
     }
+
+    def home = {
+      redirect (controller:'article', action:'index')
+    }
 }
