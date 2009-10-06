@@ -41,40 +41,61 @@ class BootStrap {
                 throw new IllegalArgumentException("failed to bootstrap entity structure metadata")
             }
 
-            def mk = entityHelperService.createEntityWithUserAndProfile("mike", etLma, "mk@lkult.at", "Mike Kuhl") {Entity ent->
+            def mpk = entityHelperService.createEntityWithUserAndProfile("mike", etLma, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent->
                 def admin = Role.findByAuthority("ROLE_ADMIN")
                 assert admin
                 ent.user.addToAuthorities (admin)
                 ent.profile.tagline = "Wozu brauch ma des?"
                 ent.profile.gender = 1
             }
-            def jlz = entityHelperService.createEntityWithUserAndProfile("johannes", etLma, "jlz@lkult.at", "Johannes L. Zeitelberger") {Entity ent->
+            def jlz = entityHelperService.createEntityWithUserAndProfile("johannes", etLma, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent->
                 def admin = Role.findByAuthority("ROLE_ADMIN")
                 assert admin
                 ent.user.addToAuthorities (admin)
                 ent.profile.tagline = "Ich will die Welt im ERP abbilden!"
                 ent.profile.gender = 1
             }
-            def aaz = entityHelperService.createEntityWithUserAndProfile("alexander", etLma, "aaz@lkult.at", "Alexander Zeillinger") {Entity ent->
+            def aaz = entityHelperService.createEntityWithUserAndProfile("alexander", etLma, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent->
                 def admin = Role.findByAuthority("ROLE_ADMIN")
                 assert admin
                 ent.user.addToAuthorities (admin)
                 ent.profile.tagline = "Simplicity is the ultimate sophistication"
                 ent.profile.gender = 1
             }
-            def pcr = entityHelperService.createEntityWithUserAndProfile("patrizia", etLma, "pcr@lkult.at", "Patrizia Rosenkranz") {Entity ent->
+            def pcr = entityHelperService.createEntityWithUserAndProfile("patrizia", etLma, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent->
                 def admin = Role.findByAuthority("ROLE_ADMIN")
                 assert admin
                 ent.user.addToAuthorities (admin)
                 ent.profile.tagline = "Auch Gott hat kein ERP"
                 ent.profile.gender = 2
             }
-            def martin = entityHelperService.createEntityWithUserAndProfile("martin", etLma, "mg@lernardo.at", "Martin Golja") {Entity ent->
+            def sst = entityHelperService.createEntityWithUserAndProfile("susanne", etLma, "sst@lernardo.at", "Susanne Stiedl") {Entity ent->
                 def admin = Role.findByAuthority("ROLE_ADMIN")
                 assert admin
                 ent.user.addToAuthorities (admin)
                 ent.profile.tagline = "..."
-                ent.profile.gender = 1
+                ent.profile.gender = 2
+            }
+            def bib = entityHelperService.createEntityWithUserAndProfile("birgit", etLma, "bib@lernardo.at", "Birgit Blaesen") {Entity ent->
+                def admin = Role.findByAuthority("ROLE_ADMIN")
+                assert admin
+                ent.user.addToAuthorities (admin)
+                ent.profile.tagline = "..."
+                ent.profile.gender = 2
+            }
+            def hmb = entityHelperService.createEntityWithUserAndProfile("hannah", etLma, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent->
+                def admin = Role.findByAuthority("ROLE_ADMIN")
+                assert admin
+                ent.user.addToAuthorities (admin)
+                ent.profile.tagline = "..."
+                ent.profile.gender = 2
+            }
+            def rgt = entityHelperService.createEntityWithUserAndProfile("regina", etLma, "rgt@lernardo.at", "Regina Toncourt") {Entity ent->
+                def admin = Role.findByAuthority("ROLE_ADMIN")
+                assert admin
+                ent.user.addToAuthorities (admin)
+                ent.profile.tagline = "..."
+                ent.profile.gender = 2
             }
 
         }

@@ -9,7 +9,8 @@
 - implement messages (MK)
 - implement "bild des tages" and "zitat des tages"
 - JLZ: implement real user accounts for paeds
-- JLZ: make calendar functional for paeds so they can use it within a week 
+- JLZ: make calendar functional for paeds so they can use it within a week
+- style article show view properly
 
 # Done
 - redo banner graphic

@@ -33,7 +33,7 @@ class ProfileDataService {
         profiles.patrizia = [type:'mitarbeiter',
             role:'Lernardo Mitarbeiter',
             name:'patrizia',
-            title: '-',
+            title: 'B.A.',
             fullName:'Patrizia Rosenkranz',
             firstName:'Patrizia',
             lastName:'Rosenkranz',
@@ -60,6 +60,21 @@ class ProfileDataService {
             tel: '0664 / 840 66 32',
             friends:['lernardo':'Betreiber','alpha':'Betreiber','patrizia':'Lernardo Mitarbeiterin','johannes':'Lernardo Mitarbeiter'],
             image:'alexander_zeillinger.jpg']
+        profiles.susanne = [type:'mitarbeiter',
+            role:'Lernardo Mitarbeiter',
+            name:'susanne',
+            title: '-',
+            fullName:'Susanne Stiedl',
+            firstName:'Susanne',
+            lastName:'Stiedl',
+            birthDate:'19.11.1966',
+            plz:'-',
+            ort:'-',
+            strasse:'-',
+            mail: 'sst@lkult.at',
+            tel: '0664 / 204 91 68',
+            friends:['lernardo':'Betreiber','alpha':'Betreiber','patrizia':'Lernardo Mitarbeiterin','alexander':'Lernardo Mitarbeiter'],
+            image:'susanne_stiedl.jpg']
     }
 
     def initEinrichtungen () {
@@ -81,9 +96,9 @@ class ProfileDataService {
                             genutzt werden.<br>
                             Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
                             Spielbereich und ein Ruhebereich zur Verfügung.''',
-        telefon:'0676 / 880 604 001',
-        oeffnungszeiten:'Mo-Fr, 11 bis 18 Uhr',
-        ansprechperson:'Martin Golja']
+            telefon:'0676 / 880 604 001',
+            oeffnungszeiten:'Mo-Fr, 11 bis 18 Uhr',
+            ansprechperson:'Martin Golja']
         profiles.kaumberg = [type:'einrichtung',
             role:'Einrichtung',
             name:'kaumberg',
