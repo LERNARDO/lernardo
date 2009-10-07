@@ -1,11 +1,10 @@
 <head>
-<title>Lernardo - Impressum</title>
+<title>Impressum - lernardo.at</title>
 <meta name="layout" content="public" />
 </head>
 
-<html>
 <body>
-<a name ="anker"></a>
+<a name="anker"></a>
 <h1>Impressum</h1>
 <p>Future Wings Privatstiftung<br />
 Collmannstraße 2<br />
@@ -16,4 +15,3 @@ E: <a href="mailto:office@futurewings.at">office@futurewings.at</a></p>
 <p>Firmenbuchnummer: 247270 h<br />
 Firmenbuchgericht Wels</p>
 </body>
-</html>

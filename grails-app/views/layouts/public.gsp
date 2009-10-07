@@ -34,22 +34,12 @@
                   <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
                     <table>
                       <tr>
-                        <td width="100px">
-                          <p>E-Mail:</p>
-                        </td>
-                        <td>
-                          <input id="j_username" name="j_username" type="text" tabindex="1" />
-
-                        </td>
+                        <td width="100px" height="20px">E-Mail:</td>
+                        <td><input id="j_username" name="j_username" type="text" tabindex="1" /></td>
                       </tr>
                       <tr>
-                        <td>
-                          <p>Passwort:</p>
-                        </td>
-                        <td>
-                          <input name="j_password" id="j_password" type="password" tabindex="2" />
-
-                        </td>
+                        <td width="100px" height="20px">Passwort:</td>
+                        <td><input name="j_password" id="j_password" type="password" tabindex="2" /></td>
                       </tr>
                     </table>
 

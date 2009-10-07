@@ -1,9 +1,6 @@
-
-<div class="article-links actionlinks">
-
-  <div class="userlinks">
+  <div class="actionlink">
     <g:if test="${article.teaser}">
-          <g:link class="more" action="show" id="${article.id}" >mehr lesen</g:link>
+          <g:link action="show" id="${article.id}">&#187; mehr lesen</g:link>
     </g:if>
   </div>
 
@@ -16,5 +13,3 @@
       <g:link class="adminlinks" action="create" id="${article.id}">neuer artikel</g:link>
     </ub:isAdmin>
   </div>--}%
-
-</div>

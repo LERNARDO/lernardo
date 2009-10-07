@@ -4,9 +4,14 @@
 </head>
 
 <body>
-  <div id="article-detail">
-    <g:render template="header"     model='[article:article.value]'/>
-    <g:render template="content"    model='[article:article.value]'/>
+  <div id="article-container">
+    <div class="item">
+      <g:render template="header"     model='[article:article.value]'/>
+      <g:render template="teaser"     model='[article:article.value]'/>
+      <g:render template="content"    model='[article:article.value]'/>
+      <div class="actionlink">
+        <g:link action="index">Zurück zur Übersicht</g:link>
+      </div>
+    </div>
   </div>
-  <g:render template="links"      model='[article:article.value]'/>
 </body>

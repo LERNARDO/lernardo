@@ -4,13 +4,11 @@
 </head>
 
 <body>
-  <div id="article-index">
-    <h1>${listTitle ?: articles ? articles[0].category.description : "Keine Artikel gefunden" }</h1>
-
-    <!-- render all articles -->
+  <h1>${listTitle ?: articles ? articles[0].category.description : "Keine Artikel gefunden" }</h1>
+  <div id="article-container">
 
     <g:each var="article" in="${articles}">
-      <div class="article-index-item">
+      <div class="item">
         <g:render template="header" model='[article:article.value]'/>
         <g:render template="teaser" model='[article:article.value]'/>
         <g:render template="links"  model='[article:article.value]'/>

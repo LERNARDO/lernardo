@@ -1,15 +1,14 @@
 <head>
-  <title>Lernardo - Kontakt</title>
+  <title>Kontakt - lernardo.at</title>
   <meta name="layout" content="public" />
 </head>
 
-<html>
-  <body>
-    <a name ="anker"></a>
-    <h1>Kontakt</h1>
-    <table width="335" border="0">
-      <tr>
-       <td valign="top"><img src="${createLinkTo(dir:'images/static',file:'susanne.jpg')}" width="68" height="68" /></td>
+<body>
+  <a name ="anker"></a>
+  <h1>Kontakt</h1>
+  <table width="335" border="0">
+    <tr>
+      <td valign="top"><img src="${createLinkTo(dir:'images/static',file:'susanne.jpg')}" width="68" height="68" alt="Susanne"/></td>
 <td>
 <p>Frau Susanne Stiedl<br />
 Projektleitung Lernardo</p>
@@ -29,4 +28,3 @@ Web: <a href="http://www.lernardo.at" target="_self">www.lernardo.at</a></p></td
 </tr>
 </table><br /><br /><br /><br /><br />
 </body>
-</html>

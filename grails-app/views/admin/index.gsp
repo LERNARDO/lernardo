@@ -8,6 +8,7 @@
       <div id="bd">
         <div class="yui-b" id="admin-navigation">
           <div id="body-list">
+            <h2>Adminbereich</h2>
             <ul>
               <li><g:link controller="profile" action="list">Liste der Profile anzeigen</g:link></li>
               <li><g:link controller="template" action="list">Liste der Aktivitätsvorlagen anzeigen</g:link></li>
@@ -18,7 +19,7 @@
         <div id="yui-main">
           <div class="yui-b">
             <div id="admin-content">
-              <h1>Adminbereich</h1>
+              <p>Links kann man zu den einzelnen Bereichen navigieren</p>
              </div>
           </div>
         </div>
