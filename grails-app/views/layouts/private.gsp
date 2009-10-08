@@ -10,7 +10,7 @@
     <link rel="icon" href="${createLinkTo(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
     <g:layoutHead />
   </head>
-  <body>
+  <body onload="load()" onunload="GUnload()">
     <div id="private">
       <div id="doc4">
         <div id="hd">

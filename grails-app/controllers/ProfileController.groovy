@@ -1,8 +1,16 @@
+import grails.converters.JSON
+
 class ProfileController {
     def profileDataService
     def activityDataService
+    def geoCoderService
 
     def index = { }
+
+    def geocode = {
+        def result = geoCoderService.geocodeLocation(params.name)
+        render result as JSON
+    }
 
     def list = {
         params.profileType = params.profileType ?: "all"
@@ -20,9 +28,11 @@ class ProfileController {
             return ;
         }
         def content = params.content ?: "profile"
+        def location = geoCoderService.geocodeLocation(prf.ort)
         return ['profileInstance':prf,
                 'content':content,
-                'activityList':activityDataService.findByOwner(params.name)]
+                'activityList':activityDataService.findByOwner(params.name),
+                'location':location]
     }
 
     // not used atm

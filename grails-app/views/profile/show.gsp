@@ -58,7 +58,7 @@
           <g:render template="/profile/content-activities" model="${activityList}" />
         </g:elseif>
         <g:elseif test="${content == 'location'}">
-          <g:render template="/profile/content-location" />
+          <g:render template="/profile/content-location" model=[profileInstance:profileInstance,location:location] />
         </g:elseif>
         <g:elseif test="${content == 'profile'}">
           <g:render template="/profile/content-profile" model="${profileInstance}" />

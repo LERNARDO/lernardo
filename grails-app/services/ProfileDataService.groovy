@@ -83,7 +83,7 @@ class ProfileDataService {
             name:'loewenzahn',
             fullName:'Hort Löwenzahn',
             plz:'2564',
-            ort:'Weissenbach',
+            ort:'Weissenbach an der Triesting',
             strasse:'Hauptstraße 12',
             friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
             image:'loewenzahn.jpg',
