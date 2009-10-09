@@ -10,13 +10,13 @@
         font-family: verdana,arial,helvetica,sans-serif;
         font-size: 12px;
       }
-      #notizen {
+      #container #notizen {
         width: 100%;
         height: 200px;
         background: #eee;
         border: #ddd;
       }
-      td {
+      #container td {
         border-bottom: 1px dashed #ccc;
         width: 200px;
       }

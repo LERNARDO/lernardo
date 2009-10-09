@@ -10,7 +10,7 @@
 - implement "bild des tages" and "zitat des tages"
 - JLZ: implement real user accounts for paeds
 - JLZ: make calendar functional for paeds so they can use it within a week
-- style article show view properly
+- style PDF with CSS properly
 
 # Done
 - redo banner graphic
@@ -65,3 +65,4 @@
 - implement login (MK)
 - implement ubase plugin (MK)
 - color links in list views to make them more visible
+- style article show view properly
