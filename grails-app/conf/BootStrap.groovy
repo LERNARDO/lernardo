@@ -8,8 +8,8 @@ class BootStrap {
     def templateDataService
     def activityDataService
     def articleDataService
-    def defaultObjectService ;
-    def entityHelperService ;
+    def defaultObjectService
+    def entityHelperService
     def sessionFactory
 
 
@@ -19,12 +19,13 @@ class BootStrap {
         activityDataService.init()
         articleDataService.init()
 
+        println "### Starting UeDomains ###"
         initUeDomains()
+        println "### Finished UeDomains ###"
     }
 
     def destroy = {
     }
-
 
     void initUeDomains () {
         // init metadata if DB is empty
@@ -97,9 +98,6 @@ class BootStrap {
                 ent.profile.tagline = "..."
                 ent.profile.gender = 2
             }
-
         }
-
-
-    }
+    } // initUeDomains
 } 

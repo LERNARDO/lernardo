@@ -12,6 +12,11 @@ class ProfileController {
         render result as JSON
     }
 
+    def attendance = {
+        return ['profileList': profileDataService.getProfiles ('client', 0, 50),
+                'profileCount': profileDataService.getProfileCount ('client')]
+    }
+
     def list = {
         params.profileType = params.profileType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
