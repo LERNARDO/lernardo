@@ -96,8 +96,8 @@ body {
 #nav li.navigation_last {}
 
 #nav li a {
-    background:#FFFFFF url(../images/menu-li.jpg) no-repeat scroll 0 0;
-    color:#FFFFFF;
+    background:#FFF url(../images/menu-li.jpg) no-repeat scroll 0 0;
+    color:#FFF;
     display:block;
     float:left;
     height:40px;
@@ -109,8 +109,8 @@ body {
 }
 
 #nav li a:hover {
-    color: #FFFFFF;
-    background:#FFFFFF url(../images/menu-li.jpg) no-repeat scroll 0 -40px;
+    color: #FFF;
+    background:#FFF url(../images/menu-li.jpg) no-repeat scroll 0 -40px;
     text-decoration: none !important;
 }
 
@@ -129,7 +129,7 @@ body {
 }
 
 .bezeichnung {
-    border-bottom:1px dotted #999999;
+    border-bottom:1px dotted #999;
     padding:5px 0;
     text-align:left;
     vertical-align:top;
@@ -239,7 +239,7 @@ ul li {
     margin: 0 0 10px 0;
     font-size: 120%;
     font-weight: bold;
-    color: #ffffff;
+    color: #fff;
     border-bottom: none;
 }
 
@@ -285,7 +285,7 @@ ul li {
 .profile-box {
     -moz-border-radius: 5px;
     background-color:#dfdfdf;
-    border:1px solid #cccccc;
+    border:1px solid #ccc;
     padding: 5px;
 }
 
@@ -295,13 +295,13 @@ ul li {
 
 .profile-box ul li {
     list-style-type:none;
-    color: #333333;
+    color: #333;
     margin: 0 0 0 0;
 }
 
 .profile-group:hover {
     background:#dfdfdf;
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
     border-bottom: none;
     cursor:pointer;
 }
@@ -310,24 +310,24 @@ ul li {
     -moz-border-radius-topleft:5px;
     -moz-border-radius-topright:5px;
     background-color:#dfdfdf;
-    border:1px solid #cccccc;
+    border:1px solid #ccc;
     border-bottom: none;
     font-weight:bold;
     margin:10px 0 0 5px;
     padding:2px;
     text-align:center;
     width:120px;
-    color: #333333;
+    color: #333;
 }
 
 #profile-content {
     -moz-border-radius:5px;
     background-color: #dfdfdf;
-    border:1px solid #cccccc;
+    border:1px solid #ccc;
     padding: 5px 10px 10px 10px;
     margin: 10px;
     vertical-align:top;
-    color: #333333;
+    color: #333;
 }
 
 #profile-content h1 {
@@ -358,7 +358,7 @@ ul li {
 }
 
 #profile-navigation a {
-    color:#333333;
+    color:#333;
     text-decoration:none;
 }
 
@@ -413,7 +413,7 @@ ul li {
 #admin-content {
     padding: 5px 10px 10px 10px;
     margin: 10px;
-    color: #333333;
+    color: #333;
 }
 
 #admin-content h1 {
@@ -440,7 +440,7 @@ ul li {
 }
 
 .imgmenu li a {
-    color: #222222;
+    color: #222;
     text-decoration: none;
 }
 
@@ -467,7 +467,7 @@ ul li {
 #public #main {
     margin: 20px 0;
     padding: 0 20px;
-    border-right:1px solid #CCCCCC;
+    border-right:1px solid #CCC;
     line-height:18px;
     width:655px;
 }
@@ -508,7 +508,7 @@ ul li {
     background:#708dc2 none repeat scroll 0 0;
     border:1px solid #607cb1;
     margin:0 10px 20px;
-    color: #ffffff;
+    color: #fff;
 }
 
 .innersidebox {
@@ -546,7 +546,7 @@ ul li {
 }
 
 .sidebox a {
-    color: #ffffff;
+    color: #fff;
 }
 
 .quote {
@@ -595,7 +595,7 @@ ul li {
 /* ----- LIST and TABLE overrides ----- */
 
 #body-list table {
-    border:1px solid #CCCCCC;
+    border:1px solid #CCC;
     width:100%;
 }
 
@@ -616,13 +616,13 @@ ul li {
 }
 
 #body-list th {
-    background:#FFFFFF url(../images/skin/shadow.jpg) repeat scroll 0 0;
-    color:#666666;
+    background:#FFF url(../images/skin/shadow.jpg) repeat scroll 0 0;
+    color:#666;
     font-size:11px;
     font-weight:bold;
     line-height:17px;
     padding:2px 6px;
-    border-left:1px solid #DDDDDD;
+    border-left:1px solid #DDD;
 }
 
 #body-list th a:link, th a:visited, th a:hover {
@@ -656,7 +656,7 @@ ul li {
 }
 
 #body-list table tr a:hover {
-    color:#333333;
+    color:#333;
     text-decoration:underline;
 }
 
@@ -673,7 +673,7 @@ ul li {
 }
 
 table#profile-list tr {
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
 }
 
 /* PAGINATION */
@@ -837,11 +837,11 @@ div.actionlinks div.userlinks a:hover {
 #comments-block {
     -moz-border-radius:5px;
     background-color: #dfdfdf;
-    border:1px solid #cccccc;
+    border:1px solid #ccc;
     padding: 5px 10px 10px 10px;
     margin: 10px;
     vertical-align:top;
-    color: #333333;
+    color: #333;
 }
 
 #comments-block h1 {
@@ -856,12 +856,12 @@ div.actionlinks div.userlinks a:hover {
 .community-entry-infobar {margin-left: 60px;}
 .community-entry-infobar .name {font-size: 100%; font-weight: bold;}
 .community-entry-infobar .info {margin: 5px 0; font-size: 88%;}
-.community-entry-infobar .time {float: left; color: #666666;}
+.community-entry-infobar .time {float: left; color: #666;}
 .community-entry-infobar .actions {float: right;}
 
 .user-entry {
     -moz-border-radius:5px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
     background-color: #fdfdfd;
     padding: 5px;
     margin-bottom: 10px;
@@ -871,7 +871,7 @@ div.actionlinks div.userlinks a:hover {
 
 .community-entry-comments .entry {
     -moz-border-radius:5px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
     background-color: #e8e6e8;
     padding: 5px;
 }
@@ -880,7 +880,7 @@ div.actionlinks div.userlinks a:hover {
 .community-entry-comments {clear: both; padding-left: 80px;}
 .community-entry-comments .user-pic {float: left;}
 .community-entry-comments .user-comment {margin-left: 60px; font-size: 88%;}
-.community-entry-comments .user-comment .info {color: #666666;}
+.community-entry-comments .user-comment .info {color: #666;}
 .community-entry-comments .user-comment .user-name {display: inline; font-weight: bold;}
 .community-entry-comments .user-comment .time {display: inline;}
 .community-entry-comments .user-comment .comment {margin-top: 10px;}
