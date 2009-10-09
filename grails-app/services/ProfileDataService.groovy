@@ -86,7 +86,7 @@ class ProfileDataService {
             ort:'Weissenbach an der Triesting',
             strasse:'Hauptstraße 12',
             friends:['regina':'Pädagogin','martin':'Pädagoge','rosa':'Pädagogin','birgit':'Pädagogin','raphael':'Betreuter','alpha':'Betreiber'],
-            image:'loewenzahn.jpg',
+            image:'hort_loewenzahn.jpg',
             beschreibung:'''Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
                             und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
                             mit ca. 62m² und ein Aufenthaltsraum mit mehr als 24 m² sowie eine Garderobe

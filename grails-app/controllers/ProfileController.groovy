@@ -12,6 +12,15 @@ class ProfileController {
         render result as JSON
     }
 
+    def print = {
+        def image
+        if (params.hort == 'Löwenzahn')
+            image = "hort_loewenzahn.jpg"
+        else if(params.hort == 'Kaumberg')
+            image = "hort_kaumberg.jpg"
+        return ['image':image, 'pdf':params,'profileList': profileDataService.getProfiles ('client', 0, 50)]
+    }
+
     def attendance = {
         return ['profileList': profileDataService.getProfiles ('client', 0, 50),
                 'profileCount': profileDataService.getProfileCount ('client')]

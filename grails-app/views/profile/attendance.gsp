@@ -6,37 +6,14 @@
   </head>
   <body>
     <div id="body-list">
-      <h2>Liste der Profile</h2>
+      <h2>Anwesenheits-/Essensliste</h2>
       <p>${profileCount} Profile gefunden</p>
 
-      <div id="select-box">
-        <g:form name="form1" action="list">
-          <label>Hort:
-            <select name="hort">
-              <option value="loewenzahn" selected="selected">Löwenzahn</option>
-              <option value="kaumberg">Kaumberg</option>
-            </select>
-          </label>
-          <g:submitButton name="list" value="OK" />
-        </g:form>
-      </div>
-
-      <div id="select-box">
-        <g:form name="form1" action="list">
-          <label>Woche:
-            <select name="week">
-              <option value="1" selected="selected">Woche 1</option>
-              <option value="2">Woche 2</option>
-              <option value="3">Woche 3</option>
-              <option value="4">Woche 4</option>
-              <option value="5">Woche 5</option>
-            </select>                  
-          </label>
-          <g:submitButton name="list" value="OK" />
-        </g:form>
-      </div>
-
-      <g:pdfLink url="/profile/print.gsp" filename="Anwesenheitsliste.pdf" icon="true"> PDF erzeugen</g:pdfLink>
+      <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste.pdf">
+                                        Hort:<g:select name="hort" from="${['Löwenzahn', 'Kaumberg']}" value="Kaumberg" />
+                                        Woche:<g:select name="woche" from="${1..52}" value="1" />
+        <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
+      </g:pdfForm>
 
       <table id="profile-list">
         <thead>
@@ -52,8 +29,8 @@
           <tr class="row-${profileInstance.value.type}">
             <td><g:link controller="profile" action="show" params="[name:profileInstance.value.name]" >${profileInstance.value.fullName}</g:link></td>
           <td class="col">${profileInstance.value.tel}</td>
-          <td class="col">[ ]</td>
-          <td class="col">[ ]</td>
+          <td class="col">O</td>
+          <td class="col">O</td>
           </tr>
         </g:each>
         </tbody>
