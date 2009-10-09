@@ -11,7 +11,19 @@
 
       <div id="select-box">
         <g:form name="form1" action="list">
-          <label>Auswahl
+          <label>Hort:
+            <select name="hort">
+              <option value="loewenzahn" selected="selected">Löwenzahn</option>
+              <option value="kaumberg">Kaumberg</option>
+            </select>
+          </label>
+          <g:submitButton name="list" value="OK" />
+        </g:form>
+      </div>
+
+      <div id="select-box">
+        <g:form name="form1" action="list">
+          <label>Woche:
             <select name="week">
               <option value="1" selected="selected">Woche 1</option>
               <option value="2">Woche 2</option>
@@ -23,6 +35,8 @@
           <g:submitButton name="list" value="OK" />
         </g:form>
       </div>
+
+      <g:pdfLink url="/profile/print.gsp" filename="Anwesenheitsliste.pdf" icon="true"> PDF erzeugen</g:pdfLink>
 
       <table id="profile-list">
         <thead>
@@ -37,10 +51,10 @@
         <g:each status="i" in="${profileList}" var="profileInstance">
           <tr class="row-${profileInstance.value.type}">
             <td><g:link controller="profile" action="show" params="[name:profileInstance.value.name]" >${profileInstance.value.fullName}</g:link></td>
-            <td class="col">${profileInstance.value.tel}</td>
-            <td class="col">[ ]</td>  
-            <td class="col">[ ]</td>
-        </tr>
+          <td class="col">${profileInstance.value.tel}</td>
+          <td class="col">[ ]</td>
+          <td class="col">[ ]</td>
+          </tr>
         </g:each>
         </tbody>
       </table>
@@ -51,8 +65,6 @@
                     params="[profileType:pType]"
                     total="${profileCount}" />
       </div>
-
-      <g:submitButton name="print" value="Drucken" />
 
     </div>
   </body>
