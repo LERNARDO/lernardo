@@ -6,6 +6,6 @@
       <table>
         <tr><td valign="top" width="202px" style="padding: 3px 0 0 5px;">noch 160 Zeichen</td><td><input name="send_sms" type="button" value="absenden" /></td></tr>
       </table>
-    </div><!--profile-content-client"-->
+    </div><!--profile-content-->
   </div><!--yui-b-->
 </div><!--yui-main-->

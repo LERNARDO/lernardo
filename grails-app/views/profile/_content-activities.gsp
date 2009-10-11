@@ -29,6 +29,6 @@
           </table>
         </g:else>
       </div>
-    </div><!--profile-content"-->
+    </div><!--profile-content-->
   </div><!--yui-b-->
 </div><!--yui-main-->

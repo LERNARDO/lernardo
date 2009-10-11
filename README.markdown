@@ -1,10 +1,9 @@
-# Backlog
+# TODO
 - implement blog (MK)
 - implement "zu netzwerk hinzufuegen"
 - fix sortable columns in lists
 - add dropdown to list all activities of a single day
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
-- fix article header links on public page
 - add a margin-bottom to table header of lists
 - implement messages (MK)
 - implement "bild des tages" and "zitat des tages"
@@ -32,11 +31,11 @@
 - added article controller and DataService
 - tab navigation for profiles (paed): fixed by adding "Kalender" to the Kommunikation-Box in profiles
 - Gesamtliste der Aktivitaeten: ShowMonth
-- 1 Eigenes Profil für JLZ (mit photo!) anlegen (eigenen Type -'Lernardo Mitarbeiter') und selbiges als ERP Startpunkt verlinken (statt admin)
+- 1 Eigenes Profil fuer JLZ (mit photo!) anlegen (eigenen Type -'Lernardo Mitarbeiter') und selbiges als ERP Startpunkt verlinken (statt admin)
 - implement jquery-calendar (MK)
-- 1 Vorlagen-Detailview fehlt noch. Detto damit natürlich die Verlinkung der Records auf der Liste. Nicht vergessen, von dort muss der 'neue aktivitaet' view  aufrufbar (button/link) sein.
-- 1 Aktivitäten Details: Team und Teilnehmer mit links auf die jeweiligen Profile
-- 1 Alle Profile:  Aktivitätenliste (wie Kalender, nur als
+- 1 Vorlagen-Detailview fehlt noch. Detto damit natuerlich die Verlinkung der Records auf der Liste. Nicht vergessen, von dort muss der 'neue aktivitaet' view  aufrufbar (button/link) sein.
+- 1 Aktivitaeten Details: Team und Teilnehmer mit links auf die jeweiligen Profile
+- 1 Alle Profile:  Aktivitaetenliste (wie Kalender, nur als
 - 1 Die Listen schauen alle nix gleich  - das geht besser . Notfalls nehmts  halt die Styles vom Grails scaffolding, wenn euch nichts besseres einfällt.
 - 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
 - redesign articles on public page
@@ -66,3 +65,4 @@
 - implement ubase plugin (MK)
 - color links in list views to make them more visible
 - style article show view properly
+- fix article header links on public page

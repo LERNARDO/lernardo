@@ -16,6 +16,6 @@
           <td><input name="send_sms" type="button" value="absenden" /></td>
         </tr>
       </table>
-    </div><!--profile-content-client"-->
+    </div><!--profile-content-->
   </div><!--yui-b-->
 </div><!--yui-main-->

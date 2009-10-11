@@ -16,6 +16,7 @@
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
             <ul>
+              <li class="profile-neuigkeiten"><g:link action="show" params="[content:'neuigkeiten',name:profileInstance.name]">Neuigkeiten</g:link></li>
               <li class="profile-profil"><g:link action="show" params="[content:'profile',name:profileInstance.name]">Profil ansehen</g:link></li>
               <li class="profile-nachricht"><g:link action="show" params="[content:'message',name:profileInstance.name]">Nachricht schreiben</g:link></li>
               <g:if test="${profileInstance.type == 'paed' || profileInstance.type == 'client'}">
@@ -45,6 +46,9 @@
           </div>
         </div>
 
+        <g:if test="${content == 'neuigkeiten'}">
+          <g:render template="/profile/content-neuigkeiten" />
+        </g:if>
         <g:if test="${content == 'calendar'}">
           <g:render template="/profile/content-calendar" model="${profileInstance}" />
         </g:if>

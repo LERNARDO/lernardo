@@ -69,6 +69,10 @@ body {
     color: #444;
 }
 
+.strong {
+    font-weight: bold;
+}
+
 /* ----- NAVIGATION -----*/
 
 #nav {
@@ -362,6 +366,11 @@ ul li {
     text-decoration:none;
 }
 
+#profile-navigation .profile-neuigkeiten {
+    background:url(../images/icons/icon_neuigkeiten.png) no-repeat;
+    padding-left: 20px;
+    background-position:0 50%;
+}
 #profile-navigation .profile-profil {
     background:url(../images/icons/icon_profile.png) no-repeat;
     padding-left: 20px;
