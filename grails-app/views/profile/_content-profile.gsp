@@ -56,6 +56,10 @@
           <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${lebenslauf}</td></tr>
         </g:elseif>
       </table>
+      <br/>
+      <g:isLoggedIn>
+          <g:link style="color:#a00; font-weight: bold;" action="edit" id="#">Profil bearbeiten</g:link>
+    </g:isLoggedIn>
 %{--<g:form>
 <input type="hidden" name="id" value="${name}" />
 <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>
