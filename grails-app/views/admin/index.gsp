@@ -14,6 +14,7 @@
               <li><g:link controller="template" action="list">Liste der Aktivitätsvorlagen anzeigen</g:link></li>
               <li><g:link controller="activity" action="list">Liste der Aktivitäten anzeigen</g:link></li>
               <li><g:link controller="profile" action="attendance">Anwesenheits-/Essensliste anzeigen</g:link></li>
+              <li><g:link controller="profile" action="create">Profil anlegen</g:link></li>
             </ul>
           </div>
         </div>

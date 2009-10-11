@@ -831,6 +831,20 @@ div.actionlinks div.userlinks a:hover {
     color: #fff;
 }
 
+#newTemplate {
+    border: 1px solid #333;
+    background: #666;
+    padding: 5px;
+    margin: 10px;
+    width: 210px;
+    text-align:center;
+    -moz-border-radius: 5px;
+}
+
+#newTemplate a {
+    color: #fff;
+}
+
 .label {
     width: 125px;
 }
