@@ -28,7 +28,7 @@
                 <li class="profile-location"><g:link action="show" params="[content:'location',name:profileInstance.name]">Standort anzeigen</g:link></li>
               </g:if>
               <g:if test="${profileInstance.type == 'client'}">
-                <li class="profile-leistung"><a href="#">Leistungsfortschritt</a></li>
+                <li class="profile-leistung"><g:link action="show" params="[content:'leistung',name:profileInstance.name]">Leistungsfortschritt</g:link></li>
               </g:if>
               <ub:notMe entityName="${profileInstance.name}">
                 <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
@@ -66,6 +66,9 @@
         </g:elseif>
         <g:elseif test="${content == 'profile'}">
           <g:render template="/profile/content-profile" model="${profileInstance}" />
+        </g:elseif>
+        <g:elseif test="${content == 'leistung'}">
+          <g:render template="/profile/content-leistung" />
         </g:elseif>
 
       </div>

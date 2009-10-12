@@ -909,3 +909,13 @@ div.actionlinks div.userlinks a:hover {
 .community-entry-comments .user-comment .comment {margin-top: 10px;}
 
 .comments-actions {margin-top: 10px; font-weight: bold; text-align: center;}
+
+.leistung-item {
+    padding: 5px;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.vtop {
+    vertical-align: top;
+}
