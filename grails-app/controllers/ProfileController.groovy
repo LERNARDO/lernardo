@@ -12,6 +12,8 @@ class ProfileController {
         render result as JSON
     }
 
+    def create = { }
+
     def print = {
         def image
         if (params.hort == 'Löwenzahn')
