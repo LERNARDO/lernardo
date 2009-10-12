@@ -33,7 +33,7 @@
       <img src="${g.resource(dir:'images/avatar', file:image)}" alt="Hort ${pdf.hort}"/>
 
       <h1>Hort ${pdf.hort}</h1>
-      <p>Anwesenheits- und Essensliste für Woche ${pdf.woche}</p>
+      <p>Anwesenheits- und Essensliste für Monat ${pdf.monat}</p>
       <table id="profile-list">
         <thead>
           <tr>
@@ -48,10 +48,16 @@
           <tr>
             <td>${profileInstance.value.fullName}</td>
             <td>${profileInstance.value.tel}</td>
-            <td>O</td>
-            <td>O</td>
+            <td>14</td>
+            <td>14</td>
           </tr>
         </g:each>
+        <tr>
+          <td>Gesamt</td>
+          <td></td>
+          <td>84</td>
+          <td>84 * 3 = €252</td>
+        </tr>
         </tbody>
       </table>
 

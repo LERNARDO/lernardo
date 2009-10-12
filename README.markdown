@@ -1,3 +1,9 @@
+# ERP Prioritaeten
+
+- Anwesenheits-/Essensliste für alle Kinder pro Monat, pro Kind pro Monat, mit Summe Anwesenheit und Essenbeiträge
+- Paedagogen sollen Newsartikel schreiben können
+- Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
+
 # TODO
 - implement blog (MK)
 - implement "zu netzwerk hinzufuegen"
@@ -10,6 +16,7 @@
 - JLZ: implement real user accounts for paeds
 - JLZ: make calendar functional for paeds so they can use it within a week
 - style PDF with CSS properly
+- style -Leistungsfortschritt- view properly
 
 # Done
 - redo banner graphic

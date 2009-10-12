@@ -11,7 +11,7 @@
 
       <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste.pdf">
                                         Hort:<g:select name="hort" from="${['Löwenzahn', 'Kaumberg']}" value="Kaumberg" />
-                                        Woche:<g:select name="woche" from="${1..52}" value="1" />
+                                        Monat:<g:select name="monat" from="${1..12}" value="1" />
         <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
       </g:pdfForm>
 
@@ -29,10 +29,16 @@
           <tr class="row-${profileInstance.value.type}">
             <td><g:link controller="profile" action="show" params="[name:profileInstance.value.name]" >${profileInstance.value.fullName}</g:link></td>
           <td class="col">${profileInstance.value.tel}</td>
-          <td class="col">O</td>
-          <td class="col">O</td>
+          <td class="col">14</td>
+          <td class="col">14</td>
           </tr>
         </g:each>
+        <tr>
+          <td>Gesamt</td>
+          <td></td>
+          <td>84</td>
+          <td>84 * 3 = €252</td>
+        </tr>
         </tbody>
       </table>
 
