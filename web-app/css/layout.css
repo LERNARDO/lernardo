@@ -916,6 +916,18 @@ div.actionlinks div.userlinks a:hover {
     border-top: 1px solid #ccc;
 }
 
+.leistung-item td {
+    padding: 8px;
+}
 .vtop {
     vertical-align: top;
+}
+
+.newentry {
+    padding: 0px 0px 3px 0px;
+}
+
+.cleartop {
+    margin: 2px 0px 2px 0px;
+    border-top:1px solid #ccc;
 }
