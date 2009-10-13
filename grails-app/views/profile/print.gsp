@@ -10,12 +10,24 @@
         font-family: verdana,arial,helvetica,sans-serif;
         font-size: 12px;
       }
-      #container #notizen {
+      #container {
         width: 100%;
         height: 200px;
         background: #eee;
         border: #ddd;
       }
+
+      #notizen {
+        width: 100%;
+        height: 500px;
+        background: #eee;
+        border: #ddd;
+      }
+
+      .notizen {
+        border:1px dotted #fff;
+      }
+
       #container td {
         border-bottom: 1px dashed #ccc;
         width: 200px;
@@ -64,7 +76,22 @@
       </table>
 
       <p><strong>Notizen:</strong></p>
-      <div id="notizen"></div>
+      <div id="notizen">
+        <table width="680" height="500" style="notizen" cellspacing="0" cellpadding="0">
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+          <tr><td height="40"></td></tr>
+        </table>
+      </div>
     </div>
   </body>
 </html>
