@@ -2,7 +2,9 @@
   <div class="yui-b">
     <div id="profile-content">
       <h1>Leistungsfortschritt:</h1>
-      <span class="bold">Neuen Eintrag erstellen</span>
+      <span class="bold newentry">Neuen Eintrag erstellen</span>
+      <div class="cleartop"></div>
+
       <div>Stand<br/>
         <textarea cols="95" rows="5"></textarea></div>
       <div>Maßnahme<br/>
@@ -12,7 +14,7 @@
         <span class="bold">Bisherige Einträge</span>
 
         <div class="leistung-item">
-          <table>
+          <table cellpadding="2">
             <tr>
               <td class="strong vtop">Datum:</td>
               <td>10. Oktober 2009</td>
