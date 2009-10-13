@@ -7,7 +7,6 @@
     <g:javascript src="jquery/jquery.fullcalendar.js"/>
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />
     <g:render template="/templates/calendar" model="[name:name]"/>
-
   </head>
 
   <body>
