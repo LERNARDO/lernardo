@@ -20,9 +20,12 @@ class CalendarController {
         return [name:params.name]
     }
 
-    def showall  = {
+    def showall_month  = {
         return [name:'all']
     }
+
+    def showall_week = {}
+    def showall_day = {}
 
     // handles event requests
     def events = {
