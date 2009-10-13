@@ -34,6 +34,8 @@
 
       <h1>Hort ${pdf.hort}</h1>
       <p>Anwesenheits- und Essensliste für Monat ${pdf.monat}</p>
+      <p>Gedruckt von <ub:entityName format="full" /> <br /> <cu:timestamp />
+      </p>
       <table id="profile-list">
         <thead>
           <tr>
