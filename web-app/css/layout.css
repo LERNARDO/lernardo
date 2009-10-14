@@ -168,6 +168,14 @@ h2 {
     font-weight: bold;
 }
 
+h3 {
+    color:#444;
+    font-size:20px;
+    font-weight:normal;
+    margin:0.8em 0 0.3em;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+}
 p {
     padding-bottom: 10px;
     line-height: 19px;
@@ -727,7 +735,7 @@ table#profile-list tr {
 #article-container .item {
     margin: 0 0 10px 0;
     border-bottom: 1px dashed #ccc;
-    padding: 0 5px 5px 5px;
+    padding: 0 5px px 5px;
 }
 
 #article-container .item .header {
@@ -925,9 +933,10 @@ div.actionlinks div.userlinks a:hover {
 
 .newentry {
     padding: 0px 0px 3px 0px;
+    margin: 10px 0px 0px 0px;
 }
 
 .cleartop {
-    margin: 2px 0px 2px 0px;
+    margin: 2px 0px 10px 0px;
     border-top:1px solid #ccc;
 }

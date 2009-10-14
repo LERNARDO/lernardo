@@ -1,7 +1,7 @@
 <div id="yui-main">
   <div class="yui-b">
     <div id="profile-content">
-      <h1>Leistungsfortschritt:</h1>
+      <h3>Leistungsfortschritt:</h3>
       <span class="bold newentry">Neuen Eintrag erstellen</span>
       <div class="cleartop"></div>
 
