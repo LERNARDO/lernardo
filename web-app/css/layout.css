@@ -194,6 +194,12 @@ ul li {
 
 /* ----- PRIVATE ----- */
 
+.cal_navigation ul li {
+    float: left;
+    list-style-type: none;
+    margin-right: 10px;
+}
+
 .imgbox {
     margin-top: 15px;
     text-align: center;

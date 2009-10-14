@@ -60,6 +60,7 @@ class BootStrap {
         day.set Calendar.MINUTE, 0
         day.roll Calendar.DAY_OF_YEAR, -DAYS/2 as int
 
+        // Events get added here
         DAYS.times {
             day.set Calendar.HOUR_OF_DAY, 14
             def startDate = day.time
