@@ -50,7 +50,7 @@
 
             <li>
               <div id="orga" class="imgbox">
-                <g:link controller="calendar" action="showall_month">
+                <g:link controller="calendar" action="showall">
                   <img src="${g.resource(dir:'images/iconex', file:'calendar.png')}" alt="Kalender" />
                   <h3>Kalender</h3>
                 </g:link>

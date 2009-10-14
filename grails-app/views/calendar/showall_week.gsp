@@ -4,33 +4,31 @@
   <head>
     <title>Kalender: Lernardo Gesamt</title>
     <meta name="layout" content="private" />
-   <jqueryCalendar:weekResources />
+  <jqueryCalendar:weekResources />
 
-  </head>
+</head>
 
-  <body>
-        <g:link controller="calendar" action="showall_month">Monatsansicht</g:link><br/>
-    <g:link controller="calendar" action="showall_week">Wochenansicht</g:link><br/>
-    <g:link controller="calendar" action="showall_day">Tagesansicht</g:link><br/>
-      <div id="message" class="ui-corner-all"></div>
+<body>
+<g:render template="/calendar/navigation" />
+<div id="message" class="ui-corner-all"></div>
 <g:select
-        name="eventType"
-        from="${CalendarEventType.list()}"
-        optionKey="id"
-        noSelection="['': message(code: 'view.calendarEvent.eventType.choose')]"
-        valueMessagePrefix="calendarEventType" />
+  name="eventType"
+  from="${CalendarEventType.list()}"
+  optionKey="id"
+  noSelection="['': message(code: 'view.calendarEvent.eventType.choose')]"
+  valueMessagePrefix="calendarEventType" />
 
 <jqueryCalendar:week
-        date="${date}"
-        data="javascript:function(start, end, callback) {filterWeekSource(start, end, callback);}"
-        readonly="${readOnly}"
-        allowCalEventOverlap="${true}"
-        timeslotsPerHour="${4}"
-        firstDayOfWeek="${1}"
-        startHour="${8}"
-        endHour="${18}"
-        limitDisplay="${true}"
-        height="${600}"/>
+  date="${date}"
+  data="javascript:function(start, end, callback) {filterWeekSource(start, end, callback);}"
+  readonly="${readOnly}"
+  allowCalEventOverlap="${true}"
+  timeslotsPerHour="${4}"
+  firstDayOfWeek="${1}"
+  startHour="${8}"
+  endHour="${18}"
+  limitDisplay="${true}"
+  height="${600}"/>
 <script type="text/javascript">
     function filterWeekSource(start, end, callback) {
          var data = {
@@ -50,9 +48,9 @@
     }
 
     $("#eventType").change(function() {
-        $weekCalendar.weekCalendar("refresh");
-    });
+$weekCalendar.weekCalendar("refresh");
+});
 </script>
 
-  </body>
+</body>
 </html>

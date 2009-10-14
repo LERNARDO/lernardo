@@ -4,33 +4,30 @@
   <head>
     <title>Kalender: Lernardo Gesamt</title>
     <meta name="layout" content="private" />
-    <jqueryCalendar:monthResources />
-  </head>
+  <jqueryCalendar:monthResources />
+</head>
 
-  <body>
-    <g:link controller="calendar" action="showall_month">Monatsansicht</g:link><br/>
-    <g:link controller="calendar" action="showall_week">Wochenansicht</g:link><br/>
-    <g:link controller="calendar" action="showall_day">Tagesansicht</g:link><br/>
-    
-      <div id="message" class="ui-corner-all"></div>
+<body>
+<g:render template="/calendar/navigation" />
+<div id="message" class="ui-corner-all"></div>
 <g:select
-        name="eventType"
-        from="${CalendarEventType.list()}"
-        optionKey="id"
-        noSelection="['': message(code: 'view.calendarEvent.eventType.choose')]"
-        valueMessagePrefix="calendarEventType" />
+  name="eventType"
+  from="${CalendarEventType.list()}"
+  optionKey="id"
+  noSelection="['': message(code: 'view.calendarEvent.eventType.choose')]"
+  valueMessagePrefix="calendarEventType" />
 
 <jqueryCalendar:month
-        year="${year}"
-        data="javascript:function(start, end, callback) {filterMonthSource(start, end, callback);}"
-        month="${month}"
-        weekStart="${1}"
-        draggable="${true}"
-        readonly="${readOnly}"
-        fixedWeeks="${true}"
-        abbrevDayHeadings="${false}"
-        title="${true}"
-        showTime="guess" />
+  year="${year}"
+  data="javascript:function(start, end, callback) {filterMonthSource(start, end, callback);}"
+  month="${month}"
+  weekStart="${1}"
+  draggable="${true}"
+  readonly="${readOnly}"
+  fixedWeeks="${true}"
+  abbrevDayHeadings="${false}"
+  title="${true}"
+  showTime="guess" />
 <script type="text/javascript">
     function filterMonthSource(start, end, callback) {
          var data = {
@@ -50,9 +47,9 @@
     }
 
     $("#eventType").change(function() {
-        $monthCalendar.fullCalendar("refresh");
-    });
+$monthCalendar.fullCalendar("refresh");
+});
 </script>
 
-  </body>
+</body>
 </html>
