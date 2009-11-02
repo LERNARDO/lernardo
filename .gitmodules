@@ -1,6 +1,3 @@
-[submodule "plugins/ubase"]
-	path = plugins/ubase
-	url = git@github.com:mkuhl/ubase.git
-[submodule "plugins\\ubase-snapshot"]
-	path = plugins\\ubase-snapshot
+[submodule "plugins/ubase-snapshot"]
+	path = plugins/ubase-snapshot
 	url = git@github.com:mkuhl/ubase.git
