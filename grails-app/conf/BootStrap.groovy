@@ -3,21 +3,19 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Role
 import org.joda.time.DateMidnight
-import de.uenterprise.ep.profiles.PersonProfile
 import profiles.UserProfile
 import de.uenterprise.ep.Link
 import profiles.FacProfile
+import de.uenterprise.ep.profiles.PersonProfile
 
 class BootStrap {
-  def profileDataService
+  //def profileDataService
   def templateDataService
   def activityDataService
   def articleDataService
   def defaultObjectService
   def entityHelperService
   def calendarDataService
-  def sessionFactory
-
   def metaDataService
 
   def init = {servletContext ->
@@ -32,8 +30,6 @@ class BootStrap {
       articleDataService.init()
       calendarDataService.init()
     }
-    //initUeDomains()
-
   }
 
   def destroy = {
@@ -110,9 +106,10 @@ class BootStrap {
   }
 
   void createDefaultFacs () {
-    EntityType et = metaDataService.etPO
+    log.debug ("==> creating default facilities")
+    EntityType etFac = metaDataService.etHort
 
-    entityHelperService.createEntityWithUserAndProfile ("kaumberg", et, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("kaumberg", etFac, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
       FacProfile prf = ent.profile
       prf.PLZ = "2572"
       prf.city = "Kaumberg"
@@ -120,12 +117,12 @@ class BootStrap {
       prf.tel   = "0660 / 461 1106"
       prf.opened = "?"
       prf.speaker = Entity.findByName('hannah')
-      prf.description    = "Siemens ist ein deutsches Unternehmen, das 1847 unter der Leitung von Werner von Siemens und Johann Georg Halske gegründet wurde"
+      prf.description = "Der zweite unter Lernardo betriebene Hort."
     }
   }
 
   void createDefaultLinks () {
-    log.debug ("==> creating links")
+    log.debug ("==> creating default links")
     def mike = Entity.findByName ('mike')
     def alex = Entity.findByName ('alex')
 

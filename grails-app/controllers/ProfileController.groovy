@@ -1,4 +1,5 @@
 import grails.converters.JSON
+import de.uenterprise.ep.Entity
 
 class ProfileController {
     def profileDataService
@@ -38,7 +39,8 @@ class ProfileController {
     }
 
     def show = {
-        def prf = profileDataService.getProfile (params.name)
+        //def prf = profileDataService.getProfile (params.name)
+        def prf = Entity.findByName(params.name)
         if (!prf) {
             response.sendError(404, "user profile not found")
             return ;
