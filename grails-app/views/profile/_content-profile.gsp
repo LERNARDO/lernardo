@@ -22,15 +22,15 @@
           <tr><td class="bold titles bezeichnung">Schule:</td><td class="bezeichnung">${schule}</td></tr>
           <tr><td class="bold titles bezeichnung">Klasse:</td><td class="bezeichnung">${klasse}</td></tr>
         </g:elseif>
-        <g:elseif test="${type == 'einrichtung'}">
-          <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${fullName}</td></tr>
-          <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${plz}</td></tr>
-          <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${ort}</td></tr>
-          <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${strasse}</td></tr>
-          <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${telefon}</td></tr>
-          <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${ansprechperson}</td></tr>
-          <tr><td class="bold titles bezeichnung">Öffnungszeiten:</td><td class="bezeichnung">${oeffnungszeiten}</td></tr>
-          <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${beschreibung}</td></tr>
+        <g:elseif test="${profileInstance.type.supertype.name == 'Facility'}">
+          <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${profileInstance.profile.fullName}</td></tr>
+          <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${profileInstance.profile.PLZ}</td></tr>
+          <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${profileInstance.profile.city}</td></tr>
+          <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${profileInstance.profile.street}</td></tr>
+          <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${profileInstance.profile.tel}</td></tr>
+          <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${profileInstance.profile.speaker}</td></tr>
+          <tr><td class="bold titles bezeichnung">Öffnungszeiten:</td><td class="bezeichnung">${profileInstance.profile.opened}</td></tr>
+          <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${profileInstance.profile.description}</td></tr>
         </g:elseif>
         <g:elseif test="${type == 'mitarbeiter'}">
           <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${title}</td></tr>

@@ -1,12 +1,9 @@
-import de.uenterprise.ep.EntitySuperType
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Role
-import org.joda.time.DateMidnight
+
 import profiles.UserProfile
 import de.uenterprise.ep.Link
 import profiles.FacProfile
-import de.uenterprise.ep.profiles.PersonProfile
 
 class BootStrap {
   //def profileDataService
@@ -42,11 +39,13 @@ class BootStrap {
     // an admin user
     entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@ue.de", "Mr. Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+      // program mysteriously decides to cast a PersonProfile on the UserProfile which fails and throws an exception
+      // doesn't happen when creating the default facilities.. works perfectly there
       UserProfile prf = ent.profile
-      prf.tagline = "to be on top is our job"
+      ent.profile.tagline = "to be on top is our job"
       prf.gender = 1
     }
-
+    /*
     // a mod user
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
@@ -74,7 +73,7 @@ class BootStrap {
       prf.gender = 1
       prf.firstName = "Johannes"
       prf.lastName = "Zeitelberger"
-      prf.PLZ = "2560"
+      prf.PLZ = 2560
       prf.city = "Berndorf"
       prf.street = "Wankengasse 10"
       prf.tel = "0664 / 840 66 20"
@@ -103,20 +102,32 @@ class BootStrap {
       prf.tagline = "..."
       prf.gender = 2
     }
+    */
   }
 
   void createDefaultFacs () {
     log.debug ("==> creating default facilities")
     EntityType etFac = metaDataService.etHort
 
+    entityHelperService.createEntityWithUserAndProfile ("loewenzahn", etFac, "loewenzahn@lernardo.at", "Hort Löwenzahn") {Entity ent->
+      FacProfile prf = ent.profile
+      prf.PLZ = 2564
+      prf.city = "Weissenbach an der Triesting"
+      prf.street = "Hauptstraße 12"
+      prf.tel   = "0676 / 880 604 001"
+      prf.opened = "Mo-Fr, 11 bis 18 Uhr"
+      //prf.speaker = Entity.findByName('regina')
+      prf.description = "Der erste unter Lernardo betriebene Hort."
+    }
+
     entityHelperService.createEntityWithUserAndProfile ("kaumberg", etFac, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
       FacProfile prf = ent.profile
-      prf.PLZ = "2572"
+      prf.PLZ = 2572
       prf.city = "Kaumberg"
       prf.street = "?"
       prf.tel   = "0660 / 461 1106"
       prf.opened = "?"
-      prf.speaker = Entity.findByName('hannah')
+      //prf.speaker = Entity.findByName('hannah')
       prf.description = "Der zweite unter Lernardo betriebene Hort."
     }
   }

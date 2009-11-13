@@ -40,14 +40,14 @@ class ProfileController {
 
     def show = {
         //def prf = profileDataService.getProfile (params.name)
-        def prf = Entity.findByName(params.name)
-        if (!prf) {
+        def e = Entity.findByName(params.name)
+        if (!e) {
             response.sendError(404, "user profile not found")
             return ;
         }
         def content = params.content ?: "profile"
-        def location = geoCoderService.geocodeLocation(prf.ort)
-        return ['profileInstance':prf,
+        def location = geoCoderService.geocodeLocation(e.profile.city)
+        return ['profileInstance':e,
                 'content':content,
                 'activityList':activityDataService.findByOwner(params.name),
                 'location':location]

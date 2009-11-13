@@ -14,13 +14,14 @@ class UserProfile extends Profile {
     Integer gender
 
     static constraints = {
-        title(blank:true)
-        firstName(nullable:false,size:3..20)
-        lastName(nullable:false,size:3..20)
-        birthDate(nullable:false)
-        PLZ(nullable:false)
-        city(nullable:false)
-        street(nullable:false)
-        tel(blank:true)    
+        title(nullable:true,blank:true)
+        firstName(nullable:true,size:3..20)
+        lastName(nullable:true,size:3..20)
+        birthDate(nullable:true)
+        PLZ(nullable:true)
+        city(nullable:true)
+        street(nullable:true)
+        tel(nullable:true,blank:true)
+        gender(nullable:true)
     }
 }

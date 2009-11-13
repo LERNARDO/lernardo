@@ -2,7 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="private" />
-    <title>Profil von ${profileInstance.fullName}</title>
+    <title>Profil von ${profileInstance.profile.fullName}</title>
   </head>
   <body>
     <div id="doc4" class="yui-t3">
@@ -10,8 +10,8 @@
 
         <div class="yui-b" id="profile-navigation">
 
-          <g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
-                    type:profileInstance.type, imageUrl:profileInstance.image]"/>
+          %{--<g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
+                    type:profileInstance.type, imageUrl:profileInstance.image]"/>--}%
 
           <div class="profile-group">Kommunikation</div>
           <div class="profile-box">
@@ -36,7 +36,7 @@
             </ul>
           </div>
 
-          <div class="profile-group">Netzwerk</div>
+          %{--<div class="profile-group">Netzwerk</div>
           <div class="profile-box">
             <ul>
               <g:each in="${profileInstance.friends}" var="friend">
@@ -44,7 +44,7 @@
               </g:each>
             </ul>
           </div>
-        </div>
+        </div>--}%
 
         <g:if test="${content == 'neuigkeiten'}">
           <g:render template="/profile/content-neuigkeiten" />
@@ -62,7 +62,7 @@
           <g:render template="/profile/content-activities" model="${activityList}" />
         </g:elseif>
         <g:elseif test="${content == 'location'}">
-          <g:render template="/profile/content-location" model=[profileInstance:profileInstance,location:location] />
+          <g:render template="/profile/content-location" model="[profileInstance:profileInstance,location:location]" />
         </g:elseif>
         <g:elseif test="${content == 'profile'}">
           <g:render template="/profile/content-profile" model="${profileInstance}" />
@@ -73,6 +73,7 @@
 
       </div>
     </div>
+      </div>
 
   </body>
 </html>

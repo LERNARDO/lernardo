@@ -19,6 +19,6 @@ class FacProfile extends Profile {
         tel(blank:true)
         description(blank:true,maxSize: 2000)
         opened(blank:true)
-        speaker(blank:true)
+        speaker(nullable: true, blank:true)
     }
 }
