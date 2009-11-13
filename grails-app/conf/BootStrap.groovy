@@ -4,6 +4,9 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Role
 import org.joda.time.DateMidnight
 import de.uenterprise.ep.profiles.PersonProfile
+import profiles.UserProfile
+import de.uenterprise.ep.Link
+import profiles.FacProfile
 
 class BootStrap {
   def profileDataService
@@ -21,6 +24,8 @@ class BootStrap {
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
       createDefaultUsers()
+      createDefaultFacs()
+      createDefaultLinks()
       //profileDataService.init()
       templateDataService.init()
       activityDataService.init()
@@ -35,60 +40,97 @@ class BootStrap {
   }
 
   void createDefaultUsers() {
+    log.debug ("==> creating default users")
     EntityType etUser = metaDataService.etUser
 
     // an admin user
     entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@ue.de", "Mr. Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.profile.tagline = "to be on top is our job"
-      ent.profile.gender = 1
-      ent.profile.location = "hier"
+      UserProfile prf = ent.profile
+      prf.tagline = "to be on top is our job"
+      prf.gender = 1
     }
 
     // a mod user
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
-      ent.profile.tagline = "Simplicity is the ultimate sophistication"
-      ent.profile.gender = 1
+      UserProfile prf = ent.profile
+      prf.tagline = "Simplicity is the ultimate sophistication"
+      prf.gender = 1
     }
 
     // some regular users
     entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
-      PersonProfile prf = ent.profile
-
-      prf.birthday = new DateMidnight(1983, 07, 20).toDate()
+      UserProfile prf = ent.profile
+      prf.birthDate = new DateMidnight(1983, 07, 20).toDate()
       prf.gender = 2
-      prf.profession = "Soziologin"
-      prf.location = "Berndorf"
-      prf.status = "workaholic"
-      prf.hobbies = "musik, tanz"
-      prf.webSite = "www.lkult.at"
-      prf.description = "Ist eine LKULT Mitarbeiterin."
     }
 
     entityHelperService.createEntityWithUserAndProfile("mike", etUser, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
-      ent.profile.tagline = "Wozu brauch ma des?"
-      ent.profile.gender = 1
+      UserProfile prf = ent.profile
+      prf.tagline = "Wozu brauch ma des?"
+      prf.gender = 1
     }
+
     entityHelperService.createEntityWithUserAndProfile("johannes", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
-      ent.profile.tagline = "Ich will die Welt im ERP abbilden!"
-      ent.profile.gender = 1
+      UserProfile prf = ent.profile
+      prf.tagline = "Ich will die Welt im ERP abbilden!"
+      prf.gender = 1
+      prf.firstName = "Johannes"
+      prf.lastName = "Zeitelberger"
+      prf.PLZ = "2560"
+      prf.city = "Berndorf"
+      prf.street = "Wankengasse 10"
+      prf.tel = "0664 / 840 66 20"
     }
+
     entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
-      ent.profile.tagline = "..."
-      ent.profile.gender = 2
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
     }
+
     entityHelperService.createEntityWithUserAndProfile("birgit", etUser, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
-      ent.profile.tagline = "..."
-      ent.profile.gender = 2
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
     }
+
     entityHelperService.createEntityWithUserAndProfile("hannah", etUser, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
-      ent.profile.tagline = "..."
-      ent.profile.gender = 2
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
     }
+
     entityHelperService.createEntityWithUserAndProfile("regina", etUser, "rgt@lernardo.at", "Regina Toncourt") {Entity ent ->
-      ent.profile.tagline = "..."
-      ent.profile.gender = 2
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
     }
   }
+
+  void createDefaultFacs () {
+    EntityType et = metaDataService.etPO
+
+    entityHelperService.createEntityWithUserAndProfile ("kaumberg", et, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
+      FacProfile prf = ent.profile
+      prf.PLZ = "2572"
+      prf.city = "Kaumberg"
+      prf.street = "?"
+      prf.tel   = "0660 / 461 1106"
+      prf.opened = "?"
+      prf.speaker = Entity.findByName('hannah')
+      prf.description    = "Siemens ist ein deutsches Unternehmen, das 1847 unter der Leitung von Werner von Siemens und Johann Georg Halske gegründet wurde"
+    }
+  }
+
+  void createDefaultLinks () {
+    log.debug ("==> creating links")
+    def mike = Entity.findByName ('mike')
+    def alex = Entity.findByName ('alex')
+
+    // Person Links
+    new Link(source:mike, target:alex,  type:metaDataService.ltFriend).save()
+  }
+  
 }

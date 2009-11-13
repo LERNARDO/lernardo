@@ -7,6 +7,7 @@ class MetaDataService {
   // String Constants
   static final String EST_PERSON = "Person"              // EntitySuperType
   static final String EST_ORG = "Organisation"
+  static final String EST_FAC = "Facility"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_PO = "ForProfitOrganisation"
@@ -14,6 +15,7 @@ class MetaDataService {
 
   static final String PRT_PERSON = "Person"
   static final String PRT_ORG = "Org"
+  static final String PRT_FAC = "Fac"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -28,6 +30,7 @@ class MetaDataService {
   def initialize() {
     getEstPerson()
     getEstOrg()
+    getEstFac()
 
     getEtUser()
     getEtPO()
@@ -46,6 +49,7 @@ class MetaDataService {
 
   def getEstPerson() { defaultObjectService.openEST(EST_PERSON, PRT_PERSON)  }
   def getEstOrg() { defaultObjectService.openEST(EST_ORG, PRT_ORG)  }
+  def getEstFac() { defaultObjectService.openEST(EST_FAC, PRT_FAC)  }
 
   def getEtUser () { defaultObjectService.openET (ET_USER, estPerson) }
   def getEtPO () { defaultObjectService.openET (ET_PO, estOrg) }
