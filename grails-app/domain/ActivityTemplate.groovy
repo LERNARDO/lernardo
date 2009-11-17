@@ -3,7 +3,7 @@ class ActivityTemplate {
   String name
   String attribution
   String description
-  String duration
+  Integer duration
   String socialForm
   String materials
   Integer ll
@@ -19,5 +19,7 @@ class ActivityTemplate {
   Date lastUpdated
 
     static constraints = {
+      dateCreated(nullable: true)
+      lastUpdated(nullable: true)
     }
 }

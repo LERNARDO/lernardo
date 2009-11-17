@@ -14,7 +14,7 @@ class MetaDataService {
   static final String ET_PO = "ForProfitOrganisation"
   static final String ET_NPO = "NonProfitOrganisation"
 
-  static final String PRT_PERSON = "Person"              // ProfileType
+  static final String PRT_PERSON = "User"              // ProfileType
   static final String PRT_ORG = "Org"
   static final String PRT_FAC = "Fac"
 

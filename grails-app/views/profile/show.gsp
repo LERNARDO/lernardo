@@ -10,6 +10,9 @@
 
         <div class="yui-b" id="profile-navigation">
 
+          <div id="profile-pic">
+            <ub:profileImage name="${profileInstance.name}" width="180" height="233" />
+          </div>
           %{--<g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
                     type:profileInstance.type, imageUrl:profileInstance.image]"/>--}%
 
@@ -65,7 +68,7 @@
           <g:render template="/profile/content-location" model="[profileInstance:profileInstance,location:location]" />
         </g:elseif>
         <g:elseif test="${content == 'profile'}">
-          <g:render template="/profile/content-profile" model="${profileInstance}" />
+          <g:render template="/profile/content-profile" model="[profileInstance:profileInstance]" />
         </g:elseif>
         <g:elseif test="${content == 'leistung'}">
           <g:render template="/profile/content-leistung" />

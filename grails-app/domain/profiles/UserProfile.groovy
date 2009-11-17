@@ -12,6 +12,7 @@ class UserProfile extends Profile {
     String street
     String tel
     Integer gender
+    String biography
 
     static constraints = {
         title(nullable:true,blank:true)
@@ -23,5 +24,6 @@ class UserProfile extends Profile {
         street(nullable:true)
         tel(nullable:true,blank:true)
         gender(nullable:true)
+        biography(nullable:true)
     }
 }

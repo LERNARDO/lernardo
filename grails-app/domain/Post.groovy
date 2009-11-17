@@ -13,5 +13,7 @@ class Post {
   Date lastUpdated
 
     static constraints = {
+      dateCreated(nullable: true)
+      lastUpdated(nullable: true)
     }
 }

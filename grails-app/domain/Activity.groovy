@@ -8,7 +8,6 @@ class Activity {
   Date date
   Integer duration
   Entity facility
- 
 
   Date dateCreated
   Date lastUpdated
