@@ -1,11 +1,14 @@
 import grails.converters.JSON
 import de.uenterprise.ep.Entity
+import de.uenterprise.ep.Link
 
 class ProfileController {
     def profileDataService
     def activityDataService
     def geoCoderService
     def networkService
+    def entityHelperService
+    def metaDataService
 
     def index = { }
 
@@ -71,6 +74,63 @@ class ProfileController {
         profileDataService.addProfile(params.name, params)
         def prf = profileDataService.getProfile (params.name)
         render (view:"show_${prf.type ? prf.type:'other'}", model:prf)
+    }
+
+    def addFriend = {
+      Entity e = params.name ? Entity.findByName(params.name) : null
+      if (!e) {
+        sendError (404)
+        return
+      }
+
+      def linkInstance = new Link()
+      linkInstance.source = entityHelperService.loggedIn
+      linkInstance.type = metaDataService.ltFriend
+      linkInstance.target = e ;
+
+      // for now just create a back-link for mutuality - a more elaborate workflow will be in order later on
+      def linkBack = new Link()
+      linkBack.source = e ;
+      linkBack.type = metaDataService.ltFriend
+      linkBack.target = entityHelperService.loggedIn
+
+      if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
+        //flash.message = message(code:"addFriend", args:[linkInstance.target.profile.fullName])
+        redirect action:'show', params:[name:linkInstance.target.name]
+      }
+      else {
+        //flash.message = message(code:"addFriendFailed", args:[linkInstance.target.profile.fullName])
+        redirect action:'show', params:[name:linkInstance.target.name]
+      }
+    }
+
+    def removeFriend = {
+      Entity e = Entity.findByName(params.name)
+      def c = Link.createCriteria()
+      def linkInstance = c.get {
+        eq('source',entityHelperService.loggedIn)
+        eq('target',e)
+        eq('type',metaDataService.ltFriend)
+      }
+      def d = Link.createCriteria()
+      def linkInstanceBack = d.get {
+        eq('source',e)
+        eq('target',entityHelperService.loggedIn)
+        eq('type',metaDataService.ltFriend)
+      }
+      if(linkInstance && linkInstanceBack) {
+            def n = linkInstance.target.name
+            try {
+                linkInstance.delete(flush:true)
+                linkInstanceBack.delete(flush:true)
+                //flash.message = message(code:"removeFriend", args:[e.profile.fullName])
+                redirect action:'show', params:[name:n]
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException ex) {
+                //flash.message = message(code:"removeFriendFailed", args:[e.profile.fullName])
+                redirect action:'show', params:[name:n]
+            }
+        }
     }
 
 }

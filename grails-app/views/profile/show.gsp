@@ -33,8 +33,14 @@
               <g:if test="${profileInstance.type == 'client'}">
                 <li class="profile-leistung"><g:link action="show" params="[content:'leistung',name:profileInstance.name]">Leistungsfortschritt</g:link></li>
               </g:if>
-              <ub:notMe entityName="${profileInstance.name}">
-                <li class="profile-netzwerk"><a href="#">Zu Netzwerk hinzufügen</a></li>
+
+              <ub:notMe entityName="${profileInstance?.name}">
+              <app:isFriend entity="${profileInstance}">
+                <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" params="[name:profileInstance?.name]">Vom Netzwerk entfernen</g:link></li>
+              </app:isFriend>
+              <app:notFriend entity="${profileInstance}">
+                <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" params="[name:profileInstance?.name]">Zum Netzwerk hinzufügen</g:link></li>
+              </app:notFriend>
               </ub:notMe>
             </ul>
           </div>

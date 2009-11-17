@@ -157,7 +157,9 @@ class BootStrap {
 
     // Person Links
     new Link(source:mike, target:alex,  type:metaDataService.ltFriend).save()
+    new Link(source:alex, target:mike,  type:metaDataService.ltFriend).save()
     new Link(source:alex, target:patrizia, type:metaDataService.ltFriend).save()
+    new Link(source:patrizia, target:alex, type:metaDataService.ltFriend).save()
   }
 
   void createDefaultActivityTemplates() {

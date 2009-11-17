@@ -15,4 +15,10 @@ class NetworkService {
 
       return results
     }
+  
+    boolean isFriendOf (Entity source, Entity target) {
+      def links = Link.findAllBySourceAndTarget (source, target)
+      def friendLink = links.find {it.type.id == metaDataService.ltFriend.id}
+      return friendLink ? true :false;
+    }
 }
