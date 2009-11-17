@@ -10,25 +10,23 @@ class ActivityController {
         params.max = params.max ? params.max.toInteger(): 10
         params.perMonth = params.perMonth ? params.perMonth: "alle"
         return ['activityType': params.perMonth,
-                'activityList': activityDataService.find (params.offset, params.max, params.perMonth),
-                'activityCount': activityDataService.findCountByMonth(params.perMonth)]
+                'activityList': Activity.list(params),
+                'activityCount': Activity.count()]
     }
 
     def show = {
-        def activity = activityDataService.findById(params.id)
+        def activity = Activity.findById(params.id)
 
         if (!activity) {
             response.sendError(404, "'$params.id': no such activity")
             return ;
         }
 
-        def e = profileDataService.getProfile(activity.einrichtung ?: "")
-      
-        return [activity:activity, einrichtung:e]
+        return [activity:activity]
     }
 
     def create = {
-        def template = templateDataService.findById(params.id)
+        def template = ActivityTemplate.findById(params.id)
 
         if (!template) {
             response.sendError(404, "'$params.id': no such template")

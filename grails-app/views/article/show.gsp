@@ -1,14 +1,14 @@
 <head>
-  <title>${article.value.title}</title>
+  <title>${article.title}</title>
   <meta name="layout" content="public" />
 </head>
 
 <body>
   <div id="article-container">
     <div class="item">
-      <g:render template="header"     model='[article:article.value]'/>
-      <g:render template="teaser"     model='[article:article.value]'/>
-      <g:render template="content"    model='[article:article.value]'/>
+      <g:render template="header"     model='[article:article]'/>
+      <g:render template="teaser"     model='[article:article]'/>
+      <g:render template="content"    model='[article:article]'/>
       <div class="actionlink">
         <g:link action="index">Zurück zur Übersicht</g:link>
       </div>

@@ -34,8 +34,7 @@
         </g:elseif>
         <g:elseif test="${profileInstance.type.name == 'User'}">
           <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${profileInstance.profile.title}</td></tr>
-          <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${profileInstance.profile.firstName}</td></tr>
-          <tr><td class="bold titles bezeichnung">Nachname:</td><td class="bezeichnung">${profileInstance.profile.lastName}</td></tr>
+          <tr><td class="bold titles bezeichnung">Vorname:</td><td class="bezeichnung">${profileInstance.profile.fullName}</td></tr>
           <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${profileInstance.profile.birthDate}</td></tr>
           <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${profileInstance.profile.PLZ}</td></tr>
           <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${profileInstance.profile.city}</td></tr>

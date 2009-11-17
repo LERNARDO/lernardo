@@ -4,8 +4,7 @@ import de.uenterprise.ep.Profile
 
 class UserProfile extends Profile {
     String title
-    String firstName
-    String lastName
+    String fullName
     Date birthDate
     Integer PLZ
     String city
@@ -16,8 +15,7 @@ class UserProfile extends Profile {
 
     static constraints = {
         title(nullable:true,blank:true)
-        firstName(nullable:true,size:3..20)
-        lastName(nullable:true,size:3..20)
+        fullName(nullable:true,size:3..30)
         birthDate(nullable:true)
         PLZ(nullable:true)
         city(nullable:true)

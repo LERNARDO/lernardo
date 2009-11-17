@@ -5,7 +5,7 @@ class ArticleController {
         //def today = new Date()
         //def day = today.getDay()
 
-        def res = ['articles': articleDataService.getArticles(),
+        def res = ['articles': Post.list(params),
                    'listTitle': 'Aktuelle Ereignisse'
                     /*'day':day*/]
 
@@ -14,7 +14,7 @@ class ArticleController {
 
     def show = {
         params.id = params.id ?: "1"
-        def res = ['article': articleDataService.getArticle(params.id)]
+        def res = ['article': Post.findById(params.id)]
         render (view:"show", model:res)
     }
 }

@@ -4,6 +4,7 @@ import de.uenterprise.ep.Profile
 import de.uenterprise.ep.Entity
 
 class FacProfile extends Profile {
+    String fullName
     Integer PLZ
     String city
     String street
@@ -13,6 +14,7 @@ class FacProfile extends Profile {
     Entity speaker
 
     static constraints = {
+        fullName(nullable:false)
         PLZ(nullable:false)
         city(nullable:false)
         street(nullable:false)

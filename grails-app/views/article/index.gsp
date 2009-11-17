@@ -9,9 +9,9 @@
 
     <g:each var="article" in="${articles}">
       <div class="item">
-        <g:render template="header" model='[article:article.value]'/>
-        <g:render template="teaser" model='[article:article.value]'/>
-        <g:render template="links"  model='[article:article.value]'/>
+        <g:render template="header" model='[article:article]'/>
+        <g:render template="teaser" model='[article:article]'/>
+        <g:render template="links"  model='[article:article]'/>
       </div>
     </g:each>
 

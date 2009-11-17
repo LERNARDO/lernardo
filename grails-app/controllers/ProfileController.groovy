@@ -34,8 +34,8 @@ class ProfileController {
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
         return ['profileType': params.profileType,
-                'profileList': profileDataService.getProfiles (params.profileType, params.offset, params.max),
-                'profileCount': profileDataService.getProfileCount (params.profileType)]
+                'profileList': Entity.list(params),
+                'profileCount': Entity.count()]
     }
 
     def show = {

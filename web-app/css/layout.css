@@ -587,7 +587,7 @@ ul li {
 
 /* ----- TABLES ----- */
 
-.row-paed {
+.row-paed, .row-User {
     background: #b2b2ff;
 }
 
@@ -595,7 +595,7 @@ ul li {
     background: #ffb2b2;
 }
 
-.row-einrichtung {
+.row-einrichtung, .row-Hort {
     background: #b2ffb2;
 }
 

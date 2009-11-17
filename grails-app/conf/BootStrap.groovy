@@ -46,8 +46,6 @@ class BootStrap {
       ent.profile.tagline = "to be on top is our job"
       prf.gender = 1
       prf.title = "-"
-      prf.firstName = "admin"
-      prf.lastName = "admin"
       prf.birthDate = new Date()
       prf.PLZ = 1000
       prf.city = "Wien"
@@ -63,6 +61,7 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
       prf.gender = 1
+      prf.city = "Gumpoldskirchen"
     }
 
     // some regular users
@@ -70,20 +69,20 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.birthDate = new Date(1983, 07, 20)
       prf.gender = 2
+      prf.city = "Berndorf"
     }
 
     entityHelperService.createEntityWithUserAndProfile("mike", etPerson, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Wozu brauch ma des?"
       prf.gender = 1
+      prf.city = "Wien"
     }
 
     entityHelperService.createEntityWithUserAndProfile("johannes", etPerson, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Ich will die Welt im ERP abbilden!"
       prf.gender = 1
-      prf.firstName = "Johannes"
-      prf.lastName = "Zeitelberger"
       prf.PLZ = 2560
       prf.city = "Berndorf"
       prf.street = "Wankengasse 10"
@@ -94,24 +93,28 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
+      prf.city = "Berndorf"
     }
 
     entityHelperService.createEntityWithUserAndProfile("birgit", etPerson, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
+      prf.city = "Berndorf"
     }
 
     entityHelperService.createEntityWithUserAndProfile("hannah", etPerson, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
+      prf.city = "Kaumberg"
     }
 
     entityHelperService.createEntityWithUserAndProfile("regina", etPerson, "rgt@lernardo.at", "Regina Toncourt") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
+      prf.city = "Weissenbach"
     }
 
   }
@@ -244,105 +247,62 @@ class BootStrap {
                          ll: 0, be: 1, pk: 2, si: 1, hk: 0, tlt: 1,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
-
-
-    /*
-
-	templates.id_8 = [name:'Heizdecke',
-            id:'8',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Ein Kind liegt auf einer Matte (Decke) und wird von den anderen Kindern mit Bierdeckeln
+    new ActivityTemplate(name:'Heizdecke',
+                         attribution:'Psychomotorik',
+                         description:'''Ein Kind liegt auf einer Matte (Decke) und wird von den anderen Kindern mit Bierdeckeln
 			zugedeckt. Diese legen die Bierdeckel vorsichtig auf das liegende Kind. Es hat die Augen geschlossen
 			und soll möglichst gar nichts von dem Auflegen der Bierdeckel spüren. Auch Hände und Füße sollen nicht
 			mehr zu sehen sein. Abschließend darf das zugedeckte Kind entscheiden, ob es langsam wieder aufgedeckt
 			werden will oder ob es durch kräftiges Schütteln alle Bierdeckel von sich wirft.''',
-            dauer:'15 Minuten',
-            sozialform:'Partnerarbeit',
-            materialien:'Bierdeckel, Decken',
-            ll: '0',
-            be: '1',
-            pk: '2',
-            si: '1',
-            hk: '0',
-            tlt: '1',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_9 = [name:'Autowäsche',
-            id:'9',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Die Kinder stellen sich in einer Reihe gegenüber auf und bilden eine Autowaschstraße.
+                         duration: 15,
+                         socialForm:'Partnerarbeit',
+                         materials:'Bierdeckel, Decken',
+                         ll: 0, be: 1, pk: 2, si: 1, hk: 0, tlt: 1,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Autowäsche',
+                         attribution:'Psychomotorik',
+                         description:'''Die Kinder stellen sich in einer Reihe gegenüber auf und bilden eine Autowaschstraße.
 			Ein Kind bestimmt, welcher Autotyp es sein will, welche Farbe es hat und welches Waschprogramm
 			es wünscht. Dann fährt es mit einem Rollbrett in die Waschstraße ein (oder kniet sich auf allen
 			Vieren), wird berieselt (z.B. mit den Fingern Regentropfen machen), eingeschäumt (reiben) und
 			getrocknet (Wind erzeugen). Die Kinder bringen weitere Ideen in das Spiel ein.''',
-            dauer:'30 Minuten',
-            sozialform:'Kleingruppe (4-8 Kinder)',
-            materialien:'eventuell Rollbrett',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-
-	templates.id_10 = [name:'Ballschaukel',
-            id:'10',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Eine Teilnehmerin bzw. ein Teilnehmer legt sich auf einen
- großen Ball (z.B. Gymnastikball)
-			und wird vorsichtig hin
-und her geschaukelt. Dazu wird der Ball von den
-Gruppenmitgliedern so
-			bewegt, dass der bzw. die Liegende
-sicher auf dem Ball ruht. Für die Entspannung sind sehr
-vorsichtige,
-			gleichmäßig schaukelnde oder kreisende
-Bewegungen geeignet.''',
-            dauer:'30 Minuten',
-            sozialform:'Kleingruppe (4-8 Kinder)',
-            materialien:'Gymnastikball',
-            ll: '0',
-            be: '2',
-            pk: '2',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_11 = [name:'Bewegungslandschaft',
-            id:'11',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Zuerst wird die Bewegungslandschaft gemeinsam besprochen, indem einzelne Kinder oder die
-			Lehrperson die Bewegungsaufgaben an den Geräten vorzeigen. Bei dem akustischen Signal mit dem
-			Tamburin erfolgt ein Richtungswechsel. <br /><br />
-
-
-Ablauf: Die Kinder springen beidbeinig/ einbeinig in die
-			Reifen – fahren mit dem Rollbrett durch den Tunnel - springen auf den Kasten und wieder
-runter – gehen
-			bzw. laufen vorwärts oder rückwärts auf den Langbänken – balancieren über das Seil – klettern die
-			Sprossenwand hinauf und rutschen auf der Langbank hinunter.''',
-            dauer:'90 Minuten',
-            sozialform:'Großgruppe (bis 15 Kinder)',
-            materialien:'3 Langbänke, 2 Seile, Kasten,Reifen (2x blau, 2x rot), Rollbrett,Matten, Schaumstofftunnel, Tamburin',
-            ll: '0',
-            be: '3',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'2']
-
-	templates.id_12 = [name:'Schatten',
-            id:'12',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Es werden Paare gebildet. Jedes Paar erhält ein Material (Rollbrett, Skateboard, Sitzsack).
+                         duration: 30,
+                         socialForm:'Kleingruppe (4-8 Kinder)',
+                         materials:'eventuell Rollbrett',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Ballschaukel',
+                         attribution:'Psychomotorik',
+                         description:'''Eine Teilnehmerin bzw. ein Teilnehmer legt sich auf einen großen Ball (z.B. Gymnastikball)
+                         und wird vorsichtig hin und her geschaukelt. Dazu wird der Ball von den Gruppenmitgliedern so bewegt, dass
+                         der bzw. die Liegende sicher auf dem Ball ruht. Für die Entspannung sind sehr vorsichtige, gleichmäßig
+                         schaukelnde oder kreisende Bewegungen geeignet.''',
+                         duration: 30,
+                         socialForm:'Kleingruppe (4-8 Kinder)',
+                         materials:'Gymnastikball',
+                         ll: 0, be: 2, pk: 2, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Bewegungslandschaft',
+                         attribution:'Psychomotorik',
+                         description:'''Zuerst wird die Bewegungslandschaft gemeinsam besprochen, indem einzelne Kinder oder die
+			                            Lehrperson die Bewegungsaufgaben an den Geräten vorzeigen. Bei dem akustischen Signal mit dem
+			                            Tamburin erfolgt ein Richtungswechsel.<br /><br />
+                                        Ablauf: Die Kinder springen beidbeinig/ einbeinig in die Reifen – fahren mit dem Rollbrett
+                                        durch den Tunnel - springen auf den Kasten und wieder runter – gehen bzw. laufen vorwärts
+                                        oder rückwärts auf den Langbänken – balancieren über das Seil – klettern die Sprossenwand
+                                        hinauf und rutschen auf der Langbank hinunter.''',
+                         duration: 90,
+                         socialForm:'Großgruppe (bis 15 Kinder)',
+                         materials:'3 Langbänke, 2 Seile, Kasten,Reifen (2x blau, 2x rot), Rollbrett,Matten, Schaumstofftunnel, Tamburin',
+                         ll: 0, be: 3, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 2).save()
+    new ActivityTemplate(name:'Schatten',
+                         attribution:'Psychomotorik',
+                         description:'''Es werden Paare gebildet. Jedes Paar erhält ein Material (Rollbrett, Skateboard, Sitzsack).
 			Ein Kind setzt sich auf das Material bzw. Gerät und das andere Kind schiebt oder zieht das Kind.
 			Der bzw. die SpielleiterIn oder ein Kind streckt die Arme waagrecht aus, dabei ändert diese Person
 			die Richtung. Die anderen Kinder versuchen immer auf diese Person einen Schatten zu werfen, indem
@@ -350,17 +310,15 @@ runter – gehen
 			unbedingt mit den verschiedenen Materialien bzw. Geräten experimentieren können. Auch ist eine
 			Einführung bezüglich der Anwendung des Materials bzw. des Geräts notwendig. Die Kinder sollen vor
 			dem Spiel in experimenteller Art und Weise eigene Erfahrungen mit Rollbrett, Sitzsack und Skateboard.''',
-            dauer:'30 Minuten',
-            sozialform:'Partnerarbeit',
-            materialien:'Rollbrett, Skateboard, Sitzsack, 2 Seile',
-            ll: '0',
-            be: '3',
-            pk: '2',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+                         duration: 30,
+                         socialForm:'Partnerarbeit',
+                         materials:'Rollbrett, Skateboard, Sitzsack, 2 Seile',
+                         ll: 0, be: 3, pk: 2, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+
+
+    /*
 
 	templates.id_13 = [name:'Blättertanz',
             id:'13',
@@ -756,8 +714,22 @@ dürfen nicht mehr aufgelesen werden.
 
       new Activity(title:'Weide mit Hindernissen',
             owner:Entity.findByName('alex'),
-            date: new Date(2009,10,01),
+            date: new Date(2009-1900,10,01,15,30),
             duration: 60,
+            paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
+            clients:[Entity.findByName('alex'),Entity.findByName('mike')],
+            facility:Entity.findByName('loewenzahn')).save()
+      new Activity(title:'Schmetterlinge',
+            owner:Entity.findByName('alex'),
+            date: new Date(2009-1900,10,01,16,30),
+            duration: 30,
+            paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
+            clients:[Entity.findByName('alex'),Entity.findByName('mike')],
+            facility:Entity.findByName('loewenzahn')).save()
+      new Activity(title:'Luftballonmeer',
+            owner:Entity.findByName('alex'),
+            date: new Date(2009-1900,10,02,15,30),
+            duration: 45,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn')).save()
