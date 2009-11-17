@@ -1,75 +1,30 @@
-# ERP Prioritaeten
+# Alex
+- none
+
+# Allan
+- none
+
+# Daniel
+- none
+
+# Manuel
+- none
+
+# Mike
+- none
+
+# Previous TODOs
 
 - Anwesenheits-/Essensliste für alle Kinder pro Monat, pro Kind pro Monat, mit Summe Anwesenheit und Essenbeiträge
 - Paedagogen sollen Newsartikel schreiben können
 - Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
-
-# TODO
 - implement blog (MK)
 - implement "zu netzwerk hinzufuegen"
-- fix sortable columns in lists
 - add dropdown to list all activities of a single day
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - add a margin-bottom to table header of lists
 - implement messages (MK)
 - implement "bild des tages" and "zitat des tages"
-- JLZ: implement real user accounts for paeds
 - JLZ: make calendar functional for paeds so they can use it within a week
 - style PDF with CSS properly
 - style -Leistungsfortschritt- view properly
-
-# Done
-- redo banner graphic
-- add favicon
-- move list views to admin area
-- implement new CSS-Design
-- implement actions list
-- fix friends role in profiles
-- colorize each profile type differently
-- add more client profiles and real data
-- add view templates for "nachricht schreiben", "sms senden"
-- change profile list view to only display role and name
-- change list views to only use one view
-- change activity template list view to only display name, duration, social form and paed count
-- color list lines differently
-- added empty calendar view in profiles
-- added views and styles for articles
-- formatted names in activities list view
-- added article controller and DataService
-- tab navigation for profiles (paed): fixed by adding "Kalender" to the Kommunikation-Box in profiles
-- Gesamtliste der Aktivitaeten: ShowMonth
-- 1 Eigenes Profil fuer JLZ (mit photo!) anlegen (eigenen Type -'Lernardo Mitarbeiter') und selbiges als ERP Startpunkt verlinken (statt admin)
-- implement jquery-calendar (MK)
-- 1 Vorlagen-Detailview fehlt noch. Detto damit natuerlich die Verlinkung der Records auf der Liste. Nicht vergessen, von dort muss der 'neue aktivitaet' view  aufrufbar (button/link) sein.
-- 1 Aktivitaeten Details: Team und Teilnehmer mit links auf die jeweiligen Profile
-- 1 Alle Profile:  Aktivitaetenliste (wie Kalender, nur als
-- 1 Die Listen schauen alle nix gleich  - das geht besser . Notfalls nehmts  halt die Styles vom Grails scaffolding, wenn euch nichts besseres einfällt.
-- 1 ERP menu: passende icons finden/machen. IMHO passt nur 'profile' halbwegs
-- redesign articles on public page
-- style "nachricht schreiben" and "sms senden" views
-- style activity view in profiles
-- style templates view
-- style "create activity" view
-- 2 Profile Einrichtungen, Standort (google map)
-
-- Menueicons vertauschen: Aktivitaet anstelle von Aktivitaetsvorlagen
-- "Aktivitaet planen" <- Aktivitaetsvorlagen
-- Avatar fuer Kaumberg als Avatar
-- Aktivitaet anlegen-View: "Typ" in "Vorlagenname" umbenennen
-- Redirect bei Abbrechen fuer "Aktivitaet planen"
-- colored Mitarbeiter profile and list view in orange
-- added logo for betreiber Lernardo
-- added 2 additional profiles of Lernardo mitarbeiter
-- add ERP info text on public page
-- removed admin links for articles when not logged in
-- Einrichtungen im Profil und Public (Name, Oeffnungszeiten, Ort, Tel-Nr, Link zur Homepage)
-- added more profile images
-- Mehrere Aktivitaeten anlegen (auf mehrere Monate, aus Plaenen entnehmen, Oktober fuellen)
-- add more data into calendars
-- put Profiles and Templates into the IMG-Menu
-- fix hours in jquery-calendar (16:00h = 2pm)
-- implement login (MK)
-- implement ubase plugin (MK)
-- color links in list views to make them more visible
-- style article show view properly
-- fix article header links on public page
