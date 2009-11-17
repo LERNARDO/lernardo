@@ -5,6 +5,7 @@ class ProfileController {
     def profileDataService
     def activityDataService
     def geoCoderService
+    def networkService
 
     def index = { }
 
@@ -50,7 +51,8 @@ class ProfileController {
         return ['profileInstance':e,
                 'content':content,
                 'activityList':activityDataService.findByOwner(params.name),
-                'location':location]
+                'location':location,
+                'friendsList':networkService.findFriendsOf(e)]
     }
 
     // not used atm

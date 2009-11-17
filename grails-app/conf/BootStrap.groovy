@@ -62,12 +62,15 @@ class BootStrap {
       prf.tagline = "Simplicity is the ultimate sophistication"
       prf.gender = 1
       prf.city = "Gumpoldskirchen"
+      prf.birthDate = new Date(1982-1900,02,22)
+      prf.PLZ = 2352
+      prf.street = "Rudolf Tamchina Gasse 5/5"
     }
 
     // some regular users
     entityHelperService.createEntityWithUserAndProfile("patrizia", etPerson, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       UserProfile prf = ent.profile
-      prf.birthDate = new Date(1983, 07, 20)
+      prf.birthDate = new Date(1983-1900, 07, 20)
       prf.gender = 2
       prf.city = "Berndorf"
     }
@@ -150,9 +153,11 @@ class BootStrap {
     log.debug ("==> creating default links")
     def mike = Entity.findByName ('mike')
     def alex = Entity.findByName ('alex')
+    def patrizia = Entity.findByName ('patrizia')
 
     // Person Links
     new Link(source:mike, target:alex,  type:metaDataService.ltFriend).save()
+    new Link(source:alex, target:patrizia, type:metaDataService.ltFriend).save()
   }
 
   void createDefaultActivityTemplates() {

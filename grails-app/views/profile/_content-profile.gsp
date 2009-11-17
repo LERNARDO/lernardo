@@ -56,9 +56,9 @@
         </g:elseif>
       </table>
       <br/>
-      <g:isLoggedIn>
+      <ub:meOrAdmin entityName="${entity.name}">
           <g:link style="color:#a00; font-weight: bold;" action="edit" id="#">Profil bearbeiten</g:link>
-    </g:isLoggedIn>
+      </ub:meOrAdmin>
 %{--<g:form>
 <input type="hidden" name="id" value="${name}" />
 <span class="button"><g:actionSubmit class="edit" value="Edit" /></span>

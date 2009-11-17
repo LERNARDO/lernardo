@@ -23,7 +23,7 @@
           <ol class="imgmenu">
             <li>
               <div id="member" class="imgbox">
-                <g:link controller="profile" action="show" params="[name:'johannes']">
+                <g:link controller="profile" action="show" params="[name:currentEntity.name]">
                   <img src="${g.resource(dir:'images/iconex', file:'profile.png')}" alt="Profile" />
                   <h3>Mein Profil</h3>
                 </g:link>
@@ -66,6 +66,7 @@
               </div>
             </li>
 
+            <ub:isAdmin entityName="${currentEntity.name}">
             <li>
               <div id="admin" class="imgbox">
                 <g:link controller="admin" action="index">
@@ -74,6 +75,7 @@
                 </g:link>
               </div>
             </li>
+            </ub:isAdmin>
           </ol>
         </div>
 

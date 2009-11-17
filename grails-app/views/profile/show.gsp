@@ -39,15 +39,20 @@
             </ul>
           </div>
 
-          %{--<div class="profile-group">Netzwerk</div>
+          <div class="profile-group">Netzwerk</div>
           <div class="profile-box">
+            <g:if test="${friendsList.size() == 0}">
+              Keine Freunde im Netzwerk
+            </g:if>
+            <g:else>
             <ul>
-              <g:each in="${profileInstance.friends}" var="friend">
-                <li><g:link action="show" params="[content:'profile',name:friend.key]">${friend.key[0].toUpperCase() + friend.key.substring(1)}</g:link> (${friend.value})</li>
+              <g:each in="${friendsList}" var="friend">
+                <li><g:link action="show" params="[content:'profile',name:friend.name]">${friend.profile.fullName}</g:link> (${friend.type.name})</li>
               </g:each>
             </ul>
+            </g:else>
           </div>
-        </div>--}%
+        </div>
 
         <g:if test="${content == 'neuigkeiten'}">
           <g:render template="/profile/content-neuigkeiten" />
@@ -68,7 +73,7 @@
           <g:render template="/profile/content-location" model="[profileInstance:profileInstance,location:location]" />
         </g:elseif>
         <g:elseif test="${content == 'profile'}">
-          <g:render template="/profile/content-profile" model="[profileInstance:profileInstance]" />
+          <g:render template="/profile/content-profile" model="[profileInstance:profileInstance,entity:profileInstance]" />
         </g:elseif>
         <g:elseif test="${content == 'leistung'}">
           <g:render template="/profile/content-leistung" />
