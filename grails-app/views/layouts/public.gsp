@@ -22,6 +22,11 @@
         <div id="bd">
           <div id="yui-main">
             <div id="main" class="yui-b">
+              <g:if test="${flash.message}">
+                <div id="flash-msg" class="message">
+                  <p>${flash.message}</p>
+                </div>
+              </g:if>
               <g:layoutBody />
             </div>
           </div>

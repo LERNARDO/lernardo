@@ -7,9 +7,7 @@ import profiles.FacProfile
 
 class BootStrap {
   //def profileDataService
-  //def templateDataService
   //def activityDataService
-  //def articleDataService
   def defaultObjectService
   def entityHelperService
   def calendarDataService
@@ -25,9 +23,7 @@ class BootStrap {
       createDefaultActivities()
       createDefaultPosts()
       //profileDataService.init()
-      //templateDataService.init()
       //activityDataService.init()
-      //articleDataService.init()
       calendarDataService.init()
     }
   }
@@ -323,27 +319,19 @@ class BootStrap {
                          ll: 0, be: 3, pk: 2, si: 1, hk: 0, tlt: 0,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
-
-
-    /*
-
-	templates.id_13 = [name:'Blättertanz',
-            id:'13',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Jedes Kind sucht sich ein Blatt, von dem es denkt es sei das schönste Blatt der Welt. Alle Kinder
+    new ActivityTemplate(name:'Blättertanz',
+                         attribution:'Psychomotorik',
+                         description:'''Jedes Kind sucht sich ein Blatt, von dem es denkt es sei das schönste Blatt der Welt. Alle Kinder
 			deponieren ihr Blatt an einer Stelle des Raums, wo sie es wieder finden. Im Weiteren können
 			verschiedene Spielvarianten (14-17) gewählt werden.''',
-            dauer:'5 Minuten',
-            sozialform:'Kleingruppe (bis 8 Kinder),Partnerarbeit',
-            materialien:'Blätter',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+                         duration: 5,
+                         socialForm:'Kleingruppe (bis 8 Kinder), Partnerarbeit',
+                         materials:'Blätter',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+
+     /*
 
 	templates.id_14 = [name:'Renn- und Schleichrunde',
             id:'14',
@@ -746,6 +734,7 @@ dürfen nicht mehr aufgelesen werden.
     log.debug ("==> creating default activity templates")
 
     new PostType(name:'article').save()
+    new PostType(name:'comment').save()
 
     PostType pt = PostType.findByName('article')
 
