@@ -3,7 +3,8 @@
   <head>
     <title>${template.name}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="layout" content="private" />    
+    <meta name="layout" content="private" />
+    <g:javascript library="jquery" />
   </head>
 
   <body>
@@ -49,8 +50,35 @@
 
       <div id="comments-block">
         <h1>Kommentare</h1>
-        <div class="single-entry">
 
+        <g:if test="${!commentList}">
+          Keine Kommentare vorhanden
+        </g:if>
+        <g:else>
+          <g:each in="${commentList}" var="comment">
+          <div class="single-entry">
+            <div class="user-entry">
+              <div class="user-pic">
+                <g:link controller="profile" action="show" params="[name:comment.author.name]">
+                  <ub:profileImage name="${comment.author.name}" width="50" height="65" align="left"/>
+                </g:link>
+              </div>
+              <div class="community-entry-infobar">
+                <div class="name"><g:link action="show" controller="profile" params="[name:comment.author.name]">${comment.author.profile.fullName}</g:link></div>
+                <div class="info">
+                  <div class="time"><g:formatDate format="dd. MMM. yyyy, HH:mm" date="${comment.dateCreated}"/></div>
+                  %{--<div class="actions"><a href="#">Kommentieren</a></div>--}%
+                </div>
+              </div>
+              <div class="clear"></div>
+              <div class="entry-content">${comment.content}</div>
+            </div>
+          </div>
+          </g:each>
+        </g:else>
+
+        %{--
+        <div class="single-entry">
           <div class="user-entry">
             <div class="user-pic">
               <g:link action="show" controller="profile" params="[name:'regina']"><img src="${resource(dir:'images/avatar', file:'regina_toncourt.jpg')}" width="50" height="60" align="left" /></g:link>
@@ -165,9 +193,12 @@
 
         </div>
         <!-- END single-entry -->
+        --}%
 
         <div class="comments-actions">
-          <a href="#">Neuen Kommentar abgeben</a>
+          <g:remoteLink class="button" controller="post" action="createtemplatecomment" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
+        </div>
+        <div id="createComment">
         </div>
       </div>
     </div>

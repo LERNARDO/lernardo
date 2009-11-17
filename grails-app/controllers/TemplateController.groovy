@@ -10,13 +10,13 @@ class TemplateController {
     }
 
     def show = {
-        def template = ActivityTemplate.findById(params.id)
+        def template = ActivityTemplate.get(params.id)
 
         if (!template) {
             response.sendError(404, "'$params.id': no such template")
             return ;
         }
 
-        return [template:template]
+        return [template:template,commentList:Post.findAllByTemplate(template)]
     }
 }

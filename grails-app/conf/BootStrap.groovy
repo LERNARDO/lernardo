@@ -734,11 +734,18 @@ dürfen nicht mehr aufgelesen werden.
     log.debug ("==> creating default activity templates")
 
     new PostType(name:'article').save()
-    new PostType(name:'comment').save()
+    new PostType(name:'templateComment').save()
 
-    PostType pt = PostType.findByName('article')
+    PostType tC = PostType.findByName('templateComment')
 
-    new Post(type:pt,
+    new Post(type:tC,
+            content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
+            author:Entity.findByName('regina'),
+            template:ActivityTemplate.findByName('Blättertanz')).save()
+
+    PostType a = PostType.findByName('article')
+
+    new Post(type:a,
             title:'Lernardo im Hort Kaumberg',
             teaser:'''Mit Beginn September 2009 erweitert Lernardo aufgrund der hohen Nachfrage und positiven
             Resonanz seine Einrichtungen mit einem neuen Standort in Kaumberg.''',
@@ -749,7 +756,7 @@ dürfen nicht mehr aufgelesen werden.
             bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
             zur vollen Verfügung.''',
             author:Entity.findByName('alex')).save()
-    new Post(type:pt,
+    new Post(type:a,
             title:'Gesund durch Ernährungsexpertin',
             teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
             Ernährungsexpertin mit langjähriger Erfahrung, die das Pädagogen Team im Hinblick auf die optimale
@@ -763,7 +770,7 @@ dürfen nicht mehr aufgelesen werden.
             Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
             Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
             author:Entity.findByName('alex')).save()
-    new Post(type:pt,
+    new Post(type:a,
             title:'Hort Löwenzahn erhält Auszeichnung',
             teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
             Familie und Jugend erhielt der Hort "Löwenzahn Weissenbach" den 4. Preis und eine Prämie von
