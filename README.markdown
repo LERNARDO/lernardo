@@ -2,7 +2,8 @@
 - create user/paed/client/operator/hort
 
 # Allan
-- none
+- implement i18n messages
+- style msg views
 
 # Daniel
 - none
@@ -23,7 +24,6 @@
 - add dropdown to list all activities of a single day
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - add a margin-bottom to table header of lists
-- implement messages (MK)
 - implement "bild des tages" and "zitat des tages"
 - JLZ: make calendar functional for paeds so they can use it within a week
 - style PDF with CSS properly

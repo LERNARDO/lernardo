@@ -578,187 +578,92 @@ class BootStrap {
                          ll: 0, be: 2, pk: 0, si: 0, hk: 0, tlt: 0,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
-
-     /*
-
-	templates.id_24 = [name:'Zeitungsschlange',
-            id:'24',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Das Kind versucht aus einer Zeitungsseite die längste Schlange zu reißen. Mit einem
+    new ActivityTemplate(name:'Zeitungsschlange',
+                         attribution:'Psychomotorik',
+                         description:'''Das Kind versucht aus einer Zeitungsseite die längste Schlange zu reißen. Mit einem
 			Maßband wird die Länge der Schlange ermittelt.''',
-            dauer:'15 Minuten',
-            sozialform:'Einzelarbeit',
-            materialien:'Zeitung',
-            ll: '0',
-            be: '1',
-            pk: '0',
-            si: '0',
-            hk: '1',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_25 = [name:'Zeitungstanz',
-            id:'25',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Jeweils zwei Personen tanzen auf einem Zeitungsblatt zur Musik, nach einer gewissen Zeit
+                         duration: 15,
+                         socialForm:'Einzelarbeit',
+                         materials:'Zeitung',
+                         ll: 0, be: 1, pk: 0, si: 0, hk: 1, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Zeitungstanz',
+                         attribution:'Psychomotorik',
+                         description:'''Jeweils zwei Personen tanzen auf einem Zeitungsblatt zur Musik, nach einer gewissen Zeit
 			wird jeweils die Zeitung halbiert/gefaltet und es wird weitergetanzt.''',
-            dauer:'15 Minuten',
-            sozialform:'Partnerarbeit',
-            materialien:'Zeitung, Musik',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_26 = [name:'Bierdeckelspiele',
-            id:'26',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Hier gibt es verschiedene Varianten, die im Weiteren beschrieben werden:
- <br />
-Alle Kinder sitzen
-			und klemmen den Bierdeckel zwischen die Füße.
-Nun versuchen sie, ihn über den Kopf abzulegen. <br />
-
-Alle
-			sitzen auf dem Boden und klemmen den Bierdeckel zwischen die
-Füße. Nun lassen sie den Deckel Karussell
-			fahren, indem sie sich um
-die eigene Achse drehen (Sitzkreisel). <br />
-
-Partnerarbeit: Ein  Kind hält
-			den Reifen, das andere Kind versucht,
-Bierdeckel durch den Reifen zu werfen.
-
-Die Bierdeckel sind die
-			Gleitschuhe, auf die sich die Kinder stellen und
-mit denen sie durch den Raum gleiten. Wer schafft es,
-			den Raum zu
-erobern ohne seine Gleitschuhe zu verlieren? <br />
-
-Einander zurollen und oder als Frisbee
-			werfen.
-
-<br />Die Kinder stehen mit einem Fuß auf einem Bierdeckel, einen Deckel
-halten sie in der Hand.
-			Nun legen sie diesen Bierdeckel vor ihren Füßen
-ab, treten mit dem anderen Fuß darauf, nehmen den
-			frei gewordenen
-Deckel auf und legen ihn wieder vor ihren Füßen ab usw. So legen sich
-die Kinder
-			ihren eingenen Weg.
-
-<br />Zimmer putzen: Jeweils die Hälfte der Kinder wirft möglichst schnell die
-Bierdeckel
-			(Schmutz) aus ihrem Teil des Raumes in das gegnerische Feld.
-Nach Ablauf der Zeit wird die Anzahl der
-			Bierdeckel in beiden Feldern gezählt. <br />
-
-Rollmarkt: Das Kind rollt den runden Bierdeckel möglichst weit,
-			durch eine
-Öffnung im Karton oder über eine Zielmarkierung hinaus <br />
-
-Pyramiden bauen: Wer baut die höchste
-			Pyramide? <br />
-
-Straßennetz: Die Kinder bauen ein Straßennetz aus Bierdeckeln auf
-(Abzweigungen, Kreuzungen
-			etc.). Auf der Straße wird sodann behutsam
-balanciert, der Boden soll nicht berührt werden!''',
-            dauer:'30 Minuten',
-            sozialform:'Kleingruppe, Partnerarbeit',
-            materialien:'Bierdeckel, Reifen',
-            ll: '0',
-            be: '3',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_27 = [name:'Bierdeckel-Staffelspiele',
-            id:'27',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Es werden zwei Gruppen gebildet, folgende Spiele eignen sich als Staffel:<br />
-
-
-Bierdeckellauf: Bierdeckel müssen jeweils einzeln von A nach B gebracht
-werden.<br />
-
-
-Bierdeckelweg: Mit Hilfe von 3-4 Bierdeckeln darf nur auf diesen
-Bierdeckeln gelaufen werden.
-			Die Berührung des Bodens ist nicht erlaubt.
-
- <br /><br />Auf dem Kopf balancieren: Bierdeckel müssen
-			als Staffel von A nach B gebracht
-werden. Die Bierdeckel werden diesmal jedoch auf dem Kopf balanciert.
-
-Die Anzahl der gleichzeitig beförderten Bierdeckel ist unwesentlich, fallen sie
-jedoch unterwegs
-			vom Kopf, so geht’s zurück zum Start! <br />
-
-Körperkontakt: Zwei Kinder laufen gemeinsam los. Die
-			Bierdeckel werden
-zwischen Kopf, Füßen, Bauch, Knie, Handballen, Ferse etc. geklemmt und
-dürfen
-			nicht mit den Händen gehalten werden.
-
-Festgeklemmt: Bierdeckel zwischen die Knie klemmen und loslaufen.
-
-Dabei spielt es keine Rolle wie viele Bierdeckeln zwischen die Knie geklemmt werden.
-
- <br /><br />
-			Känguru: Bierdeckel werden zwischen die Beine/Knie geklemmt, die Strecke wird
-nun gehüpft. Anschließend
-			ist das nächste Kind an der Reihe.
-
-Zielwerfen mit Bierdeckeln: Ein Bierdeckel wird geworfen. Dort, wo der
-			Bierdeckel
-gelandet ist, wird ein weiterer geworfen. Dies geht so lang, bis man die Ziellinie
-erreicht
-			bzw. überschritten hat.
-
-Kellner: Der Bierdeckel dient als Tablett. Darauf müssen Erbsen, Bohnen etc.
-
-			von A nach B transportiert werden. Es geht um Schnelligkeit und wie viele Erbsen
-in einer bestimmten
-			Zeit transportiert werden können. Heruntergefallene Erbsen
-dürfen nicht mehr aufgelesen werden.
-''',
-            dauer:'30 Minuten',
-            sozialform:'2 Kleingruppen (maximal 8 Kinder)',
-            materialien:'Bierdeckel',
-            ll: '0',
-            be: '3',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_28 = [name:'Fliegender Pilz',
-            id:'28',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Das Schwungtuch wird auf und ab bewegt. Wenn das Tuch nach oben schwingt, lassen alle los.
-			Wohin fällt das Tuch?''',
-            dauer:'15 Minuten',
-            sozialform:'Großgruppe (bis 15 Kinder)',
-            materialien:'Schwungtuch',
-            ll: '0',
-            be: '2',
-            pk: '0',
-            si: '0',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'2']*/
+                         duration: 15,
+                         socialForm:'Partnerarbeit',
+                         materials:'Zeitung, Musik',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Bierdeckelspiele',
+                         attribution:'Psychomotorik',
+                         description:'''Hier gibt es verschiedene Varianten, die im Weiteren beschrieben werden:<br />
+                                        Alle Kinder sitzen und klemmen den Bierdeckel zwischen die Füße. Nun versuchen sie, ihn über
+                                        den Kopf abzulegen.<br />
+                                        Alle sitzen auf dem Boden und klemmen den Bierdeckel zwischen die Füße. Nun lassen sie den
+                                        Deckel Karussell fahren, indem sie sich um die eigene Achse drehen (Sitzkreisel).<br />
+                                        Partnerarbeit: Ein  Kind hält den Reifen, das andere Kind versucht, Bierdeckel durch den
+                                        Reifen zu werfen. Die Bierdeckel sind die Gleitschuhe, auf die sich die Kinder stellen und
+                                        mit denen sie durch den Raum gleiten. Wer schafft es, den Raum zu erobern ohne seine Gleitschuhe
+                                        zu verlieren?<br />
+                                        Einander zurollen und oder als Frisbee werfen.<br />
+                                        Die Kinder stehen mit einem Fuß auf einem Bierdeckel, einen Deckel halten sie in der Hand.
+                                        Nun legen sie diesen Bierdeckel vor ihren Füßen ab, treten mit dem anderen Fuß darauf, nehmen
+                                        den frei gewordenen Deckel auf und legen ihn wieder vor ihren Füßen ab usw. So legen sich die
+                                        Kinder ihren eingenen Weg.<br />
+                                        Zimmer putzen: Jeweils die Hälfte der Kinder wirft möglichst schnell die Bierdeckel	(Schmutz)
+                                        aus ihrem Teil des Raumes in das gegnerische Feld. Nach Ablauf der Zeit wird die Anzahl der
+                                        Bierdeckel in beiden Feldern gezählt.<br />
+                                        Rollmarkt: Das Kind rollt den runden Bierdeckel möglichst weit,	durch eine Öffnung im Karton
+                                        oder über eine Zielmarkierung hinaus.<br />
+                                        Pyramiden bauen: Wer baut die höchste Pyramide?<br />
+                                        Straßennetz: Die Kinder bauen ein Straßennetz aus Bierdeckeln auf (Abzweigungen, Kreuzungen
+                                        etc.). Auf der Straße wird sodann behutsam balanciert, der Boden soll nicht berührt werden!''',
+                         duration: 30,
+                         socialForm:'Kleingruppe, Partnerarbeit',
+                         materials:'Bierdeckel, Reifen',
+                         ll: 0, be: 3, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Bierdeckel-Staffelspiele',
+                         attribution:'Psychomotorik',
+                         description:'''Es werden zwei Gruppen gebildet, folgende Spiele eignen sich als Staffel:<br />
+                                        Bierdeckellauf: Bierdeckel müssen jeweils einzeln von A nach B gebracht werden.<br />
+                                        Bierdeckelweg: Mit Hilfe von 3-4 Bierdeckeln darf nur auf diesen Bierdeckeln gelaufen werden.
+                                        Die Berührung des Bodens ist nicht erlaubt.<br /><br />
+                                        Auf dem Kopf balancieren: Bierdeckel müssen	als Staffel von A nach B gebracht werden. Die
+                                        Bierdeckel werden diesmal jedoch auf dem Kopf balanciert. Die Anzahl der gleichzeitig beförderten
+                                        Bierdeckel ist unwesentlich, fallen sie jedoch unterwegs vom Kopf, so geht’s zurück zum Start!<br />
+                                        Körperkontakt: Zwei Kinder laufen gemeinsam los. Die Bierdeckel werden zwischen Kopf, Füßen, Bauch,
+                                        Knie, Handballen, Ferse etc. geklemmt und dürfen nicht mit den Händen gehalten werden.
+                                        Festgeklemmt: Bierdeckel zwischen die Knie klemmen und loslaufen. Dabei spielt es keine Rolle
+                                        wie viele Bierdeckeln zwischen die Knie geklemmt werden.<br /><br />
+                                        Känguru: Bierdeckel werden zwischen die Beine/Knie geklemmt, die Strecke wird nun gehüpft.
+                                        Anschließend ist das nächste Kind an der Reihe. Zielwerfen mit Bierdeckeln: Ein Bierdeckel wird
+                                        geworfen. Dort, wo der Bierdeckel gelandet ist, wird ein weiterer geworfen. Dies geht so lang,
+                                        bis man die Ziellinie erreicht bzw. überschritten hat.
+                                        Kellner: Der Bierdeckel dient als Tablett. Darauf müssen Erbsen, Bohnen etc. von A nach B
+                                        transportiert werden. Es geht um Schnelligkeit und wie viele Erbsen in einer bestimmten	Zeit
+                                        transportiert werden können. Heruntergefallene Erbsen dürfen nicht mehr aufgelesen werden.''',
+                         duration: 30,
+                         socialForm:'2 Kleingruppen (maximal 8 Kinder)',
+                         materials:'Bierdeckel',
+                         ll: 0, be: 3, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Fliegender Pilz',
+                         attribution:'Psychomotorik',
+                         description:'''Das Schwungtuch wird auf und ab bewegt. Wenn das Tuch nach oben schwingt, lassen alle los.
+                                        Wohin fällt das Tuch?''',
+                         duration: 15,
+                         socialForm:'Großgruppe (bis 15 Kinder)',
+                         materials:'Schwungtuch',
+                         ll: 0, be: 2, pk: 0, si: 0, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 2).save()
   }
 
     void createDefaultActivities() {
