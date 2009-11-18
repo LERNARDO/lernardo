@@ -1,6 +1,7 @@
 import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
+import de.uenterprise.ep.EntityType
 
 class ProfileController {
     def profileDataService
@@ -25,7 +26,7 @@ class ProfileController {
             image = "hort_loewenzahn.jpg"
         else if(params.hort == 'Kaumberg')
             image = "hort_kaumberg.jpg"
-        return ['image':image, 'pdf':params,'profileList': profileDataService.getProfiles ('client', 0, 50)]
+        return ['image':image, 'pdf':params,'profileList': Entity.findAllByType(EntityType.findByName('Client'))]
     }
 
     def attendance = {

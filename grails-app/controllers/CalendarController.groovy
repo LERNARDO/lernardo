@@ -25,7 +25,6 @@ class CalendarController {
     }
 
     def showall_month = {}
-
     def showall_week = {}
     def showall_day = {}
 

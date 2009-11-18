@@ -64,14 +64,19 @@ class BootStrap {
       prf.birthDate = new Date(1982-1900,02,22)
       prf.PLZ = 2352
       prf.street = "Rudolf Tamchina Gasse 5/5"
+      prf.tel = "0664 / 840 66 32"
     }
 
     // some regular users
     entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       UserProfile prf = ent.profile
-      prf.birthDate = new Date(1983-1900, 07, 20)
       prf.gender = 2
+      prf.title = "B.A."
       prf.city = "Berndorf"
+      prf.birthDate = new Date(1983-1900,07,20)
+      prf.PLZ = 2560
+      prf.street = "-"
+      prf.tel = "0664 / 840 66 27"
     }
 
     entityHelperService.createEntityWithUserAndProfile("mike", etUser, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
@@ -95,7 +100,12 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
-      prf.city = "Berndorf"
+      prf.birthDate = new Date(1966-1900,11,19)
+      prf.PLZ = 2563
+      prf.city = "-"
+      prf.street = "-"
+      prf.tel = "0664 / 204 91 68"
+      prf.biography = "-"
     }
   }
 
@@ -103,25 +113,96 @@ class BootStrap {
     log.debug ("==> creating default paeds")
     EntityType etPaed = metaDataService.etPaed
 
+    entityHelperService.createEntityWithUserAndProfile("martin", etPaed, "martin@lernardo.at", "Martin Golja") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.title = "Mag."
+      prf.gender = 2
+      prf.birthDate = new Date(1969-1900,12,31)
+      prf.PLZ = 2563
+      prf.city = "Pottenstein"
+      prf.street = "Obere Marktfeldstraße 20"
+      prf.tel = "-"
+      prf.biography = """<b>1976-1980</b> Volksschule Pottenstein<br>
+                          <b>1980-1988</b> Neusprachlicher Zweig des Bundesrealgymnasiums Berndorf<br>
+                          <b>1988</b> Matura<br>
+                          <b>1988-1989</b> Präsenzdienst in der Martinekkaserne in Baden<br>
+                          <b>1989-2006</b> Übungsleitertätigkeit bei der Union Pottenstein für Kinder und Jugendliche; Altersstufen 3-6, 6-10, 10-15<br>
+                          <b>1989</b> Inskription Geographie und Wirtschaftskunde, Germanistik<br>
+                          <b>1992</b> Inskription Geographie und Wirtschaftskunde, Leibeserziehung<br>
+                          <b>1995</b> Beginn Dienstverhältnis auf der Marktgemeinde Pottenstein<br>
+                          <b>1998</b> Ablegung der Prüfungen zum Standesbeamten und Staatsbürgerschaftsevidenzführer<br>
+                          <b>1998</b> Inskription von Geographie und Wirtschaftskunde, Psychologie, Pädagogik, Philosophie<br>
+                          <b>1998-2001</b> Standesbeamter und Staatsbürgerschaftsevidenzführer am Standesamt Pottenstein<br>
+                          <b>1990-2002</b> Mitgesellschafter als staatlich geprüfter Diplomskilehrer in der Skischule St.Anton am Arlberg<br>
+                          <b>1997-2002</b> Ausbildnertätigkeit Ski am Universitätssportinstitut Wien<br>
+                          <b>2001-2003</b> Skilehrerausbildner beim Wiener Ski- und Snowboardlehrerverband, sowie Snowsportsacademy Holland<br>
+                          <b>2002-2003</b> Beschäftigung als Disponent in der Neuwagendisposition Citroen Österreich<br>
+                          <b>2003</b> Ablegung der Diplomprüfung an der Universität Wien<br>
+                          <b>2004-2005</b> Beschäftigung als Erzieher im Landesjugendheim Pottenstein über den Verein „Jugend und Arbeit“ der NÖ Landesregierung (Lehrerbörse)<br>
+                          <b>2005-2006</b> Unterrichtspraktikum am BG/BRG Baden und am BG/BRG Berndorf<br>
+                          <b>2005-laufend</b> geschäftsführender Gemeinderat der Marktgemeinde Pottenstein<br>
+                          <b>2006-laufend</b> Beschäftigung als Springer in der schulischen Nachmittagsbetreuung beim Verein „Hand in Hand“ des NÖ Familienreferates"""
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("rosa", etPaed, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.birthDate = new Date(1961-1900,12,16)
+      prf.PLZ = 2565
+      prf.city = "Neuhaus"
+      prf.street = "Schwarzenseer Straße 19"
+      prf.tel = "0664 / 3774 559"
+      prf.biography = """<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
+                          <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
+                          <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
+                          <b>1996 – 2004:</b> Karenz und Hausfrau<br>
+                          <b>seit 2004:</b> Fa. L. Schumits & Co GmbH in Pfaffstätten (geringfügig)"""
+    }
+
     entityHelperService.createEntityWithUserAndProfile("birgit", etPaed, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
-      prf.city = "Berndorf"
+      prf.birthDate = new Date(1970-1900,03,19)
+      prf.PLZ = 2560
+      prf.city = "Hernstein"
+      prf.street = "Gartengasse 5"
     }
 
     entityHelperService.createEntityWithUserAndProfile("hannah", etPaed, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
-      prf.city = "Kaumberg"
+      prf.birthDate = new Date(1982-1900,02,22)
+      prf.PLZ = 2564
+      prf.city = "Weissenbach an der Triesting"
+      prf.street = "Hauptstraße 14"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("regina", etPaed, "rgt@lernardo.at", "Regina Toncourt") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("regina", etPaed, "regina.toncourt@gmx.at", "Regina Toncourt") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
-      prf.city = "Weissenbach"
+      prf.birthDate = new Date(1962-1900,11,04)
+      prf.PLZ = 2565
+      prf.city = "Neuhaus"
+      prf.street = "Hirschbahngasse 3"
+      prf.tel = "0676 / 4303 145"
+      prf.biography = """<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
+                          <b>1980 – 1983:</b> während der Ferienzeit Betreuerin beim Wr. Jugendhilfswerk<br>
+                          <b>1984 – 1987:</b> Verkäuferin in einem Papierfachgeschäft, halbtags<br>
+                          <b>1987 - 1993:</b> Tennisschule „Team Tennis“ (Verkauf, Service, Werbung, Administration, Kinderbetreuung)<br>
+                          <b>1993 - 1997:</b> Verein Wr.Jugendzentren – Kinder- und Jugendbetreuung.<br>
+                          1jährige Fortbildung: „Soziokulturelle Animation“;<br>
+                          laufend Fort- und Weiterbildungen (u.a. sex. Missbrauch, Drogen- und
+                          Gewaltprävention, außergerichtlicher Tatausgleich, Konflikt als Chance,
+                          Outdoor- und Erlebnispädagogik)<br>
+                          <b>1998 - 2001:</b> verlängerte Karenz; Ausbildung bei Dr. Sindelar zur Trainerin bei TLS (Teilleistungsschwächen)<br>
+                          <b>2001 – 2004:</b> Karenz, Montessori-Ausbildung bei Claus-Dieter Kaul<br>
+                          <b>2005:</b> Montessori-Diplom<br>
+                          <b>seit 2005:</b> Tagesmutter und Trainerin bei TLS beim NÖ Hilfswerk"""
     }
   }
 
@@ -142,14 +223,24 @@ class BootStrap {
     log.debug ("==> creating default operators")
     EntityType etOperator = metaDataService.etOperator
 
-    entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "Verein Lernardo") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
       FacProfile prf = ent.profile
-      prf.PLZ = 2564
+      prf.PLZ = 2560
       prf.city = "Berndorf"
-      prf.street = "-"
+      prf.street = "Leobersdorfer Straße 42"
       prf.tel   = "-"
       prf.opened = "-"
-      //prf.speaker = Entity.findByName('regina')
+      prf.speaker = Entity.findByName('johannes')
+      prf.description = "-"
+    }
+    entityHelperService.createEntityWithUserAndProfile ("alpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
+      FacProfile prf = ent.profile
+      prf.PLZ = 2563
+      prf.city = "Pottenstein"
+      prf.street = "Hainfelderstrasse 29"
+      prf.tel   = "-"
+      prf.opened = "-"
+      //prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
     }
   }
@@ -165,18 +256,26 @@ class BootStrap {
       prf.street = "Hauptstraße 12"
       prf.tel   = "0676 / 880 604 001"
       prf.opened = "Mo-Fr, 11 bis 18 Uhr"
-      //prf.speaker = Entity.findByName('regina')
-      prf.description = "Der erste unter Lernardo betriebene Hort."
+      prf.speaker = Entity.findByName('regina')
+      prf.description = """Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
+                            und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
+                            mit ca. 62m² und ein Aufenthaltsraum mit mehr als 24 m² sowie eine Garderobe
+                            und Toilettenanlagen getrennt für Mädchen und Buben zur Verfügung. Des Weiteren
+                            können in Kooperation mit der Gemeinde Schulräumlichkeiten in der örtlichen
+                            Volksschule, sowie Räume der Hauptschule und der Volksschulgarten bzw. Spielplatz
+                            genutzt werden.<br>
+                            Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
+                            Spielbereich und ein Ruhebereich zur Verfügung."""
     }
 
     entityHelperService.createEntityWithUserAndProfile ("kaumberg", etFac, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
       FacProfile prf = ent.profile
       prf.PLZ = 2572
       prf.city = "Kaumberg"
-      prf.street = "?"
+      prf.street = "-"
       prf.tel   = "0660 / 461 1106"
       prf.opened = "?"
-      //prf.speaker = Entity.findByName('hannah')
+      prf.speaker = Entity.findByName('hannah')
       prf.description = "Der zweite unter Lernardo betriebene Hort."
     }
   }
@@ -427,24 +526,17 @@ class BootStrap {
                          ll: 0, be: 2, pk: 1, si: 0, hk: 0, tlt: 0,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Faltzeitung',
+                         attribution:'Psychomotorik',
+                         description:'Jedes Kind versucht ein Zeitungsblatt so oft wie möglich zu falten.',
+                         duration: 15,
+                         socialForm:'Einzelarbeit',
+                         materials:'Zeitungen',
+                         ll: 0, be: 1, pk: 0, si: 0, hk: 1, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
 
      /*
-
-	templates.id_19 = [name:'Faltzeitung',
-            id:'19',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Jedes Kind versucht ein Zeitungsblatt so oft wie möglich zu falten.''',
-            dauer:'15 Minuten',
-            sozialform:'Einzelarbeit',
-            materialien:'Zeitungen',
-            ll: '0',
-            be: '1',
-            pk: '0',
-            si: '0',
-            hk: '1',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
 
 	templates.id_20 = [name:'Spiele mit Zeitungspapier',
             id:'20',

@@ -1,5 +1,5 @@
 # Alex
-- none
+- create user/paed/client/operator/hort
 
 # Allan
 - none
@@ -11,7 +11,8 @@
 - none
 
 # Mike
-- none
+- database
+- TeamCity
 
 # Previous TODOs
 
@@ -19,7 +20,6 @@
 - Paedagogen sollen Newsartikel schreiben können
 - Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
 - implement blog (MK)
-- implement "zu netzwerk hinzufuegen"
 - add dropdown to list all activities of a single day
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - add a margin-bottom to table header of lists

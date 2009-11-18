@@ -1,7 +1,4 @@
 class ActivityController {
-    def activityDataService
-    def profileDataService
-    def templateDataService
 
     def index = {}
 
