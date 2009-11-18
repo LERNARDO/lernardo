@@ -330,68 +330,44 @@ class BootStrap {
                          ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Renn- und Schleichrunde',
+                         attribution:'Psychomotorik',
+                         description:'''Alle rennen so schnell sie können im Kreis. Auf ein Kommando hin müssen alle so langsam wie
+                                        möglich gehen. Input: „Nun geht ihr über eine Herbstwiese, die übersät ist mit Schalen von
+                                        Esskastanien.“<br />Nun rennen wieder alle ganz schnell. Auf ein Kommando müssen alle so
+                                        langsam wie möglich gehen und es folgt ein neuer Input: „Ihr geht über eine Herbstwiese
+                                        voller nasser glitschiger Blätter.“<br />Hiervon gibt es mehrere Runden. Die Abschlussrunde
+                                        beinhaltet folgende Aufgabe: „Nun geht ihr über	eine Herbstwiese und findet das wunderschönste
+                                        Blatt der Welt.''',
+                         duration: 10,
+                         socialForm:'Kleingruppe (bis 8 Kinder), Partnerarbeit',
+                         materials:'Blätter',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Sinnliches Blatt',
+                         attribution:'Psychomotorik',
+                         description:'''Alle setzen sich in einem Sitzkreis zusammen und beschreiben welche Farbe, Geruch, Klang und
+			                            Geschmack ihr Blatt hat.''',
+                         duration: 10,
+                         socialForm:'Kleingruppe (bis 8 Kinder), Partnerarbeit',
+                         materials:'Blätter',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Blatt fällt solo',
+                         attribution:'Psychomotorik',
+                         description:'''Alle Kinder verteilen sich im Raum. Sie halten ihr Blatt hoch und lassen es los. Nun beobachtet
+                                        jeder wie sein Blatt zu Boden fällt. Anschließend versucht jeder so zu Boden zu	fallen, wie es
+                                        sein Blatt getan hat.''',
+                         duration: 10,
+                         socialForm:'Kleingruppe (bis 8 Kinder), Partnerarbeit',
+                         materials:'Blätter',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
 
      /*
-
-	templates.id_14 = [name:'Renn- und Schleichrunde',
-            id:'14',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Alle rennen so schnell sie können im Kreis. Auf ein Kommando hin müssen alle so langsam wie
-			möglich gehen.
-Input: „Nun geht ihr über eine Herbstwiese, die übersät ist mit Schalen von Esskastanien.“
-
-<br />Nun rennen wieder alle ganz schnell. Auf ein Kommando müssen alle so langsam wie möglich gehen
-			und es folgt ein neuer Input: „Ihr geht über eine Herbstwiese voller nasser glitschiger Blätter.“ <br />
-
-Hiervon gibt es mehrere Runden. Die Abschlussrunde beinhaltet folgende Aufgabe: „Nun geht ihr über
-			eine Herbstwiese und findet das wunderschönste Blatt der Welt.''',
-            dauer:'10 Minuten',
-            sozialform:'Kleingruppe (bis 8 Kinder),Partnerarbeit',
-            materialien:'Blätter',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_15 = [name:'Sinnliches Blatt',
-            id:'15',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Alle setzen sich in einem Sitzkreis zusammen und beschreiben welche Farbe, Geruch, Klang und
-			Geschmack ihr Blatt hat.''',
-            dauer:'10 Minuten',
-            sozialform:'Kleingruppe (bis 8 Kinder),Partnerarbeit',
-            materialien:'Blätter',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_16 = [name:'Blatt fällt solo',
-            id:'16',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Alle Kinder verteilen sich im Raum. Sie halten ihr Blatt hoch und lassen es los.
-			Nun beobachtet jeder wie sein Blatt zu Boden fällt. Anschließend versucht jeder so zu Boden zu
-			fallen, wie es sein Blatt getan hat.''',
-            dauer:'10 Minuten',
-            sozialform:'Kleingruppe (bis 8 Kinder),Partnerarbeit',
-            materialien:'Blätter',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
 
 	templates.id_17 = [name:'Blatt fällt Gruppe',
             id:'17',

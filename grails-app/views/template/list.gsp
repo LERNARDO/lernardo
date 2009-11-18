@@ -17,6 +17,7 @@
         <g:sortableColumn property="duration" title="Dauer (min)" />
         <g:sortableColumn property="socialForm" title="Sozialform" />
         <g:sortableColumn property="requiredPaeds" title="Anzahl P&auml;dagogen" />
+        <th>Kommentare</th>
         </tr>
         </thead>
 
@@ -27,6 +28,7 @@
             <td class="col2">${templateInstance.duration}</td>
             <td>${templateInstance.socialForm}</td>
             <td class="col4">${templateInstance.requiredPaeds}</td>
+            <td><app:getCommentsCount template="${templateInstance}"/></td>
           </tr>
         </g:each>
         </tbody>

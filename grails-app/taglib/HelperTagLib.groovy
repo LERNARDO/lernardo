@@ -6,6 +6,10 @@ class HelperTagLib {
   def networkService
   static namespace = "app"
 
+  def getCommentsCount = {attrs ->
+    out << Post.countByTemplate(attrs.remove ("template"))
+  }
+
   def isFriend = {attrs, body->
     if (friend(attrs))
       out << body()
