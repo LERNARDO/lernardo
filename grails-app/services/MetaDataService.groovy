@@ -10,11 +10,14 @@ class MetaDataService {
   static final String EST_FAC = "Facility"
 
   static final String ET_USER = "User"                   // EntityType
+  static final String ET_PAED = "Paed"
+  static final String ET_CLIENT = "Client"
+  static final String ET_OPERATOR = "Operator"
   static final String ET_HORT = "Hort"
   static final String ET_PO = "ForProfitOrganisation"
   static final String ET_NPO = "NonProfitOrganisation"
 
-  static final String PRT_PERSON = "User"              // ProfileType
+  static final String PRT_PERSON = "User"                // ProfileType
   static final String PRT_ORG = "Org"
   static final String PRT_FAC = "Fac"
 
@@ -34,6 +37,9 @@ class MetaDataService {
     getEstFac()
 
     getEtUser()
+    getEtPaed()
+    getEtClient()
+    getEtOperator()
     getEtHort()
     getEtPO()
     getEtNPO()
@@ -54,6 +60,9 @@ class MetaDataService {
   def getEstFac() { defaultObjectService.openEST(EST_FAC, PRT_FAC)  }
 
   def getEtUser () { defaultObjectService.openET (ET_USER, estPerson) }
+  def getEtPaed () { defaultObjectService.openET (ET_PAED, estPerson) }
+  def getEtClient () { defaultObjectService.openET (ET_CLIENT, estPerson) }
+  def getEtOperator () { defaultObjectService.openET (ET_OPERATOR, estFac) }
   def getEtHort () { defaultObjectService.openET (ET_HORT, estFac) }
   def getEtPO () { defaultObjectService.openET (ET_PO, estOrg) }
   def getEtNPO () { defaultObjectService.openET (ET_NPO, estOrg) }

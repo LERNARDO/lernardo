@@ -16,15 +16,18 @@ class BootStrap {
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
+      calendarDataService.initialize()
       createDefaultUsers()
-      createDefaultFacs()
+      createDefaultPaeds()
+      createDefaultClients()
+      createDefaultOperators()
+      createDefaultFacilities()
       createDefaultLinks()
       createDefaultActivityTemplates()
       createDefaultActivities()
       createDefaultPosts()
       //profileDataService.init()
       //activityDataService.init()
-      calendarDataService.init()
     }
   }
 
@@ -33,10 +36,10 @@ class BootStrap {
 
   void createDefaultUsers() {
     log.debug ("==> creating default users")
-    EntityType etPerson = metaDataService.etUser
+    EntityType etUser = metaDataService.etUser
 
     // an admin user
-    entityHelperService.createEntityWithUserAndProfile("admin", etPerson, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       ent.profile.tagline = "to be on top is our job"
@@ -52,7 +55,7 @@ class BootStrap {
     }
 
     // a mod user
-    entityHelperService.createEntityWithUserAndProfile("alex", etPerson, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
@@ -64,21 +67,21 @@ class BootStrap {
     }
 
     // some regular users
-    entityHelperService.createEntityWithUserAndProfile("patrizia", etPerson, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       UserProfile prf = ent.profile
       prf.birthDate = new Date(1983-1900, 07, 20)
       prf.gender = 2
       prf.city = "Berndorf"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("mike", etPerson, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("mike", etUser, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Wozu brauch ma des?"
       prf.gender = 1
       prf.city = "Wien"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("johannes", etPerson, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("johannes", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Ich will die Welt im ERP abbilden!"
       prf.gender = 1
@@ -88,37 +91,70 @@ class BootStrap {
       prf.tel = "0664 / 840 66 20"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("susanne", etPerson, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.city = "Berndorf"
+    }
+  }
+
+  void createDefaultPaeds() {
+    log.debug ("==> creating default paeds")
+    EntityType etPaed = metaDataService.etPaed
+
+    entityHelperService.createEntityWithUserAndProfile("birgit", etPaed, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.city = "Berndorf"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("birgit", etPerson, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
-      UserProfile prf = ent.profile
-      prf.tagline = "..."
-      prf.gender = 2
-      prf.city = "Berndorf"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("hannah", etPerson, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("hannah", etPaed, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.city = "Kaumberg"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("regina", etPerson, "rgt@lernardo.at", "Regina Toncourt") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("regina", etPaed, "rgt@lernardo.at", "Regina Toncourt") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.city = "Weissenbach"
     }
+  }
+
+  void createDefaultClients() {
+    log.debug ("==> creating default clients")
+    EntityType etClient = metaDataService.etClient
+
+    entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.city = "Gumpoldskirchen"
+    }
 
   }
 
-  void createDefaultFacs () {
+  void createDefaultOperators() {
+    log.debug ("==> creating default operators")
+    EntityType etOperator = metaDataService.etOperator
+
+    entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "Verein Lernardo") {Entity ent->
+      FacProfile prf = ent.profile
+      prf.PLZ = 2564
+      prf.city = "Berndorf"
+      prf.street = "-"
+      prf.tel   = "-"
+      prf.opened = "-"
+      //prf.speaker = Entity.findByName('regina')
+      prf.description = "-"
+    }
+  }
+
+  void createDefaultFacilities () {
     log.debug ("==> creating default facilities")
     EntityType etFac = metaDataService.etHort
 
@@ -366,49 +402,33 @@ class BootStrap {
                          ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
-
-     /*
-
-	templates.id_17 = [name:'Blatt fällt Gruppe',
-            id:'17',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Alle Kinder stehen im Kreis. Ein Kind geht in die Mitte und lässt sein Blatt zu Boden
-			fallen. Alle beobachten dieses Blatt und versuchen genauso zu Boden zu fallen. Das Kind in der
-			Mitte beobachtet wie ""seine Blätter"" zu Boden fallen.
-
-Zum Abschluss suchen sich die Kinder
-			einen Partner und massieren und kitzeln sich gegenseitig mit ihren Blättern die Fußsohlen.''',
-            dauer:'10 Minuten',
-            sozialform:'Kleingruppe (bis 8 Kinder),Partnerarbeit',
-            materialien:'Blätter',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_18 = [name:'ZeitungsträgerIn',
-            id:'18',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Große einzelne Zeitungsblätter werden jeweils über den Körper gehängt (Kopf, Arme, ggf. Beine).
+    new ActivityTemplate(name:'Blatt fällt Gruppe',
+                         attribution:'Psychomotorik',
+                         description:'''Alle Kinder stehen im Kreis. Ein Kind geht in die Mitte und lässt sein Blatt zu Boden fallen.
+                                        Alle beobachten dieses Blatt und versuchen genauso zu Boden zu fallen. Das Kind in der Mitte
+                                        beobachtet wie "seine Blätter" zu Boden fallen. Zum Abschluss suchen sich die Kinder einen
+                                        Partner und massieren und kitzeln sich gegenseitig mit ihren Blättern die Fußsohlen.''',
+                         duration: 10,
+                         socialForm:'Kleingruppe (bis 8 Kinder), Partnerarbeit',
+                         materials:'Blätter',
+                         ll: 0, be: 2, pk: 1, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'ZeitungsträgerIn',
+                         attribution:'Psychomotorik',
+                         description:'''Große einzelne Zeitungsblätter werden jeweils über den Körper gehängt (Kopf, Arme, ggf. Beine).
 			Ohne mit den Händen das Zeitungspapier zu halten, muss die Person die Zeitungsblätter ins Ziel
 			tragen. Dieses Spiel kann auch als Staffelspiel gespielt werden. Fällt eine Zeitung herunter, werden
 			diese an Ort und Stelle wieder aufgenommen. Oder: es zählen die Zeitungsblätter, die heil ins Ziel
 			gebracht wurden ohne dass diese zuvor heruntergefallen sind.''',
-            dauer:'30 Minuten',
-            sozialform:'Kleingruppe (bis 6 Kinder)',
-            materialien:'Zeitung',
-            ll: '0',
-            be: '2',
-            pk: '1',
-            si: '0',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+                         duration: 30,
+                         socialForm:'Kleingruppe (bis 6 Kinder)',
+                         materials:'Zeitung',
+                         ll: 0, be: 2, pk: 1, si: 0, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+
+     /*
 
 	templates.id_19 = [name:'Faltzeitung',
             id:'19',

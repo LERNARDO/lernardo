@@ -587,11 +587,11 @@ ul li {
 
 /* ----- TABLES ----- */
 
-.row-paed, .row-User {
+.row-paed, .row-Paed {
     background: #b2b2ff;
 }
 
-.row-client {
+.row-client, .row-Client {
     background: #ffb2b2;
 }
 
@@ -599,11 +599,11 @@ ul li {
     background: #b2ffb2;
 }
 
-.row-betreiber {
+.row-betreiber, .row-Operator {
     background: #ffffb2;
 }
 
-.row-mitarbeiter {
+.row-mitarbeiter, .row-User {
     background: #ffb200;
 }
 

@@ -6,7 +6,7 @@ class CalendarDataService {
 
   boolean transactional = true
 
-  def init() {
+  def initialize() {
     def eventTypes = ['conference', 'contest', 'exam', 'meeting']
     addEventTypes(eventTypes)
     addEvents(eventTypes)
