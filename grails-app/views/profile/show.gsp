@@ -13,6 +13,10 @@
           <div id="profile-pic">
             <ub:profileImage name="${profileInstance.name}" width="180" height="233" />
           </div>
+
+          <ub:meOrAdmin entityName="${profileInstance.name}">
+            <li><g:link controller="asset" action="uploadprf" params="[entity:profileInstance.name]">Profilbild ändern</g:link></li>
+          </ub:meOrAdmin>
           %{--<g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
                     type:profileInstance.type, imageUrl:profileInstance.image]"/>--}%
 
@@ -21,7 +25,9 @@
             <ul>
               <li class="profile-neuigkeiten"><g:link action="show" params="[content:'neuigkeiten',name:profileInstance.name]">Neuigkeiten</g:link></li>
               <li class="profile-profil"><g:link action="show" params="[content:'profile',name:profileInstance.name]">Profil ansehen</g:link></li>
-              <li class="profile-nachricht"><g:link action="show" params="[content:'message',name:profileInstance.name]">Nachricht schreiben</g:link></li>
+              <ub:meOrAdmin entityName="${profileInstance?.name}">
+                <li class="profile-nachricht"><g:link controller="msg" action="inbox">Mein Postfach</g:link></li>
+              </ub:meOrAdmin>             
               <g:if test="${profileInstance.type == 'paed' || profileInstance.type == 'client'}">
                 <li class="profile-telefon"><g:link action="show" params="[content:'sms',name:profileInstance.name]">SMS senden</g:link></li>
                 <li class="profile-activities"><g:link action="show" params="[content:'activities',name:profileInstance.name]">Aktivitäten ansehen</g:link></li>
@@ -35,12 +41,13 @@
               </g:if>
 
               <ub:notMe entityName="${profileInstance?.name}">
-              <app:isFriend entity="${profileInstance}">
-                <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" params="[name:profileInstance?.name]">Vom Netzwerk entfernen</g:link></li>
-              </app:isFriend>
-              <app:notFriend entity="${profileInstance}">
-                <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" params="[name:profileInstance?.name]">Zum Netzwerk hinzufügen</g:link></li>
-              </app:notFriend>
+                <li class="profile-nachricht"><g:link controller="msg" action="create" params="[name:profileInstance.name]">Nachricht senden</g:link></li>
+                <app:isFriend entity="${profileInstance}">
+                  <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" params="[name:profileInstance?.name]">Vom Netzwerk entfernen</g:link></li>
+                </app:isFriend>
+                <app:notFriend entity="${profileInstance}">
+                  <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" params="[name:profileInstance?.name]">Zum Netzwerk hinzufügen</g:link></li>
+                </app:notFriend>
               </ub:notMe>
             </ul>
           </div>

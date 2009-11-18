@@ -535,82 +535,51 @@ class BootStrap {
                          ll: 0, be: 1, pk: 0, si: 0, hk: 1, tlt: 0,
                          qualifications:'keine',
                          requiredPaeds: 1).save()
-
-     /*
-
-	templates.id_20 = [name:'Spiele mit Zeitungspapier',
-            id:'20',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Die Zeitungen an die Kinder austeilen und die Kinder probieren lassen, was man alles damit machen
+    new ActivityTemplate(name:'Spiele mit Zeitungspapier',
+                         attribution:'Psychomotorik',
+                         description:'''Die Zeitungen an die Kinder austeilen und die Kinder probieren lassen, was man alles damit machen
 			kann. Bsp.: Zeitungen auf den Boden legen und darauf hüpfen, Zeitungen zusammenknüllen und werfen
 			(z.B. in einen Eimer), Zeitungen in Stücke reißen, in einen Sack füllen und diesen Sack über einem
 			Kind ausleeren etc.''',
-            dauer:'15 Minuten',
-            sozialform:'Klein- und Großgruppe',
-            materialien:'Zeitungen',
-            ll: '0',
-            be: '1',
-            pk: '0',
-            si: '0',
-            hk: '1',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_21 = [name:'Spiele mit Zeitungspapier',
-            id:'21',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Kleine Zeitungsschnipsel werden mit einem Trinkhhalm
-angesaugt und von Schüssel A
-			nach Schüssel B gebracht.
-Alternativ können die Papierschnipsel aber auch mit
-chinesischen
-			Stäbchen befördert werden.''',
-            dauer:'15 Minuten',
-            sozialform:'Einzelarbeit',
-            materialien:'Zeitung, Trinkhalme, 2 Schüsseln',
-            ll: '0',
-            be: '2',
-            pk: '0',
-            si: '0',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_22 = [name:'Zeitungspuzzle',
-            id:'22',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Eine Zeitungsseite wird zerschnitten und sodann wieder zusammengesetzt.''',
-            dauer:'15 Minuten',
-            sozialform:'Einzelarbeit',
-            materialien:'Zeitung',
-            ll: '0',
-            be: '1',
-            pk: '0',
-            si: '1',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
-
-	templates.id_23 = [name:'Klopapierturm',
-            id:'23',
-            zuordnung:'Psychomotorik',
-            beschreibung:'''Mehrere aufeinander gestapelte Klopapierrollen werden eine Strecke weit balanciert.
+                         duration: 15,
+                         socialForm:'Klein- und Großgruppe',
+                         materials:'Zeitungen',
+                         ll: 0, be: 1, pk: 0, si: 0, hk: 1, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Spiele mit Zeitungspapier 2',
+                         attribution:'Psychomotorik',
+                         description:'''Kleine Zeitungsschnipsel werden mit einem Trinkhhalm angesaugt und von Schüssel A nach
+                                        Schüssel B gebracht. Alternativ können die Papierschnipsel aber auch mit chinesischen
+                                        Stäbchen befördert werden.''',
+                         duration: 15,
+                         socialForm:'Einzelarbeit',
+                         materials:'Zeitung, Trinkhalme, 2 Schüsseln',
+                         ll: 0, be: 2, pk: 0, si: 0, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Zeitungspuzzle',
+                         attribution:'Psychomotorik',
+                         description:'Eine Zeitungsseite wird zerschnitten und sodann wieder zusammengesetzt.',
+                         duration: 15,
+                         socialForm:'Einzelarbeit',
+                         materials:'Zeitung',
+                         ll: 0, be: 1, pk: 0, si: 1, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+    new ActivityTemplate(name:'Klopapierturm',
+                         attribution:'Psychomotorik',
+                         description:'''Mehrere aufeinander gestapelte Klopapierrollen werden eine Strecke weit balanciert.
 			Wer schafft es am Weitesten ohne dass eine Rolle runter fällt? Wer kann die meisten Rollen auf
 			einmal bis zum Ziel tragen?''',
-            dauer:'15 Minuten',
-            sozialform:'Einzelarbeit',
-            materialien:'Klopapierrollen',
-            ll: '0',
-            be: '2',
-            pk: '0',
-            si: '0',
-            hk: '0',
-            tlt: '0',
-            qualifikationen:'keine',
-            anzahlPaedagogen:'1']
+                         duration: 15,
+                         socialForm:'Einzelarbeit',
+                         materials:'Klopapierrollen',
+                         ll: 0, be: 2, pk: 0, si: 0, hk: 0, tlt: 0,
+                         qualifications:'keine',
+                         requiredPaeds: 1).save()
+
+     /*
 
 	templates.id_24 = [name:'Zeitungsschlange',
             id:'24',
