@@ -1,5 +1,5 @@
 <ul class="navigation" id="navigation_topmain">
-  <li class="navigation_first"><g:link url="/lernardoV2/">Home</g:link></li>
+  <li class="navigation_first"><g:link url="${g.resource(dir:'/')}">Home</g:link></li>
   <g:isLoggedIn>
     <li><g:link controller="app" action='start'>ERP</g:link></li>
   </g:isLoggedIn>

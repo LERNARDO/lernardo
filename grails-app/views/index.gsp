@@ -1,9 +1,7 @@
-<html>
-    <head>
-		<meta name="layout" content="public" />
-        <title>Lernardo</title>
-    </head>
-    <body>
-        
-    </body>
-</html>
+<head>
+  <title>Lernardo</title>
+  <meta name="layout" content="public" />
+</head>
+
+<body>
+</body>

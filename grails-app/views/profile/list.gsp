@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <meta name="layout" content="private" />
@@ -17,7 +18,7 @@
               <option value="betreiber">Betreiber</option>
               <option value="client">Betreute</option>
               <option value="paed">Pädagogen</option>
-            </select>
+            </select>                  
           </label>
           <g:submitButton name="list" value="OK" />
         </g:form>
@@ -26,15 +27,17 @@
       <table id="profile-list">
         <thead>
           <tr>
-            <g:sortableColumn property="role" title="Rolle" />
-            <g:sortableColumn property="fullName" title="Name" />
-          </tr>
+        <g:sortableColumn property="name" title="Nick" />
+        <g:sortableColumn property="type" title="Typ" />
+        <g:sortableColumn property="role" title="Rolle" />
+        </tr>
         </thead>
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
-          <tr class="row-${profileInstance.value.type}">
-            <td class="col">${profileInstance.value.role}</td>
-            <td><g:link url="/lernardoV2/prf/${profileInstance.value.name}">${profileInstance.value.fullName}</g:link></td>
+          <tr class="row-${profileInstance.type.name}">
+            <td><g:link controller="profile" action="show" params="[name:profileInstance.name]" >${profileInstance.profile.fullName}</g:link></td>
+            <td class="col">${profileInstance.type.name}</td>
+            <td class="col">${profileInstance.user.authorities.authority}</td>
           </tr>
         </g:each>
         </tbody>

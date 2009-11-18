@@ -34,7 +34,7 @@ class ActivityDataService {
             date:setDate('02.10.2009'),
             startTime:setTime('15:30'),
             duration:'45',
-            paedList:['birgit','rosa'],
+            paedList:['hannah','rosa'],
             clientList:['emil','pascal','mathias'],
             einrichtung:'loewenzahn']
         activities.id_4 = [title:'Musikstopp',
@@ -61,7 +61,7 @@ class ActivityDataService {
             date:setDate('19.10.2009'),
             startTime:setTime('16:00'),
             duration:'30',
-            paedList:['birgit','regina'],
+            paedList:['birgit','martin'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'loewenzahn']
         activities.id_7 = [title:'Fliegender Pilz',
@@ -70,145 +70,145 @@ class ActivityDataService {
             date:setDate('19.10.2009'),
             startTime:setTime('16:30'),
             duration:'15',
-            paedList:['birgit','regina'],
+            paedList:['birgit','regina','martin'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'loewenzahn']
-         activities.id_8 = [title:'Bewegungslandschaft',
+        activities.id_8 = [title:'Bewegungslandschaft',
             id:'8',
             owner:'hannah',
             date:setDate('29.10.2009'),
             startTime:setTime('15:30'),
             duration:'90',
-            paedList:['birgit','regina'],
+            paedList:['rosa','regina','hannah'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_9 = [title:'Schatten',
+        activities.id_9 = [title:'Schatten',
             id:'9',
             owner:'hannah',
             date:setDate('05.10.2009'),
             startTime:setTime('18:00'),
             duration:'60',
-            paedList:['birgit','regina'],
+            paedList:['regina','hannah'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_10 = [title:'Blättertanz',
+        activities.id_10 = [title:'Blättertanz',
             id:'10',
-            owner:'hannah',
+            owner:'rosa',
             date:setDate('06.10.2009'),
             startTime:setTime('15:30'),
             duration:'5',
-            paedList:['birgit','regina'],
+            paedList:['rosa'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_11 = [title:'Renn- und Schleichrunde',
+        activities.id_11 = [title:'Renn- und Schleichrunde',
             id:'11',
-            owner:'hannah',
+            owner:'birgit',
             date:setDate('07.10.2009'),
             startTime:setTime('15:45'),
             duration:'10',
-            paedList:['birgit','regina'],
+            paedList:['birgit'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_12 = [title:'Sinnliches Blatt',
+        activities.id_12 = [title:'Sinnliches Blatt',
             id:'12',
-            owner:'hannah',
+            owner:'regina',
             date:setDate('07.10.2009'),
             startTime:setTime('16:00'),
             duration:'10',
-            paedList:['birgit','regina'],
+            paedList:['regina'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_13 = [title:'Blatt fällt solo',
+        activities.id_13 = [title:'Blatt fällt solo',
             id:'13',
-            owner:'hannah',
+            owner:'martin',
             date:setDate('08.10.2009'),
             startTime:setTime('15:45'),
             duration:'10',
-            paedList:['birgit','regina'],
+            paedList:['birgit','regina','martin'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_14 = [title:'Blatt fällt Gruppe',
+        activities.id_14 = [title:'Blatt fällt Gruppe',
             id:'15',
             owner:'hannah',
             date:setDate('09.10.2009'),
             startTime:setTime('16:45'),
             duration:'10',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
+            paedList:['birgit','regina','hannah'],
+            clientList:['mathias','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_15 = [title:'ZeitungsträgerIn',
+        activities.id_15 = [title:'ZeitungsträgerIn',
             id:'15',
-            owner:'hannah',
+            owner:'martin',
             date:setDate('30.10.2009'),
             startTime:setTime('15:15'),
             duration:'30',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
+            paedList:['martin','regina'],
+            clientList:['emil','raphael','marianne'],
             einrichtung:'kaumberg']
-         activities.id_16 = [title:'Sinnliches Blatt',
+        activities.id_16 = [title:'Sinnliches Blatt',
             id:'16',
             owner:'hannah',
             date:setDate('28.10.2009'),
             startTime:setTime('15:45'),
             duration:'10',
             paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
+            clientList:['emil','pascal','raphael'],
             einrichtung:'kaumberg']
-         activities.id_17 = [title:'Faltzeitung',
+        activities.id_17 = [title:'Faltzeitung',
             id:'17',
-            owner:'hannah',
+            owner:'martin',
             date:setDate('27.10.2009'),
             startTime:setTime('15:15'),
             duration:'15',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
+            paedList:['martin'],
+            clientList:['raphael','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_18 = [title:'Spiele mit Zeitungspapier',
+        activities.id_18 = [title:'Spiele mit Zeitungspapier',
             id:'18',
             owner:'hannah',
             date:setDate('12.10.2009'),
             startTime:setTime('15:15'),
             duration:'15',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
+            paedList:['hannah','regina'],
+            clientList:['emil','mathias','marianne'],
             einrichtung:'kaumberg']
-         activities.id_19 = [title:'Musikstopp',
+        activities.id_19 = [title:'Musikstopp',
             id:'19',
-            owner:'hannah',
+            owner:'martin',
             date:setDate('13.10.2009'),
             startTime:setTime('16:15'),
             duration:'30',
-            paedList:['birgit','regina'],
+            paedList:['birgit','martin'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_20 = [title:'Pizzamassage',
+        activities.id_20 = [title:'Pizzamassage',
             id:'20',
             owner:'hannah',
             date:setDate('13.10.2009'),
             startTime:setTime('16:45'),
             duration:'15',
-            paedList:['birgit','regina'],
+            paedList:['birgit','regina','hannah'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_21 = [title:'Ballschaukel',
+        activities.id_21 = [title:'Ballschaukel',
             id:'21',
             owner:'hannah',
             date:setDate('14.10.2009'),
             startTime:setTime('15:00'),
             duration:'30',
-            paedList:['birgit','regina'],
+            paedList:['birgit','hannah'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_22 = [title:'Sinnliches Blatt',
+        activities.id_22 = [title:'Sinnliches Blatt',
             id:'22',
-            owner:'hannah',
+            owner:'rosa',
             date:setDate('15.10.2009'),
             startTime:setTime('16:00'),
             duration:'10',
-            paedList:['birgit','regina'],
-            clientList:['emil','pascal','marianne'],
+            paedList:['rosa'],
+            clientList:['emil','pascal','patrick'],
             einrichtung:'kaumberg']
-         activities.id_23 = [title:'Klopapierturm',
+        activities.id_23 = [title:'Klopapierturm',
             id:'23',
             owner:'hannah',
             date:setDate('16.10.2009'),
@@ -217,22 +217,22 @@ class ActivityDataService {
             paedList:['birgit','regina'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_24 = [title:'Körperschema',
+        activities.id_24 = [title:'Körperschema',
             id:'24',
-            owner:'hannah',
+            owner:'regina',
             date:setDate('23.10.2009'),
             startTime:setTime('16:25'),
             duration:'30',
             paedList:['birgit','regina'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
-         activities.id_25 = [title:'Luftballonmeer',
+        activities.id_25 = [title:'Luftballonmeer',
             id:'25',
             owner:'hannah',
             date:setDate('26.10.2009'),
             startTime:setTime('15:30'),
             duration:'45',
-            paedList:['birgit','regina'],
+            paedList:['hannah','regina'],
             clientList:['emil','pascal','marianne'],
             einrichtung:'kaumberg']
     }
@@ -247,20 +247,8 @@ class ActivityDataService {
         return activityTime
     }
 
-    def getActivitiesOfOwner(String owner) {
-        def activityList = []
-        for ( v in activities ) {
-            for ( w in v.value.paedList) {
-                if (owner == w) {
-                    activityList.add(v)
-                }
-            }
-        }
-        return activityList
-    }
-
     // returns all activities, inluding offset and max number
-    def getActivities (int noffset, int nmax, String nmonth) {
+    def find (int noffset, int nmax, String nmonth) {
 
         def listMonthValue = []
         def listPaginationValue = []
@@ -269,9 +257,9 @@ class ActivityDataService {
             listMonthValue = activities
         }
         else {
-            for ( v in activities ) {
-                if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("MM")) {
-                    listMonthValue.add(v)
+            activities.each {key, val->
+                if (nmonth == Date.parse("dd.MM.yyyy", val.date).format("MM")) {
+                    listMonthValue << val
                 }
             }
         }
@@ -290,43 +278,51 @@ class ActivityDataService {
     }
 
     // returns the number of activities
-    def getActivityCount (String nmonth) {
-
+    def findCountByMonth (String nmonth) {
         if (nmonth == "alle") {
             return activities.size()
         }
         else {
             int count = 0
-            for ( v in activities ) {
-                if (nmonth == Date.parse("dd.MM.yyyy", v.value.date).format("MM")) {
-                    count ++
+            activities.each {key, val->
+                if (nmonth == Date.parse("dd.MM.yyyy", val.date).format("MM")) {
+                    count++
                 }
             }
             return count
         }
     }
 
+    def findByOwner (String owner) {
+        def res = []
+        activities.each {key, val->
+            val.paedList.each { i->
+                if (i == owner)
+                res << val
+            }
+        }
+        return res
+    }
+    
     def findById (def idVal) {
         def res = null
         activities.each {key, val->
             if (key == "id_${idVal}")
-            res = val ;
+            res = val
         }
-        return res ;
+        return res
     }
 
-    List findActivitiesByNameAndType (String name, String type) {
-        def result = [] ;
-
+    def findByNameAndType (String name, String type) {
+        def res = []
         activities.each {key, val->
             def xlist = val["${type}List"]
             if (xlist?.contains (name)) {
                 val.id = key.startsWith ("id_") ? key[3..-1] : "42"
-                result << val ;
+                res << val
             }
         }
-
-        return result ;
+        return res
     }
 
 }

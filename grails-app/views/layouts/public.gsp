@@ -22,72 +22,75 @@
         <div id="bd">
           <div id="yui-main">
             <div id="main" class="yui-b">
+              <g:if test="${flash.message}">
+                <div id="flash-msg" class="message">
+                  <p>${flash.message}</p>
+                </div>
+              </g:if>
               <g:layoutBody />
             </div>
           </div>
           <div id="sidebar" class="yui-b">
             <div class="sidebox">
-              <div class="sideboxheader">Login</div>
+              <div class="innersidebox">
+                <div class="sideboxheader">Login</div>
 
-              <div class="sideboxcontent">
-                <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
-                  <table>
-                    <tr>
-                      <td width="100px">
-                        <p>E-Mail:</p>
-                      </td>
-                      <td>
-                        <input id="j_username" name="j_username" type="text" tabindex="1" />
+                <div class="sideboxcontent">
+                  <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
+                    <table>
+                      <tr>
+                        <td width="100px" height="20px">E-Mail:</td>
+                        <td><input id="j_username" name="j_username" type="text" tabindex="1" /></td>
+                      </tr>
+                      <tr>
+                        <td width="100px" height="20px">Passwort:</td>
+                        <td><input name="j_password" id="j_password" type="password" tabindex="2" /></td>
+                      </tr>
+                    </table>
 
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p>Passwort:</p>
-                      </td>
-                      <td>
-                        <input name="j_password" id="j_password" type="password" tabindex="2" />
+                    <div class="login-form-button">
+                      <input type="submit" name="submit" value="Anmelden" id="submit" />
+                    </div>
 
-                      </td>
-                    </tr>
-                  </table>
+                    <div id="forgot-pwd"><a href="#">Passwort vergessen?</a></div>
 
-                  <div class="login-form-button">
-                    <input type="submit" name="submit" value="Anmelden" id="submit" />
-                  </div>
-
-                  <div id="forgot-pwd"><a href="#">Passwort vergessen?</a></div>
-
-                </form>
-              </div>
+                  </form>
+                </div>
+              </div><!-- innersidebox -->
             </div><!-- sidebox -->
             <div class="sidebox">
-              <div class="sideboxheader">Über Lernardo</div>
-              <div class="sideboxcontent">
-                <ul>
-                  <li><g:link controller="static" action="zielsetzung" fragment="anker">Zielsetzung</g:link></li>
-                  <li><g:link controller="static" action="ueberblick" fragment="anker">Überblick</g:link></li>
-                  <li><g:link controller="static" action="teilleistungstraining" fragment="anker">Teilleistungstraining</g:link></li>
-                  <li><g:link controller="static" action="lernen" fragment="anker">Lernen lernen</g:link></li>
-                  <li><g:link controller="static" action="bewegung" fragment="anker">Bewegung - Ernährung</g:link></li>
-                  <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale und emotionale Intelligenz</g:link></li>
-                  <li><g:link controller="static" action="kompetenz" fragment="anker">Persönliche Kompetenz</g:link></li>
-                  <li><g:link controller="static" action="handwerk" fragment="anker">Handwerk und Kunst</g:link></li>
-                  <li><g:link controller="static" action="impressum" fragment="anker">Impressum</g:link></li>
-                  <li style="border-bottom: none"><g:link controller="static" action="futurewings" fragment="anker">Future Wings</g:link></li>
-                </ul>
-              </div>
+              <div class="innersidebox">
+                <div class="sideboxheader">Über Lernardo</div>
+                <div class="sideboxcontent">
+                  <ul>
+                    <li><g:link controller="static" action="zielsetzung" fragment="anker">Zielsetzung</g:link></li>
+                    <li><g:link controller="static" action="ueberblick" fragment="anker">Überblick</g:link></li>
+                    <li><g:link controller="static" action="teilleistungstraining" fragment="anker">Teilleistungstraining</g:link></li>
+                    <li><g:link controller="static" action="lernen" fragment="anker">Lernen lernen</g:link></li>
+                    <li><g:link controller="static" action="bewegung" fragment="anker">Bewegung - Ernährung</g:link></li>
+                    <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale und emotionale Intelligenz</g:link></li>
+                    <li><g:link controller="static" action="kompetenz" fragment="anker">Persönliche Kompetenz</g:link></li>
+                    <li><g:link controller="static" action="handwerk" fragment="anker">Handwerk und Kunst</g:link></li>
+                    <li><g:link controller="static" action="impressum" fragment="anker">Impressum</g:link></li>
+                    <li style="border-bottom: none"><g:link controller="static" action="futurewings" fragment="anker">Future Wings</g:link></li>
+                  </ul>
+                </div>
+              </div><!-- innersidebox -->
             </div><!-- sidebox -->
             <div class="sidebox">
-              <div class="sideboxheader">Zitat des Tages</div>
-              <div class="sideboxcontent"><span class="quote">„Die Aufgabe der Umgebung ist nicht
-                  das Kind zu formen, sondern ihm zu
-                  erlauben, sich zu offenbaren.“</span><br>
-                von Maria Montessori</div>
+              <div class="innersidebox">
+                <div class="sideboxheader">Zitat des Tages</div>
+                <div class="sideboxcontent"><span class="quote">„Die Aufgabe der Umgebung ist nicht
+                    das Kind zu formen, sondern ihm zu
+                    erlauben, sich zu offenbaren.“</span>
+                  <p class="quoter">von Maria Montessori</p></div>
+              </div><!-- innersidebox -->
             </div><!-- sidebox -->
             <div class="sidebox">
-              <div class="sideboxheader">Bild des Tages</div>
-              <div class="sideboxcontent"><img src="/lernardoV2/images/static/bild_des_tages.png" width="229" height="172" alt="bild des tages" id="randomPicture"/></div>
+              <div class="innersidebox">
+                <div class="sideboxheader">Bild des Tages</div>
+                <div class="sideboxcontent"><img src="/lernardoV2/images/static/bild_des_tages.png" width="229" height="172" alt="bild des tages" id="randomPicture"/></div>
+              </div><!-- innersidebox -->
             </div><!-- sidebox -->
           </div>
         </div>

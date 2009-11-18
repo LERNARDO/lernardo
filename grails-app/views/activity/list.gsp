@@ -7,10 +7,14 @@
     <div id="body-list">
       <h2>Liste aller Aktivitäten</h2>
       <p>${activityCount} Aktivitäten gefunden</p>
-
+      
       <div id="select-box">
         Filtern nach:
         <g:form name="form1" action="list">
+          %{--Tag: <g:checkBox name="myDay" value="${true}" /><br>
+          Monat: <g:checkBox name="myMonth" value="${true}" /><br>
+          Jahr: <g:checkBox name="myYear" value="${true}" /><br>
+          <g:datePicker name="myDate" value="${new Date()}" precision="day" />--}%
           <label>Monat
             <select name="perMonth">
               <option value="alle">Alle</option>
@@ -51,21 +55,19 @@
       <table>
         <thead>
           <tr>
-            <g:sortableColumn property="title" title="Aktivität" />
-            <g:sortableColumn property="einrichtung" title="Einrichtung" />
+            <g:sortableColumn property="title" title="Aktivit&auml;t" />
+            <g:sortableColumn property="facility" title="Einrichtung" />
             <g:sortableColumn property="owner" title="Geplant von" />
             <g:sortableColumn property="date" title="Datum" />
-            <g:sortableColumn property="startTime" title="Startzeit" />
           </tr>
         </thead>
         <tbody>
         <g:each status="i" in="${activityList}" var="activityInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td><g:link action="show" id="${activityInstance.value.id}">${activityInstance.value.title}</g:link></td>
-            <td>${activityInstance.value.einrichtung}</td>
-            <td>${activityInstance.value.owner[0].toUpperCase()+activityInstance.value.owner.substring(1)}</td>
-            <td>${activityInstance.value.date}</td>
-            <td>${activityInstance.value.startTime}</td>
+            <td><g:link action="show" id="${activityInstance.id}">${activityInstance.title}</g:link></td>
+            <td>${activityInstance.facility.profile.fullName}</td>
+            <td>${activityInstance.owner.profile.fullName}</td>
+            <td>${activityInstance.date}</td>
           </tr>
         </g:each>
         </tbody>
