@@ -60,7 +60,7 @@
             <g:else>
             <ul>
               <g:each in="${friendsList}" var="friend">
-                <li><g:link action="show" params="[content:'profile',name:friend.name]">${friend.profile.fullName}</g:link> (${friend.type.name})</li>
+                <li><g:link action="show" params="[content:'profile',name:friend.name]">${friend.profile.fullName}</g:link> (<app:getRelationship source="${profileInstance.name}" target="${friend.name}"/>)</li>
               </g:each>
             </ul>
             </g:else>

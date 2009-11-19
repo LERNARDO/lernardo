@@ -30,8 +30,8 @@ class ProfileController {
     }
 
     def attendance = {
-        return ['profileList': profileDataService.getProfiles ('client', 0, 50),
-                'profileCount': profileDataService.getProfileCount ('client')]
+        return ['profileList': Entity.findAllByType(EntityType.findByName('Client')),
+                'profileCount': Entity.countByType(EntityType.findByName('Client'))]
     }
 
     def list = {

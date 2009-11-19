@@ -1,5 +1,9 @@
 # Alex
-- create user/paed/client/operator/hort
+- add link in admin area to create operator
+- add link in operator to add/create hort
+- add link in hort to add/create client/paed
+- add link to paed to create article post with selectbox "show public"
+- add link to paed to show articles
 
 # Allan
 - implement i18n messages
@@ -14,6 +18,7 @@
 # Mike
 - database
 - TeamCity
+- assets
 
 # Previous TODOs
 

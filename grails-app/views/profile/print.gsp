@@ -60,8 +60,8 @@
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
           <tr>
-            <td>${profileInstance.value.fullName}</td>
-            <td>${profileInstance.value.tel}</td>
+            <td>${profileInstance.profile.fullName}</td>
+            <td>${profileInstance.profile.tel}</td>
             <td>14</td>
             <td>14</td>
           </tr>

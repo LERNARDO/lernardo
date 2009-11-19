@@ -26,9 +26,9 @@
         </thead>
         <tbody>
         <g:each status="i" in="${profileList}" var="profileInstance">
-          <tr class="row-${profileInstance.value.type}">
-            <td><g:link controller="profile" action="show" params="[name:profileInstance.value.name]" >${profileInstance.value.fullName}</g:link></td>
-          <td class="col">${profileInstance.value.tel}</td>
+          <tr class="row-${profileInstance.type}">
+            <td><g:link controller="profile" action="show" params="[name:profileInstance.name]" >${profileInstance.profile.fullName}</g:link></td>
+          <td class="col">${profileInstance.profile.tel}</td>
           <td class="col">14</td>
           <td class="col">14</td>
           </tr>

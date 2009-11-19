@@ -1,13 +1,19 @@
 import de.uenterprise.ep.Entity
+import de.uenterprise.ep.Link
 
 class HelperTagLib {
   def entityHelperService
   def metaDataService
   def networkService
+  def filterService
   static namespace = "app"
 
   def getCommentsCount = {attrs ->
     out << Post.countByTemplate(attrs.remove ("template"))
+  }
+
+  def getRelationship = {attrs ->
+    out << Link.findBySourceAndTarget(Entity.findByName(attrs.remove ("source")),Entity.findByName(attrs.remove ("target"))).type.name
   }
 
   def isFriend = {attrs, body->
