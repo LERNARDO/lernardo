@@ -4,12 +4,14 @@
 - add link in hort to add/create client/paed
 - add link to paed to create article post with selectbox "show public"
 - add link to paed to show articles
-- implement "Artikel schreiben"
 - fix "Kalender ansehen"
 - fix "Standort anzeigen"
 - implement "Neuigkeiten"
+- implement "Neue Aktivitätsvorlage erstellen"
+- implement "Neue Aktivität planen"
 - fix "Mein Postfach" link not working anymore
 - fix "Artikel ansehen" link not working anymore
+- fix "bearbeiten" of articles
 
 # Allan
 - implement i18n messages

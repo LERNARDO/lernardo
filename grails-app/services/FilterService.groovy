@@ -22,4 +22,15 @@ class FilterService {
       }
       return results
     }
+
+    def findUsers (String name) {
+      def c = Entity.createCriteria()
+      def results = c.list {
+        profile {
+        ilike('fullName',"%"+name+"%")
+        maxResults(10)
+        }
+      }
+      return results
+    }
 }

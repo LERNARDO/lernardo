@@ -21,6 +21,5 @@
 </table>
 
 <div class="paginateButtons">
-  <g:paginate action="list"
-          total="${articleList.size()}"/>
+  <g:paginate action="list" total="${articleList.size()}"/>
 </div>

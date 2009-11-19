@@ -8,6 +8,7 @@ class ProfileController {
     def networkService
     def entityHelperService
     def metaDataService
+    def FilterService
 
     def index = { }
 
@@ -17,6 +18,24 @@ class ProfileController {
     }
 
     def create = { }
+
+    def search = { }
+
+    def searchMe = {
+      if (!params.name) {
+        render "Bitte einen Namen eingeben!"
+        return
+      }
+      List searchList = []
+      searchList = FilterService.findUsers(params.name)
+      if (searchList.size() == 0) {
+        render "Keine Ergebnisse gefunden!"
+        return
+      }
+      else {
+        render(template:'searchresults', model:[searchList: searchList])
+      }
+    }
 
     def showNews = {
       Entity e = Entity.findByName(params.name)

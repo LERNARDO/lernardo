@@ -1,8 +1,11 @@
+import de.uenterprise.ep.Entity
+
 class PostController {
     def entityHelperService
 
     def index = {
-        return ['articleList': Post.findAllByType(PostType.findByName('article')),
+        params.offset = params.offset ?: 0
+        return ['articleList': Post.findAllByType(PostType.findByName('article'),[max:10, sort:"dateCreated", order:"desc", offset:params.offset]),
                 'listTitle': 'Aktuelle Ereignisse']
     }
 
@@ -12,6 +15,13 @@ class PostController {
           return ['article': postInstance]
         else
           redirect action:index
+    }
+
+    def createArticlePost = {
+      def postInstance = new Post()
+      postInstance.properties = params
+      Entity e = Entity.findByName(params.name)
+      render template:'createArticlePost', model:['postInstance':postInstance, entity:e ]
     }
 
     def delete = {
@@ -51,6 +61,20 @@ class PostController {
         }
         else {
             redirect controller:"template", action:"show", id:params.id
+        }
+    }
+
+    def saveArticle = {
+        def postInstance = new Post(params)
+        postInstance.author = entityHelperService.loggedIn
+        postInstance.type = PostType.findByName('article')
+        //def name = postInstance.name
+        if(postInstance.save(flush:true)) {
+            //flash.message = message(code:"event.created", args:[name])
+            redirect controller:"profile", action:"show", params:[name:entityHelperService.loggedIn.name]
+        }
+        else {
+            redirect controller:"profile", action:"show", params:[name:entityHelperService.loggedIn.name]
         }
     }
 }

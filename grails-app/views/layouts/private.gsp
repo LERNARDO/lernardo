@@ -60,9 +60,9 @@
 
             <li>
               <div id="profiles" class="imgbox">
-                <g:link controller="profile" action="list">
-                  <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Alle Profile" />
-                  <h3>Alle Profile</h3>
+                <g:link controller="profile" action="search">
+                  <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Suche" />
+                  <h3>Suche</h3>
                 </g:link>
               </div>
             </li>

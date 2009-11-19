@@ -34,7 +34,7 @@
             <li class="profile-neuigkeiten"><g:remoteLink action="showNews" update="profile-content" params="[name:entity.name]">Neuigkeiten</g:remoteLink></li>
             <li class="profile-nachricht"><g:remoteLink controller="msg" action="inbox" update="profile-content">Mein Postfach</g:remoteLink></li>
             <g:if test="${entity.type.name == 'Paed'}">
-              <li class="profile-activities"><g:link action="show" params="[content:'createArticle',name:entity.name]">Artikel schreiben</g:link></li>
+              <li class="profile-activities"><g:remoteLink controller="post" action="createArticlePost" update="profile-content" params="[name:entity.name]">Artikel schreiben</g:remoteLink></li>
             </g:if>
           </ub:meOrAdmin>
           <g:if test="${entity.type.name == 'Paed'}">
