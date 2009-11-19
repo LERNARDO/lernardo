@@ -7,7 +7,7 @@
   <body>
     <div id="body-list">
       <h2>Liste der Profile</h2>
-      <p>${profileCount} Profile gefunden</p>
+      <p>${entityCount} Profile gefunden</p>
 
       <div id="select-box">
         <g:form name="form1" action="list">
@@ -33,21 +33,20 @@
         </tr>
         </thead>
         <tbody>
-        <g:each status="i" in="${profileList}" var="profileInstance">
-          <tr class="row-${profileInstance.type.name}">
-            <td><g:link controller="profile" action="show" params="[name:profileInstance.name]" >${profileInstance.profile.fullName}</g:link></td>
-            <td class="col">${profileInstance.type.name}</td>
-            <td class="col">${profileInstance.user.authorities.authority}</td>
+        <g:each status="i" in="${entityList}" var="entity">
+          <tr class="row-${entity.type.name}">
+            <td><g:link controller="profile" action="show" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
+            <td class="col">${entity.type.name}</td>
+            <td class="col">${entity.user.authorities.authority}</td>
           </tr>
         </g:each>
         </tbody>
       </table>
 
       <div class="paginateButtons">
-        <g:set var="pType" value="${profileType}" />
         <g:paginate action="list"
-                    params="[profileType:pType]"
-                    total="${profileCount}" />
+                    params="[entityType:entityType]"
+                    total="${entityCount}" />
       </div>
 
     </div>

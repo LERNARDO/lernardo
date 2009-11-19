@@ -7,7 +7,7 @@
   <body>
     <div id="body-list">
       <h2>Anwesenheits-/Essensliste</h2>
-      <p>${profileCount} Profile gefunden</p>
+      <p>${entityCount} Profile gefunden</p>
 
       <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste.pdf">
                                         Hort:<g:select name="hort" from="${['Löwenzahn', 'Kaumberg']}" value="Kaumberg" />
@@ -25,10 +25,10 @@
         </tr>
         </thead>
         <tbody>
-        <g:each status="i" in="${profileList}" var="profileInstance">
-          <tr class="row-${profileInstance.type}">
-            <td><g:link controller="profile" action="show" params="[name:profileInstance.name]" >${profileInstance.profile.fullName}</g:link></td>
-          <td class="col">${profileInstance.profile.tel}</td>
+        <g:each status="i" in="${entityList}" var="entity">
+          <tr class="row-${entity.type}">
+            <td><g:link controller="profile" action="show" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
+          <td class="col">${entity.profile.tel}</td>
           <td class="col">14</td>
           <td class="col">14</td>
           </tr>
@@ -43,10 +43,9 @@
       </table>
 
       <div class="paginateButtons">
-        <g:set var="pType" value="client" />
         <g:paginate action="list"
-                    params="[profileType:pType]"
-                    total="${profileCount}" />
+                    params="[entityType:'Client']"
+                    total="${entityCount}" />
       </div>
 
     </div>

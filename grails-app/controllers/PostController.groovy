@@ -2,7 +2,7 @@ class PostController {
     def entityHelperService
 
     def index = {
-        return ['articles': Post.findAllByType(PostType.findByName('article')),
+        return ['articleList': Post.findAllByType(PostType.findByName('article')),
                 'listTitle': 'Aktuelle Ereignisse']
     }
 

@@ -26,21 +26,21 @@ class ProfileController {
             image = "hort_loewenzahn.jpg"
         else if(params.hort == 'Kaumberg')
             image = "hort_kaumberg.jpg"
-        return ['image':image, 'pdf':params,'profileList': Entity.findAllByType(EntityType.findByName('Client'))]
+        return ['image':image, 'pdf':params,'entityList': Entity.findAllByType(EntityType.findByName('Client'))]
     }
 
     def attendance = {
-        return ['profileList': Entity.findAllByType(EntityType.findByName('Client')),
-                'profileCount': Entity.countByType(EntityType.findByName('Client'))]
+        return ['entityList': Entity.findAllByType(EntityType.findByName('Client')),
+                'entityCount': Entity.countByType(EntityType.findByName('Client'))]
     }
 
     def list = {
-        params.profileType = params.profileType ?: "all"
+        params.entityType = params.entityType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
-        return ['profileType': params.profileType,
-                'profileList': Entity.list(params),
-                'profileCount': Entity.count()]
+        return ['entityType': params.entityType,
+                'entityList': Entity.list(params),
+                'entityCount': Entity.count()]
     }
 
     def show = {
@@ -52,7 +52,7 @@ class ProfileController {
         }
         def content = params.content ?: "profile"
         def location = geoCoderService.geocodeLocation(e.profile.city)
-        return ['profileInstance':e,
+        return ['entity':e,
                 'content':content,
                 'activityList':activityDataService.findByOwner(params.name),
                 'location':location,

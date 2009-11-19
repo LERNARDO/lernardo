@@ -4,10 +4,10 @@
 </head>
 
 <body>
-  <h1>${listTitle ?: articles ? articles[0].category.description : "Keine Artikel gefunden" }</h1>
+  <h1>${listTitle ?: articleList ? articleList[0].category.description : "Keine Artikel gefunden" }</h1>
   <div id="article-container">
 
-    <g:each var="article" in="${articles}">
+    <g:each in="${articleList}" var="article">
       <div class="item">
         <g:render template="header" model='[article:article]'/>
         <g:render template="teaser" model='[article:article]'/>

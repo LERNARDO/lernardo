@@ -2,7 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
     <meta name="layout" content="print" />
-    <title>Sample title</title>
+    <title>Anwesenheits- und Essensliste</title>
     <style>
       #container {
         border: 1px solid #ccc;
@@ -58,10 +58,10 @@
           </tr>
         </thead>
         <tbody>
-        <g:each status="i" in="${profileList}" var="profileInstance">
+        <g:each status="i" in="${entityList}" var="entity">
           <tr>
-            <td>${profileInstance.profile.fullName}</td>
-            <td>${profileInstance.profile.tel}</td>
+            <td>${entity.profile.fullName}</td>
+            <td>${entity.profile.tel}</td>
             <td>14</td>
             <td>14</td>
           </tr>

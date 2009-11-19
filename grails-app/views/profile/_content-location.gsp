@@ -14,7 +14,7 @@
         map.addControl(new GMapTypeControl())
 
         var marker = new GMarker(new GLatLng(${location.lat},${location.lng}))
-        marker.bindInfoWindowHtml("${profileInstance.fullName}<br/>${profileInstance.strasse}<br/>${profileInstance.plz} ${profileInstance.ort}")
+        marker.bindInfoWindowHtml("${entity.fullName}<br/>${entity.street}<br/>${entity.PLZ} ${entity.city}")
         map.addOverlay(marker)
       }
     }
