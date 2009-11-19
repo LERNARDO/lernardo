@@ -71,10 +71,10 @@ class PostController {
         //def name = postInstance.name
         if(postInstance.save(flush:true)) {
             //flash.message = message(code:"event.created", args:[name])
-            redirect controller:"profile", action:"show", params:[name:entityHelperService.loggedIn.name]
+            redirect controller:"post", action:"index", params:[name:entityHelperService.loggedIn.name]
         }
         else {
-            redirect controller:"profile", action:"show", params:[name:entityHelperService.loggedIn.name]
+            redirect controller:"post", action:"index", params:[name:entityHelperService.loggedIn.name]
         }
     }
 }

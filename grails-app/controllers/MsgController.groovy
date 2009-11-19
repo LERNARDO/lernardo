@@ -48,7 +48,7 @@ class MsgController {
                 msgInstance.delete(flush:true)
                 render template:'inbox', model:[entity:e]
             }
-            catch(org.springframework.dao.DataIntegrityViolationException e) {
+            catch(org.springframework.dao.DataIntegrityViolationException ex) {
                 flash.message = message(code:"msg.notDeleted", args:[msgInstance.subject])
                 redirect(action:"show",id:params.id)
             }

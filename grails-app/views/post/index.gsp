@@ -1,11 +1,24 @@
 <head>
   <title>News</title>
   <meta name="layout" content="public" />
+  <g:javascript library="jquery"/>
 </head>
 
 <body>
   <h1>${listTitle ?: articleList ? articleList[0].category.description : "Keine Artikel gefunden" }</h1>
   <div id="article-container">
+
+  <g:if test="${currentEntity}">
+  <g:if test="${currentEntity.type.name == 'Paed'}">
+    <div class="action-buttons">
+      <span class="menuButton">
+        <g:remoteLink class="button" controller="post" action="createArticlePost" update="createArticle" after="jQuery('#createArticle').show('fast')" params="[name:currentEntity.name]">Neuen Artikel erstellen</g:remoteLink>
+      </span>
+    </div>
+    <div id="createArticle">
+    </div>
+  </g:if>
+  </g:if>
 
     <g:each in="${articleList}" var="article">
       <div class="item">

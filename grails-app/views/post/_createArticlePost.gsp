@@ -52,7 +52,7 @@
                               <td>
                                 <div class="buttons">             
                                     <span class="button"><g:actionSubmit class="save" action="saveArticle" value="Senden" /></span>
-                                    <span class="nav-button"><g:link controller="profile" action="show" params="[name:entity.name]">Abbrechen</g:link></span>
+                                    <span class="nav-button"><g:link controller="post" action="index" params="[name:entity.name]">Abbrechen</g:link></span>
                                 </div>
                               </td>
                             </tr>                  
