@@ -22,6 +22,7 @@ To change this template use File | Settings | File Templates.
         <tr><td class="bold titles bezeichnung">Start:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.date}"/></td></tr>
         <tr><td class="bold titles bezeichnung">Länge:</td><td class="bezeichnung">${activity.duration} Minuten</td></tr>
         <tr><td class="bold titles bezeichnung">Einrichtung:</td><td class="bezeichnung"><g:link controller="profile" action="show" params="[name:activity.facility.name]">${activity.facility.profile.fullName}</g:link></td></tr>
+        <tr><td class="bold titles bezeichnung">Erstellt von:</td><td class="bezeichnung"><g:link controller="profile" action="show" params="[name:activity.owner.name]">${activity.owner.profile.fullName}</g:link></td></tr>
         <tr><td class="bold titles bezeichnung">Team:</td>
           <td class="bezeichnung">
         <g:each in="${activity.paeds}" var="paed">

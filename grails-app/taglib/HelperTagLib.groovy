@@ -12,6 +12,10 @@ class HelperTagLib {
     out << Post.countByTemplate(attrs.remove ("template"))
   }
 
+  def getCommentsCountPost = {attrs ->
+    out << Post.countByPost(attrs.remove ("post"))
+  }
+
   def getRelationship = {attrs ->
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.remove ("source")),Entity.findByName(attrs.remove ("target"))).type.name
   }

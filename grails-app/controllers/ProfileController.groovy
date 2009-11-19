@@ -30,7 +30,7 @@ class ProfileController {
 
     def showCalendar = { // broken?
       Entity e = Entity.findByName(params.name)
-      render template:"showCalendar", model:[entity:e]
+      render template:"showCalendar", model:[entity:e,name:e.name]
     }
 
     def showArticleList = {

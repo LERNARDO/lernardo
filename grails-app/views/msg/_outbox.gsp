@@ -39,22 +39,19 @@
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
         <tr>
-          %{--<td class="checkbox-toggle">--}%
-            %{--<input type="checkbox" onclick=""/>--}%
-          %{--</td>--}%
           <td class="profile-pic">
           <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">
             <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="65" align="left"/>
           </g:link>
           </td>
           <td class="name-date">
-            <span class="name">an <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link></span>
+            <span class="name">an <g:link controller="profile" action="show" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link></span>
             <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
           </td>
           <td class="subject">
-            <span class="subject-text"><g:link action="show" id="${msgInstance.id}">${msgInstance.subject}</g:link></span>
+            <span class="subject-text"><g:remoteLink action="show" update="profile-content" id="${msgInstance.id}" params="[name:entity.name]">${msgInstance.subject}</g:remoteLink></span>
           </td>
-          <td class="delete-msg"><g:link action="delete" id="${msgInstance.id}">Löschen</g:link></td>
+          <td class="delete-msg"><g:remoteLink action="delete" update="profile-content" id="${msgInstance.id}" params="[name:entity.name]">Löschen</g:remoteLink></td>
         </tr>
         </g:each>
 

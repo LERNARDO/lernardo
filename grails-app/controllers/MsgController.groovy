@@ -14,17 +14,20 @@ class MsgController {
     def inbox = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def messages = filterService.getInbox (entityHelperService.loggedIn.name)
-        [ msgInstanceList: messages, msgInstanceTotal: messages.count() ]
+        render template:'inbox', model:[msgInstanceList: messages,
+                                        msgInstanceTotal: messages.count()]
     }
 
     def outbox = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def messages = filterService.getOutbox (entityHelperService.loggedIn.name)
-        [ msgInstanceList: messages, msgInstanceTotal: messages.count() ]
+        render template:'outbox', model:[msgInstanceList: messages,
+                                         msgInstanceTotal: messages.count()]
     }
 
     def show = {
         def msgInstance = Msg.get( params.id )
+        Entity e = Entity.findByName(params.name)
         msgInstance.read = true
 
         if(!msgInstance) {
@@ -32,17 +35,18 @@ class MsgController {
             redirect(action:index)
         }
         else {
-            [ msgInstance : msgInstance ]
+            render template:'show', model:[ msgInstance : msgInstance, entity: e ]
         }
     }
 
     def delete = {
         def msgInstance = Msg.get( params.id )
+        Entity e = Entity.findByName(params.name)
         if(msgInstance) {
             try {
                 flash.message = message(code:"msg.deleted", args:[msgInstance.subject])
                 msgInstance.delete(flush:true)
-                redirect(action:"inbox")
+                render template:'inbox', model:[entity:e]
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"msg.notDeleted", args:[msgInstance.subject])
@@ -100,7 +104,7 @@ class MsgController {
         def msgInstance = new Msg()
         msgInstance.properties = params
         Entity e = Entity.findByName(params.name)
-        return ['msgInstance':msgInstance, entity:e ]
+        render template:'create', model:['msgInstance':msgInstance, entity:e ]
     }
 
     def save = {
@@ -119,7 +123,7 @@ class MsgController {
         if(!msgInstance.hasErrors() && msgInstance.save(flush:true) && msgInstance2.save(flush:true)) {
             flash.message = message(code:"msg.sent", args:[msgInstance.subject])
 
-            redirect action:"outbox"
+            redirect controller:'profile', action:'show', params:[name:params.name]
         }
         else {
             render view:'create', model:[ msgInstance:msgInstance, entity:Entity.findByName(params.name) ]

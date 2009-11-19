@@ -1,4 +1,7 @@
-        <div class="body">
+<head>
+  <g:javascript library="jquery"/>
+</head>
+          <div class="body">
             <h1>Nachricht verfassen</h1>
             <g:hasErrors bean="${msgInstance}">
               <div id="flash-msg">
@@ -18,7 +21,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <b>${entity.profile.fullName}</b>
+                                    <span id="entity" class="bold">${entity.profile.fullName}</span>
                                 </td>
                             </tr>
 
@@ -40,15 +43,15 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:msgInstance,field:'content','errors')}">
-                                    <textarea rows="20" cols="100" name="content">${fieldValue(bean:msgInstance, field:'content')}</textarea>
+                                    <textarea rows="10" cols="70" id="content" name="content" >${fieldValue(bean:msgInstance, field:'content')}</textarea>
                                 </td>
                             </tr> 
                             <tr>
                               <td>&nbsp;</td>
                               <td>
                                 <div class="buttons">             
-                                    <span class="button"><input class="save" type="submit" action="Create" value="Senden" /></span>
-                                    <span class="nav-button"><g:link controller="msg" action="inbox" params="[name:entity.name]">Abbrechen</g:link></span>
+                                    <span class="button"><g:actionSubmit class="save" action="save" value="Senden" /></span>
+                                    <span class="nav-button"><g:link controller="profile" action="show" params="[name:entity.name]">Abbrechen</g:link></span>
                                 </div>
                               </td>
                             </tr>                  

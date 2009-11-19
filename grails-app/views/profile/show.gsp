@@ -12,28 +12,33 @@
     <div class="yui-b" id="profile-navigation">
 
       <div id="profile-pic">
+        <h1>${entity.profile.fullName}</h1>
         <ub:profileImage name="${entity.name}" width="180" height="233"/>
       </div>
 
       <ub:meOrAdmin entityName="${entity.name}">
-        <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profilbild ändern</g:link></li>
+      <div class="profile-group">Persönliches</div>
+        <div class="profile-box">
+          <ul>
+            <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profilbild ändern</g:link></li>
+            <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profildaten ändern</g:link></li>
+          </ul>
+        </div>
       </ub:meOrAdmin>
-    %{--<g:render template="picturebox" model="[name:profileInstance.fullName+' - '+profileInstance.role,
-   type:profileInstance.type, imageUrl:profileInstance.image]"/>--}%
 
       <div class="profile-group">Kommunikation</div>
       <div class="profile-box">
         <ul>
-          <li class="profile-neuigkeiten"><g:remoteLink action="showNews" update="profile-content" params="[name:entity.name]">Neuigkeiten</g:remoteLink></li>
           <li class="profile-profil"><g:remoteLink action="showProfile" update="profile-content" params="[name:entity.name]">Profil ansehen</g:remoteLink></li>
           <ub:meOrAdmin entityName="${entity.name}">
+            <li class="profile-neuigkeiten"><g:remoteLink action="showNews" update="profile-content" params="[name:entity.name]">Neuigkeiten</g:remoteLink></li>
             <li class="profile-nachricht"><g:remoteLink controller="msg" action="inbox" update="profile-content">Mein Postfach</g:remoteLink></li>
             <g:if test="${entity.type.name == 'Paed'}">
-              <li class=""><g:link action="show" params="[content:'createArticle',name:entity.name]">Artikel schreiben</g:link></li>
+              <li class="profile-activities"><g:link action="show" params="[content:'createArticle',name:entity.name]">Artikel schreiben</g:link></li>
             </g:if>
           </ub:meOrAdmin>
           <g:if test="${entity.type.name == 'Paed'}">
-            <li class=""><g:remoteLink action="showArticleList" update="profile-content" params="[name:entity.name]">Artikel ansehen</g:remoteLink></li>
+            <li class="profile-activities"><g:remoteLink action="showArticleList" update="profile-content" params="[name:entity.name]">Artikel ansehen</g:remoteLink></li>
           </g:if>
           <g:if test="${entity.type.name == 'Paed' || entity.type.name == 'Client'}">
           %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
@@ -48,7 +53,7 @@
           </g:if>
 
           <ub:notMe entityName="${entity.name}">
-            <li class="profile-nachricht"><g:link controller="msg" action="create" params="[name:entity.name]">Nachricht senden</g:link></li>
+            <li class="profile-nachricht"><g:remoteLink controller="msg" action="create" update="profile-content" params="[name:entity.name]">Nachricht senden</g:remoteLink></li>
             <app:isFriend entity="${entity}">
               <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" params="[name:entity.name]">Vom Netzwerk entfernen</g:link></li>
             </app:isFriend>

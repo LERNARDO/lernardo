@@ -9,7 +9,7 @@
   </g:if>
   <g:elseif test="${entity.type.name == 'Client'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${entity.profile.birthDate}</td></tr>
+    <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
     <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
     <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
@@ -28,7 +28,7 @@
   <g:elseif test="${entity.type.name == 'User'}">
     <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title}</td></tr>
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${entity.profile.birthDate}</td></tr>
+    <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
     <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
     <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
@@ -38,7 +38,7 @@
   <g:elseif test="${entity.type.name == 'Paed'}">
     <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title}</td></tr>
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung">${entity.profile.birthDate}</td></tr>
+    <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
     <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
     <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
@@ -46,7 +46,3 @@
     <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${entity.profile.biography}</td></tr>
   </g:elseif>
 </table>
-<br/>
-<ub:meOrAdmin entityName="${entity.name}">
-  <g:link style="color:#a00; font-weight: bold;" action="edit" id="#">Profil bearbeiten</g:link>
-</ub:meOrAdmin>

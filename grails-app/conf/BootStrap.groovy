@@ -1,13 +1,10 @@
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Entity
-
-import profiles.UserProfile
 import de.uenterprise.ep.Link
+import profiles.UserProfile
 import profiles.FacProfile
 
 class BootStrap {
-  //def profileDataService
-  //def activityDataService
   def defaultObjectService
   def entityHelperService
   def calendarDataService
@@ -26,8 +23,6 @@ class BootStrap {
       createDefaultActivityTemplates()
       createDefaultActivities()
       createDefaultPosts()
-      //profileDataService.init()
-      //activityDataService.init()
     }
   }
 

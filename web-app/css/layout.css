@@ -186,49 +186,14 @@ ul {
     height: 115px;
     background:url(../images/head-bg.jpg) no-repeat; }
 
-.profile-pic {
+#profile-pic {
     text-align: center; }
-
-.picture-box-betreiber h1, .picture-box-paed h1, .picture-box-client h1, .picture-box-einrichtung h1, .picture-box-mitarbeiter h1 {
-    padding: 0;
-    margin: 0 0 10px 0;
-    font-size: 120%;
-    font-weight: bold;
-    color: #fff;
-    border-bottom: none; }
-
-.picture-box-einrichtung {
-    -moz-border-radius: 5px;
-    background-color: #659465;
-    border:1px solid #548354;
-    padding: 5px; }
-
-.picture-box-client {
-    -moz-border-radius: 5px;
-    background-color: #9a6464;
-    border:1px solid #895353;
-    padding: 5px; }
-
-.picture-box-paed {
-    -moz-border-radius: 5px;
-    background-color: #7588ab;
-    border:1px solid #64779a;
-    padding: 5px; }
-
-.picture-box-betreiber {
-    -moz-border-radius: 5px;
-    background-color: #bcbb86;
-    border:1px solid #abaa75;
-    padding: 5px; }
-
-.picture-box-mitarbeiter {
-    -moz-border-radius: 5px;
-    background-color: #FFB45C;
-    border:1px solid #eea34b;
-    padding: 5px; }
-
-.rang {
-    text-align: center; }
+    #profile-pic h1 {
+        padding: 0;
+        margin: 0 0 10px 0;
+        font-size: 120%;
+        font-weight: bold;
+        border-bottom: none; }
 
 .profile-box {
     -moz-border-radius: 5px;

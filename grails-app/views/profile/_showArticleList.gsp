@@ -6,6 +6,7 @@
   <tr>
     <g:sortableColumn property="title" title="Titel"/>
     <g:sortableColumn property="dateCreated" title="Datum"/>
+    <th>Kommentare</th>
   </tr>
   </thead>
   <tbody>
@@ -13,6 +14,7 @@
     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
       <td><g:link action="show" id="${article.id}">${article.title}</g:link></td>
       <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${article.dateCreated}"/></td>
+      <td><app:getCommentsCountPost post="${article}"/></td>
     </tr>
   </g:each>
   </tbody>

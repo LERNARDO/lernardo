@@ -9,6 +9,7 @@ class Post {
   String content
   Entity author
   ActivityTemplate template // only used for activity template comments
+  Post post
 
   Date dateCreated
   Date lastUpdated
@@ -17,6 +18,7 @@ class Post {
       title(nullable:true)
       teaser(nullable:true)
       template(nullable: true)
+      post(nullable:true)
       dateCreated(nullable: true)
       lastUpdated(nullable: true)
     }

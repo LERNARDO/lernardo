@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 class ActivityController {
 
     def index = {}
@@ -5,9 +7,27 @@ class ActivityController {
     def list = {
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
-        params.perMonth = params.perMonth ? params.perMonth: "alle"
-        return ['activityType': params.perMonth,
-                'activityList': Activity.list(params),
+        params.myDate_year = params.myDate_year ?: 'alle'
+        println params
+
+        if (params.list== 'Alle')
+          return ['activityList': Activity.list(),
+                  'activityCount': Activity.count()]
+
+        if(params.myDate_year && params.myDate_month && params.myDate_day){
+          def c = Activity.createCriteria()
+          Date inputDate = new Date()
+          def results = c.list {
+            String input = "${params.myDate_year}/${params.myDate_month}/${params.myDate_day}"
+            inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
+            between('date',inputDate,inputDate+1)
+          }
+          println inputDate
+          return ['activityList': results,
+                'activityCount': results.size(),
+                'dateSelected': inputDate]
+        }
+        return ['activityList': Activity.list(),
                 'activityCount': Activity.count()]
     }
 
