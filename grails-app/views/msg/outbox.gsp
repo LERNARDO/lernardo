@@ -1,27 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: niZe
-  Date: 13.07.2009
-  Time: 17:59:24
-  To change this template use File | Settings | File Templates.
---%>
-
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-  <head>
-    <title>Postausgang</title>
-    %{--<ub:layout />
-    <nav:resources override="true"/>--}%
-    <meta name="layout" content="private" />
-  </head>
-  <body>
+<head>
+  <g:javascript library="jquery"/>
+</head>
   <h1>Postausgang</h1>
     <div id="inbox">
       <div id="inbox-navigation">
         <div id="left-list">
           <ul class="tabs">
-            <li><g:link controller="msg" action="inbox">Posteingang</g:link></li>
-            <li><g:link controller="msg" action="outbox">Postausgang</g:link></li>
+            <li><g:remoteLink controller="msg" action="inbox" update="profile-content">Posteingang</g:remoteLink></li>
+            <li><g:remoteLink controller="msg" action="outbox" update="profile-content">Postausgang</g:remoteLink></li>
           </ul>
         </div>
       </div>
@@ -79,5 +65,3 @@
         </div>
       </div>
     </div>
-  </body>
-</html>

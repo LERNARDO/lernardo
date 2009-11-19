@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />
 
   <jq:jquery>
-    $('#profile-content').fullCalendar({
+    $('#calendar-content').fullCalendar({
       header: { left:'title', center:'today month basicWeek basicDay', right:'prev,next' },
       monthNames: ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
       monthNamesShort: ['Jan','Feb','März','April','Mai','Jun','Jul','Aug','Sept','Okt','Nov','Dez'],
@@ -35,9 +35,6 @@
 
   </jq:jquery>
 </head>
-<div id="yui-main">
-  <div class="yui-b">
-    <div id="profile-content">
-    </div><!--profile-content-->
-  </div><!--yui-b-->
-</div><!--yui-main-->
+<body>
+  <div id="calendar-content"></div>
+</body>

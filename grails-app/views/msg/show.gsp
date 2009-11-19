@@ -1,12 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-  <title>Events</title>
-  %{--<ub:layout />
-    <nav:resources override="true"/>--}%
-    <meta name="layout" content="private" />
-</head>
-<body>
         <div class="body">
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -77,5 +68,3 @@
                 </g:form>
             </div>
         </div>
-    </body>
-</html>

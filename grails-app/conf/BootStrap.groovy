@@ -670,21 +670,21 @@ class BootStrap {
       log.debug ("==> creating default activities")
 
       new Activity(title:'Weide mit Hindernissen',
-            owner:Entity.findByName('alex'),
+            owner:Entity.findByName('martin'),
             date: new Date(2009-1900,10,01,15,30),
             duration: 60,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn')).save()
       new Activity(title:'Schmetterlinge',
-            owner:Entity.findByName('alex'),
+            owner:Entity.findByName('martin'),
             date: new Date(2009-1900,10,01,16,30),
             duration: 30,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn')).save()
       new Activity(title:'Luftballonmeer',
-            owner:Entity.findByName('alex'),
+            owner:Entity.findByName('regina'),
             date: new Date(2009-1900,10,02,15,30),
             duration: 45,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
@@ -717,7 +717,7 @@ class BootStrap {
             September, als Hortleiterin wird Hannah Mutzbauer eingesetzt, die sich bereits in Hort Löwenzahn
             bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
             zur vollen Verfügung.''',
-            author:Entity.findByName('alex')).save()
+            author:Entity.findByName('martin')).save()
     new Post(type:a,
             title:'Gesund durch Ernährungsexpertin',
             teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
@@ -731,7 +731,7 @@ class BootStrap {
             Technischen Verlag der Uni Graz, die Unternehmensgründung von "Buntes Brot" im Juni 2001,
             Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
             Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
-            author:Entity.findByName('alex')).save()
+            author:Entity.findByName('martin')).save()
     new Post(type:a,
             title:'Hort Löwenzahn erhält Auszeichnung',
             teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
@@ -745,7 +745,7 @@ class BootStrap {
             Vorbereitung für das kommende Schuljahr. Bei diesem Ferienhort gibt es sogar einen sogenannten Tag
             der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
             Abschlussausflug in den Märchenpark St. Margarethen.''',
-            author:Entity.findByName('alex')).save()
+            author:Entity.findByName('regina')).save()
   }
   
 }

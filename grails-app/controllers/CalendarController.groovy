@@ -1,17 +1,16 @@
 import org.joda.time.DateTime
 import org.joda.time.DateMidnight
 import grails.converters.JSON
+import de.uenterprise.ep.Entity
 
 class CalendarController {
-    def profileDataService ;
-    def activityDataService ;
 
     def index = { }
 
     def show_ajax = { }
 
     def show  = {
-        def prf = profileDataService.getProfile (params.name)
+        def prf = Entity.findByName(params.name)
         if (!prf) {
             response.sendError(404, "user profile not found")
             return
@@ -34,7 +33,7 @@ class CalendarController {
         println ("loading events for $params.name between $params.start and $params.end" )
 
         // find all activities for given profile
-        def activities = getActivitiesForProfile (params.name)
+        def activities = Activity.findAllByOwner(Entity.findByName(params.name))
 
         // convert to fullCalendar events
         def eventList = []
@@ -48,42 +47,5 @@ class CalendarController {
 
         def json = eventList as JSON;
         render json
-    }
-
-    def getActivitiesForProfile (String name) {
-        if (name == 'all')
-        return MockUtil.asList(activityDataService.activities)
-
-        def prf = profileDataService.getProfile (name)
-        if (!prf)
-        return null;
-
-        def activities = null;
-        switch (prf.type) {
-            case 'paed':
-            case 'client':
-            activities = activityDataService.findByNameAndType (name, prf.type)
-            break;
-
-            case 'einrichtung':
-            activities = MockUtil.asList(activityDataService.activities)
-            activities = MockUtil.filter(activities, "einrichtung", name)
-            break;
-
-            case 'betreiber':
-            // todo: aggregate from all related einrichtungen
-            activities = MockUtil.asList(activityDataService.activities)
-            break;
-
-            case 'mitarbeiter':
-            // todo: figure out if a MA should have a calendar at all (and if yes, what the �$% should be in it)
-            activities = []
-            break;
-
-            default:
-            activities = MockUtil.asList(activityDataService.activities)
-        }
-
-        return activities;
     }
 }

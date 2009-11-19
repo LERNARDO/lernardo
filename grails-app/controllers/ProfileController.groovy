@@ -4,8 +4,6 @@ import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityType
 
 class ProfileController {
-    def profileDataService
-    def activityDataService
     def geoCoderService
     def networkService
     def entityHelperService
@@ -19,6 +17,41 @@ class ProfileController {
     }
 
     def create = { }
+
+    def showNews = {
+      Entity e = Entity.findByName(params.name)
+      render template:"showNews", model:[entity:e]
+    }
+
+    def showProfile = {
+      Entity e = Entity.findByName(params.name)
+      render template:"showProfile", model:[entity:e]
+    }
+
+    def showCalendar = { // broken?
+      Entity e = Entity.findByName(params.name)
+      render template:"showCalendar", model:[entity:e]
+    }
+
+    def showArticleList = {
+      Entity e = Entity.findByName(params.name)
+      render template:"showArticleList", model:[entity:e,'articleList':Post.findAllByAuthorAndType(e,PostType.findByName('article'))]
+    }
+
+    def showActivityList = {
+      Entity e = Entity.findByName(params.name)
+      render template:"showActivityList", model:[entity:e,'activityList':Activity.findAllByOwner(e)]
+    }
+
+    def showLeistung = {
+      Entity e = Entity.findByName(params.name)
+      render template:"showLeistung", model:[entity:e]
+    }
+
+    def showLocation = { // broken?
+      Entity e = Entity.findByName(params.name)
+      render template:"showLocation", model:[entity:e,location:geoCoderService.geocodeLocation(e.profile.city)]
+    }
 
     def print = {
         def image
@@ -44,37 +77,12 @@ class ProfileController {
     }
 
     def show = {
-        //def prf = profileDataService.getProfile (params.name)
         def e = Entity.findByName(params.name)
         if (!e) {
             response.sendError(404, "user profile not found")
             return ;
         }
-        def content = params.content ?: "profile"
-        def location = geoCoderService.geocodeLocation(e.profile.city)
-        return ['entity':e,
-                'content':content,
-                'activityList':activityDataService.findByOwner(params.name),
-                'location':location,
-                'friendsList':networkService.findFriendsOf(e)]
-    }
-
-    // not used atm
-    def edit = {
-        def prf = profileDataService.getProfile (params.name)
-        if (!prf) {
-            response.sendError(404, "user profile not found")
-            return ;
-        }
-
-        render (view:"edit_${prf.type ? prf.type:'other'}", model:prf)
-    }
-
-    // not used atm
-    def save = {
-        profileDataService.addProfile(params.name, params)
-        def prf = profileDataService.getProfile (params.name)
-        render (view:"show_${prf.type ? prf.type:'other'}", model:prf)
+        return ['entity':e,'friendsList':networkService.findFriendsOf(e)]
     }
 
     def addFriend = {

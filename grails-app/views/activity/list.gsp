@@ -62,12 +62,12 @@
           </tr>
         </thead>
         <tbody>
-        <g:each status="i" in="${activityList}" var="activityInstance">
+        <g:each status="i" in="${activityList}" var="activity">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td><g:link action="show" id="${activityInstance.id}">${activityInstance.title}</g:link></td>
-            <td>${activityInstance.facility.profile.fullName}</td>
-            <td>${activityInstance.owner.profile.fullName}</td>
-            <td>${activityInstance.date}</td>
+            <td><g:link action="show" id="${activity.id}">${activity.title}</g:link></td>
+            <td>${activity.facility.profile.fullName}</td>
+            <td>${activity.owner.profile.fullName}</td>
+            <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.date}"/></td>
           </tr>
         </g:each>
         </tbody>
