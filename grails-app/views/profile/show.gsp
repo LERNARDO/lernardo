@@ -7,7 +7,6 @@
 </head>
 <body>
 <div id="doc4" class="yui-t3">
-  <div id="bd">
 
     <div class="yui-b" id="profile-navigation">
 
@@ -21,7 +20,7 @@
         <div class="profile-box">
           <ul>
             <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profilbild ändern</g:link></li>
-            <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profildaten ändern</g:link></li>
+            <li><g:remoteLink action="edit" update="profile-content" params="[name:entity.name]">Profildaten ändern</g:remoteLink></li>
           </ul>
         </div>
       </ub:meOrAdmin>
@@ -91,7 +90,6 @@
       </div>
     </div>
 
-  </div><!--bd-->
 </div><!--doc4-->
 
 </body>

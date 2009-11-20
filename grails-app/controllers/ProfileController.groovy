@@ -300,4 +300,47 @@ class ProfileController {
         }
     }
 
+    def edit = {
+        def entityInstance = Entity.findByName(params.name)
+
+        if(!entityInstance) {
+            flash.message = message(code:"msg.notFound", args:[params.id])
+            redirect action:'show', model:[name:params.name]
+        }
+        else {
+            return [ entityInstance : entityInstance ]
+        }
+    }
+
+  def update = {
+       def entityInstance = Entity.get( params.id )
+       if(entityInstance) {
+           if(params.version) {
+               def version = params.version.toLong()
+               if(entityInstance.version > version) {
+
+                   msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Msg while you were editing.")
+
+                   render view:'edit', model:[entityInstance:entityInstance]
+                   return
+               }
+           }
+           entityInstance.properties = params
+           entityInstance.profile.fullName = params.fullName
+           if(!entityInstance.hasErrors() && entityInstance.save()) {
+               flash.message = "Msg ${params.id} updated"
+
+               redirect action:'show', params:[name:entityInstance.name]
+           }
+           else {
+               render view:'edit', model:[entityInstance:entityInstance]
+           }
+       }
+       else {
+           flash.message = message(code:"msg.notFound", args:[params.id])
+           redirect action:'show', params:[name:entityHelperService.loggedIn.name]
+       }
+   }
+
+
 }

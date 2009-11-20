@@ -11,7 +11,7 @@
     <g:layoutHead />
     <g:javascript library="jquery"/>
   </head>
-  <body onload="load()" onunload="GUnload()">
+  <body>
     <div id="private">
       <div id="doc4">
         <div id="hd">
@@ -80,7 +80,9 @@
           </ol>
         </div>
 
-        <g:layoutBody />
+        <div id="bd">
+          <g:layoutBody />
+        </div>
 
         <div id="ft">
           <g:render template="/templates/footer" />
@@ -88,5 +90,4 @@
       </div><!-- doc4 -->
     </div><!-- private -->
   </body>
-</head>
 </html>
