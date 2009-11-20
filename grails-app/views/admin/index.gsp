@@ -14,14 +14,19 @@
               <li><g:link controller="template" action="list">Liste der Aktivitätsvorlagen anzeigen</g:link></li>
               <li><g:link controller="activity" action="list">Liste der Aktivitäten anzeigen</g:link></li>
               <li><g:link controller="profile" action="attendance">Anwesenheits-/Essensliste anzeigen</g:link></li>
-              <li><g:link controller="profile" action="create">Profil anlegen</g:link></li>
+              <li><g:link controller="profile" action="createOperator">Betreiber anlegen</g:link></li>
             </ul>
           </div>
         </div>
         <div id="yui-main">
           <div class="yui-b">
             <div id="admin-content">
-              <p>Links kann man zu den einzelnen Bereichen navigieren</p>
+              <p>Info:</p>
+              <ul>
+                <li>Betreiber können nur als Admin angelegt werden.</li>
+                <li>Horte werden über das Profil eines Betreibers angelegt.</li>
+                <li>Pädagogen und Betreute werden über das Profil eines Hortes angelegt.</li>
+              </ul>
              </div>
           </div>
         </div>

@@ -2,6 +2,8 @@ import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityType
+import profiles.FacProfile
+import de.uenterprise.ep.Account
 
 class ProfileController {
     def geoCoderService
@@ -9,6 +11,7 @@ class ProfileController {
     def entityHelperService
     def metaDataService
     def FilterService
+    def authenticateService
 
     def index = { }
 
@@ -18,6 +21,41 @@ class ProfileController {
     }
 
     def create = { }
+
+    def createOperator = {
+      def entityInstance = new Entity()
+      entityInstance.properties = params
+      return ['entityInstance':entityInstance]
+    }
+
+    def saveOperator = {
+      EntityType etOperator = metaDataService.etOperator
+
+      Account user = Account.findByEmail (params.email)
+      if (user) {
+        flash.message = "user account already exists"
+        redirect action:"createOperator", params:params
+        return
+      }
+
+      Entity etst = Entity.findByName (params.name)
+      if (etst) {
+        flash.message = "nick-name already exists"
+        redirect action:"createOperator", params:params
+        return
+      }
+
+      entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
+        FacProfile prf = ent.profile
+        prf.city = params.city ?: ""
+        prf.opened = "-"
+        prf.description = "-"
+        prf.tel = "-"
+        ent.user.password = authenticateService.encodePassword("pass")
+      }
+      flash.message = "user wurde angelegt"
+      redirect controller:'admin', action:'index'
+    }
 
     def search = { }
 

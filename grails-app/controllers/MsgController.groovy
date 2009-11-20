@@ -101,10 +101,10 @@ class MsgController {
     }
 
     def create = {
-        def msgInstance = new Msg()
-        msgInstance.properties = params
-        Entity e = Entity.findByName(params.name)
-        render template:'create', model:['msgInstance':msgInstance, entity:e ]
+      def msgInstance = new Msg()
+      msgInstance.properties = params
+      Entity e = Entity.findByName(params.name)
+      render template:'create', model:['msgInstance':msgInstance, entity:e ]
     }
 
     def save = {
