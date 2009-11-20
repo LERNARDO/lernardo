@@ -1,52 +1,63 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>${title}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="layout" content="private" />    
+    <meta name="layout" content="private" />
+    <title>Aktivität anlegen</title>
   </head>
-
   <body>
-    <div class="profile-group label">Neue Aktivität planen</div>
-    <div class="profile-box">
-      <g:form action="save" >
-        <table>
-          <tr>
-            <td class="bold titles bezeichnung">Vorlagenname:</td>
-            <td class="bezeichnung">${name}</td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Datum:</td>
-            <td class="bezeichnung"><input type="text" id="data" name="date" value=""/></td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Beginn:</td>
-            <td class="bezeichnung"><input type="text" id="startTime" name="startTime" value=""/></td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Länge:</td>
-            <td class="bezeichnung"><input type="text" id="duration" name="duration" value="${dauer}"/></td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Einrichtung:</td>
-            <td class="bezeichnung"><input type="text" id="einrichtung" name="einrichtung" value=""/></td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Team:</td>
-            <td class="bezeichnung"><input type="text" id="fullName" name="gemeinnutzigkeit" value=""/></td>
-          </tr>
-          <tr>
-            <td class="bold titles bezeichnung">Teilnehmer:</td>
-            <td class="bezeichnung"><input type="text" id="fullName" name="ansprechperson" value=""/></td>
-          </tr>
-        </table>
-        <input name="name "type="hidden" value="${name}" />
-        <span class="button"><g:actionSubmit name="save" action="save" value="Speichern" /></span>
-        <span class="button"><g:actionSubmit name="cancel" action="cancel" value="Abbrechen" /></span>
-      </g:form>
-    </div>
+      <div class="body">
+            <h1>Aktivität anlegen</h1>
+            <g:hasErrors bean="${activityInstance}">
+              <div class="errors">
+                <g:renderErrors bean="${activityInstance}" as="list" />
+              </div>
+            </g:hasErrors>
+            <g:form action="save" method="post" id="${activityInstance.id}">
+                    <h1>Notwendige Angaben</h1>
+                    <table id="msg-composer">
+                        <tbody>
 
-  </body>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="title">
+                                      <g:message code="msg.title.label" default="Titel" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'title','errors')}">
+                                    <input type="text" size="50" id="title" name="title" value="${fieldValue(bean:activityInstance,field:'title')}"/>
+                                </td>
+                            </tr>
 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="date">
+                                      <g:message code="msg.date.label" default="Datum" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'date','errors')}">
+                                    <g:datePicker name="date" id="date" value="${new Date()}" precision="minute"/>
+                                </td>
+                            </tr>
 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="duration">
+                                      <g:message code="msg.duration.label" default="Dauer" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'duration','errors')}">
+                                    <input type="text" size="50" id="duration" name="duration" value="${fieldValue(bean:activityInstance,field:'duration')}"/>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="buttons">
+                        <span class="button"><g:actionSubmit class="save" action="save" value="Anlegen" /></span>
+                        <span class="nav-button"><g:link controller="template" action="list">Abbrechen</g:link></span>
+                    </div>
+            </g:form>
+        </div>
+    </body>
 </html>

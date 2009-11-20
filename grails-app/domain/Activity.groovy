@@ -13,5 +13,6 @@ class Activity {
   Date lastUpdated
 
     static constraints = {
+      facility(nullable:true)
     }
 }

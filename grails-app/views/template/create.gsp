@@ -46,7 +46,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'description','errors')}">
-                                    <textarea rows="10" cols="70" id="description" name="description">${fieldValue(bean:blogInstance, field:'description')}</textarea>
+                                    <textarea rows="10" cols="70" id="description" name="description">${fieldValue(bean:templateInstance, field:'description')}</textarea>
                                 </td>
                             </tr>
 

@@ -1,6 +1,8 @@
 import java.text.SimpleDateFormat
+import de.uenterprise.ep.Entity
 
 class ActivityController {
+  def entityHelperService
 
     def index = {}
 
@@ -43,20 +45,40 @@ class ActivityController {
     }
 
     def create = {
-        def template = ActivityTemplate.findById(params.id)
+      def activityInstance = new Activity()
+      activityInstance.properties = params
+      return ['activityInstance':activityInstance]
+    }
 
-        if (!template) {
-            response.sendError(404, "'$params.id': no such template")
-            return ;
+    def save = {
+
+      Activity a = Activity.findByTitle (params.title)
+      if (a) {
+        flash.message = "activity already exists"
+        redirect action:"create", params:params
+        return
+      }
+
+      println params
+
+      def activityInstance = new Activity(params)
+      activityInstance.owner = entityHelperService.loggedIn
+      activityInstance.date = new Date()                                  // test placeholder
+      activityInstance.duration = Integer.parseInt(params.duration)
+      activityInstance.paeds = []                                         // test placeholder
+      activityInstance.clients = []                                       // test placeholder
+      activityInstance.facility = Entity.findByName('kaumberg')           // test placeholder
+        if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
+          flash.message = "aktivität wurde angelegt"
+          redirect controller:'template', action:'list'
         }
-        return template
+        else {
+          flash.message = "aktivität konnte nicht angelegt werden"
+          redirect controller:'template', action:'list'
+        }
     }
 
     def cancel = {
         redirect (controller:"template", action:"list")
-    }
-
-    def save = {
-        redirect (action:"create")
     }
 }

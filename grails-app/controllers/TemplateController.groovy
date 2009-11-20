@@ -30,16 +30,9 @@ class TemplateController {
 
     def save = {
 
-      Account user = Account.findByEmail (params.email)
-      if (user) {
-        flash.message = "user account already exists"
-        redirect action:"create", params:params
-        return
-      }
-
       ActivityTemplate at = ActivityTemplate.findByName (params.name)
       if (at) {
-        flash.message = "nick-name already exists"
+        flash.message = "template already exists"
         redirect action:"create", params:params
         return
       }
