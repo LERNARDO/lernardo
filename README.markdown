@@ -1,20 +1,13 @@
 # Alex
-- add link to paed to create article post with selectbox "show public"
-- add link to paed to show articles
-- fix "Kalender ansehen"
-- fix "Standort anzeigen"
 - implement "Neuigkeiten"
-- implement "Neue Aktivitätsvorlage erstellen"
 - implement "Neue Aktivität planen"
-- fix "Mein Postfach" link not working anymore
-- fix "Artikel ansehen" link not working anymore
-- fix "bearbeiten" of articles
-- fix "Neuen Artikel erstellen" link
+- implement "bearbeiten" of articles
 - fix profile speaker shows wrong entity
 
 # Allan
 - implement i18n messages
 - style msg views
+- style "Artikel ansehen view
 
 # Daniel
 - none
@@ -26,6 +19,9 @@
 - database
 - TeamCity
 - assets
+- "Neuen Artikel erstellen" ajax update doesn't work
+- "Kalender ansehen" doesn't work anymore with ajax
+- "Standort anzeigen" problem with ajax? triggers empty page
 
 # Previous TODOs
 

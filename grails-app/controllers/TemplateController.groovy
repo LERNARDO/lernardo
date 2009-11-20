@@ -1,3 +1,5 @@
+import de.uenterprise.ep.Account
+
 class TemplateController {
 
     def index = { }
@@ -18,5 +20,34 @@ class TemplateController {
         }
 
         return [template:template,commentList:Post.findAllByTemplate(template)]
+    }
+
+    def create = {
+      def templateInstance = new ActivityTemplate()
+      templateInstance.properties = params
+      return ['templateInstance':templateInstance]
+    }
+
+    def save = {
+
+      Account user = Account.findByEmail (params.email)
+      if (user) {
+        flash.message = "user account already exists"
+        redirect action:"create", params:params
+        return
+      }
+
+      ActivityTemplate at = ActivityTemplate.findByName (params.name)
+      if (at) {
+        flash.message = "nick-name already exists"
+        redirect action:"create", params:params
+        return
+      }
+
+      def activityInstance = new ActivityTemplate(params)
+        if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
+          flash.message = "aktivitätsvorlage wurde angelegt"
+          redirect controller:'template', action:'list'
+        }
     }
 }

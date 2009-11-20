@@ -36,5 +36,6 @@
   </jq:jquery>
 </head>
 <body>
-  <div id="calendar-content"></div>
+  <div id="calendar-content">
+  </div>
 </body>

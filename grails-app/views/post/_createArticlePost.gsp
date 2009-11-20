@@ -52,7 +52,8 @@
                               <td>
                                 <div class="buttons">             
                                     <span class="button"><g:actionSubmit class="save" action="saveArticle" value="Senden" /></span>
-                                    <span class="nav-button"><g:link controller="post" action="index" params="[name:entity.name]">Abbrechen</g:link></span>
+                                    %{--<span class="nav-button"><g:link controller="post" action="index" params="[name:entity.name]">Abbrechen</g:link></span>--}%
+                                    <span class="button"><a href="#" onclick="jQuery('#createArticle').hide(); return false;">Fertig</a></span>
                                 </div>
                               </td>
                             </tr>                  

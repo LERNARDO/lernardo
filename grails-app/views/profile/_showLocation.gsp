@@ -14,7 +14,7 @@
         map.addControl(new GMapTypeControl());
 
         var marker = new GMarker(new GLatLng(${location.lat}, ${location.lng}));
-        marker.bindInfoWindowHtml("${entity.profile.fullName}<br/>${entity.street}<br/>${entity.PLZ} ${entity.city}");
+        marker.bindInfoWindowHtml("${entity.profile.fullName}<br/>${entity.profile.street}<br/>${entity.profile.PLZ} ${entity.profile.city}");
         map.addOverlay(marker)
       }
     }
@@ -23,8 +23,8 @@
 </head>
 <body>
 <h1>Standort:</h1>
-<p>Nachmittagsbetreuung ${entity.city} - ${entity.profile.fullName}<br/>
-  ${entity.street}<br/>
-  ${entity.PLZ} ${entity.city}</p>
+<p>Nachmittagsbetreuung ${entity.profile.city} - ${entity.profile.fullName}<br/>
+  ${entity.profile.street}<br/>
+  ${entity.profile.PLZ} ${entity.profile.city}</p>
 <div id="map" style="width: 645px; height: 500px"></div>
 </body>

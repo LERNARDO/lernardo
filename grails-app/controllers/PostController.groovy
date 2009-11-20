@@ -21,7 +21,7 @@ class PostController {
       def postInstance = new Post()
       postInstance.properties = params
       Entity e = Entity.findByName(params.name)
-      render template:'createArticlePost', model:['postInstance':postInstance, entity:e ]
+      render template:'createArticlePost', model:['postInstance':postInstance, entity:e]
     }
 
     def delete = {
