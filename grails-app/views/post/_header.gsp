@@ -1,11 +1,14 @@
 <div class="header">
-  <div class="date">
-    <g:isLoggedIn>
-      (<g:link style="color:#a00;" class="adminlinks" action="edit" id="${article.id}">bearbeiten</g:link> -
-       <g:link style="color:#a00;" class="adminlinks" action="delete" id="${article.id}">löschen</g:link>)
-    </g:isLoggedIn>
-    gepostet am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
-    um <g:formatDate format="HH:mm" date="${article.dateCreated}"/> von ${article.author.profile.fullName}
+  <div class="title">
+    <g:link action="show" id="${article.id}">${article.title}</g:link>
   </div>
-  <g:link action="show" id="${article.id}">${article.title}</g:link>
+  <div class="info">
+    von <span class="bold">${article.author.profile.fullName}</span>
+    am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
+    um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
+    <g:isLoggedIn>
+      (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
+       <g:link class="adminlink" action="delete" id="${article.id}">löschen</g:link>)
+    </g:isLoggedIn>
+  </div>
 </div>

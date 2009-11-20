@@ -507,17 +507,23 @@ table #profile-list tr {
 
 /* ----- ARTICLES ----- */
 
+#createArticle {
+    margin: 10px 0; }
+
 #article-container { }
     #article-container h1 {
         color: #7e7e7e;
         font-size: 22px;
         margin-bottom: 30px; }
+    #article-container .createArticle {
+        font-weight: bold;
+        color: #a00; }
     #article-container .item {
         margin: 0 0 10px 0;
         border-bottom: 1px dashed #ccc;
-        padding: 0 5px 0 5px; }
-        #article-container .item .actionlink {
-            margin-top: 0;
+        padding: 0; }
+        #article-container .item .links {
+            text-align: right;
             padding: 5px 0 0 0;
             font-size: 11px; }
         #article-container .item .header {
@@ -530,23 +536,25 @@ table #profile-list tr {
                 #article-container .item .header a:hover {
                     color: #46597B;
                     text-decoration: none; }
-            #article-container .item a {
-                color: #46597B; /*#7e7e7e;*/
-                text-decoration: none; }
-                #article-container .item a:hover {
-                    text-decoration: underline; }
-            #article-container .item .date {
-                font-weight: normal;
-                padding: 0 0 5px 0;
-                color: #7e7e7e;
-                text-align: right;
-                font-size: 10px; }
-            #article-container .item .teaser {
-                padding: 15px 0 0 0;
-                margin: 0;
-                color: #5a5a5a; }
-                #article-container .item .teaser p {
-                    line-height: 19px; }
+        #article-container .item .header .adminlink {
+            font-weight: bold;
+            color: #a00; }
+        #article-container .item a {
+            color: #46597B; /*#7e7e7e;*/
+            text-decoration: none; }
+            #article-container .item a:hover {
+                text-decoration: underline; }
+        #article-container .item .info {
+            font-weight: normal;
+            padding: 0 0 5px 0;
+            color: #7e7e7e;
+            font-size: 10px; }
+        #article-container .item .teaser {
+            padding: 15px 0 0 0;
+            margin: 0;
+            color: #5a5a5a; }
+            #article-container .item .teaser p {
+                line-height: 19px; }
             #article-container .item .content {
                 margin: 0;
                 padding: 5px 0 10px 0;
@@ -554,13 +562,9 @@ table #profile-list tr {
 
 /* ----- GLOBAL ACTION LINKS ----- */
 
-.adminlinks {
-    text-align: center;
-    padding: 2px 4px;
-    margin: 5px 0 5px 0;
-    font-weight: bold; }
-    .adminlinks a {
-        color: #a00; }
+.adminlink {
+    font-weight: bold;
+    color: #a00; }
 
 .actionlinks { }
     .actionlinks div.userlinks {

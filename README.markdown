@@ -12,6 +12,7 @@
 - fix "Mein Postfach" link not working anymore
 - fix "Artikel ansehen" link not working anymore
 - fix "bearbeiten" of articles
+- fix "Neuen Artikel erstellen" link
 
 # Allan
 - implement i18n messages
@@ -31,10 +32,8 @@
 # Previous TODOs
 
 - Anwesenheits-/Essensliste für alle Kinder pro Monat, pro Kind pro Monat, mit Summe Anwesenheit und Essenbeiträge
-- Paedagogen sollen Newsartikel schreiben können
 - Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
 - implement blog (MK)
-- add dropdown to list all activities of a single day
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - add a margin-bottom to table header of lists
 - implement "bild des tages" and "zitat des tages"

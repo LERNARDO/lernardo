@@ -9,15 +9,10 @@
   <div id="article-container">
 
   <g:if test="${currentEntity}">
-  <g:if test="${currentEntity.type.name == 'Paed'}">
-    <div class="action-buttons">
-      <span class="menuButton">
-        <g:remoteLink class="button" controller="post" action="createArticlePost" update="createArticle" after="jQuery('#createArticle').show('fast')" params="[name:currentEntity.name]">Neuen Artikel erstellen</g:remoteLink>
-      </span>
-    </div>
-    <div id="createArticle">
-    </div>
-  </g:if>
+    <g:if test="${currentEntity.type.name == 'Paed'}">
+      <g:remoteLink class="createArticle" controller="post" action="createArticlePost" update="createArticle" after="jQuery('#createArticle').show('fast')" params="[name:currentEntity.name]">Neuen Artikel erstellen</g:remoteLink>
+      <div id="createArticle"></div>
+    </g:if>
   </g:if>
 
     <g:each in="${articleList}" var="article">
