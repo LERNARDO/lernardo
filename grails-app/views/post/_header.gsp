@@ -7,8 +7,10 @@
     am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
     um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
     <g:isLoggedIn>
-      (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
-       <g:link class="adminlink" action="delete" id="${article.id}">löschen</g:link>)
+      %{--<g:if test="${currentEntity.type.name == "Paed"}">--}%
+        (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
+         <g:link class="adminlink" action="delete" id="${article.id}">löschen</g:link>)
+      %{--</g:if>--}%
     </g:isLoggedIn>
   </div>
 </div>

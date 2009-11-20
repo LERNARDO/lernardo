@@ -1,5 +1,4 @@
 # Alex
-- add link in operator to add/create hort
 - add link in hort to add/create client/paed
 - add link to paed to create article post with selectbox "show public"
 - add link to paed to show articles

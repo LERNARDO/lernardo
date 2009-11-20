@@ -48,6 +48,9 @@
           <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Hort'}">
             <li class="profile-location"><g:remoteLink action="showLocation" update="profile-content" params="[name:entity.name]">Standort anzeigen</g:remoteLink></li>
           </g:if>
+          <g:if test="${entity.type.name == 'Operator'}">
+            <li class="profile-activities"><g:link action="createHort">Hort anlegen</g:link></li>
+          </g:if>
           <g:if test="${entity.type.name == 'Client'}">
             <li class="profile-leistung"><g:remoteLink action="showLeistung" update="profile-content" params="[name:entity.name]">Leistungsfortschritt</g:remoteLink></li>
           </g:if>
