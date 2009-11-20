@@ -1,5 +1,4 @@
 # Alex
-- add link in hort to add/create client/paed
 - add link to paed to create article post with selectbox "show public"
 - add link to paed to show articles
 - fix "Kalender ansehen"
@@ -11,6 +10,7 @@
 - fix "Artikel ansehen" link not working anymore
 - fix "bearbeiten" of articles
 - fix "Neuen Artikel erstellen" link
+- fix profile speaker shows wrong entity
 
 # Allan
 - implement i18n messages

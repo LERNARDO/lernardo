@@ -4,6 +4,7 @@ import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityType
 import profiles.FacProfile
 import de.uenterprise.ep.Account
+import profiles.UserProfile
 
 class ProfileController {
     def geoCoderService
@@ -69,14 +70,14 @@ class ProfileController {
       Account user = Account.findByEmail (params.email)
       if (user) {
         flash.message = "user account already exists"
-        redirect action:"createOperator", params:params
+        redirect action:"createHort", params:params
         return
       }
 
       Entity etst = Entity.findByName (params.name)
       if (etst) {
         flash.message = "nick-name already exists"
-        redirect action:"createOperator", params:params
+        redirect action:"createHort", params:params
         return
       }
 
@@ -86,6 +87,70 @@ class ProfileController {
         prf.opened = "-"
         prf.description = "-"
         prf.tel = "-"
+        ent.user.password = authenticateService.encodePassword("pass")
+      }
+      flash.message = "user wurde angelegt"
+      redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
+    }
+
+    def createPaed = {
+      def entityInstance = new Entity()
+      entityInstance.properties = params
+      return ['entityInstance':entityInstance]
+    }
+
+    def savePaed = {
+      EntityType etPaed = metaDataService.etPaed
+
+      Account user = Account.findByEmail (params.email)
+      if (user) {
+        flash.message = "user account already exists"
+        redirect action:"createPaed", params:params
+        return
+      }
+
+      Entity etst = Entity.findByName (params.name)
+      if (etst) {
+        flash.message = "nick-name already exists"
+        redirect action:"createPaed", params:params
+        return
+      }
+
+      entityHelperService.createEntityWithUserAndProfile (params.name, etPaed, params.email, params.fullName) {Entity ent->
+        UserProfile prf = ent.profile
+        prf.city = params.city ?: ""
+        ent.user.password = authenticateService.encodePassword("pass")
+      }
+      flash.message = "user wurde angelegt"
+      redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
+    }
+
+    def createClient = {
+      def entityInstance = new Entity()
+      entityInstance.properties = params
+      return ['entityInstance':entityInstance]
+    }
+
+    def saveClient = {
+      EntityType etClient = metaDataService.etClient
+
+      Account user = Account.findByEmail (params.email)
+      if (user) {
+        flash.message = "user account already exists"
+        redirect action:"createClient", params:params
+        return
+      }
+
+      Entity etst = Entity.findByName (params.name)
+      if (etst) {
+        flash.message = "nick-name already exists"
+        redirect action:"createClient", params:params
+        return
+      }
+
+      entityHelperService.createEntityWithUserAndProfile (params.name, etClient, params.email, params.fullName) {Entity ent->
+        UserProfile prf = ent.profile
+        prf.city = params.city ?: ""
         ent.user.password = authenticateService.encodePassword("pass")
       }
       flash.message = "user wurde angelegt"
@@ -163,6 +228,7 @@ class ProfileController {
         params.entityType = params.entityType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
+        params.sort = "type"
         return ['entityType': params.entityType,
                 'entityList': Entity.list(params),
                 'entityCount': Entity.count()]
