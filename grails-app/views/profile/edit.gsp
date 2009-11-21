@@ -6,21 +6,107 @@
               </div>
             </g:hasErrors>
             <g:form action="update" method="post" id="${entityInstance.id}">
-                    <h1>Notwendige Angaben</h1>
-                    <table id="msg-composer">
+                    <table>
                         <tbody>
 
                             <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="fullName">
-                                      <g:message code="msg.fullName.label" default="Name" />:
+                                <td valign="middle" class="name">
+                                    <label for="title">
+                                      <g:message code="entityInstance.title.label" default="Titel" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="50" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
+                                    <input type="text" size="40" id="title" name="title" value="${fieldValue(bean:entityInstance,field:'profile.title')}"/>
                                 </td>
                             </tr>
 
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="fullName">
+                                      <g:message code="entityInstance.fullName.label" default="Name" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="text" size="40" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="birthDate">
+                                      <g:message code="entityInstance.birthDate.label" default="Geburtstag" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:datePicker id="birthDate" name="birthDate" value="${entityInstance.profile.birthDate}" precision="day" years="${1900..Calendar.getInstance().get(Calendar.YEAR)-18}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="PLZ">
+                                      <g:message code="entityInstance.PLZ.label" default="PLZ" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="text" size="40" id="PLZ" name="PLZ" value="${entityInstance.profile.PLZ}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="city">
+                                      <g:message code="entityInstance.city.label" default="Stadt" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="text" size="40" id="city" name="city" value="${fieldValue(bean:entityInstance,field:'profile.city')}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="street">
+                                      <g:message code="entityInstance.street.label" default="Straße" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="text" size="40" id="street" name="street" value="${fieldValue(bean:entityInstance,field:'profile.street')}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="tel">
+                                      <g:message code="entityInstance.tel.label" default="Telefon" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="text" size="40" id="tel" name="tel" value="${fieldValue(bean:entityInstance,field:'profile.tel')}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="gender">
+                                      <g:message code="entityInstance.gender.label" default="Geschlecht" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="gender" name="gender" from="${['Männlich','Weiblich']}" value="${entityInstance.profile.gender}" />
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="middle" class="name">
+                                    <label for="biography">
+                                      <g:message code="entityInstance.biography.label" default="Lebenslauf" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:textArea rows="15" cols="85" id="biography" name="biography" value="${entityInstance.profile.biography}"/>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>

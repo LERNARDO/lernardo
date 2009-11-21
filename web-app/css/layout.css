@@ -181,6 +181,8 @@ ul {
 
 #private {
     background:url(../images/background_private.jpg) repeat-x; }
+    #private a {
+        color: #3b59bb; }
 
 #banner {
     height: 115px;
@@ -234,22 +236,21 @@ ul {
     vertical-align: top;
     color: #333; }
     #profile-content h1 {
-        margin: 0;
-        padding: 0 0 15px 0;
+        margin: 0 0 17px 0;
+        padding: 0 0 3px 0;
         color: #555; }
-    #profile-content input, #profile-content textarea {
+    #profile-content input, #profile-content select, #profile-content textarea {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
         margin: 0 0 5px 5px;
         border: 1px solid #999;
         padding: 2px; }
-        #profile-content input:hover, #profile-content textarea:hover {
+        #profile-content input:hover, #profile-content select:hover, #profile-content textarea:hover {
             border: 1px solid #000; }
 
 #profile-navigation {
     padding: 10px; }
     #profile-navigation a {
-        color: #333;
         text-decoration: none; }
         #profile-navigation a:hover {
             color: #46597B;

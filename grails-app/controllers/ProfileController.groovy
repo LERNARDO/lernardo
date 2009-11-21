@@ -326,8 +326,16 @@ class ProfileController {
                }
            }
            entityInstance.properties = params
+           entityInstance.profile.title = params.title
            entityInstance.profile.fullName = params.fullName
-           if(!entityInstance.hasErrors() && entityInstance.save()) {
+           entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+           entityInstance.profile.PLZ = params.PLZ.toInteger()
+           entityInstance.profile.city = params.city
+           entityInstance.profile.street = params.street
+           entityInstance.profile.tel = params.tel
+           entityInstance.profile.gender = params.gender
+           entityInstance.profile.biography = params.biography
+         if(!entityInstance.hasErrors() && entityInstance.save()) {
                flash.message = "Msg ${params.id} updated"
 
                redirect action:'show', params:[name:entityInstance.name]
