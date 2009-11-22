@@ -10,7 +10,7 @@
         <legend>Eintrag editieren</legend>
 
         <label for="title">Titel</label>
-        <g:textField class="text" name="title" id="atitle" value="${article.title}"></g:textField>
+        <g:textField class="text" name="title" id="atitle">${article.title}</g:textField>
         <br/>
 
         <label for="teaser">Teaser</label>

@@ -37,7 +37,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
-      ent.profile.tagline = "to be on top is our job"
+      prf.tagline = "to be on top is our job"
       prf.gender = "Männlich"
       prf.title = "-"
       prf.birthDate = new Date()
