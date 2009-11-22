@@ -89,6 +89,11 @@ class ProfileController {
         prf.tel = "-"
         ent.user.password = authenticateService.encodePassword("pass")
       }
+
+      // create mutual relationship between Hort and Operator
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+
       flash.message = "user wurde angelegt"
       redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
     }
@@ -121,6 +126,11 @@ class ProfileController {
         prf.city = params.city ?: ""
         ent.user.password = authenticateService.encodePassword("pass")
       }
+
+      // create mutual relationship between Paed and Hort
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+
       flash.message = "user wurde angelegt"
       redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
     }
@@ -153,6 +163,11 @@ class ProfileController {
         prf.city = params.city ?: ""
         ent.user.password = authenticateService.encodePassword("pass")
       }
+
+      // create mutual relationship between Client and Hort
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+
       flash.message = "user wurde angelegt"
       redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
     }
