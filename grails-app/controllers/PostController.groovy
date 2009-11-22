@@ -17,6 +17,11 @@ class PostController {
           redirect action:index
     }
 
+    def edit = {
+      def postInstance = Post.get(params.id)
+      return ['postInstance':postInstance]
+    }
+
     def createArticlePost = {
       def postInstance = new Post()
       postInstance.properties = params
@@ -75,6 +80,35 @@ class PostController {
         }
         else {
             redirect controller:"post", action:"index", params:[name:entityHelperService.loggedIn.name]
+        }
+    }
+
+    def update = {
+        def postInstance = Post.get( params.id )
+        if(postInstance) {
+            if(params.version) {
+                def version = params.version.toLong()
+                if(postInstance.version > version) {
+
+                    postInstance.errors.rejectValue("version", "post.optimistic.locking.failure", "Another user has updated this Post while you were editing.")
+
+                    redirect action:'index'
+                    return
+                }
+            }
+            postInstance.properties = params
+            if(!postInstance.hasErrors() && postInstance.save()) {
+                flash.message = "Post ${params.id} updated"
+
+                redirect action:'index'
+            }
+            else {
+                render view:'edit', model:[postInstance:postInstance]
+            }
+        }
+        else {
+            flash.message = message(code:"post.notFound", args:[params.id])
+            redirect action:'index'
         }
     }
 }

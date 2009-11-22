@@ -1,6 +1,5 @@
 # Alex
 - implement "Neuigkeiten"
-- implement "bearbeiten" of articles
 - fix profile speaker shows wrong entity
 
 # Allan
