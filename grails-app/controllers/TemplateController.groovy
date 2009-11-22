@@ -15,8 +15,8 @@ class TemplateController {
         def template = ActivityTemplate.get(params.id)
 
         if (!template) {
-            response.sendError(404, "'$params.id': no such template")
-            return ;
+            flash.message = message(code:"template.notFound", args:[params.id])
+            return
         }
 
         return [template:template,commentList:Post.findAllByTemplate(template)]
@@ -32,14 +32,14 @@ class TemplateController {
 
       ActivityTemplate at = ActivityTemplate.findByName (params.name)
       if (at) {
-        flash.message = "template already exists"
+        flash.message = message(code:"template.exist", args:[params.name])
         redirect action:"create", params:params
         return
       }
 
       def activityInstance = new ActivityTemplate(params)
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
-          flash.message = "aktivitätsvorlage wurde angelegt"
+          flash.message = message(code:"template.created", args:[params.name])
           redirect controller:'template', action:'list'
         }
     }
