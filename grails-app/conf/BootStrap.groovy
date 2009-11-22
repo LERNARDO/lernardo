@@ -687,7 +687,7 @@ class BootStrap {
     }
 
   void createDefaultPosts() {
-    log.debug ("==> creating default activity templates")
+    log.debug ("==> creating default posts")
 
     new PostType(name:'article').save()
     new PostType(name:'templateComment').save()

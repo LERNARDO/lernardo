@@ -22,6 +22,6 @@ class UserProfile extends Profile {
         street(nullable:true)
         tel(nullable:true,blank:true)
         gender(nullable:true)
-        biography(nullable:true)
+        biography(nullable:true,maxSize:3000)
     }
 }
