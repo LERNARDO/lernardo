@@ -2,7 +2,6 @@
 - implement "Neuigkeiten"
 - speaker property in FacProfile not added to database?
 - aktivität - link auf vorlage hinzufügen
-- hort anlegen (betreiber referenz) fehler 500
 - pädagoge anlegen in admin bereich
 - betreuten anlegen
 - posteingang - nachricht anschauen und löschen geht ned

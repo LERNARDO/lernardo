@@ -54,14 +54,14 @@ class ProfileController {
         prf.tel = "-"
         ent.user.password = authenticateService.encodePassword("pass")
       }
-      flash.message = message(code:"user.created", args:[params.name])
+      flash.message = message(code:"user.created", args:[params.name,'Admin'])
       redirect action:'show', params:[name:params.name]
     }
 
     def createHort = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance]
+      return ['entityInstance':entityInstance,'by':params.by]
     }
 
     def saveHort = {
@@ -91,17 +91,17 @@ class ProfileController {
       }
 
       // create mutual relationship between Hort and Operator
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
-      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
 
-      flash.message = message(code:"user.created", args:[params.name])
-      redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
+      flash.message = message(code:"user.created", args:[params.name,params.by])
+      redirect controller:'profile', action:'show', params:[name:params.name]
     }
 
     def createPaed = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance]
+      return ['entityInstance':entityInstance,'by':params.by]
     }
 
     def savePaed = {
@@ -128,17 +128,17 @@ class ProfileController {
       }
 
       // create mutual relationship between Paed and Hort
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
-      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
 
-      flash.message = message(code:"user.created", args:[params.name])
-      redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
+      flash.message = message(code:"user.created", args:[params.name,params.by])
+      redirect controller:'profile', action:'show', params:[name:params.name]
     }
 
     def createClient = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance]
+      return ['entityInstance':entityInstance,'by':params.by]
     }
 
     def saveClient = {
@@ -165,11 +165,11 @@ class ProfileController {
       }
 
       // create mutual relationship between Client and Hort
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
-      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
 
-      flash.message = message(code:"user.created", args:[params.name])
-      redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
+      flash.message = message(code:"user.created", args:[params.name,params.by])
+      redirect controller:'profile', action:'show', params:[name:params.name]
     }
 
     def search = { }
