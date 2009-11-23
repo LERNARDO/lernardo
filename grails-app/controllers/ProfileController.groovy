@@ -55,7 +55,7 @@ class ProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
       }
       flash.message = message(code:"user.created", args:[params.name])
-      redirect controller:'admin', action:'index'
+      redirect action:'show', params:[name:params.name]
     }
 
     def createHort = {
