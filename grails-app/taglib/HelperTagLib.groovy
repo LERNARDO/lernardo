@@ -8,6 +8,13 @@ class HelperTagLib {
   def filterService
   static namespace = "app"
 
+  def showGender = {attrs ->
+    if (attrs.remove('gender') == 1)
+      out << 'Männlich'
+    else
+      out << 'Weiblich'
+  }
+
   def getCommentsCount = {attrs ->
     out << Post.countByTemplate(attrs.remove ("template"))
   }

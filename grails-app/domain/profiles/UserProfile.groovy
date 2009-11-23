@@ -10,7 +10,7 @@ class UserProfile extends Profile {
     String city
     String street
     String tel
-    String gender
+    Integer gender
     String biography
 
     static constraints = {

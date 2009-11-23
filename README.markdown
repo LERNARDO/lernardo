@@ -1,10 +1,25 @@
 # Alex
 - implement "Neuigkeiten"
 - fix profile speaker shows wrong entity
+- aktivitätsvorlagen kommentare löschbar
+- aktivität - link auf vorlage hinzufügen
+- (betreiber anlegen redirect auf betreiber profile)
+- hort anlegen (betreiber referenz) fehler 500
+- pädagoge anlegen in admin bereich
+- betreuten anlegen
+- posteingang - nachricht anschauen und löschen geht ned
+- eigene netzwerk view machen
 
 # Allan
 - style msg views
 - style "Artikel ansehen view
+- tabellen einheitlich
+- quadratische profilbilder
+- personenliste farben
+- suche stylen
+- flash messages stylen
+- Profiltyp und Überschrift
+- postfach stylen
 
 # Daniel
 - none
@@ -19,6 +34,8 @@
 - "Neuen Artikel erstellen" ajax update doesn't work
 - "Kalender ansehen" doesn't work anymore with ajax
 - "Standort anzeigen" problem with ajax? triggers empty page
+- profilbild ändern
+- kalender
 
 # Previous TODOs
 
