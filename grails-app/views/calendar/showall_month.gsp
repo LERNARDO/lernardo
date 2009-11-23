@@ -1,4 +1,4 @@
-<%@ page import="org.grails.plugins.jquery.calendar.domain.CalendarEventType" %>
+%{--<%@ page import="org.grails.plugins.jquery.calendar.domain.CalendarEventType" %>--}%
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
@@ -17,6 +17,7 @@
   noSelection="['': message(code: 'view.calendarEvent.eventType.choose')]"
   valueMessagePrefix="calendarEventType" />
 
+<!--
 <jqueryCalendar:month
   year="${year}"
   data="javascript:function(start, end, callback) {filterMonthSource(start, end, callback);}"
@@ -50,6 +51,6 @@
 $monthCalendar.fullCalendar("refresh");
 });
 </script>
-
+-->
 </body>
 </html>

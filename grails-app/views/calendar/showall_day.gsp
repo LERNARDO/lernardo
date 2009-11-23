@@ -1,4 +1,4 @@
-<%@ page import="org.grails.plugins.jquery.calendar.domain.CalendarEventType" %>
+%{--<%@ page import="org.grails.plugins.jquery.calendar.domain.CalendarEventType" %>--}%
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
@@ -10,6 +10,9 @@
 <body>
 <g:render template="/calendar/navigation" />
 <div id="message" class="ui-corner-all"></div>
+
+
+<!--
 <g:select
   name="eventType"
   from="${CalendarEventType.list()}"
@@ -50,6 +53,7 @@
 $dayCalendar.dayCalendar("refresh");
 });
 </script>
-
+-->
 </body>
+
 </html>
