@@ -12,7 +12,7 @@
   <tbody>
   <g:each status="i" in="${articleList}" var="article">
     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-      <td><g:link action="show" id="${article.id}">${article.title}</g:link></td>
+      <td><g:link controller="post" action="show" id="${article.id}">${article.title}</g:link></td>
       <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${article.dateCreated}"/></td>
       <td><app:getCommentsCountPost post="${article}"/></td>
     </tr>

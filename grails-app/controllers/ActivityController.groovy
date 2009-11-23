@@ -37,8 +37,8 @@ class ActivityController {
         def activity = Activity.findById(params.id)
 
         if (!activity) {
-            response.sendError(404, "'$params.id': no such activity")
-            return ;
+          flash.message = message(code:"activity.notFound", args:[params.id])
+          redirect action:index
         }
 
         return [activity:activity]
@@ -54,7 +54,7 @@ class ActivityController {
 
       Activity a = Activity.findByTitle (params.title)
       if (a) {
-        flash.message = "activity already exists"
+        flash.message = message(code:"activity.exists", args:[params.title])
         redirect action:"create", params:params
         return
       }
@@ -69,11 +69,11 @@ class ActivityController {
       activityInstance.clients = []                                       // test placeholder
       activityInstance.facility = Entity.findByName('kaumberg')           // test placeholder
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
-          flash.message = "aktivität wurde angelegt"
+          flash.message = message(code:"activity.created", args:[params.title])
           redirect controller:'template', action:'list'
         }
         else {
-          flash.message = "aktivität konnte nicht angelegt werden"
+          flash.message = message(code:"activity.notCreated", args:[params.title])
           redirect controller:'template', action:'list'
         }
     }

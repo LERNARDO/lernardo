@@ -16,7 +16,8 @@ class Post {
 
     static constraints = {
       title(nullable:true)
-      teaser(nullable:true)
+      teaser(nullable:true,maxSize:1000)
+      content(maxSize:2000)
       template(nullable: true)
       post(nullable:true)
       dateCreated(nullable: true)

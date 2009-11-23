@@ -34,14 +34,14 @@ class ProfileController {
 
       Account user = Account.findByEmail (params.email)
       if (user) {
-        flash.message = "user account already exists"
+        flash.message = message(code:"user.existsMail", args:[params.email])
         redirect action:"createOperator", params:params
         return
       }
 
       Entity etst = Entity.findByName (params.name)
       if (etst) {
-        flash.message = "nick-name already exists"
+        flash.message = message(code:"user.existsName", args:[params.name])
         redirect action:"createOperator", params:params
         return
       }
@@ -54,7 +54,7 @@ class ProfileController {
         prf.tel = "-"
         ent.user.password = authenticateService.encodePassword("pass")
       }
-      flash.message = "user wurde angelegt"
+      flash.message = message(code:"user.created", args:[params.name])
       redirect controller:'admin', action:'index'
     }
 
@@ -69,14 +69,14 @@ class ProfileController {
 
       Account user = Account.findByEmail (params.email)
       if (user) {
-        flash.message = "user account already exists"
+        flash.message = message(code:"user.existsMail", args:[params.email])
         redirect action:"createHort", params:params
         return
       }
 
       Entity etst = Entity.findByName (params.name)
       if (etst) {
-        flash.message = "nick-name already exists"
+        flash.message = message(code:"user.existsName", args:[params.name])
         redirect action:"createHort", params:params
         return
       }
@@ -89,7 +89,12 @@ class ProfileController {
         prf.tel = "-"
         ent.user.password = authenticateService.encodePassword("pass")
       }
-      flash.message = "user wurde angelegt"
+
+      // create mutual relationship between Hort and Operator
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+
+      flash.message = message(code:"user.created", args:[params.name])
       redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
     }
 
@@ -104,14 +109,14 @@ class ProfileController {
 
       Account user = Account.findByEmail (params.email)
       if (user) {
-        flash.message = "user account already exists"
+        flash.message = message(code:"user.existsMail", args:[params.email])
         redirect action:"createPaed", params:params
         return
       }
 
       Entity etst = Entity.findByName (params.name)
       if (etst) {
-        flash.message = "nick-name already exists"
+        flash.message = message(code:"user.existsName", args:[params.name])
         redirect action:"createPaed", params:params
         return
       }
@@ -121,7 +126,12 @@ class ProfileController {
         prf.city = params.city ?: ""
         ent.user.password = authenticateService.encodePassword("pass")
       }
-      flash.message = "user wurde angelegt"
+
+      // create mutual relationship between Paed and Hort
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+
+      flash.message = message(code:"user.created", args:[params.name])
       redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
     }
 
@@ -136,14 +146,14 @@ class ProfileController {
 
       Account user = Account.findByEmail (params.email)
       if (user) {
-        flash.message = "user account already exists"
+        flash.message = message(code:"user.existsMail", args:[params.email])
         redirect action:"createClient", params:params
         return
       }
 
       Entity etst = Entity.findByName (params.name)
       if (etst) {
-        flash.message = "nick-name already exists"
+        flash.message = message(code:"user.existsName", args:[params.name])
         redirect action:"createClient", params:params
         return
       }
@@ -153,7 +163,12 @@ class ProfileController {
         prf.city = params.city ?: ""
         ent.user.password = authenticateService.encodePassword("pass")
       }
-      flash.message = "user wurde angelegt"
+
+      // create mutual relationship between Client and Hort
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(entityHelperService.loggedIn), type:metaDataService.ltFriend).save()
+      new Link(source:Entity.findByName(entityHelperService.loggedIn), target:Entity.findByName(params.name), type:metaDataService.ltFriend).save()
+
+      flash.message = message(code:"user.created", args:[params.name])
       redirect controller:'profile', action:'show', params:[name:entityHelperService.loggedIn.name]
     }
 
@@ -237,8 +252,8 @@ class ProfileController {
     def show = {
         def e = Entity.findByName(params.name)
         if (!e) {
-            response.sendError(404, "user profile not found")
-            return ;
+            flash.message = message(code:"user.notFound", args:[params.name])
+            return
         }
         return ['entity':e,'friendsList':networkService.findFriendsOf(e)]
     }
@@ -246,7 +261,7 @@ class ProfileController {
     def addFriend = {
       Entity e = params.name ? Entity.findByName(params.name) : null
       if (!e) {
-        sendError (404)
+        flash.message = message(code:"user.notFound", args:[params.name])
         return
       }
 
@@ -262,11 +277,11 @@ class ProfileController {
       linkBack.target = entityHelperService.loggedIn
 
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
-        //flash.message = message(code:"addFriend", args:[linkInstance.target.profile.fullName])
+        flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
         redirect action:'show', params:[name:linkInstance.target.name]
       }
       else {
-        //flash.message = message(code:"addFriendFailed", args:[linkInstance.target.profile.fullName])
+        flash.message = message(code:"user.addFriendFailed", args:[linkInstance.target.profile.fullName])
         redirect action:'show', params:[name:linkInstance.target.name]
       }
     }
@@ -290,11 +305,11 @@ class ProfileController {
             try {
                 linkInstance.delete(flush:true)
                 linkInstanceBack.delete(flush:true)
-                //flash.message = message(code:"removeFriend", args:[e.profile.fullName])
+                flash.message = message(code:"user.removeFriend", args:[e.profile.fullName])
                 redirect action:'show', params:[name:n]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
-                //flash.message = message(code:"removeFriendFailed", args:[e.profile.fullName])
+                flash.message = message(code:"user.removeFriendFailed", args:[e.profile.fullName])
                 redirect action:'show', params:[name:n]
             }
         }
@@ -304,7 +319,7 @@ class ProfileController {
         def entityInstance = Entity.findByName(params.name)
 
         if(!entityInstance) {
-            flash.message = message(code:"msg.notFound", args:[params.id])
+            flash.message = message(code:"user.notFound", args:[params.name])
             redirect action:'show', model:[name:params.name]
         }
         else {
@@ -326,9 +341,17 @@ class ProfileController {
                }
            }
            entityInstance.properties = params
+           entityInstance.profile.title = params.title
            entityInstance.profile.fullName = params.fullName
-           if(!entityInstance.hasErrors() && entityInstance.save()) {
-               flash.message = "Msg ${params.id} updated"
+           entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+           entityInstance.profile.PLZ = params.PLZ.toInteger()
+           entityInstance.profile.city = params.city
+           entityInstance.profile.street = params.street
+           entityInstance.profile.tel = params.tel
+           entityInstance.profile.gender = params.gender
+           entityInstance.profile.biography = params.biography
+         if(!entityInstance.hasErrors() && entityInstance.save()) {
+               flash.message = message(code:"user.updated", args:[entityInstance.name])
 
                redirect action:'show', params:[name:entityInstance.name]
            }
@@ -337,7 +360,7 @@ class ProfileController {
            }
        }
        else {
-           flash.message = message(code:"msg.notFound", args:[params.id])
+           flash.message = message(code:"user.notFound", args:[params.id])
            redirect action:'show', params:[name:entityHelperService.loggedIn.name]
        }
    }

@@ -37,15 +37,14 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
-      ent.profile.tagline = "to be on top is our job"
-      prf.gender = 1
+      prf.tagline = "to be on top is our job"
+      prf.gender = "Männlich"
       prf.title = "-"
       prf.birthDate = new Date()
       prf.PLZ = 1000
       prf.city = "Wien"
       prf.street = "Riemergasse 14"
       prf.tel = "-"
-      prf.gender = 1
       prf.biography = "-"
     }
 
@@ -54,7 +53,7 @@ class BootStrap {
       ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
-      prf.gender = 1
+      prf.gender = "Männlich"
       prf.city = "Gumpoldskirchen"
       prf.birthDate = new Date(1982-1900,02,22)
       prf.PLZ = 2352
@@ -65,7 +64,7 @@ class BootStrap {
     // some regular users
     entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       UserProfile prf = ent.profile
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.title = "B.A."
       prf.city = "Berndorf"
       prf.birthDate = new Date(1983-1900,07,20)
@@ -77,14 +76,14 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("mike", etUser, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Wozu brauch ma des?"
-      prf.gender = 1
+      prf.gender = "Männlich"
       prf.city = "Wien"
     }
 
     entityHelperService.createEntityWithUserAndProfile("johannes", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Ich will die Welt im ERP abbilden!"
-      prf.gender = 1
+      prf.gender = "Männlich"
       prf.PLZ = 2560
       prf.city = "Berndorf"
       prf.street = "Wankengasse 10"
@@ -94,7 +93,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.birthDate = new Date(1966-1900,11,19)
       prf.PLZ = 2563
       prf.city = "-"
@@ -112,7 +111,7 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.title = "Mag."
-      prf.gender = 2
+      prf.gender = "Männlich"
       prf.birthDate = new Date(1969-1900,12,31)
       prf.PLZ = 2563
       prf.city = "Pottenstein"
@@ -143,7 +142,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("rosa", etPaed, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.birthDate = new Date(1961-1900,12,16)
       prf.PLZ = 2565
       prf.city = "Neuhaus"
@@ -159,7 +158,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("birgit", etPaed, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.birthDate = new Date(1970-1900,03,19)
       prf.PLZ = 2560
       prf.city = "Hernstein"
@@ -169,7 +168,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("hannah", etPaed, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.birthDate = new Date(1982-1900,02,22)
       prf.PLZ = 2564
       prf.city = "Weissenbach an der Triesting"
@@ -179,7 +178,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("regina", etPaed, "regina.toncourt@gmx.at", "Regina Toncourt") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.birthDate = new Date(1962-1900,11,04)
       prf.PLZ = 2565
       prf.city = "Neuhaus"
@@ -208,7 +207,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
-      prf.gender = 2
+      prf.gender = "Weiblich"
       prf.city = "Gumpoldskirchen"
     }
 
@@ -688,7 +687,7 @@ class BootStrap {
     }
 
   void createDefaultPosts() {
-    log.debug ("==> creating default activity templates")
+    log.debug ("==> creating default posts")
 
     new PostType(name:'article').save()
     new PostType(name:'templateComment').save()

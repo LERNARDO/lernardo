@@ -21,5 +21,6 @@ class ActivityTemplate {
     static constraints = {
       dateCreated(nullable: true)
       lastUpdated(nullable: true)
+      description(maxSize:2000)
     }
 }

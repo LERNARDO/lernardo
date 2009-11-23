@@ -1,10 +1,8 @@
 # Alex
 - implement "Neuigkeiten"
-- implement "bearbeiten" of articles
 - fix profile speaker shows wrong entity
 
 # Allan
-- implement i18n messages
 - style msg views
 - style "Artikel ansehen view
 

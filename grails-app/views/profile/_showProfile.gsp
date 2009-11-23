@@ -33,6 +33,7 @@
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
     <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
     <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
+    <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung">${entity.profile.gender}</td></tr>
     <tr><td class="bold titles bezeichnung">Biographie:</td><td class="bezeichnung">${entity.profile.biography}</td></tr>
   </g:elseif>
   <g:elseif test="${entity.type.name == 'Paed'}">
@@ -43,6 +44,7 @@
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
     <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
     <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
+    <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung">${entity.profile.gender}</td></tr>
     <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${entity.profile.biography}</td></tr>
   </g:elseif>
 </table>
