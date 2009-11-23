@@ -9,6 +9,25 @@ class PostController {
                 'listTitle': 'Aktuelle Ereignisse']
     }
 
+    def deleteActivityTemplateComment = {
+        def postInstance = Post.get( params.id )
+        if(postInstance) {
+            try {
+                flash.message = message(code:"comment.deleted", args:[postInstance.id])
+                postInstance.delete(flush:true)
+                redirect(controller:"template", action:"show", params:[id:params.template])
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = message(code:"comment.notDeleted", args:[postInstance.id])
+                redirect(controller:"template", action:"show", params:[id:params.template])
+            }
+        }
+        else {
+            flash.message = message(code:"comment.notFound", args:[params.id])
+            redirect(controller:"template", action:"show", params:[id:params.template])
+        }
+    }
+
     def show = {
         def postInstance = Post.get( params.id )
         if (postInstance)

@@ -67,7 +67,9 @@
                 <div class="name"><g:link action="show" controller="profile" params="[name:comment.author.name]">${comment.author.profile.fullName}</g:link></div>
                 <div class="info">
                   <div class="time"><g:formatDate format="dd. MMM. yyyy, HH:mm" date="${comment.dateCreated}"/></div>
-                  %{--<div class="actions"><a href="#">Kommentieren</a></div>--}%
+                  <ub:meOrAdmin entityName="${comment.author.name}">
+                    <div class="actions"><g:link controller="post" action="deleteActivityTemplateComment" id="${comment.id}" params="[template:template.id]">löschen</g:link></div>
+                  </ub:meOrAdmin>
                 </div>
               </div>
               <div class="clear"></div>

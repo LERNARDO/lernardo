@@ -96,7 +96,7 @@ class BootStrap {
       prf.gender = 2
       prf.birthDate = new Date(1966-1900,11,19)
       prf.PLZ = 2563
-      prf.city = "-"
+      prf.city = "Pottenstein"
       prf.street = "-"
       prf.tel = "0664 / 204 91 68"
       prf.biography = "-"
@@ -208,6 +208,7 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
+      prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
     }
 

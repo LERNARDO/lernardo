@@ -1,7 +1,6 @@
 # Alex
 - implement "Neuigkeiten"
-- fix profile speaker shows wrong entity
-- aktivitätsvorlagen kommentare löschbar
+- speaker property in FacProfile not added to database?
 - aktivität - link auf vorlage hinzufügen
 - (betreiber anlegen redirect auf betreiber profile)
 - hort anlegen (betreiber referenz) fehler 500
