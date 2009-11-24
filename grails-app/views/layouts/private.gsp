@@ -82,8 +82,8 @@
 
         <div id="bd">
           <g:if test="${flash.message}">
-            <div id="flash-msg" class="message">
-              <p>${flash.message}</p>
+            <div id="flash-msg">
+              ${flash.message}
             </div>
           </g:if>
           <g:layoutBody />

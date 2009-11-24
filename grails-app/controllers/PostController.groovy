@@ -117,7 +117,7 @@ class PostController {
             }
             postInstance.properties = params
             if(!postInstance.hasErrors() && postInstance.save()) {
-                flash.message = "Post ${params.id} updated"
+                flash.message = message(code:"article.updated", args:[postInstance.title])
 
                 redirect action:'index'
             }

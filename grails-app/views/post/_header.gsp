@@ -9,7 +9,7 @@
     <g:isLoggedIn>
       %{--<g:if test="${currentEntity.type.name == "Paed"}">--}%
         (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
-         <g:link class="adminlink" action="delete" id="${article.id}">löschen</g:link>)
+         <g:link class="adminlink" action="delete" onclick="return confirm('Artikel wirklich löschen?');" id="${article.id}">löschen</g:link>)
       %{--</g:if>--}%
     </g:isLoggedIn>
   </div>
