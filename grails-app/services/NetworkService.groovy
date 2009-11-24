@@ -9,7 +9,7 @@ class NetworkService {
     def entityHelperService
 
     def findFriendsOf (Entity e,  def params=[]) {
-      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltFriend, params)
+      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltFriendship, params)
       def results = []
       for (v in c) { results << v.target }
 
@@ -18,7 +18,7 @@ class NetworkService {
   
     boolean isFriendOf (Entity source, Entity target) {
       def links = Link.findAllBySourceAndTarget (source, target)
-      def friendLink = links.find {it.type.id == metaDataService.ltFriend.id}
+      def friendLink = links.find {it.type.id == metaDataService.ltFriendship.id}
       return friendLink ? true :false;
     }
 }

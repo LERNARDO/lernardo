@@ -5,24 +5,24 @@
   </head>
 
   <body>
-    <g:form action="update" name="editform" class="dialog" id='post.id'>
+    <g:form action="update" name="editform" class="dialog" id='postInstance.id'>
       <fieldset>
         <legend>Eintrag editieren</legend>
 
         <label for="title">Titel</label>
-        <g:textField class="text" name="title" id="atitle">${post.title}</g:textField>
+        <g:textField class="text" name="title" id="atitle">${postInstance.title}</g:textField>
         <br/>
 
         <label for="teaser">Teaser</label>
-        <g:textArea name="teaser">${post.teaser}</g:textArea>
+        <g:textArea name="teaser" rows="3" cols="100">${postInstance.teaser}</g:textArea>
         <br/>
 
         <label for="atext">Text</label>
         <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
         %{--<fckeditor:config ToolbarStartExpanded ="false"/>--}%
 
-        <fckeditor:editor name="atext" id="atext" width="100%" height="400" toolbar="Article" fileBrowser="default">
-          ${post.content}
+        <fckeditor:editor name="atext" id="atext" width="100%" height="400" toolbar="Post" fileBrowser="default">
+          ${postInstance.content}
         </fckeditor:editor>
         %{--<g:textArea name="atext" id="atext">${article.content}</g:textArea>--}%
         <br/>

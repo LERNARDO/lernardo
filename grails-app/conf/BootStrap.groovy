@@ -3,6 +3,8 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import profiles.UserProfile
 import profiles.FacProfile
+import posts.ArticlePost
+import posts.ActivityTemplateCommentPost
 
 class BootStrap {
   def defaultObjectService
@@ -671,7 +673,7 @@ class BootStrap {
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn'),
-            template:ActivityTemplate.findByName('Weide mit Hindernissen')).save()
+            template:'Weide mit Hindernissen').save()
       new Activity(title:'Schmetterlinge',
             owner:Entity.findByName('martin'),
             date: new Date(2009-1900,10,01,16,30),
@@ -679,7 +681,7 @@ class BootStrap {
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn'),
-            template:ActivityTemplate.findByName('Schmetterlinge')).save()
+            template:'Schmetterlinge').save()
       new Activity(title:'Luftballonmeer',
             owner:Entity.findByName('regina'),
             date: new Date(2009-1900,10,02,15,30),
@@ -687,26 +689,17 @@ class BootStrap {
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn'),
-            template:ActivityTemplate.findByName('Luftballonmeer')).save()
+            template:'Luftballonmeer').save()
     }
 
   void createDefaultPosts() {
     log.debug ("==> creating default posts")
 
-    new PostType(name:'article').save()
-    new PostType(name:'templateComment').save()
-
-    PostType tC = PostType.findByName('templateComment')
-
-    new Post(type:tC,
-            content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
+    new ActivityTemplateCommentPost(content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
             author:Entity.findByName('regina'),
-            template:ActivityTemplate.findByName('Blättertanz')).save()
+            template:ActivityTemplate.findByName('Schatten')).save()
 
-    PostType a = PostType.findByName('article')
-
-    new Post(type:a,
-            title:'Lernardo im Hort Kaumberg',
+    new ArticlePost(title:'Lernardo im Hort Kaumberg',
             teaser:'''Mit Beginn September 2009 erweitert Lernardo aufgrund der hohen Nachfrage und positiven
             Resonanz seine Einrichtungen mit einem neuen Standort in Kaumberg.''',
             content:'''Dank Kaumberg's Bürgermeister Michael Singraber konnte im Sommer 2009 sehr schnell
@@ -716,8 +709,7 @@ class BootStrap {
             bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
             zur vollen Verfügung.''',
             author:Entity.findByName('martin')).save()
-    new Post(type:a,
-            title:'Gesund durch Ernährungsexpertin',
+    new ArticlePost(title:'Gesund durch Ernährungsexpertin',
             teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
             Ernährungsexpertin mit langjähriger Erfahrung, die das Pädagogen Team im Hinblick auf die optimale
             und vielseitige Ernährung der Kinder unterstützen wird.''',
@@ -730,8 +722,7 @@ class BootStrap {
             Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
             Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
             author:Entity.findByName('martin')).save()
-    new Post(type:a,
-            title:'Hort Löwenzahn erhält Auszeichnung',
+    new ArticlePost(title:'Hort Löwenzahn erhält Auszeichnung',
             teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
             Familie und Jugend erhielt der Hort "Löwenzahn Weissenbach" den 4. Preis und eine Prämie von
             €500,-.''',

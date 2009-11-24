@@ -1,11 +1,13 @@
 import de.uenterprise.ep.Entity
+import posts.ArticlePost
+import posts.ActivityTemplateCommentPost
 
 class PostController {
     def entityHelperService
 
     def index = {
         params.offset = params.offset ?: 0
-        return ['articleList': Post.findAllByType(PostType.findByName('article'),[max:10, sort:"dateCreated", order:"desc", offset:params.offset]),
+        return ['articleList': ArticlePost.list([max:10, sort:"dateCreated", order:"desc", offset:params.offset]),
                 'listTitle': 'Aktuelle Ereignisse']
     }
 
@@ -37,7 +39,7 @@ class PostController {
     }
 
     def edit = {
-      def postInstance = Post.get(params.id)
+      def postInstance = ArticlePost.get(params.id)
       return ['postInstance':postInstance]
     }
 
@@ -74,10 +76,9 @@ class PostController {
     }
 
     def save = {
-        def postInstance = new Post(params)
+        def postInstance = new ActivityTemplateCommentPost(params)
         postInstance.author = entityHelperService.loggedIn
         postInstance.template = ActivityTemplate.get(params.id)
-        postInstance.type = PostType.findByName('templateComment')
         //def name = postInstance.name
         if(postInstance.save(flush:true)) {
             //flash.message = message(code:"event.created", args:[name])
@@ -89,9 +90,8 @@ class PostController {
     }
 
     def saveArticle = {
-        def postInstance = new Post(params)
+        def postInstance = new ArticlePost(params)
         postInstance.author = entityHelperService.loggedIn
-        postInstance.type = PostType.findByName('article')
         //def name = postInstance.name
         if(postInstance.save(flush:true)) {
             //flash.message = message(code:"event.created", args:[name])

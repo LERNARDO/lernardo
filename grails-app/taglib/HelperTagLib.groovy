@@ -1,5 +1,6 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
+import posts.ActivityTemplateCommentPost
 
 class HelperTagLib {
   def entityHelperService
@@ -16,7 +17,7 @@ class HelperTagLib {
   }
 
   def getCommentsCount = {attrs ->
-    out << Post.countByTemplate(attrs.remove ("template"))
+    out << ActivityTemplateCommentPost.countByTemplate(attrs.remove ("template"))
   }
 
   def getCommentsCountPost = {attrs ->

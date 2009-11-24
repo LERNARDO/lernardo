@@ -10,9 +10,8 @@ class ActivityController {
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
         params.myDate_year = params.myDate_year ?: 'alle'
-        println params
 
-        if (params.list== 'Alle')
+        if (params.list == 'Alle')
           return ['activityList': Activity.list(),
                   'activityCount': Activity.count()]
 
@@ -47,7 +46,7 @@ class ActivityController {
     def create = {
       def activityInstance = new Activity()
       activityInstance.properties = params
-      return ['activityInstance':activityInstance]
+      return ['activityInstance':activityInstance,'template':ActivityTemplate.get(params.id)]
     }
 
     def save = {
@@ -68,6 +67,7 @@ class ActivityController {
       activityInstance.paeds = []                                         // test placeholder
       activityInstance.clients = []                                       // test placeholder
       activityInstance.facility = Entity.findByName('kaumberg')           // test placeholder
+      activityInstance.template = ActivityTemplate.findByName(params.template)
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
           redirect controller:'template', action:'list'

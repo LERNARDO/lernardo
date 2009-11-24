@@ -5,6 +5,7 @@ import de.uenterprise.ep.EntityType
 import profiles.FacProfile
 import de.uenterprise.ep.Account
 import profiles.UserProfile
+import posts.ArticlePost
 
 class ProfileController {
     def geoCoderService
@@ -207,7 +208,7 @@ class ProfileController {
 
     def showArticleList = {
       Entity e = Entity.findByName(params.name)
-      render template:"showArticleList", model:[entity:e,'articleList':Post.findAllByAuthorAndType(e,PostType.findByName('article'))]
+      render template:"showArticleList", model:[entity:e,'articleList':ArticlePost.list()]
     }
 
     def showActivityList = {
@@ -267,13 +268,13 @@ class ProfileController {
 
       def linkInstance = new Link()
       linkInstance.source = entityHelperService.loggedIn
-      linkInstance.type = metaDataService.ltFriend
+      linkInstance.type = metaDataService.ltFriendship
       linkInstance.target = e ;
 
       // for now just create a back-link for mutuality - a more elaborate workflow will be in order later on
       def linkBack = new Link()
       linkBack.source = e ;
-      linkBack.type = metaDataService.ltFriend
+      linkBack.type = metaDataService.ltFriendship
       linkBack.target = entityHelperService.loggedIn
 
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
@@ -292,13 +293,13 @@ class ProfileController {
       def linkInstance = c.get {
         eq('source',entityHelperService.loggedIn)
         eq('target',e)
-        eq('type',metaDataService.ltFriend)
+        eq('type',metaDataService.ltFriendship)
       }
       def d = Link.createCriteria()
       def linkInstanceBack = d.get {
         eq('source',e)
         eq('target',entityHelperService.loggedIn)
-        eq('type',metaDataService.ltFriend)
+        eq('type',metaDataService.ltFriendship)
       }
       if(linkInstance && linkInstanceBack) {
             def n = linkInstance.target.name

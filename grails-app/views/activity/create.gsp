@@ -12,7 +12,8 @@
                 <g:renderErrors bean="${activityInstance}" as="list" />
               </div>
             </g:hasErrors>
-            <g:form action="save" method="post" id="${activityInstance.id}">
+            <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.name}</g:link></p>
+            <g:form action="save" method="post" id="${activityInstance.id}" params="[template:template.name]">
                     <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>

@@ -1,4 +1,5 @@
 import de.uenterprise.ep.Account
+import posts.ActivityTemplateCommentPost
 
 class TemplateController {
 
@@ -13,13 +14,15 @@ class TemplateController {
 
     def show = {
         def template = ActivityTemplate.get(params.id)
+        if (!template)
+          template = ActivityTemplate.findByName(params.name)
 
         if (!template) {
             flash.message = message(code:"template.notFound", args:[params.id])
             return
         }
 
-        return [template:template,commentList:Post.findAllByTemplate(template)]
+        return [template:template,commentList:ActivityTemplateCommentPost.findAllByTemplate(template)]
     }
 
     def create = {
