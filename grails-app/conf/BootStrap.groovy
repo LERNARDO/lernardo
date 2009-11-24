@@ -282,10 +282,10 @@ class BootStrap {
     def patrizia = Entity.findByName ('patrizia')
 
     // Person Links
-    new Link(source:mike, target:alex,  type:metaDataService.ltFriend).save()
-    new Link(source:alex, target:mike,  type:metaDataService.ltFriend).save()
-    new Link(source:alex, target:patrizia, type:metaDataService.ltFriend).save()
-    new Link(source:patrizia, target:alex, type:metaDataService.ltFriend).save()
+    new Link(source:mike, target:alex,  type:metaDataService.ltFriendship).save()
+    new Link(source:alex, target:mike,  type:metaDataService.ltFriendship).save()
+    new Link(source:alex, target:patrizia, type:metaDataService.ltFriendship).save()
+    new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
   }
 
   void createDefaultActivityTemplates() {
@@ -670,21 +670,24 @@ class BootStrap {
             duration: 60,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
-            facility:Entity.findByName('loewenzahn')).save()
+            facility:Entity.findByName('loewenzahn'),
+            template:ActivityTemplate.findByName('Weide mit Hindernissen')).save()
       new Activity(title:'Schmetterlinge',
             owner:Entity.findByName('martin'),
             date: new Date(2009-1900,10,01,16,30),
             duration: 30,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
-            facility:Entity.findByName('loewenzahn')).save()
+            facility:Entity.findByName('loewenzahn'),
+            template:ActivityTemplate.findByName('Schmetterlinge')).save()
       new Activity(title:'Luftballonmeer',
             owner:Entity.findByName('regina'),
             date: new Date(2009-1900,10,02,15,30),
             duration: 45,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
-            facility:Entity.findByName('loewenzahn')).save()
+            facility:Entity.findByName('loewenzahn'),
+            template:ActivityTemplate.findByName('Luftballonmeer')).save()
     }
 
   void createDefaultPosts() {

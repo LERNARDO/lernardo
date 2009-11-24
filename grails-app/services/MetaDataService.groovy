@@ -14,8 +14,8 @@ class MetaDataService {
   static final String ET_CLIENT = "Client"
   static final String ET_OPERATOR = "Operator"
   static final String ET_HORT = "Hort"
-  static final String ET_PO = "ForProfitOrganisation"
-  static final String ET_NPO = "NonProfitOrganisation"
+  static final String ET_SCHOOL = "School"
+  static final String ET_SPONSOR = "Sponsor"
 
   static final String PRT_PERSON = "User"                // ProfileType
   static final String PRT_ORG = "Org"
@@ -24,12 +24,16 @@ class MetaDataService {
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
   static final String ROLE_ADMIN = "ROLE_ADMIN"
+  static final String ROLE_SUPERUSER = "ROLE_SUPERUSER"
 
-  static final String LST_PRS = "PRS"                    // LinkSuperType (personal or organizational)
-  static final String LST_OA = "OA"
+  static final String LST_PERSONAL = "personal"          // LinkSuperType
+  static final String LST_OTHER = "other"
 
-  static final String LT_FRIEND = "Friend"               // LinkType
-  static final String LT_EMPLOYMENT = "Employment"
+  static final String LT_FRIENDSHIP = "Freundschaft"     // LinkType
+  static final String LT_SPONSORSHIP = "Sponsoring"
+  static final String LT_OPERATION = "Betreibung"
+  static final String LT_CLIENTSHIP = "Betreuung"
+  static final String LT_BOOKMARK = "Beobachtung"
 
   def initialize() {
     getEstPerson()
@@ -41,18 +45,22 @@ class MetaDataService {
     getEtClient()
     getEtOperator()
     getEtHort()
-    getEtPO()
-    getEtNPO()
+    getEtSchool()
+    getEtSponsor()
 
-    getLstPRS()
-    getLstOA()
+    getLstPersonal()
+    getLstOther()
 
-    getLtFriend()
-    getLtEmployment()
+    getLtFriendship()
+    getLtSponsorship()
+    getLtOperation()
+    getLtClientship()
+    getLtBookmark()
 
     getUserRole()
     getModRole()
     getAdminRole()
+    getSuperUserRole()
   }
 
   def getEstPerson() { defaultObjectService.openEST(EST_PERSON, PRT_PERSON)  }
@@ -64,17 +72,20 @@ class MetaDataService {
   def getEtClient () { defaultObjectService.openET (ET_CLIENT, estPerson) }
   def getEtOperator () { defaultObjectService.openET (ET_OPERATOR, estFac) }
   def getEtHort () { defaultObjectService.openET (ET_HORT, estFac) }
-  def getEtPO () { defaultObjectService.openET (ET_PO, estOrg) }
-  def getEtNPO () { defaultObjectService.openET (ET_NPO, estOrg) }
+  def getEtSchool () { defaultObjectService.openET (ET_SCHOOL, estFac) }
+  def getEtSponsor () { defaultObjectService.openET (ET_SPONSOR, estOrg) }
 
-  def getLstPRS () {defaultObjectService.openLST (LST_PRS, "Personal Relationship") }
-  def getLstOA () {defaultObjectService.openLST (LST_OA, "Organisational Association") }
+  def getLstPersonal () {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
+  def getLstOther () {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
 
-  def getLtFriend () { defaultObjectService.openLT(LT_FRIEND, lstPRS) }
-  def getLtEmployment () { defaultObjectService.openLT(LT_EMPLOYMENT, lstOA) }
+  def getLtFriendship () { defaultObjectService.openLT(LT_FRIENDSHIP, lstPersonal) }
+  def getLtSponsorship () { defaultObjectService.openLT(LT_SPONSORSHIP, lstOther) }
+  def getLtOperation () { defaultObjectService.openLT(LT_OPERATION, lstOther) }
+  def getLtClientship () { defaultObjectService.openLT(LT_CLIENTSHIP, lstOther) }
+  def getLtBookmark () { defaultObjectService.openLT(LT_BOOKMARK, lstOther) }
 
   def getUserRole () {defaultObjectService.openRole (ROLE_USER, "regular user")}
   def getModRole () {defaultObjectService.openRole (ROLE_MOD, "moderator")}
-  def getAdminRole () {defaultObjectService.openRole (ROLE_ADMIN, "system administrator")}
-
+  def getAdminRole () {defaultObjectService.openRole (ROLE_ADMIN, "administrator")}
+  def getSuperUserRole () {defaultObjectService.openRole (ROLE_SUPERUSER, "system administrator")}
 }
