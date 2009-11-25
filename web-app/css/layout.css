@@ -420,7 +420,7 @@ ul {
 /* ----- TABLES ----- */
 
 .row-paed, .row-Paed {
-    background: #b2b2ff; }
+    background: #ececff; }
 
 .row-client, .row-Client {
     background: #ffb2b2; }
@@ -432,7 +432,7 @@ ul {
     background: #ffffb2; }
 
 .row-mitarbeiter, .row-User {
-    background: #ffb200; }
+    background: #ffecc1; }
 
 .odd {
     background: #f4f4f4; }

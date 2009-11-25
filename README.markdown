@@ -9,9 +9,6 @@
 # Allan
 - style "Artikel ansehen view
 - tabellen einheitlich
-- quadratische profilbilder
-- personenliste farben
-- suche stylen
 - flash messages stylen
 - Profiltyp und Überschrift
 - postfach stylen
