@@ -44,12 +44,9 @@ body {
         float: left; }
 
 #bd {
-    background: #f0f0f0; }
-    #bd #flash-msg {
-        border: 1px solid #a66;
-        background: #f66;
-        padding: 3px 6px;
-        -moz-border-radius: 3px; }
+    background: #f0f0f0;
+    padding-top: 10px;
+}
 
 #ft {
     background: #d9d9d9;
@@ -758,3 +755,41 @@ table#msg-composer input[type=text], table#msg-composer textarea {
 .cleartop {
     margin: 2px 0 10px 0;
     border-top: 1px solid #ccc; }
+
+/* ----- ERRORS AND FLASH MSGS ----- */
+.error {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+#errors {
+    color: #f44;
+    margin-bottom: 15px;
+}
+
+.errors input, .errors textarea {
+  border:1px solid #ff6b22;
+}
+
+#errors ul li {
+    list-style-type: disc;
+}
+
+#flash-msg {  
+  padding: 10px 10px;
+  text-align: center;
+  color: #606060;
+  margin: 0 10px 10px;
+  border: 1px solid #ffc7ab;
+  background-color:#fff4f3;
+  -moz-border-radius: 3px;
+}
+
+.info-msg {
+  background-color:#efefef;
+  border-color:#cccccc;
+  border-style:solid;
+  border-width:1px;
+  padding:5px 10px;
+  color: #606060;
+}
