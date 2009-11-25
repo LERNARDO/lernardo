@@ -53,7 +53,6 @@
             <li class="profile-activities"><g:link action="createHort" params="[by:entity.name]">Hort anlegen</g:link></li>
           </g:if>
           <g:if test="${entity.type.name == 'Hort'}">
-            <li class="profile-activities"><g:link action="createPaed" params="[by:entity.name]">Pädagoge anlegen</g:link></li>
             <li class="profile-activities"><g:link action="createClient" params="[by:entity.name]">Betreuten anlegen</g:link></li>
           </g:if>
           <g:if test="${entity.type.name == 'Client'}">

@@ -1,8 +1,6 @@
 # Alex
 - implement "Neuigkeiten"
 - speaker property in FacProfile not added to database?
-- pädagoge anlegen in admin bereich
-- betreuten anlegen
 - posteingang - nachricht anschauen und löschen geht ned
 - eigene netzwerk view machen
 

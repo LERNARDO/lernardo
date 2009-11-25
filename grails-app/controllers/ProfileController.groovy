@@ -102,7 +102,7 @@ class ProfileController {
     def createPaed = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance,'by':params.by]
+      return ['entityInstance':entityInstance]
     }
 
     def savePaed = {
@@ -128,11 +128,7 @@ class ProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
       }
 
-      // create mutual relationship between Paed and Hort
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
-
-      flash.message = message(code:"user.created", args:[params.name,params.by])
+      flash.message = message(code:"user.created", args:[params.name,'Admin'])
       redirect controller:'profile', action:'show', params:[name:params.name]
     }
 
