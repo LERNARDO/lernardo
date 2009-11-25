@@ -7,7 +7,6 @@
 - eigene netzwerk view machen
 
 # Allan
-- style "Artikel ansehen view
 - tabellen einheitlich
 - Profiltyp und Überschrift
 

@@ -237,7 +237,7 @@ ul {
     background-color: #dfdfdf;
     border: 1px solid #ccc;
     padding: 5px 10px 15px 10px;
-    margin: 10px;
+    margin: 40px 10px 10px 10px;
     vertical-align: top;
     color: #333; }
 #profile-content h1 {
@@ -533,7 +533,7 @@ table #profile-list tr {
         padding: 0; }
         #article-container .item .links {
             text-align: right;
-            padding: 5px 0 0 0;
+            padding: 5px 0 5px 0;
             font-size: 11px; }
         #article-container .item .header {
             margin-right: 10px;
@@ -590,6 +590,10 @@ div.actionlinks div.userlinks a {
     font-size: 1em; }
     div.actionlinks div.userlinks a:hover {
         text-decoration: underline }
+
+.actionlink {
+    margin-bottom: 10px;
+}
 
 #newActivity {
     border: 1px solid #33f;
