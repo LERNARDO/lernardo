@@ -1,5 +1,6 @@
 import java.text.SimpleDateFormat
 import de.uenterprise.ep.Entity
+import de.uenterprise.ep.EntityType
 
 class ActivityController {
   def entityHelperService
@@ -46,7 +47,9 @@ class ActivityController {
     def create = {
       def activityInstance = new Activity()
       activityInstance.properties = params
-      return ['activityInstance':activityInstance,'template':ActivityTemplate.get(params.id)]
+      return ['activityInstance':activityInstance,
+              'template':ActivityTemplate.get(params.id),
+              'hortList':Entity.findAllByType(EntityType.findByName('Hort'))]
     }
 
     def save = {
@@ -62,12 +65,12 @@ class ActivityController {
 
       def activityInstance = new Activity(params)
       activityInstance.owner = entityHelperService.loggedIn
-      activityInstance.date = new Date()                                  // test placeholder
+      activityInstance.date = params.date                                
       activityInstance.duration = Integer.parseInt(params.duration)
       activityInstance.paeds = []                                         // test placeholder
       activityInstance.clients = []                                       // test placeholder
-      activityInstance.facility = Entity.findByName('kaumberg')           // test placeholder
-      activityInstance.template = ActivityTemplate.findByName(params.template)
+      activityInstance.facility = Entity.findByName(params.facility)
+      activityInstance.template = params.template
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
           redirect controller:'activity', action:'list'
