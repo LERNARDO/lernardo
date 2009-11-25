@@ -15,6 +15,7 @@ To change this template use File | Settings | File Templates.
   </head>
 
   <body>
+  <div id="body-list">
     <div class="profile-group">Aktivitätsdetail</div>
     <div class="profile-box">
       <table width="100%">
@@ -40,8 +41,7 @@ To change this template use File | Settings | File Templates.
         </tr>
       </table>
     </div>
-
-
+  </div>
   </body>
 
 

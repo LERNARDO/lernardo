@@ -440,7 +440,7 @@ ul {
 /* ----- LIST and TABLE overrides ----- */
 
 #body-list, #body-default {
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     background: #f0f0f0; }
     #body-list table {
         border: 1px solid #CCC;
@@ -734,6 +734,10 @@ table#msg-composer input[type=text], table#msg-composer textarea {
 }
 
 /* ----- MEMBERS ----- */
+
+.search-field {
+    margin-bottom: 15px;
+}
 
 .member {
     padding: 5px 0px;    

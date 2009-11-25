@@ -7,8 +7,10 @@
 - eigene netzwerk view machen
 
 # Allan
-- tabellen einheitlich
-- Profiltyp und ‹berschrift
+- tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung
+- Neue Aktivität planen (activity/create/)
+- Neue Aktivitätsvorlage erstellen (template/create/)
+- Profiltyp und Ueberschrift (Namen der Profiltypen abrufbar? "paed", etc..)
 
 # Daniel
 - none
