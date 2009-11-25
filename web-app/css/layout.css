@@ -236,7 +236,7 @@ ul {
     -moz-border-radius: 5px;
     background-color: #dfdfdf;
     border: 1px solid #ccc;
-    padding: 5px 10px 10px 10px;
+    padding: 5px 10px 15px 10px;
     margin: 10px;
     vertical-align: top;
     color: #333; }
@@ -501,7 +501,8 @@ table #profile-list tr {
     font-size: 10px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-top: 5px; }
+    margin-top: 5px;
+}
     .paginateButtons a {
         background: #fff;
         border-width: 1px;
@@ -623,6 +624,109 @@ table#msg-composer td {
 
 table#msg-composer input[type=text], table#msg-composer textarea {
     width: 100%;
+}
+
+#inbox-message-overview.message-rows {
+  border: collapse;
+  width: 100%;
+}
+
+#inbox-message-overview.message-rows tr td {
+  border-bottom: 1px solid #eeeeee;
+  padding: 5px 5px;
+}
+
+.message-rows .checkbox-toggle {
+  width: 35px;
+}
+
+.message-rows .checkbox-toggle input{
+  margin-left: 8px;
+}
+
+.message-rows .profile-pic {
+  line-height: 1px;
+  width: 50px;
+}
+
+.message-rows td.name-date {
+  width: 150px;
+}
+
+.message-rows .name-date .name {
+  width: 170px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.message-rows .name-date .date {
+  color: #777777;
+  display: block;
+  font-size: 11px;
+  padding: 1px 0 0;
+}
+
+.message-rows .name-date .state {
+  color: #AA0000;
+  font-size: 11px;
+  padding: 1px 0 4px;
+  font-weight: bold;
+}
+
+.message-rows .msg-unread {
+  background-color: #d5dce0;
+  /*width: 630px;*/
+}
+
+.message-rows .subject {
+  margin-right: 10px;
+}
+
+.message-rows .subject .subject-text {
+  padding-left: 22px;
+}
+
+.message-rows .delete-msg {
+  width: 80px;
+  font-size: 11px;
+  text-align: right;
+}
+
+.message-rows .delete-msg a {
+  margin-right: 8px;
+}
+
+.info-msg-postbox {
+  padding:5px 10px;
+  color: #606060;
+  text-align: center;
+}
+
+#inbox-footer {
+  /*background: #eeeeee;*/
+  margin-top: -1px;
+  padding: 3px 0 2px;
+  height: 15px;
+}
+
+.pager-container {
+  float: right;
+  margin: 0 0;
+  text-align: right;
+  width: 200px;
+  padding-right: 15px;
+}
+
+.pager-container .page-list li {
+  display: inline;
+}
+
+#inbox-footer .pager-container .page-list a.current,
+#inbox-footer .pager-container .page-list a.current:hover {
+  border-bottom:2px solid #89b7da;
+  font-weight: bold;
 }
 
 /* ----- MEMBERS ----- */

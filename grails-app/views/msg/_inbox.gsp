@@ -38,24 +38,27 @@
           </div>
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
-        <tr>
+        <tr class="<g:if test="${!msgInstance.read}">msg-unread</g:if>">
           %{--<td class="checkbox-toggle">--}%
             %{--<input type="checkbox" onclick=""/>--}%
           %{--</td>--}%
           <td class="profile-pic">
           <g:link controller="post" action="profile" params="[name:msgInstance.sender.name]">
-            <ub:profileImage name="${msgInstance.sender.name}" width="50" height="65" align="left"/>
+            <ub:profileImage name="${msgInstance.sender.name}" width="50" height="50" align="left"/>
           </g:link>
           </td>
           <td class="name-date">
-            <span class="name">von <g:link controller="post" action="profile" params="[name:msgInstance.sender.name]">${msgInstance.sender.profile.fullName}</g:link>
-            <g:if test="${!msgInstance.read}">
-              (UNGELESEN)
-            </g:if>
-            <g:else>
-              (GELESEN)
-            </g:else>
+          <g:if test="${!msgInstance.read}">
+            <span class="state">
+                Neue Nachricht
+            %{--
+              <g:else>
+                (GELESEN)
+              </g:else>
+            --}%
             </span>
+            </g:if>
+            <span class="name">von <g:link controller="post" action="profile" params="[name:msgInstance.sender.name]">${msgInstance.sender.profile.fullName}</g:link>
             <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
           </td>
           <td class="subject">

@@ -9,7 +9,6 @@
 # Allan
 - style "Artikel ansehen view
 - tabellen einheitlich
-- flash messages stylen
 - Profiltyp und Überschrift
 - postfach stylen
 
