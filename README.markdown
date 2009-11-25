@@ -7,7 +7,6 @@
 - eigene netzwerk view machen
 
 # Allan
-- style msg views
 - style "Artikel ansehen view
 - tabellen einheitlich
 - quadratische profilbilder
