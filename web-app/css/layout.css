@@ -44,12 +44,9 @@ body {
         float: left; }
 
 #bd {
-    background: #f0f0f0; }
-    #bd #flash-msg {
-        border: 1px solid #a66;
-        background: #f66;
-        padding: 3px 6px;
-        -moz-border-radius: 3px; }
+    background: #f0f0f0;
+    padding-top: 10px;
+}
 
 #ft {
     background: #d9d9d9;
@@ -116,8 +113,8 @@ body {
 a {
     color:#46597B;
     text-decoration: none; }
-    a:hover {
-        text-decoration:underline !important; }
+a:hover {
+    text-decoration:underline; }
 
 h1 {
     color: #444;
@@ -186,8 +183,11 @@ ul {
 
 #private {
     background:url(../images/background_private.jpg) repeat-x; }
-    #private a {
-        color: #3b59bb; }
+/*
+#private a {
+    color: #3b59bb;
+}
+*/
 
 #banner {
     height: 115px;
@@ -236,8 +236,8 @@ ul {
     -moz-border-radius: 5px;
     background-color: #dfdfdf;
     border: 1px solid #ccc;
-    padding: 5px 10px 10px 10px;
-    margin: 10px;
+    padding: 5px 10px 15px 10px;
+    margin: 40px 10px 10px 10px;
     vertical-align: top;
     color: #333; }
 #profile-content h1 {
@@ -417,7 +417,7 @@ ul {
 /* ----- TABLES ----- */
 
 .row-paed, .row-Paed {
-    background: #b2b2ff; }
+    background: #ececff; }
 
 .row-client, .row-Client {
     background: #ffb2b2; }
@@ -429,7 +429,7 @@ ul {
     background: #ffffb2; }
 
 .row-mitarbeiter, .row-User {
-    background: #ffb200; }
+    background: #ffecc1; }
 
 .odd {
     background: #f4f4f4; }
@@ -440,7 +440,7 @@ ul {
 /* ----- LIST and TABLE overrides ----- */
 
 #body-list, #body-default {
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     background: #f0f0f0; }
     #body-list table {
         border: 1px solid #CCC;
@@ -501,7 +501,8 @@ table #profile-list tr {
     font-size: 10px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-top: 5px; }
+    margin-top: 5px;
+}
     .paginateButtons a {
         background: #fff;
         border-width: 1px;
@@ -532,7 +533,7 @@ table #profile-list tr {
         padding: 0; }
         #article-container .item .links {
             text-align: right;
-            padding: 5px 0 0 0;
+            padding: 5px 0 5px 0;
             font-size: 11px; }
         #article-container .item .header {
             margin-right: 10px;
@@ -590,6 +591,10 @@ div.actionlinks div.userlinks a {
     div.actionlinks div.userlinks a:hover {
         text-decoration: underline }
 
+.actionlink {
+    margin-bottom: 10px;
+}
+
 #newActivity {
     border: 1px solid #33f;
     background: #66f;
@@ -615,7 +620,7 @@ div.actionlinks div.userlinks a {
 .label {
     width: 125px; }
 
-/* ----- Messaging -----  */
+/* ----- MESSAGING -----  */
 
 table#msg-composer td {
     padding: 3px 5px;
@@ -623,6 +628,151 @@ table#msg-composer td {
 
 table#msg-composer input[type=text], table#msg-composer textarea {
     width: 100%;
+}
+
+#inbox-message-overview.message-rows {
+  border: collapse;
+  width: 100%;
+}
+
+#inbox-message-overview.message-rows tr td {
+  border-bottom: 1px solid #eeeeee;
+  padding: 5px 5px;
+}
+
+.message-rows .checkbox-toggle {
+  width: 35px;
+}
+
+.message-rows .checkbox-toggle input{
+  margin-left: 8px;
+}
+
+.message-rows .profile-pic {
+  line-height: 1px;
+  width: 50px;
+}
+
+.message-rows td.name-date {
+  width: 150px;
+}
+
+.message-rows .name-date .name {
+  width: 170px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.message-rows .name-date .date {
+  color: #777777;
+  display: block;
+  font-size: 11px;
+  padding: 1px 0 0;
+}
+
+.message-rows .name-date .state {
+  color: #AA0000;
+  font-size: 11px;
+  padding: 1px 0 4px;
+  font-weight: bold;
+}
+
+.message-rows .msg-unread {
+  background-color: #d5dce0;
+  /*width: 630px;*/
+}
+
+.message-rows .subject {
+  margin-right: 10px;
+}
+
+.message-rows .subject .subject-text {
+  padding-left: 22px;
+}
+
+.message-rows .delete-msg {
+  width: 80px;
+  font-size: 11px;
+  text-align: right;
+}
+
+.message-rows .delete-msg a {
+  margin-right: 8px;
+}
+
+.info-msg-postbox {
+  padding:5px 10px;
+  color: #606060;
+  text-align: center;
+}
+
+#inbox-footer {
+  /*background: #eeeeee;*/
+  margin-top: -1px;
+  padding: 3px 0 2px;
+  height: 15px;
+}
+
+.pager-container {
+  float: right;
+  margin: 0 0;
+  text-align: right;
+  width: 200px;
+  padding-right: 15px;
+}
+
+.pager-container .page-list li {
+  display: inline;
+}
+
+#inbox-footer .pager-container .page-list a.current,
+#inbox-footer .pager-container .page-list a.current:hover {
+  border-bottom:2px solid #89b7da;
+  font-weight: bold;
+}
+
+/* ----- MEMBERS ----- */
+
+.search-field {
+    margin-bottom: 15px;
+}
+
+.member {
+    padding: 5px 0px;    
+}
+
+.member img {
+    margin-right: 10px;
+}
+
+.member .member-info .member-name {
+    font-weight: bold;
+}
+
+/* ----- BUTTONS ----- */
+
+.nav-button {
+    border:1px solid #999999;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:12px;
+    margin:0 0 5px;
+    padding:3px 5px;
+    background-color: #f0f0f0;
+}
+
+.nav-button:hover {
+    border:1px solid #666666;
+}
+
+.nav-button a {
+    text-decoration: none;
+    color: #666666;
+}
+
+.nav-button a:hover {
+    text-decoration: none;
 }
 
 /* ----- COMMENTS -----  */
@@ -717,3 +867,41 @@ table#msg-composer input[type=text], table#msg-composer textarea {
 .cleartop {
     margin: 2px 0 10px 0;
     border-top: 1px solid #ccc; }
+
+/* ----- ERRORS AND FLASH MSGS ----- */
+.error {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+#errors {
+    color: #f44;
+    margin-bottom: 15px;
+}
+
+.errors input, .errors textarea {
+  border:1px solid #ff6b22;
+}
+
+#errors ul li {
+    list-style-type: disc;
+}
+
+#flash-msg {  
+  padding: 10px 10px;
+  text-align: center;
+  color: #606060;
+  margin: 0 10px 10px;
+  border: 1px solid #ffc7ab;
+  background-color:#fff4f3;
+  -moz-border-radius: 3px;
+}
+
+.info-msg {
+  background-color:#efefef;
+  border-color:#cccccc;
+  border-style:solid;
+  border-width:1px;
+  padding:5px 10px;
+  color: #606060;
+}

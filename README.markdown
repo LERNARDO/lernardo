@@ -5,15 +5,10 @@
 - eigene netzwerk view machen
 
 # Allan
-- style msg views
-- style "Artikel ansehen view
-- tabellen einheitlich
-- quadratische profilbilder
-- personenliste farben
-- suche stylen
-- flash messages stylen
-- Profiltyp und ‹berschrift
-- postfach stylen
+- tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung
+- Neue Aktivität planen (activity/create/)
+- Neue Aktivitätsvorlage erstellen (template/create/)
+- Profiltyp und Ueberschrift (Namen der Profiltypen abrufbar? "paed", etc..)
 
 # Daniel
 - none
