@@ -27,6 +27,7 @@
         </table>
 
         <div class="buttonbar">
+          <g:submitButton name="preview" id="preview" value="Vorschau"/>
           <g:submitButton name="submit" id="update" value="Aktualisieren"/>
           <g:link action="index">Abbrechen</g:link>
         </div>

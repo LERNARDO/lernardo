@@ -1,8 +1,6 @@
-package posts
-
 import grails.test.*
 
-class ActivityCommentPostTests extends GrailsUnitTestCase {
+class TemplateCommentControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

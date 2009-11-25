@@ -32,33 +32,37 @@
             </div>
           </div>
           <div id="sidebar" class="yui-b">
-            <div class="sidebox">
-              <div class="innersidebox">
-                <div class="sideboxheader">Login</div>
 
-                <div class="sideboxcontent">
-                  <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
-                    <table>
-                      <tr>
-                        <td width="100px" height="20px">E-Mail:</td>
-                        <td><input id="j_username" name="j_username" type="text" tabindex="1" /></td>
-                      </tr>
-                      <tr>
-                        <td width="100px" height="20px">Passwort:</td>
-                        <td><input name="j_password" id="j_password" type="password" tabindex="2" /></td>
-                      </tr>
-                    </table>
+            <app:isNotLoggedIn>
+              <div class="sidebox">
+                <div class="innersidebox">
+                  <div class="sideboxheader">Login</div>
 
-                    <div class="login-form-button">
-                      <input type="submit" name="submit" value="Anmelden" id="submit" />
-                    </div>
+                  <div class="sideboxcontent">
+                    <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
+                      <table>
+                        <tr>
+                          <td width="100px" height="20px">E-Mail:</td>
+                          <td><input id="j_username" name="j_username" type="text" tabindex="1" /></td>
+                        </tr>
+                        <tr>
+                          <td width="100px" height="20px">Passwort:</td>
+                          <td><input name="j_password" id="j_password" type="password" tabindex="2" /></td>
+                        </tr>
+                      </table>
 
-                    <div id="forgot-pwd"><a href="#">Passwort vergessen?</a></div>
+                      <div class="login-form-button">
+                        <input type="submit" name="submit" value="Anmelden" id="submit" />
+                      </div>
 
-                  </form>
-                </div>
-              </div><!-- innersidebox -->
-            </div><!-- sidebox -->
+                      <div id="forgot-pwd"><a href="#">Passwort vergessen?</a></div>
+
+                    </form>
+                  </div>
+                </div><!-- innersidebox -->
+              </div><!-- sidebox -->
+            </app:isNotLoggedIn>
+
             <div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader">Über Lernardo</div>

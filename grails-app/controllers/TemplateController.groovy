@@ -1,5 +1,5 @@
 import de.uenterprise.ep.Account
-import posts.ActivityTemplateCommentPost
+import posts.TemplateComment
 
 class TemplateController {
 
@@ -22,7 +22,7 @@ class TemplateController {
             return
         }
 
-        return [template:template,commentList:ActivityTemplateCommentPost.findAllByTemplate(template)]
+        return [template:template,commentList:TemplateComment.findAllByTemplate(template)]
     }
 
     def create = {

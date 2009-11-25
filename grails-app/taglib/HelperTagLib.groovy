@@ -1,6 +1,6 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
-import posts.ActivityTemplateCommentPost
+import posts.TemplateComment
 
 class HelperTagLib {
   def entityHelperService
@@ -17,7 +17,7 @@ class HelperTagLib {
   }
 
   def getCommentsCount = {attrs ->
-    out << ActivityTemplateCommentPost.countByTemplate(attrs.remove ("template"))
+    out << TemplateComment.countByTemplate(attrs.remove ("template"))
   }
 
   def getCommentsCountPost = {attrs ->
@@ -26,6 +26,11 @@ class HelperTagLib {
 
   def getRelationship = {attrs ->
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.remove ("source")),Entity.findByName(attrs.remove ("target"))).type.name
+  }
+
+  def isNotLoggedIn = {attrs, body->
+    if (!entityHelperService.loggedIn)
+      out << body()
   }
 
   def isFriend = {attrs, body->

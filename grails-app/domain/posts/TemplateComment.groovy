@@ -1,6 +1,6 @@
 package posts
 
-class ActivityTemplateCommentPost extends Post {
+class TemplateComment extends Post {
 
   ActivityTemplate template
 

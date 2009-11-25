@@ -68,7 +68,7 @@
                 <div class="info">
                   <div class="time"><g:formatDate format="dd. MMM. yyyy, HH:mm" date="${comment.dateCreated}"/></div>
                   <ub:meOrAdmin entityName="${comment.author.name}">
-                    <div class="actions"><g:link controller="post" action="deleteActivityTemplateComment" id="${comment.id}" params="[template:template.id]">löschen</g:link></div>
+                    <div class="actions"><g:link controller="templateComment" action="delete" id="${comment.id}" params="[template:template.id]">löschen</g:link></div>
                   </ub:meOrAdmin>
                 </div>
               </div>
@@ -198,7 +198,7 @@
         --}%
 
         <div class="comments-actions">
-          <g:remoteLink class="button" controller="post" action="createtemplatecomment" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
+          <g:remoteLink class="button" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
         </div>
         <div id="createComment">
         </div>

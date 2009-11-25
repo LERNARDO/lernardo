@@ -4,7 +4,7 @@ import de.uenterprise.ep.Link
 import profiles.UserProfile
 import profiles.FacProfile
 import posts.ArticlePost
-import posts.ActivityTemplateCommentPost
+import posts.TemplateComment
 
 class BootStrap {
   def defaultObjectService
@@ -695,7 +695,7 @@ class BootStrap {
   void createDefaultPosts() {
     log.debug ("==> creating default posts")
 
-    new ActivityTemplateCommentPost(content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
+    new TemplateComment(content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
             author:Entity.findByName('regina'),
             template:ActivityTemplate.findByName('Schatten')).save()
 

@@ -10,7 +10,7 @@
 
   <g:if test="${currentEntity}">
     <g:if test="${currentEntity.type.name == 'Paed'}">
-      <g:remoteLink class="createArticle" controller="post" action="createArticlePost" update="createArticle" after="jQuery('#createArticle').show('fast')" params="[name:currentEntity.name]">Neuen Artikel erstellen</g:remoteLink>
+      <g:remoteLink class="createArticle" action="create" update="createArticle" after="jQuery('#createArticle').show('fast')" params="[name:currentEntity.name]">Neuen Artikel erstellen</g:remoteLink>
       <div id="createArticle">
       </div>
     </g:if>

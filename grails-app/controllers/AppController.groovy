@@ -15,6 +15,6 @@ class AppController {
     }
 
     def home = {
-      redirect (controller:'post', action:'index')
+      redirect (controller:'articlePost', action:'index')
     }
 }
