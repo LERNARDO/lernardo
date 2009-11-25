@@ -11,34 +11,12 @@
 
                             <tr class="prop">
                                 <td valign="middle" class="name">
-                                    <label for="title">
-                                      <g:message code="entityInstance.title.label" default="Titel" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <input type="text" size="40" id="title" name="title" value="${fieldValue(bean:entityInstance,field:'profile.title')}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="middle" class="name">
                                     <label for="fullName">
                                       <g:message code="entityInstance.fullName.label" default="Name" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
                                     <input type="text" size="40" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="middle" class="name">
-                                    <label for="birthDate">
-                                      <g:message code="entityInstance.birthDate.label" default="Geburtstag" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:datePicker id="birthDate" name="birthDate" value="${entityInstance.profile.birthDate}" precision="day" years="${1900..Calendar.getInstance().get(Calendar.YEAR)-18}"/>
                                 </td>
                             </tr>
 
@@ -88,25 +66,25 @@
 
                             <tr class="prop">
                                 <td valign="middle" class="name">
-                                    <label for="gender">
-                                      <g:message code="entityInstance.gender.label" default="Geschlecht" />:
+                                    <label for="speaker">
+                                      <g:message code="entityInstance.speaker.label" default="Ansprechperson" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="gender" name="gender" from="${['Männlich','Weiblich']}" value="${entityInstance.profile.gender}" />
+                                    <input type="text" size="40" id="speaker" name="speaker" value="${fieldValue(bean:entityInstance,field:'profile.speaker')}"/>
                                 </td>
                             </tr>
 
                             <tr class="prop">
                                 <td valign="middle" class="name">
-                                    <label for="biography">
-                                      <g:message code="entityInstance.biography.label" default="Lebenslauf" />:
+                                    <label for="description">
+                                      <g:message code="entityInstance.description.label" default="Beschreibung" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
                                   <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                  <fckeditor:editor name="biography" id="biography" width="550px" height="400" toolbar="Post" fileBrowser="default">
-                                    ${entityInstance.profile.biography}
+                                  <fckeditor:editor name="description" id="description" width="550px" height="400" toolbar="Post" fileBrowser="default">
+                                    ${entityInstance.profile.description}
                                   </fckeditor:editor>
                                 </td>
                             </tr>

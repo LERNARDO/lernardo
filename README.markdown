@@ -5,7 +5,6 @@
 - betreuten anlegen
 - posteingang - nachricht anschauen und löschen geht ned
 - eigene netzwerk view machen
-- use FCKeditor plugin
 
 # Allan
 - style msg views

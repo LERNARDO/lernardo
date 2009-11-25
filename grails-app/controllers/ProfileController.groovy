@@ -328,6 +328,18 @@ class ProfileController {
         }
     }
 
+    def editFacility = {
+        def entityInstance = Entity.findByName(params.name)
+
+        if(!entityInstance) {
+            flash.message = message(code:"user.notFound", args:[params.name])
+            redirect action:'show', model:[name:params.name]
+        }
+        else {
+            return [ entityInstance : entityInstance ]
+        }
+    }
+
   def update = {
        def entityInstance = Entity.get( params.id )
        if(entityInstance) {
@@ -342,15 +354,25 @@ class ProfileController {
                }
            }
            entityInstance.properties = params
-           entityInstance.profile.title = params.title
+           if (params.title)
+             entityInstance.profile.title = params.title
            entityInstance.profile.fullName = params.fullName
-           entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+           if (params.birthDate)
+             entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
            entityInstance.profile.PLZ = params.PLZ.toInteger()
            entityInstance.profile.city = params.city
            entityInstance.profile.street = params.street
            entityInstance.profile.tel = params.tel
-           entityInstance.profile.gender = params.gender
-           entityInstance.profile.biography = params.biography
+           if (params.gender) {
+             if (params.gender == "Männlich")
+                entityInstance.profile.gender = 1
+             else
+                entityInstance.profile.gender = 2
+           }
+           if (params.biography)
+             entityInstance.profile.biography = params.biography
+           if (params.description)
+             entityInstance.profile.description = params.description
          if(!entityInstance.hasErrors() && entityInstance.save()) {
                flash.message = message(code:"user.updated", args:[entityInstance.name])
 
