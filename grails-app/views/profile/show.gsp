@@ -20,7 +20,12 @@
         <div class="profile-box">
           <ul>
             <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profilbild ändern</g:link></li>
-            <li><g:remoteLink action="edit" update="profile-content" params="[name:entity.name]">Profildaten ändern</g:remoteLink></li>
+            <g:if test="${entity.type.supertype.name == 'Person'}">
+              <li><g:remoteLink action="edit" update="profile-content" params="[name:entity.name]">Profildaten ändern</g:remoteLink></li>
+            </g:if>
+            <g:else>
+              <li><g:remoteLink action="editFacility" update="profile-content" params="[name:entity.name]">Profildaten ändern</g:remoteLink></li>
+            </g:else>
           </ul>
         </div>
       </ub:meOrAdmin>
