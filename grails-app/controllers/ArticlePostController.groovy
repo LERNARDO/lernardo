@@ -31,7 +31,7 @@ class ArticlePostController {
   def create = {
     def postInstance = new ArticlePost()
     postInstance.properties = params
-    render template:'create', model: ['postInstance': postInstance]
+    return ['postInstance': postInstance]
   }
 
   def delete = {

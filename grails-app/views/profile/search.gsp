@@ -7,13 +7,12 @@
   </head>
   <body>
     <div id="body-list">
-      <h2>Suche</h2>
+      <h1>Mitgliedersuche</h1>
       <g:formRemote name="searchForm" url="[action:'searchMe']" class="members-filter" update="membersearch-results">
       <fieldset>
-        <legend>Mitgliedersuche</legend>
         <div class="form-content">
           <div class="search-field">
-            <label for="name">Nach Mitgliedern suchen:</label>
+            <label for="name">Bitte einen Namen eingeben:</label>
             <input id="name" type="text" name="name"/>
             <input id="button" type="submit" name="button" value="Suchen" />
           </div>

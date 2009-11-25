@@ -5,6 +5,7 @@
 - betreuten anlegen
 - posteingang - nachricht anschauen und löschen geht ned
 - eigene netzwerk view machen
+- use FCKeditor plugin
 
 # Allan
 - style msg views
@@ -27,7 +28,6 @@
 - database
 - TeamCity
 - assets
-- "Neuen Artikel erstellen" ajax update doesn't work
 - "Kalender ansehen" doesn't work anymore with ajax
 - "Standort anzeigen" problem with ajax? triggers empty page
 - profilbild ändern

@@ -10,16 +10,19 @@
 
   <g:if test="${currentEntity}">
     <g:if test="${currentEntity.type.name == 'Paed'}">
-      <g:remoteLink class="createArticle" controller="articlePost" action="create" update="createArticle" after="jQuery('#createArticle').show('fast')">Neuen Artikel erstellen</g:remoteLink>
-      <div id="createArticle">
-      </div>
+      <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel verfassen</g:link></p>
     </g:if>
   </g:if>
 
     <g:each in="${articleList}" var="article">
       <div class="item">
         <g:render template="header" model='[article:article]'/>
-        <g:render template="teaser" model='[article:article]'/>
+        <g:if test="${article.teaser}">
+          <g:render template="teaser" model='[article:article]'/>
+        </g:if>
+        <g:else>
+          <g:render template="content" model='[article:article]'/>
+        </g:else>
         <g:render template="links"  model='[article:article]'/>
       </div>
     </g:each>
