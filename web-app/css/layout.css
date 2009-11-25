@@ -628,6 +628,20 @@ table#msg-composer input[type=text], table#msg-composer textarea {
     width: 100%;
 }
 
+/* ----- MEMBERS ----- */
+
+.member {
+    padding: 5px 0px;    
+}
+
+.member img {
+    margin-right: 10px;
+}
+
+.member .member-info .member-name {
+    font-weight: bold;
+}
+
 /* ----- BUTTONS ----- */
 
 .nav-button {
