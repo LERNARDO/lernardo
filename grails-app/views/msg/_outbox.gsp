@@ -41,7 +41,7 @@
         <tr>
           <td class="profile-pic">
           <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">
-            <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="65" align="left"/>
+            <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="50" align="left"/>
           </g:link>
           </td>
           <td class="name-date">

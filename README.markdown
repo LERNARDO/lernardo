@@ -10,7 +10,6 @@
 - style "Artikel ansehen view
 - tabellen einheitlich
 - Profiltyp und Überschrift
-- postfach stylen
 
 # Daniel
 - none
