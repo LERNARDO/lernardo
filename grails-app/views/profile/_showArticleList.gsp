@@ -1,25 +1,33 @@
-<h2>Liste aller Artikel</h2>
-<p>${articleList.size()} Artikel gefunden</p>
+<div id="body-list" style="background-color: transparent">
+  <h1>Meine Artikel</h1>
+  <g:if test="${!articleList}">
+    <p>Keine Aktivitäten gefunden</p>
+  </g:if>
+  <g:else>
+    <p>${articleList.size()} Artikel gefunden</p>
+    <table>
+      <thead>
+      <tr>
+        <g:sortableColumn property="title" title="Titel"/>
+        <g:sortableColumn property="dateCreated" title="Datum"/>
+      </tr>
+      </thead>
+      <tbody>
 
-<table>
-  <thead>
-  <tr>
-    <g:sortableColumn property="title" title="Titel"/>
-    <g:sortableColumn property="dateCreated" title="Datum"/>
-    <th>Kommentare</th>
-  </tr>
-  </thead>
-  <tbody>
-  <g:each status="i" in="${articleList}" var="article">
-    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-      <td><g:link controller="post" action="show" id="${article.id}">${article.title}</g:link></td>
-      <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${article.dateCreated}"/></td>
-      <td><app:getCommentsCountPost post="${article}"/></td>
-    </tr>
-  </g:each>
-  </tbody>
-</table>
+      <g:each status="i" in="${articleList}" var="article">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+          <td><g:link controller="articlePost" action="show" id="${article.id}">${article.title}</g:link></td>
+          <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${article.dateCreated}"/></td>
+        </tr>
+      </g:each>
 
-<div class="paginateButtons">
-  <g:paginate action="list" total="${articleList.size()}"/>
+      </tbody>
+    </table>
+  </g:else>
+
+  <div class="paginateButtons">
+    <g:paginate action="list" total="${articleList.size()}"/>
+  </div>
+
 </div>
+

@@ -1,9 +1,10 @@
 <div id="body-list" style="background-color: transparent">
-  <h1>Meine Aktivitäten:</h1>  
+  <h1>Meine Aktivitäten</h1>
   <g:if test="${!activityList}">
     <p>Keine Aktivitäten gefunden</p>
   </g:if>
   <g:else>
+    <p>${activityList.size()} Aktivitäten gefunden</p>
     <table id="profile-list">
       <thead>
       <tr>
@@ -23,4 +24,10 @@
       </tbody>
     </table>
   </g:else>
+
+  <div class="paginateButtons">
+    <g:paginate action="list" total="${activityList.size()}"/>
+  </div>
+
 </div>
+

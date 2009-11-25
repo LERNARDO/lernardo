@@ -4,7 +4,7 @@ class TemplateCommentController {
   def entityHelperService
 
   def delete = {
-    def postInstance = Post.get(params.id)
+    def postInstance = TemplateComment.get(params.id)
     if (postInstance) {
       try {
         flash.message = message(code: "comment.deleted", args: [postInstance.id])
@@ -23,7 +23,7 @@ class TemplateCommentController {
   }
 
   def create = {
-    def postInstance = new Post()
+    def postInstance = new TemplateComment()
     postInstance.properties = params
     render(template: 'create', model: ['postInstance': postInstance, 'template_id': params.id])
   }

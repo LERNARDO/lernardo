@@ -1,6 +1,7 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import posts.TemplateComment
+import posts.ArticlePost
 
 class HelperTagLib {
   def entityHelperService
@@ -16,12 +17,8 @@ class HelperTagLib {
       out << 'Weiblich'
   }
 
-  def getCommentsCount = {attrs ->
+  def getTemplateCommentsCount = {attrs ->
     out << TemplateComment.countByTemplate(attrs.remove ("template"))
-  }
-
-  def getCommentsCountPost = {attrs ->
-    out << Post.countByPost(attrs.remove ("post"))
   }
 
   def getRelationship = {attrs ->

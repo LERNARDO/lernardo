@@ -208,7 +208,7 @@ class ProfileController {
 
     def showArticleList = {
       Entity e = Entity.findByName(params.name)
-      render template:"showArticleList", model:[entity:e,'articleList':ArticlePost.list()]
+      render template:"showArticleList", model:[entity:e,'articleList':ArticlePost.findAllByAuthor(e)]
     }
 
     def showActivityList = {

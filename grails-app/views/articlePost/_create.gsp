@@ -1,6 +1,3 @@
-<head>
-  <g:javascript library="jquery"/>
-</head>
           <div class="body">
             <h1>Artikel verfassen</h1>
             <g:hasErrors bean="${postInstance}">
@@ -10,7 +7,7 @@
             </div>
               </div>
             </g:hasErrors>
-            <g:form action="saveArticle" method="post" params="[name:entity.name]" id="${postInstance.id}">
+            <g:form action="saveArticle" method="post" id="${postInstance.id}">
                     <table id="msg-composer">
                         <tbody>
 
@@ -51,7 +48,7 @@
                               <td>&nbsp;</td>
                               <td>
                                 <div class="buttons">             
-                                    <span class="button"><g:actionSubmit class="save" action="save" value="Senden" /></span>
+                                    <span class="button"><g:actionSubmit class="save" action="save" value="Hinzufügen" /></span>
                                     %{--<span class="nav-button"><g:link controller="post" action="index" params="[name:entity.name]">Abbrechen</g:link></span>--}%
                                     <span class="button"><a href="#" onclick="jQuery('#createArticle').hide(); return false;">Fertig</a></span>
                                 </div>

@@ -28,7 +28,7 @@
             <td class="col2">${templateInstance.duration}</td>
             <td>${templateInstance.socialForm}</td>
             <td class="col4">${templateInstance.requiredPaeds}</td>
-            <td><app:getCommentsCount template="${templateInstance}"/></td>
+            <td><app:getTemplateCommentsCount template="${templateInstance}"/></td>
           </tr>
         </g:each>
         </tbody>

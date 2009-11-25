@@ -70,11 +70,11 @@ class ActivityController {
       activityInstance.template = ActivityTemplate.findByName(params.template)
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
-          redirect controller:'template', action:'list'
+          redirect controller:'activity', action:'list'
         }
         else {
           flash.message = message(code:"activity.notCreated", args:[params.title])
-          redirect controller:'template', action:'list'
+          redirect controller:'activity', action:'list'
         }
     }
 

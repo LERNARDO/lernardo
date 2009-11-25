@@ -31,8 +31,7 @@ class ArticlePostController {
   def create = {
     def postInstance = new ArticlePost()
     postInstance.properties = params
-    Entity e = Entity.findByName(params.name)
-    render template: 'createArticlePost', model: ['postInstance': postInstance, entity: e]
+    render template:'create', model: ['postInstance': postInstance]
   }
 
   def delete = {
@@ -60,10 +59,10 @@ class ArticlePostController {
     //def name = postInstance.name
     if (postInstance.save(flush: true)) {
       //flash.message = message(code:"event.created", args:[name])
-      redirect controller: "post", action: "index", params: [name: entityHelperService.loggedIn.name]
+      redirect action: "index", params: [name: entityHelperService.loggedIn.name]
     }
     else {
-      redirect controller: "post", action: "index", params: [name: entityHelperService.loggedIn.name]
+      redirect action: "index", params: [name: entityHelperService.loggedIn.name]
     }
   }
 
