@@ -1,13 +1,17 @@
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
   <g:javascript library="jquery"/>
 </head>
+<body>
   <h1>Posteingang</h1>
     <div id="inbox">
       <div id="inbox-navigation">
         <div id="left-list">
           <ul class="tabs">
-            <li><g:remoteLink controller="msg" action="inbox" update="profile-content">Posteingang</g:remoteLink></li>
-            <li><g:remoteLink controller="msg" action="outbox" update="profile-content">Postausgang</g:remoteLink></li>
+            <li><g:link controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link></li>
+            <li><g:link controller="msg" action="outbox" params="[name:entity.name]">Postausgang</g:link></li>
           </ul>
         </div>
       </div>
@@ -43,12 +47,12 @@
             %{--<input type="checkbox" onclick=""/>--}%
           %{--</td>--}%
           <td class="profile-pic">
-          <g:link controller="post" action="profile" params="[name:msgInstance.sender.name]">
+          <g:link controller="profile" action="showProfile" params="[name:msgInstance.sender.name]">
             <ub:profileImage name="${msgInstance.sender.name}" width="50" height="65" align="left"/>
           </g:link>
           </td>
           <td class="name-date">
-            <span class="name">von <g:link controller="post" action="profile" params="[name:msgInstance.sender.name]">${msgInstance.sender.profile.fullName}</g:link>
+            <span class="name">von <g:link controller="profile" action="showProfile" params="[name:msgInstance.sender.name]">${msgInstance.sender.profile.fullName}</g:link>
             <g:if test="${!msgInstance.read}">
               (UNGELESEN)
             </g:if>
@@ -59,9 +63,9 @@
             <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
           </td>
           <td class="subject">
-            <span class="subject-text"><g:link action="show" id="${msgInstance.id}">${msgInstance.subject}</g:link></span>
+            <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[name:entity.name]">${msgInstance.subject}</g:link></span>
           </td>
-          <td class="delete-msg"><g:link action="delete" id="${msgInstance.id}">Löschen</g:link></td>
+          <td class="delete-msg"><g:actionSubmit class="del" onclick="return confirm('Nachricht wirklich löschen?');" value="Löschen" id="${msgInstance.id}" params="[name:entity.name]"/></td>
         </tr>
         </g:each>
 
@@ -72,3 +76,4 @@
         </div>
       </div>
     </div>
+</body>

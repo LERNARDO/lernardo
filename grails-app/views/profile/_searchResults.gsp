@@ -6,7 +6,7 @@
       </g:link>
     </div>
     <div class="member-info">
-      <div class="member-name"><g:link controller="profile" action="show" params="[name:searchInstance.name]">${searchInstance.profile.fullName}</g:link></div>
+      <div class="member-name"><g:link controller="profile" action="showProfile" params="[name:searchInstance.name]">${searchInstance.profile.fullName}</g:link></div>
       <div class="member-uni">${searchInstance.type.name}</div>
     </div>
     <div class="clear"></div>

@@ -1,6 +1,10 @@
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
   <g:javascript library="jquery"/>
 </head>
+<body>
           <div class="body">
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -29,8 +33,9 @@
                 <g:form>
                     <input type="hidden" name="id" value="${msgInstance?.id}" />
                     <span class="button"><g:link controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link></span>
-                    <g:actionSubmit class="delete" onclick="return confirm('Nachricht wirklich löschen?');" value="Löschen" />
-                    <span class="nav-button"><g:link action="inbox">zurück</g:link></span>
+                    <g:actionSubmit class="del" onclick="return confirm('Nachricht wirklich löschen?');" value="Löschen" params="[name:entity.name]"/>
+                    <span class="nav-button"><g:link action="inbox" params="[name:entity.name]">zurück</g:link></span>
                 </g:form>
             </div>
         </div>
+</body>

@@ -1,15 +1,19 @@
 import de.uenterprise.ep.Account
 import posts.TemplateComment
+import de.uenterprise.ep.Entity
 
 class TemplateController {
+  def entityHelperService
 
     def index = { }
 
     def list = {
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
+
         return ['templateList': ActivityTemplate.list(params),
-                'templateCount': ActivityTemplate.count()]
+                'templateCount': ActivityTemplate.count(),
+                'entity':entityHelperService.loggedIn]
     }
 
     def show = {
@@ -22,13 +26,15 @@ class TemplateController {
             return
         }
 
-        return [template:template,commentList:TemplateComment.findAllByTemplate(template)]
+        return ['template':template,
+                'commentList':TemplateComment.findAllByTemplate(template),
+                'entity':entityHelperService.loggedIn]
     }
 
     def create = {
       def templateInstance = new ActivityTemplate()
       templateInstance.properties = params
-      return ['templateInstance':templateInstance]
+      return ['templateInstance':templateInstance,'entity':entityHelperService.loggedIn]
     }
 
     def save = {
@@ -43,7 +49,7 @@ class TemplateController {
       def activityInstance = new ActivityTemplate(params)
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"template.created", args:[params.name])
-          redirect controller:'template', action:'list'
+          redirect action:'show', id:activityInstance.id
         }
     }
 }

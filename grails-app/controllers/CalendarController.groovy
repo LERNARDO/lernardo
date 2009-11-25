@@ -4,6 +4,7 @@ import grails.converters.JSON
 import de.uenterprise.ep.Entity
 
 class CalendarController {
+  def entityHelperService
 
     def index = { }
 
@@ -20,7 +21,7 @@ class CalendarController {
     }
 
     def showall  = {
-        return [name:'all']
+        return [name:'all',entity:entityHelperService.loggedIn]
     }
 
     def showall_month = {}

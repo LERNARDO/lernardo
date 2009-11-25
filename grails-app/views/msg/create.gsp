@@ -1,6 +1,10 @@
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
   <g:javascript library="jquery"/>
 </head>
+<body>
           <div class="body">
             <h1>Nachricht verfassen</h1>
             <g:hasErrors bean="${msgInstance}">
@@ -59,3 +63,4 @@
                     </table>
             </g:form>
         </div>
+</body>

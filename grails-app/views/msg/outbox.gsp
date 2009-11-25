@@ -1,13 +1,17 @@
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
   <g:javascript library="jquery"/>
 </head>
+<body>
   <h1>Postausgang</h1>
     <div id="inbox">
       <div id="inbox-navigation">
         <div id="left-list">
           <ul class="tabs">
-            <li><g:remoteLink controller="msg" action="inbox" update="profile-content">Posteingang</g:remoteLink></li>
-            <li><g:remoteLink controller="msg" action="outbox" update="profile-content">Postausgang</g:remoteLink></li>
+            <li><g:link controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link></li>
+            <li><g:link controller="msg" action="outbox" params="[name:entity.name]">Postausgang</g:link></li>
           </ul>
         </div>
       </div>
@@ -40,18 +44,18 @@
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
         <tr>
           <td class="profile-pic">
-          <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">
+          <g:link controller="profile" action="showProfile" params="[name:msgInstance.receiver.name]">
             <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="65" align="left"/>
           </g:link>
           </td>
           <td class="name-date">
-            <span class="name">an <g:link controller="profile" action="show" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link></span>
+            <span class="name">an <g:link controller="profile" action="showProfile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link></span>
             <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
           </td>
           <td class="subject">
-            <span class="subject-text"><g:remoteLink action="show" update="profile-content" id="${msgInstance.id}" params="[name:entity.name]">${msgInstance.subject}</g:remoteLink></span>
+            <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[name:entity.name]">${msgInstance.subject}</g:link></span>
           </td>
-          <td class="delete-msg"><g:remoteLink action="delete" update="profile-content" id="${msgInstance.id}" params="[name:entity.name]">Löschen</g:remoteLink></td>
+          <td class="delete-msg"><g:link action="del" id="${msgInstance.id}" params="[name:entity.name]">Löschen</g:link></td>
         </tr>
         </g:each>
 
@@ -62,3 +66,4 @@
         </div>
       </div>
     </div>
+</body>

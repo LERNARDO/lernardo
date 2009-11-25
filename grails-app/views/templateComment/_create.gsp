@@ -10,7 +10,7 @@
           </label>
         </td>
         <td valign="top" class="value ${hasErrors(bean: postInstance, field: 'content', 'errors')}">
-          <textarea rows="20" cols="100" name="content">${fieldValue(bean:postInstance, field:'content')}</textarea>
+          <textarea rows="20" cols="80" name="content">${fieldValue(bean:postInstance, field:'content')}</textarea>
         </td>
       </tr>
 

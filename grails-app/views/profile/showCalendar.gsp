@@ -1,4 +1,7 @@
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Lernardo | Kalender</title>
   <g:javascript library="jquery" />
   <g:javascript src="jquery/jquery.fullcalendar.js"/>
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />

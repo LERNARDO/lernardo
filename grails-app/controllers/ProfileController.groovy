@@ -56,7 +56,7 @@ class ProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
       }
       flash.message = message(code:"user.created", args:[params.name,'Admin'])
-      redirect action:'show', params:[name:params.name]
+      redirect action:'showProfile', params:[name:params.name]
     }
 
     def createHort = {
@@ -96,7 +96,7 @@ class ProfileController {
       new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
       flash.message = message(code:"user.created", args:[params.name,params.by])
-      redirect controller:'profile', action:'show', params:[name:params.name]
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
     def createPaed = {
@@ -129,7 +129,7 @@ class ProfileController {
       }
 
       flash.message = message(code:"user.created", args:[params.name,'Admin'])
-      redirect controller:'profile', action:'show', params:[name:params.name]
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
     def createClient = {
@@ -166,10 +166,12 @@ class ProfileController {
       new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
       flash.message = message(code:"user.created", args:[params.name,params.by])
-      redirect controller:'profile', action:'show', params:[name:params.name]
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
-    def search = { }
+    def search = {
+      return [entity:Entity.findByName(params.name)]
+    }
 
     def searchMe = {
       if (!params.name) {
@@ -189,37 +191,37 @@ class ProfileController {
 
     def showNews = {
       Entity e = Entity.findByName(params.name)
-      render template:"showNews", model:[entity:e]
+      return [entity:e]
     }
 
     def showProfile = {
       Entity e = Entity.findByName(params.name)
-      render template:"showProfile", model:[entity:e]
+      return [entity:e]
     }
 
     def showCalendar = { // broken?
       Entity e = Entity.findByName(params.name)
-      render template:"showCalendar", model:[entity:e,name:e.name]
+      return [entity:e,name:e.name]
     }
 
     def showArticleList = {
       Entity e = Entity.findByName(params.name)
-      render template:"showArticleList", model:[entity:e,'articleList':ArticlePost.findAllByAuthor(e)]
+      return [entity:e,'articleList':ArticlePost.findAllByAuthor(e)]
     }
 
     def showActivityList = {
       Entity e = Entity.findByName(params.name)
-      render template:"showActivityList", model:[entity:e,'activityList':Activity.findAllByOwner(e)]
+      return [entity:e,'activityList':Activity.findAllByOwner(e)]
     }
 
     def showLeistung = {
       Entity e = Entity.findByName(params.name)
-      render template:"showLeistung", model:[entity:e]
+      return [entity:e]
     }
 
     def showLocation = { // broken?
       Entity e = Entity.findByName(params.name)
-      render template:"showLocation", model:[entity:e,location:geoCoderService.geocodeLocation(e.profile.city)]
+      return [entity:e,location:geoCoderService.geocodeLocation(e.profile.city)]
     }
 
     def print = {
@@ -275,11 +277,11 @@ class ProfileController {
 
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
         flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
-        redirect action:'show', params:[name:linkInstance.target.name]
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
       else {
         flash.message = message(code:"user.addFriendFailed", args:[linkInstance.target.profile.fullName])
-        redirect action:'show', params:[name:linkInstance.target.name]
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
     }
 
@@ -303,11 +305,11 @@ class ProfileController {
                 linkInstance.delete(flush:true)
                 linkInstanceBack.delete(flush:true)
                 flash.message = message(code:"user.removeFriend", args:[e.profile.fullName])
-                redirect action:'show', params:[name:n]
+                redirect action:'showProfile', params:[name:n]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
                 flash.message = message(code:"user.removeFriendFailed", args:[e.profile.fullName])
-                redirect action:'show', params:[name:n]
+                redirect action:'showProfile', params:[name:n]
             }
         }
     }
@@ -317,7 +319,7 @@ class ProfileController {
 
         if(!entityInstance) {
             flash.message = message(code:"user.notFound", args:[params.name])
-            redirect action:'show', model:[name:params.name]
+            redirect action:'showProfile', model:[name:params.name]
         }
         else {
             return [ entityInstance : entityInstance ]
@@ -329,7 +331,7 @@ class ProfileController {
 
         if(!entityInstance) {
             flash.message = message(code:"user.notFound", args:[params.name])
-            redirect action:'show', model:[name:params.name]
+            redirect action:'showProfile', model:[name:params.name]
         }
         else {
             return [ entityInstance : entityInstance ]
@@ -372,7 +374,7 @@ class ProfileController {
          if(!entityInstance.hasErrors() && entityInstance.save()) {
                flash.message = message(code:"user.updated", args:[entityInstance.name])
 
-               redirect action:'show', params:[name:entityInstance.name]
+               redirect action:'showProfile', params:[name:entityInstance.name]
            }
            else {
                render view:'edit', model:[entityInstance:entityInstance]
@@ -380,7 +382,7 @@ class ProfileController {
        }
        else {
            flash.message = message(code:"user.notFound", args:[params.id])
-           redirect action:'show', params:[name:entityHelperService.loggedIn.name]
+           redirect action:'showProfile', params:[name:entityHelperService.loggedIn.name]
        }
    }
 

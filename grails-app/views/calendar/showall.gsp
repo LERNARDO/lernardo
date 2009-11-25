@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+
   <head>
     <title>Kalender: Lernardo Gesamt</title>
     <meta name="layout" content="private" />
@@ -16,4 +15,3 @@
         <div id="profile-content"></div>
       </div>
   </body>
-</html>

@@ -29,7 +29,7 @@
         <tbody>
         <g:each status="i" in="${activityList}" var="activity">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td><g:link action="show" id="${activity.id}">${activity.title}</g:link></td>
+            <td><g:link action="show" id="${activity.id}" params="[name:entity.name]">${activity.title}</g:link></td>
             <td>${activity.facility.profile.fullName}</td>
             <td>${activity.owner.profile.fullName}</td>
             <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.date}"/></td>

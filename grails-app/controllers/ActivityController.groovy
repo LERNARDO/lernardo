@@ -14,7 +14,8 @@ class ActivityController {
 
         if (params.list == 'Alle')
           return ['activityList': Activity.list(),
-                  'activityCount': Activity.count()]
+                  'activityCount': Activity.count(),
+                  'entity':entityHelperService.loggedIn]
 
         if(params.myDate_year && params.myDate_month && params.myDate_day){
           def c = Activity.createCriteria()
@@ -27,10 +28,12 @@ class ActivityController {
           println inputDate
           return ['activityList': results,
                 'activityCount': results.size(),
-                'dateSelected': inputDate]
+                'dateSelected': inputDate,
+                'entity':entityHelperService.loggedIn]
         }
         return ['activityList': Activity.list(),
-                'activityCount': Activity.count()]
+                'activityCount': Activity.count(),
+                'entity':entityHelperService.loggedIn]
     }
 
     def show = {
@@ -41,7 +44,7 @@ class ActivityController {
           redirect action:index
         }
 
-        return [activity:activity]
+        return ['activity':activity, 'entity':entityHelperService.loggedIn]
     }
 
     def create = {
@@ -49,7 +52,8 @@ class ActivityController {
       activityInstance.properties = params
       return ['activityInstance':activityInstance,
               'template':ActivityTemplate.get(params.id),
-              'hortList':Entity.findAllByType(EntityType.findByName('Hort'))]
+              'hortList':Entity.findAllByType(EntityType.findByName('Hort')),
+              'entity':entityHelperService.loggedIn]
     }
 
     def save = {
@@ -61,23 +65,21 @@ class ActivityController {
         return
       }
 
-      println params
-
       def activityInstance = new Activity(params)
       activityInstance.owner = entityHelperService.loggedIn
-      activityInstance.date = params.date                                
+      activityInstance.date = new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day))
       activityInstance.duration = Integer.parseInt(params.duration)
       activityInstance.paeds = []                                         // test placeholder
       activityInstance.clients = []                                       // test placeholder
-      activityInstance.facility = Entity.findByName(params.facility)
+      activityInstance.facility = Entity.findByName('kaumberg')           // test placeholder
       activityInstance.template = params.template
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
-          redirect controller:'activity', action:'list'
+          redirect action:'show', id:activityInstance.id
         }
         else {
           flash.message = message(code:"activity.notCreated", args:[params.title])
-          redirect controller:'activity', action:'list'
+          redirect action:'create', params:params
         }
     }
 

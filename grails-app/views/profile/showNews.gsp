@@ -1,3 +1,10 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
+  <g:javascript library="jquery"/>
+</head>
+<body>
 <h1>Neuigkeiten:</h1>
 <p><span class="strong">Heute</span></p>
 <p>13:56 - <a href="#">Martin Golja</a> hat dir eine <a href="#">Nachricht</a> hinterlassen.<br/>
@@ -17,3 +24,4 @@
   5. Oktober 2009 10:02 - <a href="#">Hannah Mutzbauer</a>hat deinen Projektbericht <a href="#">Märchenpark</a> kommentiert.<br/>
   2. Oktober 2009 14:10 - <a href="#">Martin Golja</a> hat eine neue <a href="#">Aktivitätsvorlage</a> erstellt.<br/>
   1. Oktober 2009 19:24 - <a href="#">Rosa Gober</a> hat dir eine <a href="#">Nachricht</a> hinterlassen.</p>
+</body>

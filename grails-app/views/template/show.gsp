@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
   <head>
     <title>${template.name}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -87,5 +85,3 @@
       </div>
     </div>
   </body>
-
-</html>

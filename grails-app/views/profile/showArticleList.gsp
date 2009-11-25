@@ -1,3 +1,10 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
+  <g:javascript library="jquery"/>
+</head>
+<body>
 <div id="body-list" style="background-color: transparent">
   <h1>Meine Artikel</h1>
   <g:if test="${!articleList}">
@@ -30,4 +37,5 @@
   </div>
 
 </div>
+</body>
 

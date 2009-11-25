@@ -1,3 +1,10 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
+  <g:javascript library="jquery"/>
+</head>
+<body>
 <h3>Leistungsfortschritt:</h3>
 <span class="bold newentry">Neuen Eintrag erstellen</span>
 <div class="cleartop"></div>
@@ -52,3 +59,4 @@
     </table>
   </div>
 </div>
+</body>

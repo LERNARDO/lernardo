@@ -1,10 +1,10 @@
-<html>
-  <head>
-    <meta name="layout" content="private" />
-    <title>Lernardo</title>
-  </head>
-  <body>
-    <div id="doc4" class="yui-t3">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
+  <g:javascript library="jquery"/>
+</head>
+<body>
       <div class="yui-b" id="admin-navigation">
         <div id="body-list">
           <h2>Adminbereich</h2>
@@ -30,6 +30,4 @@
            </div>
         </div>
       </div>
-    </div>
   </body>
-</html>

@@ -1,3 +1,10 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entity.profile.fullName}</title>
+  <g:javascript library="jquery"/>
+</head>
+<body>
 <table width="100%">
   <g:if test="${entity.type.name == 'Operator'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
@@ -49,3 +56,4 @@
     <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung"><app:showGender gender="${entity.profile.gender}"/></td></tr>
   </g:elseif>
 </table>
+</body>
