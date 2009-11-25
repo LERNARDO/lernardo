@@ -116,8 +116,8 @@ body {
 a {
     color:#46597B;
     text-decoration: none; }
-    a:hover {
-        text-decoration:underline !important; }
+a:hover {
+    text-decoration:underline; }
 
 h1 {
     color: #444;
@@ -186,8 +186,11 @@ ul {
 
 #private {
     background:url(../images/background_private.jpg) repeat-x; }
-    #private a {
-        color: #3b59bb; }
+/*
+#private a {
+    color: #3b59bb;
+}
+*/
 
 #banner {
     height: 115px;
@@ -615,7 +618,7 @@ div.actionlinks div.userlinks a {
 .label {
     width: 125px; }
 
-/* ----- Messaging -----  */
+/* ----- MESSAGING -----  */
 
 table#msg-composer td {
     padding: 3px 5px;
@@ -623,6 +626,30 @@ table#msg-composer td {
 
 table#msg-composer input[type=text], table#msg-composer textarea {
     width: 100%;
+}
+
+/* ----- BUTTONS ----- */
+
+.nav-button {
+    border:1px solid #999999;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:12px;
+    margin:0 0 5px;
+    padding:3px 5px;
+    background-color: #f0f0f0;
+}
+
+.nav-button:hover {
+    border:1px solid #666666;
+}
+
+.nav-button a {
+    text-decoration: none;
+    color: #666666;
+}
+
+.nav-button a:hover {
+    text-decoration: none;
 }
 
 /* ----- COMMENTS -----  */
