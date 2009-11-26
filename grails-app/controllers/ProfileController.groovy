@@ -27,7 +27,7 @@ class ProfileController {
     def createOperator = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance]
+      return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
     }
 
     def saveOperator = {
@@ -102,7 +102,7 @@ class ProfileController {
     def createPaed = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance]
+      return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
     }
 
     def savePaed = {
@@ -235,7 +235,8 @@ class ProfileController {
 
     def attendance = {
         return ['entityList': Entity.findAllByType(EntityType.findByName('Client')),
-                'entityCount': Entity.countByType(EntityType.findByName('Client'))]
+                'entityCount': Entity.countByType(EntityType.findByName('Client')),
+                'entity':entityHelperService.loggedIn]
     }
 
     def list = {
@@ -243,9 +244,21 @@ class ProfileController {
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
         params.sort = "type"
+
+        println params
+
+        List entities
+        int count
+        if (params.entityType == 'all') {
+          entities = Entity.list(params)
+          count = Entity.count() }
+        else {
+          entities = Entity.findAllByType(EntityType.findByName(params.entityType))
+          count = entities.size() }
         return ['entityType': params.entityType,
-                'entityList': Entity.list(params),
-                'entityCount': Entity.count()]
+                'entityList': entities,
+                'entityCount': count,
+                'entity':entityHelperService.loggedIn]
     }
 
     def show = {
@@ -338,7 +351,7 @@ class ProfileController {
         }
     }
 
-  def update = {
+    def update = {
        def entityInstance = Entity.get( params.id )
        if(entityInstance) {
            if(params.version) {
@@ -361,12 +374,8 @@ class ProfileController {
            entityInstance.profile.city = params.city
            entityInstance.profile.street = params.street
            entityInstance.profile.tel = params.tel
-           if (params.gender) {
-             if (params.gender == "Männlich")
-                entityInstance.profile.gender = 1
-             else
-                entityInstance.profile.gender = 2
-           }
+           if (params.gender)
+             entityInstance.profile.gender = params.gender.toInteger()
            if (params.biography)
              entityInstance.profile.biography = params.biography
            if (params.description)

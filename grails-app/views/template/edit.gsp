@@ -32,7 +32,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="attribution" name="attribution" value="${fieldValue(bean:template,field:'attribution')}"/>
+                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik']}" value="${templateInstance.attribution}"/>
                                 </td>
                             </tr>
 
@@ -47,6 +47,17 @@
                                   <fckeditor:editor name="description" id="description" width="100%" height="400" toolbar="Post" fileBrowser="default">
                                     ${template.description}
                                   </fckeditor:editor>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="materials">
+                                      <g:message code="template.street.label" default="Materialien" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <input type="text" size="40" id="materials" name="materials" value="${fieldValue(bean:template,field:'materials')}"/>
                                 </td>
                             </tr>
 
@@ -72,82 +83,16 @@
                                 </td>
                             </tr>
 
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="materials">
-                                      <g:message code="template.street.label" default="Materialien" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <input type="text" size="40" id="materials" name="materials" value="${fieldValue(bean:template,field:'materials')}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="ll">
-                                      <g:message code="template.ll.label" default="Lernen lernen" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:select id="ll" name="ll" from="${0..3}" value="${template.ll}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="be">
-                                      <g:message code="template.be.label" default="Bewegung & Ernährung" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:select id="be" name="be" from="${0..3}" value="${template.be}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="pk">
-                                      <g:message code="template.pk.label" default="Persönliche Kompetenz" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:select id="pk" name="pk" from="${0..3}" value="${template.pk}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="si">
-                                      <g:message code="template.si.label" default="Soziale & emotionale Intelligenz" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:select id="si" name="si" from="${0..3}" value="${template.si}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="hk">
-                                      <g:message code="template.hk.label" default="Handwerk & Kunst" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:select id="hk" name="hk" from="${0..3}" value="${template.hk}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="tlt">
-                                      <g:message code="template.tlt.label" default="Teilleistungstraining" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <g:select id="tlt" name="tlt" from="${0..3}" value="${template.tlt}"/>
-                                </td>
-                            </tr>
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                                <label for="requiredPaeds">
+                                  <g:message code="template.requiredPaeds.label" default="Teamgröße" />:
+                                </label>
+                            </td>
+                            <td valign="top" class="value">
+                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.requiredPaeds}"/>
+                            </td>
+                        </tr>
 
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -160,16 +105,71 @@
                                 </td>
                             </tr>
 
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="requiredPaeds">
-                                  <g:message code="template.requiredPaeds.label" default="Teamgröße" />:
-                                </label>
-                            </td>
-                            <td valign="top" class="value">
-                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.requiredPaeds}"/>
-                            </td>
-                        </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="ll">
+                                      <g:message code="template.ll.label" default="Lernen lernen" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="ll" name="ll" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.ll}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="be">
+                                      <g:message code="template.be.label" default="Bewegung & Ernährung" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="be" name="be" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.be}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="pk">
+                                      <g:message code="template.pk.label" default="Persönliche Kompetenz" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="pk" name="pk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.pk}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="si">
+                                      <g:message code="template.si.label" default="Soziale & emotionale Intelligenz" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="si" name="si" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.si}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="hk">
+                                      <g:message code="template.hk.label" default="Handwerk & Kunst" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="hk" name="hk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.hk}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="tlt">
+                                      <g:message code="template.tlt.label" default="Teilleistungstraining" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                    <g:select id="tlt" name="tlt" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.tlt}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>

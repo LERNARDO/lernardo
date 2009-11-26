@@ -93,7 +93,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="gender" name="gender" from="${['Männlich','Weiblich']}" value="${entityInstance.profile.gender}" />
+                                    <g:select id="gender" name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${entityInstance.profile.gender}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 

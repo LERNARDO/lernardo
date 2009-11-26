@@ -33,7 +33,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'name','errors')}">
-                                    <input type="text" size="50" id="attribution" name="attribution" value="${fieldValue(bean:templateInstance,field:'attribution')}"/>
+                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik']}" value="${templateInstance.attribution}"/>
                                 </td>
                             </tr>
 
@@ -45,7 +45,7 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'description','errors')}">
                                     <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                    <fckeditor:editor name="description" id="description" width="100%" height="400" toolbar="Post" fileBrowser="default">
+                                    <fckeditor:editor name="description" id="description" width="450px" height="400" toolbar="Post" fileBrowser="default">
                                       ${templateInstance.description}
                                     </fckeditor:editor>
                                 </td>
@@ -53,12 +53,23 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
+                                    <label for="materials">
+                                      <g:message code="msg.materials.label" default="Materialien" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'materials','errors')}">
+                                    <input type="text" size="70" id="materials" name="materials" value="${fieldValue(bean:templateInstance,field:'materials')}"/>
+                                </td>
+                            </tr>
+                        
+                            <tr class="prop">
+                                <td valign="top" class="name">
                                     <label for="duration">
                                       <g:message code="msg.duration.label" default="Dauer" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'duration','errors')}">
-                                    <input type="text" size="50" id="duration" name="duration" value="${fieldValue(bean:templateInstance,field:'duration')}"/>
+                                    <input type="text" size="10" id="duration" name="duration" value="${fieldValue(bean:templateInstance,field:'duration')}"/> (in Minuten)
                                 </td>
                             </tr>
 
@@ -75,80 +86,14 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="materials">
-                                      <g:message code="msg.materials.label" default="Materialien" />:
+                                    <label for="requiredPaeds">
+                                      <g:message code="msg.requiredPaeds.label" default="Teamgröße" />:
                                     </label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'materials','errors')}">
-                                    <input type="text" size="50" id="materials" name="materials" value="${fieldValue(bean:templateInstance,field:'materials')}"/>
+                                <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'requiredPaeds','errors')}">
+                                    <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${templateInstance.requiredPaeds}"/>
                                 </td>
                             </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="ll">
-                                      <g:message code="msg.ll.label" default="Lernen lernen" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'ll','errors')}">
-                                    <g:select id="ll" name="ll" from="${0..3}" value="${templateInstance.ll}"/>
-                                </td>
-                            </tr>
-                        
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="be">
-                                  <g:message code="msg.be.label" default="Bewegung & Ernährung" />:
-                                </label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'be','errors')}">
-                                <g:select id="be" name="be" from="${0..3}" value="${templateInstance.be}"/>
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="pk">
-                                  <g:message code="msg.pk.label" default="Persönliche Kompetenz" />:
-                                </label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'pk','errors')}">
-                                <g:select id="pk" name="pk" from="${0..3}" value="${templateInstance.pk}"/>
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="si">
-                                  <g:message code="msg.si.label" default="Soziale & emotionale Intelligenz" />:
-                                </label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'si','errors')}">
-                                <g:select id="si" name="si" from="${0..3}" value="${templateInstance.si}"/>
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="hk">
-                                  <g:message code="msg.hk.label" default="Handwerk & Kunst" />:
-                                </label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'hk','errors')}">
-                                <g:select id="hk" name="hk" from="${0..3}" value="${templateInstance.hk}"/>
-                            </td>
-                        </tr>
-
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                                <label for="tlt">
-                                  <g:message code="msg.tlt.label" default="Teilleistungstraining" />:
-                                </label>
-                            </td>
-                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'tlt','errors')}">
-                                <g:select id="tlt" name="tlt" from="${0..3}" value="${templateInstance.tlt}"/>
-                            </td>
-                        </tr>
 
                         <tr class="prop">
                             <td valign="top" class="name">
@@ -161,14 +106,69 @@
                             </td>
                         </tr>
 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="ll">
+                                      <g:message code="msg.ll.label" default="Lernen lernen" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'ll','errors')}">
+                                    <g:select id="ll" name="ll" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${templateInstance.ll}" optionKey="key" optionValue="value"/>
+                                </td>
+                            </tr>
+                        
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="requiredPaeds">
-                                  <g:message code="msg.requiredPaeds.label" default="Teamgröße" />:
+                                <label for="be">
+                                  <g:message code="msg.be.label" default="Bewegung & Ernährung" />:
                                 </label>
                             </td>
-                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'requiredPaeds','errors')}">
-                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${templateInstance.requiredPaeds}"/>
+                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'be','errors')}">
+                                <g:select id="be" name="be" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${templateInstance.be}" optionKey="key" optionValue="value"/>
+                            </td>
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                                <label for="pk">
+                                  <g:message code="msg.pk.label" default="Persönliche Kompetenz" />:
+                                </label>
+                            </td>
+                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'pk','errors')}">
+                                <g:select id="pk" name="pk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${templateInstance.pk}" optionKey="key" optionValue="value"/>
+                            </td>
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                                <label for="si">
+                                  <g:message code="msg.si.label" default="Soziale & emotionale Intelligenz" />:
+                                </label>
+                            </td>
+                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'si','errors')}">
+                                <g:select id="si" name="si" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${templateInstance.si}" optionKey="key" optionValue="value"/>
+                            </td>
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                                <label for="hk">
+                                  <g:message code="msg.hk.label" default="Handwerk & Kunst" />:
+                                </label>
+                            </td>
+                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'hk','errors')}">
+                                <g:select id="hk" name="hk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${templateInstance.hk}" optionKey="key" optionValue="value"/>
+                            </td>
+                        </tr>
+
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                                <label for="tlt">
+                                  <g:message code="msg.tlt.label" default="Teilleistungstraining" />:
+                                </label>
+                            </td>
+                            <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'tlt','errors')}">
+                                <g:select id="tlt" name="tlt" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${templateInstance.tlt}" optionKey="key" optionValue="value"/>
                             </td>
                         </tr>
 

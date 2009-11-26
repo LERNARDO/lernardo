@@ -34,8 +34,8 @@
             <li>
               <div id="paeds" class="imgbox">
                 <g:link controller="template" action="list" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivität planen" />
-                  <h3>Aktivität planen</h3>
+                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivitätsvorlagen" />
+                  <h3>Aktivitätsvorlagen</h3>
                 </g:link>
               </div>
             </li>
@@ -125,6 +125,7 @@
                 </ub:meOrAdmin>
                 <g:if test="${entity.type.name == 'Paed'}">
                   <li class="profile-activities"><g:link controller="profile" action="showArticleList" params="[name:entity.name]">Artikel ansehen</g:link></li>
+                  <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Paed' || entity.type.name == 'Client'}">
                 %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
@@ -156,6 +157,26 @@
               </ul>
             </div>
 
+          <ub:meOrAdmin entityName="${entity.name}">
+            <div class="profile-group">Pädagogik</div>
+              <div class="profile-box">
+                <ul>
+                  <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                </ul>
+              </div>
+          </ub:meOrAdmin>
+
+          <ub:isAdmin entityName="${entity.name}">
+            <div class="profile-group">Administration</div>
+              <div class="profile-box">
+                <ul>
+                  <li class="profile-person"><g:link controller="profile" action="list">Alle Profile anzeigen</g:link></li>
+                  <li class="profile-person"><g:link controller="profile" action="createOperator">Betreiber anlegen</g:link></li>
+                  <li class="profile-person"><g:link controller="profile" action="createPaed">Pädagoge anlegen</g:link></li>
+                </ul>
+              </div>
+          </ub:isAdmin>
+
             <div class="profile-group">Netzwerk</div>
             <div class="profile-box">
               <g:if test="${!friendsList}">
@@ -169,8 +190,9 @@
                 </ul>
               </g:else>
             </div>
-          </div>
-        </div>
+
+        </div><!-- profile-navigation-->
+        </div><!--bd-->
 
         <div id="ft">
           <g:render template="/templates/footer" />

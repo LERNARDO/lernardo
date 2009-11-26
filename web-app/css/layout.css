@@ -302,6 +302,14 @@ ul {
         background: url(../images/icons/icon_location.png) no-repeat;
         padding-left: 20px;
         background-position: 0 50%; }
+    #profile-navigation .profile-template {
+        background: url(../images/icons/icon_template.png) no-repeat;
+        padding-left: 20px;
+        background-position: 0 50%; }
+    #profile-navigation .profile-person {
+        background: url(../images/icons/icon_person.png) no-repeat;
+        padding-left: 20px;
+        background-position: 0 50%; }
 
 /* ----- ADMIN ----- */
 
@@ -440,8 +448,8 @@ ul {
 /* ----- LIST and TABLE overrides ----- */
 
 #body-list, #body-default {
-    padding: 0px 10px 10px 10px;
-    background: #f0f0f0; }
+    padding: 0; /*px 10px 10px 10px;*/
+    /*background: #f0f0f0;*/ }
     #body-list table {
         border: 1px solid #CCC;
         width: 100%; }
@@ -626,9 +634,9 @@ table#msg-composer td {
     padding: 3px 5px;
 }
 
-table#msg-composer input[type=text], table#msg-composer textarea {
+/*table#msg-composer input[type=text], table#msg-composer textarea {
     width: 100%;
-}
+}*/
 
 #inbox-message-overview.message-rows {
   border: collapse;
