@@ -5,7 +5,6 @@
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
-- Passwort vergessen einbauen
 
 # Allan
 - tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung

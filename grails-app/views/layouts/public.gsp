@@ -58,7 +58,7 @@
                         <input type="submit" name="submit" value="Anmelden" id="submit" />
                       </div>
 
-                      <div id="forgot-pwd"><a href="#">Passwort vergessen?</a></div>
+                      <div id="forgot-pwd"><g:link controller="app" action="password">Passwort vergessen?</g:link></div>
 
                     </form>
                   </div>

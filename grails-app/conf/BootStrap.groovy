@@ -51,7 +51,7 @@ class BootStrap {
     }
 
     // a mod user
-    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lkult.at", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
