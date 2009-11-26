@@ -12,7 +12,7 @@
         <table width="100%">
           <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.name}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Zuordnung:</td><td class="bezeichnung">${template.attribution}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.description}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.description.decodeHTML()}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.duration}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.socialForm}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materials}</td></tr>
@@ -38,6 +38,10 @@
           <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.requiredPaeds}</td></tr>
         </table>
       </div>
+
+      <g:if test="${entity.type.name == 'Paed'}">
+        <g:link action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
+      </g:if>
 
       <div id="newActivity">
         <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>

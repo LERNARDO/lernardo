@@ -44,7 +44,10 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'description','errors')}">
-                                    <textarea rows="10" cols="70" id="description" name="description">${fieldValue(bean:templateInstance, field:'description')}</textarea>
+                                    <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+                                    <fckeditor:editor name="description" id="description" width="100%" height="400" toolbar="Post" fileBrowser="default">
+                                      ${templateInstance.description}
+                                    </fckeditor:editor>
                                 </td>
                             </tr>
 

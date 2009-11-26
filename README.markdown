@@ -1,8 +1,6 @@
 # Alex
 - implement "Neuigkeiten"
-- speaker property in FacProfile not added to database?
-- posteingang - nachricht anschauen und löschen geht ned
-- eigene netzwerk view machen
+- implement "Netzwerk" view
 
 # Allan
 - tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung

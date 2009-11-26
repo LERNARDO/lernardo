@@ -5,7 +5,9 @@ import de.uenterprise.ep.Entity
 class TemplateController {
   def entityHelperService
 
-    def index = { }
+    def index = {
+      redirect action:'list', params:params
+    }
 
     def list = {
         params.offset = params.offset ? params.offset.toInteger(): 0
@@ -14,6 +16,47 @@ class TemplateController {
         return ['templateList': ActivityTemplate.list(params),
                 'templateCount': ActivityTemplate.count(),
                 'entity':entityHelperService.loggedIn]
+    }
+
+    def edit = {
+        def template = ActivityTemplate.get( params.id )
+
+        if(!template) {
+            flash.message = message(code:"template.notFound", args:[params.id])
+            redirect action:'list'
+        }
+        else {
+            return [ template : template,'entity':entityHelperService.loggedIn ]
+        }
+    }
+
+    def update = {
+        def template = ActivityTemplate.get( params.id )
+        if(template) {
+            if(params.version) {
+                def version = params.version.toLong()
+                if(template.version > version) {
+
+                    template.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Template while you were editing.")
+
+                    render view:'edit', model:[template:template]
+                    return
+                }
+            }
+            template.properties = params
+            if(!template.hasErrors() && template.save()) {
+                flash.message = message(code:"template.updated", args:[template.name])
+
+                redirect action:'show', id:template.id
+            }
+            else {
+                render view:'edit', model:[template:template]
+            }
+        }
+        else {
+            flash.message = message(code:"template.notFound", args:[template.id])
+            redirect action:'edit', params:params
+        }
     }
 
     def show = {
