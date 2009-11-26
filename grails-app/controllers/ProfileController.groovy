@@ -199,7 +199,7 @@ class ProfileController {
       return [entity:e]
     }
 
-    def showCalendar = { // broken?
+    def showCalendar = {
       Entity e = Entity.findByName(params.name)
       return [entity:e,name:e.name]
     }

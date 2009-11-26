@@ -49,8 +49,11 @@
                           <td width="100px" height="20px">Passwort:</td>
                           <td><input name="j_password" id="j_password" type="password" tabindex="2" /></td>
                         </tr>
+                        <tr>
+                          <td colspan="2" height="25px"><input type="checkbox" id="remember_me" name="" value="remember-me"> Angemeldet bleiben</td>
+                        </tr>
                       </table>
-
+    
                       <div class="login-form-button">
                         <input type="submit" name="submit" value="Anmelden" id="submit" />
                       </div>

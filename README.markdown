@@ -1,6 +1,13 @@
 # Alex
 - implement "Neuigkeiten"
 - implement "Netzwerk" view
+- Kommentare sollen von Admin gelöscht werden können
+- Aktivitätsvorlage nur von Admin bearbeitbar
+- Aktivität anlegen: 2 Spalten Layout
+- Eingeloggt bleiben button
+- Hort Tagebuch
+- Anwesenheits-/Essensliste funktionsfähig machen
+- Passwort vergessen einbauen
 
 # Allan
 - tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung
@@ -15,19 +22,14 @@
 - none
 
 # Mike
-- database
-- TeamCity
 - assets
-- "Kalender ansehen" doesn't work anymore with ajax
 - "Standort anzeigen" problem with ajax? triggers empty page
-- profilbild ändern
 - kalender
 
 # Previous TODOs
 
 - Anwesenheits-/Essensliste für alle Kinder pro Monat, pro Kind pro Monat, mit Summe Anwesenheit und Essenbeiträge
 - Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
-- implement blog (MK)
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - add a margin-bottom to table header of lists
 - implement "bild des tages" and "zitat des tages"

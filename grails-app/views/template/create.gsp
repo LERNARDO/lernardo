@@ -11,7 +11,6 @@
               </div>
             </g:hasErrors>
             <g:form action="save" method="post" id="${templateInstance.id}">
-                    <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>
 
@@ -45,7 +44,7 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'description','errors')}">
                                     <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                    <fckeditor:editor name="description" id="description" width="450px" height="400" toolbar="Post" fileBrowser="default">
+                                    <fckeditor:editor name="description" id="description" width="500px" height="400" toolbar="Post" fileBrowser="default">
                                       ${templateInstance.description}
                                     </fckeditor:editor>
                                 </td>
@@ -80,7 +79,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'socialForm','errors')}">
-                                    <g:select id="socialForm" name="socialForm" from="${['Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)']}" value="${templateInstance.ll}"/>
+                                    <g:select id="socialForm" name="socialForm" from="${['Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${templateInstance.ll}"/>
                                 </td>
                             </tr>
 
@@ -91,7 +90,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'requiredPaeds','errors')}">
-                                    <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${templateInstance.requiredPaeds}"/>
+                                    <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${templateInstance.requiredPaeds}"/> (Anzahl der Pädagogen)
                                 </td>
                             </tr>
 
@@ -105,7 +104,11 @@
                                 <g:select id="qualifications" name="qualifications" from="${['keine']}" value="${templateInstance.qualifications}"/>
                             </td>
                         </tr>
+                        </table>
 
+                        <p class="bold">Gewichtungen</p>
+
+                          <table>
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="ll">

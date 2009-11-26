@@ -177,7 +177,7 @@
               </div>
           </ub:isAdmin>
 
-            <div class="profile-group">Netzwerk</div>
+%{--            <div class="profile-group">Netzwerk</div>
             <div class="profile-box">
               <g:if test="${!friendsList}">
                 Keine Freunde im Netzwerk
@@ -189,7 +189,7 @@
                   </g:each>
                 </ul>
               </g:else>
-            </div>
+            </div>--}%
 
         </div><!-- profile-navigation-->
         </div><!--bd-->
