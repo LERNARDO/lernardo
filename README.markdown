@@ -1,10 +1,8 @@
 # Alex
 - implement "Neuigkeiten"
 - implement "Netzwerk" view
-- Kommentare sollen von Admin gelöscht werden können
 - Aktivitätsvorlage nur von Admin bearbeitbar
 - Aktivität anlegen: 2 Spalten Layout
-- Eingeloggt bleiben button
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
 - Passwort vergessen einbauen

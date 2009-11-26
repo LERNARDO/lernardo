@@ -10,7 +10,10 @@
           </label>
         </td>
         <td valign="top" class="value ${hasErrors(bean: postInstance, field: 'content', 'errors')}">
-          <textarea rows="20" cols="80" name="content">${fieldValue(bean:postInstance, field:'content')}</textarea>
+          <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+          <fckeditor:editor name="content" id="content" width="100%" height="400" toolbar="Post" fileBrowser="default">
+            ${postInstance.content}
+          </fckeditor:editor>
         </td>
       </tr>
 

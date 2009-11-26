@@ -19,28 +19,22 @@
           <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.requiredPaeds}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.qualifications}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Lernen lernen:</td><td class="bezeichnung">
-<% template.ll.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
-<% (3 - template.ll.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>            
+<% template.ll.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.ll.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>            
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Bewegung & Ernährung:</td><td class="bezeichnung">
-  <% template.be.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
-  <% (3 - template.be.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+  <% template.be.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.be.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Persönliche Kompetenz:</td><td class="bezeichnung">
-    <% template.pk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
-    <% (3 - template.pk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+    <% template.pk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.pk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Soziale & emotionale Intelligenz:</td><td class="bezeichnung">
-      <% template.si.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
-      <% (3 - template.si.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+      <% template.si.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.si.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Handwerk & Kunst:</td><td class="bezeichnung">
-        <% template.hk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
-        <% (3 - template.hk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+        <% template.hk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.hk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Teilleistungstraining:</td><td class="bezeichnung">
-          <% template.tlt.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %>
-          <% (3 - template.tlt.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>  
+          <% template.tlt.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.tlt.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
         </table>
       </div>
@@ -78,7 +72,7 @@
                 </div>
               </div>
               <div class="clear"></div>
-              <div class="entry-content">${comment.content}</div>
+              <div class="entry-content">${comment.content.decodeHTML()}</div>
             </div>
           </div>
           </g:each>
