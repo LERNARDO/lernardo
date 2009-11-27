@@ -1,8 +1,8 @@
 <head>
-  <!-- current key works for "http://localhost:8080/lernardoV2"
+  <!-- current key works for "http://localhost:8080/lernardo"
        needs to be changed for a different URL
        see http://code.google.com/intl/de/apis/maps/signup.html -->
-  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAMf6ug3opWOHTRntmF0HUORR4NdFV4mo7weW64bVQX_uxHpRW5hSDUy6eeUOVRTZf9GNYU1A1KszcmQ" type="text/javascript"></script
+  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAMf6ug3opWOHTRntmF0HUORQpnonm9ZMRIGlA6MOx1zXTLy0mlBSFYlI9GvM7c8rCBrY5gGIv8LiYuA" type="text/javascript"></script
   <script type="text/javascript">
 
     //<![CDATA[
