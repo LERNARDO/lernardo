@@ -111,6 +111,11 @@
                                 </td>
                             </tr>
 
+                            <tr>
+                              <td class="topic">Passwort:</td>
+                              <td><g:link action="changePassword" params="[name:entityInstance.name]">Passwort ändern</g:link></td>
+                            </tr>
+
                         </tbody>
                     </table>
 

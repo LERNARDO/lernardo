@@ -24,6 +24,25 @@ class ProfileController {
 
     def create = { }
 
+    def changePassword = {
+      Entity e = Entity.findByName(params.name)
+      return [entity:e]
+    }
+
+    def checkPassword = {
+      if (params.password == params.password2) {
+        Entity e = Entity.findByName(params.name)
+        e.user.password = authenticateService.encodePassword(params.password)
+        e.save()
+        flash.message = message(code:"pass.changed")
+        redirect action:'showProfile', params:[name:e.name]
+      }
+      else {
+        flash.message = message(code:"pass.notChanged")
+        redirect action:changePassword, params:[name:params.name]
+      }
+    }
+
     def createOperator = {
       def entityInstance = new Entity()
       entityInstance.properties = params

@@ -4,10 +4,10 @@
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
-- implement change password
 
 # Allan
 - style "netzwerk" view
+- style messages show view
 - tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung
 - Neue AktivitŠt planen (activity/create/)
 - Neue AktivitŠtsvorlage erstellen (template/create/)
