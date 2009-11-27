@@ -31,7 +31,7 @@ class CalendarController {
     // handles event requests
     def events = {
         params.name = params.name ?: 'all'
-        println ("loading events for $params.name between $params.start and $params.end" )
+        log.debug ("loading events for $params.name between $params.start and $params.end" )
 
         def activities = []
         // find all activities for given profile
