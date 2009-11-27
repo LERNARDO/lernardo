@@ -12,7 +12,7 @@
                 <g:renderErrors bean="${entityInstance}" as="list" />
               </div>
             </g:hasErrors>
-            <g:form action="save" method="post" id="${entityInstance.id}" params="[by:by]">
+            <g:form action="save" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
                     <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>

@@ -10,8 +10,9 @@
       <p>${entityCount} Profile gefunden</p>
 
       <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste.pdf">
-                                        Hort:<g:select name="hort" from="${['Löwenzahn', 'Kaumberg']}" value="Kaumberg" />
-                                        Monat:<g:select name="monat" from="${1..12}" value="1" />
+        Hort:<g:select name="hort" from="${['Löwenzahn', 'Kaumberg']}" value="Kaumberg" /><br/>
+        Datum:<g:datePicker name="date" value="${new Date()}" precision="day" years="${2009..2020}"/>
+              %{--<g:select name="monat" from="${1..12}" value="1" />--}%
         <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
       </g:pdfForm>
 

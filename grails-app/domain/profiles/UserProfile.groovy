@@ -3,6 +3,7 @@ package profiles
 import de.uenterprise.ep.Profile
 
 class UserProfile extends Profile {
+
     String title
     String fullName
     Date birthDate

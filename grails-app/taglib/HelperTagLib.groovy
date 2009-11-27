@@ -1,6 +1,7 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
-import posts.ActivityTemplateCommentPost
+import posts.TemplateComment
+import posts.ArticlePost
 
 class HelperTagLib {
   def entityHelperService
@@ -16,16 +17,23 @@ class HelperTagLib {
       out << 'Weiblich'
   }
 
-  def getCommentsCount = {attrs ->
-    out << ActivityTemplateCommentPost.countByTemplate(attrs.remove ("template"))
+  def getNewInboxMessages = {attrs ->
+    int m = filterService.getNewInboxMessages(attrs.remove ("entityName"))
+    //println "m = "+ m
+    if (m > 0)
+      out << "("+m+")"
   }
-
-  def getCommentsCountPost = {attrs ->
-    out << Post.countByPost(attrs.remove ("post"))
+  def getTemplateCommentsCount = {attrs ->
+    out << TemplateComment.countByTemplate(attrs.remove ("template"))
   }
 
   def getRelationship = {attrs ->
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.remove ("source")),Entity.findByName(attrs.remove ("target"))).type.name
+  }
+
+  def isNotLoggedIn = {attrs, body->
+    if (!entityHelperService.loggedIn)
+      out << body()
   }
 
   def isFriend = {attrs, body->
@@ -38,6 +46,16 @@ class HelperTagLib {
       out << body()
   }
 
+  def isBookmark = {attrs, body->
+    if (bookmark(attrs))
+      out << body()
+  }
+
+  def notBookmark = {attrs, body->
+    if (!bookmark(attrs))
+      out << body()
+  }
+
   private boolean friend (attrs) {
     Entity current = entityHelperService.loggedIn
     if (!current)
@@ -47,6 +65,18 @@ class HelperTagLib {
       return false
 
     def result = networkService.isFriendOf(current, e)
+    return result
+  }
+
+  private boolean bookmark (attrs) {
+    Entity current = entityHelperService.loggedIn
+    if (!current)
+      return false
+    Entity e = attrs.remove ("entity") ?: entityHelperService.loggedIn
+    if (!e)
+      return false
+
+    def result = networkService.isBookmarkOf(current, e)
     return result
   }
 }

@@ -21,7 +21,7 @@
     },
     timeFormat: 'HH:mm',
     aspectRatio: 1.35,
-    events: '${g.createLink (controller:"calendar", action:"events", params:[name:"$name"])}',
+    events: '${g.createLink (controller:"calendar", action:"events", params:[name:name])}',
 
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%

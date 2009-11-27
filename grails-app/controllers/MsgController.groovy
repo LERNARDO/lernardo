@@ -13,40 +13,37 @@ class MsgController {
 
     def inbox = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        def messages = filterService.getInbox (entityHelperService.loggedIn.name)
-        render template:'inbox', model:[msgInstanceList: messages,
-                                        msgInstanceTotal: messages.count()]
+        def messages = filterService.getInbox (params.name)
+        return [msgInstanceList: messages,msgInstanceTotal: messages.count(),entity: Entity.findByName(params.name)]
     }
 
     def outbox = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        def messages = filterService.getOutbox (entityHelperService.loggedIn.name)
-        render template:'outbox', model:[msgInstanceList: messages,
-                                         msgInstanceTotal: messages.count()]
+        def messages = filterService.getOutbox (params.name)
+        return [msgInstanceList: messages,msgInstanceTotal: messages.count(),entity: Entity.findByName(params.name)]
     }
 
     def show = {
         def msgInstance = Msg.get( params.id )
-        Entity e = Entity.findByName(params.name)
-        msgInstance.read = true
+        if (!msgInstance.read)
+          msgInstance.read = true
 
         if(!msgInstance) {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect(action:index)
+            redirect(action:index, params:[name:params.name])
         }
         else {
-            render template:'show', model:[ msgInstance : msgInstance, entity: e ]
+            return [ msgInstance : msgInstance, entity:Entity.findByName(params.name) ]
         }
     }
 
-    def delete = {
+    def del = {
         def msgInstance = Msg.get( params.id )
-        Entity e = Entity.findByName(params.name)
         if(msgInstance) {
             try {
                 flash.message = message(code:"msg.deleted", args:[msgInstance.subject])
                 msgInstance.delete(flush:true)
-                render template:'inbox', model:[entity:e]
+                redirect(action:"index", params:[name:params.name])
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
                 flash.message = message(code:"msg.notDeleted", args:[msgInstance.subject])
@@ -55,7 +52,7 @@ class MsgController {
         }
         else {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect(action:"index")
+            redirect(action:"index", params:[name:params.name])
         }
     }
 
@@ -64,7 +61,7 @@ class MsgController {
 
         if(!msgInstance) {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect action:'index'
+            redirect action:'index', params:[name:params.name]
         }
         else {
             return [ msgInstance : msgInstance ]
@@ -96,7 +93,7 @@ class MsgController {
         }
         else {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect action:'index'
+            redirect action:'index', params:[name:params.name]
         }
     }
 
@@ -104,7 +101,7 @@ class MsgController {
       def msgInstance = new Msg()
       msgInstance.properties = params
       Entity e = Entity.findByName(params.name)
-      render template:'create', model:['msgInstance':msgInstance, entity:e ]
+      return ['msgInstance':msgInstance, entity:e ]
     }
 
     def save = {
@@ -123,7 +120,7 @@ class MsgController {
         if(!msgInstance.hasErrors() && msgInstance.save(flush:true) && msgInstance2.save(flush:true)) {
             flash.message = message(code:"msg.sent", args:[msgInstance.subject])
 
-            redirect controller:'profile', action:'show', params:[name:params.name]
+            redirect controller:'profile', action:'showProfile', params:[name:params.name]
         }
         else {
             render view:'create', model:[ msgInstance:msgInstance, entity:Entity.findByName(params.name) ]

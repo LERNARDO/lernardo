@@ -93,7 +93,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="gender" name="gender" from="${['Männlich','Weiblich']}" value="${entityInstance.profile.gender}" />
+                                    <g:select id="gender" name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${entityInstance.profile.gender}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 
@@ -104,8 +104,16 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:textArea rows="15" cols="85" id="biography" name="biography" value="${entityInstance.profile.biography}"/>
+                                  <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+                                  <fckeditor:editor name="biography" id="biography" width="550px" height="400" toolbar="Post" fileBrowser="default">
+                                    ${entityInstance.profile.biography}
+                                  </fckeditor:editor>
                                 </td>
+                            </tr>
+
+                            <tr>
+                              <td class="topic">Passwort:</td>
+                              <td><g:link action="changePassword" params="[name:entityInstance.name]">Passwort ändern</g:link></td>
                             </tr>
 
                         </tbody>

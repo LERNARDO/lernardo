@@ -32,6 +32,22 @@ grails.converters.encoding="UTF-8"
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
+// mail plugin configuration…
+grails.mail.default.from="lernardomailer@gmail.com"
+
+grails {
+  mail {
+    host = "smtp.gmail.com"
+    port = 465
+    username = "lernardomailer@gmail.com"
+    password = "theansweris42"
+    props = ["mail.smtp.auth":"true",
+    "mail.smtp.socketFactory.port":"465",
+    "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+    "mail.smtp.socketFactory.fallback":"false"]
+  }
+}
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {

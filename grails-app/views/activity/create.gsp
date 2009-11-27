@@ -51,6 +51,18 @@
                                 </td>
                             </tr>
 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="facility">
+                                      <g:message code="msg.facility.label" default="Einrichtung" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'facility','errors')}">
+                                    <g:select id="facility" name="facility" from="${hortList}" optionValue="name"/>
+                                </td>
+                            </tr>
+
+
                         </tbody>
                     </table>
 

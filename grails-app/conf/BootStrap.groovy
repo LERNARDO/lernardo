@@ -4,7 +4,8 @@ import de.uenterprise.ep.Link
 import profiles.UserProfile
 import profiles.FacProfile
 import posts.ArticlePost
-import posts.ActivityTemplateCommentPost
+import posts.TemplateComment
+import profiles.OrgProfile
 
 class BootStrap {
   def defaultObjectService
@@ -25,6 +26,7 @@ class BootStrap {
       createDefaultActivityTemplates()
       createDefaultActivities()
       createDefaultPosts()
+      createDefaultEvents()
     }
   }
 
@@ -51,7 +53,7 @@ class BootStrap {
     }
 
     // a mod user
-    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lernardo.at", "Alexander Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lkult.at", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
@@ -221,22 +223,20 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
-      FacProfile prf = ent.profile
+      OrgProfile prf = ent.profile
       prf.PLZ = 2560
       prf.city = "Berndorf"
       prf.street = "Leobersdorfer Straße 42"
       prf.tel   = "-"
-      prf.opened = "-"
       prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
     }
     entityHelperService.createEntityWithUserAndProfile ("alpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
-      FacProfile prf = ent.profile
+      OrgProfile prf = ent.profile
       prf.PLZ = 2563
       prf.city = "Pottenstein"
       prf.street = "Hainfelderstrasse 29"
       prf.tel   = "-"
-      prf.opened = "-"
       //prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
     }
@@ -695,7 +695,7 @@ class BootStrap {
   void createDefaultPosts() {
     log.debug ("==> creating default posts")
 
-    new ActivityTemplateCommentPost(content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
+    new TemplateComment(content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
             author:Entity.findByName('regina'),
             template:ActivityTemplate.findByName('Schatten')).save()
 
@@ -735,6 +735,29 @@ class BootStrap {
             der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
             Abschlussausflug in den Märchenpark St. Margarethen.''',
             author:Entity.findByName('regina')).save()
+  }
+
+  void createDefaultEvents() {
+    log.debug ("==> creating default events")
+
+    new Event(entity:Entity.findByName('admin'),
+              content:'Alexander Zeillinger hat dich als Freund hinzugefügt.',
+              date: new Date(2009-1900,11,26,13,15)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Regina Toncourt hat deine Aktivitätsvorlage "Tanzen" kommentiert.',
+              date: new Date(2009-1900,11,26,11,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Martin Golja hat dir eine Nachricht hinterlassen.',
+              date: new Date(2009-1900,11,27,12,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Rosa Gober hat die Aktivitätsvorlage "Spielerei" erstellt.',
+              date: new Date(2009-1900,11,27,15,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Patrizia Rosenkranz hat die Aktivitätsvorlage "Spielerei" kommentiert.',
+              date: new Date(2009-1900,11,27,14,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Elternsprechtag',
+              date: new Date(2009-1900,11,28,17,30)).save()
   }
   
 }

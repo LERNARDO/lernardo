@@ -4,6 +4,7 @@ import grails.converters.JSON
 import de.uenterprise.ep.Entity
 
 class CalendarController {
+  def entityHelperService
 
     def index = { }
 
@@ -20,7 +21,7 @@ class CalendarController {
     }
 
     def showall  = {
-        return [name:'all']
+        return [name:'all',entity:entityHelperService.loggedIn]
     }
 
     def showall_month = {}
@@ -32,16 +33,19 @@ class CalendarController {
         params.name = params.name ?: 'all'
         println ("loading events for $params.name between $params.start and $params.end" )
 
+        def activities = []
         // find all activities for given profile
-        def activities = Activity.findAllByOwner(Entity.findByName(params.name))
+        if (params.name == 'all')
+          activities = Activity.list()
+        else
+          activities = Activity.findAllByOwner(Entity.findByName(params.name))
 
         // convert to fullCalendar events
         def eventList = []
         activities.each {
-            //  convert the @45%&  date/time back to something known in the rest of the universe
-            def dtStart = new DateTime (Date.parse("dd.MM.yyyy HH:mm", "$it.date"));
+            def dtStart = new DateTime (it.date)
             dtStart = dtStart.plusHours(2)
-            def dtEnd = dtStart.plusMinutes("$it.duration".toInteger());
+            def dtEnd = dtStart.plusMinutes("$it.duration".toInteger())
             eventList << [id: it.id, title: it.title, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false]
         }
 

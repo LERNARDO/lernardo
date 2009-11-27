@@ -24,10 +24,29 @@ class ProfileController {
 
     def create = { }
 
+    def changePassword = {
+      Entity e = Entity.findByName(params.name)
+      return [entity:e]
+    }
+
+    def checkPassword = {
+      if (params.password == params.password2) {
+        Entity e = Entity.findByName(params.name)
+        e.user.password = authenticateService.encodePassword(params.password)
+        e.save()
+        flash.message = message(code:"pass.changed")
+        redirect action:'showProfile', params:[name:e.name]
+      }
+      else {
+        flash.message = message(code:"pass.notChanged")
+        redirect action:changePassword, params:[name:params.name]
+      }
+    }
+
     def createOperator = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance]
+      return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
     }
 
     def saveOperator = {
@@ -37,32 +56,32 @@ class ProfileController {
       if (user) {
         flash.message = message(code:"user.existsMail", args:[params.email])
         redirect action:"createOperator", params:params
-        return
       }
+      else {
+        Entity etst = Entity.findByName (params.name)
+        if (etst) {
+          flash.message = message(code:"user.existsName", args:[params.name])
+          redirect action:"createOperator", params:params
+          return
+        }
 
-      Entity etst = Entity.findByName (params.name)
-      if (etst) {
-        flash.message = message(code:"user.existsName", args:[params.name])
-        redirect action:"createOperator", params:params
-        return
+        entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
+          FacProfile prf = ent.profile
+          prf.city = params.city ?: ""
+          prf.opened = "-"
+          prf.description = "-"
+          prf.tel = "-"
+          ent.user.password = authenticateService.encodePassword("pass")
+        }
+        flash.message = message(code:"user.created", args:[params.name,'Admin'])
+        redirect action:'showProfile', params:[name:params.name]
       }
-
-      entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
-        FacProfile prf = ent.profile
-        prf.city = params.city ?: ""
-        prf.opened = "-"
-        prf.description = "-"
-        prf.tel = "-"
-        ent.user.password = authenticateService.encodePassword("pass")
-      }
-      flash.message = message(code:"user.created", args:[params.name,'Admin'])
-      redirect action:'show', params:[name:params.name]
     }
 
     def createHort = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance,'by':params.by]
+      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
     }
 
     def saveHort = {
@@ -92,17 +111,17 @@ class ProfileController {
       }
 
       // create mutual relationship between Hort and Operator
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
-      flash.message = message(code:"user.created", args:[params.name,params.by])
-      redirect controller:'profile', action:'show', params:[name:params.name]
+      flash.message = message(code:"user.created", args:[params.name,params.entity])
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
     def createPaed = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance,'by':params.by]
+      return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
     }
 
     def savePaed = {
@@ -128,18 +147,14 @@ class ProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
       }
 
-      // create mutual relationship between Paed and Hort
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
-
-      flash.message = message(code:"user.created", args:[params.name,params.by])
-      redirect controller:'profile', action:'show', params:[name:params.name]
+      flash.message = message(code:"user.created", args:[params.name,'Admin'])
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
     def createClient = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance,'by':params.by]
+      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
     }
 
     def saveClient = {
@@ -166,14 +181,16 @@ class ProfileController {
       }
 
       // create mutual relationship between Client and Hort
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
-      flash.message = message(code:"user.created", args:[params.name,params.by])
-      redirect controller:'profile', action:'show', params:[name:params.name]
+      flash.message = message(code:"user.created", args:[params.name,params.entity])
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
-    def search = { }
+    def search = {
+      return [entity:Entity.findByName(params.name)]
+    }
 
     def searchMe = {
       if (!params.name) {
@@ -193,37 +210,37 @@ class ProfileController {
 
     def showNews = {
       Entity e = Entity.findByName(params.name)
-      render template:"showNews", model:[entity:e]
+      return [entity:e,eventList:Event.findAllByEntity(e,[sort:'dateCreated',order:'desc'])]
     }
 
     def showProfile = {
       Entity e = Entity.findByName(params.name)
-      render template:"showProfile", model:[entity:e]
+      return [entity:e]
     }
 
-    def showCalendar = { // broken?
+    def showCalendar = {
       Entity e = Entity.findByName(params.name)
-      render template:"showCalendar", model:[entity:e,name:e.name]
+      return [entity:e,name:e.name]
     }
 
     def showArticleList = {
       Entity e = Entity.findByName(params.name)
-      render template:"showArticleList", model:[entity:e,'articleList':ArticlePost.list()]
+      return [entity:e,'articleList':ArticlePost.findAllByAuthor(e)]
     }
 
     def showActivityList = {
       Entity e = Entity.findByName(params.name)
-      render template:"showActivityList", model:[entity:e,'activityList':Activity.findAllByOwner(e)]
+      return [entity:e,'activityList':Activity.findAllByOwner(e)]
     }
 
     def showLeistung = {
       Entity e = Entity.findByName(params.name)
-      render template:"showLeistung", model:[entity:e]
+      return [entity:e]
     }
 
     def showLocation = { // broken?
       Entity e = Entity.findByName(params.name)
-      render template:"showLocation", model:[entity:e,location:geoCoderService.geocodeLocation(e.profile.city)]
+      return [entity:e,location:geoCoderService.geocodeLocation(e.profile.city)]
     }
 
     def print = {
@@ -237,7 +254,8 @@ class ProfileController {
 
     def attendance = {
         return ['entityList': Entity.findAllByType(EntityType.findByName('Client')),
-                'entityCount': Entity.countByType(EntityType.findByName('Client'))]
+                'entityCount': Entity.countByType(EntityType.findByName('Client')),
+                'entity':entityHelperService.loggedIn]
     }
 
     def list = {
@@ -245,9 +263,21 @@ class ProfileController {
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
         params.sort = "type"
+
+        println params
+
+        List entities
+        int count
+        if (params.entityType == 'all') {
+          entities = Entity.list(params)
+          count = Entity.count() }
+        else {
+          entities = Entity.findAllByType(EntityType.findByName(params.entityType))
+          count = entities.size() }
         return ['entityType': params.entityType,
-                'entityList': Entity.list(params),
-                'entityCount': Entity.count()]
+                'entityList': entities,
+                'entityCount': count,
+                'entity':entityHelperService.loggedIn]
     }
 
     def show = {
@@ -279,11 +309,19 @@ class ProfileController {
 
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
         flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
-        redirect action:'show', params:[name:linkInstance.target.name]
+
+        new Event(entity:entityHelperService.loggedIn,
+              content:'Du hast '+e.profile.fullName+' als Freund hinzugefügt.',
+              date: new Date()).save()
+        new Event(entity:e,
+              content:entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt',
+              date: new Date()).save()
+
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
       else {
         flash.message = message(code:"user.addFriendFailed", args:[linkInstance.target.profile.fullName])
-        redirect action:'show', params:[name:linkInstance.target.name]
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
     }
 
@@ -307,11 +345,55 @@ class ProfileController {
                 linkInstance.delete(flush:true)
                 linkInstanceBack.delete(flush:true)
                 flash.message = message(code:"user.removeFriend", args:[e.profile.fullName])
-                redirect action:'show', params:[name:n]
+                redirect action:'showProfile', params:[name:n]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
                 flash.message = message(code:"user.removeFriendFailed", args:[e.profile.fullName])
-                redirect action:'show', params:[name:n]
+                redirect action:'showProfile', params:[name:n]
+            }
+        }
+    }
+
+    def addBookmark = {
+      Entity e = params.name ? Entity.findByName(params.name) : null
+      if (!e) {
+        flash.message = message(code:"user.notFound", args:[params.name])
+        return
+      }
+
+      def linkInstance = new Link()
+      linkInstance.source = entityHelperService.loggedIn
+      linkInstance.type = metaDataService.ltBookmark
+      linkInstance.target = e ;
+
+      if(linkInstance.save(flush:true)) {
+        flash.message = message(code:"user.addBookmark", args:[linkInstance.target.profile.fullName])
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
+      }
+      else {
+        flash.message = message(code:"user.addBookmarkFailed", args:[linkInstance.target.profile.fullName])
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
+      }
+    }
+
+    def removeBookmark = {
+      Entity e = Entity.findByName(params.name)
+      def c = Link.createCriteria()
+      def linkInstance = c.get {
+        eq('source',entityHelperService.loggedIn)
+        eq('target',e)
+        eq('type',metaDataService.ltBookmark)
+      }
+      if(linkInstance) {
+            def n = linkInstance.target.name
+            try {
+                linkInstance.delete(flush:true)
+                flash.message = message(code:"user.removeBookmark", args:[e.profile.fullName])
+                redirect action:'showProfile', params:[name:n]
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException ex) {
+                flash.message = message(code:"user.removeBookmarkFailed", args:[e.profile.fullName])
+                redirect action:'showProfile', params:[name:n]
             }
         }
     }
@@ -321,14 +403,26 @@ class ProfileController {
 
         if(!entityInstance) {
             flash.message = message(code:"user.notFound", args:[params.name])
-            redirect action:'show', model:[name:params.name]
+            redirect action:'showProfile', model:[name:params.name]
         }
         else {
             return [ entityInstance : entityInstance ]
         }
     }
 
-  def update = {
+    def editFacility = {
+        def entityInstance = Entity.findByName(params.name)
+
+        if(!entityInstance) {
+            flash.message = message(code:"user.notFound", args:[params.name])
+            redirect action:'showProfile', model:[name:params.name]
+        }
+        else {
+            return [ entityInstance : entityInstance ]
+        }
+    }
+
+    def update = {
        def entityInstance = Entity.get( params.id )
        if(entityInstance) {
            if(params.version) {
@@ -342,19 +436,25 @@ class ProfileController {
                }
            }
            entityInstance.properties = params
-           entityInstance.profile.title = params.title
+           if (params.title)
+             entityInstance.profile.title = params.title
            entityInstance.profile.fullName = params.fullName
-           entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+           if (params.birthDate)
+             entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
            entityInstance.profile.PLZ = params.PLZ.toInteger()
            entityInstance.profile.city = params.city
            entityInstance.profile.street = params.street
            entityInstance.profile.tel = params.tel
-           entityInstance.profile.gender = params.gender
-           entityInstance.profile.biography = params.biography
+           if (params.gender)
+             entityInstance.profile.gender = params.gender.toInteger()
+           if (params.biography)
+             entityInstance.profile.biography = params.biography
+           if (params.description)
+             entityInstance.profile.description = params.description
          if(!entityInstance.hasErrors() && entityInstance.save()) {
                flash.message = message(code:"user.updated", args:[entityInstance.name])
 
-               redirect action:'show', params:[name:entityInstance.name]
+               redirect action:'showProfile', params:[name:entityInstance.name]
            }
            else {
                render view:'edit', model:[entityInstance:entityInstance]
@@ -362,7 +462,7 @@ class ProfileController {
        }
        else {
            flash.message = message(code:"user.notFound", args:[params.id])
-           redirect action:'show', params:[name:entityHelperService.loggedIn.name]
+           redirect action:'showProfile', params:[name:entityHelperService.loggedIn.name]
        }
    }
 

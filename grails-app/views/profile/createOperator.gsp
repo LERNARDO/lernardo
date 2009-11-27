@@ -13,7 +13,7 @@
               </div>
             </g:hasErrors>
             <g:form action="save" method="post" id="${entityInstance.id}">
-                    <h1>Notwendige Angaben</h1>
+                    <p class="bold">Notwendige Angaben</p>
                     <table id="msg-composer">
                         <tbody>
 
@@ -52,10 +52,11 @@
                         </tbody>
                     </table>
 
-                    <h1>Zusätzliche Angaben</h1>
+                    <p class="bold">Zusätzliche Angaben</p>
 
                     <table id="msg-composer">
                       <tbody>
+
                               <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="city">
@@ -66,6 +67,21 @@
                                     <input type="text" size="50" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
                                 </td>
                             </tr>
+
+                              <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">
+                                      <g:message code="msg.description.label" default="Beschreibung" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'description','errors')}">
+                                    <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+                                    <fckeditor:editor name="description" id="description" width="550px" height="400" toolbar="Post" fileBrowser="default">
+                                      ${entityInstance.profile.description}
+                                    </fckeditor:editor>
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                     <div class="buttons">

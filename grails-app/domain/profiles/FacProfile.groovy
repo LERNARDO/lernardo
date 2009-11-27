@@ -1,3 +1,7 @@
+// to be used for facilities:
+// - schools
+// - hoards
+
 package profiles
 
 import de.uenterprise.ep.Profile
