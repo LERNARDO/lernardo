@@ -88,16 +88,17 @@
             <div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader">Zitat des Tages</div>
-                <div class="sideboxcontent"><span class="quote">„Die Aufgabe der Umgebung ist nicht
-                    das Kind zu formen, sondern ihm zu
-                    erlauben, sich zu offenbaren.“</span>
-                  <p class="quoter">von Maria Montessori</p></div>
+                <div class="sideboxcontent">
+                  <app:getQuoteOfTheDay />
+                </div>
               </div><!-- innersidebox -->
             </div><!-- sidebox -->
             <div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader">Bild des Tages</div>
-                <div class="sideboxcontent"><img src="/lernardoV2/images/static/bild_des_tages.png" width="229" height="172" alt="bild des tages" id="randomPicture"/></div>
+                <div class="sideboxcontent">
+                  <img src="${createLinkTo(dir:'images/static',file:'bild_des_tages.png')}" width="229" height="172" alt="bild des tages" id="randomPicture"/>
+                </div>
               </div><!-- innersidebox -->
             </div><!-- sidebox -->
           </div>

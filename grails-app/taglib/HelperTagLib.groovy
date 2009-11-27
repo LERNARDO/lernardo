@@ -2,6 +2,7 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import posts.TemplateComment
 import posts.ArticlePost
+import java.text.SimpleDateFormat
 
 class HelperTagLib {
   def entityHelperService
@@ -9,6 +10,14 @@ class HelperTagLib {
   def networkService
   def filterService
   static namespace = "app"
+
+  def getQuoteOfTheDay = {
+    Date myDate = new Date()
+    SimpleDateFormat df = new SimpleDateFormat( "dd" );
+    int day = Integer.toInteger(df.format(myDate))
+    out << '<span class="quote">"'+grailsApplication.config.quotesMap[day]+'"</span>'
+    out << '<p class="quoter">von '+grailsApplication.config.quoterMap[day]+'</p>'
+  }
 
   def showGender = {attrs ->
     if (attrs.remove('gender') == 1)
