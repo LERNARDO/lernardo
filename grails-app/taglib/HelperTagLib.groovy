@@ -40,6 +40,16 @@ class HelperTagLib {
       out << body()
   }
 
+  def isBookmark = {attrs, body->
+    if (bookmark(attrs))
+      out << body()
+  }
+
+  def notBookmark = {attrs, body->
+    if (!bookmark(attrs))
+      out << body()
+  }
+
   private boolean friend (attrs) {
     Entity current = entityHelperService.loggedIn
     if (!current)
@@ -49,6 +59,18 @@ class HelperTagLib {
       return false
 
     def result = networkService.isFriendOf(current, e)
+    return result
+  }
+
+  private boolean bookmark (attrs) {
+    Entity current = entityHelperService.loggedIn
+    if (!current)
+      return false
+    Entity e = attrs.remove ("entity") ?: entityHelperService.loggedIn
+    if (!e)
+      return false
+
+    def result = networkService.isBookmarkOf(current, e)
     return result
   }
 }

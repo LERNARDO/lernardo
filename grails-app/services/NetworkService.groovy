@@ -15,10 +15,32 @@ class NetworkService {
 
       return results
     }
+
+    def findClientsOf (Entity e,  def params=[]) {
+      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
+      def results = []
+      for (v in c) { results << v.target }
+
+      return results
+    }
+
+    def findBookmarksOf (Entity e,  def params=[]) {
+      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltBookmark, params)
+      def results = []
+      for (v in c) { results << v.target }
+
+      return results
+    }
   
     boolean isFriendOf (Entity source, Entity target) {
       def links = Link.findAllBySourceAndTarget (source, target)
       def friendLink = links.find {it.type.id == metaDataService.ltFriendship.id}
+      return friendLink ? true :false;
+    }
+
+    boolean isBookmarkOf (Entity source, Entity target) {
+      def links = Link.findAllBySourceAndTarget (source, target)
+      def friendLink = links.find {it.type.id == metaDataService.ltBookmark.id}
       return friendLink ? true :false;
     }
 }

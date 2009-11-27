@@ -70,9 +70,9 @@
             <ub:isAdmin entityName="${currentEntity.name}">
             <li>
               <div id="admin" class="imgbox">
-                <g:link controller="admin" action="index" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'admin.png')}" alt="Admin" />
-                  <h3>Admin</h3>
+                <g:link controller="network" action="index" params="[name:currentEntity.name]">
+                  <img src="${g.resource(dir:'images/iconex', file:'admin.png')}" alt="Netzwerk" />
+                  <h3>Netzwerk</h3>
                 </g:link>
               </div>
             </li>
@@ -148,11 +148,17 @@
                 <ub:notMe entityName="${entity.name}">
                   <li class="profile-nachricht"><g:link controller="msg" action="create" params="[name:entity.name]">Nachricht senden</g:link></li>
                   <app:isFriend entity="${entity}">
-                    <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" params="[name:entity.name]">Vom Netzwerk entfernen</g:link></li>
+                    <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" params="[name:entity.name]">Als Freund entfernen</g:link></li>
                   </app:isFriend>
                   <app:notFriend entity="${entity}">
-                    <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" params="[name:entity.name]">Zum Netzwerk hinzufügen</g:link></li>
+                    <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" params="[name:entity.name]">Als Freund hinzufügen</g:link></li>
                   </app:notFriend>
+                  <app:isBookmark entity="${entity}">
+                    <li class="profile-netzwerk"><g:link controller="profile" action="removeBookmark" params="[name:entity.name]">Bookmark entfernen</g:link></li>
+                  </app:isBookmark>
+                  <app:notBookmark entity="${entity}">
+                    <li class="profile-netzwerk"><g:link controller="profile" action="addBookmark" params="[name:entity.name]">Bookmark setzen</g:link></li>
+                  </app:notBookmark>
                 </ub:notMe>
               </ul>
             </div>

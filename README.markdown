@@ -1,12 +1,14 @@
 # Alex
 - implement "Neuigkeiten"
-- implement "Netzwerk" view
 - Aktivitätsvorlage nur von Admin bearbeitbar
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
+- add indicator in nav with number of new messages
+- implement change password
 
 # Allan
+- style "netzwerk" view
 - tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung
 - Neue AktivitŠt planen (activity/create/)
 - Neue AktivitŠtsvorlage erstellen (template/create/)

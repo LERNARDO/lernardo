@@ -327,6 +327,50 @@ class ProfileController {
         }
     }
 
+    def addBookmark = {
+      Entity e = params.name ? Entity.findByName(params.name) : null
+      if (!e) {
+        flash.message = message(code:"user.notFound", args:[params.name])
+        return
+      }
+
+      def linkInstance = new Link()
+      linkInstance.source = entityHelperService.loggedIn
+      linkInstance.type = metaDataService.ltBookmark
+      linkInstance.target = e ;
+
+      if(linkInstance.save(flush:true)) {
+        flash.message = message(code:"user.addBookmark", args:[linkInstance.target.profile.fullName])
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
+      }
+      else {
+        flash.message = message(code:"user.addBookmarkFailed", args:[linkInstance.target.profile.fullName])
+        redirect action:'showProfile', params:[name:linkInstance.target.name]
+      }
+    }
+
+    def removeBookmark = {
+      Entity e = Entity.findByName(params.name)
+      def c = Link.createCriteria()
+      def linkInstance = c.get {
+        eq('source',entityHelperService.loggedIn)
+        eq('target',e)
+        eq('type',metaDataService.ltBookmark)
+      }
+      if(linkInstance) {
+            def n = linkInstance.target.name
+            try {
+                linkInstance.delete(flush:true)
+                flash.message = message(code:"user.removeBookmark", args:[e.profile.fullName])
+                redirect action:'showProfile', params:[name:n]
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException ex) {
+                flash.message = message(code:"user.removeBookmarkFailed", args:[e.profile.fullName])
+                redirect action:'showProfile', params:[name:n]
+            }
+        }
+    }
+
     def edit = {
         def entityInstance = Entity.findByName(params.name)
 
