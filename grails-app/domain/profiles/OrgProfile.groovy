@@ -1,20 +1,19 @@
-// to be used for facilities:
-// - schools
-// - hoards
+// to be used for organisations
+// - operators
+// - sponsors
 
 package profiles
 
 import de.uenterprise.ep.Profile
 import de.uenterprise.ep.Entity
 
-class FacProfile extends Profile {
+class OrgProfile extends Profile {
     String fullName
     Integer PLZ
     String city
     String street
     String tel
     String description
-    String opened
     Entity speaker
 
     static constraints = {
@@ -24,7 +23,6 @@ class FacProfile extends Profile {
         street(nullable:true)
         tel(blank:true)
         description(blank:true,maxSize: 2000)
-        opened(blank:true)
         speaker(nullable: true, blank:true)
     }
 }

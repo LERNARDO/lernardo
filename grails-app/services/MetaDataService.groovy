@@ -70,7 +70,7 @@ class MetaDataService {
   def getEtUser () { defaultObjectService.openET (ET_USER, estPerson) }
   def getEtPaed () { defaultObjectService.openET (ET_PAED, estPerson) }
   def getEtClient () { defaultObjectService.openET (ET_CLIENT, estPerson) }
-  def getEtOperator () { defaultObjectService.openET (ET_OPERATOR, estFac) }
+  def getEtOperator () { defaultObjectService.openET (ET_OPERATOR, estOrg) }
   def getEtHort () { defaultObjectService.openET (ET_HORT, estFac) }
   def getEtSchool () { defaultObjectService.openET (ET_SCHOOL, estFac) }
   def getEtSponsor () { defaultObjectService.openET (ET_SPONSOR, estOrg) }

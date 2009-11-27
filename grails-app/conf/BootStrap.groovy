@@ -5,6 +5,7 @@ import profiles.UserProfile
 import profiles.FacProfile
 import posts.ArticlePost
 import posts.TemplateComment
+import profiles.OrgProfile
 
 class BootStrap {
   def defaultObjectService
@@ -222,22 +223,20 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
-      FacProfile prf = ent.profile
+      OrgProfile prf = ent.profile
       prf.PLZ = 2560
       prf.city = "Berndorf"
       prf.street = "Leobersdorfer Straße 42"
       prf.tel   = "-"
-      prf.opened = "-"
       prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
     }
     entityHelperService.createEntityWithUserAndProfile ("alpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
-      FacProfile prf = ent.profile
+      OrgProfile prf = ent.profile
       prf.PLZ = 2563
       prf.city = "Pottenstein"
       prf.street = "Hainfelderstrasse 29"
       prf.tel   = "-"
-      prf.opened = "-"
       //prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
     }

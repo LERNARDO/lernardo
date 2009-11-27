@@ -3,6 +3,7 @@
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
 - implement "Leistungsfortschritt"
+- implement "Schule anlegen" for admins
 
 # Allan
 - style "netzwerk" view
