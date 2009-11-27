@@ -67,7 +67,6 @@
               </div>
             </li>
 
-            <ub:isAdmin entityName="${currentEntity.name}">
             <li>
               <div id="admin" class="imgbox">
                 <g:link controller="network" action="index" params="[name:currentEntity.name]">
@@ -76,7 +75,7 @@
                 </g:link>
               </div>
             </li>
-            </ub:isAdmin>
+            
           </ol>
         </div>
 
@@ -136,10 +135,10 @@
                   <li class="profile-location"><g:link controller="profile" action="showLocation" params="[name:entity.name]">Standort anzeigen</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Operator'}">
-                  <li class="profile-activities"><g:link controller="profile" action="createHort" params="[by:entity.name]">Hort anlegen</g:link></li>
+                  <li class="profile-activities"><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Hort'}">
-                  <li class="profile-activities"><g:link controller="profile" action="createClient" params="[by:entity.name]">Betreuten anlegen</g:link></li>
+                  <li class="profile-activities"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Client'}">
                   <li class="profile-leistung"><g:link controller="profile" action="showLeistung" params="[name:entity.name]">Leistungsfortschritt</g:link></li>

@@ -27,7 +27,7 @@
         <tbody>
         <g:each status="i" in="${entityList}" var="entity">
           <tr class="row-${entity.type.name}">
-            <td><g:link controller="profile" action="show" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
+            <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
             <td class="col">${entity.type.name}</td>
             <td class="col">${entity.user.authorities.authority}</td>
           </tr>

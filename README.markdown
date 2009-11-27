@@ -1,6 +1,5 @@
 # Alex
 - implement "Neuigkeiten"
-- Aktivitätsvorlage nur von Admin bearbeitbar
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen

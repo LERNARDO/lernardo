@@ -56,32 +56,32 @@ class ProfileController {
       if (user) {
         flash.message = message(code:"user.existsMail", args:[params.email])
         redirect action:"createOperator", params:params
-        return
       }
+      else {
+        Entity etst = Entity.findByName (params.name)
+        if (etst) {
+          flash.message = message(code:"user.existsName", args:[params.name])
+          redirect action:"createOperator", params:params
+          return
+        }
 
-      Entity etst = Entity.findByName (params.name)
-      if (etst) {
-        flash.message = message(code:"user.existsName", args:[params.name])
-        redirect action:"createOperator", params:params
-        return
+        entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
+          FacProfile prf = ent.profile
+          prf.city = params.city ?: ""
+          prf.opened = "-"
+          prf.description = "-"
+          prf.tel = "-"
+          ent.user.password = authenticateService.encodePassword("pass")
+        }
+        flash.message = message(code:"user.created", args:[params.name,'Admin'])
+        redirect action:'showProfile', params:[name:params.name]
       }
-
-      entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
-        FacProfile prf = ent.profile
-        prf.city = params.city ?: ""
-        prf.opened = "-"
-        prf.description = "-"
-        prf.tel = "-"
-        ent.user.password = authenticateService.encodePassword("pass")
-      }
-      flash.message = message(code:"user.created", args:[params.name,'Admin'])
-      redirect action:'showProfile', params:[name:params.name]
     }
 
     def createHort = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance,'by':params.by]
+      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
     }
 
     def saveHort = {
@@ -111,10 +111,10 @@ class ProfileController {
       }
 
       // create mutual relationship between Hort and Operator
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
-      flash.message = message(code:"user.created", args:[params.name,params.by])
+      flash.message = message(code:"user.created", args:[params.name,params.entity])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
@@ -154,7 +154,7 @@ class ProfileController {
     def createClient = {
       def entityInstance = new Entity()
       entityInstance.properties = params
-      return ['entityInstance':entityInstance,'by':params.by]
+      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
     }
 
     def saveClient = {
@@ -181,10 +181,10 @@ class ProfileController {
       }
 
       // create mutual relationship between Client and Hort
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.by), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.by), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltFriendship).save()
+      new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
-      flash.message = message(code:"user.created", args:[params.name,params.by])
+      flash.message = message(code:"user.created", args:[params.name,params.entity])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
