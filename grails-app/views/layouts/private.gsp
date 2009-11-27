@@ -119,7 +119,7 @@
               <ul>
                 <li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Profil ansehen</g:link></li>
                 <ub:meOrAdmin entityName="${entity.name}">
-                  <li class="profile-neuigkeiten"><g:link controller="profile" action="showNews" params="[name:entity.name]">Neuigkeiten</g:link></li>
+                  <li class="profile-neuigkeiten"><g:link controller="profile" action="showNews" params="[name:entity.name]">Ereignisse</g:link></li>
                   <li class="profile-nachricht"><g:link controller="msg" action="inbox" params="[name:entity.name]">Mein Postfach</g:link> <app:getNewInboxMessages entityName="${entity.name}"/></li>
                 </ub:meOrAdmin>
                 <g:if test="${entity.type.name == 'Paed'}">
@@ -163,12 +163,14 @@
             </div>
 
           <ub:meOrAdmin entityName="${entity.name}">
-            <div class="profile-group">Pädagogik</div>
-              <div class="profile-box">
-                <ul>
-                  <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
-                </ul>
-              </div>
+            <g:if test="${entity.type.name == 'Paed'}">
+              <div class="profile-group">Pädagogik</div>
+                <div class="profile-box">
+                  <ul>
+                    <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                  </ul>
+                </div>
+            </g:if>
           </ub:meOrAdmin>
 
           <ub:isAdmin entityName="${entity.name}">

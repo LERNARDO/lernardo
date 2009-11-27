@@ -25,6 +25,7 @@ class BootStrap {
       createDefaultActivityTemplates()
       createDefaultActivities()
       createDefaultPosts()
+      createDefaultEvents()
     }
   }
 
@@ -735,6 +736,29 @@ class BootStrap {
             der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
             Abschlussausflug in den Märchenpark St. Margarethen.''',
             author:Entity.findByName('regina')).save()
+  }
+
+  void createDefaultEvents() {
+    log.debug ("==> creating default events")
+
+    new Event(entity:Entity.findByName('admin'),
+              content:'Alexander Zeillinger hat dich als Freund hinzugefügt.',
+              date: new Date(2009-1900,11,26,13,15)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Regina Toncourt hat deine Aktivitätsvorlage "Tanzen" kommentiert.',
+              date: new Date(2009-1900,11,26,11,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Martin Golja hat dir eine Nachricht hinterlassen.',
+              date: new Date(2009-1900,11,27,12,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Rosa Gober hat die Aktivitätsvorlage "Spielerei" erstellt.',
+              date: new Date(2009-1900,11,27,15,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Patrizia Rosenkranz hat die Aktivitätsvorlage "Spielerei" kommentiert.',
+              date: new Date(2009-1900,11,27,14,30)).save()
+    new Event(entity:Entity.findByName('admin'),
+              content:'Elternsprechtag',
+              date: new Date(2009-1900,11,28,17,30)).save()
   }
   
 }

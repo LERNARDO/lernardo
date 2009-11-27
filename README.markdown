@@ -1,8 +1,8 @@
 # Alex
-- implement "Neuigkeiten"
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
+- implement "Leistungsfortschritt"
 
 # Allan
 - style "netzwerk" view
@@ -20,7 +20,7 @@
 
 # Mike
 - assets
-- "Standort anzeigen" problem with ajax? triggers empty page
+- "Standort anzeigen" not working
 - kalender
 
 # Previous TODOs

@@ -210,7 +210,7 @@ class ProfileController {
 
     def showNews = {
       Entity e = Entity.findByName(params.name)
-      return [entity:e]
+      return [entity:e,eventList:Event.findAllByEntity(e,[sort:'dateCreated',order:'desc'])]
     }
 
     def showProfile = {
@@ -309,6 +309,14 @@ class ProfileController {
 
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
         flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
+
+        new Event(entity:entityHelperService.loggedIn,
+              content:'Du hast '+e.profile.fullName+' als Freund hinzugefügt.',
+              date: new Date()).save()
+        new Event(entity:e,
+              content:entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt',
+              date: new Date()).save()
+
         redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
       else {
