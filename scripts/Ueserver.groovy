@@ -39,10 +39,15 @@ grails deploy show   - shows to which instance the deploy would go to
     case 'show':
       println "Application $app deployment on ${server}${context}"
       println "ident: $user/$pass"
-
-
       list( url:manager, username:user, password:pass)
     break ;
+
+    case 'release':
+      updateMeta(metadata)
+      buildConfig.grails.war.destFile = "${app}-prod.war"
+      war()
+    break ;
+    
 
 		case 'deploy':
       updateMeta(metadata)
