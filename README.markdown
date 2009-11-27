@@ -29,8 +29,7 @@
 - Anwesenheits-/Essensliste für alle Kinder pro Monat, pro Kind pro Monat, mit Summe Anwesenheit und Essenbeiträge
 - Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
-- add a margin-bottom to table header of lists
-- implement "bild des tages" and "zitat des tages"
+- implement "bild des tages"
 - JLZ: make calendar functional for paeds so they can use it within a week
 - style PDF with CSS properly
 - style -Leistungsfortschritt- view properly
