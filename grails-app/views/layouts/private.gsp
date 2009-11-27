@@ -75,7 +75,6 @@
                 </g:link>
               </div>
             </li>
-            
           </ol>
         </div>
 
@@ -96,7 +95,7 @@
           <div id="profile-navigation" class="yui-b">
             <div id="profile-pic">
               <h1>${entity.profile.fullName}</h1>
-              <ub:profileImage name="${entity.name}" width="180" height="233"/>
+              <ub:profileImage name="${entity.name}" width="180" height="180"/>
             </div>
 
             <ub:meOrAdmin entityName="${entity.name}">
