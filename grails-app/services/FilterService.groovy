@@ -5,11 +5,23 @@ class FilterService {
 
     boolean transactional = true
 
+    // used to display the number of new messages in the profile navigation
+    def getNewInboxMessages (String name) {
+      def c = Msg.createCriteria()
+      def results = c.list {
+        eq('entity',Entity.findByName(name))
+        ne('sender',entityHelperService.loggedIn)
+        eq('read',false)
+      }
+      return results.size()
+    }   
+
     def getInbox (String name) {
       def c = Msg.createCriteria()
       def results = c.list {
         eq('entity',Entity.findByName(name))
         ne('sender',entityHelperService.loggedIn)
+        order("dateCreated", "desc")
       }
       return results
     }
@@ -19,6 +31,7 @@ class FilterService {
       def results = c.list {
         eq('entity',Entity.findByName(name))
         eq('sender',entityHelperService.loggedIn)
+        order("dateCreated", "desc")
       }
       return results
     }

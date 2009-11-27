@@ -17,6 +17,12 @@ class HelperTagLib {
       out << 'Weiblich'
   }
 
+  def getNewInboxMessages = {attrs ->
+    int m = filterService.getNewInboxMessages(attrs.remove ("entityName"))
+    //println "m = "+ m
+    if (m > 0)
+      out << "("+m+")"
+  }
   def getTemplateCommentsCount = {attrs ->
     out << TemplateComment.countByTemplate(attrs.remove ("template"))
   }

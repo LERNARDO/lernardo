@@ -121,7 +121,7 @@
                 <li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Profil ansehen</g:link></li>
                 <ub:meOrAdmin entityName="${entity.name}">
                   <li class="profile-neuigkeiten"><g:link controller="profile" action="showNews" params="[name:entity.name]">Neuigkeiten</g:link></li>
-                  <li class="profile-nachricht"><g:link controller="msg" action="inbox" params="[name:entity.name]">Mein Postfach</g:link></li>
+                  <li class="profile-nachricht"><g:link controller="msg" action="inbox" params="[name:entity.name]">Mein Postfach</g:link> <app:getNewInboxMessages entityName="${entity.name}"/></li>
                 </ub:meOrAdmin>
                 <g:if test="${entity.type.name == 'Paed'}">
                   <li class="profile-activities"><g:link controller="profile" action="showArticleList" params="[name:entity.name]">Artikel ansehen</g:link></li>

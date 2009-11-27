@@ -4,7 +4,6 @@
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - Anwesenheits-/Essensliste funktionsfähig machen
-- add indicator in nav with number of new messages
 - implement change password
 
 # Allan
