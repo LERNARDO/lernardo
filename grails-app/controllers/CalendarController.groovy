@@ -44,9 +44,9 @@ class CalendarController {
         def eventList = []
         activities.each {
             def dtStart = new DateTime (it.date)
-            dtStart = dtStart.plusHours(2)
+            dtStart = dtStart.plusHours(1)
             def dtEnd = dtStart.plusMinutes("$it.duration".toInteger())
-            eventList << [id: it.id, title: it.title, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false]
+            eventList << [id: it.id, title: it.title, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: it.attribution]
         }
 
         def json = eventList as JSON;

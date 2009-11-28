@@ -9,6 +9,7 @@ class Activity {
   Integer duration
   Entity facility
   String template
+  String attribution
 
   Date dateCreated
   Date lastUpdated
@@ -16,5 +17,7 @@ class Activity {
     static constraints = {
       facility(nullable:true)
       template(nullable:true)
+      paeds(nullable:true)
+      clients(nullable:true)
     }
 }

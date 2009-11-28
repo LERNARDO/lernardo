@@ -197,6 +197,7 @@ table.fc-header {
 	
 .fc-widget-content {
 	border: 1px solid #ccc; /* outer border color */
+    background: #fff;
 	}
 	
 .fc-content {
@@ -252,7 +253,47 @@ table.fc-header {
 	 *     color: red;
 	 *     }
 	 */
-	 
+
+.Ankunft,
+.fc-agenda .Ankunft .fc-event-time,
+.Ankunft a {
+    background-color: #bbb;
+    border-color: #fff;
+    color: #fff;
+    }
+
+.Spielen,
+.fc-agenda .Spielen .fc-event-time,
+.Spielen a {
+    background-color: #5b5;
+    border-color: #9f9;
+    color: #fff;
+    }
+
+.Mittagessen,
+.fc-agenda .Mittagessen .fc-event-time,
+.Mittagessen a {
+    background-color: #b55;
+    border-color: #f99;
+    color: #fff;
+    }
+
+.Betreuung,
+.fc-agenda .Betreuung .fc-event-time,
+.Betreuung a {
+    background-color: #bb5;
+    border-color: #ff9;
+    color: #fff;
+    }
+
+.Psychomotorik,
+.fc-agenda .Psychomotorik .fc-event-time,
+.Psychomotorik a {
+    background-color: #009;
+    border-color: #009;
+    color: #fff;
+    }
+
 .fc-event {
 	text-align: left;
 	}

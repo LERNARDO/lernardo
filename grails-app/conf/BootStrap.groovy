@@ -666,30 +666,83 @@ class BootStrap {
     void createDefaultActivities() {
       log.debug ("==> creating default activities")
 
+      for (int i=1;i<31;i++) {
+         new Activity(title:'Ankunft',
+                      owner:Entity.findByName('martin'),
+                      date: new Date(2009-1900,11,i,11,00),
+                      duration: 30,
+                      paeds:[],
+                      clients:[],
+                      facility:Entity.findByName('kaumberg'),
+                      template:'',
+                      attribution:'Ankunft').save()
+         new Activity(title:'Freies Spielen',
+                      owner:Entity.findByName('martin'),
+                      date: new Date(2009-1900,11,i,11,30),
+                      duration: 60,
+                      paeds:[],
+                      clients:[],
+                      facility:Entity.findByName('kaumberg'),
+                      template:'',
+                      attribution:'Spielen').save()
+         new Activity(title:'Mittagessen',
+                      owner:Entity.findByName('martin'),
+                      date: new Date(2009-1900,11,i,12,30),
+                      duration: 60,
+                      paeds:[],
+                      clients:[],
+                      facility:Entity.findByName('kaumberg'),
+                      template:'',
+                      attribution:'Mittagessen').save()
+         new Activity(title:'Betreuung HÜ',
+                      owner:Entity.findByName('martin'),
+                      date: new Date(2009-1900,11,i,13,30),
+                      duration: 90,
+                      paeds:[],
+                      clients:[],
+                      facility:Entity.findByName('kaumberg'),
+                      template:'',
+                      attribution:'Betreuung').save()
+
+        // 15:00 to 17:30 time for Lernardo activities
+
+         new Activity(title:'Gehen',
+                      owner:Entity.findByName('martin'),
+                      date: new Date(2009-1900,11,i,17,30),
+                      duration: 30,
+                      paeds:[],
+                      clients:[],
+                      facility:Entity.findByName('kaumberg'),
+                      template:'',
+                      attribution:'Ankunft').save()}
+
       new Activity(title:'Weide mit Hindernissen',
-            owner:Entity.findByName('martin'),
-            date: new Date(2009-1900,10,01,15,30),
+            owner:Entity.findByName('hannah'),
+            date: new Date(2009-1900,11,01,15,00),
             duration: 60,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn'),
-            template:'Weide mit Hindernissen').save()
+            template:'Weide mit Hindernissen',
+            attribution:'Psychomotorik').save()
       new Activity(title:'Schmetterlinge',
-            owner:Entity.findByName('martin'),
-            date: new Date(2009-1900,10,01,16,30),
+            owner:Entity.findByName('hannah'),
+            date: new Date(2009-1900,11,01,16,00),
             duration: 30,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn'),
-            template:'Schmetterlinge').save()
+            template:'Schmetterlinge',
+            attribution:'Psychomotorik').save()
       new Activity(title:'Luftballonmeer',
             owner:Entity.findByName('regina'),
-            date: new Date(2009-1900,10,02,15,30),
-            duration: 45,
+            date: new Date(2009-1900,11,01,16,30),
+            duration: 60,
             paeds:[Entity.findByName('alex'),Entity.findByName('mike')],
             clients:[Entity.findByName('alex'),Entity.findByName('mike')],
             facility:Entity.findByName('loewenzahn'),
-            template:'Luftballonmeer').save()
+            template:'Luftballonmeer',
+            attribution:'Psychomotorik').save()
     }
 
   void createDefaultPosts() {

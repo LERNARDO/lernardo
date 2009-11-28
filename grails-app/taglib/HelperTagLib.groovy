@@ -14,7 +14,7 @@ class HelperTagLib {
   def getQuoteOfTheDay = {
     Date myDate = new Date()
     SimpleDateFormat df = new SimpleDateFormat( "dd" );
-    int day = Integer.toInteger(df.format(myDate))
+    int day = df.format(myDate).toInteger()
     out << '<span class="quote">"'+grailsApplication.config.quotesMap[day]+'"</span>'
     out << '<p class="quoter">von '+grailsApplication.config.quoterMap[day]+'</p>'
   }

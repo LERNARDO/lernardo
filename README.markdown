@@ -4,6 +4,7 @@
 - Anwesenheits-/Essensliste funktionsfähig machen
 - implement "Leistungsfortschritt"
 - implement "Schule anlegen" for admins
+- implement PDF printing for calendar week view
 
 # Allan
 - style "netzwerk" view
@@ -22,7 +23,6 @@
 # Mike
 - assets
 - "Standort anzeigen" not working
-- kalender
 
 # Previous TODOs
 

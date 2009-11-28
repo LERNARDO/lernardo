@@ -27,14 +27,15 @@
     },
     columnFormat: {
         month: 'ddd',    // Mon
-        week: 'ddd d.M', // Mon 9/7
-        day: 'dddd, d.M'  // Monday 9/7     
+        week: 'ddd d.M.', // Mon 9/7
+        day: 'dddd, d.M.'  // Monday 9/7     
     },
-    axisFormat: ' H (:mm)',
+    axisFormat: ' HH:mm', // H (:mm)
     timeFormat: 'HH:mm',
     aspectRatio: 1.35,
     editable: false,
-    allDaySlot:false,
+    allDaySlot:true,
+    allDayText:'',
     events: '${g.createLink (controller:"calendar", action:"events", params:[name:name])}',
 
     eventClick: function (calEvent, jsEvent, view) {
