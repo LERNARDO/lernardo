@@ -2,18 +2,18 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Betreiber anlegen</title>
+    <title>Schule anlegen</title>
   </head>
   <body>
       <div class="body">
-            <h1>Betreiber anlegen</h1>
+            <h1>Schule anlegen</h1>
             <g:hasErrors bean="${entityInstance}">
               <div class="errors">
                 <g:renderErrors bean="${entityInstance}" as="list" />
               </div>
             </g:hasErrors>
             <g:form action="save" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
-                    <p class="bold">Notwendige Angaben</p>
+                    <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>
 
@@ -52,11 +52,10 @@
                         </tbody>
                     </table>
 
-                    <p class="bold">Zusätzliche Angaben</p>
+                    <h1>Zusätzliche Angaben</h1>
 
                     <table id="msg-composer">
                       <tbody>
-
                               <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="city">
@@ -67,25 +66,10 @@
                                     <input type="text" size="50" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
                                 </td>
                             </tr>
-
-                              <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="description">
-                                      <g:message code="msg.description.label" default="Beschreibung" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'description','errors')}">
-                                    <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                    <fckeditor:editor name="description" id="description" width="550px" height="400" toolbar="Post" fileBrowser="default">
-                                      ${entityInstance.profile.description}
-                                    </fckeditor:editor>
-                                </td>
-                            </tr>
-
                         </tbody>
                     </table>
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="saveOperator" value="Anlegen" /></span>
+                        <span class="button"><g:actionSubmit class="save" action="saveSchool" value="Anlegen" /></span>
                         <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
                     </div>
             </g:form>

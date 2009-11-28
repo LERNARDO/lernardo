@@ -439,6 +439,9 @@ ul {
 .row-mitarbeiter, .row-User {
     background: #ffecc1; }
 
+.row-School {
+    background: #cb59c9; }
+
 .odd {
     background: #f4f4f4; }
 

@@ -70,7 +70,7 @@
                     </table>
                     <div class="buttons">
                         <span class="button"><g:actionSubmit class="save" action="saveHort" value="Anlegen" /></span>
-                        <span class="nav-button"><g:link controller="profile" action="show" params="[name:currentEntity.name]">Abbrechen</g:link></span>
+                        <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
                     </div>
             </g:form>
         </div>

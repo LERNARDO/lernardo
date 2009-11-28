@@ -118,6 +118,42 @@ class ProfileController {
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
 
+    def createSchool = {
+      def entityInstance = new Entity()
+      entityInstance.properties = params
+      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
+    }
+
+    def saveSchool = {
+      EntityType etFac = metaDataService.etSchool
+
+      Account user = Account.findByEmail (params.email)
+      if (user) {
+        flash.message = message(code:"user.existsMail", args:[params.email])
+        redirect action:"createSchool", params:params
+        return
+      }
+
+      Entity etst = Entity.findByName (params.name)
+      if (etst) {
+        flash.message = message(code:"user.existsName", args:[params.name])
+        redirect action:"createSchool", params:params
+        return
+      }
+
+      entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
+        FacProfile prf = ent.profile
+        prf.city = params.city ?: ""
+        prf.opened = "-"
+        prf.description = "-"
+        prf.tel = "-"
+        ent.user.password = authenticateService.encodePassword("pass")
+      }
+
+      flash.message = message(code:"user.created", args:[params.name,params.entity])
+      redirect controller:'profile', action:'showProfile', params:[name:params.name]
+    }
+
     def createPaed = {
       def entityInstance = new Entity()
       entityInstance.properties = params

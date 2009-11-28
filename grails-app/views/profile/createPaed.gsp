@@ -12,7 +12,7 @@
                 <g:renderErrors bean="${entityInstance}" as="list" />
               </div>
             </g:hasErrors>
-            <g:form action="save" method="post" id="${entityInstance.id}" params="[by:by]">
+            <g:form action="save" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
                     <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>
@@ -70,7 +70,7 @@
                     </table>
                     <div class="buttons">
                         <span class="button"><g:actionSubmit class="save" action="savePaed" value="Anlegen" /></span>
-                        <span class="nav-button"><g:link controller="profile" action="show" params="[name:currentEntity.name]">Abbrechen</g:link></span>
+                        <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
                     </div>
             </g:form>
         </div>

@@ -176,9 +176,10 @@
             <div class="profile-group">Administration</div>
               <div class="profile-box">
                 <ul>
-                  <li class="profile-person"><g:link controller="profile" action="list">Alle Profile anzeigen</g:link></li>
-                  <li class="profile-person"><g:link controller="profile" action="createOperator">Betreiber anlegen</g:link></li>
-                  <li class="profile-person"><g:link controller="profile" action="createPaed">Pädagoge anlegen</g:link></li>
+                  <li class="profile-person"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
+                  <li class="profile-person"><g:link controller="profile" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
+                  <li class="profile-person"><g:link controller="profile" action="createPaed" params="[name:entity.name]">Pädagoge anlegen</g:link></li>
+                  <li class="profile-person"><g:link controller="profile" action="createSchool" params="[name:entity.name]">Schule anlegen</g:link></li>
                 </ul>
               </div>
           </ub:isAdmin>
