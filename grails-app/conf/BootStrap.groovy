@@ -216,6 +216,13 @@ class BootStrap {
       prf.city = "Gumpoldskirchen"
     }
 
+    entityHelperService.createEntityWithUserAndProfile("keano", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 1
+      prf.PLZ = 2352
+      prf.city = "Gumpoldskirchen"
+    }
   }
 
   void createDefaultOperators() {

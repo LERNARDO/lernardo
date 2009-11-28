@@ -289,9 +289,11 @@ class ProfileController {
     }
 
     def attendance = {
+      params.date = params.date ?: new Date()
         return ['entityList': Entity.findAllByType(EntityType.findByName('Client')),
                 'entityCount': Entity.countByType(EntityType.findByName('Client')),
-                'entity':entityHelperService.loggedIn]
+                'entity':entityHelperService.loggedIn,
+                'date':params.date]
     }
 
     def list = {

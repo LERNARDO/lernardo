@@ -123,7 +123,6 @@
                 </ub:meOrAdmin>
                 <g:if test="${entity.type.name == 'Paed'}">
                   <li class="profile-activities"><g:link controller="profile" action="showArticleList" params="[name:entity.name]">Artikel ansehen</g:link></li>
-                  <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Paed' || entity.type.name == 'Client'}">
                 %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
@@ -167,6 +166,7 @@
                 <div class="profile-box">
                   <ul>
                     <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                    <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
                   </ul>
                 </div>
             </g:if>

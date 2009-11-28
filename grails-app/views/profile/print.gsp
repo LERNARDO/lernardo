@@ -45,8 +45,9 @@
       <img src="${g.resource(dir:'images/avatar', file:image)}" alt="Hort ${pdf.hort}"/>
 
       <h1>Hort ${pdf.hort}</h1>
-      <p>Anwesenheits- und Essensliste für Monat ${pdf.monat}</p>
-      <p>Gedruckt von <ub:entityName format="full" /> <br /> <cu:timestamp />
+      <p>Anwesenheits- und Essensliste für <g:formatDate date="${new Date()}" format="EEEE, 'den' dd. MM. yyyy"/></p>
+      <p>Gedruckt von ${currentEntity.profile.fullName} <br /><br/>
+         Täglicher Essenbeitrag: €3.-
       </p>
       <table id="profile-list">
         <thead>
@@ -62,16 +63,10 @@
           <tr>
             <td>${entity.profile.fullName}</td>
             <td>${entity.profile.tel}</td>
-            <td>14</td>
-            <td>14</td>
+            <td><div style="height:10px; width:10px; border: 1px solid #000;"></div></td>
+            <td><div style="height:10px; width:10px; border: 1px solid #000;"></div></td>
           </tr>
         </g:each>
-        <tr>
-          <td>Gesamt</td>
-          <td></td>
-          <td>84</td>
-          <td>84 * 3 = €252</td>
-        </tr>
         </tbody>
       </table>
 

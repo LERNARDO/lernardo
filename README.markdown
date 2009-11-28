@@ -1,7 +1,7 @@
 # Alex
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
-- Anwesenheits-/Essensliste funktionsfähig machen
+- implement "Anwesenheits-/Essensliste"
 - implement "Leistungsfortschritt"
 - implement PDF printing for calendar week view
 
