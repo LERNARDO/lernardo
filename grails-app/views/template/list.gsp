@@ -5,7 +5,18 @@
 
   <body>
     <div id="body-list">
-      <h2>Liste aller Aktivitätsvorlagen</h2>
+      <div style="float:right;">
+        <ub:meOrAdmin entityName="${entity.name}">
+          <g:if test="${entity.type.name == 'Paed'}">
+            <div class="profile-box">
+            <ul>
+            <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+            </ul>
+            </div>
+          </g:if>
+        </ub:meOrAdmin>
+      </div>
+      <h2 class="activity-list-head">Liste aller Aktivitätsvorlagen</h2>
       <p>${templateCount} Aktivitätsvorlagen gefunden</p>
 
       <table>

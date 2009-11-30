@@ -302,7 +302,7 @@ ul {
         background: url(../images/icons/icon_location.png) no-repeat;
         padding-left: 20px;
         background-position: 0 50%; }
-    #profile-navigation .profile-template {
+    #profile-navigation .profile-template, .profile-template {
         background: url(../images/icons/icon_template.png) no-repeat;
         padding-left: 20px;
         background-position: 0 50%; }
@@ -499,6 +499,9 @@ ul {
         font-size: 11px; }
     #body-list #select-box {
         margin-bottom: 10px; }
+    #body-list a:link, #body-list a:visited {
+        color: #46597B;
+    }
 
 table #profile-list tr {
     border: 1px solid #ccc; }
@@ -615,7 +618,11 @@ div.actionlinks div.userlinks a {
     text-align: center;
     -moz-border-radius: 5px; }
     #newActivity a {
-        color: #fff; }
+        color: #fff !important; }
+
+.activity-list-head {
+    padding-top: 6px;
+}
 
 #newTemplate {
     border: 1px solid #333;
@@ -809,7 +816,7 @@ table#msg-composer td {
 }
 
 .buttons .button a {
-  color: #000000;
+  color: #000000 !important;
   text-decoration: none;
   font-size:12px;
   border:1px solid #999999;
@@ -819,7 +826,7 @@ table#msg-composer td {
 }
 
 .buttons .button a:hover {
-  color: #000000;
+  color: #000000 !important;
   border:1px solid #000000;
 }
 
