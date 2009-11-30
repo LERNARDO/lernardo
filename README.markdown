@@ -1,4 +1,12 @@
 # Alex
+!! for MileStone
+ - activity creation
+   - style client and pead boxes
+   - errorhandling (validation messages not shown)
+   - errorhandling (handle empty peads / clients)
+   - GMAPS API Key Config Params (was "Standort anzeigen" not working)
+
+
 - Aktivität anlegen: 2 Spalten Layout
 - Hort Tagebuch
 - implement "Anwesenheits-/Essensliste"
@@ -8,6 +16,7 @@
 - implement ActivityType
 - GMAPS API Key Config Params (was "Standort anzeigen" not working)
 - Netzwerk: 500 bei mpk
+
 
 # Allan
 - Tabellen und Listen einheitlicher Stil
