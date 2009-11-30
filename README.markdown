@@ -6,11 +6,7 @@
 - implement PDF printing for calendar week view
 
 # Allan
-- style "netzwerk" view
-- style messages show view
 - tabellen einheitlich -> Besprechen, weil einerseits Grails-Default-Listen zur Verwaltung
-- Neue Aktivität planen (activity/create/)
-- Neue Aktivitätsvorlage erstellen (template/create/)
 - Profiltyp und Ueberschrift (Namen der Profiltypen abrufbar? "paed", etc..)
 
 # Daniel

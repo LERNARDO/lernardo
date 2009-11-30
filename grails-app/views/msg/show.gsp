@@ -18,7 +18,7 @@
                         
                         <tr class="prop">
                           
-                            <td valign="top" class="value">An <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link> am <g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></td>
+                            <td valign="top" class="value msg-name">An <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link> am <g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></td>
                             
                         </tr>
                     
