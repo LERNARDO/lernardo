@@ -4,6 +4,8 @@
 - implement "Anwesenheits-/Essensliste"
 - implement "Leistungsfortschritt"
 - implement PDF printing for calendar week view
+- GMAPS API Key Config Params (was "Standort anzeigen" not working)
+
 
 # Allan
 - style "netzwerk" view
@@ -13,6 +15,7 @@
 - Neue Aktivitätsvorlage erstellen (template/create/)
 - Profiltyp und Ueberschrift (Namen der Profiltypen abrufbar? "paed", etc..)
 
+
 # Daniel
 - none
 
@@ -21,7 +24,6 @@
 
 # Mike
 - assets
-- "Standort anzeigen" not working
 
 # Previous TODOs
 
