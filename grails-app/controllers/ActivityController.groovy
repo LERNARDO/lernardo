@@ -5,7 +5,9 @@ import de.uenterprise.ep.EntityType
 class ActivityController {
   def entityHelperService
 
-    def index = {}
+    def index = {
+      redirect action:list
+    }
 
     def list = {
         params.offset = params.offset ? params.offset.toInteger(): 0
@@ -39,7 +41,7 @@ class ActivityController {
     }
 
     def show = {
-        def activity = Activity.findById(params.id)
+        def activity = Activity.get(params.id)
 
         if (!activity) {
           flash.message = message(code:"activity.notFound", args:[params.id])
@@ -85,7 +87,7 @@ class ActivityController {
         }
         else {
           flash.message = message(code:"activity.notCreated", args:[params.title])
-          redirect action:'create', params:params
+          render view:'create', model:[activityInstance:activityInstance]
         }
     }
 

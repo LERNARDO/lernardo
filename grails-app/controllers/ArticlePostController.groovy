@@ -62,7 +62,7 @@ class ArticlePostController {
       redirect action: "index", params: [name: entityHelperService.loggedIn.name]
     }
     else {
-      redirect action: "index", params: [name: entityHelperService.loggedIn.name]
+      render view:"create", model:[postInstance:postInstance]
     }
   }
 

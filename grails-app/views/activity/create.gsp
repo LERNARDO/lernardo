@@ -13,7 +13,7 @@
               </div>
             </g:hasErrors>
             <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.name}</g:link></p>
-            <g:form action="save" method="post" id="${activityInstance.id}" params="[template:template.name]">
+            <g:form method="post" id="${activityInstance.id}" params="[template:template.name]">
                     <table id="msg-composer">
                         <tbody>
 
@@ -87,7 +87,7 @@
                     </table>
 
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="save" value="Anlegen" /></span>
+                        <span class="button"><g:submitButton name="saveButton" action="save" value="Anlegen" /></span>
                         <span class="nav-button"><g:link controller="template" action="list">Abbrechen</g:link></span>
                     </div>
             </g:form>

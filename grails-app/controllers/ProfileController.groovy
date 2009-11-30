@@ -260,13 +260,19 @@ class ProfileController {
     }
 
     def showArticleList = {
+      params.offset = params.offset ? params.offset.toInteger(): 0
+      params.max = params.max ? params.max.toInteger(): 10
+
       Entity e = Entity.findByName(params.name)
-      return [entity:e,'articleList':ArticlePost.findAllByAuthor(e)]
+      return [entity:e,'articleList':ArticlePost.findAllByAuthor(e,params),'articleCount':ArticlePost.countByAuthor(e)]
     }
 
     def showActivityList = {
+      params.offset = params.offset ? params.offset.toInteger(): 0
+      params.max = params.max ? params.max.toInteger(): 10
+
       Entity e = Entity.findByName(params.name)
-      return [entity:e,'activityList':Activity.findAllByOwner(e)]
+      return [entity:e,'activityList':Activity.findAllByOwner(e,params),'activityCount':Activity.countByOwner(e)]
     }
 
     def showLeistung = {

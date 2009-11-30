@@ -6,7 +6,6 @@ class ArticlePost extends Post {
   String teaser
 
     static constraints = {
-      title(nullable:true)
       teaser(nullable:true,maxSize:1000)
     }
 }

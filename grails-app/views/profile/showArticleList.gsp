@@ -11,7 +11,7 @@
     <p>Keine Aktivitäten gefunden</p>
   </g:if>
   <g:else>
-    <p>${articleList.size()} Artikel gefunden</p>
+    <p>${articleCount} Artikel gefunden</p>
     <table>
       <thead>
       <tr>
@@ -33,7 +33,7 @@
   </g:else>
 
   <div class="paginateButtons">
-    <g:paginate action="list" total="${articleList.size()}"/>
+    <g:paginate action="showArticleList" total="${articleCount}" params="[name:entity.name]"/>
   </div>
 
 </div>

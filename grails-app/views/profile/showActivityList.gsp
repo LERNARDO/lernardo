@@ -11,7 +11,7 @@
     <p>Keine Aktivitäten gefunden</p>
   </g:if>
   <g:else>
-    <p>${activityList.size()} Aktivitäten gefunden</p>
+    <p>${activityCount} Aktivitäten gefunden</p>
     <table id="profile-list">
       <thead>
       <tr>
@@ -33,7 +33,7 @@
   </g:else>
 
   <div class="paginateButtons">
-    <g:paginate action="list" total="${activityList.size()}"/>
+    <g:paginate action="showActivityList" total="${activityCount}" params="[name:entity.name]"/>
   </div>
 
 </div>
