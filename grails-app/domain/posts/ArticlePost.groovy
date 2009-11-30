@@ -1,5 +1,7 @@
 package posts
 
+import lernardo.Post
+
 class ArticlePost extends Post {
 
   String title

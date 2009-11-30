@@ -6,6 +6,8 @@ import profiles.FacProfile
 import de.uenterprise.ep.Account
 import profiles.UserProfile
 import posts.ArticlePost
+import lernardo.Event
+import lernardo.Activity
 
 class ProfileController {
     def geoCoderService
@@ -474,7 +476,7 @@ class ProfileController {
                def version = params.version.toLong()
                if(entityInstance.version > version) {
 
-                   msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Msg while you were editing.")
+                   msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this lernardo.Msg while you were editing.")
 
                    render view:'edit', model:[entityInstance:entityInstance]
                    return

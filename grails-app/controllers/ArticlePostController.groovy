@@ -1,5 +1,4 @@
 import posts.ArticlePost
-import de.uenterprise.ep.Entity
 
 class ArticlePostController {
   def entityHelperService
@@ -73,7 +72,7 @@ class ArticlePostController {
         def version = params.version.toLong()
         if (postInstance.version > version) {
 
-          postInstance.errors.rejectValue("version", "post.optimistic.locking.failure", "Another user has updated this Post while you were editing.")
+          postInstance.errors.rejectValue("version", "post.optimistic.locking.failure", "Another user has updated this lernardo.Post while you were editing.")
 
           redirect action: 'index'
           return

@@ -1,4 +1,5 @@
 import de.uenterprise.ep.Entity
+import lernardo.Msg
 
 class FilterService {
   def entityHelperService

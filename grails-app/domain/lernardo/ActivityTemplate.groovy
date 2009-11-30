@@ -1,3 +1,4 @@
+package lernardo
 class ActivityTemplate {
 
   String name

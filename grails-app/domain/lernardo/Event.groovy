@@ -1,3 +1,5 @@
+package lernardo
+
 import de.uenterprise.ep.Entity
 
 class Event {

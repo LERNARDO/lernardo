@@ -13,7 +13,7 @@
               </div>
             </g:hasErrors>
             <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.name}</g:link></p>
-            <g:form method="post" id="${activityInstance.id}" params="[template:template.name]">
+            <g:form method="post" action="save" id="${activityInstance.id}" params="[template:template.name]">
                     <table id="msg-composer">
                         <tbody>
 
@@ -57,7 +57,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'facility','errors')}">
-                                    <g:select id="facility" name="facility" from="${hortList}" optionValue="name"/>
+                                    <g:select id="facility" name="facility.id" from="${hortList}" optionKey="id" optionValue="name" value="${activityInstance?.facility?.id}"/>
                                 </td>
                             </tr>
 
@@ -68,7 +68,11 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'paeds','errors')}">
-                                    -
+                                  <g:select multiple="true" optionKey="id" optionValue="name"
+                                          from="${availPaeds}"
+                                          name="paeds"
+                                          value="${activityInstance?.paeds?.collect{it.id}}" ></g:select>
+
                                 </td>
                             </tr>
 
@@ -79,7 +83,10 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'clients','errors')}">
-                                    -
+                                  <g:select multiple="true" optionKey="id" optionValue="name"
+                                          from="${availClients}"
+                                          name="clients"
+                                          value="${activityInstance?.clients?.collect{it.id}}" ></g:select>
                                 </td>
                             </tr>
 
@@ -87,7 +94,7 @@
                     </table>
 
                     <div class="buttons">
-                        <span class="button"><g:submitButton name="saveButton" action="save" value="Anlegen" /></span>
+                        <span class="button"><g:submitButton name="saveButton" value="Anlegen" /></span>
                         <span class="nav-button"><g:link controller="template" action="list">Abbrechen</g:link></span>
                     </div>
             </g:form>

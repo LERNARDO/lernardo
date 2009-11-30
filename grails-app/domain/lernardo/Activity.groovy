@@ -1,7 +1,8 @@
+package lernardo
+
 import de.uenterprise.ep.Entity
 
 class Activity {
-
   static hasMany = [paeds:Entity,clients:Entity]
   static belongsTo = [owner:Entity]
   String title
@@ -17,6 +18,7 @@ class Activity {
     static constraints = {
       facility(nullable:true)
       template(nullable:true)
+      attribution (nullable:true) ;
       paeds(nullable:true)
       clients(nullable:true)
     }

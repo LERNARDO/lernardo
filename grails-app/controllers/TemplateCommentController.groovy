@@ -1,4 +1,5 @@
 import posts.TemplateComment
+import lernardo.ActivityTemplate
 
 class TemplateCommentController {
   def entityHelperService

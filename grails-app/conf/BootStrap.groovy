@@ -6,6 +6,9 @@ import profiles.FacProfile
 import posts.ArticlePost
 import posts.TemplateComment
 import profiles.OrgProfile
+import lernardo.ActivityTemplate
+import lernardo.Activity
+import lernardo.Event
 
 class BootStrap {
   def defaultObjectService

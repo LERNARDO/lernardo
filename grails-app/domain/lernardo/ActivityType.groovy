@@ -1,3 +1,4 @@
+package lernardo
 // not used yet
 
 class ActivityType {

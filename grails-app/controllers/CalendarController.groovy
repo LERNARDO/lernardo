@@ -1,7 +1,8 @@
 import org.joda.time.DateTime
-import org.joda.time.DateMidnight
+
 import grails.converters.JSON
 import de.uenterprise.ep.Entity
+import lernardo.Activity
 
 class CalendarController {
   def entityHelperService

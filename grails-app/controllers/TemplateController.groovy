@@ -1,6 +1,6 @@
-import de.uenterprise.ep.Account
 import posts.TemplateComment
-import de.uenterprise.ep.Entity
+
+import lernardo.ActivityTemplate
 
 class TemplateController {
   def entityHelperService

@@ -1,4 +1,5 @@
 import de.uenterprise.ep.Entity
+import lernardo.Msg
 
 class MsgController {
   def entityHelperService
@@ -75,7 +76,7 @@ class MsgController {
                 def version = params.version.toLong()
                 if(msgInstance.version > version) {
 
-                    msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Msg while you were editing.")
+                    msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this lernardo.Msg while you were editing.")
 
                     render view:'edit', model:[msgInstance:msgInstance]
                     return
