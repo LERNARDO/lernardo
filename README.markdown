@@ -13,6 +13,7 @@
 - Netzwerk: 500 bei mpk
 - Typisierung AktivitŠtsvorlagen
 - AktivitŠtsvorlage erstellen: Feld "Qualifikation" auskommentieren
+- GMAPS API Key Config Params (was "Standort anzeigen" not working)
 
 # Allan
 - Tabellen und Listen einheitlicher Stil
@@ -20,6 +21,7 @@
 - Profiltyp zum Namen hinzufŸgen
 - Linkfarben vereinheitlichen
 - template/show kommentare: bildgršsse anpassen -> margins ausrichten
+
 
 # Daniel
 - none
@@ -29,7 +31,6 @@
 
 # Mike
 - assets
-- "Standort anzeigen" not working
 
 # Previous TODOs
 
