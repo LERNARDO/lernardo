@@ -11,6 +11,10 @@ class HelperTagLib {
   def filterService
   static namespace = "app"
 
+  def getProfileType = {attrs ->
+      out << message(code:"entityType."+Entity.findByName(attrs.remove('entityName')).type.name)
+  }
+
   def getQuoteOfTheDay = {
     Date myDate = new Date()
     SimpleDateFormat df = new SimpleDateFormat( "dd" );

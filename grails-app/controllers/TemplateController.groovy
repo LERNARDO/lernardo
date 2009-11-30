@@ -90,6 +90,7 @@ class TemplateController {
       }
 
       def activityInstance = new ActivityTemplate(params)
+      activityInstance.qualifications='keine'
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"template.created", args:[params.name])
           redirect action:'show', id:activityInstance.id

@@ -4,16 +4,10 @@
 - implement "Anwesenheits-/Essensliste"
 - implement "Leistungsfortschritt"
 - implement PDF printing for calendar week view
-- Entitytype Strings in Taglib einbinden (+ i8n)
-- Profildaten Šndern: Fehler 500
 - activity/create: buttons
-- AktivitŠt anlegen: "Titel" und "Dauer" von Vorlage Ÿbernehmen
-- AktivitŠt anlegen: Notwendige Angaben entfernen
-- AktivitŠtslisten: paginieren
-- Netzwerk: 500 bei mpk
-- Typisierung AktivitŠtsvorlagen
-- AktivitŠtsvorlage erstellen: Feld "Qualifikation" auskommentieren
+- implement ActivityType
 - GMAPS API Key Config Params (was "Standort anzeigen" not working)
+- Netzwerk: 500 bei mpk
 
 # Allan
 - Tabellen und Listen einheitlicher Stil
@@ -22,6 +16,7 @@
 - Linkfarben vereinheitlichen
 - template/show kommentare: bildgršsse anpassen -> margins ausrichten
 
+zeitliche roadmap bis juni, 2-3 milestones
 
 # Daniel
 - none
@@ -38,6 +33,5 @@
 - Paedagogen sollen Kalender nutzen können und Wochenplan ausdrucken können
 - aggregate events down in profile hierarchy (einrichtung -> paedagogen -> betreute -> eltern)
 - implement "bild des tages"
-- JLZ: make calendar functional for paeds so they can use it within a week
 - style PDF with CSS properly
 - style -Leistungsfortschritt- view properly

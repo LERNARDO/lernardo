@@ -461,6 +461,7 @@ class ProfileController {
     }
 
     def update = {
+      println params
        def entityInstance = Entity.get( params.id )
        if(entityInstance) {
            if(params.version) {
@@ -479,7 +480,8 @@ class ProfileController {
            entityInstance.profile.fullName = params.fullName
            if (params.birthDate)
              entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
-           entityInstance.profile.PLZ = params.PLZ.toInteger()
+           if (params.PLZ)
+             entityInstance.profile.PLZ = params.PLZ.toInteger()
            entityInstance.profile.city = params.city
            entityInstance.profile.street = params.street
            entityInstance.profile.tel = params.tel

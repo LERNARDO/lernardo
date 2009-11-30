@@ -94,7 +94,7 @@
                                 </td>
                             </tr>
 
-                        <tr class="prop">
+                        %{--<tr class="prop">
                             <td valign="top" class="name">
                                 <label for="qualifications">
                                   <g:message code="msg.qualifications.label" default="Qualifikationen" />:
@@ -103,7 +103,8 @@
                             <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'qualifications','errors')}">
                                 <g:select id="qualifications" name="qualifications" from="${['keine']}" value="${templateInstance.qualifications}"/>
                             </td>
-                        </tr>
+                        </tr>--}%
+
                         </table>
 
                         <p class="bold">Gewichtungen</p>

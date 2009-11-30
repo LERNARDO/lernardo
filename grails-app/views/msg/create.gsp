@@ -55,7 +55,7 @@
                               <td>
                                 <div class="buttons">             
                                     <span class="button"><g:actionSubmit class="save" action="save" value="Senden" /></span>
-                                    <span class="nav-button"><g:link controller="profile" action="show" params="[name:entity.name]">Abbrechen</g:link></span>
+                                    <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
                                 </div>
                               </td>
                             </tr>                  

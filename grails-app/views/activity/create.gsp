@@ -14,7 +14,6 @@
             </g:hasErrors>
             <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.name}</g:link></p>
             <g:form action="save" method="post" id="${activityInstance.id}" params="[template:template.name]">
-                    <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>
 
@@ -47,7 +46,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'duration','errors')}">
-                                    <input type="text" size="50" id="duration" name="duration" value="${fieldValue(bean:activityInstance,field:'duration')}"/>
+                                    <input type="text" size="50" id="duration" name="duration" value="${fieldValue(bean:activityInstance,field:'duration')}"/> (min)
                                 </td>
                             </tr>
 
@@ -62,6 +61,27 @@
                                 </td>
                             </tr>
 
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="paeds">
+                                      <g:message code="msg.paeds.label" default="Pädagogen" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'paeds','errors')}">
+                                    -
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="clients">
+                                      <g:message code="msg.clients.label" default="Betreute" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'clients','errors')}">
+                                    -
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>

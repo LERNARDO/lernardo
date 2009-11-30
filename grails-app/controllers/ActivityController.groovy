@@ -12,10 +12,12 @@ class ActivityController {
         params.max = params.max ? params.max.toInteger(): 10
         params.myDate_year = params.myDate_year ?: 'alle'
 
-        if (params.list == 'Alle')
-          return ['activityList': Activity.list(),
+        if (params.myDate_year == 'alle' || params.list == 'Alle') {
+          return ['activityList': Activity.list(params),
                   'activityCount': Activity.count(),
                   'entity':entityHelperService.loggedIn]
+        }
+
 
         if(params.myDate_year && params.myDate_month && params.myDate_day){
           def c = Activity.createCriteria()
@@ -31,7 +33,7 @@ class ActivityController {
                 'dateSelected': inputDate,
                 'entity':entityHelperService.loggedIn]
         }
-        return ['activityList': Activity.list(),
+        return ['activityList': Activity.list(params),
                 'activityCount': Activity.count(),
                 'entity':entityHelperService.loggedIn]
     }
@@ -50,8 +52,12 @@ class ActivityController {
     def create = {
       def activityInstance = new Activity()
       activityInstance.properties = params
+
+      def template = ActivityTemplate.get(params.id)
+      activityInstance.title = template.name
+      activityInstance.duration = template.duration
       return ['activityInstance':activityInstance,
-              'template':ActivityTemplate.get(params.id),
+              'template':template,
               'hortList':Entity.findAllByType(EntityType.findByName('Hort')),
               'entity':entityHelperService.loggedIn]
     }
