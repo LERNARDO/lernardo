@@ -4,6 +4,7 @@ import de.uenterprise.ep.EntityType
 
 class ActivityController {
   def entityHelperService
+  def metaDataService
 
     def index = {
       redirect action:list
@@ -66,28 +67,23 @@ class ActivityController {
 
     def save = {
 
-      Activity a = Activity.findByTitle (params.title)
-      if (a) {
-        flash.message = message(code:"activity.exists", args:[params.title])
-        redirect action:"create", params:params
-        return
-      }
-
-      def activityInstance = new Activity(params)
+      def activityInstance = new Activity()
+      activityInstance.title = params.title
       activityInstance.owner = entityHelperService.loggedIn
       activityInstance.date = new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day))
       activityInstance.duration = Integer.parseInt(params.duration)
       activityInstance.paeds = []                                         // test placeholder
       activityInstance.clients = []                                       // test placeholder
-      activityInstance.facility = Entity.findByName('kaumberg')           // test placeholder
+      activityInstance.facility = Entity.findByName(params.facility)
       activityInstance.template = params.template
-        if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
+      activityInstance.attribution = ActivityTemplate.findByName(params.template).attribution
+        if(activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
           redirect action:'show', id:activityInstance.id
         }
         else {
           flash.message = message(code:"activity.notCreated", args:[params.title])
-          render view:'create', model:[activityInstance:activityInstance]
+          render view:'create', model:[activityInstance:activityInstance,template:ActivityTemplate.findByName(params.template)]
         }
     }
 
