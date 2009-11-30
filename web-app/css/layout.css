@@ -646,6 +646,24 @@ table#msg-composer td {
   width: 100%;
 }
 
+.show-msg td.msg-title {
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.show-msg td.msg-name {
+  padding: 5px 0px;
+}
+
+.show-msg td.msg-content {
+  border-top: 1px solid #999999;
+  width: 645px;
+  height: 100px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
 #inbox-message-overview.message-rows tr td {
   border-bottom: 1px solid #eeeeee;
   padding: 5px 5px;
@@ -693,6 +711,10 @@ table#msg-composer td {
 .message-rows .msg-unread {
   background-color: #d5dce0;
   /*width: 630px;*/
+}
+
+.message-rows .msg-unread .subject{
+  font-weight: bold;
 }
 
 .message-rows .subject {
@@ -784,6 +806,21 @@ table#msg-composer td {
 
 .nav-button a:hover {
     text-decoration: none;
+}
+
+.buttons .button a {
+  color: #000000;
+  text-decoration: none;
+  font-size:12px;
+  border:1px solid #999999;
+  background-color: #f0f0f0;
+  padding:3px 5px;
+  cursor: pointer;
+}
+
+.buttons .button a:hover {
+  color: #000000;
+  border:1px solid #000000;
 }
 
 /* ----- COMMENTS -----  */
