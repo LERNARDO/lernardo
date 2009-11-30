@@ -81,7 +81,10 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = "Wozu brauch ma des?"
       prf.gender = 1
+      prf.PLZ = 1000
       prf.city = "Wien"
+      prf.street ="sss"
+      prf.tel = "1234"
     }
 
     entityHelperService.createEntityWithUserAndProfile("johannes", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->

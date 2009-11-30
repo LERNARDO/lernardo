@@ -27,7 +27,7 @@
          </div>
          <div class="member-info">
            <div class="member-name"><g:link controller="profile" action="showProfile" params="[name:entity.name]">${entity.profile.fullName}</g:link></div>
-           <div class="member-uni">${entity.type.name}</div>
+           <div class="member-uni"><app:getProfileType entityName="${entity.name}"/></div>
          </div>
          <div class="clear"></div>
        </div>
