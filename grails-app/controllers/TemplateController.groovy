@@ -96,4 +96,23 @@ class TemplateController {
           redirect action:'show', id:activityInstance.id
         }
     }
+
+    def del = {
+        def templateInstance = ActivityTemplate.get( params.id )
+        if(templateInstance) {
+            try {
+                flash.message = message(code:"template.deleted", args:[templateInstance.name])
+                templateInstance.delete(flush:true)
+                redirect(action:"list")
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException ex) {
+                flash.message = message(code:"template.notDeleted", args:[templateInstance.name])
+                redirect(action:"show",id:params.id)
+            }
+        }
+        else {
+            flash.message = message(code:"template.notFound", args:[params.id])
+            redirect(action:"list")
+        }
+    }
 }

@@ -40,7 +40,12 @@
       </div>
 
       <g:if test="${entity.type.name == 'Paed'}">
-        <g:link action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
+        <div id="newActivity">
+          <g:link action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
+        </div>
+        <div id="newActivity">
+          <g:link action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
+        </div>
       </g:if>
 
       <div id="newActivity">
