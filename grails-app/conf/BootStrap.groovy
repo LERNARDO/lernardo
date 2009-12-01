@@ -684,7 +684,7 @@ class BootStrap {
     void createDefaultActivities() {
       log.debug ("==> creating default activities")
 
-      for (int i=1;i<31;i++) {
+      /*for (int i=1;i<31;i++) {
          new Activity(title:'Ankunft',
                       owner:Entity.findByName('martin'),
                       date: new Date(2009-1900,11,i,11,00),
@@ -732,7 +732,7 @@ class BootStrap {
                       clients:[],
                       facility:Entity.findByName('kaumberg'),
                       template:'',
-                      attribution:'Ankunft').save()}
+                      attribution:'Ankunft').save()}*/
 
       new Activity(title:'Weide mit Hindernissen',
             owner:Entity.findByName('hannah'),
