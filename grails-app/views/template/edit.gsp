@@ -32,7 +32,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik']}" value="${templateInstance.attribution}"/>
+                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald']}" value="${template.attribution}"/>
                                 </td>
                             </tr>
 
@@ -68,7 +68,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="duration" name="duration" value="${template.duration}"/>
+                                    <input type="text" size="40" id="duration" name="duration" value="${template.duration}"/> (in Minuten)
                                 </td>
                             </tr>
 
@@ -79,7 +79,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="socialForm" name="socialForm" value="${fieldValue(bean:template,field:'socialForm')}"/>
+                                    <g:select id="socialForm" name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${template.socialForm}"/>
                                 </td>
                             </tr>
 
@@ -90,11 +90,11 @@
                                 </label>
                             </td>
                             <td valign="top" class="value">
-                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.requiredPaeds}"/>
+                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.requiredPaeds}"/> (Anzahl der Pädagogen)
                             </td>
                         </tr>
 
-                            <tr class="prop">
+                            %{--<tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="qualifications">
                                       <g:message code="template.qualifications.label" default="Qualifikationen" />:
@@ -103,7 +103,7 @@
                                 <td valign="top" class="value">
                                     <g:select id="qualifications" name="qualifications" from="${['keine']}" value="${template.qualifications}"/>
                                 </td>
-                            </tr>
+                            </tr>--}%
 
                             <tr class="prop">
                                 <td valign="top" class="name">

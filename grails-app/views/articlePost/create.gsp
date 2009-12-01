@@ -15,7 +15,7 @@
       </div>
     </div>
   </g:hasErrors>
-  <g:form method="post" id="${postInstance.id}">
+  <g:form name="save" action="save" method="post" id="${postInstance.id}">
     <table id="msg-composer">
       <tbody>
 
@@ -59,8 +59,7 @@
         <td>&nbsp;</td>
         <td>
           <div class="buttons">
-            <span class="button"><g:submitButton name="saveButton" action="save" value="Hinzufügen" />
-              %{--<g:actionSubmit class="save" action="save" value="Hinzufügen"/>--}%</span>
+            <span class="button"><g:submitButton name="save" action="save" value="Hinzufügen" /></span>
             <g:link action="index">zurück</g:link>
           </div>
         </td>
