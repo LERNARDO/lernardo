@@ -219,7 +219,7 @@ class BootStrap {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
 
-    entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+/*    entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
@@ -233,7 +233,7 @@ class BootStrap {
       prf.gender = 1
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
-    }
+    }*/
   }
 
   void createDefaultOperators() {
