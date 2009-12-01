@@ -8,6 +8,7 @@ import profiles.UserProfile
 import posts.ArticlePost
 import lernardo.Event
 import lernardo.Activity
+import lernardo.Msg
 
 class ProfileController {
     def geoCoderService
@@ -16,12 +17,42 @@ class ProfileController {
     def metaDataService
     def FilterService
     def authenticateService
+    def sessionFactory
 
     def index = { }
 
     def geocode = {
         def result = geoCoderService.geocodeLocation(params.name)
         render result as JSON
+    }
+
+    def del = {
+      Entity e = Entity.findByName(params.name)
+      if (!e) {
+        flash.message = message(code:"user.notFound", args:[params.name])
+        response.sendError (404, "no such entity")
+        return ;
+      }
+
+      log.info "delete all content of user $e.name"
+        Msg.findAllByEntity(e)?.each { it.delete() }
+        Msg.findAllBySender(e)?.each { it.delete() }
+        Msg.findAllByReceiver(e)?.each { it.delete() }
+        ArticlePost.findAllByAuthor(e)?.each { it.delete() }
+
+
+      log.info "remove all links"
+        Link.findAllBySource(e)?.each { it.delete() }
+        Link.findAllByTarget(e)?.each { it.delete() }
+
+      sessionFactory.currentSession.flush()
+
+      log.info "attempt to delete user $e.name"
+
+      flash.message = message(code:"user.deleted", args:[e.profile.fullName])
+      e.delete (flush:true)
+      
+      redirect(action:'list')
     }
 
     def create = { }

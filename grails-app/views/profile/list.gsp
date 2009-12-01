@@ -22,6 +22,7 @@
         <g:sortableColumn property="name" title="Name" />
         <g:sortableColumn property="type" title="Typ" />
         <g:sortableColumn property="role" title="Rechte" />
+        <th>Aktionen</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
             <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
             <td class="col">${entity.type.name}</td>
             <td class="col">${entity.user.authorities.authority}</td>
+            <td class="col"><g:link controller="profile" action="del" params="[name:entity.name]">Löschen</g:link></td>
           </tr>
         </g:each>
         </tbody>
