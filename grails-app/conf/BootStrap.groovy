@@ -9,6 +9,8 @@ import profiles.OrgProfile
 import lernardo.ActivityTemplate
 import lernardo.Activity
 import lernardo.Event
+import grails.util.GrailsUtil
+import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class BootStrap {
   def defaultObjectService
@@ -27,7 +29,10 @@ class BootStrap {
       createDefaultFacilities()
       createDefaultLinks()
       createDefaultActivityTemplates()
-      createDefaultActivities()
+
+      if (GrailsUtil.environment == GrailsApplication.ENV_DEVELOPMENT)
+        createDefaultActivities()
+      
       createDefaultPosts()
       createDefaultEvents()
     }
