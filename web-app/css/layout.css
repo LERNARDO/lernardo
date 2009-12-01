@@ -59,6 +59,9 @@ body {
 .strong {
     font-weight: bold; }
 
+.gray {
+    color: #666; }
+
 /* ----- NAVIGATION -----*/
 
 #nav {
@@ -931,32 +934,26 @@ table#msg-composer td {
 
 #errors {
     color: #f44;
-    margin-bottom: 15px;
-}
+    margin-bottom: 15px; }
+    #errors ul li {
+        list-style-type: disc; }
 
 .errors input, .errors textarea {
-  border:1px solid #ff6b22;
-}
-
-#errors ul li {
-    list-style-type: disc;
-}
+    border:1px solid #ff6b22; }
 
 #flash-msg {  
-  padding: 10px 10px;
-  text-align: center;
-  color: #606060;
-  margin: 0 10px 10px;
-  border: 1px solid #ffc7ab;
-  background-color:#fff4f3;
-  -moz-border-radius: 3px;
-}
+    padding: 10px;
+    text-align: center;
+    color: #606060;
+    margin: 10px 10px;
+    border: 1px solid #ffc7ab;
+    background-color:#fff4f3;
+    -moz-border-radius: 3px; }
 
 .info-msg {
-  background-color:#efefef;
-  border-color:#cccccc;
-  border-style:solid;
-  border-width:1px;
-  padding:5px 10px;
-  color: #606060;
-}
+    background-color:#efefef;
+    border-color:#cccccc;
+    border-style:solid;
+    border-width:1px;
+    padding:5px 10px;
+    color: #606060; }

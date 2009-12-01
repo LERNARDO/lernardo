@@ -56,7 +56,7 @@ class ArticlePostController {
   def save = {
     def postInstance = new ArticlePost(params)
     postInstance.author = entityHelperService.loggedIn
-    if (postInstance.save()) {
+    if (!postInstance.hasErrors() && postInstance.save()) {
       flash.message = message(code: "article.created", args: [postInstance.title])
       redirect action: "index", params: [name: entityHelperService.loggedIn.name]
     }

@@ -104,12 +104,13 @@
                                 <g:select id="qualifications" name="qualifications" from="${['keine']}" value="${templateInstance.qualifications}"/>
                             </td>
                         </tr>--}%
-
+                        </tbody>
                         </table>
 
                         <p class="bold">Gewichtungen</p>
 
                           <table>
+                          <tbody>
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="ll">

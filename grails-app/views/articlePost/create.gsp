@@ -15,7 +15,7 @@
       </div>
     </div>
   </g:hasErrors>
-  <g:form name="save" action="save" method="post" id="${postInstance.id}">
+  <g:form action="save" method="post" id="${postInstance.id}">
     <table id="msg-composer">
       <tbody>
 
@@ -38,6 +38,7 @@
         </td>
         <td valign="top" class="value ${hasErrors(bean: postInstance, field: 'teaser', 'errors')}">
           <textarea rows="5" cols="100" id="teaser" name="teaser">${fieldValue(bean: postInstance, field: 'teaser')}</textarea>
+          <br/><span class="gray">(der Teaser ist optional und muss nicht ausgefüllt werden)</span>
         </td>
       </tr>
       <tr>
@@ -60,7 +61,7 @@
         <td>
           <div class="buttons">
             <span class="button"><g:submitButton name="save" action="save" value="Hinzufügen" /></span>
-            <g:link action="index">zurück</g:link>
+            <span class="nav-button"><g:link action="index">zurück</g:link></span>
           </div>
         </td>
       </tr>
