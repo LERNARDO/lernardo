@@ -40,6 +40,12 @@ To change this template use File | Settings | File Templates.
         </td>
         </tr>
       </table>
+
+      <g:if test="${entity.type.name == 'Paed'}">
+        <div id="newActivity">
+          <g:link action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
+        </div>
+      </g:if>
     </div>
   </div>
   </body>

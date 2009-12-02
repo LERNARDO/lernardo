@@ -8,7 +8,7 @@ class TemplateCommentController {
     def postInstance = TemplateComment.get(params.id)
     if (postInstance) {
       try {
-        flash.message = message(code: "comment.deleted", args: [postInstance.id])
+        flash.message = message(code: "comment.deleted")
         postInstance.delete(flush: true)
         redirect(controller: "template", action: "show", params: [id: params.template])
       }
@@ -33,9 +33,8 @@ class TemplateCommentController {
     def postInstance = new TemplateComment(params)
     postInstance.author = entityHelperService.loggedIn
     postInstance.template = ActivityTemplate.get(params.id)
-    //def name = postInstance.name
     if (postInstance.save(flush: true)) {
-      //flash.message = message(code:"event.created", args:[name])
+      flash.message = message(code:"comment.created", args:[postInstance.template.name])
       redirect controller: "template", action: "show", id: params.id
     }
     else {

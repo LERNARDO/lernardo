@@ -21,7 +21,7 @@
     </table>
   </div>
   <div class="buttons">
-    <span class="button"><input class="save" type="submit" value="Fertig"/></span>
-    <span class="button"><a href="#" onclick="jQuery('#createComment').hide(); return false;">Abbrechen</a></span>
+    <span class="button"><g:submitButton action="save" name="save" value="Fertig"/></span>
+    <span class="nav-button"><a href="#" onclick="jQuery('#createComment').hide(); return false;">Abbrechen</a></span>
   </div>
 </g:form>

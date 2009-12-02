@@ -92,4 +92,49 @@ class ActivityController {
     def cancel = {
         redirect (controller:"template", action:"list")
     }
+
+    def edit = {
+        def activityInstance = Activity.get( params.id )
+
+        if(!activityInstance) {
+            flash.message = message(code:"activity.notFound", args:[params.id])
+            redirect action:'list'
+        }
+        else {
+            return ['activityInstance': activityInstance,
+                    'hortList':Entity.findAllByType(EntityType.findByName('Hort')),
+                     availPaeds:Entity.findAllByType(metaDataService.etPaed),
+                     availClients:Entity.findAllByType(metaDataService.etClient),
+                    'entity':entityHelperService.loggedIn ]
+        }
+    }
+
+    def update = {
+        def activityInstance = Activity.get( params.id )
+        if(activityInstance) {
+            if(params.version) {
+                def version = params.version.toLong()
+                if(activityInstance.version > version) {
+
+                    activityInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Template while you were editing.")
+
+                    render view:'edit', model:[activityInstance:activityInstance]
+                    return
+                }
+            }
+            activityInstance.properties = params
+            if(!activityInstance.hasErrors() && activityInstance.save()) {
+                flash.message = message(code:"activity.updated", args:[activityInstance.title])
+
+                redirect action:'show', id:activityInstance.id
+            }
+            else {
+                render view:'edit', model:[activityInstance:activityInstance]
+            }
+        }
+        else {
+            flash.message = message(code:"activity.notFound", args:[activityInstance.id])
+            redirect action:'edit', params:params
+        }
+    }
 }

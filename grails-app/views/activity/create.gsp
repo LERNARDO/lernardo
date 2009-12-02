@@ -24,7 +24,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'title','errors')}">
-                                    <input type="text" size="50" id="title" name="title" value="${fieldValue(bean:activityInstance,field:'title')}"/>
+                                    <input type="text" size="40" id="title" name="title" value="${fieldValue(bean:activityInstance,field:'title')}"/>
                                 </td>
                             </tr>
 
@@ -46,7 +46,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:activityInstance,field:'duration','errors')}">
-                                    <input type="text" size="50" id="duration" name="duration" value="${fieldValue(bean:activityInstance,field:'duration')}"/> (min)
+                                    <input type="text" size="10" id="duration" name="duration" value="${fieldValue(bean:activityInstance,field:'duration')}"/> (min)
                                 </td>
                             </tr>
 
@@ -72,7 +72,7 @@
                                           from="${availPaeds}"
                                           name="paeds"
                                           value="${activityInstance?.paeds?.collect{it.id}}" ></g:select>
-
+                                  <br/><span class="gray">Es können mehrere Pädagogen mit STRG ausgewählt werden</span>
                                 </td>
                             </tr>
 
@@ -87,6 +87,7 @@
                                           from="${availClients}"
                                           name="clients"
                                           value="${activityInstance?.clients?.collect{it.id}}" ></g:select>
+                                  <br/><span class="gray">Es können mehrere Betreute mit STRG ausgewählt werden</span>
                                 </td>
                             </tr>
 

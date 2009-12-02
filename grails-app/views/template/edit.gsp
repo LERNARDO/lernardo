@@ -1,6 +1,6 @@
   <head>
     <meta name="layout" content="private" />
-    <title>Aktivitätsvorlage anlegen</title>
+    <title>Aktivitätsvorlage bearbeiten</title>
   </head>
   <body>
         <div class="body">
