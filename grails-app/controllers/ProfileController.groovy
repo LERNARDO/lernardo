@@ -151,7 +151,7 @@ class ProfileController {
 
     def createSchool = {
       def entityInstance = new Entity()
-      entityInstance.properties = params
+      //entityInstance.properties = params
       return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
     }
 
@@ -174,11 +174,8 @@ class ProfileController {
 
       entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
         FacProfile prf = ent.profile
-        prf.city = params.city ?: ""
-        prf.opened = "-"
-        prf.description = "-"
-        prf.tel = "-"
-        ent.user.password = authenticateService.encodePassword("pass")
+        if (params.pass)
+            ent.user.password = authenticateService.encodePassword(params.pass)
       }
 
       flash.message = message(code:"user.created", args:[params.name,params.entity])

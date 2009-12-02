@@ -12,7 +12,7 @@
                 <g:renderErrors bean="${entityInstance}" as="list" />
               </div>
             </g:hasErrors>
-            <g:form action="save" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
+            <g:form action="saveSchool" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
                     <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>
@@ -23,7 +23,7 @@
                                       <g:message code="msg.fullName.label" default="Name" />:
                                     </label>
                                 </td>
-                                <td valign="top" class="value">
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'fullName','errors')}">
                                     <input type="text" size="50" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
                                 </td>
                             </tr>
@@ -35,7 +35,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'name','errors')}">
-                                    <input type="text" size="50" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/>
+                                    <input type="text" size="10" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/>
                                 </td>
                             </tr>
 
@@ -46,7 +46,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'email','errors')}">
-                                    <input type="text" size="50" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
+                                    <input type="text" size="30" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
                                 </td>
                             </tr>
                         </tbody>
@@ -56,7 +56,19 @@
 
                     <table id="msg-composer">
                       <tbody>
-                              <tr class="prop">
+
+                      <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="PLZ">
+                                      <g:message code="msg.PLZ.label" default="PLZ" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'PLZ','errors')}">
+                                    <input type="text" size="5" id="PLZ" name="PLZ" value="${fieldValue(bean:entityInstance, field:'profile.PLZ')}"/>
+                                </td>
+                            </tr>
+
+                            <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="city">
                                       <g:message code="msg.city.label" default="Stadt" />:
@@ -66,10 +78,58 @@
                                     <input type="text" size="50" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
                                 </td>
                             </tr>
+
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="street">
+                                      <g:message code="msg.street.label" default="Straße" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'street','errors')}">
+                                    <input type="text" size="40" id="street" name="street" value="${fieldValue(bean:entityInstance, field:'profile.street')}"/>
+                                </td>
+                            </tr>
+
+                              <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="tel">
+                                      <g:message code="msg.tel.label" default="Telefon" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'tel','errors')}">
+                                    <input type="text" size="20" id="tel" name="tel" value="${fieldValue(bean:entityInstance, field:'profile.tel')}"/>
+                                </td>
+                            </tr>
+
+                              <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="description">
+                                      <g:message code="msg.description.label" default="Beschreibung" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'description','errors')}">
+                                    <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+                                    <fckeditor:editor name="description" id="description" width="500px" height="400" toolbar="Post" fileBrowser="default">
+                                      ${entityInstance?.profile?.description}
+                                    </fckeditor:editor>
+                                </td>
+                            </tr>
+
+                              <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="pass">
+                                      <g:message code="msg.pass.label" default="Passwort" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'pass','errors')}">
+                                    <input type="text" size="20" id="pass" name="pass" value="${fieldValue(bean:entityInstance, field:'user.password')}"/>
+                                </td>
+                            </tr>
+                      
                         </tbody>
                     </table>
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="saveSchool" value="Anlegen" /></span>
+                        <span class="button"><g:submitButton name="save" action="saveSchool" value="Anlegen" /></span>
                         <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
                     </div>
             </g:form>

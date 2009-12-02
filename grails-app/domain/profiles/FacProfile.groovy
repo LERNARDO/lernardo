@@ -20,11 +20,11 @@ class FacProfile extends Profile {
     static constraints = {
         fullName(nullable:false)
         PLZ(nullable:true)
-        city(nullable:false)
+        city(nullable:true)
         street(nullable:true)
-        tel(blank:true)
-        description(blank:true,maxSize: 2000)
-        opened(blank:true)
+        tel(nullable:true,blank:true)
+        description(nullable: true,blank:true,maxSize: 2000)
+        opened(nullable:true,blank:true)
         speaker(nullable: true, blank:true)
     }
 }
