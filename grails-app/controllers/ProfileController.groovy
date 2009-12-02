@@ -495,7 +495,6 @@ class ProfileController {
     }
 
     def update = {
-      println params
        def entityInstance = Entity.get( params.id )
        if(entityInstance) {
            if(params.version) {
@@ -526,7 +525,7 @@ class ProfileController {
            if (params.description)
              entityInstance.profile.description = params.description
          if(!entityInstance.hasErrors() && entityInstance.save()) {
-               flash.message = message(code:"user.updated", args:[entityInstance.name])
+               flash.message = message(code:"user.updated", args:[entityInstance.profile.fullName])
 
                redirect action:'showProfile', params:[name:entityInstance.name]
            }

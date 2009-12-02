@@ -46,11 +46,10 @@
         <div id="newActivity">
           <g:link action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
         </div>
+        <div id="newActivity">
+          <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
+        </div>
       </g:if>
-
-      <div id="newActivity">
-        <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
-      </div>
 
       <div id="comments-block">
         <h1>Kommentare</h1>
@@ -83,11 +82,14 @@
           </g:each>
         </g:else>
 
-        <div class="comments-actions">
-          <g:remoteLink class="button" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
-        </div>
-        <div id="createComment">
-        </div>
+        <g:if test="${entity.type.name == 'Paed'}">
+          <div class="comments-actions">
+            <g:remoteLink class="button" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
+          </div>
+          <div id="createComment">
+          </div>
+        </g:if>
+        
       </div>
     </div>
   </body>

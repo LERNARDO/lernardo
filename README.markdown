@@ -12,11 +12,9 @@
 - implement "Anwesenheits-/Essensliste"
 - implement "Leistungsfortschritt"
 - implement PDF printing for calendar week view
-- activity/create: buttons
 - implement ActivityType
 - GMAPS API Key Config Params (was "Standort anzeigen" not working)
 - Netzwerk: 500 bei mpk
-
 
 # Allan
 - Tabellen und Listen einheitlicher Stil
@@ -24,6 +22,7 @@
 - Profiltyp zum Namen hinzufŸgen
 - Linkfarben vereinheitlichen
 - template/show kommentare: bildgršsse anpassen -> margins ausrichten
+- style Posteingang/Postausgang
 
 zeitliche roadmap bis juni, 2-3 milestones
 
@@ -35,6 +34,7 @@ zeitliche roadmap bis juni, 2-3 milestones
 
 # Mike
 - assets
+- "mitgliedersuche" not working on server
 
 # Previous TODOs
 

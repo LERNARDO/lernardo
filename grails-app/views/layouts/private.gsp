@@ -131,7 +131,7 @@
                 </g:if>
                 <li class="profile-calendar"><g:link controller="profile" action="showCalendar" params="[name:entity.name]">Kalender ansehen</g:link></li>
                 <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Hort'}">
-                  <li class="profile-location"><g:link controller="profile" action="showLocation" params="[name:entity.name]">Standort anzeigen</g:link></li>
+                  %{--<li class="profile-location"><g:link controller="profile" action="showLocation" params="[name:entity.name]">Standort anzeigen</g:link></li>--}%
                 </g:if>
                 <g:if test="${entity.type.name == 'Operator'}">
                   <li class="profile-activities"><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
