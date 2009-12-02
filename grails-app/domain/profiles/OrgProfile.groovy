@@ -17,12 +17,12 @@ class OrgProfile extends Profile {
     Entity speaker
 
     static constraints = {
-        fullName(nullable:false)
-        PLZ(nullable:true)
-        city(nullable:false)
-        street(nullable:true)
-        tel(blank:true)
-        description(blank:true,maxSize: 2000)
-        speaker(nullable: true, blank:true)
+        fullName(blank:false)
+        PLZ(nullable: true, blank:true)
+        city(nullable: true, blank:true)
+        street(nullable: true, blank:true)
+        tel(nullable: true, blank:true)
+        description(nullable: true, blank:true,maxSize: 2000)
+        speaker(nullable: true, blank: true)
     }
 }

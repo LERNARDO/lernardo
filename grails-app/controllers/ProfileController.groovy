@@ -9,6 +9,7 @@ import posts.ArticlePost
 import lernardo.Event
 import lernardo.Activity
 import lernardo.Msg
+import profiles.OrgProfile
 
 class ProfileController {
     def geoCoderService
@@ -78,7 +79,7 @@ class ProfileController {
 
     def createOperator = {
       def entityInstance = new Entity()
-      entityInstance.properties = params
+      //entityInstance.properties = params
       return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
     }
 
@@ -99,12 +100,9 @@ class ProfileController {
         }
 
         entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
-          FacProfile prf = ent.profile
-          prf.city = params.city ?: ""
-          prf.opened = "-"
-          prf.description = "-"
-          prf.tel = "-"
-          ent.user.password = authenticateService.encodePassword("pass")
+          OrgProfile prf = ent.profile
+          if (params.pass)
+            ent.user.password = authenticateService.encodePassword(params.pass)
         }
         flash.message = message(code:"user.created", args:[params.name,'Admin'])
         redirect action:'showProfile', params:[name:params.name]
