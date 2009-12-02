@@ -187,7 +187,7 @@ class ProfileController {
 
     def createPaed = {
       def entityInstance = new Entity()
-      entityInstance.properties = params
+      //entityInstance.properties = params
       return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
     }
 
@@ -210,8 +210,8 @@ class ProfileController {
 
       entityHelperService.createEntityWithUserAndProfile (params.name, etPaed, params.email, params.fullName) {Entity ent->
         UserProfile prf = ent.profile
-        prf.city = params.city ?: ""
-        ent.user.password = authenticateService.encodePassword("pass")
+        if (params.pass)
+            ent.user.password = authenticateService.encodePassword(params.pass)
       }
 
       flash.message = message(code:"user.created", args:[params.name,'Admin'])
