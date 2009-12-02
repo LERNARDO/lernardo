@@ -39,7 +39,7 @@ class MsgController {
         }
         else {
             return ['msgInstance': msgInstance,
-                    'entity:Entity'.findByName(params.name)]
+                    'entity':Entity.findByName(params.name)]
         }
     }
 
