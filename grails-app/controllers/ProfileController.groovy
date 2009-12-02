@@ -27,7 +27,7 @@ class ProfileController {
         render result as JSON
     }
 
-    def del = {
+    def disable = {
       Entity e = Entity.findByName(params.name)
       if (!e) {
         flash.message = message(code:"user.notFound", args:[params.name])
@@ -35,23 +35,21 @@ class ProfileController {
         return ;
       }
 
-      log.info "delete all content of user $e.name"
-        Msg.findAllByEntity(e)?.each { it.delete() }
-        Msg.findAllBySender(e)?.each { it.delete() }
-        Msg.findAllByReceiver(e)?.each { it.delete() }
-        ArticlePost.findAllByAuthor(e)?.each { it.delete() }
+      e.user.enabled = false
+      flash.message = message(code:"user.deactivated", args:[e.profile.fullName])
+      redirect action:'list'
+    }
 
-      log.info "remove all links"
-        Link.findAllBySource(e)?.each { it.delete() }
-        Link.findAllByTarget(e)?.each { it.delete() }
+    def enable = {
+      Entity e = Entity.findByName(params.name)
+      if (!e) {
+        flash.message = message(code:"user.notFound", args:[params.name])
+        response.sendError (404, "no such entity")
+        return ;
+      }
 
-      sessionFactory.currentSession.flush()
-
-      log.info "attempt to delete user $e.name"
-
-      flash.message = message(code:"user.deleted", args:[e.profile.fullName])
-      e.delete (flush:true)
-      
+      e.user.enabled = true
+      flash.message = message(code:"user.activated", args:[e.profile.fullName])    
       redirect action:'list'
     }
 
@@ -333,7 +331,7 @@ class ProfileController {
         params.entityType = params.entityType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
-        params.sort = "type"
+        params.sort = params.sort
 
         println params
 

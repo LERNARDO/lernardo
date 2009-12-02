@@ -69,6 +69,16 @@ class HelperTagLib {
       out << body()
   }
 
+  def isEnabled = {attrs, body->
+    if (Entity.findByName(attrs.remove('entityName')).user.enabled)
+      out << body()
+  }
+
+  def notEnabled = {attrs, body->
+    if (!Entity.findByName(attrs.remove('entityName')).user.enabled)
+      out << body()
+  }
+
   private boolean friend (attrs) {
     Entity current = entityHelperService.loggedIn
     if (!current)
