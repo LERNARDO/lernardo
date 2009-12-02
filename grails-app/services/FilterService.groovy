@@ -41,8 +41,11 @@ class FilterService {
       def c = Entity.createCriteria()
       def results = c.list {
         profile {
-        ilike('fullName',"%"+name+"%")
-        maxResults(10)
+          ilike('fullName',"%"+name+"%")
+          maxResults(10)
+        }
+        user {
+          eq('enabled',true)
         }
       }
       return results

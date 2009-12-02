@@ -47,9 +47,11 @@
             %{--<input type="checkbox" onclick=""/>--}%
           %{--</td>--}%
           <td class="profile-pic">
-          <g:link controller="profile" action="showProfile" params="[name:msgInstance.sender.name]">
-            <ub:profileImage name="${msgInstance.sender.name}" width="50" height="50" align="left"/>
-          </g:link>
+          <app:isEnabled entityName="${msgInstance.sender.name}">
+            <g:link controller="profile" action="showProfile" params="[name:msgInstance.sender.name]">
+              <ub:profileImage name="${msgInstance.sender.name}" width="50" height="50" align="left"/>
+            </g:link>
+          </app:isEnabled>
           </td>
           <td class="name-date">
           <g:if test="${!msgInstance.read}">
@@ -62,7 +64,14 @@
             --}%
             </span>
             </g:if>
-            <span class="name">von <g:link controller="profile" action="showProfile" params="[name:msgInstance.sender.name]">${msgInstance.sender.profile.fullName}</g:link></span>
+            <span class="name">von
+              <app:isEnabled entityName="${msgInstance.sender.name}">
+                <g:link controller="profile" action="showProfile" params="[name:msgInstance.sender.name]">${msgInstance.sender.profile.fullName}</g:link>
+              </app:isEnabled>
+              <app:notEnabled entityName="${msgInstance.sender.name}">
+                <span class="notEnabled">${msgInstance.sender.profile.fullName}</span>
+              </app:notEnabled>
+              </span>
             <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
           </td>
           <td class="subject">

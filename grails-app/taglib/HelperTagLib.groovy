@@ -44,6 +44,11 @@ class HelperTagLib {
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.remove ("source")),Entity.findByName(attrs.remove ("target"))).type.name
   }
 
+  def isLoggedIn = {attrs, body->
+    if (entityHelperService.loggedIn)
+      out << body()
+  }
+
   def isNotLoggedIn = {attrs, body->
     if (!entityHelperService.loggedIn)
       out << body()

@@ -3,7 +3,18 @@
     <g:link action="show" id="${article.id}">${article.title}</g:link>
   </div>
   <div class="info">
-    von <span class="bold">${article.author.profile.fullName}</span>
+    von <span class="bold">
+      <app:isNotLoggedIn>
+        ${article.author.profile.fullName}
+      </app:isNotLoggedIn>
+      <app:isLoggedIn>
+        <app:isEnabled entityName="${article.author.name}">
+          <g:link controller="profile" action="showProfile" params="[name:article.author.name]" >${article.author.profile.fullName}</g:link>
+        </app:isEnabled>
+        <app:notEnabled entityName="${article.author.name}">
+          <span class="notEnabled">${article.author.profile.fullName}</span>
+        </app:notEnabled>
+      </app:isLoggedIn></span>
     am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
     um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
     <g:isLoggedIn>

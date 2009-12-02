@@ -32,7 +32,10 @@
             <div class="buttons">
                 <g:form>
                     <input type="hidden" name="id" value="${msgInstance?.id}" />
-                    <span class="button"><g:link controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link></span>
+                    %{--reply is only possible when sender account is enabled--}%
+                    <app:isEnabled entityName="${msgInstance.sender.name}">
+                      <span class="button"><g:link controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link></span>
+                    </app:isEnabled>
                     <g:actionSubmit class="del" onclick="return confirm('Nachricht wirklich löschen?');" value="Löschen" params="[name:entity.name]"/>
                     <span class="nav-button"><g:link action="inbox" params="[name:entity.name]">zurück</g:link></span>
                 </g:form>

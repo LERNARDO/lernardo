@@ -36,6 +36,10 @@ class ProfileController {
       }
 
       e.user.enabled = false
+
+      Link.findAllBySource(e)?.each { it.delete() }
+      Link.findAllByTarget(e)?.each { it.delete() }
+
       flash.message = message(code:"user.deactivated", args:[e.profile.fullName])
       redirect action:'list'
     }

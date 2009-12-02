@@ -34,7 +34,7 @@
                 <g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link>
               </app:isEnabled>
               <app:notEnabled entityName="${entity.name}">
-                ${entity.profile.fullName}
+                <span class="notEnabled">${entity.profile.fullName}</span>
               </app:notEnabled>
             </td>
             <td class="col">${entity.type.name}</td>
