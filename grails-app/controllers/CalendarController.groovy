@@ -18,11 +18,12 @@ class CalendarController {
             return
         }
 
-        return [name:params.name]
+        return ['name': params.name]
     }
 
     def showall  = {
-        return [name:'all',entity:entityHelperService.loggedIn]
+        return ['name':'all',
+                'entity':entityHelperService.loggedIn]
     }
 
     def showall_month = {}

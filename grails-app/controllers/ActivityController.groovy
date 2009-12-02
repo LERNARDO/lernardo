@@ -20,7 +20,7 @@ class ActivityController {
         if (params.myDate_year == 'alle' || params.list == 'Alle') {
           return ['activityList': Activity.list(params),
                   'activityCount': Activity.count(),
-                  'entity':entityHelperService.loggedIn]
+                  'entity': entityHelperService.loggedIn]
         }
 
 
@@ -36,11 +36,11 @@ class ActivityController {
           return ['activityList': results,
                 'activityCount': results.size(),
                 'dateSelected': inputDate,
-                'entity':entityHelperService.loggedIn]
+                'entity': entityHelperService.loggedIn]
         }
         return ['activityList': Activity.list(params),
                 'activityCount': Activity.count(),
-                'entity':entityHelperService.loggedIn]
+                'entity': entityHelperService.loggedIn]
     }
 
     def show = {
@@ -51,7 +51,8 @@ class ActivityController {
           redirect action:index
         }
 
-        return ['activity':activity, 'entity':entityHelperService.loggedIn]
+        return ['activity':activity,
+                'entity': entityHelperService.loggedIn]
     }
 
     def create = {
@@ -65,12 +66,12 @@ class ActivityController {
       activityInstance.facility = Entity.findByName ("kaumberg")
 
 
-      return ['activityInstance':activityInstance,
-              'template':template,
-              'hortList':Entity.findAllByType(EntityType.findByName('Hort')),
-               availPaeds:Entity.findAllByType(metaDataService.etPaed),
-               availClients:Entity.findAllByType(metaDataService.etClient),
-              'entity':entityHelperService.loggedIn
+      return ['activityInstance': activityInstance,
+              'template': template,
+              'hortList': Entity.findAllByType(EntityType.findByName('Hort')),
+              'availPaeds': Entity.findAllByType(metaDataService.etPaed),
+              'availClients': Entity.findAllByType(metaDataService.etClient),
+              'entity': entityHelperService.loggedIn
               ]
     }
 
@@ -85,12 +86,12 @@ class ActivityController {
         }
         else {
           flash.message = message(code:"activity.notCreated", args:[params.title])
-          redirect (action:"create", id:"${ActivityTemplate.findByName(params.template).id}")
+          redirect action:"create", id:"${ActivityTemplate.findByName(params.template).id}"
         }
     }
 
     def cancel = {
-        redirect (controller:"template", action:"list")
+        redirect controller:"template", action:"list"
     }
 
     def edit = {
@@ -102,10 +103,10 @@ class ActivityController {
         }
         else {
             return ['activityInstance': activityInstance,
-                    'hortList':Entity.findAllByType(EntityType.findByName('Hort')),
-                     availPaeds:Entity.findAllByType(metaDataService.etPaed),
-                     availClients:Entity.findAllByType(metaDataService.etClient),
-                    'entity':entityHelperService.loggedIn ]
+                    'hortList': Entity.findAllByType(EntityType.findByName('Hort')),
+                    'availPaeds': Entity.findAllByType(metaDataService.etPaed),
+                    'availClients': Entity.findAllByType(metaDataService.etClient),
+                    'entity': entityHelperService.loggedIn ]
         }
     }
 
@@ -115,9 +116,7 @@ class ActivityController {
             if(params.version) {
                 def version = params.version.toLong()
                 if(activityInstance.version > version) {
-
                     activityInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Template while you were editing.")
-
                     render view:'edit', model:[activityInstance:activityInstance]
                     return
                 }
@@ -125,7 +124,6 @@ class ActivityController {
             activityInstance.properties = params
             if(!activityInstance.hasErrors() && activityInstance.save()) {
                 flash.message = message(code:"activity.updated", args:[activityInstance.title])
-
                 redirect action:'show', id:activityInstance.id
             }
             else {

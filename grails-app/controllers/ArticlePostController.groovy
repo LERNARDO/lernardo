@@ -18,11 +18,6 @@ class ArticlePostController {
     return
   }
 
-  def preview = {
-    def postInstance = ArticlePost.get(params.id)
-    return ['postInstance':postInstance]
-  }
-
   def edit = {
     def postInstance = ArticlePost.get(params.id)
     return ['postInstance': postInstance]
@@ -40,16 +35,16 @@ class ArticlePostController {
       try {
         flash.message = message(code: "article.deleted", args: [postInstance.title])
         postInstance.delete(flush: true)
-        redirect(action: "index")
+        redirect action: "index"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "article.notDeleted", args: [postInstance.title])
-        redirect(action: "index")
+        redirect action: "index"
       }
     }
     else {
       flash.message = message(code: "article.notFound", args: [params.id])
-      redirect(action: "index")
+      redirect action: "index"
     }
   }
 
@@ -71,9 +66,7 @@ class ArticlePostController {
       if (params.version) {
         def version = params.version.toLong()
         if (postInstance.version > version) {
-
-          postInstance.errors.rejectValue("version", "post.optimistic.locking.failure", "Another user has updated this lernardo.Post while you were editing.")
-
+          postInstance.errors.rejectValue("version", "post.optimistic.locking.failure", "Another user has updated this post while you were editing.")
           redirect action: 'index'
           return
         }
@@ -81,7 +74,6 @@ class ArticlePostController {
       postInstance.properties = params
       if (!postInstance.hasErrors() && postInstance.save()) {
         flash.message = message(code: "article.updated", args: [postInstance.title])
-
         redirect action: 'index'
       }
       else {

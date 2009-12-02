@@ -11,17 +11,17 @@ class AppController {
     def start = {
         Entity e = entityHelperService.loggedIn
         if (e)
-          redirect (controller:'profile', action:'showProfile', params:[name:e.name, content:'profile'])
+          redirect controller:'profile', action:'showProfile', params:[name:e.name, content:'profile']
         else
-          redirect (action:'sorry') 
+          redirect action:'sorry'
     }
 
     def home = {
-      redirect (controller:'articlePost', action:'index')
+      redirect controller:'articlePost', action:'index'
     }
 
     def password = {
-      return [params:params]
+      return ['params':params]
     }
 
     def sendPassword = {
@@ -44,7 +44,7 @@ class AppController {
           log.error "Problem sending email $ex.message", ex
         }
         flash.message = message(code:"account.message", args:[params.email])
-        redirect (controller:'articlePost', action:'index')
+        redirect controller:'articlePost', action:'index'
       }
       else {
         flash.message = message(code:"account.notFound", args:[params.email])

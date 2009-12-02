@@ -15,26 +15,31 @@ class MsgController {
     def inbox = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def messages = filterService.getInbox (params.name)
-        return [msgInstanceList: messages,msgInstanceTotal: messages.count(),entity: Entity.findByName(params.name)]
+        return ['msgInstanceList': messages,
+                'msgInstanceTotal': messages.count(),
+                'entity': Entity.findByName(params.name)]
     }
 
     def outbox = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def messages = filterService.getOutbox (params.name)
-        return [msgInstanceList: messages,msgInstanceTotal: messages.count(),entity: Entity.findByName(params.name)]
+        return ['msgInstanceList': messages,
+                'msgInstanceTotal': messages.count(),
+                'entity': Entity.findByName(params.name)]
     }
 
     def show = {
         def msgInstance = Msg.get( params.id )
         if (!msgInstance.read)
-          msgInstance.read = true
+            msgInstance.read = true
 
         if(!msgInstance) {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect(action:index, params:[name:params.name])
+            redirect action:index, params:[name:params.name]
         }
         else {
-            return [ msgInstance : msgInstance, entity:Entity.findByName(params.name) ]
+            return ['msgInstance': msgInstance,
+                    'entity:Entity'.findByName(params.name)]
         }
     }
 
@@ -44,16 +49,16 @@ class MsgController {
             try {
                 flash.message = message(code:"msg.deleted", args:[msgInstance.subject])
                 msgInstance.delete(flush:true)
-                redirect(action:"index", params:[name:params.name])
+                redirect action:"index", params:[name:params.name]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
                 flash.message = message(code:"msg.notDeleted", args:[msgInstance.subject])
-                redirect(action:"show",id:params.id)
+                redirect action:"show",id:params.id
             }
         }
         else {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect(action:"index", params:[name:params.name])
+            redirect action:"index", params:[name:params.name]
         }
     }
 
@@ -65,7 +70,7 @@ class MsgController {
             redirect action:'index', params:[name:params.name]
         }
         else {
-            return [ msgInstance : msgInstance ]
+            return ['msgInstance': msgInstance]
         }
     }
 
@@ -75,9 +80,7 @@ class MsgController {
             if(params.version) {
                 def version = params.version.toLong()
                 if(msgInstance.version > version) {
-
                     msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this lernardo.Msg while you were editing.")
-
                     render view:'edit', model:[msgInstance:msgInstance]
                     return
                 }
@@ -85,7 +88,6 @@ class MsgController {
             msgInstance.properties = params
             if(!msgInstance.hasErrors() && msgInstance.save()) {
                 flash.message = "Msg ${params.id} updated"
-
                 redirect action:'show', id:msgInstance.id
             }
             else {
@@ -102,7 +104,8 @@ class MsgController {
       def msgInstance = new Msg()
       msgInstance.properties = params
       Entity e = Entity.findByName(params.name)
-      return ['msgInstance':msgInstance, entity:e ]
+      return ['msgInstance':msgInstance,
+              'entity':e]
     }
 
     def save = {
@@ -120,7 +123,6 @@ class MsgController {
         msgInstance2.entity = Entity.findByName(params.name)
         if(!msgInstance.hasErrors() && msgInstance.save(flush:true) && msgInstance2.save(flush:true)) {
             flash.message = message(code:"msg.sent", args:[msgInstance.subject])
-
             redirect controller:'profile', action:'showProfile', params:[name:params.name]
         }
         else {

@@ -41,7 +41,6 @@ class ProfileController {
         Msg.findAllByReceiver(e)?.each { it.delete() }
         ArticlePost.findAllByAuthor(e)?.each { it.delete() }
 
-
       log.info "remove all links"
         Link.findAllBySource(e)?.each { it.delete() }
         Link.findAllByTarget(e)?.each { it.delete() }
@@ -53,14 +52,14 @@ class ProfileController {
       flash.message = message(code:"user.deleted", args:[e.profile.fullName])
       e.delete (flush:true)
       
-      redirect(action:'list')
+      redirect action:'list'
     }
 
     def create = { }
 
     def changePassword = {
       Entity e = Entity.findByName(params.name)
-      return [entity:e]
+      return ['entity':e]
     }
 
     def checkPassword = {

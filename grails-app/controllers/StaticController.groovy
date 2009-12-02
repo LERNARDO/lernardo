@@ -1,6 +1,6 @@
 class StaticController {
 
-    def index = { }
+    def index = {}
 
     def nutzung = {}
 

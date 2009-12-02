@@ -10,23 +10,23 @@ class TemplateCommentController {
       try {
         flash.message = message(code: "comment.deleted")
         postInstance.delete(flush: true)
-        redirect(controller: "template", action: "show", params: [id: params.template])
+        redirect controller: "template", action: "show", params: [id: params.template]
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "comment.notDeleted", args: [postInstance.id])
-        redirect(controller: "template", action: "show", params: [id: params.template])
+        redirect controller: "template", action: "show", params: [id: params.template]
       }
     }
     else {
       flash.message = message(code: "comment.notFound", args: [params.id])
-      redirect(controller: "template", action: "show", params: [id: params.template])
+      redirect controller: "template", action: "show", params: [id: params.template]
     }
   }
 
   def create = {
     def postInstance = new TemplateComment()
     postInstance.properties = params
-    render(template: 'create', model: ['postInstance': postInstance, 'template_id': params.id])
+    render template: 'create', model: ['postInstance': postInstance, 'template_id': params.id]
   }
 
   def save = {
