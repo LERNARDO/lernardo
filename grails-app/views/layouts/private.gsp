@@ -94,8 +94,11 @@
 
           <div id="profile-navigation" class="yui-b">
             <div id="profile-pic">
-              <h1>${entity.profile.fullName}<br/>
-                  <app:getProfileType entityName="${entity.name}"/></h1>
+              <h1>
+                ${entity.profile.fullName}
+                <div class="subheader"><app:getProfileType entityName="${entity.name}"/></div>
+              </h1>
+
               <ub:profileImage name="${entity.name}" width="180" height="180"/>
             </div>
 

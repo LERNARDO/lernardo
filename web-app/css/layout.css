@@ -141,6 +141,11 @@ h3 {
     padding-bottom: 10px;
     border-bottom: 1px dashed #ccc; }
 
+h1 .subheader {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
 p {
     padding-bottom: 10px;
     line-height: 19px; }
@@ -240,7 +245,7 @@ ul {
     background-color: #dfdfdf;
     border: 1px solid #ccc;
     padding: 5px 10px 15px 10px;
-    margin: 40px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
     vertical-align: top;
     color: #333; }
 #profile-content h1 {
