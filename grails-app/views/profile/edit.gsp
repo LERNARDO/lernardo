@@ -38,7 +38,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:datePicker id="birthDate" name="birthDate" value="${entityInstance.profile.birthDate}" precision="day" years="${1900..Calendar.getInstance().get(Calendar.YEAR)-18}"/>
+                                    <g:datePicker id="birthDate" name="birthDate" value="${entityInstance.profile.birthDate}" precision="day" years="${1900..Calendar.getInstance().get(Calendar.YEAR)}"/>
                                 </td>
                             </tr>
 
