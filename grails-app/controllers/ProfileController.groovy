@@ -223,6 +223,7 @@ class ProfileController {
     }
 
     def saveClient = {
+    
       EntityType etClient = metaDataService.etClient
 
       Account user = Account.findByEmail (params.email)

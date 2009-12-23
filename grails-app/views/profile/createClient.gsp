@@ -24,7 +24,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="50" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
+                                    <input type="text" size="30" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
                                 </td>
                             </tr>
 
@@ -35,7 +35,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'name','errors')}">
-                                    <input type="text" size="50" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/>
+                                    <input type="text" size="20" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/> (mindestens 3 Zeichen)
                                 </td>
                             </tr>
 
@@ -46,7 +46,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'email','errors')}">
-                                    <input type="text" size="50" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
+                                    <input type="text" size="30" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
                                 </td>
                             </tr>
                         </tbody>
@@ -63,7 +63,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'city','errors')}">
-                                    <input type="text" size="50" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
+                                    <input type="text" size="30" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
                                 </td>
                             </tr>
                         </tbody>
