@@ -39,7 +39,8 @@ class MsgController {
         }
         else {
             return ['msgInstance': msgInstance,
-                    'entity':Entity.findByName(params.name)]
+                    'entity':Entity.findByName(params.name),
+                    'box':params.box]
         }
     }
 
@@ -49,7 +50,7 @@ class MsgController {
             try {
                 flash.message = message(code:"msg.deleted", args:[msgInstance.subject])
                 msgInstance.delete(flush:true)
-                redirect action:"index", params:[name:params.name]
+                redirect action:params.box, params:[name:params.name]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
                 flash.message = message(code:"msg.notDeleted", args:[msgInstance.subject])
@@ -58,7 +59,7 @@ class MsgController {
         }
         else {
             flash.message = message(code:"msg.notFound", args:[params.id])
-            redirect action:"index", params:[name:params.name]
+            redirect action:params.box, params:[name:params.name]
         }
     }
 

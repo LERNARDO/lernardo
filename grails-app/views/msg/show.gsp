@@ -36,7 +36,7 @@
                     <app:isEnabled entityName="${msgInstance.sender.name}">
                       <span class="button"><g:link controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link></span>
                     </app:isEnabled>
-                    <g:actionSubmit class="del" onclick="return confirm('Nachricht wirklich löschen?');" value="Löschen" params="[name:entity.name]"/>
+                    <g:link action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:box]">Löschen</g:link>
                     <span class="nav-button"><g:link action="inbox" params="[name:entity.name]">zurück</g:link></span>
                 </g:form>
             </div>
