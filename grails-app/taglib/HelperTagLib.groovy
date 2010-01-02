@@ -17,10 +17,17 @@ class HelperTagLib {
 
   def getQuoteOfTheDay = {
     Date myDate = new Date()
-    SimpleDateFormat df = new SimpleDateFormat( "dd" );
+    SimpleDateFormat df = new SimpleDateFormat( "dd" )
     int day = df.format(myDate).toInteger()
     out << '<span class="quote">"'+grailsApplication.config.quotesMap[day]+'"</span>'
     out << '<p class="quoter">von '+grailsApplication.config.quoterMap[day]+'</p>'
+  }
+
+  def getPicOfTheDay = { attrs, body ->
+    Date myDate = new Date()
+    SimpleDateFormat df = new SimpleDateFormat( "dd" )
+    String day = df.format(myDate)//.toInteger()
+    out << body(day)
   }
 
   def showGender = {attrs ->

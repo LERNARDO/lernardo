@@ -79,7 +79,7 @@
           <td class="subject">
             <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[name:entity.name,box:'inbox']">${msgInstance.subject}</g:link></span>
           </td>
-          <td class="delete-msg"><g:link action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:'inbox']">Löschen</g:link></td>
+          <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:'inbox']">Löschen</g:link></td>
         </tr>
         </g:each>
 

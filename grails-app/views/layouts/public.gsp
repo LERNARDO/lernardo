@@ -97,7 +97,10 @@
               <div class="innersidebox">
                 <div class="sideboxheader">Bild des Tages</div>
                 <div class="sideboxcontent">
-                  <img src="${createLinkTo(dir:'images/static',file:'bild_des_tages.png')}" width="229" height="172" alt="bild des tages" id="randomPicture"/>
+                  <app:getPicOfTheDay>                    
+                    <g:set var="day" value="bild_des_tages_${it}.png"/>
+                    <img src='${createLinkTo(dir:"images/static/daily_pic",file:day)}' width="229" height="172" alt="bild des tages" id="randomPicture"/>
+                  </app:getPicOfTheDay>
                 </div>
               </div><!-- innersidebox -->
             </div><!-- sidebox -->

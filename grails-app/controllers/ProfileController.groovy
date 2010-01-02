@@ -248,6 +248,7 @@ class ProfileController {
     def createClient = {
       def entityInstance = new Entity()
       entityInstance.properties = params
+      entityInstance.name = ""
       return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
     }
 
@@ -587,6 +588,5 @@ class ProfileController {
            redirect action:'showProfile', params:[name:entityHelperService.loggedIn.name]
        }
    }
-
 
 }

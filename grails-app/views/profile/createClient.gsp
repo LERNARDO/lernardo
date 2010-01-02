@@ -27,7 +27,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="30" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/>
+                                    <input type="text" size="30" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/> (3 bis 30 Zeichen)
                                 </td>
                             </tr>
 
@@ -38,7 +38,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'name','errors')}">
-                                    <input type="text" size="20" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/> (mindestens 3 Zeichen)
+                                    <input type="text" size="20" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/> (3 bis 20 Zeichen)
                                 </td>
                             </tr>
 
