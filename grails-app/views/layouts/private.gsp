@@ -139,9 +139,6 @@
                 <g:if test="${entity.type.name == 'Operator'}">
                   <li class="profile-activities"><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
                 </g:if>
-                <g:if test="${entity.type.name == 'Hort'}">
-                  <li class="profile-activities"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
-                </g:if>             
                 <g:if test="${entity.type.name == 'Client'}">
                   <li class="profile-leistung"><g:link controller="evaluation" params="[name:entity.name]">Leistungsfortschritt ansehen</g:link></li>
                 </g:if>
@@ -172,6 +169,7 @@
                     <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
                   </g:if>
                   <g:if test="${entity.type.name == 'Hort'}">
+                    <li class="profile-activities"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
                     <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
                   </g:if>
                 </ul>
