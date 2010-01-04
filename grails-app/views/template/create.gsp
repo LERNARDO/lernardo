@@ -35,7 +35,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'name','errors')}">
-                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald']}" value="${templateInstance.attribution}"/>
+                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald','Lernen lernen','Bewegung - Ernährung','Soziale Kompetenz - Emotionale Intelligenz','Persönliche Kompetenz - Eigenverantwortung','Handwerk & Kunst']}" value="${templateInstance.attribution}"/>
                                 </td>
                             </tr>
 

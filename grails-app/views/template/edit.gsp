@@ -35,7 +35,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald']}" value="${template.attribution}"/>
+                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald','Lernen lernen','Bewegung - Ernährung','Soziale Kompetenz - Emotionale Intelligenz','Persönliche Kompetenz - Eigenverantwortung','Handwerk & Kunst']}" value="${template.attribution}"/>
                                 </td>
                             </tr>
 
