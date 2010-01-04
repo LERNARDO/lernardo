@@ -21,7 +21,7 @@
           total += 1;
          }
       }
-      document.getElementById('sumEssen').innerHTML='€ '+total*3;
+      document.getElementById('sumEssen').innerHTML='€ '+total*${entity.profile.foodCosts};
       //alert("You selected " + total + " boxes.");
       }
     </script>
