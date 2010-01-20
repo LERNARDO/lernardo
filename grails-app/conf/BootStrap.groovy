@@ -213,6 +213,40 @@ class BootStrap {
                           <b>2005:</b> Montessori-Diplom<br>
                           <b>seit 2005:</b> Tagesmutter und Trainerin bei TLS beim NÖ Hilfswerk"""
     }
+
+    entityHelperService.createEntityWithUserAndProfile("yvonne", etPaed, "ycf@lernardo.at", "Yvonne Frey") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.birthDate = new Date(1973-1900,12,01)
+      prf.PLZ = 2560
+      prf.city = "Grillenberg"
+      prf.street = "Florianigasse 32/2"
+      prf.tel = "0676 / 964 84 12"
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("anna-maria", etPaed, "amr@lernardo.at", "Anna-Maria Reischer") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.birthDate = new Date(2010-1900,01,01)
+      prf.PLZ = 2560
+      prf.city = "???"
+      prf.street = "???????"
+      prf.tel = "06?? ???"
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("stephanie", etPaed, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.birthDate = new Date(1940-1900,12,26)
+      prf.PLZ = 2563
+      prf.city = "Pottenstein"
+      prf.street = "Hainfelderstrasse 29"
+      prf.tel = "0664 846 98 19"
+    }
+    
   }
 
   void createDefaultClients() {
