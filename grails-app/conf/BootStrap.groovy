@@ -116,6 +116,17 @@ class BootStrap {
       prf.tel = "0664 / 204 91 68"
       prf.biography = "-"
     }
+	
+    entityHelperService.createEntityWithUserAndProfile("stephanie", etUser, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.birthDate = new Date(1940-1900,12,26)
+      prf.PLZ = 2563
+      prf.city = "Pottenstein"
+      prf.street = "Hainfelderstrasse 29"
+      prf.tel = "0664 846 98 19"
+    }
   }
 
   void createDefaultPaeds() {
@@ -235,18 +246,7 @@ class BootStrap {
       prf.street = "???????"
       prf.tel = "06?? ???"
     }
-
-    entityHelperService.createEntityWithUserAndProfile("stephanie", etPaed, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
-      UserProfile prf = ent.profile
-      prf.tagline = "..."
-      prf.gender = 2
-      prf.birthDate = new Date(1940-1900,12,26)
-      prf.PLZ = 2563
-      prf.city = "Pottenstein"
-      prf.street = "Hainfelderstrasse 29"
-      prf.tel = "0664 846 98 19"
-    }
-    
+  
   }
 
   void createDefaultClients() {
