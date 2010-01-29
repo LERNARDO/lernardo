@@ -11,7 +11,7 @@
         <table>
           <tr>
             <td class="bold">Titel:</td>
-            <td><g:textField class="text" name="title" id="title" value="${postInstance.title}"/></td>
+            <td><g:textField size="70" class="text" name="title" id="title" value="${postInstance.title}"/></td>
           </tr>
           <tr>
             <td class="bold vtop">Teaser:</td>

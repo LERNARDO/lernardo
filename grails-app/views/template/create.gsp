@@ -31,7 +31,7 @@
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="attribution">
-                                      <g:message code="msg.attribution.label" default="Zuordnung" />:
+                                      <g:message code="msg.attribution.label" default="Primäre Zuordnung" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'name','errors')}">
@@ -89,11 +89,11 @@
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="requiredPaeds">
-                                      <g:message code="msg.requiredPaeds.label" default="Teamgröße" />:
+                                      <g:message code="msg.requiredPaeds.label" default="Anzahl BetreuerInnen" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'requiredPaeds','errors')}">
-                                    <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${templateInstance.requiredPaeds}"/> (Anzahl der Pädagogen)
+                                    <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${templateInstance.requiredPaeds}"/> (Vorschlag)
                                 </td>
                             </tr>
 

@@ -62,4 +62,25 @@
   </g:elseif>
 </table>
 </div>
+
+<g:if test="${entity.type.name == 'Client'}">
+  <g:if test="${entity.profile.showTips}">
+    <div class="toolTip">
+      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Zusätzliche Daten sind nur für Pädagogen sichtbar und sollten streng vertraulich behandelt werden.
+    </div>
+  </g:if>
+
+  <div class="headerBlue">
+    <h1>Zusätzliche Daten</h1>
+  </div>
+  <div class="boxGray">
+  <table width="100%">
+    <g:if test="${entity.type.name == 'Client'}">
+      <tr><td class="bold titles bezeichnung">Allergien:</td><td class="bezeichnung">-</td></tr>
+      <tr><td class="bold titles bezeichnung">SV-Nr.:</td><td class="bezeichnung">-</td></tr>
+    </g:if>
+  </table>
+  </div>
+</g:if>
+
 </body>

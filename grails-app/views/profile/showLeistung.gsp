@@ -5,7 +5,10 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
-<h3>Leistungsfortschritt:</h3>
+  <div class="headerBlue">
+    <h1>Leistungsfortschritt</h1>
+  </div>
+  <div class="boxGray">
 <span class="bold newentry">Neuen Eintrag erstellen</span>
 <div class="cleartop"></div>
 
@@ -59,4 +62,5 @@
     </table>
   </div>
 </div>
+    </div>
 </body>
