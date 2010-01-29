@@ -175,4 +175,12 @@ class ActivityController {
             redirect action:'edit', params:params
         }
     }
+
+    def del = {
+      def activityInstance = Activity.get( params.id )
+      flash.message = message(code:"activity.deleted", args:[activityInstance.title])
+      activityInstance.delete(flush:true)
+      redirect action:'list'
+
+    }
 }

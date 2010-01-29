@@ -67,6 +67,9 @@ To change this template use File | Settings | File Templates.
         <div id="newActivity">
           <g:link action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
         </div>
+        <div id="newActivity">
+          <g:link action="del" id="${activity.id}">Aktivität löschen</g:link>
+        </div>
       </g:if>
     </div>
   </div>
