@@ -27,8 +27,11 @@
     </script>
   </head>
   <body>
+  <div class="headerBlue">
+    <h1>Anwesenheits- und Essensliste</h1>
+  </div>
+  <div class="boxGray">
     <div id="body-list">
-      <h2>Anwesenheits-/Essensliste</h2>
       <p>${entityCount} Profile gefunden</p>
 
       <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste.pdf">
@@ -81,6 +84,7 @@
                     total="${entityCount}" />
       </div>
 
+    </div>
     </div>
   </body>
 </html>

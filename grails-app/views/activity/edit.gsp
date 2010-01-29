@@ -3,6 +3,7 @@
     <title>Aktivitätsvorlage bearbeiten</title>
   </head>
   <body>
+  <div class="boxGray">
         <div class="body">
             <h1>Aktivitätsvorlage bearbeiten</h1>
             <g:hasErrors bean="${activityInstance}">
@@ -97,4 +98,5 @@
                     </div>
             </g:form>
         </div>
+    </div>
   </body>

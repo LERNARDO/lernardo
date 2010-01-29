@@ -5,6 +5,10 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
+<div class="headerBlue">
+  <h1>Mein Profil</h1>
+</div>
+<div class="boxGray">
 <table width="100%">
   <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Sponsor'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
@@ -57,4 +61,5 @@
     <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung"><app:showGender gender="${entity.profile.gender}"/></td></tr>
   </g:elseif>
 </table>
+</div>
 </body>

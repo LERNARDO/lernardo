@@ -5,13 +5,17 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
-<div id="body-list" style="background-color: transparent">
+<div class="headerBlue">
   <h1>Meine Artikel</h1>
+</div>
+<div class="boxGray">
+<div id="body-list">
+
   <g:if test="${!articleList}">
-    <p>Keine Aktivitäten gefunden</p>
+    <p>Du hast bis jetzt keine Artikel verfasst</p>
   </g:if>
   <g:else>
-    <p>${articleCount} Artikel gefunden</p>
+    <p>Du hast insgesamt ${articleCount} Artikel verfasst</p>
     <table>
       <thead>
       <tr>
@@ -36,6 +40,7 @@
     <g:paginate action="showArticleList" total="${articleCount}" params="[name:entity.name]"/>
   </div>
 
+</div>
 </div>
 </body>
 

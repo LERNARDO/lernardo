@@ -5,8 +5,11 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
+  <div class="headerBlue">
+      <h1>Nachricht senden</h1>
+    </div>
+<div class="boxGray">
           <div class="body">
-            <h1>Nachricht verfassen</h1>
             <g:hasErrors bean="${msgInstance}">
               <div id="flash-msg">
               <div class="errors">
@@ -63,4 +66,5 @@
                     </table>
             </g:form>
         </div>
+</div>
 </body>

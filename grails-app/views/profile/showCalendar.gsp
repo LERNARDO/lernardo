@@ -10,9 +10,8 @@
 </head>
 
 <body>
-  <div id="calendar-content">
+  <div class="headerBlue">
+    <h1>Mein Kalender</h1>
   </div>
-  <div id="secret" style="display:none;">
-    xxxx
-  </div>
+  <div class="boxGray"></div>
 </body>

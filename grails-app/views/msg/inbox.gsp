@@ -5,16 +5,15 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
-  <h1>Posteingang</h1>
+<div class="headerBlue">
+  <h1>Mein Postfach: Posteingang</h1>
+</div>
+<div class="boxGray">
     <div id="inbox">
-      <div id="inbox-navigation">
-        <div id="left-list">
-          <ul class="tabs">
-            <li><g:link controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link></li>
-            <li><g:link controller="msg" action="outbox" params="[name:entity.name]">Postausgang</g:link></li>
-          </ul>
-        </div>
-      </div>
+        <g:link class="buttonBlue" controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link>
+        <g:link class="buttonBlue" controller="msg" action="outbox" params="[name:entity.name]">Postausgang</g:link>
+        <div class="spacer"></div>
+
       %{--<div id="inbox-actions">
       <div id="inbox-action-form">
       <form action="#" name="inbox-action-form">
@@ -88,4 +87,5 @@
         </div>
       </div>
     </div>
+</div>
 </body>

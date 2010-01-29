@@ -86,7 +86,7 @@
                   ${flash.message}
                 </div>
               </g:if>
-              <div id="profile-content">
+              <div id="private-content">
                 <g:layoutBody />
               </div>
             </div>
@@ -108,10 +108,10 @@
                 <ul>
                   <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Profilbild ändern</g:link></li>
                   <g:if test="${entity.type.supertype.name == 'Person'}">
-                    <li><g:remoteLink action="edit" update="profile-content" params="[name:entity.name]">Profildaten ändern</g:remoteLink></li>
+                    <li><g:link controller="profile" action="edit" params="[name:entity.name]">Profildaten ändern</g:link></li>
                   </g:if>
                   <g:else>
-                    <li><g:remoteLink action="editFacility" update="profile-content" params="[name:entity.name]">Profildaten ändern</g:remoteLink></li>
+                    <li><g:link controller="profile" action="editFacility" params="[name:entity.name]">Profildaten ändern</g:link></li>
                   </g:else>
                 </ul>
               </div>
@@ -120,19 +120,19 @@
             <div class="profile-group">Kommunikation</div>
             <div class="profile-box">
               <ul>
-                <li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Profil ansehen</g:link></li>
+                <li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Mein Profil ansehen</g:link></li>
                 <ub:meOrAdmin entityName="${entity.name}">
-                  <li class="profile-neuigkeiten"><g:link controller="profile" action="showNews" params="[name:entity.name]">Ereignisse</g:link></li>
+                  <li class="profile-neuigkeiten"><g:link controller="profile" action="showNews" params="[name:entity.name]">Meine Ereignisse</g:link></li>
                   <li class="profile-nachricht"><g:link controller="msg" action="inbox" params="[name:entity.name]">Mein Postfach</g:link> <app:getNewInboxMessages entityName="${entity.name}"/></li>
                 </ub:meOrAdmin>
                 <g:if test="${entity.type.name == 'Paed'}">
-                  <li class="profile-activities"><g:link controller="profile" action="showArticleList" params="[name:entity.name]">Artikel ansehen</g:link></li>
+                  <li class="profile-activities"><g:link controller="profile" action="showArticleList" params="[name:entity.name]">Meine Artikel ansehen</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Paed' || entity.type.name == 'Client'}">
                 %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
-                  <li class="profile-activities"><g:link controller="profile" action="showActivityList" params="[name:entity.name]">Aktivitäten ansehen</g:link></li>
+                  <li class="profile-activities"><g:link controller="profile" action="showActivityList" params="[name:entity.name]">Meine Aktivitäten ansehen</g:link></li>
                 </g:if>
-                <li class="profile-calendar"><g:link controller="profile" action="showCalendar" params="[name:entity.name]">Kalender ansehen</g:link></li>
+                <li class="profile-calendar"><g:link controller="profile" action="showCalendar" params="[name:entity.name]">Meinen Kalender ansehen</g:link></li>
                 <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Hort'}">
                   %{--<li class="profile-location"><g:link controller="profile" action="showLocation" params="[name:entity.name]">Standort anzeigen</g:link></li>--}%
                 </g:if>
@@ -141,7 +141,7 @@
                 </g:if>
                 <g:if test="${entity.type.name == 'Hort'}">
                   <li class="profile-activities"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
-                </g:if>
+                </g:if>             
                 <g:if test="${entity.type.name == 'Client'}">
                   <li class="profile-leistung"><g:link controller="profile" action="showLeistung" params="[name:entity.name]">Leistungsfortschritt</g:link></li>
                 </g:if>

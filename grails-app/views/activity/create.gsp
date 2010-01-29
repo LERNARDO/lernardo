@@ -5,8 +5,11 @@
     <title>Aktivität anlegen</title>
   </head>
   <body>
+    <div class="headerBlue">
+      <h1>Neue Aktivität planen</h1>
+    </div>
+  <div class="boxGray">
       <div class="body">
-            <h1>Aktivität anlegen</h1>
             <g:hasErrors bean="${activityInstance}">
               <div class="errors">
                 <g:renderErrors bean="${activityInstance}" as="list" />
@@ -100,5 +103,6 @@
                     </div>
             </g:form>
         </div>
+    </div>
     </body>
 </html>

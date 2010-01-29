@@ -1,5 +1,5 @@
 <jq:jquery>
-  $('#profile-content').fullCalendar({
+  $('.boxGray').fullCalendar({
     header: {
       left: 'prev,next today',
       center: 'title',

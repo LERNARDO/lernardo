@@ -10,6 +10,12 @@
 
   </head>
 
+  <body>
+  <div class="headerBlue">
+  <h1>Kalender</h1>
+</div>
+  <div class="boxGray"></div>
+  </body>
 %{--
   <body>
       <div class="profile-group" style="width:250px;">Lernardo - Gesamt</div>

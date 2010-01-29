@@ -1,10 +1,13 @@
-  <head>
-    <meta name="layout" content="private" />
-    <title>Aktivitätsvorlage anlegen</title>
-  </head>
-  <body>
+<head>
+  <meta name="layout" content="private" />
+  <title>Aktivitätsvorlage anlegen</title>
+</head>
+<body>
+  <div class="headerBlue">
+    <h1>Aktivitätsvorlage anlegen</h1>
+  </div>
+  <div class="boxGray">
       <div class="body">
-            <h1>Aktivitätsvorlage anlegen</h1>
             <g:hasErrors bean="${templateInstance}">
               <div class="errors">
                 <g:renderErrors bean="${templateInstance}" as="list" />
@@ -186,4 +189,5 @@
                     </div>
             </g:form>
         </div>
+    </div>
     </body>

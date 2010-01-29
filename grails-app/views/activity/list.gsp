@@ -7,8 +7,11 @@
     <div class="toolTip">
       <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in den Horten in denen der Pädagoge arbeitet.
     </div>
+    <div class="headerBlue">
+    <h1>Lernardo Aktivitäten</h1>
+    </div>
+    <div class="boxGray">
     <div id="body-list">
-      <h2>Liste aller Aktivitäten</h2>
       <p>${activityCount} Aktivitäten gefunden</p>
       
       <div id="select-box">
@@ -45,6 +48,7 @@
         <g:paginate action="list" total="${activityCount}" />
       </div>
 
+    </div>
     </div>
   </body>
 </html>

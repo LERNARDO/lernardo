@@ -515,7 +515,7 @@ class ProfileController {
             redirect action:'showProfile', model:[name:params.name]
         }
         else {
-            return [ entityInstance : entityInstance ]
+            return [ entityInstance : entityInstance, entity: entityInstance ]
         }
     }
 
@@ -527,7 +527,7 @@ class ProfileController {
             redirect action:'showProfile', model:[name:params.name]
         }
         else {
-            return [ entityInstance : entityInstance ]
+            return [ entityInstance : entityInstance, entity: entityInstance ]
         }
     }
 

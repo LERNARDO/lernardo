@@ -6,8 +6,11 @@
     <g:javascript library="jquery"/>
   </head>
   <body>
+  <div class="headerBlue">
+  <h1>Profilsuche</h1>
+</div>
+  <div class="boxGray">
     <div id="body-list">
-      <h1>Mitgliedersuche</h1>
       <g:formRemote name="searchForm" url="[controller:'profile', action:'searchMe']" class="members-filter" update="membersearch-results">
       <fieldset>
         <div class="form-content">
@@ -23,5 +26,6 @@
     <div class="membersearch-results" id="membersearch-results">
     </div>
    </div>
+    </div>
   </body>
 </html>

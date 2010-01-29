@@ -5,8 +5,11 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
-<div id="body-list" style="background-color: transparent">
+<div class="headerBlue">
   <h1>Meine Aktivitäten</h1>
+</div>
+<div class="boxGray">
+<div id="body-list">
   <g:if test="${!activityList}">
     <p>Keine Aktivitäten gefunden</p>
   </g:if>
@@ -36,6 +39,7 @@
     <g:paginate action="showActivityList" total="${activityCount}" params="[name:entity.name]"/>
   </div>
 
+</div>
 </div>
 </body>
 

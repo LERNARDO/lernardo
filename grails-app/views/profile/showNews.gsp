@@ -5,8 +5,10 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
-<h1>Ereignisse:</h1>
-
+<div class="headerBlue">
+  <h1>Meine Ereignisse</h1>
+</div>
+<div class="boxGray">
 <p><span class="strong">Morgen</span></p>
 <p>
   <g:each in="${eventList}" var="event">
@@ -35,5 +37,5 @@
     </g:if>
   </g:each>
 </p>
-
+</div>
 </body>

@@ -5,8 +5,11 @@
     <title>Schule anlegen</title>
   </head>
   <body>
+      <div class="headerBlue">
+      <h1>Schule anlegen</h1>
+    </div>
+  <div class="boxGray">
       <div class="body">
-            <h1>Schule anlegen</h1>
             <g:hasErrors bean="${entityInstance}">
               <div class="errors">
                 <g:renderErrors bean="${entityInstance}" as="list" />
@@ -134,5 +137,6 @@
                     </div>
             </g:form>
         </div>
+    </div>
     </body>
 </html>

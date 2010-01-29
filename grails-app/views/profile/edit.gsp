@@ -1,5 +1,15 @@
-      <div class="body">
-            <h1>Profil bearbeiten</h1>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="layout" content="private"/>
+  <title>Profil von ${entityInstance.profile.fullName}</title>
+  <g:javascript library="jquery"/>
+</head>
+<body>
+  <div class="headerBlue">
+      <h1>Profildaten ändern</h1>
+    </div>
+<div class="boxGray">
+  <div class="body">
             <g:hasErrors bean="${entityInstance}">
               <div class="errors">
                 <g:renderErrors bean="${entityInstance}" as="list" />
@@ -125,3 +135,5 @@
                     </div>
             </g:form>
         </div>
+  </div>
+</body>

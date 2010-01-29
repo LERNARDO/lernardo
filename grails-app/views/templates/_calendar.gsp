@@ -1,5 +1,5 @@
 <jq:jquery>
-  $('#profile-content').fullCalendar({
+  $('.boxGray').fullCalendar({
     header: { left:'title', center:'today month basicWeek basicDay', right:'prev,next' },
     monthNames: ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
     monthNamesShort: ['Jan','Feb','März','April','Mai','Jun','Jul','Aug','Sept','Okt','Nov','Dez'],

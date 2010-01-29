@@ -5,8 +5,11 @@
     <title>Liste der Profile</title>
   </head>
   <body>
+    <div class="headerBlue">
+      <h1>Liste aller Profile</h1>
+    </div>
+  <div class="boxGray">
     <div id="body-list">
-      <h2>Liste aller Profile</h2>
       <p>${entityCount} Profile gefunden</p>
 
       <div id="select-box">
@@ -59,6 +62,7 @@
                     total="${entityCount}" />
       </div>
 
+    </div>
     </div>
   </body>
 </html>

@@ -15,8 +15,10 @@ To change this template use File | Settings | File Templates.
   </head>
 
   <body>
-  <div id="body-list">
-    <div class="profile-group">Aktivitätsdetail</div>
+    <div class="headerBlue">
+      <h1>Aktivität</h1>
+    </div>
+  <div class="boxGray">
     <div class="profile-box">
       <table width="100%">
         <tr><td class="bold titles bezeichnung">Vorlage:</td><td class="bezeichnung"><g:link controller="template" action="show" params="[name:activity.template]">${activity.template}</g:link></td></tr>

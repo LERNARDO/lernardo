@@ -6,8 +6,10 @@
   </head>
 
   <body>
-    <div id="body-list">
-      <div class="profile-group" style="width:200px;">Aktivitätsvorlage - Details</div>
+    <div class="headerBlue">
+      <h1>Aktivitätsvorlage</h1>
+    </div>
+    <div class="boxGray">
       <div class="profile-box">
         <table width="100%">
           <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.name}</td></tr>
@@ -46,8 +48,13 @@
           <div class="spacer"></div>
       </g:if>
 
-      <div id="comments-block">
-        <h1>Kommentare</h1>
+
+    </div>
+
+  <div class="headerBlue">
+      <h1>Kommentare</h1>
+    </div>
+  <div class="boxGray">
 
         <g:if test="${!commentList}">
           Keine Kommentare vorhanden
@@ -84,7 +91,6 @@
           <div id="createComment">
           </div>
         </g:if>
-        
+
       </div>
-    </div>
   </body>

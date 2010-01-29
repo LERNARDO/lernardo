@@ -3,8 +3,11 @@
     <title>Aktivitätsvorlage bearbeiten</title>
   </head>
   <body>
+    <div class="headerBlue">
+      <h1>Aktivitätsvorlage bearbeiten</h1>
+    </div>
+  <div class="boxGray">
         <div class="body">
-            <h1>Aktivitätsvorlage bearbeiten</h1>
             <g:hasErrors bean="${template}">
               <div class="errors">
                 <g:renderErrors bean="${template}" as="list" />
@@ -180,4 +183,5 @@
                     </div>
             </g:form>
         </div>
+    </div>
   </body>

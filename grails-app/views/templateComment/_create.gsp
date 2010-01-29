@@ -11,7 +11,7 @@
         </td>
         <td valign="top" class="value ${hasErrors(bean: postInstance, field: 'content', 'errors')}">
           <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-          <fckeditor:editor name="content" id="content" width="100%" height="400" toolbar="Post" fileBrowser="default">
+          <fckeditor:editor name="content" id="content" width="600" height="200" toolbar="Post" fileBrowser="default">
             ${postInstance.content}
           </fckeditor:editor>
         </td>
