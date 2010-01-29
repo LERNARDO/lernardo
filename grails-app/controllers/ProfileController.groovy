@@ -508,14 +508,14 @@ class ProfileController {
     }
 
     def edit = {
-        def entityInstance = Entity.findByName(params.name)
+        def entity = Entity.findByName(params.name)
 
-        if(!entityInstance) {
+        if(!entity) {
             flash.message = message(code:"user.notFound", args:[params.name])
             redirect action:'showProfile', model:[name:params.name]
         }
         else {
-            return [ entityInstance : entityInstance, entity: entityInstance ]
+            return ['entity': entity]
         }
     }
 
@@ -561,6 +561,8 @@ class ProfileController {
              entityInstance.profile.biography = params.biography
            if (params.description)
              entityInstance.profile.description = params.description
+           if (params.showTips) entityInstance.profile.showTips = true
+           else entityInstance.profile.showTips = false  
          if(!entityInstance.hasErrors() && entityInstance.save()) {
                flash.message = message(code:"user.updated", args:[entityInstance.profile.fullName])
 

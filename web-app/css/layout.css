@@ -292,14 +292,14 @@ ul {
     margin: 0 0 17px 0;
     padding: 0 0 3px 0;
     color: #555; }
-#profile-content input, #profile-content select, #profile-content textarea {
+#private-content input, #private-content select, #private-content textarea {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0;
     border: 1px solid #999;
     padding: 2px;
 }
-#profile-content input:hover, #profile-content select:hover, #profile-content textarea:hover {
+#private-content input:hover, #private-content select:hover, #private-content textarea:hover {
      border: 1px solid #000;
 }
 
@@ -498,6 +498,10 @@ ul {
 
 /* ----- LIST and TABLE overrides ----- */
 
+table .label {
+    height: 25px;
+    padding-right: 10px; }
+
 #body-list, #body-default {
     padding: 0; /*px 10px 10px 10px;*/
     /*background: #f0f0f0;*/ }
@@ -663,15 +667,47 @@ div.actionlinks div.userlinks a {
     border: 1px solid #33f;
     background: #66f;
     padding: 4px 5px;
-    margin: 10px;
+    margin: 5px;
+    text-align: center;
+    float: left;
+    -moz-border-radius: 5px;
+    color: #fff !important;
+    display: block;
+    height: 16px; }
+    .buttonBlue:hover {
+        background: #44f;
+        border: 1px solid #11f;
+        text-decoration: none; }
+
+.boxGray input[type=submit] {
+    border: 1px solid #33f !important;
+    background: #66f;
+    padding: 4px 5px !important;
+    margin: 5px !important;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
     color: #fff !important;
     display: block; }
-    .buttonBlue:hover {
+    .boxGray input[type=submit]:hover {
         background: #44f;
-        border: 1px solid #11f;
+        border: 1px solid #11f !important;
+        text-decoration: none;
+        cursor: pointer; }
+
+.buttonGray {
+    border: 1px solid #333;
+    background: #666;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    float: left;
+    -moz-border-radius: 5px;
+    color: #fff !important;
+    display: block; }
+    .buttonGray:hover {
+        background: #444;
+        border: 1px solid #111;
         text-decoration: none; }
 
 .activity-list-head {

@@ -10,9 +10,12 @@
 </div>
 <div class="boxGray">
     <div id="inbox">
+      <div class="buttons">
         <g:link class="buttonBlue" controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link>
         <g:link class="buttonBlue" controller="msg" action="outbox" params="[name:entity.name]">Postausgang</g:link>
         <div class="spacer"></div>
+      </div>
+
       %{--<div id="inbox-actions">
       <div id="inbox-action-form">
       <form action="#" name="inbox-action-form">

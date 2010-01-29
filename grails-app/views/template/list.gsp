@@ -4,9 +4,11 @@
   </head>
 
   <body>
-    <div class="toolTip">
-      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche im Lernardo erfassten Aktivitätsvorlagen.
-    </div>
+    <g:if test="${entity.profile.showTips}">
+      <div class="toolTip">
+        <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche im Lernardo erfassten Aktivitätsvorlagen.
+      </div>
+    </g:if>
     <div class="headerBlue">
     <h1>Lernardo Aktivitätsvorlagen</h1>
     </div>

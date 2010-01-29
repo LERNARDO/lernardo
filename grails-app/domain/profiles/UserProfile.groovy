@@ -13,6 +13,7 @@ class UserProfile extends Profile {
     String tel
     Integer gender
     String biography
+    Boolean showTips = true
 
     static constraints = {
         title(nullable:true,blank:true)

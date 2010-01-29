@@ -131,9 +131,11 @@
                       
                         </tbody>
                     </table>
+              
                     <div class="buttons">
-                        <span class="button"><g:submitButton name="save" action="saveSchool" value="Anlegen" /></span>
-                        <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
+                        <g:submitButton name="submitButton" value="Anlegen" />
+                        <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link>
+                        <div class="spacer"></div>
                     </div>
             </g:form>
         </div>

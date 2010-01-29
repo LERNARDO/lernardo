@@ -14,9 +14,11 @@
       <g:formRemote name="searchForm" url="[controller:'profile', action:'searchMe']" class="members-filter" update="membersearch-results">
       <fieldset>
         <div class="form-content">
-          <div class="search-field">
+          <div>
             <label for="name">Bitte einen Namen eingeben:</label>
-            <input id="name" type="text" name="name"/>
+            <input id="name" type="text" name="name"/>            
+          </div>
+          <div class="buttons">
             <g:submitButton name="button" value="Suchen"/>
           </div>
         </div>

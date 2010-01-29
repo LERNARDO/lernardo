@@ -14,6 +14,7 @@ class PaedProfile extends Profile {
     Integer gender
     String biography
     String training
+    Boolean showTips = true
 
     static constraints = {
         title(nullable:true,blank:true)

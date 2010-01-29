@@ -178,8 +178,9 @@
                     </table>
 
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="update" value="Ändern" /></span>
-                        <span class="nav-button"><g:link action="show" id="${template.id}" params="[name:currentEntity.name]">Abbrechen</g:link></span>
+                        <g:submitButton name="submitButton" value="Ändern" />
+                        <g:link class="buttonGray" action="show" id="${template.id}" params="[name:currentEntity.name]">Abbrechen</g:link>
+                        <div class="spacer"></div>
                     </div>
             </g:form>
         </div>

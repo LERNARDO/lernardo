@@ -4,9 +4,11 @@
     <title>Liste aller Aktivitäten</title>
   </head>
   <body>
-    <div class="toolTip">
-      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in den Horten in denen der Pädagoge arbeitet.
-    </div>
+    <g:if test="${entity.profile.showTips}">
+      <div class="toolTip">
+        <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in den Horten in denen der Pädagoge arbeitet.
+      </div>
+    </g:if>
     <div class="headerBlue">
     <h1>Lernardo Aktivitäten</h1>
     </div>
@@ -18,8 +20,10 @@
         Filtern nach:
         <g:form name="form1" action="list">
           <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..2010}" />
-          <g:submitButton name="list" value="OK" />
-          <g:submitButton name="list" value="Alle" />
+          <div class="buttons">
+            <g:submitButton name="list" value="OK" />
+            <g:submitButton name="list" value="Alle" />
+          </div>
         </g:form>
       </div>
 

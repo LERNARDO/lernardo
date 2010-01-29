@@ -5,6 +5,10 @@
   <g:javascript library="jquery"/>
 </head>
 <body>
+<div class="headerBlue">
+  <h1>Mein Postfach: Nachricht</h1>
+</div>
+<div class="boxGray">
           <div class="body">
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -34,11 +38,13 @@
                     <input type="hidden" name="id" value="${msgInstance?.id}" />
                     %{--reply is only possible when sender account is enabled--}%
                     <app:isEnabled entityName="${msgInstance.sender.name}">
-                      <span class="button"><g:link controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link></span>
+                      <g:link class="buttonBlue" controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link>
                     </app:isEnabled>
-                    <g:link action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:box]">Löschen</g:link>
-                    <span class="nav-button"><g:link action="inbox" params="[name:entity.name]">zurück</g:link></span>
+                    <g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:box]">Löschen</g:link>
+                    <g:link class="buttonGray" action="inbox" params="[name:entity.name]">zurück</g:link>
+                    <div class="spacer"></div>
                 </g:form>
             </div>
         </div>
+  </div>
 </body>

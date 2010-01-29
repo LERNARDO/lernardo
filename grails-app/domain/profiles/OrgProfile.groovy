@@ -15,6 +15,7 @@ class OrgProfile extends Profile {
     String tel
     String description
     Entity speaker
+    Boolean showTips = true
 
     static constraints = {
         fullName(blank:false)

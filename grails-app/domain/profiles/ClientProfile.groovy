@@ -20,6 +20,7 @@ class ClientProfile extends Profile {
     String limitations
     Boolean comesAlone
     Boolean goesAlone
+    Boolean showTips = true
 
     static constraints = {
         fullName(nullable:true,size:3..30)

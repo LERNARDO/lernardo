@@ -6,7 +6,10 @@
 </head>
 
 <body>
-<h1>Passwort ändern</h1>
+  <div class="headerBlue">
+    <h1>Passwort ändern</h1>
+  </div>
+<div class="boxGray">
 <div class="yui-g" id="settings">
   <div class="settings-block-content">
     <g:form controller="profile" action="checkPassword" params="[name:entity.name]">
@@ -29,5 +32,6 @@
       </table>
     </g:form>
   </div>
+</div>
 </div>
 </body>

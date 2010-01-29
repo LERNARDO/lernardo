@@ -184,8 +184,9 @@
                     </table>
 
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="save" value="Anlegen" /></span>
-                        <span class="nav-button"><g:link controller="template" action="list">Abbrechen</g:link></span>
+                        <g:submitButton name="submitButton" value="Anlegen" />
+                        <g:link class="buttonGray" controller="template" action="list">Abbrechen</g:link>
+                        <div class="spacer"></div>
                     </div>
             </g:form>
         </div>

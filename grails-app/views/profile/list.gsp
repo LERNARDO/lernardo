@@ -15,7 +15,9 @@
       <div id="select-box">
         <g:form name="form1" action="list">
           <g:select name="entityType" from="${[all:'Alle',Operator:'Betreiber',Hort:'Horte',Paed:'Pädagogen',Client:'Betreute',User:'User']}" value="${entityType}" optionKey="key" optionValue="value"/>
-          <g:submitButton name="list" value="OK" />
+          <div class="buttons">
+            <g:submitButton name="list" value="OK" />
+          </div>
         </g:form>
       </div>
 

@@ -56,10 +56,13 @@
                             <tr>
                               <td>&nbsp;</td>
                               <td>
-                                <div class="buttons">             
-                                    <span class="button"><g:actionSubmit class="save" action="save" value="Senden" /></span>
-                                    <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
+
+                                <div class="buttons">
+                                    <g:submitButton name="submitButton" value="Senden" />
+                                    <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link>
+                                    <div class="spacer"></div>
                                 </div>
+
                               </td>
                             </tr>                  
                         </tbody>

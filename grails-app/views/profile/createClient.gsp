@@ -6,8 +6,8 @@
   </head>
   <body>
       <div class="headerBlue">
-      <h1>Betreuten anlegen</h1>
-    </div>
+        <h1>Betreuten anlegen</h1>
+      </div>
   <div class="boxGray">
       <div class="body">
             <g:hasErrors bean="${entityInstance}">
@@ -15,7 +15,7 @@
                 <g:renderErrors bean="${entityInstance}" as="list" />
               </div>
             </g:hasErrors>
-            <g:form action="save" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
+            <g:form action="saveClient" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
                     <h1>Notwendige Angaben</h1>
                     <table id="msg-composer">
                         <tbody>
@@ -71,11 +71,15 @@
                             </tr>
                         </tbody>
                     </table>
+
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="saveClient" value="Anlegen" /></span>
-                        <span class="nav-button"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link></span>
+                        <g:submitButton name="submitButton" value="Anlegen" />
+                        <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link>
+                        <div class="spacer"></div>
                     </div>
+
             </g:form>
         </div>
+    </div>
     </body>
 </html>

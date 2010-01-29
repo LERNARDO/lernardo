@@ -16,6 +16,7 @@ class FacProfile extends Profile {
     String description
     String opened
     Entity speaker
+    Boolean showTips = true
 
     static constraints = {
         fullName(nullable:false)
