@@ -73,6 +73,9 @@ body {
     margin-bottom: 5px;
 }
 
+.spacer {
+    clear: both; }
+
 /* ----- NAVIGATION -----*/
 
 #nav {
@@ -630,16 +633,20 @@ div.actionlinks div.userlinks a {
     margin-bottom: 10px;
 }
 
-#newActivity {
+.buttonBlue {
     border: 1px solid #33f;
     background: #66f;
-    padding: 5px;
+    padding: 4px 5px;
     margin: 10px;
-    width: 135px;
     text-align: center;
-    -moz-border-radius: 5px; }
-    #newActivity a {
-        color: #fff !important; }
+    float: left;
+    -moz-border-radius: 5px;
+    color: #fff !important;
+    display: block; }
+    .buttonBlue:hover {
+        background: #44f;
+        border: 1px solid #11f;
+        text-decoration: none; }
 
 .activity-list-head {
     padding-top: 6px;

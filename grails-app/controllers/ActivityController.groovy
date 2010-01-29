@@ -105,10 +105,16 @@ class ActivityController {
       activityInstance.template = template ;
       activityInstance.facility = Entity.findByName ("kaumberg")
 
+      // get a list of facilities the current entity is working in
+      List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+      List facilityList = []
 
+      facilities.each {
+        facilityList << it.target
+      }
       return ['activityInstance': activityInstance,
               'template': template,
-              'hortList': Entity.findAllByType(metaDataService.etHort),
+              'hortList': facilityList,
               'availPaeds': Entity.findAllByType(metaDataService.etPaed),
               'availClients': Entity.findAllByType(metaDataService.etClient),
               'entity': entityHelperService.loggedIn

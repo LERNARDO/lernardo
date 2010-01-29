@@ -40,15 +40,10 @@
       </div>
 
       <g:if test="${entity.type.name == 'Paed'}">
-        <div id="newActivity">
-          <g:link action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
-        </div>
-        <div id="newActivity">
-          <g:link action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
-        </div>
-        <div id="newActivity">
-          <g:link controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
-        </div>
+          <g:link class="buttonBlue" action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
+          <g:link class="buttonBlue" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
+          <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
+          <div class="spacer"></div>
       </g:if>
 
       <div id="comments-block">

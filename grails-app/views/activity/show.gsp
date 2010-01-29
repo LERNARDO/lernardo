@@ -64,13 +64,11 @@ To change this template use File | Settings | File Templates.
       </table>
 
       <g:if test="${entity.type.name == 'Paed'}">
-        <div id="newActivity">
-          <g:link action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
-        </div>
-        <div id="newActivity">
-          <g:link action="del" id="${activity.id}">Aktivität löschen</g:link>
-        </div>
+          <g:link class="buttonBlue" action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
+          <g:link class="buttonBlue" action="del" id="${activity.id}">Aktivität löschen</g:link>
+          <div class="spacer"></div>
       </g:if>
+      
     </div>
   </div>
   </body>
