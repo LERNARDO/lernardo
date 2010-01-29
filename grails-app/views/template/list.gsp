@@ -4,6 +4,9 @@
   </head>
 
   <body>
+    <div class="toolTip">
+      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche im Lernardo erfassten Aktivitätsvorlagen.
+    </div>
     <div id="body-list">
       <div style="float:right;">
         <ub:meOrAdmin entityName="${entity.name}">

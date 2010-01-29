@@ -4,6 +4,9 @@
     <title>Liste aller Aktivitäten</title>
   </head>
   <body>
+    <div class="toolTip">
+      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in den Horten in denen der Pädagoge arbeitet.
+    </div>
     <div id="body-list">
       <h2>Liste aller Aktivitäten</h2>
       <p>${activityCount} Aktivitäten gefunden</p>

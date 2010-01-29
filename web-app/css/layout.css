@@ -65,6 +65,14 @@ body {
 .notEnabled {
     color: #f44; }
 
+.toolTip {
+    border: 1px solid #3f3;
+    -moz-border-radius: 4px;
+    background: #8f8;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
 /* ----- NAVIGATION -----*/
 
 #nav {

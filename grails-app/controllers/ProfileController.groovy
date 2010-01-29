@@ -27,6 +27,35 @@ class ProfileController {
         render result as JSON
     }
 
+    def changeFacilities = {
+      List horte = []
+      List working = Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)
+      working.each {
+          horte << it.target
+      }
+      [entity: Entity.findByName(params.name),
+       hortList: Entity.findAllByType(metaDataService.etHort),
+       horte: horte]
+    }
+
+    def saveFacilities = {
+
+      // delete old links
+      Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)?.each { it.delete() }
+
+      println params
+      if (params.facilities.class.isArray()) {
+        params.facilities.each {
+            println it
+            new Link(source: Entity.findByName(params.name), target: Entity.findById(it), type: metaDataService.ltWorking).save()
+          }
+      }
+      else
+        new Link(source: Entity.findByName(params.name), target: Entity.findById(params.facilities), type: metaDataService.ltWorking).save()      
+      
+      redirect action:'showProfile', params:[name:params.name]
+    }
+
     def disable = {
       Entity e = Entity.findByName(params.name)
       if (!e) {
@@ -281,7 +310,13 @@ class ProfileController {
 
     def showProfile = {
       Entity e = Entity.findByName(params.name)
-      return [entity:e]
+      List horte = []
+      List working = Link.findAllBySourceAndType(e, metaDataService.ltWorking)
+      working.each {
+          horte << it.target.profile.fullName
+      }
+      def ret = horte.join(', ')
+      return [entity:e,horte:ret]
     }
 
     def showCalendar = {

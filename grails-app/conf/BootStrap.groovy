@@ -61,8 +61,8 @@ class BootStrap {
     }
 
     // a mod user
-    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@lkult.at", "Alexander Zeillinger") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.modRole)
+    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
       prf.gender = 1
@@ -75,6 +75,7 @@ class BootStrap {
 
     // some regular users
     entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.gender = 2
       prf.title = "B.A."
@@ -106,6 +107,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
@@ -334,12 +336,26 @@ class BootStrap {
     def mike = Entity.findByName ('mike')
     def alex = Entity.findByName ('alex')
     def patrizia = Entity.findByName ('patrizia')
+    def martin = Entity.findByName ('martin')
+    def rosa = Entity.findByName ('rosa')
+    def birgit = Entity.findByName ('birgit')
+    def hannah = Entity.findByName ('hannah')
+    def regina = Entity.findByName ('regina')
+    def loewenzahn = Entity.findByName ('loewenzahn')
+    def kaumberg = Entity.findByName ('kaumberg')
 
     // Person Links
     new Link(source:mike, target:alex,  type:metaDataService.ltFriendship).save()
     new Link(source:alex, target:mike,  type:metaDataService.ltFriendship).save()
     new Link(source:alex, target:patrizia, type:metaDataService.ltFriendship).save()
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
+
+    new Link(source:martin, target:loewenzahn, type:metaDataService.ltWorking).save()
+    new Link(source:martin, target:kaumberg, type:metaDataService.ltWorking).save() // temp
+    new Link(source:rosa, target:loewenzahn, type:metaDataService.ltWorking).save()
+    new Link(source:birgit, target:loewenzahn, type:metaDataService.ltWorking).save()
+    new Link(source:hannah, target:kaumberg, type:metaDataService.ltWorking).save()
+    new Link(source:regina, target:loewenzahn, type:metaDataService.ltWorking).save()
   }
 
   void createDefaultActivityTemplates() {
@@ -718,7 +734,7 @@ class BootStrap {
     void createDefaultActivities() {
       log.debug ("==> creating default activities")
 
-      /*for (int i=1;i<31;i++) {
+      for (int i=1;i<31;i++) {
          new Activity(title:'Ankunft',
                       owner:Entity.findByName('martin'),
                       date: new Date(2009-1900,11,i,11,00),
@@ -766,7 +782,7 @@ class BootStrap {
                       clients:[],
                       facility:Entity.findByName('kaumberg'),
                       template:'',
-                      attribution:'Ankunft').save()}*/
+                      attribution:'Ankunft').save()}
 
       new Activity(title:'Weide mit Hindernissen',
             owner:Entity.findByName('hannah'),

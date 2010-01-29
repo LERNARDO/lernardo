@@ -3,6 +3,7 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import lernardo.Activity
 import lernardo.ActivityTemplate
+import de.uenterprise.ep.Link
 
 class ActivityController {
   def entityHelperService
@@ -17,9 +18,36 @@ class ActivityController {
         params.max = params.max ? params.max.toInteger(): 10
         params.myDate_year = params.myDate_year ?: 'alle'
 
+        // get a list of facilities the current entity is working in
+        List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+        List facilityList = []
+
+        facilities.each {
+          facilityList << it.target
+        }
+
+        // create empty list for final results
+        List activityList = []
+
         if (params.myDate_year == 'alle' || params.list == 'Alle') {
-          return ['activityList': Activity.list(params),
-                  'activityCount': Activity.count(),
+
+          // get all activities
+          def activities = Activity.list()
+
+          // sort them out
+          activities.each {
+            for (f in facilityList) {
+              if (it.facility == f)
+                activityList << it
+            }
+          }
+
+          def activityCount = activityList.size()
+          def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+          activityList = activityList.subList(params.offset,upperBound)
+
+          return ['activityList': activityList,
+                  'activityCount': activityCount,
                   'entity': entityHelperService.loggedIn]
         }
 
@@ -27,14 +55,26 @@ class ActivityController {
         if(params.myDate_year && params.myDate_month && params.myDate_day) {
           def c = Activity.createCriteria()
           Date inputDate = new Date()
-          def results = c.list {
+          def activities = c.list {
             String input = "${params.myDate_year}/${params.myDate_month}/${params.myDate_day}"
             inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
             between('date',inputDate,inputDate+1)
           }
-          println inputDate
-          return ['activityList': results,
-                'activityCount': results.size(),
+
+          // sort them out
+          activities.each {
+            for (f in facilityList) {
+              if (it.facility == f)
+                activityList << it
+            }
+          }
+
+          def activityCount = activityList.size()
+          def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+          activityList = activityList.subList(params.offset,upperBound)
+
+          return ['activityList': activityList,
+                'activityCount': activityCount,
                 'dateSelected': inputDate,
                 'entity': entityHelperService.loggedIn]
         }
@@ -68,7 +108,7 @@ class ActivityController {
 
       return ['activityInstance': activityInstance,
               'template': template,
-              'hortList': Entity.findAllByType(EntityType.findByName('Hort')),
+              'hortList': Entity.findAllByType(metaDataService.etHort),
               'availPaeds': Entity.findAllByType(metaDataService.etPaed),
               'availClients': Entity.findAllByType(metaDataService.etClient),
               'entity': entityHelperService.loggedIn

@@ -34,6 +34,7 @@ class MetaDataService {
   static final String LT_OPERATION = "Betreibung"
   static final String LT_CLIENTSHIP = "Betreuung"
   static final String LT_BOOKMARK = "Beobachtung"
+  static final String LT_WORKING = "Arbeitet"
 
   def initialize() {
     getEstPerson()
@@ -56,6 +57,7 @@ class MetaDataService {
     getLtOperation()
     getLtClientship()
     getLtBookmark()
+    getLtWorking()
 
     getUserRole()
     getModRole()
@@ -83,6 +85,7 @@ class MetaDataService {
   def getLtOperation () { defaultObjectService.openLT(LT_OPERATION, lstOther) }
   def getLtClientship () { defaultObjectService.openLT(LT_CLIENTSHIP, lstOther) }
   def getLtBookmark () { defaultObjectService.openLT(LT_BOOKMARK, lstOther) }
+  def getLtWorking () { defaultObjectService.openLT(LT_WORKING, lstOther) }
 
   def getUserRole () {defaultObjectService.openRole (ROLE_USER, "regular user")}
   def getModRole () {defaultObjectService.openRole (ROLE_MOD, "moderator")}

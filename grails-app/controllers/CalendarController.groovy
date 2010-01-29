@@ -3,9 +3,11 @@ import org.joda.time.DateTime
 import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import lernardo.Activity
+import de.uenterprise.ep.Link
 
 class CalendarController {
   def entityHelperService
+  def metaDataService
 
     def index = { }
 
@@ -35,16 +37,35 @@ class CalendarController {
         params.name = params.name ?: 'all'
         log.debug ("loading events for $params.name between $params.start and $params.end" )
 
+        // get a list of facilities the current entity is working in
+        List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+        List facilityList = []
+
+        facilities.each {
+          facilityList << it.target
+        }
+
+       // create empty list for final results
+        List activityList = []
+
         def activities = []
         // find all activities for given profile
-        if (params.name == 'all')
+        if (params.name == 'all') {
           activities = Activity.list()
+          // sort them out
+          activities.each {
+            for (f in facilityList) {
+              if (it.facility == f)
+                activityList << it
+            }
+          }
+        }
         else
-          activities = Activity.findAllByOwner(Entity.findByName(params.name))
+          activityList = Activity.findAllByOwner(Entity.findByName(params.name))
 
         // convert to fullCalendar events
         def eventList = []
-        activities.each {
+        activityList.each {
             def dtStart = new DateTime (it.date)
             dtStart = dtStart.plusHours(1)
             def dtEnd = dtStart.plusMinutes("$it.duration".toInteger())
