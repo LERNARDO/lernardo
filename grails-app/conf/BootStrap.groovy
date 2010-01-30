@@ -887,12 +887,12 @@ class BootStrap {
 
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
                content: 'Um eine Aktivitätsvorlage zu erstellen...',
-               type: metaDataService.etPaed).save()
+               type: metaDataService.etPaed.name).save()
     new Helper(title: 'Wie kann ich eine Aktivität planen?',
                content: 'Um eine Aktivität zu planen...',
-               type: metaDataService.etPaed).save()
+               type: metaDataService.etPaed.name).save()
     new Helper(title: 'Wie kann ich einen Artikel verfassen?',
                content: 'Um einen Artikel zu verfassen...',
-               type: metaDataService.etPaed).save()
+               type: metaDataService.etPaed.name).save()
   }
 }
