@@ -26,6 +26,7 @@
     <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
     <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${entity.profile.speaker.profile.fullName}</td></tr>
     <tr><td class="bold titles bezeichnung">Öffnungszeiten:</td><td class="bezeichnung">${entity.profile.opened}</td></tr>
+    <tr><td class="bold titles bezeichnung">Essenskosten:</td><td class="bezeichnung">€ ${entity.profile.foodCosts}.-</td></tr>
     <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${entity?.profile?.description?.decodeHTML()}</td></tr>
   </g:elseif>
   <g:elseif test="${entity.type.name == 'User'}">

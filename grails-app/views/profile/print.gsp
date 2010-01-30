@@ -37,6 +37,17 @@
         height: 150px;
         background: #000;
       }
+      .boxEmpty {
+        height:10px;
+        width:10px;
+        border: 1px solid #000;
+      }
+      .boxFull {
+        height:10px;
+        width:10px;
+        border: 1px solid #000;
+        background: #ccc;
+      }
     </style>
   </head>
   <body>
@@ -44,11 +55,9 @@
 
       <img src="${g.resource(dir:'images/avatar', file:image)}" alt="Hort ${pdf.hort}"/>
 
-      <h1>Hort ${pdf.hort}</h1>
-      <p>Anwesenheits- und Essensliste für <g:formatDate date="${new Date()}" format="EEEE, 'den' dd. MM. yyyy"/></p>
-      <p>Gedruckt von ${currentEntity.profile.fullName} <br /><br/>
-         Täglicher Essenbeitrag: €3.-
-      </p>
+      <h1>${currentEntity.profile.fullName}</h1>
+      <p>Anwesenheits- und Essensliste vom <g:formatDate date="${date}" format="EEEE, 'den' dd. MM. yyyy"/></p>
+      <p>Täglicher Essensbeitrag: €${currentEntity.profile.foodCosts}.-</p>
       <table id="profile-list">
         <thead>
           <tr>
@@ -63,10 +72,16 @@
           <tr>
             <td>${entity.profile.fullName}</td>
             <td>${entity.profile.tel}</td>
-            <td><div style="height:10px; width:10px; border: 1px solid #000;"></div></td>
-            <td><div style="height:10px; width:10px; border: 1px solid #000;"></div></td>
+            <td><div class="boxEmpty"></div></td>
+            <td><div class="boxFull"></div></td>
           </tr>
         </g:each>
+          <tr style="font-weight: bold">
+            <td>Gesamt</td>
+            <td></td>
+            <td id="sumAnwesenheit">0</td>
+            <td id="sumEssen">0</td>
+          </tr>
         </tbody>
       </table>
 

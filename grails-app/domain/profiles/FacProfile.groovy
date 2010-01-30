@@ -17,6 +17,7 @@ class FacProfile extends Profile {
     String opened
     Entity speaker
     Boolean showTips = true
+    Integer foodCosts
 
     static constraints = {
         fullName(nullable:false)
@@ -27,5 +28,6 @@ class FacProfile extends Profile {
         description(nullable: true,blank:true,maxSize: 2000)
         opened(nullable:true,blank:true)
         speaker(nullable: true, blank:true)
+        foodCosts(nullable: true)
     }
 }

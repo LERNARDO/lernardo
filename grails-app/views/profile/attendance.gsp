@@ -34,10 +34,19 @@
     <div id="body-list">
       <p>${entityCount} Profile gefunden</p>
 
-      <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste.pdf">
-        %{--Hort:<g:select name="hort" from="${['Löwenzahn', 'Kaumberg']}" value="Kaumberg" /><br/>--}%
+      <g:form controller="profile" action="attendance" method="post" params="[name:entity.name]">
         Datum:<g:datePicker name="date" value="${date}" precision="day" years="${2009..2020}"/>
               %{--<g:select name="monat" from="${1..12}" value="1" />--}%
+        <div class="buttons">
+          <g:submitButton name="submitButton" value="Datum ändern" icon="true"/>
+          <div class="spacer"></div>
+        </div>
+      </g:form>
+
+      <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy'}.pdf">
+        <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd'}"/>
+        <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM'}"/>
+        <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy'}"/>
         <div class="buttons">
           <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
           <div class="spacer"></div>
@@ -46,7 +55,7 @@
 
       <hr/>
       <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/></p>
-      <p>Täglicher Essenbeitrag: €3.-</p>
+      <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
 
       <form method="post" name="clients">
 
@@ -70,7 +79,7 @@
               </tr>
             </g:each>
 
-          <tr>
+          <tr style="font-weight: bold">
             <td>Gesamt</td>
             <td></td>
             <td id="sumAnwesenheit">0</td>

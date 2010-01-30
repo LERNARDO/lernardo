@@ -265,6 +265,7 @@ class BootStrap {
       prf.gender = 2
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
+      prf.tel = "0699 / 1234"
     }
 
     entityHelperService.createEntityWithUserAndProfile("keano", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
@@ -273,6 +274,7 @@ class BootStrap {
       prf.gender = 1
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
+      prf.tel = "0699 / 5678"
     }
   }
 
@@ -321,6 +323,7 @@ class BootStrap {
                             genutzt werden.<br>
                             Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
                             Spielbereich und ein Ruhebereich zur Verfügung."""
+      prf.foodCosts = 3
     }
 
     entityHelperService.createEntityWithUserAndProfile ("kaumberg", etFac, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
@@ -332,6 +335,7 @@ class BootStrap {
       prf.opened = "?"
       prf.speaker = Entity.findByName('hannah')
       prf.description = "Der zweite unter Lernardo betriebene Hort."
+      prf.foodCosts = 5
     }
   }
 

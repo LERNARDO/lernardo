@@ -351,16 +351,17 @@ class ProfileController {
     }
 
     def print = {
-        def image
-        if (params.hort == 'Löwenzahn')
-            image = "hort_loewenzahn.jpg"
-        else if(params.hort == 'Kaumberg')
-            image = "hort_kaumberg.jpg"
-        return ['image':image, 'pdf':params,'entityList': Entity.findAllByType(EntityType.findByName('Client'))]
+        params.date = new Date(params.year.toInteger()-1900,params.month.toInteger(),params.day.toInteger())
+        Entity entity = entityHelperService.loggedIn
+        def image = "hort_" + entity.name + ".jpg"
+        return ['image':image,
+                'pdf':params,
+                'entityList': Entity.findAllByType(EntityType.findByName('Client')),
+                'date': params.date]
     }
 
     def attendance = {
-      params.date = params.date ?: new Date()
+      params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day)): new Date()
 
       // find all clients of a facility
       List result = Link.findAllByTargetAndType(Entity.findByName(params.name),metaDataService.ltClientship)
@@ -567,8 +568,11 @@ class ProfileController {
              entityInstance.profile.biography = params.biography
            if (params.description)
              entityInstance.profile.description = params.description
-           if (params.showTips) entityInstance.profile.showTips = true
-           else entityInstance.profile.showTips = false  
+           if (params.showTips)
+             entityInstance.profile.showTips = true
+           else
+             entityInstance.profile.showTips = false
+           entityInstance.profile.foodCosts = params.foodCosts.toInteger()
          if(!entityInstance.hasErrors() && entityInstance.save()) {
                flash.message = message(code:"user.updated", args:[entityInstance.profile.fullName])
 
