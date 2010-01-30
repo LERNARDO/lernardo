@@ -347,6 +347,8 @@ class BootStrap {
     def regina = Entity.findByName ('regina')
     def loewenzahn = Entity.findByName ('loewenzahn')
     def kaumberg = Entity.findByName ('kaumberg')
+    def kira = Entity.findByName ('kira')
+    def keano = Entity.findByName ('keano')
 
     // make admin a friend of everyone
     List users = Entity.list()
@@ -368,6 +370,10 @@ class BootStrap {
     new Link(source:birgit, target:loewenzahn, type:metaDataService.ltWorking).save()
     new Link(source:hannah, target:kaumberg, type:metaDataService.ltWorking).save()
     new Link(source:regina, target:loewenzahn, type:metaDataService.ltWorking).save()
+
+    // client links
+    new Link(source:kira, target:kaumberg, type:metaDataService.ltClientship).save()
+    new Link(source:keano, target:kaumberg, type:metaDataService.ltClientship).save()
   }
 
   void createDefaultActivityTemplates() {

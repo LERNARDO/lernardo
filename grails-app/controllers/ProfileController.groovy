@@ -361,17 +361,23 @@ class ProfileController {
 
     def attendance = {
       params.date = params.date ?: new Date()
-        return ['entityList': Entity.findAllByType(EntityType.findByName('Client')),
-                'entityCount': Entity.countByType(EntityType.findByName('Client')),
-                'entity':entityHelperService.loggedIn,
-                'date':params.date]
+
+      // find all clients of a facility
+      List result = Link.findAllByTargetAndType(Entity.findByName(params.name),metaDataService.ltClientship)
+      List clients = []
+      result.each {
+        clients << it.source
+      }
+      return ['entityList': clients,
+              'entityCount': clients.size(),
+              'entity':entityHelperService.loggedIn,
+              'date':params.date]
     }
 
     def list = {
         params.entityType = params.entityType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
-        params.sort = params.sort
 
         println params
 

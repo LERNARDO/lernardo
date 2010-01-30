@@ -165,15 +165,17 @@
             </div>
 
           <ub:meOrAdmin entityName="${entity.name}">
-            <g:if test="${entity.type.name == 'Paed'}">
-              <div class="profile-group">Pädagogik</div>
-                <div class="profile-box">
-                  <ul>
+            <div class="profile-group">Pädagogik</div>
+              <div class="profile-box">
+                <ul>
+                  <g:if test="${entity.type.name == 'Paed'}">
                     <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                  </g:if>
+                  <g:if test="${entity.type.name == 'Hort'}">
                     <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
-                  </ul>
-                </div>
-            </g:if>
+                  </g:if>
+                </ul>
+              </div>
           </ub:meOrAdmin>
 
           <ub:isAdmin entityName="${entity.name}">
