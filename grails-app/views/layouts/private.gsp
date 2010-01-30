@@ -143,7 +143,7 @@
                   <li class="profile-activities"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
                 </g:if>             
                 <g:if test="${entity.type.name == 'Client'}">
-                  <li class="profile-leistung"><g:link controller="profile" action="showLeistung" params="[name:entity.name]">Leistungsfortschritt</g:link></li>
+                  <li class="profile-leistung"><g:link controller="evaluation" params="[name:entity.name]">Leistungsfortschritt ansehen</g:link></li>
                 </g:if>
 
                 <ub:notMe entityName="${entity.name}">

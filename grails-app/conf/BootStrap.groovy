@@ -12,6 +12,7 @@ import lernardo.Event
 import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import lernardo.Helper
+import lernardo.Evaluation
 
 class BootStrap {
   def defaultObjectService
@@ -36,7 +37,8 @@ class BootStrap {
       
       createDefaultPosts()
       createDefaultEvents()
-      createDefaultHelper()
+      createDefaultHelpers()
+      createDefaultEvaluations()
     }
   }
 
@@ -257,7 +259,7 @@ class BootStrap {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
 
-/*    entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
@@ -271,7 +273,7 @@ class BootStrap {
       prf.gender = 1
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
-    }*/
+    }
   }
 
   void createDefaultOperators() {
@@ -345,6 +347,15 @@ class BootStrap {
     def regina = Entity.findByName ('regina')
     def loewenzahn = Entity.findByName ('loewenzahn')
     def kaumberg = Entity.findByName ('kaumberg')
+
+    // make admin a friend of everyone
+    List users = Entity.list()
+    users.each {
+      if (it.name != 'admin') {
+        new Link(source: it, target: Entity.findByName('admin'), type: metaDataService.ltFriendship).save()
+        new Link(source: Entity.findByName('admin'), target: it, type: metaDataService.ltFriendship).save()
+      }
+    }
 
     // Person Links
     new Link(source:mike, target:alex,  type:metaDataService.ltFriendship).save()
@@ -882,7 +893,7 @@ class BootStrap {
               date: new Date(2009-1900,11,28,17,30)).save()
   }
 
-  void createDefaultHelper() {
+  void createDefaultHelpers() {
     log.debug ("==> creating default helper")
 
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
@@ -894,5 +905,18 @@ class BootStrap {
     new Helper(title: 'Wie kann ich einen Artikel verfassen?',
                content: 'Um einen Artikel zu verfassen...',
                type: metaDataService.etPaed.name).save()
+  }
+
+  void createDefaultEvaluations() {
+    log.debug ("==> creating default evaluations")
+
+    new Evaluation(owner: Entity.findByName('keano'),
+                   description: 'Keano zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
+                   method: 'Als Maßnahme habe ich ihm mehrere Kinderbücher gegeben, damit tut er sich offensichtlich leichter.',
+                   writer: Entity.findByName('hannah')).save()
+    new Evaluation(owner: Entity.findByName('kira'),
+                   description: 'Kira ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
+                   method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
+                   writer: Entity.findByName('hannah')).save()
   }
 }
