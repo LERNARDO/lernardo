@@ -11,6 +11,7 @@ import lernardo.Activity
 import lernardo.Event
 import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.commons.GrailsApplication
+import lernardo.Helper
 
 class BootStrap {
   def defaultObjectService
@@ -35,6 +36,7 @@ class BootStrap {
       
       createDefaultPosts()
       createDefaultEvents()
+      createDefaultHelper()
     }
   }
 
@@ -879,5 +881,18 @@ class BootStrap {
               content:'Elternsprechtag',
               date: new Date(2009-1900,11,28,17,30)).save()
   }
-  
+
+  void createDefaultHelper() {
+    log.debug ("==> creating default helper")
+
+    new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
+               content: 'Um eine Aktivitätsvorlage zu erstellen...',
+               type: metaDataService.etPaed).save()
+    new Helper(title: 'Wie kann ich eine Aktivität planen?',
+               content: 'Um eine Aktivität zu planen...',
+               type: metaDataService.etPaed).save()
+    new Helper(title: 'Wie kann ich einen Artikel verfassen?',
+               content: 'Um einen Artikel zu verfassen...',
+               type: metaDataService.etPaed).save()
+  }
 }

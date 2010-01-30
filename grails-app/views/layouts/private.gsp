@@ -188,6 +188,13 @@
               </div>
           </ub:isAdmin>
 
+            <div class="profile-group">Hilfe</div>
+              <div class="profile-box">
+                <ul>
+                  <li class="profile-person"><g:link controller="helper" params="[name:entity.name]">Hilfethemen anzeigen</g:link></li>
+                </ul>
+              </div>
+
 %{--            <div class="profile-group">Netzwerk</div>
             <div class="profile-box">
               <g:if test="${!friendsList}">
