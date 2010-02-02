@@ -341,7 +341,22 @@ class ProfileController {
       params.max = params.max ? params.max.toInteger(): 10
 
       Entity e = Entity.findByName(params.name)
-      return [entity:e,'activityList':Activity.findAllByOwner(e,params),'activityCount':Activity.countByOwner(e)]
+
+      // find all activities the entity is owner, or in the paed or client list
+      // Unfortunately we loose control over sort and max, need to find a workaround
+      def activityList = Activity.findAllByOwner(e)
+      Activity.list().each {
+        for (a in it.paeds) {
+          if (a == Entity.findByName(params.name))
+            activityList << it
+        }
+        for (a in it.clients) {
+          if (a == Entity.findByName(params.name))
+            activityList << it
+        }
+      }
+  
+      return [entity:e,'activityList':activityList,'activityCount':activityList.size()]
     }
 
     def showLeistung = {

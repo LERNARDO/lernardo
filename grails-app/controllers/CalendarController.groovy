@@ -60,8 +60,19 @@ class CalendarController {
             }
           }
         }
-        else
+        else {
           activityList = Activity.findAllByOwner(Entity.findByName(params.name))
+          Activity.list().each {
+            for (a in it.paeds) {
+              if (a == Entity.findByName(params.name))
+                activityList << it
+            }
+            for (a in it.clients) {
+              if (a == Entity.findByName(params.name))
+                activityList << it
+            }
+          }
+        }
 
         // convert to fullCalendar events
         def eventList = []
