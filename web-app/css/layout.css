@@ -377,6 +377,32 @@ ul {
 
 /* ----- ADMIN ----- */
 
+#adminArea {
+    text-align: left;
+}
+
+#adminArea h1 {
+    background: #f92;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+    margin: 0;
+    color: #333;
+}
+
+#adminArea h3 {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background: #ee0;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    font-size: 13px;
+}
+
+#adminArea h2, #adminArea ul, #adminArea p, #adminArea table {
+    padding: 10px;    
+}
+
 #admin-content {
     padding: 5px 10px 10px 10px;
     margin: 10px;

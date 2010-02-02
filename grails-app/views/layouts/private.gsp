@@ -184,6 +184,7 @@
                   <li class="profile-person"><g:link controller="profile" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
                   <li class="profile-person"><g:link controller="profile" action="createPaed" params="[name:entity.name]">Pädagoge anlegen</g:link></li>
                   <li class="profile-person"><g:link controller="profile" action="createSchool" params="[name:entity.name]">Schule anlegen</g:link></li>
+                  <li class="profile-person"><g:link controller="adm" action="index">Verwaltung</g:link></li>
                 </ul>
               </div>
           </ub:isAdmin>
