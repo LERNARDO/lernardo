@@ -907,14 +907,41 @@ class BootStrap {
     log.debug ("==> creating default helper")
 
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
-               content: 'Um eine Aktivitätsvorlage zu erstellen...',
+               content: '''Um eine Aktivitätsvorlage zu erstellen klicke zuerst auf "Aktivätsvorlagen" in der orangenen
+                           Hauptnavigation. Dort findest du dann einen Button "Aktivitätsvorlage erstellen".''',
                type: metaDataService.etPaed.name).save()
     new Helper(title: 'Wie kann ich eine Aktivität planen?',
-               content: 'Um eine Aktivität zu planen...',
+               content: '''Aktivitäten beruhen immer auf einer Aktivitätsvorlage. Klicke in der orangenen Hauptnavigation
+                           auf "Aktivitätsvorlagen" und wähle dort eine Vorlage aus indem du auf dessen Namen klickst.
+                           Im nächsten Schritt kannst du dann über den Button "Neue Aktivität planen" eine konkrete
+                           Aktivität planen. Für jede Aktivität must du eine Einrichtung, Pädagogen und Betreute auswählen.''',
                type: metaDataService.etPaed.name).save()
     new Helper(title: 'Wie kann ich einen Artikel verfassen?',
-               content: 'Um einen Artikel zu verfassen...',
+               content: '''Artikel können direkt auf der Startseite verfasst werden. Klicke auf "Home" in der blauen
+                           Navigationsleiste um dorthin zu gelangen und klicke auf den roten Link "Neuen Artikel verfassen".''',
                type: metaDataService.etPaed.name).save()
+    new Helper(title: 'Wie kann ich jemandem eine Nachricht ins Postfach schicken?',
+               content: '''Um jemandem eine Nachricht zu schicken musst du zuerst sein/ihr Profil besuchen. Dort findest
+                           du dann links in der Seitennavigation den Punkt "Nachricht senden".''',
+               type: metaDataService.etPaed.name).save()
+    new Helper(title: 'Was ist das Netzwerk?',
+               content: '''Im Netzwerk hast du eine Auflistung aller für dich relevanten User im ERP, wie deine Betreuten,
+                           oder andere Pädagogen. Diese Liste kannst du selbst verwalten indem du andere Profile besuchst,
+                           und dort Freunde oder Bookmarks hinzufügst.''',
+               type: metaDataService.etPaed.name).save()
+
+    new Helper(title: 'Wie kann ich einen Betreuten anlegen?',
+               content: '''Betreute können über den Link "Betreuten anlegen" in der Seitennavigation links angelegt werden.
+                           Notwendige Angaben müssen unbedingt ausgefüllt werden, zusätzliche Angaben sind optional und
+                           können später noch über "Daten ändern" ergänzt oder geändert werden.''',
+               type: metaDataService.etHort.name).save()
+
+    new Helper(title: 'Wie funktioniert die Anwesenheits-/Essensliste? (AE-Liste)',
+           content: '''In der AE-Liste werden alle im Hort betreuten Kinder aufgelistet. Für jedes Kind kann die Anwesenheit,
+                       sowie die Teilnahme am Mittagessen eingetragen werden. Daraus lässt sich dann die Summe der Anwesenden
+                       und die Gesamtsumme der Essenbeiträge ausrechnen. Es besteht außerdem die Möglichkeit diese Liste als
+                       PDF anzuzeigen und bequem ausdrucken zu lassen.''',
+           type: metaDataService.etHort.name).save()
   }
 
   void createDefaultEvaluations() {
