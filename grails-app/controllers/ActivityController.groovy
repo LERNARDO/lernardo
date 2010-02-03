@@ -96,14 +96,12 @@ class ActivityController {
     }
 
     def create = {
-      def activityInstance = new Activity()
-      activityInstance.properties = params
-
+      def activityInstance = new lernardo.Activity()
       def template = ActivityTemplate.get(params.id)
       activityInstance.title = template.name
       activityInstance.duration = template.duration
-      activityInstance.template = template ;
-      activityInstance.facility = Entity.findByName ("kaumberg")
+      activityInstance.template = template
+      activityInstance.facility = Entity.findByName('loewenzahn')
 
       // get a list of facilities the current entity is working in
       List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
@@ -122,11 +120,14 @@ class ActivityController {
     }
 
     def save = {
-      lernardo.Activity activityInstance = new lernardo.Activity(params)
+      def activityInstance = new lernardo.Activity(params)
       activityInstance.owner = entityHelperService.loggedIn
+      // finding the facility by id and assigning it to the facility attribute is mysteriously broken
+      // assigning loewenzahn by default doesn't work either
+      //activityInstance.facility = Entity.findByName('loewenzahn') //Entity.get(params.facility)
       activityInstance.attribution = ActivityTemplate.findByName(params.template).attribution 
 
-      if(activityInstance.save(flush:true)) {
+      if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
           redirect action:'show', id:activityInstance.id
         }

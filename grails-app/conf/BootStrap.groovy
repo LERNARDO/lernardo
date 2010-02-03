@@ -363,12 +363,13 @@ class BootStrap {
       }
     }
 
-    // Person Links
+    // friend links
     new Link(source:mike, target:alex,  type:metaDataService.ltFriendship).save()
     new Link(source:alex, target:mike,  type:metaDataService.ltFriendship).save()
     new Link(source:alex, target:patrizia, type:metaDataService.ltFriendship).save()
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
 
+    // working links
     new Link(source:martin, target:loewenzahn, type:metaDataService.ltWorking).save()
     new Link(source:rosa, target:loewenzahn, type:metaDataService.ltWorking).save()
     new Link(source:birgit, target:loewenzahn, type:metaDataService.ltWorking).save()
