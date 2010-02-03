@@ -61,11 +61,11 @@
         </g:each>
 
       </table>
-      <div id="inbox-footer">
-        <div class="paginateButtons">
-          <g:paginate total="${msgInstanceTotal}"/>
-        </div>
+
+      <div class="paginateButtons">
+        <g:paginate total="${msgInstanceTotal}"/>
       </div>
+
     </div>
 </div>
 </body>
