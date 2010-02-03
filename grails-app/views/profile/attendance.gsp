@@ -72,7 +72,7 @@
 
             <g:each status="i" in="${entityList}" var="entity">
               <tr class="row-${entity.type}">
-                <td><g:link controller="profile" action="show" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
+                <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
               <td class="col">${entity.profile.tel}</td>
               <td class="col"><input type="checkbox" name="anwesend"></td>
               <td class="col"><input type="checkbox" name="essen"></td>
