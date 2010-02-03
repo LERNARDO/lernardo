@@ -24,7 +24,9 @@ class HelperController {
           helperFor = 'Pädagogen'
         else if (type == 'User')
           helperFor = 'Moderatoren'
-        [ helperInstanceList: helper, helperInstanceTotal: helper.size(), entity: entity, helperFor: helperFor ]
+        else if (type == 'Hort')
+          helperFor = 'die Hortverwaltung'
+      [ helperInstanceList: helper, helperInstanceTotal: helper.size(), entity: entity, helperFor: helperFor ]
     }
 
     def show = {

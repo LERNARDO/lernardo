@@ -1,85 +1,92 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
+
   <head>
     <meta name="layout" content="private" />
     <title>Betreuten anlegen</title>
   </head>
+
   <body>
-      <div class="headerBlue">
-        <h1>Betreuten anlegen</h1>
-      </div>
-  <div class="boxGray">
-      <div class="body">
-            <g:hasErrors bean="${entityInstance}">
-              <div class="errors">
-                <g:renderErrors bean="${entityInstance}" as="list" />
-              </div>
-            </g:hasErrors>
-            <g:form action="saveClient" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
-                    <h1>Notwendige Angaben</h1>
-                    <table id="msg-composer">
-                        <tbody>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="fullName">
-                                      <g:message code="msg.fullName.label" default="Name" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <input type="text" size="30" id="fullName" name="fullName" value="${fieldValue(bean:entityInstance,field:'profile.fullName')}"/> (3 bis 30 Zeichen)
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="name">
-                                      <g:message code="msg.name.label" default="Kurzname" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'name','errors')}">
-                                    <input type="text" size="20" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/> (3 bis 20 Zeichen)
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="email">
-                                      <g:message code="msg.email.label" default="Email" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'email','errors')}">
-                                    <input type="text" size="30" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h1>Zusätzliche Angaben</h1>
-
-                    <table id="msg-composer">
-                      <tbody>
-                              <tr class="prop">
-                                <td valign="top" class="name">
-                                    <label for="city">
-                                      <g:message code="msg.city.label" default="Stadt" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'city','errors')}">
-                                    <input type="text" size="30" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="buttons">
-                        <g:submitButton name="submitButton" value="Anlegen" />
-                        <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link>
-                        <div class="spacer"></div>
-                    </div>
-
-            </g:form>
-        </div>
+    <div class="headerBlue">
+      <h1>Betreuten anlegen</h1>
     </div>
-    </body>
+    <div class="boxGray">
+
+      <g:hasErrors bean="${entityInstance}">
+        <div class="errors">
+          <g:renderErrors bean="${entityInstance}" as="list" />
+        </div>
+      </g:hasErrors>
+
+      <g:form action="saveClient" method="post" id="${entityInstance.id}" params="[entity:entity.name]">
+
+        <h1>Notwendige Angaben</h1>
+        <table>
+            <tbody>
+
+                <tr>
+                  <td class="label">Name:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.fullName','errors')}"><g:textField name="fullName" size="30" value="${fieldValue(bean:entityInstance, field:'profile.fullName')}"/> (3 bis 30 Zeichen)</td>
+                </tr>
+
+                <tr>
+                  <td class="label">Kurzname:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'name','errors')}"><g:textField name="name" size="30" value="${fieldValue(bean:entityInstance, field:'name')}"/> (3 bis 20 Zeichen)</td>
+                </tr>
+
+                <tr>
+                  <td class="label">E-Mail:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'user.email','errors')}"><g:textField name="email" size="30" value="${fieldValue(bean:entityInstance, field:'user.email')}"/></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <h1>Zusätzliche Angaben</h1>
+        <table>
+          <tbody>
+
+                <tr>
+                  <td class="label">Geburtstag:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.birthDate','errors')}"><g:datePicker name="birthDate" value="${fieldValue(bean:entityInstance, field:'profile.birthDate')}" precision="day" years="${1900..Calendar.getInstance().get(Calendar.YEAR)}"/></td>
+                </tr>
+
+                <tr>
+                  <td class="label">PLZ:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.PLZ','errors')}"><g:textField name="PLZ" size="30" value="${fieldValue(bean:entityInstance, field:'profile.PLZ')}"/></td>
+                </tr>
+
+                <tr>
+                  <td class="label">Stadt:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.city','errors')}"><g:textField name="city" size="30" value="${fieldValue(bean:entityInstance,field:'profile.city')}"/></td>
+                </tr>
+
+                <tr>
+                  <td class="label">Straße:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.street','errors')}"><g:textField name="street" size="30" value="${fieldValue(bean:entityInstance,field:'profile.street')}"/></td>
+                </tr>
+
+                <tr>
+                  <td class="label">Telefon:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.tel','errors')}"><g:textField name="tel" size="30" value="${fieldValue(bean:entityInstance,field:'profile.tel')}"/></td>
+                </tr>
+
+                <tr>
+                  <td class="label">Geschlecht:</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.tel','errors')}"><g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:entityInstance,field:'profile.gender')}" optionKey="key" optionValue="value"/></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="buttons">
+            <g:submitButton name="submitButton" value="Anlegen" />
+            <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:entity.name]">Abbrechen</g:link>
+            <div class="spacer"></div>
+        </div>
+
+      </g:form>
+    </div>
+
+  </body>
 </html>

@@ -272,7 +272,12 @@ class ProfileController {
 
       entityHelperService.createEntityWithUserAndProfile (params.name, etClient, params.email, params.fullName) {Entity ent->
         UserProfile prf = ent.profile
+        prf.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+        prf.PLZ = params.PLZ.toInteger()
         prf.city = params.city ?: ""
+        prf.street = params.street ?: ""
+        prf.tel = params.tel ?: ""
+        prf.gender = params.gender
         ent.user.password = authenticateService.encodePassword("pass")
       }
 
@@ -281,7 +286,7 @@ class ProfileController {
       //new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
       // add relationship to facility
-      new Link(source:Entity.findByName(params.name), target:params.entity, type:metaDataService.ltClientship).save()
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltClientship).save()
 
       flash.message = message(code:"user.created", args:[params.name,params.entity])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
