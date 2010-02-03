@@ -27,6 +27,11 @@
     </script>
   </head>
   <body>
+  <g:if test="${entity.profile.showTips}">
+    <div class="toolTip">
+      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Der tägliche Essenbeitrag bezieht sich auf die Mittagsmahlzeit und fällt für jeden Betreuten an. Der Betrag kann über die Profildaten des Hortes geändert werden.
+    </div>
+  </g:if>
   <div class="headerBlue">
     <h1>Anwesenheits- und Essensliste</h1>
   </div>
