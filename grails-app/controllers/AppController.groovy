@@ -9,11 +9,11 @@ class AppController {
     def index = { }
 
     def start = {
-        Entity e = entityHelperService.loggedIn
-        if (e)
-          redirect controller:'profile', action:'showNews', params:[name:e.name, content:'profile']
-        else
-          redirect action:'sorry'
+      Entity entity = entityHelperService.loggedIn
+      if (entity)
+        redirect controller:'profile', action:'showNews', params:[name:entity.name]
+      else
+        redirect action:'sorry'
     }
 
     def home = {

@@ -37,30 +37,31 @@
               <div class="sidebox">
                 <div class="innersidebox">
                   <div class="sideboxheader">Login</div>
-
                   <div class="sideboxcontent">
-                    <form action='${resource (file:'j_spring_security_check')}' method='POST' name="login-form" id='loginForm'>
+
+                    <form action="${resource (file:'j_spring_security_check')}" method="post">
                       <table>
                         <tr>
-                          <td width="100px" height="20px">E-Mail:</td>
-                          <td><input id="j_username" name="j_username" type="text" tabindex="1" /></td>
+                          <td style="width: 100px; height: 20px">E-Mail:</td>
+                          <td><g:textField name="j_username" tabindex="1" /></td>
                         </tr>
                         <tr>
-                          <td width="100px" height="20px">Passwort:</td>
-                          <td><input name="j_password" id="j_password" type="password" tabindex="2" /></td>
+                          <td style="width: 100px; height: 20px">Passwort:</td>
+                          <td><g:passwordField name="j_password" tabindex="2" /></td>
                         </tr>
                         <tr>
-                          <td colspan="2" height="25px"><input type="checkbox" id="remember_me" name="" value="remember-me"> Angemeldet bleiben</td>
+                          <td colspan="2" style="height: 25px"><g:checkBox name="remember_me" /> Angemeldet bleiben</td>
                         </tr>
                       </table>
     
                       <div class="login-form-button">
-                        <input type="submit" name="submit" value="Anmelden" id="submit" />
+                        <g:submitButton name="submitButton" value="Anmelden" />
                       </div>
 
                       <div id="forgot-pwd"><g:link controller="app" action="password">Passwort vergessen?</g:link></div>
 
                     </form>
+                    
                   </div>
                 </div><!-- innersidebox -->
               </div><!-- sidebox -->

@@ -7,12 +7,12 @@
 <body>
   <h1>${listTitle ?: articleList ? articleList[0].category.description : "Keine Artikel gefunden" }</h1>
   <div id="article-container">
-
-  <g:if test="${currentEntity}">
-    <g:if test="${currentEntity.type.name == 'Paed'}">
-      <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel verfassen</g:link></p>
+ 
+    <g:if test="${currentEntity}">
+      <g:if test="${currentEntity.type.name == 'Paed'}">
+        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel verfassen</g:link></p>
+      </g:if>
     </g:if>
-  </g:if>
 
     <g:each in="${articleList}" var="article">
       <div class="item">
@@ -26,10 +26,6 @@
         <g:render template="links"  model='[article:article]'/>
       </div>
     </g:each>
-
-    %{--<p>
-      <img src="/lernardoV2/images/static/bild_des_tages${day}.png" width="229" height="172" alt="bild des tages" id="randomPicture"/>
-    </p>--}%
 
   </div>
 </body>

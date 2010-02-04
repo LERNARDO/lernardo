@@ -1,32 +1,18 @@
 <head>
-  <title>News</title>
+  <title>Passwort vergessen?</title>
   <meta name="layout" content="public"/>
-  <g:javascript library="jquery"/>
 </head>
 
 <body>
-<h1>Passwort vergessen?</h1>
-<p>Bitte gib deine Email Adresse ein, um dein Passwort zurückzusetzen.</p>
+  <h1>Passwort vergessen?</h1>
+  <p>Bitte gib deine E-Mail Adresse ein, um dein Passwort zurückzusetzen.</p>
 
-<g:form action="sendPassword" method="post">
-  <table>
-    <tbody>
+  <g:form action="sendPassword" method="post">
+    <p><g:textField name="email" size="40" value="${params.email}"/></p>
 
-    <tr class="prop">
-      <td valign="top" class="value">
-        <input type="text" size="50" id="email" name="email" value="${params.email}"/>
-      </td>
-    </tr>
+    <div class="buttons">
+      <g:submitButton name="submitButton" value="Senden"/>
+    </div>
 
-    <tr>
-      <td>
-        <div class="buttons">
-          <span class="button"><g:actionSubmit class="save" action="sendPassword" value="Senden"/></span>
-        </div>
-      </td>
-    </tr>
-
-    </tbody>
-  </table>
-</g:form>
+  </g:form>
 </body>
