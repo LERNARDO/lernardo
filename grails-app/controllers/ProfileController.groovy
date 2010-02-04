@@ -44,9 +44,9 @@ class ProfileController {
       // delete old links
       Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)?.each { it.delete() }
 
-      println params
-      if (params.facilities.class.isArray()) {
-        params.facilities.each {
+      def fac = params.facilities
+      if (fac.class.isArray()) {
+        fac.each {
             println it
             new Link(source: Entity.findByName(params.name), target: Entity.findById(it), type: metaDataService.ltWorking).save()
           }
@@ -172,9 +172,8 @@ class ProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
       }
 
-      // create mutual relationship between Hort and Operator
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltFriendship).save()
-      new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
+      // add relationship to operator
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltOperation).save()
 
       flash.message = message(code:"user.created", args:[params.name,params.entity])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
@@ -242,6 +241,9 @@ class ProfileController {
             ent.user.password = authenticateService.encodePassword(params.pass)
       }
 
+      // add relationship to facility
+      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltWorking).save()
+
       flash.message = message(code:"user.created", args:[params.name,'Admin'])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
     }
@@ -281,10 +283,6 @@ class ProfileController {
         prf.gender = params.gender
         ent.user.password = authenticateService.encodePassword("pass")
       }
-
-      // create mutual relationship between Client and Hort
-      //new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltFriendship).save()
-      //new Link(source:Entity.findByName(params.entity), target:Entity.findByName(params.name), type:metaDataService.ltFriendship).save()
 
       // add relationship to facility
       new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltClientship).save()
