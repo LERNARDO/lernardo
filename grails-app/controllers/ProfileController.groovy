@@ -318,7 +318,7 @@ class ProfileController {
     }
 
     def showProfile = {
-      Entity e = Entity.findByName(params.name)
+      Entity e = Entity.findByName(params.name ?: entityHelperService.loggedIn.name)
       List horte = []
       List working = Link.findAllBySourceAndType(e, metaDataService.ltWorking)
       working.each {

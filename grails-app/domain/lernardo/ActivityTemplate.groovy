@@ -20,8 +20,6 @@ class ActivityTemplate {
   Date lastUpdated
 
     static constraints = {
-      dateCreated(nullable: true)
-      lastUpdated(nullable: true)
       description(maxSize:2000)
     }
 }

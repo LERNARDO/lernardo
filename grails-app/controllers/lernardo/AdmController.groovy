@@ -7,17 +7,20 @@ class AdmController {
     def metaDataService
 
     def index = {
-      redirect action:'listFacilities'
+      redirect action:'overview'
     }
 
-    def listFacilities = {
-      List facilityList = Entity.findAllByType(metaDataService.etHort)
+    def overview = {
+      List operatorList = Entity.findAllByType(metaDataService.etOperator)
+      List templatesList = ActivityTemplate.list()
 
-      return [facilityList: facilityList]
+      return [operatorList: operatorList,
+              templatesList: templatesList]
     }
 
     def showFacility = {
       Entity facility = Entity.findByName(params.name)
+      Entity operator = Entity.findByName(params.operator)
 
       List temp
 
@@ -35,22 +38,45 @@ class AdmController {
 
       return [facility: facility,
               paedList: paedList,
-              clientList: clientList]
+              clientList: clientList,
+              operator: operator]
+    }
+
+    def showTemplate = {
+      ActivityTemplate template = ActivityTemplate.findByName(params.name)
+
+      return [template: template]
     }
 
     def showClient = {
       Entity entity = Entity.findByName(params.name)
       Entity facility = Entity.findByName(params.facility)
+      Entity operator = Entity.findByName(params.operator)
 
       return [entity: entity,
-              facility: facility]
+              facility: facility,
+              operator: operator]
     }
 
     def showPaed = {
       Entity entity = Entity.findByName(params.name)
       Entity facility = Entity.findByName(params.facility)
+      Entity operator = Entity.findByName(params.operator)
 
       return [entity: entity,
-              facility: facility]
+              facility: facility,
+              operator: operator]
+    }
+
+    def showOperator = {
+      Entity entity = Entity.findByName(params.name)
+
+      List facilityList = []
+      List temp = Link.findAllByTargetAndType(entity, metaDataService.ltOperation)
+      temp.each {
+          facilityList << it.source
+      }
+      return [entity: entity,
+              facilityList: facilityList]
     }
 }
