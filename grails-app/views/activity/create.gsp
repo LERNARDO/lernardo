@@ -33,7 +33,7 @@
 
               <tr>
                 <td class="label">Dauer:</td>
-                <td class="value ${hasErrors(bean:activityInstance,field:'duration','errors')}"><g:textField name="duration" size="30" value="${fieldValue(bean:activityInstance, field:'duration')}"/> (min)</td>
+                <td class="value ${hasErrors(bean:activityInstance,field:'duration','errors')}"><g:textField name="duration" size="30" value="${fieldValue(bean:activityInstance, field:'duration')}"/> (in Minuten)</td>
               </tr>
 
               <tr>
@@ -47,7 +47,7 @@
                 <td class="label">Pädagogen:</td>
                 <td class="value ${hasErrors(bean:activityInstance,field:'paeds','errors')}">
                   <g:select multiple="true" optionKey="key" optionValue="value" from="${availPaeds}" name="paeds"/>
-                  <br/><span class="gray">Es können mehrere Pädagogen mit STRG ausgewählt werden</span>
+                  <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere PädagogInnen ausgewählt werden</p>
                 </td>
               </tr>
 
@@ -55,7 +55,7 @@
                 <td class="label">Betreute:</td>
                 <td class="value ${hasErrors(bean:activityInstance,field:'clients','errors')}">
                   <g:select multiple="true" optionKey="key" optionValue="value" from="${availClients}" name="clients"/>
-                  <br/><span class="gray">Es können mehrere Betreute mit STRG ausgewählt werden</span>
+                  <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere Betreute ausgewählt werden</p>
                 </td>
               </tr>
 

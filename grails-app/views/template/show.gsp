@@ -13,7 +13,7 @@
       <div class="profile-box">
         <table width="100%">
           <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.name}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Zuordnung:</td><td class="bezeichnung">${template.attribution}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Primäre Zuordnung:</td><td class="bezeichnung">${template.attribution}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.description.decodeHTML()}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materials}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.duration} Minuten</td></tr>

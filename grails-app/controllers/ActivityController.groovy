@@ -148,10 +148,10 @@ class ActivityController {
           flash.message = message(code:"activity.created", args:[params.title])
 
           FunctionService.createEvent(entityHelperService.loggedIn, activityInstance.facility.profile.fullName+': Aktivität "'+activityInstance.title+'"', activityInstance.date)
-          FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivät "'+activityInstance.title+'" angelegt.')
+          FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" angelegt.')
           activityInstance.paeds.each {
             if (it != entityHelperService.loggedIn)
-              FunctionService.createEvent(it, 'Es wurde die Aktivität "'+activityInstance.title+'" angelegt.')
+              FunctionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activityInstance.title+'" mit dir als TeilnehmerIn angelegt.')
           }
           redirect action:'show', id:activityInstance.id
         }
@@ -172,13 +172,30 @@ class ActivityController {
             flash.message = message(code:"activity.notFound", args:[params.id])
             redirect action:'list'
         }
-        else {
-            return ['activityInstance': activityInstance,
-                    'hortList': Entity.findAllByType(EntityType.findByName('Hort')),
-                    'availPaeds': Entity.findAllByType(metaDataService.etPaed),
-                    'availClients': Entity.findAllByType(metaDataService.etClient),
-                    'entity': entityHelperService.loggedIn ]
+
+        List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+        Map facilityMap = [:]
+        facilities.each {
+          facilityMap[it.target.id] = it.target.profile.fullName
         }
+
+        List paeds = Entity.findAllByType(metaDataService.etPaed)
+        Map paedMap = [:]
+        paeds.each {
+          paedMap[it.id] = it.profile.fullName
+        }
+
+        List clients = Entity.findAllByType(metaDataService.etClient)
+        Map clientMap = [:]
+        clients.each {
+          clientMap[it.id] = it.profile.fullName
+        }
+
+        return ['activityInstance': activityInstance,
+                'availFacilities': facilityMap,
+                'availPaeds': paedMap,
+                'availClients': clientMap,
+                'entity': entityHelperService.loggedIn]
     }
 
     def update = {
@@ -192,13 +209,30 @@ class ActivityController {
                     return
                 }
             }
+
             activityInstance.properties = params
+            //activityInstance.title = params.title
+            activityInstance.owner = entityHelperService.loggedIn
+            activityInstance.date =  new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
+            activityInstance.duration = params.duration.toInteger()
+            //activityInstance.paeds = params.paeds
+            //activityInstance.clients = params.clients
+            activityInstance.facility = Entity.get(params.facility.toInteger())
+            //activityInstance.attribution = ActivityTemplate.findByName(params.template).attribution
+
             if(!activityInstance.hasErrors() && activityInstance.save()) {
                 flash.message = message(code:"activity.updated", args:[activityInstance.title])
+
+                FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" aktualisiert.')
+                activityInstance.paeds.each {
+                  if (it != entityHelperService.loggedIn)
+                    FunctionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activityInstance.title+'" aktualisiert.')
+                }
+
                 redirect action:'show', id:activityInstance.id
             }
             else {
-                render view:'edit', model:[activityInstance:activityInstance]
+                render view:'edit', model:[activityInstance:activityInstance, entity: entityHelperService.loggedIn]
             }
         }
         else {
