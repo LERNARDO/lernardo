@@ -89,11 +89,9 @@ class AdmController {
     }
 
     def saveNotification = {
-
        def userList = Entity.list()
 
        userList.each {
-
           FunctionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
           def msgInstance = new Msg(params)
           msgInstance.entity = it

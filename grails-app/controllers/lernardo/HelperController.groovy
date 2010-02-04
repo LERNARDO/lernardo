@@ -28,7 +28,10 @@ class HelperController {
           helperFor = 'Moderatoren'
         else if (type == 'Hort')
           helperFor = 'die Hortverwaltung'
-      [ helperInstanceList: helper, helperInstanceTotal: helper.size(), entity: entity, helperFor: helperFor ]
+        return [helperInstanceList: helper,
+                helperInstanceTotal: helper.size(),
+                entity: entity,
+                helperFor: helperFor]
     }
 
     def show = {
@@ -39,7 +42,7 @@ class HelperController {
             redirect(action:list)
         }
         else {
-            [ helperInstance : helperInstance ]
+            return [helperInstance :helperInstance]
         }
     }
 
@@ -71,7 +74,8 @@ class HelperController {
             redirect action:'list'
         }
         else {
-            return [ helperInstance : helperInstance, entity: entity ]
+            return [helperInstance :helperInstance,
+                    entity: entity]
         }
     }
 
@@ -107,7 +111,9 @@ class HelperController {
         def helperInstance = new Helper()
         helperInstance.properties = params
         def entity = Entity.findByName(params.name)
-        return ['helperInstance':helperInstance, entity: entity]
+
+        return [helperInstance: helperInstance,
+                entity: entity]
     }
 
     def save = {
@@ -120,6 +126,7 @@ class HelperController {
           type = metaDataService.etUser
         if (helperInstance.type == 'Hort')
           type = metaDataService.etHort
+
         List receiver = Entity.findAllByType(type)
         receiver.each {
           FunctionService.createEvent(it, 'Es wurde das Hilfethema "'+helperInstance.name+'" angelegt.')

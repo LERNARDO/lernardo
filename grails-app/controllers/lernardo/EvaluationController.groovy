@@ -1,5 +1,3 @@
-
-
 package lernardo
 
 import de.uenterprise.ep.Entity
@@ -18,7 +16,10 @@ class EvaluationController {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
         def entity = Entity.findByName(params.name)
         List evaluations = Evaluation.findAllByOwner(entity)
-        [ evaluationInstanceList: evaluations, evaluationInstanceTotal: evaluations.size(), entity: entity ]
+
+        return [evaluationInstanceList: evaluations,
+                evaluationInstanceTotal: evaluations.size(),
+                entity: entity]
     }
 
     def show = {
@@ -29,7 +30,7 @@ class EvaluationController {
             redirect(action:list)
         }
         else {
-            [ evaluationInstance : evaluationInstance ]
+            return [evaluationInstance: evaluationInstance]
         }
     }
 
@@ -61,7 +62,8 @@ class EvaluationController {
             redirect action:'list'
         }
         else {
-            return [ evaluationInstance : evaluationInstance, entity: entity ]
+            return [evaluationInstance :evaluationInstance,
+                    entity: entity]
         }
     }
 
@@ -97,7 +99,9 @@ class EvaluationController {
         def evaluationInstance = new Evaluation()
         evaluationInstance.properties = params
         def entity = Entity.findByName(params.name)
-        return ['evaluationInstance':evaluationInstance, entity: entity]
+
+        return [evaluationInstance: evaluationInstance,
+                entity: entity]
     }
 
     def save = {
