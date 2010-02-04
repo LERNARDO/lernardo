@@ -921,6 +921,10 @@ class BootStrap {
                            oder andere Pädagogen. Diese Liste kannst du selbst verwalten indem du andere Profile besuchst,
                            und dort Freunde oder Bookmarks hinzufügst.''',
                type: metaDataService.etPaed.name).save()
+    new Helper(title: 'Wie kann ich eine Beurteilung eines Betreuten anlegen?',
+               content: '''Besuche zuerst das Profil des Betreuten und klicke dort in der linken Seitennavigation auf
+                           "Leistungsfortschritt anlegen".''',
+               type: metaDataService.etPaed.name).save()
 
     new Helper(title: 'Wie kann ich einen Betreuten anlegen?',
                content: '''Betreute können über den Link "Betreuten anlegen" in der Seitennavigation links angelegt werden.
