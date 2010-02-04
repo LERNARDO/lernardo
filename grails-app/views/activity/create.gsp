@@ -38,16 +38,15 @@
 
               <tr>
                 <td class="label">Einrichtung:</td>
-                <td class="value ${hasErrors(bean:activityInstance,field:'facility','errors')}"><g:select name="facility" from="${hortList}" optionKey="id" optionValue="name" value="${activityInstance?.facility?.id}"/></td>
+                <td class="value ${hasErrors(bean:activityInstance,field:'facility','errors')}">
+                  <g:select name="facility" from="${availFacilities}" optionKey="key" optionValue="value"/>
+                </td>
               </tr>
 
               <tr>
                 <td class="label">Pädagogen:</td>
                 <td class="value ${hasErrors(bean:activityInstance,field:'paeds','errors')}">
-                  <g:select multiple="true" optionKey="id" optionValue="name"
-                            from="${availPaeds}"
-                            name="paeds"
-                            value="${activityInstance?.paeds?.collect{it.id}}" ></g:select>
+                  <g:select multiple="true" optionKey="key" optionValue="value" from="${availPaeds}" name="paeds"/>
                   <br/><span class="gray">Es können mehrere Pädagogen mit STRG ausgewählt werden</span>
                 </td>
               </tr>
@@ -55,11 +54,8 @@
               <tr>
                 <td class="label">Betreute:</td>
                 <td class="value ${hasErrors(bean:activityInstance,field:'clients','errors')}">
-                  <g:select multiple="true" optionKey="id" optionValue="name"
-                            from="${availClients}"
-                            name="clients"
-                            value="${activityInstance?.clients?.collect{it.id}}" ></g:select>
-                    <br/><span class="gray">Es können mehrere Betreute mit STRG ausgewählt werden</span>
+                  <g:select multiple="true" optionKey="key" optionValue="value" from="${availClients}" name="clients"/>
+                  <br/><span class="gray">Es können mehrere Betreute mit STRG ausgewählt werden</span>
                 </td>
               </tr>
 

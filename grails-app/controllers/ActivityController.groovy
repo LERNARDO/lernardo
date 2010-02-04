@@ -105,16 +105,28 @@ class ActivityController {
 
       // get a list of facilities the current entity is working in
       List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-      List facilityList = []
-
+      Map facilityMap = [:]
       facilities.each {
-        facilityList << it.target
+        facilityMap[it.target.id] = it.target.profile.fullName
       }
+
+      List paeds = Entity.findAllByType(metaDataService.etPaed)
+      Map paedMap = [:]
+      paeds.each {
+        paedMap[it.id] = it.profile.fullName
+      }
+
+      List clients = Entity.findAllByType(metaDataService.etClient)
+      Map clientMap = [:]
+      clients.each {
+        clientMap[it.id] = it.profile.fullName
+      }
+
       return ['activityInstance': activityInstance,
               'template': template,
-              'hortList': facilityList,
-              'availPaeds': Entity.findAllByType(metaDataService.etPaed),
-              'availClients': Entity.findAllByType(metaDataService.etClient),
+              'availFacilities': facilityMap,
+              'availPaeds': paedMap,
+              'availClients': clientMap,
               'entity': entityHelperService.loggedIn
               ]
     }
