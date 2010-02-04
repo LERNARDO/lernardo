@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Mein Profil</h1>
+  <h1>Profil</h1>
 </div>
 <div class="boxGray">
 <table width="100%">

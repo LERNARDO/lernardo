@@ -1,9 +1,12 @@
 import posts.TemplateComment
 
 import lernardo.ActivityTemplate
+import de.uenterprise.ep.Entity
 
 class TemplateController {
   def entityHelperService
+  def FunctionService
+  def metaDataService
 
     def index = {
       redirect action:'list', params:params
@@ -92,6 +95,14 @@ class TemplateController {
       activityInstance.qualifications='keine'
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"template.created", args:[params.name])
+
+          FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+activityInstance.name+'" angelegt.')
+          List receiver = Entity.findAllByType(metaDataService.etPaed)
+          receiver.each {
+            if (it != entityHelperService.loggedIn)
+              FunctionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+activityInstance.name+'" angelegt.')
+          }
+
           redirect action:'show', id:activityInstance.id
         }
     }

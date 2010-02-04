@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Mein Postfach: Posteingang</h1>
+  <h1>Postfach: Posteingang</h1>
 </div>
 <div class="boxGray">
     <div id="inbox">

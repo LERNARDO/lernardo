@@ -67,7 +67,7 @@ To change this template use File | Settings | File Templates.
 
       <g:if test="${entity.type.name == 'Paed'}">
           <g:link class="buttonBlue" action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
-          <g:link class="buttonBlue" action="del" id="${activity.id}">Aktivität löschen</g:link>
+          <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Aktivität löschen</g:link>
           <div class="spacer"></div>
       </g:if>
       

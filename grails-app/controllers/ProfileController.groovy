@@ -19,6 +19,7 @@ class ProfileController {
     def FilterService
     def authenticateService
     def sessionFactory
+    def FunctionService
 
     def index = { }
 
@@ -450,12 +451,8 @@ class ProfileController {
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
         flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
 
-        new Event(entity:entityHelperService.loggedIn,
-              content:'Du hast '+e.profile.fullName+' als Freund hinzugefügt.',
-              date: new Date()).save()
-        new Event(entity:e,
-              content:entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt',
-              date: new Date()).save()
+        FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund hinzugefügt.')
+        FunctionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt.')
 
         redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
@@ -485,6 +482,10 @@ class ProfileController {
                 linkInstance.delete(flush:true)
                 linkInstanceBack.delete(flush:true)
                 flash.message = message(code:"user.removeFriend", args:[e.profile.fullName])
+
+                FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund entfernt.')
+                FunctionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund entfernt.')
+
                 redirect action:'showProfile', params:[name:n]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {

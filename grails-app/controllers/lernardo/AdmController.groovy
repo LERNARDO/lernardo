@@ -5,6 +5,8 @@ import de.uenterprise.ep.Link
 
 class AdmController {
     def metaDataService
+    def entityHelperService
+    def FunctionService
 
     def index = {
       redirect action:'overview'
@@ -78,5 +80,32 @@ class AdmController {
       }
       return [entity: entity,
               facilityList: facilityList]
+    }
+
+    def createNotification = {
+        def msgInstance = new Msg()
+        return [msgInstance:msgInstance,
+                entity: entityHelperService.loggedIn]
+    }
+
+    def saveNotification = {
+
+       def userList = Entity.list()
+
+       userList.each {
+
+          FunctionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
+          def msgInstance = new Msg(params)
+          msgInstance.entity = it
+          msgInstance.dateCreated = new Date()
+          msgInstance.sender = Entity.findByName('admin')
+          msgInstance.receiver = it
+
+          if(!msgInstance.save(flush:true)) {
+              log.debug ("Notification for user" + msgInstance.entity + "could not be saved")
+          }
+       }
+       flash.message = message(code:"admin.notificationSuccess")
+       redirect controller:"profile", action:"showProfile", params:[name:entityHelperService.loggedIn.name]
     }
 }

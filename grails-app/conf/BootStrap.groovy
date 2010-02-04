@@ -19,6 +19,7 @@ class BootStrap {
   def entityHelperService
   def calendarDataService
   def metaDataService
+  def FunctionService
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
@@ -26,17 +27,18 @@ class BootStrap {
       calendarDataService.initialize()
       createDefaultUsers()
       createDefaultPaeds()
-      createDefaultClients()
       createDefaultOperators()
       createDefaultFacilities()
       createDefaultLinks()
       createDefaultActivityTemplates()
 
-      if (GrailsUtil.environment == GrailsApplication.ENV_DEVELOPMENT)
+      if (GrailsUtil.environment == GrailsApplication.ENV_DEVELOPMENT) {
         createDefaultActivities()
-      
-      createDefaultPosts()
-      createDefaultEvents()
+        createDefaultClients()
+        createDefaultPosts()
+        createDefaultEvents()
+      }
+
       createDefaultHelpers()
       createDefaultEvaluations()
     }
@@ -64,9 +66,9 @@ class BootStrap {
       prf.biography = "-"
     }
 
-    // a mod user
+    // mod users
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
       prf.gender = 1
@@ -77,9 +79,8 @@ class BootStrap {
       prf.tel = "0664 / 840 66 32"
     }
 
-    // some regular users
     entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.gender = 2
       prf.title = "B.A."
@@ -90,6 +91,20 @@ class BootStrap {
       prf.tel = "0664 / 840 66 27"
     }
 
+    entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.modRole)
+      UserProfile prf = ent.profile
+      prf.tagline = "..."
+      prf.gender = 2
+      prf.birthDate = new Date(1966-1900,11,19)
+      prf.PLZ = 2563
+      prf.city = "Pottenstein"
+      prf.street = "-"
+      prf.tel = "0664 / 204 91 68"
+      prf.biography = "-"
+    }
+
+    // some regular users
     entityHelperService.createEntityWithUserAndProfile("mike", etUser, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Wozu brauch ma des?"
@@ -110,19 +125,6 @@ class BootStrap {
       prf.tel = "0664 / 840 66 20"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      UserProfile prf = ent.profile
-      prf.tagline = "..."
-      prf.gender = 2
-      prf.birthDate = new Date(1966-1900,11,19)
-      prf.PLZ = 2563
-      prf.city = "Pottenstein"
-      prf.street = "-"
-      prf.tel = "0664 / 204 91 68"
-      prf.biography = "-"
-    }
-	
     entityHelperService.createEntityWithUserAndProfile("stephanie", etUser, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "..."
@@ -890,24 +892,7 @@ class BootStrap {
   void createDefaultEvents() {
     log.debug ("==> creating default events")
 
-    new Event(entity:Entity.findByName('admin'),
-              content:'Alexander Zeillinger hat dich als Freund hinzugefügt.',
-              date: new Date(2009-1900,11,26,13,15)).save()
-    new Event(entity:Entity.findByName('admin'),
-              content:'Regina Toncourt hat deine Aktivitätsvorlage "Tanzen" kommentiert.',
-              date: new Date(2009-1900,11,26,11,30)).save()
-    new Event(entity:Entity.findByName('admin'),
-              content:'Martin Golja hat dir eine Nachricht hinterlassen.',
-              date: new Date(2009-1900,11,27,12,30)).save()
-    new Event(entity:Entity.findByName('admin'),
-              content:'Rosa Gober hat die Aktivitätsvorlage "Spielerei" erstellt.',
-              date: new Date(2009-1900,11,27,15,30)).save()
-    new Event(entity:Entity.findByName('admin'),
-              content:'Patrizia Rosenkranz hat die Aktivitätsvorlage "Spielerei" kommentiert.',
-              date: new Date(2009-1900,11,27,14,30)).save()
-    new Event(entity:Entity.findByName('admin'),
-              content:'Elternsprechtag',
-              date: new Date(2009-1900,11,28,17,30)).save()
+    FunctionService.createEvent(Entity.findByName('admin'), 'Elternsprechtag').save()
   }
 
   void createDefaultHelpers() {

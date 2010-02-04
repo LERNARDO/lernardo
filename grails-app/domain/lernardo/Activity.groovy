@@ -18,7 +18,7 @@ class Activity {
     static constraints = {
       facility(nullable:true)
       template(nullable:true)
-      attribution (nullable:true) ;
+      attribution (nullable:true)
       paeds(nullable:true)
       clients(nullable:true)
     }

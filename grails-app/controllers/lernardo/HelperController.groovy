@@ -5,7 +5,9 @@ package lernardo
 import de.uenterprise.ep.Entity
 
 class HelperController {
-    
+    def FunctionService
+    def metaDataService
+
     def index = {
         redirect action:"list", params:params 
     }
@@ -110,6 +112,19 @@ class HelperController {
 
     def save = {
         def helperInstance = new Helper(params)
+
+        def type
+        if (helperInstance.type == 'Paed')
+          type = metaDataService.etPaed
+        if (helperInstance.type == 'User')
+          type = metaDataService.etUser
+        if (helperInstance.type == 'Hort')
+          type = metaDataService.etHort
+        List receiver = Entity.findAllByType(type)
+        receiver.each {
+          FunctionService.createEvent(it, 'Es wurde das Hilfethema "'+helperInstance.name+'" angelegt.')
+        }
+
         if(helperInstance.save(flush:true)) {
             flash.message = message(code:"helper.created")
             redirect action:"list", params:[name:params.name]

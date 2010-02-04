@@ -7,7 +7,8 @@ import de.uenterprise.ep.Link
 
 class ActivityController {
   def entityHelperService
-  def metaDataService ;
+  def metaDataService
+  def FunctionService
 
     def index = {
       redirect action:list
@@ -96,12 +97,11 @@ class ActivityController {
     }
 
     def create = {
-      def activityInstance = new lernardo.Activity()
+      def activityInstance = new Activity()
       def template = ActivityTemplate.get(params.id)
       activityInstance.title = template.name
       activityInstance.duration = template.duration
       activityInstance.template = template
-      activityInstance.facility = Entity.findByName('loewenzahn')
 
       // get a list of facilities the current entity is working in
       List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
@@ -120,15 +120,27 @@ class ActivityController {
     }
 
     def save = {
-      def activityInstance = new lernardo.Activity(params)
-      activityInstance.owner = entityHelperService.loggedIn
-      // finding the facility by id and assigning it to the facility attribute is mysteriously broken
-      // assigning loewenzahn by default doesn't work either
-      //activityInstance.facility = Entity.findByName('loewenzahn') //Entity.get(params.facility)
-      activityInstance.attribution = ActivityTemplate.findByName(params.template).attribution 
+      println params
+
+     def activityInstance = new Activity(title:params.title,
+          owner:entityHelperService.loggedIn,
+          date: new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute)),
+          duration: params.duration.toInteger(),
+          paeds:params.paeds,
+          clients:params.clients,
+          facility:Entity.get(params.facility.toInteger()),
+          template:params.template,
+          attribution:ActivityTemplate.findByName(params.template).attribution).save()
 
       if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
+
+          FunctionService.createEvent(entityHelperService.loggedIn, activityInstance.facility.profile.fullName+': Aktivität "'+activityInstance.title+'"', activityInstance.date)
+          FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivät "'+activityInstance.title+'" angelegt.')
+          activityInstance.paeds.each {
+            if (it != entityHelperService.loggedIn)
+              FunctionService.createEvent(it, 'Es wurde die Aktivität "'+activityInstance.title+'" angelegt.')
+          }
           redirect action:'show', id:activityInstance.id
         }
         else {

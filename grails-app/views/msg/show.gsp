@@ -27,7 +27,7 @@
                         </tr>
                     
                         <tr class="prop">                            
-                            <td valign="top" class="value msg-content">${fieldValue(bean:msgInstance, field:'content')}</td>
+                            <td valign="top" class="value msg-content">${fieldValue(bean:msgInstance, field:'content').decodeHTML()}</td>
                             
                         </tr>
                                      

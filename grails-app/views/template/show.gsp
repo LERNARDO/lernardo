@@ -86,7 +86,8 @@
 
         <g:if test="${entity.type.name == 'Paed'}">
           <div class="comments-actions">
-            <g:remoteLink class="button" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
+            <g:remoteLink class="buttonBlue" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
+            <div class="spacer"></div>
           </div>
           <div id="createComment">
           </div>

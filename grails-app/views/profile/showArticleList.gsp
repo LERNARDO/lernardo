@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Meine Artikel</h1>
+  <h1>Artikel</h1>
 </div>
 <div class="boxGray">
 <div id="body-list">

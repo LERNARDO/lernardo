@@ -1,11 +1,12 @@
   <head>
     <meta name="layout" content="private" />
-    <title>Aktivitätsvorlage bearbeiten</title>
+    <title>Aktivität bearbeiten</title>
   </head>
   <body>
+    <div class="headerBlue">
+      <h1>Aktivität bearbeiten</h1>
+    </div>
   <div class="boxGray">
-        <div class="body">
-            <h1>Aktivitätsvorlage bearbeiten</h1>
             <g:hasErrors bean="${activityInstance}">
               <div class="errors">
                 <g:renderErrors bean="${activityInstance}" as="list" />
@@ -93,10 +94,10 @@
                     </table>
 
                     <div class="buttons">
-                        <span class="button"><g:actionSubmit class="save" action="update" value="Ändern" /></span>
-                        <span class="nav-button"><g:link action="show" id="${activityInstance.id}" params="[name:currentEntity.name]">Abbrechen</g:link></span>
+                        <g:submitButton name="submitButton" value="Ändern" />
+                        <g:link class="buttonGray" action="show" id="${activityInstance.id}" params="[name:currentEntity.name]">Abbrechen</g:link>
+                        <div class="spacer"></div>
                     </div>
             </g:form>
         </div>
-    </div>
   </body>
