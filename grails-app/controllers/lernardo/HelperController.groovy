@@ -129,7 +129,7 @@ class HelperController {
 
         List receiver = Entity.findAllByType(type)
         receiver.each {
-          FunctionService.createEvent(it, 'Es wurde das Hilfethema "'+helperInstance.name+'" angelegt.')
+          FunctionService.createEvent(it, 'Es wurde das Hilfethema "'+helperInstance.title+'" angelegt.')
         }
 
         if(helperInstance.save(flush:true)) {

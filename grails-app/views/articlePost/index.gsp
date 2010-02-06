@@ -10,7 +10,7 @@
  
     <g:if test="${currentEntity}">
       <g:if test="${currentEntity.type.name == 'Paed'}">
-        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel verfassen</g:link></p>
+        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel erstellen</g:link></p>
       </g:if>
     </g:if>
 

@@ -2,74 +2,53 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
   <title>Lernardo | Hilfethema bearbeiten</title>
-  <g:javascript library="jquery"/>
 </head>
 <body>
   <div class="headerBlue">
     <h1>Hilfethema bearbeiten</h1>
   </div>
-<div class="boxGray">
+  <div class="boxGray">
 
-            <g:hasErrors bean="${helperInstance}">
-            <div class="errors">
-                <g:renderErrors bean="${helperInstance}" as="list" />
-            </div>
-            </g:hasErrors>
+      <g:hasErrors bean="${helperInstance}">
+      <div class="errors">
+          <g:renderErrors bean="${helperInstance}" as="list" />
+      </div>
+      </g:hasErrors>
 
-            <g:form action="update" method="post" params="[name:entity.name]">
-                <input type="hidden" name="id" value="${helperInstance?.id}" />
-                <input type="hidden" name="version" value="${helperInstance?.version}" />
-                <div class="dialog">
-                    <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="title">
-                                    <g:message code="helper.title.label" default="Titel" />
-                                  </label>
+      <g:form action="update" method="post" id="${helperInstance?.id}" params="[name:entity.name]">
+        <table>
+          <tbody>
 
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:helperInstance,field:'title','errors')}">
-                                    <input type="text" size="60" id="title" name="title" value="${fieldValue(bean:helperInstance,field:'title')}"/>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="content">
-                                    <g:message code="helper.content.label" default="Inhalt" />
-                                  </label>
+            <tr>
+              <td class="label">Titel:</td>
+              <td class="value ${hasErrors(bean:helperInstance,field:'title','errors')}"><g:textField name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
+            </tr>
 
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:helperInstance,field:'content','errors')}">
-                                  <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                  <fckeditor:editor name="content" id="content" width="600" height="300" toolbar="Post" fileBrowser="default">
-                                    ${helperInstance.content}
-                                  </fckeditor:editor></td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="type">
-                                    <g:message code="helper.type.label" default="Für" />
-                                  </label>
+            <tr>
+              <td class="label">Inhalt:</td>
+              <td class="value ${hasErrors(bean:helperInstance,field:'content','errors')}">
+                <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+                <fckeditor:editor name="content" id="content" width="500" height="300" toolbar="Post" fileBrowser="default">
+                  ${helperInstance.content}
+                </fckeditor:editor>
+              </td>
+            </tr>
 
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:helperInstance,field:'type','errors')}">
-                                    <g:select id="type" name="type" from="${[Paed:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
-                                </td>
-                            </tr> 
-                        
-                        </tbody>
-                    </table>
-                </div>
-                <div class="buttons">
-                    <g:submitButton name="submitButton" value="Aktualisieren" />
-                    <g:link class="buttonBlue" action="del" id="${helperInstance.id}" params="[name:entity.name]" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-                    <g:link class="buttonGray" action="list" params="[name:entity.name]">Abbrechen</g:link>
-                    <div class="spacer"></div>
-                </div>
-            </g:form>
+            <tr>
+              <td class="label">Für:</td>
+              <td class="value ${hasErrors(bean:helperInstance,field:'type','errors')}"><g:select id="type" name="type" from="${[Paed:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <div class="buttons">
+            <g:submitButton name="submitButton" value="Aktualisieren" />
+            <g:link class="buttonBlue" action="del" id="${helperInstance.id}" params="[name:entity.name]" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+            <g:link class="buttonGray" action="list" params="[name:entity.name]">Abbrechen</g:link>
+            <div class="spacer"></div>
         </div>
-    </body>
+        
+      </g:form>
+    </div>
+</body>
