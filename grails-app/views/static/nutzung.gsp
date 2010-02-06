@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="public" />
-  <title>Nutzungsbedingungen - lernardo.at</title>
+  <title>Lernardo | Nutzungsbedingungen</title>
 </head>
 
 <body>

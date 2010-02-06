@@ -1,6 +1,6 @@
   <head>
     <meta name="layout" content="private" />
-    <title>Aktivität bearbeiten</title>
+    <title>Lernardo | Aktivität bearbeiten</title>
   </head>
   <body>
     <div class="headerBlue">

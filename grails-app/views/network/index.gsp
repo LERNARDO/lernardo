@@ -7,7 +7,7 @@
 
   <body>
   <div class="headerBlue">
-  <h1>Mein Netzwerk</h1>
+  <h1>Netzwerk</h1>
 </div>
   <div class="boxGray">
     <div class="yui-g" id="members">

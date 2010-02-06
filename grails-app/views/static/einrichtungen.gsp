@@ -1,5 +1,5 @@
 <head>
-  <title>Einrichtungen - lernardo.at</title>
+  <title>Lernardo | Einrichtungen</title>
   <meta name="layout" content="public" />
 </head>
 

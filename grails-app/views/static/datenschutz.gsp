@@ -1,5 +1,5 @@
 <head>
-  <title>Datenschutzrichtlinien - lernardo.at</title>
+  <title>Lernardo | Datenschutzrichtlinien</title>
   <meta name="layout" content="public" />
 </head>
 

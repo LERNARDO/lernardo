@@ -1,5 +1,5 @@
 <head>
-  <title>Zielsetzung - lernardo.at</title>
+  <title>Lernardo | Zielsetzung</title>
   <meta name="layout" content="public" />
 </head>
 

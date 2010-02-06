@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Notifikation erstellen</title>
+    <title>Lernardo | Notifikation erstellen</title>
   </head>
   <body>
     <div class="headerBlue">

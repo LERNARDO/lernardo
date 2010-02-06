@@ -1,5 +1,5 @@
 <head>
-<title>Impressum - lernardo.at</title>
+<title>Lernardo | Impressum</title>
 <meta name="layout" content="public" />
 </head>
 

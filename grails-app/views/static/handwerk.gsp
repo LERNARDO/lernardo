@@ -1,5 +1,5 @@
 <head>
-  <title>Handwerk und Kunst - lernardo.at</title>
+  <title>Lernardo | Handwerk und Kunst</title>
   <meta name="layout" content="public" />
 </head>
 

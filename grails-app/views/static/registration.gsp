@@ -1,5 +1,5 @@
 <head>
-  <title>Registrierung</title>
+  <title>Lernardo | Registrierung</title>
   <meta name="layout" content="public" />
 </head>
 

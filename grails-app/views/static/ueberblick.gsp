@@ -1,5 +1,5 @@
 <head>
-  <title>Überblick - lernardo.at</title>
+  <title>Lernardo | Überblick</title>
   <meta name="layout" content="public" />
 </head>
 

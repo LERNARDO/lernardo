@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head><title>Administrator Verwaltung</title></head>
+  <head><title>Lernardo | Einrichtung</title></head>
   <body>
     <h2>Übersicht > ${operator.profile.fullName} > ${facility.profile.fullName}</h2>
 

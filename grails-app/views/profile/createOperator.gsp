@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Betreiber anlegen</title>
+    <title>Lernardo | Betreiber anlegen</title>
   </head>
   <body>
     <div class="headerBlue">

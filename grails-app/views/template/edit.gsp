@@ -1,6 +1,6 @@
   <head>
     <meta name="layout" content="private" />
-    <title>Aktivitätsvorlage bearbeiten</title>
+    <title>Lernardo | Aktivitätsvorlage bearbeiten</title>
   </head>
   <body>
     <div class="headerBlue">

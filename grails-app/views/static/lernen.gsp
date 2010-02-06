@@ -1,5 +1,5 @@
 <head>
-  <title>Lernen lernen - lernardo.at</title>
+  <title>Lernardo | Lernen lernen</title>
   <meta name="layout" content="public" />
 </head>
 

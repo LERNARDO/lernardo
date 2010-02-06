@@ -1,5 +1,5 @@
 <head>
-  <title>Soziale und emotionale Intelligenz - lernardo.at</title>
+  <title>Lernardo | Soziale und emotionale Intelligenz</title>
   <meta name="layout" content="public" />
 </head>
 

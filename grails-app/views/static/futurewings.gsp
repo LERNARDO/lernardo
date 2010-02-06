@@ -1,5 +1,5 @@
 <head>
-  <title>Future Wings - lernardo.at</title>
+  <title>Lernardo | Future Wings</title>
   <meta name="layout" content="public" />
 </head>
 

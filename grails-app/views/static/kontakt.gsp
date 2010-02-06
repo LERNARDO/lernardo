@@ -1,5 +1,5 @@
 <head>
-  <title>Kontakt - lernardo.at</title>
+  <title>Lernardo | Kontakt</title>
   <meta name="layout" content="public" />
 </head>
 

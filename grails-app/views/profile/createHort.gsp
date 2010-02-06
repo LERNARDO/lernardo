@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Hort anlegen</title>
+    <title>Lernardo | Hort anlegen</title>
   </head>
   <body>
       <div class="headerBlue">

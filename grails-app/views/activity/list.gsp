@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Liste aller Aktivitäten</title>
+    <title>Lernardo | Liste aller Aktivitäten</title>
   </head>
   <body>
     <g:if test="${entity.profile.showTips}">

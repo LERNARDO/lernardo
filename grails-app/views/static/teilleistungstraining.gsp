@@ -1,5 +1,5 @@
 <head>
-  <title>Teilleistungstraining - lernardo.at</title>
+  <title>Lernardo | Teilleistungstraining</title>
   <meta name="layout" content="public" />
 </head>
 

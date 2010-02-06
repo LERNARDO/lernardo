@@ -1,5 +1,5 @@
 <head>
-  <title>Über das ERP - lernardo.at</title>
+  <title>Lernardo | Über das ERP</title>
   <meta name="layout" content="public" />
 </head>
 

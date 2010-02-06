@@ -1,22 +1,14 @@
-<%--
-Created by IntelliJ IDEA.
-    User: mkuhl
-Date: 27.09.2009
-Time: 16:08:55
-To change this template use File | Settings | File Templates.
-    --%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>${activity.title}</title>
+    <title>Lernardo | Aktivitätsdetails</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="private" />    
   </head>
 
   <body>
     <div class="headerBlue">
-      <h1>Aktivität</h1>
+      <h1>Aktivitätsdetails</h1>
     </div>
   <div class="boxGray">
     <div class="profile-box">

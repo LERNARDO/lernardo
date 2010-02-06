@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Liste der Profile</title>
+    <title>Lernardo | Liste aller Profile</title>
   </head>
   <body>
     <div class="headerBlue">

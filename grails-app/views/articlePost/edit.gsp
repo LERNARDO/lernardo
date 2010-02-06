@@ -1,12 +1,12 @@
 <html>
   <head>
-    <title>Artikel editieren</title>
+    <title>Lernardo | Artikel bearbeiten</title>
     <meta name="layout" content="public" />
   </head>
 
   <body>
     <g:form action="update" id="${postInstance.id}">
-        <h1>Artikel editieren</h1>
+        <h1>Artikel bearbeiten</h1>
 
         <p><span class="strong">Titel</span><br/>
         <g:textField name="title" size="100" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></p>

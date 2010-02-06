@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Suche</title>
+    <title>Lernardo | Profilsuche</title>
     <g:javascript library="jquery"/>
   </head>
   <body>

@@ -1,6 +1,6 @@
   <head>
     <meta name="layout" content="private" />
-    <title>Liste aller Aktivitätsvorlagen</title>
+    <title>Lernardo | Lernardo Aktivitätsvorlagen</title>
   </head>
 
   <body>

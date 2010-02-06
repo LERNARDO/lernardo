@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>Profilbild hochgeladen</title>
+    <title>Lernardo | Profilbild hochgeladen</title>
   </head>
   <body>
     <p>Das Profilbild wurde hochgeladen</p>

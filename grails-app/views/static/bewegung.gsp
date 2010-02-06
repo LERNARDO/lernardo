@@ -1,5 +1,5 @@
 <head>
-  <title>Bewegung und Ernährung - lernardo.at</title>
+  <title>Lernardo | Bewegung und Ernährung</title>
   <meta name="layout" content="public" />
 </head>
 

@@ -1,5 +1,5 @@
 <head>
-  <title>Persönliche Kompetenz - lernardo.at</title>
+  <title>Lernardo | Persönliche Kompetenz</title>
   <meta name="layout" content="public" />
 </head>
 

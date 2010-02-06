@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Profil anlegen</title>
+    <title>Lernardo | Profil anlegen</title>
   </head>
   <body>
     <div id="body-list">

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Schule anlegen</title>
+    <title>Lernardo | Schule anlegen</title>
   </head>
   <body>
       <div class="headerBlue">

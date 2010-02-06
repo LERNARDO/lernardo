@@ -1,5 +1,5 @@
 <head>
-  <title>News</title>
+  <title>Lernardo | Artikel verfassen</title>
   <meta name="layout" content="public"/>
   <g:javascript library="jquery"/>
 </head>

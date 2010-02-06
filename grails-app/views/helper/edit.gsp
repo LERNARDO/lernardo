@@ -1,12 +1,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Hilfethemen</title>
+  <title>Lernardo | Hilfethema bearbeiten</title>
   <g:javascript library="jquery"/>
 </head>
 <body>
   <div class="headerBlue">
-    <h1>Hilfethemen</h1>
+    <h1>Hilfethema bearbeiten</h1>
   </div>
 <div class="boxGray">
 

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>Kalender: Lernardo Gesamt</title>
+    <title>Lernardo | Hortkalender</title>
     <meta name="layout" content="private" />
     <g:javascript library="jquery" />
     <g:javascript src="jquery/jquery.fullcalendar.js"/>

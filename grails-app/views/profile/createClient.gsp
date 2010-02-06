@@ -3,7 +3,7 @@
 
   <head>
     <meta name="layout" content="private" />
-    <title>Betreuten anlegen</title>
+    <title>Lernardo | Betreuten anlegen</title>
   </head>
 
   <body>

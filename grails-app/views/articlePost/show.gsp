@@ -1,5 +1,5 @@
 <head>
-  <title>${article.title}</title>
+  <title>Lernardo | Artikelansicht</title>
   <meta name="layout" content="public" />
 </head>
 

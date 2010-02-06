@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Pädagoge anlegen</title>
+    <title>Lernardo | Pädagoge anlegen</title>
   </head>
   <body>
       <div class="headerBlue">

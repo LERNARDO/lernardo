@@ -1,7 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Beurteilungen</title>
+  <title>Lernardo | Beurteilungen</title>
   <g:javascript library="jquery"/>
 </head>
 <body>

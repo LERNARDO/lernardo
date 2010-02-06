@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head><title>Administrator Verwaltung</title></head>
+  <head><title>Lernardo | Betreiber</title></head>
   <body>
     <h2>Übersicht > ${entity.profile.fullName}</h2>
 
