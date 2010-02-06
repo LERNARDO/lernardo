@@ -479,7 +479,7 @@ ul {
     -moz-border-radius: 5px;
     background: #708dc2;
     border: 1px solid #607cb1;
-    margin: 0 10px 20px;
+    margin: 0 15px 20px 0;
     color: #fff;
     -moz-box-shadow: #555 3px 3px 4px; }
     .sidebox a {
@@ -928,7 +928,10 @@ table#msg-composer td {
 }
 
 .member {
-    padding: 5px 0px;    
+    padding: 5px 0;
+    width: 280px;
+    height: 50px;
+    float: left;
 }
 
 .member img {
