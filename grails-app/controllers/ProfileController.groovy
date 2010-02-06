@@ -10,6 +10,7 @@ import lernardo.Event
 import lernardo.Activity
 import lernardo.Msg
 import profiles.OrgProfile
+import lernardo.Attendance
 
 class ProfileController {
     def geoCoderService
@@ -352,18 +353,50 @@ class ProfileController {
     }
 
     def attendance = {
-      params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day)): new Date()
+      params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
 
-      // find all clients of a facility
-      List result = Link.findAllByTargetAndType(Entity.findByName(params.name),metaDataService.ltClientship)
       List clients = []
-      result.each {
-        clients << it.source
+      List didAttend = []
+      List didEat = []
+
+      Date tempDate = new Date()
+      tempDate.setHours(0)
+      tempDate.setMinutes(0)
+      tempDate.setSeconds(0)
+      println tempDate
+      
+      def res = Attendance.list() //findByDate(tempDate)
+      if (res) {
+        println "attendance found!"
+        println res.date
+
+        res.clients[0].each {
+          clients << it
+        }
+
+        res.didAttend[0].each {
+          didAttend << it
+        }
+
+        res.didEat[0].each {
+          didEat << it
+        }
+
       }
+      else {
+        // find all clients of a facility
+        List result = Link.findAllByTargetAndType(Entity.findByName(params.name),metaDataService.ltClientship)
+        result.each {
+          clients << it.source
+        }
+      }
+      
       return ['entityList': clients,
               'entityCount': clients.size(),
               'entity':entityHelperService.loggedIn,
-              'date':params.date]
+              'date':params.date,
+              'didAttend':didAttend,
+              'didEat':didEat]
     }
 
     def list = {

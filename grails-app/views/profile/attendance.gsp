@@ -59,7 +59,8 @@
       </g:pdfForm>
 
       <hr/>
-      <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/></p>
+      <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/>
+      <g:if test="${didAttend}"><span class="strong">- Daten gefunden</span></g:if></p>
       <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
 
       <form method="post" name="clients">
@@ -79,8 +80,8 @@
               <tr class="row-${entity.type}">
                 <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
               <td class="col">${entity.profile.tel}</td>
-              <td class="col"><input type="checkbox" name="anwesend"></td>
-              <td class="col"><input type="checkbox" name="essen"></td>
+              <td class="col"><g:checkBox name="anwesend" value="${didAttend[i]}"/></td>
+              <td class="col"><g:checkBox name="essen" value="${didEat[i]}"/></td>
               </tr>
             </g:each>
 

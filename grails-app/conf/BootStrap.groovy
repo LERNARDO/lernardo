@@ -13,6 +13,7 @@ import grails.util.GrailsUtil
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import lernardo.Helper
 import lernardo.Evaluation
+import lernardo.Attendance
 
 class BootStrap {
   def defaultObjectService
@@ -37,6 +38,7 @@ class BootStrap {
         createDefaultClients()
         createDefaultPosts()
         createDefaultEvents()
+        createDefaultAttendances()
       }
 
       createDefaultHelpers()
@@ -951,5 +953,15 @@ class BootStrap {
                    description: 'Kira ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
                    method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
                    writer: Entity.findByName('hannah')).save()
+  }
+
+  void createDefaultAttendances() {
+    log.debug ("==> creating default attendances")
+
+    def a = new Attendance(clients: Entity.findByName('kira'),
+                   didAttend: [true, true],
+                   didEat: [true, false],
+                   date: new Date()).save()
+    a.clients << Entity.findByName('keano')
   }
 }
