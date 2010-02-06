@@ -13,14 +13,18 @@
   <body>
     <div id="public">
       <div id="doc4" class="yui-t6">
+
         <div id="hd">
           <g:render template="/templates/header" />
           <div id="nav">
             <g:render template="/templates/navigation" />
           </div>
         </div>
+
         <div id="banner"></div>
+
         <div id="bd">
+
           <div id="yui-main">
             <div id="main" class="yui-b">
               <g:if test="${flash.message}">
@@ -31,8 +35,8 @@
               <g:layoutBody />
             </div>
           </div>
-          <div id="sidebar" class="yui-b">
 
+          <div id="sidebar" class="yui-b">
             <app:isNotLoggedIn>
               <div class="sidebox">
                 <div class="innersidebox">
@@ -77,7 +81,7 @@
                     <li><g:link controller="static" action="teilleistungstraining" fragment="anker">Teilleistungstraining</g:link></li>
                     <li><g:link controller="static" action="lernen" fragment="anker">Lernen lernen</g:link></li>
                     <li><g:link controller="static" action="bewegung" fragment="anker">Bewegung - Ernährung</g:link></li>
-                    <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale und emotionale Intelligenz</g:link></li>
+                    <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale & emotionale Intelligenz</g:link></li>
                     <li><g:link controller="static" action="kompetenz" fragment="anker">Persönliche Kompetenz</g:link></li>
                     <li><g:link controller="static" action="handwerk" fragment="anker">Handwerk und Kunst</g:link></li>
                     <li><g:link controller="static" action="impressum" fragment="anker">Impressum</g:link></li>
@@ -86,6 +90,7 @@
                 </div>
               </div><!-- innersidebox -->
             </div><!-- sidebox -->
+
             <div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader">Zitat des Tages</div>
@@ -105,11 +110,15 @@
                 </div>
               </div><!-- innersidebox -->
             </div><!-- sidebox -->
-          </div>
-        </div>
+
+          </div><!-- yui-b -->
+
+        </div><!-- bd -->
+
         <div id="ft">
           <g:render template="/templates/footer" />
         </div>
+
       </div><!-- doc4 -->
     </div><!-- public -->
   </body>

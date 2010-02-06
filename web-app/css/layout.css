@@ -25,8 +25,8 @@ body {
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px; }
 
-#doc4 {
-    width: 974px; }
+/*#doc4 {
+    width: 974px; }*/
 
 #hd {
     height: 110px;
@@ -70,8 +70,8 @@ body {
     -moz-border-radius: 4px;
     background: #8f8;
     padding: 5px;
-    margin-bottom: 10px;
-}
+    margin-bottom: 15px;
+    -moz-box-shadow: #888 2px 2px 4px; }
 
 .spacer {
     clear: both; }
@@ -226,15 +226,20 @@ ul {
 
 .profile-box {
     -moz-border-radius: 5px;
-    background-color: #dfdfdf;
+    /*background-color: #dfdfdf;*/
+    background: -moz-linear-gradient(-90deg,#dfdfdf,#cdcdcd);
     border: 1px solid #ccc;
-    padding: 5px; }
+    padding: 5px;
+    -moz-box-shadow: #888 2px 2px 4px; }
     .profile-box ul {
         padding: 0; }
         .profile-box ul li {
             list-style-type: none;
             color: #333;
             margin: 0; }
+        .profile-box ul li a:hover {
+            font-weight: bold;
+            text-decoration: none; }
 
 .profile-group {
     -moz-border-radius-topleft: 5px;
@@ -262,7 +267,8 @@ ul {
     padding: 4px 5px;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
-    border: 1px solid #345CA4; }
+    border: 1px solid #345CA4;
+    -moz-box-shadow: #888 2px 2px 4px; }
     .headerBlue h1 {
         color: #fff;
         margin: 0;
@@ -278,7 +284,8 @@ ul {
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    color: #333; }
+    color: #333;
+    -moz-box-shadow: #888 2px 2px 4px; }
 
 #newHelper {
     float: right; }
@@ -443,11 +450,11 @@ ul {
     #public #sidebar {
         margin: 20px 0; }
     #public #main {
-        margin: 20px 0;
+        /*margin: 20px 0;*/
         padding: 0 20px;
         border-right: 1px solid #CCC;
         line-height: 18px;
-        width: 655px; }
+        /*width: 655px;*/ }
         #public #main h1 {
             margin-bottom: 15px; }
         #public #main h2 {
@@ -470,15 +477,22 @@ ul {
 
 .sidebox {
     -moz-border-radius: 5px;
-    background: #708dc2 none repeat scroll 0 0;
+    background: #708dc2;
     border: 1px solid #607cb1;
     margin: 0 10px 20px;
-    color: #fff; }
+    color: #fff;
+    -moz-box-shadow: #555 3px 3px 4px; }
     .sidebox a {
         color: #fff; }
+    .sidebox a:hover {
+        text-align: left;
+        overflow: visible;
+        font-weight: bold;
+        text-decoration: none; }
 
 .innersidebox {
-    background: url(../images/gradient_1.png) repeat-x bottom;
+    /*background: url(../images/gradient_1.png) repeat-x bottom;*/
+    background: -moz-linear-gradient(-90deg,#708dc2,#405a90);
     border: 1px solid #708dc2;
     -moz-border-radius: 5px;
     padding: 5px 10px 10px 10px; }
