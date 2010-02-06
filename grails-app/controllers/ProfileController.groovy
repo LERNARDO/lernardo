@@ -108,38 +108,6 @@ class ProfileController {
       }
     }
 
-    def createOperator = {
-      def entityInstance = new Entity()
-      //entityInstance.properties = params
-      return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
-    }
-
-    def saveOperator = {
-      EntityType etOperator = metaDataService.etOperator
-
-      Account user = Account.findByEmail (params.email)
-      if (user) {
-        flash.message = message(code:"user.existsMail", args:[params.email])
-        redirect action:"createOperator", params:params
-      }
-      else {
-        Entity etst = Entity.findByName (params.name)
-        if (etst) {
-          flash.message = message(code:"user.existsName", args:[params.name])
-          redirect action:"createOperator", params:params
-          return
-        }
-
-        entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
-          OrgProfile prf = ent.profile
-          if (params.pass)
-            ent.user.password = authenticateService.encodePassword(params.pass)
-        }
-        flash.message = message(code:"user.created", args:[params.name,'Admin'])
-        redirect action:'showProfile', params:[name:params.name]
-      }
-    }
-
     def createHort = {
       def entityInstance = new Entity()
       entityInstance.properties = params

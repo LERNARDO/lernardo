@@ -15,6 +15,13 @@
     <div id="adminArea">
       <h1>LERNARDO Administrator-Verwaltung</h1>
       <div id="content">
+
+        <g:if test="${flash.message}">
+          <div id="flash-msg">
+            ${flash.message}
+          </div>
+        </g:if>
+        
         <g:layoutBody/>
       </div>
     </div>

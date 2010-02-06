@@ -10,10 +10,11 @@
   <div class="list">
     <ul>
       <g:each in="${operatorList}" var="operator">
-        <li><g:link action="showOperator" params="[name:operator.name]">${operator.profile.fullName}</g:link></li>
+        <li><g:link action="showOperator" params="[name:operator.name]">${operator.profile.fullName}</g:link> - <g:link class="adminButton" action="editOperator" params="[name:operator.name]">bearbeiten</g:link></li>
       </g:each>
     </ul>
   </div>
+  <p><g:link class="adminButton" action="createOperator">Betreiber anlegen</g:link></p>
 
   <h3>Anzahl globale Aktivitätsvorlagen: ${templatesList.size()}</h3>
   <div class="list">

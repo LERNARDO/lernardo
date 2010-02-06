@@ -412,6 +412,9 @@ ul {
         padding: 4px;
     }
 
+#adminArea .adminButton {
+    color: #f70; }
+
 #admin-content {
     padding: 5px 10px 10px 10px;
     margin: 10px;

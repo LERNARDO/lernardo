@@ -2,11 +2,15 @@ package lernardo
 
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
+import profiles.OrgProfile
+import de.uenterprise.ep.Account
+import de.uenterprise.ep.EntityType
 
 class AdmController {
     def metaDataService
     def entityHelperService
     def FunctionService
+    def authenticateService
 
     def index = {
       redirect action:'overview'
@@ -106,4 +110,75 @@ class AdmController {
        flash.message = message(code:"admin.notificationSuccess")
        redirect controller:"profile", action:"showProfile", params:[name:entityHelperService.loggedIn.name]
     }
+
+    def createOperator = {
+      def entityInstance = new Entity()
+      return ['entityInstance':entityInstance]
+    }
+
+    def saveOperator = {
+      EntityType etOperator = metaDataService.etOperator
+
+      Account user = Account.findByEmail (params.email)
+      if (user) {
+        flash.message = message(code:"user.existsMail", args:[params.email])
+        redirect action:"createOperator", params:params
+      }
+      else {
+        Entity etst = Entity.findByName (params.name)
+        if (etst) {
+          flash.message = message(code:"user.existsName", args:[params.name])
+          redirect action:"createOperator", params:params
+          return
+        }
+
+        entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
+          OrgProfile prf = ent.profile
+          if (params.pass)
+            ent.user.password = authenticateService.encodePassword(params.pass)
+        }
+        flash.message = message(code:"user.created", args:[params.name,'Admin'])
+        redirect action:'overview'
+      }
+    }
+
+    def editOperator = {
+        def entityInstance = Entity.findByName(params.name)
+
+        if(!entityInstance) {
+            flash.message = message(code:"user.notFound", args:[params.name])
+            redirect action:'showProfile', model:[name:params.name]
+        }
+        else {
+            return [entityInstance :entityInstance]
+        }
+    }
+
+    def updateOperator = {
+       def entityInstance = Entity.get( params.id )
+       if(entityInstance) {
+           entityInstance.properties = params
+           entityInstance.profile.fullName = params.fullName
+           entityInstance.profile.PLZ = params.PLZ.toInteger()
+           entityInstance.profile.city = params.city
+           entityInstance.profile.street = params.street
+           entityInstance.profile.tel = params.tel
+           entityInstance.profile.description = params.description
+           if (params.showTips)
+             entityInstance.profile.showTips = true
+           else
+             entityInstance.profile.showTips = false
+         if(!entityInstance.hasErrors() && entityInstance.save()) {
+               flash.message = message(code:"user.updated", args:[entityInstance.profile.fullName])
+               redirect action:'showOperator', params:[name:entityInstance.name]
+           }
+           else {
+               render view:'editOperator', model:[entityInstance:entityInstance]
+           }
+       }
+       else {
+           flash.message = message(code:"user.notFound", args:[params.id])
+           redirect action:'overview'
+       }
+   }
 }
