@@ -60,10 +60,15 @@
 
       <hr/>
       <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/>
-      <g:if test="${didAttend}"><span class="strong">- Daten gefunden</span></g:if></p>
+      <g:if test="${didAttend}">
+        <span class="strong">- Daten gefunden!</span>
+      </g:if>
+      <g:else>
+        <span class="strong">- Keine Daten gefunden!</span>
+      </g:else></p>
       <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
 
-      <form method="post" name="clients">
+      <g:form action="saveAttendance" method="post" id="clients" params="[entities:entityList, date: date, name: entity.name]">
 
         <table id="profile-list">
           <thead>
@@ -80,8 +85,8 @@
               <tr class="row-${entity.type}">
                 <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
               <td class="col">${entity.profile.tel}</td>
-              <td class="col"><g:checkBox name="anwesend" value="${didAttend[i]}"/></td>
-              <td class="col"><g:checkBox name="essen" value="${didEat[i]}"/></td>
+              <td class="col"><g:checkBox name="anwesend" onChange="anyCheck(this.form)" value="${didAttend[i]}"/></td>
+              <td class="col"><g:checkBox name="essen" onChange="anyCheck(this.form)" value="${didEat[i]}"/></td>
               </tr>
             </g:each>
 
@@ -94,15 +99,24 @@
           </tbody>
         </table>
 
-        <input type="button" value="Summe berechnen" onClick="anyCheck(this.form)">
-      </form>
-      <div class="paginateButtons">
+        <g:if test="${!didAttend}">
+          <g:submitButton name="submitButton" value="Speichern"/>
+          <div class="clear"></div>
+        </g:if>
+
+      </g:form>
+%{--      <div class="paginateButtons">
         <g:paginate action="list"
                     params="[entityType:'Client']"
                     total="${entityCount}" />
-      </div>
+      </div>--}%
 
     </div>
     </div>
+
+    <script type="text/javascript">
+      anyCheck(document.getElementById("clients"));
+    </script>
+  
   </body>
 </html>

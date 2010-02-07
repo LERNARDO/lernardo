@@ -11,6 +11,7 @@ import lernardo.Activity
 import lernardo.Msg
 import profiles.OrgProfile
 import lernardo.Attendance
+import java.text.SimpleDateFormat
 
 class ProfileController {
     def geoCoderService
@@ -353,35 +354,34 @@ class ProfileController {
     }
 
     def attendance = {
+      println params
       params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
 
       List clients = []
       List didAttend = []
       List didEat = []
 
-      Date tempDate = new Date()
-      tempDate.setHours(0)
-      tempDate.setMinutes(0)
-      tempDate.setSeconds(0)
-      println tempDate
-      
-      def res = Attendance.list() //findByDate(tempDate)
-      if (res) {
-        println "attendance found!"
-        println res.date
+      SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+      String dateString = sd.format(params.date);       
+      log.debug "param date: "+dateString
+      Date date = sd.parse(dateString)
 
-        res.clients[0].each {
+      def res = Attendance.findByDate(date)
+
+      if (res) {
+        log.debug "attendance found!"
+
+        res.clients.each {
           clients << it
         }
 
-        res.didAttend[0].each {
+        res.didAttend.each {
           didAttend << it
         }
 
-        res.didEat[0].each {
+        res.didEat.each {
           didEat << it
         }
-
       }
       else {
         // find all clients of a facility
@@ -397,6 +397,11 @@ class ProfileController {
               'date':params.date,
               'didAttend':didAttend,
               'didEat':didEat]
+    }
+
+    def saveAttendance = {
+      println params
+      redirect action: 'attendance', params: params
     }
 
     def list = {

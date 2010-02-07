@@ -958,10 +958,9 @@ class BootStrap {
   void createDefaultAttendances() {
     log.debug ("==> creating default attendances")
 
-    def a = new Attendance(clients: Entity.findByName('kira'),
+    new Attendance(clients: [Entity.findByName('kira'), Entity.findByName('keano')],
                    didAttend: [true, true],
                    didEat: [true, false],
-                   date: new Date()).save()
-    a.clients << Entity.findByName('keano')
+                   date: new Date(2010-1900,01,07)).save()
   }
 }
