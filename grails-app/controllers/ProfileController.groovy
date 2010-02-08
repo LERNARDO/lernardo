@@ -357,31 +357,23 @@ class ProfileController {
       println params
       params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
 
-      List clients = []
-      List didAttend = []
-      List didEat = []
-
       SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-      String dateString = sd.format(params.date);       
+      String dateString = sd.format(params.date)       
       log.debug "param date: "+dateString
       Date date = sd.parse(dateString)
 
-      def res = Attendance.findByDate(date)
+      int year = date.getYear()
+      int month = date.getMonth() // 0 to 11
+      int day = date.getDate()
 
-      if (res) {
-        log.debug "attendance found!"
+      List clients = []
+      List attend = Attendance.findAllByDate(date)
+      attend.each {
+        clients << it.client
+      }
 
-        res.clients.each {
-          clients << it
-        }
-
-        res.didAttend.each {
-          didAttend << it
-        }
-
-        res.didEat.each {
-          didEat << it
-        }
+      if (clients) {
+        log.debug "attendances found!"
       }
       else {
         // find all clients of a facility
@@ -395,13 +387,34 @@ class ProfileController {
               'entityCount': clients.size(),
               'entity':entityHelperService.loggedIn,
               'date':params.date,
-              'didAttend':didAttend,
-              'didEat':didEat]
+              'year':year,
+              'month':month,
+              'day':day,
+              'attend':attend]
     }
 
     def saveAttendance = {
       println params
-      redirect action: 'attendance', params: params
+
+      //SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd")
+      //String dateString = sd.format(new Date());
+      //Date date = sd.parse(dateString)
+
+      params.entities.each {
+        def a = new Attendance(client: Entity.findByName(it), didAttend: true, didEat: true, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
+
+        log.debug "created attendance"
+
+        log.debug a.client
+        log.debug a.didAttend
+        log.debug a.didEat
+        log.debug a.date
+
+        a.save()
+        //a.delete()
+      }
+
+      redirect action: 'attendance', params: [name: params.name]
     }
 
     def list = {

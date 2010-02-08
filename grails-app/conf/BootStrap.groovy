@@ -958,9 +958,13 @@ class BootStrap {
   void createDefaultAttendances() {
     log.debug ("==> creating default attendances")
 
-    new Attendance(clients: [Entity.findByName('kira'), Entity.findByName('keano')],
-                   didAttend: [true, true],
-                   didEat: [true, false],
+    new Attendance(client: Entity.findByName('kira'),
+                   didAttend: true,
+                   didEat: true,
+                   date: new Date(2010-1900,01,07)).save()
+    new Attendance(client: Entity.findByName('keano'),
+                   didAttend: true,
+                   didEat: false,
                    date: new Date(2010-1900,01,07)).save()
   }
 }
