@@ -44,22 +44,11 @@
 
         <g:form controller="profile" action="attendance" method="post" params="[name:entity.name]">
           Datum:<g:datePicker name="date" value="${date}" precision="day" years="${2009..2020}"/>
-                %{--<g:select name="monat" from="${1..12}" value="1" />--}%
           <div class="buttons">
             <g:submitButton name="submitButton" value="Datum ändern" icon="true"/>
             <div class="spacer"></div>
           </div>
         </g:form>
-
-        <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy'}.pdf">
-          <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd'}"/>
-          <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM'}"/>
-          <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy'}"/>
-          <div class="buttons">
-            <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
-            <div class="spacer"></div>
-          </div>
-        </g:pdfForm>
 
         <hr/>
         <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/>
@@ -88,8 +77,8 @@
                 <tr class="row-${entity.type}">
                   <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
                 <td class="col">${entity.profile.tel}</td>
-                <td class="col"><g:checkBox name="anwesend" onChange="anyCheck(this.form)" value="${attend[i]?.didAttend}"/></td>
-                <td class="col"><g:checkBox name="essen" onChange="anyCheck(this.form)" value="${attend[i]?.didEat}"/></td>
+                <td class="col"><g:checkBox name="anwesend${i}" id="anwesend" onChange="anyCheck(this.form)" value="${attend[i]?.didAttend}"/></td>
+                <td class="col"><g:checkBox name="essen${i}" id="essen" onChange="anyCheck(this.form)" value="${attend[i]?.didEat}"/></td>
                 </tr>
                 <g:hiddenField name="entities" value="${entity.name}"/>
               </g:each>
@@ -105,15 +94,23 @@
 
           <g:if test="${!attend}">
             <g:submitButton name="submitButton" value="Speichern"/>
+            <span class="buttonGray">PDF erzeugen</span>
             <div class="clear"></div>
           </g:if>
 
         </g:form>
-  %{--      <div class="paginateButtons">
-          <g:paginate action="list"
-                      params="[entityType:'Client']"
-                      total="${entityCount}" />
-        </div>--}%
+
+        <g:if test="${attend}">
+          <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy'}.pdf">
+            <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd'}"/>
+            <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM'}"/>
+            <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy'}"/>
+            <div class="buttons">
+              <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
+              <div class="spacer"></div>
+            </div>
+          </g:pdfForm>
+        </g:if>
 
       </div>
     </div>

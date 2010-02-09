@@ -344,13 +344,28 @@ class ProfileController {
     }
 
     def print = {
-        params.date = new Date(params.year.toInteger()-1900,params.month.toInteger(),params.day.toInteger())
+        params.date = new Date(params.year.toInteger()-1900,params.month.toInteger()-1,params.day.toInteger())
         Entity entity = entityHelperService.loggedIn
         def image = "hort_" + entity.name + ".jpg"
-        return ['image':image,
-                'pdf':params,
-                'entityList': Entity.findAllByType(EntityType.findByName('Client')),
-                'date': params.date]
+
+        int sumAttend = 0
+        int sumEat = 0
+
+        List clients = []
+        List attend = Attendance.findAllByDate(params.date)
+        attend.each {
+          clients << it.client
+          if (it.didAttend) sumAttend++
+          if (it.didEat) sumEat++
+        }
+      
+        return ['image': image,
+                'pdf': params,
+                'entityList': clients,
+                'date': params.date,
+                'attend': attend,
+                'sumAttend': sumAttend,
+                'sumEat': sumEat]
     }
 
     def attendance = {
@@ -396,12 +411,40 @@ class ProfileController {
     def saveAttendance = {
       println params
 
-      //SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd")
-      //String dateString = sd.format(new Date());
-      //Date date = sd.parse(dateString)
-
+      int counter = 0
       params.entities.each {
-        def a = new Attendance(client: Entity.findByName(it), didAttend: true, didEat: true, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
+
+        Boolean tempAttend = false
+        Boolean tempEat = false
+
+        // ugly but works
+        if (counter == 0) {tempAttend = params.anwesend0 ?: false; tempEat = params.essen0 ?: false}
+        if (counter == 1) {tempAttend = params.anwesend1 ?: false; tempEat = params.essen1 ?: false}
+        if (counter == 2) {tempAttend = params.anwesend2 ?: false; tempEat = params.essen2 ?: false}
+        if (counter == 3) {tempAttend = params.anwesend3 ?: false; tempEat = params.essen3 ?: false}
+        if (counter == 4) {tempAttend = params.anwesend4 ?: false; tempEat = params.essen4 ?: false}
+        if (counter == 5) {tempAttend = params.anwesend5 ?: false; tempEat = params.essen5 ?: false}
+        if (counter == 6) {tempAttend = params.anwesend6 ?: false; tempEat = params.essen6 ?: false}
+        if (counter == 7) {tempAttend = params.anwesend7 ?: false; tempEat = params.essen7 ?: false}
+        if (counter == 8) {tempAttend = params.anwesend8 ?: false; tempEat = params.essen8 ?: false}
+        if (counter == 9) {tempAttend = params.anwesend9 ?: false; tempEat = params.essen9 ?: false}
+        if (counter == 10) {tempAttend = params.anwesend10 ?: false; tempEat = params.essen10 ?: false}
+        if (counter == 11) {tempAttend = params.anwesend11 ?: false; tempEat = params.essen11 ?: false}
+        if (counter == 12) {tempAttend = params.anwesend12 ?: false; tempEat = params.essen12 ?: false}
+        if (counter == 13) {tempAttend = params.anwesend13 ?: false; tempEat = params.essen13 ?: false}
+        if (counter == 14) {tempAttend = params.anwesend14 ?: false; tempEat = params.essen14 ?: false}
+        if (counter == 15) {tempAttend = params.anwesend15 ?: false; tempEat = params.essen15 ?: false}
+        if (counter == 16) {tempAttend = params.anwesend16 ?: false; tempEat = params.essen16 ?: false}
+        if (counter == 17) {tempAttend = params.anwesend17 ?: false; tempEat = params.essen17 ?: false}
+        if (counter == 18) {tempAttend = params.anwesend18 ?: false; tempEat = params.essen18 ?: false}
+        if (counter == 19) {tempAttend = params.anwesend19 ?: false; tempEat = params.essen19 ?: false}
+        if (counter == 20) {tempAttend = params.anwesend20 ?: false; tempEat = params.essen20 ?: false}
+        if (counter == 21) {tempAttend = params.anwesend21 ?: false; tempEat = params.essen21 ?: false}
+        if (counter == 22) {tempAttend = params.anwesend22 ?: false; tempEat = params.essen22 ?: false}
+        if (counter == 23) {tempAttend = params.anwesend23 ?: false; tempEat = params.essen23 ?: false}
+        if (counter == 24) {tempAttend = params.anwesend24 ?: false; tempEat = params.essen24 ?: false}
+
+        def a = new Attendance(client: Entity.findByName(it), didAttend: tempAttend, didEat: tempEat, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
 
         log.debug "created attendance"
 
@@ -411,10 +454,21 @@ class ProfileController {
         log.debug a.date
 
         a.save()
-        //a.delete()
+
+        counter++
       }
 
-      redirect action: 'attendance', params: [name: params.name]
+      SimpleDateFormat sd = new SimpleDateFormat("dd.MM.yyyy")
+      String dateString = sd.format(new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
+      flash.message = message(code:"attendance.saved", args:[dateString])
+
+      Date date = sd.parse(dateString)
+
+      int year = date.getYear()+1900
+      int month = date.getMonth()+1 // 0 to 11
+      int day = date.getDate()
+
+      redirect action: 'attendance', params: [name: params.name, date: date, date_year: year, date_month: month, date_day: day]
     }
 
     def list = {
@@ -461,7 +515,7 @@ class ProfileController {
 
       // for now just create a back-link for mutuality - a more elaborate workflow will be in order later on
       def linkBack = new Link()
-      linkBack.source = e ;
+      linkBack.source = e
       linkBack.type = metaDataService.ltFriendship
       linkBack.target = entityHelperService.loggedIn
 

@@ -19,7 +19,7 @@
 
       #notizen {
         width: 100%;
-        height: 500px;
+        height: 400px;
         background: #eee;
         border: #ddd;
       }
@@ -72,24 +72,22 @@
           <tr>
             <td>${entity.profile.fullName}</td>
             <td>${entity.profile.tel}</td>
-            <td><div class="boxEmpty"></div></td>
-            <td><div class="boxFull"></div></td>
+            <td><g:if test="${attend[i].didAttend}"><div class="boxFull"></div></g:if><g:else><div class="boxEmpty"></div></g:else></td>
+            <td><g:if test="${attend[i].didEat}"><div class="boxFull"></div></g:if><g:else><div class="boxEmpty"></div></g:else></td>
           </tr>
         </g:each>
           <tr style="font-weight: bold">
             <td>Gesamt</td>
             <td></td>
-            <td id="sumAnwesenheit">0</td>
-            <td id="sumEssen">0</td>
+            <td id="sumAnwesenheit">${sumAttend}</td>
+            <td id="sumEssen">€ ${sumEat * currentEntity.profile.foodCosts}</td>
           </tr>
         </tbody>
       </table>
 
       <p><strong>Notizen:</strong></p>
       <div id="notizen">
-        <table width="680" height="500" style="notizen" cellspacing="0" cellpadding="0">
-          <tr><td height="40"></td></tr>
-          <tr><td height="40"></td></tr>
+        <table width="680" style="notizen" cellspacing="0" cellpadding="0">
           <tr><td height="40"></td></tr>
           <tr><td height="40"></td></tr>
           <tr><td height="40"></td></tr>
@@ -102,6 +100,7 @@
           <tr><td height="40"></td></tr>
         </table>
       </div>
+
     </div>
   </body>
 </html>
