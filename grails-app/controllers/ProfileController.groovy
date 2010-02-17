@@ -12,6 +12,7 @@ import lernardo.Msg
 import profiles.OrgProfile
 import lernardo.Attendance
 import java.text.SimpleDateFormat
+import lernardo.Group
 
 class ProfileController {
     def geoCoderService
@@ -294,7 +295,18 @@ class ProfileController {
           horte << it.target.profile.fullName
       }
       def ret = horte.join(', ')
-      return [entity:e,horte:ret]
+
+      def groups = []
+      Group.list().each {
+        for (a in it.members) {
+          if (a == Entity.findByName(params.name))
+            groups << it
+        }
+      }
+
+      return [entity:e,
+              horte:ret,
+              groups: groups]
     }
 
     def showCalendar = {

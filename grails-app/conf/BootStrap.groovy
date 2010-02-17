@@ -14,6 +14,7 @@ import org.codehaus.groovy.grails.commons.GrailsApplication
 import lernardo.Helper
 import lernardo.Evaluation
 import lernardo.Attendance
+import lernardo.Group
 
 class BootStrap {
   def defaultObjectService
@@ -33,12 +34,13 @@ class BootStrap {
       createDefaultLinks()
       createDefaultActivityTemplates()
 
-      if (GrailsUtil.environment == GrailsApplication.ENV_DEVELOPMENT) {
+      if (GrailsUtil.environment == "development") {
         createDefaultActivities()
         createDefaultClients()
         createDefaultPosts()
         createDefaultEvents()
         createDefaultAttendances()
+        createDefaultGroups()
       }
 
       createDefaultHelpers()
@@ -80,6 +82,18 @@ class BootStrap {
       prf.PLZ = 2352
       prf.street = "Rudolf Tamchina Gasse 5/5"
       prf.tel = "0664 / 840 66 32"
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("sabine", etUser, "sts@lernardo.at", "Sabine Zeillinger") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.modRole)
+      UserProfile prf = ent.profile
+      prf.tagline = ""
+      prf.gender = 2
+      prf.city = "Gumpoldskirchen"
+      prf.birthDate = new Date(1984-1900,02,22)
+      prf.PLZ = 2352
+      prf.street = "Rudolf Tamchina Gasse 5/5"
+      prf.tel = ""
     }
 
     entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
@@ -986,4 +1000,13 @@ class BootStrap {
                    didEat: false,
                    date: new Date(2010-1900,01,07)).save()
   }
+
+  void createDefaultGroups() {
+    log.debug ("==> creating default groups")
+
+    new Group(members: [Entity.findByName('kira'),Entity.findByName('keano'),Entity.findByName('sabine'),Entity.findByName('alex')],
+              name: 'Familie Zeillinger',
+              description: 'Eine glückliche Familie aus Gumpoldskirchen').save()
+  }
+
 }
