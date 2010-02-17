@@ -59,6 +59,9 @@ body {
 .strong {
     font-weight: bold; }
 
+.italic {
+    font-style: italic; }
+
 .gray {
     color: #666; }
 

@@ -5,6 +5,12 @@
 </head>
 <body>
   <div class="headerBlue">
+    <h1>Mitgliederübersicht</h1>
+  </div>
+  <div class="boxGray">
+  </div>
+
+  <div class="headerBlue">
     <h1>Profilsuche</h1>
   </div>
   <div class="boxGray">

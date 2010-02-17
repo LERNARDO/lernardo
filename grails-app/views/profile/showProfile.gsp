@@ -11,53 +11,55 @@
 <table width="100%">
   <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Sponsor'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
-    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
-    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
+    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street ?: '<div class="italic">keine Straße eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${entity.profile.speaker.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${entity?.profile?.description?.decodeHTML()}</td></tr>
+    <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${entity?.profile?.description?.decodeHTML() ?: '<div class="italic">keine Beschreibung eingetragen</div>'}</td></tr>
   </g:if>
   <g:elseif test="${entity.type.name == 'Hort' || entity.type.name == 'School'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
-    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
-    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
-    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
+    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street ?: '<div class="italic">keine Straße eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel ?: '<div class="italic">keine Telefonnummer eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${entity.profile.speaker.profile.fullName}</td></tr>
     <tr><td class="bold titles bezeichnung">Öffnungszeiten:</td><td class="bezeichnung">${entity.profile.opened}</td></tr>
     <tr><td class="bold titles bezeichnung">Essenskosten:</td><td class="bezeichnung">€ ${entity.profile.foodCosts}.-</td></tr>
-    <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${entity?.profile?.description?.decodeHTML()}</td></tr>
+    <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${entity?.profile?.description?.decodeHTML() ?: '<div class="italic">keine Beschreibung eingetragen</div>'}</td></tr>
   </g:elseif>
   <g:elseif test="${entity.type.name == 'User'}">
-    <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title}</td></tr>
+    <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title ?: '<div class="italic">kein Titel eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
+    <tr><td class="bold titles bezeichnung">Gruppe(n):</td><td class="bezeichnung"><ul><g:each in="${groups}" var="group"><li><g:link controller="group" action="show" id="${group.id}" params="[name:entity.name]">${group.name}</g:link></g:each></ul></td></tr>
     <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
-    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
-    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
-    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
-    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
+    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street ?: '<div class="italic">keine Straße eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel ?: '<div class="italic">keine Telefonnummer eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung"><app:showGender gender="${entity.profile.gender}"/></td></tr>
-    <tr><td class="bold titles bezeichnung">Biographie:</td><td class="bezeichnung">${entity?.profile?.biography?.decodeHTML()}</td></tr>
+    <tr><td class="bold titles bezeichnung">Biographie:</td><td class="bezeichnung">${entity?.profile?.biography?.decodeHTML() ?: '<div class="italic">keine Biographie eingetragen</div>'}</td></tr>
   </g:elseif>
   <g:elseif test="${entity.type.name == 'Paed'}">
-    <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title}</td></tr>
+    <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title ?: '<div class="italic">kein Titel eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
     <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
-    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
-    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
-    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
-    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
+    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street ?: '<div class="italic">keine Straße eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel ?: '<div class="italic">keine Telefonnummer eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung"><app:showGender gender="${entity.profile.gender}"/></td></tr>
-    <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${entity?.profile?.biography?.decodeHTML()}</td></tr>
+    <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${entity?.profile?.biography?.decodeHTML() ?: '<div class="italic">keine Biographie eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Betreute Horte:</td><td class="bezeichnung">${horte} <ub:isAdmin><g:link action="changeFacilities" params="[name:entity.name]">[ändern]</g:link></ub:isAdmin></td></tr>
   </g:elseif>
   <g:elseif test="${entity.type.name == 'Client'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
+    <tr><td class="bold titles bezeichnung">Gruppe(n):</td><td class="bezeichnung"><g:each in="${groups}" var="group"><g:link controller="group" action="show" id="${group.id}" params="[name:entity.name]">${group.name}</g:link></g:each></td></tr>
     <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
-    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ}</td></tr>
-    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city}</td></tr>
-    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street}</td></tr>
-    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel}</td></tr>
+    <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street ?: '<div class="italic">keine Straße eingetragen</div>'}</td></tr>
+    <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel ?: '<div class="italic">keine Telefonnummer eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung"><app:showGender gender="${entity.profile.gender}"/></td></tr>
   </g:elseif>
 </table>
