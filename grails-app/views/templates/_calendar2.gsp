@@ -38,12 +38,9 @@
     editable: false,
     allDaySlot:true,
     allDayText:'',
+    weekends: false,
     events: '${g.createLink (controller:"calendar", action:"events", params:[name:name])}',
-
-    eventMouseOver: function( event, jsEvent, view ) {
-
-    },
-    
+  
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%

@@ -846,7 +846,7 @@ class BootStrap {
             facility:Entity.findByName('loewenzahn'),
             template:'Luftballonmeer',
             attribution:'Psychomotorik').save()
-      new Activity(title:'Luftballonmeer',
+      new Activity(title:'Heizdecke',
             owner:Entity.findByName('rosa'),
             date: new Date(2010-1900,01,18,16,30),
             duration: 60,
@@ -855,7 +855,7 @@ class BootStrap {
             facility:Entity.findByName('loewenzahn'),
             template:'Heizdecke',
             attribution:'Psychomotorik').save()
-      new Activity(title:'Luftballonmeer',
+      new Activity(title:'Zeitungspuzzle',
             owner:Entity.findByName('birgit'),
             date: new Date(2010-1900,01,19,16,00),
             duration: 60,

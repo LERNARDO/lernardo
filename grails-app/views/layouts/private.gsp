@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
     <link rel="icon" href="${createLinkTo(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
     <g:layoutHead />
-    <g:javascript library="jquery"/>
+   %{--<g:javascript library="jquery"/>--}%
+    <g:javascript src="jquery/jquery-1.4.1.min.js"/>
+    <g:javascript src="jquery/jquery-ui-1.7.2.custom.min.js"/>
+    <g:javascript src="bounce.js"/>   
   </head>
   <body>
     <div id="private">
@@ -21,7 +24,7 @@
           </div>
         </div>
         <div id="banner">
-          <ol class="imgmenu">
+          <ol class="imgmenu" id="bounce">
             <li>
               <div id="member" class="imgbox">
                 <g:link controller="profile" action="showProfile" params="[name:currentEntity.name]">

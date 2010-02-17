@@ -19,7 +19,7 @@
         </g:each>
     </div>
     <div class="headerBlue">
-      <h1>Kalender von ${name}</h1>
+      <h1>Kalender</h1>
     </div>
     <div class="boxGray cal"></div>
   </body>

@@ -2,7 +2,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
   <title>Lernardo | SMS senden</title>
-  <g:javascript library="jquery"/>
 </head>
 <body>
 <h1>SMS senden:</h1>

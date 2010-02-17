@@ -35,6 +35,8 @@ grails.enable.native2ascii = true
 // mail plugin configuration…
 grails.mail.default.from="lernardomailer@gmail.com"
 
+grails.views.javascript.library="jquery"
+
 grails {
   mail {
     host = "smtp.gmail.com"
