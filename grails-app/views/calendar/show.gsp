@@ -4,8 +4,8 @@
     <title>Lernardo | Hortkalender</title>
     <meta name="layout" content="private" />
     <g:javascript library="jquery" />
-    <g:javascript src="jquery/jquery.fullcalendar.js"/>
-    <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />
+    <g:javascript src="jquery/fullcalendar-1.4.4.js"/>
+    <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'fullcalendar-1.4.4.css')}" />
     <g:render template="/templates/calendar" model="[name:name]"/>
 
   </head>

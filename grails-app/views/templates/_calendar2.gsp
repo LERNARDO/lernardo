@@ -10,7 +10,8 @@
     dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
     dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
     firstDay: 1,
-    minTime: 10,
+    minTime: 8,
+    maxTime: 22,
     firstHour: 10,
     defaultView: 'agendaWeek',
     buttonText: {
@@ -39,6 +40,10 @@
     allDayText:'',
     events: '${g.createLink (controller:"calendar", action:"events", params:[name:name])}',
 
+    eventMouseOver: function( event, jsEvent, view ) {
+
+    },
+    
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%

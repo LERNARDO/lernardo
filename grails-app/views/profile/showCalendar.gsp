@@ -4,8 +4,8 @@
   <title>Lernardo | Kalender</title>
   <g:javascript library="jquery" />
   <g:javascript src="jquery/jquery-ui-1.7.2.custom.min.js"/>
-  <g:javascript src="jquery/jquery.fullcalendar.js"/>
-  <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />
+  <g:javascript src="jquery/fullcalendar-1.4.4.js"/>
+  <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'fullcalendar-1.4.4.css')}" />
   <g:render template="/templates/calendar2" model="[name:name]"/>
 </head>
 
