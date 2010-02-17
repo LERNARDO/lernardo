@@ -44,8 +44,8 @@
       <li>
         <div id="profiles" class="imgbox">
           <g:link controller="profile" action="search" params="[name:currentEntity.name]">
-            <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Suche" />
-            <h3>Suche</h3>
+            <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Mitglieder" />
+            <h3>Mitglieder</h3>
           </g:link>
         </div>
       </li>

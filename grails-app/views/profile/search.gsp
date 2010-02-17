@@ -7,11 +7,13 @@
   <div class="headerBlue">
     <h1>Mitgliederübersicht</h1>
   </div>
-  <div class="boxGray">
+  <div class="boxGray" id="userlist-results">
+    <p>Bitte eine Auswahl treffen!</p>
+    <g:render template="glossary" model="[glossary: glossary]"/>
   </div>
 
   <div class="headerBlue">
-    <h1>Profilsuche</h1>
+    <h1>Mitgliedersuche</h1>
   </div>
   <div class="boxGray">
 

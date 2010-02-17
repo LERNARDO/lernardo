@@ -31,6 +31,44 @@ class ProfileController {
         render result as JSON
     }
 
+    def showUsers = {
+      params.glossary = params.glossary ?: 'Alle'
+      params.max = Math.min( params.max ? params.max.toInteger() : 6,  100)
+      params.offset = params.offset ? params.offset.toInteger() : 0
+
+      List users = []
+      def numUsers = 0
+
+      if (params.glossary == "Alle") {
+        def c = Entity.createCriteria()
+        users = c.list {
+          profile {
+            order("fullName", "asc")
+          }
+          maxResults (params.max)
+          firstResult(params.offset)
+        }
+        numUsers = Entity.count()
+      }
+      else {
+        log.debug ("start glossary for " + params.glossary)
+        def c = Entity.createCriteria()
+        users = c.list {
+          profile {
+            ilike('fullName',params.glossary+"%")
+            order("fullName", "asc")
+          }
+          cacheable(true)
+        }
+        log.debug ("found {} glossary entries " + users.size())
+        numUsers = users.size()
+        def upperBound = params.offset + 6 < users.size() ? params.offset + 6 : users.size()
+        users = users.subList(params.offset,upperBound)
+      }
+
+      render(template:'allusers', model:[entities: users, numEntities: numUsers, glossary: params.glossary])
+    }
+
     def changeFacilities = {
       List horte = []
       List working = Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)
@@ -263,7 +301,8 @@ class ProfileController {
     }
 
     def search = {
-      return [entity:Entity.findByName(params.name)]
+      return [entity:Entity.findByName(params.name),
+              glossary: '-']
     }
 
     def searchMe = {

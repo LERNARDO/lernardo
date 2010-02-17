@@ -11,6 +11,13 @@ class HelperTagLib {
   def filterService
   static namespace = "app"
 
+  def active = {attrs ->
+    if (attrs.glossary == attrs.letter)
+      out << '<span style="background: #567EC6; padding: 1px 3px; color: #fff;">' << attrs.letter << '</span>'
+    else
+      out << attrs.letter
+  }
+  
   def getProfileType = {attrs ->
       out << message(code:"entityType."+Entity.findByName(attrs.remove('entityName')).type.name)
   }

@@ -2,7 +2,7 @@
   <div class="member">
 
     <div class="member-pic">
-      <g:link controller="post" action="profile" params="[name:searchInstance.name]">
+      <g:link controller="profile" action="showProfile" params="[name:searchInstance.name]">
         <ub:profileImage name="${searchInstance.name}" width="50" height="50" align="left"/>
       </g:link>
     </div>
