@@ -16,7 +16,7 @@
      <div class="content">
 
        <g:if test="${entities.size() == 0}">
-         ${emptyMsg}
+         <p>${emptyMsg}</p>
        </g:if>
 
        <g:each in="${entities}" var="entity">

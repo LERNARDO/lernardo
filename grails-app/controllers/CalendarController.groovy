@@ -11,18 +11,6 @@ class CalendarController {
 
     def index = { }
 
-    def show_ajax = { }
-
-    def show  = {
-        def prf = Entity.findByName(params.name)
-        if (!prf) {
-            response.sendError(404, "user profile not found")
-            return
-        }
-
-        return ['name': params.name]
-    }
-
     def showall  = {
       params.name = params.name ?: 'all'
       Entity entity = entityHelperService.loggedIn
@@ -42,10 +30,6 @@ class CalendarController {
               'entity':entityHelperService.loggedIn,
               'paedList':paedList]
     }
-
-    def showall_month = {}
-    def showall_week = {}
-    def showall_day = {}
 
     // handles event requests
     def events = {

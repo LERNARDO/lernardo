@@ -1115,3 +1115,10 @@ table#msg-composer td {
     border-width:1px;
     padding:5px 10px;
     color: #606060; }
+
+.myfriends .head, .myemployers .head, .mymemberships .head {
+    font-weight: bold;
+    font-size: 13px; 
+    border-bottom: 1px solid #bbb; 
+    padding-bottom: 2px;
+    margin-bottom: 3px; }
