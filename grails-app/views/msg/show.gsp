@@ -1,8 +1,6 @@
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="layout" content="private"/>
   <title>Lernardo | Nachricht</title>
-  <g:javascript library="jquery"/>
+  <meta name="layout" content="private"/>
 </head>
 <body>
 <div class="headerBlue">

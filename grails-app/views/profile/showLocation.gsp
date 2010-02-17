@@ -20,10 +20,8 @@
     }
     //]]>
   </script>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="layout" content="private"/>
   <title>Lernardo | Standort</title>
-  <g:javascript library="jquery"/>
+  <meta name="layout" content="private"/>
 </head>
 <body>
 <h1>Standort:</h1>

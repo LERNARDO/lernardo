@@ -9,10 +9,8 @@
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
     <link rel="icon" href="${createLinkTo(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
     <g:layoutHead />
-   %{--<g:javascript library="jquery"/>--}%
-    <g:javascript src="jquery/jquery-1.4.1.min.js"/>
-    <g:javascript src="jquery/jquery-ui-1.7.2.custom.min.js"/>
-    <g:javascript src="bounce.js"/>   
+    <g:javascript library="jquery" />
+    %{--<g:javascript src="jquery/jquery-ui-1.7.2.custom.min.js"/>--}%
   </head>
   <body>
     <div id="private">
@@ -24,61 +22,7 @@
           </div>
         </div>
         <div id="banner">
-          <ol class="imgmenu" id="bounce">
-            <li>
-              <div id="member" class="imgbox">
-                <g:link controller="profile" action="showProfile" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'profile.png')}" alt="Profile" />
-                  <h3>Profil</h3>
-                </g:link>
-              </div>
-            </li>
-
-            <li>
-              <div id="paeds" class="imgbox">
-                <g:link controller="template" action="list" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivitätsvorlagen" />
-                  <h3>Aktivitätsvorlagen</h3>
-                </g:link>
-              </div>
-            </li>
-
-            <li>
-              <div id="activities" class="imgbox">
-                <g:link controller="activity" action="list" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'all_activities.png')}" alt="Aktivitäten" />
-                  <h3>Aktivitäten</h3>
-                </g:link>
-              </div>
-            </li>
-
-            <li>
-              <div id="orga" class="imgbox">
-                <g:link controller="calendar" action="showall">
-                  <img src="${g.resource(dir:'images/iconex', file:'calendar.png')}" alt="Kalender" />
-                  <h3>Kalender</h3>
-                </g:link>
-              </div>
-            </li>
-
-            <li>
-              <div id="profiles" class="imgbox">
-                <g:link controller="profile" action="search" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Suche" />
-                  <h3>Suche</h3>
-                </g:link>
-              </div>
-            </li>
-
-            <li>
-              <div id="admin" class="imgbox">
-                <g:link controller="network" action="index" params="[name:currentEntity.name]">
-                  <img src="${g.resource(dir:'images/iconex', file:'admin.png')}" alt="Netzwerk" />
-                  <h3>Netzwerk</h3>
-                </g:link>
-              </div>
-            </li>
-          </ol>
+          <g:render template="/templates/imagenav" />
         </div>
 
         <div id="bd">
