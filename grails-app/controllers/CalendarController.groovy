@@ -24,8 +24,23 @@ class CalendarController {
     }
 
     def showall  = {
-        return ['name':'all',
-                'entity':entityHelperService.loggedIn]
+      params.name = params.name ?: 'all'
+      Entity entity = entityHelperService.loggedIn
+
+      // find facility the paed is working in
+      def link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
+      Entity facility = link.target
+
+      // find all paeds working in that facility
+      List paedList = []
+      def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+      temp.each {
+          paedList << it.source
+      }
+
+      return ['name':params.name,
+              'entity':entityHelperService.loggedIn,
+              'paedList':paedList]
     }
 
     def showall_month = {}
@@ -80,7 +95,7 @@ class CalendarController {
             def dtStart = new DateTime (it.date)
             dtStart = dtStart.plusHours(1)
             def dtEnd = dtStart.plusMinutes("$it.duration".toInteger())
-            eventList << [id: it.id, title: it.title, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: it.attribution]
+            eventList << [id: it.id, title: it.title, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: it.owner.name]
         }
 
         def json = eventList as JSON;

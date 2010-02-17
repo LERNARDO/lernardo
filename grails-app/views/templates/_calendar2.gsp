@@ -1,5 +1,5 @@
 <jq:jquery>
-  $('.boxGray').fullCalendar({
+  $('.cal').fullCalendar({
     header: {
       left: 'prev,next today',
       center: 'title',
@@ -10,7 +10,8 @@
     dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
     dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
     firstDay: 1,
-    firstHour:8,
+    minTime: 10,
+    firstHour: 10,
     defaultView: 'agendaWeek',
     buttonText: {
         prev: '&nbsp;&#9668;&nbsp;', // left triangle
@@ -32,7 +33,7 @@
     },
     axisFormat: ' HH:mm', // H (:mm)
     timeFormat: 'HH:mm',
-    aspectRatio: 1.35,
+    aspectRatio: 1.15,
     editable: false,
     allDaySlot:true,
     allDayText:'',

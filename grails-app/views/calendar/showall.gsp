@@ -1,4 +1,3 @@
-
   <head>
     <title>Lernardo | Hortkalender</title>
     <meta name="layout" content="private" />
@@ -7,19 +6,21 @@
     <g:javascript src="jquery/jquery.fullcalendar.js"/>
     <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'jquery.fullcalendar.css')}" />
     <g:render template="/templates/calendar2" model="[name:name]"/>
-
   </head>
 
   <body>
-  <div class="headerBlue">
-  <h1>Kalender</h1>
-</div>
-  <div class="boxGray"></div>
+    <div class="headerBlue">
+      <h1>Pädagogen</h1>
+    </div>
+    <div class="boxGray">
+        <div class="all" style="padding: 3px 4px"><g:link controller="calendar" action="showall">Alle</g:link></div>
+        <g:each in="${paedList}" var="paed">
+          <div class="${paed.name}" style="padding: 3px 4px"><g:link controller="calendar" action="showall" params="[name:paed.name]">${paed.profile.fullName}</g:link></div>
+        </g:each>
+    </div>
+    <div class="headerBlue">
+      <h1>Kalender von ${name}</h1>
+    </div>
+    <div class="boxGray cal"></div>
   </body>
-%{--
-  <body>
-      <div class="profile-group" style="width:250px;">Lernardo - Gesamt</div>
-      <div class="profile-box">
-        <div id="profile-content"></div>
-      </div>
-  </body>--}%
+

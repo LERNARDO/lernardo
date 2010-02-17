@@ -13,5 +13,5 @@
   <div class="headerBlue">
     <h1>Kalender</h1>
   </div>
-  <div class="boxGray"></div>
+  <div class="boxGray cal"></div>
 </body>

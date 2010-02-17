@@ -254,41 +254,49 @@ table.fc-header {
 	 *     }
 	 */
 
-.Ankunft,
-.fc-agenda .Ankunft .fc-event-time,
-.Ankunft a {
+.all,
+.fc-agenda .all .fc-event-time,
+.all a {
     background-color: #bbb;
-    border-color: #fff;
+    border-color: #bbb;
     color: #fff;
     }
 
-.Spielen,
-.fc-agenda .Spielen .fc-event-time,
-.Spielen a {
+.hannah,
+.fc-agenda .hannah .fc-event-time,
+.hannah a {
     background-color: #5b5;
-    border-color: #9f9;
+    border-color: #5b5;
     color: #fff;
     }
 
-.Mittagessen,
-.fc-agenda .Mittagessen .fc-event-time,
-.Mittagessen a {
+.regina,
+.fc-agenda .regina .fc-event-time,
+.regina a {
+    background-color: #5b5;
+    border-color: #5b5;
+    color: #fff;
+    }
+
+.martin,
+.fc-agenda .martin .fc-event-time,
+.martin a {
     background-color: #b55;
-    border-color: #f99;
+    border-color: #b55;
     color: #fff;
     }
 
-.Betreuung,
-.fc-agenda .Betreuung .fc-event-time,
-.Betreuung a {
+.rosa,
+.fc-agenda .rosa .fc-event-time,
+.rosa a {
     background-color: #bb5;
-    border-color: #ff9;
+    border-color: #bb5;
     color: #fff;
     }
 
-.Psychomotorik,
-.fc-agenda .Psychomotorik .fc-event-time,
-.Psychomotorik a {
+.birgit,
+.fc-agenda .birgit .fc-event-time,
+.birgit a {
     background-color: #009;
     border-color: #009;
     color: #fff;
