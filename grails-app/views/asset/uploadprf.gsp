@@ -2,26 +2,16 @@
 <html>
   <head>
     <title>Lernardo | Profilbild hochladen</title>
-    %{--<meta name="layout" content="test" />--}%
+    %{--<meta name="layout" content="private" />--}%
   </head>
   <body>
-  <g:uploadForm controller="asset" action="putprf">
-    <div class="dialog">
-      <fieldset>
-        <legend>Asset Upload</legend>
-        <table>
-          <colgroup>
-            <col class="labelcol"/>
-            <col class="fieldcol"/>
-          </colgroup>
-          <tr>
-            <td>Datei</td>
-            <td><input type="file" name="asset"></td>
-          </tr>
-        </table>
-      </fieldset>
-      <g:submitButton name="submit" value="Upload"/>
-    </div>
+  <h1>Profilbild</h1>
+  <g:uploadForm action="putprf">
+    <p>Bitte ein Bild auswählen:<br/>
+    <input size="40" type="file" name="asset"></p>
+
+    <p>Zur optimalen Darstellung ist ein Bildformat von 180 x 233 px empfehlenswert.</p>
+    <g:submitButton name="submit" value="Ändern"/>
   </g:uploadForm>
   </body>
 </html>

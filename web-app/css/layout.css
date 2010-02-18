@@ -31,7 +31,8 @@ body {
 #hd {
     height: 110px;
     background: url(../images/head.jpg) #F0F0F0 no-repeat 0 0;
-    position: relative; }
+    position: relative;
+-moz-box-shadow: #888 0px -4px 8px;}
     #hd #info {
         text-align: right;
         float: right;
@@ -46,13 +47,14 @@ body {
 #bd {
     background: #f0f0f0;
     padding-top: 10px;
-}
+    -moz-box-shadow: #888 0px 4px 8px; }
 
 #ft {
     background: #d9d9d9;
     clear: both;
     text-align: center;
-    padding: 10px; }
+    padding: 10px;
+    -moz-box-shadow: #888 0px 4px 8px;}
     #ft a {
         color: #444; }
 
@@ -456,7 +458,7 @@ ul {
     #public #banner {
         height: 336px;
         width: 974px;
-        background: url(../images/banner.jpg); }
+        background: url(../images/banner.jpg);}
     #public #sidebar {
         margin: 20px 0; }
     #public #main {

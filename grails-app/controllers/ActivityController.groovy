@@ -151,7 +151,7 @@ class ActivityController {
           FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" angelegt.')
           activityInstance.paeds.each {
             if (it != entityHelperService.loggedIn)
-              FunctionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activityInstance.title+'" mit dir als TeilnehmerIn angelegt.')
+              FunctionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activityInstance.title+'" mit dir als TeilnehmerIn angelegt.')
           }
           redirect action:'show', id:activityInstance.id
         }

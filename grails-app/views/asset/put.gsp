@@ -1,18 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mkuhl
-  Date: 01.12.2009
-  Time: 09:53:55
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
     <title>Lernardo | Profilbild hochgeladen</title>
+    %{--<meta name="layout" content="private" />--}%
   </head>
   <body>
-    <p>Das Profilbild wurde hochgeladen</p>
-    <a href="${g.resource (dir:'/start')}">Zurück</a>
+    <h1>Profilbild</h1>
+      <g:if test="${asset}">
+        Dein Profilbild wurde erfolgreich aktualisiert!
+      </g:if>
+      <g:else>
+        Dein Profilbild konnten nicht aktualisiert werden!
+      </g:else>
+      <g:link controller="profile" action="showProfile">zurück zum Profil</g:link>
   </body>
 </html>
