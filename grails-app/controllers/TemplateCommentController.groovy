@@ -4,7 +4,7 @@ import de.uenterprise.ep.Entity
 
 class TemplateCommentController {
   def entityHelperService
-  def FunctionService
+  def functionService
   def metaDataService
 
   def delete = {
@@ -39,11 +39,11 @@ class TemplateCommentController {
     if (postInstance.save(flush: true)) {
       flash.message = message(code:"comment.created", args:[postInstance.template.name])
 
-      FunctionService.createEvent(postInstance.author, 'Du hast die Aktivätsvorlage "'+postInstance.template.name+'" kommentiert.')
+      functionService.createEvent(postInstance.author, 'Du hast die Aktivätsvorlage "'+postInstance.template.name+'" kommentiert.')
       List receiver = Entity.findAllByType(metaDataService.etPaed)
       receiver.each {
         if (it != postInstance.author)
-          FunctionService.createEvent(it, postInstance.author.profile.fullName+'hat die Aktivätsvorlage "'+postInstance.template.name+'" kommentiert.')
+          functionService.createEvent(it, postInstance.author.profile.fullName+'hat die Aktivätsvorlage "'+postInstance.template.name+'" kommentiert.')
       }
 
       redirect controller: "template", action: "show", id: params.id

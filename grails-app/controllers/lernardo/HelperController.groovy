@@ -5,7 +5,7 @@ package lernardo
 import de.uenterprise.ep.Entity
 
 class HelperController {
-    def FunctionService
+    def functionService
     def metaDataService
 
     def index = {
@@ -129,7 +129,7 @@ class HelperController {
 
         List receiver = Entity.findAllByType(type)
         receiver.each {
-          FunctionService.createEvent(it, 'Es wurde das Hilfethema "'+helperInstance.title+'" angelegt.')
+          functionService.createEvent(it, 'Es wurde das Hilfethema "'+helperInstance.title+'" angelegt.')
         }
 
         if(helperInstance.save(flush:true)) {

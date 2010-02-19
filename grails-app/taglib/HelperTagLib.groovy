@@ -19,7 +19,7 @@ class HelperTagLib {
   }
   
   def getProfileType = {attrs ->
-      out << message(code:"entityType."+Entity.findByName(attrs.remove('entityName')).type.name)
+      out << message(code:"entityType."+Entity.findByName(attrs.entityName).type.name)
   }
 
   def getQuoteOfTheDay = {
@@ -38,24 +38,23 @@ class HelperTagLib {
   }
 
   def showGender = {attrs ->
-    if (attrs.remove('gender') == 1)
+    if (attrs.gender == 1)
       out << 'Männlich'
     else
       out << 'Weiblich'
   }
 
   def getNewInboxMessages = {attrs ->
-    int m = filterService.getNewInboxMessages(attrs.remove ("entityName"))
-    //println "m = "+ m
+    int m = filterService.getNewInboxMessages(attrs.entityName)
     if (m > 0)
       out << "("+m+")"
   }
   def getTemplateCommentsCount = {attrs ->
-    out << TemplateComment.countByTemplate(attrs.remove ("template"))
+    out << TemplateComment.countByTemplate(attrs.template)
   }
 
   def getRelationship = {attrs ->
-    out << Link.findBySourceAndTarget(Entity.findByName(attrs.remove ("source")),Entity.findByName(attrs.remove ("target"))).type.name
+    out << Link.findBySourceAndTarget(Entity.findByName(attrs.source),Entity.findByName(attrs.target)).type.name
   }
 
   def isLoggedIn = {attrs, body->
@@ -89,12 +88,12 @@ class HelperTagLib {
   }
 
   def isEnabled = {attrs, body->
-    if (Entity.findByName(attrs.remove('entityName')).user.enabled)
+    if (Entity.findByName(attrs.entityName).user.enabled)
       out << body()
   }
 
   def notEnabled = {attrs, body->
-    if (!Entity.findByName(attrs.remove('entityName')).user.enabled)
+    if (!Entity.findByName(attrs.entityName).user.enabled)
       out << body()
   }
 
@@ -102,7 +101,7 @@ class HelperTagLib {
     Entity current = entityHelperService.loggedIn
     if (!current)
       return false
-    Entity e = attrs.remove ("entity") ?: entityHelperService.loggedIn
+    Entity e = attrs.entity ?: entityHelperService.loggedIn
     if (!e)
       return false
 
@@ -114,11 +113,12 @@ class HelperTagLib {
     Entity current = entityHelperService.loggedIn
     if (!current)
       return false
-    Entity e = attrs.remove ("entity") ?: entityHelperService.loggedIn
+    Entity e = attrs.entity ?: entityHelperService.loggedIn
     if (!e)
       return false
 
     def result = networkService.isBookmarkOf(current, e)
     return result
   }
+  
 }

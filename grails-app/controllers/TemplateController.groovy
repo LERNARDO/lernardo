@@ -5,7 +5,7 @@ import de.uenterprise.ep.Entity
 
 class TemplateController {
   def entityHelperService
-  def FunctionService
+  def functionService
   def metaDataService
 
     def index = {
@@ -25,17 +25,17 @@ class TemplateController {
         def template = ActivityTemplate.get(params.id)
 
         if(!template) {
-            flash.message = message(code:"template.notFound", args:[params.id])
-            redirect action:'list'
+          flash.message = message(code:"template.notFound", args:[params.id])
+          redirect action:'list'
         }
-        else {
-            return ['template': template,
-                    'entity': entityHelperService.loggedIn]
-        }
+
+        return ['template': template,
+                'entity': entityHelperService.loggedIn]
     }
 
     def update = {
         def template = ActivityTemplate.get(params.id)
+
         if(template) {
             if(params.version) {
                 def version = params.version.toLong()
@@ -96,11 +96,11 @@ class TemplateController {
         if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"template.created", args:[params.name])
 
-          FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+activityInstance.name+'" angelegt.')
+          functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+activityInstance.name+'" angelegt.')
           List receiver = Entity.findAllByType(metaDataService.etPaed)
           receiver.each {
             if (it != entityHelperService.loggedIn)
-              FunctionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+activityInstance.name+'" angelegt.')
+              functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+activityInstance.name+'" angelegt.')
           }
 
           redirect action:'show', id:activityInstance.id

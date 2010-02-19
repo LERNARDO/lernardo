@@ -9,7 +9,7 @@ import de.uenterprise.ep.EntityType
 class AdmController {
     def metaDataService
     def entityHelperService
-    def FunctionService
+    def functionService
     def authenticateService
 
     def index = {
@@ -96,7 +96,7 @@ class AdmController {
        def userList = Entity.list()
 
        userList.each {
-          FunctionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
+          functionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
           def msgInstance = new Msg(params)
           msgInstance.entity = it
           msgInstance.dateCreated = new Date()

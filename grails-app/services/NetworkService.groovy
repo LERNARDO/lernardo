@@ -3,44 +3,52 @@ import de.uenterprise.ep.Link
 
 class NetworkService {
 
-    boolean transactional = true
+  boolean transactional = true
 
-    def metaDataService
-    def entityHelperService
+  def metaDataService
+  def entityHelperService
 
-    def findFriendsOf (Entity e,  def params=[]) {
-      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltFriendship, params)
-      def results = []
-      for (v in c) { results << v.target }
+  // returns friends of a given entity
+  def findFriendsOf (Entity e,  def params=[]) {
+    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltFriendship, params)
+    def results = []
+    links.each {results << it.target}
 
-      return results
-    }
+    return results
+  }
 
-    def findClientsOf (Entity e,  def params=[]) {
-      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
-      def results = []
-      for (v in c) { results << v.target }
+  // returns clients of a given entity
+  def findClientsOf (Entity e,  def params=[]) {
+    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
+    def results = []
+    links.each {results << it.target}
 
-      return results
-    }
+    return results
+  }
 
-    def findBookmarksOf (Entity e,  def params=[]) {
-      def c = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltBookmark, params)
-      def results = []
-      for (v in c) { results << v.target }
+  // returns bookmarks of a given entity
+  def findBookmarksOf (Entity e,  def params=[]) {
+    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltBookmark, params)
+    def results = []
+    links.each {results << it.target}
 
-      return results
-    }
+    return results
+  }
+
+  // checks for a friendship between 2 given entities
+  boolean isFriendOf (Entity source, Entity target) {
+    def links = Link.findAllBySourceAndTarget (source, target)
+    def friendLink = links.find {it.type.id == metaDataService.ltFriendship.id}
+
+    return friendLink ? true : false
+  }
+
+  // checks for a bookmark between 2 given entities
+  boolean isBookmarkOf (Entity source, Entity target) {
+    def links = Link.findAllBySourceAndTarget (source, target)
+    def bookmarkLink = links.find {it.type.id == metaDataService.ltBookmark.id}
+
+    return bookmarkLink ? true : false
+  }
   
-    boolean isFriendOf (Entity source, Entity target) {
-      def links = Link.findAllBySourceAndTarget (source, target)
-      def friendLink = links.find {it.type.id == metaDataService.ltFriendship.id}
-      return friendLink ? true :false;
-    }
-
-    boolean isBookmarkOf (Entity source, Entity target) {
-      def links = Link.findAllBySourceAndTarget (source, target)
-      def friendLink = links.find {it.type.id == metaDataService.ltBookmark.id}
-      return friendLink ? true :false;
-    }
 }

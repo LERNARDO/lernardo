@@ -1,8 +1,8 @@
 class MetaDataService {
 
-    boolean transactional = true
+  boolean transactional = true
 
-    def defaultObjectService
+  def defaultObjectService
 
   // String Constants
   static final String EST_PERSON = "Person"              // EntitySuperType

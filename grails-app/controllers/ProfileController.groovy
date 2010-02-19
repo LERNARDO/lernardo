@@ -19,10 +19,10 @@ class ProfileController {
     def networkService
     def entityHelperService
     def metaDataService
-    def FilterService
+    def filterService
     def authenticateService
     def sessionFactory
-    def FunctionService
+    def functionService
 
     def index = { }
 
@@ -575,8 +575,8 @@ class ProfileController {
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
         flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
 
-        FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund hinzugefügt.')
-        FunctionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt.')
+        functionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund hinzugefügt.')
+        functionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt.')
 
         redirect action:'showProfile', params:[name:linkInstance.target.name]
       }
@@ -607,8 +607,8 @@ class ProfileController {
                 linkInstanceBack.delete(flush:true)
                 flash.message = message(code:"user.removeFriend", args:[e.profile.fullName])
 
-                FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund entfernt.')
-                FunctionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund entfernt.')
+                functionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund entfernt.')
+                functionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund entfernt.')
 
                 redirect action:'showProfile', params:[name:n]
             }

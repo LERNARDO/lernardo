@@ -8,7 +8,7 @@ import de.uenterprise.ep.Link
 class ActivityController {
   def entityHelperService
   def metaDataService
-  def FunctionService
+  def functionService
 
     def index = {
       redirect action:list
@@ -147,11 +147,11 @@ class ActivityController {
       if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
 
-          FunctionService.createEvent(entityHelperService.loggedIn, activityInstance.facility.profile.fullName+': Aktivität "'+activityInstance.title+'"', activityInstance.date)
-          FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" angelegt.')
+          functionService.createEvent(entityHelperService.loggedIn, activityInstance.facility.profile.fullName+': Aktivität "'+activityInstance.title+'"', activityInstance.date)
+          functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" angelegt.')
           activityInstance.paeds.each {
             if (it != entityHelperService.loggedIn)
-              FunctionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activityInstance.title+'" mit dir als TeilnehmerIn angelegt.')
+              functionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activityInstance.title+'" mit dir als TeilnehmerIn angelegt.')
           }
           redirect action:'show', id:activityInstance.id
         }
@@ -223,10 +223,10 @@ class ActivityController {
             if(!activityInstance.hasErrors() && activityInstance.save()) {
                 flash.message = message(code:"activity.updated", args:[activityInstance.title])
 
-                FunctionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" aktualisiert.')
+                functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" aktualisiert.')
                 activityInstance.paeds.each {
                   if (it != entityHelperService.loggedIn)
-                    FunctionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activityInstance.title+'" aktualisiert.')
+                    functionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activityInstance.title+'" aktualisiert.')
                 }
 
                 redirect action:'show', id:activityInstance.id

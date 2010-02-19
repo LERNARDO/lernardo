@@ -2,52 +2,57 @@ import de.uenterprise.ep.Entity
 import lernardo.Msg
 
 class FilterService {
+
+  boolean transactional = true
+
   def entityHelperService
 
-    boolean transactional = true
-
-    // used to display the number of new messages in the profile navigation
-    def getNewInboxMessages (String name) {
-      def c = Msg.createCriteria()
-      def results = c.list {
-        eq('entity',Entity.findByName(name))
-        ne('sender',entityHelperService.loggedIn)
-        eq('read',false)
-      }
-      return results.size()
-    }   
-
-    def getInbox (String name) {
-      def c = Msg.createCriteria()
-      def results = c.list {
-        eq('entity',Entity.findByName(name))
-        ne('sender',entityHelperService.loggedIn)
-        order("dateCreated", "desc")
-      }
-      return results
+  // returns the number of new inbox messages
+  int getNewInboxMessages (String name) {
+    def c = Msg.createCriteria()
+    def results = c.list {
+      eq('entity',Entity.findByName(name))
+      ne('sender',entityHelperService.loggedIn)
+      eq('read',false)
     }
+    return results.size()
+  }
 
-    def getOutbox (String name) {
-      def c = Msg.createCriteria()
-      def results = c.list {
-        eq('entity',Entity.findByName(name))
-        eq('sender',entityHelperService.loggedIn)
-        order("dateCreated", "desc")
-      }
-      return results
+  // returns all inbox messages for a given entity
+  def getInbox (String name) {
+    def c = Msg.createCriteria()
+    def results = c.list {
+      eq('entity',Entity.findByName(name))
+      ne('sender',entityHelperService.loggedIn)
+      order("dateCreated", "desc")
     }
+    return results
+  }
 
-    def findUsers (String name) {
-      def c = Entity.createCriteria()
-      def results = c.list {
+  // returns all outbox messages for a given entity
+  def getOutbox (String name) {
+    def c = Msg.createCriteria()
+    def results = c.list {
+      eq('entity',Entity.findByName(name))
+      eq('sender',entityHelperService.loggedIn)
+      order("dateCreated", "desc")
+    }
+    return results
+  }
+
+  // returns entities for user search
+  def findUsers (String name) {
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        ilike('name',"%"+name+"%")
         profile {
           ilike('fullName',"%"+name+"%")
-          maxResults(10)
-        }
-        user {
-          eq('enabled',true)
         }
       }
-      return results
+      maxResults(15)
     }
+    return results
+  }
+
 }

@@ -4,7 +4,7 @@ import lernardo.Msg
 class MsgController {
   def entityHelperService
   def filterService
-  def FunctionService
+  def functionService
 
     def index = {
         redirect action:"inbox", params:params
@@ -126,8 +126,8 @@ class MsgController {
         if(!msgInstance.hasErrors() && msgInstance.save(flush:true) && msgInstance2.save(flush:true)) {
             flash.message = message(code:"msg.sent", args:[msgInstance.subject,msgInstance.receiver.profile.fullName])
 
-            FunctionService.createEvent(msgInstance.sender, 'Du hast '+msgInstance.receiver.profile.fullName+' eine Nachricht geschickt.')
-            FunctionService.createEvent(msgInstance.receiver, msgInstance.sender.profile.fullName+' hat dir eine Nachricht geschickt.')
+            functionService.createEvent(msgInstance.sender, 'Du hast '+msgInstance.receiver.profile.fullName+' eine Nachricht geschickt.')
+            functionService.createEvent(msgInstance.receiver, msgInstance.sender.profile.fullName+' hat dir eine Nachricht geschickt.')
           
             redirect controller:'profile', action:'showProfile', params:[name:params.name]
         }

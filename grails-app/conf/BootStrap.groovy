@@ -21,12 +21,11 @@ class BootStrap {
   def entityHelperService
   def calendarDataService
   def metaDataService
-  def FunctionService
+  def functionService
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
-      calendarDataService.initialize()
       createDefaultUsers()
       createDefaultPaeds()
       createDefaultOperators()
@@ -927,7 +926,7 @@ class BootStrap {
   void createDefaultEvents() {
     log.debug ("==> creating default events")
 
-    FunctionService.createEvent(Entity.findByName('admin'), 'Elternsprechtag').save()
+    functionService.createEvent(Entity.findByName('admin'), 'Elternsprechtag').save()
   }
 
   void createDefaultHelpers() {
