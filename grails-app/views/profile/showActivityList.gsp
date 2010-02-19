@@ -15,7 +15,7 @@
   <div class="boxGray">
     <div id="body-list">
       <g:if test="${!activityList}">
-        <p>Keine Aktivitäten gefunden</p>
+        <p>Keine Aktivitäten gefunden.</p>
       </g:if>
       <g:else>
         <p>${activityCount} Aktivitäten gefunden</p>

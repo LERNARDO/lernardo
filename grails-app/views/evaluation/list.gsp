@@ -4,7 +4,7 @@
 </head>
 <body>
   <div class="headerBlue">
-    <h1>Beurteilung für ${entity.profile.fullName}</h1>
+    <h1>Leistungsbeurteilung für ${entity.profile.fullName}</h1>
   </div>
   <div class="boxGray">
 

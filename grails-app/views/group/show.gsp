@@ -25,7 +25,7 @@
           <td class="value">
             <ul>
               <g:each var="m" in="${groupInstance.members}">
-                  <li><g:link controller="profile" action="showProfile" params="[name: entity.name]">${m?.profile?.fullName?.encodeAsHTML()}</g:link></li>
+                  <li><g:link controller="profile" action="showProfile" params="[name: m.name]">${m?.profile?.fullName?.encodeAsHTML()}</g:link></li>
               </g:each>
             </ul>
           </td>

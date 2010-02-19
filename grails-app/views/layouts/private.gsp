@@ -48,8 +48,9 @@
                 ${entity.profile.fullName}
                 <div class="subheader"><app:getProfileType entityName="${entity.name}"/></div>
               </h1>
-
-              <ub:profileImage name="${entity.name}" width="180" height="180"/>
+              <div id="picture">
+                <ub:profileImage name="${entity.name}" width="180" height="180"/>
+              </div>
             </div>
 
             <ub:meOrAdmin entityName="${entity.name}">
@@ -90,7 +91,7 @@
                   <li class="profile-activities"><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
                 </g:if>
                 <g:if test="${entity.type.name == 'Client'}">
-                  <li class="profile-leistung"><g:link controller="evaluation" params="[name:entity.name]">Leistungsfortschritt ansehen</g:link></li>
+                  <li class="profile-leistung"><g:link controller="evaluation" params="[name:entity.name]">Leistungsbeurteilung ansehen</g:link></li>
                 </g:if>
 
                 <ub:notMe entityName="${entity.name}">

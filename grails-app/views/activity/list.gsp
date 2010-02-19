@@ -7,7 +7,7 @@
 
   <g:if test="${entity.profile.showTips}">
       <div class="toolTip">
-        <img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/><span class="strong">Tipp:</span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in den Horten in denen der Pädagoge arbeitet.
+        <img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/><span class="strong">Tipp:</span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in deinen Horten.
       </div>
     </g:if>
 
@@ -17,7 +17,7 @@
 
     <div class="boxGray">
       <div id="body-list">
-        <p>${activityCount} Aktivitäten gefunden</p>
+        <p>${activityCount} Aktivitäten gefunden.</p>
 
         <div id="select-box">
           Filtern nach:

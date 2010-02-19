@@ -77,7 +77,7 @@ class BootStrap {
       prf.tagline = "Simplicity is the ultimate sophistication"
       prf.gender = 1
       prf.city = "Gumpoldskirchen"
-      prf.birthDate = new Date(1982-1900,02,22)
+      prf.birthDate = new Date(1982-1900,01,22)
       prf.PLZ = 2352
       prf.street = "Rudolf Tamchina Gasse 5/5"
       prf.tel = "0664 / 840 66 32"
@@ -89,7 +89,7 @@ class BootStrap {
       prf.tagline = ""
       prf.gender = 2
       prf.city = "Gumpoldskirchen"
-      prf.birthDate = new Date(1984-1900,02,22)
+      prf.birthDate = new Date(1984-1900,01,22)
       prf.PLZ = 2352
       prf.street = "Rudolf Tamchina Gasse 5/5"
       prf.tel = ""

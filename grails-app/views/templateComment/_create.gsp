@@ -3,7 +3,7 @@
 
     <div class="value ${hasErrors(bean: postInstance, field: 'content', 'errors')}">
       <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-      <fckeditor:editor name="content" id="content" width="650" height="200" toolbar="Post" fileBrowser="default">
+      <fckeditor:editor name="content" id="content" width="570" height="200" toolbar="Post" fileBrowser="default">
         ${postInstance.content}
       </fckeditor:editor>
     </div>

@@ -32,7 +32,7 @@ body {
     height: 110px;
     background: url(../images/head.jpg) #F0F0F0 no-repeat 0 0;
     position: relative;
--moz-box-shadow: #888 0px -4px 8px;}
+    -moz-box-shadow: #888 0px -4px 8px; }
     #hd #info {
         text-align: right;
         float: right;
@@ -47,7 +47,7 @@ body {
 #bd {
     background: #f0f0f0;
     padding-top: 10px;
-    -moz-box-shadow: #888 0px 4px 8px; }
+    -moz-box-shadow: #888 0px 4px 8px;}
 
 #ft {
     background: #d9d9d9;
@@ -226,6 +226,8 @@ ul {
 
 #profile-pic {
     text-align: center; }
+    #profile-pic img {
+        -moz-box-shadow: #666 0px 0px 6px; }
     #profile-pic h1 {
         padding: 0;
         margin: 0 0 10px 0;
@@ -257,7 +259,7 @@ ul {
     border: 1px solid #ccc;
     border-bottom: none;
     font-weight: bold;
-    margin: 10px 0 0 5px;
+    margin: 15px 0 0 5px;
     padding: 2px;
     text-align: center;
     width: 120px;
