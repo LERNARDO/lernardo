@@ -3,10 +3,15 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerBlue">
-  <h1>Postfach: Posteingang</h1>
-</div>
-<div class="boxGray">
+  <g:if test="${entity.profile.showTips}">
+    <div class="toolTip">
+      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Dein Postfach bietet dir die Möglichkeit eine Nachrichten an andere User zu schicken und selber zu erhalten.
+    </div>
+  </g:if>
+  <div class="headerBlue">
+    <h1>Postfach: Posteingang</h1>
+  </div>
+  <div class="boxGray">
     <div id="inbox">
       <div class="buttons">
         <g:link class="buttonBlue" controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link>
@@ -38,7 +43,7 @@
 
         <g:if test="${msgInstanceList.size() == 0}">
           <div class="info-msg-postbox">
-            <p>Keine Nachrichten im Posteingang vorhanden!</p>
+            <p>Du hast derzeit keine Nachrichten in deinem Posteingang!</p>
           </div>
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
@@ -88,5 +93,5 @@
       </div>
 
     </div>
-</div>
+  </div>
 </body>

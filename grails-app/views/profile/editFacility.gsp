@@ -103,7 +103,7 @@
                                 </td>
                                 <td valign="top" class="value">
                                   <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                  <fckeditor:editor name="description" id="description" width="550px" height="400" toolbar="Post" fileBrowser="default">
+                                  <fckeditor:editor name="description" id="description" width="480px" height="400" toolbar="Post" fileBrowser="default">
                                     ${entityInstance.profile.description}
                                   </fckeditor:editor>
                                 </td>

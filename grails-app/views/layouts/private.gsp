@@ -13,6 +13,9 @@
     %{--<g:javascript src="jquery/jquery-ui-1.7.2.custom.min.js"/>--}%
   </head>
   <body>
+    <g:if test="${!entity}">
+      <g:set var="entity" value="${currentEntity}"/>
+    </g:if>
     <div id="private">
       <div id="doc4" class="yui-t3">
         <div id="hd">

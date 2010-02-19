@@ -63,7 +63,7 @@
             <td class="label">Lebenslauf:</td>
             <td>
               <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-              <fckeditor:editor name="biography" width="550" height="400" toolbar="Post" fileBrowser="default">
+              <fckeditor:editor name="biography" width="480" height="400" toolbar="Post" fileBrowser="default">
                 ${entity.profile.biography}
               </fckeditor:editor>
             </td>

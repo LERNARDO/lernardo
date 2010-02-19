@@ -323,7 +323,7 @@ class ProfileController {
 
     def showNews = {
       Entity e = Entity.findByName(params.name)
-      return [entity:e,eventList:Event.findAllByEntity(e,[sort:'dateCreated',order:'desc'])]
+      return [entity:e,eventList:Event.findAllByEntity(e,[sort:'dateCreated',order:'asc'])]
     }
 
     def showProfile = {

@@ -37,7 +37,7 @@
 
         <g:if test="${msgInstanceList.size() == 0}">
         <div class="info-msg-postbox">
-          <p>Keine Nachrichten im Postausgang vorhanden!</p>
+          <p>Du hast derzeit keine Nachrichten in deinem Postausgang!</p>
         </div>
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
