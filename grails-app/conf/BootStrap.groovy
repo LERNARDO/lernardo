@@ -397,6 +397,7 @@ class BootStrap {
     new Link(source:regina, target:loewenzahn, type:metaDataService.ltWorking).save()
 
     // client links
+    // TODO: find out why creating those 2 links isn't working in bootstrap
     new Link(source:kira, target:kaumberg, type:metaDataService.ltClientship).save()
     new Link(source:keano, target:kaumberg, type:metaDataService.ltClientship).save()
 

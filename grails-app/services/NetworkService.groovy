@@ -19,9 +19,15 @@ class NetworkService {
 
   // returns clients of a given entity
   def findClientsOf (Entity e,  def params=[]) {
-    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
+    //def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
+    def facility = Link.findBySourceAndType (e ?: entityHelperService.loggedIn, metaDataService.ltWorking, params)
+    if (facility)
+      facility = facility.target
     def results = []
-    links.each {results << it.target}
+    if (facility) {
+      def links = Link.findAllByTargetAndType (facility, metaDataService.ltClientship)
+      links.each {results << it.source}
+    }
 
     return results
   }
