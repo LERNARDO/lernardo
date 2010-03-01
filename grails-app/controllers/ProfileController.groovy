@@ -282,16 +282,22 @@ class ProfileController {
         return
       }
 
-      entityHelperService.createEntityWithUserAndProfile (params.name, etClient, params.email, params.fullName) {Entity ent->
-        UserProfile prf = ent.profile
-        prf.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
-        prf.PLZ = params.PLZ.toInteger()
-        prf.city = params.city ?: ""
-        prf.street = params.street ?: ""
-        prf.tel = params.tel ?: ""
-        prf.gender = params.gender
-        ent.user.password = authenticateService.encodePassword("pass")
+      try {
+        entityHelperService.createEntityWithUserAndProfile (params.name, etClient, params.email, params.fullName) {Entity ent->
+          UserProfile prf = ent.profile
+          prf.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+          prf.PLZ = params.PLZ.toInteger()
+          prf.city = params.city ?: ""
+          prf.street = params.street ?: ""
+          prf.tel = params.tel ?: ""
+          prf.gender = params.gender
+          ent.user.password = authenticateService.encodePassword("pass")
+        }
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"createClient", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
+        return
       }
+
 
       // add relationship to facility
       new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltClientship).save()
