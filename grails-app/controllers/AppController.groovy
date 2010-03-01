@@ -1,5 +1,6 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Account
+import org.springframework.web.servlet.support.RequestContextUtils
 
 class AppController {
     def secHelperService
@@ -10,8 +11,12 @@ class AppController {
 
     def start = {
       Entity entity = entityHelperService.loggedIn
-      if (entity)
+      if (entity) {
+        Locale locale = entity.user?.locale ?: new Locale("de", "DE") ;
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+
         redirect controller:'profile', action:'showNews', params:[name:entity.name]
+      }
       else
         redirect action:'sorry'
     }

@@ -73,6 +73,7 @@ class BootStrap {
     // mod users
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
+      ent.user.locale = new Locale ("es", "ES")
       UserProfile prf = ent.profile
       prf.tagline = "Simplicity is the ultimate sophistication"
       prf.gender = 1
