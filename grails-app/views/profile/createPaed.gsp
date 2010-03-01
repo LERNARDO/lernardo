@@ -78,7 +78,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'birthDate','errors')}">
-                                    <g:datePicker name="birthDate" id="birthDate" value="${fieldValue(bean:entityInstance, field:'profile.birthDate')}" precision="day"/>
+                                    <g:datePicker name="birthDate" id="birthDate" value="${entityInstance.profile.birthDate}" precision="day" years="${1900..Calendar.getInstance().get(Calendar.YEAR)}"/>/>
                                 </td>
                             </tr>
 

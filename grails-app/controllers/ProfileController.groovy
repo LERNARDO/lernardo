@@ -172,13 +172,18 @@ class ProfileController {
         return
       }
 
-      entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
-        FacProfile prf = ent.profile
-        prf.city = params.city ?: ""
-        prf.opened = "-"
-        prf.description = "-"
-        prf.tel = "-"
-        ent.user.password = authenticateService.encodePassword("pass")
+      try {
+        entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
+          FacProfile prf = ent.profile
+          prf.city = params.city ?: ""
+          prf.opened = "-"
+          prf.description = "-"
+          prf.tel = "-"
+          ent.user.password = authenticateService.encodePassword("pass")
+        }
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"createHort", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
+        return
       }
 
       // add relationship to operator
@@ -211,10 +216,15 @@ class ProfileController {
         return
       }
 
-      entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
-        FacProfile prf = ent.profile
-        if (params.pass)
-            ent.user.password = authenticateService.encodePassword(params.pass)
+      try {
+        entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
+          FacProfile prf = ent.profile
+          if (params.pass)
+              ent.user.password = authenticateService.encodePassword(params.pass)
+        }
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"createSchool", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
+        return
       }
 
       flash.message = message(code:"user.created", args:[params.name,params.entity])
@@ -244,10 +254,15 @@ class ProfileController {
         return
       }
 
-      entityHelperService.createEntityWithUserAndProfile (params.name, etPaed, params.email, params.fullName) {Entity ent->
-        UserProfile prf = ent.profile
-        if (params.pass)
-            ent.user.password = authenticateService.encodePassword(params.pass)
+      try {
+        entityHelperService.createEntityWithUserAndProfile (params.name, etPaed, params.email, params.fullName) {Entity ent->
+          UserProfile prf = ent.profile
+          if (params.pass)
+              ent.user.password = authenticateService.encodePassword(params.pass)
+        }
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"createPaed", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
+        return
       }
 
       // add relationship to facility
@@ -286,7 +301,7 @@ class ProfileController {
         entityHelperService.createEntityWithUserAndProfile (params.name, etClient, params.email, params.fullName) {Entity ent->
           UserProfile prf = ent.profile
           prf.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
-          prf.PLZ = params.PLZ.toInteger()
+          prf.PLZ = params.PLZ != "" ? params.PLZ.toInteger() : null
           prf.city = params.city ?: ""
           prf.street = params.street ?: ""
           prf.tel = params.tel ?: ""
@@ -297,7 +312,6 @@ class ProfileController {
         render (view:"createClient", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
         return
       }
-
 
       // add relationship to facility
       new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltClientship).save()
