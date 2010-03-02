@@ -79,6 +79,11 @@
             <td><g:checkBox name="showTips" value="${entity.profile.showTips}" /></td>
           </tr>
 
+          <tr>
+            <td class="label">Sprache:</td>
+            <td><g:select name="lang" from="${[1:'Deutsch',2:'Español']}" optionKey="key" optionValue="value"/></td>
+          </tr>
+
         </tbody>
       </table>
 

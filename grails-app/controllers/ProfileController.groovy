@@ -13,6 +13,7 @@ import profiles.OrgProfile
 import lernardo.Attendance
 import java.text.SimpleDateFormat
 import lernardo.Group
+import org.springframework.web.servlet.support.RequestContextUtils
 
 class ProfileController {
     def geoCoderService
@@ -708,47 +709,49 @@ class ProfileController {
     }
 
     def update = {
-       def entityInstance = Entity.get( params.id )
-       if(entityInstance) {
-           if(params.version) {
-               def version = params.version.toLong()
-               if(entityInstance.version > version) {
+       def entity = Entity.get( params.id )
+       if(entity) {
 
-                   msgInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this lernardo.Msg while you were editing.")
-
-                   render view:'edit', model:[entityInstance:entityInstance]
-                   return
-               }
-           }
-           entityInstance.properties = params
+           entity.properties = params
            if (params.title)
-             entityInstance.profile.title = params.title
-           entityInstance.profile.fullName = params.fullName
+             entity.profile.title = params.title
+           entity.profile.fullName = params.fullName
            if (params.birthDate)
-             entityInstance.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
+             entity.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
            if (params.PLZ)
-             entityInstance.profile.PLZ = params.PLZ.toInteger()
-           entityInstance.profile.city = params.city
-           entityInstance.profile.street = params.street
-           entityInstance.profile.tel = params.tel
+             entity.profile.PLZ = params.PLZ.toInteger()
+           entity.profile.city = params.city
+           entity.profile.street = params.street
+           entity.profile.tel = params.tel
            if (params.gender)
-             entityInstance.profile.gender = params.gender.toInteger()
+             entity.profile.gender = params.gender.toInteger()
            if (params.biography)
-             entityInstance.profile.biography = params.biography
+             entity.profile.biography = params.biography
            if (params.description)
-             entityInstance.profile.description = params.description
+             entity.profile.description = params.description
            if (params.showTips)
-             entityInstance.profile.showTips = true
+             entity.profile.showTips = true
            else
-             entityInstance.profile.showTips = false
-           entityInstance.profile.foodCosts = params.foodCosts.toInteger()
-         if(!entityInstance.hasErrors() && entityInstance.save()) {
-               flash.message = message(code:"user.updated", args:[entityInstance.profile.fullName])
+             entity.profile.showTips = false
+           if (params.foodCosts)
+             entity.profile.foodCosts = params.foodCosts.toInteger()
+           if (params.lang == '1') {
+               entity.user.locale = new Locale ("de", "DE")
+               Locale locale = entity.user.locale
+               RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+           }
+           if (params.lang == '2') {
+               entity.user.locale = new Locale ("ES", "ES")
+               Locale locale = entity.user.locale
+               RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+           }
+           if(!entity.hasErrors() && entity.save()) {
+               flash.message = message(code:"user.updated", args:[entity.profile.fullName])
 
-               redirect action:'showProfile', params:[name:entityInstance.name]
+               redirect action:'showProfile', params:[name:entity.name]
            }
            else {
-               render view:'edit', model:[entityInstance:entityInstance]
+               render view:'edit', model:[entityInstance:entity]
            }
        }
        else {

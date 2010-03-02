@@ -72,7 +72,7 @@
 
             <div class="sidebox">
               <div class="innersidebox">
-                <div class="sideboxheader">Über Lernardo</div>
+                <div class="sideboxheader"><g:message code="sideboxheader.about"/></div>
                 <div class="sideboxcontent">
                   <ul>
                     <li><g:link controller="static" action="zielsetzung" fragment="anker">Zielsetzung</g:link></li>
@@ -92,7 +92,7 @@
 
             <div class="sidebox">
               <div class="innersidebox">
-                <div class="sideboxheader">Zitat des Tages</div>
+                <div class="sideboxheader"><g:message code="sideboxheader.quote"/></div>
                 <div class="sideboxcontent">
                   <app:getQuoteOfTheDay />
                 </div>
@@ -100,7 +100,7 @@
             </div><!-- sidebox -->
             <div class="sidebox">
               <div class="innersidebox">
-                <div class="sideboxheader">Bild des Tages</div>
+                <div class="sideboxheader"><g:message code="sideboxheader.picture"/></div>
                 <div class="sideboxcontent">
                   <app:getPicOfTheDay>                    
                     <g:set var="day" value="bild_des_tages_${it}.png"/>
