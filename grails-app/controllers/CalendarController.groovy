@@ -17,13 +17,15 @@ class CalendarController {
 
       // find facility the paed is working in
       def link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
-      Entity facility = link.target
-
-      // find all paeds working in that facility
       List paedList = []
-      def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-      temp.each {
-          paedList << it.source
+      if (link) {
+        Entity facility = link.target
+
+        // find all paeds working in that facility
+        def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+        temp.each {
+            paedList << it.source
+        }
       }
 
       return ['name':params.name,
