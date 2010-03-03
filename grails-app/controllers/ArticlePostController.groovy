@@ -10,35 +10,35 @@ class ArticlePostController {
   }
 
   def show = {
-    def postInstance = ArticlePost.get(params.id)
-    if (postInstance)
-      return ['article': postInstance]
+    def article = ArticlePost.get(params.id)
+    if (article)
+      return ['article': article]
     else
       redirect action: index
     return
   }
 
   def edit = {
-    def postInstance = ArticlePost.get(params.id)
-    return ['postInstance': postInstance]
+    def article = ArticlePost.get(params.id)
+    return ['postInstance': article]
   }
 
   def create = {
-    def postInstance = new ArticlePost()
-    postInstance.properties = params
-    return ['postInstance': postInstance]
+    def article = new ArticlePost()
+    article.properties = params
+    return ['postInstance': article]
   }
 
   def delete = {
-    def postInstance = ArticlePost.get(params.id)
-    if (postInstance) {
+    def article = ArticlePost.get(params.id)
+    if (article) {
       try {
-        flash.message = message(code: "article.deleted", args: [postInstance.title])
-        postInstance.delete(flush: true)
+        flash.message = message(code: "article.deleted", args: [article.title])
+        article.delete(flush: true)
         redirect action: "index"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "article.notDeleted", args: [postInstance.title])
+        flash.message = message(code: "article.notDeleted", args: [article.title])
         redirect action: "index"
       }
     }
@@ -49,35 +49,27 @@ class ArticlePostController {
   }
 
   def save = {
-    def postInstance = new ArticlePost(params)
-    postInstance.author = entityHelperService.loggedIn
-    if (!postInstance.hasErrors() && postInstance.save()) {
-      flash.message = message(code: "article.created", args: [postInstance.title])
+    def article = new ArticlePost(params)
+    article.author = entityHelperService.loggedIn
+    if (!article.hasErrors() && article.save()) {
+      flash.message = message(code: "article.created", args: [article.title])
       redirect action: "index", params: [name: entityHelperService.loggedIn.name]
     }
     else {
-      render view:"create", model:[postInstance:postInstance]
+      render view:"create", model:[postInstance:article]
     }
   }
 
   def update = {
-    def postInstance = ArticlePost.get(params.id)
-    if (postInstance) {
-      if (params.version) {
-        def version = params.version.toLong()
-        if (postInstance.version > version) {
-          postInstance.errors.rejectValue("version", "post.optimistic.locking.failure", "Another user has updated this post while you were editing.")
-          redirect action: 'index'
-          return
-        }
-      }
-      postInstance.properties = params
-      if (!postInstance.hasErrors() && postInstance.save()) {
-        flash.message = message(code: "article.updated", args: [postInstance.title])
+    def article = ArticlePost.get(params.id)
+    if (article) {
+      article.properties = params
+      if (!article.hasErrors() && article.save()) {
+        flash.message = message(code: "article.updated", args: [article.title])
         redirect action: 'index'
       }
       else {
-        render view: 'edit', model: [postInstance: postInstance]
+        render view: 'edit', model: [postInstance: article]
       }
     }
     else {

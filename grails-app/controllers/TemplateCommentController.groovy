@@ -8,15 +8,15 @@ class TemplateCommentController {
   def metaDataService
 
   def delete = {
-    def postInstance = TemplateComment.get(params.id)
-    if (postInstance) {
+    def comment = TemplateComment.get(params.id)
+    if (comment) {
       try {
         flash.message = message(code: "comment.deleted")
-        postInstance.delete(flush: true)
+        comment.delete(flush: true)
         redirect controller: "template", action: "show", params: [id: params.template]
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "comment.notDeleted", args: [postInstance.id])
+        flash.message = message(code: "comment.notDeleted", args: [comment.id])
         redirect controller: "template", action: "show", params: [id: params.template]
       }
     }
@@ -27,23 +27,23 @@ class TemplateCommentController {
   }
 
   def create = {
-    def postInstance = new TemplateComment()
-    postInstance.properties = params
-    render template: 'create', model: ['postInstance': postInstance, 'template_id': params.id]
+    def comment = new TemplateComment()
+    comment.properties = params
+    render template: 'create', model: ['postInstance': comment, 'template_id': params.id]
   }
 
   def save = {
-    def postInstance = new TemplateComment(params)
-    postInstance.author = entityHelperService.loggedIn
-    postInstance.template = ActivityTemplate.get(params.id)
-    if (postInstance.save(flush: true)) {
-      flash.message = message(code:"comment.created", args:[postInstance.template.name])
+    def comment = new TemplateComment(params)
+    comment.author = entityHelperService.loggedIn
+    comment.template = ActivityTemplate.get(params.id)
+    if (comment.save(flush: true)) {
+      flash.message = message(code:"comment.created", args:[comment.template.name])
 
-      functionService.createEvent(postInstance.author, 'Du hast die Aktivätsvorlage "'+postInstance.template.name+'" kommentiert.')
+      functionService.createEvent(postInstance.author, 'Du hast die Aktivätsvorlage "'+comment.template.name+'" kommentiert.')
       List receiver = Entity.findAllByType(metaDataService.etPaed)
       receiver.each {
-        if (it != postInstance.author)
-          functionService.createEvent(it, postInstance.author.profile.fullName+'hat die Aktivätsvorlage "'+postInstance.template.name+'" kommentiert.')
+        if (it != comment.author)
+          functionService.createEvent(it, comment.author.profile.fullName+'hat die Aktivätsvorlage "'+comment.template.name+'" kommentiert.')
       }
 
       redirect controller: "template", action: "show", id: params.id

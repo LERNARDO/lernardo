@@ -29,6 +29,7 @@ class AppController {
       return ['params':params]
     }
 
+    // resets the password of the user and sends him a new password
     def sendPassword = {
       Account user = Account.findByEmail (params.email)
       if (user) {

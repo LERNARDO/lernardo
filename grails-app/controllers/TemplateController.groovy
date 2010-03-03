@@ -13,94 +13,93 @@ class TemplateController {
     }
 
     def list = {
-        params.offset = params.offset ? params.offset.toInteger(): 0
-        params.max = params.max ? params.max.toInteger(): 15
+      params.offset = params.offset ? params.offset.toInteger(): 0
+      params.max = params.max ? params.max.toInteger(): 15
 
-        return ['templateList': ActivityTemplate.list(params),
-                'templateCount': ActivityTemplate.count(),
-                'entity': entityHelperService.loggedIn]
+      return ['templateList': ActivityTemplate.list(params),
+              'templateCount': ActivityTemplate.count(),
+              'entity': entityHelperService.loggedIn]
     }
 
     def edit = {
-        def template = ActivityTemplate.get(params.id)
+      def template = ActivityTemplate.get(params.id)
 
-        if(!template) {
-          flash.message = message(code:"template.notFound", args:[params.id])
-          redirect action:'list'
-        }
+      if(!template) {
+        flash.message = message(code:"template.notFound", args:[params.id])
+        redirect action:'list'
+      }
 
-        return ['template': template,
-                'entity': entityHelperService.loggedIn]
+      return ['template': template,
+              'entity': entityHelperService.loggedIn]
     }
 
     def update = {
-        def template = ActivityTemplate.get(params.id)
+      def template = ActivityTemplate.get(params.id)
 
-        if(template) {
-            if(params.version) {
-                def version = params.version.toLong()
-                if(template.version > version) {
-                    template.errors.rejectValue("version", "template.optimistic.locking.failure", "Another user has updated this template while you were editing.")
-                    render view:'edit', model:[template:template]
-                    return
-                }
-            }
-            template.properties = params
-            if(!template.hasErrors() && template.save()) {
-                flash.message = message(code:"template.updated", args:[template.name])
-                redirect action:'show', id:template.id
-            }
-            else {
-                render view:'edit', model:[template:template]
-            }
-        }
-        else {
-            flash.message = message(code:"template.notFound", args:[template.id])
-            redirect action:'edit', id:template.id
-        }
+      if(template) {
+          if(params.version) {
+              def version = params.version.toLong()
+              if(template.version > version) {
+                  template.errors.rejectValue("version", "template.optimistic.locking.failure", "Another user has updated this template while you were editing.")
+                  render view:'edit', model:[template:template]
+                  return
+              }
+          }
+          template.properties = params
+          if(!template.hasErrors() && template.save()) {
+              flash.message = message(code:"template.updated", args:[template.name])
+              redirect action:'show', id:template.id
+          }
+          else {
+              render view:'edit', model:[template:template]
+          }
+      }
+      else {
+          flash.message = message(code:"template.notFound", args:[template.id])
+          redirect action:'edit', id:template.id
+      }
     }
 
     def show = {
-        def template = ActivityTemplate.get(params.id)
-        if (!template)
-          template = ActivityTemplate.findByName(params.name)
+      def template = ActivityTemplate.get(params.id)
+      if (!template)
+        template = ActivityTemplate.findByName(params.name)
 
-        if (!template) {
-            flash.message = message(code:"template.notFound", args:[params.id])
-            return
-        }
+      if (!template) {
+          flash.message = message(code:"template.notFound", args:[params.id])
+          return
+      }
 
-        return ['template': template,
-                'commentList': TemplateComment.findAllByTemplate(template),
-                'entity': entityHelperService.loggedIn]
+      return ['template': template,
+              'commentList': TemplateComment.findAllByTemplate(template),
+              'entity': entityHelperService.loggedIn]
     }
 
     def create = {
-      def templateInstance = new ActivityTemplate()
-      templateInstance.properties = params
-      return ['templateInstance': templateInstance,
+      def template = new ActivityTemplate()
+      template.properties = params
+      return ['templateInstance': template,
               'entity': entityHelperService.loggedIn]
     }
 
     def save = {
 
-      ActivityTemplate at = ActivityTemplate.findByName (params.name)
-      if (at) {
+      if (ActivityTemplate.findByName(params.name)) {
         flash.message = message(code:"template.exist", args:[params.name])
         redirect action:"create", params:params
         return
       }
 
-      def activityInstance = new ActivityTemplate(params)
-      activityInstance.qualifications='keine'
-        if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
+      def template = new ActivityTemplate(params)
+      template.qualifications='keine'
+        if(!template.hasErrors() && template.save(flush:true)) {
           flash.message = message(code:"template.created", args:[params.name])
 
-          functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+activityInstance.name+'" angelegt.')
+          functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+template.name+'" angelegt.')
           List receiver = Entity.findAllByType(metaDataService.etPaed)
           receiver.each {
             if (it != entityHelperService.loggedIn)
-              functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+activityInstance.name+'" angelegt.')
+              functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+template.name+'" angelegt.')
           }
 
           redirect action:'show', id:activityInstance.id
@@ -108,21 +107,21 @@ class TemplateController {
     }
 
     def del = {
-        def templateInstance = ActivityTemplate.get(params.id)
-        if(templateInstance) {
-            try {
-                flash.message = message(code:"template.deleted", args:[templateInstance.name])
-                templateInstance.delete(flush:true)
-                redirect action:"list"
-            }
-            catch(org.springframework.dao.DataIntegrityViolationException ex) {
-                flash.message = message(code:"template.notDeleted", args:[templateInstance.name])
-                redirect action:"show", id:params.id
-            }
-        }
-        else {
-            flash.message = message(code:"template.notFound", args:[params.id])
-            redirect action:"list"
-        }
+      def template = ActivityTemplate.get(params.id)
+      if(template) {
+          try {
+              flash.message = message(code:"template.deleted", args:[template.name])
+              template.delete(flush:true)
+              redirect action:"list"
+          }
+          catch(org.springframework.dao.DataIntegrityViolationException ex) {
+              flash.message = message(code:"template.notDeleted", args:[template.name])
+              redirect action:"show", id:params.id
+          }
+      }
+      else {
+          flash.message = message(code:"template.notFound", args:[params.id])
+          redirect action:"list"
+      }
     }
 }

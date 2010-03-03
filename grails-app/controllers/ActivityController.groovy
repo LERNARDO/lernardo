@@ -97,11 +97,11 @@ class ActivityController {
     }
 
     def create = {
-      def activityInstance = new Activity()
+      def activity = new Activity()
       def template = ActivityTemplate.get(params.id)
-      activityInstance.title = template.name
-      activityInstance.duration = template.duration
-      activityInstance.template = template
+      activity.title = template.name
+      activity.duration = template.duration
+      activity.template = template
 
       // get a list of facilities the current entity is working in
       List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
@@ -122,7 +122,7 @@ class ActivityController {
         clientMap[it.id] = it.profile.fullName
       }
 
-      return ['activityInstance': activityInstance,
+      return ['activityInstance': activity,
               'template': template,
               'availFacilities': facilityMap,
               'availPaeds': paedMap,
@@ -134,7 +134,7 @@ class ActivityController {
     def save = {
       println params
 
-     def activityInstance = new Activity(title:params.title,
+     def activity = new Activity(title:params.title,
           owner:entityHelperService.loggedIn,
           date: new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute)),
           duration: params.duration.toInteger(),
@@ -144,16 +144,16 @@ class ActivityController {
           template:params.template,
           attribution:ActivityTemplate.findByName(params.template).attribution).save()
 
-      if(!activityInstance.hasErrors() && activityInstance.save(flush:true)) {
+      if(!activity.hasErrors() && activity.save(flush:true)) {
           flash.message = message(code:"activity.created", args:[params.title])
 
-          functionService.createEvent(entityHelperService.loggedIn, activityInstance.facility.profile.fullName+': Aktivität "'+activityInstance.title+'"', activityInstance.date)
-          functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" angelegt.')
-          activityInstance.paeds.each {
+          functionService.createEvent(entityHelperService.loggedIn, activity.facility.profile.fullName+': Aktivität "'+activity.title+'"', activity.date)
+          functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activity.title+'" angelegt.')
+          activity.paeds.each {
             if (it != entityHelperService.loggedIn)
-              functionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activityInstance.title+'" mit dir als TeilnehmerIn angelegt.')
+              functionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activity.title+'" mit dir als TeilnehmerIn angelegt.')
           }
-          redirect action:'show', id:activityInstance.id
+          redirect action:'show', id:activity.id
         }
         else {
           flash.message = message(code:"activity.notCreated", args:[params.title])
@@ -166,9 +166,9 @@ class ActivityController {
     }
 
     def edit = {
-        def activityInstance = Activity.get( params.id )
+        def activity = Activity.get( params.id )
 
-        if(!activityInstance) {
+        if(!activity) {
             flash.message = message(code:"activity.notFound", args:[params.id])
             redirect action:'list'
         }
@@ -191,7 +191,7 @@ class ActivityController {
           clientMap[it.id] = it.profile.fullName
         }
 
-        return ['activityInstance': activityInstance,
+        return ['activityInstance': activity,
                 'availFacilities': facilityMap,
                 'availPaeds': paedMap,
                 'availClients': clientMap,
@@ -199,52 +199,43 @@ class ActivityController {
     }
 
     def update = {
-        def activityInstance = Activity.get( params.id )
-        if(activityInstance) {
-            if(params.version) {
-                def version = params.version.toLong()
-                if(activityInstance.version > version) {
-                    activityInstance.errors.rejectValue("version", "msg.optimistic.locking.failure", "Another user has updated this Template while you were editing.")
-                    render view:'edit', model:[activityInstance:activityInstance]
-                    return
-                }
-            }
-
-            activityInstance.properties = params
+        def activity = Activity.get( params.id )
+        if(activity) {
+            activity.properties = params
             //activityInstance.title = params.title
-            activityInstance.owner = entityHelperService.loggedIn
-            activityInstance.date =  new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
-            activityInstance.duration = params.duration.toInteger()
-            //activityInstance.paeds = params.paeds
-            //activityInstance.clients = params.clients
-            activityInstance.facility = Entity.get(params.facility.toInteger())
-            //activityInstance.attribution = ActivityTemplate.findByName(params.template).attribution
+            activity.owner = entityHelperService.loggedIn
+            activity.date =  new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
+            activity.duration = params.duration.toInteger()
+            //activity.paeds = params.paeds
+            //activity.clients = params.clients
+            activity.facility = Entity.get(params.facility.toInteger())
+            //activity.attribution = ActivityTemplate.findByName(params.template).attribution
 
-            if(!activityInstance.hasErrors() && activityInstance.save()) {
-                flash.message = message(code:"activity.updated", args:[activityInstance.title])
+            if(!activity.hasErrors() && activity.save()) {
+                flash.message = message(code:"activity.updated", args:[activity.title])
 
-                functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activityInstance.title+'" aktualisiert.')
-                activityInstance.paeds.each {
+                functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+activity.title+'" aktualisiert.')
+                activity.paeds.each {
                   if (it != entityHelperService.loggedIn)
-                    functionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activityInstance.title+'" aktualisiert.')
+                    functionService.createEvent(it, entityHelperService.loggedIn+' hat die Aktivität "'+activity.title+'" aktualisiert.')
                 }
 
-                redirect action:'show', id:activityInstance.id
+                redirect action:'show', id:activity.id
             }
             else {
-                render view:'edit', model:[activityInstance:activityInstance, entity: entityHelperService.loggedIn]
+                render view:'edit', model:[activityInstance: activity, entity: entityHelperService.loggedIn]
             }
         }
         else {
-            flash.message = message(code:"activity.notFound", args:[activityInstance.id])
+            flash.message = message(code:"activity.notFound", args:[activity.id])
             redirect action:'edit', params:params
         }
     }
 
     def del = {
-      def activityInstance = Activity.get( params.id )
-      flash.message = message(code:"activity.deleted", args:[activityInstance.title])
-      activityInstance.delete(flush:true)
+      def activity = Activity.get( params.id )
+      flash.message = message(code:"activity.deleted", args:[activity.title])
+      activity.delete(flush:true)
       redirect action:'list'
 
     }
