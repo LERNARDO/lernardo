@@ -341,7 +341,7 @@ class ProfileController {
         return
       }
       List searchList = []
-      searchList = FilterService.findUsers(params.name)
+      searchList = filterService.findUsers(params.name)
       if (searchList.size() == 0) {
         render "Keine Ergebnisse gefunden!"
         return
