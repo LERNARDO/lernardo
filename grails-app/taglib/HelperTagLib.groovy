@@ -12,6 +12,38 @@ class HelperTagLib {
   def secHelperService
   static namespace = "app"
 
+  def getClients = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActClient)
+    if (link)
+      link.each {out << body(clients: it.source)}
+    else
+      out << '<span class="italic">keine Betreuten zugewiesen</span>'
+  }
+
+  def getPaeds = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActPaed)
+    if (link)
+      link.each {out << body(paeds: it.source)}
+    else
+      out << '<span class="italic">keine Pädagogen zugewiesen</span>'
+  }
+
+  def getFacility = {attrs, body ->
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActFac)
+    if (link)
+      out << body(facility: link.source)
+    else
+      out << '<span class="italic">keinem Hort zugewiesen</span>'
+  }
+
+  def getCreator = {attrs, body ->
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActCreator)
+    if (link)
+      out << body(creator: link.source)
+    else
+      out << '<span class="italic">keinem Ersteller zugewiesen</span>'
+  }
+
   def isClient = {attrs, body->
     if (attrs.entity.type.name == metaDataService.etClient.name || secHelperService.isAdmin())
       out << body()
@@ -39,10 +71,6 @@ class HelperTagLib {
       out << attrs.letter
   }
   
-  def getProfileType = {attrs ->
-      out << message(code:"entityType."+Entity.findByName(attrs.entityName).type.name)
-  }
-
   def getQuoteOfTheDay = {
     Date myDate = new Date()
     SimpleDateFormat df = new SimpleDateFormat( "dd" )

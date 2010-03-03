@@ -44,7 +44,7 @@
             <div id="profile-pic">
               <h1>
                 ${entity.profile.fullName}
-                <div class="subheader"><app:getProfileType entityName="${entity.name}"/></div>
+                <div class="subheader">${entity.type.name}</div>
               </h1>
               <div id="picture">
                 <ub:profileImage name="${entity.name}" width="180" height="180"/>

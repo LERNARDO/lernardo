@@ -22,6 +22,7 @@ class BootStrap {
   def calendarDataService
   def metaDataService
   def functionService
+  def profileHelperService
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
@@ -782,6 +783,22 @@ class BootStrap {
 
     void createDefaultActivities() {
       log.debug ("==> creating default activities")
+
+/*      EntityType etActivity = metaDataService.etActivity
+
+      def entity = entityHelperService.createEntity("Klettern", etActivity) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent)
+        ent.profile.fullName = "Klettern"
+        ent.profile.date = new Date()
+        ent.profile.duration = 60
+      }
+
+      new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActPaed).save()
+      new Link(source: Entity.findByName('keano'), target: entity, type: metaDataService.ltActClient).save()
+      new Link(source: Entity.findByName('loewenzahn'), target: entity, type: metaDataService.ltActFac).save()
+      //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActTemplate).save()
+      new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltActCreator).save()
+      //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()*/
 
       /* for (int i=1;i<28;i++) {
          new Activity(title:'Ankunft',

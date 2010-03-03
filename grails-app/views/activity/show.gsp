@@ -12,57 +12,65 @@
     </div>
 
     <div class="boxGray">
-      <div class="profile-box">
-        <table width="100%">
-          <tr><td class="bold titles bezeichnung">Vorlage:</td><td class="bezeichnung"><g:link controller="template" action="show" params="[name:activity.template]">${activity.template}</g:link></td></tr>
-          <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${activity.title}</td></tr>
-          <tr><td class="bold titles bezeichnung">Start:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.date}"/></td></tr>
-          <tr><td class="bold titles bezeichnung">Dauer:</td><td class="bezeichnung">${activity.duration} Minuten</td></tr>
+      <table width="100%">
+        %{--<tr><td class="bold titles bezeichnung">Vorlage:</td><td class="bezeichnung"><g:link controller="template" action="show" params="[name:activity.template]">${activity.template}</g:link></td></tr>--}%
+        <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${activity.profile.fullName}</td></tr>
+        <tr><td class="bold titles bezeichnung">Beginn:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td></tr>
+        <tr><td class="bold titles bezeichnung">Dauer:</td><td class="bezeichnung">${activity.profile.duration} Minuten</td></tr>
 
-          <tr><td class="bold titles bezeichnung">Einrichtung:</td><td class="bezeichnung">
-            <app:isEnabled entityName="${activity.facility.name}">
-              <g:link controller="profile" action="showProfile" params="[name:activity.facility.name]">${activity.facility.profile.fullName}</g:link>
+        <tr><td class="bold titles bezeichnung">Einrichtung:</td><td class="bezeichnung"><app:getFacility entity="${activity}">
+          <app:isEnabled entityName="${facility.name}">
+            <g:link controller="profile" action="showProfile" params="[name:facility.name]">${facility.profile.fullName}</g:link>
+          </app:isEnabled>
+          <app:notEnabled entityName="${facility.name}">
+            <span class="notEnabled">${facility.profile.fullName}</span>
+          </app:notEnabled>
+          </app:getFacility></td>
+        </tr>
+
+        <tr><td class="bold titles bezeichnung">Erstellt von:</td><td class="bezeichnung"><app:getCreator entity="${activity}">
+          <app:isEnabled entityName="${creator.name}">
+            <g:link controller="profile" action="showProfile" params="[name:creator.name]">${creator.profile.fullName}</g:link>
+          </app:isEnabled>
+          <app:notEnabled entityName="${creator.name}">
+            <span class="notEnabled">${creator.profile.fullName}</span>
+          </app:notEnabled>
+          </app:getCreator></td>
+        </tr>
+
+        <tr><td class="bold titles bezeichnung">Pädagogen:</td><td class="bezeichnung"><app:getPaeds entity="${activity}">
+          <g:each in="${paeds}" var="paed">
+            <app:isEnabled entityName="${paed.name}">
+              <g:link controller="profile" action="showProfile" params="[name:paed.name]">${paed.profile.fullName}</g:link>
             </app:isEnabled>
-            <app:notEnabled entityName="${activity.facility.name}">
-              <span class="notEnabled">${activity.facility.profile.fullName}</span>
-            </app:notEnabled></td></tr>
+            <app:notEnabled entityName="${paed.name}">
+              <span class="notEnabled">${paed.profile.fullName}</span>
+            </app:notEnabled><br>
+          </g:each>
+          </app:getPaeds></td>
+        </tr>
 
-          <tr><td class="bold titles bezeichnung">Erstellt von:</td><td class="bezeichnung">
-            <app:isEnabled entityName="${activity.owner.name}">
-              <g:link controller="profile" action="showProfile" params="[name:activity.owner.name]">${activity.owner.profile.fullName}</g:link>
+        <tr><td class="bold titles bezeichnung">Teilnehmer:</td><td class="bezeichnung"><app:getClients entity="${activity}">
+          <g:each in="${clients}" var="client">
+            <app:isEnabled entityName="${client.name}">
+              <g:link controller="profile" action="showProfile" params="[name:client.name]">${client.profile.fullName}</g:link>
             </app:isEnabled>
-            <app:notEnabled entityName="${activity.owner.name}">
-              <span class="notEnabled">${activity.owner.profile.fullName}</span>
-            </app:notEnabled></td></tr>
+            <app:notEnabled entityName="${client.name}">
+              <span class="notEnabled">${client.profile.fullName}</span>
+            </app:notEnabled><br>
+          </g:each>
+          </app:getClients></td>
+        </tr>
 
-          <tr><td class="bold titles bezeichnung">Pädagogen:</td><td class="bezeichnung">
-            <g:each in="${activity.paeds}" var="paed">
-              <app:isEnabled entityName="${paed.name}">
-                <g:link controller="profile" action="showProfile" params="[name:paed.name]">${paed.profile.fullName}</g:link>
-              </app:isEnabled>
-              <app:notEnabled entityName="${paed.name}">
-                <span class="notEnabled">${paed.profile.fullName}</span>
-              </app:notEnabled><br>
-            </g:each></td></tr>
+      </table>
 
-          <tr><td class="bold titles bezeichnung">Teilnehmer:</td><td class="bezeichnung">
-            <g:each in="${activity.clients}" var="client">
-              <app:isEnabled entityName="${client.name}">
-                <g:link controller="profile" action="showProfile" params="[name:client.name]">${client.profile.fullName}</g:link>
-              </app:isEnabled>
-              <app:notEnabled entityName="${client.name}">
-                <span class="notEnabled">${client.profile.fullName}</span>
-              </app:notEnabled><br>
-            </g:each></td></tr>
-        </table>
+      <app:isPaed entity="${entity}">
+          <g:link class="buttonBlue" action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
+          <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Aktivität löschen</g:link>
+          <g:link class="buttonGray" action="list">Zurück</g:link>
+          <div class="spacer"></div>
+      </app:isPaed>
 
-        <g:if test="${entity.type.name == 'Paed'}">
-            <g:link class="buttonBlue" action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
-            <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Aktivität löschen</g:link>
-            <div class="spacer"></div>
-        </g:if>
-
-      </div>
     </div>
 
   </body>

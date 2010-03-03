@@ -52,17 +52,34 @@ class CalendarController {
         def activities = []
         // find all activities for given profile
         if (params.name == 'all') {
-          activities = Activity.list()
+
+          facilityList.each {
+            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFac)
+
+            tempList.each {bla ->
+              activityList << bla.target
+              }
+          }
+
+/*          activities = Activity.list()
           // sort them out
           activities.each {
             for (f in facilityList) {
               if (it.facility == f)
                 activityList << it
             }
-          }
+          }*/
         }
         else {
-          activityList = Activity.findAllByOwner(Entity.findByName(params.name))
+          // TODO: return only activities of the logged in entity
+          facilityList.each {
+            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFac)
+
+            tempList.each {bla ->
+              activityList << bla.target
+              }
+          }
+/*          activityList = Activity.findAllByOwner(Entity.findByName(params.name))
           Activity.list().each {
             for (a in it.paeds) {
               if (a == Entity.findByName(params.name))
@@ -72,16 +89,17 @@ class CalendarController {
               if (a == Entity.findByName(params.name))
                 activityList << it
             }
-          }
+          }*/
         }
 
         // convert to fullCalendar events
         def eventList = []
         activityList.each {
-            def dtStart = new DateTime (it.date)
+            def dtStart = new DateTime (it.profile.date)
             dtStart = dtStart.plusHours(1)
-            def dtEnd = dtStart.plusMinutes("$it.duration".toInteger())
-            eventList << [id: it.id, title: it.title, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: it.owner.name]
+            def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+            def className = Link.findByTargetAndType(it, metaDataService.ltActCreator).source.name
+            eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: className]
         }
 
         def json = eventList as JSON;

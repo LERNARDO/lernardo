@@ -38,7 +38,7 @@
     editable: false,
     allDaySlot:true,
     allDayText:'',
-    weekends: false,
+    weekends: true,
     events: '${g.createLink (controller:"calendar", action:"events", params:[name:name])}',
   
     eventClick: function (calEvent, jsEvent, view) {

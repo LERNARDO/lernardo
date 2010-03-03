@@ -18,24 +18,24 @@
         <table>
             <tbody>
 
-              <tr>
+%{--              <tr>
                 <td class="label">Vorlage:</td>
                 <td class="value"><${fieldValue(bean:activityInstance, field:'template')}"/></td>
-              </tr>
+              </tr>--}%
 
               <tr>
                 <td class="label">Titel:</td>
-                <td class="value ${hasErrors(bean:activityInstance,field:'title','errors')}"><g:textField name="title" size="30" value="${fieldValue(bean:activityInstance, field:'title')}"/></td>
+                <td class="value ${hasErrors(bean:activityInstance,field:'profile.fullName','errors')}"><g:textField name="profile.fullName" size="30" value="${fieldValue(bean:activityInstance, field:'profile.fullName')}"/></td>
               </tr>
 
               <tr>
                 <td class="label">Datum:</td>
-                <td class="value ${hasErrors(bean:activityInstance,field:'date','errors')}"><g:datePicker name="date" value="${new Date()}" precision="minute"/></td>
+                <td class="value ${hasErrors(bean:activityInstance,field:'profile.date','errors')}"><g:datePicker name="date" value="${activityInstance.profile.date}" precision="minute"/></td>
               </tr>
 
               <tr>
                 <td class="label">Dauer:</td>
-                <td class="value ${hasErrors(bean:activityInstance,field:'duration','errors')}"><g:textField name="duration" size="30" value="${fieldValue(bean:activityInstance, field:'duration')}"/> (in Minuten)</td>
+                <td class="value ${hasErrors(bean:activityInstance,field:'profile.duration','errors')}"><g:textField name="duration" size="30" value="${fieldValue(bean:activityInstance, field:'profile.duration')}"/> (in Minuten)</td>
               </tr>
 
               <tr>
@@ -45,6 +45,7 @@
                 </td>
               </tr>
 
+              %{--TODO: highlight currently selected paeds and figure out why it only works with at least 2 paeds selected--}%
               <tr>
                 <td class="label">Pädagogen:</td>
                 <td class="value ${hasErrors(bean:activityInstance,field:'paeds','errors')}">
@@ -53,6 +54,7 @@
                 </td>
               </tr>
 
+              %{--TODO: highlight currently selected clients and figure out why it only works with at least 2 clients selected--}%
               <tr>
                 <td class="label">Betreute:</td>
                 <td class="value ${hasErrors(bean:activityInstance,field:'clients','errors')}">

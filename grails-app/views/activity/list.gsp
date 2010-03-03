@@ -17,7 +17,11 @@
 
     <div class="boxGray">
       <div id="body-list">
-        <p>${activityCount} Aktivitäten gefunden.</p>
+        <p>${activityCount} Aktivität(en)
+          <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
+          <g:else>insgesamt</g:else>
+          gefunden.
+        </p>
 
         <div id="select-box">
           Filtern nach:
@@ -42,10 +46,10 @@
           <tbody>
           <g:each status="i" in="${activityList}" var="activity">
             <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-              <td><g:link action="show" id="${activity.id}" params="[name:entity.name]">${activity.title}</g:link></td>
-              <td>${activity.facility.profile.fullName}</td>
-              <td>${activity.owner.profile.fullName}</td>
-              <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.date}"/></td>
+              <td><g:link action="show" id="${activity.id}" params="[name:entity.name]">${activity.profile.fullName}</g:link></td>
+              <td><app:getFacility entity="${activity}">${facility.profile.fullName}</app:getFacility></td>
+              <td><app:getCreator entity="${activity}">${creator.profile.fullName}</app:getCreator></td>
+              <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
             </tr>
           </g:each>
           </tbody>
