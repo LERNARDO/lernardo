@@ -10,14 +10,34 @@
   <div class="boxGray">
     <div class="yui-g" id="members">
 
-        <g:render template="memberList" model="[cssclass:'myfriends', title:'Meine Freunde',
-                  emptyMsg:'Du hast derzeit noch keine Freunde', entities:friendsList]"/>
+      <g:render template="memberList" model="[cssclass:'myfriends', title:'Meine Freunde',
+                emptyMsg:'Du hast derzeit noch keine Freunde', entities:friendsList]"/>
 
-        <g:render template="memberList" model="[cssclass:'myemployers', title:'Meine Betreuten',
-                  emptyMsg:'Du hast derzeit noch keine Betreuten!', entities:clientsList]"/>
+      <app:isPaed entity="${entity}">
+        <ub:notAdmin>
+          <g:render template="memberList" model="[cssclass:'myemployers', title:'Meine Betreuten',
+                emptyMsg:'Du hast derzeit noch keine Betreuten!', entities:clientsList]"/>
+          <g:render template="memberList" model="[cssclass:'myemployers', title:'Meine Einrichtungen',
+                emptyMsg:'Du hast derzeit noch keine Einrichtungen!', entities:facilitiesList]"/>
+        </ub:notAdmin>
+      </app:isPaed>
 
-        <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Bookmarks',
-                  emptyMsg:'Du hast derzeit noch keine Bookmarks!', entities:bookmarksList]"/>
+      <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Bookmarks',
+                emptyMsg:'Du hast derzeit noch keine Bookmarks!', entities:bookmarksList]"/>
+
+      <app:isHort entity="${entity}">
+        <ub:notAdmin>
+          <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Betreiber',
+                    emptyMsg:'Du hast derzeit noch keine Betreiber!', entities:operatorsList]"/>
+        </ub:notAdmin>
+      </app:isHort>
+
+      <app:isClient entity="${entity}">
+        <ub:notAdmin>
+          <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Einrichtungen',
+                    emptyMsg:'Du hast derzeit noch keine Einrichtungen!', entities:facilities2List]"/>
+        </ub:notAdmin>
+      </app:isClient>
 
     </div>
   </div>

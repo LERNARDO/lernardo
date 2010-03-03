@@ -109,36 +109,37 @@
 
           <ub:meOrAdmin entityName="${entity.name}">
             <div class="profile-group">Pädagogik</div>
-              <div class="profile-box">
-                <ul>
-                  <app:isPaed entity="${entity}">
-                    <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
-                  </app:isPaed>
-                  <app:isHort entity="${entity}">
-                    <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
-                  </app:isHort>
-                </ul>
-              </div>
+            <div class="profile-box">
+              <ul>
+                <app:isPaed entity="${entity}">
+                  <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                </app:isPaed>
+                <app:isHort entity="${entity}">
+                  <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
+                </app:isHort>
+              </ul>
+            </div>
           </ub:meOrAdmin>
 
           <div class="profile-group">Administration</div>
-            <div class="profile-box">
-              <ul>
-                <ub:isAdmin entityName="${entity.name}">
-                  <li><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
-                  <li><g:link controller="adm" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
-                  <li><g:link controller="profile" action="createPaed" params="[name:entity.name]">Pädagoge anlegen</g:link></li>
-                  <li><g:link controller="profile" action="createSchool" params="[name:entity.name]">Schule anlegen</g:link></li>
-                  <li><g:link controller="adm" action="index">Verwaltung</g:link></li>
-                  <li><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
-                </ub:isAdmin>
-                <app:isHort entity="${entity}">
-                  <li><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
-                </app:isHort>
-                <app:isOperator entity="${entity}">
-                  <li><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
-                </app:isOperator>              </ul>
-            </div>
+          <div class="profile-box">
+            <ul>
+              <ub:isAdmin>
+                <li><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
+                <li><g:link controller="adm" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
+                <li><g:link controller="profile" action="createPaed" params="[name:entity.name]">Pädagoge anlegen</g:link></li>
+                <li><g:link controller="profile" action="createSchool" params="[name:entity.name]">Schule anlegen</g:link></li>
+                <li><g:link controller="adm" action="index">Verwaltung</g:link></li>
+                <li><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
+              </ub:isAdmin>
+              <app:isHort entity="${entity}">
+                <li><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
+              </app:isHort>
+              <app:isOperator entity="${entity}">
+                <li><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
+              </app:isOperator>
+            </ul>
+          </div>
 
             <div class="profile-group">Hilfe</div>
               <div class="profile-box">

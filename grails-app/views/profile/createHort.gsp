@@ -52,6 +52,20 @@
                                     <input type="text" size="50" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
                                 </td>
                             </tr>
+
+                            <ub:isAdmin>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="operator">
+                                      <g:message code="msg.operator.label" default="Betreiber" />:
+                                    </label>
+                                </td>
+                                <td valign="top" class="value">
+                                  <g:select name="operator" from="${availOperators}" optionKey="id" optionValue="name"/>
+                                </td>
+                            </tr>
+                            </ub:isAdmin>
+
                         </tbody>
                     </table>
 

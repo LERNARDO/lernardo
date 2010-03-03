@@ -38,7 +38,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'name','errors')}">
-                                    <input type="text" size="10" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/>
+                                    <input type="text" size="50" id="name" name="name" value="${fieldValue(bean:entityInstance,field:'name')}"/>
                                 </td>
                             </tr>
 
@@ -49,9 +49,22 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'email','errors')}">
-                                    <input type="text" size="30" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
+                                    <input type="text" size="50" id="email" name="email" value="${fieldValue(bean:entityInstance, field:'profile.email')}"/>
                                 </td>
                             </tr>
+
+                            <ub:isAdmin>
+                              <tr class="prop">
+                                  <td valign="top" class="name">
+                                      <label for="facility">
+                                        <g:message code="msg.facility.label" default="Hort" />:
+                                      </label>
+                                  </td>
+                                  <td valign="top" class="value">
+                                    <g:select name="facility" from="${availFacilities}" optionKey="id" optionValue="name"/>
+                                  </td>
+                              </tr>
+                            </ub:isAdmin>
                         </tbody>
                     </table>
 
@@ -67,7 +80,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'title','errors')}">
-                                    <input type="text" size="10" id="title" name="title" value="${fieldValue(bean:entityInstance, field:'profile.title')}"/>
+                                    <input type="text" size="50" id="title" name="title" value="${fieldValue(bean:entityInstance, field:'profile.title')}"/>
                                 </td>
                             </tr>
 
@@ -100,7 +113,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'city','errors')}">
-                                    <input type="text" size="30" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
+                                    <input type="text" size="50" id="city" name="city" value="${fieldValue(bean:entityInstance, field:'profile.city')}"/>
                                 </td>
                             </tr>
 
@@ -111,7 +124,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'street','errors')}">
-                                    <input type="text" size="40" id="street" name="street" value="${fieldValue(bean:entityInstance, field:'profile.street')}"/>
+                                    <input type="text" size="50" id="street" name="street" value="${fieldValue(bean:entityInstance, field:'profile.street')}"/>
                                 </td>
                             </tr>
 
@@ -122,7 +135,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'tel','errors')}">
-                                    <input type="text" size="20" id="tel" name="tel" value="${fieldValue(bean:entityInstance, field:'profile.tel')}"/>
+                                    <input type="text" size="50" id="tel" name="tel" value="${fieldValue(bean:entityInstance, field:'profile.tel')}"/>
                                 </td>
                             </tr>
 
@@ -145,7 +158,7 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:entityInstance,field:'biography','errors')}">
                                     <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-                                    <fckeditor:editor name="biography" id="biography" width="500px" height="400" toolbar="Post" fileBrowser="default">
+                                    <fckeditor:editor name="biography" id="biography" width="480" height="400" toolbar="Post" fileBrowser="default">
                                       ${entityInstance?.profile?.biography}
                                     </fckeditor:editor>
                                 </td>

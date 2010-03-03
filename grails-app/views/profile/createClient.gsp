@@ -26,17 +26,22 @@
 
                 <tr>
                   <td class="label">Name:</td>
-                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.fullName','errors')}"><g:textField name="fullName" size="30" value="${fieldValue(bean:entityInstance, field:'profile.fullName')}"/> (3 bis 30 Zeichen)</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'profile.fullName','errors')}"><g:textField name="fullName" size="30" value="${fieldValue(bean:entityInstance, field:'profile.fullName')}"/></td>
                 </tr>
 
                 <tr>
                   <td class="label">Kurzname:</td>
-                  <td class="value ${hasErrors(bean:entityInstance,field:'name','errors')}"><g:textField name="name" size="30" value="${fieldValue(bean:entityInstance, field:'name')}"/> (3 bis 20 Zeichen)</td>
+                  <td class="value ${hasErrors(bean:entityInstance,field:'name','errors')}"><g:textField name="name" size="30" value="${fieldValue(bean:entityInstance, field:'name')}"/></td>
                 </tr>
 
                 <tr>
                   <td class="label">E-Mail:</td>
                   <td class="value ${hasErrors(bean:entityInstance,field:'user.email','errors')}"><g:textField name="email" size="30" value="${fieldValue(bean:entityInstance, field:'user.email')}"/></td>
+                </tr>
+
+                <tr>
+                  <td class="label">Hort:</td>
+                  <td class="value"><g:select name="facility" from="${availFacilities}" optionKey="id" optionValue="name"/></td>
                 </tr>
 
             </tbody>

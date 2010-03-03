@@ -5,9 +5,12 @@ class NetworkController {
 
   def index = {
     Entity entity = Entity.findByName(params.name)
-    return ['entity':entity,
-            'friendsList':networkService.findFriendsOf(entity),
-            'clientsList':networkService.findClientsOf(entity),
-            'bookmarksList':networkService.findBookmarksOf(entity)]
+    return ['entity': entity,
+            'friendsList': networkService.findFriendsOf(entity),
+            'clientsList': networkService.findClientsOf(entity),
+            'bookmarksList': networkService.findBookmarksOf(entity),
+            'operatorsList': networkService.findOperatorsOf(entity),
+            'facilitiesList': networkService.findFacilitiesOf(entity),
+            'facilities2List': networkService.findFacilities2Of(entity)]
   }
 }

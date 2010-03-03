@@ -12,18 +12,23 @@ class HelperTagLib {
   def secHelperService
   static namespace = "app"
 
+  def isClient = {attrs, body->
+    if (attrs.entity.type.name == metaDataService.etClient.name || secHelperService.isAdmin())
+      out << body()
+  }
+
   def isHort = {attrs, body->
-    if (attrs.entity.type == metaDataService.etHort || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etHort.name || secHelperService.isAdmin())
       out << body()
   }
 
   def isPaed = {attrs, body->
-    if (attrs.entity.type == metaDataService.etPaed || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etPaed.name || secHelperService.isAdmin())
       out << body()
   }
 
   def isOperator = {attrs, body->
-    if (attrs.entity.type == metaDataService.etOperator || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etOperator.name || secHelperService.isAdmin())
       out << body()
   }
 

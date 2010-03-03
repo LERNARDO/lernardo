@@ -8,6 +8,33 @@ class NetworkService {
   def metaDataService
   def entityHelperService
 
+  // returns facilities (working) of a given entity
+  def findFacilitiesOf (Entity e,  def params=[]) {
+    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltWorking, params)
+    def results = []
+    links.each {results << it.target}
+
+    return results
+  }
+
+  // returns facilities (clientship) of a given entity
+  def findFacilities2Of (Entity e,  def params=[]) {
+    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
+    def results = []
+    links.each {results << it.target}
+
+    return results
+  }
+
+  // returns operators of a given entity
+  def findOperatorsOf (Entity e,  def params=[]) {
+    def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltOperation, params)
+    def results = []
+    links.each {results << it.target}
+
+    return results
+  }
+
   // returns friends of a given entity
   def findFriendsOf (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltFriendship, params)

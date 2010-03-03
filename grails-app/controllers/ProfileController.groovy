@@ -152,8 +152,10 @@ class ProfileController {
 
     def createHort = {
       def entityInstance = new Entity()
-      entityInstance.properties = params
-      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
+      //entityInstance.properties = params
+      return ['entityInstance':entityInstance,
+              'entity':Entity.findByName(params.name),
+              'availOperators': Entity.findAllByType(metaDataService.etOperator)]
     }
 
     def saveHort = {
@@ -188,7 +190,8 @@ class ProfileController {
       }
 
       // add relationship to operator
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltOperation).save()
+      def target = params.operator ? Entity.get(params.operator) : entityHelperService.loggedIn
+      new Link(source:Entity.findByName(params.name), target: target, type:metaDataService.ltOperation).save()
 
       flash.message = message(code:"user.created", args:[params.name,params.entity])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
@@ -235,7 +238,9 @@ class ProfileController {
     def createPaed = {
       def entityInstance = new Entity()
       //entityInstance.properties = params
-      return ['entityInstance':entityInstance,'entity':entityHelperService.loggedIn]
+      return ['entityInstance':entityInstance,
+              'entity':entityHelperService.loggedIn,
+              'availFacilities': Entity.findAllByType(metaDataService.etHort)]
     }
 
     def savePaed = {
@@ -267,7 +272,8 @@ class ProfileController {
       }
 
       // add relationship to facility
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltWorking).save()
+      def target = params.facility ? Entity.get(params.facility) : entityHelperService.loggedIn
+      new Link(source:Entity.findByName(params.name), target: target, type:metaDataService.ltWorking).save()
 
       flash.message = message(code:"user.created", args:[params.name,'Admin'])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
@@ -275,9 +281,11 @@ class ProfileController {
 
     def createClient = {
       def entityInstance = new Entity()
-      entityInstance.properties = params
+      //entityInstance.properties = params
       entityInstance.name = ""
-      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
+      return ['entityInstance':entityInstance,
+              'entity':Entity.findByName(params.name),
+              'availFacilities': Entity.findAllByType(metaDataService.etHort)]
     }
 
     def saveClient = {
@@ -315,7 +323,8 @@ class ProfileController {
       }
 
       // add relationship to facility
-      new Link(source:Entity.findByName(params.name), target:Entity.findByName(params.entity), type:metaDataService.ltClientship).save()
+      def target = params.facility ? Entity.get(params.facility) : entityHelperService.loggedIn
+      new Link(source:Entity.findByName(params.name), target: target, type:metaDataService.ltClientship).save()
 
       flash.message = message(code:"user.created", args:[params.name,params.entity])
       redirect controller:'profile', action:'showProfile', params:[name:params.name]
