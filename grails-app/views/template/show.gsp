@@ -40,12 +40,12 @@
         </table>
       </div>
 
-      <g:if test="${entity.type.name == 'Paed'}">
+      <app:isPaed entity="${entity}">
           <g:link class="buttonBlue" action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
           <g:link class="buttonBlue" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
           <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
           <div class="spacer"></div>
-      </g:if>
+      </app:isPaed>
 
 
     </div>
@@ -83,14 +83,14 @@
           </g:each>
         </g:else>
 
-        <g:if test="${entity.type.name == 'Paed'}">
+        <app:isPaed entity="${entity}">
           <div class="comments-actions">
             <g:remoteLink class="buttonBlue" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
             <div class="spacer"></div>
           </div>
           <div id="createComment">
           </div>
-        </g:if>
+        </app:isPaed>
 
       </div>
   </body>

@@ -9,7 +9,23 @@ class HelperTagLib {
   def metaDataService
   def networkService
   def filterService
+  def secHelperService
   static namespace = "app"
+
+  def isHort = {attrs, body->
+    if (attrs.entity.type == metaDataService.etHort || secHelperService.isAdmin())
+      out << body()
+  }
+
+  def isPaed = {attrs, body->
+    if (attrs.entity.type == metaDataService.etPaed || secHelperService.isAdmin())
+      out << body()
+  }
+
+  def isOperator = {attrs, body->
+    if (attrs.entity.type == metaDataService.etOperator || secHelperService.isAdmin())
+      out << body()
+  }
 
   def active = {attrs ->
     if (attrs.glossary == attrs.letter)

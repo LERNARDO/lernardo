@@ -8,9 +8,9 @@
   <div id="article-container">
  
     <g:if test="${currentEntity}">
-      <g:if test="${currentEntity.type.name == 'Paed'}">
+      <app:isPaed entity="${currentEntity}">
         <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel erstellen</g:link></p>
-      </g:if>
+      </app:isPaed>
     </g:if>
 
     <g:each in="${articleList}" var="article">
@@ -22,7 +22,7 @@
         <g:else>
           <g:render template="content" model='[article:article]'/>
         </g:else>
-        <g:render template="links"  model='[article:article]'/>
+        <g:render template="links" model='[article:article]'/>
       </div>
     </g:each>
 

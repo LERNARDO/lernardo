@@ -15,11 +15,9 @@
     <div class="boxGray">
     <div id="body-list">
       <div style="float:right;">
-        <ub:meOrAdmin entityName="${entity.name}">
-          <g:if test="${entity.type.name == 'Paed'}">
-            <li class="profile-template"><g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
-          </g:if>
-        </ub:meOrAdmin>
+        <app:isPaed entity="${entity}">
+          <li class="profile-template"><g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+        </app:isPaed>
       </div>
       <p>${templateCount} Aktivitätsvorlagen gefunden</p>
 

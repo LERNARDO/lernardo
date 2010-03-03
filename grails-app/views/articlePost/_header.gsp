@@ -18,10 +18,10 @@
     am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
     um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
     <g:isLoggedIn>
-      %{--<g:if test="${currentEntity.type.name == "Paed"}">--}%
+      <app:isPaed entity="${currentEntity}">
         (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
          <g:link class="adminlink" action="delete" onclick="return confirm('Artikel wirklich löschen?');" id="${article.id}">löschen</g:link>)
-      %{--</g:if>--}%
+      </app:isPaed>
     </g:isLoggedIn>
   </div>
 </div>
