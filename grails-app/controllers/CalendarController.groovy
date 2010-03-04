@@ -2,7 +2,6 @@ import org.joda.time.DateTime
 
 import grails.converters.JSON
 import de.uenterprise.ep.Entity
-import lernardo.Activity
 import de.uenterprise.ep.Link
 
 class CalendarController {

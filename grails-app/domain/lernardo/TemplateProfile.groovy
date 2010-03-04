@@ -1,25 +1,26 @@
 package lernardo
-class ActivityTemplate {
 
-  String name
+import de.uenterprise.ep.Profile
+
+class TemplateProfile extends Profile {
+
   String attribution
   String description
-  Integer duration
   String socialForm
-  String materials
+  String qualifications
+  Integer duration 
   Integer ll
   Integer be
   Integer pk
   Integer si
   Integer hk
   Integer tlt
-  String qualifications
   Integer requiredPaeds
 
   Date dateCreated
   Date lastUpdated
 
-    static constraints = {
-      description(maxSize:2000)
-    }
+  static constraints = {
+    description(maxSize: 5000)
+  }
 }

@@ -1,8 +1,6 @@
 import java.text.SimpleDateFormat
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
-import lernardo.Activity
-import lernardo.ActivityTemplate
 import de.uenterprise.ep.Link
 
 class ActivityController {
@@ -127,11 +125,11 @@ class ActivityController {
     }
 
     def create = {
-      def activity = new Activity()
-      def template = ActivityTemplate.get(params.id)
-      activity.title = template.name
-      activity.duration = template.duration
-      activity.template = template
+      //def activity = new Activity()
+      def template = Entity.get(params.id)
+      //activity.title = template.name
+      //activity.duration = template.duration
+      //activity.template = template
 
       // get a list of facilities the current entity is working in
       List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
@@ -152,7 +150,7 @@ class ActivityController {
         clientMap[it.id] = it.profile.fullName
       }
 
-      return ['activityInstance': activity,
+      return [/*'activityInstance': activity,*/
               'template': template,
               'availFacilities': facilityMap,
               'availPaeds': paedMap,
@@ -181,7 +179,7 @@ class ActivityController {
         new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActClient).save()
       }
       new Link(source: Entity.get(params.facility.toInteger()), target: entity, type: metaDataService.ltActFac).save()
-      //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActTemplate).save()
+      new Link(source: Entity.findByName(params.template), target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltActCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 

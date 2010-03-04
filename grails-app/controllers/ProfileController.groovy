@@ -7,12 +7,10 @@ import de.uenterprise.ep.Account
 import profiles.UserProfile
 import posts.ArticlePost
 import lernardo.Event
-import lernardo.Activity
 import lernardo.Msg
 import profiles.OrgProfile
 import lernardo.Attendance
 import java.text.SimpleDateFormat
-import lernardo.Group
 import org.springframework.web.servlet.support.RequestContextUtils
 
 class ProfileController {
@@ -89,7 +87,6 @@ class ProfileController {
       def fac = params.facilities
       if (fac.class.isArray()) {
         fac.each {
-            println it
             new Link(source: Entity.findByName(params.name), target: Entity.findById(it), type: metaDataService.ltWorking).save()
           }
       }
@@ -459,7 +456,6 @@ class ProfileController {
     }
 
     def attendance = {
-      println params
       params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
 
       SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -499,7 +495,6 @@ class ProfileController {
     }
 
     def saveAttendance = {
-      println params
 
       int counter = 0
       params.entities.each {
@@ -565,8 +560,6 @@ class ProfileController {
         params.entityType = params.entityType ?: "all"
         params.offset = params.offset ? params.offset.toInteger(): 0
         params.max = params.max ? params.max.toInteger(): 10
-
-        println params
 
         List entities
         int count

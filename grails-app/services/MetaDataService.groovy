@@ -8,6 +8,7 @@ class MetaDataService {
   static final String EST_PERSON = "Person"              // EntitySuperType
   static final String EST_ORG = "Organisation"
   static final String EST_FAC = "Facility"
+  static final String EST_TEMPLATE = "Template"
   static final String EST_ACTIVITY = "Activity"
   static final String EST_GROUP_FAMILY = "GroupFamily"
   static final String EST_GROUP_COLONY = "GroupColony"
@@ -20,6 +21,7 @@ class MetaDataService {
   static final String ET_HORT = "Einrichtung"
   static final String ET_SCHOOL = "Schule"
   static final String ET_SPONSOR = "Sponsor"
+  static final String ET_TEMPLATE = "Vorlage"
   static final String ET_ACTIVITY = "Aktivität"
   static final String ET_GROUP_FAMILY = "Gruppe Familie"
   static final String ET_GROUP_COLONY = "Gruppe Siedlung"
@@ -30,6 +32,7 @@ class MetaDataService {
   static final String PRT_FAC = "Fac"
   static final String PRT_PAED = "Paed"
   static final String PRT_CLIENT = "Client"
+  static final String PRT_TEMPLATE = "Template"
   static final String PRT_ACTIVITY = "Activity"
   static final String PRT_GROUP_FAMILY = "GroupFamily"
   static final String PRT_GROUP_COLONY = "GroupColony"
@@ -63,6 +66,7 @@ class MetaDataService {
     getEstPerson()
     getEstOrg()
     getEstFac()
+    getEstTemplate()
     getEstActivity()
     getEstGroupFamily()
     getEstGroupColony()
@@ -75,6 +79,7 @@ class MetaDataService {
     getEtHort()
     getEtSchool()
     getEtSponsor()
+    getEtTemplate()
     getEtActivity()
     getEtGroupFamily()
     getEtGroupColony()
@@ -107,6 +112,7 @@ class MetaDataService {
   def getEstPerson()       {defaultObjectService.openEST (EST_PERSON, PRT_PERSON) }
   def getEstOrg()          {defaultObjectService.openEST (EST_ORG, PRT_ORG) }
   def getEstFac()          {defaultObjectService.openEST (EST_FAC, PRT_FAC) }
+  def getEstTemplate()     {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
   def getEstActivity()     {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
   def getEstGroupFamily()  {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
   def getEstGroupColony()  {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
@@ -119,6 +125,7 @@ class MetaDataService {
   def getEtHort()         {defaultObjectService.openET (ET_HORT, estFac) }
   def getEtSchool()       {defaultObjectService.openET (ET_SCHOOL, estFac) }
   def getEtSponsor()      {defaultObjectService.openET (ET_SPONSOR, estOrg) }
+  def getEtTemplate()     {defaultObjectService.openET (ET_TEMPLATE, estTemplate) }
   def getEtActivity()     {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
   def getEtGroupFamily()  {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
   def getEtGroupColony()  {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }

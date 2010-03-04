@@ -24,7 +24,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="name" name="name" value="${fieldValue(bean:template,field:'name')}"/>
+                                    <input type="text" size="40" id="name" name="name" value="${fieldValue(bean:template,field:'profile.fullName')}"/>
                                 </td>
                             </tr>
 
@@ -35,7 +35,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald','Lernen lernen','Bewegung - Ernährung','Soziale Kompetenz - Emotionale Intelligenz','Persönliche Kompetenz - Eigenverantwortung','Handwerk & Kunst']}" value="${template.attribution}"/>
+                                    <g:select id="attribution" name="attribution" from="${['Psychomotorik','Im Wald','Lernen lernen','Bewegung - Ernährung','Soziale Kompetenz - Emotionale Intelligenz','Persönliche Kompetenz - Eigenverantwortung','Handwerk & Kunst']}" value="${template.profile.attribution}"/>
                                 </td>
                             </tr>
 
@@ -48,21 +48,21 @@
                                 <td valign="top" class="value">
                                   <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
                                   <fckeditor:editor name="description" id="description" width="100%" height="400" toolbar="Post" fileBrowser="default">
-                                    ${template.description}
+                                    ${template.profile.description}
                                   </fckeditor:editor>
                                 </td>
                             </tr>
 
-                            <tr class="prop">
+%{--                            <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="materials">
                                       <g:message code="template.street.label" default="Materialien" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="materials" name="materials" value="${fieldValue(bean:template,field:'materials')}"/>
+                                    <input type="text" size="40" id="materials" name="materials" value="${fieldValue(bean:template,field:'profile.materials')}"/>
                                 </td>
-                            </tr>
+                            </tr>--}%
 
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -71,7 +71,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="duration" name="duration" value="${template.duration}"/> (in Minuten)
+                                    <input type="text" size="40" id="duration" name="duration" value="${template.profile.duration}"/> (in Minuten)
                                 </td>
                             </tr>
 
@@ -82,7 +82,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="socialForm" name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${template.socialForm}"/>
+                                    <g:select id="socialForm" name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${template.profile.socialForm}"/>
                                 </td>
                             </tr>
 
@@ -93,7 +93,7 @@
                                 </label>
                             </td>
                             <td valign="top" class="value">
-                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.requiredPaeds}"/> (Anzahl der Pädagogen)
+                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.profile.requiredPaeds}"/> (Anzahl der Pädagogen)
                             </td>
                         </tr>
 
@@ -115,7 +115,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="ll" name="ll" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.ll}" optionKey="key" optionValue="value"/>
+                                    <g:select id="ll" name="ll" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.profile.ll}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 
@@ -126,7 +126,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="be" name="be" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.be}" optionKey="key" optionValue="value"/>
+                                    <g:select id="be" name="be" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.profile.be}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 
@@ -137,7 +137,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="pk" name="pk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.pk}" optionKey="key" optionValue="value"/>
+                                    <g:select id="pk" name="pk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.profile.pk}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 
@@ -148,7 +148,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="si" name="si" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.si}" optionKey="key" optionValue="value"/>
+                                    <g:select id="si" name="si" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.profile.si}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 
@@ -159,7 +159,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="hk" name="hk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.hk}" optionKey="key" optionValue="value"/>
+                                    <g:select id="hk" name="hk" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.profile.hk}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 
@@ -170,7 +170,7 @@
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <g:select id="tlt" name="tlt" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.tlt}" optionKey="key" optionValue="value"/>
+                                    <g:select id="tlt" name="tlt" from="${[0:'kein',1:'niedrig',2:'mittel',3:'hoch']}" value="${template.profile.tlt}" optionKey="key" optionValue="value"/>
                                 </td>
                             </tr>
 

@@ -11,31 +11,31 @@
     <div class="boxGray">
       <div class="profile-box">
         <table width="100%">
-          <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.name}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Primäre Zuordnung:</td><td class="bezeichnung">${template.attribution}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.description.decodeHTML()}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materials}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.duration} Minuten</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.socialForm}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.requiredPaeds}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.qualifications}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.profile.fullName}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Primäre Zuordnung:</td><td class="bezeichnung">${template.profile.attribution}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.profile.description.decodeHTML()}</td></tr>
+          %{--<tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materials}</td></tr>--}%
+          <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.profile.duration} Minuten</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.profile.socialForm}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.profile.requiredPaeds}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.profile.qualifications}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Lernen lernen:</td><td class="bezeichnung">
-<% template.ll.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.ll.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>            
+<% template.profile.ll.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.ll.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Bewegung & Ernährung:</td><td class="bezeichnung">
-  <% template.be.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.be.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+  <% template.profile.be.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.be.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Persönliche Kompetenz:</td><td class="bezeichnung">
-    <% template.pk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.pk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+    <% template.profile.pk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.pk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Soziale & emotionale Intelligenz:</td><td class="bezeichnung">
-      <% template.si.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.si.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+      <% template.profile.si.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.si.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Handwerk & Kunst:</td><td class="bezeichnung">
-        <% template.hk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.hk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+        <% template.profile.hk.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.hk.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Teilleistungstraining:</td><td class="bezeichnung">
-          <% template.tlt.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.tlt.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
+          <% template.profile.tlt.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.tlt.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
         </table>
       </div>

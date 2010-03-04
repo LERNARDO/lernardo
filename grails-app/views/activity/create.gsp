@@ -14,8 +14,8 @@
       </div>
     </g:hasErrors>
 
-    <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.name}</g:link></p>
-    <g:form action="save" method="post" id="${activityInstance.id}" params="[template:template.name]">
+    <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.profile.fullName}</g:link></p>
+    <g:form action="save" method="post" params="[template:template.name]">
       <table>
         <tbody>
 

@@ -1,5 +1,4 @@
 import posts.TemplateComment
-import lernardo.ActivityTemplate
 import de.uenterprise.ep.Entity
 
 class TemplateCommentController {
@@ -35,7 +34,7 @@ class TemplateCommentController {
   def save = {
     def comment = new TemplateComment(params)
     comment.author = entityHelperService.loggedIn
-    comment.template = ActivityTemplate.get(params.id)
+    comment.template = Entity.get(params.id)
     if (comment.save(flush: true)) {
       flash.message = message(code:"comment.created", args:[comment.template.name])
 

@@ -20,6 +20,14 @@ class HelperTagLib {
       out << '<span class="italic">Diese Gruppe ist leer</span>'
   }
 
+  def getTemplate = {attrs, body ->
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActTemplate)
+    if (link)
+      out << body(template: link.source)
+    else
+      out << '<span class="italic">keine Vorlage vorhanden</span>'
+  }
+
   def getClients = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActClient)
     if (link)

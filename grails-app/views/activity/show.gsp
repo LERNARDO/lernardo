@@ -13,7 +13,9 @@
 
     <div class="boxGray">
       <table width="100%">
-        %{--<tr><td class="bold titles bezeichnung">Vorlage:</td><td class="bezeichnung"><g:link controller="template" action="show" params="[name:activity.template]">${activity.template}</g:link></td></tr>--}%
+        <tr><td class="bold titles bezeichnung">Vorlage:</td><td class="bezeichnung"><app:getTemplate entity="${activity}">
+          <g:link controller="template" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+          </app:getTemplate></td></tr>
         <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${activity.profile.fullName}</td></tr>
         <tr><td class="bold titles bezeichnung">Beginn:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td></tr>
         <tr><td class="bold titles bezeichnung">Dauer:</td><td class="bezeichnung">${activity.profile.duration} Minuten</td></tr>

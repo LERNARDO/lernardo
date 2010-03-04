@@ -35,11 +35,12 @@
         <tbody>
         <g:each status="i" in="${templateList}" var="templateInstance">
           <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
-            <td class="col"><g:link action="show" id="${templateInstance.id}" params="[name:entity.name]">${templateInstance.name}</g:link></td>
-            <td class="col2">${templateInstance.duration}</td>
-            <td>${templateInstance.socialForm}</td>
+            <td class="col"><g:link action="show" id="${templateInstance.id}" params="[name:entity.name]">${templateInstance.profile.fullName}</g:link></td>
+            <td class="col2">${templateInstance.profile.duration}</td>
+            <td>${templateInstance.profile.socialForm}</td>
             %{--<td class="col4">${templateInstance.requiredPaeds}</td>--}%
-            <td><app:getTemplateCommentsCount template="${templateInstance}"/></td>
+            %{--TODO: retrieve template comment count--}%
+            <td>%{--<app:getTemplateCommentsCount template="${templateInstance}"/>--}%</td>
           </tr>
         </g:each>
         </tbody>

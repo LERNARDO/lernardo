@@ -2,12 +2,11 @@ package posts
 
 import lernardo.Post
 import lernardo.ActivityTemplate
+import de.uenterprise.ep.Entity
 
 class TemplateComment extends Post {
 
-  ActivityTemplate template
+  Entity entity
 
-    static constraints = {
-      template(nullable:true)
-    }
+    static constraints = {}
 }

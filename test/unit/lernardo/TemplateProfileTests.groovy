@@ -1,6 +1,8 @@
+package lernardo
+
 import grails.test.*
 
-class ActivityTemplateTests extends GrailsUnitTestCase {
+class TemplateProfileTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

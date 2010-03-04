@@ -1,10 +1,9 @@
-
-
 package lernardo
 
 import de.uenterprise.ep.Entity
 
 class GroupController {
+    def metaDataService
     
     def index = {
         redirect action:"list", params:params 
@@ -15,7 +14,7 @@ class GroupController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ groupInstanceList: Group.list( params ), groupInstanceTotal: Entity.countByType(metaDataService) ]
+        [ groupInstanceList: Entity.findAllByType(metaDataService.etGroup), groupInstanceTotal: Entity.countByType(metaDataService.etGroup) ]
     }
 
     def show = {
@@ -32,7 +31,7 @@ class GroupController {
     }
 
     def delete = {
-        def groupInstance = Group.get( params.id )
+        def groupInstance = Entity.get( params.id )
         if(groupInstance) {
             try {
                 groupInstance.delete(flush:true)
@@ -51,7 +50,7 @@ class GroupController {
     }
 
     def edit = {
-        def groupInstance = Group.get( params.id )
+        def groupInstance = Entity.get( params.id )
 
         if(!groupInstance) {
             flash.message = "Group not found with id ${params.id}"
@@ -63,7 +62,7 @@ class GroupController {
     }
 
     def update = {
-        def groupInstance = Group.get( params.id )
+        def groupInstance = Entity.get( params.id )
         if(groupInstance) {
             if(params.version) {
                 def version = params.version.toLong()
@@ -92,13 +91,13 @@ class GroupController {
     }
 
     def create = {
-        def groupInstance = new Group()
+        def groupInstance = new Entity()
         groupInstance.properties = params
         return ['groupInstance':groupInstance]
     }
 
     def save = {
-        def groupInstance = new Group(params)
+        def groupInstance = new Entity(params)
         if(groupInstance.save(flush:true)) {
             flash.message = "Group ${groupInstance.id} created"
 
