@@ -5,9 +5,7 @@ import profiles.UserProfile
 import profiles.FacProfile
 import posts.ArticlePost
 import profiles.OrgProfile
-import lernardo.Event
 import grails.util.GrailsUtil
-import org.codehaus.groovy.grails.commons.GrailsApplication
 import lernardo.Helper
 import lernardo.Evaluation
 import lernardo.Attendance
@@ -67,6 +65,8 @@ class BootStrap {
       prf.tel = "-"
       prf.biography = "-"
     }
+
+
 
     // mod users
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->

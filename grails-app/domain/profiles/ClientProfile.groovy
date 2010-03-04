@@ -39,4 +39,25 @@ class ClientProfile extends Profile {
         comesAlone(nullable:true)
         goesAlone(nullable:true)
     }
+
+    /*String firstName
+    String lastName
+    Date birthDate
+    Integer PLZ
+    String city
+    String street
+    String nationality
+    String languages
+    Integer schoolLevel
+    String notes
+    String interests
+    String personalDetails
+    Date joinDate
+    Date endDate
+    Date rejoinDate
+    String equipment
+    String attendance
+    String work
+    Integer gender*/
+
 }

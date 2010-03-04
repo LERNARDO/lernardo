@@ -14,6 +14,8 @@ class MetaDataService {
   static final String EST_GROUP_COLONY = "GroupColony"
   static final String EST_GROUP_NETWORK = "GroupNetwork"
   static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
+  static final String EST_PATE = "Pate"
+  static final String EST_PARTNER = "Partner"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_PAED = "Pädagoge"
@@ -28,6 +30,8 @@ class MetaDataService {
   static final String ET_GROUP_COLONY = "Gruppe Siedlung"
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
+  static final String ET_PATE = "Pate"
+  static final String ET_PARTNER = "Partner"
 
   static final String PRT_PERSON = "User"                // ProfileType
   static final String PRT_ORG = "Org"
@@ -40,6 +44,8 @@ class MetaDataService {
   static final String PRT_GROUP_COLONY = "GroupColony"
   static final String PRT_GROUP_NETWORK = "GroupNetwork"
   static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
+  static final String PRT_PATE = "Pate"
+  static final String PRT_PARTNER = "Partner"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -58,6 +64,8 @@ class MetaDataService {
   static final String LT_GROUP = "Gruppe"
   static final String LT_CREATOR = "Ersteller"
   static final String LT_COMMENT = "Kommentar"
+  static final String LT_PATE = "Pate"
+  static final String LT_PARTNER = "Partner"
 
   // activity links
   static final String LT_ACT_PAED = "Pädagoge"
@@ -76,6 +84,8 @@ class MetaDataService {
     getEstGroupColony()
     getEstGroupNetwork()
     getEstCommentTemplate()
+    getEstPate()
+    getEstPartner()
 
     getEtUser()
     getEtPaed()
@@ -90,6 +100,8 @@ class MetaDataService {
     getEtGroupColony()
     getEtGroupNetwork()
     getEtCommentTemplate()
+    getEtPate()
+    getEtPartner()
 
     getLstPersonal()
     getLstOther()
@@ -103,6 +115,8 @@ class MetaDataService {
     getLtGroup()
     getLtCreator()
     getLtComment()
+    getLtPate()
+    getLtPartner()
 
     getLtActPaed()
     getLtActClient()
@@ -125,6 +139,8 @@ class MetaDataService {
   def getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
   def getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
   def getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
+  def getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
+  def getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
 
   def getEtUser()            {defaultObjectService.openET (ET_USER, estPerson) }
   def getEtPaed()            {defaultObjectService.openET (ET_PAED, estPerson) }
@@ -139,6 +155,8 @@ class MetaDataService {
   def getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
   def getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
   def getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
+  def getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
+  def getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
 
   def getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
   def getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
@@ -152,6 +170,8 @@ class MetaDataService {
   def getLtGroup()       {defaultObjectService.openLT (LT_GROUP, lstOther) }
   def getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
   def getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
+  def getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
+  def getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
 
   // activity links
   def getLtActPaed()     {defaultObjectService.openLT (LT_ACT_PAED, lstOther) }

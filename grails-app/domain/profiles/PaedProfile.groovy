@@ -28,4 +28,21 @@ class PaedProfile extends Profile {
         biography(nullable:true,maxSize:3000)
         training(nullable:true)
     }
+
+   /*String title
+   String firstName
+   String lastName
+   Date birthDate
+   Integer gender
+   Integer PLZ
+   String city
+   String street
+   String nationality
+   String contact
+   String languages
+   String interests
+   Date joinDate
+   Date quitDate
+   String function
+   String attendance*/
 }

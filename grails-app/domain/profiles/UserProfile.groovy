@@ -1,3 +1,5 @@
+// for other people like "ansprechpersonen" or lernardo personal
+
 package profiles
 
 import de.uenterprise.ep.Profile
@@ -26,4 +28,18 @@ class UserProfile extends Profile {
         gender(nullable:true)
         biography(nullable:true,maxSize:3000)
     }
+
+   /*String firstName
+   String lastName
+   Date birthDate
+   Integer gender
+   Integer PLZ
+   String city
+   String street
+   String nationality
+   String familyStatus
+   String qualification
+   String work
+   String languages
+   String attendance*/
 }
