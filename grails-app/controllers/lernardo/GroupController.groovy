@@ -15,12 +15,12 @@ class GroupController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ groupInstanceList: Group.list( params ), groupInstanceTotal: Group.count() ]
+        [ groupInstanceList: Group.list( params ), groupInstanceTotal: Entity.countByType(metaDataService) ]
     }
 
     def show = {
         Entity entity = Entity.findByName(params.name)
-        def groupInstance = Group.get( params.id )
+        def groupInstance = Entity.get(params.id)
 
         if(!groupInstance) {
             flash.message = "Group not found with id ${params.id}"

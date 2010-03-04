@@ -927,9 +927,21 @@ class BootStrap {
   void createDefaultGroups() {
     log.debug ("==> creating default groups")
 
-    new Group(members: [Entity.findByName('kira'),Entity.findByName('keano'),Entity.findByName('sabine'),Entity.findByName('alex')],
-              name: 'Familie Zeillinger',
-              description: 'Eine glückliche Familie aus Gumpoldskirchen').save()
+    EntityType etGroupFamily = metaDataService.etGroupFamily
+
+    def entity = entityHelperService.createEntity("Zeillinger", etGroupFamily) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile.fullName = "Zeillinger"
+      ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
+                                     ausreichendes Einkommen und Sabine Zeillinger kümmert sich um den Haushalt."""
+      ent.profile.personCount = 2
+      ent.profile.totalIncome = 1550
+      ent.profile.otherData = """Familie Zeillinger besitzt 2 Katzen und 2 Autos"""
+    }
+
+    new Link(source: Entity.findByName('alex'), target: entity, type: metaDataService.ltGroup).save()
+    new Link(source: Entity.findByName('sabine'), target: entity, type: metaDataService.ltGroup).save()
+
   }
 
 }

@@ -12,6 +12,14 @@ class HelperTagLib {
   def secHelperService
   static namespace = "app"
 
+  def getGroup = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroup)
+    if (link)
+      link.each {out << body(members: it.source)}
+    else
+      out << '<span class="italic">Diese Gruppe ist leer</span>'
+  }
+
   def getClients = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActClient)
     if (link)

@@ -9,6 +9,9 @@ class MetaDataService {
   static final String EST_ORG = "Organisation"
   static final String EST_FAC = "Facility"
   static final String EST_ACTIVITY = "Activity"
+  static final String EST_GROUP_FAMILY = "GroupFamily"
+  static final String EST_GROUP_COLONY = "GroupColony"
+  static final String EST_GROUP_NETWORK = "GroupNetwork"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_PAED = "Pädagoge"
@@ -18,6 +21,9 @@ class MetaDataService {
   static final String ET_SCHOOL = "Schule"
   static final String ET_SPONSOR = "Sponsor"
   static final String ET_ACTIVITY = "Aktivität"
+  static final String ET_GROUP_FAMILY = "Gruppe Familie"
+  static final String ET_GROUP_COLONY = "Gruppe Siedlung"
+  static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
 
   static final String PRT_PERSON = "User"                // ProfileType
   static final String PRT_ORG = "Org"
@@ -25,6 +31,9 @@ class MetaDataService {
   static final String PRT_PAED = "Paed"
   static final String PRT_CLIENT = "Client"
   static final String PRT_ACTIVITY = "Activity"
+  static final String PRT_GROUP_FAMILY = "GroupFamily"
+  static final String PRT_GROUP_COLONY = "GroupColony"
+  static final String PRT_GROUP_NETWORK = "GroupNetwork"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -40,6 +49,7 @@ class MetaDataService {
   static final String LT_CLIENTSHIP = "Betreuung"
   static final String LT_BOOKMARK = "Beobachtung"
   static final String LT_WORKING = "Arbeitet"
+  static final String LT_GROUP = "Gruppe"
 
   // activity links
   static final String LT_ACT_PAED = "Pädagoge"
@@ -54,6 +64,9 @@ class MetaDataService {
     getEstOrg()
     getEstFac()
     getEstActivity()
+    getEstGroupFamily()
+    getEstGroupColony()
+    getEstGroupNetwork()
 
     getEtUser()
     getEtPaed()
@@ -63,6 +76,9 @@ class MetaDataService {
     getEtSchool()
     getEtSponsor()
     getEtActivity()
+    getEtGroupFamily()
+    getEtGroupColony()
+    getEtGroupNetwork()
 
     getLstPersonal()
     getLstOther()
@@ -73,6 +89,7 @@ class MetaDataService {
     getLtClientship()
     getLtBookmark()
     getLtWorking()
+    getLtGroup()
 
     getLtActPaed()
     getLtActClient()
@@ -87,19 +104,25 @@ class MetaDataService {
     getSuperUserRole()
   }
 
-  def getEstPerson()   {defaultObjectService.openEST (EST_PERSON, PRT_PERSON) }
-  def getEstOrg()      {defaultObjectService.openEST (EST_ORG, PRT_ORG) }
-  def getEstFac()      {defaultObjectService.openEST (EST_FAC, PRT_FAC) }
-  def getEstActivity() {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
+  def getEstPerson()       {defaultObjectService.openEST (EST_PERSON, PRT_PERSON) }
+  def getEstOrg()          {defaultObjectService.openEST (EST_ORG, PRT_ORG) }
+  def getEstFac()          {defaultObjectService.openEST (EST_FAC, PRT_FAC) }
+  def getEstActivity()     {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
+  def getEstGroupFamily()  {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
+  def getEstGroupColony()  {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
+  def getEstGroupNetwork() {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
 
-  def getEtUser()     {defaultObjectService.openET (ET_USER, estPerson) }
-  def getEtPaed()     {defaultObjectService.openET (ET_PAED, estPerson) }
-  def getEtClient()   {defaultObjectService.openET (ET_CLIENT, estPerson) }
-  def getEtOperator() {defaultObjectService.openET (ET_OPERATOR, estOrg) }
-  def getEtHort()     {defaultObjectService.openET (ET_HORT, estFac) }
-  def getEtSchool()   {defaultObjectService.openET (ET_SCHOOL, estFac) }
-  def getEtSponsor()  {defaultObjectService.openET (ET_SPONSOR, estOrg) }
-  def getEtActivity() {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
+  def getEtUser()         {defaultObjectService.openET (ET_USER, estPerson) }
+  def getEtPaed()         {defaultObjectService.openET (ET_PAED, estPerson) }
+  def getEtClient()       {defaultObjectService.openET (ET_CLIENT, estPerson) }
+  def getEtOperator()     {defaultObjectService.openET (ET_OPERATOR, estOrg) }
+  def getEtHort()         {defaultObjectService.openET (ET_HORT, estFac) }
+  def getEtSchool()       {defaultObjectService.openET (ET_SCHOOL, estFac) }
+  def getEtSponsor()      {defaultObjectService.openET (ET_SPONSOR, estOrg) }
+  def getEtActivity()     {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
+  def getEtGroupFamily()  {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
+  def getEtGroupColony()  {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
+  def getEtGroupNetwork() {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
 
   def getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
   def getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
@@ -110,6 +133,7 @@ class MetaDataService {
   def getLtClientship()  {defaultObjectService.openLT (LT_CLIENTSHIP, lstOther) }
   def getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
   def getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
+  def getLtGroup()       {defaultObjectService.openLT (LT_GROUP, lstOther) }
 
   // activity links
   def getLtActPaed()     {defaultObjectService.openLT (LT_ACT_PAED, lstOther) }

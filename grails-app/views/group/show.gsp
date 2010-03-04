@@ -11,22 +11,39 @@
       <tbody>
 
         <tr>
-          <td class="label">Name:</td>
-          <td class="value">${fieldValue(bean:groupInstance, field:'name')}</td>
+          <td class="bold">Name:</td>
+          <td class="value">${fieldValue(bean:groupInstance, field:'profile.fullName')}</td>
         </tr>
 
         <tr>
-          <td class="label">Beschreibung:</td>
-          <td class="value">${fieldValue(bean:groupInstance, field:'description')}</td>
+          <td class="bold">Wohnverhältnisse:</td>
+          <td class="value">${fieldValue(bean:groupInstance, field:'profile.livingConditions')}</td>
         </tr>
 
         <tr>
-          <td class="label">Mitglieder:</td>
+          <td class="bold">Personen im Haushalt:</td>
+          <td class="value">${fieldValue(bean:groupInstance, field:'profile.personCount')}</td>
+        </tr>
+
+        <tr>
+          <td class="bold">Familieneinkommen:</td>
+          <td class="value">${fieldValue(bean:groupInstance, field:'profile.totalIncome')}</td>
+        </tr>
+
+        <tr>
+          <td class="bold">Sonstige Daten:</td>
+          <td class="value">${fieldValue(bean:groupInstance, field:'profile.otherData')}</td>
+        </tr>
+      
+        <tr>
+          <td class="bold">Mitglieder:</td>
           <td class="value">
             <ul>
-              <g:each var="m" in="${groupInstance.members}">
-                  <li><g:link controller="profile" action="showProfile" params="[name: m.name]">${m?.profile?.fullName?.encodeAsHTML()}</g:link></li>
-              </g:each>
+              <app:getGroup entity="${groupInstance}">
+                <g:each var="member" in="${members}">
+                    <li><g:link controller="profile" action="showProfile" params="[name: member.name]">${member.profile.fullName}</g:link></li>
+                </g:each>
+              </app:getGroup>
             </ul>
           </td>
         </tr>

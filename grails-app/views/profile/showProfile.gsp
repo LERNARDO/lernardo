@@ -31,7 +31,7 @@
   <g:elseif test="${entity.type.name == 'User'}">
     <tr><td class="bold titles bezeichnung">Titel:</td><td class="bezeichnung">${entity.profile.title ?: '<div class="italic">kein Titel eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
-    <tr><td class="bold titles bezeichnung">Gruppe(n):</td><td class="bezeichnung"><ul><g:each in="${groups}" var="group"><li><g:link controller="group" action="show" id="${group.id}" params="[name:entity.name]">${group.name}</g:link></g:each></ul></td></tr>
+    <tr><td class="bold titles bezeichnung">Gruppe(n):</td><td class="bezeichnung"><ul><g:each in="${groups}" var="group"><li><g:link controller="group" action="show" id="${group.id}" params="[name:entity.name]">${group.profile.fullName}</g:link></g:each></ul></td></tr>
     <tr><td class="bold titles bezeichnung">Geburtstag:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy" date="${entity.profile.birthDate}"/></td></tr>
     <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>

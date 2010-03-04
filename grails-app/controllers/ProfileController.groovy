@@ -367,13 +367,20 @@ class ProfileController {
       }
       def ret = horte.join(', ')
 
+      // find groups the entity belongs to
+      def links = Link.findAllBySourceAndType(e, metaDataService.ltGroup)
+
       def groups = []
-      Group.list().each {
+      links.each {
+        groups << it.target
+      }
+
+/*      Group.list().each {
         for (a in it.members) {
           if (a == Entity.findByName(params.name))
             groups << it
         }
-      }
+      }*/
 
       return [entity:e,
               horte:ret,
