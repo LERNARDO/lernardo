@@ -137,7 +137,7 @@ class ActivityController {
       }
       new Link(source: Entity.get(params.facility.toInteger()), target: entity, type: metaDataService.ltActFac).save()
       new Link(source: Entity.findByName(params.template), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltActCreator).save()
+      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 
 

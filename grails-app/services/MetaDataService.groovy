@@ -13,6 +13,7 @@ class MetaDataService {
   static final String EST_GROUP_FAMILY = "GroupFamily"
   static final String EST_GROUP_COLONY = "GroupColony"
   static final String EST_GROUP_NETWORK = "GroupNetwork"
+  static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_PAED = "Pädagoge"
@@ -26,6 +27,7 @@ class MetaDataService {
   static final String ET_GROUP_FAMILY = "Gruppe Familie"
   static final String ET_GROUP_COLONY = "Gruppe Siedlung"
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
+  static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
 
   static final String PRT_PERSON = "User"                // ProfileType
   static final String PRT_ORG = "Org"
@@ -37,6 +39,7 @@ class MetaDataService {
   static final String PRT_GROUP_FAMILY = "GroupFamily"
   static final String PRT_GROUP_COLONY = "GroupColony"
   static final String PRT_GROUP_NETWORK = "GroupNetwork"
+  static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -53,13 +56,14 @@ class MetaDataService {
   static final String LT_BOOKMARK = "Beobachtung"
   static final String LT_WORKING = "Arbeitet"
   static final String LT_GROUP = "Gruppe"
+  static final String LT_CREATOR = "Ersteller"
+  static final String LT_COMMENT = "Kommentar"
 
   // activity links
   static final String LT_ACT_PAED = "Pädagoge"
   static final String LT_ACT_CLIENT = "Betreuter"
   static final String LT_ACT_FAC = "Einrichtung"
   static final String LT_ACT_TEMPLATE = "Vorlage"
-  static final String LT_ACT_CREATOR = "Ersteller"
   static final String LT_ACT_RESOURCE = "Ressource"
 
   def initialize() {
@@ -71,6 +75,7 @@ class MetaDataService {
     getEstGroupFamily()
     getEstGroupColony()
     getEstGroupNetwork()
+    getEstCommentTemplate()
 
     getEtUser()
     getEtPaed()
@@ -84,6 +89,7 @@ class MetaDataService {
     getEtGroupFamily()
     getEtGroupColony()
     getEtGroupNetwork()
+    getEtCommentTemplate()
 
     getLstPersonal()
     getLstOther()
@@ -95,12 +101,13 @@ class MetaDataService {
     getLtBookmark()
     getLtWorking()
     getLtGroup()
+    getLtCreator()
+    getLtComment()
 
     getLtActPaed()
     getLtActClient()
     getLtActFac()
     getLtActTemplate()
-    getLtActCreator()
     getLtActResource()
 
     getUserRole()
@@ -109,27 +116,29 @@ class MetaDataService {
     getSuperUserRole()
   }
 
-  def getEstPerson()       {defaultObjectService.openEST (EST_PERSON, PRT_PERSON) }
-  def getEstOrg()          {defaultObjectService.openEST (EST_ORG, PRT_ORG) }
-  def getEstFac()          {defaultObjectService.openEST (EST_FAC, PRT_FAC) }
-  def getEstTemplate()     {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
-  def getEstActivity()     {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
-  def getEstGroupFamily()  {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
-  def getEstGroupColony()  {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
-  def getEstGroupNetwork() {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
+  def getEstPerson()          {defaultObjectService.openEST (EST_PERSON, PRT_PERSON) }
+  def getEstOrg()             {defaultObjectService.openEST (EST_ORG, PRT_ORG) }
+  def getEstFac()             {defaultObjectService.openEST (EST_FAC, PRT_FAC) }
+  def getEstTemplate()        {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
+  def getEstActivity()        {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
+  def getEstGroupFamily()     {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
+  def getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
+  def getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
+  def getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
 
-  def getEtUser()         {defaultObjectService.openET (ET_USER, estPerson) }
-  def getEtPaed()         {defaultObjectService.openET (ET_PAED, estPerson) }
-  def getEtClient()       {defaultObjectService.openET (ET_CLIENT, estPerson) }
-  def getEtOperator()     {defaultObjectService.openET (ET_OPERATOR, estOrg) }
-  def getEtHort()         {defaultObjectService.openET (ET_HORT, estFac) }
-  def getEtSchool()       {defaultObjectService.openET (ET_SCHOOL, estFac) }
-  def getEtSponsor()      {defaultObjectService.openET (ET_SPONSOR, estOrg) }
-  def getEtTemplate()     {defaultObjectService.openET (ET_TEMPLATE, estTemplate) }
-  def getEtActivity()     {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
-  def getEtGroupFamily()  {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
-  def getEtGroupColony()  {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
-  def getEtGroupNetwork() {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
+  def getEtUser()            {defaultObjectService.openET (ET_USER, estPerson) }
+  def getEtPaed()            {defaultObjectService.openET (ET_PAED, estPerson) }
+  def getEtClient()          {defaultObjectService.openET (ET_CLIENT, estPerson) }
+  def getEtOperator()        {defaultObjectService.openET (ET_OPERATOR, estOrg) }
+  def getEtHort()            {defaultObjectService.openET (ET_HORT, estFac) }
+  def getEtSchool()          {defaultObjectService.openET (ET_SCHOOL, estFac) }
+  def getEtSponsor()         {defaultObjectService.openET (ET_SPONSOR, estOrg) }
+  def getEtTemplate()        {defaultObjectService.openET (ET_TEMPLATE, estTemplate) }
+  def getEtActivity()        {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
+  def getEtGroupFamily()     {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
+  def getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
+  def getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
+  def getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
 
   def getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
   def getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
@@ -141,13 +150,14 @@ class MetaDataService {
   def getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
   def getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
   def getLtGroup()       {defaultObjectService.openLT (LT_GROUP, lstOther) }
+  def getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
+  def getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
 
   // activity links
   def getLtActPaed()     {defaultObjectService.openLT (LT_ACT_PAED, lstOther) }
   def getLtActClient()   {defaultObjectService.openLT (LT_ACT_CLIENT, lstOther) }
   def getLtActFac()      {defaultObjectService.openLT (LT_ACT_FAC, lstOther) }
   def getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
-  def getLtActCreator()  {defaultObjectService.openLT (LT_ACT_CREATOR, lstOther) }
   def getLtActResource() {defaultObjectService.openLT (LT_ACT_RESOURCE, lstOther) }
 
   def getUserRole()      {defaultObjectService.openRole (ROLE_USER, "regular user") }

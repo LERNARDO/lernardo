@@ -18,7 +18,7 @@ class AdmController {
 
     def overview = {
       List operatorList = Entity.findAllByType(metaDataService.etOperator)
-      List templatesList = ActivityTemplate.list()
+      List templatesList = Entity.findByType(metaDataService.etTemplate)
 
       return [operatorList: operatorList,
               templatesList: templatesList]
@@ -49,7 +49,7 @@ class AdmController {
     }
 
     def showTemplate = {
-      ActivityTemplate template = ActivityTemplate.findByName(params.name)
+      def template = Entity.findByName(params.name)
 
       return [template: template]
     }

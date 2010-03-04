@@ -61,23 +61,24 @@
         <g:else>
           <g:each in="${commentList}" var="comment">
           <div class="single-entry">
-            <div class="user-entry">
+            <div class="user-entry"><app:getCreator entity="${comment}">
               <div class="user-pic">
-                <g:link controller="profile" action="show" params="[name:comment.author.name]">
-                  <ub:profileImage name="${comment.author.name}" width="50" height="65" align="left"/>
+                <g:link controller="profile" action="show" params="[name:creator.name]">
+                  <ub:profileImage name="${creator.name}" width="50" height="65" align="left"/>
                 </g:link>
               </div>
               <div class="community-entry-infobar">
-                <div class="name"><g:link action="show" controller="profile" params="[name:comment.author.name]">${comment.author.profile.fullName}</g:link></div>
+                <div class="name"><g:link action="show" controller="profile" params="[name:creator.name]">${creator.profile.fullName}</g:link></div>
                 <div class="info">
-                  <div class="time"><g:formatDate format="dd. MMM. yyyy, HH:mm" date="${comment.dateCreated}"/></div>
-                  <ub:meOrAdmin entityName="${comment.author.name}">
-                    <div class="actions"><g:link controller="templateComment" action="delete" id="${comment.id}" params="[template:template.id]">löschen</g:link></div>
+                  <div class="time"><g:formatDate format="dd. MMM. yyyy, HH:mm" date="${comment.profile.dateCreated}"/></div>
+                  <ub:meOrAdmin entityName="${creator.name}">
+                    <div class="actions"><g:link controller="commentTemplate" action="delete" id="${comment.id}" params="[template:template.id]">löschen</g:link></div>
                   </ub:meOrAdmin>
                 </div>
               </div>
               <div class="clear"></div>
-              <div class="entry-content">${comment.content.decodeHTML()}</div>
+              <div class="entry-content">${comment.profile.content.decodeHTML()}</div>
+            </app:getCreator>
             </div>
           </div>
           </g:each>
@@ -85,7 +86,7 @@
 
         <app:isPaed entity="${entity}">
           <div class="comments-actions">
-            <g:remoteLink class="buttonBlue" controller="templateComment" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
+            <g:remoteLink class="buttonBlue" controller="commentTemplate" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
             <div class="spacer"></div>
           </div>
           <div id="createComment">

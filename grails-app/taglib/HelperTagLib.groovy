@@ -1,6 +1,5 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
-import posts.TemplateComment
 import posts.ArticlePost
 import java.text.SimpleDateFormat
 
@@ -53,7 +52,7 @@ class HelperTagLib {
   }
 
   def getCreator = {attrs, body ->
-    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActCreator)
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltCreator)
     if (link)
       out << body(creator: link.source)
     else

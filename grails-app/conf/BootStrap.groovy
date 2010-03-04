@@ -4,7 +4,6 @@ import de.uenterprise.ep.Link
 import profiles.UserProfile
 import profiles.FacProfile
 import posts.ArticlePost
-import posts.TemplateComment
 import profiles.OrgProfile
 import lernardo.Event
 import grails.util.GrailsUtil
@@ -30,6 +29,7 @@ class BootStrap {
       createDefaultFacilities()
       createDefaultLinks()
       createDefaultTemplates()
+      createDefaultComments()
 
       if (GrailsUtil.environment == "development") {
         createDefaultActivities()
@@ -430,6 +430,21 @@ class BootStrap {
 
   }
 
+  void createDefaultComments() {
+    log.debug ("==> creating default comments")
+
+    EntityType etCommentTemplate = metaDataService.etCommentTemplate
+
+    def entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile.fullName = "comment"
+      ent.profile.content = "Tolle Sache!"
+    }
+
+    new Link(source: entity, target: Entity.findByName('Weide mit Hindernissen'), type: metaDataService.ltComment).save()
+    new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltCreator).save()
+  }
+
   void createDefaultActivities() {
     log.debug ("==> creating default activities")
 
@@ -446,7 +461,7 @@ class BootStrap {
       new Link(source: Entity.findByName('keano'), target: entity, type: metaDataService.ltActClient).save()
       new Link(source: Entity.findByName('loewenzahn'), target: entity, type: metaDataService.ltActFac).save()
       new Link(source: Entity.findByName('Weide mit Hindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltActCreator).save()
+      new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 
   }

@@ -1,7 +1,6 @@
-import posts.TemplateComment
-
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
+import de.uenterprise.ep.Link
 
 class TemplateController {
   def entityHelperService
@@ -61,8 +60,15 @@ class TemplateController {
     def show = {
       def template = Entity.get(params.id)
 
+      def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
+
+      def commentList = []
+      links.each {
+        commentList << it.source
+      }
+
       return ['template': template,
-              'commentList': TemplateComment.findAllByEntity(template),
+              'commentList': commentList,
               'entity': entityHelperService.loggedIn]
     }
 

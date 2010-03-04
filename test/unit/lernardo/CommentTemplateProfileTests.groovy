@@ -1,6 +1,8 @@
+package lernardo
+
 import grails.test.*
 
-class TemplateCommentControllerTests extends ControllerUnitTestCase {
+class CommentTemplateProfileTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
