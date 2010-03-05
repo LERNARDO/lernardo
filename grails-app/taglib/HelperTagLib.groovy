@@ -113,8 +113,8 @@ class HelperTagLib {
     if (m > 0)
       out << "("+m+")"
   }
-  def getTemplateCommentsCount = {attrs ->
-    out << TemplateComment.countByTemplate(attrs.template)
+  def getTemplateCommentsCount = {attrs -> 
+    out << Link.CountByTargetAndType(attrs.template, metaDataService.ltComment)
   }
 
   def getRelationship = {attrs ->

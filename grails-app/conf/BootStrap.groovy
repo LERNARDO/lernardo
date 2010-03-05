@@ -13,7 +13,6 @@ import lernardo.Attendance
 class BootStrap {
   def defaultObjectService
   def entityHelperService
-  def calendarDataService
   def metaDataService
   def functionService
   def profileHelperService

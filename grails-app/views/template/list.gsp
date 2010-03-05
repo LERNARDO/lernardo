@@ -39,8 +39,7 @@
             <td class="col2">${templateInstance.profile.duration}</td>
             <td>${templateInstance.profile.socialForm}</td>
             %{--<td class="col4">${templateInstance.requiredPaeds}</td>--}%
-            %{--TODO: retrieve template comment count--}%
-            <td>%{--<app:getTemplateCommentsCount template="${templateInstance}"/>--}%</td>
+            <td><app:getTemplateCommentsCount template="${templateInstance}"/></td>
           </tr>
         </g:each>
         </tbody>
