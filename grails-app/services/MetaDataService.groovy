@@ -13,6 +13,7 @@ class MetaDataService {
   static final String EST_GROUP_FAMILY = "GroupFamily"
   static final String EST_GROUP_COLONY = "GroupColony"
   static final String EST_GROUP_NETWORK = "GroupNetwork"
+  static final String EST_GROUP_LEVEL = "GroupLevel"
   static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
   static final String EST_PATE = "Pate"
   static final String EST_PARTNER = "Partner"
@@ -29,6 +30,7 @@ class MetaDataService {
   static final String ET_GROUP_FAMILY = "Gruppe Familie"
   static final String ET_GROUP_COLONY = "Gruppe Siedlung"
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
+  static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
@@ -43,6 +45,7 @@ class MetaDataService {
   static final String PRT_GROUP_FAMILY = "GroupFamily"
   static final String PRT_GROUP_COLONY = "GroupColony"
   static final String PRT_GROUP_NETWORK = "GroupNetwork"
+  static final String PRT_GROUP_LEVEL = "GroupLevel"
   static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
   static final String PRT_PATE = "Pate"
   static final String PRT_PARTNER = "Partner"
@@ -83,6 +86,7 @@ class MetaDataService {
     getEstGroupFamily()
     getEstGroupColony()
     getEstGroupNetwork()
+    getEstGroupLevel()
     getEstCommentTemplate()
     getEstPate()
     getEstPartner()
@@ -99,6 +103,7 @@ class MetaDataService {
     getEtGroupFamily()
     getEtGroupColony()
     getEtGroupNetwork()
+    getEtGroupLevel()
     getEtCommentTemplate()
     getEtPate()
     getEtPartner()
@@ -138,6 +143,7 @@ class MetaDataService {
   def getEstGroupFamily()     {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
   def getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
   def getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
+  def getEstGroupLevel()      {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
   def getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
   def getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
   def getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
@@ -154,6 +160,7 @@ class MetaDataService {
   def getEtGroupFamily()     {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
   def getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
   def getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
+  def getEtGroupLevel()      {defaultObjectService.openET (ET_GROUP_LEVEL, estGroupLevel) }
   def getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
   def getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
   def getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }

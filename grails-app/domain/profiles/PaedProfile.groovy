@@ -40,9 +40,10 @@ class PaedProfile extends Profile {
    String nationality
    String contact
    String languages
+   String education
    String interests
    Date joinDate
    Date quitDate
    String function
-   String attendance*/
+   String employed*/
 }

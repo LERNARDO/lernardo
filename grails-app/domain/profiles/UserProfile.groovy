@@ -39,7 +39,7 @@ class UserProfile extends Profile {
    String nationality
    String familyStatus
    String qualification
+   Boolean doesWork
    String work
-   String languages
-   String attendance*/
+   String languages*/
 }

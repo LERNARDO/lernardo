@@ -43,21 +43,31 @@ class ClientProfile extends Profile {
     /*String firstName
     String lastName
     Date birthDate
+    String country
     Integer PLZ
     String city
     String street
+    String country2 // used for additional address
+    Integer PLZ2
+    String city2
+    String street2
     String nationality
     String languages
     Integer schoolLevel
+    Boolean dropout
+    String dropoutReason
     String notes
     String interests
     String personalDetails
     Date joinDate
     Date endDate
     Date rejoinDate
-    String equipment
+    Date endDate2
+    Date rejoinDate2
     String attendance
+    Boolean doesWork
     String work
-    Integer gender*/
+    Integer gender
+    Integer income*/
 
 }
