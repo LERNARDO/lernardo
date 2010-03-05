@@ -17,6 +17,7 @@ class MetaDataService {
   static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
   static final String EST_PATE = "Pate"
   static final String EST_PARTNER = "Partner"
+  static final String EST_RESOURCE = "Resource"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_PAED = "Pädagoge"
@@ -34,6 +35,7 @@ class MetaDataService {
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
+  static final String ET_RESOURCE = "Ressource"
 
   static final String PRT_PERSON = "User"                // ProfileType
   static final String PRT_ORG = "Org"
@@ -49,6 +51,7 @@ class MetaDataService {
   static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
   static final String PRT_PATE = "Pate"
   static final String PRT_PARTNER = "Partner"
+  static final String PRT_RESOURCE = "Resource"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -69,13 +72,13 @@ class MetaDataService {
   static final String LT_COMMENT = "Kommentar"
   static final String LT_PATE = "Pate"
   static final String LT_PARTNER = "Partner"
+  static final String LT_RESOURCE = "Ressource"
 
   // activity links
   static final String LT_ACT_PAED = "Pädagoge"
   static final String LT_ACT_CLIENT = "Betreuter"
   static final String LT_ACT_FAC = "Einrichtung"
   static final String LT_ACT_TEMPLATE = "Vorlage"
-  static final String LT_ACT_RESOURCE = "Ressource"
 
   def initialize() {
     getEstPerson()
@@ -90,6 +93,7 @@ class MetaDataService {
     getEstCommentTemplate()
     getEstPate()
     getEstPartner()
+    getEstResource()
 
     getEtUser()
     getEtPaed()
@@ -107,6 +111,7 @@ class MetaDataService {
     getEtCommentTemplate()
     getEtPate()
     getEtPartner()
+    getEtResource()
 
     getLstPersonal()
     getLstOther()
@@ -122,12 +127,12 @@ class MetaDataService {
     getLtComment()
     getLtPate()
     getLtPartner()
+    getLtResource()
 
     getLtActPaed()
     getLtActClient()
     getLtActFac()
     getLtActTemplate()
-    getLtActResource()
 
     getUserRole()
     getModRole()
@@ -147,6 +152,7 @@ class MetaDataService {
   def getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
   def getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
   def getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
+  def getEstResource()        {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
 
   def getEtUser()            {defaultObjectService.openET (ET_USER, estPerson) }
   def getEtPaed()            {defaultObjectService.openET (ET_PAED, estPerson) }
@@ -164,6 +170,7 @@ class MetaDataService {
   def getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
   def getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
   def getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
+  def getEtResource()        {defaultObjectService.openET (ET_RESOURCE, estResource) }
 
   def getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
   def getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
@@ -179,13 +186,13 @@ class MetaDataService {
   def getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
   def getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
   def getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
+  def getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
 
   // activity links
   def getLtActPaed()     {defaultObjectService.openLT (LT_ACT_PAED, lstOther) }
   def getLtActClient()   {defaultObjectService.openLT (LT_ACT_CLIENT, lstOther) }
   def getLtActFac()      {defaultObjectService.openLT (LT_ACT_FAC, lstOther) }
   def getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
-  def getLtActResource() {defaultObjectService.openLT (LT_ACT_RESOURCE, lstOther) }
 
   def getUserRole()      {defaultObjectService.openRole (ROLE_USER, "regular user") }
   def getModRole()       {defaultObjectService.openRole (ROLE_MOD, "moderator") }
