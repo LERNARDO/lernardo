@@ -1,14 +1,33 @@
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
-import profiles.UserProfile
-import profiles.FacProfile
-import posts.ArticlePost
-import profiles.OrgProfile
-import grails.util.GrailsUtil
+
+import groups.GroupColonyProfile
+import groups.GroupFamilyProfile
+import groups.GroupLevelProfile
+import groups.GroupNetworkProfile
+
 import lernardo.Helper
 import lernardo.Evaluation
 import lernardo.Attendance
+import lernardo.ActivityProfile
+import lernardo.TemplateProfile
+import lernardo.CommentTemplateProfile
+import lernardo.Event
+import lernardo.Msg
+import lernardo.Post
+
+import posts.ArticlePost
+
+import profiles.ClientProfile
+import profiles.UserProfile
+import profiles.FacProfile
+import profiles.OrgProfile
+import profiles.PaedProfile
+import profiles.PartnerProfile
+import profiles.PateProfile
+
+import grails.util.GrailsUtil
 
 class BootStrap {
   def defaultObjectService
@@ -64,8 +83,6 @@ class BootStrap {
       prf.tel = "-"
       prf.biography = "-"
     }
-
-
 
     // mod users
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
@@ -357,6 +374,7 @@ class BootStrap {
 
   void createDefaultLinks () {
     log.debug ("==> creating default links")
+    
     def mike = Entity.findByName ('mike')
     def alex = Entity.findByName ('alex')
     def patrizia = Entity.findByName ('patrizia')

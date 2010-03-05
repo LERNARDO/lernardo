@@ -17,11 +17,8 @@ class AdmController {
     }
 
     def overview = {
-      List operatorList = Entity.findAllByType(metaDataService.etOperator)
-      List templatesList = Entity.findByType(metaDataService.etTemplate)
-
-      return [operatorList: operatorList,
-              templatesList: templatesList]
+      return ['operatorList': Entity.findAllByType(metaDataService.etOperator),
+              'templatesList': Entity.findAllByType(metaDataService.etTemplate)]
     }
 
     def showFacility = {

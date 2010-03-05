@@ -14,7 +14,7 @@ class GroupController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ groupInstanceList: Entity.findAllByType(metaDataService.etGroup), groupInstanceTotal: Entity.countByType(metaDataService.etGroup) ]
+        [ groupInstanceList: Entity.findAllByType(metaDataService.etGroupFamily), groupInstanceTotal: Entity.countByType(metaDataService.etGroupFamily) ]
     }
 
     def show = {
@@ -91,13 +91,13 @@ class GroupController {
     }
 
     def create = {
-        def groupInstance = new Entity()
-        groupInstance.properties = params
-        return ['groupInstance':groupInstance]
+        //def groupInstance = new Entity()
+        //groupInstance.properties = params
+        //return ['groupInstance':groupInstance]
     }
 
     def save = {
-        def groupInstance = new Entity(params)
+        /*def groupInstance = new Entity(params)
         if(groupInstance.save(flush:true)) {
             flash.message = "Group ${groupInstance.id} created"
 
@@ -105,6 +105,6 @@ class GroupController {
         }
         else {
             render view:'create', model:[groupInstance:groupInstance]
-        }
+        }*/
     }
 }
