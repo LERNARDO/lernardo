@@ -2,7 +2,7 @@ package groups
 
 import de.uenterprise.ep.Profile
 
-class GroupLevelProfile {
+class GroupLevelProfile extends Profile {
 
   Integer schoolLevel
 

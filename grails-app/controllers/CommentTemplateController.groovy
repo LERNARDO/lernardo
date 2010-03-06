@@ -43,7 +43,7 @@ class CommentTemplateController {
     new Link(source: entity, target: Entity.get(params.id), type: metaDataService.ltComment).save()
     new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
 
-    flash.message = message(code:"comment.created", args:[comment.template.name])
+    flash.message = message(code:"comment.created", args:[entity.profile.fullName])
 
     functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+Entity.get(params.id).profile.fullName+'" kommentiert.')
     List receiver = Entity.findAllByType(metaDataService.etPaed)

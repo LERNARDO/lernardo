@@ -148,9 +148,9 @@ class ProfileController {
     }
 
     def createHort = {
-      def entityInstance = new Entity()
+      //def entityInstance = new Entity()
       //entityInstance.properties = params
-      return ['entityInstance':entityInstance,
+      return [/*'entityInstance':entityInstance,*/
               'entity':Entity.findByName(params.name),
               'availOperators': Entity.findAllByType(metaDataService.etOperator)]
     }
@@ -195,9 +195,9 @@ class ProfileController {
     }
 
     def createSchool = {
-      def entityInstance = new Entity()
+      //def entityInstance = new Entity()
       //entityInstance.properties = params
-      return ['entityInstance':entityInstance,'entity':Entity.findByName(params.name)]
+      return [/*'entityInstance':entityInstance,*/'entity':Entity.findByName(params.name)]
     }
 
     def saveSchool = {
@@ -233,9 +233,9 @@ class ProfileController {
     }
 
     def createPaed = {
-      def entityInstance = new Entity()
+      //def entityInstance = new Entity()
       //entityInstance.properties = params
-      return ['entityInstance':entityInstance,
+      return [/*'entityInstance':entityInstance,*/
               'entity':entityHelperService.loggedIn,
               'availFacilities': Entity.findAllByType(metaDataService.etHort)]
     }
@@ -277,10 +277,10 @@ class ProfileController {
     }
 
     def createClient = {
-      def entityInstance = new Entity()
+      //def entityInstance = new Entity()
       //entityInstance.properties = params
-      entityInstance.name = ""
-      return ['entityInstance':entityInstance,
+      //entityInstance.name = ""
+      return [/*'entityInstance':entityInstance,*/
               'entity':Entity.findByName(params.name),
               'availFacilities': Entity.findAllByType(metaDataService.etHort)]
     }
@@ -417,17 +417,20 @@ class ProfileController {
         }
       }
   
-      return [entity:e,'activityList':activityList,'activityCount':activityList.size()]
+      return ['entity':e,
+              'activityList':activityList,
+              'activityCount':activityList.size()]
     }
 
     def showLeistung = {
       Entity e = Entity.findByName(params.name)
-      return [entity:e]
+      return ['entity':e]
     }
 
     def showLocation = { // broken?
       Entity e = Entity.findByName(params.name)
-      return [entity:e,location:geoCoderService.geocodeLocation(e.profile.city)]
+      return ['entity':e,
+              'location':geoCoderService.geocodeLocation(e.profile.city)]
     }
 
     def print = {
