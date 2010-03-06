@@ -37,7 +37,7 @@ class CommentTemplateController {
     def entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "comment"
-      ent.profile.content = "Tolle Sache!"
+      ent.profile.content = params.content
     }
 
     new Link(source: entity, target: Entity.get(params.id), type: metaDataService.ltComment).save()

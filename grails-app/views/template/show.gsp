@@ -84,6 +84,7 @@
           </g:each>
         </g:else>
 
+        %{--TODO: figure out why this suddenly doesn't work anymore--}%
         <app:isPaed entity="${entity}">
           <div class="comments-actions">
             <g:remoteLink class="buttonBlue" controller="commentTemplate" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>

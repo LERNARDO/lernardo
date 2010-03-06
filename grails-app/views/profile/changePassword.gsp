@@ -25,7 +25,7 @@
         <tr>
           <td>
             <g:submitButton name="checkPassword" value="Speichern" />
-            <span class="nav-button"><g:link action="showProfile" params="[name:entity?.name]">zurück</g:link></span>
+            <g:link class="buttonGray" action="showProfile" params="[name:entity?.name]">zurück</g:link>
           </td>
           <td>&nbsp;</td>
         </tr>

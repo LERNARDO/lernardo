@@ -1,10 +1,9 @@
 <g:form action="save" method="post" id="${template_id}">
   <div class="dialog">
 
-    <div class="value ${hasErrors(bean: postInstance, field: 'content', 'errors')}">
+    <div class="value">
       <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
-      <fckeditor:editor name="content" id="content" width="570" height="200" toolbar="Post" fileBrowser="default">
-        ${postInstance.content}
+      <fckeditor:editor name="content" id="content" width="570" height="200" toolbar="Post" fileBrowser="default">  
       </fckeditor:editor>
     </div>
 

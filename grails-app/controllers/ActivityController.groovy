@@ -168,7 +168,7 @@ class ActivityController {
           clientMap[it.id] = it.profile.fullName
         }
 
-        return ['activityInstance': activity,
+        return ['activity': activity,
                 'availFacilities': facilityMap,
                 'availPaeds': paedMap,
                 'availClients': clientMap,

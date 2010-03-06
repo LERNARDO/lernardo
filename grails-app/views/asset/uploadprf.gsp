@@ -14,6 +14,7 @@
       <p>Zur optimalen Darstellung ist ein Bildformat von 180 x 233 px empfehlenswert.</p>
 
       <g:submitButton name="submit" value="Ändern"/>
+      <g:link class="buttonGray" controller="profile" action="showProfile">Abbrechen</g:link>
       <div class="spacer"></div>
    
     </g:uploadForm>
