@@ -1,5 +1,5 @@
 security {
-  log.debug ("==> Application Security config start")
+  //log.debug ("==> Application Security config start")
   // see DefaultSecurityConfig.groovy for all settable/overridable properties
   active = true
   cacheUsers = false
