@@ -238,7 +238,7 @@ ul {
 .profile-box {
     -moz-border-radius: 5px;
     /*background-color: #dfdfdf;*/
-    background: -moz-linear-gradient(-90deg,#dfdfdf,#cdcdcd);
+    background: -moz-linear-gradient(-90deg,#dfdfdf,#cdcdcd) #dfdfdf;
     border: 1px solid #ccc;
     padding: 5px;
     -moz-box-shadow: #888 2px 2px 4px; }
@@ -578,7 +578,7 @@ table .label {
     padding: 0; /*px 10px 10px 10px;*/
     /*background: #f0f0f0;*/ }
     #body-list table {
-        border: 1px solid #CCC;
+        border: 1px solid #bbb;
         width: 100%; }
         #body-list table tr a {
             color: #333;
@@ -599,17 +599,17 @@ table .label {
     #body-list .list th, .list td {
         border-left: 1px solid #ddd; }
     #body-list th {
-        background: #FFF url(../images/skin/shadow.jpg) repeat scroll 0 0;
-        color: #666;
+        background: #Fd4 /*url(../images/skin/shadow.jpg) repeat scroll 0 0*/;
+        color: #333;
         font-size: 11px;
+        text-transform: uppercase;
         font-weight: bold;
         line-height: 17px;
-        padding: 2px 6px;
-        border-left: 1px solid #DDD; }
+        padding: 2px 6px; }
         #body-list th a:link, #body-list th a:visited, #body-list th a:hover {
             color: #333;
             display: block;
-            font-size: 10px;
+            font-size: 11px;
             text-decoration: none;
             width: 100%; }
         #body-list th.asc a, th.desc a {
@@ -620,7 +620,10 @@ table .label {
         #body-list th.desc a {
             background-image: url(../images/skin/sorted_desc.gif); }
     #body-list tr {
-        font-size: 11px; }
+        font-size: 11px;
+            border: 1px solid #bbb;}
+    #body-list .odd {
+        background: #eef; }
     #body-list #select-box {
         margin-bottom: 10px; }
     #body-list a:link, #body-list a:visited {

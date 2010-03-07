@@ -19,7 +19,7 @@
           <li class="profile-template"><g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
         </app:isPaed>
       </div>
-      <p>${templateCount} Aktivitätsvorlagen gefunden</p>
+      <p>${templateCount} Aktivitätsvorlage(n) gefunden</p>
 
       <table>
         <thead>
@@ -45,9 +45,11 @@
         </tbody>
       </table>
 
-      <div class="paginateButtons">
-        <g:paginate action="list" total="${templateCount}" />
-      </div>
+      <g:if test="${templateCount > 15}">
+        <div class="paginateButtons">
+          <g:paginate action="list" total="${templateCount}" />
+        </div>
+      </g:if>
 
     </div>
       </div>

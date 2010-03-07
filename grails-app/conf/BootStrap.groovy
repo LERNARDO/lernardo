@@ -46,6 +46,7 @@ class BootStrap {
       createDefaultLinks()
       createDefaultTemplates()
       createDefaultComments()
+      createDefaultResources()
 
       if (GrailsUtil.environment == "development") {
         createDefaultActivities()
@@ -460,6 +461,19 @@ class BootStrap {
 
     new Link(source: entity, target: Entity.findByName('Weide mit Hindernissen'), type: metaDataService.ltComment).save()
     new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltCreator).save()
+  }
+
+  void createDefaultResources() {
+    log.debug ("==> creating default resources")
+
+    EntityType etResource = metaDataService.etResource
+
+    def entity = entityHelperService.createEntity("Klavier", etResource) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile.fullName = "Klavier"
+      ent.profile.description = "Ein echtes Bechstein Klavier!"
+    }
+
   }
 
   void createDefaultActivities() {

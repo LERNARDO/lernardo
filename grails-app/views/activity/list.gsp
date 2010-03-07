@@ -55,9 +55,11 @@
           </tbody>
         </table>
 
-        <div class="paginateButtons">
-          <g:paginate action="list" total="${activityCount}" />
-        </div>
+        <g:if test="${activityCount > 10}">
+          <div class="paginateButtons">
+            <g:paginate action="list" total="${activityCount}" />
+          </div>
+        </g:if>
 
       </div>
     </div>
