@@ -9,7 +9,6 @@
       <h1>Aktivitätsvorlage</h1>
     </div>
     <div class="boxGray">
-      <div class="profile-box">
         <table width="100%">
           <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.profile.fullName}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Primäre Zuordnung:</td><td class="bezeichnung">${template.profile.attribution}</td></tr>
@@ -38,7 +37,6 @@
           <% template.profile.tlt.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.tlt.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
             </td></tr>
         </table>
-      </div>
 
       <app:isPaed entity="${entity}">
           <g:link class="buttonBlue" action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>

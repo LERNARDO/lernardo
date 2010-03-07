@@ -110,19 +110,29 @@ class TemplateController {
 
       flash.message = message(code:"template.created", args:[params.name])
 
-      functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+entity.profile.fullName+'" angelegt.')
+      // TODO: figure out why it doesn't find the entity that is created a few lines above
+/*      functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etPaed)
       receiver.each {
         if (it != entityHelperService.loggedIn)
           functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
-      }
+      }*/
 
-      redirect action:'show', id:entity.id
+      redirect action:'list' //action:'show', id:entity.id
     }
 
     def del = {
       def template = Entity.get(params.id)
       if(template) {
+          def links = Link.findAllBySourceOrTarget(template, template)
+          if (links) {
+            List commentsToDelete = []
+            links.each {
+              commentsToDelete << it.source
+              it.delete()
+            }
+            commentsToDelete.each {it.delete()}
+          }
           try {
               flash.message = message(code:"template.deleted", args:[template.profile.fullName])
               template.delete(flush:true)
