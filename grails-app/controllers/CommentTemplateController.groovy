@@ -28,7 +28,7 @@ class CommentTemplateController {
   }
 
   def create = {
-    return ['template_id': params.id]
+    render template: 'create', model: ['template_id': params.id]
   }
 
   def save = {
