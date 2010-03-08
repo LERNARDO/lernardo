@@ -55,17 +55,16 @@
                 </td>
             </tr>
 
-            %{--TODO: add a multiple selection box for material resources--}%
-            %{--<tr class="prop">
+            <tr class="prop">
                 <td valign="top" class="name">
                     <label for="materials">
-                      <g:message code="msg.materials.label" default="Materialien" />:
+                      <g:message code="msg.materials.label" default="Ressourcen" />:
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:templateInstance,field:'materials','errors')}">
-                    <input type="text" size="70" id="materials" name="materials" value="${fieldValue(bean:templateInstance,field:'materials')}"/>
+                <td valign="top" class="value">
+                    <g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="materials"/>
                 </td>
-            </tr>--}%
+            </tr>
 
             <tr class="prop">
                 <td valign="top" class="name">

@@ -18,7 +18,7 @@
                                <g:message code="resourceProfile.fullName.label" default="Name" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:resourceProfileInstance, field:'profile.fullName')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:resource, field:'profile.fullName')}</td>
                             
                         </tr>
                     
@@ -27,7 +27,7 @@
                                <g:message code="resourceProfile.description.label" default="Beschreibung" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:resourceProfileInstance, field:'profile.description')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:resource, field:'profile.description')}</td>
                             
                         </tr>
                     
@@ -35,8 +35,8 @@
                 </table>
             </div>
             <div class="buttons">
-              <g:link class="buttonBlue" action="edit" id="${resourceProfileInstance?.id}">Bearbeiten</g:link>
-              <g:link class="buttonGray" action="del" id="${resourceProfileInstance?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+              <g:link class="buttonBlue" action="edit" id="${resource?.id}">Bearbeiten</g:link>
+              <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
               <g:link class="buttonGray" action="list">Zurück</g:link>
               <div class="spacer"></div>
             </div>

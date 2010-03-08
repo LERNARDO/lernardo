@@ -468,7 +468,7 @@ class BootStrap {
 
     EntityType etResource = metaDataService.etResource
 
-    def entity = entityHelperService.createEntity("Klavier", etResource) {Entity ent ->
+    def entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"

@@ -8,8 +8,8 @@
   </div>
   <div class="boxGray">
     <div class="body">
-      <p>${resourceProfileInstanceTotal} Ressource(n) insgesamt vorhanden</p>
-      <g:if test="${resourceProfileInstanceTotal > 0}">
+      <p>${resourceTotal} Ressource(n) insgesamt vorhanden</p>
+      <g:if test="${resourceTotal > 0}">
         <div id="body-list">
           <table>
             <thead>
@@ -19,19 +19,19 @@
               </tr>
             </thead>
             <tbody>
-            <g:each in="${resourceProfileInstanceList}" status="i" var="resourceProfileInstance">
+            <g:each in="${resourceList}" status="i" var="resource">
               <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                <td><g:link action="show" id="${resourceProfileInstance.id}">${fieldValue(bean:resourceProfileInstance, field:'profile.fullName')}</g:link></td>
-                <td>${fieldValue(bean:resourceProfileInstance, field:'profile.description')}</td>
+                <td><g:link action="show" id="${resource.id}">${fieldValue(bean:resource, field:'profile.fullName')}</g:link></td>
+                <td>${fieldValue(bean:resource, field:'profile.description')}</td>
               </tr>
             </g:each>
             </tbody>
           </table>
         </div>
 
-        <g:if test="${resourceProfileInstanceTotal > 20}">
+        <g:if test="${resourceTotal > 20}">
           <div class="paginateButtons">
-            <g:paginate total="${resourceProfileInstanceTotal}" />
+            <g:paginate total="${resourceTotal}" />
           </div>
         </g:if>
       </g:if>

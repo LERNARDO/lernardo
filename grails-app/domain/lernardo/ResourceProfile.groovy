@@ -7,6 +7,12 @@ class ResourceProfile extends Profile {
   String description
 
   static constraints = {
-    description (maxSize: 2000)
+    fullName (blank: false)
+    description (blank: false, maxSize: 2000)
   }
+
+  String toString(){
+    return "${fullName}"
+  }
+
 }

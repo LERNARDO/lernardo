@@ -53,16 +53,16 @@
                                 </td>
                             </tr>
 
-%{--                            <tr class="prop">
+                            <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="materials">
-                                      <g:message code="template.street.label" default="Materialien" />:
+                                      <g:message code="msg.materials.label" default="Ressourcen" />:
                                     </label>
                                 </td>
                                 <td valign="top" class="value">
-                                    <input type="text" size="40" id="materials" name="materials" value="${fieldValue(bean:template,field:'profile.materials')}"/>
+                                    <g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="materials"/>
                                 </td>
-                            </tr>--}%
+                            </tr>
 
                             <tr class="prop">
                                 <td valign="top" class="name">

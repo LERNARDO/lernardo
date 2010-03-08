@@ -13,7 +13,13 @@
           <tr class="separator"><td class="bold titles2 bezeichnung">Name:</td><td class="bezeichnung">${template.profile.fullName}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Primäre Zuordnung:</td><td class="bezeichnung">${template.profile.attribution}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Beschreibung:</td><td class="bezeichnung">${template.profile.description.decodeHTML()}</td></tr>
-          %{--<tr class="separator"><td class="bold titles2 bezeichnung">Materialien:</td><td class="bezeichnung">${template.materials}</td></tr>--}%
+          <tr class="separator"><td class="bold titles2 bezeichnung">Ressourcen:</td><td class="bezeichnung"><app:getResources entity="${template}">
+            <ul>
+              <g:each in="${resources}" var="resource">
+                <li><g:link controller="resourceProfile" action="show" id="${resource.id}">${resource.profile.fullName}</g:link></li>
+              </g:each>
+            </ul>
+          </app:getResources></td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.profile.duration} Minuten</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.profile.socialForm}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.profile.requiredPaeds}</td></tr>

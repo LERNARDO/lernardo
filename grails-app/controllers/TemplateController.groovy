@@ -1,6 +1,7 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
+import lernardo.ResourceProfile
 
 class TemplateController {
   def entityHelperService
@@ -25,27 +26,32 @@ class TemplateController {
       def template = Entity.get(params.id)
 
       return ['template': template,
-              'entity': entityHelperService.loggedIn]
+              'entity': entityHelperService.loggedIn,
+              'resources': Entity.findAllByType(metaDataService.etResource)]
     }
 
     def update = {
-      // TODO: figure out why updating doesn't seem to work
       def template = Entity.get(params.id)
 
-      //template.properties = params
-      template.profile.fullName = params.name
-      template.profile.attribution = params.attribution
-      template.profile.description = params.description
-      template.profile.duration = params.duration.toInteger()
-      template.profile.socialForm = params.socialForm
-      template.profile.requiredPaeds = params.requiredPaeds.toInteger()
-      template.profile.qualifications = params.qualifications
-      template.profile.ll = params.ll.toInteger()
-      template.profile.be = params.be.toInteger()
-      template.profile.pk = params.pk.toInteger()
-      template.profile.si = params.si.toInteger()
-      template.profile.hk = params.hk.toInteger()
-      template.profile.tlt = params.tlt.toInteger()
+      template.profile.properties = params
+
+      // delete old links
+      Link.findAllByTargetAndType(template, metaDataService.ltResource).each {
+        log.info "link deleted: "+it
+        it.delete()}
+
+      // create new links
+      if (params.materials) {
+        def materials = params.materials
+        if (materials.class.isArray()) {
+          materials.each {
+            new Link(source: Entity.get(it), target: template, type: metaDataService.ltResource).save()
+          }
+        }
+        else {
+          def a = new Link(source: Entity.get(materials), target: template, type: metaDataService.ltResource).save()
+        }
+      }
 
       if(!template.hasErrors() && template.save()) {
           flash.message = message(code:"template.updated", args:[template.profile.fullName])
@@ -73,7 +79,8 @@ class TemplateController {
     }
 
     def create = {
-      return ['entity': entityHelperService.loggedIn]
+      return ['entity': entityHelperService.loggedIn,
+              'resources': Entity.findAllByType(metaDataService.etResource)]
     }
 
     def save = {
@@ -103,22 +110,38 @@ class TemplateController {
           ent.profile.hk = params.hk.toInteger()
           ent.profile.tlt = params.tlt.toInteger()
         }
+
+        // create new links
+        if (params.materials) {
+          def materials = params.materials
+          if (materials.class.isArray()) {
+            materials.each {
+              log.info Entity.get(it)
+              new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
+            }
+          }
+          else {
+            log.info Entity.get(materials)
+            new Link(source: Entity.get(materials), target: entity, type: metaDataService.ltResource).save()
+          }
+        }
+
+        flash.message = message(code:"template.created", args:[params.name])
+
+        functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
+        List receiver = Entity.findAllByType(metaDataService.etPaed)
+        receiver.each {
+          if (it != entityHelperService.loggedIn)
+            functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
+        }
+
+        redirect action:'show', id:entity.id
+
       } catch (de.uenterprise.ep.EntityException ee) {
         render (view:"create", model:[template:ee.entity, entity: entityHelperService.loggedIn])
         return
       }
 
-      flash.message = message(code:"template.created", args:[params.name])
-
-      // TODO: figure out why it doesn't find the entity that is created a few lines above
-/*      functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etPaed)
-      receiver.each {
-        if (it != entityHelperService.loggedIn)
-          functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
-      }*/
-
-      redirect action:'list' //action:'show', id:entity.id
     }
 
     def del = {

@@ -11,6 +11,14 @@ class HelperTagLib {
   def secHelperService
   static namespace = "app"
 
+  def getResources = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltResource)
+    if (link)
+      link.each {out << body(resources: it.source)}
+    else
+      out << '<span class="italic">Keine Ressourcen zugewiesen</span>'
+  }
+
   def getGroup = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroup)
     if (link)
