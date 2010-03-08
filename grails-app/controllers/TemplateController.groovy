@@ -49,7 +49,7 @@ class TemplateController {
           }
         }
         else {
-          def a = new Link(source: Entity.get(materials), target: template, type: metaDataService.ltResource).save()
+          new Link(source: Entity.get(materials), target: template, type: metaDataService.ltResource).save()
         }
       }
 
@@ -85,21 +85,23 @@ class TemplateController {
 
     def save = {
 
-      if (Entity.findByName(params.name)) {
-        flash.message = message(code:"template.exist", args:[params.name])
-        redirect action:"create", params:params
-        return
+      if (params.name) {
+        if (Entity.findByName(params.name)) {
+          flash.message = message(code:"template.exist", args:[params.name])
+          redirect action:"create", params:params
+          return
+        }
       }
 
       EntityType etTemplate = metaDataService.etTemplate
 
       try {
-        def entity = entityHelperService.createEntity(params.name, etTemplate) {Entity ent ->
+        def entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
-          ent.profile.fullName = params.name
+          ent.profile.fullName = params.fullName
           ent.profile.attribution = params.attribution
           ent.profile.description = params.description
-          ent.profile.duration = params.duration.toInteger()
+          ent.profile.duration = params.duration ? params.duration.toInteger() : 0
           ent.profile.socialForm = params.socialForm
           ent.profile.requiredPaeds = params.requiredPaeds.toInteger()
           ent.profile.qualifications = params.qualifications
@@ -126,7 +128,7 @@ class TemplateController {
           }
         }
 
-        flash.message = message(code:"template.created", args:[params.name])
+        flash.message = message(code:"template.created", args:[entity.profile.fullName])
 
         functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
         List receiver = Entity.findAllByType(metaDataService.etPaed)
@@ -138,7 +140,7 @@ class TemplateController {
         redirect action:'show', id:entity.id
 
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[template:ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[template: ee.entity, entity: entityHelperService.loggedIn])
         return
       }
 

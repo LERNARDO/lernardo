@@ -10,5 +10,7 @@ class ActivityProfile extends Profile {
   Date dateCreated
   Date lastUpdated
 
-  static constraints = {}
+  static constraints = {
+    fullName (blank: false)
+  }
 }

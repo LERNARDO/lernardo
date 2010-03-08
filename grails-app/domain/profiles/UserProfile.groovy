@@ -29,6 +29,10 @@ class UserProfile extends Profile {
         biography(nullable:true,maxSize:3000)
     }
 
+    String toString(){
+      return "${fullName}"
+    }
+
    /*String firstName
    String lastName
    Date birthDate

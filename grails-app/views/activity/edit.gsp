@@ -44,24 +44,24 @@
               <tr>
                 <td class="label">Einrichtung:</td>
                 <td class="value ${hasErrors(bean:activity,field:'facility','errors')}">
-                  <g:select name="facility" from="${availFacilities}" optionKey="key" optionValue="value"/>
+                  <g:select name="facility" from="${availFacilities}" optionKey="id" optionValue="profile"/>
                 </td>
               </tr>
 
-              %{--TODO: highlight currently selected paeds and figure out why it only works with at least 2 paeds selected--}%
+              %{--TODO: highlight currently selected paeds--}%
               <tr>
                 <td class="label">Pädagogen:</td>
                 <td class="value ${hasErrors(bean:activity,field:'paeds','errors')}">
-                  <g:select multiple="true" optionKey="key" optionValue="value" from="${availPaeds}" name="paeds"/>
+                  <g:select multiple="true" optionKey="id" optionValue="profile" from="${availPaeds}" name="paeds"/>
                   <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere PädagogInnen ausgewählt werden</p>
                 </td>
               </tr>
 
-              %{--TODO: highlight currently selected clients and figure out why it only works with at least 2 clients selected--}%
+              %{--TODO: highlight currently selected clients--}%
               <tr>
                 <td class="label">Betreute:</td>
                 <td class="value ${hasErrors(bean:activity,field:'clients','errors')}">
-                  <g:select multiple="true" optionKey="key" optionValue="value" from="${availClients}" name="clients"/>
+                  <g:select multiple="true" optionKey="id" optionValue="profile" from="${availClients}" name="clients"/>
                   <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere Betreute ausgewählt werden</p>
                 </td>
               </tr>

@@ -7,7 +7,7 @@
 
   <g:if test="${entity.profile.showTips}">
       <div class="toolTip">
-        <img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/><span class="strong">Tipp:</span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in deinen Horten.
+        <img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/><span class="strong">Tipp:</span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in deinen Horten.
       </div>
     </g:if>
 

@@ -29,6 +29,10 @@ class PaedProfile extends Profile {
         training(nullable:true)
     }
 
+    String toString(){
+      return "${fullName}"
+    }
+
    /*String title
    String firstName
    String lastName

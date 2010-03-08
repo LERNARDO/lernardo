@@ -21,6 +21,7 @@ class TemplateProfile extends Profile {
   Date lastUpdated
 
   static constraints = {
-    description(maxSize: 5000)
+    fullName (blank: false)
+    description (blank: false, maxSize: 5000)
   }
 }

@@ -41,25 +41,40 @@ class ProfileController {
       if (params.glossary == "Alle") {
         def c = Entity.createCriteria()
         users = c.list {
+          ne("type", metaDataService.etCommentTemplate)
+          ne("type", metaDataService.etActivity)
+          ne("type", metaDataService.etTemplate)
+          ne("type", metaDataService.etResource)
+          ne("type", metaDataService.etGroupColony)
+          ne("type", metaDataService.etGroupFamily)
+          ne("type", metaDataService.etGroupLevel)
+          ne("type", metaDataService.etGroupNetwork)
           profile {
             order("fullName", "asc")
           }
-          maxResults (params.max)
-          firstResult(params.offset)
         }
-        numUsers = Entity.count()
+        numUsers = users.size()
+        def upperBound = params.offset + 6 < users.size() ? params.offset + 6 : users.size()
+        users = users.subList(params.offset,upperBound)
       }
       else {
         log.debug ("start glossary for " + params.glossary)
         def c = Entity.createCriteria()
         users = c.list {
+          ne("type", metaDataService.etCommentTemplate)
+          ne("type", metaDataService.etActivity)
+          ne("type", metaDataService.etTemplate)
+          ne("type", metaDataService.etResource)
+          ne("type", metaDataService.etGroupColony)
+          ne("type", metaDataService.etGroupFamily)
+          ne("type", metaDataService.etGroupLevel)
+          ne("type", metaDataService.etGroupNetwork)
           profile {
-            ilike('fullName',params.glossary+"%")
+            ilike("fullName",params.glossary+"%")
             order("fullName", "asc")
           }
           cacheable(true)
         }
-        log.debug ("found {} glossary entries " + users.size())
         numUsers = users.size()
         def upperBound = params.offset + 6 < users.size() ? params.offset + 6 : users.size()
         users = users.subList(params.offset,upperBound)

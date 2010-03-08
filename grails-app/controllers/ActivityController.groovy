@@ -90,28 +90,15 @@ class ActivityController {
       def template = Entity.get(params.id)
 
       // get a list of facilities the current entity is working in
-      List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-      Map facilityMap = [:]
-      facilities.each {
-        facilityMap[it.target.id] = it.target.profile.fullName
-      }
-
-      List paeds = Entity.findAllByType(metaDataService.etPaed)
-      Map paedMap = [:]
-      paeds.each {
-        paedMap[it.id] = it.profile.fullName
-      }
-
-      List clients = Entity.findAllByType(metaDataService.etClient)
-      Map clientMap = [:]
-      clients.each {
-        clientMap[it.id] = it.profile.fullName
-      }
+      def facilities = []
+      Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      def paeds = Entity.findAllByType(metaDataService.etPaed)
+      def clients = Entity.findAllByType(metaDataService.etClient)
 
       return ['template': template,
-              'availFacilities': facilityMap,
-              'availPaeds': paedMap,
-              'availClients': clientMap,
+              'availFacilities': facilities,
+              'availPaeds': paeds,
+              'availClients': clients,
               'entity': entityHelperService.loggedIn
               ]
     }
@@ -119,59 +106,84 @@ class ActivityController {
     def save = {
       EntityType etActivity = metaDataService.etActivity
 
-      def entity = entityHelperService.createEntity(params.title, etActivity) {Entity ent ->
+      def template = Entity.get(params.id)
+
+      // get a list of facilities the current entity is working in
+      def facilities = []
+      Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      def paeds = Entity.findAllByType(metaDataService.etPaed)
+      def clients = Entity.findAllByType(metaDataService.etClient)
+
+      try {
+      def entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent)
-        ent.profile.fullName = params.title
+        ent.profile.fullName = params.fullName
         ent.profile.date = new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
-        ent.profile.duration = params.duration.toInteger()
+        ent.profile.duration = params.duration ? params.duration.toInteger() : 0
       }
 
-      params.paeds.each {
-        new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActPaed).save()
-        if (Entity.get(it) != entityHelperService.loggedIn) {
-          functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+entity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+      // create paed links
+      if (params.paeds) {
+        def p_paeds = params.paeds
+        if (p_paeds.class.isArray()) {
+          params.paeds.each {
+            new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActPaed).save()
+            if (Entity.get(it) != entityHelperService.loggedIn) {
+              functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+entity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+            }
+          }
+        }
+        else {
+          new Link(source: Entity.get(p_paeds), target: entity, type: metaDataService.ltActPaed).save()
         }
       }
-      params.clients.each {
-        new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActClient).save()
+
+      // create client links
+      if (params.clients) {
+        def p_clients = params.clients
+        if (p_clients.class.isArray()) {
+          params.clients.each {
+            new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActClient).save()
+            if (Entity.get(it) != entityHelperService.loggedIn) {
+              functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+entity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+            }
+          }
+        }
+        else {
+          new Link(source: Entity.get(p_clients), target: entity, type: metaDataService.ltActClient).save()
+        }
       }
+
       new Link(source: Entity.get(params.facility.toInteger()), target: entity, type: metaDataService.ltActFac).save()
-      new Link(source: Entity.findByName(params.template), target: entity, type: metaDataService.ltActTemplate).save()
+      new Link(source: template, target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 
 
-      flash.message = message(code:"activity.created", args:[params.title])
+      flash.message = message(code:"activity.created", args:[entity.profile.fullName])
       functionService.createEvent(entityHelperService.loggedIn, Entity.get(params.facility.toInteger()).profile.fullName+': Aktivität "'+entity.profile.fullName+'"', entity.profile.date)
       functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+entity.profile.fullName+'" angelegt.')
       redirect action:'show', id:entity.id
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"create", model:[activityInstance: ee.entity, entity: entityHelperService.loggedIn, 'template': template,'availFacilities': facilities, 'availPaeds': paeds, 'availClients': clients])
+        return
+      }
+
     }
 
     def edit = {
         def activity = Entity.get(params.id)
 
-        List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-        Map facilityMap = [:]
-        facilities.each {
-          facilityMap[it.target.id] = it.target.profile.fullName
-        }
-
-        List paeds = Entity.findAllByType(metaDataService.etPaed)
-        Map paedMap = [:]
-        paeds.each {
-          paedMap[it.id] = it.profile.fullName
-        }
-
-        List clients = Entity.findAllByType(metaDataService.etClient)
-        Map clientMap = [:]
-        clients.each {
-          clientMap[it.id] = it.profile.fullName
-        }
+        // get a list of facilities the current entity is working in
+        def facilities = []
+        Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+        def paeds = Entity.findAllByType(metaDataService.etPaed)
+        def clients = Entity.findAllByType(metaDataService.etClient)
 
         return ['activity': activity,
-                'availFacilities': facilityMap,
-                'availPaeds': paedMap,
-                'availClients': clientMap,
+                'availFacilities': facilities,
+                'availPaeds': paeds,
+                'availClients': clients,
                 'entity': entityHelperService.loggedIn]
     }
 
@@ -188,16 +200,36 @@ class ActivityController {
       links = Link.findAllByTargetAndType(activity, metaDataService.ltActClient)
       links.each {it.delete()}
 
-      // create new links
-      params.paeds.each {
-        new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActPaed).save()
-        if (Entity.get(it) != entityHelperService.loggedIn) {
-          functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activity.profile.fullName+'" aktualisiert.')
+      // create paed links
+      if (params.paeds) {
+        def p_paeds = params.paeds
+        if (p_paeds.class.isArray()) {
+          params.paeds.each {
+            new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActPaed).save()
+            if (Entity.get(it) != entityHelperService.loggedIn) {
+              functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+            }
+          }
+        }
+        else {
+          new Link(source: Entity.get(p_paeds), target: activity, type: metaDataService.ltActPaed).save()
         }
       }
 
-      params.clients.each {
-        new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActClient).save()
+      // create client links
+      if (params.clients) {
+        def p_clients = params.clients
+        if (p_clients.class.isArray()) {
+          params.clients.each {
+            new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActClient).save()
+            if (Entity.get(it) != entityHelperService.loggedIn) {
+              functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+            }
+          }
+        }
+        else {
+          new Link(source: Entity.get(p_clients), target: activity, type: metaDataService.ltActClient).save()
+        }
       }
 
       if(!activity.hasErrors() && activity.save()) {

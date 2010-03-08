@@ -15,4 +15,8 @@ class PateProfile extends Profile {
 
     static constraints = {
     }
+
+  String toString(){
+    return "${fullName}"
+  }
 }

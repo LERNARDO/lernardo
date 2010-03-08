@@ -574,7 +574,7 @@ table .label {
     height: 25px;
     padding-right: 10px; }
 
-#body-list, #body-default {
+#body-list {
     padding: 0; /*px 10px 10px 10px;*/
     /*background: #f0f0f0;*/ }
     #body-list table {

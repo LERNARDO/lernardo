@@ -6,7 +6,7 @@
 <body>
   <g:if test="${entity.profile.showTips}">
     <div class="toolTip">
-      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip"/>Tipp:</b> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
+      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
     </div>
   </g:if>
   <div class="headerBlue">

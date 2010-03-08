@@ -40,6 +40,10 @@ class ClientProfile extends Profile {
         goesAlone(nullable:true)
     }
 
+    String toString(){
+      return "${fullName}"
+    }
+
     /*String firstName
     String lastName
     Date birthDate

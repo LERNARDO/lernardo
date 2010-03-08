@@ -30,4 +30,8 @@ class FacProfile extends Profile {
         speaker(nullable: true, blank:true)
         foodCosts(nullable: true)
     }
+
+    String toString(){
+      return "${fullName}"
+    }
 }

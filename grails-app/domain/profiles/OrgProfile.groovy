@@ -26,4 +26,8 @@ class OrgProfile extends Profile {
         description(nullable: true, blank:true,maxSize: 2000)
         speaker(nullable: true, blank: true)
     }
+
+    String toString(){
+      return "${fullName}"
+    }
 }

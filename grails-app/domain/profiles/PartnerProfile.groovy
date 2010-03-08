@@ -13,4 +13,8 @@ class PartnerProfile extends Profile {
   static constraints = {
     description (maxSize: 2000)
   }
+
+  String toString(){
+    return "${fullName}"
+  }
 }

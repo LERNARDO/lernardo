@@ -26,7 +26,7 @@
                     </label>
                 </td>
                 <td valign="top" class="value ${hasErrors(bean:template,field:'profile.fullName','errors')}">
-                    <input type="text" size="50" id="name" name="name" value="${fieldValue(bean:template,field:'profile.fullName')}"/>
+                    <input type="text" size="50" id="fullName" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName')}"/>
                 </td>
             </tr>
 
