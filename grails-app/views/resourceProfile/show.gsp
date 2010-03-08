@@ -12,7 +12,6 @@
                 <table>
                     <tbody>
 
-                    
                         <tr class="prop">
                             <td valign="top" class="name">
                                <g:message code="resourceProfile.fullName.label" default="Name" />:

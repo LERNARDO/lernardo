@@ -137,6 +137,7 @@
               </app:isHort>
               <app:isOperator entity="${entity}">
                 <li><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
+                <li><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner anlegen</g:link></li>
               </app:isOperator>
               <app:isPaed entity="${entity}">
                 <li><g:link controller="resourceProfile" action="index" params="[name:entity.name]">Ressourcen verwalten</g:link></li>  
