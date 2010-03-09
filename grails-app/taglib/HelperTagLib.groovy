@@ -56,7 +56,7 @@ class HelperTagLib {
     if (link)
       out << body(facility: link.source)
     else
-      out << '<span class="italic">keinem Hort zugewiesen</span>'
+      out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
   }
 
   def getCreator = {attrs, body ->
@@ -72,8 +72,8 @@ class HelperTagLib {
       out << body()
   }
 
-  def isHort = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etHort.name || secHelperService.isAdmin())
+  def isFacility = {attrs, body->
+    if (attrs.entity.type.name == metaDataService.etFacility.name || secHelperService.isAdmin())
       out << body()
   }
 

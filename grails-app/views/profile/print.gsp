@@ -53,7 +53,7 @@
   <body>
     <div id="container">
 
-      <img src="${g.resource(dir:'images/avatar', file:image)}" alt="Hort ${pdf.hort}"/>
+      <img src="${g.resource(dir:'images/avatar', file:image)}" alt="Einrichtung ${pdf.facility}"/>
 
       <h1>${currentEntity.profile.fullName}</h1>
       <p>Anwesenheits- und Essensliste vom <g:formatDate date="${date}" format="EEEE, 'den' dd. MM. yyyy"/></p>

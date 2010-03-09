@@ -26,8 +26,8 @@ class HelperController {
           helperFor = 'Pädagogen'
         else if (type == 'User')
           helperFor = 'Moderatoren'
-        else if (type == 'Hort')
-          helperFor = 'die Hortverwaltung'
+        else if (type == 'Facility')
+          helperFor = 'die Einrichtungsverwaltung'
         return [helperInstanceList: helper,
                 helperInstanceTotal: helper.size(),
                 entity: entity,
@@ -124,8 +124,8 @@ class HelperController {
           type = metaDataService.etPaed
         if (helperInstance.type == 'User')
           type = metaDataService.etUser
-        if (helperInstance.type == 'Hort')
-          type = metaDataService.etHort
+        if (helperInstance.type == 'Facility')
+          type = metaDataService.etFacility
 
         List receiver = Entity.findAllByType(type)
         receiver.each {

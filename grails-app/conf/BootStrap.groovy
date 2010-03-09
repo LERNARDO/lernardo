@@ -2,30 +2,15 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 
-import groups.GroupColonyProfile
-import groups.GroupFamilyProfile
-import groups.GroupLevelProfile
-import groups.GroupNetworkProfile
-
 import lernardo.Helper
 import lernardo.Evaluation
 import lernardo.Attendance
-import lernardo.ActivityProfile
-import lernardo.TemplateProfile
-import lernardo.CommentTemplateProfile
-import lernardo.Event
-import lernardo.Msg
-import lernardo.Post
 
 import posts.ArticlePost
 
-import profiles.ClientProfile
 import profiles.UserProfile
-import profiles.FacProfile
+import profiles.FacilityProfile
 import profiles.OrgProfile
-import profiles.PaedProfile
-import profiles.PartnerProfile
-import profiles.PateProfile
 
 import grails.util.GrailsUtil
 
@@ -338,16 +323,14 @@ class BootStrap {
 
   void createDefaultFacilities () {
     log.debug ("==> creating default facilities")
-    EntityType etFac = metaDataService.etHort
+    EntityType etFacility = metaDataService.etFacility
 
-    entityHelperService.createEntityWithUserAndProfile ("loewenzahn", etFac, "loewenzahn@lernardo.at", "Hort Löwenzahn") {Entity ent->
-      FacProfile prf = ent.profile
+    entityHelperService.createEntityWithUserAndProfile ("facility", etFacility, "loewenzahn@lernardo.at", "Hort Löwenzahn") {Entity ent->
+      FacilityProfile prf = ent.profile
       prf.PLZ = 2564
       prf.city = "Weissenbach an der Triesting"
       prf.street = "Hauptstraße 12"
       prf.tel   = "0676 / 880 604 001"
-      prf.opened = "Mo-Fr, 11 bis 18 Uhr"
-      prf.speaker = Entity.findByName('regina')
       prf.description = """Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
                             und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
                             mit ca. 62m² und ein Aufenthaltsraum mit mehr als 24 m² sowie eine Garderobe
@@ -357,19 +340,15 @@ class BootStrap {
                             genutzt werden.<br>
                             Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
                             Spielbereich und ein Ruhebereich zur Verfügung."""
-      prf.foodCosts = 3
     }
 
-    entityHelperService.createEntityWithUserAndProfile ("kaumberg", etFac, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
-      FacProfile prf = ent.profile
+    entityHelperService.createEntityWithUserAndProfile ("facility", etFacility, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
+      FacilityProfile prf = ent.profile
       prf.PLZ = 2572
       prf.city = "Kaumberg"
       prf.street = "-"
       prf.tel   = "0660 / 461 1106"
-      prf.opened = "?"
-      prf.speaker = Entity.findByName('hannah')
       prf.description = "Der zweite unter Lernardo betriebene Hort."
-      prf.foodCosts = 5
     }
   }
 
@@ -583,14 +562,14 @@ class BootStrap {
                content: '''Betreute können über den Link "Betreuten anlegen" in der Seitennavigation links angelegt werden.
                            Notwendige Angaben müssen unbedingt ausgefüllt werden, zusätzliche Angaben sind optional und
                            können später noch über "Daten ändern" ergänzt oder geändert werden.''',
-               type: metaDataService.etHort.name).save()
+               type: metaDataService.etFacility.name).save()
 
     new Helper(title: 'Wie funktioniert die Anwesenheits-/Essensliste? (AE-Liste)',
            content: '''In der AE-Liste werden alle im Hort betreuten Kinder aufgelistet. Für jedes Kind kann die Anwesenheit,
                        sowie die Teilnahme am Mittagessen eingetragen werden. Daraus lässt sich dann die Summe der Anwesenden
                        und die Gesamtsumme der Essenbeiträge ausrechnen. Es besteht außerdem die Möglichkeit diese Liste als
                        PDF anzuzeigen und bequem ausdrucken zu lassen.''',
-           type: metaDataService.etHort.name).save()
+           type: metaDataService.etFacility.name).save()
   }
 
   void createDefaultEvaluations() {

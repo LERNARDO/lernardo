@@ -1,0 +1,109 @@
+<head>
+  <meta name="layout" content="private" />
+  <title>Lernardo | Einrichtung anlegen</title>
+</head>
+<body>
+  <div class="headerBlue">
+    <h1>Einrichtung anlegen</h1>
+  </div>
+  <div class="boxGray">
+
+    <g:hasErrors bean="${facility}">
+      <div class="errors">
+        <g:renderErrors bean="${facility}" as="list" />
+      </div>
+    </g:hasErrors>
+
+    <g:form action="save" method="post" >
+      <div class="dialog">
+        <table>
+          <tbody>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="fullName">
+                      <g:message code="facilityProfile.fullName.label" default="Name" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:facility,field:'profile.fullName','errors')}" size="40" type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean:facility,field:'profile.fullName')}"/>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="email">
+                      <g:message code="facilityProfile.email.label" default="E-Mail" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:facility,field:'user.email','errors')}" size="40" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean:facility, field:'user.email')}"/>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="description">
+                      <g:message code="facilityProfile.description.label" default="Beschreibung" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <textarea class="${hasErrors(bean:facility,field:'profile.description','errors')}" rows="5" cols="37" id="description" name="description">${fieldValue(bean:facility, field:'profile.description')}</textarea>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="PLZ">
+                      <g:message code="facilityProfile.PLZ.label" default="PLZ" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:facility,field:'profile.PLZ','errors')}" size="40" type="text" id="PLZ" name="PLZ" value="${fieldValue(bean:facility,field:'profile.PLZ')}" />
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="city">
+                      <g:message code="facilityProfile.city.label" default="Stadt" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:facility,field:'profile.city','errors')}" size="40" type="text" id="city" name="city" value="${fieldValue(bean:facility,field:'profile.city')}"/>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="street">
+                      <g:message code="facilityProfile.street.label" default="Straße" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:facility,field:'profile.street','errors')}" size="40" type="text" id="street" name="street" value="${fieldValue(bean:facility,field:'profile.street')}"/>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
+                    <label for="tel">
+                      <g:message code="facilityProfile.tel.label" default="Telefon" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:facility,field:'profile.tel','errors')}" size="40" type="text" id="tel" name="tel" value="${fieldValue(bean:facility,field:'profile.tel')}"/>
+                </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="buttons">
+        <g:submitButton name="submitButton" value="Anlegen"/>
+        <g:link class="buttonGray" action="list">Zurück</g:link>
+        <div class="spacer"></div>
+      </div>
+    </g:form>
+  </div>
+</body>

@@ -11,10 +11,14 @@ class PateProfile extends Profile {
   String street
   String nationality
   String languages
-  Integer emails
+  Integer emails = 0
 
-    static constraints = {
-    }
+  static constraints = {
+    fullName (blank: true)
+    firstName (blank: false)
+    lastName (blank: false)
+    PLZ (blank: true)
+  }
 
   String toString(){
     return "${fullName}"

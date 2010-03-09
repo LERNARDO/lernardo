@@ -75,28 +75,6 @@
 
                             <tr class="prop">
                                 <td valign="middle" class="name">
-                                    <label for="speaker">
-                                      <g:message code="entityInstance.speaker.label" default="Ansprechperson" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <input type="text" size="40" id="speaker" name="speaker" value="${fieldValue(bean:entityInstance,field:'profile.speaker')}"/>
-                                </td>
-                            </tr>
-
-                            <tr class="prop">
-                                <td valign="middle" class="name">
-                                    <label for="foodCosts">
-                                      <g:message code="entityInstance.foodCosts.label" default="Essenskosten" />:
-                                    </label>
-                                </td>
-                                <td valign="top" class="value">
-                                    <input type="text" size="40" id="foodCosts" name="foodCosts" value="${fieldValue(bean:entityInstance,field:'profile.foodCosts')}"/> €
-                                </td>
-                            </tr>
-                        
-                            <tr class="prop">
-                                <td valign="middle" class="name">
                                     <label for="description">
                                       <g:message code="entityInstance.description.label" default="Beschreibung" />:
                                     </label>

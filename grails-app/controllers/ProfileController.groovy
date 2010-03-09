@@ -2,13 +2,12 @@ import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityType
-import profiles.FacProfile
+import profiles.FacilityProfile
 import de.uenterprise.ep.Account
 import profiles.UserProfile
 import posts.ArticlePost
 import lernardo.Event
-import lernardo.Msg
-import profiles.OrgProfile
+
 import lernardo.Attendance
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
@@ -84,14 +83,14 @@ class ProfileController {
     }
 
     def changeFacilities = {
-      List horte = []
+      List facilities = []
       List working = Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)
       working.each {
-          horte << it.target
+          facilities << it.target
       }
       [entity: Entity.findByName(params.name),
-       hortList: Entity.findAllByType(metaDataService.etHort),
-       horte: horte]
+       facilityList: Entity.findAllByType(metaDataService.etFacility),
+       facilities: facilities]
     }
 
     def saveFacilities = {
@@ -162,53 +161,6 @@ class ProfileController {
       }
     }
 
-    def createHort = {
-      //def entityInstance = new Entity()
-      //entityInstance.properties = params
-      return [/*'entityInstance':entityInstance,*/
-              'entity':Entity.findByName(params.name),
-              'availOperators': Entity.findAllByType(metaDataService.etOperator)]
-    }
-
-    def saveHort = {
-      EntityType etFac = metaDataService.etHort
-
-      Account user = Account.findByEmail (params.email)
-      if (user) {
-        flash.message = message(code:"user.existsMail", args:[params.email])
-        redirect action:"createHort", params:params
-        return
-      }
-
-      Entity etst = Entity.findByName (params.name)
-      if (etst) {
-        flash.message = message(code:"user.existsName", args:[params.name])
-        redirect action:"createHort", params:params
-        return
-      }
-
-      try {
-        entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
-          FacProfile prf = ent.profile
-          prf.city = params.city ?: ""
-          prf.opened = "-"
-          prf.description = "-"
-          prf.tel = "-"
-          ent.user.password = authenticateService.encodePassword("pass")
-        }
-      } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"createHort", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
-        return
-      }
-
-      // add relationship to operator
-      def target = params.operator ? Entity.get(params.operator) : entityHelperService.loggedIn
-      new Link(source:Entity.findByName(params.name), target: target, type:metaDataService.ltOperation).save()
-
-      flash.message = message(code:"user.created", args:[params.name,params.entity])
-      redirect controller:'profile', action:'showProfile', params:[name:params.name]
-    }
-
     def createSchool = {
       //def entityInstance = new Entity()
       //entityInstance.properties = params
@@ -234,7 +186,7 @@ class ProfileController {
 
       try {
         entityHelperService.createEntityWithUserAndProfile (params.name, etFac, params.email, params.fullName) {Entity ent->
-          FacProfile prf = ent.profile
+          FacilityProfile prf = ent.profile
           if (params.pass)
               ent.user.password = authenticateService.encodePassword(params.pass)
         }
@@ -252,7 +204,7 @@ class ProfileController {
       //entityInstance.properties = params
       return [/*'entityInstance':entityInstance,*/
               'entity':entityHelperService.loggedIn,
-              'availFacilities': Entity.findAllByType(metaDataService.etHort)]
+              'availFacilities': Entity.findAllByType(metaDataService.etFacility)]
     }
 
     def savePaed = {
@@ -297,7 +249,7 @@ class ProfileController {
       //entityInstance.name = ""
       return [/*'entityInstance':entityInstance,*/
               'entity':Entity.findByName(params.name),
-              'availFacilities': Entity.findAllByType(metaDataService.etHort)]
+              'availFacilities': Entity.findAllByType(metaDataService.etFacility)]
     }
 
     def saveClient = {
@@ -372,12 +324,12 @@ class ProfileController {
       params.name = params.name ?: entityHelperService.loggedIn.name
       Entity e = Entity.findByName(params.name)
 
-      List horte = []
+      List facilities = []
       List working = Link.findAllBySourceAndType(e, metaDataService.ltWorking)
       working.each {
-          horte << it.target.profile.fullName
+          facilities << it.target.profile.fullName
       }
-      def ret = horte.join(', ')
+      def ret = facilities.join(', ')
 
       // find groups the entity belongs to
       def links = Link.findAllBySourceAndType(e, metaDataService.ltGroup)
@@ -394,8 +346,8 @@ class ProfileController {
         }
       }*/
 
-      return [entity:e,
-              horte:ret,
+      return [entity: e,
+              facilities: ret,
               groups: groups]
     }
 

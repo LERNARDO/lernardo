@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Hortkalender</title>
+  <title>Lernardo | Einrichtungskalender</title>
   <meta name="layout" content="private" />
   <g:javascript library="jquery" />
   <g:javascript src="jquery/fullcalendar.js"/>

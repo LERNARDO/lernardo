@@ -40,7 +40,7 @@
                 </tr>
 
                 <tr>
-                  <td class="label">Hort:</td>
+                  <td class="label">Einrichtung:</td>
                   <td class="value"><g:select name="facility" from="${availFacilities}" optionKey="id" optionValue="name"/></td>
                 </tr>
 

@@ -7,11 +7,13 @@
     <h1>Partner anlegen</h1>
   </div>
   <div class="boxGray">
+
     <g:hasErrors bean="${partner}">
       <div class="errors">
         <g:renderErrors bean="${partner}" as="list" />
       </div>
     </g:hasErrors>
+
     <g:form action="save" method="post" >
       <div class="dialog">
         <table>
@@ -23,8 +25,8 @@
                       <g:message code="partnerProfile.fullName.label" default="Name" />
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:partner,field:'fullName','errors')}">
-                    <input type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean:partner,field:'profile.fullName')}"/>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:partner,field:'profile.fullName','errors')}" size="40" type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean:partner,field:'profile.fullName')}"/>
                 </td>
             </tr>
 
@@ -34,8 +36,8 @@
                       <g:message code="partnerProfile.description.label" default="Beschreibung" />
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:partner,field:'description','errors')}">
-                    <textarea rows="5" cols="40" name="description">${fieldValue(bean:partner, field:'profile.description')}</textarea>
+                <td valign="top" class="value">
+                    <textarea class="${hasErrors(bean:partner,field:'profile.description','errors')}" rows="5" cols="37" id="description" name="description">${fieldValue(bean:partner, field:'profile.description')}</textarea>
                 </td>
             </tr>
 
@@ -45,8 +47,8 @@
                       <g:message code="partnerProfile.PLZ.label" default="PLZ" />
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:partner,field:'PLZ','errors')}">
-                    <input type="text" id="PLZ" name="PLZ" value="${fieldValue(bean:partner,field:'profile.PLZ')}" />
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:partner,field:'profile.PLZ','errors')}" size="40" type="text" id="PLZ" name="PLZ" value="${fieldValue(bean:partner,field:'profile.PLZ')}" />
                 </td>
             </tr>
 
@@ -56,8 +58,8 @@
                       <g:message code="partnerProfile.city.label" default="Stadt" />
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:partner,field:'city','errors')}">
-                    <input type="text" id="city" name="city" value="${fieldValue(bean:partner,field:'profile.city')}"/>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:partner,field:'profile.city','errors')}" size="40" type="text" id="city" name="city" value="${fieldValue(bean:partner,field:'profile.city')}"/>
                 </td>
             </tr>
 
@@ -67,8 +69,8 @@
                       <g:message code="partnerProfile.street.label" default="Straße" />
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:partner,field:'street','errors')}">
-                    <input type="text" id="street" name="street" value="${fieldValue(bean:partner,field:'profile.street')}"/>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:partner,field:'profile.street','errors')}" size="40" type="text" id="street" name="street" value="${fieldValue(bean:partner,field:'profile.street')}"/>
                 </td>
             </tr>
 
@@ -78,8 +80,8 @@
                       <g:message code="partnerProfile.tel.label" default="Telefon" />
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:partner,field:'tel','errors')}">
-                    <input type="text" id="tel" name="tel" value="${fieldValue(bean:partner,field:'profile.tel')}"/>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:partner,field:'profile.tel','errors')}" size="40" type="text" id="tel" name="tel" value="${fieldValue(bean:partner,field:'profile.tel')}"/>
                 </td>
             </tr>
                         

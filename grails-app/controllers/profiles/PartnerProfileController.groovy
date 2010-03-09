@@ -2,6 +2,7 @@ package profiles
 
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
+import de.uenterprise.ep.Link
 
 class PartnerProfileController {
     def metaDataService
@@ -29,13 +30,15 @@ class PartnerProfileController {
             redirect(action:list)
         }
         else {
-            return [partner: partner, entity: entityHelperService.loggedIn ]
+            return [partner: partner, entity: entityHelperService.loggedIn]
         }
     }
 
     def del = {
         def partner = Entity.get(params.id)
         if(partner) {
+            // delete all links
+            Link.findAllBySourceOrTarget(partner, partner).each {it.delete()}
             try {
                 flash.message = message(code:"partner.deleted", args:[partner.profile.fullName])
                 partner.delete(flush:true)
@@ -88,12 +91,7 @@ class PartnerProfileController {
       try {
         def entity = entityHelperService.createEntity("partner", etPartner) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
-          ent.profile.fullName = params.fullName
-          ent.profile.PLZ = params.PLZ ? params.PLZ.toInteger() : 0
-          ent.profile.city = params.city
-          ent.profile.street = params.street
-          ent.profile.description = params.description
-          ent.profile.tel = params.tel
+          ent.profile.properties = params
         }
         flash.message = message(code:"partner.created", args:[entity.profile.fullName])
         redirect action:'list'

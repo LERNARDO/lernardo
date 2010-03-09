@@ -25,12 +25,12 @@
       <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Bookmarks',
                 emptyMsg:'Du hast derzeit noch keine Bookmarks!', entities:bookmarksList]"/>
 
-      <app:isHort entity="${entity}">
+      <app:isFacility entity="${entity}">
         <ub:notAdmin>
           <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Betreiber',
                     emptyMsg:'Du hast derzeit noch keine Betreiber!', entities:operatorsList]"/>
         </ub:notAdmin>
-      </app:isHort>
+      </app:isFacility>
 
       <app:isClient entity="${entity}">
         <ub:notAdmin>

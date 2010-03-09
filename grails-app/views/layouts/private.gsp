@@ -82,7 +82,7 @@
                   <li class="profile-activities"><g:link controller="profile" action="showActivityList" params="[name:entity.name]">Aktivitäten ansehen</g:link></li>
                 </g:if>
                 <li class="profile-calendar"><g:link controller="profile" action="showCalendar" params="[name:entity.name]">Kalender ansehen</g:link></li>
-                <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Hort'}">
+                <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Facility'}">
                   %{--<li class="profile-location"><g:link controller="profile" action="showLocation" params="[name:entity.name]">Standort anzeigen</g:link></li>--}%
                 </g:if>
                 <g:if test="${entity.type.name == 'Client'}">
@@ -114,9 +114,9 @@
                 <app:isPaed entity="${entity}">
                   <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
                 </app:isPaed>
-                <app:isHort entity="${entity}">
+                <app:isFacility entity="${entity}">
                   <li class="profile-activities"><g:link controller="profile" action="attendance" params="[name:entity.name]">Anwesenheits-/Essenslisten</g:link></li>
-                </app:isHort>
+                </app:isFacility>
               </ul>
             </div>
           </ub:meOrAdmin>
@@ -132,12 +132,13 @@
                 <li><g:link controller="adm" action="index">Verwaltung</g:link></li>
                 <li><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
               </ub:isAdmin>
-              <app:isHort entity="${entity}">
+              <app:isFacility entity="${entity}">
                 <li><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
-              </app:isHort>
+              </app:isFacility>
               <app:isOperator entity="${entity}">
-                <li><g:link controller="profile" action="createHort" params="[name:entity.name]">Hort anlegen</g:link></li>
-                <li><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner anlegen</g:link></li>
+                <li><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
+                <li><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
+                <li><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
               </app:isOperator>
               <app:isPaed entity="${entity}">
                 <li><g:link controller="resourceProfile" action="index" params="[name:entity.name]">Ressourcen verwalten</g:link></li>  

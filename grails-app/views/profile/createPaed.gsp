@@ -57,7 +57,7 @@
                               <tr class="prop">
                                   <td valign="top" class="name">
                                       <label for="facility">
-                                        <g:message code="msg.facility.label" default="Hort" />:
+                                        <g:message code="msg.facility.label" default="Einrichtung" />:
                                       </label>
                                   </td>
                                   <td valign="top" class="value">
