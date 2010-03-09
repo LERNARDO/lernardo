@@ -101,7 +101,19 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:partner,field:'profile.street','errors')}" type="text" id="street" name="street" value="${fieldValue(bean:pate,field:'profile.street')}"/>
+                      <input class="${hasErrors(bean:pate,field:'profile.street','errors')}" type="text" id="street" name="street" value="${fieldValue(bean:pate,field:'profile.street')}"/>
+                  </td>
+              </tr>
+
+              <tr class="prop">
+                  <td valign="top" class="name">
+                    <label for="enabled">
+                      <g:message code="facilityProfile.enabled.label" default="Aktiv?" />
+                    </label>
+
+                  </td>
+                  <td valign="top" class="value">
+                      <g:checkBox name="enabled" value="${fieldValue(bean:pate,field:'user.enabled')}" />
                   </td>
               </tr>
 

@@ -8,9 +8,14 @@ import lernardo.Attendance
 
 import posts.ArticlePost
 
-import profiles.UserProfile
+import profiles.ClientProfile
 import profiles.FacilityProfile
-import profiles.OrgProfile
+import profiles.OperatorProfile
+import profiles.PaedProfile
+import profiles.ParentProfile
+import profiles.PartnerProfile
+import profiles.PateProfile
+import profiles.UserProfile
 
 import grails.util.GrailsUtil
 
@@ -35,7 +40,7 @@ class BootStrap {
 
       if (GrailsUtil.environment == "development") {
         createDefaultActivities()
-        createDefaultClients()
+        //createDefaultClients()
         createDefaultPosts()
         createDefaultEvents()
         createDefaultAttendances()
@@ -55,9 +60,9 @@ class BootStrap {
     log.debug ("==> creating default users")
     EntityType etUser = metaDataService.etUser
 
-    // an admin user
+    // system admin users
     entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.addToAuthorities(metaDataService.systemAdminRole)
       UserProfile prf = ent.profile
       prf.tagline = "to be on top is our job"
       prf.gender = 1
@@ -70,6 +75,35 @@ class BootStrap {
       prf.biography = "-"
     }
 
+    // admin users
+    entityHelperService.createEntityWithUserAndProfile("csz", etUser, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
+      UserProfile prf = ent.profile
+      prf.tagline = ""
+      prf.gender = 1
+      prf.title = "DI"
+      prf.birthDate = new Date(1968-1900,02,18)
+      prf.PLZ = 29215
+      prf.city = "San Cristóbal de Las Casas"
+      prf.street = "Av. Norte Oriente 13a"
+      prf.tel = "+52 1 967 1188492"
+      prf.biography = ""
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("lsz", etUser, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
+      UserProfile prf = ent.profile
+      prf.tagline = ""
+      prf.gender = 1
+      prf.title = "	Ing. Dkfm."
+      prf.birthDate = new Date(1939-1900,04,17)
+      prf.PLZ = 4600
+      prf.city = "Schleißheim bei Wels"
+      prf.street = ""
+      prf.tel = ""
+      prf.biography = ""
+    }
+    
     // mod users
     entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
@@ -121,17 +155,7 @@ class BootStrap {
       prf.biography = "-"
     }
 
-    // some regular users
-    entityHelperService.createEntityWithUserAndProfile("mike", etUser, "mpk@lernardo.at", "Mike P. Kuhl") {Entity ent ->
-      UserProfile prf = ent.profile
-      prf.tagline = "Wozu brauch ma des?"
-      prf.gender = 1
-      prf.PLZ = 1000
-      prf.city = "Wien"
-      prf.street ="sss"
-      prf.tel = "1234"
-    }
-
+    // regular users
     entityHelperService.createEntityWithUserAndProfile("johannes", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.tagline = "Ich will die Welt im ERP abbilden!"
@@ -159,7 +183,7 @@ class BootStrap {
     EntityType etPaed = metaDataService.etPaed
 
     entityHelperService.createEntityWithUserAndProfile("martin", etPaed, "martin@lernardo.at", "Martin Golja") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.title = "Mag."
       prf.gender = 1
@@ -191,7 +215,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("rosa", etPaed, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.birthDate = new Date(1961-1900,12,16)
@@ -207,7 +231,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("birgit", etPaed, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.birthDate = new Date(1970-1900,03,19)
@@ -217,7 +241,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("hannah", etPaed, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.birthDate = new Date(1982-1900,02,22)
@@ -227,7 +251,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("regina", etPaed, "regina.toncourt@gmx.at", "Regina Toncourt") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.birthDate = new Date(1962-1900,11,04)
@@ -251,7 +275,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("yvonne", etPaed, "ycf@lernardo.at", "Yvonne Frey") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.birthDate = new Date(1973-1900,12,01)
@@ -262,7 +286,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("anna-maria", etPaed, "amr@lernardo.at", "Anna-Maria Reischer") {Entity ent ->
-      UserProfile prf = ent.profile
+      PaedProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.birthDate = new Date(2010-1900,01,01)
@@ -279,7 +303,7 @@ class BootStrap {
     EntityType etClient = metaDataService.etClient
 
     entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
-      UserProfile prf = ent.profile
+      ClientProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 2
       prf.PLZ = 2352
@@ -288,7 +312,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("keano", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
-      UserProfile prf = ent.profile
+      ClientProfile prf = ent.profile
       prf.tagline = "..."
       prf.gender = 1
       prf.PLZ = 2352
@@ -302,22 +326,28 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
-      OrgProfile prf = ent.profile
+      OperatorProfile prf = ent.profile
       prf.PLZ = 2560
       prf.city = "Berndorf"
       prf.street = "Leobersdorfer Straße 42"
       prf.tel   = "-"
-      prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
     }
     entityHelperService.createEntityWithUserAndProfile ("alpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
-      OrgProfile prf = ent.profile
+      OperatorProfile prf = ent.profile
       prf.PLZ = 2563
       prf.city = "Pottenstein"
       prf.street = "Hainfelderstrasse 29"
       prf.tel   = "-"
-      //prf.speaker = Entity.findByName('johannes')
       prf.description = "-"
+    }
+    entityHelperService.createEntityWithUserAndProfile ("sns", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
+      OperatorProfile prf = ent.profile
+      prf.PLZ = 0
+      prf.city = ""
+      prf.street = ""
+      prf.tel = ""
+      prf.description = ""
     }
   }
 
@@ -349,6 +379,15 @@ class BootStrap {
       prf.street = "-"
       prf.tel   = "0660 / 461 1106"
       prf.description = "Der zweite unter Lernardo betriebene Hort."
+    }
+    
+    entityHelperService.createEntityWithUserAndProfile ("facility", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
+      FacilityProfile prf = ent.profile
+      prf.PLZ = 29247
+      prf.city = "	San Cristóbal de Las Casas"
+      prf.street = "	Prolongación Ramón Larrainzar #139"
+      prf.tel   = "+52 967 1125100"
+      prf.description = ""
     }
   }
 

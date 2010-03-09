@@ -9,15 +9,14 @@
 </div>
 <div class="boxGray">
 <table width="100%">
-  <g:if test="${entity.type.name == 'Betreiber' || entity.type.name == 'Sponsor'}">
+  <g:if test="${entity.type.name == 'Betreiber'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
     <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Straße:</td><td class="bezeichnung">${entity.profile.street ?: '<div class="italic">keine Straße eingetragen</div>'}</td></tr>
-    <tr><td class="bold titles bezeichnung">Ansprechperson:</td><td class="bezeichnung">${entity.profile.speaker.profile.fullName}</td></tr>
     <tr><td class="bold titles bezeichnung">Beschreibung:</td><td class="bezeichnung">${entity?.profile?.description?.decodeHTML() ?: '<div class="italic">keine Beschreibung eingetragen</div>'}</td></tr>
   </g:if>
-  <g:elseif test="${entity.type.name == 'Einrichtung' || entity.type.name == 'Schule'}">
+  <g:elseif test="${entity.type.name == 'Einrichtung'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>
     <tr><td class="bold titles bezeichnung">PLZ:</td><td class="bezeichnung">${entity.profile.PLZ ?: '<div class="italic">keine PLZ eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Ort:</td><td class="bezeichnung">${entity.profile.city ?: '<div class="italic">keine Stadt eingetragen</div>'}</td></tr>

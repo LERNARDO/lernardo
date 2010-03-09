@@ -72,6 +72,16 @@ class PartnerProfileController {
 
       partner.profile.properties = params
 
+      if (params.showTips)
+        partner.profile.showTips = true
+      else
+        partner.profile.showTips = false
+
+      if (params.enabled)
+        partner.user.enabled = true
+      else
+        partner.user.enabled = false
+
       if(!partner.profile.hasErrors() && partner.profile.save()) {
           flash.message = message(code:"partner.updated", args:[partner.profile.fullName])
           redirect action:'show', id: partner.id
@@ -89,9 +99,13 @@ class PartnerProfileController {
       EntityType etPartner = metaDataService.etPartner
 
       try {
-        def entity = entityHelperService.createEntity("partner", etPartner) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+        def entity = entityHelperService.createEntityWithUserAndProfile("partner", etPartner, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.password = authenticateService.encodePassword("pass")
+          if (params.enabled)
+            ent.user.enabled = true
+          else
+            ent.user.enabled = false
         }
         flash.message = message(code:"partner.created", args:[entity.profile.fullName])
         redirect action:'list'

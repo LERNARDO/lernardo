@@ -8,7 +8,6 @@
     <link rel="icon" href="${createLinkTo(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
     <g:layoutHead />
     <g:javascript library="jquery" />
-    %{--<g:javascript src="jquery/jquery-ui-1.7.2.custom.min.js"/>--}%
   </head>
   <body>
     <g:if test="${!entity}">
@@ -55,12 +54,12 @@
             <div class="profile-group">Profil</div>
               <div class="profile-box">
                 <ul>
-                  <li><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Bild ändern</g:link></li>
+                  <li class="icon-person"><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Bild ändern</g:link></li>
                   <g:if test="${entity.type.supertype.name == 'Person'}">
-                    <li><g:link controller="profile" action="edit" params="[name:entity.name]">Daten ändern</g:link></li>
+                    <li class="icon-edit"><g:link controller="profile" action="edit" params="[name:entity.name]">Daten ändern</g:link></li>
                   </g:if>
                   <g:else>
-                    <li><g:link controller="profile" action="editFacility" params="[name:entity.name]">Daten ändern</g:link></li>
+                    <li class="icon-edit"><g:link controller="profile" action="editFacility" params="[name:entity.name]">Daten ändern</g:link></li>
                   </g:else>
                 </ul>
               </div>
@@ -71,7 +70,7 @@
               <ul>
                 <li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Profil ansehen</g:link></li>
                 <ub:meOrAdmin entityName="${entity.name}">
-                  <li class="profile-neuigkeiten"><g:link controller="profile" action="showNews" params="[name:entity.name]">Ereignisse ansehen</g:link></li>
+                  <li class="icon-news"><g:link controller="profile" action="showNews" params="[name:entity.name]">Ereignisse ansehen</g:link></li>
                   <li class="profile-nachricht"><g:link controller="msg" action="inbox" params="[name:entity.name]">Postfach ansehen</g:link> <app:getNewInboxMessages entityName="${entity.name}"/></li>
                 </ub:meOrAdmin>
                 <app:isPaed entity="${entity}">
@@ -124,24 +123,25 @@
           <div class="profile-group">Administration</div>
           <div class="profile-box">
             <ul>
+              <app:isSysAdmin>
+                <li><g:link controller="adm" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
+              </app:isSysAdmin>
               <ub:isAdmin>
                 <li><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
-                <li><g:link controller="adm" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
-                <li><g:link controller="profile" action="createPaed" params="[name:entity.name]">Pädagoge anlegen</g:link></li>
-                <li><g:link controller="profile" action="createSchool" params="[name:entity.name]">Schule anlegen</g:link></li>
+                %{--<li><g:link controller="profile" action="createPaed" params="[name:entity.name]">Pädagoge anlegen</g:link></li>
+                <li><g:link controller="profile" action="createSchool" params="[name:entity.name]">Schule anlegen</g:link></li>--}%
                 <li><g:link controller="adm" action="index">Verwaltung</g:link></li>
                 <li><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
               </ub:isAdmin>
-              <app:isFacility entity="${entity}">
-                <li><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreuten anlegen</g:link></li>
-              </app:isFacility>
               <app:isOperator entity="${entity}">
-                <li><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
-                <li><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
-                <li><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
+                %{--<li class="icon-admin"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreute verwalten</g:link></li>--}%
+                <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte verwalten</g:link></li>
               </app:isOperator>
               <app:isPaed entity="${entity}">
-                <li><g:link controller="resourceProfile" action="index" params="[name:entity.name]">Ressourcen verwalten</g:link></li>  
+                <li class="icon-admin"><g:link controller="resourceProfile" action="index" params="[name:entity.name]">Ressourcen verwalten</g:link></li>
               </app:isPaed>
             </ul>
           </div>
@@ -149,7 +149,7 @@
             <div class="profile-group">Hilfe</div>
               <div class="profile-box">
                 <ul>
-                  <li class="profile-person"><g:link controller="helper" params="[name:entity.name]">Hilfethemen anzeigen</g:link></li>
+                  <li class="icon-help"><g:link controller="helper" params="[name:entity.name]">Hilfethemen anzeigen</g:link></li>
                 </ul>
               </div>
 

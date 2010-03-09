@@ -2,7 +2,7 @@ package lernardo
 
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
-import profiles.OrgProfile
+import profiles.OperatorProfile
 import de.uenterprise.ep.Account
 import de.uenterprise.ep.EntityType
 
@@ -130,7 +130,7 @@ class AdmController {
         }
 
         entityHelperService.createEntityWithUserAndProfile (params.name, etOperator, params.email, params.fullName) {Entity ent->
-          OrgProfile prf = ent.profile
+          OperatorProfile prf = ent.profile
           if (params.pass)
             ent.user.password = authenticateService.encodePassword(params.pass)
         }

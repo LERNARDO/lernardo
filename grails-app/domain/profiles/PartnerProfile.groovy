@@ -9,7 +9,8 @@ class PartnerProfile extends Profile {
   String street
   String tel
   String description
-
+  Boolean showTips = true
+  
   static constraints = {
     fullName (blank: false)
     description (maxSize: 2000)

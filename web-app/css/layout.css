@@ -238,7 +238,7 @@ ul {
 .profile-box {
     -moz-border-radius: 5px;
     /*background-color: #dfdfdf;*/
-    background: -moz-linear-gradient(-90deg,#dfdfdf,#cdcdcd) #dfdfdf;
+    background: -moz-linear-gradient(-90deg,#efefef,#cdcdcd) #dfdfdf;
     border: 1px solid #ccc;
     padding: 5px;
     -moz-box-shadow: #888 2px 2px 4px; }
@@ -346,11 +346,8 @@ ul {
         text-decoration: none; }
         #profile-navigation a:hover {
             color: #46597B;
-            text-decoration: underline; }
-    #profile-navigation .profile-neuigkeiten {
-        background: url(../images/icons/icon_neuigkeiten.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+            -text-decoration: underline; }
+
     #profile-navigation .profile-profil {
         background: url(../images/icons/icon_profile.png) no-repeat;
         padding-left: 20px;
@@ -391,11 +388,26 @@ ul {
         background: url(../images/icons/icon_template.png) no-repeat;
         padding-left: 20px;
         background-position: 0 50%; }
-    #profile-navigation .profile-person {
+    #profile-navigation .icon-person {
         background: url(../images/icons/icon_person.png) no-repeat;
         padding-left: 20px;
         background-position: 0 50%; }
-
+    #profile-navigation .icon-edit {
+        background: url(../images/icons/icon_edit.png) no-repeat;
+        padding-left: 20px;
+        background-position: 0 50%; }
+    #profile-navigation .icon-help {
+        background: url(../images/icons/icon_help.png) no-repeat;
+        padding-left: 20px;
+        background-position: 0 50%; }
+    #profile-navigation .icon-admin {
+        background: url(../images/icons/icon_admin.png) no-repeat;
+        padding-left: 20px;
+        background-position: 0 50%; }
+    #profile-navigation .icon-news {
+        background: url(../images/icons/icon_news.png) no-repeat;
+        padding-left: 20px;
+        background-position: 0 50%; }
 /* ----- ADMIN ----- */
 
 #adminArea {

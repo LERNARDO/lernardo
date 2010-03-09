@@ -9,6 +9,7 @@ class HelperTagLib {
   def networkService
   def filterService
   def secHelperService
+  def authenticateService
   static namespace = "app"
 
   def getResources = {attrs, body ->
@@ -116,6 +117,13 @@ class HelperTagLib {
       out << 'Weiblich'
   }
 
+  def showBoolean = {attrs ->
+    if (attrs.bool == false)
+      out << 'Nein'
+    else
+      out << 'Ja'
+  }
+
   def getNewInboxMessages = {attrs ->
     int m = filterService.getNewInboxMessages(attrs.entityName)
     if (m > 0)
@@ -166,6 +174,11 @@ class HelperTagLib {
 
   def notEnabled = {attrs, body->
     if (!Entity.findByName(attrs.entityName).user.enabled)
+      out << body()
+  }
+
+  def isSysAdmin = {attrs, body->
+    if (authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
       out << body()
   }
 

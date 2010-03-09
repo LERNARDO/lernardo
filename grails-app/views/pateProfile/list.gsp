@@ -14,9 +14,9 @@
                 <table>
                     <thead>
                         <tr>
-                   	        <g:sortableColumn property="lastName" title="${message(code:'pateProfile.lastName.label', default:'Last Name')}" />
-                            <g:sortableColumn property="firstName" title="${message(code:'pateProfile.firstName.label', default:'First Name')}" />
-                   	        <g:sortableColumn property="PLZ" title="${message(code:'pateProfile.nationality.label', default:'nationality')}" />
+                   	        <g:sortableColumn property="lastName" title="${message(code:'pateProfile.lastName.label', default:'Nachname')}" />
+                            <g:sortableColumn property="firstName" title="${message(code:'pateProfile.firstName.label', default:'Vorname')}" />
+                   	        <g:sortableColumn property="PLZ" title="${message(code:'pateProfile.nationality.label', default:'Nationalität')}" />
                         </tr>
                     </thead>
                     <tbody>

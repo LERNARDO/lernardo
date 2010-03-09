@@ -75,6 +75,17 @@
 
                         </tr>
 
+              <ub:isAdmin>
+                <tr class="prop">
+                    <td valign="top" class="name">
+                       <g:message code="parentProfile.work.label" default="Aktiv?" />:
+                    </td>
+
+                    <td valign="top" class="value">${fieldValue(bean:parent, field:'user.enabled')}</td>
+
+                </tr>
+              </ub:isAdmin>
+                    
                     </tbody>
                 </table>
             </div>

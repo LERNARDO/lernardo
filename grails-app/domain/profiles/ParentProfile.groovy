@@ -2,16 +2,21 @@ package profiles
 
 import de.uenterprise.ep.Profile
 
-class PateProfile extends Profile {
+class ParentProfile extends Profile {
 
   String firstName
   String lastName
+  Date birthDate
+  Integer gender
   Integer PLZ
   String city
   String street
   String nationality
+  String familyStatus
+  String qualification
+  Boolean doesWork
+  String work
   String languages
-  Integer emails = 0
   Boolean showTips = true
   
   static constraints = {

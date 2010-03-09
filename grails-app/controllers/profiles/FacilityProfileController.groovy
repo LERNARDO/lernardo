@@ -7,7 +7,6 @@ import de.uenterprise.ep.Link
 class FacilityProfileController {
     def metaDataService
     def entityHelperService
-    def profileHelperService
     def authenticateService
 
     def index = {
@@ -72,10 +71,16 @@ class FacilityProfileController {
       def facility = Entity.get(params.id)
 
       facility.profile.properties = params
+
       if (params.showTips)
         facility.profile.showTips = true
       else
         facility.profile.showTips = false
+
+      if (params.enabled)
+        facility.user.enabled = true
+      else
+        facility.user.enabled = false
 
       if(!facility.profile.hasErrors() && facility.profile.save()) {
           flash.message = message(code:"facility.updated", args:[facility.profile.fullName])
@@ -95,9 +100,12 @@ class FacilityProfileController {
 
       try {
         def entity = entityHelperService.createEntityWithUserAndProfile("facility", etFacility, params.email, params.fullName) {Entity ent ->
-          //FacilityProfile prf = ent.profile
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
+          if (params.enabled)
+            ent.user.enabled = true
+          else
+            ent.user.enabled = false
         }
         flash.message = message(code:"facility.created", args:[entity.profile.fullName])
         redirect action:'list'

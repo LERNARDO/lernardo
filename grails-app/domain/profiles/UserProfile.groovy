@@ -33,17 +33,4 @@ class UserProfile extends Profile {
       return "${fullName}"
     }
 
-   /*String firstName
-   String lastName
-   Date birthDate
-   Integer gender
-   Integer PLZ
-   String city
-   String street
-   String nationality
-   String familyStatus
-   String qualification
-   Boolean doesWork
-   String work
-   String languages*/
 }

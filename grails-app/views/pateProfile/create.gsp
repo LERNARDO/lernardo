@@ -41,6 +41,17 @@
 
             <tr class="prop">
                 <td valign="top" class="name">
+                    <label for="email">
+                      <g:message code="pateProfile.email.label" default="E-Mail" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:pate,field:'user.email','errors')}" size="40" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean:pate, field:'user.email')}"/>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
                     <label for="PLZ">
                       <g:message code="pateProfile.PLZ.label" default="PLZ" />
                     </label>
@@ -93,7 +104,19 @@
                     <input class="${hasErrors(bean:partner,field:'profile.street','errors')}" type="text" id="street" name="street" value="${fieldValue(bean:pate,field:'profile.street')}"/>
                 </td>
             </tr>
-                        
+
+              <tr class="prop">
+                  <td valign="top" class="name">
+                    <label for="enabled">
+                      <g:message code="pateProfile.enabled.label" default="Aktiv?" />
+                    </label>
+
+                  </td>
+                  <td valign="top" class="value">
+                      <g:checkBox name="enabled" value="${fieldValue(bean:pate,field:'user.enabled')}" />
+                  </td>
+              </tr>
+
           </tbody>
         </table>
       </div>

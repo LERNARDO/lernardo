@@ -32,6 +32,17 @@
 
             <tr class="prop">
                 <td valign="top" class="name">
+                    <label for="email">
+                      <g:message code="partnerProfile.email.label" default="E-Mail" />
+                    </label>
+                </td>
+                <td valign="top" class="value">
+                    <input class="${hasErrors(bean:partner,field:'user.email','errors')}" size="40" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean:partner, field:'user.email')}"/>
+                </td>
+            </tr>
+
+            <tr class="prop">
+                <td valign="top" class="name">
                     <label for="description">
                       <g:message code="partnerProfile.description.label" default="Beschreibung" />
                     </label>
@@ -85,6 +96,18 @@
                 </td>
             </tr>
                         
+              <tr class="prop">
+                  <td valign="top" class="name">
+                    <label for="enabled">
+                      <g:message code="partnerProfile.enabled.label" default="Aktiv?" />
+                    </label>
+
+                  </td>
+                  <td valign="top" class="value">
+                      <g:checkBox name="enabled" value="${fieldValue(bean:partner,field:'user.enabled')}" />
+                  </td>
+              </tr>
+
           </tbody>
         </table>
       </div>

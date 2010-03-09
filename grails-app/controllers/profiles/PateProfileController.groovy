@@ -72,6 +72,16 @@ class PateProfileController {
 
       pate.profile.properties = params
 
+      if (params.showTips)
+        pate.profile.showTips = true
+      else
+        pate.profile.showTips = false
+
+      if (params.enabled)
+        pate.user.enabled = true
+      else
+        pate.user.enabled = false
+
       if(!pate.profile.hasErrors() && pate.profile.save()) {
           flash.message = message(code:"pate.updated", args:[pate.profile.lastName])
           redirect action:'show', id: pate.id
@@ -89,9 +99,13 @@ class PateProfileController {
       EntityType etPate = metaDataService.etPate
            println params
       try {
-        def entity = entityHelperService.createEntity("pate", etPate) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+        def entity = entityHelperService.createEntityWithUserAndProfile("pate", etPate, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.password = authenticateService.encodePassword("pass")
+          if (params.enabled)
+            ent.user.enabled = true
+          else
+            ent.user.enabled = false
         }
         flash.message = message(code:"pate.created", args:[entity.profile.lastName])
         redirect action:'list'
