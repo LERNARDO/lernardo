@@ -57,7 +57,7 @@
               <div class="profile-box">
                 <ul>
                   <li class="icon-person"><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Bild ändern</g:link></li>
-                  <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" params="[name:entity.name]">Daten ändern</g:link></li>
+                  <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" id="${entity.id}">Daten ändern</g:link></li>
                 </ul>
               </div>
             </ub:meOrAdmin>

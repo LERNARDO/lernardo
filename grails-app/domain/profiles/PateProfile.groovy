@@ -18,7 +18,7 @@ class PateProfile extends Profile {
     fullName (blank: true)
     firstName (blank: false)
     lastName (blank: false)
-    PLZ (blank: true)
+    PLZ (nullable: true)
   }
 
   String toString(){

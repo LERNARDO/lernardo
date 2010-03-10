@@ -9,7 +9,7 @@
   <div class="boxGray">
     <div class="body">
       <div class="dialog">
-        <table>
+        <table class="listing">
           <tbody>
                     
                         <tr class="prop">
@@ -17,7 +17,7 @@
                                <g:message code="educatorProfile.firstName.label" default="Vorname" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.firstName')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -26,7 +26,7 @@
                                <g:message code="educatorProfile.lastName.label" default="Nachname" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.lastName')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.lastName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -35,7 +35,7 @@
                                <g:message code="educatorProfile.PLZ.label" default="PLZ" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.PLZ')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -53,7 +53,7 @@
                                <g:message code="educatorProfile.city.label" default="Stadt" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.city')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -62,7 +62,7 @@
                                <g:message code="educatorProfile.contact.label" default="Kontakt" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.contact')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.contact') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -71,7 +71,7 @@
                                <g:message code="educatorProfile.education.label" default="Ausbildung" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.education')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.education') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -89,7 +89,7 @@
                                <g:message code="educatorProfile.function.label" default="Funktion" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.function')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.function') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -107,7 +107,7 @@
                                <g:message code="educatorProfile.interests.label" default="Interessen" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.interests')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.interests') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -143,7 +143,7 @@
                                <g:message code="educatorProfile.quitDate.label" default="Austrittsdatum" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.quitDate')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.quitDate') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                                        
@@ -152,7 +152,7 @@
                                <g:message code="educatorProfile.street.label" default="Straße" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.street')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -161,7 +161,7 @@
                                <g:message code="educatorProfile.title.label" default="Titel" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.title')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.title') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     

@@ -29,7 +29,7 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:facility,field:'profile.fullName','errors')}" type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean:facility,field:'profile.fullName')}"/>
+                      <input class="${hasErrors(bean:facility,field:'profile.fullName','errors')}" type="text"  size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean:facility,field:'profile.fullName')}"/>
                   </td>
               </tr>
 
@@ -41,7 +41,7 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <textarea class="${hasErrors(bean:facility,field:'profile.description','errors')}" rows="5" cols="40" id="description" name="description">${fieldValue(bean:facility, field:'profile.description')}</textarea>
+                      <textarea class="${hasErrors(bean:facility,field:'profile.description','errors')}" rows="7" cols="50" id="description" name="description">${fieldValue(bean:facility, field:'profile.description')}</textarea>
                   </td>
               </tr>
 
@@ -53,7 +53,7 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:facility,field:'profile.PLZ','errors')}" type="text" id="PLZ" name="PLZ" value="${fieldValue(bean:facility,field:'profile.PLZ')}" />
+                      <input class="${hasErrors(bean:facility,field:'profile.PLZ','errors')}" size="30" type="text" id="PLZ" name="PLZ" value="${fieldValue(bean:facility,field:'profile.PLZ')}" />
                   </td>
               </tr>
 
@@ -65,7 +65,7 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:facility,field:'profile.city','errors')}" type="text" id="city" name="city" value="${fieldValue(bean:facility,field:'profile.city')}"/>
+                      <input class="${hasErrors(bean:facility,field:'profile.city','errors')}" size="30" type="text" id="city" name="city" value="${fieldValue(bean:facility,field:'profile.city')}"/>
                   </td>
               </tr>
 
@@ -77,7 +77,7 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:facility,field:'profile.street','errors')}" type="text" id="street" name="street" value="${fieldValue(bean:facility,field:'profile.street')}"/>
+                      <input class="${hasErrors(bean:facility,field:'profile.street','errors')}" size="30" type="text" id="street" name="street" value="${fieldValue(bean:facility,field:'profile.street')}"/>
                   </td>
               </tr>
 
@@ -89,7 +89,7 @@
 
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:facility,field:'profile.tel','errors')}" type="text" id="tel" name="tel" value="${fieldValue(bean:facility,field:'profile.tel')}"/>
+                      <input class="${hasErrors(bean:facility,field:'profile.tel','errors')}" size="30" type="text" id="tel" name="tel" value="${fieldValue(bean:facility,field:'profile.tel')}"/>
                   </td>
               </tr>
 

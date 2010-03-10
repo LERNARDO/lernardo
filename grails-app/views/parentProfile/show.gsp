@@ -9,7 +9,7 @@
   <div class="boxGray">
     <div class="body">
       <div class="dialog">
-        <table>
+        <table class="listing">
           <tbody>
 
               <tr class="prop">
@@ -17,7 +17,7 @@
                      <g:message code="parentProfile.firstName.label" default="Vorname" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.firstName')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -26,7 +26,7 @@
                      <g:message code="parentProfile.lastName.label" default="Nachname" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.lastName')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.lastName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -35,7 +35,7 @@
                      <g:message code="parentProfile.PLZ.label" default="PLZ" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.PLZ')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -53,7 +53,7 @@
                      <g:message code="parentProfile.city.label" default="Stadt" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.city')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -71,7 +71,7 @@
                      <g:message code="parentProfile.familyStatus.label" default="Familienstand" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.familyStatus')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.familyStatus') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -107,7 +107,7 @@
                      <g:message code="parentProfile.qualification.label" default="Qualifikationen" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.qualification')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.qualification') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -116,7 +116,7 @@
                      <g:message code="parentProfile.street.label" default="Straße" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.street')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 
@@ -125,7 +125,7 @@
                      <g:message code="parentProfile.work.label" default="Arbeit" />:
                   </td>
 
-                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.work')}</td>
+                  <td valign="top" class="value">${fieldValue(bean:parent, field:'profile.work') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
               </tr>
 

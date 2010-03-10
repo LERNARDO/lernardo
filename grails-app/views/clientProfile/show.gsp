@@ -9,7 +9,7 @@
   <div class="boxGray">
     <div class="body">
       <div class="dialog">
-        <table>
+        <table class="listing">
           <tbody>
 
             <tr class="prop">
@@ -17,7 +17,7 @@
                    <g:message code="clientProfile.firstName.label" default="Vorname" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.firstName')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -26,7 +26,7 @@
                    <g:message code="clientProfile.lastName.label" default="Nachname" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.lastName')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.lastName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -35,7 +35,7 @@
                    <g:message code="clientProfile.PLZ.label" default="PLZ" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.PLZ')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -44,7 +44,7 @@
                    <g:message code="clientProfile.endDate.label" default="Austrittsdatum" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.endDate')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.endDate') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -53,7 +53,7 @@
                    <g:message code="clientProfile.rejoinDate.label" default="Wiedereintritt" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.rejoinDate')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.rejoinDate') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -62,7 +62,7 @@
                    <g:message code="clientProfile.endDate2.label" default="Austrittsdatum #2" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.endDate2')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.endDate2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -71,7 +71,7 @@
                    <g:message code="clientProfile.rejoinDate2.label" default="Wiedereintritt #2" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.rejoinDate2')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.rejoinDate2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -80,7 +80,7 @@
                    <g:message code="clientProfile.notes.label" default="Notizen" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.notes')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.notes') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -89,7 +89,7 @@
                    <g:message code="clientProfile.interests.label" default="Interessen" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.interests')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.interests') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -98,7 +98,7 @@
                    <g:message code="clientProfile.personalDetails.label" default="Persönliche Details" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.personalDetails')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.personalDetails') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -107,7 +107,7 @@
                    <g:message code="clientProfile.PLZ2.label" default="PLZ #2" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.PLZ2')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.PLZ2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -116,7 +116,7 @@
                    <g:message code="clientProfile.attendance.label" default="Anwesenheit" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.attendance')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.attendance') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -134,7 +134,7 @@
                    <g:message code="clientProfile.city.label" default="Stadt" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.city')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -143,7 +143,7 @@
                    <g:message code="clientProfile.city2.label" default="Stadt #2" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.city2')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.city2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -152,7 +152,7 @@
                    <g:message code="clientProfile.country.label" default="Land" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.country')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -161,7 +161,7 @@
                    <g:message code="clientProfile.country2.label" default="Land #2" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.country2')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.country2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -188,7 +188,7 @@
                    <g:message code="clientProfile.dropoutReason.label" default="Aussteiger Grund" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.dropoutReason')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.dropoutReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -206,7 +206,7 @@
                    <g:message code="clientProfile.income.label" default="Einkommen" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.income')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.income') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -251,7 +251,7 @@
                    <g:message code="clientProfile.street.label" default="Straße" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.street')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -260,7 +260,7 @@
                    <g:message code="clientProfile.street2.label" default="Straße #2" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.street2')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.street2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
 
@@ -269,7 +269,7 @@
                    <g:message code="clientProfile.work.label" default="Arbeit" />:
                 </td>
 
-                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.work')}</td>
+                <td valign="top" class="value">${fieldValue(bean:client, field:'profile.work') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
             </tr>
                     

@@ -559,6 +559,19 @@ ul {
 
 /* ----- TABLES ----- */
 
+.listing {
+    width: 100%;
+}
+.listing tr {
+    border-bottom: 1px dotted #999;
+}
+.listing td {
+    padding: 4px;
+}
+.listing td.name {
+    width: 125px;
+    font-weight: bold;
+}
 .row-educator, .row-Educator {
     background: #ececff; }
 

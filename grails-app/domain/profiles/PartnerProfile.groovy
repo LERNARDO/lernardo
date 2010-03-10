@@ -13,6 +13,7 @@ class PartnerProfile extends Profile {
   
   static constraints = {
     fullName (blank: false)
+    PLZ (nullable: true)
     description (maxSize: 2000)
   }
 

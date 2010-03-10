@@ -13,7 +13,7 @@ class OperatorProfile extends Profile {
 
     static constraints = {
       fullName (blank: false)
-      PLZ (blank: true)
+      PLZ (nullable: true)
       description (maxSize: 2000)
     }
 

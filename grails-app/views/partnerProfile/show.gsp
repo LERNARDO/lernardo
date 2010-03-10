@@ -9,7 +9,7 @@
   <div class="boxGray">
     <div class="body">
             <div class="dialog">
-                <table>
+                <table class="listing">
                     <tbody>
 
                         <tr class="prop">
@@ -17,7 +17,7 @@
                                <g:message code="partnerProfile.fullName.label" default="Name" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.fullName')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.fullName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -26,7 +26,7 @@
                                <g:message code="partnerProfile.description.label" default="Beschreibung" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.description')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -35,7 +35,7 @@
                                <g:message code="partnerProfile.PLZ.label" default="PLZ" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.PLZ')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -44,7 +44,7 @@
                                <g:message code="partnerProfile.city.label" default="Stadt" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.city')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -53,7 +53,7 @@
                                <g:message code="partnerProfile.street.label" default="Straße" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.street')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
                     
@@ -62,7 +62,7 @@
                                <g:message code="partnerProfile.tel.label" default="Telefon" />:
                             </td>
                             
-                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.tel')}</td>
+                            <td valign="top" class="value">${fieldValue(bean:partner, field:'profile.tel') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
                             
                         </tr>
 
