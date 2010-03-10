@@ -33,24 +33,24 @@
         </thead>
         <tbody>
         <g:each status="i" in="${entityList}" var="entity">
-          <tr class="row-${entity.type.name}">
+          <tr class="row-${entity.type.supertype.name}">
             <td>
               <app:isEnabled entityName="${entity.name}">
-                <g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link>
+                <g:link controller="profile" action="showProfile" id="${entity.id}" >${entity.profile.fullName ?: entity.profile.lastName + " " + entity.profile.firstName}</g:link>
               </app:isEnabled>
               <app:notEnabled entityName="${entity.name}">
                 <span class="notEnabled">${entity.profile.fullName}</span>
               </app:notEnabled>
             </td>
             <td class="col">${entity.type.name}</td>
-            <td class="col">${entity.user.enabled}</td>
+            <td class="col"><app:showBoolean bool="${entity.user.enabled}"/></td>
             <td class="col">${entity.user.authorities.authority}</td>
             <td class="col">
               <app:isEnabled entityName="${entity.name}">
-                <g:link controller="profile" action="disable" params="[name:entity.name]">Deaktivieren</g:link>
+                <g:link controller="profile" action="disable" id="${entity.id}">Deaktivieren</g:link>
               </app:isEnabled>
               <app:notEnabled entityName="${entity.name}">
-                <g:link controller="profile" action="enable" params="[name:entity.name]">Aktivieren</g:link>
+                <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
               </app:notEnabled>
             </td> 
           </tr>

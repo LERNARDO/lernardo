@@ -17,21 +17,11 @@ class HelperController {
 
     def list = {
         def entity = Entity.findByName(params.name)
+        def helper = Helper.findAllByType(entity.type.name)
 
-        def type = entity.type.name
-        def helper = Helper.findAllByType(type)
-
-        def helperFor
-        if (type == 'Educator')
-          helperFor = 'Pädagogen'
-        else if (type == 'User')
-          helperFor = 'Moderatoren'
-        else if (type == 'Facility')
-          helperFor = 'die Einrichtungsverwaltung'
         return [helperInstanceList: helper,
                 helperInstanceTotal: helper.size(),
-                entity: entity,
-                helperFor: helperFor]
+                entity: entity]
     }
 
     def show = {

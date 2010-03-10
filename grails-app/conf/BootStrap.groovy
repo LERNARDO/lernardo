@@ -321,6 +321,7 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
+      ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 2560
       prf.city = "Berndorf"
@@ -328,7 +329,9 @@ class BootStrap {
       prf.tel   = "-"
       prf.description = "-"
     }
+
     entityHelperService.createEntityWithUserAndProfile ("alpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
+      ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 2563
       prf.city = "Pottenstein"
@@ -336,7 +339,9 @@ class BootStrap {
       prf.tel   = "-"
       prf.description = "-"
     }
+
     entityHelperService.createEntityWithUserAndProfile ("sns", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
+      ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 0
       prf.city = ""
@@ -604,6 +609,12 @@ class BootStrap {
                        und die Gesamtsumme der Essenbeiträge ausrechnen. Es besteht außerdem die Möglichkeit diese Liste als
                        PDF anzuzeigen und bequem ausdrucken zu lassen.''',
            type: metaDataService.etFacility.name).save()
+
+    new Helper(title: 'Wo kann ich sämtliche Profile verwalten',
+           content: '''Die Verwaltung für Betreiber befindet sich links in der Seitennavigation unter der Gruppe Administration.
+                       Dort können folgende Profile verwaltet werden: Einrichtungen, Pädagogen, Betreute, Partner, Paten und
+                       Erziehungsberechtigte.''',
+           type: metaDataService.etOperator.name).save()
   }
 
   void createDefaultEvaluations() {

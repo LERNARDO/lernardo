@@ -68,6 +68,21 @@ class HelperTagLib {
       out << '<span class="italic">keinem Ersteller zugewiesen</span>'
   }
 
+  def isParent = {attrs, body->
+    if (attrs.entity.type.name == metaDataService.etParent.name || secHelperService.isAdmin())
+      out << body()
+  }
+
+  def isPate = {attrs, body->
+    if (attrs.entity.type.name == metaDataService.etPate.name || secHelperService.isAdmin())
+      out << body()
+  }
+
+  def isPartner = {attrs, body->
+    if (attrs.entity.type.name == metaDataService.etPartner.name || secHelperService.isAdmin())
+      out << body()
+  }
+
   def isClient = {attrs, body->
     if (attrs.entity.type.name == metaDataService.etClient.name || secHelperService.isAdmin())
       out << body()

@@ -111,9 +111,9 @@ class ProfileController {
     }
 
     def disable = {
-      Entity e = Entity.findByName(params.name)
+      Entity e = Entity.get(params.id)
       if (!e) {
-        flash.message = message(code:"user.notFound", args:[params.name])
+        flash.message = message(code:"user.notFound", args:[params.id])
         response.sendError (404, "no such entity")
         return ;
       }
@@ -128,9 +128,9 @@ class ProfileController {
     }
 
     def enable = {
-      Entity e = Entity.findByName(params.name)
+      Entity e = Entity.get(params.id)
       if (!e) {
-        flash.message = message(code:"user.notFound", args:[params.name])
+        flash.message = message(code:"user.notFound", args:[params.id])
         response.sendError (404, "no such entity")
         return ;
       }
@@ -401,8 +401,22 @@ class ProfileController {
         List entities
         int count
         if (params.entityType == 'all') {
-          entities = Entity.list(params)
-          count = Entity.count() }
+          def c = Entity.createCriteria()
+          entities = c.list {
+            ne("type", metaDataService.etCommentTemplate)
+            ne("type", metaDataService.etActivity)
+            ne("type", metaDataService.etTemplate)
+            ne("type", metaDataService.etResource)
+            ne("type", metaDataService.etGroupColony)
+            ne("type", metaDataService.etGroupFamily)
+            ne("type", metaDataService.etGroupLevel)
+            ne("type", metaDataService.etGroupNetwork)
+          }
+          //entities = Entity.list(params)
+          count = entities.size()
+          def upperBound = params.offset + 10 < entities.size() ? params.offset + 10 : entities.size()
+          entities = entities.subList(params.offset,upperBound)
+        }
         else {
           entities = Entity.findAllByType(EntityType.findByName(params.entityType))
           count = entities.size() }

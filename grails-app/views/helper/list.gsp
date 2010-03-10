@@ -4,7 +4,7 @@
 </head>
 <body>
   <div class="headerBlue">
-    <h1>Hilfethemen für ${helperFor}</h1>
+    <h1>Hilfethemen ${helperFor}</h1>
   </div>
 <div class="boxGray">
 
@@ -12,7 +12,12 @@
       <ub:isAdmin><g:link class="buttonBlue" action="create" params="[name:entity.name]">Neues Thema anlegen</g:link></ub:isAdmin>
     </div>
 
-    <p>Es gibt insgesamt ${helperInstanceList.size()} Hilfethemen für ${helperFor}.</p>
+    <g:if test="${helperInstanceList.size() > 0}">
+      <p>Es gibt insgesamt ${helperInstanceList.size()} Hilfethemen für "${entity.type.name}".</p>
+    </g:if>
+    <g:else>
+      <p>Keine Hilfethemen vorhanden.</p>
+    </g:else>
 
     <ul>
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">

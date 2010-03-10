@@ -57,12 +57,7 @@
               <div class="profile-box">
                 <ul>
                   <li class="icon-person"><g:link controller="asset" action="uploadprf" params="[entity:entity.name]">Bild ändern</g:link></li>
-                  <g:if test="${entity.type.supertype.name == 'Person'}">
-                    <li class="icon-edit"><g:link controller="profile" action="edit" params="[name:entity.name]">Daten ändern</g:link></li>
-                  </g:if>
-                  <g:else>
-                    <li class="icon-edit"><g:link controller="profile" action="editFacility" params="[name:entity.name]">Daten ändern</g:link></li>
-                  </g:else>
+                  <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" params="[name:entity.name]">Daten ändern</g:link></li>
                 </ul>
               </div>
             </ub:meOrAdmin>
@@ -126,17 +121,17 @@
           <div class="profile-box">
             <ul>
               <app:isSysAdmin>
-                <li><g:link controller="adm" action="createOperator" params="[name:entity.name]">Betreiber anlegen</g:link></li>
+                <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber verwalten</g:link></li>
               </app:isSysAdmin>
               <ub:isAdmin>
-                <li><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
-                <li><g:link controller="adm" action="index">Verwaltung</g:link></li>
-                <li><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
+                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
+                %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
+                <li class="icon-admin"><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
               </ub:isAdmin>
               <app:isOperator entity="${entity}">
                 <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen verwalten</g:link></li>
-                %{--<li class="icon-admin"><g:link controller="profile" action="createClient" params="[name:entity.name]">Betreute verwalten</g:link></li>--}%
+                <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]">Betreute verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte verwalten</g:link></li>
