@@ -6,7 +6,7 @@ class MetaDataService {
 
   // String Constants
   static final String EST_USER = "User"                  // EntitySuperType
-  static final String EST_PAED = "Paed"
+  static final String EST_EDUCATOR = "Educator"
   static final String EST_CLIENT = "Client"
   static final String EST_OPERATOR = "Operator"
   static final String EST_FACILITY = "Facility"
@@ -23,7 +23,7 @@ class MetaDataService {
   static final String EST_PARENT = "Parent"
 
   static final String ET_USER = "User"                   // EntityType
-  static final String ET_PAED = "Pädagoge"
+  static final String ET_EDUCATOR = "Pädagoge"
   static final String ET_CLIENT = "Betreuter"
   static final String ET_OPERATOR = "Betreiber"
   static final String ET_FACILITY = "Einrichtung"
@@ -40,7 +40,7 @@ class MetaDataService {
   static final String ET_PARENT = "Erziehungsberechtigter"
 
   static final String PRT_USER = "User"                // ProfileType
-  static final String PRT_PAED = "Paed"
+  static final String PRT_EDUCATOR = "Educator"
   static final String PRT_CLIENT = "Client"
   static final String PRT_OPERATOR = "Operator"
   static final String PRT_FACILITY = "Facility"
@@ -78,14 +78,14 @@ class MetaDataService {
   static final String LT_RESOURCE = "Ressource"
 
   // activity links
-  static final String LT_ACT_PAED = "Pädagoge"
+  static final String LT_ACT_EDUCATOR = "Pädagoge"
   static final String LT_ACT_CLIENT = "Betreuter"
-  static final String LT_ACT_FAC = "Einrichtung"
+  static final String LT_ACT_FACILITY = "Einrichtung"
   static final String LT_ACT_TEMPLATE = "Vorlage"
 
   def initialize() {
     getEstUser()
-    getEstPaed()
+    getEstEducator()
     getEstClient()
     getEstOperator()
     getEstFacility()
@@ -102,7 +102,7 @@ class MetaDataService {
     getEstParent()
 
     getEtUser()
-    getEtPaed()
+    getEtEducator()
     getEtClient()
     getEtOperator()
     getEtFacility()
@@ -134,9 +134,9 @@ class MetaDataService {
     getLtPartner()
     getLtResource()
 
-    getLtActPaed()
+    getLtActEducator()
     getLtActClient()
-    getLtActFac()
+    getLtActFacility()
     getLtActTemplate()
 
     getUserRole()
@@ -146,7 +146,7 @@ class MetaDataService {
   }
 
   def getEstUser()            {defaultObjectService.openEST (EST_USER, PRT_USER) }
-  def getEstPaed()            {defaultObjectService.openEST (EST_PAED, PRT_PAED) }
+  def getEstEducator()        {defaultObjectService.openEST (EST_EDUCATOR, PRT_EDUCATOR) }
   def getEstClient()          {defaultObjectService.openEST (EST_CLIENT, PRT_CLIENT) }
   def getEstOperator()        {defaultObjectService.openEST (EST_OPERATOR, PRT_OPERATOR) }
   def getEstFacility()        {defaultObjectService.openEST (EST_FACILITY, PRT_FACILITY) }
@@ -163,7 +163,7 @@ class MetaDataService {
   def getEstParent()          {defaultObjectService.openEST (EST_PARENT, PRT_PARENT) }
 
   def getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
-  def getEtPaed()            {defaultObjectService.openET (ET_PAED, estPaed) }
+  def getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
   def getEtClient()          {defaultObjectService.openET (ET_CLIENT, estClient) }
   def getEtOperator()        {defaultObjectService.openET (ET_OPERATOR, estOperator) }
   def getEtFacility()        {defaultObjectService.openET (ET_FACILITY, estFacility) }
@@ -196,9 +196,9 @@ class MetaDataService {
   def getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
 
   // activity links
-  def getLtActPaed()     {defaultObjectService.openLT (LT_ACT_PAED, lstOther) }
+  def getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }
   def getLtActClient()   {defaultObjectService.openLT (LT_ACT_CLIENT, lstOther) }
-  def getLtActFac()      {defaultObjectService.openLT (LT_ACT_FAC, lstOther) }
+  def getLtActFacility() {defaultObjectService.openLT (LT_ACT_FACILITY, lstOther) }
   def getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
 
   def getUserRole()        {defaultObjectService.openRole (ROLE_USER, "regular user") }

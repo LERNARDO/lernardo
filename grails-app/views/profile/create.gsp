@@ -13,10 +13,10 @@
           <label>Rolle
             <select name="profileType">
               <option value="lernardo" selected="selected">Lernardo-Mitarbeiter</option>
-              <option value="paed">Pädagoge</option>
+              <option value="educator">Pädagoge</option>
               <option value="client">Betreuter</option>
-              <option value="einrichtung">Einrichtung</option>
-              <option value="betreiber">Betreiber</option>
+              <option value="facility">Einrichtung</option>
+              <option value="operator">Betreiber</option>
             </select>                  
           </label>
           <g:submitButton name="list" value="OK" />

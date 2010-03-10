@@ -161,101 +161,6 @@ class ProfileController {
       }
     }
 
-    def createPaed = {
-      //def entityInstance = new Entity()
-      //entityInstance.properties = params
-      return [/*'entityInstance':entityInstance,*/
-              'entity':entityHelperService.loggedIn,
-              'availFacilities': Entity.findAllByType(metaDataService.etFacility)]
-    }
-
-    def savePaed = {
-      EntityType etPaed = metaDataService.etPaed
-
-      Account user = Account.findByEmail (params.email)
-      if (user) {
-        flash.message = message(code:"user.existsMail", args:[params.email])
-        redirect action:"createPaed", params:params
-        return
-      }
-
-      Entity etst = Entity.findByName (params.name)
-      if (etst) {
-        flash.message = message(code:"user.existsName", args:[params.name])
-        redirect action:"createPaed", params:params
-        return
-      }
-
-      try {
-        entityHelperService.createEntityWithUserAndProfile (params.name, etPaed, params.email, params.fullName) {Entity ent->
-          UserProfile prf = ent.profile
-          if (params.pass)
-              ent.user.password = authenticateService.encodePassword(params.pass)
-        }
-      } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"createPaed", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
-        return
-      }
-
-      // add relationship to facility
-      def target = params.facility ? Entity.get(params.facility) : entityHelperService.loggedIn
-      new Link(source:Entity.findByName(params.name), target: target, type:metaDataService.ltWorking).save()
-
-      flash.message = message(code:"user.created", args:[params.name,'Admin'])
-      redirect controller:'profile', action:'showProfile', params:[name:params.name]
-    }
-
-    def createClient = {
-      //def entityInstance = new Entity()
-      //entityInstance.properties = params
-      //entityInstance.name = ""
-      return [/*'entityInstance':entityInstance,*/
-              'entity':Entity.findByName(params.name),
-              'availFacilities': Entity.findAllByType(metaDataService.etFacility)]
-    }
-
-    def saveClient = {
-    
-      EntityType etClient = metaDataService.etClient
-
-      Account user = Account.findByEmail (params.email)
-      if (user) {
-        flash.message = message(code:"user.existsMail", args:[params.email])
-        redirect action:"createClient", params:params
-        return
-      }
-
-      Entity etst = Entity.findByName (params.name)
-      if (etst) {
-        flash.message = message(code:"user.existsName", args:[params.name])
-        redirect action:"createClient", params:params
-        return
-      }
-
-      try {
-        entityHelperService.createEntityWithUserAndProfile (params.name, etClient, params.email, params.fullName) {Entity ent->
-          UserProfile prf = ent.profile
-          prf.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
-          prf.PLZ = params.PLZ != "" ? params.PLZ.toInteger() : null
-          prf.city = params.city ?: ""
-          prf.street = params.street ?: ""
-          prf.tel = params.tel ?: ""
-          prf.gender = params.gender
-          ent.user.password = authenticateService.encodePassword("pass")
-        }
-      } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"createClient", model:[entityInstance:ee.entity, entity:entityHelperService.loggedIn])
-        return
-      }
-
-      // add relationship to facility
-      def target = params.facility ? Entity.get(params.facility) : entityHelperService.loggedIn
-      new Link(source:Entity.findByName(params.name), target: target, type:metaDataService.ltClientship).save()
-
-      flash.message = message(code:"user.created", args:[params.name,params.entity])
-      redirect controller:'profile', action:'showProfile', params:[name:params.name]
-    }
-
     def search = {
       return [entity:Entity.findByName(params.name),
               glossary: '-']
@@ -332,11 +237,11 @@ class ProfileController {
 
       Entity e = Entity.findByName(params.name)
 
-      // find all activities the entity is owner, or in the paed or client list
+      // find all activities the entity is owner, or in the educator or client list
       // Unfortunately we loose control over sort and max, need to find a workaround
       def activityList = Activity.findAllByOwner(e)
       Activity.list().each {
-        for (a in it.paeds) {
+        for (a in it.educators) {
           if (a == Entity.findByName(params.name))
             activityList << it
         }

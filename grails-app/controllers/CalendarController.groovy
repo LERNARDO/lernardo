@@ -14,22 +14,22 @@ class CalendarController {
       params.name = params.name ?: 'all'
       Entity entity = entityHelperService.loggedIn
 
-      // find facility the paed is working in
+      // find facility the educator is working for
       def link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
-      List paedList = []
+      List educators = []
       if (link) {
         Entity facility = link.target
 
-        // find all paeds working in that facility
+        // find all educators working in that facility
         def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
         temp.each {
-            paedList << it.source
+            educators << it.source
         }
       }
 
       return ['name':params.name,
               'entity':entityHelperService.loggedIn,
-              'paedList':paedList]
+              'educators':educators]
     }
 
     // handles event requests
@@ -38,11 +38,11 @@ class CalendarController {
         log.debug ("loading events for $params.name between $params.start and $params.end" )
 
         // get a list of facilities the current entity is working in
-        List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-        List facilityList = []
+        def links = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+        List facilities = []
 
-        facilities.each {
-          facilityList << it.target
+        links.each {
+          facilities << it.target
         }
 
        // create empty list for final results
@@ -52,8 +52,8 @@ class CalendarController {
         // find all activities for given profile
         if (params.name == 'all') {
 
-          facilityList.each {
-            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFac)
+          facilities.each {
+            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
             tempList.each {bla ->
               activityList << bla.target
@@ -71,8 +71,8 @@ class CalendarController {
         }
         else {
           // TODO: return only activities of the logged in entity
-          facilityList.each {
-            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFac)
+          facilities.each {
+            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
             tempList.each {bla ->
               activityList << bla.target
@@ -80,7 +80,7 @@ class CalendarController {
           }
 /*          activityList = Activity.findAllByOwner(Entity.findByName(params.name))
           Activity.list().each {
-            for (a in it.paeds) {
+            for (a in it.educators) {
               if (a == Entity.findByName(params.name))
                 activityList << it
             }

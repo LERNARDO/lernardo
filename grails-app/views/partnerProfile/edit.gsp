@@ -93,17 +93,19 @@
                   </td>
               </tr>
 
-              <tr class="prop">
-                  <td valign="top" class="name">
-                    <label for="enabled">
-                      <g:message code="partnerProfile.enabled.label" default="Aktiv?" />
-                    </label>
-
-                  </td>
-                  <td valign="top" class="value">
-                      <g:checkBox name="enabled" value="${fieldValue(bean:partner,field:'user.enabled')}" />
-                  </td>
-              </tr>
+              <ub:isAdmin>
+                <tr class="prop">
+                    <td valign="top" class="name">
+                      <label for="enabled">
+                        <g:message code="partnerProfile.enabled.label" default="Aktiv?" />
+                      </label>
+  
+                    </td>
+                    <td valign="top" class="value">
+                        <g:checkBox name="enabled" value="${fieldValue(bean:partner,field:'user.enabled')}" />
+                    </td>
+                </tr>
+              </ub:isAdmin>
 
             </tbody>
           </table>

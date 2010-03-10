@@ -15,7 +15,7 @@ class TemplateProfile extends Profile {
   Integer si
   Integer hk
   Integer tlt
-  Integer requiredPaeds
+  Integer requiredEducators
 
   Date dateCreated
   Date lastUpdated

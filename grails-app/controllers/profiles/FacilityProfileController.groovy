@@ -18,7 +18,7 @@ class FacilityProfileController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        return [facilityList: Entity.findAllByType(metaDataService.etFacility),
+        return [facilities: Entity.findAllByType(metaDataService.etFacility),
                 facilityTotal: Entity.countByType(metaDataService.etFacility)]
     }
 

@@ -22,7 +22,7 @@
           </app:getResources></td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Dauer:</td><td class="bezeichnung">${template.profile.duration} Minuten</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Sozialform:</td><td class="bezeichnung">${template.profile.socialForm}</td></tr>
-          <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.profile.requiredPaeds}</td></tr>
+          <tr class="separator"><td class="bold titles2 bezeichnung">Teamgröße:</td><td class="bezeichnung">${template.profile.requiredEducators}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Qualifikationen:</td><td class="bezeichnung">${template.profile.qualifications}</td></tr>
           <tr class="separator"><td class="bold titles2 bezeichnung">Lernen lernen:</td><td class="bezeichnung">
 <% template.profile.ll.toInteger().times { %><img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.ll.toInteger()).times { %><img src="${g.resource(dir:'images/icons', file:'icon_star_empty.png')}" alt="star"/><% } %>
@@ -44,12 +44,12 @@
             </td></tr>
         </table>
 
-      <app:isPaed entity="${entity}">
+      <app:isEducator entity="${entity}">
           <g:link class="buttonBlue" action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
           <g:link class="buttonBlue" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
           <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
           <div class="spacer"></div>
-      </app:isPaed>
+      </app:isEducator>
 
 
     </div>
@@ -88,14 +88,14 @@
           </g:each>
         </g:else>
 
-        <app:isPaed entity="${entity}">
+        <app:isEducator entity="${entity}">
           <div class="comments-actions">
             <g:remoteLink class="buttonBlue" controller="commentTemplate" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')" >Kommentar abgeben</g:remoteLink>
             <div class="spacer"></div>
           </div>
           <div id="createComment">
           </div>
-        </app:isPaed>
+        </app:isEducator>
 
       </div>
   </body>

@@ -88,12 +88,12 @@
 
                         <tr class="prop">
                             <td valign="top" class="name">
-                                <label for="requiredPaeds">
-                                  <g:message code="template.requiredPaeds.label" default="Teamgröße" />:
+                                <label for="requiredEducators">
+                                  <g:message code="template.requiredEducators.label" default="Teamgröße" />:
                                 </label>
                             </td>
                             <td valign="top" class="value">
-                                <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template.profile.requiredPaeds}"/> (Anzahl der Pädagogen)
+                                <g:select id="requiredEducators" name="requiredEducators" from="${1..5}" value="${template.profile.requiredEducators}"/> (Anzahl der Pädagogen)
                             </td>
                         </tr>
 

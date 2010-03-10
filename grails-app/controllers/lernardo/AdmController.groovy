@@ -27,21 +27,21 @@ class AdmController {
 
       List temp
 
-      List paedList = []
+      List educators = []
       temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
       temp.each {
-          paedList << it.source
+          educators << it.source
       }
 
-      List clientList = []
+      List clients = []
       temp = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
       temp.each {
-          clientList << it.source
+          clients << it.source
       }
 
       return [facility: facility,
-              paedList: paedList,
-              clientList: clientList,
+              educators: educators,
+              clients: clients,
               operator: operator]
     }
 
@@ -61,7 +61,7 @@ class AdmController {
               operator: operator]
     }
 
-    def showPaed = {
+    def showEducator = {
       Entity entity = Entity.findByName(params.name)
       Entity facility = Entity.findByName(params.facility)
       Entity operator = Entity.findByName(params.operator)
@@ -74,13 +74,13 @@ class AdmController {
     def showOperator = {
       Entity entity = Entity.findByName(params.name)
 
-      List facilityList = []
-      List temp = Link.findAllByTargetAndType(entity, metaDataService.ltOperation)
-      temp.each {
-          facilityList << it.source
+      List facilities = []
+      def links = Link.findAllByTargetAndType(entity, metaDataService.ltOperation)
+      links.each {
+          facilities << it.source
       }
       return [entity: entity,
-              facilityList: facilityList]
+              facilities: facilities]
     }
 
     def createNotification = {

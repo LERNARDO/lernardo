@@ -15,9 +15,9 @@
     <div class="boxGray">
     <div id="body-list">
       <div style="float:right;">
-        <app:isPaed entity="${entity}">
+        <app:isEducator entity="${entity}">
           <li class="profile-template"><g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
-        </app:isPaed>
+        </app:isEducator>
       </div>
       <p>${templateCount} Aktivitätsvorlage(n) gefunden</p>
 
@@ -27,7 +27,7 @@
         <g:sortableColumn property="name" title="Name" />
         <g:sortableColumn property="duration" title="Dauer (min)" />
         <g:sortableColumn property="socialForm" title="Sozialform" />
-        %{--<g:sortableColumn property="requiredPaeds" title="P&auml;dagogen" />--}%
+        %{--<g:sortableColumn property="requiredEducators" title="P&auml;dagogen" />--}%
         <th>Kommentare</th>
         </tr>
         </thead>
@@ -38,7 +38,7 @@
             <td class="col"><g:link action="show" id="${templateInstance.id}" params="[name:entity.name]">${templateInstance.profile.fullName}</g:link></td>
             <td class="col2">${templateInstance.profile.duration}</td>
             <td>${templateInstance.profile.socialForm}</td>
-            %{--<td class="col4">${templateInstance.requiredPaeds}</td>--}%
+            %{--<td class="col4">${templateInstance.requiredEducators}</td>--}%
             <td><app:getTemplateCommentsCount template="${templateInstance}"/></td>
           </tr>
         </g:each>

@@ -13,14 +13,14 @@
       <g:render template="memberList" model="[cssclass:'myfriends', title:'Meine Freunde',
                 emptyMsg:'Du hast derzeit noch keine Freunde', entities:friendsList]"/>
 
-      <app:isPaed entity="${entity}">
+      <app:isEducator entity="${entity}">
         <ub:notAdmin>
           <g:render template="memberList" model="[cssclass:'myemployers', title:'Meine Betreuten',
                 emptyMsg:'Du hast derzeit noch keine Betreuten!', entities:clientsList]"/>
           <g:render template="memberList" model="[cssclass:'myemployers', title:'Meine Einrichtungen',
                 emptyMsg:'Du hast derzeit noch keine Einrichtungen!', entities:facilitiesList]"/>
         </ub:notAdmin>
-      </app:isPaed>
+      </app:isEducator>
 
       <g:render template="memberList" model="[cssclass:'mymemberships', title:'Meine Bookmarks',
                 emptyMsg:'Du hast derzeit noch keine Bookmarks!', entities:bookmarksList]"/>

@@ -103,7 +103,7 @@ class TemplateController {
           ent.profile.description = params.description
           ent.profile.duration = params.duration ? params.duration.toInteger() : 0
           ent.profile.socialForm = params.socialForm
-          ent.profile.requiredPaeds = params.requiredPaeds.toInteger()
+          ent.profile.requiredEducators = params.requiredEducators.toInteger()
           ent.profile.qualifications = params.qualifications
           ent.profile.ll = params.ll.toInteger()
           ent.profile.be = params.be.toInteger()
@@ -131,7 +131,7 @@ class TemplateController {
         flash.message = message(code:"template.created", args:[entity.profile.fullName])
 
         functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')
-        List receiver = Entity.findAllByType(metaDataService.etPaed)
+        List receiver = Entity.findAllByType(metaDataService.etEducator)
         receiver.each {
           if (it != entityHelperService.loggedIn)
             functionService.createEvent(it, 'Es wurde die Aktivitätsvorlage "'+entity.profile.fullName+'" angelegt.')

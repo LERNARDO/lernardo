@@ -11,10 +11,8 @@ import posts.ArticlePost
 import profiles.ClientProfile
 import profiles.FacilityProfile
 import profiles.OperatorProfile
-import profiles.PaedProfile
-import profiles.ParentProfile
-import profiles.PartnerProfile
-import profiles.PateProfile
+import profiles.EducatorProfile
+
 import profiles.UserProfile
 
 import grails.util.GrailsUtil
@@ -30,7 +28,7 @@ class BootStrap {
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
       createDefaultUsers()
-      createDefaultPaeds()
+      createDefaultEducators()
       createDefaultOperators()
       createDefaultFacilities()
       createDefaultLinks()
@@ -178,21 +176,28 @@ class BootStrap {
     }
   }
 
-  void createDefaultPaeds() {
-    log.debug ("==> creating default paeds")
-    EntityType etPaed = metaDataService.etPaed
+  void createDefaultEducators() {
+    log.debug ("==> creating default educators")
+    EntityType etEducator = metaDataService.etEducator
 
-    entityHelperService.createEntityWithUserAndProfile("martin", etPaed, "martin@lernardo.at", "Martin Golja") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+    entityHelperService.createEntityWithUserAndProfile("martin", etEducator, "martin@lernardo.at", "") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.title = "Mag."
+      prf.firstName = "Martin"
+      prf.lastName = "Golja"
+      prf.contact = ""
+      prf.employed = true
+      prf.function = "Hortleiter"
+      prf.interests = "Wassersport"
+      prf.joinDate = new Date()
+      prf.languages = "Deutsch"
+      prf.nationality = "Österreich"
       prf.gender = 1
       prf.birthDate = new Date(1969-1900,12,31)
       prf.PLZ = 2563
       prf.city = "Pottenstein"
       prf.street = "Obere Marktfeldstraße 20"
-      prf.tel = "-"
-      prf.biography = """<b>1976-1980</b> Volksschule Pottenstein<br>
+      prf.education = """<b>1976-1980</b> Volksschule Pottenstein<br>
                           <b>1980-1988</b> Neusprachlicher Zweig des Bundesrealgymnasiums Berndorf<br>
                           <b>1988</b> Matura<br>
                           <b>1988-1989</b> Präsenzdienst in der Martinekkaserne in Baden<br>
@@ -214,25 +219,22 @@ class BootStrap {
                           <b>2006-laufend</b> Beschäftigung als Springer in der schulischen Nachmittagsbetreuung beim Verein „Hand in Hand“ des NÖ Familienreferates"""
     }
 
-    entityHelperService.createEntityWithUserAndProfile("rosa", etPaed, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+/*    entityHelperService.createEntityWithUserAndProfile("rosa", etEducator, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.gender = 2
       prf.birthDate = new Date(1961-1900,12,16)
       prf.PLZ = 2565
       prf.city = "Neuhaus"
       prf.street = "Schwarzenseer Straße 19"
-      prf.tel = "0664 / 3774 559"
-      prf.biography = """<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
+      prf.education = """<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
                           <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
                           <b>1996 – 2004:</b> Karenz und Hausfrau<br>
                           <b>seit 2004:</b> Fa. L. Schumits & Co GmbH in Pfaffstätten (geringfügig)"""
     }
 
-    entityHelperService.createEntityWithUserAndProfile("birgit", etPaed, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+    entityHelperService.createEntityWithUserAndProfile("birgit", etEducator, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.gender = 2
       prf.birthDate = new Date(1970-1900,03,19)
       prf.PLZ = 2560
@@ -240,9 +242,8 @@ class BootStrap {
       prf.street = "Gartengasse 5"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("hannah", etPaed, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+    entityHelperService.createEntityWithUserAndProfile("hannah", etEducator, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.gender = 2
       prf.birthDate = new Date(1982-1900,02,22)
       prf.PLZ = 2564
@@ -250,16 +251,14 @@ class BootStrap {
       prf.street = "Hauptstraße 14"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("regina", etPaed, "regina.toncourt@gmx.at", "Regina Toncourt") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+    entityHelperService.createEntityWithUserAndProfile("regina", etEducator, "regina.toncourt@gmx.at", "Regina Toncourt") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.gender = 2
       prf.birthDate = new Date(1962-1900,11,04)
       prf.PLZ = 2565
       prf.city = "Neuhaus"
       prf.street = "Hirschbahngasse 3"
-      prf.tel = "0676 / 4303 145"
-      prf.biography = """<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
+      prf.education = """<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
                           <b>1980 – 1983:</b> während der Ferienzeit Betreuerin beim Wr. Jugendhilfswerk<br>
                           <b>1984 – 1987:</b> Verkäuferin in einem Papierfachgeschäft, halbtags<br>
                           <b>1987 - 1993:</b> Tennisschule „Team Tennis“ (Verkauf, Service, Werbung, Administration, Kinderbetreuung)<br>
@@ -274,27 +273,23 @@ class BootStrap {
                           <b>seit 2005:</b> Tagesmutter und Trainerin bei TLS beim NÖ Hilfswerk"""
     }
 
-    entityHelperService.createEntityWithUserAndProfile("yvonne", etPaed, "ycf@lernardo.at", "Yvonne Frey") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+    entityHelperService.createEntityWithUserAndProfile("yvonne", etEducator, "ycf@lernardo.at", "Yvonne Frey") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.gender = 2
       prf.birthDate = new Date(1973-1900,12,01)
       prf.PLZ = 2560
       prf.city = "Grillenberg"
       prf.street = "Florianigasse 32/2"
-      prf.tel = "0676 / 964 84 12"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("anna-maria", etPaed, "amr@lernardo.at", "Anna-Maria Reischer") {Entity ent ->
-      PaedProfile prf = ent.profile
-      prf.tagline = "..."
+    entityHelperService.createEntityWithUserAndProfile("anna-maria", etEducator, "amr@lernardo.at", "Anna-Maria Reischer") {Entity ent ->
+      EducatorProfile prf = ent.profile
       prf.gender = 2
       prf.birthDate = new Date(2010-1900,01,01)
       prf.PLZ = 2560
       prf.city = "???"
       prf.street = "???????"
-      prf.tel = "06?? ???"
-    }
+    }*/
   
   }
 
@@ -454,7 +449,7 @@ class BootStrap {
       ent.profile.duration = 60
       ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
       ent.profile.qualifications = "keine"
-      ent.profile.requiredPaeds = 2
+      ent.profile.requiredEducators = 2
       ent.profile.ll = 0
       ent.profile.be = 3
       ent.profile.pk = 1
@@ -506,9 +501,9 @@ class BootStrap {
         ent.profile.duration = 60
       }
 
-      new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActPaed).save()
+      new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActEducator).save()
       new Link(source: Entity.findByName('keano'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('loewenzahn'), target: entity, type: metaDataService.ltActFac).save()
+      new Link(source: Entity.findByName('loewenzahn'), target: entity, type: metaDataService.ltActFacility).save()
       new Link(source: Entity.findByName('Weide mit Hindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
@@ -572,30 +567,30 @@ class BootStrap {
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
                content: '''Um eine Aktivitätsvorlage zu erstellen klicke zuerst auf "Aktivätsvorlagen" in der orangenen
                            Hauptnavigation. Dort findest du dann einen Button "Aktivitätsvorlage erstellen".''',
-               type: metaDataService.etPaed.name).save()
+               type: metaDataService.etEducator.name).save()
     new Helper(title: 'Wie kann ich eine Aktivität planen?',
                content: '''Aktivitäten beruhen immer auf einer Aktivitätsvorlage. Klicke in der orangenen Hauptnavigation
                            auf "Aktivitätsvorlagen" und wähle dort eine Vorlage aus indem du auf dessen Namen klickst.
                            Im nächsten Schritt kannst du dann über den Button "Neue Aktivität planen" eine konkrete
                            Aktivität planen. Für jede Aktivität must du eine Einrichtung, Pädagogen und Betreute auswählen.''',
-               type: metaDataService.etPaed.name).save()
+               type: metaDataService.etEducator.name).save()
     new Helper(title: 'Wie kann ich einen Artikel verfassen?',
                content: '''Artikel können direkt auf der Startseite verfasst werden. Klicke auf "Home" in der blauen
                            Navigationsleiste um dorthin zu gelangen und klicke auf den roten Link "Neuen Artikel verfassen".''',
-               type: metaDataService.etPaed.name).save()
+               type: metaDataService.etEducator.name).save()
     new Helper(title: 'Wie kann ich jemandem eine Nachricht ins Postfach schicken?',
                content: '''Um jemandem eine Nachricht zu schicken musst du zuerst sein/ihr Profil besuchen. Dort findest
                            du dann links in der Seitennavigation den Punkt "Nachricht senden".''',
-               type: metaDataService.etPaed.name).save()
+               type: metaDataService.etEducator.name).save()
     new Helper(title: 'Was ist das Netzwerk?',
                content: '''Im Netzwerk hast du eine Auflistung aller für dich relevanten User im ERP, wie deine Betreuten,
                            oder andere Pädagogen. Diese Liste kannst du selbst verwalten indem du andere Profile besuchst,
                            und dort Freunde oder Bookmarks hinzufügst.''',
-               type: metaDataService.etPaed.name).save()
+               type: metaDataService.etEducator.name).save()
     new Helper(title: 'Wie kann ich eine Beurteilung eines Betreuten anlegen?',
                content: '''Besuche zuerst das Profil des Betreuten und klicke dort in der linken Seitennavigation auf
                            "Leistungsfortschritt anlegen".''',
-               type: metaDataService.etPaed.name).save()
+               type: metaDataService.etEducator.name).save()
 
     new Helper(title: 'Wie kann ich einen Betreuten anlegen?',
                content: '''Betreute können über den Link "Betreuten anlegen" in der Seitennavigation links angelegt werden.

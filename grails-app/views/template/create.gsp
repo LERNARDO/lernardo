@@ -90,12 +90,12 @@
 
             <tr class="prop">
                 <td valign="top" class="name">
-                    <label for="requiredPaeds">
-                      <g:message code="msg.requiredPaeds.label" default="Anzahl BetreuerInnen" />:
+                    <label for="requiredEducators">
+                      <g:message code="msg.requiredEducators.label" default="Anzahl BetreuerInnen" />:
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:template,field:'profile.requiredPaeds','errors')}">
-                    <g:select id="requiredPaeds" name="requiredPaeds" from="${1..5}" value="${template?.profile?.requiredPaeds}"/> (Vorschlag)
+                <td valign="top" class="value ${hasErrors(bean:template,field:'profile.requiredEducators','errors')}">
+                    <g:select id="requiredEducators" name="requiredEducators" from="${1..5}" value="${template?.profile?.requiredEducators}"/> (Vorschlag)
                 </td>
             </tr>
 

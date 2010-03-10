@@ -48,7 +48,7 @@ class CommentTemplateController {
     flash.message = message(code:"comment.created", args:[entity.profile.fullName])
 
     functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivätsvorlage "'+Entity.get(params.id).profile.fullName+'" kommentiert.')
-    List receiver = Entity.findAllByType(metaDataService.etPaed)
+    List receiver = Entity.findAllByType(metaDataService.etEducator)
     receiver.each {
       if (it != entityHelperService.loggedIn)
         functionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+'hat die Aktivätsvorlage "'+Entity.get(params.id).profile.fullName+'" kommentiert.')

@@ -18,10 +18,10 @@
     am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
     um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
     <g:isLoggedIn>
-      <app:isPaed entity="${currentEntity}">
+      <app:isEducator entity="${currentEntity}">
         (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
          <g:link class="adminlink" action="delete" onclick="return confirm('Artikel wirklich löschen?');" id="${article.id}">löschen</g:link>)
-      </app:isPaed>
+      </app:isEducator>
     </g:isLoggedIn>
   </div>
 </div>

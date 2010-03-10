@@ -13,8 +13,8 @@
   </div>
   <div class="boxGray">
       <div class="all" style="padding: 3px 4px"><g:link controller="calendar" action="showall">Alle</g:link></div>
-      <g:each in="${paedList}" var="paed">
-        <div class="${paed.name}" style="padding: 3px 4px"><g:link controller="calendar" action="showall" params="[name:paed.name]">${paed.profile.fullName}</g:link></div>
+      <g:each in="${educators}" var="educator">
+        <div class="${educator.name}" style="padding: 3px 4px"><g:link controller="calendar" action="showall" params="[name:educator.name]">${educator.profile.fullName}</g:link></div>
       </g:each>
   </div>
   <div class="headerBlue">

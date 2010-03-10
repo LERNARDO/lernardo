@@ -36,7 +36,7 @@
 
             <tr>
               <td class="label">Für:</td>
-              <td class="value ${hasErrors(bean:helperInstance,field:'type','errors')}"><g:select id="type" name="type" from="${[Paed:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td>
+              <td class="value ${hasErrors(bean:helperInstance,field:'type','errors')}"><g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td>
             </tr>
 
           </tbody>

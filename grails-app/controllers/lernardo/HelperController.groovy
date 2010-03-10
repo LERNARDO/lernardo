@@ -22,7 +22,7 @@ class HelperController {
         def helper = Helper.findAllByType(type)
 
         def helperFor
-        if (type == 'Paed')
+        if (type == 'Educator')
           helperFor = 'Pädagogen'
         else if (type == 'User')
           helperFor = 'Moderatoren'
@@ -120,8 +120,8 @@ class HelperController {
         def helperInstance = new Helper(params)
 
         def type
-        if (helperInstance.type == 'Paed')
-          type = metaDataService.etPaed
+        if (helperInstance.type == 'Educator')
+          type = metaDataService.etEducator
         if (helperInstance.type == 'User')
           type = metaDataService.etUser
         if (helperInstance.type == 'Facility')

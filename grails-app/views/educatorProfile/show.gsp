@@ -1,0 +1,179 @@
+<head>
+  <meta name="layout" content="private" />
+  <title>Lernardo | Pädagoge</title>
+</head>
+<body>
+  <div class="headerBlue">
+    <h1>Pädagoge</h1>
+  </div>
+  <div class="boxGray">
+    <div class="body">
+      <div class="dialog">
+        <table>
+          <tbody>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.firstName.label" default="Vorname" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.firstName')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.lastName.label" default="Nachname" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.lastName')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.PLZ.label" default="PLZ" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.PLZ')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.birthDate.label" default="Geburtsdatum" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.birthDate')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.city.label" default="Stadt" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.city')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.contact.label" default="Kontakt" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.contact')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.education.label" default="Ausbildung" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.education')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.employed.label" default="Angestellt?" />:
+                            </td>
+                            
+                            <td valign="top" class="value"><app:showBoolean bool="${educator.profile.employed}"/></td>
+                            
+                        </tr> 
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.function.label" default="Funktion" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.function')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.gender.label" default="Geschlecht" />:
+                            </td>
+                            
+                            <td valign="top" class="value"><app:showGender gender="${educator.profile.gender}"/></td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.interests.label" default="Interessen" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.interests')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.joinDate.label" default="Eintrittsdatum" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.joinDate')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.languages.label" default="Sprachen" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.languages')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.nationality.label" default="Nationalität" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.nationality')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.quitDate.label" default="Austrittsdatum" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.quitDate')}</td>
+                            
+                        </tr>
+                                       
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.street.label" default="Straße" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.street')}</td>
+                            
+                        </tr>
+                    
+                        <tr class="prop">
+                            <td valign="top" class="name">
+                               <g:message code="educatorProfile.title.label" default="Titel" />:
+                            </td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean:educator, field:'profile.title')}</td>
+                            
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+      <div class="buttons">
+         <g:link class="buttonBlue" action="edit" id="${educator?.id}">Bearbeiten</g:link>
+         <g:link class="buttonGray" action="del" id="${educator?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+         <g:link class="buttonGray" action="list">Zurück</g:link>
+         <div class="spacer"></div>
+       </div>
+   </div>
+ </div>
+ </body>

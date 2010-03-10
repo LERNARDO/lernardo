@@ -50,16 +50,16 @@
       </tr>
     </table>
 
-    <h3>Anzahl Pädagogen: ${paedList.size()}</h3>
+    <h3>Anzahl Pädagogen: ${educators.size()}</h3>
     <ul>
-      <g:each in="${paedList}" var="paed">
-        <li><g:link action="showPaed" params="[name:paed.name, facility: facility.name, operator: operator.name]">${paed.profile.fullName}</g:link></li>
+      <g:each in="${educators}" var="educator">
+        <li><g:link action="showEducator" params="[name:educator.name, facility: facility.name, operator: operator.name]">${educator.profile.fullName}</g:link></li>
       </g:each>
     </ul>
 
-    <h3>Anzahl Betreute: ${clientList.size()}</h3>
+    <h3>Anzahl Betreute: ${clients.size()}</h3>
     <ul>
-      <g:each in="${clientList}" var="client">
+      <g:each in="${clients}" var="client">
         <li><g:link action="showClient" params="[name:client.name, facility: facility.name, operator: operator.name]">${client.profile.fullName}</g:link></li>
       </g:each>
     </ul>

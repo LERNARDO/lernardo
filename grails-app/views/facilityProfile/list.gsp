@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${facilityList}" status="i" var="facility">
+                    <g:each in="${facilities}" status="i" var="facility">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                             <td><g:link action="show" id="${facility.id}">${fieldValue(bean:facility, field:'profile.fullName')}</g:link></td>
                         </tr>

@@ -40,16 +40,16 @@
           </app:getCreator></td>
         </tr>
 
-        <tr><td class="bold titles bezeichnung">Pädagogen:</td><td class="bezeichnung"><app:getPaeds entity="${activity}">
-          <g:each in="${paeds}" var="paed">
-            <app:isEnabled entityName="${paed.name}">
-              <g:link controller="profile" action="showProfile" params="[name:paed.name]">${paed.profile.fullName}</g:link>
+        <tr><td class="bold titles bezeichnung">Pädagogen:</td><td class="bezeichnung"><app:getEducators entity="${activity}">
+          <g:each in="${educators}" var="educator">
+            <app:isEnabled entityName="${educator.name}">
+              <g:link controller="profile" action="showProfile" params="[name:educator.name]">${educator.profile.fullName}</g:link>
             </app:isEnabled>
-            <app:notEnabled entityName="${paed.name}">
-              <span class="notEnabled">${paed.profile.fullName}</span>
+            <app:notEnabled entityName="${educator.name}">
+              <span class="notEnabled">${educator.profile.fullName}</span>
             </app:notEnabled><br>
           </g:each>
-          </app:getPaeds></td>
+          </app:getEducators></td>
         </tr>
 
         <tr><td class="bold titles bezeichnung">Teilnehmer:</td><td class="bezeichnung"><app:getClients entity="${activity}">
@@ -66,12 +66,12 @@
 
       </table>
 
-      <app:isPaed entity="${entity}">
+      <app:isEducator entity="${entity}">
           <g:link class="buttonBlue" action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
           <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Aktivität löschen</g:link>
           <g:link class="buttonGray" action="list">Zurück</g:link>
           <div class="spacer"></div>
-      </app:isPaed>
+      </app:isEducator>
 
     </div>
 

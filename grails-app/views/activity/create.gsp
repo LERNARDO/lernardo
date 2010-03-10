@@ -37,14 +37,14 @@
           <tr>
             <td class="label">Einrichtung:</td>
             <td class="value">
-              <g:select name="facility" from="${availFacilities}" optionKey="id" optionValue="profile"/>
+              <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 
           <tr>
             <td class="label">Pädagogen:</td>
             <td class="value">
-              <g:select multiple="true" optionKey="id" optionValue="profile" from="${availPaeds}" name="paeds"/>
+              <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/>
               <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere PädagogInnen ausgewählt werden</p>
             </td>
           </tr>
@@ -52,7 +52,7 @@
           <tr>
             <td class="label">Betreute:</td>
             <td class="value">
-              <g:select multiple="true" optionKey="id" optionValue="profile" from="${availClients}" name="clients"/>
+              <g:select multiple="true" optionKey="id" optionValue="profile" from="${clients}" name="clients"/>
               <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere Betreute ausgewählt werden</p>
             </td>
           </tr>

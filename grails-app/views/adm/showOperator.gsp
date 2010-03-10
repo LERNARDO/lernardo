@@ -46,9 +46,9 @@
       </tr>
     </table>
 
-    <h3>Anzahl Einrichtungen: ${facilityList.size()}</h3>
+    <h3>Anzahl Einrichtungen: ${facilities.size()}</h3>
     <ul>
-      <g:each in="${facilityList}" var="facility">
+      <g:each in="${facilities}" var="facility">
         <li><g:link action="showFacility" params="[name:facility.name, operator: entity.name]">${facility.profile.fullName}</g:link></li>
       </g:each>
     </ul>

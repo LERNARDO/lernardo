@@ -44,16 +44,16 @@ class HelperTagLib {
       out << '<span class="italic">keine Betreuten zugewiesen</span>'
   }
 
-  def getPaeds = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActPaed)
+  def getEducators = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActEducator)
     if (link)
-      link.each {out << body(paeds: it.source)}
+      link.each {out << body(educators: it.source)}
     else
       out << '<span class="italic">keine Pädagogen zugewiesen</span>'
   }
 
   def getFacility = {attrs, body ->
-    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActFac)
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActFacility)
     if (link)
       out << body(facility: link.source)
     else
@@ -78,8 +78,8 @@ class HelperTagLib {
       out << body()
   }
 
-  def isPaed = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etPaed.name || secHelperService.isAdmin())
+  def isEducator = {attrs, body->
+    if (attrs.entity.type.name == metaDataService.etEducator.name || secHelperService.isAdmin())
       out << body()
   }
 

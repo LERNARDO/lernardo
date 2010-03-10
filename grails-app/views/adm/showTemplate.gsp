@@ -58,7 +58,7 @@
       </tr>
       <tr>
         <td class="bold">Anzahl Pädagogen:</td>
-        <td>${template.requiredPaeds}</td>
+        <td>${template.requiredEducators}</td>
       </tr>
       <tr>
         <td class="bold">Erstellt am:</td>
