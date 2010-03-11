@@ -192,6 +192,11 @@ class HelperTagLib {
       out << body()
   }
 
+  def isAdmin = {attrs, body->
+    if (authenticateService.ifAllGranted('ROLE_ADMIN') || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+      out << body()
+  }
+  
   def isSysAdmin = {attrs, body->
     if (authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
       out << body()

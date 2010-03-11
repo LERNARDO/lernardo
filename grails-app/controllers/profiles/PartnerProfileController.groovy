@@ -7,7 +7,7 @@ import de.uenterprise.ep.Link
 class PartnerProfileController {
     def metaDataService
     def entityHelperService
-    def profileHelperService
+    def authenticateService
 
     def index = {
         redirect action:"list", params:params 
@@ -24,13 +24,14 @@ class PartnerProfileController {
 
     def show = {
         def partner = Entity.get(params.id)
+        def entity = params.entity ? partner : entityHelperService.loggedIn
 
         if(!partner) {
             flash.message = "PartnerProfile not found with id ${params.id}"
             redirect(action:list)
         }
         else {
-            return [partner: partner, entity: entityHelperService.loggedIn]
+            return [partner: partner, entity: entity]
         }
     }
 
@@ -72,15 +73,8 @@ class PartnerProfileController {
 
       partner.profile.properties = params
 
-      if (params.showTips)
-        partner.profile.showTips = true
-      else
-        partner.profile.showTips = false
-
-      if (params.enabled)
-        partner.user.enabled = true
-      else
-        partner.user.enabled = false
+      partner.profile.showTips = params.showTips ?: false
+      partner.user.enabled = params.enabled ?: false
 
       if(!partner.profile.hasErrors() && partner.profile.save()) {
           flash.message = message(code:"partner.updated", args:[partner.profile.fullName])
@@ -102,10 +96,7 @@ class PartnerProfileController {
         def entity = entityHelperService.createEntityWithUserAndProfile("partner", etPartner, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          if (params.enabled)
-            ent.user.enabled = true
-          else
-            ent.user.enabled = false
+          ent.user.enabled = params.enabled ?: false
         }
         flash.message = message(code:"partner.created", args:[entity.profile.fullName])
         redirect action:'list'

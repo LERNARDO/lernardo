@@ -93,7 +93,7 @@ class BootStrap {
       UserProfile prf = ent.profile
       prf.tagline = ""
       prf.gender = 1
-      prf.title = "	Ing. Dkfm."
+      prf.title = "Ing. Dkfm."
       prf.birthDate = new Date(1939-1900,04,17)
       prf.PLZ = 4600
       prf.city = "Schleißheim bei Wels"

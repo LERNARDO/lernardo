@@ -93,7 +93,7 @@
                   </td>
               </tr>
 
-              <ub:isAdmin>
+              <app:isAdmin>
                 <tr class="prop">
                     <td valign="top" class="name">
                       <label for="enabled">
@@ -105,7 +105,7 @@
                         <g:checkBox name="enabled" value="${fieldValue(bean:partner,field:'user.enabled')}" />
                     </td>
                 </tr>
-              </ub:isAdmin>
+              </app:isAdmin>
 
             </tbody>
           </table>

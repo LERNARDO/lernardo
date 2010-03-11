@@ -24,13 +24,14 @@ class FacilityProfileController {
 
     def show = {
         def facility = Entity.get(params.id)
+        def entity = params.entity ? facility : entityHelperService.loggedIn
 
         if(!facility) {
             flash.message = "FacilityProfile not found with id ${params.id}"
             redirect(action:list)
         }
         else {
-            return [facility: facility, entity: entityHelperService.loggedIn]
+            return [facility: facility, entity: entity]
         }
     }
 
@@ -72,15 +73,8 @@ class FacilityProfileController {
 
       facility.profile.properties = params
 
-      if (params.showTips)
-        facility.profile.showTips = true
-      else
-        facility.profile.showTips = false
-
-      if (params.enabled)
-        facility.user.enabled = true
-      else
-        facility.user.enabled = false
+      facility.profile.showTips = params.showTips ?: false
+      facility.user.enabled = params.enabled ?: false
 
       if(!facility.profile.hasErrors() && facility.profile.save()) {
           flash.message = message(code:"facility.updated", args:[facility.profile.fullName])
@@ -102,10 +96,7 @@ class FacilityProfileController {
         def entity = entityHelperService.createEntityWithUserAndProfile("facility", etFacility, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          if (params.enabled)
-            ent.user.enabled = true
-          else
-            ent.user.enabled = false
+          ent.user.enabled = params.enabled ?: false
         }
         flash.message = message(code:"facility.created", args:[entity.profile.fullName])
         redirect action:'list'

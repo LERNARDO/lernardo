@@ -25,9 +25,8 @@ class ClientProfile extends Profile {
     String personalDetails
     Date joinDate
     Date endDate
-    Date rejoinDate
+    Date joinDate2
     Date endDate2
-    Date rejoinDate2
     String attendance
     Boolean doesWork
     String work
@@ -40,11 +39,10 @@ class ClientProfile extends Profile {
       firstName (blank: false)
       lastName (blank: false)
       PLZ (nullable: true)
-      PLZ (nullable: true)
+      PLZ2 (nullable: true)
       endDate (nullable: true)
-      rejoinDate (nullable: true)
+      joinDate2 (nullable: true)
       endDate2 (nullable: true)
-      rejoinDate2 (nullable: true)
       notes (blank: true, maxSize: 2000)
       interests (blank: true, maxSize: 2000)
       personalDetails (blank: true, maxSize: 2000)

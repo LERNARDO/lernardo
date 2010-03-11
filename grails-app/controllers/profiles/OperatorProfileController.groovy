@@ -24,13 +24,14 @@ class OperatorProfileController {
 
     def show = {
         def operator = Entity.get(params.id)
+        def entity = params.entity ? operator : entityHelperService.loggedIn
 
         if(!operator) {
             flash.message = "OperatorProfile not found with id ${params.id}"
             redirect(action:list)
         }
         else {
-            return [operator: operator, entity: entityHelperService.loggedIn]
+            return [operator: operator, entity: entity]
         }
     }
 
@@ -72,15 +73,8 @@ class OperatorProfileController {
 
       operator.profile.properties = params
 
-      if (params.showTips)
-        operator.profile.showTips = true
-      else
-        operator.profile.showTips = false
-
-      if (params.enabled)
-        operator.user.enabled = true
-      else
-        operator.user.enabled = false
+      operator.profile.showTips = params.showTips ?: false
+      operator.user.enabled = params.enabled ?: false
 
       if(!operator.profile.hasErrors() && operator.profile.save()) {
           flash.message = message(code:"operator.updated", args:[operator.profile.fullName])
@@ -100,14 +94,10 @@ class OperatorProfileController {
       println params
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile("operator", etOperator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+        def entity = entityHelperService.createEntityWithUserAndProfile("operator", etOperator, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          if (params.enabled)
-            ent.user.enabled = true
-          else
-            ent.user.enabled = false
-
+          ent.user.enabled = params.enabled ?: false
         }
         flash.message = message(code:"operator.created", args:[entity.profile.fullName])
         redirect action:'list'

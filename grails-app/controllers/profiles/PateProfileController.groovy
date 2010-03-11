@@ -5,114 +5,105 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 
 class PateProfileController {
-    def metaDataService
-    def entityHelperService
-    def profileHelperService
+  def metaDataService
+  def entityHelperService
+  def authenticateService
 
-    def index = {
-        redirect action:"list", params:params 
+  def index = {
+    redirect action: "list", params: params
+  }
+
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
+  def list = {
+    params.max = Math.min(params.max ? params.max.toInteger() : 10, 100)
+    return [pateList: Entity.findAllByType(metaDataService.etPate),
+            pateTotal: Entity.countByType(metaDataService.etPate)]
+  }
+
+  def show = {
+    def pate = Entity.get(params.id)
+    def entity = params.entity ? pate : entityHelperService.loggedIn
+
+    if (!pate) {
+      flash.message = "PateProfile not found with id ${params.id}"
+      redirect(action: list)
     }
-
-    // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
-
-    def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        return [pateList: Entity.findAllByType(metaDataService.etPate),
-                pateTotal: Entity.countByType(metaDataService.etPate)]
+    else {
+      return [pate: pate, entity: entity]
     }
+  }
 
-    def show = {
-        def pate = Entity.get(params.id)
-
-        if(!pate) {
-            flash.message = "PateProfile not found with id ${params.id}"
-            redirect(action:list)
-        }
-        else {
-            return [pate: pate, entity: entityHelperService.loggedIn]
-        }
-    }
-
-    def del = {
-        def pate = Entity.get(params.id)
-        if(pate) {
-            // delete all links
-            Link.findAllBySourceOrTarget(pate, pate).each {it.delete()}
-            try {
-                flash.message = message(code:"pate.deleted", args:[pate.profile.lastName])
-                pate.delete(flush:true)
-                redirect(action:"list")
-            }
-            catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"pate.notDeleted", args:[pate.profile.lastName])
-                redirect(action:"show",id:params.id)
-            }
-        }
-        else {
-            flash.message = "PateProfile not found with id ${params.id}"
-            redirect(action:"list")
-        }
-    }
-
-    def edit = {
-        def pate = Entity.get(params.id)
-
-        if(!pate) {
-            flash.message = "PateProfile not found with id ${params.id}"
-            redirect action:'list'
-        }
-        else {
-            return [pate : pate, entity: entityHelperService.loggedIn]
-        }
-    }
-
-    def update = {
-      def pate = Entity.get(params.id)
-
-      pate.profile.properties = params
-
-      if (params.showTips)
-        pate.profile.showTips = true
-      else
-        pate.profile.showTips = false
-
-      if (params.enabled)
-        pate.user.enabled = true
-      else
-        pate.user.enabled = false
-
-      if(!pate.profile.hasErrors() && pate.profile.save()) {
-          flash.message = message(code:"pate.updated", args:[pate.profile.lastName])
-          redirect action:'show', id: pate.id
-      }
-      else {
-          render view:'edit', model:[pate: pate, entity: entityHelperService.loggedIn]
-      }
-    }
-
-    def create = {
-        return [entity: entityHelperService.loggedIn]
-    }
-
-    def save = {
-      EntityType etPate = metaDataService.etPate
-           println params
+  def del = {
+    def pate = Entity.get(params.id)
+    if (pate) {
+      // delete all links
+      Link.findAllBySourceOrTarget(pate, pate).each {it.delete()}
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile("pate", etPate, params.email, params.lastName + " " + params.firstName) {Entity ent ->
-          ent.profile.properties = params
-          ent.user.password = authenticateService.encodePassword("pass")
-          if (params.enabled)
-            ent.user.enabled = true
-          else
-            ent.user.enabled = false
-        }
-        flash.message = message(code:"pate.created", args:[entity.profile.lastName])
-        redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[pate: ee.entity, entity: entityHelperService.loggedIn])
-        return
+        flash.message = message(code: "pate.deleted", args: [pate.profile.lastName + " " + pate.profile.firstName])
+        pate.delete(flush: true)
+        redirect(action: "list")
       }
-
+      catch (org.springframework.dao.DataIntegrityViolationException e) {
+        flash.message = message(code: "pate.notDeleted", args: [pate.profile.lastName + " " + pate.profile.firstName])
+        redirect(action: "show", id: params.id)
+      }
     }
+    else {
+      flash.message = "PateProfile not found with id ${params.id}"
+      redirect(action: "list")
+    }
+  }
+
+  def edit = {
+    def pate = Entity.get(params.id)
+
+    if (!pate) {
+      flash.message = "PateProfile not found with id ${params.id}"
+      redirect action: 'list'
+    }
+    else {
+      return [pate: pate, entity: entityHelperService.loggedIn]
+    }
+  }
+
+  def update = {
+    def pate = Entity.get(params.id)
+
+    pate.profile.properties = params
+
+    pate.profile.showTips = params.showTips ?: false
+    pate.user.enabled = params.enabled ?: false
+
+    if (!pate.profile.hasErrors() && pate.profile.save()) {
+      flash.message = message(code: "pate.updated", args: [pate.profile.lastName + " " + pate.profile.firstName])
+      redirect action: 'show', id: pate.id
+    }
+    else {
+      render view: 'edit', model: [pate: pate, entity: entityHelperService.loggedIn]
+    }
+  }
+
+  def create = {
+    return [entity: entityHelperService.loggedIn]
+  }
+
+  def save = {
+    EntityType etPate = metaDataService.etPate
+
+    try {
+      def entity = entityHelperService.createEntityWithUserAndProfile("pate", etPate, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+        ent.profile.properties = params
+        ent.user.password = authenticateService.encodePassword("pass")
+        ent.user.enabled = params.enabled ?: false
+      }
+      flash.message = message(code: "pate.created", args: [entity.profile.lastName + " " + pate.profile.firstName])
+      redirect action: 'list'
+    } catch (de.uenterprise.ep.EntityException ee) {
+      render(view: "create", model: [pate: ee.entity, entity: entityHelperService.loggedIn])
+      return
+    }
+
+  }
 }

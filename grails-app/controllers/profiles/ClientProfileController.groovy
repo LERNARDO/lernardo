@@ -24,13 +24,14 @@ class ClientProfileController {
 
     def show = {
         def client = Entity.get(params.id)
+        def entity = params.entity ? client : entityHelperService.loggedIn
 
         if(!client) {
             flash.message = "ClientProfile not found with id ${params.id}"
             redirect(action:list)
         }
         else {
-            return [client: client, entity: entityHelperService.loggedIn]
+            return [client: client, entity: entity]
         }
     }
 
@@ -40,12 +41,12 @@ class ClientProfileController {
             // delete all links
             Link.findAllBySourceOrTarget(client, client).each {it.delete()}
             try {
-                flash.message = message(code:"client.deleted", args:[client.profile.lastName])
+                flash.message = message(code:"client.deleted", args:[client.profile.lastName + " " + client.profile.firstName])
                 client.delete(flush:true)
                 redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"client.notDeleted", args:[client.profile.lastName])
+                flash.message = message(code:"client.notDeleted", args:[client.profile.lastName + " " + client.profile.firstName])
                 redirect(action:"show",id:params.id)
             }
         }
@@ -71,25 +72,13 @@ class ClientProfileController {
       def client = Entity.get(params.id)
 
       client.profile.properties = params
-      //client.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
 
-      if (params.showTips)
-        client.profile.showTips = true
-      else
-        client.profile.showTips = false
-
-      if (params.doesWork)
-        client.profile.doesWork = true
-      else
-        client.profile.doesWork = false
-
-      if (params.enabled)
-        client.user.enabled = true
-      else
-        client.user.enabled = false
+      client.profile.showTips = params.showTips ?: false
+      client.profile.doesWork = params.doesWork ?: false
+      client.user.enabled = params.enabled ?: false
 
       if(!client.profile.hasErrors() && client.profile.save()) {
-          flash.message = message(code:"client.updated", args:[client.profile.lastName])
+          flash.message = message(code:"client.updated", args:[client.profile.lastName + " " + client.profile.firstName])
           redirect action:'show', id: client.id
       }
       else {
@@ -108,21 +97,11 @@ class ClientProfileController {
       try {
         def entity = entityHelperService.createEntityWithUserAndProfile("client", etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
-          // TODO: figure out why the date makes problems, once again
-          //ent.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
-          ent.profile.birthDate = new Date()
           ent.user.password = authenticateService.encodePassword("pass")
-          if (params.enabled)
-            ent.user.enabled = true
-          else
-            ent.user.enabled = false
-
-          if (params.doesWork)
-            ent.profile.doesWork = true
-          else
-            ent.profile.doesWork = false
+          ent.profile.doesWork = params.doesWork ?: false
+          ent.user.enabled = params.enabled ?: false
         }
-        flash.message = message(code:"client.created", args:[entity.profile.lastName])
+        flash.message = message(code:"client.created", args:[entity.profile.lastName + " " + entity.profile.firstName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
         render (view:"create", model:[client: ee.entity, entity: entityHelperService.loggedIn])

@@ -49,7 +49,7 @@
     <tr><td class="bold titles bezeichnung">Telefon:</td><td class="bezeichnung">${entity.profile.tel ?: '<div class="italic">keine Telefonnummer eingetragen</div>'}</td></tr>
     <tr><td class="bold titles bezeichnung">Geschlecht:</td><td class="bezeichnung"><app:showGender gender="${entity.profile.gender}"/></td></tr>
     <tr><td class="bold titles bezeichnung">Lebenslauf:</td><td class="bezeichnung">${entity?.profile?.biography?.decodeHTML() ?: '<div class="italic">keine Biographie eingetragen</div>'}</td></tr>
-    <tr><td class="bold titles bezeichnung">Einrichtungen:</td><td class="bezeichnung">${facilities} <ub:isAdmin><g:link action="changeFacilities" params="[name:entity.name]">[ändern]</g:link></ub:isAdmin></td></tr>
+    <tr><td class="bold titles bezeichnung">Einrichtungen:</td><td class="bezeichnung">${facilities} <app:isAdmin><g:link action="changeFacilities" params="[name:entity.name]">[ändern]</g:link></app:isAdmin></td></tr>
   </g:elseif>
   <g:elseif test="${entity.type.name == 'Betreuter'}">
     <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${entity.profile.fullName}</td></tr>

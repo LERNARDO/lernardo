@@ -65,7 +65,8 @@
             <div class="profile-group">Kommunikation</div>
             <div class="profile-box">
               <ul>
-                <li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Profil ansehen</g:link></li>
+                <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
+                %{--<li class="profile-profil"><g:link controller="profile" action="showProfile" params="[name:entity.name]">Profil ansehen</g:link></li>--}%
                 <ub:meOrAdmin entityName="${entity.name}">
                   <li class="icon-news"><g:link controller="profile" action="showNews" params="[name:entity.name]">Ereignisse ansehen</g:link></li>
                   <li class="profile-nachricht"><g:link controller="msg" action="inbox" params="[name:entity.name]">Postfach ansehen</g:link> <app:getNewInboxMessages entityName="${entity.name}"/></li>
@@ -123,11 +124,11 @@
               <app:isSysAdmin>
                 <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber verwalten</g:link></li>
               </app:isSysAdmin>
-              <ub:isAdmin>
+              <app:isAdmin>
                 <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
                 %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
                 <li class="icon-admin"><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
-              </ub:isAdmin>
+              </app:isAdmin>
               <app:isOperator entity="${entity}">
                 <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen verwalten</g:link></li>

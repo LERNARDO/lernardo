@@ -62,7 +62,8 @@ body {
     font-weight: bold; }
 
 .italic {
-    font-style: italic; }
+    font-style: italic;
+    color: #555; }
 
 .glossary {
     margin: 0 0 10px 0;
