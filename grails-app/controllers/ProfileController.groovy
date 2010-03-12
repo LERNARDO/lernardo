@@ -305,7 +305,8 @@ class ProfileController {
     }
 
     def attendance = {
-      params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
+      //params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
+      params.date = params.date ?: new Date()
 
       SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
       String dateString = sd.format(params.date)       

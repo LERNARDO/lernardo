@@ -48,7 +48,7 @@
                     </label>
                 </td>
                 <td valign="top" class="value ${hasErrors(bean:template,field:'profile.description','errors')}">
-                    <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+                    <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
                     <fckeditor:editor name="description" id="description" width="460" height="400" toolbar="Post" fileBrowser="default">
                       ${template?.profile?.description}
                     </fckeditor:editor>

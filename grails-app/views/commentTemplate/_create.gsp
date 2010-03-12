@@ -2,7 +2,7 @@
   <div class="dialog">
 
     <div class="value">
-      <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+      <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
       <fckeditor:editor name="content" id="content" width="570" height="200" toolbar="Post" fileBrowser="default">  
       </fckeditor:editor>
     </div>

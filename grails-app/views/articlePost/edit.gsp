@@ -23,7 +23,7 @@
     
     <span class="strong">Inhalt</span>
     <span class="${hasErrors(bean: postInstance, field: 'content', 'errors')}">
-      <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+      <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
       <fckeditor:editor name="content" height="400" toolbar="Post" fileBrowser="default">
         ${fieldValue(bean:postInstance,field:'content').decodeHTML()}
       </fckeditor:editor>

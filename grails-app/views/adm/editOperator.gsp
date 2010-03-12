@@ -42,7 +42,7 @@
         <tr>
           <td class="label">Beschreibung:</td>
           <td class="value ${hasErrors(bean:entityInstance,field:'profile.description','errors')}">
-            <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js')}"/>
+            <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
             <fckeditor:editor name="description" id="description" width="500" height="400" toolbar="Post" fileBrowser="default">
               ${entityInstance?.profile?.description}
             </fckeditor:editor>
