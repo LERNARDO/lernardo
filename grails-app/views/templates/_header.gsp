@@ -2,7 +2,7 @@
 <a href="${g.resource(dir:'')}"><div id="logo"></div></a>
 <div id="info">
   <g:isLoggedIn>
-    Angemeldet als <ub:entityName format="full"/>
+    Angemeldet als <span class="bold">${currentEntity.profile.fullName}</span>
     <g:link controller="logout" action='index'> [Abmelden]</g:link><br/>
   </g:isLoggedIn>
   <g:isNotLoggedIn>

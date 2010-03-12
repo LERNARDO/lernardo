@@ -9,7 +9,7 @@
 
 <body>
   <div class="headerBlue">
-    <h1>Kalender</h1>
+    <h1>Kalender von ${entity.profile.fullName}</h1>
   </div>
   <div class="boxGray cal"></div>
 </body>

@@ -29,6 +29,18 @@ class ProfileController {
         render result as JSON
     }
 
+    def giveAdminRole = {
+      Entity entity = Entity.get(params.id)
+      entity?.user?.addToAuthorities (metaDataService.adminRole)
+      redirect action:'list'
+    }
+
+    def takeAdminRole = {
+      Entity entity = Entity.get(params.id)
+      entity?.user?.removeFromAuthorities (metaDataService.adminRole)
+      redirect action:'list'
+    }
+
     def showUsers = {
       params.glossary = params.glossary ?: 'Alle'
       params.max = Math.min( params.max ? params.max.toInteger() : 6,  100)
@@ -96,18 +108,18 @@ class ProfileController {
     def saveFacilities = {
 
       // delete old links
-      Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)?.each { it.delete() }
+      Link.findAllBySourceAndType(Entity.get(params.id), metaDataService.ltWorking)?.each { it.delete() }
 
       def fac = params.facilities
       if (fac.class.isArray()) {
         fac.each {
-            new Link(source: Entity.findByName(params.name), target: Entity.findById(it), type: metaDataService.ltWorking).save()
+            new Link(source: Entity.get(params.id), target: Entity.findById(it), type: metaDataService.ltWorking).save()
           }
       }
       else
-        new Link(source: Entity.findByName(params.name), target: Entity.findById(params.facilities), type: metaDataService.ltWorking).save()      
+        new Link(source: Entity.get(params.id), target: Entity.findById(params.facilities), type: metaDataService.ltWorking).save()      
       
-      redirect action:'showProfile', params:[name:params.name]
+      redirect controller: entity.type.supertype.name + 'Profile', action:'show', id: params.id
     }
 
     def disable = {
@@ -143,17 +155,17 @@ class ProfileController {
     def create = { }
 
     def changePassword = {
-      Entity e = Entity.findByName(params.name)
-      return ['entity':e]
+      Entity entity = Entity.findByName(params.name)
+      return ['entity': entity]
     }
 
     def checkPassword = {
       if (params.password == params.password2) {
-        Entity e = Entity.findByName(params.name)
-        e.user.password = authenticateService.encodePassword(params.password)
-        e.save()
+        Entity entity = Entity.findByName(params.name)
+        entity.user.password = authenticateService.encodePassword(params.password)
+        entity.save()
         flash.message = message(code:"pass.changed")
-        redirect action:'showProfile', params:[name:e.name]
+        redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:entity.id
       }
       else {
         flash.message = message(code:"pass.notChanged")
@@ -162,8 +174,8 @@ class ProfileController {
     }
 
     def search = {
-      return [entity:Entity.findByName(params.name),
-              glossary: '-']
+      return ['entity': Entity.get(params.id),
+              'glossary': '-']
     }
 
     def searchMe = {
@@ -183,8 +195,9 @@ class ProfileController {
     }
 
     def showNews = {
-      Entity e = Entity.findByName(params.name)
-      return [entity:e,eventList:Event.findAllByEntity(e,[sort:'dateCreated',order:'asc'])]
+      Entity entity = Entity.get(params.id)
+      return ['entity': entity,
+              'eventList': Event.findAllByEntity(entity, [sort:'dateCreated',order:'asc'])]
     }
 
     def showProfile = {
@@ -219,52 +232,50 @@ class ProfileController {
     }
 
     def showCalendar = {
-      Entity e = Entity.findByName(params.name)
-      return [entity:e,name:e.name]
+      Entity entity = Entity.get(params.id)
+      return ['entity': entity,
+              'name': entity.name]
     }
 
     def showArticleList = {
       params.offset = params.offset ? params.offset.toInteger(): 0
       params.max = params.max ? params.max.toInteger(): 10
 
-      Entity e = Entity.findByName(params.name)
-      return [entity:e,'articleList':ArticlePost.findAllByAuthor(e,params),'articleCount':ArticlePost.countByAuthor(e)]
+      Entity entity = Entity.get(params.id)
+      return ['entity': entity,
+              'articleList': ArticlePost.findAllByAuthor(entity, params),
+              'articleCount': ArticlePost.countByAuthor(entity)]
     }
 
     def showActivityList = {
       params.offset = params.offset ? params.offset.toInteger(): 0
       params.max = params.max ? params.max.toInteger(): 10
 
-      Entity e = Entity.findByName(params.name)
+      Entity entity = Entity.get(params.id)
 
       // find all activities the entity is owner, or in the educator or client list
       // Unfortunately we loose control over sort and max, need to find a workaround
-      def activityList = Activity.findAllByOwner(e)
+      def activityList = Activity.findAllByOwner(entity)
       Activity.list().each {
         for (a in it.educators) {
-          if (a == Entity.findByName(params.name))
+          if (a == entity)
             activityList << it
         }
         for (a in it.clients) {
-          if (a == Entity.findByName(params.name))
+          if (a == entity)
             activityList << it
         }
       }
   
-      return ['entity':e,
-              'activityList':activityList,
-              'activityCount':activityList.size()]
-    }
-
-    def showLeistung = {
-      Entity e = Entity.findByName(params.name)
-      return ['entity':e]
+      return ['entity': entity,
+              'activityList': activityList,
+              'activityCount': activityList.size()]
     }
 
     def showLocation = { // broken?
-      Entity e = Entity.findByName(params.name)
-      return ['entity':e,
-              'location':geoCoderService.geocodeLocation(e.profile.city)]
+      Entity entity = Entity.get(params.id)
+      return ['entity': entity,
+              'location': geoCoderService.geocodeLocation(entity.profile.city)]
     }
 
     def print = {
@@ -315,7 +326,7 @@ class ProfileController {
       }
       else {
         // find all clients of a facility
-        List result = Link.findAllByTargetAndType(Entity.findByName(params.name),metaDataService.ltClientship)
+        List result = Link.findAllByTargetAndType(Entity.get(params.id),metaDataService.ltClientship)
         result.each {
           clients << it.source
         }
@@ -366,7 +377,7 @@ class ProfileController {
         if (counter == 23) {tempAttend = params.anwesend23 ?: false; tempEat = params.essen23 ?: false}
         if (counter == 24) {tempAttend = params.anwesend24 ?: false; tempEat = params.essen24 ?: false}
 
-        def a = new Attendance(client: Entity.findByName(it), didAttend: tempAttend, didEat: tempEat, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
+        def a = new Attendance(client: Entity.get(it), didAttend: tempAttend, didEat: tempEat, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
 
         log.debug "created attendance"
 
@@ -426,58 +437,47 @@ class ProfileController {
                 'entity':entityHelperService.loggedIn]
     }
 
-    def show = {
-        def e = Entity.findByName(params.name)
-        if (!e) {
-            flash.message = message(code:"user.notFound", args:[params.name])
-            return
-        }
-        return ['entity':e,'friendsList':networkService.findFriendsOf(e)]
-    }
-
     def addFriend = {
-      Entity e = params.name ? Entity.findByName(params.name) : null
-      if (!e) {
-        flash.message = message(code:"user.notFound", args:[params.name])
-        return
-      }
+      Entity entity = Entity.get(params.id)
 
       def linkInstance = new Link()
       linkInstance.source = entityHelperService.loggedIn
       linkInstance.type = metaDataService.ltFriendship
-      linkInstance.target = e ;
+      linkInstance.target = entity
 
       // for now just create a back-link for mutuality - a more elaborate workflow will be in order later on
       def linkBack = new Link()
-      linkBack.source = e
+      linkBack.source = entity
       linkBack.type = metaDataService.ltFriendship
       linkBack.target = entityHelperService.loggedIn
 
       if(linkInstance.save(flush:true) && linkBack.save(flush:true)) {
-        flash.message = message(code:"user.addFriend", args:[linkInstance.target.profile.fullName])
+        def name = linkInstance.target.profile.fullName ?: linkInstance.target.profile.lastName + " " + linkInstance.target.profile.firstName
+        flash.message = message(code:"user.addFriend", args:[name])
 
-        functionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund hinzugefügt.')
-        functionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund hinzugefügt.')
+        functionService.createEvent(entityHelperService.loggedIn, 'Du hast '+name+' als Freund hinzugefügt.')
+        functionService.createEvent(entity, entityHelperService.loggedIn.profile.id+' hat dich als Freund hinzugefügt.')
 
-        redirect action:'showProfile', params:[name:linkInstance.target.name]
+        redirect controller: entity.type.supertype.name + 'Profile', action:'show', params:[id:entity.id, entity:entity.id]
       }
       else {
-        flash.message = message(code:"user.addFriendFailed", args:[linkInstance.target.profile.fullName])
-        redirect action:'showProfile', params:[name:linkInstance.target.name]
+        flash.message = message(code:"user.addFriendFailed", args:[linkInstance.target.profile.id])
+        redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:linkInstance.target.id
       }
     }
 
     def removeFriend = {
-      Entity e = Entity.findByName(params.name)
+      Entity entity = Entity.get(params.id)
+
       def c = Link.createCriteria()
       def linkInstance = c.get {
         eq('source',entityHelperService.loggedIn)
-        eq('target',e)
+        eq('target',entity)
         eq('type',metaDataService.ltFriendship)
       }
       def d = Link.createCriteria()
       def linkInstanceBack = d.get {
-        eq('source',e)
+        eq('source',entity)
         eq('target',entityHelperService.loggedIn)
         eq('type',metaDataService.ltFriendship)
       }
@@ -486,88 +486,66 @@ class ProfileController {
             try {
                 linkInstance.delete(flush:true)
                 linkInstanceBack.delete(flush:true)
-                flash.message = message(code:"user.removeFriend", args:[e.profile.fullName])
+                def name = entity.profile.fullName ?: entity.profile.lastName + " " + entity.profile.firstName
+                flash.message = message(code:"user.removeFriend", args:[name])
 
-                functionService.createEvent(entityHelperService.loggedIn, 'Du hast '+e.profile.fullName+' als Freund entfernt.')
-                functionService.createEvent(e, entityHelperService.loggedIn.profile.fullName+' hat dich als Freund entfernt.')
+                functionService.createEvent(entityHelperService.loggedIn, 'Du hast '+name+' als Freund entfernt.')
+                functionService.createEvent(entity, entityHelperService.loggedIn.profile.id+' hat dich als Freund entfernt.')
 
-                redirect action:'showProfile', params:[name:n]
+                redirect controller: entity.type.supertype.name + 'Profile', action:'show', params:[id:entity.id, entity:entity.id]
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
-                flash.message = message(code:"user.removeFriendFailed", args:[e.profile.fullName])
-                redirect action:'showProfile', params:[name:n]
+                flash.message = message(code:"user.removeFriendFailed", args:[entity.profile.id])
+                redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:linkInstance.target.id
             }
         }
     }
 
     def addBookmark = {
-      Entity e = params.name ? Entity.findByName(params.name) : null
-      if (!e) {
-        flash.message = message(code:"user.notFound", args:[params.name])
+      Entity entity = Entity.get(params.id)
+      if (!entity) {
+        flash.message = message(code:"user.notFound", args:[params.id])
         return
       }
 
       def linkInstance = new Link()
       linkInstance.source = entityHelperService.loggedIn
       linkInstance.type = metaDataService.ltBookmark
-      linkInstance.target = e ;
+      linkInstance.target = entity
 
       if(linkInstance.save(flush:true)) {
         flash.message = message(code:"user.addBookmark", args:[linkInstance.target.profile.fullName])
-        redirect action:'showProfile', params:[name:linkInstance.target.name]
+        redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:linkInstance.target.id
       }
       else {
         flash.message = message(code:"user.addBookmarkFailed", args:[linkInstance.target.profile.fullName])
-        redirect action:'showProfile', params:[name:linkInstance.target.name]
+        redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:linkInstance.target.id
       }
     }
 
     def removeBookmark = {
-      Entity e = Entity.findByName(params.name)
+      Entity entity = Entity.get(params.id)
       def c = Link.createCriteria()
       def linkInstance = c.get {
         eq('source',entityHelperService.loggedIn)
-        eq('target',e)
+        eq('target',entity)
         eq('type',metaDataService.ltBookmark)
       }
       if(linkInstance) {
             def n = linkInstance.target.name
             try {
                 linkInstance.delete(flush:true)
-                flash.message = message(code:"user.removeBookmark", args:[e.profile.fullName])
-                redirect action:'showProfile', params:[name:n]
+                flash.message = message(code:"user.removeBookmark", args:[entity.profile.fullName])
+                redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:linkInstance.target.id
             }
             catch(org.springframework.dao.DataIntegrityViolationException ex) {
-                flash.message = message(code:"user.removeBookmarkFailed", args:[e.profile.fullName])
-                redirect action:'showProfile', params:[name:n]
+                flash.message = message(code:"user.removeBookmarkFailed", args:[entity.profile.fullName])
+                redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:linkInstance.target.id
             }
         }
     }
 
-    def edit = {
-        def entity = Entity.findByName(params.name)
-
-        if(!entity) {
-            flash.message = message(code:"user.notFound", args:[params.name])
-            redirect action:'showProfile', model:[name:params.name]
-        }
-        else {
-            return ['entity': entity]
-        }
-    }
-
-    def editFacility = {
-        def entityInstance = Entity.findByName(params.name)
-
-        if(!entityInstance) {
-            flash.message = message(code:"user.notFound", args:[params.name])
-            redirect action:'showProfile', model:[name:params.name]
-        }
-        else {
-            return [ entityInstance : entityInstance, entity: entityInstance ]
-        }
-    }
-
+    // TODO: remove later
     def update = {
        def entity = Entity.get( params.id )
        if(entity) {
@@ -616,7 +594,7 @@ class ProfileController {
        }
        else {
            flash.message = message(code:"user.notFound", args:[params.id])
-           redirect action:'showProfile', params:[name:entityHelperService.loggedIn.name]
+           redirect controller: entity.type.supertype.name + 'Profile', action:'show', params:[name:entityHelperService.loggedIn.name]
        }
    }
 

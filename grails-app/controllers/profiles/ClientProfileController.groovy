@@ -41,12 +41,12 @@ class ClientProfileController {
             // delete all links
             Link.findAllBySourceOrTarget(client, client).each {it.delete()}
             try {
-                flash.message = message(code:"client.deleted", args:[client.profile.lastName + " " + client.profile.firstName])
+                flash.message = message(code:"client.deleted", args:[client.profile.fullName])
                 client.delete(flush:true)
                 redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"client.notDeleted", args:[client.profile.lastName + " " + client.profile.firstName])
+                flash.message = message(code:"client.notDeleted", args:[client.profile.fullName])
                 redirect(action:"show",id:params.id)
             }
         }
@@ -78,7 +78,7 @@ class ClientProfileController {
       client.user.enabled = params.enabled ?: false
 
       if(!client.profile.hasErrors() && client.profile.save()) {
-          flash.message = message(code:"client.updated", args:[client.profile.lastName + " " + client.profile.firstName])
+          flash.message = message(code:"client.updated", args:[client.profile.fullName])
           redirect action:'show', id: client.id
       }
       else {
@@ -101,7 +101,7 @@ class ClientProfileController {
           ent.profile.doesWork = params.doesWork ?: false
           ent.user.enabled = params.enabled ?: false
         }
-        flash.message = message(code:"client.created", args:[entity.profile.lastName + " " + entity.profile.firstName])
+        flash.message = message(code:"client.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
         render (view:"create", model:[client: ee.entity, entity: entityHelperService.loggedIn])

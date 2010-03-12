@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Pate</title>
+  <title>Lernardo | Profil - ${pate.profile.fullName}</title>
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Pate</h1>
+  <h1>Profil - ${pate.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="body">
@@ -82,8 +82,6 @@
     </div>
     <div class="buttons">
       <g:link class="buttonBlue" action="edit" id="${pate?.id}">Bearbeiten</g:link>
-      <g:link class="buttonGray" action="del" id="${pate?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
     </div>
   </div>

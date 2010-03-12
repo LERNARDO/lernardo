@@ -8,10 +8,10 @@ class FilterService {
   def entityHelperService
 
   // returns the number of new inbox messages
-  int getNewInboxMessages (String name) {
+  int getNewInboxMessages (String id) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.findByName(name))
+      eq('entity',Entity.get(id))
       ne('sender',entityHelperService.loggedIn)
       eq('read',false)
     }
@@ -19,10 +19,10 @@ class FilterService {
   }
 
   // returns all inbox messages for a given entity
-  def getInbox (String name) {
+  def getInbox (String id) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.findByName(name))
+      eq('entity',Entity.get(id))
       ne('sender',entityHelperService.loggedIn)
       order("dateCreated", "desc")
     }
@@ -30,10 +30,10 @@ class FilterService {
   }
 
   // returns all outbox messages for a given entity
-  def getOutbox (String name) {
+  def getOutbox (String id) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.findByName(name))
+      eq('entity',Entity.get(id))
       eq('sender',entityHelperService.loggedIn)
       order("dateCreated", "desc")
     }

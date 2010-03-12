@@ -14,11 +14,23 @@
 
       <div id="select-box">
         <g:form name="form1" action="list">
-          <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Pädagoge:'Pädagogen',Betreuter:'Betreute',User:'User']}" value="${entityType}" optionKey="key" optionValue="value"/>
-          <div class="buttons">
+          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Pädagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Paten',Parent:'Erziehungsberechtigte']}" value="${entityType}" optionKey="key" optionValue="value"/>
+          %{--<div class="buttons">
             <g:submitButton name="list" value="OK" />
-          </div>
+          </div>--}%
         </g:form>
+
+        <script type="text/javascript">
+          if ($.browser.msie) {
+            $("select[name=entityType]").click(function() {
+              $("form[id=form1]").submit();
+            });
+          }
+
+          $("select[name=entityType]").change(function() {
+            $("form[id=form1]").submit();
+          });
+        </script>
       </div>
 
       <table id="profile-list">
@@ -35,34 +47,43 @@
         <g:each status="i" in="${entityList}" var="entity">
           <tr class="row-${entity.type.supertype.name}">
             <td>
-              <app:isEnabled entityName="${entity.name}">
-                <g:link controller="profile" action="showProfile" id="${entity.id}" >${entity.profile.fullName ?: entity.profile.lastName + " " + entity.profile.firstName}</g:link>
+              <app:isEnabled entity="${entity}">
+                <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
               </app:isEnabled>
-              <app:notEnabled entityName="${entity.name}">
+              <app:notEnabled entity="${entity}">
                 <span class="notEnabled">${entity.profile.fullName}</span>
               </app:notEnabled>
             </td>
             <td class="col">${entity.type.name}</td>
             <td class="col"><app:showBoolean bool="${entity.user.enabled}"/></td>
             <td class="col">${entity.user.authorities.authority}</td>
-            <td class="col">
-              <app:isEnabled entityName="${entity.name}">
+            <td class="col" style="width: 100px">
+              <app:isEnabled entity="${entity}">
                 <g:link controller="profile" action="disable" id="${entity.id}">Deaktivieren</g:link>
               </app:isEnabled>
-              <app:notEnabled entityName="${entity.name}">
+              <app:notEnabled entity="${entity}">
                 <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
-              </app:notEnabled>
+              </app:notEnabled><br/>
+              <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
+                <g:link controller="profile" action="giveAdminRole" id="${entity.id}">Admin geben</g:link>
+              </ub:hasNoRoles>
+
+              <ub:hasAllRoles entity="${entity}" roles="['ROLE_ADMIN']">
+                <g:link controller="profile" action="takeAdminRole" id="${entity.id}">Admin nehmen</g:link>
+              </ub:hasAllRoles>
             </td> 
           </tr>
         </g:each>
         </tbody>
       </table>
 
-      <div class="paginateButtons">
-        <g:paginate action="list"
-                    params="[entityType:entityType]"
-                    total="${entityCount}" />
-      </div>
+      <g:if test="${entityCount > 10}">
+        <div class="paginateButtons">
+          <g:paginate action="list"
+                      params="[entityType:entityType]"
+                      total="${entityCount}" />
+        </div>
+      </g:if>
 
     </div>
     </div>

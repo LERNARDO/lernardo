@@ -1,10 +1,10 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Betreuter</title>
+  <title>Lernardo | Profil - ${client.profile.fullName}</title>
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Betreuter</h1>
+  <h1>Profil - ${client.profile.fullName}</h1>
 </div>
 <div class="boxGray">
   <div class="body">
@@ -30,7 +30,7 @@
           <td valign="top" class="name">
             <g:message code="clientProfile.birthDate.label" default="Geburtsdatum"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.birthDate')}</td>
+          <td valign="top" class="value"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
@@ -100,28 +100,28 @@
           <td valign="top" class="name">
             <g:message code="clientProfile.joinDate.label" default="Eintrittsdatum"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.joinDate')}</td>
+          <td valign="top" class="value"><g:formatDate date="${client.profile.joinDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="clientProfile.endDate.label" default="Austrittsdatum"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.endDate') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value"><g:formatDate date="${client.profile.endDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="clientProfile.joinDate2.label" default="Eintrittsdatum #2"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.joinDate2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value"><g:formatDate date="${client.profile.joinDate2}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="clientProfile.endDate2.label" default="Austrittsdatum #2"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.endDate2') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value"><g:formatDate date="${client.profile.endDate2}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
@@ -230,8 +230,6 @@
     </div>
     <div class="buttons">
       <g:link class="buttonBlue" action="edit" id="${client?.id}">Bearbeiten</g:link>
-      <g:link class="buttonGray" action="del" id="${client?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
     </div>
   </div>

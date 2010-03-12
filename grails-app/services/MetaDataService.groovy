@@ -5,11 +5,11 @@ class MetaDataService {
   def defaultObjectService
 
   // String Constants
-  static final String EST_USER = "User"                  // EntitySuperType
-  static final String EST_EDUCATOR = "Educator"
-  static final String EST_CLIENT = "Client"
-  static final String EST_OPERATOR = "Operator"
-  static final String EST_FACILITY = "Facility"
+  static final String EST_USER = "user"                  // EntitySuperType
+  static final String EST_EDUCATOR = "educator"
+  static final String EST_CLIENT = "client"
+  static final String EST_OPERATOR = "operator"
+  static final String EST_FACILITY = "facility"
   static final String EST_TEMPLATE = "Template"
   static final String EST_ACTIVITY = "Activity"
   static final String EST_GROUP_FAMILY = "GroupFamily"
@@ -17,10 +17,10 @@ class MetaDataService {
   static final String EST_GROUP_NETWORK = "GroupNetwork"
   static final String EST_GROUP_LEVEL = "GroupLevel"
   static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
-  static final String EST_PATE = "Pate"
-  static final String EST_PARTNER = "Partner"
+  static final String EST_PATE = "pate"
+  static final String EST_PARTNER = "partner"
   static final String EST_RESOURCE = "Resource"
-  static final String EST_PARENT = "Parent"
+  static final String EST_PARENT = "parent"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_EDUCATOR = "Pädagoge"

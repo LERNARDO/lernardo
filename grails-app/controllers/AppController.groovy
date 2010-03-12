@@ -15,7 +15,7 @@ class AppController {
         Locale locale = entity.user?.locale ?: new Locale("de", "DE") ;
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
 
-        redirect controller:'profile', action:'showNews', params:[name:entity.name]
+        redirect controller:'profile', action:'showNews', id:entity.id
       }
       else
         redirect action:'sorry'

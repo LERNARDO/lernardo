@@ -8,10 +8,10 @@
         ${article.author.profile.fullName}
       </app:isNotLoggedIn>
       <app:isLoggedIn>
-        <app:isEnabled entityName="${article.author.name}">
-          <g:link controller="profile" action="showProfile" params="[name:article.author.name]" >${article.author.profile.fullName}</g:link>
+        <app:isEnabled entity="${article.author}">
+          <g:link controller="${article.author.type.supertype.name +'Profile'}" action="show" id="${article.author.id}">${article.author.profile.fullName}</g:link>
         </app:isEnabled>
-        <app:notEnabled entityName="${article.author.name}">
+        <app:notEnabled entity="${article.author}">
           <span class="notEnabled">${article.author.profile.fullName}</span>
         </app:notEnabled>
       </app:isLoggedIn></span>

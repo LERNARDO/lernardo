@@ -140,7 +140,7 @@ class HelperTagLib {
   }
 
   def getNewInboxMessages = {attrs ->
-    int m = filterService.getNewInboxMessages(attrs.entityName)
+    int m = filterService.getNewInboxMessages(attrs.entity.id.toString())
     if (m > 0)
       out << "("+m+")"
   }
@@ -183,12 +183,12 @@ class HelperTagLib {
   }
 
   def isEnabled = {attrs, body->
-    if (Entity.findByName(attrs.entityName).user.enabled)
+    if (Entity.get(attrs.entity.id).user.enabled)
       out << body()
   }
 
   def notEnabled = {attrs, body->
-    if (!Entity.findByName(attrs.entityName).user.enabled)
+    if (!Entity.get(attrs.entity.id).user.enabled)
       out << body()
   }
 
@@ -199,6 +199,11 @@ class HelperTagLib {
   
   def isSysAdmin = {attrs, body->
     if (authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+      out << body()
+  }
+
+  def notMe = {attrs, body->
+    if (entityHelperService.loggedIn?.id != attrs.entity.id)
       out << body()
   }
 

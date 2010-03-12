@@ -15,22 +15,22 @@ class MsgController {
 
   def inbox = {
     params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-    def messages = filterService.getInbox (params.name)
+    def messages = filterService.getInbox(params.id)
     return ['msgInstanceList': messages,
             'msgInstanceTotal': messages.count(),
-            'entity': Entity.findByName(params.name)]
+            'entity': Entity.get(params.id)]
   }
 
   def outbox = {
     params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-    def messages = filterService.getOutbox (params.name)
+    def messages = filterService.getOutbox(params.id)
     return ['msgInstanceList': messages,
             'msgInstanceTotal': messages.count(),
-            'entity': Entity.findByName(params.name)]
+            'entity': Entity.get(params.id)]
   }
 
   def show = {
-    def message = Msg.get( params.id )
+    def message = Msg.get(params.id)
     if (!message.read)
       message.read = true
 
@@ -40,7 +40,7 @@ class MsgController {
     }
     else {
       return ['msgInstance': message,
-              'entity':Entity.findByName(params.name),
+              'entity':Entity.get(params.entity),
               'box':params.box]
     }
   }
@@ -96,7 +96,7 @@ class MsgController {
   def create = {
     def message = new Msg()
     message.properties = params
-    Entity entity = Entity.findByName(params.name)
+    Entity entity = Entity.get(params.id)
     return ['msgInstance':message,
             'entity':entity]
   }
@@ -105,25 +105,25 @@ class MsgController {
     // create first instance to be saved in outbox of sender
     def message = new Msg(params)
     message.sender = entityHelperService.loggedIn
-    message.receiver = Entity.findByName(params.name)
+    message.receiver = Entity.get(params.entity)
     message.read = true
     message.entity = entityHelperService.loggedIn
     // create second instance to be saved in inbox of receiver
     def message2 = new Msg(params)
     message2.sender = entityHelperService.loggedIn
-    message2.receiver = Entity.findByName(params.name)
+    message2.receiver = Entity.get(params.entity)
     message2.read = false
-    message2.entity = Entity.findByName(params.name)
+    message2.entity = Entity.get(params.entity)
     if(!message.hasErrors() && message.save(flush:true) && message2.save(flush:true)) {
         flash.message = message(code:"msg.sent", args:[message.subject,message.receiver.profile.fullName])
 
         functionService.createEvent(message.sender, 'Du hast '+message.receiver.profile.fullName+' eine Nachricht geschickt.')
         functionService.createEvent(message.receiver, message.sender.profile.fullName+' hat dir eine Nachricht geschickt.')
 
-        redirect controller:'profile', action:'showProfile', params:[name:params.name]
+        redirect controller: message2.entity.type.supertype.name +'Profile', action:'show', id:params.entity
     }
     else {
-        render view:'create', model:[msgInstance: message, entity: Entity.findByName(params.name)]
+        render view:'create', model:[msgInstance: message, entity: Entity.get(params.entity)]
     }
   }
 }

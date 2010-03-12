@@ -4,7 +4,7 @@
 <body>
   <h2>Übersicht</h2>
 
-  <p><g:link controller="profile" action="showProfile">zurück zum Profil</g:link></p>
+  <p><g:link controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">zurück zum Profil</g:link></p>
 
   <h3>Anzahl Betreiber: ${operatorList.size()}</h3>
   <div class="list">

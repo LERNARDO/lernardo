@@ -21,20 +21,20 @@
         <tr><td class="bold titles bezeichnung">Dauer:</td><td class="bezeichnung">${activity.profile.duration} Minuten</td></tr>
 
         <tr><td class="bold titles bezeichnung">Einrichtung:</td><td class="bezeichnung"><app:getFacility entity="${activity}">
-          <app:isEnabled entityName="${facility.name}">
-            <g:link controller="profile" action="showProfile" params="[name:facility.name]">${facility.profile.fullName}</g:link>
+          <app:isEnabled entity="${facility}">
+            <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
           </app:isEnabled>
-          <app:notEnabled entityName="${facility.name}">
+          <app:notEnabled entity="${facility}">
             <span class="notEnabled">${facility.profile.fullName}</span>
           </app:notEnabled>
           </app:getFacility></td>
         </tr>
 
         <tr><td class="bold titles bezeichnung">Erstellt von:</td><td class="bezeichnung"><app:getCreator entity="${activity}">
-          <app:isEnabled entityName="${creator.name}">
-            <g:link controller="profile" action="showProfile" params="[name:creator.name]">${creator.profile.fullName}</g:link>
+          <app:isEnabled entity="${creator}">
+            <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}">${creator.profile.fullName}</g:link>
           </app:isEnabled>
-          <app:notEnabled entityName="${creator.name}">
+          <app:notEnabled entity="${creator}">
             <span class="notEnabled">${creator.profile.fullName}</span>
           </app:notEnabled>
           </app:getCreator></td>
@@ -42,10 +42,10 @@
 
         <tr><td class="bold titles bezeichnung">Pädagogen:</td><td class="bezeichnung"><app:getEducators entity="${activity}">
           <g:each in="${educators}" var="educator">
-            <app:isEnabled entityName="${educator.name}">
-              <g:link controller="profile" action="showProfile" params="[name:educator.name]">${educator.profile.fullName}</g:link>
+            <app:isEnabled entity="${educator}">
+              <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}">${educator.profile.fullName}</g:link>
             </app:isEnabled>
-            <app:notEnabled entityName="${educator.name}">
+            <app:notEnabled entity="${educator}">
               <span class="notEnabled">${educator.profile.fullName}</span>
             </app:notEnabled><br>
           </g:each>
@@ -54,10 +54,10 @@
 
         <tr><td class="bold titles bezeichnung">Teilnehmer:</td><td class="bezeichnung"><app:getClients entity="${activity}">
           <g:each in="${clients}" var="client">
-            <app:isEnabled entityName="${client.name}">
-              <g:link controller="profile" action="showProfile" params="[name:client.name]">${client.profile.fullName}</g:link>
+            <app:isEnabled entity="${client}">
+              <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
             </app:isEnabled>
-            <app:notEnabled entityName="${client.name}">
+            <app:notEnabled entity="${client}">
               <span class="notEnabled">${client.profile.fullName}</span>
             </app:notEnabled><br>
           </g:each>

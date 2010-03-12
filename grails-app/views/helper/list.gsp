@@ -9,7 +9,7 @@
 <div class="boxGray">
 
     <div id="newHelper">
-      <app:isAdmin><g:link class="buttonBlue" action="create" params="[name:entity.name]">Neues Thema anlegen</g:link></app:isAdmin>
+      <app:isAdmin><g:link class="buttonBlue" action="create" params="[entity:entity.id]">Neues Thema anlegen</g:link></app:isAdmin>
     </div>
 
     <g:if test="${helperInstanceList.size() > 0}">
@@ -26,7 +26,7 @@
     </ul>
 
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
-      <p><a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[name:entity.name]">bearbeiten</g:link></app:isAdmin><br/>
+      <p><a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]">bearbeiten</g:link></app:isAdmin><br/>
       ${helperInstance.content.decodeHTML()}</p>
     </g:each>
 

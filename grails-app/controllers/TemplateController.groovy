@@ -85,14 +85,6 @@ class TemplateController {
 
     def save = {
 
-      if (params.name) {
-        if (Entity.findByName(params.name)) {
-          flash.message = message(code:"template.exist", args:[params.name])
-          redirect action:"create", params:params
-          return
-        }
-      }
-
       EntityType etTemplate = metaDataService.etTemplate
 
       try {

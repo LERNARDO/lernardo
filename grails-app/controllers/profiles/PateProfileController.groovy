@@ -41,12 +41,12 @@ class PateProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(pate, pate).each {it.delete()}
       try {
-        flash.message = message(code: "pate.deleted", args: [pate.profile.lastName + " " + pate.profile.firstName])
+        flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
         pate.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "pate.notDeleted", args: [pate.profile.lastName + " " + pate.profile.firstName])
+        flash.message = message(code: "pate.notDeleted", args: [pate.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
@@ -77,7 +77,7 @@ class PateProfileController {
     pate.user.enabled = params.enabled ?: false
 
     if (!pate.profile.hasErrors() && pate.profile.save()) {
-      flash.message = message(code: "pate.updated", args: [pate.profile.lastName + " " + pate.profile.firstName])
+      flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
       redirect action: 'show', id: pate.id
     }
     else {
@@ -98,7 +98,7 @@ class PateProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
         ent.user.enabled = params.enabled ?: false
       }
-      flash.message = message(code: "pate.created", args: [entity.profile.lastName + " " + pate.profile.firstName])
+      flash.message = message(code: "pate.created", args: [entity.profile.fullName])
       redirect action: 'list'
     } catch (de.uenterprise.ep.EntityException ee) {
       render(view: "create", model: [pate: ee.entity, entity: entityHelperService.loggedIn])

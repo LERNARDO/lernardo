@@ -5,7 +5,7 @@
 <body>
   <p>${entity.profile.fullName} ist als Pädagoge in diesen Einrichtungen tätig:</p>
 
-<g:form method="post" action="saveFacilities" params="[name:entity.name]">
+<g:form method="post" action="saveFacilities" id="${entity.id}">
     <g:select multiple="true" optionKey="id" optionValue="name"
             from="${facilityList}"
             name="facilities"
@@ -13,7 +13,7 @@
     <br/><span class="gray">Es können mehrere Einrichtungen mit STRG ausgewählt werden</span>
     <div class="buttons">
       <span class="button"><g:submitButton name="saveButton" value="Ändern"/></span>
-      <span class="nav-button"><g:link action="showProfile">Abbrechen</g:link></span>
+      <span class="nav-button"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Abbrechen</g:link></span>
     </div>
   </g:form>
 

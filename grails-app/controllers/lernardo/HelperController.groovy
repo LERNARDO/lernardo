@@ -16,7 +16,7 @@ class HelperController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        def entity = Entity.findByName(params.name)
+        def entity = Entity.get(params.id)
         def helper = Helper.findAllByType(entity.type.name)
 
         return [helperInstanceList: helper,
@@ -25,7 +25,7 @@ class HelperController {
     }
 
     def show = {
-        def helperInstance = Helper.get( params.id )
+        def helperInstance = Helper.get(params.id)
 
         if(!helperInstance) {
             flash.message = "Helper not found with id ${params.id}"
@@ -37,7 +37,7 @@ class HelperController {
     }
 
     def del = {
-        def helperInstance = Helper.get( params.id )
+        def helperInstance = Helper.get(params.id)
         if(helperInstance) {
             try {
                 helperInstance.delete(flush:true)
@@ -56,8 +56,8 @@ class HelperController {
     }
 
     def edit = {
-        def helperInstance = Helper.get( params.id )
-        def entity = Entity.findByName(params.name)
+        def helperInstance = Helper.get(params.id)
+        def entity = Entity.get(params.entity)
 
         if(!helperInstance) {
             flash.message = "Helper not found with id ${params.id}"
@@ -70,7 +70,7 @@ class HelperController {
     }
 
     def update = {
-        def helperInstance = Helper.get( params.id )
+        def helperInstance = Helper.get(params.id)
         if(helperInstance) {
             if(params.version) {
                 def version = params.version.toLong()
@@ -100,7 +100,7 @@ class HelperController {
     def create = {
         def helperInstance = new Helper()
         helperInstance.properties = params
-        def entity = Entity.findByName(params.name)
+        def entity = Entity.get(params.entity)
 
         return [helperInstance: helperInstance,
                 entity: entity]

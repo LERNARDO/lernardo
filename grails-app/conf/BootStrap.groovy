@@ -31,7 +31,7 @@ class BootStrap {
       createDefaultEducators()
       createDefaultOperators()
       createDefaultFacilities()
-      createDefaultLinks()
+      //createDefaultLinks()
       createDefaultTemplates()
       createDefaultComments()
       createDefaultResources()
@@ -42,7 +42,7 @@ class BootStrap {
         createDefaultPosts()
         createDefaultEvents()
         createDefaultAttendances()
-        createDefaultGroups()
+        //createDefaultGroups()
       }
 
       createDefaultHelpers()
@@ -62,117 +62,52 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.systemAdminRole)
       UserProfile prf = ent.profile
-      prf.tagline = "to be on top is our job"
-      prf.gender = 1
-      prf.title = "-"
-      prf.birthDate = new Date()
-      prf.PLZ = 1000
-      prf.city = "Wien"
-      prf.street = "Riemergasse 14"
-      prf.tel = "-"
-      prf.biography = "-"
+      prf.firstName = "Lernardo"
+      prf.lastName = "Admin"
     }
 
     // admin users
-    entityHelperService.createEntityWithUserAndProfile("csz", etUser, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("user", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+      //ent.user.locale = new Locale ("es", "ES")
       UserProfile prf = ent.profile
-      prf.tagline = ""
-      prf.gender = 1
-      prf.title = "DI"
-      prf.birthDate = new Date(1968-1900,02,18)
-      prf.PLZ = 29215
-      prf.city = "San Cristóbal de Las Casas"
-      prf.street = "Av. Norte Oriente 13a"
-      prf.tel = "+52 1 967 1188492"
-      prf.biography = ""
+      prf.firstName = "Alexander"
+      prf.lastName = "Zeillinger"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("lsz", etUser, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("user", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
-      prf.tagline = ""
-      prf.gender = 1
-      prf.title = "Ing. Dkfm."
-      prf.birthDate = new Date(1939-1900,04,17)
-      prf.PLZ = 4600
-      prf.city = "Schleißheim bei Wels"
-      prf.street = ""
-      prf.tel = ""
-      prf.biography = ""
+      prf.firstName = "Patrizia"
+      prf.lastName = "Rosenkranz"
     }
-    
+
+    entityHelperService.createEntityWithUserAndProfile("user", etUser, "dsz@lernardo.at", "Daniel Szabo") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
+      UserProfile prf = ent.profile
+      prf.firstName = "Daniel"
+      prf.lastName = "Szabo"
+    }
+
     // mod users
-    entityHelperService.createEntityWithUserAndProfile("alex", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.modRole)
-      ent.user.locale = new Locale ("es", "ES")
-      UserProfile prf = ent.profile
-      prf.tagline = "Simplicity is the ultimate sophistication"
-      prf.gender = 1
-      prf.city = "Gumpoldskirchen"
-      prf.birthDate = new Date(1982-1900,01,22)
-      prf.PLZ = 2352
-      prf.street = "Rudolf Tamchina Gasse 5/5"
-      prf.tel = "0664 / 840 66 32"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("sabine", etUser, "sts@lernardo.at", "Sabine Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("user", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
-      prf.tagline = ""
-      prf.gender = 2
-      prf.city = "Gumpoldskirchen"
-      prf.birthDate = new Date(1984-1900,01,22)
-      prf.PLZ = 2352
-      prf.street = "Rudolf Tamchina Gasse 5/5"
-      prf.tel = ""
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("patrizia", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.modRole)
-      UserProfile prf = ent.profile
-      prf.gender = 2
-      prf.title = "B.A."
-      prf.city = "Berndorf"
-      prf.birthDate = new Date(1983-1900,07,20)
-      prf.PLZ = 2560
-      prf.street = "-"
-      prf.tel = "0664 / 840 66 27"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("susanne", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.modRole)
-      UserProfile prf = ent.profile
-      prf.tagline = "..."
-      prf.gender = 2
-      prf.birthDate = new Date(1966-1900,11,19)
-      prf.PLZ = 2563
-      prf.city = "Pottenstein"
-      prf.street = "-"
-      prf.tel = "0664 / 204 91 68"
-      prf.biography = "-"
+      prf.firstName = "Susanne"
+      prf.lastName = "Stiedl"
     }
 
     // regular users
-    entityHelperService.createEntityWithUserAndProfile("johannes", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("user", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
       UserProfile prf = ent.profile
-      prf.tagline = "Ich will die Welt im ERP abbilden!"
-      prf.gender = 1
-      prf.PLZ = 2560
-      prf.city = "Berndorf"
-      prf.street = "Wankengasse 10"
-      prf.tel = "0664 / 840 66 20"
+      prf.firstName = "Johannes L."
+      prf.lastName = "Zeitelberger"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("stephanie", etUser, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("user", etUser, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
       UserProfile prf = ent.profile
-      prf.tagline = "..."
-      prf.gender = 2
-      prf.birthDate = new Date(1940-1900,12,26)
-      prf.PLZ = 2563
-      prf.city = "Pottenstein"
-      prf.street = "Hainfelderstrasse 29"
-      prf.tel = "0664 846 98 19"
+      prf.firstName = "Stephanie"
+      prf.lastName = "Pirkfellner"
     }
   }
 
@@ -180,7 +115,50 @@ class BootStrap {
     log.debug ("==> creating default educators")
     EntityType etEducator = metaDataService.etEducator
 
-    entityHelperService.createEntityWithUserAndProfile("martin", etEducator, "martin@lernardo.at", "") {Entity ent ->
+    // admin users
+    entityHelperService.createEntityWithUserAndProfile("educator", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
+      EducatorProfile prf = ent.profile
+      prf.gender = 1
+      prf.title = "DI"
+      prf.birthDate = new Date(1968-1900,02,18)
+      prf.PLZ = 29215
+      prf.city = "San Cristóbal de Las Casas"
+      prf.street = "Av. Norte Oriente 13a"
+      prf.contact = ""
+      prf.education = ""
+      prf.employed = true
+      prf.firstName = "Christian"
+      prf.lastName = "Szinicz"
+      prf.function = ""
+      prf.interests = ""
+      prf.joinDate = new Date()
+      prf.languages = "Deutsch"
+      prf.nationality = "Österreich"
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("educator", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
+      EducatorProfile prf = ent.profile
+      prf.gender = 1
+      prf.title = "Ing. Dkfm."
+      prf.birthDate = new Date(1939-1900,04,17)
+      prf.PLZ = 4600
+      prf.city = "Schleißheim bei Wels"
+      prf.street = ""
+      prf.contact = ""
+      prf.education = ""
+      prf.employed = false
+      prf.firstName = "Ludwig"
+      prf.lastName = "Szinicz"
+      prf.function = ""
+      prf.interests = ""
+      prf.joinDate = new Date()
+      prf.languages = "Deutsch"
+      prf.nationality = "Österreich"
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("educator", etEducator, "martin@lernardo.at", "Martin Golja") {Entity ent ->
       EducatorProfile prf = ent.profile
       prf.title = "Mag."
       prf.firstName = "Martin"
@@ -297,22 +275,22 @@ class BootStrap {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
 
-    entityHelperService.createEntityWithUserAndProfile("kira", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("client", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
       ClientProfile prf = ent.profile
-      prf.tagline = "..."
+      prf.firstName = "Kira"
+      prf.lastName = "Zeillinger"
       prf.gender = 2
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
-      prf.tel = "0699 / 1234"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("keano", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("client", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
       ClientProfile prf = ent.profile
-      prf.tagline = "..."
+      prf.firstName = "Keano"
+      prf.lastName = "Zeillinger"
       prf.gender = 1
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
-      prf.tel = "0699 / 5678"
     }
   }
 
@@ -320,7 +298,7 @@ class BootStrap {
     log.debug ("==> creating default operators")
     EntityType etOperator = metaDataService.etOperator
 
-    entityHelperService.createEntityWithUserAndProfile ("vlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 2560
@@ -330,7 +308,7 @@ class BootStrap {
       prf.description = "-"
     }
 
-    entityHelperService.createEntityWithUserAndProfile ("alpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 2563
@@ -340,7 +318,7 @@ class BootStrap {
       prf.description = "-"
     }
 
-    entityHelperService.createEntityWithUserAndProfile ("sns", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 0
@@ -531,7 +509,7 @@ class BootStrap {
             September, als Hortleiterin wird Hannah Mutzbauer eingesetzt, die sich bereits in Hort Löwenzahn
             bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
             zur vollen Verfügung.''',
-            author:Entity.findByName('martin')).save()
+            author:Entity.findByName('educator')).save()
     new ArticlePost(title:'Gesund durch Ernährungsexpertin',
             teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
             Ernährungsexpertin mit langjähriger Erfahrung, die das Pädagogen Team im Hinblick auf die optimale
@@ -544,7 +522,7 @@ class BootStrap {
             Technischen Verlag der Uni Graz, die Unternehmensgründung von "Buntes Brot" im Juni 2001,
             Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
             Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
-            author:Entity.findByName('martin')).save()
+            author:Entity.findByName('educator')).save()
     new ArticlePost(title:'Hort Löwenzahn erhält Auszeichnung',
             teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
             Familie und Jugend erhielt der Hort "Löwenzahn Weissenbach" den 4. Preis und eine Prämie von
@@ -557,7 +535,7 @@ class BootStrap {
             Vorbereitung für das kommende Schuljahr. Bei diesem Ferienhort gibt es sogar einen sogenannten Tag
             der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
             Abschlussausflug in den Märchenpark St. Margarethen.''',
-            author:Entity.findByName('regina')).save()
+            author:Entity.findByName('educator')).save()
   }
 
   void createDefaultEvents() {
@@ -659,7 +637,7 @@ class BootStrap {
     }
 
     new Link(source: Entity.findByName('alex'), target: entity, type: metaDataService.ltGroup).save()
-    new Link(source: Entity.findByName('sabine'), target: entity, type: metaDataService.ltGroup).save()
+    //new Link(source: Entity.findByName('sabine'), target: entity, type: metaDataService.ltGroup).save()
 
   }
 

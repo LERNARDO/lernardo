@@ -14,7 +14,7 @@ class EvaluationController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        def entity = Entity.findByName(params.name)
+        def entity = Entity.get(params.id)
         List evaluations = Evaluation.findAllByOwner(entity)
 
         return [evaluationInstanceList: evaluations,
@@ -54,8 +54,8 @@ class EvaluationController {
     }
 
     def edit = {
-        def evaluationInstance = Evaluation.get( params.id )
-        def entity = Entity.findByName(params.name)
+        def evaluationInstance = Evaluation.get(params.id)
+        def entity = Entity.get(params.entity)
 
         if(!evaluationInstance) {
             flash.message = "Evaluation not found with id ${params.id}"
@@ -68,7 +68,7 @@ class EvaluationController {
     }
 
     def update = {
-        def evaluationInstance = Evaluation.get( params.id )
+        def evaluationInstance = Evaluation.get(params.id)
         if(evaluationInstance) {
             if(params.version) {
                 def version = params.version.toLong()
@@ -98,7 +98,7 @@ class EvaluationController {
     def create = {
         def evaluationInstance = new Evaluation()
         evaluationInstance.properties = params
-        def entity = Entity.findByName(params.name)
+        def entity = Entity.get(params.id)
 
         return [evaluationInstance: evaluationInstance,
                 entity: entity]
@@ -106,7 +106,7 @@ class EvaluationController {
 
     def save = {
         def evaluationInstance = new Evaluation(params)
-        evaluationInstance.owner = Entity.findByName(params.name)
+        evaluationInstance.owner = Entity.get(params.entity)
         evaluationInstance.writer = entityHelperService.loggedIn
         if(evaluationInstance.save(flush:true)) {
             flash.message = message(code:"evaluation.created")

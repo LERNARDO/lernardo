@@ -110,7 +110,6 @@
             <label for="enabled">
               <g:message code="pateProfile.enabled.label" default="Aktiv?"/>
             </label>
-
           </td>
           <td valign="top" class="value">
             <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>

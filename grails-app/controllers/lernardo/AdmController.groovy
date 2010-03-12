@@ -105,7 +105,7 @@ class AdmController {
           }
        }
        flash.message = message(code:"admin.notificationSuccess")
-       redirect controller:"profile", action:"showProfile", params:[name:entityHelperService.loggedIn.name]
+       redirect controller: entityHelperService.loggedIn.type.supertype.name + 'Profile', action:"show", id: entityHelperService.loggedIn.id
     }
 
     def createOperator = {

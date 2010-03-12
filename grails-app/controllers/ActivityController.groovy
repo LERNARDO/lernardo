@@ -157,7 +157,7 @@ class ActivityController {
       new Link(source: Entity.get(params.facility.toInteger()), target: entity, type: metaDataService.ltActFacility).save()
       new Link(source: template, target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
-      //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
+      //new Link(source: Entity.get(123), target: entity, type: metaDataService.ltActResource).save()
 
 
       flash.message = message(code:"activity.created", args:[entity.profile.fullName])

@@ -4,7 +4,7 @@ class NetworkController {
   def networkService
 
   def index = {
-    Entity entity = Entity.findByName(params.name)
+    Entity entity = Entity.get(params.id)
     return ['entity': entity,
             'friendsList': networkService.findFriendsOf(entity),
             'clientsList': networkService.findClientsOf(entity),

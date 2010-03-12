@@ -1,0 +1,82 @@
+<head>
+  <meta name="layout" content="private"/>
+  <title>Lernardo | User bearbeiten</title>
+</head>
+<body>
+<div class="headerBlue">
+  <h1>User bearbeiten</h1>
+</div>
+<div class="boxGray">
+  <div class="body">
+
+  %{--TODO: figure out why error messages are not shown?!?--}%
+    <g:hasErrors bean="${user}">
+      <div class="errors">
+        <g:renderErrors bean="${user}" as="list"/>
+      </div>
+    </g:hasErrors>
+
+    <g:form action="update" method="post" id="${user.id}">
+      <div class="dialog">
+        <table>
+          <tbody>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="firstName">
+                <g:message code="userProfile.firstName.label" default="Vorname"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="lastName">
+                <g:message code="userProfile.lastName.label" default="Nachname"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="showTips">
+                <g:message code="userProfile.showTips.label" default="Tipps"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="showTips" value="${user.profile.showTips}"/>
+            </td>
+          </tr>
+
+          <app:isAdmin>
+            <tr class="prop">
+              <td valign="top" class="name">
+                <label for="enabled">
+                  <g:message code="userProfile.enabled.label" default="Aktiv?"/>
+                </label>
+              </td>
+              <td valign="top" class="value">
+                <g:checkBox name="enabled" value="${user.user.enabled}"/>
+              </td>
+            </tr>
+          </app:isAdmin>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="buttons">
+        <g:submitButton name="submitButton" value="Aktualisieren"/>
+        <g:link class="buttonGray" action="del" id="${user.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+        <g:link class="buttonGray" action="show" id="${user.id}">Zurück</g:link>
+        <div class="spacer"></div>
+      </div>
+    </g:form>
+  </div>
+</div>
+</body>

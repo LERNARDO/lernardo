@@ -41,12 +41,12 @@ class EducatorProfileController {
             // delete all links
             Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
             try {
-                flash.message = message(code:"educator.deleted", args:[educator.profile.lastName + " " + educator.profile.firstName])
+                flash.message = message(code:"educator.deleted", args:[educator.profile.fullName])
                 educator.delete(flush:true)
                 redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"educator.notDeleted", args:[educator.profile.lastName + " " + educator.profile.firstName])
+                flash.message = message(code:"educator.notDeleted", args:[educator.profile.fullName])
                 redirect(action:"show",id:params.id)
             }
         }
@@ -78,7 +78,7 @@ class EducatorProfileController {
       educator.user.enabled = params.enabled ?: false
 
       if(!educator.profile.hasErrors() && educator.profile.save()) {
-          flash.message = message(code:"educator.updated", args:[educator.profile.lastName + " " + educator.profile.firstName])
+          flash.message = message(code:"educator.updated", args:[educator.profile.fullName])
           redirect action:'show', id: educator.id
       }
       else {
@@ -102,7 +102,7 @@ class EducatorProfileController {
           ent.profile.employed = params.employed ?: false
 
         }
-        flash.message = message(code:"educator.created", args:[entity.profile.lastName + " " + entity.profile.firstName])
+        flash.message = message(code:"educator.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
         render (view:"create", model:[educator: ee.entity, entity: entityHelperService.loggedIn])

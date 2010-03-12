@@ -35,7 +35,7 @@
                 <g:form>
                     <input type="hidden" name="id" value="${msgInstance?.id}" />
                     %{--reply is only possible when sender account is enabled--}%
-                    <app:isEnabled entityName="${msgInstance.sender.name}">
+                    <app:isEnabled entity="${msgInstance.sender}">
                       <g:link class="buttonBlue" controller="msg" action="create" params="[name:msgInstance.sender?.name]">Antworten</g:link>
                     </app:isEnabled>
                     <g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:box]">Löschen</g:link>

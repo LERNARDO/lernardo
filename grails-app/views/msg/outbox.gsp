@@ -9,8 +9,8 @@
 <div class="boxGray">
     <div id="inbox">
       <div class="buttons">
-        <g:link class="buttonBlue" controller="msg" action="inbox" params="[name:entity.name]">Posteingang</g:link>
-        <g:link class="buttonBlue" controller="msg" action="outbox" params="[name:entity.name]">Postausgang</g:link>
+        <g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>
+        <g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Postausgang</g:link>
         <div class="spacer"></div>
       </div>
 
@@ -43,16 +43,16 @@
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
         <tr>
           <td class="profile-pic">
-          <g:link controller="profile" action="showProfile" params="[name:msgInstance.receiver.name]">
+          <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">
             <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="50" align="left"/>
           </g:link>
           </td>
           <td class="name-date">
-            <span class="name">an <g:link controller="profile" action="showProfile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link></span>
+            <span class="name">an <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName}</g:link></span>
             <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
           </td>
           <td class="subject">
-            <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[name:entity.name,box:'outbox']">${msgInstance.subject}</g:link></span>
+            <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">${msgInstance.subject}</g:link></span>
           </td>
           <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:'outbox']">Löschen</g:link></td>
         </tr>

@@ -75,12 +75,12 @@
 
               <g:each status="i" in="${entityList}" var="entity">
                 <tr class="row-${entity.type}">
-                  <td><g:link controller="profile" action="showProfile" params="[name:entity.name]" >${entity.profile.fullName}</g:link></td>
+                  <td><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName}</g:link></td>
                 <td class="col">${entity.profile.tel}</td>
                 <td class="col"><g:checkBox name="anwesend${i}" id="anwesend" onChange="anyCheck(this.form)" value="${attend[i]?.didAttend}"/></td>
                 <td class="col"><g:checkBox name="essen${i}" id="essen" onChange="anyCheck(this.form)" value="${attend[i]?.didEat}"/></td>
                 </tr>
-                <g:hiddenField name="entities" value="${entity.name}"/>
+                <g:hiddenField name="entities" value="${entity.id}"/>
               </g:each>
 
             <tr style="font-weight: bold">

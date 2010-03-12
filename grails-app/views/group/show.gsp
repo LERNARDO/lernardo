@@ -41,7 +41,7 @@
             <ul>
               <app:getGroup entity="${groupInstance}">
                 <g:each var="member" in="${members}">
-                    <li><g:link controller="profile" action="showProfile" params="[name: member.name]">${member.profile.fullName}</g:link></li>
+                    <li><g:link controller="${member.type.supertype.name +'Profile'}" action="show" id="${member.id}">${member.profile.fullName}</g:link></li>
                 </g:each>
               </app:getGroup>
             </ul>
@@ -52,7 +52,7 @@
     </table>
 
     <div class="buttons">
-      <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:entity.name]">zurück</g:link>
+      <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">zurück</g:link>
       <div class="spacer"></div>
     </div>
 

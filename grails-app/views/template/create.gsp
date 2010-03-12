@@ -21,7 +21,7 @@
 
             <tr class="prop">
                 <td valign="top" class="name">
-                    <label for="name">
+                    <label for="fullName">
                       <g:message code="msg.name.label" default="Name" />:
                     </label>
                 </td>

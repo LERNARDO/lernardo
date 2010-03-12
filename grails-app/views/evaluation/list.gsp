@@ -9,7 +9,7 @@
   <div class="boxGray">
 
     <div id="newHelper">
-      <g:link class="buttonBlue" action="create" params="[name:entity.name]">Neue Beurteilung erstellen</g:link>
+      <g:link class="buttonBlue" action="create" id="${entity.id}">Neue Beurteilung erstellen</g:link>
     </div>
 
     <p>Es gibt insgesamt ${evaluationInstanceList.size()} Beurteilungen für ${entity.profile.fullName}.</p>
@@ -35,7 +35,7 @@
             <td>${evaluationInstance.writer.profile.fullName}</td>
           </tr>
         </table>
-        <g:link class="helperButton" action="edit" id="${evaluationInstance.id}" params="[name:entity.name]">bearbeiten</g:link>
+        <g:link class="helperButton" action="edit" id="${evaluationInstance.id}" params="[entity:entity.id]">bearbeiten</g:link>
       </div>
     </g:each>
     </ul>

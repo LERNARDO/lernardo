@@ -39,7 +39,7 @@
         </table>
         <div class="buttons">
           <g:submitButton name="saveNotification" value="Erstellen"/>
-          <g:link class="buttonGray" controller="profile" action="showProfile" params="[name:currentEntity.name]">Abbrechen</g:link>
+          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">Abbrechen</g:link>
           <div class="spacer"></div>
         </div>
       </g:form>

@@ -23,13 +23,13 @@
          <div class="member">
 
            <div class="member-pic">
-             <g:link controller="profile" action="showProfile" params="[name:entity.name]">
+             <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">
                <ub:profileImage name="${entity.name}" width="50" height="50" align="left"/>
              </g:link>
            </div>
 
            <div class="member-info">
-             <div class="member-name"><g:link controller="profile" action="showProfile" params="[name:entity.name]">${entity.profile.fullName}</g:link></div>
+             <div class="member-name"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></div>
              <div class="member-uni">${entity.type.name}</div>
            </div>
            

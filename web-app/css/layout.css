@@ -573,22 +573,28 @@ ul {
     width: 125px;
     font-weight: bold;
 }
-.row-educator, .row-Educator {
+.row-educator {
     background: #ececff; }
 
-.row-client, .row-Client {
+.row-client {
     background: #ffb2b2; }
 
-.row-einrichtung, .row-Facility {
+.row-facility {
     background: #b2ffb2; }
 
-.row-betreiber, .row-Operator {
+.row-operator {
     background: #ffffb2; }
 
-.row-mitarbeiter, .row-User {
+.row-user {
     background: #ffecc1; }
 
-.row-School {
+.row-parent {
+    background: #cb59c9; }
+
+.row-pate {
+    background: #cb59c9; }
+
+.row-partner {
     background: #cb59c9; }
 
 .odd {
