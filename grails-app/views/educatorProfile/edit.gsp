@@ -105,7 +105,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: educator, field: 'profile.street')}"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: educator, field: 'profile.street').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -127,7 +127,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.education', 'errors')}" size="30" id="education" name="education" value="${fieldValue(bean: educator, field: 'profile.education')}"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.education', 'errors')}" size="30" id="education" name="education" value="${fieldValue(bean: educator, field: 'profile.education').decodeHTML()}"/>
             </td>
           </tr>
 

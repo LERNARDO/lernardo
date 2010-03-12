@@ -1,9 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+
   <head>
     <g:javascript src="bounce.js"/>
   </head>
-  <body>
+
     <ol class="imgmenu" id="bounce">
       <li>
         <div id="profile" class="imgbox">
@@ -59,5 +58,3 @@
         </div>
       </li>
     </ol>
-  </body>
-</html>
