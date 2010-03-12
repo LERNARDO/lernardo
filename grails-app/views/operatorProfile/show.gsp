@@ -78,8 +78,9 @@
       <g:link class="buttonBlue" action="edit" id="${operator?.id}">Bearbeiten</g:link>
       <div class="spacer"></div>
     </div>
+
     <div>
-      <h1>Einrichtungen <a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></h1>
+      <h1>Einrichtungen <app:isMeOrAdmin entity="${operator}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
         hideform = function(){
           $('#facilities').hide('slow') ;
@@ -98,6 +99,7 @@
         <g:render template="facilities" model="${facilities}"/>
       </div>
     </div>
+
   </div>
 </div>
 </body>

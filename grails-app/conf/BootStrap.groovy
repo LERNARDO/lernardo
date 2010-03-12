@@ -38,7 +38,7 @@ class BootStrap {
 
       if (GrailsUtil.environment == "development") {
         createDefaultActivities()
-        //createDefaultClients()
+        createDefaultClients()
         createDefaultPosts()
         createDefaultEvents()
         createDefaultAttendances()
@@ -282,6 +282,25 @@ class BootStrap {
       prf.gender = 2
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
+      prf.interests = ""
+      prf.street = ""
+      prf.personalDetails = ""
+      prf.city2 = ""
+      prf.joinDate = new Date()
+      prf.languages = ""
+      prf.income = 0
+      prf.birthDate = new Date()
+      prf.work = ""
+      prf.street2 = ""
+      prf.dropoutReason = ""
+      prf.doesWork = false
+      prf.country2 = ""
+      prf.attendance = ""
+      prf.dropout = false
+      prf.country = ""
+      prf.nationality = "Österreich"
+      prf.schoolLevel = 1
+      prf.notes = ""
     }
 
     entityHelperService.createEntityWithUserAndProfile("client", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
@@ -291,6 +310,25 @@ class BootStrap {
       prf.gender = 1
       prf.PLZ = 2352
       prf.city = "Gumpoldskirchen"
+      prf.interests = ""
+      prf.street = ""
+      prf.personalDetails = ""
+      prf.city2 = ""
+      prf.joinDate = new Date()
+      prf.languages = ""
+      prf.income = 0
+      prf.birthDate = new Date()
+      prf.work = ""
+      prf.street2 = ""
+      prf.dropoutReason = ""
+      prf.doesWork = false
+      prf.country2 = ""
+      prf.attendance = ""
+      prf.dropout = false
+      prf.country = ""
+      prf.nationality = "Österreich"
+      prf.schoolLevel = 1
+      prf.notes = ""
     }
   }
 

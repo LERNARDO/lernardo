@@ -31,8 +31,97 @@ class FacilityProfileController {
             redirect(action:list)
         }
         else {
-            return [facility: facility, entity: entity]
+          def allEducators = Entity.findAllByType(metaDataService.etEducator)
+
+          // find all facilities of this operator
+          List educators = []
+          def links = Link.findAllByTargetAndType(entity, metaDataService.ltWorking)
+          links.each {
+              educators << it.source
+          }
+
+          def allClients = Entity.findAllByType(metaDataService.etClient)
+
+          // find all facilities of this operator
+          List clients = []
+          links = Link.findAllByTargetAndType(entity, metaDataService.ltClientship)
+          links.each {
+              clients << it.source
+          }
+          return [facility: facility, entity: entity, allEducators: allEducators, educators: educators, allClients: allClients, clients: clients]
         }
+    }
+
+    def addEducator = {
+      // check if the educator isn't already linked to the facility
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.educator))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltWorking)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.educator), target: entityHelperService.loggedIn, type:metaDataService.ltWorking).save()
+      // find all educators of this facility
+      List educators = []
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+      links.each {
+          educators << it.source
+      }
+      render template:'educators', model: [educators: educators, entity: entityHelperService.loggedIn]
+    }
+
+    def removeEducator = {
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.id))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltWorking)
+      }
+      link.delete()
+      // find all educators of this facility
+      List educators = []
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+      links.each {
+          educators << it.source
+      }
+      render template:'educators', model: [educators: educators, entity: entityHelperService.loggedIn]
+    }
+  
+    def addClient = {
+      // check if the client isn't already linked to the facility
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.client))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltClientship)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.client), target: entityHelperService.loggedIn, type:metaDataService.ltClientship).save()
+      // find all clients of this facility
+      List clients = []
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltClientship)
+      links.each {
+          clients << it.source
+      }
+      render template:'clients', model: [clients: clients, entity: entityHelperService.loggedIn]
+    }
+
+    def removeClient = {
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.id))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltClientship)
+      }
+      link.delete()
+      // find all clients of this facility
+      List clients = []
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltClientship)
+      links.each {
+          clients << it.source
+      }
+      render template:'clients', model: [clients: clients, entity: entityHelperService.loggedIn]
     }
 
     def del = {

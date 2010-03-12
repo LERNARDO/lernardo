@@ -44,14 +44,22 @@ class OperatorProfileController {
     }
 
     def addFacility = {
-      new Link(source:Entity.get(params.facility), target: entityHelperService.loggedIn, type:metaDataService.ltOperation).save()
+      // check if the facility isn't already linked to the operator
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.facility))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltOperation)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.facility), target: entityHelperService.loggedIn, type:metaDataService.ltOperation).save()
       // find all facilities of this operator
       List facilities = []
       def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
       links.each {
           facilities << it.source
       }
-      render template:'facilities', model: [facilities: facilities]
+      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
     }
 
     def removeFacility = {
@@ -68,7 +76,7 @@ class OperatorProfileController {
       links.each {
           facilities << it.source
       }
-      render template:'facilities', model: [facilities: facilities]
+      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
     }
 
     def del = {
