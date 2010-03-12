@@ -4,15 +4,20 @@
   <title>Lernardo | Artikel</title>
 </head>
 <body>
-  <g:if test="${entity.profile.showTips}">
-    <div class="toolTip">
-      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche von dir verfasste Artikel.
+<g:if test="${entity.profile.showTips}">
+  <div class="toolTip">
+    <div class="second">
+      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche von dir verfasste Artikel.
     </div>
-  </g:if>
-  <div class="headerBlue">
+  </div>
+</g:if>
+<div class="headerBlue">
+  <div class="second">
     <h1>Artikel</h1>
   </div>
-  <div class="boxGray">
+</div>
+<div class="boxGray">
+  <div class="second">
     <div id="body-list">
 
       <g:if test="${!articleList}">
@@ -40,11 +45,14 @@
         </table>
       </g:else>
 
-      <div class="paginateButtons">
-        <g:paginate action="showArticleList" total="${articleCount}" params="[name:entity.name]"/>
-      </div>
+      <g:if test="${articleCount > 0}">
+        <div class="paginateButtons">
+          <g:paginate action="showArticleList" total="${articleCount}" params="[name:entity.name]"/>
+        </div>
+      </g:if>
 
     </div>
   </div>
+</div>
 </body>
 

@@ -4,10 +4,12 @@
 </head>
 <body>
   <div class="headerBlue">
-    <h1>Ressourcen</h1>
+    <div class="second">
+      <h1>Ressourcen</h1>
+    </div>
   </div>
   <div class="boxGray">
-    <div class="body">
+    <div class="second">
       <p>${resourceTotal} Ressource(n) insgesamt vorhanden</p>
       <g:if test="${resourceTotal > 0}">
         <div id="body-list">

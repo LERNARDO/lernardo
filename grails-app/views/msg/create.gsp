@@ -4,10 +4,12 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Nachricht senden</h1>
+  <div class="second">
+    <h1>Nachricht senden</h1>
+  </div>
 </div>
 <div class="boxGray">
-  <div class="body">
+  <div class="second">
     <g:hasErrors bean="${msgInstance}">
       <div id="flash-msg">
         <div class="errors">

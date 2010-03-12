@@ -4,10 +4,12 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Einrichtungen</h1>
+  <div class="second">
+    <h1>Einrichtungen</h1>
+  </div>
 </div>
 <div class="boxGray">
-  <div class="body">
+  <div class="second">
     <p>${facilityTotal} Einrichtungen insgesamt vorhanden</p>
     <g:if test="${facilityTotal > 0}">
       <div id="body-list">
@@ -34,8 +36,11 @@
       </g:if>
     </g:if>
 
-    <g:link class="buttonBlue" action="create">Neue Einrichtung anlegen</g:link>
-    <div class="spacer"></div>
+    <div class="buttons">
+      <g:link class="buttonBlue" action="create">Neue Einrichtung anlegen</g:link>
+      <div class="spacer"></div>
+    </div>
+    
   </div>
 </div>
 </body>

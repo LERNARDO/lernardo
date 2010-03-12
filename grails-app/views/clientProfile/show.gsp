@@ -4,10 +4,12 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Profil - ${client.profile.fullName}</h1>
+  <div class="second">
+    <h1>Profil - ${client.profile.fullName}</h1>
+  </div>
 </div>
 <div class="boxGray">
-  <div class="body">
+  <div class="second">
     <div class="dialog">
       <table class="listing">
         <tbody>

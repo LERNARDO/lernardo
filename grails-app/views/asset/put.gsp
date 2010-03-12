@@ -4,14 +4,18 @@
 </head>
 <body>
   <div class="headerBlue">
-    <h1>Profilbild ändern</h1>
+    <div class="second">
+      <h1>Profilbild ändern</h1>
+    </div>
   </div>
   <div class="boxGray">
-    <g:if test="${asset}">
-      Dein Profilbild wurde erfolgreich aktualisiert!
-    </g:if>
-    <g:else>
-      Dein Profilbild konnten nicht aktualisiert werden!
-    </g:else>
+    <div class="second">
+      <g:if test="${asset}">
+        Dein Profilbild wurde erfolgreich aktualisiert!
+      </g:if>
+      <g:else>
+        Dein Profilbild konnten nicht aktualisiert werden!
+      </g:else>
+    </div>
   </div>
 </body>

@@ -42,7 +42,7 @@ class HelperController {
             try {
                 helperInstance.delete(flush:true)
                 flash.message = message(code:"helper.deleted")
-                redirect(action:"list", params:[name: params.name])
+                redirect(action:"list", id: params.entity)
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = "Helper ${params.id} could not be deleted"

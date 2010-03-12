@@ -1,13 +1,16 @@
 <head>
   <title>Lernardo | Netzwerk</title>
-  <meta name="layout" content="private" />
+  <meta name="layout" content="private"/>
 </head>
 
 <body>
-  <div class="headerBlue">
+<div class="headerBlue">
+  <div class="second">
     <h1>Netzwerk</h1>
   </div>
-  <div class="boxGray">
+</div>
+<div class="boxGray">
+  <div class="second">
     <div class="yui-g" id="members">
 
       <g:render template="memberList" model="[cssclass:'myfriends', title:'Meine Freunde',
@@ -41,4 +44,5 @@
 
     </div>
   </div>
+</div>
 </body>

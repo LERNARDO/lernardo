@@ -4,15 +4,20 @@
   <title>Lernardo | Aktivitäten</title>
 </head>
 <body>
-  <g:if test="${entity.profile.showTips}">
-    <div class="toolTip">
-      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
+<g:if test="${entity.profile.showTips}">
+  <div class="toolTip">
+    <div class="second">
+      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
     </div>
-  </g:if>
-  <div class="headerBlue">
+  </div>
+</g:if>
+<div class="headerBlue">
+  <div class="second">
     <h1>Aktivitäten</h1>
   </div>
-  <div class="boxGray">
+</div>
+<div class="boxGray">
+  <div class="second">
     <div id="body-list">
       <g:if test="${!activityList}">
         <p>Keine Aktivitäten gefunden.</p>
@@ -45,5 +50,6 @@
 
     </div>
   </div>
+</div>
 </body>
 

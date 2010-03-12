@@ -4,15 +4,20 @@
   <title>Lernardo | Ereignisse</title>
 </head>
 <body>
-  <g:if test="${entity.profile.showTips}">
-    <div class="toolTip">
-      <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Ereignisse geben dir einen Überblick über deine Termine und Tätigkeiten.
+<g:if test="${entity.profile.showTips}">
+  <div class="toolTip">
+    <div class="second">
+      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Ereignisse geben dir einen Überblick über deine Termine und Tätigkeiten.
     </div>
-  </g:if>
-  <div class="headerBlue">
+  </div>
+</g:if>
+<div class="headerBlue">
+  <div class="second">
     <h1>Ereignisse</h1>
   </div>
-  <div class="boxGray">
+</div>
+<div class="boxGray">
+  <div class="second">
     <p><span class="strong">Morgen</span></p>
     <p>
       <g:set var="count" value="0"/>
@@ -57,4 +62,5 @@
       </g:if>
     </p>
   </div>
+</div>
 </body>

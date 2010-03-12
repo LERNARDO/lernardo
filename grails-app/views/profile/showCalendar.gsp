@@ -9,7 +9,11 @@
 
 <body>
   <div class="headerBlue">
-    <h1>Kalender von ${entity.profile.fullName}</h1>
+    <div class="second">
+      <h1>Kalender von ${entity.profile.fullName}</h1>
+    </div>
   </div>
-  <div class="boxGray cal"></div>
+  <div class="boxGray">
+    <div class="second cal"></div>
+  </div>
 </body>

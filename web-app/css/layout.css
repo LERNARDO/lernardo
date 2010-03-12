@@ -47,13 +47,15 @@ body {
 #bd {
     background: #f0f0f0;
     padding-top: 10px;
-    -moz-box-shadow: #888 0px 4px 8px;}
+    -moz-box-shadow: #888 0px 4px 8px;
+    border-bottom: 1px solid #aaa}
 
 #ft {
-    background: #d9d9d9;
+    background: #e1e1e1; /*#d9d9d9;*/
     clear: both;
     text-align: center;
     padding: 10px;
+    border-top: 1px solid #fff;
     -moz-box-shadow: #888 0px 4px 8px;}
     #ft a {
         color: #444; }
@@ -76,15 +78,21 @@ body {
     color: #f44; }
 
 .toolTip {
-    border: 1px solid #3f3;
+    border: 1px solid #4d4;
     -moz-border-radius: 4px;
-    background: #8f8;
-    padding: 5px;
+    background: #6f6;
+    -padding: 5px;
     margin-bottom: 15px;
-    -moz-box-shadow: #888 2px 2px 4px; }
+    -moz-box-shadow: #aaa 2px 2px 4px; }
+    .toolTip .second {
+        padding: 5px;
+        border: 1px solid #bfb;
+        -moz-border-radius: 4px;
+    }
 
 .spacer {
-    clear: both; }
+    clear: both;
+    margin-bottom: 5px; }
 
 /* ----- NAVIGATION -----*/
 
@@ -228,7 +236,8 @@ ul {
 #profile-pic {
     text-align: center; }
     #profile-pic img {
-        -moz-box-shadow: #666 0px 0px 6px; }
+        -moz-box-shadow: #aaa 0px 0px 6px;
+        border: 1px solid #999; }
     #profile-pic h1 {
         padding: 0;
         margin: 0 0 10px 0;
@@ -236,51 +245,66 @@ ul {
         font-weight: bold;
         border-bottom: none; }
 
+.profile-group {
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    background: -moz-linear-gradient(-90deg,#dedede,#bcbcbc) #bcbcbc; /*#dfdfdf*/
+    border: 1px solid #9a9a9a;
+    border-bottom: none;
+    font-weight: bold;
+    margin: 15px 0 0 5px;
+    -padding: 2px;
+    text-align: center;
+    width: 120px;
+    color: #333;
+    -moz-box-shadow: #aaa 2px 2px 4px;}
+    .profile-group:hover {
+        background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6; /*#dfdfdf*/
+        border: 1px solid #55e;
+        border-bottom: none;
+        cursor: pointer;
+        color: #fff; }
+    .profile-group .second {
+        padding: 2px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border: 1px solid #efefef;
+        border-bottom: none; }
+    .profile-group .second:hover {
+        border: 1px solid #ccf;
+        border-bottom: none; }
+
 .profile-box {
     -moz-border-radius: 5px;
     /*background-color: #dfdfdf;*/
     background: -moz-linear-gradient(-90deg,#efefef,#cdcdcd) #dfdfdf;
-    border: 1px solid #ccc;
-    padding: 5px;
-    -moz-box-shadow: #888 2px 2px 4px; }
-    .profile-box ul {
+    border: 1px solid #999;
+    -padding: 5px;
+    -moz-box-shadow: #aaa 2px 2px 4px; }
+    .profile-box .second {
+        padding: 5px;
+        -moz-border-radius: 5px;
+        border: 1px solid #efefef; }
+    .profile-box .second ul {
         padding: 0; }
-        .profile-box ul li {
+        .profile-box .second ul li {
             list-style-type: none;
             color: #333;
             margin: 0; }
-        .profile-box ul li a:hover {
-            font-weight: bold;
+        .profile-box .second ul li a:hover {
             text-decoration: none; }
-
-.profile-group {
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    background-color: #dfdfdf;
-    border: 1px solid #ccc;
-    border-bottom: none;
-    font-weight: bold;
-    margin: 15px 0 0 5px;
-    padding: 2px;
-    text-align: center;
-    width: 120px;
-    color: #333; }
-    .profile-group:hover {
-        background: #dfdfdf;
-        border: 1px solid #ccc;
-        border-bottom: none;
-        cursor: pointer; }
 
 #private-content {
     padding: 10px; }
 
 .headerBlue {
-    background: #567EC6;
-    padding: 4px 5px;
+    background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
+    /*background: #567EC6;*/
+    -padding: 4px 5px;
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
     border: 1px solid #345CA4;
-    -moz-box-shadow: #888 2px 2px 4px; }
+    -moz-box-shadow: #aaa 2px 2px 4px; }
     .headerBlue h1 {
         color: #fff;
         margin: 0;
@@ -288,16 +312,29 @@ ul {
         border: 0;
         font-weight: normal;
         font-size: 14px; }
+    .headerBlue .second {
+        border: 1px solid #89aee9;
+        padding: 4px 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+    }
 
 .boxGray {
     -moz-border-radius-bottomleft: 5px;
     -moz-border-radius-bottomright: 5px;
-    background-color: #dfdfdf;
-    padding: 5px;
+    background: #dfdfdf;
+    -padding: 5px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #888;
     color: #333;
-    -moz-box-shadow: #888 2px 2px 4px; }
+    -moz-box-shadow: #aaa 2px 2px 4px;
+    border-top: none}
+    .boxGray .second {
+        border: 1px solid #fff;
+        padding: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border-top: none}
 
 #newHelper {
     float: right; }
@@ -346,7 +383,7 @@ ul {
     #profile-navigation a {
         text-decoration: none; }
         #profile-navigation a:hover {
-            color: #46597B;
+            color: #000; /*#46597B; */
             -text-decoration: underline; }
 
     #profile-navigation .profile-profil {
@@ -659,7 +696,7 @@ label {
             background-image: url(../images/skin/sorted_desc.gif); }
     #body-list tr {
         font-size: 11px;
-            border: 1px solid #bbb;}
+            border: 1px solid #999;}
     #body-list .odd {
         background: #eef; }
     #body-list #select-box {
@@ -777,10 +814,10 @@ div.actionlinks div.userlinks a {
 }
 
 .buttonBlue {
-    border: 1px solid #33f;
+    border: 1px solid #bbf;
     background: #66f;
     padding: 4px 5px;
-    margin: 5px;
+    margin: 5px 5px 0 5px;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
@@ -789,14 +826,14 @@ div.actionlinks div.userlinks a {
     height: 16px; }
     .buttonBlue:hover {
         background: #44f;
-        border: 1px solid #11f;
+        border: 1px solid #99f;
         text-decoration: none; }
 
 .boxGray input[type=submit] {
-    border: 1px solid #33f !important;
+    border: 1px solid #bbf !important;
     background: #66f;
     padding: 4px 5px !important;
-    margin: 5px !important;
+    margin: 5px 5px 0 5px !important;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
@@ -804,15 +841,15 @@ div.actionlinks div.userlinks a {
     display: block; }
     .boxGray input[type=submit]:hover {
         background: #44f;
-        border: 1px solid #11f !important;
+        border: 1px solid #99f !important;
         text-decoration: none;
         cursor: pointer; }
 
 .buttonGray {
-    border: 1px solid #333;
+    border: 1px solid #bbb;
     background: #666;
     padding: 5px;
-    margin: 5px;
+    margin: 5px 5px 0 5px;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
@@ -820,7 +857,7 @@ div.actionlinks div.userlinks a {
     display: block; }
     .buttonGray:hover {
         background: #444;
-        border: 1px solid #111;
+        border: 1px solid #999;
         text-decoration: none; }
 
 .activity-list-head {
@@ -946,9 +983,9 @@ table#msg-composer td {
 }
 
 .info-msg-postbox {
-  padding:5px 10px;
+  padding:5px;
   color: #606060;
-  text-align: center;
+  text-align: left;
 }
 
 #inbox-footer {
@@ -1034,6 +1071,15 @@ table#msg-composer td {
 .buttons .button a:hover {
   color: #000000 !important;
   border:1px solid #000000;
+}
+
+.buttons {
+    background: #555;
+    margin: -5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top: 1px solid #333;
+    margin-top: 5px;
 }
 
 /* ----- COMMENTS -----  */

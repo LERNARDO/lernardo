@@ -4,15 +4,13 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Postfach: Postausgang</h1>
+  <div class="second">
+    <h1>Postfach: Postausgang</h1>
+  </div>
 </div>
 <div class="boxGray">
+  <div class="second">
     <div id="inbox">
-      <div class="buttons">
-        <g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>
-        <g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Postausgang</g:link>
-        <div class="spacer"></div>
-      </div>
 
       %{--<div id="inbox-actions">
       <div id="inbox-action-form">
@@ -36,34 +34,43 @@
       <table id="inbox-message-overview" class="message-rows">
 
         <g:if test="${msgInstanceList.size() == 0}">
-        <div class="info-msg-postbox">
-          <p>Du hast derzeit keine Nachrichten in deinem Postausgang!</p>
-        </div>
+          <div class="info-msg-postbox">
+            Du hast derzeit keine Nachrichten in deinem Postausgang!
+          </div>
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
-        <tr>
-          <td class="profile-pic">
-          <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">
-            <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="50" align="left"/>
-          </g:link>
-          </td>
-          <td class="name-date">
-            <span class="name">an <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName}</g:link></span>
-            <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
-          </td>
-          <td class="subject">
-            <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">${msgInstance.subject}</g:link></span>
-          </td>
-          <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:'outbox']">Löschen</g:link></td>
-        </tr>
+          <tr>
+            <td class="profile-pic">
+              <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">
+                <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="50" align="left"/>
+              </g:link>
+            </td>
+            <td class="name-date">
+              <span class="name">an <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName}</g:link></span>
+              <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
+            </td>
+            <td class="subject">
+              <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">${msgInstance.subject}</g:link></span>
+            </td>
+            <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[name:entity.name,box:'outbox']">Löschen</g:link></td>
+          </tr>
         </g:each>
 
       </table>
 
-      <div class="paginateButtons">
-        <g:paginate total="${msgInstanceTotal}"/>
+      <g:if test="${msgInstanceTotal > 0}">
+        <div class="paginateButtons">
+          <g:paginate total="${msgInstanceTotal}"/>
+        </div>
+      </g:if>
+
+      <div class="buttons">
+        <g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>
+        <g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Postausgang</g:link>
+        <div class="spacer"></div>
       </div>
 
     </div>
+  </div>
 </div>
 </body>

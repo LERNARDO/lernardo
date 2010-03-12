@@ -4,10 +4,12 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Betreute</h1>
+  <div class="second">
+    <h1>Betreute</h1>
+  </div>
 </div>
 <div class="boxGray">
-  <div class="body">
+  <div class="second">
     <p>${clientTotal} Betreute insgesamt vorhanden</p>
     <g:if test="${clientTotal > 0}">
       <div id="body-list">
@@ -35,8 +37,11 @@
       </g:if>
     </g:if>
 
-    <g:link class="buttonBlue" action="create">Neuen Betreuten anlegen</g:link>
-    <div class="spacer"></div>
+    <div class="buttons">
+      <g:link class="buttonBlue" action="create">Neuen Betreuten anlegen</g:link>
+      <div class="spacer"></div>
+    </div>
+    
   </div>
 </div>
 </body>

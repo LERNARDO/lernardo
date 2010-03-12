@@ -1,123 +1,129 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head>
-    <meta name="layout" content="private" />
-    <title>Lernardo | Anwesenheits- und Essensliste</title>
-    <script type="text/javascript">
-      function anyCheck(form) {
+<head>
+  <meta name="layout" content="private"/>
+  <title>Lernardo | Anwesenheits- und Essensliste</title>
+  <script type="text/javascript">
+    function anyCheck(form) {
       var total = 0;
       var max = form.anwesend.length;
       for (var ida = 0; ida < max; ida++) {
-      if (eval("document.clients.anwesend[" + ida + "].checked") == true) {
+        if (eval("document.clients.anwesend[" + ida + "].checked") == true) {
           total += 1;
-         }
+        }
       }
-      document.getElementById('sumAnwesenheit').innerHTML=total;
+      document.getElementById('sumAnwesenheit').innerHTML = total;
 
       total = 0;
       max = form.essen.length;
       for (var idx = 0; idx < max; idx++) {
-      if (eval("document.clients.essen[" + idx + "].checked") == true) {
+        if (eval("document.clients.essen[" + idx + "].checked") == true) {
           total += 1;
-         }
+        }
       }
-      document.getElementById('sumEssen').innerHTML='€ '+total*${entity.profile.foodCosts};
+      document.getElementById('sumEssen').innerHTML = '€ ' + total *${entity.profile.foodCosts};
       //alert("You selected " + total + " boxes.");
-      }
-    </script>
-  </head>
-  <body>
+    }
+  </script>
+</head>
+<body>
 
-    <g:if test="${entity.profile.showTips}">
-      <div class="toolTip">
-        <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Der tägliche Essenbeitrag bezieht sich auf die Mittagsmahlzeit und fällt für jeden Betreuten an. Der Betrag kann über die Profildaten der Einrichtung geändert werden.
-      </div>
-    </g:if>
-
-    <div class="headerBlue">
-      <h1>Anwesenheits- und Essensliste</h1>
+<g:if test="${entity.profile.showTips}">
+  <div class="toolTip">
+    <div class="second">
+      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Der tägliche Essenbeitrag bezieht sich auf die Mittagsmahlzeit und fällt für jeden Betreuten an. Der Betrag kann über die Profildaten der Einrichtung geändert werden.
     </div>
+  </div>
+</g:if>
 
-    <div class="boxGray">
-      <div id="body-list">
-        <p>${entityCount} Profile gefunden</p>
+<div class="headerBlue">
+  <div class="second">
+    <h1>Anwesenheits- und Essensliste</h1>
+  </div>
+</div>
 
-        <g:form controller="profile" action="attendance" method="post" params="[name:entity.name]">
-          Datum:<g:datePicker name="date" value="${date}" precision="day" years="${2009..2020}"/>
-          <div class="buttons">
-            <g:submitButton name="submitButton" value="Datum ändern" icon="true"/>
-            <div class="spacer"></div>
-          </div>
-        </g:form>
+<div class="boxGray">
+  <div class="second">
+    <div id="body-list">
+      <p>${entityCount} Profile gefunden</p>
 
-        <hr/>
-        <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/>
+      <g:form controller="profile" action="attendance" method="post" params="[name:entity.name]">
+        Datum:<g:datePicker name="date" value="${date}" precision="day" years="${2009..2020}"/>
+        <div class="buttons">
+          <g:submitButton name="submitButton" value="Datum ändern" icon="true"/>
+          <div class="spacer"></div>
+        </div>
+      </g:form>
+
+      <hr/>
+      <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/>
         <g:if test="${attend}">
           <span class="strong">- Tag bereits gespeichert!</span>
         </g:if>
         <g:else>
           <span class="strong">- Tag noch nicht gespeichert!</span>
         </g:else></p>
-        <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
+      <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
 
-        <g:form action="saveAttendance" method="post" name="clients" id="clients" params="[name: entity.name, year: year, month: month, day: day]">
+      <g:form action="saveAttendance" method="post" name="clients" id="clients" params="[name: entity.name, year: year, month: month, day: day]">
 
-          <table id="profile-list">
-            <thead>
-              <tr>
-            <g:sortableColumn property="fullName" title="Name" />
-            <g:sortableColumn property="tel" title="Telefon" />
-            <g:sortableColumn property="anwesend" title="Anwesend" />
-            <g:sortableColumn property="essen" title="Essen" />
+        <table id="profile-list">
+          <thead>
+          <tr>
+            <g:sortableColumn property="fullName" title="Name"/>
+            <g:sortableColumn property="tel" title="Telefon"/>
+            <g:sortableColumn property="anwesend" title="Anwesend"/>
+            <g:sortableColumn property="essen" title="Essen"/>
+          </tr>
+          </thead>
+          <tbody>
+
+          <g:each status="i" in="${entityList}" var="entity">
+            <tr class="row-${entity.type}">
+              <td><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName}</g:link></td>
+              <td class="col">${entity.profile.tel}</td>
+              <td class="col"><g:checkBox name="anwesend${i}" id="anwesend" onChange="anyCheck(this.form)" value="${attend[i]?.didAttend}"/></td>
+              <td class="col"><g:checkBox name="essen${i}" id="essen" onChange="anyCheck(this.form)" value="${attend[i]?.didEat}"/></td>
             </tr>
-            </thead>
-            <tbody>
+            <g:hiddenField name="entities" value="${entity.id}"/>
+          </g:each>
 
-              <g:each status="i" in="${entityList}" var="entity">
-                <tr class="row-${entity.type}">
-                  <td><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">${entity.profile.fullName}</g:link></td>
-                <td class="col">${entity.profile.tel}</td>
-                <td class="col"><g:checkBox name="anwesend${i}" id="anwesend" onChange="anyCheck(this.form)" value="${attend[i]?.didAttend}"/></td>
-                <td class="col"><g:checkBox name="essen${i}" id="essen" onChange="anyCheck(this.form)" value="${attend[i]?.didEat}"/></td>
-                </tr>
-                <g:hiddenField name="entities" value="${entity.id}"/>
-              </g:each>
+          <tr style="font-weight: bold">
+            <td>Gesamt</td>
+            <td></td>
+            <td id="sumAnwesenheit">0</td>
+            <td id="sumEssen">0</td>
+          </tr>
+          </tbody>
+        </table>
 
-            <tr style="font-weight: bold">
-              <td>Gesamt</td>
-              <td></td>
-              <td id="sumAnwesenheit">0</td>
-              <td id="sumEssen">0</td>
-            </tr>
-            </tbody>
-          </table>
-
-          <g:if test="${!attend}">
-            <g:submitButton name="submitButton" value="Speichern"/>
-            <span class="buttonGray">PDF erzeugen</span>
-            <div class="clear"></div>
-          </g:if>
-
-        </g:form>
-
-        <g:if test="${attend}">
-          <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy'}.pdf">
-            <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd'}"/>
-            <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM'}"/>
-            <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy'}"/>
-            <div class="buttons">
-              <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
-              <div class="spacer"></div>
-            </div>
-          </g:pdfForm>
+        <g:if test="${!attend}">
+          <g:submitButton name="submitButton" value="Speichern"/>
+          <span class="buttonGray">PDF erzeugen</span>
+          <div class="clear"></div>
         </g:if>
 
-      </div>
-    </div>
+      </g:form>
 
-    <script type="text/javascript">
-      anyCheck(document.getElementById("clients"));
-    </script>
-  
-  </body>
+      <g:if test="${attend}">
+        <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy'}.pdf">
+          <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd'}"/>
+          <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM'}"/>
+          <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy'}"/>
+          <div class="buttons">
+            <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
+            <div class="spacer"></div>
+          </div>
+        </g:pdfForm>
+      </g:if>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  anyCheck(document.getElementById("clients"));
+</script>
+
+</body>
 </html>

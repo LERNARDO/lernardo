@@ -4,19 +4,25 @@
 </head>
 <body>
   <div class="headerBlue">
-    <h1>Profilbild ändern</h1>
+    <div class="second">
+      <h1>Profilbild ändern</h1>
+    </div>
   </div>
   <div class="boxGray">
-    <g:uploadForm action="putprf">
-      <p>Bitte ein Bild auswählen:<br/>
-      <input size="40" type="file" name="asset"></p>
+    <div class="second">
+      <g:uploadForm action="putprf">
+        <p>Bitte ein Bild auswählen:<br/>
+        <input size="40" type="file" name="asset"></p>
 
-      <p>Zur optimalen Darstellung ist ein Bildformat von 180 x 233 px empfehlenswert.</p>
+        <p>Zur optimalen Darstellung ist ein Bildformat von 180 x 233 px empfehlenswert.</p>
 
-      <g:submitButton name="submit" value="Ändern"/>
-      <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">Abbrechen</g:link>
-      <div class="spacer"></div>
-   
-    </g:uploadForm>
+        <div class="buttons">
+          <g:submitButton name="submit" value="Ändern"/>
+          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">Abbrechen</g:link>
+          <div class="spacer"></div>
+        </div>
+        
+      </g:uploadForm>
+    </div>
   </div>
 </body>

@@ -1,44 +1,42 @@
 <head>
-  <meta name="layout" content="private" />
+  <meta name="layout" content="private"/>
   <title>Lernardo | Ressource</title>
 </head>
 <body>
-  <div class="headerBlue">
+<div class="headerBlue">
+  <div class="second">
     <h1>Ressource</h1>
   </div>
-  <div class="boxGray">
-    <div class="body">
-            <div class="dialog">
-                <table>
-                    <tbody>
+</div>
+<div class="boxGray">
+  <div class="second">
+    <div class="dialog">
+      <table>
+        <tbody>
 
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                               <g:message code="resourceProfile.fullName.label" default="Name" />:
-                            </td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:resource, field:'profile.fullName')}</td>
-                            
-                        </tr>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name">
-                               <g:message code="resourceProfile.description.label" default="Beschreibung" />:
-                            </td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean:resource, field:'profile.description')}</td>
-                            
-                        </tr>
-                    
-                    </tbody>
-                </table>
-            </div>
-            <div class="buttons">
-              <g:link class="buttonBlue" action="edit" id="${resource?.id}">Bearbeiten</g:link>
-              <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-              <g:link class="buttonGray" action="list">Zurück</g:link>
-              <div class="spacer"></div>
-            </div>
-        </div>
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="resourceProfile.fullName.label" default="Name"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.fullName')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="resourceProfile.description.label" default="Beschreibung"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description')}</td>
+        </tr>
+
+        </tbody>
+      </table>
     </div>
-    </body>
+    <div class="buttons">
+      <g:link class="buttonBlue" action="edit" id="${resource?.id}">Bearbeiten</g:link>
+      <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <div class="spacer"></div>
+    </div>
+  </div>
+</div>
+</body>

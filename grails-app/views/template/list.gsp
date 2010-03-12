@@ -1,40 +1,46 @@
-  <head>
-    <meta name="layout" content="private" />
-    <title>Lernardo | Lernardo Aktivitätsvorlagen</title>
-  </head>
+<head>
+  <meta name="layout" content="private"/>
+  <title>Lernardo | Lernardo Aktivitätsvorlagen</title>
+</head>
 
-  <body>
-    <g:if test="${entity.profile.showTips}">
-      <div class="toolTip">
-        <b><img src="${createLinkTo(dir:'images/icons',file:'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche im Lernardo erfassten Aktivitätsvorlagen.
-      </div>
-    </g:if>
-    <div class="headerBlue">
-    <h1>Lernardo Aktivitätsvorlagen</h1>
+<body>
+<g:if test="${entity.profile.showTips}">
+  <div class="toolTip">
+    <div class="second">
+      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche im Lernardo erfassten Aktivitätsvorlagen.
     </div>
-    <div class="boxGray">
+  </div>
+</g:if>
+<div class="headerBlue">
+  <div class="second">
+    <h1>Lernardo Aktivitätsvorlagen</h1>
+  </div>
+</div>
+<div class="boxGray">
+  <div class="second">
     <div id="body-list">
       <div style="float:right;">
         <app:isEducator entity="${entity}">
-          <li class="profile-template"><g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+          <g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link>
+          <div class="spacer"></div>
         </app:isEducator>
       </div>
       <p>${templateCount} Aktivitätsvorlage(n) gefunden</p>
 
       <table>
         <thead>
-          <tr>
-        <g:sortableColumn property="name" title="Name" />
-        <g:sortableColumn property="duration" title="Dauer (min)" />
-        <g:sortableColumn property="socialForm" title="Sozialform" />
-        %{--<g:sortableColumn property="requiredEducators" title="P&auml;dagogen" />--}%
-        <th>Kommentare</th>
+        <tr>
+          <g:sortableColumn property="name" title="Name"/>
+          <g:sortableColumn property="duration" title="Dauer (min)"/>
+          <g:sortableColumn property="socialForm" title="Sozialform"/>
+          %{--<g:sortableColumn property="requiredEducators" title="P&auml;dagogen" />--}%
+          <th>Kommentare</th>
         </tr>
         </thead>
 
         <tbody>
         <g:each status="i" in="${templateList}" var="templateInstance">
-          <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
+          <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
             <td class="col"><g:link action="show" id="${templateInstance.id}">${templateInstance.profile.fullName}</g:link></td>
             <td class="col2">${templateInstance.profile.duration}</td>
             <td>${templateInstance.profile.socialForm}</td>
@@ -47,10 +53,11 @@
 
       <g:if test="${templateCount > 15}">
         <div class="paginateButtons">
-          <g:paginate action="list" total="${templateCount}" />
+          <g:paginate action="list" total="${templateCount}"/>
         </div>
       </g:if>
 
     </div>
-      </div>
-  </body>
+  </div>
+</div>
+</body>

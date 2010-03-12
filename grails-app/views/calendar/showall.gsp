@@ -9,17 +9,25 @@
 
 <body>
   <div class="headerBlue">
-    <h1>Pädagogen</h1>
+    <div class="second">
+      <h1>Pädagogen</h1>
+    </div>
   </div>
   <div class="boxGray">
+    <div class="second">
       <div class="all" style="padding: 3px 4px"><g:link controller="calendar" action="showall">Alle</g:link></div>
       <g:each in="${educators}" var="educator">
         <div class="${educator.name}" style="padding: 3px 4px"><g:link controller="calendar" action="showall" params="[name:educator.name]">${educator.profile.fullName}</g:link></div>
       </g:each>
+    </div>
   </div>
   <div class="headerBlue">
-    <h1>Kalender</h1>
+    <div class="second">
+      <h1>Kalender</h1>
+    </div>
   </div>
-  <div class="boxGray cal"></div>
+  <div class="boxGray">
+    <div class="second cal"></div>
+  </div>
 </body>
 

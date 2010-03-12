@@ -4,10 +4,12 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>Einrichtung bearbeiten</h1>
+  <div class="second">
+    <h1>Einrichtung bearbeiten</h1>
+  </div>
 </div>
 <div class="boxGray">
-  <div class="body">
+  <div class="second">
 
   %{--TODO: figure out why error messages are not shown?!?--}%
     <g:hasErrors bean="${facility}">

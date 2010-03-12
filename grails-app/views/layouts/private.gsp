@@ -53,101 +53,111 @@
         </div>
 
         <ub:meOrAdmin entityName="${entity.name}">
-          <div class="profile-group">Profil</div>
+          <div class="profile-group"><div class="second">Profil</div></div>
           <div class="profile-box">
-            <ul>
-              <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
-              <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" id="${entity.id}">Daten ändern</g:link></li>
-            </ul>
+            <div class="second">
+              <ul>
+                <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
+                <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" id="${entity.id}">Daten ändern</g:link></li>
+              </ul>
+            </div>
           </div>
         </ub:meOrAdmin>
 
-        <div class="profile-group">Kommunikation</div>
+        <div class="profile-group"><div class="second">Kommunikation</div></div>
         <div class="profile-box">
-          <ul>
-            <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
-            <ub:meOrAdmin entityName="${entity.name}">
-              <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse ansehen</g:link></li>
-              <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach ansehen</g:link> <app:getNewInboxMessages entity="${entity}"/></li>
-            </ub:meOrAdmin>
-            <app:isEducator entity="${entity}">
-              <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}">Artikel ansehen</g:link></li>
-            </app:isEducator>
-            <g:if test="${entity.type.name == 'Educator' || entity.type.name == 'Client'}">
-            %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
-              <li class="profile-activities"><g:link controller="profile" action="showActivityList" id="${entity.id}">Aktivitäten ansehen</g:link></li>
-            </g:if>
-            <li class="profile-calendar"><g:link controller="profile" action="showCalendar" id="${entity.id}">Kalender ansehen</g:link></li>
-            <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Facility'}">
-            %{--<li class="profile-location"><g:link controller="profile" action="showLocation" id="${entity.id}">Standort anzeigen</g:link></li>--}%
-            </g:if>
-            <g:if test="${entity.type.name == 'Educator'}">
-              <li class="profile-leistung"><g:link controller="evaluation" id="${entity.id}">Leistungsbeurteilung ansehen</g:link></li>
-            </g:if>
+          <div class="second">
+            <ul>
+              <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
+              <ub:meOrAdmin entityName="${entity.name}">
+                <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse ansehen</g:link></li>
+                <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach ansehen</g:link> <app:getNewInboxMessages entity="${entity}"/></li>
+              </ub:meOrAdmin>
+              <app:isEducator entity="${entity}">
+                <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}">Artikel ansehen</g:link></li>
+              </app:isEducator>
+              <g:if test="${entity.type.name == 'Educator' || entity.type.name == 'Client'}">
+              %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
+                <li class="profile-activities"><g:link controller="profile" action="showActivityList" id="${entity.id}">Aktivitäten ansehen</g:link></li>
+              </g:if>
+              <li class="profile-calendar"><g:link controller="profile" action="showCalendar" id="${entity.id}">Kalender ansehen</g:link></li>
+              <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Facility'}">
+              %{--<li class="profile-location"><g:link controller="profile" action="showLocation" id="${entity.id}">Standort anzeigen</g:link></li>--}%
+              </g:if>
+              <g:if test="${entity.type.name == 'Educator'}">
+                <li class="profile-leistung"><g:link controller="evaluation" id="${entity.id}">Leistungsbeurteilung ansehen</g:link></li>
+              </g:if>
 
-            <app:notMe entity="${entity}">
-              <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}">Nachricht senden</g:link></li>
-              <app:isFriend entity="${entity}">
-                <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
-              </app:isFriend>
-              <app:notFriend entity="${entity}">
-                <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" id="${entity.id}">Als Freund hinzufügen</g:link></li>
-              </app:notFriend>
-              <app:isBookmark entity="${entity}">
-                <li class="profile-netzwerk"><g:link controller="profile" action="removeBookmark" id="${entity.id}">Bookmark entfernen</g:link></li>
-              </app:isBookmark>
-              <app:notBookmark entity="${entity}">
-                <li class="profile-netzwerk"><g:link controller="profile" action="addBookmark" id="${entity.id}">Bookmark setzen</g:link></li>
-              </app:notBookmark>
-            </app:notMe>
-          </ul>
+              <app:notMe entity="${entity}">
+                <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}">Nachricht senden</g:link></li>
+                <app:isFriend entity="${entity}">
+                  <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
+                </app:isFriend>
+                <app:notFriend entity="${entity}">
+                  <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" id="${entity.id}">Als Freund hinzufügen</g:link></li>
+                </app:notFriend>
+                <app:isBookmark entity="${entity}">
+                  <li class="profile-netzwerk"><g:link controller="profile" action="removeBookmark" id="${entity.id}">Bookmark entfernen</g:link></li>
+                </app:isBookmark>
+                <app:notBookmark entity="${entity}">
+                  <li class="profile-netzwerk"><g:link controller="profile" action="addBookmark" id="${entity.id}">Bookmark setzen</g:link></li>
+                </app:notBookmark>
+              </app:notMe>
+            </ul>
+          </div>
         </div>
 
         <ub:meOrAdmin entityName="${entity.name}">
-          <div class="profile-group">Pädagogik</div>
+          <div class="profile-group"><div class="second">Pädagogik</div></div>
           <div class="profile-box">
-            <ul>
-              <app:isEducator entity="${entity}">
-                <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
-              </app:isEducator>
-              %{--<app:isFacility entity="${entity}">
-                <li class="profile-activities"><g:link controller="profile" action="attendance" id="${entity.id}">Anwesenheits-/Essenslisten</g:link></li>
-              </app:isFacility>--}%
-            </ul>
+            <div class="second">
+              <ul>
+                <app:isEducator entity="${entity}">
+                  <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                </app:isEducator>
+                %{--<app:isFacility entity="${entity}">
+                  <li class="profile-activities"><g:link controller="profile" action="attendance" id="${entity.id}">Anwesenheits-/Essenslisten</g:link></li>
+                </app:isFacility>--}%
+              </ul>
+            </div>
           </div>
         </ub:meOrAdmin>
 
-        <div class="profile-group">Administration</div>
+        <div class="profile-group"><div class="second">Administration</div></div>
         <div class="profile-box">
-          <ul>
-            <app:isSysAdmin>
-              <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber verwalten</g:link></li>
-              <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User verwalten</g:link></li>
-            </app:isSysAdmin>
-            <app:isAdmin>
-              <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
-            %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
-              <li class="icon-admin"><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
-            </app:isAdmin>
-            <app:isOperator entity="${entity}">
-              <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
-              <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen verwalten</g:link></li>
-              <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]">Betreute verwalten</g:link></li>
-              <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
-              <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
-              <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte verwalten</g:link></li>
-            </app:isOperator>
-            <app:isEducator entity="${entity}">
-              <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>
-            </app:isEducator>
-          </ul>
+          <div class="second">
+            <ul>
+              <app:isSysAdmin>
+                <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User verwalten</g:link></li>
+              </app:isSysAdmin>
+              <app:isAdmin>
+                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
+              %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
+                <li class="icon-admin"><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
+              </app:isAdmin>
+              <app:isOperator entity="${entity}">
+                <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]">Betreute verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte verwalten</g:link></li>
+              </app:isOperator>
+              <app:isEducator entity="${entity}">
+                <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>
+              </app:isEducator>
+            </ul>
+          </div>
         </div>
 
-        <div class="profile-group">Hilfe</div>
+        <div class="profile-group"><div class="second">Hilfe</div></div>
         <div class="profile-box">
-          <ul>
-            <li class="icon-help"><g:link controller="helper" id="${entity.id}">Hilfethemen anzeigen</g:link></li>
-          </ul>
+          <div class="second">
+            <ul>
+              <li class="icon-help"><g:link controller="helper" id="${entity.id}">Hilfethemen anzeigen</g:link></li>
+            </ul>
+          </div>
         </div>
 
         %{--            <div class="profile-group">Netzwerk</div>

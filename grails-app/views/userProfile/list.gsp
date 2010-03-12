@@ -4,10 +4,12 @@
 </head>
 <body>
 <div class="headerBlue">
-  <h1>User</h1>
+  <div class="second">
+    <h1>User</h1>
+  </div>
 </div>
 <div class="boxGray">
-  <div class="body">
+  <div class="second">
     <p>${userTotal} User insgesamt vorhanden</p>
     <g:if test="${userTotal > 0}">
       <div id="body-list">
@@ -35,8 +37,11 @@
       </g:if>
     </g:if>
 
-    <g:link class="buttonBlue" action="create">Neuen User anlegen</g:link>
-    <div class="spacer"></div>
+    <div class="buttons">
+      <g:link class="buttonBlue" action="create">Neuen User anlegen</g:link>
+      <div class="spacer"></div>
+    </div>
+    
   </div>
 </div>
 </body>

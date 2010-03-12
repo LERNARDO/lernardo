@@ -4,51 +4,55 @@
   <title>Lernardo | Hilfethema bearbeiten</title>
 </head>
 <body>
-  <div class="headerBlue">
+<div class="headerBlue">
+  <div class="second">
     <h1>Hilfethema bearbeiten</h1>
   </div>
-  <div class="boxGray">
+</div>
+<div class="boxGray">
+  <div class="second">
 
-      <g:hasErrors bean="${helperInstance}">
+    <g:hasErrors bean="${helperInstance}">
       <div class="errors">
-          <g:renderErrors bean="${helperInstance}" as="list" />
+        <g:renderErrors bean="${helperInstance}" as="list"/>
       </div>
-      </g:hasErrors>
+    </g:hasErrors>
 
-      <g:form action="update" method="post" id="${helperInstance?.id}" params="[name:entity.name]">
-        <table>
-          <tbody>
+    <g:form action="update" method="post" id="${helperInstance?.id}" params="[name:entity.name]">
+      <table>
+        <tbody>
 
-            <tr>
-              <td class="label">Titel:</td>
-              <td class="value ${hasErrors(bean:helperInstance,field:'title','errors')}"><g:textField name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
-            </tr>
+        <tr>
+          <td class="label">Titel:</td>
+          <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title').decodeHTML()}"/></td>
+        </tr>
 
-            <tr>
-              <td class="label">Inhalt:</td>
-              <td class="value ${hasErrors(bean:helperInstance,field:'content','errors')}">
-                <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
-                <fckeditor:editor name="content" id="content" width="500" height="300" toolbar="Post" fileBrowser="default">
-                  ${helperInstance.content}
-                </fckeditor:editor>
-              </td>
-            </tr>
+        <tr>
+          <td class="label">Inhalt:</td>
+          <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
+            <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
+            <fckeditor:editor name="content" id="content" width="500" height="300" toolbar="Post" fileBrowser="default">
+              ${helperInstance.content}
+            </fckeditor:editor>
+          </td>
+        </tr>
 
-            <tr>
-              <td class="label">Für:</td>
-              <td class="value ${hasErrors(bean:helperInstance,field:'type','errors')}"><g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td>
-            </tr>
+        <tr>
+          <td class="label">Für:</td>
+          <td class="value ${hasErrors(bean: helperInstance, field: 'type', 'errors')}"><g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td>
+        </tr>
 
-          </tbody>
-        </table>
+        </tbody>
+      </table>
 
-        <div class="buttons">
-            <g:submitButton name="submitButton" value="Aktualisieren" />
-            <g:link class="buttonBlue" action="del" id="${helperInstance.id}" params="[name:entity.name]" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-            <g:link class="buttonGray" action="list" params="[name:entity.name]">Abbrechen</g:link>
-            <div class="spacer"></div>
-        </div>
-        
-      </g:form>
-    </div>
+      <div class="buttons">
+        <g:submitButton name="submitButton" value="Aktualisieren"/>
+        <g:link class="buttonBlue" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+        <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
+        <div class="spacer"></div>
+      </div>
+
+    </g:form>
+  </div>
+</div>
 </body>

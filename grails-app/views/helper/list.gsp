@@ -3,10 +3,13 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-  <div class="headerBlue">
+<div class="headerBlue">
+  <div class="second">
     <h1>Hilfethemen ${helperFor}</h1>
   </div>
+</div>
 <div class="boxGray">
+  <div class="second">
 
     <div id="newHelper">
       <app:isAdmin><g:link class="buttonBlue" action="create" params="[entity:entity.id]">Neues Thema anlegen</g:link></app:isAdmin>
@@ -20,15 +23,16 @@
     </g:else>
 
     <ul>
-    <g:each in="${helperInstanceList}" status="i" var="helperInstance">
-      <li><a href="#${i}">${helperInstance.title}</a></li>
-    </g:each>
+      <g:each in="${helperInstanceList}" status="i" var="helperInstance">
+        <li><a href="#${i}">${helperInstance.title}</a></li>
+      </g:each>
     </ul>
 
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
       <p><a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]">bearbeiten</g:link></app:isAdmin><br/>
-      ${helperInstance.content.decodeHTML()}</p>
+        ${helperInstance.content.decodeHTML()}</p>
     </g:each>
 
+  </div>
 </div>
 </body>
