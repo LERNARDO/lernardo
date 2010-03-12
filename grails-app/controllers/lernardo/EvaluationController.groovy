@@ -13,7 +13,7 @@ class EvaluationController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+        params.max = Math.min( params.max ? params.int('max') : 10,  100)
         def entity = Entity.get(params.id)
         List evaluations = Evaluation.findAllByOwner(entity)
 

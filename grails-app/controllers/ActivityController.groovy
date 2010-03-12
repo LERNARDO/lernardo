@@ -14,8 +14,8 @@ class ActivityController {
   }
 
   def list = {
-    params.offset = params.offset ? params.offset.toInteger(): 0
-    params.max = params.max ? params.max.toInteger(): 10
+    params.offset = params.offset ? params.int('offset'): 0
+    params.max = params.max ? params.int('max'): 10
     params.myDate_year = params.myDate_year ?: 'alle'
 
     // get a list of facilities the current entity is linked to
@@ -117,9 +117,10 @@ class ActivityController {
       try {
       def entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent)
-        ent.profile.fullName = params.fullName
-        ent.profile.date = new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
-        ent.profile.duration = params.duration ? params.duration.toInteger() : 0
+        //ent.profile.fullName = params.fullName
+        //ent.profile.date = new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
+        //ent.profile.duration = params.duration ? params.duration.toInteger() : 0
+        ent.profile.properties = params
       }
 
       // create links to educators
@@ -154,14 +155,14 @@ class ActivityController {
         }
       }
 
-      new Link(source: Entity.get(params.facility.toInteger()), target: entity, type: metaDataService.ltActFacility).save()
+      new Link(source: Entity.get(params.int('facility')), target: entity, type: metaDataService.ltActFacility).save()
       new Link(source: template, target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.get(123), target: entity, type: metaDataService.ltActResource).save()
 
 
       flash.message = message(code:"activity.created", args:[entity.profile.fullName])
-      functionService.createEvent(entityHelperService.loggedIn, Entity.get(params.facility.toInteger()).profile.fullName+': Aktivität "'+entity.profile.fullName+'"', entity.profile.date)
+      functionService.createEvent(entityHelperService.loggedIn, Entity.get(params.int('facility')).profile.fullName+': Aktivität "'+entity.profile.fullName+'"', entity.profile.date)
       functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+entity.profile.fullName+'" angelegt.')
       redirect action:'show', id:entity.id
       } catch (de.uenterprise.ep.EntityException ee) {
@@ -192,7 +193,7 @@ class ActivityController {
 
       activity.properties = params
       activity.profile.date =  new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
-      activity.profile.duration = params.duration.toInteger()
+      activity.profile.duration = params.int('duration')
 
       // delete old links of educators and clients
       def links = Link.findAllByTargetAndType(activity, metaDataService.ltActEducator)

@@ -14,8 +14,8 @@ class TemplateController {
     }
 
     def list = {
-      params.offset = params.offset ? params.offset.toInteger(): 0
-      params.max = params.max ? params.max.toInteger(): 15
+      params.offset = params.offset ? params.int('offset'): 0
+      params.max = params.max ? params.int('max'): 15
 
       return ['templateList': Entity.findAllByType(metaDataService.etTemplate),
               'templateCount': Entity.countByType(metaDataService.etTemplate),
@@ -90,7 +90,9 @@ class TemplateController {
       try {
         def entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
-          ent.profile.fullName = params.fullName
+          // TODO: find out if this works
+          ent.profile.properties = params
+          /*ent.profile.fullName = params.fullName
           ent.profile.attribution = params.attribution
           ent.profile.description = params.description
           ent.profile.duration = params.duration ? params.duration.toInteger() : 0
@@ -102,7 +104,7 @@ class TemplateController {
           ent.profile.pk = params.pk.toInteger()
           ent.profile.si = params.si.toInteger()
           ent.profile.hk = params.hk.toInteger()
-          ent.profile.tlt = params.tlt.toInteger()
+          ent.profile.tlt = params.tlt.toInteger()*/
         }
 
         // create new links

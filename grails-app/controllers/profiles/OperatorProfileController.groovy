@@ -17,7 +17,7 @@ class OperatorProfileController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+        params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [operatorList: Entity.findAllByType(metaDataService.etOperator),
                 operatorTotal: Entity.countByType(metaDataService.etOperator)]
     }

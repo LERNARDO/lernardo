@@ -17,7 +17,7 @@ class EducatorProfileController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+        params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [educatorList: Entity.findAllByType(metaDataService.etEducator),
                 educatorTotal: Entity.countByType(metaDataService.etEducator)]
     }

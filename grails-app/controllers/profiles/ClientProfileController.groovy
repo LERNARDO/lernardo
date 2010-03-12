@@ -17,7 +17,7 @@ class ClientProfileController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+        params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [clientList: Entity.findAllByType(metaDataService.etClient),
                 clientTotal: Entity.countByType(metaDataService.etClient)]
     }

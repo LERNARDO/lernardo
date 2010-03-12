@@ -14,7 +14,7 @@ class MsgController {
   static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
   def inbox = {
-    params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+    params.max = Math.min( params.max ? params.int('max') : 10,  100)
     def messages = filterService.getInbox(params.id)
     return ['msgInstanceList': messages,
             'msgInstanceTotal': messages.count(),
@@ -22,7 +22,7 @@ class MsgController {
   }
 
   def outbox = {
-    params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+    params.max = Math.min( params.max ? params.int('max') : 10,  100)
     def messages = filterService.getOutbox(params.id)
     return ['msgInstanceList': messages,
             'msgInstanceTotal': messages.count(),

@@ -16,7 +16,7 @@ class ResourceProfileController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 20,  100)
+        params.max = Math.min( params.max ? params.int('max') : 20,  100)
         return[resourceList: Entity.findAllByType(metaDataService.etResource),
                resourceTotal: Entity.countByType(metaDataService.etResource)]
     }

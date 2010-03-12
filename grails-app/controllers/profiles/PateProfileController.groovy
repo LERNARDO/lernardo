@@ -17,7 +17,7 @@ class PateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.max.toInteger() : 10, 100)
+    params.max = Math.min(params.max ? params.int('max') : 10, 100)
     return [pateList: Entity.findAllByType(metaDataService.etPate),
             pateTotal: Entity.countByType(metaDataService.etPate)]
   }

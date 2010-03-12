@@ -17,7 +17,7 @@ class ParentProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.max.toInteger() : 10, 100)
+    params.max = Math.min(params.max ? params.int('max') : 10, 100)
     return [parentList: Entity.findAllByType(metaDataService.etParent),
             parentTotal: Entity.countByType(metaDataService.etParent)]
   }

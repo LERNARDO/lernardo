@@ -43,8 +43,8 @@ class ProfileController {
 
     def showUsers = {
       params.glossary = params.glossary ?: 'Alle'
-      params.max = Math.min( params.max ? params.max.toInteger() : 6,  100)
-      params.offset = params.offset ? params.offset.toInteger() : 0
+      params.max = Math.min(params.max ? params.int('max') : 6,  100)
+      params.offset = params.offset ? params.int('offset') : 0
 
       List users = []
       def numUsers = 0
@@ -238,8 +238,8 @@ class ProfileController {
     }
 
     def showArticleList = {
-      params.offset = params.offset ? params.offset.toInteger(): 0
-      params.max = params.max ? params.max.toInteger(): 10
+      params.offset = params.offset ? params.int('offset'): 0
+      params.max = params.max ? params.int('max'): 10
 
       Entity entity = Entity.get(params.id)
       return ['entity': entity,
@@ -248,8 +248,8 @@ class ProfileController {
     }
 
     def showActivityList = {
-      params.offset = params.offset ? params.offset.toInteger(): 0
-      params.max = params.max ? params.max.toInteger(): 10
+      params.offset = params.offset ? params.int('offset'): 0
+      params.max = params.max ? params.int('max'): 10
 
       Entity entity = Entity.get(params.id)
 
@@ -279,7 +279,8 @@ class ProfileController {
     }
 
     def print = {
-        params.date = new Date(params.year.toInteger()-1900,params.month.toInteger()-1,params.day.toInteger())
+        // find out if this works without this workaround now
+        //params.date = new Date(params.year.toInteger()-1900,params.month.toInteger()-1,params.day.toInteger())
         Entity entity = entityHelperService.loggedIn
         def image = "hort_" + entity.name + ".jpg"
 
@@ -406,8 +407,8 @@ class ProfileController {
 
     def list = {
         params.entityType = params.entityType ?: "all"
-        params.offset = params.offset ? params.offset.toInteger(): 0
-        params.max = params.max ? params.max.toInteger(): 10
+        params.offset = params.offset ? params.int('offset'): 0
+        params.max = params.max ? params.int('max'): 10
 
         List entities
         int count
