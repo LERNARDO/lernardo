@@ -236,14 +236,38 @@ ul {
 #profile-pic {
     text-align: center; }
     #profile-pic img {
-        -moz-box-shadow: #aaa 0px 0px 6px;
-        border: 1px solid #999; }
-    #profile-pic h1 {
-        padding: 0;
-        margin: 0 0 10px 0;
-        font-size: 120%;
-        font-weight: bold;
+        -moz-box-shadow: #aaa 2px 2px 4px;
+        border: 1px solid #999;
+        border-top: none;
         border-bottom: none; }
+    #profile-pic .name {
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border: 1px solid #345CA4;
+        -moz-box-shadow: #aaa 2px 2px 4px;
+        background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
+        color: #fff;
+        width: 180px;
+        margin: 0 auto; }
+        #profile-pic .name .second {
+            border: 1px solid #89aee9;
+            padding: 2px 3px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px; }
+    #profile-pic .type {
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border: 1px solid #345CA4;
+        -moz-box-shadow: #aaa 2px 2px 4px;
+        background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
+        color: #fff;
+        width: 180px;
+        margin: 0 auto; }
+        #profile-pic .type .second {
+            border: 1px solid #89aee9;
+            padding: 2px 3px;
+            -moz-border-radius-bottomleft: 5px;
+            -moz-border-radius-bottomright: 5px; }
 
 .profile-group {
     -moz-border-radius-topleft: 5px;

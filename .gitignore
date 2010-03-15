@@ -16,7 +16,7 @@ test/reports
 
 plugins/
 
-target/
+target/*
 /web-app/WEB-INF/tld/c.tld
 /web-app/WEB-INF/tld/fmt.tld
 *.war

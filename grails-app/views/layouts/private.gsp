@@ -42,13 +42,20 @@
       </div>
 
       <div id="profile-navigation" class="yui-b">
+
         <div id="profile-pic">
-          <h1>
-            ${entity.profile.fullName}
-            <div class="subheader">${entity.type.name}</div>
-          </h1>
+          <div class="name">
+            <div class="second">
+              ${entity.profile.fullName}
+            </div>
+          </div>
           <div id="picture">
             <ub:profileImage name="${entity.name}" width="180" height="180"/>
+          </div>
+          <div class="type">
+            <div class="second">
+              ${entity.type.name}
+            </div>
           </div>
         </div>
 

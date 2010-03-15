@@ -61,7 +61,7 @@ class ProfileController {
           ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
           profile {
-            order("fullName", "asc")
+            order("lastName", "asc")
           }
         }
         numUsers = users.size()

@@ -7,6 +7,6 @@
     <li><g:link controller="static" action='erpinfo'>ERP</g:link></li>
   </g:isNotLoggedIn>
   <li><g:link controller="static" action='einrichtungen'>Einrichtungen</g:link></li>
-  <li><g:link controller="static" action='kontakt'>Kontakt</g:link></li>
-  <li class="navigation_last"><g:link controller="static" action='registration'>Registrieren</g:link></li>
+  <li class="navigation_last"><g:link controller="static" action='kontakt'>Kontakt</g:link></li>
+  %{--<li class="navigation_last"><g:link controller="static" action='registration'>Registrieren</g:link></li>--}%
 </ul>

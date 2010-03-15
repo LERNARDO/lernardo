@@ -61,12 +61,13 @@
             <td class="col"><app:showBoolean bool="${entity.user.enabled}"/></td>
             <td class="col">${entity.user.authorities.authority}</td>
             <td class="col" style="width: 100px">
+              <app:notMe entity="${entity}">
               <app:isEnabled entity="${entity}">
                 <g:link controller="profile" action="disable" id="${entity.id}">Deaktivieren</g:link>
               </app:isEnabled>
               <app:notEnabled entity="${entity}">
                 <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
-              </app:notEnabled><br/>
+              </app:notEnabled><br/></app:notMe>
               <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
                 <g:link controller="profile" action="giveAdminRole" id="${entity.id}">Admin geben</g:link>
               </ub:hasNoRoles>
