@@ -28,6 +28,13 @@
           <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description')}</td>
         </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="resourceProfile.type.label" default="Typ"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.type')}</td>
+        </tr>
+
         </tbody>
       </table>
     </div>

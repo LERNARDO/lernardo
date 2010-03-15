@@ -5,6 +5,7 @@ import de.uenterprise.ep.Profile
 class ResourceProfile extends Profile {
 
   String description
+  String type
 
   static constraints = {
     fullName (blank: false)

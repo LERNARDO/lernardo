@@ -22,7 +22,7 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="name">
+              <label for="fullName">
                 <g:message code="resource.profile.fullName.label" default="Name"/>
               </label>
             </td>
@@ -38,7 +38,19 @@
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.description', 'errors')}">
-              <textarea rows="5" cols="70" name="description">${fieldValue(bean: resource, field: 'profile.description')}</textarea>
+              <textarea id="description" rows="5" cols="70" name="description">${fieldValue(bean: resource, field: 'profile.description')}</textarea>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="type">
+                <g:message code="resourceProfile.profile.description.label" default="Typ"/>
+              </label>
+
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.type', 'errors')}">
+              <g:select name="type" from="${['planbar','verbrauchbar']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
             </td>
           </tr>
 

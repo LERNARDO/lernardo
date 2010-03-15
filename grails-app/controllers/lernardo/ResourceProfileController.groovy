@@ -88,8 +88,7 @@ class ResourceProfileController {
       try {
         def entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
-          ent.profile.fullName = params.fullName
-          ent.profile.description = params.description
+          ent.profile.properties = params
         }
         flash.message = message(code:"resource.created", args:[entity.profile.fullName])
         redirect action:'list'

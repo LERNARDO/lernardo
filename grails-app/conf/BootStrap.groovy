@@ -513,6 +513,7 @@ class BootStrap {
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"
+      ent.profile.type = "planbar"
     }
 
   }
