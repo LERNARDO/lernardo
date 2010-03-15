@@ -40,6 +40,7 @@
 
       <g:link class="buttonBlue" action="create">Neue Ressource anlegen</g:link>
       <div class="spacer"></div>
+      
     </div>
   </div>
 </body>

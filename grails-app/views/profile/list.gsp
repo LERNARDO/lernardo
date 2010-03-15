@@ -68,13 +68,15 @@
               <app:notEnabled entity="${entity}">
                 <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
               </app:notEnabled><br/></app:notMe>
-              <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                <g:link controller="profile" action="giveAdminRole" id="${entity.id}">Admin geben</g:link>
-              </ub:hasNoRoles>
+              <app:isSysAdmin>
+                <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
+                  <g:link controller="profile" action="giveAdminRole" id="${entity.id}">Admin geben</g:link>
+                </ub:hasNoRoles>
 
-              <ub:hasAllRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                <g:link controller="profile" action="takeAdminRole" id="${entity.id}">Admin nehmen</g:link>
-              </ub:hasAllRoles>
+                <ub:hasAllRoles entity="${entity}" roles="['ROLE_ADMIN']">
+                  <g:link controller="profile" action="takeAdminRole" id="${entity.id}">Admin nehmen</g:link>
+                </ub:hasAllRoles>
+              </app:isSysAdmin>
             </td>
           </tr>
         </g:each>

@@ -6,7 +6,7 @@
 <body>
 <div class="headerBlue">
   <div class="second">
-    <h1>Mitgliederübersicht</h1>
+    <h1>Profilübersicht</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -18,7 +18,7 @@
 
 <div class="headerBlue">
   <div class="second">
-    <h1>Mitgliedersuche</h1>
+    <h1>Profilsuche</h1>
   </div>
 </div>
 <div class="boxGray">

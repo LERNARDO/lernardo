@@ -59,7 +59,7 @@ class BootStrap {
     EntityType etUser = metaDataService.etUser
 
     // system admin users
-    entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("lernardoadmin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.systemAdminRole)
       UserProfile prf = ent.profile
       prf.firstName = "Lernardo"
@@ -67,7 +67,7 @@ class BootStrap {
     }
 
     // admin users
-    entityHelperService.createEntityWithUserAndProfile("user", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("alexanderzeillinger", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       //ent.user.locale = new Locale ("es", "ES")
       UserProfile prf = ent.profile
@@ -75,14 +75,14 @@ class BootStrap {
       prf.lastName = "Zeillinger"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("user", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.firstName = "Patrizia"
       prf.lastName = "Rosenkranz"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("user", etUser, "dsz@lernardo.at", "Daniel Szabo") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lernardo.at", "Daniel Szabo") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.firstName = "Daniel"
@@ -90,7 +90,7 @@ class BootStrap {
     }
 
     // mod users
-    entityHelperService.createEntityWithUserAndProfile("user", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("susannestiedl", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.modRole)
       UserProfile prf = ent.profile
       prf.firstName = "Susanne"
@@ -98,17 +98,12 @@ class BootStrap {
     }
 
     // regular users
-    entityHelperService.createEntityWithUserAndProfile("user", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("johanneszeitelberger", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
       UserProfile prf = ent.profile
       prf.firstName = "Johannes L."
       prf.lastName = "Zeitelberger"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("user", etUser, "sp@lernardo.at", "Stephanie Pirkfellner") {Entity ent ->
-      UserProfile prf = ent.profile
-      prf.firstName = "Stephanie"
-      prf.lastName = "Pirkfellner"
-    }
   }
 
   void createDefaultEducators() {
@@ -116,7 +111,7 @@ class BootStrap {
     EntityType etEducator = metaDataService.etEducator
 
     // admin users
-    entityHelperService.createEntityWithUserAndProfile("educator", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("christiansczinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       EducatorProfile prf = ent.profile
       prf.gender = 1
@@ -137,7 +132,7 @@ class BootStrap {
       prf.nationality = "Österreich"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("educator", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       EducatorProfile prf = ent.profile
       prf.gender = 1
@@ -158,7 +153,7 @@ class BootStrap {
       prf.nationality = "Österreich"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("educator", etEducator, "martin@lernardo.at", "Martin Golja") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("martingolja", etEducator, "martin@lernardo.at", "Martin Golja") {Entity ent ->
       EducatorProfile prf = ent.profile
       prf.title = "Mag."
       prf.firstName = "Martin"
@@ -275,7 +270,7 @@ class BootStrap {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
 
-    entityHelperService.createEntityWithUserAndProfile("client", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
       ClientProfile prf = ent.profile
       prf.firstName = "Kira"
       prf.lastName = "Zeillinger"
@@ -303,7 +298,7 @@ class BootStrap {
       prf.notes = ""
     }
 
-    entityHelperService.createEntityWithUserAndProfile("client", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
       ClientProfile prf = ent.profile
       prf.firstName = "Keano"
       prf.lastName = "Zeillinger"
@@ -336,7 +331,7 @@ class BootStrap {
     log.debug ("==> creating default operators")
     EntityType etOperator = metaDataService.etOperator
 
-    entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("vereinlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 2560
@@ -346,7 +341,7 @@ class BootStrap {
       prf.description = "-"
     }
 
-    entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("vereinalpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 2563
@@ -356,7 +351,7 @@ class BootStrap {
       prf.description = "-"
     }
 
-    entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
       prf.PLZ = 0
@@ -371,7 +366,7 @@ class BootStrap {
     log.debug ("==> creating default facilities")
     EntityType etFacility = metaDataService.etFacility
 
-    entityHelperService.createEntityWithUserAndProfile ("facility", etFacility, "loewenzahn@lernardo.at", "Hort Löwenzahn") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("hortloewenzahn", etFacility, "loewenzahn@lernardo.at", "Hort Löwenzahn") {Entity ent->
       FacilityProfile prf = ent.profile
       prf.PLZ = 2564
       prf.city = "Weissenbach an der Triesting"
@@ -388,7 +383,7 @@ class BootStrap {
                             Spielbereich und ein Ruhebereich zur Verfügung."""
     }
 
-    entityHelperService.createEntityWithUserAndProfile ("facility", etFacility, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("hortkaumberg", etFacility, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
       FacilityProfile prf = ent.profile
       prf.PLZ = 2572
       prf.city = "Kaumberg"
@@ -397,7 +392,7 @@ class BootStrap {
       prf.description = "Der zweite unter Lernardo betriebene Hort."
     }
     
-    entityHelperService.createEntityWithUserAndProfile ("facility", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
+    entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
       FacilityProfile prf = ent.profile
       prf.PLZ = 29247
       prf.city = "	San Cristóbal de Las Casas"
@@ -410,33 +405,30 @@ class BootStrap {
   void createDefaultLinks () {
     log.debug ("==> creating default links")
     
-    def mike = Entity.findByName ('mike')
-    def alex = Entity.findByName ('alex')
-    def patrizia = Entity.findByName ('patrizia')
-    def martin = Entity.findByName ('martin')
-    def rosa = Entity.findByName ('rosa')
-    def birgit = Entity.findByName ('birgit')
-    def hannah = Entity.findByName ('hannah')
-    def regina = Entity.findByName ('regina')
-    def loewenzahn = Entity.findByName ('loewenzahn')
-    def kaumberg = Entity.findByName ('kaumberg')
-    def kira = Entity.findByName ('kira')
-    def keano = Entity.findByName ('keano')
-    def vlernardo = Entity.findByName ('vlernardo')
-    def alpha = Entity.findByName ('alpha')
+    def alex = Entity.findByName ('alexanderzeillinger')
+    def patrizia = Entity.findByName ('patriziarosenkranz')
+    def martin = Entity.findByName ('martingolja')
+    def rosa = Entity.findByName ('rosagober')
+    def birgit = Entity.findByName ('birgitblaesen')
+    def hannah = Entity.findByName ('hannahmutzbauer')
+    def regina = Entity.findByName ('reginatoncourt')
+    def loewenzahn = Entity.findByName ('hortloewenzahn')
+    def kaumberg = Entity.findByName ('hortkaumberg')
+    def kira = Entity.findByName ('kirazeillinger')
+    def keano = Entity.findByName ('keanozeillinger')
+    def vlernardo = Entity.findByName ('vereinlernardo')
+    def alpha = Entity.findByName ('vereinalpha')
 
     // make admin a friend of everyone
     List users = Entity.list()
     users.each {
       if (it.name != 'admin') {
-        new Link(source: it, target: Entity.findByName('admin'), type: metaDataService.ltFriendship).save()
-        new Link(source: Entity.findByName('admin'), target: it, type: metaDataService.ltFriendship).save()
+        new Link(source: it, target: Entity.findByName('lernardoadmin'), type: metaDataService.ltFriendship).save()
+        new Link(source: Entity.findByName('lernardoadmin'), target: it, type: metaDataService.ltFriendship).save()
       }
     }
 
     // friend links
-    new Link(source:mike, target:alex,  type:metaDataService.ltFriendship).save()
-    new Link(source:alex, target:mike,  type:metaDataService.ltFriendship).save()
     new Link(source:alex, target:patrizia, type:metaDataService.ltFriendship).save()
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
 
@@ -462,7 +454,7 @@ class BootStrap {
 
     EntityType etTemplate = metaDataService.etTemplate
 
-    def entity = entityHelperService.createEntity("Weide mit Hindernissen", etTemplate) {Entity ent ->
+    def entity = entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "Weide mit Hindernissen"
       ent.profile.attribution = "Psychomotorik"
@@ -493,7 +485,7 @@ class BootStrap {
       ent.profile.content = "Tolle Sache!"
     }
 
-    new Link(source: entity, target: Entity.findByName('Weide mit Hindernissen'), type: metaDataService.ltComment).save()
+    new Link(source: entity, target: Entity.findByName('weidemithindernissen'), type: metaDataService.ltComment).save()
     def c = Entity.createCriteria()
     def source = c.get {
       profile {
@@ -509,7 +501,7 @@ class BootStrap {
 
     EntityType etResource = metaDataService.etResource
 
-    def entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
+    def entity = entityHelperService.createEntity("klavier", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"
@@ -530,11 +522,11 @@ class BootStrap {
         ent.profile.duration = 60
       }
 
-      new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActEducator).save()
-      new Link(source: Entity.findByName('keano'), target: entity, type: metaDataService.ltActClient).save()
+      new Link(source: Entity.findByName('martingolja'), target: entity, type: metaDataService.ltActEducator).save()
+      new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltActClient).save()
       new Link(source: Entity.findByName('loewenzahn'), target: entity, type: metaDataService.ltActFacility).save()
-      new Link(source: Entity.findByName('Weide mit Hindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('regina'), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
+      new Link(source: Entity.findByName('reginatoncourt'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 
   }
@@ -555,7 +547,7 @@ class BootStrap {
             September, als Hortleiterin wird Hannah Mutzbauer eingesetzt, die sich bereits in Hort Löwenzahn
             bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
             zur vollen Verfügung.''',
-            author:Entity.findByName('educator')).save()
+            author:Entity.findByName('martingolja')).save()
     new ArticlePost(title:'Gesund durch Ernährungsexpertin',
             teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
             Ernährungsexpertin mit langjähriger Erfahrung, die das Pädagogen Team im Hinblick auf die optimale
@@ -568,7 +560,7 @@ class BootStrap {
             Technischen Verlag der Uni Graz, die Unternehmensgründung von "Buntes Brot" im Juni 2001,
             Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
             Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
-            author:Entity.findByName('educator')).save()
+            author:Entity.findByName('martingolja')).save()
     new ArticlePost(title:'Hort Löwenzahn erhält Auszeichnung',
             teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
             Familie und Jugend erhielt der Hort "Löwenzahn Weissenbach" den 4. Preis und eine Prämie von
@@ -581,13 +573,13 @@ class BootStrap {
             Vorbereitung für das kommende Schuljahr. Bei diesem Ferienhort gibt es sogar einen sogenannten Tag
             der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
             Abschlussausflug in den Märchenpark St. Margarethen.''',
-            author:Entity.findByName('educator')).save()
+            author:Entity.findByName('martingolja')).save()
   }
 
   void createDefaultEvents() {
     log.debug ("==> creating default events")
 
-    functionService.createEvent(Entity.findByName('admin'), 'Elternsprechtag').save()
+    functionService.createEvent(Entity.findByName('lernardoadmin'), 'Elternsprechtag').save()
   }
 
   void createDefaultHelpers() {
@@ -644,11 +636,11 @@ class BootStrap {
   void createDefaultEvaluations() {
     log.debug ("==> creating default evaluations")
 
-    new Evaluation(owner: Entity.findByName('keano'),
+    new Evaluation(owner: Entity.findByName('keanozeillinger'),
                    description: 'Keano zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
                    method: 'Als Maßnahme habe ich ihm mehrere Kinderbücher gegeben, damit tut er sich offensichtlich leichter.',
                    writer: Entity.findByName('hannah')).save()
-    new Evaluation(owner: Entity.findByName('kira'),
+    new Evaluation(owner: Entity.findByName('kirazeillinger'),
                    description: 'Kira ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
                    method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
                    writer: Entity.findByName('hannah')).save()
@@ -657,11 +649,11 @@ class BootStrap {
   void createDefaultAttendances() {
     log.debug ("==> creating default attendances")
 
-    new Attendance(client: Entity.findByName('kira'),
+    new Attendance(client: Entity.findByName('kirazeillinger'),
                    didAttend: true,
                    didEat: true,
                    date: new Date(2010-1900,01,07)).save()
-    new Attendance(client: Entity.findByName('keano'),
+    new Attendance(client: Entity.findByName('keanozeillinger'),
                    didAttend: true,
                    didEat: false,
                    date: new Date(2010-1900,01,07)).save()

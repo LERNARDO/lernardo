@@ -235,11 +235,13 @@ ul {
 
 #profile-pic {
     text-align: center; }
-    #profile-pic img {
+    #profile-pic #picture {
         -moz-box-shadow: #aaa 2px 2px 4px;
         border: 1px solid #999;
         border-top: none;
-        border-bottom: none; }
+        border-bottom: none;
+        width: 180px;
+        margin: 0 auto; }
     #profile-pic .name {
         -moz-border-radius-topleft: 5px;
         -moz-border-radius-topright: 5px;
@@ -838,10 +840,10 @@ div.actionlinks div.userlinks a {
 }
 
 .buttonBlue {
-    border: 1px solid #bbf;
+    border: 1px solid #345ca4;
     background: #66f;
     padding: 4px 5px;
-    margin: 5px 5px 0 5px;
+    margin: 5px 5px 0 0;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
@@ -849,12 +851,12 @@ div.actionlinks div.userlinks a {
     display: block;
     height: 16px; }
     .buttonBlue:hover {
-        background: #44f;
-        border: 1px solid #99f;
+        background: #44d;
+        border: 1px solid #123a82;
         text-decoration: none; }
 
 .boxGray input[type=submit] {
-    border: 1px solid #bbf !important;
+    border: 1px solid #345ca4 !important;
     background: #66f;
     padding: 4px 5px !important;
     margin: 5px 5px 0 5px !important;
@@ -864,14 +866,14 @@ div.actionlinks div.userlinks a {
     color: #fff !important;
     display: block; }
     .boxGray input[type=submit]:hover {
-        background: #44f;
-        border: 1px solid #99f !important;
+        background: #44d;
+        border: 1px solid #123a82 !important;
         text-decoration: none;
         cursor: pointer; }
 
 .buttonGray {
-    border: 1px solid #bbb;
-    background: #666;
+    border: 1px solid #666;
+    background: #888;
     padding: 5px;
     margin: 5px 5px 0 5px;
     text-align: center;
@@ -880,8 +882,8 @@ div.actionlinks div.userlinks a {
     color: #fff !important;
     display: block; }
     .buttonGray:hover {
-        background: #444;
-        border: 1px solid #999;
+        background: #666;
+        border: 1px solid #444;
         text-decoration: none; }
 
 .activity-list-head {
@@ -1097,13 +1099,13 @@ table#msg-composer td {
   border:1px solid #000000;
 }
 
-.buttons {
+/*.buttons {
     background: #555;
     margin: -5px;
     -moz-border-radius-bottomleft: 5px;
     -moz-border-radius-bottomright: 5px;
     border-top: 1px solid #333;
-    margin-top: 5px;
+    margin-top: 5px;*/
 }
 
 /* ----- COMMENTS -----  */

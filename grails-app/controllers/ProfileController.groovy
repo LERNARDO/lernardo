@@ -424,6 +424,8 @@ class ProfileController {
             ne("type", metaDataService.etGroupFamily)
             ne("type", metaDataService.etGroupLevel)
             ne("type", metaDataService.etGroupNetwork)
+            if (!authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+              ne("name", "lernardoadmin")
           }
           //entities = Entity.list(params)
           count = entities.size()

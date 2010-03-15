@@ -52,7 +52,7 @@
           <div id="picture">
             <ub:profileImage name="${entity.name}" width="180" height="180"/>
           </div>
-          <div class="type">
+          <div class="type" style="margin-top: -2px">
             <div class="second">
               ${entity.type.name}
             </div>
@@ -139,18 +139,17 @@
                 <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User verwalten</g:link></li>
               </app:isSysAdmin>
               <app:isAdmin>
-                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile anzeigen</g:link></li>
+                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile verwalten</g:link></li>
               %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
                 <li class="icon-admin"><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
               </app:isAdmin>
               <app:isOperator entity="${entity}">
-                <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]">Betreute verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte verwalten</g:link></li>
-              </app:isOperator>
+                <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>              </app:isOperator>
               <app:isEducator entity="${entity}">
                 <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>
               </app:isEducator>

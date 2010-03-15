@@ -43,7 +43,7 @@
       <li>
         <div id="members" class="imgbox">
           <g:link controller="profile" action="search" id="${currentEntity.id}">
-            <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Mitglieder" />
+            <img src="${g.resource(dir:'images/iconex', file:'profiles.png')}" alt="Profile" />
             <h3><g:message code="imgmenu.member.name"/></h3>
           </g:link>
         </div>
