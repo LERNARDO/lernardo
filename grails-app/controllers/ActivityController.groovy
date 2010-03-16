@@ -91,7 +91,10 @@ class ActivityController {
 
       // get a list of facilities the current entity is working in
       def facilities = []
-      Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name)
+        Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      else
+        facilities = Entity.findAllByType(metaDataService.etFacility)
       def educators = Entity.findAllByType(metaDataService.etEducator)
       def clients = Entity.findAllByType(metaDataService.etClient)
 
