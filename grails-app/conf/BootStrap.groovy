@@ -31,7 +31,7 @@ class BootStrap {
       createDefaultOperator()
       createDefaultEducators()
       createDefaultFacilities()
-      //createDefaultLinks()
+      createDefaultLinks()
       createDefaultTemplates()
       createDefaultComments()
       createDefaultResources()

@@ -96,7 +96,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="nationality" from="${['Deutschland', 'England', 'Frankreich', 'Spanien', 'Portugal','Österreich']}"/>
+              <g:select name="nationality" from="${['Deutschland', 'England', 'Frankreich', 'Spanien', 'Portugal','Österreich']}"  value="${pate.profile.nationality}"/>
             </td>
           </tr>
 

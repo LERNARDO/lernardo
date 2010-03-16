@@ -21,7 +21,7 @@
       </div>
     </g:each>
 
-    <div class="clear"></div>
+    <div class="spacer"></div>
 
     <g:if test="${numEntities > 6}">
       <div class="paginateButtons">

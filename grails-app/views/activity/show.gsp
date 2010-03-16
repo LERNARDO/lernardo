@@ -16,15 +16,15 @@
     <div class="boxGray">
       <div class="second">
 
-        <table width="100%">
-          <tr><td class="bold titles bezeichnung">Vorlage:</td><td class="bezeichnung"><app:getTemplate entity="${activity}">
+        <table class="listing">
+          <tr><td class="name">Vorlage:</td><td class="value"><app:getTemplate entity="${activity}">
             <g:link controller="template" action="show" id="${template.id}">${template.profile.fullName}</g:link>
             </app:getTemplate></td></tr>
-          <tr><td class="bold titles bezeichnung">Name:</td><td class="bezeichnung">${activity.profile.fullName}</td></tr>
-          <tr><td class="bold titles bezeichnung">Beginn:</td><td class="bezeichnung"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td></tr>
-          <tr><td class="bold titles bezeichnung">Dauer:</td><td class="bezeichnung">${activity.profile.duration} Minuten</td></tr>
+          <tr><td class="name">Name:</td><td class="value">${activity.profile.fullName}</td></tr>
+          <tr><td class="name">Beginn:</td><td class="value"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td></tr>
+          <tr><td class="name">Dauer:</td><td class="value">${activity.profile.duration} Minuten</td></tr>
 
-          <tr><td class="bold titles bezeichnung">Einrichtung:</td><td class="bezeichnung"><app:getFacility entity="${activity}">
+          <tr><td class="name">Einrichtung:</td><td class="value"><app:getFacility entity="${activity}">
             <app:isEnabled entity="${facility}">
               <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
             </app:isEnabled>
@@ -34,7 +34,7 @@
             </app:getFacility></td>
           </tr>
 
-          <tr><td class="bold titles bezeichnung">Erstellt von:</td><td class="bezeichnung"><app:getCreator entity="${activity}">
+          <tr><td class="name">Erstellt von:</td><td class="value"><app:getCreator entity="${activity}">
             <app:isEnabled entity="${creator}">
               <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}">${creator.profile.fullName}</g:link>
             </app:isEnabled>
@@ -44,7 +44,7 @@
             </app:getCreator></td>
           </tr>
 
-          <tr><td class="bold titles bezeichnung">Pädagogen:</td><td class="bezeichnung"><app:getEducators entity="${activity}">
+          <tr><td class="name">Pädagogen:</td><td class="value"><app:getEducators entity="${activity}">
             <g:each in="${educators}" var="educator">
               <app:isEnabled entity="${educator}">
                 <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}">${educator.profile.fullName}</g:link>
@@ -56,7 +56,7 @@
             </app:getEducators></td>
           </tr>
 
-          <tr><td class="bold titles bezeichnung">Teilnehmer:</td><td class="bezeichnung"><app:getClients entity="${activity}">
+          <tr><td class="name">Teilnehmer:</td><td class="value"><app:getClients entity="${activity}">
             <g:each in="${clients}" var="client">
               <app:isEnabled entity="${client}">
                 <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>

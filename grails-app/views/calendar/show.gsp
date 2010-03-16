@@ -15,7 +15,6 @@
   </div>
   <div class="boxGray">
     <div class="second">
-      <div style="padding: 3px 4px"><g:link controller="calendar" action="show">Mein Kalender</g:link></div>
       <g:each in="${educators}" var="educator">
         <div style="padding: 3px 4px"><g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
       </g:each>
@@ -23,7 +22,7 @@
   </div>
   <div class="headerBlue">
     <div class="second">
-      <h1>Kalender</h1>
+      <h1>Kalender von ${active.profile.fullName}</h1>
     </div>
   </div>
   <div class="boxGray">

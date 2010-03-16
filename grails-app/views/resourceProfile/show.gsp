@@ -11,7 +11,7 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table>
+      <table class="listing">
         <tbody>
 
         <tr class="prop">

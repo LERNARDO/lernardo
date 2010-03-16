@@ -13,7 +13,7 @@ class CalendarController {
     }
 
     def show = {
-      Entity entity = params.name ? Entity.get(params.id) : entityHelperService.loggedIn
+      Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
 
       List educators = []
       
@@ -36,51 +36,37 @@ class CalendarController {
 
       return ['id':params.id,
               'entity':entityHelperService.loggedIn,
-              'educators':educators]
+              'educators':educators,
+              'active': entity]
     }
 
     // handles event requests
     def events = {
-        params.name = params.name ?: 'all'
+          Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
+      
+          // create empty list for final results
+          List activityList = []
 
-        if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
-        // get a list of facilities the current entity is working in
-        def links = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-        List facilities = []
+          if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
+            // get a list of facilities the current entity is working in
+            def links = Link.findAllBySourceAndType(entity, metaDataService.ltWorking)
+            List facilities = []
 
-        links.each {
-          facilities << it.target
-        }
+            links.each {
+              facilities << it.target
+            }
 
-       // create empty list for final results
-        List activityList = []
+            // find all activities for the given facility or facilities 
+            facilities.each {
+              List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
-        def activities = []
-        // find all activities for given profile
-        if (params.name == 'all') {
-
-          facilities.each {
-            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
-
-            tempList.each {bla ->
-              activityList << bla.target
-              }
+              tempList.each {bla ->
+                activityList << bla.target
+                }
+            }
           }
-
-        }
-        else {
-          // TODO: return only activities of the logged in entity
-          facilities.each {
-            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
-
-            tempList.each {bla ->
-              activityList << bla.target
-              }
-          }
-        }
-        }
-        else
-          activityList = Entity.findAllByType(metaDataService.etActivity)
+          else
+            activityList = Entity.findAllByType(metaDataService.etActivity)
 
         // convert to fullCalendar events
         def eventList = []
