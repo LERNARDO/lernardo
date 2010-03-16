@@ -31,14 +31,18 @@ class ActivityController {
 
     if (params.myDate_year == 'alle' || params.list == 'Alle') {
 
-      // get all activities of the facilities the current entity is linked to
-      facilities.each {
-        List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
+        // get all activities of the facilities the current entity is linked to
+        facilities.each {
+          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
-        tempList.each {bla ->
-          activityList << bla.target
-          }
+          tempList.each {bla ->
+            activityList << bla.target
+            }
+        }
       }
+      else
+        activityList = Entity.findAllByType(metaDataService.etActivity)
 
       def activityCount = activityList.size()
       def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()

@@ -505,9 +505,9 @@ class BootStrap {
 
       new Link(source: Entity.findByName('martingolja'), target: entity, type: metaDataService.ltActEducator).save()
       new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('loewenzahn'), target: entity, type: metaDataService.ltActFacility).save()
+      new Link(source: Entity.findByName('hortloewenzahn'), target: entity, type: metaDataService.ltActFacility).save()
       new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('reginatoncourt'), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName('martingolja'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 
   }
