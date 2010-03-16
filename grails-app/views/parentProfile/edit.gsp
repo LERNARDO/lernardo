@@ -74,7 +74,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${parent.profile.PLZ.toInteger()}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${parent?.profile?.PLZ?.toInteger()}"/>
             </td>
           </tr>
 
