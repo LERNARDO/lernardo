@@ -35,6 +35,7 @@
               <div class="buttons">
                 <g:submitButton name="list" value="OK" />
                 <g:submitButton name="list" value="Alle" />
+                <div class="spacer"></div>
               </div>
             </g:form>
           </div>

@@ -170,26 +170,7 @@ class BootStrap {
       prf.PLZ = 2563
       prf.city = "Pottenstein"
       prf.street = "Obere Marktfeldstraße 20"
-      prf.education = """<b>1976-1980</b> Volksschule Pottenstein<br>
-                          <b>1980-1988</b> Neusprachlicher Zweig des Bundesrealgymnasiums Berndorf<br>
-                          <b>1988</b> Matura<br>
-                          <b>1988-1989</b> Präsenzdienst in der Martinekkaserne in Baden<br>
-                          <b>1989-2006</b> Übungsleitertätigkeit bei der Union Pottenstein für Kinder und Jugendliche; Altersstufen 3-6, 6-10, 10-15<br>
-                          <b>1989</b> Inskription Geographie und Wirtschaftskunde, Germanistik<br>
-                          <b>1992</b> Inskription Geographie und Wirtschaftskunde, Leibeserziehung<br>
-                          <b>1995</b> Beginn Dienstverhältnis auf der Marktgemeinde Pottenstein<br>
-                          <b>1998</b> Ablegung der Prüfungen zum Standesbeamten und Staatsbürgerschaftsevidenzführer<br>
-                          <b>1998</b> Inskription von Geographie und Wirtschaftskunde, Psychologie, Pädagogik, Philosophie<br>
-                          <b>1998-2001</b> Standesbeamter und Staatsbürgerschaftsevidenzführer am Standesamt Pottenstein<br>
-                          <b>1990-2002</b> Mitgesellschafter als staatlich geprüfter Diplomskilehrer in der Skischule St.Anton am Arlberg<br>
-                          <b>1997-2002</b> Ausbildnertätigkeit Ski am Universitätssportinstitut Wien<br>
-                          <b>2001-2003</b> Skilehrerausbildner beim Wiener Ski- und Snowboardlehrerverband, sowie Snowsportsacademy Holland<br>
-                          <b>2002-2003</b> Beschäftigung als Disponent in der Neuwagendisposition Citroen Österreich<br>
-                          <b>2003</b> Ablegung der Diplomprüfung an der Universität Wien<br>
-                          <b>2004-2005</b> Beschäftigung als Erzieher im Landesjugendheim Pottenstein über den Verein „Jugend und Arbeit“ der NÖ Landesregierung (Lehrerbörse)<br>
-                          <b>2005-2006</b> Unterrichtspraktikum am BG/BRG Baden und am BG/BRG Berndorf<br>
-                          <b>2005-laufend</b> geschäftsführender Gemeinderat der Marktgemeinde Pottenstein<br>
-                          <b>2006-laufend</b> Beschäftigung als Springer in der schulischen Nachmittagsbetreuung beim Verein „Hand in Hand“ des NÖ Familienreferates"""
+      prf.education = ""
     }
 
 /*    entityHelperService.createEntityWithUserAndProfile("rosa", etEducator, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->

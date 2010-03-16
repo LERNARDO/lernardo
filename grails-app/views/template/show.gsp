@@ -48,8 +48,8 @@
     </table>
 
     <app:isEducator entity="${entity}">
-      <g:link class="buttonBlue" action="edit" id="${template.id}">Aktivitätsvorlage bearbeiten</g:link>
-      <g:link class="buttonBlue" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Aktivitätsvorlage löschen</g:link>
+      <g:link class="buttonBlue" action="edit" id="${template.id}">Bearbeiten</g:link>
+      <g:link class="buttonGray" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Löschen</g:link>
       <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
       <div class="spacer"></div>
     </app:isEducator>
@@ -78,15 +78,15 @@
               </g:link>
             </div>
             <div class="community-entry-infobar">
-              <div class="name"><g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></div>
+              <div class="name">von <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></div>
               <div class="info">
-                <div class="time"><g:formatDate format="dd. MMM. yyyy, HH:mm" date="${comment.profile.dateCreated}"/></div>
+                <div class="time"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.profile.dateCreated}"/></div>
                 <ub:meOrAdmin entityName="${creator.name}">
-                  <div class="actions"><g:link controller="commentTemplate" action="delete" id="${comment.id}" params="[template:template.id]">löschen</g:link></div>
+                  <div class="actions"><g:link controller="commentTemplate" action="delete" id="${comment.id}" params="[template:template.id]" onclick="return confirm('Kommentar wirklich löschen?');">löschen</g:link></div>
                 </ub:meOrAdmin>
               </div>
             </div>
-            <div class="clear"></div>
+            <div class="spacer"></div>
             <div class="entry-content">${comment.profile.content.decodeHTML()}</div>
           </app:getCreator>
           </div>

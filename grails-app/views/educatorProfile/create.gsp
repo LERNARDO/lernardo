@@ -128,7 +128,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.education', 'errors')}" size="30" id="education" name="education" value="${fieldValue(bean: educator, field: 'profile.education')}"/>
+              <g:select name="education" from="${['Pädagoge','Psychologe','Soziologe','Lehrer (staatl. Ausbildung)','Erzieher','Psychopädagoge','Bildender Künstler','Arzt','Krankenschwester','Wirtschafter','Buchhalter/Steuerberater']}" value="${fieldValue(bean:educator,field:'profile.education')}"/>
             </td>
           </tr>
 
@@ -150,7 +150,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.function', 'errors')}" size="30" id="function" name="function" value="${fieldValue(bean: educator, field: 'profile.function')}"/>
+              <g:select name="function" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" value="${fieldValue(bean:educator,field:'profile.function')}"/>
             </td>
           </tr>
 
@@ -205,7 +205,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch', 'Portugiesisch']}"/>
+              <g:select multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
             </td>
           </tr>
 
