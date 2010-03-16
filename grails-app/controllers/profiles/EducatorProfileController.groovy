@@ -8,6 +8,7 @@ class EducatorProfileController {
     def metaDataService
     def entityHelperService
     def authenticateService
+    def functionService
 
     def index = {
         redirect action:"list", params:params
@@ -95,12 +96,11 @@ class EducatorProfileController {
       println params
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile("educator", etEducator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etEducator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false
           ent.profile.employed = params.employed ?: false
-
         }
         flash.message = message(code:"educator.created", args:[entity.profile.fullName])
         redirect action:'list'

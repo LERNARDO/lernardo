@@ -8,6 +8,7 @@ class UserProfileController {
     def metaDataService
     def entityHelperService
     def authenticateService
+    def functionService
 
     def index = {
         redirect action:"list", params:params
@@ -94,7 +95,7 @@ class UserProfileController {
       println params
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile("user", etUser, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etUser, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false

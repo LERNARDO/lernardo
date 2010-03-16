@@ -66,6 +66,7 @@ class MetaDataService {
 
   static final String LT_FRIENDSHIP = "Freundschaft"     // LinkType
   static final String LT_SPONSORSHIP = "Sponsoring"
+  // TODO: remove operation link
   static final String LT_OPERATION = "Betreibung"
   static final String LT_CLIENTSHIP = "Betreuung"
   static final String LT_BOOKMARK = "Beobachtung"

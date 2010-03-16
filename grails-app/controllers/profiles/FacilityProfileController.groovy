@@ -8,6 +8,7 @@ class FacilityProfileController {
     def metaDataService
     def entityHelperService
     def authenticateService
+    def functionService
 
     def index = {
         redirect action:"list", params:params
@@ -182,7 +183,7 @@ class FacilityProfileController {
       EntityType etFacility = metaDataService.etFacility
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile("facility", etFacility, params.email, params.fullName) {Entity ent ->
+        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false

@@ -87,7 +87,7 @@
               %{--<li class="profile-telefon"><g:remoteLink action="createSMS" update="profile-content" params="[name:entity.name]">SMS senden</g:remoteLink></li>--}%
                 <li class="profile-activities"><g:link controller="profile" action="showActivityList" id="${entity.id}">Aktivitäten ansehen</g:link></li>
               </g:if>
-              <li class="profile-calendar"><g:link controller="profile" action="showCalendar" id="${entity.id}">Kalender ansehen</g:link></li>
+              %{--<li class="profile-calendar"><g:link controller="profile" action="showCalendar" id="${entity.id}">Kalender ansehen</g:link></li>--}%
               <g:if test="${entity.type.name == 'Operator' || entity.type.name == 'Facility'}">
               %{--<li class="profile-location"><g:link controller="profile" action="showLocation" id="${entity.id}">Standort anzeigen</g:link></li>--}%
               </g:if>

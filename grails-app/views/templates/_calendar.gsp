@@ -39,12 +39,12 @@
     allDaySlot:true,
     allDayText:'',
     weekends: true,
-    events: '${g.createLink (controller:"calendar", action:"events", params:[name:name])}',
+    events: '${g.createLink (controller:"calendar", action:"events", id:id)}',
   
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%
-      top.location.href = "${g.createLink (controller:"activity",  action:"show")}"+"/"+calEvent.id
+      top.location.href = "${g.createLink (controller:"activityProfile",  action:"show")}"+"/"+calEvent.id
     },
 
     dayClick: function (dayDate, allDay, jsEvent, view) {

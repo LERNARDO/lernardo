@@ -8,6 +8,7 @@ class PartnerProfileController {
     def metaDataService
     def entityHelperService
     def authenticateService
+    def functionService
 
     def index = {
         redirect action:"list", params:params 
@@ -93,7 +94,7 @@ class PartnerProfileController {
       EntityType etPartner = metaDataService.etPartner
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile("partner", etPartner, params.email, params.fullName) {Entity ent ->
+        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etPartner, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false

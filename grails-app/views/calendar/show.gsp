@@ -4,7 +4,7 @@
   <g:javascript library="jquery" />
   <g:javascript src="jquery/fullcalendar.js"/>
   <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'fullcalendar.css')}" />
-  <g:render template="/templates/calendar" model="[name:name]"/>
+  <g:render template="/templates/calendar" model="[id:id]"/>
 </head>
 
 <body>
@@ -15,9 +15,9 @@
   </div>
   <div class="boxGray">
     <div class="second">
-      <div class="all" style="padding: 3px 4px"><g:link controller="calendar" action="showall">Alle</g:link></div>
+      <div style="padding: 3px 4px"><g:link controller="calendar" action="show">Mein Kalender</g:link></div>
       <g:each in="${educators}" var="educator">
-        <div class="${educator.name}" style="padding: 3px 4px"><g:link controller="calendar" action="showall" params="[name:educator.name]">${educator.profile.fullName}</g:link></div>
+        <div style="padding: 3px 4px"><g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
       </g:each>
     </div>
   </div>

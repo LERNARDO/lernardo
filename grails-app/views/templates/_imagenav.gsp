@@ -33,7 +33,7 @@
 
       <li>
         <div id="calendar" class="imgbox">
-          <g:link controller="calendar" action="showall">
+          <g:link controller="calendar" action="show">
             <img src="${g.resource(dir:'images/iconex', file:'calendar.png')}" alt="Kalender" />
             <h3><g:message code="imgmenu.calendar.name"/></h3>
           </g:link>

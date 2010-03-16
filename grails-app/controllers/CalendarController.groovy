@@ -8,26 +8,33 @@ class CalendarController {
   def entityHelperService
   def metaDataService
 
-    def index = { }
+    def index = {
+      redirect action:'show'
+    }
 
-    def showall  = {
-      params.name = params.name ?: 'all'
-      Entity entity = entityHelperService.loggedIn
+    def show = {
+      Entity entity = params.name ? Entity.get(params.id) : entityHelperService.loggedIn
 
-      // find facility the educator is working for
-      def link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
       List educators = []
-      if (link) {
-        Entity facility = link.target
+      
+      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
+        // find facility the educator is working for
+        def link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
 
-        // find all educators working in that facility
-        def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-        temp.each {
-            educators << it.source
+        if (link) {
+          Entity facility = link.target
+
+          // find all educators working in that facility
+          def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+          temp.each {
+              educators << it.source
+          }
         }
       }
+      else
+        educators = Entity.findAllByType(metaDataService.etEducator)
 
-      return ['name':params.name,
+      return ['id':params.id,
               'entity':entityHelperService.loggedIn,
               'educators':educators]
     }
@@ -35,8 +42,8 @@ class CalendarController {
     // handles event requests
     def events = {
         params.name = params.name ?: 'all'
-        log.debug ("loading events for $params.name between $params.start and $params.end" )
 
+        if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
         // get a list of facilities the current entity is working in
         def links = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
         List facilities = []
@@ -60,14 +67,6 @@ class CalendarController {
               }
           }
 
-/*          activities = Activity.list()
-          // sort them out
-          activities.each {
-            for (f in facilityList) {
-              if (it.facility == f)
-                activityList << it
-            }
-          }*/
         }
         else {
           // TODO: return only activities of the logged in entity
@@ -79,6 +78,9 @@ class CalendarController {
               }
           }
         }
+        }
+        else
+          activityList = Entity.findAllByType(metaDataService.etActivity)
 
         // convert to fullCalendar events
         def eventList = []

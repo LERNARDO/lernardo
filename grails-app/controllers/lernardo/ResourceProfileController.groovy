@@ -2,6 +2,7 @@ package lernardo
 
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
+import de.uenterprise.ep.Link
 
 class ResourceProfileController {
     def metaDataService

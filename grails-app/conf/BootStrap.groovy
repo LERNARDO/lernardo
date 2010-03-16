@@ -28,8 +28,8 @@ class BootStrap {
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
       createDefaultUsers()
+      createDefaultOperator()
       createDefaultEducators()
-      createDefaultOperators()
       createDefaultFacilities()
       //createDefaultLinks()
       createDefaultTemplates()
@@ -89,21 +89,6 @@ class BootStrap {
       prf.lastName = "Szabo"
     }
 
-    // mod users
-    entityHelperService.createEntityWithUserAndProfile("susannestiedl", etUser, "sst@lernardo.at", "Susanne Stiedl") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.modRole)
-      UserProfile prf = ent.profile
-      prf.firstName = "Susanne"
-      prf.lastName = "Stiedl"
-    }
-
-    // regular users
-    entityHelperService.createEntityWithUserAndProfile("johanneszeitelberger", etUser, "jlz@lernardo.at", "Johannes L. Zeitelberger") {Entity ent ->
-      UserProfile prf = ent.profile
-      prf.firstName = "Johannes L."
-      prf.lastName = "Zeitelberger"
-    }
-
   }
 
   void createDefaultEducators() {
@@ -111,7 +96,7 @@ class BootStrap {
     EntityType etEducator = metaDataService.etEducator
 
     // admin users
-    entityHelperService.createEntityWithUserAndProfile("christiansczinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       EducatorProfile prf = ent.profile
       prf.gender = 1
@@ -153,98 +138,6 @@ class BootStrap {
       prf.nationality = "Österreich"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("martingolja", etEducator, "martin@lernardo.at", "Martin Golja") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.title = "Mag."
-      prf.firstName = "Martin"
-      prf.lastName = "Golja"
-      prf.contact = ""
-      prf.employed = true
-      prf.function = "Hortleiter"
-      prf.interests = "Wassersport"
-      prf.joinDate = new Date()
-      prf.languages = "Deutsch"
-      prf.nationality = "Österreich"
-      prf.gender = 1
-      prf.birthDate = new Date(1969-1900,12,31)
-      prf.PLZ = 2563
-      prf.city = "Pottenstein"
-      prf.street = "Obere Marktfeldstraße 20"
-      prf.education = ""
-    }
-
-/*    entityHelperService.createEntityWithUserAndProfile("rosa", etEducator, "rosa@lernardo.at", "Rosa Gober") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.gender = 2
-      prf.birthDate = new Date(1961-1900,12,16)
-      prf.PLZ = 2565
-      prf.city = "Neuhaus"
-      prf.street = "Schwarzenseer Straße 19"
-      prf.education = """<b>1977 – 1980:</b> Fa. Laurenz-Hofbauer: Lehre Einzelhandelskaufmann, Gesellenprüfung<br>
-                          <b>1980 – 1983:</b> ebendort EH-Kaufmann bis Firmenliquidierung<br>
-                          <b>1983 – 1998:</b> Filialleiterin der Fa. L .Schumits & Co GmbH. in Leobersdorf<br>
-                          <b>1996 – 2004:</b> Karenz und Hausfrau<br>
-                          <b>seit 2004:</b> Fa. L. Schumits & Co GmbH in Pfaffstätten (geringfügig)"""
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("birgit", etEducator, "bib@lernardo.at", "Birgit Blaesen") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.gender = 2
-      prf.birthDate = new Date(1970-1900,03,19)
-      prf.PLZ = 2560
-      prf.city = "Hernstein"
-      prf.street = "Gartengasse 5"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("hannah", etEducator, "hmb@lernardo.at", "Hannah Mutzbauer") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.gender = 2
-      prf.birthDate = new Date(1982-1900,02,22)
-      prf.PLZ = 2564
-      prf.city = "Weissenbach an der Triesting"
-      prf.street = "Hauptstraße 14"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("regina", etEducator, "regina.toncourt@gmx.at", "Regina Toncourt") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.gender = 2
-      prf.birthDate = new Date(1962-1900,11,04)
-      prf.PLZ = 2565
-      prf.city = "Neuhaus"
-      prf.street = "Hirschbahngasse 3"
-      prf.education = """<b>1977 – 1980:</b> Friseur-Perückenmacherlehre, Maskenbildnerkurse, Gesellenprüfung<br>
-                          <b>1980 – 1983:</b> während der Ferienzeit Betreuerin beim Wr. Jugendhilfswerk<br>
-                          <b>1984 – 1987:</b> Verkäuferin in einem Papierfachgeschäft, halbtags<br>
-                          <b>1987 - 1993:</b> Tennisschule „Team Tennis“ (Verkauf, Service, Werbung, Administration, Kinderbetreuung)<br>
-                          <b>1993 - 1997:</b> Verein Wr.Jugendzentren – Kinder- und Jugendbetreuung.<br>
-                          1jährige Fortbildung: „Soziokulturelle Animation“;<br>
-                          laufend Fort- und Weiterbildungen (u.a. sex. Missbrauch, Drogen- und
-                          Gewaltprävention, außergerichtlicher Tatausgleich, Konflikt als Chance,
-                          Outdoor- und Erlebnispädagogik)<br>
-                          <b>1998 - 2001:</b> verlängerte Karenz; Ausbildung bei Dr. Sindelar zur Trainerin bei TLS (Teilleistungsschwächen)<br>
-                          <b>2001 – 2004:</b> Karenz, Montessori-Ausbildung bei Claus-Dieter Kaul<br>
-                          <b>2005:</b> Montessori-Diplom<br>
-                          <b>seit 2005:</b> Tagesmutter und Trainerin bei TLS beim NÖ Hilfswerk"""
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("yvonne", etEducator, "ycf@lernardo.at", "Yvonne Frey") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.gender = 2
-      prf.birthDate = new Date(1973-1900,12,01)
-      prf.PLZ = 2560
-      prf.city = "Grillenberg"
-      prf.street = "Florianigasse 32/2"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile("anna-maria", etEducator, "amr@lernardo.at", "Anna-Maria Reischer") {Entity ent ->
-      EducatorProfile prf = ent.profile
-      prf.gender = 2
-      prf.birthDate = new Date(2010-1900,01,01)
-      prf.PLZ = 2560
-      prf.city = "???"
-      prf.street = "???????"
-    }*/
-  
   }
 
   void createDefaultClients() {
@@ -308,29 +201,9 @@ class BootStrap {
     }
   }
 
-  void createDefaultOperators() {
-    log.debug ("==> creating default operators")
+  void createDefaultOperator() {
+    log.debug ("==> creating default operator")
     EntityType etOperator = metaDataService.etOperator
-
-    entityHelperService.createEntityWithUserAndProfile ("vereinlernardo", etOperator, "lernardo@lkult.at", "LERNARDO Lernen - Wachsen") {Entity ent->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      OperatorProfile prf = ent.profile
-      prf.PLZ = 2560
-      prf.city = "Berndorf"
-      prf.street = "Leobersdorfer Straße 42"
-      prf.tel   = "-"
-      prf.description = "-"
-    }
-
-    entityHelperService.createEntityWithUserAndProfile ("vereinalpha", etOperator, "verein@alpha.at", "Verein Alpha") {Entity ent->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      OperatorProfile prf = ent.profile
-      prf.PLZ = 2563
-      prf.city = "Pottenstein"
-      prf.street = "Hainfelderstrasse 29"
-      prf.tel   = "-"
-      prf.description = "-"
-    }
 
     entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
@@ -347,32 +220,6 @@ class BootStrap {
     log.debug ("==> creating default facilities")
     EntityType etFacility = metaDataService.etFacility
 
-    entityHelperService.createEntityWithUserAndProfile ("hortloewenzahn", etFacility, "loewenzahn@lernardo.at", "Hort Löwenzahn") {Entity ent->
-      FacilityProfile prf = ent.profile
-      prf.PLZ = 2564
-      prf.city = "Weissenbach an der Triesting"
-      prf.street = "Hauptstraße 12"
-      prf.tel   = "0676 / 880 604 001"
-      prf.description = """Der Hort befindet sich im Ortszentrum, nur wenige Meter von der Volksschule
-                            und dem Kindergarten entfernt. Für den Hortbetrieb steht ein Hortgruppenraum
-                            mit ca. 62m² und ein Aufenthaltsraum mit mehr als 24 m² sowie eine Garderobe
-                            und Toilettenanlagen getrennt für Mädchen und Buben zur Verfügung. Des Weiteren
-                            können in Kooperation mit der Gemeinde Schulräumlichkeiten in der örtlichen
-                            Volksschule, sowie Räume der Hauptschule und der Volksschulgarten bzw. Spielplatz
-                            genutzt werden.<br>
-                            Im Hort selbst stehen ein Essbereich, ein Lernbereich, ein Kreativ- und
-                            Spielbereich und ein Ruhebereich zur Verfügung."""
-    }
-
-    entityHelperService.createEntityWithUserAndProfile ("hortkaumberg", etFacility, "kaumberg@lernardo.at", "Hort Kaumberg") {Entity ent->
-      FacilityProfile prf = ent.profile
-      prf.PLZ = 2572
-      prf.city = "Kaumberg"
-      prf.street = "-"
-      prf.tel   = "0660 / 461 1106"
-      prf.description = "Der zweite unter Lernardo betriebene Hort."
-    }
-    
     entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
       FacilityProfile prf = ent.profile
       prf.PLZ = 29247
@@ -385,27 +232,21 @@ class BootStrap {
 
   void createDefaultLinks () {
     log.debug ("==> creating default links")
-    
+
+    def admin = Entity.findByName ('lernardoadmin')
     def alex = Entity.findByName ('alexanderzeillinger')
     def patrizia = Entity.findByName ('patriziarosenkranz')
-    def martin = Entity.findByName ('martingolja')
-    def rosa = Entity.findByName ('rosagober')
-    def birgit = Entity.findByName ('birgitblaesen')
-    def hannah = Entity.findByName ('hannahmutzbauer')
-    def regina = Entity.findByName ('reginatoncourt')
-    def loewenzahn = Entity.findByName ('hortloewenzahn')
-    def kaumberg = Entity.findByName ('hortkaumberg')
     def kira = Entity.findByName ('kirazeillinger')
     def keano = Entity.findByName ('keanozeillinger')
-    def vlernardo = Entity.findByName ('vereinlernardo')
-    def alpha = Entity.findByName ('vereinalpha')
+    def christian = Entity.findByName ('christianszinicz')
+    def sueninoszentrum = Entity.findByName ('sueninoszentrum')
 
     // make admin a friend of everyone
     List users = Entity.list()
     users.each {
-      if (it.name != 'admin') {
-        new Link(source: it, target: Entity.findByName('lernardoadmin'), type: metaDataService.ltFriendship).save()
-        new Link(source: Entity.findByName('lernardoadmin'), target: it, type: metaDataService.ltFriendship).save()
+      if (it.name != 'lernardoadmin') {
+        new Link(source: it, target: admin, type: metaDataService.ltFriendship).save()
+        new Link(source: admin, target: it, type: metaDataService.ltFriendship).save()
       }
     }
 
@@ -414,20 +255,13 @@ class BootStrap {
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
 
     // working links
-    new Link(source:martin, target:loewenzahn, type:metaDataService.ltWorking).save()
-    new Link(source:rosa, target:loewenzahn, type:metaDataService.ltWorking).save()
-    new Link(source:birgit, target:loewenzahn, type:metaDataService.ltWorking).save()
-    new Link(source:hannah, target:kaumberg, type:metaDataService.ltWorking).save()
-    new Link(source:regina, target:loewenzahn, type:metaDataService.ltWorking).save()
+    new Link(source:christian, target:sueninoszentrum, type:metaDataService.ltWorking).save()
 
     // client links
     // TODO: find out why creating those 2 links isn't working in bootstrap
-    new Link(source:kira, target:kaumberg, type:metaDataService.ltClientship).save()
-    new Link(source:keano, target:kaumberg, type:metaDataService.ltClientship).save()
+    new Link(source:kira, target:sueninoszentrum, type:metaDataService.ltClientship).save()
+    new Link(source:keano, target:sueninoszentrum, type:metaDataService.ltClientship).save()
 
-    // operation links
-    new Link(source:kaumberg, target:alpha, type:metaDataService.ltOperation).save()
-    new Link(source:loewenzahn, target:vlernardo, type:metaDataService.ltOperation).save()
   }
 
   void createDefaultTemplates() {
@@ -450,7 +284,6 @@ class BootStrap {
       ent.profile.si = 2
       ent.profile.hk = 0
       ent.profile.tlt = 1
-
     }
 
   }
@@ -467,14 +300,7 @@ class BootStrap {
     }
 
     new Link(source: entity, target: Entity.findByName('weidemithindernissen'), type: metaDataService.ltComment).save()
-    def c = Entity.createCriteria()
-    def source = c.get {
-      profile {
-        eq('fullName', "Martin Golja")
-      }
-    }
-
-    new Link(source: source, target: entity, type: metaDataService.ltCreator).save()
+    new Link(source: Entity.findByName("christianszinicz"), target: entity, type: metaDataService.ltCreator).save()
   }
 
   void createDefaultResources() {
@@ -496,18 +322,18 @@ class BootStrap {
 
      EntityType etActivity = metaDataService.etActivity
 
-      def entity = entityHelperService.createEntity("Klettern", etActivity) {Entity ent ->
+      def entity = entityHelperService.createEntity("klettern", etActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent)
         ent.profile.fullName = "Klettern"
         ent.profile.date = new Date()
         ent.profile.duration = 60
       }
 
-      new Link(source: Entity.findByName('martingolja'), target: entity, type: metaDataService.ltActEducator).save()
+      new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltActEducator).save()
       new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('hortloewenzahn'), target: entity, type: metaDataService.ltActFacility).save()
+      new Link(source: Entity.findByName('sueninoszentrum'), target: entity, type: metaDataService.ltActFacility).save()
       new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('martingolja'), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
 
   }
@@ -528,7 +354,7 @@ class BootStrap {
             September, als Hortleiterin wird Hannah Mutzbauer eingesetzt, die sich bereits in Hort Löwenzahn
             bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
             zur vollen Verfügung.''',
-            author:Entity.findByName('martingolja')).save()
+            author:Entity.findByName('christianszinicz')).save()
     new ArticlePost(title:'Gesund durch Ernährungsexpertin',
             teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
             Ernährungsexpertin mit langjähriger Erfahrung, die das Pädagogen Team im Hinblick auf die optimale
@@ -541,7 +367,7 @@ class BootStrap {
             Technischen Verlag der Uni Graz, die Unternehmensgründung von "Buntes Brot" im Juni 2001,
             Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
             Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
-            author:Entity.findByName('martingolja')).save()
+            author:Entity.findByName('christianszinicz')).save()
     new ArticlePost(title:'Hort Löwenzahn erhält Auszeichnung',
             teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
             Familie und Jugend erhielt der Hort "Löwenzahn Weissenbach" den 4. Preis und eine Prämie von
@@ -554,7 +380,7 @@ class BootStrap {
             Vorbereitung für das kommende Schuljahr. Bei diesem Ferienhort gibt es sogar einen sogenannten Tag
             der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
             Abschlussausflug in den Märchenpark St. Margarethen.''',
-            author:Entity.findByName('martingolja')).save()
+            author:Entity.findByName('christianszinicz')).save()
   }
 
   void createDefaultEvents() {
@@ -620,11 +446,11 @@ class BootStrap {
     new Evaluation(owner: Entity.findByName('keanozeillinger'),
                    description: 'Keano zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
                    method: 'Als Maßnahme habe ich ihm mehrere Kinderbücher gegeben, damit tut er sich offensichtlich leichter.',
-                   writer: Entity.findByName('hannah')).save()
+                   writer: Entity.findByName('christianszinicz')).save()
     new Evaluation(owner: Entity.findByName('kirazeillinger'),
                    description: 'Kira ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
                    method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
-                   writer: Entity.findByName('hannah')).save()
+                   writer: Entity.findByName('christianszinicz')).save()
   }
 
   void createDefaultAttendances() {
@@ -645,7 +471,7 @@ class BootStrap {
 
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
-    def entity = entityHelperService.createEntity("Zeillinger", etGroupFamily) {Entity ent ->
+    def entity = entityHelperService.createEntity("zeillinger", etGroupFamily) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "Zeillinger"
       ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
@@ -655,7 +481,7 @@ class BootStrap {
       ent.profile.otherData = """Familie Zeillinger besitzt 2 Katzen und 2 Autos"""
     }
 
-    new Link(source: Entity.findByName('alex'), target: entity, type: metaDataService.ltGroup).save()
+    new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroup).save()
     //new Link(source: Entity.findByName('sabine'), target: entity, type: metaDataService.ltGroup).save()
 
   }

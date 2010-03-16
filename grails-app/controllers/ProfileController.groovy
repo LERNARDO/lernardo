@@ -426,7 +426,9 @@ class ProfileController {
             ne("type", metaDataService.etGroupNetwork)
             if (!authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
               ne("name", "lernardoadmin")
+              ne("type", metaDataService.etUser)
           }
+
           //entities = Entity.list(params)
           count = entities.size()
           def upperBound = params.offset + 10 < entities.size() ? params.offset + 10 : entities.size()

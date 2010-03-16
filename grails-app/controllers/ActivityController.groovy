@@ -124,9 +124,6 @@ class ActivityController {
       try {
       def entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent)
-        //ent.profile.fullName = params.fullName
-        //ent.profile.date = new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
-        //ent.profile.duration = params.duration ? params.duration.toInteger() : 0
         ent.profile.properties = params
       }
 

@@ -8,6 +8,7 @@ class ParentProfileController {
   def metaDataService
   def entityHelperService
   def authenticateService
+  def functionService
 
   def index = {
     redirect action: "list", params: params
@@ -94,7 +95,7 @@ class ParentProfileController {
     EntityType etParent = metaDataService.etParent
 
     try {
-      def entity = entityHelperService.createEntityWithUserAndProfile("parent", etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+      def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.password = authenticateService.encodePassword("pass")
         ent.profile.doesWork = params.doesWork ?: false
