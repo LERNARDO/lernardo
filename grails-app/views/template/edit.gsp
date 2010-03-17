@@ -48,7 +48,7 @@
             </label>
           </td>
           <td valign="top" class="value">
-            <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
+            <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
             <fckeditor:editor name="description" id="description" width="100%" height="400" toolbar="Post" fileBrowser="default">
               ${template.profile.description}
             </fckeditor:editor>

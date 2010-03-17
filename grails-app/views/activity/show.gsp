@@ -9,7 +9,7 @@
   <body>
     <div class="headerBlue">
       <div class="second">
-        <h1>Aktivitätsdetails</h1>
+        <h1>Aktivität</h1>
       </div>
     </div>
 
@@ -64,15 +64,15 @@
               <app:notEnabled entity="${client}">
                 <span class="notEnabled">${client.profile.fullName}</span>
               </app:notEnabled><br>
-            </g:each>
-            </app:getClients></td>
+            </g:each></td>
+            </app:getClients>
           </tr>
 
         </table>
 
         <app:isEducator entity="${entity}">
-            <g:link class="buttonBlue" action="edit" id="${activity.id}">Aktivität bearbeiten</g:link>
-            <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Aktivität löschen</g:link>
+            <g:link class="buttonBlue" action="edit" id="${activity.id}">Bearbeiten</g:link>
+            <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Löschen</g:link>
             <g:link class="buttonGray" action="list">Zurück</g:link>
             <div class="spacer"></div>
         </app:isEducator>

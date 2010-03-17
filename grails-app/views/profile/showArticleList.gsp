@@ -7,7 +7,7 @@
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche von dir verfasste Artikel.
+      <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Diese Seite bietet einen Überblick über sämtliche von dir verfasste Artikel.
     </div>
   </div>
 </g:if>

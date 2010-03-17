@@ -17,7 +17,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(resources: it.source)}
     else
-      out << '<span class="italic">Keine Ressourcen zugewiesen</span>'
+      out << '<span class="italic">Keine Ressourcen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   def getGroup = {attrs, body ->
@@ -41,7 +41,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(clients: it.source)}
     else
-      out << '<span class="italic">keine Betreuten zugewiesen</span>'
+      out << '<span class="italic">keine Betreuten zugewiesen <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   def getPateClients = {attrs, body ->
@@ -49,7 +49,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(clients: it.source)}
     else
-      out << '<span class="italic">keine Betreuten zugewiesen</span>'
+      out << '<span class="italic">keine Betreuten zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   def getEducators = {attrs, body ->
@@ -57,7 +57,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(educators: it.source)}
     else
-      out << '<span class="italic">keine Pädagogen zugewiesen</span>'
+      out << '<span class="italic">keine Pädagogen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   def getFacility = {attrs, body ->

@@ -6,7 +6,7 @@
 <body>
   <a name="anker"></a>
   <h1>Über die Future Wings Privatstiftung</h1>
-  <img src="${createLinkTo(dir:'images/static',file:'futurewings.jpg')}" width="300" height="74" align="right" alt="Future Wings"/>
+  <img src="${resource(dir:'images/static',file:'futurewings.jpg')}" width="300" height="74" align="right" alt="Future Wings"/>
   <p>Die <strong>Future Wings Privatstiftung</strong> steht für die Befähigung junger Menschen, ihren ganz persönlichen Entwicklungsweg zu gehen, ihnen Flügel zu verleihen, mit denen sie in ihre viel versprechende Zukunft fliegen können.</p>
   <p>In unserer heutigen Wissensgesellschaft ist &quot;Lernen&quot; zu einer wesentlichen Grundlage für eine erfolgreiche Laufbahn geworden.</p>
   <p>Eine ganzheitliche Sicht auf das &quot;Lernen&quot; zeigt , dass hinter diesem Begriff mehr steckt, als die bloße Anhäufung von Wissen. &quot;Lernen&quot; bedeutet  zu wachsen und sich auf seinem persönlichen Lebensweg weiterzuentwickeln.</p>

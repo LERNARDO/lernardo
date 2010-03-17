@@ -6,7 +6,7 @@
 <body>
   <a name ="anker"></a>
   <h1>Lernen - lernen!</h1>
-  <img src="${createLinkTo(dir:'images/static',file:'lernen.png')}" width="260" height="197" align="right" alt="Lernen lernen"/>
+  <img src="${resource(dir:'images/static',file:'lernen.png')}" width="260" height="197" align="right" alt="Lernen lernen"/>
   <p>Lernen mit allen Sinnen nimmt seinen berechtigten und wichtigen Platz in der kognitiven Entwicklung eines Kindes ein. Die Erkenntnis von  Maria Montessori, nämlich dass Lernen mit Kopf, Herz und Hand zur optimalen Entwicklung des Kindes beiträgt, gilt heute in der Hirn- und Intelligenzforschung als wissenschaftlich erwiesen.</p>
   <p>Wir lernen optimal und effektiv, wenn möglichst viele Sinne und beide Hirnhälften eine gelungene Symbiose eingehen. Nachhaltig speichern wir nur Informationen, die mit beiden Hemisphären erarbeitet wurden.</p>
   <p>Denken, Fühlen und Lernen sind eng miteinander verbundenen. Erst unsere Fähigkeit, Erfahrungen emotional markieren zu können, macht vernünftiges Denken möglich. Bei positiver Lernmotivation werden andere Hormone ausgeschüttet als bei einer negativen. Wissenschaftler vermuten, dass dort, wo Endorphine produziert werden, auch die Prozesse des Merkens und Erinnerns stattfinden.</p>

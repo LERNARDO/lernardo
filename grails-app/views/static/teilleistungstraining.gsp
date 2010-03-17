@@ -6,7 +6,7 @@
 <body>
   <a name ="anker"></a>
   <h1>Teilleistungstraining</h1>
-  <img src="${createLinkTo(dir:'images/static',file:'module_small.jpg')}" width="260" height="195" align="right" alt="Module"/>
+  <img src="${resource(dir:'images/static',file:'module_small.jpg')}" width="260" height="195" align="right" alt="Module"/>
   <p>Teilleistungen sind eine Vielfalt von kleinsten Bausteinen bzw. Teilschritten eines Denkprozesses. Um eine Gesamtleistung zu vollbringen, bedarf es dem Zusammenspiel etlicher Teilleistungen, ganz gleich ob es sich dabei um Basteln, um die Einhaltung von Regeln, um Orientierung oder um schulische Aufgaben handelt.</p>
   <p>Hier ein kleines Beispiel aus dem Schulalltag<sup>1</sup>:</p>
   <p>Ein Kind in der zweiten Klasse Volksschule soll nach Ansage schreiben. Damit das Kind am Ende das Angesagte richtig aufgeschrieben hat, muss sein kindliches Gehirn viele verschiedene Teilleistungen vollbringen:</p>

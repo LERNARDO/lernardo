@@ -6,7 +6,7 @@
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <b><img src="${createLinkTo(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Dein Postfach bietet dir die Möglichkeit eine Nachrichten an andere User zu schicken und selber zu erhalten.
+      <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Dein Postfach bietet dir die Möglichkeit eine Nachrichten an andere User zu schicken und selber zu erhalten.
     </div>
   </div>
 </g:if>

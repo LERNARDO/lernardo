@@ -26,6 +26,6 @@
   <p>Kompetente Menschen sind wertvollster „Rohstoff“ für wachsende und prosperierende Unternehmen und damit wesentlicher Garant für Standortsicherung und Attraktivitätserhalt von Regionen.</p>
   <p>Wir wollen jungen Menschen dabei helfen, selbstständigen, verantwortungsbewusste und glückliche Erwachsene zu werden, Lernen zu einem lebenslangen und ganzheitlichen Prozess machen, Bewusstsein für die Vielseitigkeit von Begabungen und Talenten schaffen und individuelle Lernbetreuung mithilfe vielseitiger Lernmethoden entwickeln.</p>
   <h2>Die Module</h2>
-  <img src="${createLinkTo(dir:'images/static',file:'module.jpg')}" width="400" height="300" alt="Module"/>
+  <img src="${resource(dir:'images/static',file:'module.jpg')}" width="400" height="300" alt="Module"/>
   <p>Die Methodik von <span class="highlight">Lernardo</span> bzw. der pädagogische Mix orientiert sich an den vier Säulen „Lernen lernen“, „Bewegung – Ernährung“, „Soziale Kompetenz – Emotionale Intelligenz“ und „Persönliche Kompetenz – Eigenverantwortung“ und soll stets ausgewogen sein. Demgemäß ist jede Übung und Aktivität einer bestimmten Säule zugeordnet.</p>
 </body>

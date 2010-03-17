@@ -1,9 +1,9 @@
 <head>
   <title>Lernardo | Einrichtungskalender</title>
-  <meta name="layout" content="private" />
+  <meta name="layout" content="private-cal" />
   <g:javascript library="jquery" />
   <g:javascript src="jquery/fullcalendar.js"/>
-  <link rel="stylesheet" href="${createLinkTo(dir:'css',file:'fullcalendar.css')}" />
+  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
   <g:render template="/templates/calendar" model="[id:id]"/>
 </head>
 

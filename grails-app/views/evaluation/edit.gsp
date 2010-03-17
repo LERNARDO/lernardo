@@ -22,7 +22,7 @@
 
       <span class="strong">Beschreibung</span>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
-        <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
+        <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
         <fckeditor:editor name="description" height="200" toolbar="Post" fileBrowser="default">
           ${fieldValue(bean: evaluationInstance, field: 'description').decodeHTML()}
         </fckeditor:editor>
@@ -30,7 +30,7 @@
 
       <span class="strong">Maßnahme</span>
       <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
-        <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
+        <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
         <fckeditor:editor name="method" height="200" toolbar="Post" fileBrowser="default">
           ${fieldValue(bean: evaluationInstance, field: 'method').decodeHTML()}
         </fckeditor:editor>

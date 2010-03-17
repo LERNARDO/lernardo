@@ -6,7 +6,7 @@
 <body>
   <a name="anker"></a>
   <h1>Persönliche Kompetenz</h1>
-  <img src="${createLinkTo(dir:'images/static',file:'kompetenz.png')}" width="260" height="197" align="right" alt="Kompetenz"/>
+  <img src="${resource(dir:'images/static',file:'kompetenz.png')}" width="260" height="197" align="right" alt="Kompetenz"/>
   <p>Gerade in der heutigen Zeit erscheint es umso wichtiger, Kindern neben schulischem Wissen geistige Beweglichkeit, d.h. die Fähigkeit, sich von gewohnten Denk- und Handlungsweisen zu lösen und sich auf andere Anforderungen einzustellen, zu vermitteln.</p>
   <p>Wir wollen diese geistige Beweglichkeit durch den Erwerb persönlicher Kompetenzen fördern und Kindern somit das nötige Rüstzeug für ein erfolgreiches, glückliches Leben mitgeben.</p>
   <p>Persönliche Kompetenz ergibt sich aus einer Verquickung verschiedener Eigenschaften und setzt auch das Wissen um Lerntechniken (Selbstorganisation, Zeiteinteilung, konsequente Umsetzung der selbstständigen Planung etc.), welches im Modul „Lernen lernen“ vermittelt wird, voraus.</p>

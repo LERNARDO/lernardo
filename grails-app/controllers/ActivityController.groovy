@@ -181,7 +181,10 @@ class ActivityController {
 
         // get a list of facilities the current entity is working in
         def facilities = []
-        Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+        if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name)
+          Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+        else
+          facilities = Entity.findAllByType(metaDataService.etFacility)
         def educators = Entity.findAllByType(metaDataService.etEducator)
         def clients = Entity.findAllByType(metaDataService.etClient)
 
@@ -193,11 +196,10 @@ class ActivityController {
     }
 
     def update = {
+      // TODO: fix validation
       def activity = Entity.get(params.id)
 
-      activity.properties = params
-      activity.profile.date =  new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),Integer.parseInt(params.date_hour),Integer.parseInt(params.date_minute))
-      activity.profile.duration = params.int('duration')
+      activity.profile.properties = params
 
       // delete old links of educators and clients
       def links = Link.findAllByTargetAndType(activity, metaDataService.ltActEducator)

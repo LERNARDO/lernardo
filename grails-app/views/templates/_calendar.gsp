@@ -34,7 +34,7 @@
     },
     axisFormat: ' HH:mm', // H (:mm)
     timeFormat: 'HH:mm',
-    aspectRatio: 1.15,
+    aspectRatio: 1.34,
     editable: false,
     allDaySlot:true,
     allDayText:'',

@@ -6,7 +6,7 @@
 <body>
   <a name="anker"></a>
   <h1>Soziale und emotionale Intelligenz</h1>
-  <img src="${createLinkTo(dir:'images/static',file:'intelligenz.png')}" width="260" height="343" align="right" alt="Intelligenz"/>
+  <img src="${resource(dir:'images/static',file:'intelligenz.png')}" width="260" height="343" align="right" alt="Intelligenz"/>
   <p>Nach einer Studie von La Freniere und Dumas (1992) konnten folgende Merkmale sozialer Kompetenz schon bei Kindergartenkindern beobachtet werden:</p>
   <ul>
     <li>wenn es sich mit Gleichaltrigen streitet oder sich mit Erwachsenen auseinandersetzt, sucht es nach Lösungen</li>

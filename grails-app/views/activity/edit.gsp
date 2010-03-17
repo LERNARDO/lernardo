@@ -31,7 +31,7 @@
 
                 <tr>
                   <td class="label">Titel:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'profile.fullName','errors')}"><g:textField name="profile.fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName')}"/></td>
+                  <td class="value ${hasErrors(bean:activity,field:'profile.fullName','errors')}"><g:textField name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName')}"/></td>
                 </tr>
 
                 <tr>

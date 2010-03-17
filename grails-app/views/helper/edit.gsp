@@ -30,7 +30,7 @@
         <tr>
           <td class="label">Inhalt:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
-            <fckeditor:config CustomConfigurationsPath="${g.createLinkTo(dir:'js', file: 'fck-config.js').toString()}"/>
+            <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
             <fckeditor:editor name="content" id="content" width="500" height="300" toolbar="Post" fileBrowser="default">
               ${helperInstance.content}
             </fckeditor:editor>
