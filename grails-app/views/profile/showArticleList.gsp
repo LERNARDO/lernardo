@@ -21,7 +21,7 @@
     <div id="body-list">
 
       <g:if test="${!articleList}">
-        <p>Du hast bis jetzt keine Artikel verfasst</p>
+        Du hast bis jetzt keine Artikel verfasst.
       </g:if>
       <g:else>
         <p>Du hast insgesamt ${articleCount} Artikel verfasst.</p>

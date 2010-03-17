@@ -49,9 +49,10 @@ class MsgController {
     def message = Msg.get( params.id )
     if(message) {
       try {
-        flash.message = message(code:"msg.deleted", args:[message.subject])
+        // not working as well
+        //flash.message = message(code:"msg.deleted", args:[message.subject])
         message.delete(flush:true)
-        redirect action:params.box, params:[name:params.name]
+        redirect action:params.box, id: params.entity
       }
       catch(org.springframework.dao.DataIntegrityViolationException ex) {
         flash.message = message(code:"msg.notDeleted", args:[message.subject])
@@ -95,27 +96,32 @@ class MsgController {
 
   def create = {
     def message = new Msg()
-    message.properties = params
     Entity entity = Entity.get(params.id)
     return ['msgInstance':message,
-            'entity':entity]
+            'receiver':entity,
+            'entity': Entity.get(params.entity)]
   }
 
   def save = {
     // create first instance to be saved in outbox of sender
-    def message = new Msg(params)
+    def message = new Msg()
     message.sender = entityHelperService.loggedIn
     message.receiver = Entity.get(params.entity)
     message.read = true
     message.entity = entityHelperService.loggedIn
+    message.content = params.content
+    message.subject = params.subject
     // create second instance to be saved in inbox of receiver
-    def message2 = new Msg(params)
+    def message2 = new Msg()
     message2.sender = entityHelperService.loggedIn
     message2.receiver = Entity.get(params.entity)
     message2.read = false
     message2.entity = Entity.get(params.entity)
+    message2.content = params.content
+    message2.subject = params.subject
     if(!message.hasErrors() && message.save(flush:true) && message2.save(flush:true)) {
-        flash.message = message(code:"msg.sent", args:[message.subject,message.receiver.profile.fullName])
+        // TODO: find out why this flash message suddenly wont't work anymore
+        //flash.message = message(code:"msg.sent", args:[message.subject])
 
         functionService.createEvent(message.sender, 'Du hast '+message.receiver.profile.fullName+' eine Nachricht geschickt.')
         functionService.createEvent(message.receiver, message.sender.profile.fullName+' hat dir eine Nachricht geschickt.')
