@@ -52,7 +52,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${facility?.profile?.PLZ?.toInteger()}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: facility, field: 'profile.PLZ')}"/>
             </td>
           </tr>
 
@@ -91,6 +91,17 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="lang">
+                <g:message code="facilityProfile.lang.label" default="Spracheinstellung"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="tel">
                 <g:message code="facilityProfile.showTips.label" default="Tipps?"/>
               </label>
@@ -114,6 +125,17 @@
               </td>
             </tr>
           </app:isAdmin>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label>
+                <g:message code="pateProfile.showTips.label" default="Passwort"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
+            </td>
+          </tr>
 
           </tbody>
         </table>

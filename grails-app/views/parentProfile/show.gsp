@@ -46,7 +46,7 @@
           <td valign="top" class="name">
             <g:message code="parentProfile.PLZ.label" default="PLZ"/>:
           </td>
-          <td valign="top" class="value">${parent?.profile?.PLZ?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">

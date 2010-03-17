@@ -8,11 +8,11 @@ class ClientProfile extends Profile {
     String lastName
     Date birthDate
     String country
-    Integer PLZ
+    String PLZ
     String city
     String street
     String country2 // used for additional address
-    Integer PLZ2
+    String PLZ2
     String city2
     String street2
     String nationality
@@ -38,14 +38,13 @@ class ClientProfile extends Profile {
       fullName (blank: true)
       firstName (blank: false)
       lastName (blank: false)
-      PLZ (nullable: true)
-      PLZ2 (nullable: true)
       endDate (nullable: true)
       joinDate2 (nullable: true)
       endDate2 (nullable: true)
       notes (blank: true, maxSize: 2000)
       interests (blank: true, maxSize: 2000)
       personalDetails (blank: true, maxSize: 2000)
+      income (nullable: true)
     }
 
     String toString(){

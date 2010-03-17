@@ -9,7 +9,7 @@ class EducatorProfile extends Profile {
     String lastName
     Date birthDate
     Integer gender
-    Integer PLZ
+    String PLZ
     String city
     String street
     String nationality
@@ -27,7 +27,6 @@ class EducatorProfile extends Profile {
       fullName (blank: true)
       firstName (blank: false)
       lastName (blank: false)
-      PLZ (nullable: true)
       quitDate (nullable: true)
       education (blank: true, maxSize: 10000)
     }

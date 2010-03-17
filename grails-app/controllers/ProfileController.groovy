@@ -155,13 +155,13 @@ class ProfileController {
     def create = { }
 
     def changePassword = {
-      Entity entity = Entity.findByName(params.name)
+      Entity entity = Entity.get(params.id)
       return ['entity': entity]
     }
 
     def checkPassword = {
       if (params.password == params.password2) {
-        Entity entity = Entity.findByName(params.name)
+        Entity entity = Entity.get(params.id)
         entity.user.password = authenticateService.encodePassword(params.password)
         entity.save()
         flash.message = message(code:"pass.changed")
@@ -550,58 +550,5 @@ class ProfileController {
             }
         }
     }
-
-    // TODO: remove later
-    def update = {
-       def entity = Entity.get( params.id )
-       if(entity) {
-
-           entity.properties = params
-           if (params.title)
-             entity.profile.title = params.title
-           entity.profile.fullName = params.fullName
-           if (params.birthDate)
-             entity.profile.birthDate = new Date(Integer.parseInt(params.birthDate_year)-1900,Integer.parseInt(params.birthDate_month)-1,Integer.parseInt(params.birthDate_day))
-           if (params.PLZ)
-             entity.profile.PLZ = params.PLZ.toInteger()
-           entity.profile.city = params.city
-           entity.profile.street = params.street
-           entity.profile.tel = params.tel
-           if (params.gender)
-             entity.profile.gender = params.gender.toInteger()
-           if (params.biography)
-             entity.profile.biography = params.biography
-           if (params.description)
-             entity.profile.description = params.description
-           if (params.showTips)
-             entity.profile.showTips = true
-           else
-             entity.profile.showTips = false
-           if (params.foodCosts)
-             entity.profile.foodCosts = params.foodCosts.toInteger()
-           if (params.lang == '1') {
-               entity.user.locale = new Locale ("de", "DE")
-               Locale locale = entity.user.locale
-               RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-           }
-           if (params.lang == '2') {
-               entity.user.locale = new Locale ("ES", "ES")
-               Locale locale = entity.user.locale
-               RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-           }
-           if(!entity.hasErrors() && entity.save()) {
-               flash.message = message(code:"user.updated", args:[entity.profile.fullName])
-
-               redirect action:'showProfile', params:[name:entity.name]
-           }
-           else {
-               render view:'edit', model:[entityInstance:entity]
-           }
-       }
-       else {
-           flash.message = message(code:"user.notFound", args:[params.id])
-           redirect controller: entity.type.supertype.name + 'Profile', action:'show', params:[name:entityHelperService.loggedIn.name]
-       }
-   }
 
 }

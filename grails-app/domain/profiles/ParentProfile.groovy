@@ -8,7 +8,7 @@ class ParentProfile extends Profile {
   String lastName
   Date birthDate
   Integer gender
-  Integer PLZ
+  String PLZ
   String city
   String street
   String nationality
@@ -23,7 +23,6 @@ class ParentProfile extends Profile {
     fullName (blank: true)
     firstName (blank: false)
     lastName (blank: false)
-    PLZ (nullable: true)
   }
 
   String toString(){

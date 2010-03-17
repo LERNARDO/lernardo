@@ -101,6 +101,17 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="lang">
+                <g:message code="operatorProfile.lang.label" default="Spracheinstellung"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="showTips">
                 <g:message code="operatorProfile.showTips.label" default="Zeige Tipps?"/>
               </label>

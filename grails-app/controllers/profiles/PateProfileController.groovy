@@ -3,6 +3,7 @@ package profiles
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
+import org.springframework.web.servlet.support.RequestContextUtils
 
 class PateProfileController {
   def metaDataService
@@ -39,8 +40,9 @@ class PateProfileController {
   def del = {
     def pate = Entity.get(params.id)
     if (pate) {
-      // delete all links
-      Link.findAllBySourceOrTarget(pate, pate).each {it.delete()}
+      // delete all links to this entity
+      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
+      
       try {
         flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
         pate.delete(flush: true)
@@ -65,11 +67,12 @@ class PateProfileController {
       redirect action: 'list'
     }
     else {
-      return [pate: pate, entity: entityHelperService.loggedIn]
+      return [pate: pate, entity: entityHelperService.loggedIn, clients: Entity.findAllByType(metaDataService.etClient)]
     }
   }
 
   def update = {
+    println params
     def pate = Entity.get(params.id)
 
     pate.profile.properties = params
@@ -77,7 +80,29 @@ class PateProfileController {
     pate.profile.showTips = params.showTips ?: false
     pate.user.enabled = params.enabled ?: false
 
+    if (params.lang == '1') {
+      pate.user.locale = new Locale ("de", "DE")
+      Locale locale = pate.user.locale
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+    }
+    if (params.lang == '2') {
+      pate.user.locale = new Locale ("ES", "ES")
+      Locale locale = pate.user.locale
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+    }
+
     if (!pate.profile.hasErrors() && pate.profile.save()) {
+
+      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
+      if (params.clients) {
+        if(params.clients.class.isArray())
+          params.clients.each {
+            new Link(source: Entity.get(it), target: pate, type: metaDataService.ltPate).save()
+          }
+        else
+          new Link(source: Entity.get(params.clients), target: pate, type: metaDataService.ltPate).save()
+      }
+
       flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
       redirect action: 'show', id: pate.id
     }
@@ -87,7 +112,7 @@ class PateProfileController {
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn]
+    return [entity: entityHelperService.loggedIn, clients: Entity.findAllByType(metaDataService.etClient)]
   }
 
   def save = {
@@ -99,10 +124,28 @@ class PateProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
         ent.user.enabled = params.enabled ?: false
       }
+      if (params.clients) {
+        if(params.clients.class.isArray())
+          params.clients.each {
+            new Link(source: Entity.get(it), target: pate, type: metaDataService.ltPate).save()
+          }
+        else
+          new Link(source: Entity.get(params.clients), target: pate, type: metaDataService.ltPate).save()
+      }
+      if (params.lang == '1') {
+        entity.user.locale = new Locale ("de", "DE")
+        Locale locale = entity.user.locale
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+      }
+      if (params.lang == '2') {
+        entity.user.locale = new Locale ("ES", "ES")
+        Locale locale = entity.user.locale
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+      }
       flash.message = message(code: "pate.created", args: [entity.profile.fullName])
       redirect action: 'list'
     } catch (de.uenterprise.ep.EntityException ee) {
-      render(view: "create", model: [pate: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [pate: ee.entity, entity: entityHelperService.loggedIn, clients: Entity.findAllByType(metaDataService.etClient)])
       return
     }
 

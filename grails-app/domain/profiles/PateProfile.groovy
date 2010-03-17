@@ -6,7 +6,7 @@ class PateProfile extends Profile {
 
   String firstName
   String lastName
-  Integer PLZ
+  String PLZ
   String city
   String street
   String nationality
@@ -18,7 +18,6 @@ class PateProfile extends Profile {
     fullName (blank: true)
     firstName (blank: false)
     lastName (blank: false)
-    PLZ (nullable: true)
   }
 
   String toString(){

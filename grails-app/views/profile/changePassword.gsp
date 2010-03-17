@@ -14,7 +14,7 @@
   <div class="second">
     <div class="yui-g" id="settings">
       <div class="settings-block-content">
-        <g:form controller="profile" action="checkPassword" params="[name:entity.name]">
+        <g:form controller="profile" action="checkPassword" id="${entity.id}">
           <table cellpadding="0" cellspacing="0" border="0" id="settings-table">
             <tr>
               <td class="topic">Neues Passwort:</td>
@@ -27,7 +27,7 @@
             <tr>
               <td>
                 <g:submitButton name="checkPassword" value="Speichern"/>
-                <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">zurück</g:link>
+                <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Zurück</g:link>
               </td>
               <td>&nbsp;</td>
             </tr>

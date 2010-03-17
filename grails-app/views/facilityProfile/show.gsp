@@ -32,7 +32,7 @@
           <td valign="top" class="name">
             <g:message code="facilityProfile.PLZ.label" default="PLZ"/>:
           </td>
-          <td valign="top" class="value">${facility?.profile?.PLZ?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">

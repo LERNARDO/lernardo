@@ -44,6 +44,14 @@ class HelperTagLib {
       out << '<span class="italic">keine Betreuten zugewiesen</span>'
   }
 
+  def getPateClients = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltPate)
+    if (link)
+      link.each {out << body(clients: it.source)}
+    else
+      out << '<span class="italic">keine Betreuten zugewiesen</span>'
+  }
+
   def getEducators = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActEducator)
     if (link)

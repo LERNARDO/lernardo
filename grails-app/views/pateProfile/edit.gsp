@@ -41,7 +41,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName')}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -102,13 +102,34 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="lang">
+                <g:message code="pateProfile.lang.label" default="Spracheinstellung"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="showTips">
                 <g:message code="pateProfile.showTips.label" default="Tipps"/>
               </label>
-
             </td>
             <td valign="top" class="value">
               <g:checkBox name="showTips" value="${pate.profile.showTips}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label>
+                <g:message code="pateProfile.showTips.label" default="Passwort"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
             </td>
           </tr>
 
@@ -118,10 +139,20 @@
                 <label for="enabled">
                   <g:message code="pateProfile.enabled.label" default="Aktiv?"/>
                 </label>
-
               </td>
               <td valign="top" class="value">
                 <g:checkBox name="enabled" value="${pate.user.enabled}"/>
+              </td>
+            </tr>
+
+            <tr class="prop">
+              <td valign="top" class="name">
+                <label for="clients">
+                  <g:message code="pateProfile.clients.label" default="Betreute"/>
+                </label>
+              </td>
+              <td valign="top" class="value">
+                <g:select multiple="true" name="clients" from="${clients}" optionKey="id" optionValue="profile"/>
               </td>
             </tr>
           </app:isAdmin>

@@ -161,7 +161,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="joinDate" value="${client?.profile?.joinDate}" precision="day"/>
+              <g:datePicker name="joinDate" value="${client?.profile?.joinDate}" precision="day" default="none" noSelection="['':'']"/>
             </td>
           </tr>
 
@@ -172,7 +172,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="endDate" value="${client?.profile?.endDate}" precision="day"/>
+              <g:datePicker name="endDate" value="${client?.profile?.endDate}" precision="day" default="none" noSelection="['':'']"/>
             </td>
           </tr>
 
@@ -183,7 +183,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="joinDate2" value="${client?.profile?.joinDate2}" precision="day"/>
+              <g:datePicker name="joinDate2" value="${client?.profile?.joinDate2}" precision="day" default="none" noSelection="['':'']"/>
             </td>
           </tr>
 
@@ -194,7 +194,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="endDate2" value="${client?.profile?.endDate2}" precision="day"/>
+              <g:datePicker name="endDate2" value="${client?.profile?.endDate2}" precision="day" default="none" noSelection="['':'']"/>
             </td>
           </tr>
 
@@ -277,28 +277,6 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="dropout">
-                <g:message code="clientProfile.dropout.label" default="Aussteiger?"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:checkBox name="dropout" value="${client?.profile?.dropout}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="dropoutReason">
-                <g:message code="clientProfile.dropoutReason.label" default="Aussteiger Grund"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.dropoutReason', 'errors')}" size="30" id="dropoutReason" name="dropoutReason" value="${fieldValue(bean: client, field: 'profile.dropoutReason')}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
               <label for="gender">
                 <g:message code="clientProfile.gender.label" default="Geschlecht"/>
               </label>
@@ -338,6 +316,39 @@
             </td>
             <td valign="top" class="value">
               <g:select id="schoolLevel" name="schoolLevel" from="${1..10}" value="${fieldValue(bean: client, field: 'profile.schoolLevel')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="dropout">
+                <g:message code="clientProfile.dropout.label" default="Aussteiger?"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="dropout" value="${client?.profile?.dropout}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="dropoutReason">
+                <g:message code="clientProfile.dropoutReason.label" default="Aussteiger Grund"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.dropoutReason', 'errors')}" size="30" id="dropoutReason" name="dropoutReason" value="${fieldValue(bean: client, field: 'profile.dropoutReason')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="lang">
+                <g:message code="clientProfile.lang.label" default="Spracheinstellung"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
             </td>
           </tr>
 

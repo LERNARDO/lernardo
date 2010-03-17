@@ -85,7 +85,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${educator?.profile?.PLZ?.toInteger()}"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: educator, field: 'profile.PLZ')}"/>
             </td>
           </tr>
 
@@ -184,7 +184,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="joinDate" value="${educator?.profile?.joinDate}" precision="day"/>
+              <g:datePicker name="joinDate" value="${educator?.profile?.joinDate}" precision="day" default="none" noSelection="['':'']"/>
             </td>
           </tr>
 
@@ -195,7 +195,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="quitDate" value="${educator?.profile?.quitDate}" precision="day"/>
+              <g:datePicker name="quitDate" value="${educator?.profile?.quitDate}" precision="day" default="none" noSelection="['':'']"/>
             </td>
           </tr>
 
@@ -223,6 +223,17 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="lang">
+                <g:message code="educatorProfile.lang.label" default="Spracheinstellung"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="showTips">
                 <g:message code="educatorProfile.showTips.label" default="Tipps?"/>
               </label>
@@ -245,6 +256,17 @@
               </td>
             </tr>
           </app:isAdmin>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label>
+                <g:message code="pateProfile.showTips.label" default="Passwort"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
+            </td>
+          </tr>
 
           </tbody>
         </table>

@@ -4,7 +4,7 @@ import de.uenterprise.ep.Profile
 
 class PartnerProfile extends Profile {
 
-  Integer PLZ
+  String PLZ
   String city
   String street
   String tel
@@ -13,7 +13,6 @@ class PartnerProfile extends Profile {
   
   static constraints = {
     fullName (blank: false)
-    PLZ (nullable: true)
     description (maxSize: 2000)
   }
 

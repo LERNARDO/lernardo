@@ -102,7 +102,7 @@ class BootStrap {
       prf.gender = 1
       prf.title = "DI"
       prf.birthDate = new Date(1968-1900,02,18)
-      prf.PLZ = 29215
+      prf.PLZ = "29215"
       prf.city = "San Cristóbal de Las Casas"
       prf.street = "Av. Norte Oriente 13a"
       prf.contact = ""
@@ -123,7 +123,7 @@ class BootStrap {
       prf.gender = 1
       prf.title = "Ing. Dkfm."
       prf.birthDate = new Date(1939-1900,04,17)
-      prf.PLZ = 4600
+      prf.PLZ = "4600"
       prf.city = "Schleißheim bei Wels"
       prf.street = ""
       prf.contact = ""
@@ -149,15 +149,15 @@ class BootStrap {
       prf.firstName = "Kira"
       prf.lastName = "Zeillinger"
       prf.gender = 2
-      prf.PLZ = 2352
+      prf.PLZ = "2352"
       prf.city = "Gumpoldskirchen"
       prf.interests = ""
       prf.street = ""
       prf.personalDetails = ""
+      prf.PLZ2 = ""
       prf.city2 = ""
       prf.joinDate = new Date()
       prf.languages = ""
-      prf.income = 0
       prf.birthDate = new Date()
       prf.work = ""
       prf.street2 = ""
@@ -177,15 +177,15 @@ class BootStrap {
       prf.firstName = "Keano"
       prf.lastName = "Zeillinger"
       prf.gender = 1
-      prf.PLZ = 2352
+      prf.PLZ = "2352"
       prf.city = "Gumpoldskirchen"
       prf.interests = ""
       prf.street = ""
       prf.personalDetails = ""
+      prf.PLZ2 = ""
       prf.city2 = ""
       prf.joinDate = new Date()
       prf.languages = ""
-      prf.income = 0
       prf.birthDate = new Date()
       prf.work = ""
       prf.street2 = ""
@@ -208,7 +208,7 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
-      prf.PLZ = 0
+      prf.PLZ = ""
       prf.city = ""
       prf.street = ""
       prf.tel = ""
@@ -222,7 +222,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
       FacilityProfile prf = ent.profile
-      prf.PLZ = 29247
+      prf.PLZ = "29247"
       prf.city = "	San Cristóbal de Las Casas"
       prf.street = "	Prolongación Ramón Larrainzar #139"
       prf.tel   = "+52 967 1125100"

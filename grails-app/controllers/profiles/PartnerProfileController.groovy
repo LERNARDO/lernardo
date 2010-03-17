@@ -3,6 +3,7 @@ package profiles
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
+import org.springframework.web.servlet.support.RequestContextUtils
 
 class PartnerProfileController {
     def metaDataService
@@ -77,6 +78,17 @@ class PartnerProfileController {
       partner.profile.showTips = params.showTips ?: false
       partner.user.enabled = params.enabled ?: false
 
+      if (params.lang == '1') {
+        partner.user.locale = new Locale ("de", "DE")
+        Locale locale = partner.user.locale
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+      }
+      if (params.lang == '2') {
+        partner.user.locale = new Locale ("ES", "ES")
+        Locale locale = partner.user.locale
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+      }
+
       if(!partner.profile.hasErrors() && partner.profile.save()) {
           flash.message = message(code:"partner.updated", args:[partner.profile.fullName])
           redirect action:'show', id: partner.id
@@ -98,6 +110,16 @@ class PartnerProfileController {
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false
+        }
+        if (params.lang == '1') {
+          entity.user.locale = new Locale ("de", "DE")
+          Locale locale = entity.user.locale
+          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+        }
+        if (params.lang == '2') {
+          entity.user.locale = new Locale ("ES", "ES")
+          Locale locale = entity.user.locale
+          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
         }
         flash.message = message(code:"partner.created", args:[entity.profile.fullName])
         redirect action:'list'

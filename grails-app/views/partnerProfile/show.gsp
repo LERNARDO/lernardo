@@ -32,7 +32,7 @@
           <td valign="top" class="name">
             <g:message code="partnerProfile.PLZ.label" default="PLZ"/>:
           </td>
-          <td valign="top" class="value">${partner.profile.PLZ.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
         </tr>
 

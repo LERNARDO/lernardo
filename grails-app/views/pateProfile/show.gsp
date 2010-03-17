@@ -32,7 +32,7 @@
           <td valign="top" class="name">
             <g:message code="pateProfile.PLZ.label" default="PLZ"/>:
           </td>
-          <td valign="top" class="value">${pate.profile.PLZ.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -78,6 +78,21 @@
             <td valign="top" class="value"><app:showBoolean bool="${pate.user.enabled}"/></td>
           </tr>
         </app:isAdmin>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="pateProfile.nationality.label" default="Betreute"/>:
+          </td>
+          <td valign="top" class="value">
+            <app:getPateClients entity="${pate}">
+              <ul>
+                <g:each in="${clients}" var="client">
+                  <g:link controller="clientProfile" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link>
+                </g:each>
+              </ul>
+            </app:getPateClients>
+          </td>
+        </tr>
 
         </tbody>
       </table>
