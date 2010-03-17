@@ -24,6 +24,13 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <g:message code="operatorProfile.fullName.label" default="E-Mail"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: operator, field: 'user.email')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <g:message code="operatorProfile.PLZ.label" default="PLZ"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: operator, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>

@@ -74,6 +74,7 @@ class ClientProfileController {
       def client = Entity.get(params.id)
 
       client.profile.properties = params
+      client.user.properties = params
 
       client.profile.showTips = params.showTips ?: false
       client.profile.doesWork = params.doesWork ?: false
@@ -90,7 +91,7 @@ class ClientProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
-      if(!client.profile.hasErrors() && client.profile.save()) {
+      if(!client.hasErrors() && client.save()) {
           flash.message = message(code:"client.updated", args:[client.profile.fullName])
           redirect action:'show', id: client.id
       }

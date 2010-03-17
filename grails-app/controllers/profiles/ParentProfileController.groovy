@@ -74,6 +74,7 @@ class ParentProfileController {
     def parent = Entity.get(params.id)
 
     parent.profile.properties = params
+    parent.user.properties = params
 
     parent.profile.showTips = params.showTips ?: false
     parent.profile.doesWork = params.doesWork ?: false
@@ -90,7 +91,7 @@ class ParentProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
     }
 
-    if (!parent.profile.hasErrors() && parent.profile.save()) {
+    if (!parent.hasErrors() && parent.save()) {
       flash.message = message(code: "parent.updated", args: [parent.profile.fullName])
       redirect action: 'show', id: parent.id
     }

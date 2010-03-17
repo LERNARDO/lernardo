@@ -76,6 +76,7 @@ class PateProfileController {
     def pate = Entity.get(params.id)
 
     pate.profile.properties = params
+    pate.user.properties = params
 
     pate.profile.showTips = params.showTips ?: false
     pate.user.enabled = params.enabled ?: false
@@ -91,7 +92,7 @@ class PateProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
     }
 
-    if (!pate.profile.hasErrors() && pate.profile.save()) {
+    if (!pate.hasErrors() && pate.save()) {
 
       Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
       if (params.clients) {

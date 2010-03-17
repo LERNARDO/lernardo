@@ -74,6 +74,7 @@ class UserProfileController {
       def user = Entity.get(params.id)
 
       user.profile.properties = params
+      user.user.properties = params
 
       user.profile.showTips = params.showTips ?: false
       user.user.enabled = params.enabled ?: false
@@ -89,7 +90,7 @@ class UserProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
-      if(!user.profile.hasErrors() && user.profile.save()) {
+      if(!user.hasErrors() && user.save()) {
           flash.message = message(code:"user.updated", args:[user.profile.fullName])
           redirect action:'show', id: user.id
       }

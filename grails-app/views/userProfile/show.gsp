@@ -16,16 +16,23 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="userProfile.firstName.label" default="First Name"/>:
+            <g:message code="userProfile.firstName.label" default="Vorname"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.firstName')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="userProfile.lastName.label" default="Last Name"/>:
+            <g:message code="userProfile.lastName.label" default="Nachname"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.lastName')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="userProfile.fullName.label" default="E-Mail"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: user, field: 'user.email')}</td>
         </tr>
 
         <app:isAdmin>

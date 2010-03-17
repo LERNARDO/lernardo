@@ -11,7 +11,6 @@
 <div class="boxGray">
   <div class="second">
 
-  %{--TODO: figure out why error messages are not shown?!?--}%
     <g:hasErrors bean="${pate}">
       <div class="errors">
         <g:renderErrors bean="${pate}" as="list"/>
@@ -30,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName')}"/>
             </td>
           </tr>
 
@@ -41,7 +40,18 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="email">
+                <g:message code="pateProfile.email.label" default="E-Mail"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
             </td>
           </tr>
 
@@ -52,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: pate, field: 'profile.PLZ')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: pate, field: 'profile.PLZ')}"/>
             </td>
           </tr>
 
@@ -63,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city')}"/>
             </td>
           </tr>
 
@@ -74,7 +84,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street')}"/>
             </td>
           </tr>
 

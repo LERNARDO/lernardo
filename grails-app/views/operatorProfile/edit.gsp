@@ -11,7 +11,6 @@
 <div class="boxGray">
   <div class="second">
 
-  %{--TODO: figure out why error messages are not shown?!?--}%
     <g:hasErrors bean="${operator}">
       <div class="errors">
         <g:renderErrors bean="${operator}" as="list"/>
@@ -139,11 +138,11 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="pateProfile.showTips.label" default="Passwort"/>
+                <g:message code="operatorProfile.showTips.label" default="Passwort"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
+              <g:link controller="profile" action="changePassword" id="${operator.id}">Passwort ändern</g:link>
             </td>
           </tr>
 

@@ -11,7 +11,6 @@
 <div class="boxGray">
   <div class="second">
 
-  %{--TODO: figure out why error messages are not shown?!?--}%
     <g:hasErrors bean="${client}">
       <div class="errors">
         <g:renderErrors bean="${client}" as="list"/>
@@ -53,6 +52,17 @@
           </td>
           <td valign="top" class="value">
             <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <label for="email">
+              <g:message code="clientProfile.email.label" default="E-Mail"/>
+            </label>
+          </td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
           </td>
         </tr>
 
@@ -370,11 +380,11 @@
         <tr class="prop">
           <td valign="top" class="name">
             <label>
-              <g:message code="pateProfile.showTips.label" default="Passwort"/>
+              <g:message code="clientProfile.showTips.label" default="Passwort"/>
             </label>
           </td>
           <td valign="top" class="value">
-            <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
+            <g:link controller="profile" action="changePassword" id="${client.id}">Passwort ändern</g:link>
           </td>
         </tr>
 

@@ -11,7 +11,6 @@
 <div class="boxGray">
   <div class="second">
 
-  %{--TODO: figure out why error messages are not shown?!?--}%
     <g:hasErrors bean="${facility}">
       <div class="errors">
         <g:renderErrors bean="${facility}" as="list"/>
@@ -31,6 +30,17 @@
             </td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="email">
+                <g:message code="facilityProfile.email.label" default="E-Mail"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
             </td>
           </tr>
 
@@ -129,11 +139,11 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="pateProfile.showTips.label" default="Passwort"/>
+                <g:message code="facilityProfile.showTips.label" default="Passwort"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
+              <g:link controller="profile" action="changePassword" id="${facility.id}">Passwort ändern</g:link>
             </td>
           </tr>
 

@@ -30,6 +30,13 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <g:message code="pateProfile.fullName.label" default="E-Mail"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: pate, field: 'user.email')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <g:message code="pateProfile.PLZ.label" default="PLZ"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>

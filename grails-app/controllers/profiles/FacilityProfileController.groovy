@@ -163,6 +163,7 @@ class FacilityProfileController {
       def facility = Entity.get(params.id)
 
       facility.profile.properties = params
+      facility.user.properties = params
 
       facility.profile.showTips = params.showTips ?: false
       facility.user.enabled = params.enabled ?: false
@@ -178,7 +179,7 @@ class FacilityProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
-      if(!facility.profile.hasErrors() && facility.profile.save()) {
+      if(!facility.hasErrors() && facility.save()) {
           flash.message = message(code:"facility.updated", args:[facility.profile.fullName])
           redirect action:'show', id: facility.id
       }

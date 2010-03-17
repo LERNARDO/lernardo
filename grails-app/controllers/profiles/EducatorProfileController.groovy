@@ -74,6 +74,7 @@ class EducatorProfileController {
       def educator = Entity.get(params.id)
 
       educator.profile.properties = params
+      educator.user.properties = params
 
       educator.profile.showTips = params.showTips ?: false
       educator.profile.employed = params.employed ?: false
@@ -90,7 +91,7 @@ class EducatorProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
-      if(!educator.profile.hasErrors() && educator.profile.save()) {
+      if(!educator.hasErrors() && educator.save()) {
           flash.message = message(code:"educator.updated", args:[educator.profile.fullName])
           redirect action:'show', id: educator.id
       }

@@ -74,6 +74,7 @@ class PartnerProfileController {
       def partner = Entity.get(params.id)
 
       partner.profile.properties = params
+      partner.user.properties = params
 
       partner.profile.showTips = params.showTips ?: false
       partner.user.enabled = params.enabled ?: false
@@ -89,7 +90,7 @@ class PartnerProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
-      if(!partner.profile.hasErrors() && partner.profile.save()) {
+      if(!partner.hasErrors() && partner.save()) {
           flash.message = message(code:"partner.updated", args:[partner.profile.fullName])
           redirect action:'show', id: partner.id
       }

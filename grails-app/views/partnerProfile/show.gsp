@@ -23,6 +23,13 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <g:message code="partnerProfile.fullName.label" default="E-Mail"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: partner, field: 'user.email')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <g:message code="partnerProfile.description.label" default="Beschreibung"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>

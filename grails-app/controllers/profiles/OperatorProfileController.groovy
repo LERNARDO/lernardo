@@ -118,6 +118,7 @@ class OperatorProfileController {
       def operator = Entity.get(params.id)
 
       operator.profile.properties = params
+      operator.user.properties = params
 
       operator.profile.showTips = params.showTips ?: false
       operator.user.enabled = params.enabled ?: false
@@ -133,7 +134,7 @@ class OperatorProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
-      if(!operator.profile.hasErrors() && operator.profile.save()) {
+      if(!operator.hasErrors() && operator.save()) {
           flash.message = message(code:"operator.updated", args:[operator.profile.fullName])
           redirect action:'show', id: operator.id
       }

@@ -11,7 +11,6 @@
 <div class="boxGray">
   <div class="second">
 
-  %{--TODO: figure out why error messages are not shown?!?--}%
     <g:hasErrors bean="${parent}">
       <div class="errors">
         <g:renderErrors bean="${parent}" as="list"/>
@@ -129,7 +128,6 @@
               </label>
             </td>
             <td valign="top" class="value">
-              %{--TODO: figure out how to highlight the currently selected values--}%
               <g:select multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
             </td>
           </tr>
@@ -218,11 +216,11 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="pateProfile.showTips.label" default="Passwort"/>
+                <g:message code="parentProfile.showTips.label" default="Passwort"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
+              <g:link controller="profile" action="changePassword" id="${parent.id}">Passwort ändern</g:link>
             </td>
           </tr>
 

@@ -10,12 +10,13 @@
 </div>
 <div class="boxGray">
   <div class="second">
-  %{--TODO: figure out why error messages are not shown?!?--}%
+
     <g:hasErrors bean="${resource}">
       <div class="errors">
         <g:renderErrors bean="${resource}" as="list"/>
       </div>
     </g:hasErrors>
+    
     <g:form action="update" method="post" id="${resource?.id}">
       <input type="hidden" name="id" value="${resource?.id}"/>
       <input type="hidden" name="version" value="${resource?.version}"/>
