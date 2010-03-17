@@ -40,7 +40,6 @@
     </div>
     <div class="buttons">
       <g:link class="buttonBlue" action="edit" id="${resource?.id}">Bearbeiten</g:link>
-      <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
       <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
     </div>

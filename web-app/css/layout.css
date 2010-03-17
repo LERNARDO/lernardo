@@ -92,7 +92,7 @@ body {
 
 .spacer {
     clear: both;
-    margin-bottom: 5px; }
+    -margin-bottom: 5px; }
 
 /* ----- NAVIGATION -----*/
 
@@ -652,13 +652,13 @@ ul {
     background: #ffecc1; }
 
 .row-parent {
-    background: #cb59c9; }
+    background: #cb89c9; }
 
 .row-pate {
-    background: #cb59c9; }
+    background: #cb89c9; }
 
 .row-partner {
-    background: #cb59c9; }
+    background: #cb89c9; }
 
 .odd {
     background: #f4f4f4; }
@@ -859,7 +859,7 @@ div.actionlinks div.userlinks a {
     border: 1px solid #345ca4 !important;
     background: #66f;
     padding: 4px 5px !important;
-    margin: 5px 5px 0 5px !important;
+    margin: 5px 5px 0 0px !important;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
@@ -875,7 +875,7 @@ div.actionlinks div.userlinks a {
     border: 1px solid #666;
     background: #888;
     padding: 5px;
-    margin: 5px 10px 0 5px;
+    margin: 5px 5px 0 0px;
     text-align: center;
     float: left;
     -moz-border-radius: 5px;
@@ -1099,13 +1099,9 @@ table#msg-composer td {
   border:1px solid #000000;
 }
 
-/*.buttons {
-    background: #555;
-    margin: -5px;
-    -moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-bottomright: 5px;
-    border-top: 1px solid #333;
-    margin-top: 5px;*/
+.buttons {
+    margin: 0;
+    padding: 0;
 }
 
 /* ----- COMMENTS -----  */

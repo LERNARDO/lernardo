@@ -27,8 +27,8 @@
                       <g:message code="msg.name.label" default="Name" />:
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:template,field:'profile.fullName','errors')}">
-                    <input type="text" size="50" id="fullName" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName')}"/>
+                <td valign="top" class="value">
+                    <g:textField class="${hasErrors(bean:template,field:'profile.fullName','errors')}" size="50" id="fullName" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName')}"/>
                 </td>
             </tr>
 
@@ -74,8 +74,8 @@
                       <g:message code="msg.duration.label" default="Dauer" />:
                     </label>
                 </td>
-                <td valign="top" class="value ${hasErrors(bean:template,field:'profile.duration','errors')}">
-                    <input type="text" size="10" id="duration" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (in Minuten)
+                <td valign="top" class="value">
+                    <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="10" id="duration" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (in Minuten)
                 </td>
             </tr>
 

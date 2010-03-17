@@ -134,7 +134,7 @@ class TemplateController {
         redirect action:'show', id:entity.id
 
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[template: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[template: ee.entity, entity: entityHelperService.loggedIn, resources: Entity.findAllByType(metaDataService.etResource)])
         return
       }
 
