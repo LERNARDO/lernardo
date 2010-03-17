@@ -37,6 +37,6 @@
          </div>
        </g:each>
 
-       <div class="clear"></div>
+       <div class="spacer"></div>
      </div>
    </div>

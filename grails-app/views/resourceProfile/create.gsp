@@ -26,8 +26,8 @@
                 <g:message code="resource.profile.fullName.label" default="Name"/>
               </label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}">
-              <input type="text" size="73" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}" size="73" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
             </td>
           </tr>
 
@@ -37,8 +37,8 @@
                 <g:message code="resource.profile.description.label" default="Beschreibung"/>
               </label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.description', 'errors')}">
-              <textarea id="description" rows="5" cols="70" name="description">${fieldValue(bean: resource, field: 'profile.description')}</textarea>
+            <td valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: resource, field: 'profile.description', 'errors')}" id="description" rows="5" cols="70" name="description" value="${fieldValue(bean: resource, field: 'profile.description')}"/>
             </td>
           </tr>
 
@@ -49,7 +49,7 @@
               </label>
 
             </td>
-            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.type', 'errors')}">
+            <td valign="top" class="value">
               <g:select name="type" from="${['planbar','verbrauchbar']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
             </td>
           </tr>

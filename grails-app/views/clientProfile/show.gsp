@@ -109,21 +109,21 @@
           <td valign="top" class="name">
             <g:message code="clientProfile.endDate.label" default="Austrittsdatum"/>:
           </td>
-          <td valign="top" class="value"><g:formatDate date="${client.profile.endDate}" format="dd. MM. yyyy"/></td>
+          <td valign="top" class="value"><g:if test="${client.profile.endDate}"><g:formatDate date="${client.profile.endDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic">keine Daten eingetragen</div></g:else></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="clientProfile.joinDate2.label" default="Eintrittsdatum #2"/>:
           </td>
-          <td valign="top" class="value"><g:formatDate date="${client.profile.joinDate2}" format="dd. MM. yyyy"/></td>
+          <td valign="top" class="value"><g:if test="${client.profile.joinDate2}"><g:formatDate date="${client.profile.joinDate2}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic">keine Daten eingetragen</div></g:else></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="clientProfile.endDate2.label" default="Austrittsdatum #2"/>:
           </td>
-          <td valign="top" class="value"><g:formatDate date="${client.profile.endDate2}" format="dd. MM. yyyy"/></td>
+          <td valign="top" class="value"><g:if test="${client.profile.endDate2}"><g:formatDate date="${client.profile.endDate2}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic">keine Daten eingetragen</div></g:else></td>
         </tr>
 
         <tr class="prop">

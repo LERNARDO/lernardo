@@ -237,7 +237,7 @@ ul {
     text-align: center; }
     #profile-pic #picture {
         -moz-box-shadow: #aaa 2px 2px 4px;
-        border: 1px solid #999;
+        border: 1px solid #888;
         border-top: none;
         border-bottom: none;
         width: 180px;
@@ -397,7 +397,7 @@ ul {
     border: 1px solid #999;
     padding: 2px;
 }
-#private-content input.errors {
+#private-content input.errors, #private-content textarea.errors, #private-content select.errors {
     border: 1px solid #f00;
 }
 #private-content input:hover, #private-content select:hover, #private-content textarea:hover {

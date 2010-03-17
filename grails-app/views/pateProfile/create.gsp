@@ -27,7 +27,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName')}"/>
             </td>
           </tr>
 
@@ -38,7 +38,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName')}"/>
             </td>
           </tr>
 
@@ -93,7 +93,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
+              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
             </td>
           </tr>
 

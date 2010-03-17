@@ -123,7 +123,7 @@
           <td valign="top" class="name">
             <g:message code="educatorProfile.quitDate.label" default="Austrittsdatum"/>:
           </td>
-          <td valign="top" class="value"><g:formatDate date="${educator.profile.quitDate}" format="dd. MM. yyyy"/></td>
+          <td valign="top" class="value"><g:if test="${educator.profile.quitDate}"><g:formatDate date="${educator.profile.quitDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic">keine Daten eingetragen</div></g:else></td>
         </tr>
 
         <tr class="prop">

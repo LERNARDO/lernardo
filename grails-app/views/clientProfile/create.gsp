@@ -293,7 +293,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
+              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
             </td>
           </tr>
 
