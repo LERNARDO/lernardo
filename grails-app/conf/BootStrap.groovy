@@ -75,18 +75,25 @@ class BootStrap {
       prf.lastName = "Zeillinger"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lkult.at", "Patrizia Rosenkranz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.firstName = "Patrizia"
       prf.lastName = "Rosenkranz"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lernardo.at", "Daniel Szabo") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lkult.at", "Daniel Szabo") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       UserProfile prf = ent.profile
       prf.firstName = "Daniel"
       prf.lastName = "Szabo"
+    }
+
+    entityHelperService.createEntityWithUserAndProfile("kurtludikovsky", etUser, "kll@lkult.at", "Kurt Ludikovsky") {Entity ent ->
+      ent.user.addToAuthorities(metaDataService.adminRole)
+      UserProfile prf = ent.profile
+      prf.firstName = "Kurt"
+      prf.lastName = "Ludikovsky"
     }
 
   }
