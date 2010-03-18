@@ -128,10 +128,10 @@ class PateProfileController {
       if (params.clients) {
         if(params.clients.class.isArray())
           params.clients.each {
-            new Link(source: Entity.get(it), target: pate, type: metaDataService.ltPate).save()
+            new Link(source: Entity.get(it), target: entity, type: metaDataService.ltPate).save()
           }
         else
-          new Link(source: Entity.get(params.clients), target: pate, type: metaDataService.ltPate).save()
+          new Link(source: Entity.get(params.clients), target: entity, type: metaDataService.ltPate).save()
       }
       if (params.lang == '1') {
         entity.user.locale = new Locale ("de", "DE")
