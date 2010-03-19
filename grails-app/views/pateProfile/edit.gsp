@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: pate, field: 'profile.PLZ')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: pate, field: 'profile.PLZ').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -73,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -84,7 +84,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street')}"/>
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -95,7 +95,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
+              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
             </td>
           </tr>
 
@@ -106,7 +106,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="nationality" from="${['Deutschland', 'England', 'Frankreich', 'Spanien', 'Portugal','Österreich']}"  value="${pate.profile.nationality}"/>
+              <g:select name="nationality" from="${grailsApplication.config.nationalities}"  value="${pate.profile.nationality}"/>
             </td>
           </tr>
 
@@ -172,7 +172,6 @@
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="Aktualisieren"/>
-        <g:link class="buttonGray" action="del" id="${pate.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
         <g:link class="buttonGray" action="show" id="${pate.id}">Zurück</g:link>
         <div class="spacer"></div>
       </div>

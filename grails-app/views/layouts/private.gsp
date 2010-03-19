@@ -135,7 +135,7 @@
           <div class="second">
             <ul>
               <app:isAdmin>
-                <li class="icon-admin"><g:link controller="adm" action="createNotification">Notifikation erstellen</g:link></li>
+                <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation erstellen</g:link></li>
                 <li class="icon-admin" style="border-bottom: 1px solid #999"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile verwalten</g:link></li>
               %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
               </app:isAdmin>

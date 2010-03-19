@@ -75,10 +75,13 @@
         </tbody>
       </table>
     </div>
-    <div class="buttons">
-      <g:link class="buttonBlue" action="edit" id="${facility?.id}">Bearbeiten</g:link>
-      <div class="spacer"></div>
-    </div>
+
+    <app:isMeOrAdmin entity="${facility}">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="edit" id="${facility?.id}">Bearbeiten</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isMeOrAdmin>
 
     <div>
       <h1>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h1>

@@ -104,10 +104,14 @@
         </tbody>
       </table>
     </div>
-    <div class="buttons">
-      <g:link class="buttonBlue" action="edit" id="${pate?.id}">Bearbeiten</g:link>
-      <div class="spacer"></div>
-    </div>
+
+    <app:isMeOrAdmin entity="${pate}">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="edit" id="${pate?.id}">Bearbeiten</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isMeOrAdmin>
+
   </div>
 </div>
 </body>

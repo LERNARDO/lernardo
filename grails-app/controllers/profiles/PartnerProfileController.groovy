@@ -45,7 +45,7 @@ class PartnerProfileController {
             try {
                 flash.message = message(code:"partner.deleted", args:[partner.profile.fullName])
                 partner.delete(flush:true)
-                redirect(action:"list")
+                redirect(controller:"profile", action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"partner.notDeleted", args:[partner.profile.fullName])

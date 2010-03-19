@@ -74,8 +74,8 @@ class CalendarController {
             def dtStart = new DateTime (it.profile.date)
             dtStart = dtStart.plusHours(1)
             def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-            def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-            eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: className]
+            //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+            eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false/*, className: className*/]
         }
 
         def json = eventList as JSON;

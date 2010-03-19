@@ -16,7 +16,7 @@
   <div class="boxGray">
     <div class="second">
       <g:each in="${educators}" var="educator">
-        <div style="padding: 3px 4px"><g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
+        <div style="padding: 3px 4px"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> <g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
       </g:each>
     </div>
   </div>

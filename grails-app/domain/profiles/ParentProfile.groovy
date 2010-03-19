@@ -16,6 +16,7 @@ class ParentProfile extends Profile {
   String qualification
   Boolean doesWork
   String work
+  Integer income
   String languages
   Boolean showTips = true
   
@@ -23,6 +24,7 @@ class ParentProfile extends Profile {
     fullName (blank: true)
     firstName (blank: false)
     lastName (blank: false)
+    income (nullable: true)
   }
 
   String toString(){

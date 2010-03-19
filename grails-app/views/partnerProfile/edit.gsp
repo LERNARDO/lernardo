@@ -146,7 +146,6 @@
         </div>
       <div class="buttons">
           <g:submitButton name="submitButton" value="Aktualisieren" />
-          <g:link class="buttonGray" action="del" id="${partner.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
            <g:link class="buttonGray" action="show" id="${partner.id}">Zurück</g:link>
         <div class="spacer"></div>
       </div>

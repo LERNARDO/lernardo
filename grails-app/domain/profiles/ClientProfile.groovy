@@ -17,6 +17,7 @@ class ClientProfile extends Profile {
     String street2
     String nationality
     String languages
+    String school
     Integer schoolLevel
     Boolean dropout
     String dropoutReason

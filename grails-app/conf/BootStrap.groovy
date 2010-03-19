@@ -175,6 +175,7 @@ class BootStrap {
       prf.dropout = false
       prf.country = ""
       prf.nationality = "Österreich"
+      prf.school = ""
       prf.schoolLevel = 1
       prf.notes = ""
     }
@@ -203,6 +204,7 @@ class BootStrap {
       prf.dropout = false
       prf.country = ""
       prf.nationality = "Österreich"
+      prf.school = ""
       prf.schoolLevel = 1
       prf.notes = ""
     }

@@ -44,7 +44,7 @@
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%
-      top.location.href = "${g.createLink (controller:"activityProfile",  action:"show")}"+"/"+calEvent.id
+      top.location.href = "${g.createLink (controller:"activity",  action:"show")}"+"/"+calEvent.id
     },
 
     dayClick: function (dayDate, allDay, jsEvent, view) {

@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName')}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: facility, field: 'profile.PLZ')}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: facility, field: 'profile.PLZ').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -95,7 +95,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: facility, field: 'profile.tel')}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: facility, field: 'profile.tel').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -152,7 +152,6 @@
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="Aktualisieren"/>
-        <g:link class="buttonGray" action="del" id="${facility.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
         <g:link class="buttonGray" action="show" id="${facility.id}">Zurück</g:link>
         <div class="spacer"></div>
       </div>

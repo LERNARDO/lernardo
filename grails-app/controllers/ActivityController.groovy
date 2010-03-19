@@ -59,14 +59,22 @@ class ActivityController {
       inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
 
       // get all activities of the facilities within the timeframe
-      facilities.each {
-        List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
+        // get all activities of the facilities the current entity is linked to
+        facilities.each {
+          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
-        tempList.each {bla ->
-          if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate+1)
-            activityList << bla.target
-          }
+          tempList.each {bla ->
+            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate+1)
+              activityList << bla.target
+            }
+        }
       }
+      else
+        Entity.findAllByType(metaDataService.etActivity).each {bla ->
+          if (bla.profile.date > inputDate && bla.profile.date < inputDate+1)
+            activityList << bla
+          }
 
       def activityCount = activityList.size()
       def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()

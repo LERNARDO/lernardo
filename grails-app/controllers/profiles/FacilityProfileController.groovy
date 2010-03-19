@@ -134,7 +134,7 @@ class FacilityProfileController {
             try {
                 flash.message = message(code:"facility.deleted", args:[facility.profile.fullName])
                 facility.delete(flush:true)
-                redirect(action:"list")
+                redirect(controller:"profile", action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"facility.notDeleted", args:[facility.profile.fullName])

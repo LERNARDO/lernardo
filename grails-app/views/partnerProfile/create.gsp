@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName')}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -51,7 +51,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="50" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description')}"/>
+              <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="50" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: partner, field: 'profile.PLZ')}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: partner, field: 'profile.PLZ').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -73,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: partner, field: 'profile.city')}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -84,7 +84,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: partner, field: 'profile.street')}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: partner, field: 'profile.street').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -95,7 +95,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: partner, field: 'profile.tel')}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: partner, field: 'profile.tel').decodeHTML()}"/>
             </td>
           </tr>
 

@@ -7,6 +7,7 @@ import de.uenterprise.ep.Account
 import profiles.UserProfile
 import posts.ArticlePost
 import lernardo.Event
+import lernardo.Msg
 
 import lernardo.Attendance
 import java.text.SimpleDateFormat
@@ -23,6 +24,41 @@ class ProfileController {
     def functionService
 
     def index = { }
+
+    def createNotification = {
+        def msgInstance = new Msg()
+        return [msgInstance:msgInstance,
+                entity: entityHelperService.loggedIn]
+    }
+
+    def saveNotification = {
+       def c = Entity.createCriteria()
+        def userList = c.list {
+          ne("type", metaDataService.etCommentTemplate)
+          ne("type", metaDataService.etActivity)
+          ne("type", metaDataService.etTemplate)
+          ne("type", metaDataService.etResource)
+          ne("type", metaDataService.etGroupColony)
+          ne("type", metaDataService.etGroupFamily)
+          ne("type", metaDataService.etGroupLevel)
+          ne("type", metaDataService.etGroupNetwork)
+        }
+
+       userList.each {
+          functionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
+          def msgInstance = new Msg(params)
+          msgInstance.entity = it
+          msgInstance.dateCreated = new Date()
+          msgInstance.sender = Entity.findByName('lernardoadmin')
+          msgInstance.receiver = it
+
+          if(!msgInstance.save(flush:true)) {
+              log.debug ("Notification for user" + msgInstance.entity.profile.fullName + "could not be saved")
+          }
+       }
+       flash.message = message(code:"admin.notificationSuccess")
+       redirect controller: entityHelperService.loggedIn.type.supertype.name + 'Profile', action:"show", id: entityHelperService.loggedIn.id
+    }
 
     def geocode = {
         def result = geoCoderService.geocodeLocation(params.name)

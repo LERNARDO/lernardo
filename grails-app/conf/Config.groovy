@@ -95,6 +95,9 @@ log4j = {
 
 }
 
+nationalities = ['Deutschland', 'England', 'Frankreich', 'Spanien', 'Portugal', 'Österreich', 'Mexiko', 'Italien']
+languages = ['Deutsch', 'Englisch', 'Französisch', 'Spanisch', 'Tsotsil', 'Tseltal', 'Zoque', 'Tojolabal', 'Kanjobal', 'Lacandon', 'Quiche', 'Chol', 'Cakchiquel']
+
 quotesMap = [0:'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              1:'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',
              2:'Der Erwachsene achtet auf Taten, das Kind auf Liebe.',

@@ -27,7 +27,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName')}"/>
+              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -38,7 +38,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName')}"/>
+              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 

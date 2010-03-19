@@ -62,12 +62,16 @@
             <td class="col">${entity.user.authorities.authority}</td>
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
-              <app:isEnabled entity="${entity}">
-                <g:link controller="profile" action="disable" id="${entity.id}">Deaktivieren</g:link>
-              </app:isEnabled>
-              <app:notEnabled entity="${entity}">
-                <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
-              </app:notEnabled><br/></app:notMe>
+                <app:isEnabled entity="${entity}">
+                  <g:link controller="profile" action="disable" id="${entity.id}">Deaktivieren</g:link>
+                </app:isEnabled>
+                <app:notEnabled entity="${entity}">
+                  <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
+                </app:notEnabled>
+                <app:isAdmin>
+                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+                </app:isAdmin>
+              </app:notMe>
               <app:isSysAdmin>
                 <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
                   <g:link controller="profile" action="giveAdminRole" id="${entity.id}">Admin geben</g:link>

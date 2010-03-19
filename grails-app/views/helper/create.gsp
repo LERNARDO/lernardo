@@ -47,7 +47,7 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="Anlegen"/>
-        <g:link class="buttonGray" action="list" params="[name:entity.name]">Abbrechen</g:link>
+        <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
         <div class="spacer"></div>
       </div>
 

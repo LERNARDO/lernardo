@@ -22,7 +22,7 @@
       <div style="float:right;">
         <app:isEducator entity="${entity}">
           <g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link>
-          <div class="spacer"></div>
+          <div class="spacer" style="margin-bottom: 5px"></div>
         </app:isEducator>
       </div>
       <p>${templateCount} Aktivitätsvorlage(n) gefunden</p>

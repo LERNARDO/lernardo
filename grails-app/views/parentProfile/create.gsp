@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:parent,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:parent,field:'profile.firstName')}"/>
+              <g:textField class="${hasErrors(bean:parent,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:parent,field:'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -40,7 +40,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName')}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -73,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: parent, field: 'profile.PLZ')}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: parent, field: 'profile.PLZ').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -84,7 +84,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: parent, field: 'profile.city')}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: parent, field: 'profile.city').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -95,7 +95,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: parent, field: 'profile.street')}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: parent, field: 'profile.street').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -128,7 +128,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: parent, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${['Deutsch', 'Englisch', 'Französisch', 'Spanisch','Tsotsil','Tseltal','Zoque','Tojolabal','Kanjobal','Lacandon','Quiche','Chol','Cakchiquel']}"/>
+              <g:select class="${hasErrors(bean: parent, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
             </td>
           </tr>
 
@@ -139,18 +139,18 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="nationality" from="${['Deutschland', 'England', 'Frankreich', 'Spanien', 'Portugal','Österreich']}"/>
+              <g:select name="nationality" from="${grailsApplication.config.nationalities}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="qualification">
-                <g:message code="parentProfile.qualification.label" default="Qualifikationen"/>
+                <g:message code="parentProfile.qualification.label" default="Schulbildung"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: parent, field: 'profile.qualification', 'errors')}" rows="6" cols="50" id="qualification" name="qualification" value="${fieldValue(bean: parent, field: 'profile.qualification')}"/>
+              <g:select id="qualification" name="qualification" from="${1..12}" value="${fieldValue(bean: parent, field: 'profile.qualification')}"/>
             </td>
           </tr>
 
@@ -172,7 +172,18 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.work', 'errors')}" size="30" id="work" name="work" value="${fieldValue(bean: parent, field: 'profile.work')}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.work', 'errors')}" size="30" id="work" name="work" value="${fieldValue(bean: parent, field: 'profile.work').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="income">
+                <g:message code="parentProfile.income.label" default="Einkommen"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.income', 'errors')}" size="30" id="income" name="income" value="${parent?.profile?.income?.toInteger()}"/>
             </td>
           </tr>
 

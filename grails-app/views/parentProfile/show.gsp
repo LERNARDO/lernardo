@@ -93,7 +93,7 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.qualification.label" default="Qualifikationen"/>:
+            <g:message code="parentProfile.qualification.label" default="Schulbildung"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.qualification') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
@@ -112,6 +112,13 @@
           <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.work') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="parentProfile.work.label" default="Einkommen"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.income') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
@@ -124,10 +131,14 @@
         </tbody>
       </table>
     </div>
-    <div class="buttons">
-      <g:link class="buttonBlue" action="edit" id="${parent?.id}">Bearbeiten</g:link>
-      <div class="spacer"></div>
-    </div>
+
+    <app:isMeOrAdmin entity="${parent}">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="edit" id="${parent?.id}">Bearbeiten</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isMeOrAdmin>
+
   </div>
 </div>
 </body>

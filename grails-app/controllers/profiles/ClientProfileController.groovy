@@ -45,7 +45,7 @@ class ClientProfileController {
             try {
                 flash.message = message(code:"client.deleted", args:[client.profile.fullName])
                 client.delete(flush:true)
-                redirect(action:"list")
+                redirect(controller:"profile", action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"client.notDeleted", args:[client.profile.fullName])
