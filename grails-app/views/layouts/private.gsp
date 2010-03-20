@@ -115,19 +115,21 @@
         </div>
 
         <ub:meOrAdmin entityName="${entity.name}">
+          <app:isEducator entity="${entity}">
           <div class="profile-group"><div class="second">Pädagogik</div></div>
           <div class="profile-box">
             <div class="second">
               <ul>
-                <app:isEducator entity="${entity}">
+                %{--<app:isEducator entity="${entity}">--}%
                   <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
-                </app:isEducator>
+                %{--</app:isEducator>--}%
                 %{--<app:isFacility entity="${entity}">
                   <li class="profile-activities"><g:link controller="profile" action="attendance" id="${entity.id}">Anwesenheits-/Essenslisten</g:link></li>
                 </app:isFacility>--}%
               </ul>
             </div>
           </div>
+          </app:isEducator>
         </ub:meOrAdmin>
 
         <div class="profile-group"><div class="second">Administration</div></div>
