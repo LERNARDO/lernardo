@@ -30,7 +30,7 @@
     </span>
 
     <div class="buttons">
-      <g:submitButton name="submitButton" value="Aktualisieren"/>
+      <g:submitButton name="submitButton" value="Speichern"/>
       <g:link action="index">Abbrechen</g:link>
     </div>
 

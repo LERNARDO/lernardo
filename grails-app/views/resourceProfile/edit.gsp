@@ -64,9 +64,9 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Aktualisieren"/>
+        <g:submitButton name="submitButton" value="Speichern"/>
         <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-        <g:link class="buttonGray" action="show" id="${resource?.id}">Zurück</g:link>
+        <g:link class="buttonGray" action="show" id="${resource?.id}">Abbrechen</g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

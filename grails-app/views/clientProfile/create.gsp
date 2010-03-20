@@ -412,8 +412,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Anlegen"/>
-        <g:link class="buttonGray" action="list">Zurück</g:link>
+        <g:submitButton name="submitButton" value="Speichern"/>
+        <g:link class="buttonGray" action="list">Abbrechen</g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

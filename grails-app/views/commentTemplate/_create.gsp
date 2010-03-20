@@ -9,7 +9,7 @@
 
   </div>
   <div class="buttons">
-    <g:submitButton name="submitButton" value="Fertig"/>
+    <g:submitButton name="submitButton" value="Speichern"/>
     <a class="buttonGray" href="#" onclick="jQuery('#createComment').hide(); return false;">Abbrechen</a>
     <div class="spacer"></div>
   </div>

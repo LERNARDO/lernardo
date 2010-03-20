@@ -105,8 +105,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Aktualisieren"/>
-        <g:link class="buttonGray" action="show" id="${user.id}">Zurück</g:link>
+        <g:submitButton name="submitButton" value="Speichern"/>
+        <g:link class="buttonGray" action="show" id="${user.id}">Abbrechen</g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

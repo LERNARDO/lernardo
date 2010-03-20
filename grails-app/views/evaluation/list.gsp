@@ -38,7 +38,7 @@
               <td>${evaluationInstance.writer.profile.fullName}</td>
             </tr>
           </table>
-          <g:link class="helperButton" action="edit" id="${evaluationInstance.id}" params="[entity:entity.id]">bearbeiten</g:link>
+          <g:link class="helperButton" action="edit" id="${evaluationInstance.id}" params="[entity:entity.id]">Bearbeiten</g:link>
         </div>
       </g:each>
     </ul>

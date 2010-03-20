@@ -27,7 +27,7 @@
             <tr>
               <td>
                 <g:submitButton name="checkPassword" value="Speichern"/>
-                <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Zurück</g:link>
+                <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Abbrechen</g:link>
               </td>
               <td>&nbsp;</td>
             </tr>

@@ -37,7 +37,7 @@
       </span>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Aktualisieren"/>
+        <g:submitButton name="submitButton" value="Speichern"/>
         <g:link class="buttonBlue" action="del" id="${evaluationInstance.id}" params="[name:entity.name]" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
         <g:link class="buttonGray" action="list" params="[name:entity.name]">Abbrechen</g:link>
         <div class="spacer"></div>

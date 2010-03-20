@@ -1,34 +1,3 @@
-<!DOCTYPE head [
-<!ELEMENT head (title|meta)*>
-<!ELEMENT title (#PCDATA)>
-<!ELEMENT meta (#PCDATA)>
-<!ATTLIST meta
-    name CDATA #REQUIRED
-    content CDATA #REQUIRED>
-<!ELEMENT body (div)*>
-<!ELEMENT div (div|h1|table)*>
-<!ATTLIST div
-    class CDATA #REQUIRED>
-<!ELEMENT h1 (#PCDATA)>
-<!ELEMENT table (tbody)*>
-<!ATTLIST table
-    id CDATA #REQUIRED>
-<!ELEMENT tbody (tr)*>
-<!ELEMENT tr (td)*>
-<!ATTLIST tr
-    class CDATA #IMPLIED>
-<!ELEMENT td (label|span|div)*>
-<!ATTLIST td
-    class CDATA #IMPLIED
-    valign CDATA #IMPLIED>
-<!ELEMENT label (#PCDATA)>
-<!ATTLIST label
-    for CDATA #REQUIRED>
-<!ELEMENT span (#PCDATA)>
-<!ATTLIST span
-    id CDATA #REQUIRED
-    class CDATA #REQUIRED>
-]>
 <head>
   <title>Lernardo | Nachricht senden</title>
   <meta name="layout" content="private"/>

@@ -33,7 +33,7 @@
     </ul>
 
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
-      <p><a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]">bearbeiten</g:link></app:isAdmin><br/>
+      <p><a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]">Bearbeiten</g:link></app:isAdmin><br/>
         ${helperInstance.content.decodeHTML()}</p>
     </g:each>
     </g:if>

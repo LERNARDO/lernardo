@@ -82,7 +82,7 @@
               <div class="info">
                 <div class="time"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.profile.dateCreated}"/></div>
                 <ub:meOrAdmin entityName="${creator.name}">
-                  <div class="actions"><g:link controller="commentTemplate" action="delete" id="${comment.id}" params="[template:template.id]" onclick="return confirm('Kommentar wirklich löschen?');">löschen</g:link></div>
+                  <div class="actions"><g:link controller="commentTemplate" action="delete" id="${comment.id}" params="[template:template.id]" onclick="return confirm('Kommentar wirklich löschen?');">Löschen</g:link></div>
                 </ub:meOrAdmin>
               </div>
             </div>

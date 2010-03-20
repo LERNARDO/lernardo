@@ -73,7 +73,7 @@
           </table>
 
           <div class="buttons">
-              <g:submitButton name="submitButton" value="Ändern" />
+              <g:submitButton name="submitButton" value="Speichern" />
               <g:link class="buttonGray" action="show" id="${activity.id}" params="[name:currentEntity.name]">Abbrechen</g:link>
               <div class="spacer"></div>
           </div>

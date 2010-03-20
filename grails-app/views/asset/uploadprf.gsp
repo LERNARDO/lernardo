@@ -17,7 +17,7 @@
         <p>Zur optimalen Darstellung ist ein Bildformat von 180 x 233 px empfehlenswert.</p>
 
         <div class="buttons">
-          <g:submitButton name="submit" value="Ändern"/>
+          <g:submitButton name="submit" value="Speichern"/>
           <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">Abbrechen</g:link>
           <div class="spacer"></div>
         </div>

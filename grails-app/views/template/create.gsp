@@ -188,7 +188,7 @@
         </table>
 
         <div class="buttons">
-          <g:submitButton name="submitButton" value="Anlegen" />
+          <g:submitButton name="submitButton" value="Speichern" />
           <g:link class="buttonGray" controller="template" action="list">Abbrechen</g:link>
           <div class="spacer"></div>
         </div>
