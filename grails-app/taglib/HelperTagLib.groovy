@@ -12,6 +12,22 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
+  // returns the filetype - workaround as long as Mike doesn't fix it the proper way
+  def getFileType = {attrs ->
+    if (attrs.type == 'application/vnd.ms-excel')
+      out << "Excel"
+    else if (attrs.type == 'image/jpeg')
+      out << "Bild"
+    else if (attrs.type == 'application/msword')
+      out << "Word"
+    else if (attrs.type == 'application/force-download' || attrs.type == 'application/pdf')
+      out << "PDF"
+    else if (attrs.type == 'application/octet-stream') // probably not always the case
+      out << "Text"
+    else
+      out << "Unbekannt"
+  }
+
   def getResources = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltResource)
     if (link)

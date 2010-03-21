@@ -76,6 +76,7 @@
           <div class="second">
             <ul>
               <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
+              <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente ansehen</g:link></li>
               <ub:meOrAdmin entityName="${entity.name}">
                 <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse ansehen</g:link></li>
                 <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach ansehen</g:link> <app:getNewInboxMessages entity="${entity}"/></li>

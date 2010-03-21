@@ -1,3 +1,5 @@
+import lernardo.PublicationType
+
 class MetaDataService {
 
   boolean transactional = true
@@ -84,6 +86,10 @@ class MetaDataService {
   static final String LT_ACT_FACILITY = "Einrichtung"
   static final String LT_ACT_TEMPLATE = "Vorlage"
 
+  static final String PT_DOC1 = "Typ1"
+  static final String PT_DOC2 = "Typ2"
+  static final String PT_DOC3 = "Typ3"
+
   def initialize() {
     getEstUser()
     getEstEducator()
@@ -144,6 +150,10 @@ class MetaDataService {
     getModRole()
     getAdminRole()
     getSystemAdminRole()
+
+    getPtDoc1()
+    getPtDoc2()
+    getPtDoc3()
   }
 
   def getEstUser()            {defaultObjectService.openEST (EST_USER, PRT_USER) }
@@ -206,4 +216,21 @@ class MetaDataService {
   def getModRole()         {defaultObjectService.openRole (ROLE_MOD, "moderator") }
   def getAdminRole()       {defaultObjectService.openRole (ROLE_ADMIN, "administrator") }
   def getSystemAdminRole() {defaultObjectService.openRole (ROLE_SYSTEMADMIN, "system administrator") }
+
+  def getPtDoc1 () {this.openPT (PT_DOC1, "Typ 1")}
+  def getPtDoc2 () {this.openPT (PT_DOC2, "Typ 2")}
+  def getPtDoc3 () {this.openPT (PT_DOC3, "Typ 3")}
+
+  def openPT (String name, String desc) {
+    PublicationType pt = PublicationType.findByName (name)
+    if (!pt) {
+      pt = new PublicationType(name:name, description:desc)
+      if (!pt.save()) {
+        pr.errors.each {log.error ("bootstrap validation error: $it")}
+        throw new IllegalArgumentException("failed to bootstrap '$name' Publication Type")
+      }
+    }
+
+    return (pt)
+  }
 }
