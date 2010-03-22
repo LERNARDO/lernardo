@@ -52,7 +52,7 @@
             %{--</td>--}%
             <td class="profile-pic">
               <app:isEnabled entity="${msgInstance.sender}">
-                <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}">
+                <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}"  params="[entity:msgInstance.sender.id]">
                   <ub:profileImage name="${msgInstance.sender.name}" width="50" height="50" align="left"/>
                 </g:link>
               </app:isEnabled>
@@ -70,7 +70,7 @@
               </g:if>
               <span class="name">von
                 <app:isEnabled entity="${msgInstance.sender}">
-                  <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}">${msgInstance.sender.profile.fullName}</g:link>
+                  <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}" params="[entity:msgInstance.sender.id]">${msgInstance.sender.profile.fullName}</g:link>
                 </app:isEnabled>
                 <app:notEnabled entity="${msgInstance.sender}">
                   <span class="notEnabled">${msgInstance.sender.profile.fullName}</span>

@@ -71,24 +71,15 @@ class HelperController {
 
     def update = {
         def helperInstance = Helper.get(params.id)
+        def entity = Entity.get(params.name)
         if(helperInstance) {
-            if(params.version) {
-                def version = params.version.toLong()
-                if(helperInstance.version > version) {
-                    
-                    helperInstance.errors.rejectValue("version", "helper.optimistic.locking.failure", "Another user has updated this Helper while you were editing.")
-
-                    render view:'edit', model:[helperInstance:helperInstance]
-                    return
-                }
-            }
             helperInstance.properties = params
             if(!helperInstance.hasErrors() && helperInstance.save()) {
                 flash.message = message(code:"helper.updated")  
-                redirect action:'list', params:[name: params.name]
+                redirect action:'list', id:entity.id
             }
             else {
-                render view:'edit', model:[helperInstance:helperInstance]
+                render view:'edit', model:[helperInstance:helperInstance, entity: entity]
             }
         }
         else {
@@ -108,6 +99,7 @@ class HelperController {
 
     def save = {
         def helperInstance = new Helper(params)
+        def entity = Entity.get(params.name)
 
         def type
         if (helperInstance.type == 'Educator')
@@ -124,10 +116,10 @@ class HelperController {
 
         if(helperInstance.save(flush:true)) {
             flash.message = message(code:"helper.created")
-            redirect action:"list", params:[name:params.name]
+            redirect action:"list", id:entity.id
         }
         else {
-            render view:'create', model:[helperInstance:helperInstance]
+            render view:'create', model:[helperInstance:helperInstance, entity: entity]
         }
     }
 }

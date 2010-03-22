@@ -126,7 +126,7 @@ class MsgController {
         functionService.createEvent(message.sender, 'Du hast '+message.receiver.profile.fullName+' eine Nachricht geschickt.')
         functionService.createEvent(message.receiver, message.sender.profile.fullName+' hat dir eine Nachricht geschickt.')
 
-        redirect controller: message2.entity.type.supertype.name +'Profile', action:'show', id:params.entity
+        redirect controller: message2.entity.type.supertype.name +'Profile', action:'show', id:entityHelperService.loggedIn.id, params:[entity:entityHelperService.loggedIn]
     }
     else {
         render view:'create', model:[msgInstance: message, entity: Entity.get(params.entity)]

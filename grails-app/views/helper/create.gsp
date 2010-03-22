@@ -18,7 +18,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="save" method="post" params="[name:entity.name]">
+    <g:form action="save" method="post" params="[name:entity.id]">
       <table>
         <tbody>
 

@@ -41,12 +41,12 @@
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
           <tr>
             <td class="profile-pic">
-              <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">
+              <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}" params="[entity:msgInstance.receiver.id]">
                 <ub:profileImage name="${msgInstance.receiver.name}" width="50" height="50" align="left"/>
               </g:link>
             </td>
             <td class="name-date">
-              <span class="name">an <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName}</g:link></span>
+              <span class="name">an <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}" params="[entity:msgInstance.receiver.id]">${msgInstance.receiver.profile.fullName}</g:link></span>
               <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
             </td>
             <td class="subject">

@@ -18,7 +18,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="update" method="post" id="${helperInstance?.id}" params="[name:entity.name]">
+    <g:form action="update" method="post" id="${helperInstance?.id}" params="[name:entity.id]">
       <table>
         <tbody>
 

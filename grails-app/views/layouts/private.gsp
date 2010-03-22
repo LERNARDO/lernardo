@@ -97,7 +97,7 @@
               </g:if>
 
               <app:notMe entity="${entity}">
-                <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}">Nachricht senden</g:link></li>
+                <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]">Nachricht senden</g:link></li>
                 <app:isFriend entity="${entity}">
                   <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
                 </app:isFriend>
