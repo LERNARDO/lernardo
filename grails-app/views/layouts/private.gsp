@@ -50,7 +50,7 @@
             </div>
           </div>
           <div id="picture">
-            <ub:profileImage name="${entity.name}" width="180" height="180"/>
+            <ub:profileImage name="${entity.name}" width="180" height="233"/>
           </div>
           <div class="type" style="margin-top: -2px">
             <div class="second">
