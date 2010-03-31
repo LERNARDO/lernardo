@@ -47,11 +47,23 @@ class HelperTagLib {
   }
 
   def getGroup = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroup)
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
     if (link)
       link.each {out << body(members: it.source)}
     else
       out << '<span class="italic">Diese Gruppe ist leer</span>'
+  }
+
+  def getGroupSize = {attrs, body ->
+    out <<Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)  
+  }
+
+  def getGroupDuration = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
+    def duration = 0
+    if (link)
+      link.each {duration += it.source.profile.duration}
+    out << duration
   }
 
   def getTemplate = {attrs, body ->
@@ -100,6 +112,14 @@ class HelperTagLib {
       out << body(creator: link.source)
     else
       out << '<span class="italic">keinem Ersteller zugewiesen</span>'
+  }
+
+  def getEditor = {attrs, body ->
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltEditor)
+    if (link)
+      out << body(editor: link.source)
+    else
+      out << '<span class="italic">noch nicht bearbeitet</span>'
   }
 
   def isParent = {attrs, body->

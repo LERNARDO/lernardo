@@ -1,0 +1,138 @@
+package groups
+
+import de.uenterprise.ep.Entity
+import de.uenterprise.ep.EntityType
+import de.uenterprise.ep.Link
+import org.springframework.web.servlet.support.RequestContextUtils
+
+class GroupActivityTemplateProfileController {
+    def metaDataService
+    def entityHelperService
+    def profileHelperService
+
+    def index = {
+        redirect action:"list", params:params
+    }
+
+    // the delete, save and update actions only accept POST requests
+    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+
+    def list = {
+        params.max = Math.min( params.max ? params.int('max') : 10,  100)
+        return [groups: Entity.findAllByType(metaDataService.etGroupActivityTemplate),
+                groupTotal: Entity.countByType(metaDataService.etGroupActivityTemplate)]
+    }
+
+    def show = {
+        def group = Entity.get(params.id)
+        def entity = params.entity ? group : entityHelperService.loggedIn
+
+        if(!group) {
+            flash.message = "groupProfile not found with id ${params.id}"
+            redirect(action:list)
+        }
+        else {
+          return [group: group, entity: entity]
+        }
+    }
+
+    def del = {
+        def group = Entity.get(params.id)
+        if(group) {
+            // delete all links
+            Link.findAllBySourceOrTarget(group, group).each {it.delete()}
+            try {
+                flash.message = message(code:"group.deleted", args:[group.profile.fullName])
+                group.delete(flush:true)
+                redirect(action:"list")
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = message(code:"group.notDeleted", args:[group.profile.fullName])
+                redirect(action:"show",id:params.id)
+            }
+        }
+        else {
+            flash.message = "groupProfile not found with id ${params.id}"
+            redirect(action:"list")
+        }
+    }
+
+    def edit = {
+        def group = Entity.get(params.id)
+
+        if(!group) {
+            flash.message = "groupProfile not found with id ${params.id}"
+            redirect action:'list'
+        }
+        else {
+            return [group: group, entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+        }
+    }
+
+    def update = {
+      def group = Entity.get(params.id)
+
+      group.profile.properties = params
+
+      // create links
+      def oldEditor = Link.findByTargetAndType(group, metaDataService.ltEditor)
+      if (oldEditor)
+        oldEditor.delete()
+      new Link(source: entityHelperService.loggedIn, target: group, type: metaDataService.ltEditor).save()
+
+      Link.findAllByTargetAndType(group, metaDataService.ltGroupMember).each {
+      log.info "group member deleted: "+it
+      it.delete()}
+      
+      def templates = params.templates
+      if (templates.class.isArray()) {
+        templates.each {
+          new Link(source: Entity.get(it), target: group, type: metaDataService.ltGroupMember).save()
+        }
+      }
+      else {
+        new Link(source: Entity.get(templates), target: group, type: metaDataService.ltGroupMember).save()
+      }
+
+      if(!group.hasErrors() && group.save()) {
+          flash.message = message(code:"group.updated", args:[group.profile.fullName])
+          redirect action:'show', id: group.id
+      }
+      else {
+          render view:'edit', model:[group: group, entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+      }
+    }
+
+    def create = {
+        return [entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+    }
+
+    def save = {
+      EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+
+      try {
+        def entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile.properties = params
+        }
+        // create links
+        new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+        def templates = params.templates
+        if (templates.class.isArray()) {
+          templates.each {
+            new Link(source: Entity.get(it), target: entity, type: metaDataService.ltGroupMember).save()
+          }
+        }
+        else {
+          new Link(source: Entity.get(templates), target: entity, type: metaDataService.ltGroupMember).save()
+        }
+
+        flash.message = message(code:"group.created", args:[entity.profile.fullName])
+        redirect action:'list'
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)])
+        return
+      }
+
+    }
+}

@@ -24,4 +24,8 @@ class TemplateProfile extends Profile {
     fullName (blank: false)
     description (blank: false, maxSize: 5000)
   }
+
+  String toString(){
+    return "${fullName} (${duration}min)"
+  }
 }

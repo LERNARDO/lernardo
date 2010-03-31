@@ -18,6 +18,7 @@ class MetaDataService {
   static final String EST_GROUP_COLONY = "GroupColony"
   static final String EST_GROUP_NETWORK = "GroupNetwork"
   static final String EST_GROUP_LEVEL = "GroupLevel"
+  static final String EST_GROUP_ACTIVITY_TEMPLATE = "GroupActivityTemplate"
   static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
   static final String EST_PATE = "pate"
   static final String EST_PARTNER = "partner"
@@ -35,6 +36,7 @@ class MetaDataService {
   static final String ET_GROUP_COLONY = "Gruppe Siedlung"
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
   static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
+  static final String ET_GROUP_ACTIVITY_TEMPLATE = "Gruppe Aktivitätsvorlagen"
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
@@ -52,6 +54,7 @@ class MetaDataService {
   static final String PRT_GROUP_COLONY = "GroupColony"
   static final String PRT_GROUP_NETWORK = "GroupNetwork"
   static final String PRT_GROUP_LEVEL = "GroupLevel"
+  static final String PRT_GROUP_ACTIVITY_TEMPLATE = "GroupActivityTemplate"
   static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
   static final String PRT_PATE = "Pate"
   static final String PRT_PARTNER = "Partner"
@@ -73,8 +76,9 @@ class MetaDataService {
   static final String LT_CLIENTSHIP = "Betreuung"
   static final String LT_BOOKMARK = "Beobachtung"
   static final String LT_WORKING = "Arbeitet"
-  static final String LT_GROUP = "Gruppe"
+  static final String LT_GROUP_MEMBER = "Gruppenmitglied"
   static final String LT_CREATOR = "Ersteller"
+  static final String LT_EDITOR = "Bearbeiter"
   static final String LT_COMMENT = "Kommentar"
   static final String LT_PATE = "Pate"
   static final String LT_PARTNER = "Partner"
@@ -102,6 +106,7 @@ class MetaDataService {
     getEstGroupColony()
     getEstGroupNetwork()
     getEstGroupLevel()
+    getEstGroupActivityTemplate()
     getEstCommentTemplate()
     getEstPate()
     getEstPartner()
@@ -119,6 +124,7 @@ class MetaDataService {
     getEtGroupColony()
     getEtGroupNetwork()
     getEtGroupLevel()
+    getEtGroupActivityTemplate()
     getEtCommentTemplate()
     getEtPate()
     getEtPartner()
@@ -134,8 +140,9 @@ class MetaDataService {
     getLtClientship()
     getLtBookmark()
     getLtWorking()
-    getLtGroup()
+    getLtGroupMember()
     getLtCreator()
+    getLtEditor()
     getLtComment()
     getLtPate()
     getLtPartner()
@@ -167,6 +174,7 @@ class MetaDataService {
   def getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
   def getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
   def getEstGroupLevel()      {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
+  def getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
   def getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
   def getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
   def getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
@@ -184,6 +192,7 @@ class MetaDataService {
   def getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
   def getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
   def getEtGroupLevel()      {defaultObjectService.openET (ET_GROUP_LEVEL, estGroupLevel) }
+  def getEtGroupActivityTemplate() {defaultObjectService.openET (ET_GROUP_ACTIVITY_TEMPLATE, estGroupActivityTemplate) }
   def getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
   def getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
   def getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
@@ -199,8 +208,9 @@ class MetaDataService {
   def getLtClientship()  {defaultObjectService.openLT (LT_CLIENTSHIP, lstOther) }
   def getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
   def getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
-  def getLtGroup()       {defaultObjectService.openLT (LT_GROUP, lstOther) }
+  def getLtGroupMember() {defaultObjectService.openLT (LT_GROUP_MEMBER, lstOther) }
   def getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
+  def getLtEditor()      {defaultObjectService.openLT (LT_EDITOR, lstOther) }
   def getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
   def getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
   def getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
