@@ -11,7 +11,7 @@ class Post {
   Date lastUpdated
 
     static constraints = {
-      content(blank: false, maxSize:2000)
+      content(blank: false, maxSize:20000)
       dateCreated(nullable: true)
       lastUpdated(nullable: true)
     }
