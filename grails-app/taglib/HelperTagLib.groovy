@@ -12,18 +12,28 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
-  // returns the filetype - workaround as long as Mike doesn't fix it the proper way
+  // returns the filetype of a publication
   def getFileType = {attrs ->
     if (attrs.type == 'application/vnd.ms-excel')
       out << "Excel"
-    else if (attrs.type == 'image/jpeg')
+    else if (attrs.type == 'image/jpeg' || attrs.type == 'image/png' || attrs.type == 'image/gif' || attrs.type == 'image/bmp')
       out << "Bild"
     else if (attrs.type == 'application/msword')
       out << "Word"
     else if (attrs.type == 'application/force-download' || attrs.type == 'application/pdf')
       out << "PDF"
-    else if (attrs.type == 'application/octet-stream') // probably not always the case
+    else if (attrs.type == 'text/plain')
       out << "Text"
+    else if (attrs.type == 'application/vnd.ms-powerpoint' || attrs.type == 'application/mspowerpoint')
+      out << "PowerPoint"
+    else if (attrs.type == 'application/x-shockwave-flash')
+      out << "Flash"
+    else if (attrs.type == 'application/zip')
+      out << "Archiv"
+    else if (attrs.type == 'audio/mpeg3' || attrs.type == 'audio/x-mpeg3')
+      out << "MP3"
+    else if (attrs.type == 'video/avi')
+      out << "Video"
     else
       out << "Unbekannt"
   }
