@@ -64,8 +64,8 @@
               <app:notEnabled entity="${client}">
                 <span class="notEnabled">${client.profile.fullName}</span>
               </app:notEnabled><br>
-            </g:each></td>
-            </app:getClients>
+            </g:each>
+            </app:getClients></td>
           </tr>
 
         </table>
