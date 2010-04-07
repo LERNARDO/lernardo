@@ -15,17 +15,21 @@ class MsgController {
 
   def inbox = {
     params.max = Math.min( params.max ? params.int('max') : 10,  100)
-    def messages = filterService.getInbox(params.id)
+    params.offset = params.offset ? params.int('offset') : 0
+    def messages = filterService.getInbox(params.id, params)
+    def messagesTotal = filterService.getInboxCount (params.id)
     return ['msgInstanceList': messages,
-            'msgInstanceTotal': messages.count(),
+            'msgInstanceTotal': messagesTotal,
             'entity': Entity.get(params.id)]
   }
 
   def outbox = {
     params.max = Math.min( params.max ? params.int('max') : 10,  100)
-    def messages = filterService.getOutbox(params.id)
+    params.offset = params.offset ? params.int('offset') : 0
+    def messages = filterService.getOutbox(params.id, params)
+    def messagesTotal = filterService.getOutboxCount (params.id)
     return ['msgInstanceList': messages,
-            'msgInstanceTotal': messages.count(),
+            'msgInstanceTotal': messagesTotal,
             'entity': Entity.get(params.id)]
   }
 

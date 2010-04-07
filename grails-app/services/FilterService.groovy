@@ -25,8 +25,19 @@ class FilterService {
       eq('entity',Entity.get(id))
       ne('sender',entityHelperService.loggedIn)
       order("dateCreated", "desc")
+      maxResults(params.max)
+      firstResult(params.offset)
     }
     return results
+  }
+
+  def getInboxCount (String id) {
+    def c = Msg.createCriteria()
+    def results = c.list {
+      eq('entity',Entity.get(id))
+      ne('sender',entityHelperService.loggedIn)
+    }
+    return results.size()
   }
 
   // returns all outbox messages for a given entity
@@ -36,9 +47,21 @@ class FilterService {
       eq('entity',Entity.get(id))
       eq('sender',entityHelperService.loggedIn)
       order("dateCreated", "desc")
+      maxResults(params.max)
+      firstResult(params.offset)
     }
     return results
   }
+
+  def getOutboxCount (String id) {
+    def c = Msg.createCriteria()
+    def results = c.list {
+      eq('entity',Entity.get(id))
+      eq('sender',entityHelperService.loggedIn)
+    }
+    return results.size()
+  }
+
 
   // returns entities for user search
   def findUsers (String name) {
