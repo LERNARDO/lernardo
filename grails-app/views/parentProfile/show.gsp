@@ -102,7 +102,7 @@
           <td valign="top" class="name">
             <g:message code="parentProfile.doesWork.label" default="Berufstätig"/>:
           </td>
-          <td valign="top" class="value"><app:showBoolean bool="${parent.profile.doesWork}"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${parent.profile.doesWork}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">
@@ -124,7 +124,7 @@
             <td valign="top" class="name">
               <g:message code="parentProfile.work.label" default="Aktiv"/>:
             </td>
-            <td valign="top" class="value"><app:showBoolean bool="${parent.user.enabled}"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${parent.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
 

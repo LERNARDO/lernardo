@@ -68,7 +68,7 @@
           <td valign="top" class="name">
             <g:message code="operatorProfile.showTips.label" default="Zeige Tipps"/>:
           </td>
-          <td valign="top" class="value"><app:showBoolean bool="${operator.profile.showTips}"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${operator.profile.showTips}" true="Ja" false="Nein"/></td>
         </tr>
 
         <app:isAdmin>
@@ -76,7 +76,7 @@
             <td valign="top" class="name">
               <g:message code="operatorProfile.work.label" default="Aktiv"/>:
             </td>
-            <td valign="top" class="value"><app:showBoolean bool="${operator.user.enabled}"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${operator.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
 

@@ -82,7 +82,7 @@
             <td valign="top" class="name">
               <g:message code="parentProfile.work.label" default="Aktiv"/>:
             </td>
-            <td valign="top" class="value"><app:showBoolean bool="${pate.user.enabled}"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${pate.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
 

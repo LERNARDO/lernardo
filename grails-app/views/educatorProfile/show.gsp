@@ -88,7 +88,7 @@
           <td valign="top" class="name">
             <g:message code="educatorProfile.employed.label" default="Angestellt"/>:
           </td>
-          <td valign="top" class="value"><app:showBoolean bool="${educator.profile.employed}"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${educator.profile.employed}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">

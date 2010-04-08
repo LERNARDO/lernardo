@@ -58,7 +58,7 @@
               </app:notEnabled>
             </td>
             <td class="col">${entity.type.name}</td>
-            <td class="col"><app:showBoolean bool="${entity.user.enabled}"/></td>
+            <td class="col"><g:formatBoolean boolean="${entity.user.enabled}" true="Ja" false="Nein"/></td>
             <td class="col">${entity.user.authorities.authority}</td>
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">

@@ -172,7 +172,7 @@
           <td valign="top" class="name">
             <g:message code="clientProfile.doesWork.label" default="Berufstätig"/>:
           </td>
-          <td valign="top" class="value"><app:showBoolean bool="${client.profile.doesWork}"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.doesWork}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">
@@ -194,7 +194,7 @@
           <td valign="top" class="name">
             <g:message code="clientProfile.dropout.label" default="Aussteiger"/>:
           </td>
-          <td valign="top" class="value"><app:showBoolean bool="${client.profile.dropout}"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.dropout}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">
@@ -244,7 +244,7 @@
             <td valign="top" class="name">
               <g:message code="clientProfile.work.label" default="Aktiv"/>:
             </td>
-            <td valign="top" class="value"><app:showBoolean bool="${client.user.enabled}"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${client.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
 

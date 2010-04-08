@@ -40,7 +40,7 @@
             <td valign="top" class="name">
               <g:message code="userProfile.work.label" default="Aktiv"/>:
             </td>
-            <td valign="top" class="value"><app:showBoolean bool="${user.user.enabled}"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${user.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
 

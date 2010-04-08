@@ -186,13 +186,6 @@ class HelperTagLib {
       out << 'Weiblich'
   }
 
-  def showBoolean = {attrs ->
-    if (attrs.bool == false)
-      out << 'Nein'
-    else
-      out << 'Ja'
-  }
-
   def getNewInboxMessages = {attrs ->
     int m = filterService.getNewInboxMessages(attrs.entity.id.toString())
     if (m > 0)

@@ -68,7 +68,7 @@
             <td valign="top" class="name">
               <g:message code="facilityProfile.enabled.label" default="Aktiv"/>:
             </td>
-            <td valign="top" class="value"><app:showBoolean bool="${facility.user.enabled}"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${facility.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
 
