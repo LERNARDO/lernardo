@@ -5,12 +5,16 @@ import de.uenterprise.ep.Profile
 class GroupFamilyProfile extends Profile{
 
     String livingConditions
-    //Integer personCount - calculated by total count of members
-    //Integer totalIncome - calculated by incomes of members
-    String otherData
+    String socioeconomicData // added on 21.04.2010
+    String otherInfo // changed on 21.04.2010, before: otherData
+    Integer amountHousehold // changed on 21.04.2010, before: personCount
+    Integer familyIncome // changed on 21.04.2010, before: totalIncome
+    String[] familyProblems // added on 21.04.2010
 
     static constraints = {
-      livingConditions (maxSize: 10000)
-      otherData (maxSize: 10000)
+      fullName (blank: false, size: 2..50)
+      livingConditions (blank: true, maxSize: 500)
+      socioeconomicData (blank: true, maxSize: 500)
+      otherInfo (blank: true, maxSize: 500)
     }
 }

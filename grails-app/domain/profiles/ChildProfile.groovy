@@ -1,0 +1,25 @@
+package profiles
+
+import de.uenterprise.ep.Profile
+
+class ChildProfile extends Profile {
+
+    String firstName
+    String lastName
+    Date birthDate
+    Byte gender
+
+    Boolean job
+    String jobType
+    Integer jobIncome
+    String jobFrequency
+  
+    static constraints = {
+      fullName (blank: true)
+      firstName (blank: false, size: 2..50)
+      lastName (blank: false, size: 2..50)
+      jobType (nullable: true)
+      jobIncome (nullable: true)
+      jobFrequency (nullable: true, blank: true, maxSize: 20)
+    }
+}

@@ -4,19 +4,36 @@ import de.uenterprise.ep.Profile
 
 class FacilityProfile extends Profile {
 
-  String PLZ
-  String city
-  String street
-  String tel
-  String description
-  Boolean showTips = true
+    String description
 
-  static constraints = {
-    fullName (blank: false)
-    description(maxSize: 2000)
-  }
+    String country // added on 20.04.2010
+    String zip // changed on 20.04.2010, before: PLZ
+    String city // changed on 20.04.2010, before: city
+    String street // changed on 20.04.2010, before: street
 
-  String toString(){
-    return "${fullName}"
-  }
+    String[] contactFirstName
+    String[] contactLastName
+    String[] contactCountry
+    String[] contactZip
+    String[] contactCity
+    String[] contactStreet
+    String[] contactPhone
+    String[] contactEmail
+    String[] contactFunction
+
+    Boolean showTips = true
+
+    static constraints = {
+      fullName (blank: false, size: 2..50)
+      description (blank: true, maxSize: 500)
+      country (size: 2..50)
+      zip (size: 4..10)
+      city (size: 2..50)
+      street (size: 2..50)
+    }
+
+    String toString(){
+      return "${fullName}"
+    }
+  
 }
