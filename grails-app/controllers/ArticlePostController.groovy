@@ -1,7 +1,8 @@
 import posts.ArticlePost
+import de.uenterprise.ep.EntityHelperService
 
 class ArticlePostController {
-  def entityHelperService
+  EntityHelperService entityHelperService
 
   def index = {
     params.offset = params.offset ?: 0
@@ -10,7 +11,7 @@ class ArticlePostController {
   }
 
   def show = {
-    def article = ArticlePost.get(params.id)
+    ArticlePost article = ArticlePost.get(params.id)
     if (article)
       return ['article': article]
     else
@@ -19,18 +20,18 @@ class ArticlePostController {
   }
 
   def edit = {
-    def article = ArticlePost.get(params.id)
+    ArticlePost article = ArticlePost.get(params.id)
     return ['postInstance': article]
   }
 
   def create = {
-    def article = new ArticlePost()
+    ArticlePost article = new ArticlePost()
     article.properties = params
     return ['postInstance': article]
   }
 
   def delete = {
-    def article = ArticlePost.get(params.id)
+    ArticlePost article = ArticlePost.get(params.id)
     if (article) {
       try {
         flash.message = message(code: "article.deleted", args: [article.title])
@@ -49,7 +50,7 @@ class ArticlePostController {
   }
 
   def save = {
-    def article = new ArticlePost(params)
+    ArticlePost article = new ArticlePost(params)
     article.author = entityHelperService.loggedIn
     if (!article.hasErrors() && article.save()) {
       flash.message = message(code: "article.created", args: [article.title])
@@ -61,7 +62,7 @@ class ArticlePostController {
   }
 
   def update = {
-    def article = ArticlePost.get(params.id)
+    ArticlePost article = ArticlePost.get(params.id)
     if (article) {
       article.properties = params
       if (!article.hasErrors() && article.save()) {

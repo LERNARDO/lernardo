@@ -1,15 +1,17 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
+import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.ProfileHelperService
 
 class CommentTemplateController {
-  def entityHelperService
-  def functionService
-  def metaDataService
-  def profileHelperService
+  EntityHelperService entityHelperService
+  FunctionService functionService
+  MetaDataService metaDataService
+  ProfileHelperService profileHelperService
 
   def delete = {
-    def comment = Entity.get(params.id)
+    Entity comment = Entity.get(params.id)
     if (comment) {
       def links = Link.findAllBySourceOrTarget(comment, comment)
       links.each {it.delete()}
@@ -36,7 +38,7 @@ class CommentTemplateController {
   def save = {
     EntityType etCommentTemplate = metaDataService.etCommentTemplate
 
-    def entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
+    Entity entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "comment"
       ent.profile.content = params.content

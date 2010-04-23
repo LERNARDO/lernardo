@@ -3,11 +3,13 @@ package lernardo
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
+import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.ProfileHelperService
 
 class ResourceProfileController {
     def metaDataService
-    def entityHelperService
-    def profileHelperService
+    EntityHelperService entityHelperService
+    ProfileHelperService profileHelperService
     
     def index = {
         redirect action:"list", params:params 
@@ -23,7 +25,7 @@ class ResourceProfileController {
     }
 
     def show = {
-        def resource = Entity.get( params.id )
+        Entity resource = Entity.get( params.id )
 
         if(!resource) {
             flash.message = "ResourceProfile not found with id ${params.id}"
@@ -35,7 +37,7 @@ class ResourceProfileController {
     }
 
     def del = {
-        def resource = Entity.get(params.id)
+        Entity resource = Entity.get(params.id)
         if(resource) {
             try {
                 flash.message = message(code:"resource.deleted", args:[resource.profile.fullName])
@@ -54,7 +56,7 @@ class ResourceProfileController {
     }
 
     def edit = {
-        def resource = Entity.get(params.id)
+        Entity resource = Entity.get(params.id)
 
         if(!resource) {
             flash.message = "ResourceProfile not found with id ${params.id}"
@@ -66,7 +68,7 @@ class ResourceProfileController {
     }
 
     def update = {
-      def resource = Entity.get(params.id)
+      Entity resource = Entity.get(params.id)
 
       resource.profile.properties = params
       
@@ -87,7 +89,7 @@ class ResourceProfileController {
       EntityType etResource = metaDataService.etResource
 
       try {
-        def entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
+        Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
           ent.profile.properties = params
         }

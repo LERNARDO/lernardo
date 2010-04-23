@@ -2,14 +2,16 @@
 import de.uenterprise.ep.Entity
 import org.springframework.web.multipart.MultipartFile
 import lernardo.Publication
+import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.AssetService
 
 class PublicationController {
-  def filterService
-  def metaDataService
-  def publicationHelperService
-  def entityHelperService
-  def assetService
-  def networkService
+  FilterService filterService
+  MetaDataService metaDataService
+  PublicationHelperService publicationHelperService
+  EntityHelperService entityHelperService
+  AssetService assetService
+  NetworkService networkService
 
   def index = { }
 
@@ -68,7 +70,7 @@ class PublicationController {
 
   def create = {
     Entity entity = Entity.get(params.id)
-    def pub = new Publication()
+    Publication pub = new Publication()
     return [entity:entity, publication:pub]
   }
 
@@ -79,7 +81,7 @@ class PublicationController {
       return
     }
 
-    def pub = new Publication(params)
+    Publication pub = new Publication(params)
     pub.entity = e ?: entityHelperService.loggedIn
 
     // handle the file
@@ -102,7 +104,7 @@ class PublicationController {
   }
 
   def showasset = {
-    def pub = Publication.get(params.id)
+    Publication pub = Publication.get(params.id)
     if (!pub?.asset) {
       flash.message = message(code:"publication.notFound", args:[params.id])
       redirect (action:"profile", params:[name:params.name])
@@ -113,8 +115,8 @@ class PublicationController {
   }
 
   def delete = {
-    def pub = Publication.get(params.id)
-    def entity = pub.entity
+    Publication pub = Publication.get(params.id)
+    Entity entity = pub.entity
     if (!pub) {
       flash.message = message(code:"publication.notFound", args:[params.id])
     }

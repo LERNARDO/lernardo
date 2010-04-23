@@ -1,13 +1,14 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
-import lernardo.ResourceProfile
+import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.ProfileHelperService
 
 class TemplateController {
-  def entityHelperService
-  def functionService
-  def metaDataService
-  def profileHelperService
+  EntityHelperService entityHelperService
+  FunctionService functionService
+  MetaDataService metaDataService
+  ProfileHelperService profileHelperService
 
     def index = {
       redirect action:'list', params:params
@@ -23,7 +24,7 @@ class TemplateController {
     }
 
     def edit = {
-      def template = Entity.get(params.id)
+      Entity template = Entity.get(params.id)
 
       return ['template': template,
               'entity': entityHelperService.loggedIn,
@@ -31,7 +32,7 @@ class TemplateController {
     }
 
     def update = {
-      def template = Entity.get(params.id)
+      Entity template = Entity.get(params.id)
 
       template.profile.properties = params
 
@@ -64,7 +65,7 @@ class TemplateController {
     }
 
     def show = {
-      def template = Entity.get(params.id)
+      Entity template = Entity.get(params.id)
 
       def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
 
@@ -88,7 +89,7 @@ class TemplateController {
       EntityType etTemplate = metaDataService.etTemplate
 
       try {
-        def entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
+        Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
           // TODO: find out if this works
           ent.profile.properties = params
@@ -141,7 +142,7 @@ class TemplateController {
     }
 
     def del = {
-      def template = Entity.get(params.id)
+      Entity template = Entity.get(params.id)
       if(template) {
           def links = Link.findAllBySourceOrTarget(template, template)
           if (links) {

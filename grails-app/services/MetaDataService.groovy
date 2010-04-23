@@ -1,10 +1,16 @@
 import lernardo.PublicationType
+import de.uenterprise.ep.DefaultObjectService
+import de.uenterprise.ep.EntitySuperType
+import de.uenterprise.ep.EntityType
+import de.uenterprise.ep.LinkSuperType
+import de.uenterprise.ep.LinkType
+import de.uenterprise.ep.Role
 
 class MetaDataService {
 
   boolean transactional = true
 
-  def defaultObjectService
+  DefaultObjectService defaultObjectService
 
   // String Constants
   static final String EST_USER = "user"                  // EntitySuperType
@@ -163,73 +169,73 @@ class MetaDataService {
     getPtDoc3()
   }
 
-  def getEstUser()            {defaultObjectService.openEST (EST_USER, PRT_USER) }
-  def getEstEducator()        {defaultObjectService.openEST (EST_EDUCATOR, PRT_EDUCATOR) }
-  def getEstClient()          {defaultObjectService.openEST (EST_CLIENT, PRT_CLIENT) }
-  def getEstOperator()        {defaultObjectService.openEST (EST_OPERATOR, PRT_OPERATOR) }
-  def getEstFacility()        {defaultObjectService.openEST (EST_FACILITY, PRT_FACILITY) }
-  def getEstTemplate()        {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
-  def getEstActivity()        {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
-  def getEstGroupFamily()     {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
-  def getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
-  def getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
-  def getEstGroupLevel()      {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
-  def getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
-  def getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
-  def getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
-  def getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
-  def getEstResource()        {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
-  def getEstParent()          {defaultObjectService.openEST (EST_PARENT, PRT_PARENT) }
+  EntitySuperType getEstUser()            {defaultObjectService.openEST (EST_USER, PRT_USER) }
+  EntitySuperType getEstEducator()        {defaultObjectService.openEST (EST_EDUCATOR, PRT_EDUCATOR) }
+  EntitySuperType getEstClient()          {defaultObjectService.openEST (EST_CLIENT, PRT_CLIENT) }
+  EntitySuperType getEstOperator()        {defaultObjectService.openEST (EST_OPERATOR, PRT_OPERATOR) }
+  EntitySuperType getEstFacility()        {defaultObjectService.openEST (EST_FACILITY, PRT_FACILITY) }
+  EntitySuperType getEstTemplate()        {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
+  EntitySuperType getEstActivity()        {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
+  EntitySuperType getEstGroupFamily()     {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
+  EntitySuperType getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
+  EntitySuperType getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
+  EntitySuperType getEstGroupLevel()      {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
+  EntitySuperType getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
+  EntitySuperType getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
+  EntitySuperType getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
+  EntitySuperType getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
+  EntitySuperType getEstResource()        {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
+  EntitySuperType getEstParent()          {defaultObjectService.openEST (EST_PARENT, PRT_PARENT) }
 
-  def getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
-  def getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
-  def getEtClient()          {defaultObjectService.openET (ET_CLIENT, estClient) }
-  def getEtOperator()        {defaultObjectService.openET (ET_OPERATOR, estOperator) }
-  def getEtFacility()        {defaultObjectService.openET (ET_FACILITY, estFacility) }
-  def getEtTemplate()        {defaultObjectService.openET (ET_TEMPLATE, estTemplate) }
-  def getEtActivity()        {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
-  def getEtGroupFamily()     {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
-  def getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
-  def getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
-  def getEtGroupLevel()      {defaultObjectService.openET (ET_GROUP_LEVEL, estGroupLevel) }
-  def getEtGroupActivityTemplate() {defaultObjectService.openET (ET_GROUP_ACTIVITY_TEMPLATE, estGroupActivityTemplate) }
-  def getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
-  def getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
-  def getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
-  def getEtResource()        {defaultObjectService.openET (ET_RESOURCE, estResource) }
-  def getEtParent()          {defaultObjectService.openET (ET_PARENT, estParent) }
+  EntityType getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
+  EntityType getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
+  EntityType getEtClient()          {defaultObjectService.openET (ET_CLIENT, estClient) }
+  EntityType getEtOperator()        {defaultObjectService.openET (ET_OPERATOR, estOperator) }
+  EntityType getEtFacility()        {defaultObjectService.openET (ET_FACILITY, estFacility) }
+  EntityType getEtTemplate()        {defaultObjectService.openET (ET_TEMPLATE, estTemplate) }
+  EntityType getEtActivity()        {defaultObjectService.openET (ET_ACTIVITY, estActivity) }
+  EntityType getEtGroupFamily()     {defaultObjectService.openET (ET_GROUP_FAMILY, estGroupFamily) }
+  EntityType getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
+  EntityType getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
+  EntityType getEtGroupLevel()      {defaultObjectService.openET (ET_GROUP_LEVEL, estGroupLevel) }
+  EntityType getEtGroupActivityTemplate() {defaultObjectService.openET (ET_GROUP_ACTIVITY_TEMPLATE, estGroupActivityTemplate) }
+  EntityType getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
+  EntityType getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
+  EntityType getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
+  EntityType getEtResource()        {defaultObjectService.openET (ET_RESOURCE, estResource) }
+  EntityType getEtParent()          {defaultObjectService.openET (ET_PARENT, estParent) }
 
-  def getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
-  def getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
+  LinkSuperType getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
+  LinkSuperType getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
 
-  def getLtFriendship()  {defaultObjectService.openLT (LT_FRIENDSHIP, lstPersonal) }
-  def getLtSponsorship() {defaultObjectService.openLT (LT_SPONSORSHIP, lstOther) }
-  def getLtOperation()   {defaultObjectService.openLT (LT_OPERATION, lstOther) }
-  def getLtClientship()  {defaultObjectService.openLT (LT_CLIENTSHIP, lstOther) }
-  def getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
-  def getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
-  def getLtGroupMember() {defaultObjectService.openLT (LT_GROUP_MEMBER, lstOther) }
-  def getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
-  def getLtEditor()      {defaultObjectService.openLT (LT_EDITOR, lstOther) }
-  def getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
-  def getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
-  def getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
-  def getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
+  LinkType getLtFriendship()  {defaultObjectService.openLT (LT_FRIENDSHIP, lstPersonal) }
+  LinkType getLtSponsorship() {defaultObjectService.openLT (LT_SPONSORSHIP, lstOther) }
+  LinkType getLtOperation()   {defaultObjectService.openLT (LT_OPERATION, lstOther) }
+  LinkType getLtClientship()  {defaultObjectService.openLT (LT_CLIENTSHIP, lstOther) }
+  LinkType getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
+  LinkType getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
+  LinkType getLtGroupMember() {defaultObjectService.openLT (LT_GROUP_MEMBER, lstOther) }
+  LinkType getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
+  LinkType getLtEditor()      {defaultObjectService.openLT (LT_EDITOR, lstOther) }
+  LinkType getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
+  LinkType getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
+  LinkType getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
+  LinkType getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
 
   // activity links
-  def getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }
-  def getLtActClient()   {defaultObjectService.openLT (LT_ACT_CLIENT, lstOther) }
-  def getLtActFacility() {defaultObjectService.openLT (LT_ACT_FACILITY, lstOther) }
-  def getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
+  LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }
+  LinkType getLtActClient()   {defaultObjectService.openLT (LT_ACT_CLIENT, lstOther) }
+  LinkType getLtActFacility() {defaultObjectService.openLT (LT_ACT_FACILITY, lstOther) }
+  LinkType getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
 
-  def getUserRole()        {defaultObjectService.openRole (ROLE_USER, "regular user") }
-  def getModRole()         {defaultObjectService.openRole (ROLE_MOD, "moderator") }
-  def getAdminRole()       {defaultObjectService.openRole (ROLE_ADMIN, "administrator") }
-  def getSystemAdminRole() {defaultObjectService.openRole (ROLE_SYSTEMADMIN, "system administrator") }
+  Role getUserRole()        {defaultObjectService.openRole (ROLE_USER, "regular user") }
+  Role getModRole()         {defaultObjectService.openRole (ROLE_MOD, "moderator") }
+  Role getAdminRole()       {defaultObjectService.openRole (ROLE_ADMIN, "administrator") }
+  Role getSystemAdminRole() {defaultObjectService.openRole (ROLE_SYSTEMADMIN, "system administrator") }
 
-  def getPtDoc1 () {this.openPT (PT_DOC1, "Typ 1")}
-  def getPtDoc2 () {this.openPT (PT_DOC2, "Typ 2")}
-  def getPtDoc3 () {this.openPT (PT_DOC3, "Typ 3")}
+  PublicationType getPtDoc1 () {this.openPT (PT_DOC1, "Typ 1")}
+  PublicationType getPtDoc2 () {this.openPT (PT_DOC2, "Typ 2")}
+  PublicationType getPtDoc3 () {this.openPT (PT_DOC3, "Typ 3")}
 
   def openPT (String name, String desc) {
     PublicationType pt = PublicationType.findByName (name)

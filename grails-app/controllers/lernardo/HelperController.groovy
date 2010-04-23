@@ -1,5 +1,3 @@
-
-
 package lernardo
 
 import de.uenterprise.ep.Entity
@@ -16,7 +14,7 @@ class HelperController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        def entity = Entity.get(params.id)
+        Entity entity = Entity.get(params.id)
         def helper = Helper.findAllByType(entity.type.name)
 
         return [helperInstanceList: helper,
@@ -25,7 +23,7 @@ class HelperController {
     }
 
     def show = {
-        def helperInstance = Helper.get(params.id)
+        Helper helperInstance = Helper.get(params.id)
 
         if(!helperInstance) {
             flash.message = "Helper not found with id ${params.id}"
@@ -37,7 +35,7 @@ class HelperController {
     }
 
     def del = {
-        def helperInstance = Helper.get(params.id)
+        Helper helperInstance = Helper.get(params.id)
         if(helperInstance) {
             try {
                 helperInstance.delete(flush:true)
@@ -56,8 +54,8 @@ class HelperController {
     }
 
     def edit = {
-        def helperInstance = Helper.get(params.id)
-        def entity = Entity.get(params.entity)
+        Helper helperInstance = Helper.get(params.id)
+        Entity entity = Entity.get(params.entity)
 
         if(!helperInstance) {
             flash.message = "Helper not found with id ${params.id}"
@@ -70,8 +68,8 @@ class HelperController {
     }
 
     def update = {
-        def helperInstance = Helper.get(params.id)
-        def entity = Entity.get(params.name)
+        Helper helperInstance = Helper.get(params.id)
+        Entity entity = Entity.get(params.name)
         if(helperInstance) {
             helperInstance.properties = params
             if(!helperInstance.hasErrors() && helperInstance.save()) {
@@ -89,17 +87,17 @@ class HelperController {
     }
 
     def create = {
-        def helperInstance = new Helper()
+        Helper helperInstance = new Helper()
         helperInstance.properties = params
-        def entity = Entity.get(params.entity)
+        Entity entity = Entity.get(params.entity)
 
         return [helperInstance: helperInstance,
                 entity: entity]
     }
 
     def save = {
-        def helperInstance = new Helper(params)
-        def entity = Entity.get(params.name)
+        Helper helperInstance = new Helper(params)
+        Entity entity = Entity.get(params.name)
 
         def type
         if (helperInstance.type == 'Educator')

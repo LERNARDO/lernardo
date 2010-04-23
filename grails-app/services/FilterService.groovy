@@ -1,11 +1,11 @@
 import de.uenterprise.ep.Entity
 import lernardo.Msg
+import de.uenterprise.ep.EntityHelperService
 
 class FilterService {
+  EntityHelperService entityHelperService
 
   boolean transactional = true
-
-  def entityHelperService
 
   // returns the number of new inbox messages
   int getNewInboxMessages (String id) {

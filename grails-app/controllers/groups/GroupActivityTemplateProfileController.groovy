@@ -3,12 +3,13 @@ package groups
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
-import org.springframework.web.servlet.support.RequestContextUtils
+import de.uenterprise.ep.ProfileHelperService
+import de.uenterprise.ep.EntityHelperService
 
 class GroupActivityTemplateProfileController {
     def metaDataService
-    def entityHelperService
-    def profileHelperService
+    EntityHelperService entityHelperService
+    ProfileHelperService profileHelperService
 
     def index = {
         redirect action:"list", params:params
@@ -25,7 +26,7 @@ class GroupActivityTemplateProfileController {
 
     def show = {
         def group = Entity.get(params.id)
-        def entity = params.entity ? group : entityHelperService.loggedIn
+        Entity entity = params.entity ? group : entityHelperService.loggedIn
 
         if(!group) {
             flash.message = "groupProfile not found with id ${params.id}"
@@ -37,7 +38,7 @@ class GroupActivityTemplateProfileController {
     }
 
     def del = {
-        def group = Entity.get(params.id)
+        Entity group = Entity.get(params.id)
         if(group) {
             // delete all links
             Link.findAllBySourceOrTarget(group, group).each {it.delete()}
@@ -58,7 +59,7 @@ class GroupActivityTemplateProfileController {
     }
 
     def edit = {
-        def group = Entity.get(params.id)
+        Entity group = Entity.get(params.id)
 
         if(!group) {
             flash.message = "groupProfile not found with id ${params.id}"
@@ -70,7 +71,7 @@ class GroupActivityTemplateProfileController {
     }
 
     def update = {
-      def group = Entity.get(params.id)
+      Entity group = Entity.get(params.id)
 
       group.profile.properties = params
 
@@ -111,7 +112,7 @@ class GroupActivityTemplateProfileController {
       EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
 
       try {
-        def entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
+        Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
           ent.profile.properties = params
         }

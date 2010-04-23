@@ -4,11 +4,13 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
+import de.uenterprise.ep.EntityHelperService
+import org.grails.plugins.springsecurity.service.AuthenticateService
 
 class OperatorProfileController {
     def metaDataService
-    def entityHelperService
-    def authenticateService
+    EntityHelperService entityHelperService
+    AuthenticateService authenticateService
     def functionService
 
     def index = {
@@ -25,8 +27,8 @@ class OperatorProfileController {
     }
 
     def show = {
-        def operator = Entity.get(params.id)
-        def entity = params.entity ? operator : entityHelperService.loggedIn
+        Entity operator = Entity.get(params.id)
+        Entity entity = params.entity ? operator : entityHelperService.loggedIn
 
         if(!operator) {
             flash.message = "OperatorProfile not found with id ${params.id}"
@@ -82,7 +84,7 @@ class OperatorProfileController {
     }
 
     def del = {
-        def operator = Entity.get(params.id)
+        Entity operator = Entity.get(params.id)
         if(operator) {
             // delete all links
             Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
@@ -103,7 +105,7 @@ class OperatorProfileController {
     }
 
     def edit = {
-        def operator = Entity.get(params.id)
+        Entity operator = Entity.get(params.id)
 
         if(!operator) {
             flash.message = "OperatorProfile not found with id ${params.id}"
@@ -115,7 +117,7 @@ class OperatorProfileController {
     }
 
     def update = {
-      def operator = Entity.get(params.id)
+      Entity operator = Entity.get(params.id)
 
       operator.profile.properties = params
       operator.user.properties = params
@@ -152,7 +154,7 @@ class OperatorProfileController {
       println params
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etOperator, params.email, params.fullName) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etOperator, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false

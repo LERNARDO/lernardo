@@ -1,9 +1,10 @@
 package lernardo
 
 import de.uenterprise.ep.Entity
+import de.uenterprise.ep.EntityHelperService
 
 class EvaluationController {
-    def entityHelperService
+    EntityHelperService entityHelperService
     
     def index = {
         redirect action:"list", params:params 
@@ -14,7 +15,7 @@ class EvaluationController {
 
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
-        def entity = Entity.get(params.id)
+        Entity entity = Entity.get(params.id)
         List evaluations = Evaluation.findAllByOwner(entity)
 
         return [evaluationInstanceList: evaluations,
@@ -23,7 +24,7 @@ class EvaluationController {
     }
 
     def show = {
-        def evaluationInstance = Evaluation.get( params.id )
+        Evaluation evaluationInstance = Evaluation.get( params.id )
 
         if(!evaluationInstance) {
             flash.message = "Evaluation not found with id ${params.id}"
@@ -35,7 +36,7 @@ class EvaluationController {
     }
 
     def del = {
-        def evaluationInstance = Evaluation.get( params.id )
+        Evaluation evaluationInstance = Evaluation.get( params.id )
         if(evaluationInstance) {
             try {
                 evaluationInstance.delete(flush:true)
@@ -54,8 +55,8 @@ class EvaluationController {
     }
 
     def edit = {
-        def evaluationInstance = Evaluation.get(params.id)
-        def entity = Entity.get(params.entity)
+        Evaluation evaluationInstance = Evaluation.get(params.id)
+        Entity entity = Entity.get(params.entity)
 
         if(!evaluationInstance) {
             flash.message = "Evaluation not found with id ${params.id}"
@@ -68,7 +69,7 @@ class EvaluationController {
     }
 
     def update = {
-        def evaluationInstance = Evaluation.get(params.id)
+        Evaluation evaluationInstance = Evaluation.get(params.id)
         if(evaluationInstance) {
             if(params.version) {
                 def version = params.version.toLong()
@@ -96,16 +97,16 @@ class EvaluationController {
     }
 
     def create = {
-        def evaluationInstance = new Evaluation()
+        Evaluation evaluationInstance = new Evaluation()
         evaluationInstance.properties = params
-        def entity = Entity.get(params.id)
+        Entity entity = Entity.get(params.id)
 
         return [evaluationInstance: evaluationInstance,
                 entity: entity]
     }
 
     def save = {
-        def evaluationInstance = new Evaluation(params)
+        Evaluation evaluationInstance = new Evaluation(params)
         evaluationInstance.owner = Entity.get(params.entity)
         evaluationInstance.writer = entityHelperService.loggedIn
         if(evaluationInstance.save(flush:true)) {

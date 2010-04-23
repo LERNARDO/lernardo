@@ -3,10 +3,11 @@ import org.joda.time.DateTime
 import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
+import de.uenterprise.ep.EntityHelperService
 
 class CalendarController {
-  def entityHelperService
-  def metaDataService
+  EntityHelperService entityHelperService
+  MetaDataService metaDataService
 
     def index = {
       redirect action:'show'
@@ -19,14 +20,14 @@ class CalendarController {
       
       if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
         // find facility the educator is working for
-        def link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
+        Link link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
 
         if (link) {
           Entity facility = link.target
 
           // find all educators working in that facility
-          def temp = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-          temp.each {
+          def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+          links.each {
               educators << it.source
           }
         }

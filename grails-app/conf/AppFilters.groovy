@@ -1,7 +1,8 @@
 import de.uenterprise.ep.Entity
+import de.uenterprise.ep.EntityHelperService
 
 class AppFilters {
-  def entityHelperService
+  EntityHelperService entityHelperService
 
   static filters = {
     currentEntity (controller:"*", action:"*") {

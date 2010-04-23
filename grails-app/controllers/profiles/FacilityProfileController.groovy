@@ -4,11 +4,13 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
+import de.uenterprise.ep.EntityHelperService
+import org.grails.plugins.springsecurity.service.AuthenticateService
 
 class FacilityProfileController {
     def metaDataService
-    def entityHelperService
-    def authenticateService
+    EntityHelperService entityHelperService
+    AuthenticateService authenticateService
     def functionService
 
     def index = {
@@ -25,8 +27,8 @@ class FacilityProfileController {
     }
 
     def show = {
-        def facility = Entity.get(params.id)
-        def entity = params.entity ? facility : entityHelperService.loggedIn
+        Entity facility = Entity.get(params.id)
+        Entity entity = params.entity ? facility : entityHelperService.loggedIn
 
         if(!facility) {
             flash.message = "FacilityProfile not found with id ${params.id}"
@@ -127,7 +129,7 @@ class FacilityProfileController {
     }
 
     def del = {
-        def facility = Entity.get(params.id)
+        Entity facility = Entity.get(params.id)
         if(facility) {
             // delete all links
             Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
@@ -148,7 +150,7 @@ class FacilityProfileController {
     }
 
     def edit = {
-        def facility = Entity.get(params.id)
+        Entity facility = Entity.get(params.id)
 
         if(!facility) {
             flash.message = "FacilityProfile not found with id ${params.id}"
@@ -160,7 +162,7 @@ class FacilityProfileController {
     }
 
     def update = {
-      def facility = Entity.get(params.id)
+      Entity facility = Entity.get(params.id)
 
       facility.profile.properties = params
       facility.user.properties = params
@@ -196,7 +198,7 @@ class FacilityProfileController {
       EntityType etFacility = metaDataService.etFacility
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false

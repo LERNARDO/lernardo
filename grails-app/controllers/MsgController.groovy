@@ -1,10 +1,11 @@
 import de.uenterprise.ep.Entity
 import lernardo.Msg
+import de.uenterprise.ep.EntityHelperService
 
 class MsgController {
-  def entityHelperService
-  def filterService
-  def functionService
+  EntityHelperService entityHelperService
+  FilterService filterService
+  FunctionService functionService
 
   def index = {
     redirect action:"inbox", params:params

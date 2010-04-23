@@ -5,12 +5,14 @@ import de.uenterprise.ep.Link
 import profiles.OperatorProfile
 import de.uenterprise.ep.Account
 import de.uenterprise.ep.EntityType
+import org.grails.plugins.springsecurity.service.AuthenticateService
+import de.uenterprise.ep.EntityHelperService
 
 class AdmController {
     def metaDataService
-    def entityHelperService
+    EntityHelperService entityHelperService
     def functionService
-    def authenticateService
+    AuthenticateService authenticateService
 
     def index = {
       redirect action:'overview'
@@ -46,7 +48,7 @@ class AdmController {
     }
 
     def showTemplate = {
-      def template = Entity.findByName(params.name)
+      Entity template = Entity.findByName(params.name)
 
       return [template: template]
     }
@@ -84,7 +86,7 @@ class AdmController {
     }
 
     def createOperator = {
-      def entityInstance = new Entity()
+      Entity entityInstance = new Entity()
       return ['entityInstance':entityInstance]
     }
 
@@ -115,7 +117,7 @@ class AdmController {
     }
 
     def editOperator = {
-        def entityInstance = Entity.findByName(params.name)
+        Entity entityInstance = Entity.findByName(params.name)
 
         if(!entityInstance) {
             flash.message = message(code:"user.notFound", args:[params.name])
@@ -127,7 +129,7 @@ class AdmController {
     }
 
     def updateOperator = {
-       def entityInstance = Entity.get( params.id )
+       Entity entityInstance = Entity.get( params.id )
        if(entityInstance) {
            entityInstance.properties = params
            entityInstance.profile.fullName = params.fullName

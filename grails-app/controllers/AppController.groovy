@@ -1,11 +1,14 @@
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Account
 import org.springframework.web.servlet.support.RequestContextUtils
+import de.uenterprise.ep.SecHelperService
+import de.uenterprise.ep.EntityHelperService
+import org.grails.plugins.springsecurity.service.AuthenticateService
 
 class AppController {
-    def secHelperService
-    def entityHelperService
-    def authenticateService
+    SecHelperService secHelperService
+    EntityHelperService entityHelperService
+    AuthenticateService authenticateService
 
     def index = { }
 
@@ -38,7 +41,7 @@ class AppController {
         // generate new random password
         Random randomGenerator = new Random()
         def random = randomGenerator.nextInt(300)+100
-        def pass = 'pass' + random.toString()
+        String pass = 'pass' + random.toString()
         user.password = authenticateService.encodePassword(pass)
         try {
           sendMail {

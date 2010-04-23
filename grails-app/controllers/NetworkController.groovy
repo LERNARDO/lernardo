@@ -1,7 +1,7 @@
 import de.uenterprise.ep.Entity
 
 class NetworkController {
-  def networkService
+  NetworkService networkService
 
   def index = {
     Entity entity = Entity.get(params.id)

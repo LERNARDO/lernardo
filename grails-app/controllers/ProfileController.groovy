@@ -12,21 +12,24 @@ import lernardo.Msg
 import lernardo.Attendance
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
+import de.uenterprise.ep.EntityHelperService
+import org.grails.plugins.springsecurity.service.AuthenticateService
+import org.hibernate.SessionFactory
 
 class ProfileController {
-    def geoCoderService
-    def networkService
-    def entityHelperService
-    def metaDataService
-    def filterService
-    def authenticateService
-    def sessionFactory
-    def functionService
+    GeoCoderService geoCoderService
+    NetworkService networkService
+    EntityHelperService entityHelperService
+    MetaDataService metaDataService
+    FilterService filterService
+    AuthenticateService authenticateService
+    SessionFactory sessionFactory
+    FunctionService functionService
 
     def index = { }
 
     def createNotification = {
-        def msgInstance = new Msg()
+        Msg msgInstance = new Msg()
         return [msgInstance:msgInstance,
                 entity: entityHelperService.loggedIn]
     }
@@ -46,7 +49,7 @@ class ProfileController {
 
        userList.each {
           functionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
-          def msgInstance = new Msg(params)
+          Msg msgInstance = new Msg(params)
           msgInstance.entity = it
           msgInstance.dateCreated = new Date()
           msgInstance.sender = Entity.findByName('lernardoadmin')
@@ -415,7 +418,7 @@ class ProfileController {
         if (counter == 23) {tempAttend = params.anwesend23 ?: false; tempEat = params.essen23 ?: false}
         if (counter == 24) {tempAttend = params.anwesend24 ?: false; tempEat = params.essen24 ?: false}
 
-        def a = new Attendance(client: Entity.get(it), didAttend: tempAttend, didEat: tempEat, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
+        Attendance a = new Attendance(client: Entity.get(it), didAttend: tempAttend, didEat: tempEat, date: new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
 
         log.debug "created attendance"
 
@@ -550,7 +553,7 @@ class ProfileController {
         return
       }
 
-      def linkInstance = new Link()
+      Link linkInstance = new Link()
       linkInstance.source = entityHelperService.loggedIn
       linkInstance.type = metaDataService.ltBookmark
       linkInstance.target = entity

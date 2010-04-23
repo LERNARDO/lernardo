@@ -2,12 +2,14 @@ import java.text.SimpleDateFormat
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
+import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.ProfileHelperService
 
 class ActivityController {
-  def entityHelperService
-  def metaDataService
-  def functionService
-  def profileHelperService
+  EntityHelperService entityHelperService
+  MetaDataService metaDataService
+  FunctionService functionService
+  ProfileHelperService profileHelperService
 
   def index = {
     redirect action:list
@@ -91,7 +93,7 @@ class ActivityController {
     }
 
     def show = {
-      def activity = Entity.get(params.id)
+      Entity activity = Entity.get(params.id)
 
       return ['activity':activity,
               'entity': entityHelperService.loggedIn]
@@ -99,7 +101,7 @@ class ActivityController {
 
     def create = {
       // get template the activity is created from
-      def template = Entity.get(params.id)
+      Entity template = Entity.get(params.id)
 
       // get a list of facilities the current entity is working in
       def facilities = []
@@ -121,7 +123,7 @@ class ActivityController {
     def save = {
       EntityType etActivity = metaDataService.etActivity
 
-      def template = Entity.get(params.id)
+      Entity template = Entity.get(params.id)
 
       // get a list of facilities the current entity is working in
       def facilities = []
@@ -130,7 +132,7 @@ class ActivityController {
       def clients = Entity.findAllByType(metaDataService.etClient)
 
       try {
-      def entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
+      Entity entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent)
         ent.profile.properties = params
       }
@@ -185,7 +187,7 @@ class ActivityController {
     }
 
     def edit = {
-        def activity = Entity.get(params.id)
+        Entity activity = Entity.get(params.id)
 
         // get a list of facilities the current entity is working in
         def facilities = []
@@ -205,7 +207,7 @@ class ActivityController {
 
     def update = {
       // TODO: fix validation
-      def activity = Entity.get(params.id)
+      Entity activity = Entity.get(params.id)
 
       activity.profile.properties = params
 
@@ -259,7 +261,7 @@ class ActivityController {
     }
 
     def del = {
-      def activity = Entity.get(params.id)
+      Entity activity = Entity.get(params.id)
 
       // delete all links to activity
       def links = Link.findAllByTarget(activity)

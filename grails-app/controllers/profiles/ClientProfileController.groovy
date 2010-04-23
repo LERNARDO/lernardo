@@ -4,11 +4,13 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
+import de.uenterprise.ep.EntityHelperService
+import org.grails.plugins.springsecurity.service.AuthenticateService
 
 class ClientProfileController {
     def metaDataService
-    def entityHelperService
-    def authenticateService
+    EntityHelperService entityHelperService
+    AuthenticateService authenticateService
     def functionService
 
     def index = {
@@ -25,8 +27,8 @@ class ClientProfileController {
     }
 
     def show = {
-        def client = Entity.get(params.id)
-        def entity = params.entity ? client : entityHelperService.loggedIn
+        Entity client = Entity.get(params.id)
+        Entity entity = params.entity ? client : entityHelperService.loggedIn
 
         if(!client) {
             flash.message = "ClientProfile not found with id ${params.id}"
@@ -38,7 +40,7 @@ class ClientProfileController {
     }
 
     def del = {
-        def client = Entity.get(params.id)
+        Entity client = Entity.get(params.id)
         if(client) {
             // delete all links
             Link.findAllBySourceOrTarget(client, client).each {it.delete()}
@@ -59,7 +61,7 @@ class ClientProfileController {
     }
 
     def edit = {
-        def client = Entity.get(params.id)
+        Entity client = Entity.get(params.id)
 
         if(!client) {
             flash.message = "ClientProfile not found with id ${params.id}"
@@ -71,7 +73,7 @@ class ClientProfileController {
     }
 
     def update = {
-      def client = Entity.get(params.id)
+      Entity client = Entity.get(params.id)
 
       client.profile.properties = params
       client.user.properties = params
@@ -109,7 +111,7 @@ class ClientProfileController {
       println params
 
       try {
-        def entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.profile.doesWork = params.doesWork ?: false
