@@ -36,7 +36,7 @@ class ClientProfile extends Profile {
     Boolean schoolRestart // added on 20.04.2010
     Date schoolRestartDate // added on 20.04.2010
     String schoolRestartReason // added on 20.04.2010
-
+ 
     String[] schoolPerformances // changed on 20.04.2010, before: notes
     Date[] schoolPerformancesDates // added on 20.04.2010
 
