@@ -16,6 +16,7 @@ class MetaDataService {
   static final String EST_USER = "user"                  // EntitySuperType
   static final String EST_EDUCATOR = "educator"
   static final String EST_CLIENT = "client"
+  static final String EST_CHILD = "child"
   static final String EST_OPERATOR = "operator"
   static final String EST_FACILITY = "facility"
   static final String EST_TEMPLATE = "Template"
@@ -34,6 +35,7 @@ class MetaDataService {
   static final String ET_USER = "User"                   // EntityType
   static final String ET_EDUCATOR = "Pädagoge"
   static final String ET_CLIENT = "Betreuter"
+  static final String ET_CHILD = "Kind"
   static final String ET_OPERATOR = "Betreiber"
   static final String ET_FACILITY = "Einrichtung"
   static final String ET_TEMPLATE = "Vorlage"
@@ -52,6 +54,7 @@ class MetaDataService {
   static final String PRT_USER = "User"                // ProfileType
   static final String PRT_EDUCATOR = "Educator"
   static final String PRT_CLIENT = "Client"
+  static final String PRT_CHILD = "Child"
   static final String PRT_OPERATOR = "Operator"
   static final String PRT_FACILITY = "Facility"
   static final String PRT_TEMPLATE = "Template"
@@ -104,6 +107,7 @@ class MetaDataService {
     getEstUser()
     getEstEducator()
     getEstClient()
+    getEstChild()
     getEstOperator()
     getEstFacility()
     getEstTemplate()
@@ -122,6 +126,7 @@ class MetaDataService {
     getEtUser()
     getEtEducator()
     getEtClient()
+    getEtChild()
     getEtOperator()
     getEtFacility()
     getEtTemplate()
@@ -172,6 +177,7 @@ class MetaDataService {
   EntitySuperType getEstUser()            {defaultObjectService.openEST (EST_USER, PRT_USER) }
   EntitySuperType getEstEducator()        {defaultObjectService.openEST (EST_EDUCATOR, PRT_EDUCATOR) }
   EntitySuperType getEstClient()          {defaultObjectService.openEST (EST_CLIENT, PRT_CLIENT) }
+  EntitySuperType getEstChild()           {defaultObjectService.openEST (EST_CHILD, PRT_CHILD) }
   EntitySuperType getEstOperator()        {defaultObjectService.openEST (EST_OPERATOR, PRT_OPERATOR) }
   EntitySuperType getEstFacility()        {defaultObjectService.openEST (EST_FACILITY, PRT_FACILITY) }
   EntitySuperType getEstTemplate()        {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
@@ -190,6 +196,7 @@ class MetaDataService {
   EntityType getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
   EntityType getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
   EntityType getEtClient()          {defaultObjectService.openET (ET_CLIENT, estClient) }
+  EntityType getEtChild()           {defaultObjectService.openET (ET_CHILD, estChild) }
   EntityType getEtOperator()        {defaultObjectService.openET (ET_OPERATOR, estOperator) }
   EntityType getEtFacility()        {defaultObjectService.openET (ET_FACILITY, estFacility) }
   EntityType getEtTemplate()        {defaultObjectService.openET (ET_TEMPLATE, estTemplate) }

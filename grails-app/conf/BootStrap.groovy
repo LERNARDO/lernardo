@@ -29,7 +29,7 @@ class BootStrap {
       metaDataService.initialize()
       createDefaultUsers()
       createDefaultOperator()
-      createDefaultEducators()
+/*      createDefaultEducators()
       createDefaultFacilities()
       createDefaultLinks()
       createDefaultTemplates()
@@ -46,7 +46,7 @@ class BootStrap {
       }
 
       createDefaultHelpers()
-      createDefaultEvaluations()
+      createDefaultEvaluations()*/
     }
   }
   

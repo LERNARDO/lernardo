@@ -150,6 +150,7 @@
               <app:isOperator entity="${entity}">
                 <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]">Betreute verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]">Kinder verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
                 <li class="icon-admin" style="border-bottom: 1px solid #999"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte verwalten</g:link></li>
                 <li class="icon-admin" style="border-top: 1px solid #eee; padding-top: 2px"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>

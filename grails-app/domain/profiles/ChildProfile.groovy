@@ -13,6 +13,8 @@ class ChildProfile extends Profile {
     String jobType
     Integer jobIncome
     String jobFrequency
+
+    Boolean showTips = true
   
     static constraints = {
       fullName (blank: true)
