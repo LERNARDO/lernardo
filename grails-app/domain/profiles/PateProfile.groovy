@@ -6,7 +6,8 @@ class PateProfile extends Profile {
 
   String firstName
   String lastName
-  String[] languages // changed on 23.04.2010, before: string languages
+  //String[] languages // changed on 23.04.2010, before: string languages  
+  static hasMany = [languages: String]
 
   //String nationality - removed on 23.04.2010
   String country // added on 23.04.2010

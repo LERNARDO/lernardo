@@ -37,9 +37,16 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.PLZ.label" default="PLZ"/>:
+            <g:message code="pateProfile.country.label" default="PLZ"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="pateProfile.zip.label" default="PLZ"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -65,17 +72,24 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <g:message code="pateProfile.motherTongue.label" default="Muttersprache"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.motherTongue')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <g:message code="pateProfile.languages.label" default="Sprachen"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.languages')}</td>
         </tr>
 
-        <tr class="prop">
+%{--        <tr class="prop">
           <td valign="top" class="name">
             <g:message code="pateProfile.nationality.label" default="Nationalität"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.nationality')}</td>
-        </tr>
+        </tr>--}%
 
         <app:isAdmin>
           <tr class="prop">

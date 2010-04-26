@@ -17,14 +17,14 @@
           <thead>
           <tr>
             <g:sortableColumn property="lastName" title="${message(code:'pateProfile.lastName.label', default:'Name')}"/>
-            <g:sortableColumn property="PLZ" title="${message(code:'pateProfile.nationality.label', default:'Nationalität')}"/>
+            %{--<g:sortableColumn property="PLZ" title="${message(code:'pateProfile.nationality.label', default:'Nationalität')}"/>--}%
           </tr>
           </thead>
           <tbody>
           <g:each in="${pateList}" status="i" var="pate">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
               <td><g:link action="show" id="${pate.id}">${fieldValue(bean: pate, field: 'profile.lastName')} ${fieldValue(bean: pate, field: 'profile.firstName')}</g:link></td>
-              <td>${fieldValue(bean: pate, field: 'profile.nationality')}</td>
+              %{--<td>${fieldValue(bean: pate, field: 'profile.nationality')}</td>--}%
             </tr>
           </g:each>
           </tbody>

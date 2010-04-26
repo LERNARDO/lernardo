@@ -55,12 +55,23 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
-                <g:message code="pateProfile.PLZ.label" default="PLZ"/>
+              <label for="country">
+                <g:message code="pateProfile.country.label" default="Land"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: pate, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="zip">
+                <g:message code="pateProfile.zip.label" default="PLZ"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -88,6 +99,17 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="motherTongue">
+                <g:message code="pateProfile.motherTongue.label" default="Muttersprache"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="languages">
                 <g:message code="pateProfile.languages.label" default="Sprachen"/>
               </label>
@@ -97,7 +119,7 @@
             </td>
           </tr>
 
-          <tr class="prop">
+%{--          <tr class="prop">
             <td valign="top" class="name">
               <label for="nationality">
                 <g:message code="pateProfile.nationality.label" default="Nationalität"/>
@@ -106,7 +128,7 @@
             <td valign="top" class="value">
               <g:select name="nationality" from="${grailsApplication.config.nationalities}"/>
             </td>
-          </tr>
+          </tr>--}%
 
           <tr class="prop">
             <td valign="top" class="name">
