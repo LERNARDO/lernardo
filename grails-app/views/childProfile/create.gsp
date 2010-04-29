@@ -25,8 +25,6 @@
         <table>
           <tbody>
 
-
-
           <tr class="prop">
             <td valign="top" class="name">
               <label for="firstName">
@@ -148,8 +146,6 @@
               <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
             </td>
           </tr>
-
-
 
           </tbody>
         </table>
