@@ -18,11 +18,14 @@
     </g:hasErrors>
 
     <g:form action="save" method="post">
+	
+	<!-- karin todo begin  -->
+			  
       <div class="dialog">
         <table>
           <tbody>
 
-          <!-- karin todo begin -->
+
 
           <tr class="prop">
             <td valign="top" class="name">
@@ -146,12 +149,13 @@
             </td>
           </tr>
 
-          <!-- karin todo end -->
+
 
           </tbody>
         </table>
       </div>
-      <div class="buttons">
+              <!-- karin todo end --> 
+			  <div class="buttons">
         <g:submitButton name="submitButton" value="Speichern"/>
         <g:link class="buttonGray" action="list">Abbrechen</g:link>
         <div class="spacer"></div>
