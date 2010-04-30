@@ -29,8 +29,9 @@ class BootStrap {
       metaDataService.initialize()
       createDefaultUsers()
       createDefaultOperator()
-/*      createDefaultEducators()
       createDefaultFacilities()
+/*      createDefaultEducators()
+
       createDefaultLinks()
       createDefaultTemplates()
       createDefaultComments()
@@ -231,10 +232,10 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
       FacilityProfile prf = ent.profile
-      prf.PLZ = "29247"
+      prf.country = "Mexiko"
+      prf.zip = "29247"
       prf.city = "	San Cristóbal de Las Casas"
       prf.street = "	Prolongación Ramón Larrainzar #139"
-      prf.tel   = "+52 967 1125100"
       prf.description = ""
     }
   }

@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
+import lernardo.Contact
 
 class FacilityProfileController {
     def metaDataService
@@ -56,7 +57,7 @@ class FacilityProfileController {
         }
     }
 
-    def addEducator = {
+/*    def addEducator = {
       // check if the educator isn't already linked to the facility
       def c = Link.createCriteria()
       def link = c.get {
@@ -126,7 +127,7 @@ class FacilityProfileController {
           clients << it.source
       }
       render template:'clients', model: [clients: clients, entity: entityHelperService.loggedIn]
-    }
+    }*/
 
     def del = {
         Entity facility = Entity.get(params.id)
@@ -220,5 +221,20 @@ class FacilityProfileController {
         return
       }
 
+    }
+
+    def addContact = {
+      Contact contact = new Contact()
+      contact.properties = params
+      Entity facility = Entity.get(params.id)
+      facility.profile.addToContacts(contact)
+      render template:'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+    }
+
+    def removeContact = {
+      Entity facility = Entity.get(params.id)
+      facility.profile.removeFromContacts(Contact.get(params.contact))
+      Contact.get(params.contact).delete()
+      render template:'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
     }
 }

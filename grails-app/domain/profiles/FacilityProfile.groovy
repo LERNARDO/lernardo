@@ -12,6 +12,7 @@ class FacilityProfile extends Profile {
     String zip // changed on 20.04.2010, before: PLZ
     String city // changed on 20.04.2010, before: city
     String street // changed on 20.04.2010, before: street
+    // String tel - removed on 20.04.2010
 
     Boolean showTips = true
 

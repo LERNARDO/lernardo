@@ -30,9 +30,16 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.PLZ.label" default="PLZ"/>:
+            <g:message code="facilityProfile.country.label" default="Land"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="facilityProfile.zip.label" default="PLZ"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -47,13 +54,6 @@
             <g:message code="facilityProfile.street.label" default="Straße"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="facilityProfile.tel.label" default="Telefon"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.tel') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -83,7 +83,7 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+%{--    <div>
       <h1>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
         hideform = function(){
@@ -122,6 +122,37 @@
       </div>
       <div id="clients2">
         <g:render template="clients" model="${clients}"/>
+      </div>
+    </div>--}%
+
+    <div>
+      <h1>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <jq:jquery>
+        hideform2 = function(){
+          $('#contacts').hide('slow') ;
+        }
+        <jq:toggle sourceId="show-contacts" targetId="contacts"/>
+      </jq:jquery>
+      <div id="contacts" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="hideform2()">
+
+          Vorname: <g:textField name="firstName" size="30"/>
+          Nachname: <g:textField name="lastName" size="30"/>
+          Land: <g:textField name="country" size="30"/>
+          PLZ: <g:textField name="zip" size="30"/>
+          Stadt: <g:textField name="city" size="30"/>
+          Straße: <g:textField name="street" size="30"/>
+          Telefon: <g:textField name="phone" size="30"/>
+          E-Mail: <g:textField name="email" size="30"/>
+          Funktion: <g:textField name="function" size="30"/>
+
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="Hinzufügen"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="contacts2">
+        <g:render template="contacts" model="${facility}"/>
       </div>
     </div>
 

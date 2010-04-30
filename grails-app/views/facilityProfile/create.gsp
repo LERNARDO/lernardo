@@ -57,12 +57,23 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
+              <label for="country">
+                <g:message code="facilityProfile.country.label" default="Land"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: facility, field: 'profile.country').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="zip">
                 <g:message code="facilityProfile.PLZ.label" default="PLZ"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: facility, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: facility, field: 'profile.zip').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -85,17 +96,6 @@
             </td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="tel">
-                <g:message code="facilityProfile.tel.label" default="Telefon"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: facility, field: 'profile.tel').decodeHTML()}"/>
             </td>
           </tr>
 

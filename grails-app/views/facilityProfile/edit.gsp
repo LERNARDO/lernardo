@@ -57,12 +57,23 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
+              <label for="country">
+                <g:message code="facilityProfile.country.label" default="Land"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: facility, field: 'profile.country').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="zip">
                 <g:message code="facilityProfile.PLZ.label" default="PLZ"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: facility, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: facility, field: 'profile.zip').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -90,17 +101,6 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="tel">
-                <g:message code="facilityProfile.tel.label" default="Telefon"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: facility, field: 'profile.tel').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
               <label for="lang">
                 <g:message code="facilityProfile.lang.label" default="Spracheinstellung"/>
               </label>
@@ -112,10 +112,9 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="tel">
+              <label>
                 <g:message code="facilityProfile.showTips.label" default="Tipps?"/>
               </label>
-
             </td>
             <td valign="top" class="value">
               <g:checkBox name="showTips" value="${facility.profile.showTips}"/>
@@ -128,7 +127,6 @@
                 <label for="enabled">
                   <g:message code="facilityProfile.enabled.label" default="Aktiv?"/>
                 </label>
-
               </td>
               <td valign="top" class="value">
                 <g:checkBox name="enabled" value="${facility.user.enabled}"/>
