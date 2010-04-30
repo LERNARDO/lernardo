@@ -4,9 +4,10 @@ import de.uenterprise.ep.Profile
 
 class ParentProfile extends Profile {
 
+    static hasMany = [languages: String] // changed on 20.04.2010, before: string languages
+
     String firstName
     String lastName
-    String[] languages // changed on 20.04.2010, before: string languages
     Date birthDate
     Byte gender
 

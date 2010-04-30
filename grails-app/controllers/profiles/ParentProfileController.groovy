@@ -79,7 +79,7 @@ class ParentProfileController {
     parent.user.properties = params
 
     parent.profile.showTips = params.showTips ?: false
-    parent.profile.doesWork = params.doesWork ?: false
+    parent.profile.job = params.job ?: false
     parent.user.enabled = params.enabled ?: false
 
     if (params.lang == '1') {
@@ -113,7 +113,7 @@ class ParentProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.password = authenticateService.encodePassword("pass")
-        ent.profile.doesWork = params.doesWork ?: false
+        ent.profile.job = params.job ?: false
         ent.user.enabled = params.enabled ?: false
       }
       if (params.lang == '1') {

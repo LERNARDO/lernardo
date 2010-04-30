@@ -44,30 +44,37 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.PLZ.label" default="PLZ"/>:
+            <g:message code="parentProfile.currentCountry.label" default="Land"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.PLZ') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.city.label" default="Stadt"/>:
+            <g:message code="parentProfile.currentZip.label" default="PLZ"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.street.label" default="Straße"/>:
+            <g:message code="parentProfile.currentCity.label" default="Stadt"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.familyStatus.label" default="Familienstand"/>:
+            <g:message code="parentProfile.currentStreet.label" default="Straße"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.familyStatus') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="parentProfile.maritalStatus.label" default="Familienstand"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -81,43 +88,45 @@
           <td valign="top" class="name">
             <g:message code="parentProfile.languages.label" default="Sprachen"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.languages')}</td>
+          <td valign="top" class="value"><ul><g:each in="${parent.profile.languages}" var="language"><li>${language}</li></g:each></ul></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.nationality.label" default="Nationalität"/>:
+            <g:message code="parentProfile.education.label" default="Schulbildung"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.nationality')}</td>
+          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.education') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="parentProfile.qualification.label" default="Schulbildung"/>:
+            <g:message code="parentProfile.job.label" default="Berufstätig"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.qualification') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${parent.profile.job}" true="Ja" false="Nein"/></td>
         </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="parentProfile.doesWork.label" default="Berufstätig"/>:
-          </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${parent.profile.doesWork}" true="Ja" false="Nein"/></td>
-        </tr>
+        <g:if test="${parent.profile.job}">
+          <tr class="prop">
+            <td valign="top" class="name">
+              <g:message code="parentProfile.jobType.label" default="Arbeit"/>:
+            </td>
+            <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.jobType') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          </tr>
+  
+          <tr class="prop">
+            <td valign="top" class="name">
+              <g:message code="parentProfile.jobIncome.label" default="Einkommen"/>:
+            </td>
+            <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.jobIncome') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="parentProfile.work.label" default="Arbeit"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.work') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="parentProfile.work.label" default="Einkommen"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.income') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <g:message code="parentProfile.jobFrequency.label" default="Jobhäufigkeit"/>:
+            </td>
+            <td valign="top" class="value">${fieldValue(bean: parent, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          </tr>
+        </g:if>
 
         <app:isAdmin>
           <tr class="prop">
