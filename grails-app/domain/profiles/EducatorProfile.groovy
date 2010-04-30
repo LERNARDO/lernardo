@@ -1,13 +1,17 @@
 package profiles
 
 import de.uenterprise.ep.Profile
+import lernardo.CDate
 
 class EducatorProfile extends Profile {
+
+    static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
+                      inChargeOf: String, // changed on 20.04.2010, before: function
+                      dates: CDate] // added on 20.04.2010
 
     String title
     String firstName
     String lastName
-    String[] languages // changed on 20.04.2010, before: string languages
     Date birthDate
     Byte gender
 
@@ -34,12 +38,9 @@ class EducatorProfile extends Profile {
     String education
     String interests
 
-    Date[] joinDates // added on 20.04.2010
-    Date[] endDates // added on 20.04.2010
     //Date joinDate - removed on 20.04.2010
     //Date quitDate - removed on 20.04.2010
   
-    String[] inChargeOf // changed on 20.04.2010, before: function
     String employment // changed on 20.04.2010, before: Boolean employed
 
     Boolean showTips = true
