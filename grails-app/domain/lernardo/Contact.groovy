@@ -13,7 +13,7 @@ class Contact {
     String phone
     String email
     String function
-
+  
     static constraints = {
       firstName (size: 2..50)
       lastName (size: 2..50)

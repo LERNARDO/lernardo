@@ -2,14 +2,15 @@ package groups
 
 import de.uenterprise.ep.Profile
 
-class GroupFamilyProfile extends Profile{
+class GroupFamilyProfile extends Profile {
+
+    static hasMany = [familyProblems: String] // added on 21.04.2010
 
     String livingConditions
     String socioeconomicData // added on 21.04.2010
     String otherInfo // changed on 21.04.2010, before: otherData
     Integer amountHousehold // changed on 21.04.2010, before: personCount
     Integer familyIncome // changed on 21.04.2010, before: totalIncome
-    String[] familyProblems // added on 21.04.2010
 
     static constraints = {
       fullName (blank: false, size: 2..50)

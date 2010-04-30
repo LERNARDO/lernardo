@@ -1,10 +1,14 @@
 package profiles
 
 import de.uenterprise.ep.Profile
+import lernardo.CDate
+import lernardo.Status
 
 class ClientProfile extends Profile {
 
-    static hasMany = [languages: String] // changed on 20.04.2010, before: string languages
+    static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
+                      dates: CDate, // added on 20.04.2010
+                      status: Status] // added on 20.04.2010
 
     String firstName
     String lastName
@@ -38,11 +42,6 @@ class ClientProfile extends Profile {
     Date schoolRestartDate // added on 20.04.2010
     String schoolRestartReason // added on 20.04.2010
  
-    String[] schoolPerformances // changed on 20.04.2010, before: notes
-    Date[] schoolPerformancesDates // added on 20.04.2010
-
-    Date[] joinDates // added on 20.04.2010
-    Date[] endDates // added on 20.04.2010
     //Date joinDate - removed on 20.04.2010
     //Date endDate - removed on 20.04.2010
     //Date joinDate2 - removed on 20.04.2010
@@ -53,12 +52,6 @@ class ClientProfile extends Profile {
     String jobFrequency // added on 20.04.2010
 
     String familyStatus // added on 20.04.2010
-
-    String[] healthTexts // added on 20.04.2010
-    Date[] healthDates // added on 20.04.2010
-
-    String[] materialTexts // added on 20.04.2010
-    Date[] materialDates // added on 20.04.2010
 
     Boolean support // added on 20.04.2010
     String supportDescription // added on 20.04.2010
