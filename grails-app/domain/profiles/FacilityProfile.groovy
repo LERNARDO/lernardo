@@ -1,25 +1,17 @@
 package profiles
 
 import de.uenterprise.ep.Profile
+import lernardo.Contact
 
 class FacilityProfile extends Profile {
 
-    String description
+    static hasMany = [contacts: Contact]
 
+    String description
     String country // added on 20.04.2010
     String zip // changed on 20.04.2010, before: PLZ
     String city // changed on 20.04.2010, before: city
     String street // changed on 20.04.2010, before: street
-
-    String[] contactFirstName
-    String[] contactLastName
-    String[] contactCountry
-    String[] contactZip
-    String[] contactCity
-    String[] contactStreet
-    String[] contactPhone
-    String[] contactEmail
-    String[] contactFunction
 
     Boolean showTips = true
 

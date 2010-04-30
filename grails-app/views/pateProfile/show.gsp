@@ -81,15 +81,8 @@
           <td valign="top" class="name">
             <g:message code="pateProfile.languages.label" default="Sprachen"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.languages')}</td>
+          <td valign="top" class="value"><ul><g:each in="${pate.profile.languages}" var="language"><li>${language}</li></g:each></ul></td>
         </tr>
-
-%{--        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pateProfile.nationality.label" default="Nationalität"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.nationality')}</td>
-        </tr>--}%
 
         <app:isAdmin>
           <tr class="prop">

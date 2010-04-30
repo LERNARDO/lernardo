@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
+import lernardo.Contact
 
 class PartnerProfileController {
     def metaDataService
@@ -131,5 +132,33 @@ class PartnerProfileController {
         return
       }
 
+    }
+
+    def addService = {
+      String service = params.service
+      Entity partner = Entity.get(params.id)
+      partner.profile.addToServices(service)
+      render template:'services', model: [partner: partner, entity: entityHelperService.loggedIn]
+    }
+
+    def removeService = {
+      Entity partner = Entity.get(params.id)
+      partner.profile.services.remove(params.service)
+      render template:'services', model: [partner: partner, entity: entityHelperService.loggedIn]
+    }
+
+    def addContact = {
+      Contact contact = new Contact()
+      contact.properties = params
+      Entity partner = Entity.get(params.id)
+      partner.profile.addToContacts(contact)
+      render template:'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+    }
+
+    def removeContact = {
+      Entity partner = Entity.get(params.id)
+      partner.profile.removeFromContacts(Contact.get(params.contact))
+      Contact.get(params.contact).delete()
+      render template:'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
     }
 }

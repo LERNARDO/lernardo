@@ -35,6 +35,17 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="description">
+                <g:message code="partnerProfile.description.label" default="Beschreibung"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="50" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
+            </td>
+          </tr>
+          
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="email">
                 <g:message code="partnerProfile.email.label" default="E-Mail"/>
               </label>
@@ -45,24 +56,35 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="partnerProfile.description.label" default="Beschreibung"/>
+            <td valign="website" class="name">
+              <label for="email">
+                <g:message code="partnerProfile.website.label" default="Webseite"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="50" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.website', 'errors')}" size="30" maxlength="80" id="website" name="website" value="${fieldValue(bean: partner, field: 'profile.website')}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
+              <label for="country">
+                <g:message code="partnerProfile.PLZ.label" default="Land"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: partner, field: 'profile.country').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="zip">
                 <g:message code="partnerProfile.PLZ.label" default="PLZ"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: partner, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: partner, field: 'profile.zip').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -90,12 +112,12 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="tel">
+              <label for="phone">
                 <g:message code="partnerProfile.tel.label" default="Telefon"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: partner, field: 'profile.tel').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -124,6 +146,7 @@
 
           </tbody>
         </table>
+
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="Speichern"/>

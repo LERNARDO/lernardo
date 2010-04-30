@@ -1,12 +1,14 @@
 package profiles
 
 import de.uenterprise.ep.Profile
+import lernardo.Contact
 
 class PartnerProfile extends Profile {
 
-    String description
-    String[] services // // added on 23.04.2010
+    static hasMany = [contacts: Contact,
+                      services: String]
 
+    String description
     String country // added on 23.04.2010
     String zip // changed on 23.04.2010, before: PLZ
     String city
@@ -15,16 +17,6 @@ class PartnerProfile extends Profile {
     String email // added on 23.04.2010
     String website // added on 23.04.2010
 
-    String[] representativeFirstName // added on 23.04.2010
-    String[] representativeLastName // added on 23.04.2010
-    String[] representativeCountry // added on 23.04.2010
-    String[] representativeZip // added on 23.04.2010
-    String[] representativeCity // added on 23.04.2010
-    String[] representativeStreet // added on 23.04.2010
-    String[] representativePhone // added on 23.04.2010
-    String[] representativeEmail // added on 23.04.2010
-    String[] representativeFunction // added on 23.04.2010
-  
     Boolean showTips = true
 
     static constraints = {
