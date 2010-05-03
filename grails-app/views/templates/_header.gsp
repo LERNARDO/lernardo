@@ -4,6 +4,8 @@
   <g:isLoggedIn>
     Angemeldet als <span class="bold">${currentEntity.profile.fullName}</span>
     <g:link controller="logout" action='index'> [Abmelden]</g:link><br/>
+    %{-- TODO: this is for testing purposes only, remove later --}%
+    <a href="?lang=de">Deutsch</a> | <a href="?lang=es">Español</a>
   </g:isLoggedIn>
   <g:isNotLoggedIn>
     <a href="?lang=de">Deutsch</a> | <a href="?lang=es">Español</a>
