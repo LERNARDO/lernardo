@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import org.grails.plugins.springsecurity.service.AuthenticateService
 import de.uenterprise.ep.EntityHelperService
+import lernardo.CDate
 
 class EducatorProfileController {
     def metaDataService
@@ -79,7 +80,6 @@ class EducatorProfileController {
       educator.user.properties = params
 
       educator.profile.showTips = params.showTips ?: false
-      educator.profile.employed = params.employed ?: false
       educator.user.enabled = params.enabled ?: false
 
       if (params.lang == '1') {
@@ -103,7 +103,7 @@ class EducatorProfileController {
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn]
+        return [entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner)]
     }
 
     def save = {
@@ -115,7 +115,6 @@ class EducatorProfileController {
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
           ent.user.enabled = params.enabled ?: false
-          ent.profile.employed = params.employed ?: false
         }
         if (params.lang == '1') {
           entity.user.locale = new Locale ("de", "DE")
@@ -134,5 +133,18 @@ class EducatorProfileController {
         return
       }
 
+    }
+
+    def addDate = {
+      CDate date = new CDate(params)
+      Entity educator = Entity.get(params.id)
+      educator.profile.addToDates(date)
+      render template:'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
+    }
+
+    def removeDate = {
+      Entity educator = Entity.get(params.id)
+      educator.profile.removeFromDates(CDate.get(params.date))
+      render template:'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
     }
 }

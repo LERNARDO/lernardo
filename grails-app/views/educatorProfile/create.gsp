@@ -79,45 +79,191 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
-                <g:message code="educatorProfile.PLZ.label" default="PLZ"/>
+              <label for="gender">
+                <g:message code="educatorProfile.gender.label" default="Geschlecht"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: educator, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bold">Derzeitige Adresse</span></td>
+          </tr>
+          
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="currentStreet">
+                <g:message code="educatorProfile.currentStreet.label" default="Straße"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="30" id="currentStreet" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="city">
-                <g:message code="educatorProfile.city.label" default="Stadt"/>
+              <label for="currentCity">
+                <g:message code="educatorProfile.currentCity.label" default="Ort"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: educator, field: 'profile.city').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" id="currentCity" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="street">
-                <g:message code="educatorProfile.street.label" default="Straße"/>
+              <label for="currentZip">
+                <g:message code="educatorProfile.currentZip.label" default="PLZ"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: educator, field: 'profile.street').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="30" id="currentZip" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="contact">
-                <g:message code="educatorProfile.contact.label" default="Kontakt"/>
+              <label for="currentCountry">
+                <g:message code="educatorProfile.originCountry.label" default="Land"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: educator, field: 'profile.contact', 'errors')}" id="contact" rows="6" cols="50" name="contact" value="${fieldValue(bean: educator, field: 'profile.contact').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bold">Herkunft</span></td>
+          </tr>
+          
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="originStreet">
+                <g:message code="educatorProfile.originStreet.label" default="Straße"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="30" id="originStreet" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="originCity">
+                <g:message code="educatorProfile.originCity.label" default="Ort"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="originZip">
+                <g:message code="educatorProfile.originZip.label" default="PLZ"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="30" id="originZip" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="originCountry">
+                <g:message code="educatorProfile.originCountry.label" default="Land"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: educator, field: 'profile.originCountry').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bold">Kontakt im Notfall</span></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="contactStreet">
+                <g:message code="educatorProfile.contactStreet.label" default="Straße"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="30" id="contactStreet" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="contactCity">
+                <g:message code="educatorProfile.contactCity.label" default="Ort"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" id="contactCity" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="contactZip">
+                <g:message code="educatorProfile.contactZip.label" default="PLZ"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="30" id="contactZip" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="contactCountry">
+                <g:message code="educatorProfile.contactCountry.label" default="Land"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" id="contactCountry" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="contactPhone">
+                <g:message code="educatorProfile.contactPhone.label" default="Telefonnummer"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="30" id="contactPhone" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="contactMail">
+                <g:message code="educatorProfile.contactMail.label" default="E-Mail"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="30" id="contactMail" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <!-- end contact -->
+          
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="languages">
+                <g:message code="educatorProfile.languages.label" default="Sprachkenntnisse"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
             </td>
           </tr>
 
@@ -134,41 +280,8 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label>
-                <g:message code="educatorProfile.employed.label" default="Angestellt?"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:checkBox name="employed" value="${educator?.profile?.employed}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="function">
-                <g:message code="educatorProfile.function.label" default="Funktion"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:select name="function" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" value="${fieldValue(bean:educator,field:'profile.function')}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="gender">
-                <g:message code="educatorProfile.gender.label" default="Geschlecht"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
               <label for="interests">
-                <g:message code="educatorProfile.interests.label" default="Interessen"/>
+                <g:message code="educatorProfile.interests.label" default="Interessen, Talente"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -178,48 +291,37 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="joinDate">
-                <g:message code="educatorProfile.joinDate.label" default="Eintrittsdatum"/>
+              <label for="inChargeOf">
+                <g:message code="educatorProfile.inChargeOf.label" default="Tätigkeit, Verantwortung"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="joinDate" value="${educator?.profile?.joinDate}" precision="day" default="none" noSelection="['':'']"/>
+              <g:select name="inChargeOf" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" multiple="true" value="${fieldValue(bean:educator,field:'profile.inChargeOf')}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="quitDate">
-                <g:message code="educatorProfile.quitDate.label" default="Austrittsdatum"/>
+              <label>
+                <g:message code="educatorProfile.employment.label" default="Arbeitsverhältnis"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="quitDate" value="${educator?.profile?.quitDate}" precision="day" default="none" noSelection="['':'']"/>
+              <g:select name="employment" from="${['Angestellt','Freier Mitarbeiter','Frewilliger']}" value="${fieldValue(bean:educator,field:'profile.employment')}"/>
             </td>
           </tr>
 
-          <tr class="prop">
+%{--          <tr class="prop">
             <td valign="top" class="name">
-              <label for="languages">
-                <g:message code="educatorProfile.languages.label" default="Sprachen"/>
+              <label>
+                <g:message code="educatorProfile.employment.label" default="Durch Partner angeworben?"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
+              <g:select name="employment" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="value"/>
             </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="nationality">
-                <g:message code="educatorProfile.nationality.label" default="Nationalität"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:select name="nationality" from="${grailsApplication.config.nationalities}"/>
-            </td>
-          </tr>
-
+          </tr>--}%
+          
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
@@ -236,7 +338,6 @@
               <label for="enabled">
                 <g:message code="educatorProfile.enabled.label" default="Aktiv?"/>
               </label>
-
             </td>
             <td valign="top" class="value">
               <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>

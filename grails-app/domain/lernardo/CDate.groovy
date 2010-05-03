@@ -7,4 +7,5 @@ class CDate {
 
     static constraints = {
     }
+
 }
