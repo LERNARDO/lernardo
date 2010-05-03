@@ -79,7 +79,7 @@ class ClientProfileController {
       client.user.properties = params
 
       client.profile.showTips = params.showTips ?: false
-      client.profile.doesWork = params.doesWork ?: false
+      client.profile.job = params.doesWork ?: false
       client.user.enabled = params.enabled ?: false
 
       if (params.lang == '1') {
@@ -114,7 +114,7 @@ class ClientProfileController {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.profile.doesWork = params.doesWork ?: false
+          ent.profile.job = params.doesWork ?: false
           ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {

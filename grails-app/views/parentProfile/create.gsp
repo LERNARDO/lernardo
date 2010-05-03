@@ -150,7 +150,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select id="education" name="education" from="${1..12}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>
+              <g:select id="education" name="education" from="${['1. Primaria', '2. Primaria', '3. Primaria', '4. Primaria', '5. Primaria', '6. Primaria', '1. Secundaria', '2. Secundaria', '3. Secundaria', '1. Präparatoria', '2. Präparatoria', '3. Präparatoria']}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>
             </td>
           </tr>
 
@@ -164,7 +164,7 @@
               <g:checkBox name="job" value="${parent?.profile?.job}"/>
             </td>
           </tr>
-
+         
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobType">
