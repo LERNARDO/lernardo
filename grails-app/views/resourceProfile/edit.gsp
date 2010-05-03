@@ -51,12 +51,22 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="type">
-                <g:message code="resourceProfile.profile.description.label" default="Beschreibung"/>
+                <g:message code="resourceProfile.profile.description.label" default="Ressourcentyp"/>
               </label>
-
             </td>
             <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.type', 'errors')}">
-              <g:select name="type" from="${['planbar','verbrauchbar']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
+              <g:select name="type" from="${['planbar','verbrauchbar','vorzusehend']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="classification">
+                <g:message code="resourceProfile.profile.description.label" default="Ressourcenklasse"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="classification" from="${['Ressourcen die nur in einer Einrichtung verfügbar sind (Notebook, Turnsaal)','Ressourcen der Colonia unbeweglich/beweglich (abhängig von Einrichtung)','Ressourcen die für alle Einrichtungen verfügbar stehen (beweglich & unbeweglich)']}" value="${fieldValue(bean:resource,field:'profile.classification')}" />
             </td>
           </tr>
 

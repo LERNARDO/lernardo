@@ -30,9 +30,16 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="resourceProfile.type.label" default="Typ"/>:
+            <g:message code="resourceProfile.type.label" default="Ressourcentyp"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.type')}</td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="resourceProfile.classification.label" default="Ressourcenklasse"/>:
+          </td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.classification')}</td>
         </tr>
 
         </tbody>
