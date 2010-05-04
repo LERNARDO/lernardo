@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
+import lernardo.Status
 
 class ClientProfileController {
     def metaDataService
@@ -79,7 +80,7 @@ class ClientProfileController {
       client.user.properties = params
 
       client.profile.showTips = params.showTips ?: false
-      client.profile.job = params.doesWork ?: false
+      client.profile.job = params.job ?: false
       client.user.enabled = params.enabled ?: false
 
       if (params.lang == '1') {
@@ -114,7 +115,7 @@ class ClientProfileController {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.profile.job = params.doesWork ?: false
+          ent.profile.job = params.job ?: false
           ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {
@@ -134,5 +135,44 @@ class ClientProfileController {
         return
       }
 
+    }
+
+    def addPerformance = {
+      Status status = new Status(params)
+      Entity client = Entity.get(params.id)
+      client.profile.addToStatus(status)
+      render template:'performances', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def removePerformance = {
+      Entity client = Entity.get(params.id)
+      client.profile.removeFromStatus(Status.get(params.performance))
+      render template:'performances', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def addHealth = {
+      Status status = new Status(params)
+      Entity client = Entity.get(params.id)
+      client.profile.addToStatus(status)
+      render template:'healths', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def removeHealth = {
+      Entity client = Entity.get(params.id)
+      client.profile.removeFromStatus(Status.get(params.health))
+      render template:'healths', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def addMaterial = {
+      Status status = new Status(params)
+      Entity client = Entity.get(params.id)
+      client.profile.addToStatus(status)
+      render template:'materials', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def removeMaterial = {
+      Entity client = Entity.get(params.id)
+      client.profile.removeFromStatus(Status.get(params.material))
+      render template:'materials', model: [client: client, entity: entityHelperService.loggedIn]
     }
 }

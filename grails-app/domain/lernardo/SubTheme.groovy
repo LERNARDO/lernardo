@@ -2,7 +2,7 @@ package lernardo
 
 class SubTheme {
 
-    static hasMany = [projects: ProjectProfile]
+    //static hasMany = [projects: ProjectProfile]
 
     String name
     Date startDate

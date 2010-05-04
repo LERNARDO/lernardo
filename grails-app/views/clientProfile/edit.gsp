@@ -168,23 +168,23 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="familyStatus">
+                <g:message code="clientProfile.familyStatus.label" default="Sprachen"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select class="${hasErrors(bean: client, field: 'profile.familyStatus', 'errors')}" name="familyStatus" from="${['bei Eltern']}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="languages">
                 <g:message code="clientProfile.languages.label" default="Sprachen"/>
               </label>
             </td>
             <td valign="top" class="value">
               <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="school">
-                <g:message code="clientProfile.schoolLevel.label" default="Schule"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:select id="school" name="school" from="${1..12}" value="${fieldValue(bean: client, field: 'profile.school')}"/>
             </td>
           </tr>
 
@@ -342,7 +342,29 @@
             </td>
           </tr>
 
-        <tr class="prop">
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="support">
+                <g:message code="clientProfile.support.label" default="Unterstützung?"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="support" value="${client?.profile?.support}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="supportDescription">
+                <g:message code="clientProfile.supportDescription.label" default="Unterstützung Text"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" id="supportDescription" name="supportDescription" value="${client?.profile?.supportDescription?.toInteger()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
           <td valign="top" class="name">
             <label for="lang">
               <g:message code="clientProfile.lang.label" default="Spracheinstellung"/>
