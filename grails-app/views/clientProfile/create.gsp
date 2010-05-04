@@ -95,7 +95,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCity">
-                <g:message code="clientProfile.city.label" default="Stadt"/>
+                <g:message code="clientProfile.currentCity.label" default="Stadt"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -180,7 +180,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="school">
-                <g:message code="clientProfile.schoolLevel.label" default="Schule"/>
+                <g:message code="clientProfile.school.label" default="Schule"/>
               </label>
             </td>
             <td valign="top" class="value">

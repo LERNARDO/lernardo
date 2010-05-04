@@ -68,322 +68,279 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="country">
-                <p class="bold">Derzeitige Adresse</p>
+              <label for="gender">
+                <g:message code="clientProfile.gender.label" default="Geschlecht"/>
               </label>
             </td>
             <td valign="top" class="value">
-              &nbsp;
+              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bold">Derzeitige Adresse</span></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="currentStreet">
+                <g:message code="clientProfile.currentStreet.label" default="Straße"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="30" id="currentStreet" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="street">
-                <g:message code="clientProfile.street.label" default="Straße"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: client, field: 'profile.street').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="city">
+              <label for="currentCity">
                 <g:message code="clientProfile.city.label" default="Stadt"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: client, field: 'profile.city').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="30" id="currentCity" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
-                <g:message code="clientProfile.PLZ.label" default="PLZ"/>
+              <label for="currentZip">
+                <g:message code="clientProfile.currentZip.label" default="PLZ"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: client, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="30" id="currentZip" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="country">
-                <g:message code="clientProfile.country.label" default="Land"/>
+              <label for="currentCountry">
+                <g:message code="clientProfile.currentCountry.label" default="Land"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: client, field: 'profile.country').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bold">Herkunft</span></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="originCity">
+                <g:message code="clientProfile.originCity.label" default="Stadt"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="country">
-                <p class="bold">Herkunft</p>
+              <label for="originZip">
+                <g:message code="clientProfile.originZip.label" default="PLZ"/>
               </label>
             </td>
             <td valign="top" class="value">
-              &nbsp;
+              <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="30" id="originZip" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="street2">
-                <g:message code="clientProfile.street2.label" default="Straße"/>
+              <label for="originCountry">
+                <g:message code="clientProfile.originCountry.label" default="Land"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.street2', 'errors')}" size="30" id="street2" name="street2" value="${fieldValue(bean: client, field: 'profile.street2').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="bold">Weitere Daten</span></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="languages">
+                <g:message code="clientProfile.languages.label" default="Sprachen"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="city2">
-                <g:message code="clientProfile.city2.label" default="Stadt"/>
+              <label for="school">
+                <g:message code="clientProfile.schoolLevel.label" default="Schule"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.city2', 'errors')}" size="30" id="city2" name="city2" value="${fieldValue(bean: client, field: 'profile.city2').decodeHTML()}"/>
+              <g:select id="school" name="school" from="${1..12}" value="${fieldValue(bean: client, field: 'profile.school')}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ2">
-                <g:message code="clientProfile.PLZ2.label" default="PLZ"/>
+              <label for="schoolLevel">
+                <g:message code="clientProfile.schoolLevel.label" default="Schulstufe"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.PLZ2', 'errors')}" size="30" id="PLZ2" name="PLZ2" value="${fieldValue(bean: client, field: 'profile.PLZ2').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.schoolLevel', 'errors')}" size="30" id="schoolLevel" name="schoolLevel" value="${fieldValue(bean: client, field: 'profile.schoolLevel').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="country2">
-                <g:message code="clientProfile.country2.label" default="Land"/>
+              <label for="schoolDropout">
+                <g:message code="clientProfile.schoolDropout.label" default="Aussteiger?"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.country2', 'errors')}" size="30" id="country2" name="country2" value="${fieldValue(bean: client, field: 'profile.country2').decodeHTML()}"/>
+              <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="country">
-                <p class="bold">Weitere Daten</p>
+              <label for="schoolDropoutReason">
+                <g:message code="clientProfile.schoolDropoutReason.label" default="Aussteiger Grund"/>
               </label>
             </td>
             <td valign="top" class="value">
-              &nbsp;
+              <g:textField class="${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="30" id="schoolDropoutReason" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
             </td>
           </tr>
-          
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="joinDate">
-              <g:message code="clientProfile.joinDate.label" default="Eintrittsdatum"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:datePicker name="joinDate" value="${client?.profile?.joinDate}" precision="day" default="none" noSelection="['':'']"/>
-          </td>
-        </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="endDate">
-              <g:message code="clientProfile.endDate.label" default="Austrittsdatum"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:datePicker name="endDate" value="${client?.profile?.endDate}" precision="day" default="none" noSelection="['':'']"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="schoolDropoutDate">
+                <g:message code="clientProfile.schoolDropoutDate.label" default="Aussteiger Datum"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:datePicker name="schoolDropoutDate" value="${client?.profile?.schoolDropoutDate}" precision="day"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="joinDate2">
-              <g:message code="clientProfile.joinDate2.label" default="Eintrittsdatum #2"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:datePicker name="joinDate2" value="${client?.profile?.joinDate2}" precision="day" default="none" noSelection="['':'']"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="schoolRestart">
+                <g:message code="clientProfile.schoolRestart.label" default="Einsteiger?"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="schoolRestart" value="${client?.profile?.schoolRestart}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="endDate2">
-              <g:message code="clientProfile.endDate2.label" default="Austrittsdatum #2"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:datePicker name="endDate2" value="${client?.profile?.endDate2}" precision="day" default="none" noSelection="['':'']"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="schoolRestartReason">
+                <g:message code="clientProfile.schoolRestartReason.label" default="Einsteiger Grund"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="30" id="schoolRestartReason" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="notes">
-              <g:message code="clientProfile.notes.label" default="Notizen"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textArea class="${hasErrors(bean: client, field: 'profile.notes', 'errors')}" id="notes" rows="6" cols="50" name="notes" value="${fieldValue(bean: client, field: 'profile.notes').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="schoolRestartDate">
+                <g:message code="clientProfile.schoolRestartDate.label" default="Einsteiger Datum"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:datePicker name="schoolRestartDate" value="${client?.profile?.schoolRestartDate}" precision="day"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="interests">
-              <g:message code="clientProfile.interests.label" default="Interessen"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textArea class="${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="6" cols="50" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="interests">
+                <g:message code="clientProfile.interests.label" default="Interessen"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="6" cols="50" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="personalDetails">
-              <g:message code="clientProfile.personalDetails.label" default="Persönliche Details"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textArea class="${hasErrors(bean: client, field: 'profile.personalDetails', 'errors')}" id="personalDetails" rows="6" cols="50" name="personalDetails" value="${fieldValue(bean: client, field: 'profile.personalDetails').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="size">
+                <g:message code="clientProfile.size.label" default="Größe"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.size', 'errors')}" size="30" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="attendance">
-              <g:message code="clientProfile.attendance.label" default="Anwesenheit"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'profile.attendance', 'errors')}" size="30" id="attendance" name="attendance" value="${fieldValue(bean: client, field: 'profile.attendance').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="weight">
+                <g:message code="clientProfile.weight.label" default="Gewicht"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.weight', 'errors')}" size="30" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="doesWork">
-              <g:message code="clientProfile.doesWork.label" default="Berufstätig?"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="doesWork" value="${client?.profile?.doesWork}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="job">
+                <g:message code="clientProfile.job.label" default="Berufstätig?"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="job" value="${client?.profile?.job}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="work">
-              <g:message code="clientProfile.work.label" default="Arbeit"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'profile.work', 'errors')}" size="30" id="work" name="work" value="${fieldValue(bean: client, field: 'profile.work').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="jobType">
+                <g:message code="clientProfile.jobType.label" default="Arbeit"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.jobType', 'errors')}" size="30" id="jobType" name="jobType" value="${fieldValue(bean: client, field: 'profile.jobType').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="income">
-              <g:message code="clientProfile.income.label" default="Einkommen"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'profile.income', 'errors')}" size="30" id="income" name="income" value="${client?.profile?.income?.toInteger()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="jobIncome">
+                <g:message code="clientProfile.jobIncome.label" default="Einkommen"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}" size="30" id="jobIncome" name="jobIncome" value="${client?.profile?.jobIncome?.toInteger()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="gender">
-              <g:message code="clientProfile.gender.label" default="Geschlecht"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="languages">
-              <g:message code="clientProfile.languages.label" default="Sprachen"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="nationality">
-              <g:message code="clientProfile.nationality.label" default="Nationalität"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:select name="nationality" from="${grailsApplication.config.nationalities}" value="${client.profile.nationality}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="school">
-              <g:message code="clientProfile.schoolLevel.label" default="Schule"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:select id="school" name="school" from="${1..12}" value="${fieldValue(bean: client, field: 'profile.school')}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="schoolLevel">
-              <g:message code="clientProfile.schoolLevel.label" default="Schulstufe"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:select id="schoolLevel" name="schoolLevel" from="${1..12}" value="${fieldValue(bean: client, field: 'profile.schoolLevel')}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="dropout">
-              <g:message code="clientProfile.dropout.label" default="Aussteiger?"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="dropout" value="${client?.profile?.dropout}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="dropoutReason">
-              <g:message code="clientProfile.dropoutReason.label" default="Aussteiger Grund"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'profile.dropoutReason', 'errors')}" size="30" id="dropoutReason" name="dropoutReason" value="${fieldValue(bean: client, field: 'profile.dropoutReason').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="jobFrequency">
+                <g:message code="clientProfile.jobFrequency.label" default="Jobhäufigkeit"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}" size="30" id="jobFrequency" name="jobFrequency" value="${client?.profile?.jobFrequency?.toInteger()}"/>
+            </td>
+          </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
