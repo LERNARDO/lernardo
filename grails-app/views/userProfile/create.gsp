@@ -23,7 +23,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="firstName">
-                <g:message code="userProfile.firstName.label" default="Vorname"/>
+                <g:message code="user.profile.firstName"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -34,7 +34,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lastName">
-                <g:message code="userProfile.lastName.label" default="Nachname"/>
+                <g:message code="user.profile.lastName"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -45,7 +45,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="userProfile.email.label" default="E-Mail"/>
+                <g:message code="user.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -56,7 +56,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
-                <g:message code="userProfile.lang.label" default="Spracheinstellung"/>
+                <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -67,7 +67,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="enabled">
-                <g:message code="userProfile.enabled.label" default="Aktiv?"/>
+                <g:message code="active"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -79,8 +79,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="list">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

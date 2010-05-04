@@ -16,21 +16,21 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="userProfile.firstName.label" default="Vorname"/>:
+            <g:message code="user.profile.firstName"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.firstName')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="userProfile.lastName.label" default="Nachname"/>:
+            <g:message code="user.profile.lastName"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.lastName')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="userProfile.fullName.label" default="E-Mail"/>:
+            <g:message code="user.profile.email"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: user, field: 'user.email')}</td>
         </tr>
@@ -38,7 +38,7 @@
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
-              <g:message code="userProfile.work.label" default="Aktiv"/>:
+              <g:message code="active"/>:
             </td>
             <td valign="top" class="value"><g:formatBoolean boolean="${user.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
@@ -50,7 +50,7 @@
 
     <app:isMeOrAdmin entity="${user}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${user?.id}">Bearbeiten</g:link>
+        <g:link class="buttonBlue" action="edit" id="${user?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>

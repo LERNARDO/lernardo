@@ -35,7 +35,9 @@ class PateProfileController {
       redirect(action: list)
     }
     else {
-      return [pate: pate, entity: entity]
+      List links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
+      List godchildren = links.collect {it.source}
+      return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
     }
   }
 
@@ -96,7 +98,7 @@ class PateProfileController {
 
     if (!pate.hasErrors() && pate.save()) {
 
-      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
+/*      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
       if (params.clients) {
         if(params.clients.class.isArray())
           params.clients.each {
@@ -104,7 +106,7 @@ class PateProfileController {
           }
         else
           new Link(source: Entity.get(params.clients), target: pate, type: metaDataService.ltPate).save()
-      }
+      }*/
 
       flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
       redirect action: 'show', id: pate.id
@@ -127,14 +129,14 @@ class PateProfileController {
         ent.user.password = authenticateService.encodePassword("pass")
         ent.user.enabled = params.enabled ?: false
       }
-      if (params.clients) {
+/*      if (params.clients) {
         if(params.clients.class.isArray())
           params.clients.each {
             new Link(source: Entity.get(it), target: entity, type: metaDataService.ltPate).save()
           }
         else
           new Link(source: Entity.get(params.clients), target: entity, type: metaDataService.ltPate).save()
-      }
+      }*/
       if (params.lang == '1') {
         entity.user.locale = new Locale ("de", "DE")
         Locale locale = entity.user.locale
@@ -153,4 +155,34 @@ class PateProfileController {
     }
 
   }
+
+    def addGodchildren = {
+      // check if the child isn't already linked to the pate
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.child))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltPate)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.child), target: entityHelperService.loggedIn, type:metaDataService.ltPate).save()
+      // find all godchildren of this pate
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltPate)
+      List godchildren = links.collect {it.source}
+      render template:'godchildren', model: [godchildren: godchildren, entity: entityHelperService.loggedIn]
+    }
+
+    def removeGodchildren = {
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.id))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltPate)
+      }
+      link.delete()
+      // find all godchildren of this pate
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltPate)
+      List godchildren = links.collect {it.source}
+      render template:'godchildren', model: [godchildren: godchildren, entity: entityHelperService.loggedIn]
+    }
 }

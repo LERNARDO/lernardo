@@ -16,70 +16,70 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.firstName.label" default="Vorname"/>:
+            <g:message code="pate.profile.firstName"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.lastName.label" default="Nachname"/>:
+            <g:message code="pate.profile.lastName"/>:
           </td>
           <td valign="top" class="value"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.fullName.label" default="E-Mail"/>:
+            <g:message code="pate.profile.email"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'user.email')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.country.label" default="PLZ"/>:
+            <g:message code="pate.profile.country"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.zip.label" default="PLZ"/>:
+            <g:message code="pate.profile.zip"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.city.label" default="Stadt"/>:
+            <g:message code="pate.profile.city"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.street.label" default="Straße"/>:
+            <g:message code="pate.profile.street"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.emails.label" default="E-Mails"/>:
+            <g:message code="pate.profile.emails"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.emails')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.motherTongue.label" default="Muttersprache"/>:
+            <g:message code="pate.profile.motherTongue"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.motherTongue')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="pateProfile.languages.label" default="Sprachen"/>:
+            <g:message code="pate.profile.languages"/>:
           </td>
           <td valign="top" class="value"><ul><g:each in="${pate.profile.languages}" var="language"><li>${language}</li></g:each></ul></td>
         </tr>
@@ -87,26 +87,11 @@
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
-              <g:message code="parentProfile.work.label" default="Aktiv"/>:
+              <g:message code="active"/>:
             </td>
             <td valign="top" class="value"><g:formatBoolean boolean="${pate.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
         </app:isAdmin>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pateProfile.nationality.label" default="Betreute"/>:
-          </td>
-          <td valign="top" class="value">
-            <app:getPateClients entity="${pate}">
-              <ul>
-                <g:each in="${clients}" var="client">
-                  <g:link controller="clientProfile" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link>
-                </g:each>
-              </ul>
-            </app:getPateClients>
-          </td>
-        </tr>
 
         </tbody>
       </table>
@@ -114,10 +99,31 @@
 
     <app:isMeOrAdmin entity="${pate}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${pate?.id}">Bearbeiten</g:link>
+        <g:link class="buttonBlue" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
+
+    <div>
+      <h1>Patenkinder <app:isMeOrAdmin entity="${pate}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <jq:jquery>
+        hideform = function(){
+          $('#godchildren').hide('slow') ;
+        }
+        <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
+      </jq:jquery>
+      <div id="godchildren" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren']" update="godchildren2" before="hideform()">
+          <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="godchildren2">
+        <g:render template="godchildren" model="${godchildren}"/>
+      </div>
+    </div>
 
   </div>
 </div>
