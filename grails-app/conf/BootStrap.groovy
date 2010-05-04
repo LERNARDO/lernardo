@@ -218,10 +218,10 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = ent.profile
-      prf.PLZ = ""
+      prf.zip = ""
       prf.city = ""
       prf.street = ""
-      prf.tel = ""
+      prf.phone = ""
       prf.description = ""
     }
   }

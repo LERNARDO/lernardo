@@ -4,10 +4,10 @@ import de.uenterprise.ep.Profile
 
 class OperatorProfile extends Profile {
 
-    String PLZ
+    String zip // changed on 04.05.2010, before: PLZ
     String city
     String street
-    String tel
+    String phone // changed on 04.05.2010, before: tel
     String description
     Boolean showTips = true
 

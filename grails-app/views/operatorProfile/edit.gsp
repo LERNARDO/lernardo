@@ -25,7 +25,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
-                <g:message code="operatorProfile.fullName.label" default="Name"/>
+                <g:message code="operator.profile.name"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -36,7 +36,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="operatorProfile.email.label" default="E-Mail"/>
+                <g:message code="operator.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -46,19 +46,19 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="PLZ">
-                <g:message code="operatorProfile.PLZ.label" default="PLZ"/>
+              <label for="zip">
+                <g:message code="operator.profile.zip"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.PLZ', 'errors')}" size="30" id="PLZ" name="PLZ" value="${fieldValue(bean: operator, field: 'profile.PLZ').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: operator, field: 'profile.zip').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="city">
-                <g:message code="operatorProfile.city.label" default="Stadt"/>
+                <g:message code="operator.profile.city"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -69,7 +69,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="street">
-                <g:message code="operatorProfile.street.label" default="Straße"/>
+                <g:message code="operator.profile.street"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -80,7 +80,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
-                <g:message code="operatorProfile.description.label" default="Beschreibung"/>
+                <g:message code="operator.profile.description"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -90,19 +90,19 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="tel">
-                <g:message code="operatorProfile.tel.label" default="Telefon"/>
+              <label for="phone">
+                <g:message code="operator.profile.phone"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.tel', 'errors')}" size="30" id="tel" name="tel" value="${fieldValue(bean: operator, field: 'profile.tel').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: operator, field: 'profile.phone').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
-                <g:message code="operatorProfile.lang.label" default="Spracheinstellung"/>
+                <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -113,7 +113,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="showTips">
-                <g:message code="operatorProfile.showTips.label" default="Zeige Tipps?"/>
+                <g:message code="showTips"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -125,7 +125,7 @@
             <tr class="prop">
               <td valign="top" class="name">
                 <label for="enabled">
-                  <g:message code="operatorProfile.enabled.label" default="Aktiv?"/>
+                  <g:message code="active"/>
                 </label>
 
               </td>
@@ -138,7 +138,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="operatorProfile.showTips.label" default="Passwort"/>
+                <g:message code="password"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -150,8 +150,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="show" id="${operator.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="show" id="${operator.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>
