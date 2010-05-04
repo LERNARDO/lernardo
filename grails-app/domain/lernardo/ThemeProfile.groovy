@@ -6,6 +6,8 @@ import de.uenterprise.ep.Profile
 
 class ThemeProfile extends Profile {
 
+    static hasMany = [subthemes: SubTheme]
+
     Date startDate
     Date endDate
     String description
