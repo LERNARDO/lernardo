@@ -30,9 +30,9 @@ class BootStrap {
       createDefaultUsers()
       createDefaultOperator()
       createDefaultFacilities()
-/*      createDefaultEducators()
+      createDefaultEducators()
 
-      createDefaultLinks()
+/*      createDefaultLinks()
       createDefaultTemplates()
       createDefaultComments()
       createDefaultResources()
@@ -110,19 +110,26 @@ class BootStrap {
       prf.gender = 1
       prf.title = "DI"
       prf.birthDate = new Date(1968-1900,02,18)
-      prf.PLZ = "29215"
-      prf.city = "San Cristóbal de Las Casas"
-      prf.street = "Av. Norte Oriente 13a"
-      prf.contact = ""
+      prf.currentCountry = "Mexiko"
+      prf.currentZip = "29215"
+      prf.currentCity = "San Cristóbal de Las Casas"
+      prf.currentStreet = "Av. Norte Oriente 13a"
+      prf.originCountry = ""
+      prf.originZip = ""
+      prf.originCity = ""
+      prf.originStreet = ""
+      prf.contactPhone = ""
+      prf.contactCountry = ""
+      prf.contactCity = ""
+      prf.contactStreet = ""
+      prf.contactZip = ""
+      prf.contactMail = ""
       prf.education = ""
-      prf.employed = true
       prf.firstName = "Christian"
       prf.lastName = "Szinicz"
-      prf.function = ""
       prf.interests = ""
-      prf.joinDate = new Date()
-      prf.languages = "Deutsch"
-      prf.nationality = "Österreich"
+      prf.employment = ""
+      prf.addToLanguages("Deutsch")
     }
 
     entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
@@ -131,19 +138,26 @@ class BootStrap {
       prf.gender = 1
       prf.title = "Ing. Dkfm."
       prf.birthDate = new Date(1939-1900,04,17)
-      prf.PLZ = "4600"
-      prf.city = "Schleißheim bei Wels"
-      prf.street = ""
-      prf.contact = ""
+      prf.currentCountry = "Mexiko"
+      prf.currentZip = "4600"
+      prf.currentCity = "Schleißheim bei Wels"
+      prf.currentStreet = ""
+      prf.originCountry = ""
+      prf.originZip = ""
+      prf.originCity = ""
+      prf.originStreet = ""
+      prf.contactPhone = ""
+      prf.contactCountry = ""
+      prf.contactCity = ""
+      prf.contactStreet = ""
+      prf.contactZip = ""
+      prf.contactMail = ""
       prf.education = ""
-      prf.employed = false
       prf.firstName = "Ludwig"
       prf.lastName = "Szinicz"
-      prf.function = ""
       prf.interests = ""
-      prf.joinDate = new Date()
-      prf.languages = "Deutsch"
-      prf.nationality = "Österreich"
+      prf.employment = ""
+      prf.addToLanguages("Deutsch")
     }
 
   }
