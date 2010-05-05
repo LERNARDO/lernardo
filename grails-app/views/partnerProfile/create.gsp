@@ -25,7 +25,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
-                <g:message code="partnerProfile.fullName.label" default="Name"/>
+                <g:message code="partner.profile.name"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -36,7 +36,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
-                <g:message code="partnerProfile.description.label" default="Beschreibung"/>
+                <g:message code="partner.profile.description"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -47,7 +47,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="partnerProfile.email.label" default="E-Mail"/>
+                <g:message code="partner.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -58,7 +58,7 @@
           <tr class="prop">
             <td valign="website" class="name">
               <label for="email">
-                <g:message code="partnerProfile.website.label" default="Webseite"/>
+                <g:message code="partner.profile.website"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -69,7 +69,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="country">
-                <g:message code="partnerProfile.PLZ.label" default="Land"/>
+                <g:message code="partner.profile.country"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -80,7 +80,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="zip">
-                <g:message code="partnerProfile.PLZ.label" default="PLZ"/>
+                <g:message code="partner.profile.zip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -91,7 +91,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="city">
-                <g:message code="partnerProfile.city.label" default="Stadt"/>
+                <g:message code="partner.profile.city"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -102,7 +102,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="street">
-                <g:message code="partnerProfile.street.label" default="Straße"/>
+                <g:message code="partner.profile.street"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -113,7 +113,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="phone">
-                <g:message code="partnerProfile.tel.label" default="Telefon"/>
+                <g:message code="partner.profile.phone"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -124,7 +124,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
-                <g:message code="partnerProfile.lang.label" default="Spracheinstellung"/>
+                <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -135,9 +135,8 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="enabled">
-                <g:message code="partnerProfile.enabled.label" default="Aktiv?"/>
+                <g:message code="active"/>
               </label>
-
             </td>
             <td valign="top" class="value">
               <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
@@ -149,8 +148,8 @@
 
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="list">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

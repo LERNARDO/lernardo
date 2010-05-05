@@ -16,63 +16,63 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.fullName.label" default="Name"/>:
+            <g:message code="partner.profile.name"/>:
           </td>
           <td valign="top" class="value"><g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.fullName.label" default="E-Mail"/>:
+            <g:message code="partner.profile.email"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'user.email')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.website.label" default="Webseite"/>:
+            <g:message code="partner.profile.website"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.description.label" default="Beschreibung"/>:
+            <g:message code="partner.profile.description"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.country.label" default="Land"/>:
+            <g:message code="partner.profile.country"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.zip.label" default="PLZ"/>:
+            <g:message code="partner.profile.zip"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.city.label" default="Stadt"/>:
+            <g:message code="partner.profile.city"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.street.label" default="Straße"/>:
+            <g:message code="partner.profile.street"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="partnerProfile.phone.label" default="Telefon"/>:
+            <g:message code="partner.profile.phone"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
@@ -80,7 +80,7 @@
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
-              <g:message code="parentProfile.work.label" default="Aktiv"/>:
+              <g:message code="active"/>:
             </td>
             <td valign="top" class="value"><g:formatBoolean boolean="${partner.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
@@ -92,7 +92,7 @@
 
     <app:isMeOrAdmin entity="${partner}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${partner?.id}">Bearbeiten</g:link>
+        <g:link class="buttonBlue" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
@@ -109,7 +109,7 @@
         <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="hideform()">
           <g:textField name="service" size="30"/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
@@ -140,7 +140,7 @@
           Funktion: <g:textField name="function" size="30"/>        
 
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>

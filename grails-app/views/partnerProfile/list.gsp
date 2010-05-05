@@ -16,7 +16,7 @@
         <table>
           <thead>
           <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'partnerProfile.fullName.label', default:'Name')}"/>
+            <g:sortableColumn property="fullName" title="${message(code:'partner.profile.name')}"/>
           </tr>
           </thead>
           <tbody>

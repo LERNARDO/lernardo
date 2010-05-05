@@ -25,9 +25,8 @@
               <tr class="prop">
                   <td valign="top" class="name">
                     <label for="fullName">
-                      <g:message code="partnerProfile.fullName.label" default="Name" />
+                      <g:message code="partner.profile.name"/>
                     </label>
-
                   </td>
                   <td valign="top" class="value">
                       <input class="${hasErrors(bean:partner,field:'profile.fullName','errors')}" type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean:partner,field:'profile.fullName')}"/>
@@ -37,7 +36,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="partnerProfile.email.label" default="E-Mail"/>
+                <g:message code="partner.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -48,9 +47,8 @@
             <tr class="prop">
                   <td valign="top" class="name">
                     <label for="description">
-                      <g:message code="partnerProfile.description.label" default="Beschreibung" />
+                      <g:message code="partner.profile.description"/>
                     </label>
-
                   </td>
                   <td valign="top" class="value">
                       <textarea class="${hasErrors(bean:partner,field:'profile.description','errors')}" rows="5" cols="40" id="description" name="description">${fieldValue(bean:partner, field:'profile.description')}</textarea>
@@ -59,22 +57,20 @@
 
               <tr class="prop">
                   <td valign="top" class="name">
-                    <label for="PLZ">
-                      <g:message code="partnerProfile.PLZ.label" default="PLZ" />
+                    <label for="zip">
+                      <g:message code="partner.profile.zip"/>
                     </label>
-
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:partner,field:'profile.PLZ','errors')}" type="text" id="PLZ" name="PLZ" value="${fieldValue(bean:partner,field:'profile.PLZ')}" />
+                      <input class="${hasErrors(bean:partner,field:'profile.zip','errors')}" type="text" id="zip" name="zip" value="${fieldValue(bean:partner,field:'profile.zip')}" />
                   </td>
               </tr>
 
               <tr class="prop">
                   <td valign="top" class="name">
                     <label for="city">
-                      <g:message code="partnerProfile.city.label" default="Stadt" />
+                      <g:message code="partner.profile.city" />
                     </label>
-
                   </td>
                   <td valign="top" class="value">
                       <input class="${hasErrors(bean:partner,field:'profile.city','errors')}" type="text" id="city" name="city" value="${fieldValue(bean:partner,field:'profile.city')}"/>
@@ -84,9 +80,8 @@
               <tr class="prop">
                   <td valign="top" class="name">
                     <label for="street">
-                      <g:message code="partnerProfile.street.label" default="Straße" />
+                      <g:message code="partner.profile.street" />
                     </label>
-
                   </td>
                   <td valign="top" class="value">
                       <input class="${hasErrors(bean:partner,field:'profile.street','errors')}" type="text" id="street" name="street" value="${fieldValue(bean:partner,field:'profile.street')}"/>
@@ -95,20 +90,19 @@
 
               <tr class="prop">
                   <td valign="top" class="name">
-                    <label for="tel">
-                      <g:message code="partnerProfile.tel.label" default="Telefon" />
+                    <label for="phone">
+                      <g:message code="partner.profile.phone" />
                     </label>
-
                   </td>
                   <td valign="top" class="value">
-                      <input class="${hasErrors(bean:partner,field:'profile.tel','errors')}" type="text" id="tel" name="tel" value="${fieldValue(bean:partner,field:'profile.tel')}"/>
+                      <input class="${hasErrors(bean:partner,field:'profile.phone','errors')}" type="text" id="phone" name="phone" value="${fieldValue(bean:partner,field:'profile.phone')}"/>
                   </td>
               </tr>
 
               <tr class="prop">
                 <td valign="top" class="name">
                   <label for="lang">
-                    <g:message code="partnerProfile.lang.label" default="Spracheinstellung"/>
+                    <g:message code="languageSelection"/>
                   </label>
                 </td>
                 <td valign="top" class="value">
@@ -120,9 +114,8 @@
                 <tr class="prop">
                     <td valign="top" class="name">
                       <label for="enabled">
-                        <g:message code="partnerProfile.enabled.label" default="Aktiv?" />
+                        <g:message code="active" />
                       </label>
-  
                     </td>
                     <td valign="top" class="value">
                         <g:checkBox name="enabled" value="${fieldValue(bean:partner,field:'user.enabled')}" />
@@ -133,7 +126,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="partnerProfile.showTips.label" default="Passwort"/>
+                <g:message code="password"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -145,8 +138,8 @@
           </table>
         </div>
       <div class="buttons">
-          <g:submitButton name="submitButton" value="Speichern" />
-           <g:link class="buttonGray" action="show" id="${partner.id}">Abbrechen</g:link>
+          <g:submitButton name="submitButton" value="${message(code:'save')}" />
+           <g:link class="buttonGray" action="show" id="${partner.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>
