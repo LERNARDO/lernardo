@@ -23,7 +23,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
-                <g:message code="resource.profile.fullName.label" default="Name"/>
+                <g:message code="resource.profile.name"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -34,7 +34,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
-                <g:message code="resource.profile.description.label" default="Beschreibung"/>
+                <g:message code="resource.profile.description"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -45,7 +45,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="type">
-                <g:message code="resourceProfile.profile.description.label" default="Ressourcentyp"/>
+                <g:message code="resource.profile.type"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -56,7 +56,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="classification">
-                <g:message code="resourceProfile.profile.description.label" default="Ressourcenklasse"/>
+                <g:message code="resource.profile.classification"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -68,8 +68,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="list">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

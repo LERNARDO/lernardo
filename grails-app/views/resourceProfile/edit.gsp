@@ -18,8 +18,6 @@
     </g:hasErrors>
     
     <g:form action="update" method="post" id="${resource?.id}">
-      <input type="hidden" name="id" value="${resource?.id}"/>
-      <input type="hidden" name="version" value="${resource?.version}"/>
       <div class="dialog">
         <table>
           <tbody>
@@ -27,9 +25,8 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
-                <g:message code="resourceProfile.profile.fullName.label" default="Name"/>
+                <g:message code="resource.profile.name"/>
               </label>
-
             </td>
             <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}">
               <input type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
@@ -39,9 +36,8 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
-                <g:message code="resourceProfile.profile.description.label" default="Beschreibung"/>
+                <g:message code="resource.profile.description"/>
               </label>
-
             </td>
             <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.description', 'errors')}">
               <textarea id="description" rows="5" cols="40" name="description">${fieldValue(bean: resource, field: 'profile.description')}</textarea>
@@ -51,7 +47,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="type">
-                <g:message code="resourceProfile.profile.description.label" default="Ressourcentyp"/>
+                <g:message code="resource.profile.type"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.type', 'errors')}">
@@ -62,7 +58,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="classification">
-                <g:message code="resourceProfile.profile.description.label" default="Ressourcenklasse"/>
+                <g:message code="resource.profile.classification"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -74,9 +70,9 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-        <g:link class="buttonGray" action="show" id="${resource?.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="del" id="${resource?.id}" onclick="return confirm('Bist du sicher?');"><g:message code="delete"/></g:link>
+        <g:link class="buttonGray" action="show" id="${resource?.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

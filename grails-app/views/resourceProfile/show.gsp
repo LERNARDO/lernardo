@@ -16,28 +16,28 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="resourceProfile.fullName.label" default="Name"/>:
+            <g:message code="resource.profile.name"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.fullName')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="resourceProfile.description.label" default="Beschreibung"/>:
+            <g:message code="resource.profile.description"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="resourceProfile.type.label" default="Ressourcentyp"/>:
+            <g:message code="resource.profile.type"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.type')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="resourceProfile.classification.label" default="Ressourcenklasse"/>:
+            <g:message code="resource.profile.classification"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.classification')}</td>
         </tr>
@@ -46,8 +46,8 @@
       </table>
     </div>
     <div class="buttons">
-      <g:link class="buttonBlue" action="edit" id="${resource?.id}">Bearbeiten</g:link>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <g:link class="buttonBlue" action="edit" id="${resource?.id}"><g:message code="Edit"/></g:link>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
   </div>
