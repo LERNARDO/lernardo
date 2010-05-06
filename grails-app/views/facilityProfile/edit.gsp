@@ -25,7 +25,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
-                <g:message code="facilityProfile.fullName.label" default="Name"/>
+                <g:message code="facility.profile.name"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -36,18 +36,18 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="facilityProfile.email.label" default="E-Mail"/>
+                <g:message code="facility.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
+              <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
-                <g:message code="facilityProfile.description.label" default="Beschreibung"/>
+                <g:message code="facility.profile.description"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -58,7 +58,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="country">
-                <g:message code="facilityProfile.country.label" default="Land"/>
+                <g:message code="facility.profile.country"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -69,7 +69,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="zip">
-                <g:message code="facilityProfile.PLZ.label" default="PLZ"/>
+                <g:message code="facility.profile.zip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -80,7 +80,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="city">
-                <g:message code="facilityProfile.city.label" default="Stadt"/>
+                <g:message code="facility.profile.city"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -91,7 +91,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="street">
-                <g:message code="facilityProfile.street.label" default="Straße"/>
+                <g:message code="facility.profile.street"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -102,7 +102,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
-                <g:message code="facilityProfile.lang.label" default="Spracheinstellung"/>
+                <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -113,7 +113,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="facilityProfile.showTips.label" default="Tipps?"/>
+                <g:message code="showTips"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -125,7 +125,7 @@
             <tr class="prop">
               <td valign="top" class="name">
                 <label for="enabled">
-                  <g:message code="facilityProfile.enabled.label" default="Aktiv?"/>
+                  <g:message code="active"/>
                 </label>
               </td>
               <td valign="top" class="value">
@@ -137,7 +137,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="facilityProfile.showTips.label" default="Passwort"/>
+                <g:message code="password"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -149,8 +149,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="show" id="${facility.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="show" id="${facility.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

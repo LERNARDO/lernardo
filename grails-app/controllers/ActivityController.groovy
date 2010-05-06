@@ -21,12 +21,8 @@ class ActivityController {
     params.myDate_year = params.myDate_year ?: 'alle'
 
     // get a list of facilities the current entity is linked to
-    def links = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-    List facilities = []
-
-    links.each {
-      facilities << it.target
-    }
+    List links = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+    List facilities = links.collect {it.target}
 
     // create empty list for final results
     List activityList = []

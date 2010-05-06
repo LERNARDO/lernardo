@@ -36,28 +36,66 @@ class FacilityProfileController {
             redirect(action:list)
         }
         else {
-          def allEducators = Entity.findAllByType(metaDataService.etEducator)
+          def allResources = Entity.findAllByType(metaDataService.etResource)
+          // find all resources of this facility
+          def links = Link.findAllByTargetAndType(entity, metaDataService.ltResource)
+          List resources = links.collect {it.source}
+
+          //def allEducators = Entity.findAllByType(metaDataService.etEducator)
+          // find all educators of this facility
+          //def links = Link.findAllByTargetAndType(entity, metaDataService.ltWorking)
+          //List educators = links.collect {it.source}
+
+          //def allClients = Entity.findAllByType(metaDataService.etClient)
 
           // find all facilities of this operator
-          List educators = []
-          def links = Link.findAllByTargetAndType(entity, metaDataService.ltWorking)
-          links.each {
-              educators << it.source
-          }
+          //links = Link.findAllByTargetAndType(entity, metaDataService.ltClientship)
+          //List clients = links.collect {it.source}
 
-          def allClients = Entity.findAllByType(metaDataService.etClient)
-
-          // find all facilities of this operator
-          List clients = []
-          links = Link.findAllByTargetAndType(entity, metaDataService.ltClientship)
-          links.each {
-              clients << it.source
-          }
-          return [facility: facility, entity: entity, allEducators: allEducators, educators: educators, allClients: allClients, clients: clients]
+          return [facility: facility,
+                  entity: entity,
+/*                allEducators: allEducators,
+                  educators: educators,
+                  allClients: allClients,
+                  clients: clients,*/
+                  allResources: allResources,
+                  resources: resources]
         }
     }
 
-/*    def addEducator = {
+    def addResource = {
+      // check if the resource isn't already linked to the facility
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.resource))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltResource)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.resource), target: entityHelperService.loggedIn, type:metaDataService.ltResource).save()
+      // find all resources of this facility
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltResource)
+      List resources = links.collect {it.source}
+
+      render template:'resources', model: [resources: resources, entity: entityHelperService.loggedIn]
+    }
+
+    def removeResource = {
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.id))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltResource)
+      }
+      link.delete()
+      // find all resources of this facility
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltResource)
+      List resources = links.collect {it.source}
+
+      render template:'resources', model: [resources: resources, entity: entityHelperService.loggedIn]
+    }
+
+    /*    def addEducator = {
       // check if the educator isn't already linked to the facility
       def c = Link.createCriteria()
       def link = c.get {

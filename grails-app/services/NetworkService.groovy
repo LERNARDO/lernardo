@@ -11,8 +11,7 @@ class NetworkService {
   // returns facilities (working) of a given entity
   def findFacilitiesOf (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltWorking, params)
-    def results = []
-    links.each {results << it.target}
+    def results = links.collect {it.target}
 
     return results
   }
@@ -20,8 +19,7 @@ class NetworkService {
   // returns facilities (clientship) of a given entity
   def findFacilities2Of (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltClientship, params)
-    def results = []
-    links.each {results << it.target}
+    def results = links.collect {it.target}
 
     return results
   }
@@ -29,8 +27,7 @@ class NetworkService {
   // returns operators of a given entity
   def findOperatorsOf (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltOperation, params)
-    def results = []
-    links.each {results << it.target}
+    def results = links.collect {it.target}
 
     return results
   }
@@ -38,8 +35,7 @@ class NetworkService {
   // returns friends of a given entity
   def findFriendsOf (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltFriendship, params)
-    def results = []
-    links.each {results << it.target}
+    def results = links.collect {it.target}
 
     return results
   }
@@ -53,7 +49,7 @@ class NetworkService {
     def results = []
     if (facility) {
       def links = Link.findAllByTargetAndType (facility, metaDataService.ltClientship)
-      links.each {results << it.source}
+      results = links.collect {it.source}
     }
 
     return results
@@ -62,8 +58,7 @@ class NetworkService {
   // returns bookmarks of a given entity
   def findBookmarksOf (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltBookmark, params)
-    def results = []
-    links.each {results << it.target}
+    def results = links.collect {it.target}
 
     return results
   }

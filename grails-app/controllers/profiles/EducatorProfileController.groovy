@@ -137,7 +137,7 @@ class EducatorProfileController {
         // create link to partner
         Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}
         if (params.enlisted) {
-          new Link (source: entity, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted)
+          new Link (source: entity, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
         }
         flash.message = message(code:"educator.created", args:[entity.profile.fullName])
         redirect action:'list'

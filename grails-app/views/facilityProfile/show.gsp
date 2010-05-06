@@ -16,49 +16,49 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.fullName.label" default="Name"/>:
+            <g:message code="facility.profile.name"/>:
           </td>
           <td valign="top" class="value"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.description.label" default="Beschreibung"/>:
+            <g:message code="facility.profile.description"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.country.label" default="Land"/>:
+            <g:message code="facility.profile.country"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.zip.label" default="PLZ"/>:
+            <g:message code="facility.profile.zip"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.city.label" default="Stadt"/>:
+            <g:message code="facility.profile.city"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.street.label" default="Straße"/>:
+            <g:message code="facility.profile.street"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="facilityProfile.email.label" default="E-Mail"/>:
+            <g:message code="facility.profile.email"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: facility, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
@@ -66,7 +66,7 @@
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
-              <g:message code="facilityProfile.enabled.label" default="Aktiv"/>:
+              <g:message code="active"/>:
             </td>
             <td valign="top" class="value"><g:formatBoolean boolean="${facility.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
@@ -78,7 +78,7 @@
 
     <app:isMeOrAdmin entity="${facility}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${facility?.id}">Bearbeiten</g:link>
+        <g:link class="buttonBlue" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
@@ -147,12 +147,33 @@
           Funktion: <g:textField name="function" size="30"/>
 
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div id="contacts2">
         <g:render template="contacts" model="${facility}"/>
+      </div>
+    </div>
+
+    <div>
+      <h1>Ressourcen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <jq:jquery>
+        hideform3 = function(){
+          $('#resources').hide('slow') ;
+        }
+        <jq:toggle sourceId="show-resources" targetId="resources"/>
+      </jq:jquery>
+      <div id="resources" style="display:none">
+        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource']" update="resources2" before="hideform3()">
+          <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="resources2">
+        <g:render template="resources" model="${resources}"/>
       </div>
     </div>
 
