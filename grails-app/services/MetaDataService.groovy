@@ -92,6 +92,7 @@ class MetaDataService {
   static final String LT_PATE = "Pate"
   static final String LT_PARTNER = "Partner"
   static final String LT_RESOURCE = "Ressource"
+  static final String LT_ENLISTED = "Angeworben"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -158,6 +159,7 @@ class MetaDataService {
     getLtPate()
     getLtPartner()
     getLtResource()
+    getLtEnlisted()
 
     getLtActEducator()
     getLtActClient()
@@ -228,6 +230,7 @@ class MetaDataService {
   LinkType getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
   LinkType getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
   LinkType getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
+  LinkType getLtEnlisted()    {defaultObjectService.openLT (LT_ENLISTED, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

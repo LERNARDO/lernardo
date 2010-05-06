@@ -16,13 +16,13 @@
         <table>
           <thead>
           <tr>
-            <g:sortableColumn property="lastName" title="${message(code:'educatorProfile.lastName.label', default:'Name')}"/>
+            <g:sortableColumn property="lastName" title="${message(code:'educator.profile.name')}"/>
           </tr>
           </thead>
           <tbody>
           <g:each in="${educatorList}" status="i" var="educator">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${educator.id}">${fieldValue(bean: educator, field: 'profile.lastName')} ${fieldValue(bean: educator, field: 'profile.firstName')}</g:link></td>
+              <td><g:link action="show" id="${educator.id}">${fieldValue(bean: educator, field: 'profile.fullName')}</g:link></td>
             </tr>
           </g:each>
           </tbody>

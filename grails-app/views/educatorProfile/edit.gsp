@@ -25,7 +25,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="title">
-                <g:message code="educatorProfile.title.label" default="Titel"/>
+                <g:message code="educator.profile.title"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -36,7 +36,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="firstName">
-                <g:message code="educatorProfile.firstName.label" default="Vorname"/>
+                <g:message code="educator.profile.firstName"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -47,7 +47,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lastName">
-                <g:message code="educatorProfile.lastName.label" default="Nachname"/>
+                <g:message code="educator.profile.lastName"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -58,7 +58,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="educatorProfile.email.label" default="E-Mail"/>
+                <g:message code="educator.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -69,7 +69,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="birthDate">
-                <g:message code="educatorProfile.birthDate.label" default="Geburtsdatum"/>
+                <g:message code="educator.profile.birthDate"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -80,7 +80,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="gender">
-                <g:message code="educatorProfile.gender.label" default="Geschlecht"/>
+                <g:message code="educator.profile.gender"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -95,7 +95,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentStreet">
-                <g:message code="educatorProfile.currentStreet.label" default="Straße"/>
+                <g:message code="educator.profile.currentStreet"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -106,7 +106,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCity">
-                <g:message code="educatorProfile.currentCity.label" default="Ort"/>
+                <g:message code="educator.profile.currentCity"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -117,7 +117,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentZip">
-                <g:message code="educatorProfile.currentZip.label" default="PLZ"/>
+                <g:message code="educator.profile.currentZip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -128,7 +128,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCountry">
-                <g:message code="educatorProfile.originCountry.label" default="Land"/>
+                <g:message code="educator.profile.currentCountry"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -143,7 +143,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originStreet">
-                <g:message code="educatorProfile.originStreet.label" default="Straße"/>
+                <g:message code="educator.profile.originStreet"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -154,7 +154,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originCity">
-                <g:message code="educatorProfile.originCity.label" default="Ort"/>
+                <g:message code="educator.profile.originCity"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -165,7 +165,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originZip">
-                <g:message code="educatorProfile.originZip.label" default="PLZ"/>
+                <g:message code="educator.profile.originZip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -176,7 +176,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originCountry">
-                <g:message code="educatorProfile.originCountry.label" default="Land"/>
+                <g:message code="educator.profile.originCountry"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -191,7 +191,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="contactStreet">
-                <g:message code="educatorProfile.contactStreet.label" default="Straße"/>
+                <g:message code="educator.profile.contactStreet"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -202,7 +202,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="contactCity">
-                <g:message code="educatorProfile.contactCity.label" default="Ort"/>
+                <g:message code="educator.profile.contactCity"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -213,7 +213,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="contactZip">
-                <g:message code="educatorProfile.contactZip.label" default="PLZ"/>
+                <g:message code="educator.profile.contactZip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -224,7 +224,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="contactCountry">
-                <g:message code="educatorProfile.contactCountry.label" default="Land"/>
+                <g:message code="educator.profile.contactCountry"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -235,7 +235,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="contactPhone">
-                <g:message code="educatorProfile.contactPhone.label" default="Telefonnummer"/>
+                <g:message code="educator.profile.contactPhone"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -246,7 +246,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="contactMail">
-                <g:message code="educatorProfile.contactMail.label" default="E-Mail"/>
+                <g:message code="educator.profile.contactMail"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -259,7 +259,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="languages">
-                <g:message code="educatorProfile.languages.label" default="Sprachkenntnisse"/>
+                <g:message code="educator.profile.languages"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -270,7 +270,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="education">
-                <g:message code="educatorProfile.education.label" default="Ausbildung"/>
+                <g:message code="educator.profile.education"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -281,7 +281,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="interests">
-                <g:message code="educatorProfile.interests.label" default="Interessen, Talente"/>
+                <g:message code="educator.profile.interests"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -292,7 +292,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="inChargeOf">
-                <g:message code="educatorProfile.inChargeOf.label" default="Tätigkeit, Verantwortung"/>
+                <g:message code="educator.profile.inChargeOf"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -303,18 +303,29 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="educatorProfile.employment.label" default="Arbeitsverhältnis"/>
+                <g:message code="educator.profile.employment"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="employment" from="${['Angestellt','Freier Mitarbeiter','Frewilliger']}" value="${fieldValue(bean:educator,field:'profile.employment')}"/>
+              <g:select name="employment" from="${['Angestellt','Freier Mitarbeiter','Freiwilliger']}" value="${fieldValue(bean:educator,field:'profile.employment')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label>
+                <g:message code="educator.profile.enlistet"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
-                <g:message code="educatorProfile.lang.label" default="Spracheinstellung"/>
+                <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -325,7 +336,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="showTips">
-                <g:message code="educatorProfile.showTips.label" default="Tipps?"/>
+                <g:message code="showTips"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -337,7 +348,7 @@
             <tr class="prop">
               <td valign="top" class="name">
                 <label for="enabled">
-                  <g:message code="educatorProfile.enabled.label" default="Aktiv?"/>
+                  <g:message code="active"/>
                 </label>
 
               </td>
@@ -350,7 +361,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="educatorProfile.showTips.label" default="Passwort"/>
+                <g:message code="password"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -362,8 +373,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="show" id="${educator.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="show" id="${educator.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

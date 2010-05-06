@@ -36,7 +36,9 @@ class EducatorProfileController {
             redirect(action:list)
         }
         else {
-            return [educator: educator, entity: entity]
+          Link link = Link.findBySourceAndType (educator, metaDataService.ltEnlisted)
+          Entity enlistedBy = link.target
+          return [educator: educator, entity: entity, enlistedBy: enlistedBy]
         }
     }
 
@@ -69,7 +71,7 @@ class EducatorProfileController {
             redirect action:'list'
         }
         else {
-            return [educator: educator, entity: entityHelperService.loggedIn]
+            return [educator: educator, entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner)]
         }
     }
 
@@ -93,6 +95,12 @@ class EducatorProfileController {
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
       }
 
+      // create link to partner
+      Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}
+      if (params.enlisted) {
+        new Link (source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
+      }
+      
       if(!educator.hasErrors() && educator.save()) {
           flash.message = message(code:"educator.updated", args:[educator.profile.fullName])
           redirect action:'show', id: educator.id
@@ -125,6 +133,11 @@ class EducatorProfileController {
           entity.user.locale = new Locale ("ES", "ES")
           Locale locale = entity.user.locale
           RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
+        }
+        // create link to partner
+        Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}
+        if (params.enlisted) {
+          new Link (source: entity, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted)
         }
         flash.message = message(code:"educator.created", args:[entity.profile.fullName])
         redirect action:'list'
