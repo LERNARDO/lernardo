@@ -16,35 +16,35 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.firstName.label" default="Vorname"/>:
+            <g:message code="client.profile.firstName"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.lastName.label" default="Nachname"/>:
+            <g:message code="client.profile.lastName"/>:
           </td>
           <td valign="top" class="value"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.birthDate.label" default="Geburtsdatum"/>:
+            <g:message code="client.profile.birthDate"/>:
           </td>
           <td valign="top" class="value"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.email.label" default="E-Mail"/>:
+            <g:message code="client.profile.email"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.gender.label" default="Geschlecht"/>:
+            <g:message code="client.profile.gender"/>:
           </td>
           <td valign="top" class="value"><app:showGender gender="${client.profile.gender}"/></td>
         </tr>
@@ -55,28 +55,28 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.currentStreet.label" default="Straße"/>:
+            <g:message code="client.profile.currentStreet"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.currentCity.label" default="Stadt"/>:
+            <g:message code="client.profile.currentCity"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.currentCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.currentZip.label" default="PLZ"/>:
+            <g:message code="client.profile.currentZip"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.currentCountry.label" default="Land"/>:
+            <g:message code="client.profile.currentCountry"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
@@ -87,21 +87,21 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.originCity.label" default="Stadt"/>:
+            <g:message code="client.profile.originCity"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.originCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.originZip.label" default="PLZ"/>:
+            <g:message code="client.profile.originZip"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.originCountry.label" default="Land"/>:
+            <g:message code="client.profile.originCountry"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
@@ -112,126 +112,126 @@
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.familyStatus.label" default="Sprachen"/>:
+            <g:message code="client.profile.familyStatus"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.familyStatus')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.languages.label" default="Sprachen"/>:
+            <g:message code="client.profile.languages"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.languages')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolLevel.label" default="Schulstufe"/>:
+            <g:message code="client.profile.schoolLevel"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.schoolLevel')}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolDropout.label" default="Aussteiger?"/>:
+            <g:message code="client.profile.schoolDropout"/>:
           </td>
           <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolDropoutReason.label" default="Aussteiger Grund"/>:
+            <g:message code="client.profile.schoolDropoutReason"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolDropoutDate.label" default="Aussteiger Datum"/>:
+            <g:message code="client.profile.schoolDropoutDate"/>:
           </td>
           <td valign="top" class="value"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolRestart.label" default="Einsteiger?"/>:
+            <g:message code="client.profile.schoolRestart"/>:
           </td>
           <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolRestartReason.label" default="Einsteiger Grund"/>:
+            <g:message code="client.profile.schoolRestartReason"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.schoolRestartDate.label" default="Einsteiger Datum"/>:
+            <g:message code="client.profile.schoolRestartDate"/>:
           </td>
           <td valign="top" class="value"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.interests.label" default="Interessen"/>:
+            <g:message code="client.profile.interests"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.interests') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
        <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.size.label" default="Größe"/>:
+            <g:message code="client.profile.size"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.size') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.weight.label" default="Gewicht"/>:
+            <g:message code="client.profile.weight"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.weight') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.job.label" default="Berufstätig"/>:
+            <g:message code="client.profile.job"/>:
           </td>
           <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.job}" true="Ja" false="Nein"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.jobType.label" default="Arbeit"/>:
+            <g:message code="client.profile.jobType"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.jobType') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.jobIncome.label" default="Einkommen"/>:
+            <g:message code="client.profile.jobIncome"/>:
           </td>
           <td valign="top" class="value">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.jobFrequency.label" default="Jobhäufigkeit"/>:
+            <g:message code="client.profile.jobFrequency"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.support.label" default="Unterstützung?"/>:
+            <g:message code="client.profile.support"/>:
           </td>
           <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.support}" true="Ja" false="Nein"/></td>
         </tr>
 
          <tr class="prop">
           <td valign="top" class="name">
-            <g:message code="clientProfile.supportDescription.label" default="Unterstützung Text"/>:
+            <g:message code="client.profile.supportDescription"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
@@ -239,7 +239,7 @@
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
-              <g:message code="clientProfile.work.label" default="Aktiv"/>:
+              <g:message code="active"/>:
             </td>
             <td valign="top" class="value"><g:formatBoolean boolean="${client.user.enabled}" true="Ja" false="Nein"/></td>
           </tr>
@@ -251,7 +251,7 @@
 
     <app:isMeOrAdmin entity="${client}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${client?.id}">Bearbeiten</g:link>
+        <g:link class="buttonBlue" action="edit" id="${client?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
@@ -270,7 +270,7 @@
           <g:hiddenField name="type" value="performance" />
           <g:textField size="30" name="text" value=""/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
@@ -293,7 +293,7 @@
           <g:hiddenField name="type" value="health" />
           <g:textField size="30" name="text" value=""/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
@@ -316,7 +316,7 @@
           <g:hiddenField name="type" value="material" />
           <g:textField size="30" name="text" value=""/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>

@@ -16,13 +16,16 @@ import profiles.EducatorProfile
 import profiles.UserProfile
 
 import grails.util.GrailsUtil
+import de.uenterprise.ep.DefaultObjectService
+import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.ProfileHelperService
 
 class BootStrap {
-  def defaultObjectService
-  def entityHelperService
-  def metaDataService
-  def functionService
-  def profileHelperService
+  DefaultObjectService defaultObjectService
+  EntityHelperService entityHelperService
+  MetaDataService metaDataService
+  FunctionService functionService
+  ProfileHelperService profileHelperService
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
@@ -32,21 +35,21 @@ class BootStrap {
       createDefaultFacilities()
       createDefaultEducators()
 
-/*      createDefaultLinks()
-      createDefaultTemplates()
-      createDefaultComments()
+      //createDefaultLinks()
+      //createDefaultTemplates()
+      //createDefaultComments()
       createDefaultResources()
 
       if (GrailsUtil.environment == "development") {
-        createDefaultActivities()
+        //createDefaultActivities()
         createDefaultClients()
         createDefaultPosts()
-        createDefaultEvents()
-        createDefaultAttendances()
+        //createDefaultEvents()
+        //createDefaultAttendances()
         //createDefaultGroups()
       }
 
-      createDefaultHelpers()
+    /*  createDefaultHelpers()
       createDefaultEvaluations()*/
     }
   }
@@ -62,7 +65,7 @@ class BootStrap {
     // system admin users
     entityHelperService.createEntityWithUserAndProfile("lernardoadmin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.systemAdminRole)
-      UserProfile prf = ent.profile
+      UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Lernardo"
       prf.lastName = "Admin"
     }
@@ -71,28 +74,28 @@ class BootStrap {
     entityHelperService.createEntityWithUserAndProfile("alexanderzeillinger", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
       //ent.user.locale = new Locale ("es", "ES")
-      UserProfile prf = ent.profile
+      UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Alexander"
       prf.lastName = "Zeillinger"
     }
 
     entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lkult.at", "Patrizia Rosenkranz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      UserProfile prf = ent.profile
+      UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Patrizia"
       prf.lastName = "Rosenkranz"
     }
 
     entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lkult.at", "Daniel Szabo") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      UserProfile prf = ent.profile
+      UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Daniel"
       prf.lastName = "Szabo"
     }
 
     entityHelperService.createEntityWithUserAndProfile("kurtludikovsky", etUser, "kll@lkult.at", "Kurt Ludikovsky") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      UserProfile prf = ent.profile
+      UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Kurt"
       prf.lastName = "Ludikovsky"
     }
@@ -106,7 +109,7 @@ class BootStrap {
     // admin users
     entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      EducatorProfile prf = ent.profile
+      EducatorProfile prf = (EducatorProfile)ent.profile
       prf.gender = 1
       prf.title = "DI"
       prf.birthDate = new Date(1968-1900,02,18)
@@ -134,7 +137,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      EducatorProfile prf = ent.profile
+      EducatorProfile prf = (EducatorProfile)ent.profile
       prf.gender = 1
       prf.title = "Ing. Dkfm."
       prf.birthDate = new Date(1939-1900,04,17)
@@ -167,61 +170,47 @@ class BootStrap {
     EntityType etClient = metaDataService.etClient
 
     entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
-      ClientProfile prf = ent.profile
+      ClientProfile prf = (ClientProfile)ent.profile
       prf.firstName = "Kira"
       prf.lastName = "Zeillinger"
       prf.gender = 2
-      prf.PLZ = "2352"
-      prf.city = "Gumpoldskirchen"
       prf.interests = ""
-      prf.street = ""
-      prf.personalDetails = ""
-      prf.PLZ2 = ""
-      prf.city2 = ""
-      prf.joinDate = new Date()
-      prf.languages = ""
+      prf.currentCountry = "Österreich"
+      prf.currentZip = "2352"
+      prf.currentCity = "Gumpoldskirchen"
+      prf.currentStreet = ""
+      prf.originCountry = "Österreich"
+      prf.originZip = "2352"
+      prf.originCity = "Gumpoldskirchen"
+      prf.addToLanguages("Deutsch")
       prf.birthDate = new Date()
-      prf.work = ""
-      prf.street2 = ""
-      prf.dropoutReason = ""
-      prf.doesWork = false
-      prf.country2 = ""
-      prf.attendance = ""
-      prf.dropout = false
-      prf.country = ""
-      prf.nationality = "Österreich"
-      prf.school = ""
       prf.schoolLevel = 1
-      prf.notes = ""
+      prf.size = 120
+      prf.weight = 120
+      prf.job = false
+      prf.familyStatus = ""
     }
 
     entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
-      ClientProfile prf = ent.profile
+      ClientProfile prf = (ClientProfile)ent.profile
       prf.firstName = "Keano"
       prf.lastName = "Zeillinger"
       prf.gender = 1
-      prf.PLZ = "2352"
-      prf.city = "Gumpoldskirchen"
       prf.interests = ""
-      prf.street = ""
-      prf.personalDetails = ""
-      prf.PLZ2 = ""
-      prf.city2 = ""
-      prf.joinDate = new Date()
-      prf.languages = ""
+      prf.currentCountry = "Österreich"
+      prf.currentZip = "2352"
+      prf.currentCity = "Gumpoldskirchen"
+      prf.currentStreet = ""
+      prf.originCountry = "Österreich"
+      prf.originZip = "2352"
+      prf.originCity = "Gumpoldskirchen"
+      prf.addToLanguages("Deutsch")
       prf.birthDate = new Date()
-      prf.work = ""
-      prf.street2 = ""
-      prf.dropoutReason = ""
-      prf.doesWork = false
-      prf.country2 = ""
-      prf.attendance = ""
-      prf.dropout = false
-      prf.country = ""
-      prf.nationality = "Österreich"
-      prf.school = ""
       prf.schoolLevel = 1
-      prf.notes = ""
+      prf.size = 120
+      prf.weight = 120
+      prf.job = false
+      prf.familyStatus = ""
     }
   }
 
@@ -231,7 +220,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      OperatorProfile prf = ent.profile
+      OperatorProfile prf = (OperatorProfile)ent.profile
       prf.zip = ""
       prf.city = ""
       prf.street = ""
@@ -245,7 +234,7 @@ class BootStrap {
     EntityType etFacility = metaDataService.etFacility
 
     entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
-      FacilityProfile prf = ent.profile
+      FacilityProfile prf = (FacilityProfile)ent.profile
       prf.country = "Mexiko"
       prf.zip = "29247"
       prf.city = "	San Cristóbal de Las Casas"
@@ -337,6 +326,7 @@ class BootStrap {
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"
       ent.profile.type = "planbar"
+      ent.profile.classification = "Ressourcen die nur in einer Einrichtung verfügbar sind (Notebook, Turnsaal)"
     }
 
   }

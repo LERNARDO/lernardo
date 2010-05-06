@@ -22,54 +22,54 @@
         <table>
           <tbody>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="firstName">
-              <g:message code="clientProfile.firstName.label" default="Vorname"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="firstName">
+                <g:message code="client.profile.firstName"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="lastName">
-              <g:message code="clientProfile.lastName.label" default="Nachname"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="lastName">
+                <g:message code="client.profile.lastName"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="birthDate">
-              <g:message code="clientProfile.birthDate.label" default="Geburtsdatum"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="email">
+                <g:message code="client.profile.email"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="email">
-              <g:message code="clientProfile.email.label" default="E-Mail"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="birthDate">
+                <g:message code="client.profile.birthDate"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day"/>
+            </td>
+          </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="gender">
-                <g:message code="clientProfile.gender.label" default="Geschlecht"/>
+                <g:message code="client.profile.gender"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -84,7 +84,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentStreet">
-                <g:message code="clientProfile.currentStreet.label" default="Straße"/>
+                <g:message code="client.profile.currentStreet"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -95,7 +95,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCity">
-                <g:message code="clientProfile.city.label" default="Stadt"/>
+                <g:message code="client.profile.currentCity"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -106,7 +106,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentZip">
-                <g:message code="clientProfile.currentZip.label" default="PLZ"/>
+                <g:message code="client.profile.currentZip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -117,7 +117,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCountry">
-                <g:message code="clientProfile.currentCountry.label" default="Land"/>
+                <g:message code="client.profile.currentCountry"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -132,7 +132,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originCity">
-                <g:message code="clientProfile.originCity.label" default="Stadt"/>
+                <g:message code="client.profile.originCity"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -143,7 +143,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originZip">
-                <g:message code="clientProfile.originZip.label" default="PLZ"/>
+                <g:message code="client.profile.originZip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -154,7 +154,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="originCountry">
-                <g:message code="clientProfile.originCountry.label" default="Land"/>
+                <g:message code="client.profile.originCountry"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -169,7 +169,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="familyStatus">
-                <g:message code="clientProfile.familyStatus.label" default="Sprachen"/>
+                <g:message code="client.profile.familyStatus"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -180,7 +180,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="languages">
-                <g:message code="clientProfile.languages.label" default="Sprachen"/>
+                <g:message code="client.profile.languages"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -191,7 +191,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolLevel">
-                <g:message code="clientProfile.schoolLevel.label" default="Schulstufe"/>
+                <g:message code="client.profile.schoolLevel"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -202,7 +202,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolDropout">
-                <g:message code="clientProfile.schoolDropout.label" default="Aussteiger?"/>
+                <g:message code="client.profile.schoolDropout"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -213,7 +213,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolDropoutReason">
-                <g:message code="clientProfile.schoolDropoutReason.label" default="Aussteiger Grund"/>
+                <g:message code="client.profile.schoolDropoutReason"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -224,7 +224,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolDropoutDate">
-                <g:message code="clientProfile.schoolDropoutDate.label" default="Aussteiger Datum"/>
+                <g:message code="client.profile.schoolDropoutDate"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -235,7 +235,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolRestart">
-                <g:message code="clientProfile.schoolRestart.label" default="Einsteiger?"/>
+                <g:message code="client.profile.schoolRestart"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -246,7 +246,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolRestartReason">
-                <g:message code="clientProfile.schoolRestartReason.label" default="Einsteiger Grund"/>
+                <g:message code="client.profile.schoolRestartReason"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -257,7 +257,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="schoolRestartDate">
-                <g:message code="clientProfile.schoolRestartDate.label" default="Einsteiger Datum"/>
+                <g:message code="client.profile.schoolRestartDate"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -268,7 +268,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="interests">
-                <g:message code="clientProfile.interests.label" default="Interessen"/>
+                <g:message code="client.profile.interests"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -279,7 +279,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="size">
-                <g:message code="clientProfile.size.label" default="Größe"/>
+                <g:message code="client.profile.size"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -290,7 +290,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="weight">
-                <g:message code="clientProfile.weight.label" default="Gewicht"/>
+                <g:message code="client.profile.weight"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -301,7 +301,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="job">
-                <g:message code="clientProfile.job.label" default="Berufstätig?"/>
+                <g:message code="client.profile.job"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -312,7 +312,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobType">
-                <g:message code="clientProfile.jobType.label" default="Arbeit"/>
+                <g:message code="client.profile.jobType"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -323,7 +323,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobIncome">
-                <g:message code="clientProfile.jobIncome.label" default="Einkommen"/>
+                <g:message code="client.profile.jobIncome"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -334,7 +334,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobFrequency">
-                <g:message code="clientProfile.jobFrequency.label" default="Jobhäufigkeit"/>
+                <g:message code="client.profile.jobFrequency"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -345,7 +345,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="support">
-                <g:message code="clientProfile.support.label" default="Unterstützung?"/>
+                <g:message code="client.profile.support"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -356,7 +356,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="supportDescription">
-                <g:message code="clientProfile.supportDescription.label" default="Unterstützung Text"/>
+                <g:message code="client.profile.supportDescription"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -365,58 +365,58 @@
           </tr>
 
           <tr class="prop">
-          <td valign="top" class="name">
-            <label for="lang">
-              <g:message code="clientProfile.lang.label" default="Spracheinstellung"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="showTips">
-              <g:message code="clientProfile.showTips.label" default="Tipps?"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="showTips" value="${client?.profile?.showTips}"/>
-          </td>
-        </tr>
-
-        <app:isAdmin>
-          <tr class="prop">
             <td valign="top" class="name">
-              <label for="enabled">
-                <g:message code="clientProfile.enabled.label" default="Aktiv?"/>
+              <label for="lang">
+                <g:message code="languageSelection"/>
               </label>
-
             </td>
             <td valign="top" class="value">
-              <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
+              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
             </td>
           </tr>
-        </app:isAdmin>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label>
-              <g:message code="clientProfile.showTips.label" default="Passwort"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:link controller="profile" action="changePassword" id="${client.id}">Passwort ändern</g:link>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="showTips">
+                <g:message code="showTips"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="showTips" value="${client?.profile?.showTips}"/>
+            </td>
+          </tr>
+
+          <app:isAdmin>
+            <tr class="prop">
+              <td valign="top" class="name">
+                <label for="enabled">
+                  <g:message code="active"/>
+                </label>
+
+              </td>
+              <td valign="top" class="value">
+                <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
+              </td>
+            </tr>
+          </app:isAdmin>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label>
+                <g:message code="password"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:link controller="profile" action="changePassword" id="${client.id}">Passwort ändern</g:link>
+            </td>
+          </tr>
 
           </tbody>
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="show" id="${client.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="show" id="${client.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>
