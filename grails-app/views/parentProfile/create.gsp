@@ -168,7 +168,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobType">
-                <g:message code="parentProfile.jobType.label" default="Arbeit"/>
+                <g:message code="parent.profile.jobType"/>
               </label>
             </td>
             <td valign="top" class="value">

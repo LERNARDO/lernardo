@@ -25,7 +25,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="firstName">
-                <g:message code="parentProfile.firstName.label" default="Vorname"/>
+                <g:message code="parent.profile.firstName"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -36,7 +36,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lastName">
-                <g:message code="parentProfile.lastName.label" default="Nachname"/>
+                <g:message code="parent.profile.lastName"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -47,7 +47,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="parentProfile.birthDate.label" default="Geburtsdatum"/>
+                <g:message code="parent.profile.birthDate"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -58,7 +58,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="parentProfile.email.label" default="E-Mail"/>
+                <g:message code="parent.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -69,7 +69,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="gender">
-                <g:message code="parentProfile.gender.label" default="Geschlecht"/>
+                <g:message code="parent.profile.gender"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -80,18 +80,18 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCountry">
-                <g:message code="parentProfile.currentCountry.label" default="Land"/>
+                <g:message code="parent.profile.currentCountry"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.country', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: parent, field: 'profile.currentCountry').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: parent, field: 'profile.currentCountry').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentZip">
-                <g:message code="parentProfile.currentZip.label" default="PLZ"/>
+                <g:message code="parent.profile.currentZip"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -102,7 +102,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentCity">
-                <g:message code="parentProfile.currentCity.label" default="Stadt"/>
+                <g:message code="parent.profile.currentCity"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -113,7 +113,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="currentStreet">
-                <g:message code="parentProfile.currentStreet.label" default="Straße"/>
+                <g:message code="parent.profile.currentStreet"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -124,7 +124,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="maritalStatus">
-                <g:message code="parentProfile.maritalStatus.label" default="Familienstand"/>
+                <g:message code="parent.profile.maritalStatus"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -135,7 +135,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="languages">
-                <g:message code="parentProfile.languages.label" default="Sprachen"/>
+                <g:message code="parent.profile.languages"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -146,7 +146,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="education">
-                <g:message code="parentProfile.education.label" default="Schulbildung"/>
+                <g:message code="parent.profile.education"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -157,7 +157,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="job">
-                <g:message code="parentProfile.job.label" default="Berufstätig?"/>
+                <g:message code="parent.profile.job"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -168,7 +168,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobType">
-                <g:message code="parentProfile.jobType.label" default="Arbeit"/>
+                <g:message code="parent.profile.jobType"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -179,7 +179,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobIncome">
-                <g:message code="parentProfile.jobIncome.label" default="Einkommen"/>
+                <g:message code="parent.profile.jobIncome"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -190,7 +190,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobFrequency">
-                <g:message code="parentProfile.jobFrequency.label" default="Jobhäufigkeit"/>
+                <g:message code="parent.profile.jobFrequency"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -201,7 +201,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lang">
-                <g:message code="parentProfile.lang.label" default="Spracheinstellung"/>
+                <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -212,7 +212,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="showTips">
-                <g:message code="parentProfile.showTips.label" default="Tipps"/>
+                <g:message code="showTips"/>
               </label>
 
             </td>
@@ -225,7 +225,7 @@
             <tr class="prop">
               <td valign="top" class="name">
                 <label for="enabled">
-                  <g:message code="parentProfile.enabled.label" default="Aktiv?"/>
+                  <g:message code="active"/>
                 </label>
 
               </td>
@@ -238,7 +238,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label>
-                <g:message code="parentProfile.showTips.label" default="Passwort"/>
+                <g:message code="password"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -250,8 +250,8 @@
         </table>
       </div>
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="show" id="${parent.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="show" id="${parent.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>
