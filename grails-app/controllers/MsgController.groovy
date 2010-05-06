@@ -125,7 +125,7 @@ class MsgController {
     message2.content = params.content
     message2.subject = params.subject
     if(!message.hasErrors() && message.save(flush:true) && message2.save(flush:true)) {
-        // TODO: find out why this flash message suddenly wont't work anymore
+        // TODO: find out why this flash message suddenly won't work anymore
         //flash.message = message(code:"msg.sent", args:[message.subject])
 
         functionService.createEvent(message.sender, 'Du hast '+message.receiver.profile.fullName+' eine Nachricht geschickt.')

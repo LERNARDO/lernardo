@@ -134,14 +134,11 @@ class ProfileController {
     }
 
     def changeFacilities = {
-      List facilities = []
-      List working = Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)
-      working.each {
-          facilities << it.target
-      }
-      [entity: Entity.findByName(params.name),
-       facilityList: Entity.findAllByType(metaDataService.etFacility),
-       facilities: facilities]
+      List links = Link.findAllBySourceAndType(Entity.findByName(params.name), metaDataService.ltWorking)
+      List facilities = links.collect {it.target}
+      return [entity: Entity.findByName(params.name),
+              facilityList: Entity.findAllByType(metaDataService.etFacility),
+              facilities: facilities]
     }
 
     def saveFacilities = {
@@ -222,8 +219,7 @@ class ProfileController {
         render "Bitte einen Namen eingeben!"
         return
       }
-      List searchList = []
-      searchList = filterService.findUsers(params.name)
+      List searchList = filterService.findUsers(params.name)
       if (searchList.size() == 0) {
         render "Keine Ergebnisse gefunden!"
         return
@@ -243,20 +239,14 @@ class ProfileController {
       params.name = params.name ?: entityHelperService.loggedIn.name
       Entity e = Entity.findByName(params.name)
 
-      List facilities = []
-      List working = Link.findAllBySourceAndType(e, metaDataService.ltWorking)
-      working.each {
-          facilities << it.target.profile.fullName
-      }
+      List links = Link.findAllBySourceAndType(e, metaDataService.ltWorking)
+      List facilities = links.collect {it.target.profile.fullName}
       def ret = facilities.join(', ')
 
       // find groups the entity belongs to
-      def links = Link.findAllBySourceAndType(e, metaDataService.ltGroup)
+      links = Link.findAllBySourceAndType(e, metaDataService.ltGroup)
 
-      def groups = []
-      links.each {
-        groups << it.target
-      }
+      List groups = links.collect {it.target}
 
 /*      Group.list().each {
         for (a in it.members) {
@@ -356,21 +346,16 @@ class ProfileController {
       int month = date.getMonth() // 0 to 11
       int day = date.getDate()
 
-      List clients = []
       List attend = Attendance.findAllByDate(date)
-      attend.each {
-        clients << it.client
-      }
+      List clients = attend.collect {it.client}
 
       if (clients) {
         log.debug "attendances found!"
       }
       else {
         // find all clients of a facility
-        List result = Link.findAllByTargetAndType(Entity.get(params.id),metaDataService.ltClientship)
-        result.each {
-          clients << it.source
-        }
+        List links = Link.findAllByTargetAndType(Entity.get(params.id),metaDataService.ltClientship)
+        clients = links.collect {it.source}
       }
       
       return ['entityList': clients,

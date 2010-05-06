@@ -27,9 +27,7 @@ class CalendarController {
 
           // find all educators working in that facility
           def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-          links.each {
-              educators << it.source
-          }
+          educators = links.collect {it.source}
         }
       }
       else
@@ -51,11 +49,7 @@ class CalendarController {
           if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
             // get a list of facilities the current entity is working in
             def links = Link.findAllBySourceAndType(entity, metaDataService.ltWorking)
-            List facilities = []
-
-            links.each {
-              facilities << it.target
-            }
+            List facilities = links.collect {it.target}
 
             // find all activities for the given facility or facilities 
             facilities.each {

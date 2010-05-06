@@ -37,9 +37,7 @@ class TemplateController {
       template.profile.properties = params
 
       // delete old links
-      Link.findAllByTargetAndType(template, metaDataService.ltResource).each {
-        log.info "link deleted: "+it
-        it.delete()}
+      Link.findAllByTargetAndType(template, metaDataService.ltResource).each {it.delete()}
 
       // create new links
       if (params.materials) {
@@ -66,13 +64,8 @@ class TemplateController {
 
     def show = {
       Entity template = Entity.get(params.id)
-
       def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
-
-      def commentList = []
-      links.each {
-        commentList << it.source
-      }
+      def commentList = links.collect {it.source}
 
       return ['template': template,
               'commentList': commentList,
@@ -85,27 +78,12 @@ class TemplateController {
     }
 
     def save = {
-
       EntityType etTemplate = metaDataService.etTemplate
 
       try {
         Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
-          // TODO: find out if this works
           ent.profile.properties = params
-          /*ent.profile.fullName = params.fullName
-          ent.profile.attribution = params.attribution
-          ent.profile.description = params.description
-          ent.profile.duration = params.duration ? params.duration.toInteger() : 0
-          ent.profile.socialForm = params.socialForm
-          ent.profile.requiredEducators = params.requiredEducators.toInteger()
-          ent.profile.qualifications = params.qualifications
-          ent.profile.ll = params.ll.toInteger()
-          ent.profile.be = params.be.toInteger()
-          ent.profile.pk = params.pk.toInteger()
-          ent.profile.si = params.si.toInteger()
-          ent.profile.hk = params.hk.toInteger()
-          ent.profile.tlt = params.tlt.toInteger()*/
         }
 
         // create new links
@@ -113,12 +91,10 @@ class TemplateController {
           def materials = params.materials
           if (materials.class.isArray()) {
             materials.each {
-              log.info Entity.get(it)
               new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
             }
           }
           else {
-            log.info Entity.get(materials)
             new Link(source: Entity.get(materials), target: entity, type: metaDataService.ltResource).save()
           }
         }
