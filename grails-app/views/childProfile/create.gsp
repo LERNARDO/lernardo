@@ -18,9 +18,7 @@
     </g:hasErrors>
 
     <g:form action="save" method="post">
-	
-	<!-- karin todo begin  -->
-			  
+
       <div class="dialog">
         <table>
           <tbody>
@@ -28,7 +26,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="firstName">
-                <g:message code="childProfile.firstName.label" default="First Name"/>
+                <g:message code="child.profile.firstName"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}">
@@ -39,7 +37,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="lastName">
-                <g:message code="childProfile.lastName.label" default="Last Name"/>
+                <g:message code="child.profile.lastName"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}">
@@ -50,7 +48,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="email">
-                <g:message code="childProfile.email.label" default="E-Mail"/>
+                <g:message code="child.profile.email"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -60,8 +58,30 @@
 
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="gender">
+                <g:message code="child.profile.gender"/>
+              </label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.gender', 'errors')}">
+              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="job">
+                <g:message code="child.profile.job"/>
+              </label>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.job', 'errors')}">
+              <g:checkBox name="job" value="${child?.profile?.job}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
               <label for="jobType">
-                <g:message code="childProfile.jobType.label" default="Job Type"/>
+                <g:message code="child.profile.jobType"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
@@ -72,7 +92,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobIncome">
-                <g:message code="childProfile.jobIncome.label" default="Job Income"/>
+                <g:message code="child.profile.jobIncome"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
@@ -83,7 +103,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="jobFrequency">
-                <g:message code="childProfile.jobFrequency.label" default="Job Frequency"/>
+                <g:message code="child.profile.jobFrequency"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobFrequency', 'errors')}">
@@ -93,54 +113,31 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="job">
-                <g:message code="childProfile.job.label" default="Job"/>
-              </label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.job', 'errors')}">
-              <g:checkBox name="job" value="${child?.profile?.job}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="gender">
-                <g:message code="childProfile.gender.label" default="Gender"/>
-              </label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.gender', 'errors')}">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
               <label for="birthDate">
-                <g:message code="childProfile.birthDate.label" default="Birth Date"/>
+                <g:message code="child.profile.birthDate"/>
               </label>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}">
-              <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="minute"/>
+              <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day"/>
             </td>
           </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="showTips">
-              <g:message code="childProfile.showTips.label" default="Tipps?"/>
-            </label>
-          </td>
-          <td valign="top" class="value">
-            <g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
-          </td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="showTips">
+                <g:message code="showTips"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
+            </td>
+          </tr>
 
           <tr class="prop">
             <td valign="top" class="name">
               <label for="enabled">
-                <g:message code="childProfile.enabled.label" default="Aktiv?"/>
+                <g:message code="active"/>
               </label>
-
             </td>
             <td valign="top" class="value">
               <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
@@ -150,10 +147,10 @@
           </tbody>
         </table>
       </div>
-              <!-- karin todo end --> 
-			  <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="list">Abbrechen</g:link>
+
+      <div class="buttons">
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>
