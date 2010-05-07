@@ -79,10 +79,6 @@ class ClientProfileController {
       client.profile.properties = params
       client.user.properties = params
 
-      client.profile.showTips = params.showTips ?: false
-      client.profile.job = params.job ?: false
-      client.user.enabled = params.enabled ?: false
-
       if (params.lang == '1') {
         client.user.locale = new Locale ("de", "DE")
         Locale locale = client.user.locale
@@ -114,9 +110,8 @@ class ClientProfileController {
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.profile.job = params.job ?: false
-          ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {
           entity.user.locale = new Locale ("de", "DE")

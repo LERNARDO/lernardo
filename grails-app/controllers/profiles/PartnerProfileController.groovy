@@ -79,9 +79,6 @@ class PartnerProfileController {
       partner.profile.properties = params
       partner.user.properties = params
 
-      partner.profile.showTips = params.showTips ?: false
-      partner.user.enabled = params.enabled ?: false
-
       if (params.lang == '1') {
         partner.user.locale = new Locale ("de", "DE")
         Locale locale = partner.user.locale
@@ -112,8 +109,8 @@ class PartnerProfileController {
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etPartner, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {
           entity.user.locale = new Locale ("de", "DE")

@@ -82,9 +82,6 @@ class PateProfileController {
     pate.profile.properties = params
     pate.user.properties = params
 
-    pate.profile.showTips = params.showTips ?: false
-    pate.user.enabled = params.enabled ?: false
-
     if (params.lang == '1') {
       pate.user.locale = new Locale ("de", "DE")
       Locale locale = pate.user.locale
@@ -126,8 +123,8 @@ class PateProfileController {
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etPate, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
+        ent.user.properties = params
         ent.user.password = authenticateService.encodePassword("pass")
-        ent.user.enabled = params.enabled ?: false
       }
 /*      if (params.clients) {
         if(params.clients.class.isArray())

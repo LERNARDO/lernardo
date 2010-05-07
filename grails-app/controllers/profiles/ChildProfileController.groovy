@@ -42,7 +42,7 @@ class ChildProfileController {
     def del = {
         Entity child = Entity.get(params.id)
         if(child) {
-            // delete all links
+            // delete all links to and from this child
             Link.findAllBySourceOrTarget(child, child).each {it.delete()}
             try {
                 flash.message = message(code:"child.deleted", args:[child.profile.fullName])
@@ -78,10 +78,6 @@ class ChildProfileController {
       child.profile.properties = params
       child.user.properties = params
 
-      child.profile.showTips = params.showTips ?: false
-      child.profile.job = params.job ?: false
-      child.user.enabled = params.enabled ?: false
-
       if (params.lang == '1') {
         child.user.locale = new Locale ("de", "DE")
         Locale locale = child.user.locale
@@ -113,9 +109,8 @@ class ChildProfileController {
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.profile.job = params.job ?: false
-          ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {
           entity.user.locale = new Locale ("de", "DE")

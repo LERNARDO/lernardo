@@ -122,9 +122,6 @@ class OperatorProfileController {
       operator.profile.properties = params
       operator.user.properties = params
 
-      operator.profile.showTips = params.showTips ?: false
-      operator.user.enabled = params.enabled ?: false
-
       if (params.lang == '1') {
         operator.user.locale = new Locale ("de", "DE")
         Locale locale = operator.user.locale
@@ -156,8 +153,8 @@ class OperatorProfileController {
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etOperator, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {
           entity.user.locale = new Locale ("de", "DE")

@@ -206,9 +206,6 @@ class FacilityProfileController {
       facility.profile.properties = params
       facility.user.properties = params
 
-      facility.profile.showTips = params.showTips ?: false
-      facility.user.enabled = params.enabled ?: false
-
       if (params.lang == '1') {
         facility.user.locale = new Locale ("de", "DE")
         Locale locale = facility.user.locale
@@ -239,8 +236,8 @@ class FacilityProfileController {
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
+          ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
-          ent.user.enabled = params.enabled ?: false
         }
         if (params.lang == '1') {
           entity.user.locale = new Locale ("de", "DE")

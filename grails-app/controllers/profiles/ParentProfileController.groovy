@@ -78,10 +78,6 @@ class ParentProfileController {
     parent.profile.properties = params
     parent.user.properties = params
 
-    parent.profile.showTips = params.showTips ?: false
-    parent.profile.job = params.job ?: false
-    parent.user.enabled = params.enabled ?: false
-
     if (params.lang == '1') {
       parent.user.locale = new Locale ("de", "DE")
       Locale locale = parent.user.locale
@@ -112,9 +108,8 @@ class ParentProfileController {
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
+        ent.user.properties = params
         ent.user.password = authenticateService.encodePassword("pass")
-        ent.profile.job = params.job ?: false
-        ent.user.enabled = params.enabled ?: false
       }
       if (params.lang == '1') {
         entity.user.locale = new Locale ("de", "DE")
