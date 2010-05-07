@@ -78,17 +78,7 @@ class ClientProfileController {
 
       client.profile.properties = params
       client.user.properties = params
-
-      if (params.lang == '1') {
-        client.user.locale = new Locale ("de", "DE")
-        Locale locale = client.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
-      if (params.lang == '2') {
-        client.user.locale = new Locale ("ES", "ES")
-        Locale locale = client.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
       if(!client.hasErrors() && client.save()) {
           flash.message = message(code:"client.updated", args:[client.profile.fullName])
@@ -113,16 +103,8 @@ class ClientProfileController {
           ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
         }
-        if (params.lang == '1') {
-          entity.user.locale = new Locale ("de", "DE")
-          Locale locale = entity.user.locale
-          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-        }
-        if (params.lang == '2') {
-          entity.user.locale = new Locale ("ES", "ES")
-          Locale locale = entity.user.locale
-          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-        }
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+
         flash.message = message(code:"client.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {

@@ -366,12 +366,12 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="lang">
+              <label for="locale">
                 <g:message code="languageSelection"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="lang" from="${[1:'Deutsch', 2:'Spanisch']}" optionKey="key" optionValue="value"/>
+              <app:localeSelect name="locale" value="${client?.user?.locale}"/>
             </td>
           </tr>
 

@@ -81,17 +81,7 @@ class PateProfileController {
 
     pate.profile.properties = params
     pate.user.properties = params
-
-    if (params.lang == '1') {
-      pate.user.locale = new Locale ("de", "DE")
-      Locale locale = pate.user.locale
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-    }
-    if (params.lang == '2') {
-      pate.user.locale = new Locale ("ES", "ES")
-      Locale locale = pate.user.locale
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-    }
+    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
     if (!pate.hasErrors() && pate.save()) {
 
@@ -134,16 +124,8 @@ class PateProfileController {
         else
           new Link(source: Entity.get(params.clients), target: entity, type: metaDataService.ltPate).save()
       }*/
-      if (params.lang == '1') {
-        entity.user.locale = new Locale ("de", "DE")
-        Locale locale = entity.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
-      if (params.lang == '2') {
-        entity.user.locale = new Locale ("ES", "ES")
-        Locale locale = entity.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+
       flash.message = message(code: "pate.created", args: [entity.profile.fullName])
       redirect action: 'list'
     } catch (de.uenterprise.ep.EntityException ee) {

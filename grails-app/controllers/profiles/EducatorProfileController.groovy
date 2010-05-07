@@ -80,17 +80,7 @@ class EducatorProfileController {
 
       educator.profile.properties = params
       educator.user.properties = params
-
-      if (params.lang == '1') {
-        educator.user.locale = new Locale ("de", "DE")
-        Locale locale = educator.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
-      if (params.lang == '2') {
-        educator.user.locale = new Locale ("ES", "ES")
-        Locale locale = educator.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
       // create link to partner
       Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}
@@ -121,16 +111,8 @@ class EducatorProfileController {
           ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
         }
-        if (params.lang == '1') {
-          entity.user.locale = new Locale ("de", "DE")
-          Locale locale = entity.user.locale
-          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-        }
-        if (params.lang == '2') {
-          entity.user.locale = new Locale ("ES", "ES")
-          Locale locale = entity.user.locale
-          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-        }
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+
         // create link to partner
         Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}
         if (params.enlisted) {

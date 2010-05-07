@@ -2,6 +2,7 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import posts.ArticlePost
 import java.text.SimpleDateFormat
+import org.springframework.web.servlet.support.RequestContextUtils
 
 class HelperTagLib {
   def entityHelperService
@@ -11,6 +12,18 @@ class HelperTagLib {
   def secHelperService
   def authenticateService
   static namespace = "app"
+
+  def localeSelect = {attrs ->
+          attrs['from'] = grailsApplication.config.locales
+          attrs['value'] = (attrs['value'] ? attrs['value'] : RequestContextUtils.getLocale(request))
+          // set the key as a closure that formats the locale
+          attrs['optionKey'] = {"${it.language}_${it.country}"}
+          // set the option value as a closure that formats the locale for display
+          attrs['optionValue'] = {"${it.displayLanguage}"}
+
+  // use generic select
+   out << select(attrs)
+  }
 
   // returns the filetype of a publication
   def getFileType = {attrs ->

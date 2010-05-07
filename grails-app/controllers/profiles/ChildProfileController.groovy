@@ -77,17 +77,7 @@ class ChildProfileController {
 
       child.profile.properties = params
       child.user.properties = params
-
-      if (params.lang == '1') {
-        child.user.locale = new Locale ("de", "DE")
-        Locale locale = child.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
-      if (params.lang == '2') {
-        child.user.locale = new Locale ("ES", "ES")
-        Locale locale = child.user.locale
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-      }
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
 
       if(!child.hasErrors() && child.save()) {
           flash.message = message(code:"child.updated", args:[child.profile.fullName])
@@ -112,16 +102,8 @@ class ChildProfileController {
           ent.user.properties = params
           ent.user.password = authenticateService.encodePassword("pass")
         }
-        if (params.lang == '1') {
-          entity.user.locale = new Locale ("de", "DE")
-          Locale locale = entity.user.locale
-          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-        }
-        if (params.lang == '2') {
-          entity.user.locale = new Locale ("ES", "ES")
-          Locale locale = entity.user.locale
-          RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
-        }
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+
         flash.message = message(code:"child.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
