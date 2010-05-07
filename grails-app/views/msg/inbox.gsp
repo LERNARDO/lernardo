@@ -94,8 +94,8 @@
       </g:if>
 
       <div class="buttons">
-        <g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>
-        <g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Postausgang</g:link>
+        %{--<g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>--}%
+        <g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Zum Postausgang</g:link>
         <div class="spacer"></div>
       </div>
       

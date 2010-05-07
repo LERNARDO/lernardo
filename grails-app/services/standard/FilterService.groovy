@@ -10,7 +10,7 @@ class FilterService {
   boolean transactional = true
 
   // returns the number of new inbox messages
-  int getNewInboxMessages (String id) {
+  int getNewInboxMessages (String id, def params=[]) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity',Entity.get(id))
@@ -21,7 +21,7 @@ class FilterService {
   }
 
   // returns all inbox messages for a given entity
-  def getInbox (String id) {
+  def getInbox (String id, def params=[]) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity',Entity.get(id))
@@ -43,7 +43,7 @@ class FilterService {
   }
 
   // returns all outbox messages for a given entity
-  def getOutbox (String id) {
+  def getOutbox (String id, def params=[]) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity',Entity.get(id))

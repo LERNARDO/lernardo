@@ -74,12 +74,14 @@ class ProfileController {
     def giveAdminRole = {
       Entity entity = Entity.get(params.id)
       entity?.user?.addToAuthorities (metaDataService.adminRole)
+      flash.message = message(code:"user.giveAdmin", args:[entity.profile.fullName])
       redirect action:'list'
     }
 
     def takeAdminRole = {
       Entity entity = Entity.get(params.id)
       entity?.user?.removeFromAuthorities (metaDataService.adminRole)
+      flash.message = message(code:"user.takeAdmin", args:[entity.profile.fullName])
       redirect action:'list'
     }
 

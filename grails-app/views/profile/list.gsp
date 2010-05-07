@@ -1,8 +1,33 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Liste aller Profile</title>
+  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
+  <script type="text/javascript">
+  $(document).ready(function()
+  {
+    // TODO: figure out why qtip refuses to work although it definitely should
+     $('img[src][alt]').qtip({
+        content: {
+           text: false // Use each elements title attribute
+        },
+        position: {
+           corner: {
+              target: 'topMiddle',
+              tooltip: 'bottomMiddle'
+           }
+        },
+        style: {
+           border: {
+              width: 1,
+              color: '#89B7DA'
+           },
+           background: '#EEEEEE'
+        }
+
+     });
+  });
+</script>
 </head>
 <body>
 <div class="headerBlue">
@@ -63,22 +88,22 @@
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
                 <app:isEnabled entity="${entity}">
-                  <g:link controller="profile" action="disable" id="${entity.id}">Deaktivieren</g:link>
+                  <g:link controller="profile" action="disable" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_enabled.png')}" alt="Deaktivieren" align="top"/></g:link>
                 </app:isEnabled>
                 <app:notEnabled entity="${entity}">
-                  <g:link controller="profile" action="enable" id="${entity.id}">Aktivieren</g:link>
+                  <g:link controller="profile" action="enable" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/></g:link>
                 </app:notEnabled>
                 <app:isAdmin>
-                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="return confirm('Bist du sicher?');"><img src="${resource (dir:'images/icons', file:'icon_remove.png')}" alt="Löschen" align="top"/></g:link>
                 </app:isAdmin>
               </app:notMe>
               <app:isSysAdmin>
                 <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                  <g:link controller="profile" action="giveAdminRole" id="${entity.id}">Admin geben</g:link>
+                  <g:link controller="profile" action="giveAdminRole" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_noadmin.png')}" alt="Admin geben" align="top"/></g:link>
                 </ub:hasNoRoles>
 
                 <ub:hasAllRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                  <g:link controller="profile" action="takeAdminRole" id="${entity.id}">Admin nehmen</g:link>
+                  <g:link controller="profile" action="takeAdminRole" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_anadmin.png')}" alt="Admin nehmen" align="top"/></g:link>
                 </ub:hasAllRoles>
               </app:isSysAdmin>
             </td>

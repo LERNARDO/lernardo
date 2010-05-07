@@ -5,10 +5,13 @@
 <body>
 <div class="headerBlue">
   <div class="second">
-    <h1>Profil - ${user.profile.fullName}</h1>
+    <h1 style="float: left">Profil - ${user.profile.fullName}</h1>
+    <div class="icons" style="text-align: right;">
+      <g:link action="edit" id="${user.id}"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:link>
+    </div>
   </div>
 </div>
-<div class="boxGray">
+<div class="boxGray" style="clear: both;">
   <div class="second">
     <div class="dialog">
       <table class="listing">
