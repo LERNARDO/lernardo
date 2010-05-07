@@ -1,3 +1,5 @@
+package standard
+
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 

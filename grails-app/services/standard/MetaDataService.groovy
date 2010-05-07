@@ -1,3 +1,5 @@
+package standard
+
 import lernardo.PublicationType
 import de.uenterprise.ep.DefaultObjectService
 import de.uenterprise.ep.EntitySuperType

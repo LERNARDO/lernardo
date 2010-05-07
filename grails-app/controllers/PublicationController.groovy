@@ -4,6 +4,10 @@ import org.springframework.web.multipart.MultipartFile
 import lernardo.Publication
 import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.AssetService
+import standard.MetaDataService
+import standard.FilterService
+import standard.PublicationHelperService
+import standard.NetworkService
 
 class PublicationController {
   FilterService filterService

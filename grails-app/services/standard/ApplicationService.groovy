@@ -1,3 +1,4 @@
+package standard
 class ApplicationService {
   static scope = "singleton"
   static transactional = false

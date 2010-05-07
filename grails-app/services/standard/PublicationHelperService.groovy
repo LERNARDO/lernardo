@@ -1,3 +1,4 @@
+package standard
 
 import de.uenterprise.ep.Entity
 import lernardo.Publication

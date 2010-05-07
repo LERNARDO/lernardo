@@ -5,9 +5,10 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.ProfileHelperService
 import de.uenterprise.ep.EntityHelperService
+import standard.MetaDataService
 
 class GroupActivityTemplateProfileController {
-    def metaDataService
+    MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
 

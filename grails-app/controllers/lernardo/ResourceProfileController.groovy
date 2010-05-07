@@ -4,9 +4,10 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
+import standard.MetaDataService
 
 class ResourceProfileController {
-    def metaDataService
+    MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
     

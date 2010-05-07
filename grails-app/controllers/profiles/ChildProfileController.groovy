@@ -6,12 +6,14 @@ import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
+import standard.MetaDataService
+import standard.FunctionService
 
 class ChildProfileController {
-    def metaDataService
+    MetaDataService metaDataService
     EntityHelperService entityHelperService
     AuthenticateService authenticateService
-    def functionService
+    FunctionService functionService
 
     def index = {
         redirect action:"list", params:params

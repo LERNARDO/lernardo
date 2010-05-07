@@ -3,6 +3,8 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
+import standard.MetaDataService
+import standard.FunctionService
 
 class CommentTemplateController {
   EntityHelperService entityHelperService

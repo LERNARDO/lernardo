@@ -2,19 +2,22 @@ import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityType
-import profiles.FacilityProfile
-import de.uenterprise.ep.Account
-import profiles.UserProfile
+
 import posts.ArticlePost
 import lernardo.Event
 import lernardo.Msg
 
 import lernardo.Attendance
 import java.text.SimpleDateFormat
-import org.springframework.web.servlet.support.RequestContextUtils
+
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
 import org.hibernate.SessionFactory
+import standard.GeoCoderService
+import standard.MetaDataService
+import standard.NetworkService
+import standard.FunctionService
+import standard.FilterService
 
 class ProfileController {
     GeoCoderService geoCoderService

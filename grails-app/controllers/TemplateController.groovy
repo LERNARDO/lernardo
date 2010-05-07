@@ -3,6 +3,8 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
+import standard.FunctionService
+import standard.MetaDataService
 
 class TemplateController {
   EntityHelperService entityHelperService

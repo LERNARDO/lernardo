@@ -7,12 +7,14 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
 import lernardo.Contact
+import standard.FunctionService
+import standard.MetaDataService
 
 class FacilityProfileController {
-    def metaDataService
+    MetaDataService metaDataService
     EntityHelperService entityHelperService
     AuthenticateService authenticateService
-    def functionService
+    FunctionService functionService
 
     def index = {
         redirect action:"list", params:params

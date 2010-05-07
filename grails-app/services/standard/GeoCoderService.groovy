@@ -1,3 +1,4 @@
+package standard
 class GeoCoderService {
 
   boolean transactional = false

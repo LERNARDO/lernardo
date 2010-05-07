@@ -4,6 +4,7 @@ import grails.converters.JSON
 import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityHelperService
+import standard.MetaDataService
 
 class CalendarController {
   EntityHelperService entityHelperService

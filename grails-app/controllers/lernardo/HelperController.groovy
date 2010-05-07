@@ -1,10 +1,12 @@
 package lernardo
 
 import de.uenterprise.ep.Entity
+import standard.FunctionService
+import standard.MetaDataService
 
 class HelperController {
-    def functionService
-    def metaDataService
+    FunctionService functionService
+    MetaDataService metaDataService
 
     def index = {
         redirect action:"list", params:params 

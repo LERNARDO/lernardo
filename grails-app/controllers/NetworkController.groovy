@@ -1,4 +1,5 @@
 import de.uenterprise.ep.Entity
+import standard.NetworkService
 
 class NetworkController {
   NetworkService networkService

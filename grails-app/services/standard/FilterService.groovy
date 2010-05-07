@@ -1,3 +1,5 @@
+package standard
+
 import de.uenterprise.ep.Entity
 import lernardo.Msg
 import de.uenterprise.ep.EntityHelperService

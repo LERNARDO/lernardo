@@ -7,11 +7,13 @@ import de.uenterprise.ep.Account
 import de.uenterprise.ep.EntityType
 import org.grails.plugins.springsecurity.service.AuthenticateService
 import de.uenterprise.ep.EntityHelperService
+import standard.MetaDataService
+import standard.FunctionService
 
 class AdmController {
-    def metaDataService
+    MetaDataService metaDataService
     EntityHelperService entityHelperService
-    def functionService
+    FunctionService functionService
     AuthenticateService authenticateService
 
     def index = {
