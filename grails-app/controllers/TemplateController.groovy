@@ -42,7 +42,7 @@ class TemplateController {
       Link.findAllByTargetAndType(template, metaDataService.ltResource).each {it.delete()}
 
       // create new links
-      if (params.materials) {
+/*      if (params.materials) {
         def materials = params.materials
         if (materials.class.isArray()) {
           materials.each {
@@ -52,6 +52,10 @@ class TemplateController {
         else {
           new Link(source: Entity.get(materials), target: template, type: metaDataService.ltResource).save()
         }
+      }*/
+      
+      functionService.getParamAsList(params.materials).each {
+        new Link(source: Entity.get(it), target: template, type: metaDataService.ltResource).save()
       }
 
       if(!template.hasErrors() && template.save()) {
@@ -89,7 +93,7 @@ class TemplateController {
         }
 
         // create new links
-        if (params.materials) {
+/*        if (params.materials) {
           def materials = params.materials
           if (materials.class.isArray()) {
             materials.each {
@@ -99,6 +103,10 @@ class TemplateController {
           else {
             new Link(source: Entity.get(materials), target: entity, type: metaDataService.ltResource).save()
           }
+        }*/
+
+        functionService.getParamAsList(params.materials).each {
+          new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
         }
 
         flash.message = message(code:"template.created", args:[entity.profile.fullName])

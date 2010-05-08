@@ -13,6 +13,8 @@ class NetworkService {
   // returns facilities (working) of a given entity
   def findFacilitiesOf (Entity e,  def params=[]) {
     def links = Link.findAllBySourceAndType(e ?: entityHelperService.loggedIn, metaDataService.ltWorking, params)
+
+    //def results = links*.target // spread operator doing the same as the collect method
     def results = links.collect {it.target}
 
     return results

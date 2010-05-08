@@ -151,15 +151,19 @@ class ProfileController {
       // delete old links
       Link.findAllBySourceAndType(Entity.get(params.id), metaDataService.ltWorking)?.each { it.delete() }
 
-      def fac = params.facilities
+/*      def fac = params.facilities
       if (fac.class.isArray()) {
         fac.each {
             new Link(source: Entity.get(params.id), target: Entity.findById(it), type: metaDataService.ltWorking).save()
           }
       }
       else
-        new Link(source: Entity.get(params.id), target: Entity.findById(params.facilities), type: metaDataService.ltWorking).save()      
-      
+        new Link(source: Entity.get(params.id), target: Entity.findById(params.facilities), type: metaDataService.ltWorking).save()*/
+
+      functionService.getParamAsList(params.facilities).each {
+        new Link(source: Entity.get(params.id), target: Entity.get(it), type: metaDataService.ltWorking).save()
+      }
+
       redirect controller: entity.type.supertype.name + 'Profile', action:'show', id: params.id
     }
 

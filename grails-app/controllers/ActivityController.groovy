@@ -136,7 +136,7 @@ class ActivityController {
       }
 
       // create links to educators
-      if (params.educators) {
+/*      if (params.educators) {
         def p_educators = params.educators
         if (p_educators.class.isArray()) {
           params.educators.each {
@@ -149,10 +149,16 @@ class ActivityController {
         else {
           new Link(source: Entity.get(p_educators), target: entity, type: metaDataService.ltActEducator).save()
         }
+      }*/
+      functionService.getParamAsList(params.educators).each {
+        new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActEducator).save()
+        if (Entity.get(it) != entityHelperService.loggedIn) {
+          functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+entity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+        }
       }
 
       // create client links
-      if (params.clients) {
+/*      if (params.clients) {
         def p_clients = params.clients
         if (p_clients.class.isArray()) {
           params.clients.each {
@@ -164,6 +170,13 @@ class ActivityController {
         }
         else {
           new Link(source: Entity.get(p_clients), target: entity, type: metaDataService.ltActClient).save()
+        }
+      }*/
+
+      functionService.getParamAsList(params.clients).each {
+        new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActClient).save()
+        if (Entity.get(it) != entityHelperService.loggedIn) {
+          functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+entity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
         }
       }
 
@@ -216,7 +229,7 @@ class ActivityController {
       links.each {it.delete()}
 
       // create links to educators
-      if (params.educators) {
+/*      if (params.educators) {
         def p_educators = params.educators
         if (p_educators.class.isArray()) {
           params.educators.each {
@@ -229,10 +242,17 @@ class ActivityController {
         else {
           new Link(source: Entity.get(p_educators), target: activity, type: metaDataService.ltActEducator).save()
         }
+      }*/
+
+      functionService.getParamAsList(params.educators).each {
+        new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActEducator).save()
+        if (Entity.get(it) != entityHelperService.loggedIn) {
+          functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
+        }
       }
 
       // create links to clients
-      if (params.clients) {
+/*      if (params.clients) {
         def p_clients = params.clients
         if (p_clients.class.isArray()) {
           params.clients.each {
@@ -244,6 +264,13 @@ class ActivityController {
         }
         else {
           new Link(source: Entity.get(p_clients), target: activity, type: metaDataService.ltActClient).save()
+        }
+      }*/
+
+      functionService.getParamAsList(params.clients).each {
+        new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActClient).save()
+        if (Entity.get(it) != entityHelperService.loggedIn) {
+          functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName+' hat die Aktivität "'+activity.profile.fullName+'" mit dir als TeilnehmerIn angelegt.')
         }
       }
 
