@@ -254,7 +254,6 @@ class ProfileController {
 
       // find groups the entity belongs to
       links = Link.findAllBySourceAndType(e, metaDataService.ltGroup)
-
       List groups = links.collect {it.target}
 
 /*      Group.list().each {

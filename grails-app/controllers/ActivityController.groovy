@@ -124,8 +124,8 @@ class ActivityController {
       Entity template = Entity.get(params.id)
 
       // get a list of facilities the current entity is working in
-      def facilities = []
-      Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      List facilities = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).collect {it.target}
+
       def educators = Entity.findAllByType(metaDataService.etEducator)
       def clients = Entity.findAllByType(metaDataService.etClient)
 
@@ -223,10 +223,8 @@ class ActivityController {
       activity.profile.properties = params
 
       // delete old links of educators and clients
-      def links = Link.findAllByTargetAndType(activity, metaDataService.ltActEducator)
-      links.each {it.delete()}
-      links = Link.findAllByTargetAndType(activity, metaDataService.ltActClient)
-      links.each {it.delete()}
+      Link.findAllByTargetAndType(activity, metaDataService.ltActEducator).each {it.delete()}
+      Link.findAllByTargetAndType(activity, metaDataService.ltActClient).each {it.delete()}
 
       // create links to educators
 /*      if (params.educators) {
@@ -289,12 +287,10 @@ class ActivityController {
       Entity activity = Entity.get(params.id)
 
       // delete all links to activity
-      def links = Link.findAllByTarget(activity)
-      links.each {it.delete()}
+      Link.findAllByTarget(activity).each {it.delete()}
       
       flash.message = message(code:"activity.deleted", args:[activity.profile.fullName])
       activity.delete(flush:true)
       redirect action:'list'
-
     }
 }

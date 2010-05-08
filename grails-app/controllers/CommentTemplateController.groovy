@@ -15,8 +15,7 @@ class CommentTemplateController {
   def delete = {
     Entity comment = Entity.get(params.id)
     if (comment) {
-      def links = Link.findAllBySourceOrTarget(comment, comment)
-      links.each {it.delete()}
+      Link.findAllBySourceOrTarget(comment, comment).each {it.delete()}
       try {
         flash.message = message(code: "comment.deleted")
         comment.delete(flush: true)

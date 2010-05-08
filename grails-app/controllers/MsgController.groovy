@@ -114,7 +114,7 @@ class MsgController {
     def message = new Msg()
     message.sender = entityHelperService.loggedIn
     message.receiver = Entity.get(params.entity)
-    message.read = true
+    message.read = true // the sender wrote it so it is already read of course
     message.entity = entityHelperService.loggedIn
     message.content = params.content
     message.subject = params.subject
