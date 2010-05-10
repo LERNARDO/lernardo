@@ -1,0 +1,10 @@
+<g:if test="${group.profile.buildings}">
+  <ul>
+  <g:each in="${group.profile.buildings}" var="building">
+    <li>${building.name} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeBuilding" update="buildings2" id="${group.id}" params="[building: building.id]"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Gebäude entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+  </g:each>
+  </ul>
+</g:if>
+<g:else>
+  <span class="italic">Keine Gebäude eingetragen</span>
+</g:else>

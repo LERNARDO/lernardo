@@ -49,6 +49,7 @@ class BootStrap {
         //createDefaultEvents()
         //createDefaultAttendances()
         //createDefaultGroups()
+        createDefaultColonias()
       }
 
     /*  createDefaultHelpers()
@@ -500,6 +501,18 @@ class BootStrap {
     new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroup).save()
     //new Link(source: Entity.findByName('sabine'), target: entity, type: metaDataService.ltGroup).save()
 
+  }
+
+  void createDefaultColonias() {
+    log.debug ("==> creating default colonias")
+
+    EntityType etGroupColony = metaDataService.etGroupColony
+
+    def entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile.fullName = "Gumpoldskirchen"
+      ent.profile.description = """Eine kleine Colonia im Süden von Wien"""
+    }
   }
 
 }

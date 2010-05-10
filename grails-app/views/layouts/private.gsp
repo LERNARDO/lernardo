@@ -156,6 +156,7 @@
                 <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner verwalten</g:link></li>
                 %{--<li class="icon-admin"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]">Familien verwalten (Gruppierung)</g:link></li>--}%
+                <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]">Colonias verwalten</g:link></li>
               </app:isOperator>
               <app:isEducator entity="${entity}">
                 <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>

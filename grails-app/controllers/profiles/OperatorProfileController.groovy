@@ -38,13 +38,10 @@ class OperatorProfileController {
         }
         else {
           def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-
           // find all facilities of this operator
-          List facilities = []
           def links = Link.findAllByTargetAndType(entity, metaDataService.ltOperation)
-          links.each {
-              facilities << it.source
-          }
+          List facilities = links.collect {it.source}
+
           return [operator: operator, entity: entity, facilities: facilities, allFacilities: allFacilities]
         }
     }
@@ -60,11 +57,9 @@ class OperatorProfileController {
       if (!link)
         new Link(source:Entity.get(params.facility), target: entityHelperService.loggedIn, type:metaDataService.ltOperation).save()
       // find all facilities of this operator
-      List facilities = []
       def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
-      links.each {
-          facilities << it.source
-      }
+      List facilities = links.collect {it.source}
+
       render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
     }
 
@@ -77,11 +72,9 @@ class OperatorProfileController {
       }
       link.delete()
       // find all facilities of this operator
-      List facilities = []
       def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
-      links.each {
-          facilities << it.source
-      }
+      List facilities = links.collect {it.source}
+
       render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
     }
 

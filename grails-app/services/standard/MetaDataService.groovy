@@ -31,7 +31,7 @@ class MetaDataService {
   static final String EST_COMMENT_TEMPLATE = "CommentTemplate"
   static final String EST_PATE = "pate"
   static final String EST_PARTNER = "partner"
-  static final String EST_RESOURCE = "Resource"
+  static final String EST_RESOURCE = "resource"
   static final String EST_PARENT = "parent"
 
   static final String ET_USER = "User"                   // EntityType
