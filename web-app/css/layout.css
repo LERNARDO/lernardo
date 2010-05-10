@@ -26,8 +26,8 @@ body {
     font-size: 12px; }
 
 /* comment in to change width */
-/*#doc4 {
-    width: 1000px; }*/
+#doc4 {
+    width: 1145px; }
 
 #hd {
     height: 110px;
@@ -1303,7 +1303,7 @@ table#msg-composer td {
 
 .buttonGreen {
     border: 1px solid #666;
-    background: #003300;
+    background: #009900;
     padding: 5px;
     margin: 5px 5px 0 0px;
     text-align: center;
@@ -1312,7 +1312,7 @@ table#msg-composer td {
     color: #fff !important;
     display: block; }
     .buttonGreen:hover {
-        background: #009900;
+        background: #003300;
         border: 1px solid #444;
         text-decoration: none; }
 		
@@ -1329,5 +1329,10 @@ table#msg-composer td {
 }
 
 #jobType {
-	width: 180px;
+	width: 175px;}
+	
+.felder {
+	background-color: #FFF;
+	border: 1px solid #000;
+	padding: 2.5px;}
 
