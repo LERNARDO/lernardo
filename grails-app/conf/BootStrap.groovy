@@ -499,8 +499,6 @@ class BootStrap {
     }
 
     new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroup).save()
-    //new Link(source: Entity.findByName('sabine'), target: entity, type: metaDataService.ltGroup).save()
-
   }
 
   void createDefaultColonias() {
