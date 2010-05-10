@@ -48,15 +48,14 @@ class BootStrap {
         createDefaultPosts()
         //createDefaultEvents()
         //createDefaultAttendances()
-        //createDefaultGroups()
+        createDefaultFamilies()
         createDefaultColonias()
       }
 
-    /*  createDefaultHelpers()
-      createDefaultEvaluations()*/
+      createDefaultHelpers()
+      //createDefaultEvaluations()
     }
   }
-  
 
   def destroy = {
   }
@@ -102,7 +101,6 @@ class BootStrap {
       prf.firstName = "Kurt"
       prf.lastName = "Ludikovsky"
     }
-
   }
 
   void createDefaultEducators() {
@@ -165,7 +163,6 @@ class BootStrap {
       prf.employment = ""
       prf.addToLanguages("Deutsch")
     }
-
   }
 
   void createDefaultClients() {
@@ -252,10 +249,10 @@ class BootStrap {
     def admin = Entity.findByName ('lernardoadmin')
     def alex = Entity.findByName ('alexanderzeillinger')
     def patrizia = Entity.findByName ('patriziarosenkranz')
-    def kira = Entity.findByName ('kirazeillinger')
+    /*def kira = Entity.findByName ('kirazeillinger')
     def keano = Entity.findByName ('keanozeillinger')
     def christian = Entity.findByName ('christianszinicz')
-    def sueninoszentrum = Entity.findByName ('sueninoszentrum')
+    def sueninoszentrum = Entity.findByName ('sueninoszentrum')*/
 
     // make admin a friend of everyone
     List users = Entity.list()
@@ -269,15 +266,6 @@ class BootStrap {
     // friend links
     new Link(source:alex, target:patrizia, type:metaDataService.ltFriendship).save()
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
-
-    // working links
-    new Link(source:christian, target:sueninoszentrum, type:metaDataService.ltWorking).save()
-
-    // client links
-    // TODO: find out why creating those 2 links isn't working in bootstrap
-    new Link(source:kira, target:sueninoszentrum, type:metaDataService.ltClientship).save()
-    new Link(source:keano, target:sueninoszentrum, type:metaDataService.ltClientship).save()
-
   }
 
   void createDefaultTemplates() {
@@ -301,7 +289,6 @@ class BootStrap {
       ent.profile.hk = 0
       ent.profile.tlt = 1
     }
-
   }
 
   void createDefaultComments() {
@@ -331,7 +318,6 @@ class BootStrap {
       ent.profile.type = "planbar"
       ent.profile.classification = "Ressourcen die nur in einer Einrichtung verfügbar sind (Notebook, Turnsaal)"
     }
-
   }
 
   void createDefaultActivities() {
@@ -352,15 +338,10 @@ class BootStrap {
       new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
-
   }
 
   void createDefaultPosts() {
     log.debug ("==> creating default posts")
-
-/*    new TemplateComment(content:'Sehr nette Aktivität! Die Beschreibung könnte aber noch etwas genauer ausgeführt werden.',
-            author:Entity.findByName('regina'),
-            template:ActivityTemplate.findByName('Schatten')).save()*/
 
     new ArticlePost(title:'Lernardo im Hort Kaumberg',
             teaser:'''Mit Beginn September 2009 erweitert Lernardo aufgrund der hohen Nachfrage und positiven
@@ -483,22 +464,26 @@ class BootStrap {
                    date: new Date(2010-1900,01,07)).save()
   }
 
-  void createDefaultGroups() {
-    log.debug ("==> creating default groups")
+  void createDefaultFamilies() {
+    log.debug ("==> creating default families")
 
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
-    def entity = entityHelperService.createEntity("zeillinger", etGroupFamily) {Entity ent ->
+    def entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent)
       ent.profile.fullName = "Zeillinger"
       ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
                                      ausreichendes Einkommen und Sabine Zeillinger kümmert sich um den Haushalt."""
-      ent.profile.personCount = 2
-      //ent.profile.totalIncome = 1550
-      ent.profile.otherData = """Familie Zeillinger besitzt 2 Katzen und 2 Autos"""
+      ent.profile.socioeconomicData = "Alles in Ordnung"
+      ent.profile.otherInfo = """Familie Zeillinger besitzt 2 Katzen und 2 Autos"""
+      ent.profile.amountHousehold = 2
+      ent.profile.familyIncome = 1540
     }
 
-    new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroup).save()
+    // create some links to that group
+    new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
+    new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
+    new Link(source: Entity.findByName('kirazeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
   }
 
   void createDefaultColonias() {
@@ -511,6 +496,9 @@ class BootStrap {
       ent.profile.fullName = "Gumpoldskirchen"
       ent.profile.description = """Eine kleine Colonia im Süden von Wien"""
     }
+
+    // create some links to that group
+    new Link(source: Entity.findByName('sueninoszentrum'), target: entity, type: metaDataService.ltGroupMember).save()
   }
 
 }
