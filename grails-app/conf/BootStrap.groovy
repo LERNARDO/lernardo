@@ -23,6 +23,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import profiles.ChildProfile
 import profiles.ParentProfile
+import profiles.PartnerProfile
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -49,6 +50,7 @@ class BootStrap {
         createDefaultClients()
         createDefaultChilds()
         createDefaultPosts()
+        createDefaultPartner()
         //createDefaultEvents()
         //createDefaultAttendances()
         createDefaultFamilies()
@@ -265,6 +267,22 @@ class BootStrap {
       prf.street = ""
       prf.phone = ""
       prf.description = ""
+    }
+  }
+
+  void createDefaultPartner() {
+    log.debug ("==> creating default partners")
+    EntityType etPartner = metaDataService.etPartner
+
+    entityHelperService.createEntityWithUserAndProfile ("raiffeisenbank", etPartner, "raika@sueninos.org", "Raiffeisen Bank") {Entity ent->
+      PartnerProfile prf = (PartnerProfile)ent.profile
+      prf.zip = ""
+      prf.city = ""
+      prf.street = ""
+      prf.phone = ""
+      prf.description = ""
+      prf.country = ""
+      prf.website = ""
     }
   }
 

@@ -46,38 +46,6 @@ class OperatorProfileController {
         }
     }
 
-    def addFacility = {
-      // check if the facility isn't already linked to the operator
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.facility))
-        eq('target', entityHelperService.loggedIn)
-        eq('type', metaDataService.ltOperation)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.facility), target: entityHelperService.loggedIn, type:metaDataService.ltOperation).save()
-      // find all facilities of this operator
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
-      List facilities = links.collect {it.source}
-
-      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
-    }
-
-    def removeFacility = {
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.id))
-        eq('target', entityHelperService.loggedIn)
-        eq('type', metaDataService.ltOperation)
-      }
-      link.delete()
-      // find all facilities of this operator
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
-      List facilities = links.collect {it.source}
-
-      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
-    }
-
     def del = {
         Entity operator = Entity.get(params.id)
         if(operator) {
@@ -133,7 +101,6 @@ class OperatorProfileController {
 
     def save = {
       EntityType etOperator = metaDataService.etOperator
-      println params
 
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etOperator, params.email, params.fullName) {Entity ent ->
@@ -150,5 +117,39 @@ class OperatorProfileController {
         return
       }
 
+    }
+
+    def addFacility = {
+      // check if the facility isn't already linked to the operator
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.facility))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltOperation)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.facility), target: entityHelperService.loggedIn, type:metaDataService.ltOperation).save()
+
+      // find all facilities of this operator
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
+      List facilities = links.collect {it.source}
+
+      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
+    }
+
+    def removeFacility = {
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.id))
+        eq('target', entityHelperService.loggedIn)
+        eq('type', metaDataService.ltOperation)
+      }
+      link.delete()
+
+      // find all facilities of this operator
+      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
+      List facilities = links.collect {it.source}
+
+      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
     }
 }

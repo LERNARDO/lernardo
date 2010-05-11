@@ -14,7 +14,7 @@ class PartnerProfile extends Profile {
     String city
     String street
     String phone // changed on 23.04.2010, before: tel
-    String email // added on 23.04.2010
+    //String email // added on 23.04.2010
     String website // added on 23.04.2010
 
     Boolean showTips = true
@@ -27,7 +27,7 @@ class PartnerProfile extends Profile {
       city (size: 2..50)
       street (size: 2..50)
       phone (size: 2..20)
-      email (size: 2..20)
+      //email (size: 2..20)
       website (size: 2..50)
     }
 

@@ -48,7 +48,7 @@
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
       <div id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="hideform2()">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
