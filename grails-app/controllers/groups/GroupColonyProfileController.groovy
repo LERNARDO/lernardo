@@ -187,7 +187,7 @@ class GroupColonyProfileController {
       }
       link.delete()
 
-      // find all facilities of this operator
+      // find all facilities linked to this group
       def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
       List facilities = links.collect {it.source}
 

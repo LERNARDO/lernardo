@@ -88,6 +88,9 @@ class MetaDataService {
   static final String LT_BOOKMARK = "Beobachtung"
   static final String LT_WORKING = "Arbeitet"
   static final String LT_GROUP_MEMBER = "Gruppenmitglied"
+  static final String LT_GROUP_MEMBER_PARENT = "Gruppenmitglied Erziehungsberechtigter"
+  static final String LT_GROUP_MEMBER_CLIENT = "Gruppenmitglied Betreuter"
+  static final String LT_GROUP_MEMBER_CHILD = "Gruppenmitglied Kind"
   static final String LT_CREATOR = "Ersteller"
   static final String LT_EDITOR = "Bearbeiter"
   static final String LT_COMMENT = "Kommentar"
@@ -155,6 +158,9 @@ class MetaDataService {
     getLtBookmark()
     getLtWorking()
     getLtGroupMember()
+    getLtGroupMemberParent()
+    getLtGroupMemberClient()
+    getLtGroupMemberChild()
     getLtCreator()
     getLtEditor()
     getLtComment()
@@ -226,6 +232,9 @@ class MetaDataService {
   LinkType getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
   LinkType getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
   LinkType getLtGroupMember() {defaultObjectService.openLT (LT_GROUP_MEMBER, lstOther) }
+  LinkType getLtGroupMemberParent() {defaultObjectService.openLT (LT_GROUP_MEMBER_PARENT, lstOther) }
+  LinkType getLtGroupMemberClient() {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT, lstOther) }
+  LinkType getLtGroupMemberChild() {defaultObjectService.openLT (LT_GROUP_MEMBER_CHILD, lstOther) }
   LinkType getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
   LinkType getLtEditor()      {defaultObjectService.openLT (LT_EDITOR, lstOther) }
   LinkType getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }

@@ -21,6 +21,8 @@ import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.FunctionService
 import standard.MetaDataService
+import profiles.ChildProfile
+import profiles.ParentProfile
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -40,16 +42,18 @@ class BootStrap {
       //createDefaultLinks()
       //createDefaultTemplates()
       //createDefaultComments()
-      createDefaultResources()
 
       if (GrailsUtil.environment == "development") {
         //createDefaultActivities()
+        createDefaultParents()
         createDefaultClients()
+        createDefaultChilds()
         createDefaultPosts()
         //createDefaultEvents()
         //createDefaultAttendances()
         createDefaultFamilies()
         createDefaultColonias()
+        createDefaultResources()
       }
 
       createDefaultHelpers()
@@ -165,6 +169,25 @@ class BootStrap {
     }
   }
 
+  void createDefaultParents() {
+    log.debug ("==> creating default parents")
+    EntityType etParent = metaDataService.etParent
+
+    entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@lernardo.at", "Sabine Zeillinger") {Entity ent ->
+      ParentProfile prf = (ParentProfile)ent.profile
+      prf.firstName = "Sabine"
+      prf.lastName = "Zeillinger"
+      prf.gender = 2
+      prf.currentCountry = "Österreich"
+      prf.currentZip = "2352"
+      prf.currentCity = "Gumpoldskirchen"
+      prf.currentStreet = ""
+      prf.addToLanguages("Deutsch")
+      prf.birthDate = new Date()
+      prf.job = false
+    }
+  }
+
   void createDefaultClients() {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
@@ -211,6 +234,20 @@ class BootStrap {
       prf.weight = 120
       prf.job = false
       prf.familyStatus = ""
+    }
+  }
+
+  void createDefaultChilds() {
+    log.debug ("==> creating default children")
+    EntityType etChild = metaDataService.etChild
+
+    entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@lernardo.at", "Karin Zeillinger") {Entity ent ->
+      ChildProfile prf = (ChildProfile)ent.profile
+      prf.firstName = "Karin"
+      prf.lastName = "Zeillinger"
+      prf.gender = 2
+      prf.birthDate = new Date()
+      prf.job = false
     }
   }
 

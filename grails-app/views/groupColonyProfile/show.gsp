@@ -141,8 +141,6 @@
       </div>
     </div>
 
-    <!-- buchbare ressource hinzufügen -->
-
   </div>
 </div>
 </body>

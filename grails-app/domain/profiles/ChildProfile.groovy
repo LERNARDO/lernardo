@@ -24,4 +24,8 @@ class ChildProfile extends Profile {
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 20)
     }
+
+    String toString(){
+      return "${lastName}" + " " + "${firstName}"
+    }
 }
