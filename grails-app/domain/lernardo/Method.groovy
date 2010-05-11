@@ -6,8 +6,13 @@ class Method {
 
     String name
     String description
+    String type
 
     static constraints = {
       description (maxSize: 2000)
+    }
+
+    String toString(){
+      return "${name}"
     }
 }

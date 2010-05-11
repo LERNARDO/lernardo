@@ -29,8 +29,7 @@ class TemplateController {
       Entity template = Entity.get(params.id)
 
       return ['template': template,
-              'entity': entityHelperService.loggedIn,
-              'resources': Entity.findAllByType(metaDataService.etResource)]
+              'entity': entityHelperService.loggedIn]
     }
 
     def update = {
@@ -39,7 +38,7 @@ class TemplateController {
       template.profile.properties = params
 
       // delete old links
-      Link.findAllByTargetAndType(template, metaDataService.ltResource).each {it.delete()}
+      //Link.findAllByTargetAndType(template, metaDataService.ltResource).each {it.delete()}
 
       // create new links
 /*      if (params.materials) {
@@ -54,7 +53,7 @@ class TemplateController {
         }
       }*/
       
-      functionService.getParamAsList(params.materials).each {
+/*      functionService.getParamAsList(params.materials).each {
         new Link(source: Entity.get(it), target: template, type: metaDataService.ltResource).save()
       }
 
@@ -64,7 +63,7 @@ class TemplateController {
       }
       else {
           render view:'edit', model:[template: template, entity: entityHelperService.loggedIn]
-      }
+      }*/
 
     }
 
@@ -73,9 +72,16 @@ class TemplateController {
       def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
       def commentList = links.collect {it.source}
 
+      List allResources = Entity.findAllByType(metaDataService.etResource)
+      // find all resources of this facility
+      links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
+      List resources = links.collect {it.source}
+
       return ['template': template,
               'commentList': commentList,
-              'entity': entityHelperService.loggedIn]
+              'entity': entityHelperService.loggedIn,
+              'allResources': allResources,
+              'resources': resources]
     }
 
     def create = {
@@ -105,9 +111,9 @@ class TemplateController {
           }
         }*/
 
-        functionService.getParamAsList(params.materials).each {
+/*        functionService.getParamAsList(params.materials).each {
           new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
-        }
+        }*/
 
         flash.message = message(code:"template.created", args:[entity.profile.fullName])
 
@@ -153,5 +159,43 @@ class TemplateController {
           flash.message = message(code:"template.notFound", args:[params.id])
           redirect action:"list"
       }
+    }
+
+    def addResource = {
+      Entity template = Entity.get(params.id)
+
+      // check if the resource isn't already linked to the template
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.resource))
+        eq('target', template)
+        eq('type', metaDataService.ltResource)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.resource), target: template, type:metaDataService.ltResource).save()
+
+      // find all resources of this template
+      def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
+      List resources = links.collect {it.source}
+
+      render template:'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
+    }
+
+    def removeResource = {
+      Entity template = Entity.get(params.id)
+
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.resource))
+        eq('target', template)
+        eq('type', metaDataService.ltResource)
+      }
+      link.delete()
+
+      // find all resources of this template
+      def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
+      List resources = links.collect {it.source}
+
+      render template:'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
     }
 }

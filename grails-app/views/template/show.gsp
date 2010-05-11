@@ -13,46 +13,42 @@
 <div class="boxGray">
   <div class="second">
     <table class="listing">
-      <tr class="prop"><td class="name" style="width: 200px">Name:</td><td class="value">${template.profile.fullName}</td></tr>
-      <tr class="prop"><td class="name">Primäre Zuordnung:</td><td class="value">${template.profile.attribution}</td></tr>
-      <tr class="prop"><td class="name">Beschreibung:</td><td class="value">${template.profile.description.decodeHTML()}</td></tr>
-      <tr class="prop"><td class="name">Ressourcen:</td><td class="value"><app:getResources entity="${template}">
-        <ul>
-          <g:each in="${resources}" var="resource">
-            <li><g:link controller="resourceProfile" action="show" id="${resource.id}">${resource.profile.fullName}</g:link></li>
-          </g:each>
-        </ul>
-      </app:getResources></td></tr>
-      <tr class="prop"><td class="name">Dauer:</td><td class="value">${template.profile.duration} Minuten</td></tr>
-      <tr class="prop"><td class="name">Sozialform:</td><td class="value">${template.profile.socialForm}</td></tr>
-      <tr class="prop"><td class="name">Teamgröße:</td><td class="value">${template.profile.requiredEducators}</td></tr>
-      <tr class="prop"><td class="name">Qualifikationen:</td><td class="value">${template.profile.qualifications}</td></tr>
-      <tr class="prop"><td class="name">Lernen lernen:</td><td class="value">
-        <% template.profile.ll.toInteger().times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.ll.toInteger()).times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star_empty.png')}" alt="star"/><% } %>
-      </td></tr>
-      <tr class="prop"><td class="name">Bewegung & Ernährung:</td><td class="value">
-        <% template.profile.be.toInteger().times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.be.toInteger()).times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star_empty.png')}" alt="star"/><% } %>
-      </td></tr>
-      <tr class="prop"><td class="name">Persönliche Kompetenz:</td><td class="value">
-        <% template.profile.pk.toInteger().times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.pk.toInteger()).times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star_empty.png')}" alt="star"/><% } %>
-      </td></tr>
-      <tr class="prop"><td class="name">Soziale & emotionale Intelligenz:</td><td class="value">
-        <% template.profile.si.toInteger().times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.si.toInteger()).times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star_empty.png')}" alt="star"/><% } %>
-      </td></tr>
-      <tr class="prop"><td class="name">Handwerk & Kunst:</td><td class="value">
-        <% template.profile.hk.toInteger().times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.hk.toInteger()).times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star_empty.png')}" alt="star"/><% } %>
-      </td></tr>
-      <tr class="prop"><td class="name">Teilleistungstraining:</td><td class="value">
-        <% template.profile.tlt.toInteger().times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star.png')}" alt="star"/><% } %><% (3 - template.profile.tlt.toInteger()).times { %><img src="${g.resource(dir: 'images/icons', file: 'icon_star_empty.png')}" alt="star"/><% } %>
-      </td></tr>
+      <tr class="prop"><td class="name" style="width: 200px"><g:message code="activityTemplate.name"/>:</td><td class="value">${template.profile.fullName}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.description"/>:</td><td class="value">${template.profile.description.decodeHTML()}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.chosenMaterials"/>:</td><td class="value">${template.profile.chosenMaterials.decodeHTML()}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.duration"/>:</td><td class="value">${template.profile.duration} Minuten</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.socialForm"/>:</td><td class="value">${template.profile.socialForm}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.amountEducators"/>:</td><td class="value">${template.profile.amountEducators}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.status"/>:</td><td class="value">${template.profile.status}</td></tr>
     </table>
 
     <app:isEducator entity="${entity}">
-      <g:link class="buttonBlue" action="edit" id="${template.id}">Bearbeiten</g:link>
+      <g:link class="buttonBlue" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
       <g:link class="buttonGray" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Löschen</g:link>
       <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Neue Aktivität planen</g:link>
       <div class="spacer"></div>
     </app:isEducator>
+
+    <div>
+      <h1>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <jq:jquery>
+        hideform = function(){
+          $('#resources').hide('slow') ;
+        }
+        <jq:toggle sourceId="show-resources" targetId="resources"/>
+      </jq:jquery>
+      <div id="resources" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'template', action:'addResource', id:template.id]" update="resources2" before="hideform()">
+          <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="resources2">
+        <g:render template="resources" model="[resources: resources, entity: entity, template: template]"/>
+      </div>
+    </div>
 
   </div>
 </div>

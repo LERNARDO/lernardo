@@ -95,6 +95,7 @@ class MethodController {
 
     def save = {
         def methodInstance = new Method(params)
+        methodInstance.type = "template"
         if(methodInstance.save(flush:true)) {
             flash.message = message(code:"method.created", args:[methodInstance.name])
 

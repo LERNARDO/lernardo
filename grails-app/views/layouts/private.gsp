@@ -122,7 +122,7 @@
             <div class="second">
               <ul>
                 %{--<app:isEducator entity="${entity}">--}%
-                  <li class="profile-template"><g:link controller="template" action="create">Aktivitätsvorlage erstellen</g:link></li>
+                  <li class="profile-template"><g:link controller="template" action="index">Aktivitätsvorlagen verwalten</g:link></li>
                 %{--</app:isEducator>--}%
                 %{--<app:isFacility entity="${entity}">
                   <li class="profile-activities"><g:link controller="profile" action="attendance" id="${entity.id}">Anwesenheits-/Essenslisten</g:link></li>
