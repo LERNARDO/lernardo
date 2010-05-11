@@ -7,7 +7,7 @@ import de.uenterprise.ep.ProfileHelperService
 import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
 
-class GroupFamilyProfileController {
+class GroupClientProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
@@ -21,8 +21,8 @@ class GroupFamilyProfileController {
 
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
-        return [groups: Entity.findAllByType(metaDataService.etGroupFamily),
-                groupTotal: Entity.countByType(metaDataService.etGroupFamily)]
+        return [groups: Entity.findAllByType(metaDataService.etGroupClient),
+                groupTotal: Entity.countByType(metaDataService.etGroupClient)]
     }
 
     def show = {
@@ -34,29 +34,15 @@ class GroupFamilyProfileController {
             redirect(action:list)
         }
         else {
-          def allParents = Entity.findAllByType(metaDataService.etParent)
-          // find all parents linked to this group
-          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
-          List parents = links.collect {it.source}
-
           def allClients = Entity.findAllByType(metaDataService.etClient)
           // find all clients linked to this group
-          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
+          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
           List clients = links.collect {it.source}
-
-          def allChilds = Entity.findAllByType(metaDataService.etChild)
-          // find all childs linked to this group
-          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
-          List childs = links.collect {it.source}
 
           return [group: group,
                   entity: entity,
-                  parents: parents,
-                  allParents: allParents,
                   clients: clients,
-                  allClients: allClients,
-                  childs: childs,
-                  allChilds: allChilds]
+                  allClients: allClients]
         }
     }
 
@@ -112,10 +98,10 @@ class GroupFamilyProfileController {
     }
 
     def save = {
-      EntityType etGroupFamily = metaDataService.etGroupFamily
+      EntityType etGroupClient = metaDataService.etGroupClient
 
       try {
-        Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
+        Entity entity = entityHelperService.createEntity("group", etGroupClient) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent)
           ent.profile.properties = params
         }
@@ -127,44 +113,6 @@ class GroupFamilyProfileController {
         return
       }
 
-    }
-
-    def addParent = {
-      Entity group = Entity.get(params.id)
-
-      // check if the parent isn't already linked to the group
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.parent))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberParent)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.parent), target: group, type:metaDataService.ltGroupMemberParent).save()
-
-      // find all parents linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
-      List parents = links.collect {it.source}
-
-      render template:'parents', model: [parents: parents, group: group, entity: entityHelperService.loggedIn]
-    }
-
-    def removeParent = {
-      Entity group = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.parent))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberParent)
-      }
-      link.delete()
-
-      // find all parents linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
-      List parents = links.collect {it.source}
-
-      render template:'parents', model: [parents: parents, group: group, entity: entityHelperService.loggedIn]
     }
 
   def addClient = {
@@ -203,44 +151,6 @@ class GroupFamilyProfileController {
     List clients = links.collect {it.source}
 
     render template:'clients', model: [clients: clients, group: group, entity: entityHelperService.loggedIn]
-  }
-
-  def addChild = {
-    Entity group = Entity.get(params.id)
-
-    // check if the child isn't already linked to the group
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.child))
-      eq('target', group)
-      eq('type', metaDataService.ltGroupMemberChild)
-    }
-    if (!link)
-      new Link(source:Entity.get(params.child), target: group, type:metaDataService.ltGroupMemberChild).save()
-
-    // find all childs linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
-    List childs = links.collect {it.source}
-
-    render template:'childs', model: [childs: childs, group: group, entity: entityHelperService.loggedIn]
-  }
-
-  def removeChild = {
-    Entity group = Entity.get(params.id)
-
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.child))
-      eq('target', group)
-      eq('type', metaDataService.ltGroupMemberChild)
-    }
-    link.delete()
-
-    // find all child linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
-    List childs = links.collect {it.source}
-
-    render template:'childs', model: [childs: childs, group: group, entity: entityHelperService.loggedIn]
   }
 
 }

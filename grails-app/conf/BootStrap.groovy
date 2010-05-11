@@ -185,6 +185,8 @@ class BootStrap {
       prf.addToLanguages("Deutsch")
       prf.birthDate = new Date()
       prf.job = false
+      prf.maritalStatus = ""
+      prf.education = ""
     }
   }
 

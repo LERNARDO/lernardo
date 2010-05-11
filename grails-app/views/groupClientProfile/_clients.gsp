@@ -1,0 +1,10 @@
+<g:if test="${clients}">
+  <ul>
+  <g:each in="${clients}" var="client">
+    <li><g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link> <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeClient" update="client2" id="${group.id}" params="[client: client.id]"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Betreuten entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+  </g:each>
+  </ul>
+</g:if>
+<g:else>
+  <span class="italic">Keine Betreuten zugewiesen</span>
+</g:else>
