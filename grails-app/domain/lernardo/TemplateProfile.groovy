@@ -4,6 +4,8 @@ import de.uenterprise.ep.Profile
 
 class TemplateProfile extends Profile {
 
+  static hasMany = [methods: Method]
+
   String description
   String chosenMaterials // added on 30.04.2010
   String socialForm

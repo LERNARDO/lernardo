@@ -24,6 +24,8 @@ import standard.MetaDataService
 import profiles.ChildProfile
 import profiles.ParentProfile
 import profiles.PartnerProfile
+import lernardo.Method
+import lernardo.Element
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -56,6 +58,7 @@ class BootStrap {
         createDefaultFamilies()
         createDefaultColonias()
         createDefaultResources()
+        createDefaultMethods()
       }
 
       createDefaultHelpers()
@@ -556,6 +559,19 @@ class BootStrap {
 
     // create some links to that group
     new Link(source: Entity.findByName('sueninoszentrum'), target: entity, type: metaDataService.ltGroupMember).save()
+  }
+
+  void createDefaultMethods() {
+    log.debug ("==> creating default methods")
+
+    Method method = new Method(name: "5 Säulen", description: "Die Standard Bewertungsmethode bei Lernardo").save()
+
+    method.addToElements(new Element(name: "Bewegung & Ernährung"))
+    method.addToElements(new Element(name: "Handwerk & Kunst"))
+    method.addToElements(new Element(name: "Persönliche Kompetenz"))
+    method.addToElements(new Element(name: "Soziale und emotionale Intelligenz"))
+    method.addToElements(new Element(name: "Lernen lernen"))
+    method.addToElements(new Element(name: "Teilleistungstraining"))   
   }
 
 }

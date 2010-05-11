@@ -159,6 +159,7 @@
                 <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]">Colonias verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]">Betreutengruppen verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]">Sponsorennetzwerke verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]">Bewertungsmethoden verwalten</g:link></li>
               </app:isOperator>
               <app:isEducator entity="${entity}">
                 <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>
