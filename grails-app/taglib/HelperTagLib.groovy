@@ -3,6 +3,8 @@ import de.uenterprise.ep.Link
 import posts.ArticlePost
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
+import lernardo.Method
+import lernardo.Element
 
 class HelperTagLib {
   def entityHelperService
@@ -294,6 +296,28 @@ class HelperTagLib {
 
     def result = networkService.isBookmarkOf(current, e)
     return result
+  }
+
+  // starbox zur Bewertung einer Entitiy anzeigen
+  def starBox = {attrs ->
+
+    Element element = Element.get(attrs.element)
+
+    def star = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star.png'/>"
+    def star_empty = "<img src='${grailsAttributes.getApplicationUri(request)}/images/icons/icon_star_empty.png'/>"
+
+    //def (vote, myVote) = ideaService.getVoting(attrs.idea)
+    def updateDiv = "starBox${element.id}"
+    def vote = element.voting
+
+    out << '<div>'
+    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 4]) { vote > 3 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 5]) { vote > 4 ? star : star_empty }
+    out << '</div>'
+
   }
   
 }

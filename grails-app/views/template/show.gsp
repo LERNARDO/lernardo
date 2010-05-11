@@ -50,6 +50,27 @@
       </div>
     </div>
 
+    <div>
+      <h1>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <jq:jquery>
+        hideform2 = function(){
+          $('#methods').hide('slow') ;
+        }
+        <jq:toggle sourceId="show-methods" targetId="methods"/>
+      </jq:jquery>
+      <div id="methods" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'template', action:'addMethod', id:template.id]" update="methods2" before="hideform2()">
+          <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="methods2">
+        <g:render template="methods" model="[entity: entity, template: template]"/>
+      </div>
+    </div>
+
   </div>
 </div>
 

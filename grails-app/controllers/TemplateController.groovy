@@ -5,6 +5,8 @@ import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.FunctionService
 import standard.MetaDataService
+import lernardo.Method
+import lernardo.Element
 
 class TemplateController {
   EntityHelperService entityHelperService
@@ -77,11 +79,14 @@ class TemplateController {
       links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
       List resources = links.collect {it.source}
 
+      List methods = Method.findAllByType('template')
+
       return ['template': template,
               'commentList': commentList,
               'entity': entityHelperService.loggedIn,
               'allResources': allResources,
-              'resources': resources]
+              'resources': resources,
+              'allMethods': methods]
     }
 
     def create = {
@@ -197,5 +202,40 @@ class TemplateController {
       List resources = links.collect {it.source}
 
       render template:'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
+    }
+
+    def addMethod = {
+      // TODO: make sure a method can only be added once
+      Method oldMethod = Method.get(params.method)
+      Method method = new Method()
+
+      method.name = oldMethod.name
+      method.description = oldMethod.description
+      method.type = "instance"
+
+      oldMethod.elements.each {
+        method.addToElements(new Element(name: it.name))
+      }
+
+      Entity template = Entity.get(params.id)
+      template.profile.addToMethods(method)
+      render template:'methods', model: [template: template, entity: entityHelperService.loggedIn]
+    }
+
+    def removeMethod = {
+      Entity template = Entity.get(params.id)
+      template.profile.removeFromMethods(Method.get(params.method))
+      Method.get(params.method).delete()
+      render template:'methods', model: [template: template, entity: entityHelperService.loggedIn]
+    }
+
+    // AJAX: Voting für eine Idee durchführen,
+    // als Ergebnis wird die aktualisierte starbox (taglib) geliefert
+    def vote = {
+      Element element = Element.get(params.element)
+
+      element.voting = params.val as Integer
+  
+      render app.starBox(element: element.id)
     }
 }

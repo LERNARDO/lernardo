@@ -37,6 +37,7 @@ class CommentTemplateController {
   }
 
   def save = {
+    Entity template = Entity.get(params.id)
     EntityType etCommentTemplate = metaDataService.etCommentTemplate
 
     Entity entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
@@ -45,16 +46,16 @@ class CommentTemplateController {
       ent.profile.content = params.content
     }
 
-    new Link(source: entity, target: Entity.get(params.id), type: metaDataService.ltComment).save()
+    new Link(source: entity, target: template, type: metaDataService.ltComment).save()
     new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
 
-    flash.message = message(code:"comment.created", args:[entity.profile.fullName])
+    flash.message = message(code:"comment.created", args:[template.profile.fullName])
 
-    functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+Entity.get(params.id).profile.fullName+'" kommentiert.')
+    functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "'+template.profile.fullName+'" kommentiert.')
     List receiver = Entity.findAllByType(metaDataService.etEducator)
     receiver.each {
       if (it != entityHelperService.loggedIn)
-        functionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+'hat die Aktivitätsvorlage "'+Entity.get(params.id).profile.fullName+'" kommentiert.')
+        functionService.createEvent(it, entityHelperService.loggedIn.profile.fullName+'hat die Aktivitätsvorlage "'+template.profile.fullName+'" kommentiert.')
     }
 
     redirect controller: "template", action: "show", id: params.id
