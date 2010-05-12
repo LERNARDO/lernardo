@@ -128,6 +128,7 @@
                   <li class="profile-activities"><g:link controller="profile" action="attendance" id="${entity.id}">Anwesenheits-/Essenslisten</g:link></li>
                 </app:isFacility>--}%
                   <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsvorlagengruppen verwalten</g:link></li>
+                  <li class="profile-template"><g:link controller="groupActivityProfile" action="index">Aktivitätsgruppen verwalten</g:link></li>
               </ul>
             </div>
           </div>

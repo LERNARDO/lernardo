@@ -11,5 +11,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Aktivitätsvorlagen zugewiesen</span>
+  <span class="italic">Keine Aktivitätsvorlagen zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
 </g:else>

@@ -2,7 +2,7 @@ package groups
 
 import de.uenterprise.ep.Profile
 
-class GroupActivityProfile extends Profile {
+class  GroupActivityProfile extends Profile {
 
     Integer realDuration
     Date date

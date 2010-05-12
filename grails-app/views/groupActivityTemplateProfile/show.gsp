@@ -78,6 +78,7 @@
       <div class="buttons">
         <g:link class="buttonBlue" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
+        <g:link class="buttonBlue" controller="groupActivityProfile" action="create" id="${group.id}">Neue Aktivitätsgruppe planen</g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>

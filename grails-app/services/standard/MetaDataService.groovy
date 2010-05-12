@@ -30,6 +30,7 @@ class MetaDataService {
   static final String EST_GROUP_NETWORK = "groupNetwork"
   static final String EST_GROUP_LEVEL = "groupLevel"
   static final String EST_GROUP_ACTIVITY_TEMPLATE = "groupActivityTemplate"
+  static final String EST_GROUP_ACTIVITY = "groupActivity"
   static final String EST_COMMENT_TEMPLATE = "commentTemplate"
   static final String EST_PATE = "pate"
   static final String EST_PARTNER = "partner"
@@ -51,6 +52,7 @@ class MetaDataService {
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
   static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
   static final String ET_GROUP_ACTIVITY_TEMPLATE = "Gruppe Aktivitätsvorlagen"
+  static final String ET_GROUP_ACTIVITY = "Gruppe Aktivitäten"
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
@@ -72,6 +74,7 @@ class MetaDataService {
   static final String PRT_GROUP_NETWORK = "GroupNetwork"
   static final String PRT_GROUP_LEVEL = "GroupLevel"
   static final String PRT_GROUP_ACTIVITY_TEMPLATE = "GroupActivityTemplate"
+  static final String PRT_GROUP_ACTIVITY = "GroupActivity"
   static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
   static final String PRT_PATE = "Pate"
   static final String PRT_PARTNER = "Partner"
@@ -97,6 +100,10 @@ class MetaDataService {
   static final String LT_GROUP_MEMBER_PARENT = "Gruppenmitglied Erziehungsberechtigter"
   static final String LT_GROUP_MEMBER_CLIENT = "Gruppenmitglied Betreuter"
   static final String LT_GROUP_MEMBER_CHILD = "Gruppenmitglied Kind"
+  static final String LT_GROUP_MEMBER_EDUCATOR = "Gruppenmitglied Pädagoge"
+  static final String LT_GROUP_MEMBER_PARTNER = "Gruppenmitglied Partner"
+  static final String LT_GROUP_MEMBER_FACILITY = "Gruppenmitglied Einrichtung"
+  static final String LT_GROUP_MEMBER_CLIENT_GROUP = "Gruppenmitglied Betreutengruppe"
   static final String LT_CREATOR = "Ersteller"
   static final String LT_EDITOR = "Bearbeiter"
   static final String LT_COMMENT = "Kommentar"
@@ -131,6 +138,7 @@ class MetaDataService {
     getEstGroupNetwork()
     getEstGroupLevel()
     getEstGroupActivityTemplate()
+    getEstGroupActivity()
     getEstCommentTemplate()
     getEstPate()
     getEstPartner()
@@ -152,6 +160,7 @@ class MetaDataService {
     getEtGroupNetwork()
     getEtGroupLevel()
     getEtGroupActivityTemplate()
+    getEtGroupActivity()
     getEtCommentTemplate()
     getEtPate()
     getEtPartner()
@@ -171,6 +180,10 @@ class MetaDataService {
     getLtGroupMemberParent()
     getLtGroupMemberClient()
     getLtGroupMemberChild()
+    getLtGroupMemberEducator()
+    getLtGroupMemberPartner()
+    getLtGroupMemberFacility()
+    getLtGroupMemberClientGroup()
     getLtCreator()
     getLtEditor()
     getLtComment()
@@ -209,6 +222,7 @@ class MetaDataService {
   EntitySuperType getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
   EntitySuperType getEstGroupLevel()      {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
   EntitySuperType getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
+  EntitySuperType getEstGroupActivity  () {defaultObjectService.openEST (EST_GROUP_ACTIVITY, PRT_GROUP_ACTIVITY) }
   EntitySuperType getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
   EntitySuperType getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
   EntitySuperType getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
@@ -230,6 +244,7 @@ class MetaDataService {
   EntityType getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
   EntityType getEtGroupLevel()      {defaultObjectService.openET (ET_GROUP_LEVEL, estGroupLevel) }
   EntityType getEtGroupActivityTemplate() {defaultObjectService.openET (ET_GROUP_ACTIVITY_TEMPLATE, estGroupActivityTemplate) }
+  EntityType getEtGroupActivity()   {defaultObjectService.openET (ET_GROUP_ACTIVITY, estGroupActivity) }
   EntityType getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
   EntityType getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
   EntityType getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
@@ -249,6 +264,10 @@ class MetaDataService {
   LinkType getLtGroupMemberParent() {defaultObjectService.openLT (LT_GROUP_MEMBER_PARENT, lstOther) }
   LinkType getLtGroupMemberClient() {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT, lstOther) }
   LinkType getLtGroupMemberChild() {defaultObjectService.openLT (LT_GROUP_MEMBER_CHILD, lstOther) }
+  LinkType getLtGroupMemberEducator() {defaultObjectService.openLT (LT_GROUP_MEMBER_EDUCATOR, lstOther) }
+  LinkType getLtGroupMemberPartner() {defaultObjectService.openLT (LT_GROUP_MEMBER_PARTNER, lstOther) }
+  LinkType getLtGroupMemberFacility() {defaultObjectService.openLT (LT_GROUP_MEMBER_FACILITY, lstOther) }
+  LinkType getLtGroupMemberClientGroup() {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT_GROUP, lstOther) }
   LinkType getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
   LinkType getLtEditor()      {defaultObjectService.openLT (LT_EDITOR, lstOther) }
   LinkType getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }

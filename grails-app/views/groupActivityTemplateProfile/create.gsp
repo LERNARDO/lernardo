@@ -51,7 +51,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="50" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="10" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (min)
             </td>
           </tr>
 

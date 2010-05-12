@@ -70,7 +70,12 @@ class HelperTagLib {
   }
 
   def getGroupSize = {attrs, body ->
-    out <<Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)  
+    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
+
+    if (result == 0)
+      out << '0 <img src="'+ g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
+    else
+      out << result
   }
 
   def getGroupDuration = {attrs, body ->

@@ -229,11 +229,10 @@ class TemplateController {
       render template:'methods', model: [template: template, entity: entityHelperService.loggedIn]
     }
 
-    // AJAX: Voting für eine Idee durchführen,
+    // AJAX: Voting für ein Methodenelement durchführen,
     // als Ergebnis wird die aktualisierte starbox (taglib) geliefert
     def vote = {
       Element element = Element.get(params.element)
-
       element.voting = params.val as Integer
   
       render app.starBox(element: element.id)
