@@ -81,6 +81,10 @@ body {
 .gray {
     color: #666; }
 
+.red {
+    color: #d00; }
+}
+
 .notEnabled {
     color: #f44; }
 

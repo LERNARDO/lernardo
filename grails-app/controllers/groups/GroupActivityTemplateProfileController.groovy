@@ -34,7 +34,17 @@ class GroupActivityTemplateProfileController {
             redirect(action:list)
         }
         else {
-          return [group: group, entity: entity]
+          def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+          // find all templates linked to this group
+          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+          List templates = links.collect {it.source}
+
+          def calculatedDuration = 0
+          templates.each {
+            calculatedDuration += it.profile.duration
+          }
+
+          return [group: group, entity: entity, allTemplates: allTemplates, templates: templates, calculatedDuration: calculatedDuration]
         }
     }
 
@@ -67,7 +77,7 @@ class GroupActivityTemplateProfileController {
             redirect action:'list'
         }
         else {
-            return [group: group, entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+            return [group: group, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -76,7 +86,7 @@ class GroupActivityTemplateProfileController {
 
       group.profile.properties = params
 
-      // create links
+/*      // create links
       def oldEditor = Link.findByTargetAndType(group, metaDataService.ltEditor)
       if (oldEditor)
         oldEditor.delete()
@@ -94,19 +104,19 @@ class GroupActivityTemplateProfileController {
       }
       else {
         new Link(source: Entity.get(templates), target: group, type: metaDataService.ltGroupMember).save()
-      }
+      }*/
 
       if(!group.hasErrors() && group.save()) {
           flash.message = message(code:"group.updated", args:[group.profile.fullName])
           redirect action:'show', id: group.id
       }
       else {
-          render view:'edit', model:[group: group, entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+          render view:'edit', model:[group: group, entity: entityHelperService.loggedIn]
       }
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+        return [entity: entityHelperService.loggedIn]
     }
 
     def save = {
@@ -117,7 +127,7 @@ class GroupActivityTemplateProfileController {
           ent.profile = profileHelperService.createProfileFor(ent)
           ent.profile.properties = params
         }
-        // create links
+/*        // create links
         new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
         def templates = params.templates
         if (templates.class.isArray()) {
@@ -127,14 +137,62 @@ class GroupActivityTemplateProfileController {
         }
         else {
           new Link(source: Entity.get(templates), target: entity, type: metaDataService.ltGroupMember).save()
-        }
+        }*/
 
         flash.message = message(code:"group.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)])
+        render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn])
         return
       }
 
+    }
+
+    def addTemplate = {
+      Entity group = Entity.get(params.id)
+
+      // check if the template isn't already linked to the group
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.template))
+        eq('target', group)
+        eq('type', metaDataService.ltGroupMember)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.template), target: group, type:metaDataService.ltGroupMember).save()
+
+      // find all templates of this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+      List templates = links.collect {it.source}
+
+      def calculatedDuration = 0
+      templates.each {
+        calculatedDuration += it.profile.duration
+      }
+
+      render template:'templates', model: [group: group, templates: templates, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+    }
+
+    def removeTemplate = {
+      Entity group = Entity.get(params.id)
+
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.template))
+        eq('target', group)
+        eq('type', metaDataService.ltGroupMember)
+      }
+      link.delete()
+
+      // find all templates of this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+      List templates = links.collect {it.source}
+
+      def calculatedDuration = 0
+      templates.each {
+        calculatedDuration += it.profile.duration
+      }
+
+      render template:'templates', model: [group: group, templates: templates, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     }
 }

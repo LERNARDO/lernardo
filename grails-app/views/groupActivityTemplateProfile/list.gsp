@@ -16,10 +16,10 @@
         <table>
           <thead>
           <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'groupActivityTemplateProfile.fullName.label', default:'Name')}"/>
+            <g:sortableColumn property="fullName" title="${message(code:'groupActivityTemplate.profile.name')}"/>
             <th>Anzahl Aktivitätsvorlagen</th>
             <th>Gesamtdauer</th>
-            <th>Ersteller</th>
+            %{--<th>Ersteller</th>--}%
           </tr>
           </thead>
           <tbody>
@@ -28,7 +28,7 @@
               <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName')}</g:link></td>
               <td><app:getGroupSize entity="${group}"/></td>
               <td><app:getGroupDuration entity="${group}"/></td>
-              <td><app:getCreator entity="${group}">${creator.profile.fullName}</app:getCreator></td>
+              %{--<td><app:getCreator entity="${group}">${creator.profile.fullName}</app:getCreator></td>--}%
             </tr>
           </g:each>
           </tbody>

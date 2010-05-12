@@ -25,7 +25,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
-                <g:message code="groupActivityTemplateProfile.fullName.label" default="Name"/>
+                <g:message code="groupActivityTemplate.profile.name"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -36,7 +36,7 @@
           <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
-                <g:message code="groupActivityTemplateProfile.description.label" default="Beschreibung"/>
+                <g:message code="groupActivityTemplate.profile.description"/>
               </label>
             </td>
             <td valign="top" class="value">
@@ -46,22 +46,34 @@
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="templates">
-                <g:message code="groupActivityTemplateProfile.description.label" default="Aktivitätsvorlagen"/>
+              <label for="realDuration">
+                <g:message code="groupActivityTemplate.profile.realDuration"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select multiple="true" name="templates" from="${templates}" optionKey="id" optionValue="profile"/>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="50" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
             </td>
           </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="status">
+                <g:message code="groupActivityTemplate.profile.status"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select id="status" name="status" from="${['fertig','unfertig']}" value="${group?.profile?.status}"/>
+            </td>
+          </tr>
+
           </tbody>
         </table>
       </div>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="del" id="${group.id}" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
-        <g:link class="buttonGray" action="show" id="${group.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="del" id="${group.id}" onclick="return confirm('Bist du sicher?');"><g:message code="delete"/></g:link>
+        <g:link class="buttonGray" action="show" id="${group.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
     </g:form>

@@ -57,7 +57,7 @@ class TemplateController {
       
 /*      functionService.getParamAsList(params.materials).each {
         new Link(source: Entity.get(it), target: template, type: metaDataService.ltResource).save()
-      }
+      }*/
 
       if(!template.hasErrors() && template.save()) {
           flash.message = message(code:"template.updated", args:[template.profile.fullName])
@@ -65,7 +65,7 @@ class TemplateController {
       }
       else {
           render view:'edit', model:[template: template, entity: entityHelperService.loggedIn]
-      }*/
+      }
 
     }
 
