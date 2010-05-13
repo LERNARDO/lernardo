@@ -106,7 +106,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}"/>
+              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate.profile.motherTongue}"/>
             </td>
           </tr>
 
@@ -117,7 +117,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
+              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate.profile.languages}"/>
             </td>
           </tr>
 

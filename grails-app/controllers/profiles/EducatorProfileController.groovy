@@ -39,7 +39,7 @@ class EducatorProfileController {
         }
         else {
           Link link = Link.findBySourceAndType (educator, metaDataService.ltEnlisted)
-          Entity enlistedBy = link.target
+          Entity enlistedBy = link?.target
           return [educator: educator, entity: entity, enlistedBy: enlistedBy]
         }
     }

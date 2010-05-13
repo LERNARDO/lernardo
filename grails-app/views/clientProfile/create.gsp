@@ -173,7 +173,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: client, field: 'profile.familyStatus', 'errors')}" name="familyStatus" from="${['bei Eltern']}"/>
+              <g:select class="${hasErrors(bean: client, field: 'profile.familyStatus', 'errors')}" name="familyStatus" from="${['bei Eltern']}" value="${client.profile.familyStatus}"/>
             </td>
           </tr>
 
@@ -184,7 +184,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}"/>
+              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${client.profile.languages}"/>
             </td>
           </tr>
 

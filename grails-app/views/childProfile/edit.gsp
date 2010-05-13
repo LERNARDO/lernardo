@@ -38,7 +38,7 @@
                 <g:message code="child.profile.lastName"/>
               </label>
             </td>
-            <td  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')} >
+            <td  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
 			<label for="birthDate">
                 <g:message code="child.profile.birthDate"/>
               </label>
@@ -57,7 +57,7 @@
 			<td  width="280" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}">
               <input type="text" size="40"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
-			<td  height="35"  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')} >
+			<td  height="35"  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
               <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day"/>
             </td>
 		</tr>
@@ -83,7 +83,7 @@
 			  <g:checkBox name="job" value="${child?.profile?.job}"/>
             </td>
 			<td  height="35" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
-              <g:select name="jobType" id="jobType" from="${['Jobtyp1','Jobtyp2']}"/>
+              <g:select name="jobType" id="jobType" from="${['Jobtyp1','Jobtyp2']}" value="${child.profile.jobType}"/>
 			</td>
 			<td  valign="middle"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
               <input type="text" id="jobIncome" size="40" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
@@ -111,8 +111,8 @@
  		
 		</div>
         
-          </tbody>
-        </table>
+          %{--</tbody>
+        </table>--}%
 		  
 	</div>
 
