@@ -14,8 +14,8 @@
   <div class="second">
     <table class="listing">
       <tr class="prop"><td class="name" style="width: 200px"><g:message code="activityTemplate.name"/>:</td><td class="value">${template.profile.fullName}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.description"/>:</td><td class="value">${template.profile.description.decodeHTML()}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.chosenMaterials"/>:</td><td class="value">${template.profile.chosenMaterials.decodeHTML()}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.description"/>:</td><td class="value">${template.profile.description.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td></tr>
+      <tr class="prop"><td class="name"><g:message code="activityTemplate.chosenMaterials"/>:</td><td class="value">${template.profile.chosenMaterials.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td></tr>
       <tr class="prop"><td class="name"><g:message code="activityTemplate.duration"/>:</td><td class="value">${template.profile.duration} Minuten</td></tr>
       <tr class="prop"><td class="name"><g:message code="activityTemplate.socialForm"/>:</td><td class="value">${template.profile.socialForm}</td></tr>
       <tr class="prop"><td class="name"><g:message code="activityTemplate.amountEducators"/>:</td><td class="value">${template.profile.amountEducators}</td></tr>

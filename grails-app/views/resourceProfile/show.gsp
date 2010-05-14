@@ -18,28 +18,28 @@
           <td valign="top" class="name">
             <g:message code="resource.profile.name"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.fullName')}</td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="resource.profile.description"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description')}</td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="resource.profile.type"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.type')}</td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.type').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="resource.profile.classification"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.classification')}</td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.classification').decodeHTML()}</td>
         </tr>
 
         </tbody>

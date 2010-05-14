@@ -21,14 +21,14 @@
           <td valign="top" class="name">
             <g:message code="user.profile.firstName"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.firstName')}</td>
+          <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="user.profile.lastName"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.lastName')}</td>
+          <td valign="top" class="value">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">

@@ -36,6 +36,7 @@ class MetaDataService {
   static final String EST_PARTNER = "partner"
   static final String EST_RESOURCE = "resource"
   static final String EST_PARENT = "parent"
+  static final String EST_THEME = "theme"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_EDUCATOR = "Paedagoge"
@@ -58,6 +59,7 @@ class MetaDataService {
   static final String ET_PARTNER = "Partner"
   static final String ET_RESOURCE = "Ressource"
   static final String ET_PARENT = "Erziehungsberechtigter"
+  static final String ET_THEME = "Thema"
 
   static final String PRT_USER = "User"                // ProfileType
   static final String PRT_EDUCATOR = "Educator"
@@ -80,6 +82,7 @@ class MetaDataService {
   static final String PRT_PARTNER = "Partner"
   static final String PRT_RESOURCE = "Resource"
   static final String PRT_PARENT = "Parent"
+  static final String PRT_THEME = "Theme"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -111,6 +114,7 @@ class MetaDataService {
   static final String LT_PARTNER = "Partner"
   static final String LT_RESOURCE = "Ressource"
   static final String LT_ENLISTED = "Angeworben"
+  static final String LT_SUBTHEME = "Subthema"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -144,6 +148,7 @@ class MetaDataService {
     getEstPartner()
     getEstResource()
     getEstParent()
+    getEstTheme()
 
     getEtUser()
     getEtEducator()
@@ -166,6 +171,7 @@ class MetaDataService {
     getEtPartner()
     getEtResource()
     getEtParent()
+    getEtTheme()
 
     getLstPersonal()
     getLstOther()
@@ -191,6 +197,7 @@ class MetaDataService {
     getLtPartner()
     getLtResource()
     getLtEnlisted()
+    getLtSubTheme()
 
     getLtActEducator()
     getLtActClient()
@@ -228,6 +235,7 @@ class MetaDataService {
   EntitySuperType getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
   EntitySuperType getEstResource()        {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
   EntitySuperType getEstParent()          {defaultObjectService.openEST (EST_PARENT, PRT_PARENT) }
+  EntitySuperType getEstTheme()           {defaultObjectService.openEST (EST_THEME, PRT_THEME) }
 
   EntityType getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
   EntityType getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
@@ -250,6 +258,7 @@ class MetaDataService {
   EntityType getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
   EntityType getEtResource()        {defaultObjectService.openET (ET_RESOURCE, estResource) }
   EntityType getEtParent()          {defaultObjectService.openET (ET_PARENT, estParent) }
+  EntityType getEtTheme()           {defaultObjectService.openET (ET_THEME, estTheme) }
 
   LinkSuperType getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
   LinkSuperType getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
@@ -275,6 +284,7 @@ class MetaDataService {
   LinkType getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
   LinkType getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
   LinkType getLtEnlisted()    {defaultObjectService.openLT (LT_ENLISTED, lstOther) }
+  LinkType getLtSubTheme()    {defaultObjectService.openLT (LT_SUBTHEME, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

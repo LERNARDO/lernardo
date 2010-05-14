@@ -10,5 +10,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Bewertungsmethoden eingetragen</span>
+  <span class="italic">Keine Bewertungsmethoden eingetragen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
 </g:else>
