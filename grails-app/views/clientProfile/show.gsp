@@ -184,14 +184,14 @@
           <td valign="top" class="name">
             <g:message code="client.profile.size"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.size') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.size') + ' cm' ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="client.profile.weight"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.weight') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.weight') + ' kg' ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -259,13 +259,10 @@
     <div>
       <h1>Performance <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#performances').hide('slow') ;
-        }
         <jq:toggle sourceId="show-performances" targetId="performances"/>
       </jq:jquery>
       <div id="performances" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="hideform('#performances')">
           <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="performance" />
           <g:textField size="30" name="text" value=""/>
@@ -282,13 +279,10 @@
     <div>
       <h1>Health <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Health hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#healths').hide('slow') ;
-        }
         <jq:toggle sourceId="show-healths" targetId="healths"/>
       </jq:jquery>
       <div id="healths" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="hideform('#healths')">
           <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="health" />
           <g:textField size="30" name="text" value=""/>
@@ -305,13 +299,10 @@
     <div>
       <h1>Material <app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform3 = function(){
-          $('#materials').hide('slow') ;
-        }
         <jq:toggle sourceId="show-materials" targetId="materials"/>
       </jq:jquery>
       <div id="materials" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="hideform3()">
+        <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="hideform('#materials')">
           <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="material" />
           <g:textField size="30" name="text" value=""/>

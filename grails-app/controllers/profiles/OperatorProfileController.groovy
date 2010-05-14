@@ -120,36 +120,40 @@ class OperatorProfileController {
     }
 
     def addFacility = {
+      Entity operator = Entity.get(params.id)
+
       // check if the facility isn't already linked to the operator
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.facility))
-        eq('target', entityHelperService.loggedIn)
+        eq('target', operator)
         eq('type', metaDataService.ltOperation)
       }
       if (!link)
-        new Link(source:Entity.get(params.facility), target: entityHelperService.loggedIn, type:metaDataService.ltOperation).save()
+        new Link(source:Entity.get(params.facility), target: operator, type:metaDataService.ltOperation).save()
 
       // find all facilities of this operator
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
+      def links = Link.findAllByTargetAndType(operator, metaDataService.ltOperation)
       List facilities = links.collect {it.source}
 
-      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
+      render template:'facilities', model: [facilities: facilities, operator: operator, entity: entityHelperService.loggedIn]
     }
 
     def removeFacility = {
+      Entity operator = Entity.get(params.id)
+
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.id))
-        eq('target', entityHelperService.loggedIn)
+        eq('source', Entity.get(params.facility))
+        eq('target', operator)
         eq('type', metaDataService.ltOperation)
       }
       link.delete()
 
       // find all facilities of this operator
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltOperation)
+      def links = Link.findAllByTargetAndType(operator, metaDataService.ltOperation)
       List facilities = links.collect {it.source}
 
-      render template:'facilities', model: [facilities: facilities, entity: entityHelperService.loggedIn]
+      render template:'facilities', model: [facilities: facilities, operator: operator, entity: entityHelperService.loggedIn]
     }
 }

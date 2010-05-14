@@ -94,13 +94,10 @@
     <div>
       <h1>Einrichtungen <app:isMeOrAdmin entity="${operator}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#facilities').hide('slow') ;
-        }
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
       <div id="facilities" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'operatorProfile', action:'addFacility']" update="facilities2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="hideform('#facilities')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -108,7 +105,7 @@
         </g:formRemote>
       </div>
       <div id="facilities2">
-        <g:render template="facilities" model="${facilities}"/>
+        <g:render template="facilities" model="[facilities: facilities, operator: operator]"/>
       </div>
     </div>
 

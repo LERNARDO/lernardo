@@ -8,6 +8,7 @@
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:layoutHead/>
   <g:javascript library="jquery"/>
+  <script src="${g.resource (dir:'js', file:'lernardo.js')}" type="text/javascript"></script>
 </head>
 <body>
 <g:if test="${!entity}">
@@ -50,7 +51,9 @@
             </div>
           </div>
           <div id="picture">
-            <ub:profileImage name="${entity.name}" width="180" height="233"/>
+            <div style="position: absolute; top: 37px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:link></div>
+            <div style=""><ub:profileImage name="${entity.name}" width="180" height="233"/></div>
+            %{--<div class="clear"></div>--}%
           </div>
           <div class="type" style="margin-top: -2px">
             <div class="second">
@@ -59,17 +62,16 @@
           </div>
         </div>
 
-        <ub:meOrAdmin entityName="${entity.name}">
+        %{--<ub:meOrAdmin entityName="${entity.name}">
           <div class="profile-group"><div class="second">Profil</div></div>
           <div class="profile-box">
             <div class="second">
               <ul>
                 <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
-                <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" id="${entity.id}">Daten ändern</g:link></li>
               </ul>
             </div>
           </div>
-        </ub:meOrAdmin>
+        </ub:meOrAdmin>--}%
 
         <div class="profile-group"><div class="second">Kommunikation</div></div>
         <div class="profile-box">

@@ -283,7 +283,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.size', 'errors')}" size="30" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.size', 'errors')}" size="30" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size').decodeHTML()}"/> (cm)
             </td>
           </tr>
 
@@ -294,7 +294,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.weight', 'errors')}" size="30" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.weight', 'errors')}" size="30" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight').decodeHTML()}"/> (kg)
             </td>
           </tr>
 

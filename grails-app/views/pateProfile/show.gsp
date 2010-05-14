@@ -107,13 +107,10 @@
     <div>
       <h1>Patenkinder <app:isMeOrAdmin entity="${pate}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#godchildren').hide('slow') ;
-        }
         <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
       </jq:jquery>
       <div id="godchildren" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren']" update="godchildren2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="hideform('#godchildren')">
           <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -121,7 +118,7 @@
         </g:formRemote>
       </div>
       <div id="godchildren2">
-        <g:render template="godchildren" model="${godchildren}"/>
+        <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
       </div>
     </div>
 

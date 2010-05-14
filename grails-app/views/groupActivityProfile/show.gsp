@@ -79,13 +79,10 @@
     <div>
       <h1>Pädagogen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagoge hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#educators').hide('slow') ;
-        }
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
       <div id="educators" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="hideform('#educators')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -100,13 +97,10 @@
     <div>
       <h1>Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-parents"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#parents').hide('slow') ;
-        }
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
       <div id="parents" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="hideform('#parents')">
           <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -121,13 +115,10 @@
     <div>
       <h1>Partner <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-partners"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform3 = function(){
-          $('#partners').hide('slow') ;
-        }
         <jq:toggle sourceId="show-partners" targetId="partners"/>
       </jq:jquery>
       <div id="partners" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="hideform3()">
+        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="hideform('#partners')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

@@ -263,7 +263,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${educator.profile.languages}"/>
+              <g:select class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${educator?.profile?.languages}"/>
             </td>
           </tr>
 

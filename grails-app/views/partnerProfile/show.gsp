@@ -100,13 +100,10 @@
     <div>
       <h1>Dienstleistungen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-services"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#services').hide('slow') ;
-        }
         <jq:toggle sourceId="show-services" targetId="services"/>
       </jq:jquery>
       <div id="services" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="hideform('#services')">
           <g:textField name="service" size="30"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -121,13 +118,10 @@
     <div>
       <h1>Ansprechpersonen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#contacts').hide('slow') ;
-        }
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
       <div id="contacts" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="hideform('#contacts')">
 
           Vorname: <g:textField name="firstName" size="30"/>
           Nachname: <g:textField name="lastName" size="30"/>

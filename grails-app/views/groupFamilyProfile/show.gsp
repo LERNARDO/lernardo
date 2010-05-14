@@ -25,35 +25,35 @@
           <td valign="top" class="name">
             <g:message code="groupFamily.profile.livingConditions"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML()}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="groupFamily.profile.socioeconomicData"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML()}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="groupFamily.profile.otherInfo"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML()}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="groupFamily.profile.familyIncome"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.familyIncome')}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="groupFamily.profile.amountHousehold"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.amountHousehold')}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         </tbody>
@@ -70,13 +70,10 @@
     <div>
       <h1>Erziehungsberechtigte <app:isMeOrAdmin entity="${group}"><a href="#" id="show-parents"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#parents').hide('slow') ;
-        }
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
       <div id="parents" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="hideform('#parents')">
           <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -91,13 +88,10 @@
     <div>
       <h1>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#clients').hide('slow') ;
-        }
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
       <div id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="hideform('#clients')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -112,13 +106,10 @@
     <div>
       <h1>Kinder <app:isMeOrAdmin entity="${group}"><a href="#" id="show-childs"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kinder hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform3 = function(){
-          $('#childs').hide('slow') ;
-        }
         <jq:toggle sourceId="show-childs" targetId="childs"/>
       </jq:jquery>
       <div id="childs" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="hideform3()">
+        <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="hideform('#childs')">
           <g:select name="child" from="${allChilds}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
