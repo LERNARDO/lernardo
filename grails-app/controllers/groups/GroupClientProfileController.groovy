@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import de.uenterprise.ep.ProfileHelperService
 import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
+import de.uenterprise.ep.Profile
 
 class GroupClientProfileController {
     MetaDataService metaDataService
@@ -75,7 +76,7 @@ class GroupClientProfileController {
             redirect action:'list'
         }
         else {
-            return [group: group, entity: entityHelperService.loggedIn]
+            [group: group, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -102,7 +103,7 @@ class GroupClientProfileController {
 
       try {
         Entity entity = entityHelperService.createEntity("group", etGroupClient) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
 

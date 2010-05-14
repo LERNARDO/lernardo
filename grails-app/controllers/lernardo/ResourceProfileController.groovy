@@ -5,6 +5,7 @@ import de.uenterprise.ep.EntityType
 import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.MetaDataService
+import de.uenterprise.ep.Profile
 
 class ResourceProfileController {
     MetaDataService metaDataService
@@ -63,7 +64,7 @@ class ResourceProfileController {
             redirect action:'list'
         }
         else {
-            return [resource: resource, entity: entityHelperService.loggedIn]
+            [resource: resource, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -90,7 +91,7 @@ class ResourceProfileController {
 
       try {
         Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
         flash.message = message(code:"resource.created", args:[entity.profile.fullName])

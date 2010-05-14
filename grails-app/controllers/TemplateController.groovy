@@ -7,6 +7,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import lernardo.Method
 import lernardo.Element
+import de.uenterprise.ep.Profile
 
 class TemplateController {
   EntityHelperService entityHelperService
@@ -99,7 +100,7 @@ class TemplateController {
 
       try {
         Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
 

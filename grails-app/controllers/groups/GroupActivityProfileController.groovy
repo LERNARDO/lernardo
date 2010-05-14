@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import de.uenterprise.ep.ProfileHelperService
 import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
+import de.uenterprise.ep.Profile
 
 class GroupActivityProfileController {
     MetaDataService metaDataService
@@ -114,7 +115,7 @@ class GroupActivityProfileController {
             redirect action:'list'
         }
         else {
-            return [group: group, entity: entityHelperService.loggedIn]
+            [group: group, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -163,7 +164,7 @@ class GroupActivityProfileController {
 
       try {
         Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
           ent.profile.educationalObjective = ""
           ent.profile.educationalObjectiveText = ""

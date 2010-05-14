@@ -5,6 +5,7 @@ import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.MetaDataService
 import standard.FunctionService
+import de.uenterprise.ep.Profile
 
 class CommentTemplateController {
   EntityHelperService entityHelperService
@@ -41,7 +42,7 @@ class CommentTemplateController {
     EntityType etCommentTemplate = metaDataService.etCommentTemplate
 
     Entity entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "comment"
       ent.profile.content = params.content
     }

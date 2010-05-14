@@ -26,6 +26,7 @@ import profiles.ParentProfile
 import profiles.PartnerProfile
 import lernardo.Method
 import lernardo.Element
+import de.uenterprise.ep.Profile
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -337,7 +338,7 @@ class BootStrap {
     EntityType etTemplate = metaDataService.etTemplate
 
     entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Weide mit Hindernissen"
       ent.profile.description = "Die Bänke werden in Reihen aufgestellt; es können möglichst viele Bewegungsformen ausprobiert werden"
       ent.profile.chosenMaterials = "Holzbänke"
@@ -348,7 +349,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntity("tanzen", etTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Tanzen"
       ent.profile.description = "Die Kinder tanzen im Kreis"
       ent.profile.chosenMaterials = "Springschnüre"
@@ -365,7 +366,7 @@ class BootStrap {
     EntityType etCommentTemplate = metaDataService.etCommentTemplate
 
     Entity entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "comment"
       ent.profile.content = "Tolle Sache!"
     }
@@ -379,8 +380,8 @@ class BootStrap {
 
     EntityType etResource = metaDataService.etResource
 
-    def entity = entityHelperService.createEntity("klavier", etResource) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+    entityHelperService.createEntity("klavier", etResource) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"
       ent.profile.type = "planbar"
@@ -394,7 +395,7 @@ class BootStrap {
      EntityType etActivity = metaDataService.etActivity
 
       def entity = entityHelperService.createEntity("klettern", etActivity) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent)
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.fullName = "Klettern"
         ent.profile.date = new Date()
         ent.profile.duration = 60
@@ -538,7 +539,7 @@ class BootStrap {
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
     Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Zeillinger"
       ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
                                      ausreichendes Einkommen und Sabine Zeillinger kümmert sich um den Haushalt."""
@@ -560,7 +561,7 @@ class BootStrap {
     EntityType etGroupColony = metaDataService.etGroupColony
 
     Entity entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Gumpoldskirchen"
       ent.profile.description = """Eine kleine Colonia im Süden von Wien"""
     }
@@ -588,7 +589,7 @@ class BootStrap {
     EntityType etGroupClient = metaDataService.etGroupClient
 
     Entity entity = entityHelperService.createEntity("group", etGroupClient) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Betreutengruppe Rot"
       ent.profile.description = ""
     }
@@ -604,7 +605,7 @@ class BootStrap {
     EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
 
     Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Vorlagengruppe 1"
       ent.profile.description = ""
       ent.profile.status = "fertig"
@@ -622,7 +623,7 @@ class BootStrap {
     EntityType etTheme = metaDataService.etTheme
 
     Entity theme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Thema 1"
       ent.profile.description = ""
       ent.profile.type = "Thema"
@@ -631,7 +632,7 @@ class BootStrap {
     }
 
     Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Subthema 1"
       ent.profile.description = ""
       ent.profile.type = "Subthema"

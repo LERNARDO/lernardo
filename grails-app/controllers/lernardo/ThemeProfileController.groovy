@@ -6,6 +6,7 @@ import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.MetaDataService
 import de.uenterprise.ep.Link
+import de.uenterprise.ep.Profile
 
 class ThemeProfileController {
     MetaDataService metaDataService
@@ -77,7 +78,7 @@ class ThemeProfileController {
             redirect action:'list'
         }
         else {
-            return [theme: theme, entity: entityHelperService.loggedIn]
+            [theme: theme, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -104,7 +105,7 @@ class ThemeProfileController {
 
       try {
         Entity entity = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
         flash.message = message(code:"theme.created", args:[entity.profile.fullName])
