@@ -18,6 +18,7 @@ import standard.MetaDataService
 import standard.NetworkService
 import standard.FunctionService
 import standard.FilterService
+import lernardo.Method
 
 class ProfileController {
     GeoCoderService geoCoderService
@@ -30,6 +31,31 @@ class ProfileController {
     FunctionService functionService
 
     def index = { }
+
+    def overview = {
+      [entity: entityHelperService.loggedIn,
+       allOperators: Entity.countByType(metaDataService.etOperator),
+       allUsers: Entity.countByType(metaDataService.etUser),
+       allClients: Entity.countByType(metaDataService.etClient),
+       allEducators: Entity.countByType(metaDataService.etEducator),
+       allParents: Entity.countByType(metaDataService.etParent),
+       allChilds: Entity.countByType(metaDataService.etChild),
+       allPates: Entity.countByType(metaDataService.etPate),
+       allPartners: Entity.countByType(metaDataService.etPartner),
+       allFacilities: Entity.countByType(metaDataService.etFacility),
+       allResources: Entity.countByType(metaDataService.etResource),
+       allMethods: Method.count(),
+       allThemes: Entity.countByType(metaDataService.etTheme),
+       allColonias: Entity.countByType(metaDataService.etGroupColony),
+       allFamilies: Entity.countByType(metaDataService.etGroupFamily),
+       allPartnerGroups: Entity.countByType(metaDataService.etGroupPartner),
+       allClientGroups: Entity.countByType(metaDataService.etGroupClient),
+       allActivityTemplates: Entity.countByType(metaDataService.etTemplate),
+       allActivityTemplateGroups: Entity.countByType(metaDataService.etGroupActivityTemplate),
+       allActivityGroups: Entity.countByType(metaDataService.etGroupActivity)/*,
+       allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate),
+       allProjects: Entity.countByType(metaDataService.etProject)*/]
+    }
 
     def createNotification = {
         Msg msgInstance = new Msg()
