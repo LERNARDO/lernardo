@@ -53,6 +53,15 @@ class HelperTagLib {
       out << "Unbekannt"
   }
 
+  // finds all groupActivityTemplates linked to a projectUnit
+  def getGroupActivityTemplates = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitMember)
+    if (link)
+      link.each {out << body(groupActivityTemplates: it.source)}
+    else
+      out << '<span class="italic">Keine Aktivitätsvorlagengruppen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
   def getResources = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltResource)
     if (link)

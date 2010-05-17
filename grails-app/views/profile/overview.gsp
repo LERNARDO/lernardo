@@ -221,15 +221,15 @@
         </div>
         <div class="box">
           <div class="bold">Projektvorlagen</div>
-          <img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/>
-          <div>Alle anzeigen (0)</div>
-          <div>Neu anlegen</div>
+          <g:link controller="projectTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <div><g:link controller="projectTemplateProfile" action="list">Alle anzeigen (${allProjectTemplates})</g:link></div>
+          <div><g:link controller="projectTemplateProfile" action="create">Neu anlegen</g:link></div>
         </div>
         <div class="box">
           <div class="bold">Projekte</div>
           <img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/>
           <div>Alle anzeigen (0)</div>
-          <div>Neu anlegen</div>
+          %{--<div>Neu anlegen</div>--}%
         </div>
       </div>
       <div class="clear"></div>
