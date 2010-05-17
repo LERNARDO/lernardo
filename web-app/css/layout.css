@@ -1291,7 +1291,7 @@ table#msg-composer td {
     color: #fff !important;
     display: block;
     height: 16px; }
-    .buttonBlue:hover {
+    .buttonGreen:hover {
         background: #44d;
         border: 1px solid #123a82;
         text-decoration: none; }
@@ -1303,6 +1303,7 @@ table#msg-composer td {
 	-moz-border-radius:15px;
 	margin-top: 6px;
 	margin-bottom: 6px;
+	height: 23px;
 }
 
 .buttonGreen {
@@ -1339,4 +1340,39 @@ table#msg-composer td {
 	background-color: #FFF;
 	border: 1px solid #000;
 	padding: 2.5px;}
+	
+#body-list th {
+        background: #ccc /*url(../images/skin/shadow.jpg) repeat scroll 0 0*/;
+        color: #333;
+	}
+
+#body-list .odd {
+        background: #fff; }
+		
+.value-show {
+	background-color: #FFF;
+	border-right: 20px solid #dfdfdf;	
+	border-bottom: 10px solid #dfdfdf;
+	padding: 3px;
+}
+.value-show-comb {
+	border-right: 20px solid #dfdfdf;	
+	border-bottom: 10px solid #dfdfdf;
+	padding: 3px;
+}
+	
+.name-show {
+	border-right: 20px solid #dfdfdf;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	
+	}
+	
+.profile-group {
+    margin-top: 0;
+}
+
+.profile-box {
+	margin-bottom: 15px;
+}
 

@@ -3,14 +3,14 @@
   <title>Lernardo | Kinder</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Kinder</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${childTotal} Kinder insgesamt vorhanden</p>
+    <p>${childTotal} Kind(er) insgesamt vorhanden</p>
     <g:if test="${childTotal > 0}">
       <div id="body-list">
         <table>
@@ -36,7 +36,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neues Kind anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neues Kind anlegen</g:link>
       <div class="spacer"></div>
     </div>
 

@@ -42,34 +42,25 @@
       </div>
 
       <div id="profile-navigation" class="yui-b">
-
-        <div id="profile-pic">
+        <!-- 
+		<div id="profile-pic">
           <div class="name">
             <div class="second">
               ${entity.profile.fullName}
             </div>
           </div>
-          <div id="picture">
+         <div id="picture">
             <ub:profileImage name="${entity.name}" width="180" height="233"/>
           </div>
+		
           <div class="type" style="margin-top: -2px">
             <div class="second">
               ${entity.type.name}
             </div>
           </div>
         </div>
+		-->
 
-        <ub:meOrAdmin entityName="${entity.name}">
-          <div class="profile-group"><div class="second">Profil</div></div>
-          <div class="profile-box">
-            <div class="second">
-              <ul>
-                <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
-                <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" id="${entity.id}">Daten ändern</g:link></li>
-              </ul>
-            </div>
-          </div>
-        </ub:meOrAdmin>
 
         <div class="profile-group"><div class="second">Kommunikation</div></div>
         <div class="profile-box">
@@ -169,6 +160,21 @@
           </div>
         </div>
 
+		
+		<ub:meOrAdmin entityName="${entity.name}">
+          <div class="profile-group"><div class="second">Profil</div></div>
+          <div class="profile-box">
+            <div class="second">
+              <ul>
+                <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
+                <li class="icon-edit"><g:link controller="${entity.type.supertype.name +'Profile'}" action="edit" id="${entity.id}">Daten ändern</g:link></li>
+              </ul>
+            </div>
+          </div>
+        </ub:meOrAdmin>
+		
+		
+		
         <div class="profile-group"><div class="second">Hilfe</div></div>
         <div class="profile-box">
           <div class="second">
