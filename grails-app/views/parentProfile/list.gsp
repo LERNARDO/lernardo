@@ -3,14 +3,14 @@
   <title>Lernardo | Erziehungsberechtigte</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Erziehungsberechtigte</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${parentTotal} Erziehungsberechtigte insgesamt vorhanden</p>
+    <p>${parentTotal} Erziehungsberechtigte(r) insgesamt vorhanden</p>
     <g:if test="${parentTotal > 0}">
       <div id="body-list">
         <table>
@@ -37,7 +37,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen Erziehungsberechtigten anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neuen Erziehungsberechtigten anlegen</g:link>
       <div class="spacer"></div>
     </div>
     

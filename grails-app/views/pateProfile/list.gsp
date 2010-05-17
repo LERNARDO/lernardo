@@ -3,14 +3,14 @@
   <title>Lernardo | Paten</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Paten</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${pateTotal} Paten insgesamt vorhanden</p>
+    <p>${pateTotal} Pate(n) insgesamt vorhanden</p>
     <g:if test="${pateTotal > 0}">
       <div id="body-list">
         <table>
@@ -37,7 +37,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen Paten anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neuen Paten anlegen</g:link>
       <div class="spacer"></div>
     </div>
     
