@@ -3,7 +3,7 @@
   <title>Lernardo | Partner</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Partner</h1>
   </div>
@@ -37,7 +37,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen Partner anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neuen Partner anlegen</g:link>
       <div class="spacer"></div>
     </div>
     

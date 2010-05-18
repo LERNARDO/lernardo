@@ -3,7 +3,7 @@
   <title>Lernardo | Ressourcen</title>
 </head>
 <body>
-  <div class="headerBlue">
+  <div class="headerGreen">
     <div class="second">
       <h1>Ressourcen</h1>
     </div>
@@ -36,7 +36,7 @@
         </g:if>
       </g:if>
 
-      <g:link class="buttonBlue" action="create">Neue Ressource anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neue Ressource anlegen</g:link>
       <div class="spacer"></div>
       
     </div>

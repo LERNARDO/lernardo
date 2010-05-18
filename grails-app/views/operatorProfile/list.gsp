@@ -3,7 +3,7 @@
   <title>Lernardo | Betreiber</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Betreiber</h1>
   </div>
@@ -36,7 +36,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen Betreiber anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neuen Betreiber anlegen</g:link>
       <div class="spacer"></div>
     </div>
     

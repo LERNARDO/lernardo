@@ -3,14 +3,14 @@
   <title>Lernardo | Pädagogen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Pädagogen</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${educatorTotal} Pädagogen insgesamt vorhanden</p>
+    <p>${educatorTotal} Pädagoge(n) insgesamt vorhanden</p>
     <g:if test="${educatorTotal > 0}">
       <div id="body-list">
         <table>
@@ -36,7 +36,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen Pädagogen anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neuen Pädagogen anlegen</g:link>
       <div class="spacer"></div>
     </div>
     

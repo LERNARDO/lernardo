@@ -3,14 +3,14 @@
   <title>Lernardo | Einrichtungen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Einrichtungen</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${facilityTotal} Einrichtungen insgesamt vorhanden</p>
+    <p>${facilityTotal} Einrichtung(en) insgesamt vorhanden</p>
     <g:if test="${facilityTotal > 0}">
       <div id="body-list">
         <table>
@@ -37,7 +37,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neue Einrichtung anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neue Einrichtung anlegen</g:link>
       <div class="spacer"></div>
     </div>
     

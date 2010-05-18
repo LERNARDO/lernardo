@@ -3,7 +3,7 @@
   <title>Lernardo | User</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>User</h1>
   </div>
@@ -36,7 +36,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen User anlegen</g:link>
+      <g:link class="buttonGreen" action="create">Neuen User anlegen</g:link>
       <div class="spacer"></div>
     </div>
     
