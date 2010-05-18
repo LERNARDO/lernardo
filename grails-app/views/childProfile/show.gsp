@@ -54,7 +54,7 @@
              <g:message code="child.profile.jobFrequency"/>:
           </td>
 		  <tr>
-			<td valign="top" class="value-show-comb"> <g:message code="child.profile.job"/>: <g:formatBoolean boolean="${child.profile.job}" true="Ja" false="Nein"/></td>
+			<td valign="top" class="value-show-comb"> <g:message code="child.profile.job"/>: <g:formatBoolean boolean="${child.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
 			<td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobType')}</td>
 			<td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobIncome')}</td>
 			<td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobFrequency')}</td>
@@ -66,7 +66,7 @@
 		<div class="email">
 		 <app:isAdmin>
               <g:message code="active"/>: 
-              <g:formatBoolean boolean="${child.user.enabled}" true="Ja" false="Nein"/> 
+              <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/> 
 		   </app:isAdmin>	  
             
 		</div>

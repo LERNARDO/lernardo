@@ -135,7 +135,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.schoolDropout"/>:
           </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="Ja" false="Nein"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
         <tr class="prop">
@@ -156,7 +156,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.schoolRestart"/>:
           </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="Ja" false="Nein"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
         <tr class="prop">
@@ -198,7 +198,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.job"/>:
           </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.job}" true="Ja" false="Nein"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
         <tr class="prop">
@@ -226,7 +226,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.support"/>:
           </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.support}" true="Ja" false="Nein"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${client.profile.support}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
          <tr class="prop">
@@ -241,7 +241,7 @@
             <td valign="top" class="name">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${client.user.enabled}" true="Ja" false="Nein"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${client.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
         </app:isAdmin>
 

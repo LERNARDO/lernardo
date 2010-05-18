@@ -68,7 +68,7 @@
           <td valign="top" class="name">
             <g:message code="showTips"/>:
           </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${operator.profile.showTips}" true="Ja" false="Nein"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${operator.profile.showTips}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
         <app:isAdmin>
@@ -76,7 +76,7 @@
             <td valign="top" class="name">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${operator.user.enabled}" true="Ja" false="Nein"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
         </app:isAdmin>
 

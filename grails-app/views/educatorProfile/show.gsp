@@ -280,7 +280,7 @@
 			<app:isAdmin>
 			<td width="100"  valign="middle">
                 <g:message code="active"/>: 
-				<g:formatBoolean boolean="${educator.user.enabled}" true="Ja" false="Nein"/>
+				<g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
           </app:isAdmin>
           
