@@ -244,7 +244,7 @@
 			<td width="210"  valign="middle" class="value-show">
 			${fieldValue(bean: educator, field: 'profile.contactCity') ?: '<div class="italic">Leer</div>'}
             </td>
-			<td width="110" width="valign="middle" class="value-show">
+			<td width="110" valign="middle" class="value-show">
 			${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">Leer</div>'}
             </td>
 		 </tr>		
@@ -295,7 +295,7 @@
 		</tr>
 		 </table>
 		</div>
-		</tbody>
+		%{--</tbody>--}%
 
     </div>
 

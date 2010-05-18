@@ -5,7 +5,7 @@
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Pädagoge anlegen</h1>
+    <h1>Pädagoge bearbeiten</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -17,7 +17,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="save" method="post">
+    <g:form action="update" method="post" id="${educator.id}">
       <div class="dialog">
         
 		
@@ -72,7 +72,7 @@
 		
 		<table>
 		<tr>
-            <td  class class="name">
+            <td class="name">
               <label for="education">
                 <g:message code="educator.profile.education"/>
               </label>
@@ -319,7 +319,7 @@
 		</tr>
 		 </table>
 		</div>
-		</tbody>
+		%{--</tbody>--}%
 		
 	
       </div>
