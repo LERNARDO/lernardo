@@ -1399,3 +1399,34 @@ table#msg-composer td {
   border: 1px solid #bdbd9b;
   background: #ceceaf;
 }
+
+h4 {
+	color: #003300;
+	font-size: 12px;
+	font-weight:bold;
+	margin: 4px 0;
+	}
+.contact {
+	border:1px solid #fff;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 3px;
+	margin-bottom: 6px;}
+	
+.drop-down-280 {
+	width: 280px;
+	}
+.drop-down-240 {
+	width: 240px;
+	}
+.drop-down-150 {
+	width: 150px;
+	}
+.liste-280 {
+	width: 280px;
+	height: 60px;
+	}
+#liste-240 {
+	width: 240px;
+	height: 60px;
+	}
