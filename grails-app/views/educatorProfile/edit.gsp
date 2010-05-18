@@ -278,11 +278,11 @@
             </td>	
 			<td valign="middle" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" id="contactMail" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
-            </td>	
+            </td>
 		</tr>
 		</table>
 		</div>
-		
+
 		
 		
 
@@ -304,12 +304,12 @@
               <g:link controller="profile" action="changePassword" id="${educator.id}">Ändern</g:link>
             </td>
           
-			<td width="280"  valign="middle">
+			%{--<td width="280"  valign="middle">
 			<label for="email">
 				<g:message code="educator.profile.email"/>
             </label>:
               <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="30" id="email" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
-			</td>
+			</td>--}%
 			<td valign="middle">
 			    <label for="locale">
                 <g:message code="languageSelection"/>
