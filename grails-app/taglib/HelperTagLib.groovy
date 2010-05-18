@@ -15,6 +15,11 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
+  def getClientName = {attrs ->
+    Entity entity = Entity.get(attrs.client)
+    out << entity.profile.fullName
+  }
+
   def localeSelect = {attrs ->
           attrs['from'] = grailsApplication.config.locales
           attrs['value'] = (attrs['value'] ? attrs['value'] : RequestContextUtils.getLocale(request))

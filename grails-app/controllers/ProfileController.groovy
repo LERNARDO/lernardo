@@ -51,6 +51,7 @@ class ProfileController {
        allPartnerGroups: Entity.countByType(metaDataService.etGroupPartner),
        allClientGroups: Entity.countByType(metaDataService.etGroupClient),
        allActivityTemplates: Entity.countByType(metaDataService.etTemplate),
+       allActivities: Entity.countByType(metaDataService.etActivity),
        allActivityTemplateGroups: Entity.countByType(metaDataService.etGroupActivityTemplate),
        allActivityGroups: Entity.countByType(metaDataService.etGroupActivity),
        allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate)/*,

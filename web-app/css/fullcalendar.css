@@ -257,25 +257,25 @@ table.fc-header {
 	 *     }
 	 */
 
-.all,
-.fc-agenda .all .fc-event-time,
-.all a {
-    background-color: #bbb;
-    border-color: #bbb;
+.group,
+.fc-agenda .group .fc-event-time,
+.group a {
+    background-color: #55b;
+    border-color: #55b;
     color: #fff;
     }
 
-.christianszinicz,
-.fc-agenda .christianszinicz .fc-event-time,
-.christianszinicz a {
+.theme,
+.fc-agenda .theme .fc-event-time,
+.theme a {
     background-color: #5b5;
     border-color: #5b5;
     color: #fff;
     }
 
-.ludwigszinicz,
-.fc-agenda .ludwigszinicz .fc-event-time,
-.ludwigszinicz a {
+.activity,
+.fc-agenda .activity .fc-event-time,
+.activity a {
     background-color: #b55;
     border-color: #b55;
     color: #fff;

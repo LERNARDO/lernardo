@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>Lernardo | Aktivitätsdetails</title>
+    <title>Lernardo | Themenraumaktivität</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="private" />    
   </head>
@@ -9,7 +9,7 @@
   <body>
     <div class="headerBlue">
       <div class="second">
-        <h1>Aktivität</h1>
+        <h1>Themenraumaktivität</h1>
       </div>
     </div>
 
@@ -34,7 +34,7 @@
             </app:getFacility></td>
           </tr>
 
-          <tr><td class="name">Erstellt von:</td><td class="value"><app:getCreator entity="${activity}">
+%{--          <tr><td class="name">Erstellt von:</td><td class="value"><app:getCreator entity="${activity}">
             <app:isEnabled entity="${creator}">
               <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}">${creator.profile.fullName}</g:link>
             </app:isEnabled>
@@ -42,7 +42,7 @@
               <span class="notEnabled">${creator.profile.fullName}</span>
             </app:notEnabled>
             </app:getCreator></td>
-          </tr>
+          </tr>--}%
 
           <tr><td class="name">Pädagogen:</td><td class="value"><app:getEducators entity="${activity}">
             <g:each in="${educators}" var="educator">
@@ -56,7 +56,7 @@
             </app:getEducators></td>
           </tr>
 
-          <tr><td class="name">Teilnehmer:</td><td class="value"><app:getClients entity="${activity}">
+%{--          <tr><td class="name">Teilnehmer:</td><td class="value"><app:getClients entity="${activity}">
             <g:each in="${clients}" var="client">
               <app:isEnabled entity="${client}">
                 <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
@@ -66,7 +66,7 @@
               </app:notEnabled><br>
             </g:each>
             </app:getClients></td>
-          </tr>
+          </tr>--}%
 
         </table>
 
@@ -77,6 +77,25 @@
             <a href="" class="buttonGray" onclick="history.go(-2)">Zurück</a>
             <div class="spacer"></div>
         </app:isEducator>
+
+    <div>
+      <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <jq:jquery>
+        <jq:toggle sourceId="show-clients" targetId="clients"/>
+      </jq:jquery>
+      <div id="clients" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="hideform('#clients')">
+          <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
+          <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="clients2">
+        <g:render template="clients" model="${activity}"/>
+      </div>
+    </div>
 
       </div>
     </div>

@@ -8,6 +8,20 @@
 </head>
 
 <body>
+
+  <div class="headerBlue">
+    <div class="second">
+      <h1>Legende</h1>
+    </div>
+  </div>
+  <div class="boxGray">
+    <div class="second">
+      <span style="background: #5b5; padding: 5px; color: #fff">Themen</span>
+      <span style="background: #55b; padding: 5px; color: #fff">Aktivitätsgruppen</span>
+      <span style="background: #b55; padding: 5px; color: #fff">Themenraumaktivitäten</span>
+    </div>
+  </div>
+
   <div class="headerBlue">
     <div class="second">
       <h1>Pädagogen</h1>
@@ -20,6 +34,7 @@
       </g:each>
     </div>
   </div>
+
   <div class="headerBlue">
     <div class="second">
       <h1>Kalender von ${active.profile.fullName}</h1>

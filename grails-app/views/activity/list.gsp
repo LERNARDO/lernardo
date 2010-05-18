@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Lernardo | Liste aller Aktivitäten</title>
+    <title>Lernardo | Themenraumaktivitäten</title>
   </head>
   <body>
 
@@ -15,14 +15,14 @@
 
     <div class="headerBlue">
       <div class="second">
-        <h1>Lernardo Aktivitäten</h1>
+        <h1>Themenraumaktivitäten</h1>
       </div>
     </div>
 
     <div class="boxGray">
       <div class="second">
         <div id="body-list">
-          <p>${activityCount} Aktivität(en)
+          <p>${activityCount} Themenraumaktivität(en)
             <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
             <g:else>insgesamt</g:else>
             gefunden.
