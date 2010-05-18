@@ -139,7 +139,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: parent, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${parent.profile.languages}"/>
+              <g:select class="${hasErrors(bean: parent, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}"/>
             </td>
           </tr>
 

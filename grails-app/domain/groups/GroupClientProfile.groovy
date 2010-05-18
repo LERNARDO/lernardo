@@ -10,5 +10,9 @@ class GroupClientProfile extends Profile {
       fullName (blank: false, size: 2..50)
       description (blank: true, maxSize: 500)
     }
+
+    String toString(){
+      return "${fullName}"
+    }
   
 }

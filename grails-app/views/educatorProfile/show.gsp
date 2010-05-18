@@ -215,13 +215,10 @@
     <div>
       <h1>Eintrittsdaten / Austrittsdaten <app:isMeOrAdmin entity="${educator}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#dates').hide('slow') ;
-        }
         <jq:toggle sourceId="show-dates" targetId="dates"/>
       </jq:jquery>
       <div id="dates" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="hideform('#dates')">
           <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="${educator.profile.dates.size() % 2 == 0 ? 'join' : 'end'}" />
           <div class="spacer"></div>

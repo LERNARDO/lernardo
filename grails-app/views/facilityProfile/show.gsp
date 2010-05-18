@@ -86,13 +86,10 @@
 %{--    <div>
       <h1>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#educators').hide('slow') ;
-        }
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
       <div id="educators" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator']" update="educators2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator']" update="educators2" before="hideform('#educators')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="Hinzufügen"/>
@@ -107,13 +104,10 @@
     <div>
       <h1>Betreute <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreuten hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#clients').hide('slow') ;
-        }
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
       <div id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClient']" update="clients2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClient']" update="clients2" before="hideform('#clients')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="Hinzufügen"/>
@@ -128,13 +122,10 @@
     <div>
       <h1>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#contacts').hide('slow') ;
-        }
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
       <div id="contacts" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="hideform2()">
+        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="hideform('#contacts')">
 
           Vorname: <g:textField name="firstName" size="30"/>
           Nachname: <g:textField name="lastName" size="30"/>
@@ -159,13 +150,10 @@
     <div>
       <h1>Ressourcen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform3 = function(){
-          $('#resources').hide('slow') ;
-        }
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
       <div id="resources" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource']" update="resources2" before="hideform3()">
+        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="hideform('#resources')">
           <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -173,7 +161,7 @@
         </g:formRemote>
       </div>
       <div id="resources2">
-        <g:render template="resources" model="${resources}"/>
+        <g:render template="resources" model="[resources: resources, facility: facility]"/>
       </div>
     </div>
 

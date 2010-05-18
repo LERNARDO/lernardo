@@ -66,35 +66,38 @@ class FacilityProfileController {
     }
 
     def addResource = {
+      Entity facility = Entity.get(params.id)
       // check if the resource isn't already linked to the facility
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.resource))
-        eq('target', entityHelperService.loggedIn)
+        eq('target', facility)
         eq('type', metaDataService.ltResource)
       }
       if (!link)
-        new Link(source:Entity.get(params.resource), target: entityHelperService.loggedIn, type:metaDataService.ltResource).save()
+        new Link(source:Entity.get(params.resource), target: facility, type:metaDataService.ltResource).save()
       // find all resources of this facility
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltResource)
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
       List resources = links.collect {it.source}
 
-      render template:'resources', model: [resources: resources, entity: entityHelperService.loggedIn]
+      render template:'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
     }
 
     def removeResource = {
+      Entity facility = Entity.get(params.id)
+      
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.id))
-        eq('target', entityHelperService.loggedIn)
+        eq('source', Entity.get(params.resource))
+        eq('target', facility)
         eq('type', metaDataService.ltResource)
       }
       link.delete()
       // find all resources of this facility
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltResource)
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
       List resources = links.collect {it.source}
 
-      render template:'resources', model: [resources: resources, entity: entityHelperService.loggedIn]
+      render template:'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
     }
 
     /*    def addEducator = {

@@ -173,7 +173,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: client, field: 'profile.familyStatus', 'errors')}" name="familyStatus" from="${['bei Eltern']}" value="${client.profile.familyStatus}"/>
+              <g:select class="${hasErrors(bean: client, field: 'profile.familyStatus', 'errors')}" name="familyStatus" from="${['bei Eltern']}" value="${client?.profile?.familyStatus}"/>
             </td>
           </tr>
 
@@ -184,7 +184,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${client.profile.languages}"/>
+              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${client?.profile?.languages}"/>
             </td>
           </tr>
 
@@ -283,7 +283,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.size', 'errors')}" size="30" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.size', 'errors')}" size="30" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size').decodeHTML()}"/> (cm)
             </td>
           </tr>
 
@@ -294,7 +294,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.weight', 'errors')}" size="30" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: client, field: 'profile.weight', 'errors')}" size="30" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight').decodeHTML()}"/> (kg)
             </td>
           </tr>
 

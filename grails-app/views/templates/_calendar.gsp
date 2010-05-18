@@ -44,6 +44,8 @@
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%
+
+      %{-- TODO: change this so themes are also linked to correctly --}%
       top.location.href = "${g.createLink (controller:"groupActivityProfile",  action:"show")}"+"/"+calEvent.id
     },
 

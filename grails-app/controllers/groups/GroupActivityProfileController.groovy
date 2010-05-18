@@ -6,6 +6,7 @@ import de.uenterprise.ep.Link
 import de.uenterprise.ep.ProfileHelperService
 import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
+import de.uenterprise.ep.Profile
 
 class GroupActivityProfileController {
     MetaDataService metaDataService
@@ -34,9 +35,19 @@ class GroupActivityProfileController {
             redirect(action:list)
         }
         else {
+          List allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
+          // find all clientgroups linked to this group
+          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClientGroup)
+          List clientgroups = links.collect {it.source}
+
+          List allFacilities = Entity.findAllByType(metaDataService.etFacility)
+          // find all facilities linked to this group
+          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
+          List facilities = links.collect {it.source}
+
           List allPartners = Entity.findAllByType(metaDataService.etPartner)
           // find all partners linked to this group
-          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
+          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
           List partners = links.collect {it.source}
 
           List allParents = Entity.findAllByType(metaDataService.etParent)
@@ -67,7 +78,11 @@ class GroupActivityProfileController {
                   allParents: allParents,
                   parents: parents,
                   allPartners: allPartners,
-                  partners: partners]
+                  partners: partners,
+                  allFacilities: allFacilities,
+                  facilities: facilities,
+                  allClientGroups: allClientGroups,
+                  clientgroups: clientgroups]
         }
     }
 
@@ -100,7 +115,7 @@ class GroupActivityProfileController {
             redirect action:'list'
         }
         else {
-            return [group: group, entity: entityHelperService.loggedIn]
+            [group: group, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -149,7 +164,7 @@ class GroupActivityProfileController {
 
       try {
         Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
           ent.profile.educationalObjective = ""
           ent.profile.educationalObjectiveText = ""
@@ -345,5 +360,81 @@ class GroupActivityProfileController {
     List partners = links.collect {it.source}
 
     render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+  }
+
+  def addFacility = {
+    Entity group = Entity.get(params.id)
+
+    // check if the facility isn't already linked to the group
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', Entity.get(params.facility))
+      eq('target', group)
+      eq('type', metaDataService.ltGroupMemberFacility)
+    }
+    if (!link)
+      new Link(source:Entity.get(params.facility), target: group, type:metaDataService.ltGroupMemberFacility).save()
+
+    // find all facilities linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
+    List facilities = links.collect {it.source}
+
+    render template:'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
+  }
+
+  def removeFacility = {
+    Entity group = Entity.get(params.id)
+
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', Entity.get(params.facility))
+      eq('target', group)
+      eq('type', metaDataService.ltGroupMemberFacility)
+    }
+    link.delete()
+
+    // find all facilities linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
+    List facilities = links.collect {it.source}
+
+    render template:'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
+  }
+
+  def addClientGroup = {
+    Entity group = Entity.get(params.id)
+
+    // check if the clientgroup isn't already linked to the group
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', Entity.get(params.clientgroup))
+      eq('target', group)
+      eq('type', metaDataService.ltGroupMemberClientGroup)
+    }
+    if (!link)
+      new Link(source:Entity.get(params.clientgroup), target: group, type:metaDataService.ltGroupMemberClientGroup).save()
+
+    // find all clientgroups linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClientGroup)
+    List clientgroups = links.collect {it.source}
+
+    render template:'clientgroups', model: [clientgroups: clientgroups, group: group, entity: entityHelperService.loggedIn]
+  }
+
+  def removeClientGroup = {
+    Entity group = Entity.get(params.id)
+
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', Entity.get(params.clientgroup))
+      eq('target', group)
+      eq('type', metaDataService.ltGroupMemberClientGroup)
+    }
+    link.delete()
+
+    // find all clientgroups linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClientGroup)
+    List clientgroups = links.collect {it.source}
+
+    render template:'clientgroups', model: [clientgroups: clientgroups, group: group, entity: entityHelperService.loggedIn]
   }
 }

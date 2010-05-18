@@ -6,6 +6,7 @@ import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.MetaDataService
 import standard.FunctionService
+import de.uenterprise.ep.Profile
 
 class ActivityController {
   EntityHelperService entityHelperService
@@ -131,7 +132,7 @@ class ActivityController {
 
       try {
       Entity entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent)
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
 

@@ -263,7 +263,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${educator.profile.languages}"/>
+              <g:select class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${educator?.profile?.languages}"/>
             </td>
           </tr>
 
@@ -296,7 +296,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="inChargeOf" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" multiple="true" value="${educator.profile.inChargeOf}"/>
+              <g:select name="inChargeOf" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" multiple="true" value="${educator?.profile?.inChargeOf}"/>
             </td>
           </tr>
 

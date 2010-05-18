@@ -43,14 +43,11 @@
     <div>
       <h1>Elemente <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-elements"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#elements').hide('slow') ;
-        }
         <jq:toggle sourceId="show-elements" targetId="elements"/>
       </jq:jquery>
       <div id="elements" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'method', action:'addElement', id:methodInstance.id]" update="elements2" before="hideform()">
-          <g:textField name="name" size="30"/>
+        <g:formRemote name="formRemote" url="[controller:'method', action:'addElement', id:methodInstance.id]" update="elements2" before="hideform('#elements')" after="cleartext()">
+          <g:textField id="hide" name="name" size="30"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>

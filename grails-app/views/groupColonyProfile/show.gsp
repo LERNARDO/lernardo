@@ -18,14 +18,14 @@
           <td valign="top" class="name">
             <g:message code="groupColony.profile.name"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.fullName')}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="groupColony.profile.description"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.description')}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         </tbody>
@@ -42,13 +42,10 @@
     <div>
       <h1>Repräsentanten <app:isMeOrAdmin entity="${group}"><a href="#" id="show-representatives"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#representatives').hide('slow') ;
-        }
         <jq:toggle sourceId="show-representatives" targetId="representatives"/>
       </jq:jquery>
       <div id="representatives" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="hideform('#representatives')">
 
           <g:message code="contact.firstName"/>: <g:textField size="30" name="firstName" value=""/> <br/>
           <g:message code="contact.lastName"/>: <g:textField size="30" name="lastName" value=""/> <br/>
@@ -73,13 +70,10 @@
     <div>
       <h1>Gebäude <app:isMeOrAdmin entity="${group}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#buildings').hide('slow') ;
-        }
         <jq:toggle sourceId="show-buildings" targetId="buildings"/>
       </jq:jquery>
       <div id="buildings" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="hideform2()">
+        <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="hideform('#buildings')">
 
           <g:message code="building.name"/>: <g:textField size="30" name="name" value=""/> <br/>
           <g:message code="building.zip"/>: <g:textField size="30" name="zip" value=""/> <br/>
@@ -102,13 +96,10 @@
     <div>
       <h1>Einrichtungen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform3 = function(){
-          $('#facilities').hide('slow') ;
-        }
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
       <div id="facilities" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="hideform3()">
+        <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="hideform('#facilities')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -123,13 +114,10 @@
     <div>
       <h1>Ressourcen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform4 = function(){
-          $('#resources').hide('slow') ;
-        }
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
       <div id="resources" style="display:none">
-        <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="hideform4()">
+        <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="hideform('#resources')">
           <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

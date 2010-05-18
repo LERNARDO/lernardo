@@ -8,6 +8,7 @@ import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
 import lernardo.Contact
 import lernardo.Building
+import de.uenterprise.ep.Profile
 
 class GroupColonyProfileController {
     MetaDataService metaDataService
@@ -90,7 +91,7 @@ class GroupColonyProfileController {
             redirect action:'list'
         }
         else {
-            return [group: group, entity: entityHelperService.loggedIn]
+            [group: group, entity: entityHelperService.loggedIn]
         }
     }
 
@@ -117,7 +118,7 @@ class GroupColonyProfileController {
 
       try {
         Entity entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent)
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
 

@@ -42,10 +42,7 @@
 
       <div id="select-box">
         <g:form name="form1" action="list">
-          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Pädagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Paten',Parent:'Erziehungsberechtigte']}" value="${entityType}" optionKey="key" optionValue="value"/>
-        %{--<div class="buttons">
-          <g:submitButton name="list" value="OK" />
-        </div>--}%
+          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Paedagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Paten',Parent:'Erziehungsberechtigte']}" value="${entityType}" optionKey="key" optionValue="value"/>
         </g:form>
 
         <script type="text/javascript">

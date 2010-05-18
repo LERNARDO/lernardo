@@ -18,14 +18,14 @@
                 <td valign="top" class="name">
                    <g:message code="groupClient.profile.name" />:
                 </td>
-              <td valign="top" class="value">${fieldValue(bean:group, field:'profile.fullName')}</td>
+              <td valign="top" class="value">${fieldValue(bean:group, field:'profile.fullName').decodeHTML()}</td>
             </tr>
 
             <tr class="prop">
                 <td valign="top" class="name">
                    <g:message code="groupClient.profile.description" />:
                 </td>
-                <td valign="top" class="value">${fieldValue(bean:group, field:'profile.description')}</td>                           
+                <td valign="top" class="value">${fieldValue(bean:group, field:'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>                           
             </tr>
 
          </tbody>
@@ -42,13 +42,10 @@
     <div>
       <h1>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform2 = function(){
-          $('#clients').hide('slow') ;
-        }
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
       <div id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="hideform2()">
+        <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="hideform('#clients')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

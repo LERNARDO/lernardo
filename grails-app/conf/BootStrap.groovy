@@ -26,6 +26,7 @@ import profiles.ParentProfile
 import profiles.PartnerProfile
 import lernardo.Method
 import lernardo.Element
+import de.uenterprise.ep.Profile
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -43,10 +44,10 @@ class BootStrap {
       createDefaultEducators()
 
       //createDefaultLinks()
-      //createDefaultTemplates()
       //createDefaultComments()
 
       if (GrailsUtil.environment == "development") {
+        createDefaultActivityTemplates()
         //createDefaultActivities()
         createDefaultParents()
         createDefaultClients()
@@ -59,6 +60,9 @@ class BootStrap {
         createDefaultColonias()
         createDefaultResources()
         createDefaultMethods()
+        createDefaultClientGroups()
+        createDefaultActivityTemplateGroups()
+        createDefaultThemes()
       }
 
       createDefaultHelpers()
@@ -328,26 +332,31 @@ class BootStrap {
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
   }
 
-  void createDefaultTemplates() {
+  void createDefaultActivityTemplates() {
     log.debug ("==> creating default templates")
 
     EntityType etTemplate = metaDataService.etTemplate
 
-    def entity = entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+    entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Weide mit Hindernissen"
-      ent.profile.attribution = "Psychomotorik"
       ent.profile.description = "Die Bänke werden in Reihen aufgestellt; es können möglichst viele Bewegungsformen ausprobiert werden"
-      ent.profile.duration = 60
+      ent.profile.chosenMaterials = "Holzbänke"
       ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-      ent.profile.qualifications = "keine"
-      ent.profile.requiredEducators = 2
-      ent.profile.ll = 0
-      ent.profile.be = 3
-      ent.profile.pk = 1
-      ent.profile.si = 2
-      ent.profile.hk = 0
-      ent.profile.tlt = 1
+      ent.profile.amountEducators = 2
+      ent.profile.status = "fertig"
+      ent.profile.duration = 30
+    }
+
+    entityHelperService.createEntity("tanzen", etTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.fullName = "Tanzen"
+      ent.profile.description = "Die Kinder tanzen im Kreis"
+      ent.profile.chosenMaterials = "Springschnüre"
+      ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
+      ent.profile.amountEducators = 1
+      ent.profile.status = "fertig"
+      ent.profile.duration = 10
     }
   }
 
@@ -356,8 +365,8 @@ class BootStrap {
 
     EntityType etCommentTemplate = metaDataService.etCommentTemplate
 
-    def entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+    Entity entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "comment"
       ent.profile.content = "Tolle Sache!"
     }
@@ -371,8 +380,8 @@ class BootStrap {
 
     EntityType etResource = metaDataService.etResource
 
-    def entity = entityHelperService.createEntity("klavier", etResource) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+    entityHelperService.createEntity("klavier", etResource) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"
       ent.profile.type = "planbar"
@@ -386,7 +395,7 @@ class BootStrap {
      EntityType etActivity = metaDataService.etActivity
 
       def entity = entityHelperService.createEntity("klettern", etActivity) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent)
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.fullName = "Klettern"
         ent.profile.date = new Date()
         ent.profile.duration = 60
@@ -529,8 +538,8 @@ class BootStrap {
 
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
-    def entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+    Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Zeillinger"
       ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
                                      ausreichendes Einkommen und Sabine Zeillinger kümmert sich um den Haushalt."""
@@ -551,8 +560,8 @@ class BootStrap {
 
     EntityType etGroupColony = metaDataService.etGroupColony
 
-    def entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent)
+    Entity entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Gumpoldskirchen"
       ent.profile.description = """Eine kleine Colonia im Süden von Wien"""
     }
@@ -572,6 +581,67 @@ class BootStrap {
     method.addToElements(new Element(name: "Soziale und emotionale Intelligenz"))
     method.addToElements(new Element(name: "Lernen lernen"))
     method.addToElements(new Element(name: "Teilleistungstraining"))   
+  }
+
+  void createDefaultClientGroups() {
+    log.debug ("==> creating default clientgroups")
+
+    EntityType etGroupClient = metaDataService.etGroupClient
+
+    Entity entity = entityHelperService.createEntity("group", etGroupClient) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.fullName = "Betreutengruppe Rot"
+      ent.profile.description = ""
+    }
+
+    // create some links to that group
+    new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltGroupMemberClient).save()
+    new Link(source: Entity.findByName('kirazeillinger'), target: entity, type: metaDataService.ltGroupMemberClient).save()
+  }
+
+  void createDefaultActivityTemplateGroups() {
+    log.debug ("==> creating default activitytemplategroups")
+
+    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+
+    Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.fullName = "Vorlagengruppe 1"
+      ent.profile.description = ""
+      ent.profile.status = "fertig"
+      ent.profile.realDuration = 60
+    }
+
+    // create some links to that group
+    new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltGroupMember).save()
+    new Link(source: Entity.findByName('tanzen'), target: entity, type: metaDataService.ltGroupMember).save()
+  }
+
+  void createDefaultThemes() {
+    log.debug ("==> creating default themes")
+
+    EntityType etTheme = metaDataService.etTheme
+
+    Entity theme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.fullName = "Thema 1"
+      ent.profile.description = ""
+      ent.profile.type = "Thema"
+      ent.profile.startDate = new Date(2010-1900,01,01)
+      ent.profile.endDate = new Date(2010-1900,11,01)
+    }
+
+    Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.fullName = "Subthema 1"
+      ent.profile.description = ""
+      ent.profile.type = "Subthema"
+      ent.profile.startDate = new Date(2010-1900,05,01)
+      ent.profile.endDate = new Date(2010-1900,07,01)
+    }
+
+    // link subtheme to theme
+    new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
   }
 
 }

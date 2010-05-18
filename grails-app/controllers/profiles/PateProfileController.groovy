@@ -39,6 +39,7 @@ class PateProfileController {
     else {
       List links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
       List godchildren = links.collect {it.source}
+
       return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
     }
   }
@@ -138,32 +139,40 @@ class PateProfileController {
   }
 
     def addGodchildren = {
+      Entity pate = Entity.get(params.id)
+
       // check if the child isn't already linked to the pate
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.child))
-        eq('target', entityHelperService.loggedIn)
+        eq('target', pate)
         eq('type', metaDataService.ltPate)
       }
       if (!link)
-        new Link(source:Entity.get(params.child), target: entityHelperService.loggedIn, type:metaDataService.ltPate).save()
+        new Link(source:Entity.get(params.child), target: pate, type:metaDataService.ltPate).save()
+
       // find all godchildren of this pate
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltPate)
+      def links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
       List godchildren = links.collect {it.source}
-      render template:'godchildren', model: [godchildren: godchildren, entity: entityHelperService.loggedIn]
+
+      render template:'godchildren', model: [godchildren: godchildren, pate: pate, entity: entityHelperService.loggedIn]
     }
 
     def removeGodchildren = {
+      Entity pate = Entity.get(params.id)
+
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.id))
-        eq('target', entityHelperService.loggedIn)
+        eq('source', Entity.get(params.child))
+        eq('target', pate)
         eq('type', metaDataService.ltPate)
       }
       link.delete()
+
       // find all godchildren of this pate
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltPate)
+      def links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
       List godchildren = links.collect {it.source}
-      render template:'godchildren', model: [godchildren: godchildren, entity: entityHelperService.loggedIn]
+
+      render template:'godchildren', model: [godchildren: godchildren, pate: pate, entity: entityHelperService.loggedIn]
     }
 }

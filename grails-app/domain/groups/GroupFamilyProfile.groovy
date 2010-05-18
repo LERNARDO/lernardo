@@ -17,5 +17,7 @@ class GroupFamilyProfile extends Profile {
       livingConditions (blank: true, maxSize: 500)
       socioeconomicData (blank: true, maxSize: 500)
       otherInfo (blank: true, maxSize: 500)
+      amountHousehold (nullable: true)
+      familyIncome (nullable: true)
     }
 }

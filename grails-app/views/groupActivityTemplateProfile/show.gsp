@@ -25,7 +25,7 @@
           <td valign="top" class="name">
             <g:message code="groupActivityTemplate.profile.description"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.description').decodeHTML()}</td>
+          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -86,13 +86,10 @@
     <div>
       <h1>Aktivitätsvorlagen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-templates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
-        hideform = function(){
-          $('#templates').hide('slow') ;
-        }
         <jq:toggle sourceId="show-templates" targetId="templates"/>
       </jq:jquery>
       <div id="templates" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2" before="hideform()">
+        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2" before="hideform('#templates')">
           <g:select name="template" from="${allTemplates}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
