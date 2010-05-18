@@ -37,6 +37,9 @@ class MetaDataService {
   static final String EST_RESOURCE = "resource"
   static final String EST_PARENT = "parent"
   static final String EST_THEME = "theme"
+  static final String EST_PROJECT_TEMPLATE = "projectTemplate"
+  static final String EST_PROJECT = "project"
+  static final String EST_PROJECT_UNIT = "projectUnit"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_EDUCATOR = "Paedagoge"
@@ -60,6 +63,9 @@ class MetaDataService {
   static final String ET_RESOURCE = "Ressource"
   static final String ET_PARENT = "Erziehungsberechtigter"
   static final String ET_THEME = "Thema"
+  static final String ET_PROJECT_TEMPLATE = "Projektvorlage"
+  static final String ET_PROJECT = "Projekt"
+  static final String ET_PROJECT_UNIT = "Projekteinheit"
 
   static final String PRT_USER = "User"                // ProfileType
   static final String PRT_EDUCATOR = "Educator"
@@ -83,6 +89,9 @@ class MetaDataService {
   static final String PRT_RESOURCE = "Resource"
   static final String PRT_PARENT = "Parent"
   static final String PRT_THEME = "Theme"
+  static final String PRT_PROJECT_TEMPLATE = "ProjectTemplate"
+  static final String PRT_PROJECT = "Project"
+  static final String PRT_PROJECT_UNIT = "ProjectUnit"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -115,6 +124,8 @@ class MetaDataService {
   static final String LT_RESOURCE = "Ressource"
   static final String LT_ENLISTED = "Angeworben"
   static final String LT_SUBTHEME = "Subthema"
+  static final String LT_PROJECT_UNIT = "Projekteinheit"
+  static final String LT_PROJECT_UNIT_MEMBER = "Projekteinheitmitglied"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -149,6 +160,9 @@ class MetaDataService {
     getEstResource()
     getEstParent()
     getEstTheme()
+    getEstProjectTemplate()
+    getEstProject()
+    getEstProjectUnit()
 
     getEtUser()
     getEtEducator()
@@ -172,6 +186,9 @@ class MetaDataService {
     getEtResource()
     getEtParent()
     getEtTheme()
+    getEtProjectTemplate()
+    getEtProject()
+    getEtProjectUnit()
 
     getLstPersonal()
     getLstOther()
@@ -198,6 +215,8 @@ class MetaDataService {
     getLtResource()
     getLtEnlisted()
     getLtSubTheme()
+    getLtProjectUnit()
+    getLtProjectUnitMember()
 
     getLtActEducator()
     getLtActClient()
@@ -214,28 +233,31 @@ class MetaDataService {
     getPtDoc3()
   }
 
-  EntitySuperType getEstUser()            {defaultObjectService.openEST (EST_USER, PRT_USER) }
-  EntitySuperType getEstEducator()        {defaultObjectService.openEST (EST_EDUCATOR, PRT_EDUCATOR) }
-  EntitySuperType getEstClient()          {defaultObjectService.openEST (EST_CLIENT, PRT_CLIENT) }
-  EntitySuperType getEstChild()           {defaultObjectService.openEST (EST_CHILD, PRT_CHILD) }
-  EntitySuperType getEstOperator()        {defaultObjectService.openEST (EST_OPERATOR, PRT_OPERATOR) }
-  EntitySuperType getEstFacility()        {defaultObjectService.openEST (EST_FACILITY, PRT_FACILITY) }
-  EntitySuperType getEstTemplate()        {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
-  EntitySuperType getEstActivity()        {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
-  EntitySuperType getEstGroupPartner()    {defaultObjectService.openEST (EST_GROUP_PARTNER, PRT_GROUP_PARTNER) }
-  EntitySuperType getEstGroupFamily()     {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
-  EntitySuperType getEstGroupClient()     {defaultObjectService.openEST (EST_GROUP_CLIENT, PRT_GROUP_CLIENT) }
-  EntitySuperType getEstGroupColony()     {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
-  EntitySuperType getEstGroupNetwork()    {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
-  EntitySuperType getEstGroupLevel()      {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
+  EntitySuperType getEstUser()                  {defaultObjectService.openEST (EST_USER, PRT_USER) }
+  EntitySuperType getEstEducator()              {defaultObjectService.openEST (EST_EDUCATOR, PRT_EDUCATOR) }
+  EntitySuperType getEstClient()                {defaultObjectService.openEST (EST_CLIENT, PRT_CLIENT) }
+  EntitySuperType getEstChild()                 {defaultObjectService.openEST (EST_CHILD, PRT_CHILD) }
+  EntitySuperType getEstOperator()              {defaultObjectService.openEST (EST_OPERATOR, PRT_OPERATOR) }
+  EntitySuperType getEstFacility()              {defaultObjectService.openEST (EST_FACILITY, PRT_FACILITY) }
+  EntitySuperType getEstTemplate()              {defaultObjectService.openEST (EST_TEMPLATE, PRT_TEMPLATE) }
+  EntitySuperType getEstActivity()              {defaultObjectService.openEST (EST_ACTIVITY, PRT_ACTIVITY) }
+  EntitySuperType getEstGroupPartner()         {defaultObjectService.openEST (EST_GROUP_PARTNER, PRT_GROUP_PARTNER) }
+  EntitySuperType getEstGroupFamily()          {defaultObjectService.openEST (EST_GROUP_FAMILY, PRT_GROUP_FAMILY) }
+  EntitySuperType getEstGroupClient()           {defaultObjectService.openEST (EST_GROUP_CLIENT, PRT_GROUP_CLIENT) }
+  EntitySuperType getEstGroupColony()           {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
+  EntitySuperType getEstGroupNetwork()          {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
+  EntitySuperType getEstGroupLevel()            {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
   EntitySuperType getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
-  EntitySuperType getEstGroupActivity  () {defaultObjectService.openEST (EST_GROUP_ACTIVITY, PRT_GROUP_ACTIVITY) }
-  EntitySuperType getEstCommentTemplate() {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
-  EntitySuperType getEstPate()            {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
-  EntitySuperType getEstPartner()         {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
-  EntitySuperType getEstResource()        {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
-  EntitySuperType getEstParent()          {defaultObjectService.openEST (EST_PARENT, PRT_PARENT) }
-  EntitySuperType getEstTheme()           {defaultObjectService.openEST (EST_THEME, PRT_THEME) }
+  EntitySuperType getEstGroupActivity  ()       {defaultObjectService.openEST (EST_GROUP_ACTIVITY, PRT_GROUP_ACTIVITY) }
+  EntitySuperType getEstCommentTemplate()       {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
+  EntitySuperType getEstPate()                  {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
+  EntitySuperType getEstPartner()               {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
+  EntitySuperType getEstResource()              {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
+  EntitySuperType getEstParent()                {defaultObjectService.openEST (EST_PARENT, PRT_PARENT) }
+  EntitySuperType getEstTheme()                 {defaultObjectService.openEST (EST_THEME, PRT_THEME) }
+  EntitySuperType getEstProjectTemplate()       {defaultObjectService.openEST (EST_PROJECT_TEMPLATE, PRT_PROJECT_TEMPLATE) }
+  EntitySuperType getEstProject()               {defaultObjectService.openEST (EST_PROJECT, PRT_PROJECT) }
+  EntitySuperType getEstProjectUnit()           {defaultObjectService.openEST (EST_PROJECT_UNIT, PRT_PROJECT_UNIT) }
 
   EntityType getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
   EntityType getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
@@ -259,32 +281,37 @@ class MetaDataService {
   EntityType getEtResource()        {defaultObjectService.openET (ET_RESOURCE, estResource) }
   EntityType getEtParent()          {defaultObjectService.openET (ET_PARENT, estParent) }
   EntityType getEtTheme()           {defaultObjectService.openET (ET_THEME, estTheme) }
+  EntityType getEtProjectTemplate() {defaultObjectService.openET (ET_PROJECT_TEMPLATE, estProjectTemplate) }
+  EntityType getEtProject()         {defaultObjectService.openET (ET_PROJECT, estProject) }
+  EntityType getEtProjectUnit()     {defaultObjectService.openET (ET_PROJECT_UNIT, estProjectUnit) }
 
-  LinkSuperType getLstPersonal()   {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
-  LinkSuperType getLstOther()      {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
+  LinkSuperType getLstPersonal() {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
+  LinkSuperType getLstOther()    {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
 
-  LinkType getLtFriendship()  {defaultObjectService.openLT (LT_FRIENDSHIP, lstPersonal) }
-  LinkType getLtSponsorship() {defaultObjectService.openLT (LT_SPONSORSHIP, lstOther) }
-  LinkType getLtOperation()   {defaultObjectService.openLT (LT_OPERATION, lstOther) }
-  LinkType getLtClientship()  {defaultObjectService.openLT (LT_CLIENTSHIP, lstOther) }
-  LinkType getLtBookmark()    {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
-  LinkType getLtWorking()     {defaultObjectService.openLT (LT_WORKING, lstOther) }
-  LinkType getLtGroupMember() {defaultObjectService.openLT (LT_GROUP_MEMBER, lstOther) }
-  LinkType getLtGroupMemberParent() {defaultObjectService.openLT (LT_GROUP_MEMBER_PARENT, lstOther) }
-  LinkType getLtGroupMemberClient() {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT, lstOther) }
-  LinkType getLtGroupMemberChild() {defaultObjectService.openLT (LT_GROUP_MEMBER_CHILD, lstOther) }
-  LinkType getLtGroupMemberEducator() {defaultObjectService.openLT (LT_GROUP_MEMBER_EDUCATOR, lstOther) }
-  LinkType getLtGroupMemberPartner() {defaultObjectService.openLT (LT_GROUP_MEMBER_PARTNER, lstOther) }
-  LinkType getLtGroupMemberFacility() {defaultObjectService.openLT (LT_GROUP_MEMBER_FACILITY, lstOther) }
+  LinkType getLtFriendship()             {defaultObjectService.openLT (LT_FRIENDSHIP, lstPersonal) }
+  LinkType getLtSponsorship()            {defaultObjectService.openLT (LT_SPONSORSHIP, lstOther) }
+  LinkType getLtOperation()              {defaultObjectService.openLT (LT_OPERATION, lstOther) }
+  LinkType getLtClientship()             {defaultObjectService.openLT (LT_CLIENTSHIP, lstOther) }
+  LinkType getLtBookmark()               {defaultObjectService.openLT (LT_BOOKMARK, lstOther) }
+  LinkType getLtWorking()                {defaultObjectService.openLT (LT_WORKING, lstOther) }
+  LinkType getLtGroupMember()            {defaultObjectService.openLT (LT_GROUP_MEMBER, lstOther) }
+  LinkType getLtGroupMemberParent()      {defaultObjectService.openLT (LT_GROUP_MEMBER_PARENT, lstOther) }
+  LinkType getLtGroupMemberClient()      {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT, lstOther) }
+  LinkType getLtGroupMemberChild()       {defaultObjectService.openLT (LT_GROUP_MEMBER_CHILD, lstOther) }
+  LinkType getLtGroupMemberEducator()    {defaultObjectService.openLT (LT_GROUP_MEMBER_EDUCATOR, lstOther) }
+  LinkType getLtGroupMemberPartner()     {defaultObjectService.openLT (LT_GROUP_MEMBER_PARTNER, lstOther) }
+  LinkType getLtGroupMemberFacility()    {defaultObjectService.openLT (LT_GROUP_MEMBER_FACILITY, lstOther) }
   LinkType getLtGroupMemberClientGroup() {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT_GROUP, lstOther) }
-  LinkType getLtCreator()     {defaultObjectService.openLT (LT_CREATOR, lstOther) }
-  LinkType getLtEditor()      {defaultObjectService.openLT (LT_EDITOR, lstOther) }
-  LinkType getLtComment()     {defaultObjectService.openLT (LT_COMMENT, lstOther) }
-  LinkType getLtPate()        {defaultObjectService.openLT (LT_PATE, lstOther) }
-  LinkType getLtPartner()     {defaultObjectService.openLT (LT_PARTNER, lstOther) }
-  LinkType getLtResource()    {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
-  LinkType getLtEnlisted()    {defaultObjectService.openLT (LT_ENLISTED, lstOther) }
-  LinkType getLtSubTheme()    {defaultObjectService.openLT (LT_SUBTHEME, lstOther) }
+  LinkType getLtCreator()                {defaultObjectService.openLT (LT_CREATOR, lstOther) }
+  LinkType getLtEditor()                 {defaultObjectService.openLT (LT_EDITOR, lstOther) }
+  LinkType getLtComment()                {defaultObjectService.openLT (LT_COMMENT, lstOther) }
+  LinkType getLtPate()                   {defaultObjectService.openLT (LT_PATE, lstOther) }
+  LinkType getLtPartner()                {defaultObjectService.openLT (LT_PARTNER, lstOther) }
+  LinkType getLtResource()               {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
+  LinkType getLtEnlisted()               {defaultObjectService.openLT (LT_ENLISTED, lstOther) }
+  LinkType getLtSubTheme()               {defaultObjectService.openLT (LT_SUBTHEME, lstOther) }
+  LinkType getLtProjectUnit()            {defaultObjectService.openLT (LT_PROJECT_UNIT, lstOther) }
+  LinkType getLtProjectUnitMember()      {defaultObjectService.openLT (LT_PROJECT_UNIT_MEMBER, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

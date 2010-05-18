@@ -25,7 +25,7 @@
           <td valign="top" class="name">
             <g:message code="resource.profile.description"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description').decodeHTML()}</td>
+          <td valign="top" class="value">${fieldValue(bean: resource, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
