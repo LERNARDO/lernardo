@@ -71,7 +71,7 @@ class CalendarController {
             dtStart = dtStart.plusHours(1)
             def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
             //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-            eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false/*, className: className*/]
+            eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: 'group']
         }
 
         // get themes
@@ -82,7 +82,19 @@ class CalendarController {
           dtStart = dtStart.plusHours(1)
           def dtEnd = new DateTime (it.profile.endDate)
           //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate()/*, className: className*/]
+          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'theme']
+
+        }
+
+        // get themeroomactivities
+        List themeroomList = Entity.findAllByType(metaDataService.etActivity)
+
+        themeroomList.each {
+          def dtStart = new DateTime (it.profile.date)
+          dtStart = dtStart.plusHours(1)
+          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+          //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: 'activity']
 
         }
 

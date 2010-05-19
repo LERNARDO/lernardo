@@ -68,7 +68,7 @@
             <td valign="top" class="name">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${facility.user.enabled}" true="Ja" false="Nein"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
         </app:isAdmin>
 

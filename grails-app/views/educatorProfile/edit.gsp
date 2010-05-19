@@ -5,7 +5,7 @@
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Pädagoge anlegen</h1>
+    <h1>Pädagoge bearbeiten</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -17,7 +17,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="save" method="post">
+    <g:form action="update" method="post" id="${educator.id}">
       <div class="dialog">
         
 		
@@ -72,7 +72,9 @@
 		
 		<table>
 		<tr>
+
             <td  class="name">
+
               <label for="education">
                 <g:message code="educator.profile.education"/>
               </label>
@@ -278,10 +280,11 @@
             </td>	
 			<td valign="middle" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" id="contactMail" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
-            </td>	
+            </td>
 		</tr>
 		</table>
 		</div>
+
 
 		<div class="email">
 		<table>
@@ -301,12 +304,12 @@
               <g:link controller="profile" action="changePassword" id="${educator.id}">Ändern</g:link>
             </td>
           
-			<td width="280"  valign="middle">
+			%{--<td width="280"  valign="middle">
 			<label for="email">
 				<g:message code="educator.profile.email"/>
             </label>:
               <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="30" id="email" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
-			</td>
+			</td>--}%
 			<td valign="middle">
 			    <label for="locale">
                 <g:message code="languageSelection"/>
@@ -318,7 +321,7 @@
 		</div>
       </div>
  
-          
+      
  
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

@@ -102,7 +102,7 @@
           <td valign="top" class="name">
             <g:message code="parent.profile.job"/>:
           </td>
-          <td valign="top" class="value"><g:formatBoolean boolean="${parent.profile.job}" true="Ja" false="Nein"/></td>
+          <td valign="top" class="value"><g:formatBoolean boolean="${parent.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
         <g:if test="${parent.profile.job}">
@@ -133,7 +133,7 @@
             <td valign="top" class="name">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${parent.user.enabled}" true="Ja" false="Nein"/></td>
+            <td valign="top" class="value"><g:formatBoolean boolean="${parent.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
         </app:isAdmin>
 
