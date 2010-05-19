@@ -45,8 +45,8 @@
               <tr>
                 <g:sortableColumn property="title" title="Aktivit&auml;t" />
                 <g:sortableColumn property="facility" title="Einrichtung" />
-                %{--<g:sortableColumn property="owner" title="Geplant von" />--}%
                 <g:sortableColumn property="date" title="Datum" />
+                <th>Kommentare</th>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +56,7 @@
                 <td><app:getFacility entity="${activity}">${facility.profile.fullName}</app:getFacility></td>
                 %{--<td><app:getCreator entity="${activity}">${creator.profile.fullName}</app:getCreator></td>--}%
                 <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
+                <td>${activity.profile.comments.size()}</td>
               </tr>
             </g:each>
             </tbody>

@@ -221,9 +221,6 @@ class HelperTagLib {
     if (m > 0)
       out << "("+m+")"
   }
-  def getTemplateCommentsCount = {attrs ->
-    out << Link.countByTargetAndType(attrs.template, metaDataService.ltComment)
-  }
 
   def getRelationship = {attrs ->
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.source),Entity.findByName(attrs.target)).type.name
