@@ -23,7 +23,7 @@
 
     <div class="dialog">
     <table>
-          <tbody>
+    <tbody>
 
 		<tr class="prop"> <!-- Prompt-->  
 			<td valign="middle" class="name">
@@ -43,7 +43,7 @@
                 <g:message code="child.profile.lastName"/>
               </label>
             </td>
-            <td  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')} >
+            <td  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}">
 			<label for="birthDate">
                 <g:message code="child.profile.birthDate"/>
               </label>
@@ -66,8 +66,6 @@
               <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day"/>
             </td>
 		</tr>
-
-	
 		<tr class="prop"> <!-- Prompt--> 
 			<td> &nbsp; </td>
 			<td><label for="jobType">
@@ -97,7 +95,7 @@
               <input type="text" size="32" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
 			</td>
 		</tr>
-		
+	  </tbody>
 	</table>
 	
 
@@ -113,11 +111,9 @@
             </label>
 			 : &nbsp;
 			<g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="80" maxlength="80" id="email" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
- 		
+
 		</div>
-        
-          </tbody>
-        </table>
+
       </div>
 
       <div class="buttons">

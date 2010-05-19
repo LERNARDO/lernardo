@@ -72,7 +72,7 @@
 		
 		<table>
 		<tr>
-            <td  class class="name">
+            <td  class="name">
               <label for="education">
                 <g:message code="educator.profile.education"/>
               </label>
@@ -282,9 +282,6 @@
 		</tr>
 		</table>
 		</div>
-		
-		
-		
 
 		<div class="email">
 		<table>
@@ -319,9 +316,6 @@
 		</tr>
 		 </table>
 		</div>
-		</tbody>
-		
-	
       </div>
  
           
