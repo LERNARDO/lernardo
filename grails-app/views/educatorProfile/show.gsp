@@ -295,7 +295,6 @@
 		</tr>
 		 </table>
 		</div>
-		%{--</tbody>--}%
 
     </div>
 

@@ -72,7 +72,9 @@
 		
 		<table>
 		<tr>
-            <td class="name">
+
+            <td  class="name">
+
               <label for="education">
                 <g:message code="educator.profile.education"/>
               </label>
@@ -283,8 +285,6 @@
 		</table>
 		</div>
 
-		
-		
 
 		<div class="email">
 		<table>
@@ -319,12 +319,9 @@
 		</tr>
 		 </table>
 		</div>
-		%{--</tbody>--}%
-		
-	
       </div>
  
-          
+      
  
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
