@@ -45,8 +45,7 @@
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%
 
-      %{-- TODO: change this so themes are also linked to correctly --}%
-      top.location.href = "${g.createLink (controller:"groupActivityProfile",  action:"show")}"+"/"+calEvent.id
+      top.location.href = "${g.createLink (controller:"calendar",  action:"destination")}"+"/"+calEvent.id
     },
 
     dayClick: function (dayDate, allDay, jsEvent, view) {
