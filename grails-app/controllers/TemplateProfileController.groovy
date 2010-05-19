@@ -9,7 +9,7 @@ import lernardo.Method
 import lernardo.Element
 import de.uenterprise.ep.Profile
 
-class TemplateController {
+class TemplateProfileController {
   EntityHelperService entityHelperService
   FunctionService functionService
   MetaDataService metaDataService

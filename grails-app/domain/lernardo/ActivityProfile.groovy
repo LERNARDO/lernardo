@@ -4,7 +4,8 @@ import de.uenterprise.ep.Profile
 
 class ActivityProfile extends Profile {
 
-  static hasMany = [clientEvaluations: ClientEvaluation]
+  static hasMany = [clientEvaluations: ClientEvaluation,
+                    comments: Comment]
 
   Date date
   Integer duration

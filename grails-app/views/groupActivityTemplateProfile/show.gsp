@@ -103,4 +103,7 @@
 
   </div>
 </div>
+
+<g:render template="/comment/box" model="[entity: entity, commented: group]"/>
+
 </body>

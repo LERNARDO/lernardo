@@ -27,6 +27,7 @@ import profiles.PartnerProfile
 import lernardo.Method
 import lernardo.Element
 import de.uenterprise.ep.Profile
+import lernardo.Comment
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -44,7 +45,6 @@ class BootStrap {
       createDefaultEducators()
 
       //createDefaultLinks()
-      //createDefaultComments()
 
       if (GrailsUtil.environment == "development") {
         createDefaultActivityTemplates()
@@ -63,6 +63,7 @@ class BootStrap {
         createDefaultClientGroups()
         createDefaultActivityTemplateGroups()
         createDefaultThemes()
+        createDefaultComments()
       }
 
       createDefaultHelpers()
@@ -363,16 +364,12 @@ class BootStrap {
   void createDefaultComments() {
     log.debug ("==> creating default comments")
 
-    EntityType etCommentTemplate = metaDataService.etCommentTemplate
+    Comment comment = new Comment(content: 'Ich bin ein Kommentar', creator: Entity.findByName('alexanderzeillinger').id).save()
 
-    Entity entity = entityHelperService.createEntity("comment", etCommentTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "comment"
-      ent.profile.content = "Tolle Sache!"
-    }
+    Entity entity = Entity.findByName('tanzen')
 
-    new Link(source: entity, target: Entity.findByName('weidemithindernissen'), type: metaDataService.ltComment).save()
-    new Link(source: Entity.findByName("christianszinicz"), target: entity, type: metaDataService.ltCreator).save()
+    entity.profile.addToComments(comment)
+
   }
 
   void createDefaultResources() {

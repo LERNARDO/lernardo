@@ -141,11 +141,7 @@ class HelperTagLib {
   }
 
   def getCreator = {attrs, body ->
-    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltCreator)
-    if (link)
-      out << body(creator: link.source)
-    else
-      out << '<span class="italic">keinem Ersteller zugewiesen</span>'
+    out << body(creator: Entity.get(attrs.id))
   }
 
   def getEditor = {attrs, body ->

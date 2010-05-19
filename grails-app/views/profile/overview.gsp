@@ -203,9 +203,9 @@
       <div class="overview" id="planung-toggled">
         <div class="box">
           <div class="bold">Aktivitätsvorlagen</div>
-          <g:link controller="template" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="template" action="list">Alle anzeigen (${allActivityTemplates})</g:link></div>
-          <div><g:link controller="template" action="create">Neu anlegen</g:link></div>
+          <g:link controller="templateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <div><g:link controller="templateProfile" action="list">Alle anzeigen (${allActivityTemplates})</g:link></div>
+          <div><g:link controller="templateProfile" action="create">Neu anlegen</g:link></div>
         </div>
         <div class="box">
           <div class="bold">Themenraumaktivitäten</div>

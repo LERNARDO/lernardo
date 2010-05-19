@@ -45,7 +45,7 @@
               <tr>
                 <g:sortableColumn property="title" title="Aktivit&auml;t" />
                 <g:sortableColumn property="facility" title="Einrichtung" />
-                <g:sortableColumn property="owner" title="Geplant von" />
+                %{--<g:sortableColumn property="owner" title="Geplant von" />--}%
                 <g:sortableColumn property="date" title="Datum" />
               </tr>
             </thead>
@@ -54,7 +54,7 @@
               <tr class="${ (i % 2) == 0 ? 'even' : 'odd'}">
                 <td><g:link action="show" id="${activity.id}" params="[name:entity.name]">${activity.profile.fullName}</g:link></td>
                 <td><app:getFacility entity="${activity}">${facility.profile.fullName}</app:getFacility></td>
-                <td><app:getCreator entity="${activity}">${creator.profile.fullName}</app:getCreator></td>
+                %{--<td><app:getCreator entity="${activity}">${creator.profile.fullName}</app:getCreator></td>--}%
                 <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
               </tr>
             </g:each>
