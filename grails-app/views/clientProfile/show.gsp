@@ -121,7 +121,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.languages"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.languages')}</td>
+          <td valign="top" class="value"><g:join in="${client.profile.languages}" delimiter=", "/></td>
         </tr>
 
         <tr class="prop">
