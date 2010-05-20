@@ -3,7 +3,7 @@
   <title>Lernardo | Betreiber anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Betreiber anlegen</h1>
   </div>
@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.fullName', 'errors')}" size="103" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -40,7 +40,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: operator, field: 'user.email').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="103" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: operator, field: 'user.email').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -51,7 +51,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: operator, field: 'profile.zip').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.zip', 'errors')}" size="103" id="zip" name="zip" value="${fieldValue(bean: operator, field: 'profile.zip').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: operator, field: 'profile.city').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.city', 'errors')}" size="103" id="city" name="city" value="${fieldValue(bean: operator, field: 'profile.city').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -73,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: operator, field: 'profile.street').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.street', 'errors')}" size="103" id="street" name="street" value="${fieldValue(bean: operator, field: 'profile.street').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -84,7 +84,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: operator, field: 'profile.description', 'errors')}" id="description" rows="6" cols="50" name="description" value="${fieldValue(bean: operator, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="${hasErrors(bean: operator, field: 'profile.description', 'errors')}" id="description" rows="6" cols="100" name="description" value="${fieldValue(bean: operator, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -95,7 +95,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: operator, field: 'profile.phone').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: operator, field: 'profile.phone', 'errors')}" size="103" id="phone" name="phone" value="${fieldValue(bean: operator, field: 'profile.phone').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -106,7 +106,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <app:localeSelect name="locale" value="${operator?.user?.locale}"/>
+              <app:localeSelect class="drop-down-280" name="locale" value="${operator?.user?.locale}"/>
             </td>
           </tr>
 
