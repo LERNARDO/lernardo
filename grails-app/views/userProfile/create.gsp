@@ -3,7 +3,7 @@
   <title>Lernardo | User anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>User anlegen</h1>
   </div>
@@ -27,7 +27,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="90" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -38,7 +38,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="90" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -49,7 +49,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
+              <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="90" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
             </td>
           </tr>
 
@@ -60,7 +60,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <app:localeSelect name="locale" value="${user?.user?.locale}"/>
+              <app:localeSelect class="drop-down-280" name="locale" value="${user?.user?.locale}"/>
             </td>
           </tr>
 
