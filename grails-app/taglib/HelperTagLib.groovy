@@ -58,6 +58,60 @@ class HelperTagLib {
       out << "Unbekannt"
   }
 
+  // finds all units linked to a projectDay
+  def getProjectDayUnits = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDayUnit)
+    if (link)
+      link.each {out << body(units: it.source)}
+    else
+      out << '<span class="italic">Keine Projekteinheiten zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
+  // finds all educators linked to a projectDay
+  def getProjectDayEducators = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDayEducator)
+    if (link)
+      link.each {out << body(educators: it.source)}
+    else
+      out << '<span class="italic">Keine Pädagogen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
+  // finds all resources linked to a projectDay
+  def getProjectDayResources = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDayResource)
+    if (link)
+      link.each {out << body(resources: it.source)}
+    else
+      out << '<span class="italic">Keine Resourcen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
+  // finds all activities linked to a projectUnit
+  def getProjectUnitActivities = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnit)
+    if (link)
+      link.each {out << body(activities: it.source)}
+    else
+      out << '<span class="italic">Keine Aktivitäten gefunden</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
+  // finds all parents linked to a projectUnit
+  def getProjectUnitParents = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitParent)
+    if (link)
+      link.each {out << body(parents: it.source)}
+    else
+      out << '<span class="italic">Keine Erziehungsberechtigten zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
+  // finds all partners linked to a projectUnit
+  def getProjectUnitPartners = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitPartner)
+    if (link)
+      link.each {out << body(partners: it.source)}
+    else
+      out << '<span class="italic">Keine Partner zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+  }
+
   // finds all groupActivityTemplates linked to a projectUnit
   def getGroupActivityTemplates = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitMember)

@@ -40,6 +40,7 @@
     </div>
     <div class="buttons">
       <g:link class="buttonBlue" action="edit" id="${projectTemplate?.id}"><g:message code="edit"/></g:link>
+      <g:link class="buttonBlue" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

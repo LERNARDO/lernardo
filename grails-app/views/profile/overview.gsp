@@ -236,8 +236,8 @@
         </div>
         <div class="box">
           <div class="bold">Projekte</div>
-          <img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/>
-          <div>Alle anzeigen (0)</div>
+          <g:link controller="projectProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <div><g:link controller="projectProfile" action="list">Alle anzeigen (${allProjects})</g:link></div>
           %{--<div>Neu anlegen</div>--}%
         </div>
       </div>

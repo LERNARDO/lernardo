@@ -64,6 +64,7 @@ class BootStrap {
         createDefaultActivityTemplateGroups()
         createDefaultThemes()
         createDefaultComments()
+        createDefaultProjectTemplates()
       }
 
       createDefaultHelpers()
@@ -639,6 +640,19 @@ class BootStrap {
 
     // link subtheme to theme
     new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
+  }
+
+  void createDefaultProjectTemplates() {
+    log.debug ("==> creating default projectTemplate")
+
+    EntityType etProjectTemplate = metaDataService.etProjectTemplate
+
+    entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.fullName = "Projektvorlage 1"
+      ent.profile.description = "keine Beschreibung"
+      ent.profile.status = "fertig"
+    }
   }
 
 }

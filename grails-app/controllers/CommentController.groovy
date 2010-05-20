@@ -21,7 +21,7 @@ class CommentController {
     entity.profile.removeFromComments(comment)
     comment.delete()
 
-    flash.message = message(code: "comment.deleted")
+    //flash.message = message(code: "comment.deleted")
     render template:'comments', model:[commented: entity]
   }
 
@@ -36,7 +36,7 @@ class CommentController {
 
     entity.profile.addToComments(comment)
 
-    flash.message = message(code:"comment.created", args:[entity.profile.fullName])
+    //flash.message = message(code:"comment.created", args:[entity.profile.fullName])
 
     functionService.createEvent(entityHelperService.loggedIn, 'Du hast ein Kommentar zu "'+entity.profile.fullName+'" erstellt.')
     List receiver = Entity.findAllByType(metaDataService.etEducator)

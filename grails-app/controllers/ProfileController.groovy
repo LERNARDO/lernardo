@@ -54,8 +54,8 @@ class ProfileController {
        allActivities: Entity.countByType(metaDataService.etActivity),
        allActivityTemplateGroups: Entity.countByType(metaDataService.etGroupActivityTemplate),
        allActivityGroups: Entity.countByType(metaDataService.etGroupActivity),
-       allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate)/*,
-       allProjects: Entity.countByType(metaDataService.etProject)*/]
+       allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate),
+       allProjects: Entity.countByType(metaDataService.etProject)]
     }
 
     def createNotification = {
