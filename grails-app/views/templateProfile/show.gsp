@@ -68,52 +68,6 @@
   </div>
 </div>
 
-<div class="headerBlue">
-  <div class="second">
-    <h1>Kommentare</h1>
-  </div>
-</div>
-<div class="boxGray">
-  <div class="second">
+<g:render template="/comment/box" model="[entity: entity, commented: template]"/>
 
-    <g:if test="${!commentList}">
-      Keine Kommentare vorhanden
-    </g:if>
-    <g:else>
-      <g:each in="${commentList}" var="comment">
-        <div class="single-entry">
-          <div class="user-entry"><app:getCreator entity="${comment}">
-            <div class="user-pic">
-              <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">
-                <ub:profileImage name="${creator.name}" width="50" height="65" align="left"/>
-              </g:link>
-            </div>
-            <div class="community-entry-infobar">
-              <div class="name">von <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></div>
-              <div class="info">
-                <div class="time"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.profile.dateCreated}"/></div>
-                <ub:meOrAdmin entityName="${creator.name}">
-                  <div class="actions"><g:link controller="commentTemplate" action="delete" id="${comment.id}" params="[template:template.id]" onclick="return confirm('Kommentar wirklich löschen?');">Löschen</g:link></div>
-                </ub:meOrAdmin>
-              </div>
-            </div>
-            <div class="spacer"></div>
-            <div class="entry-content">${comment.profile.content.decodeHTML()}</div>
-          </app:getCreator>
-          </div>
-        </div>
-      </g:each>
-    </g:else>
-
-    <app:isEducator entity="${entity}">
-      <div class="comments-actions">
-        <g:remoteLink class="buttonBlue" controller="commentTemplate" action="create" update="createComment" id="${template.id}" after="jQuery('#createComment').show('fast')">Kommentar abgeben</g:remoteLink>
-        <div class="spacer"></div>
-      </div>
-      <div id="createComment">
-      </div>
-    </app:isEducator>
-
-  </div>
-</div>
 </body>

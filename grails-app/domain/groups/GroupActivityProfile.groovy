@@ -1,8 +1,11 @@
 package groups
 
 import de.uenterprise.ep.Profile
+import lernardo.Comment
 
 class  GroupActivityProfile extends Profile {
+
+    static hasMany = [comments: Comment]
 
     Integer realDuration
     Date date

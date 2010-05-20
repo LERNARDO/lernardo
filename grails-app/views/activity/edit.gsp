@@ -24,7 +24,7 @@
                 <tr>
                   <td class="label">Vorlage:</td>
                   <td class="value"><app:getTemplate entity="${activity}">
-                    <g:link controller="template" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+                    <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
                     </app:getTemplate>
                   </td>
                 </tr>

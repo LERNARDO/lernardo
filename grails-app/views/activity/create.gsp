@@ -17,7 +17,7 @@
         </div>
       </g:hasErrors>
 
-      <p>Vorlage: <g:link controller="template" action="show" id="${template.id}">${template.profile.fullName}</g:link></p>
+      <p>Vorlage: <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link></p>
       <g:form action="save" method="post" id="${template.id}">
         <table>
           <tbody>
@@ -121,7 +121,7 @@
 
         <div class="buttons">
             <g:submitButton name="submitButton" value="Speichern" />
-            <g:link class="buttonGray" controller="template" action="show" id="${template.id}">Abbrechen</g:link>
+            <g:link class="buttonGray" controller="templateProfile" action="show" id="${template.id}">Abbrechen</g:link>
             <div class="spacer"></div>
         </div>
 

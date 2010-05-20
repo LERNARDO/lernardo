@@ -21,7 +21,7 @@
     <div id="body-list">
       <div style="float:right;">
         <app:isEducator entity="${entity}">
-          <g:link class="buttonBlue" controller="template" action="create">Aktivitätsvorlage erstellen</g:link>
+          <g:link class="buttonBlue" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
           <div class="spacer" style="margin-bottom: 5px"></div>
         </app:isEducator>
       </div>
@@ -33,7 +33,6 @@
           <g:sortableColumn property="name" title="Name"/>
           <g:sortableColumn property="duration" title="Dauer (min)"/>
           <g:sortableColumn property="socialForm" title="Sozialform"/>
-          %{--<g:sortableColumn property="requiredEducators" title="P&auml;dagogen" />--}%
           <th>Kommentare</th>
         </tr>
         </thead>
@@ -44,8 +43,7 @@
             <td class="col"><g:link action="show" id="${templateInstance.id}">${templateInstance.profile.fullName}</g:link></td>
             <td class="col2">${templateInstance.profile.duration}</td>
             <td>${templateInstance.profile.socialForm}</td>
-            %{--<td class="col4">${templateInstance.requiredEducators}</td>--}%
-            <td><app:getTemplateCommentsCount template="${templateInstance}"/></td>
+            <td>${templateInstance.profile.comments.size()}</td>
           </tr>
         </g:each>
         </tbody>

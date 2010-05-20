@@ -113,10 +113,10 @@
 			${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="top" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.inChargeOf') ?: '<div class="italic">Leer</div>'}
+			  <g:join in="${educator.profile.inChargeOf}" delimiter=", "/>
             </td>
 			<td valign="top" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.languages')}
+			  <g:join in="${educator.profile.languages}" delimiter=", "/>
             </td>
 		</tr>
 		</table>

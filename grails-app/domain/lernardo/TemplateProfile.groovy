@@ -4,7 +4,8 @@ import de.uenterprise.ep.Profile
 
 class TemplateProfile extends Profile {
 
-  static hasMany = [methods: Method]
+  static hasMany = [methods: Method,
+                    comments: Comment]
 
   String description
   String chosenMaterials // added on 30.04.2010

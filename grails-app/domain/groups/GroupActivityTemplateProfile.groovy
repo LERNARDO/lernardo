@@ -1,8 +1,11 @@
 package groups
 
 import de.uenterprise.ep.Profile
+import lernardo.Comment
 
 class GroupActivityTemplateProfile extends Profile {
+
+    static hasMany = [comments: Comment]
 
     String description
     String status // added on 30.04.2010

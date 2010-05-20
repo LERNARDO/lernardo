@@ -15,7 +15,7 @@
 
       <li>
         <div id="htemplates" class="imgbox">
-          <g:link controller="template" action="list">
+          <g:link controller="templateProfile" action="list">
             <img src="${g.resource(dir:'images/iconex', file:'activities.png')}" alt="Aktivitätsvorlagen" />
             <h3><g:message code="imgmenu.template.name"/></h3>
           </g:link>

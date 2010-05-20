@@ -109,7 +109,7 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" controller="template" action="list"><g:message code="cancel"/></g:link>
+        <g:link class="buttonGray" controller="templateProfile" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

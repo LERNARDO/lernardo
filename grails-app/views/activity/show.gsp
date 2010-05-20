@@ -18,7 +18,7 @@
 
         <table class="listing">
           <tr><td class="name">Vorlage:</td><td class="value"><app:getTemplate entity="${activity}">
-            <g:link controller="template" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+            <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
             </app:getTemplate></td></tr>
           <tr><td class="name">Name:</td><td class="value">${activity.profile.fullName}</td></tr>
           <tr><td class="name">Beginn:</td><td class="value"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td></tr>
@@ -78,26 +78,35 @@
             <div class="spacer"></div>
         </app:isEducator>
 
-    <div>
-      <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="show-clients" targetId="clients"/>
-      </jq:jquery>
-      <div id="clients" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="hideform('#clients')">
-          <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
-          <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
+    %{--clients and their status may only be added after the activity has started--}%
+    <g:if test="${new Date() > activity.profile.date}">
+      <div>
+        <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
+        <jq:jquery>
+          <jq:toggle sourceId="show-clients" targetId="clients"/>
+        </jq:jquery>
+        <div id="clients" style="display:none">
+          <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="hideform('#clients')">
+            <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
+            <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
+            <div class="spacer"></div>
+            <g:submitButton name="button" value="${message(code:'add')}"/>
+            <div class="spacer"></div>
+          </g:formRemote>
+        </div>
+        <div id="clients2">
+          <g:render template="clients" model="${activity}"/>
+        </div>
       </div>
-      <div id="clients2">
-        <g:render template="clients" model="${activity}"/>
-      </div>
-    </div>
+    </g:if>
+    <g:else>
+      <p>Betreute können ab Beginn der Aktivität zugeordnet und beurteilt werden!</p>
+    </g:else>
 
       </div>
     </div>
+
+  <g:render template="/comment/box" model="[entity: entity, commented: activity]"/>
+
   </body>
 </html>

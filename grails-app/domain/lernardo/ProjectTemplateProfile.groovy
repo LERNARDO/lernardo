@@ -4,6 +4,8 @@ import de.uenterprise.ep.Profile
 
 class ProjectTemplateProfile extends Profile {
 
+    static hasMany = [comments: Comment]
+
     String description
     String status
 

@@ -14,6 +14,11 @@ class CalendarController {
       redirect action:'show'
     }
 
+    def destination = {
+      Entity entity = Entity.get(params.id)
+      redirect controller: entity.type.supertype.name + 'Profile', action:'show', id: params.id  
+    }
+
     def show = {
       Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
 
@@ -42,30 +47,31 @@ class CalendarController {
 
     // handles event requests
     def events = {
-          Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
-      
-          // create empty list for final results
-          List activityList = []
+        //Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
 
-          if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
-            // get a list of facilities the current entity is working in
-            def links = Link.findAllBySourceAndType(entity, metaDataService.ltWorking)
-            List facilities = links.collect {it.target}
+        // create empty list for final results
+/*        List activityList = []
 
-            // find all activities for the given facility or facilities 
-            facilities.each {
-              List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+        if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
+          // get a list of facilities the current entity is working in
+          def links = Link.findAllBySourceAndType(entity, metaDataService.ltWorking)
+          List facilities = links.collect {it.target}
 
-              tempList.each {bla ->
-                activityList << bla.target
-                }
-            }
+          // find all activities for the given facility or facilities
+          facilities.each {
+            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+
+            tempList.each {bla ->
+              activityList << bla.target
+              }
           }
-          else
-            activityList = Entity.findAllByType(metaDataService.etGroupActivity)
+        }*/
 
-        // convert to fullCalendar events
         def eventList = []
+
+        // get groupactivities
+        List activityList = Entity.findAllByType(metaDataService.etGroupActivity)
+
         activityList.each {
             def dtStart = new DateTime (it.profile.date)
             dtStart = dtStart.plusHours(1)

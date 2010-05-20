@@ -61,31 +61,34 @@
 <div class="boxGray">
   <div class="second">
 
-      <h1>Admin <a href="#" id="admin-toggler">(ein-/ausblenden)</a></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="admin-toggler" targetId="admin-toggled"/>
-      </jq:jquery>
-      <div class="overview" id="admin-toggled">
-        <div class="box">
-          <div class="bold">Betreiber</div>
-          <g:link controller="operatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="operatorProfile" action="list">Alle anzeigen (${allOperators})</g:link></div>
-          <div><g:link controller="operatorProfile" action="create">Neu anlegen</g:link></div>
+      %{--the first panel should only be visible to admins--}%
+      <app:isAdmin>
+        <h1>Admin <a href="#" id="admin-toggler">(ein-/ausblenden)</a></h1>
+        <jq:jquery>
+          <jq:toggle sourceId="admin-toggler" targetId="admin-toggled"/>
+        </jq:jquery>
+        <div class="overview" id="admin-toggled">
+          <div class="box">
+            <div class="bold">Betreiber</div>
+            <g:link controller="operatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+            <div><g:link controller="operatorProfile" action="list">Alle anzeigen (${allOperators})</g:link></div>
+            <div><g:link controller="operatorProfile" action="create">Neu anlegen</g:link></div>
+          </div>
+          <div class="box">
+            <div class="bold">User</div>
+            <g:link controller="userProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+            <div><g:link controller="userProfile" action="list">Alle anzeigen (${allUsers})</g:link></div>
+            <div><g:link controller="userProfile" action="create">Neu anlegen</g:link></div>
+          </div>
+          <div class="box">
+            <div class="bold">Verwaltung</div>
+            <g:link controller="profile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+            <div><g:link controller="profile" action="list" params="[name:entity.name]">Alle anzeigen</g:link></div>
+            %{--<div><g:link controller="userProfile" action="create">Neu anlegen</g:link></div>--}%
+          </div>
         </div>
-        <div class="box">
-          <div class="bold">User</div>
-          <g:link controller="userProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="userProfile" action="list">Alle anzeigen (${allUsers})</g:link></div>
-          <div><g:link controller="userProfile" action="create">Neu anlegen</g:link></div>
-        </div>
-        <div class="box">
-          <div class="bold">Verwaltung</div>
-          <g:link controller="profile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="profile" action="list" params="[name:entity.name]">Alle anzeigen</g:link></div>
-          %{--<div><g:link controller="userProfile" action="create">Neu anlegen</g:link></div>--}%
-        </div>
-      </div>
-      <div class="clear"></div>
+        <div class="clear"></div>
+      </app:isAdmin>
 
       <h1>Personen <a href="#" id="personen-toggler">(ein-/ausblenden)</a></h1>
       <jq:jquery>
@@ -203,9 +206,9 @@
       <div class="overview" id="planung-toggled">
         <div class="box">
           <div class="bold">Aktivitätsvorlagen</div>
-          <g:link controller="template" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="template" action="list">Alle anzeigen (${allActivityTemplates})</g:link></div>
-          <div><g:link controller="template" action="create">Neu anlegen</g:link></div>
+          <g:link controller="templateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <div><g:link controller="templateProfile" action="list">Alle anzeigen (${allActivityTemplates})</g:link></div>
+          <div><g:link controller="templateProfile" action="create">Neu anlegen</g:link></div>
         </div>
         <div class="box">
           <div class="bold">Themenraumaktivitäten</div>
