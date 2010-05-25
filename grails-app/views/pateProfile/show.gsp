@@ -81,7 +81,7 @@
           <td valign="top" class="name">
             <g:message code="pate.profile.languages"/>:
           </td>
-          <td valign="top" class="value"><g:join in="${pate.profile.languages}" delimiter=", "/></td>
+          <td valign="top" class="value">${pate.profile.languages ? g.join(in:pate.profile.languages) : '<div class="italic">Leer</div>'}</td>
         </tr>
 
         <app:isAdmin>

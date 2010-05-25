@@ -90,8 +90,8 @@
 			${fieldValue(bean: educator, field: 'profile.employment') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="middle" class="value-show">
-%{--			${fieldValue(bean: educator, field: 'profile.enlisted') ?: '<div class="italic">Leer</div>'}
---}%            </td>
+			${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">Leer</div>'}
+            </td>
 		</tr>
 
 		<tr>
@@ -116,10 +116,10 @@
 	            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="top" class="value-show">
-%{--			  <g:join in="${educator.profile.inChargeOf}" delimiter=", "/>
---}%            </td>
+			  ${educator.profile.inChargeOf ? g.join(in:educator.profile.inChargeOf) : '<div class="italic">Leer</div>'}
+            </td>
 			<td valign="top" class="value-show">
-			  <g:join in="${educator.profile.languages}" delimiter=", "/>
+			  ${educator.profile.languages ? g.join(in:educator.profile.languages) : '<div class="italic">Leer</div>'}
             </td>
 		</tr>
 
