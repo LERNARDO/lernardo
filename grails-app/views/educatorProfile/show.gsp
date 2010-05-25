@@ -48,20 +48,22 @@
 			<app:showGender gender="${educator.profile.gender}"/>
             </td>
 			<td width="120"  valign="middle"  class="value-show">
-			${fieldValue(bean: educator, field: 'profile.title') ?: '<div class="italic">Leer</div>'}
+		    ${fieldValue(bean: educator, field: 'profile.title') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td width="180"  valign="middle" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.firstName') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: educator, field: 'profile.firstName') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td   width="210"  valign="middle"  class="value-show">
-			<g:link action="show" id="${educator.id}" params="[entity:educator.id]">${educator.profile.lastName}</g:link>
+            ${fieldValue(bean: educator, field: 'profile.lastName') ?: '<div class="italic">Leer</div>'}
+			
 			</td>
 			<td valign="middle" class="value-show">
 			<g:formatDate date="${educator.profile.birthDate}" format="dd. MM. yyyy"/>
             </td>
 		</tr>	
 		</table>
-		
+
+
 		<table>
 		<tr>
             <td class="name-show">
@@ -88,10 +90,10 @@
 			${fieldValue(bean: educator, field: 'profile.employment') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="middle" class="value-show">
-			${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">Leer</div>'}
-            </td>
+%{--			${fieldValue(bean: educator, field: 'profile.enlisted') ?: '<div class="italic">Leer</div>'}
+--}%            </td>
 		</tr>
-		
+
 		<tr>
             <td valign="top" class="name-show">
               <label for="interests">
@@ -111,17 +113,18 @@
 		</tr>
 		<tr>
 			<td height="60" valign="top" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">Leer</div>'}
+	            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="top" class="value-show">
-			  <g:join in="${educator.profile.inChargeOf}" delimiter=", "/>
-            </td>
+%{--			  <g:join in="${educator.profile.inChargeOf}" delimiter=", "/>
+--}%            </td>
 			<td valign="top" class="value-show">
 			  <g:join in="${educator.profile.languages}" delimiter=", "/>
             </td>
 		</tr>
-		</table>
-				
+
+        </table>
+
 		<h4>Derzeitige Adresse</h4>
 		<div class="contact">
 		<table>
@@ -165,7 +168,7 @@
 		</tr>
 		</table>
 		</div>
-		
+
 		<h4>Herkunft</h4>
 		<div class="contact">
 		<table>
@@ -209,7 +212,7 @@
 		
 		</table>
 		</div>		
-		
+
 		<h4>Kontakt im Notfall</h4>
 		<div class="contact">
 		<table>
@@ -250,7 +253,7 @@
             </td>
 		 </tr>		
 		</table>	
-		
+
 		<table>		
 		<tr>
 			<td valign="top" class="name-show">
@@ -274,7 +277,7 @@
 		</tr>
 		</table>
 		</div>
-	
+
 	<div class="email">
 		<table>
 		<tr>
