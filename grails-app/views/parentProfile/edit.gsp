@@ -190,9 +190,6 @@
 		 </table>
 		</div> 
 
-
-
-
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
