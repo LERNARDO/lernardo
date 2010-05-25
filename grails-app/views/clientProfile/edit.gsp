@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Betreuten bearbeiten</title>
@@ -73,7 +74,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
           </tr>
 
@@ -184,7 +185,12 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: client, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${client.profile.languages}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
           </tr>
 
@@ -195,7 +201,12 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.schoolLevel', 'errors')}" size="30" id="schoolLevel" name="schoolLevel" value="${fieldValue(bean: client, field: 'profile.schoolLevel').decodeHTML()}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
           </tr>
 
@@ -316,7 +327,12 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.jobType', 'errors')}" size="30" id="jobType" name="jobType" value="${fieldValue(bean: client, field: 'profile.jobType').decodeHTML()}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
           </tr>
 

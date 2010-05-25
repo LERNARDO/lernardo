@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Pate bearbeiten</title>
@@ -106,7 +107,12 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate.profile.motherTongue}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
           </tr>
 
@@ -117,7 +123,12 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate.profile.languages}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
           </tr>
 

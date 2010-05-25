@@ -8,7 +8,7 @@
       var total = 0;
       var max = form.anwesend.length;
       for (var ida = 0; ida < max; ida++) {
-        if (eval("document.clients.anwesend[" + ida + "].checked") == true) {
+        if (eval("document.clients.anwesend[" + ida + "].checked")) {
           total += 1;
         }
       }
@@ -17,7 +17,7 @@
       total = 0;
       max = form.essen.length;
       for (var idx = 0; idx < max; idx++) {
-        if (eval("document.clients.essen[" + idx + "].checked") == true) {
+        if (eval("document.clients.essen[" + idx + "].checked")) {
           total += 1;
         }
       }

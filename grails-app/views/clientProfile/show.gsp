@@ -121,14 +121,20 @@
           <td valign="top" class="name">
             <g:message code="client.profile.languages"/>:
           </td>
-          <td valign="top" class="value">${client.profile.languages ? g.join(in:client.profile.languages) : '<div class="italic">Leer</div>'}</td>
+          <td valign="top" class="value">
+            <ul>
+              <g:each in="${client.profile.languages}" var="language">
+                <li><app:getLanguages language="${language}"/></li>
+              </g:each>
+            </ul>
+          </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="client.profile.schoolLevel"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.schoolLevel')}</td>
+          <td valign="top" class="value"><app:getSchoolLevel level="${client.profile.schoolLevel}"/></td>
         </tr>
 
         <tr class="prop">
@@ -205,7 +211,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.jobType"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.jobType') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value"><g:if test="${client.profile.jobType}"><app:getJobType job="${client.profile.jobType}"/></g:if></td>
         </tr>
 
         <tr class="prop">

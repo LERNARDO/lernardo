@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Kind bearbeiten</title>
@@ -48,7 +49,7 @@
 		<tr>  <!-- Inhalt-->
 			
 			<td  width="120" height="35" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.gender', 'errors')}">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
 			<td  width="200" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}">
 				<input type="text" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName')}"/>
@@ -83,7 +84,12 @@
 			  <g:checkBox name="job" value="${child?.profile?.job}"/>
             </td>
 			<td  height="35" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
-              <g:select name="jobType" id="jobType" from="${['Jobtyp1','Jobtyp2']}" value="${child.profile.jobType}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value"/>
+              </g:if>
 			</td>
 			<td  valign="middle"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
               <input type="text" id="jobIncome" size="40" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>

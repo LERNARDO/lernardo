@@ -119,7 +119,11 @@
 			  ${educator.profile.inChargeOf ? g.join(in:educator.profile.inChargeOf) : '<div class="italic">Leer</div>'}
             </td>
 			<td valign="top" class="value-show">
-			  ${educator.profile.languages ? g.join(in:educator.profile.languages) : '<div class="italic">Leer</div>'}
+			  <ul>
+                <g:each in="${educator.profile.languages}" var="language">
+                  <li><app:getLanguages language="${language}"/></li>
+                </g:each>
+              </ul>
             </td>
 		</tr>
 

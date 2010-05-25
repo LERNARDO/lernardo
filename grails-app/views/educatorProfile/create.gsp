@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Pädagoge anlegen</title>
@@ -53,7 +54,7 @@
 		</tr>
 		<tr>
 			<td width="90" height="35" valign="middle"  class="value">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
 			<td width="120"  valign="middle"  class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15"  id="title" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
@@ -127,7 +128,12 @@
               <g:select class="liste-280" name="inChargeOf" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" multiple="true" value="${educator?.profile?.inChargeOf}"/>
             </td>
 			<td valign="top" class="value">
-              <g:select  id="liste-240" class="${hasErrors(bean: educator, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${educator?.profile?.languages}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select id="liste-240" name="languages" multipl="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
 		</tr>
 		</table>

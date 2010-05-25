@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Erziehungsberechtigten anlegen</title>
@@ -38,7 +39,7 @@
            </tr>
            <tr>
              <td valign="top" class="value">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:parent,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:parent,field:'profile.gender')}" optionKey="key" optionValue="value"/>
              </td>
              <td valign="top" class="value">
              <g:textField class="${hasErrors(bean:parent,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:parent,field:'profile.firstName').decodeHTML()}"/>
@@ -68,8 +69,13 @@
                <g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}" value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/>
             </td>
              <td valign="top" class="value" colspan="2" >
-               <g:select id="liste-240" class="${hasErrors(bean: parent, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}"/>
-           </td>
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                 <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+               </g:if>
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                 <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+               </g:if>
+             </td>
              <td valign="top" class="value">
                <g:select id="education" name="education" from="${['1. Primaria', '2. Primaria', '3. Primaria', '4. Primaria', '5. Primaria', '6. Primaria', '1. Secundaria', '2. Secundaria', '3. Secundaria', '1. Präparatoria', '2. Präparatoria', '3. Präparatoria']}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>
             </td>

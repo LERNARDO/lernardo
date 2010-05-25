@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private" />
   <title>Lernardo | Partner bearbeiten</title>
@@ -99,6 +100,23 @@
                   </td>
               </tr>
 
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="phone">
+                <g:message code="partner.profile.services"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+              %{--<g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>--}%
+            </td>
+          </tr>
+            
           <tr class="prop">
             <td valign="top" class="name">
               <label for="locale">

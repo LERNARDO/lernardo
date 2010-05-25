@@ -10,7 +10,7 @@ class ChildProfile extends Profile {
     Byte gender
 
     Boolean job
-    String jobType
+    Integer jobType
     Integer jobIncome
     String jobFrequency
 

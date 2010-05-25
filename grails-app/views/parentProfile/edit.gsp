@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Erziehungsberechtigten bearbeiten</title>
@@ -38,7 +39,7 @@
 		  </tr>
 		  <tr>
 			<td valign="top" class="value">
-              <g:select name="gender" from="${[1:'Männlich',2:'Weiblich']}" value="${fieldValue(bean:parent,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:parent,field:'profile.gender')}" optionKey="key" optionValue="value"/>
                         
 			</td>
 			<td valign="top" class="value">
@@ -70,11 +71,15 @@
               <g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}" value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/>
              </td>
 			<td valign="top" class="value" colspan="2" >
-              <g:select  id="liste-240" class="${hasErrors(bean: parent, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${parent.profile.languages}"/>
-       
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
 			</td>
 			<td valign="top" class="value">
-              <g:select id="education" name="education" from="${1..12}" value="
+              %{--<g:select id="education" name="education" from="${1..12}" value="--}%
                  <g:select id="education" name="education" from="${1..12}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>
 
 			</td>
@@ -146,7 +151,7 @@
 
             </td>
 			<td   valign="middle"  class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.currentZip', 'errors')}" size=10 id="currentZip" name="currentZip" value="${fieldValue(bean: parent, field: 'profile.currentZip').decodeHTML()}"/>
+              <g:textField class="${hasErrors(bean: parent, field: 'profile.currentZip', 'errors')}" size="10" id="currentZip" name="currentZip" value="${fieldValue(bean: parent, field: 'profile.currentZip').decodeHTML()}"/>
 
 
 

@@ -148,7 +148,7 @@ class BootStrap {
       prf.lastName = "Szinicz"
       prf.interests = ""
       prf.employment = ""
-      prf.addToLanguages("Deutsch")
+      prf.addToLanguages("1")
     }
 
     entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
@@ -176,7 +176,7 @@ class BootStrap {
       prf.lastName = "Szinicz"
       prf.interests = ""
       prf.employment = ""
-      prf.addToLanguages("Deutsch")
+      prf.addToLanguages("1")
     }
   }
 
@@ -193,7 +193,7 @@ class BootStrap {
       prf.currentZip = "2352"
       prf.currentCity = "Gumpoldskirchen"
       prf.currentStreet = ""
-      prf.addToLanguages("Deutsch")
+      prf.addToLanguages("1")
       prf.birthDate = new Date()
       prf.job = false
       prf.maritalStatus = ""
@@ -218,7 +218,7 @@ class BootStrap {
       prf.originCountry = "Österreich"
       prf.originZip = "2352"
       prf.originCity = "Gumpoldskirchen"
-      prf.addToLanguages("Deutsch")
+      prf.addToLanguages("1")
       prf.birthDate = new Date()
       prf.schoolLevel = 1
       prf.size = 120
@@ -240,7 +240,7 @@ class BootStrap {
       prf.originCountry = "Österreich"
       prf.originZip = "2352"
       prf.originCity = "Gumpoldskirchen"
-      prf.addToLanguages("Deutsch")
+      prf.addToLanguages("1")
       prf.birthDate = new Date()
       prf.schoolLevel = 1
       prf.size = 120
