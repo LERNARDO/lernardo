@@ -3,7 +3,7 @@
   <title>Lernardo | Erziehungsberechtigten anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Erziehungsberechtigten anlegen</h1>
   </div>

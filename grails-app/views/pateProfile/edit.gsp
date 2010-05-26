@@ -19,157 +19,152 @@
 
     <g:form action="update" method="post" id="${pate.id}">
       <div class="dialog">
-        <table>
-          <tbody>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="firstName">
-                <g:message code="pate.profile.firstName"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
-            </td>
-          </tr>
+                <table>
+        <tbody>
+		<tr class="prop">
+			<td valign="top" class="name">
+				  <label for="gender">
+					*Geschlecht*
+				  </label>
+			</td>
+			<td valign="top" class="name">
+				  <label for="title">
+					*Titel*
+				  </label>
+			</td>
 
-          <tr class="prop">
-            <td valign="top" class="name">
+			<td valign="top" class="name">
+				  <label for="firstName">
+					<g:message code="pate.profile.firstName"/>
+				  </label>
+			</td>
+			<td valign="top" class="name">
               <label for="lastName">
                 <g:message code="pate.profile.lastName"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
             <td valign="top" class="name">
-              <label for="email">
-                <g:message code="pate.profile.email"/>
+              <label for="birthDate">
+               *Geburtsdatum*
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
-            </td>
-          </tr>
+		</tr>
+		<tr>
+			<td width="90" height="35" valign="middle"  class="value">
 
-          <tr class="prop">
+            </td>
+			<td width="120"  valign="middle"  class="value">
+
+             </td>
+			<td width="180"  valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25"  id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
+            </td>
+			<td   width="210"  valign="middle"  class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
+            </td>
+		</tr>
+    </table>
+    <table>
+        <tr>
+        <td valign="top" class="name">
+                <label for="zip">
+                  <g:message code="pate.profile.zip"/>
+                </label>
+              </td>
+          <td valign="top" class="name">
+              <label for="city">
+                <g:message code="pate.profile.city"/>
+              </label>
+           </td>
+           <td valign="top" class="name">
+              <label for="street">
+                <g:message code="pate.profile.street"/>
+              </label>
+            </td>
             <td valign="top" class="name">
               <label for="country">
                 <g:message code="pate.profile.country"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
-            </td>
           </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="zip">
-                <g:message code="pate.profile.zip"/>
-              </label>
+          <tr>
+           <td width="90" valign="middle" class="value">
+                <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="city">
-                <g:message code="pate.profile.city"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
+            <td  width="215" valign="middle" class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
             </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="street">
-                <g:message code="pate.profile.street"/>
-              </label>
+            <td width="280" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="40" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
+            <td  height="35" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
             </td>
-          </tr>
+        </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name">
+        <tr class="prop">
+            <td colspan=2 valign="top" class="name">
               <label for="motherTongue">
                 <g:message code="pate.profile.motherTongue"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate.profile.motherTongue}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
+          <td colspan=2 valign="top" class="name">
               <label for="languages">
                 <g:message code="pate.profile.languages"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate.profile.languages}"/>
+
+          </tr>
+
+          <tr  class="prop">
+            <td colspan=2 valign="top" class="value">
+              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate?.profile?.motherTongue}"/>
+            </td>
+            <td colspan=2 valign="top" class="value">
+              <g:select id="liste-240" class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate?.profile?.languages}"/>
             </td>
           </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="locale">
-                <g:message code="languageSelection"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <app:localeSelect name="locale" value="${pate?.user?.locale}"/>
-            </td>
-          </tr>
+		</table>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="showTips">
-                <g:message code="showTips"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:checkBox name="showTips" value="${pate.profile.showTips}"/>
-            </td>
-          </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label>
-                <g:message code="password"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${pate.id}">Passwort ändern</g:link>
-            </td>
-          </tr>
-
-          <app:isAdmin>
-            <tr class="prop">
-              <td valign="top" class="name">
+        <div class="email">
+		<table>
+		<tr>
+			<app:isAdmin>
+			<td width="80"  valign="middle">
                 <label for="enabled">
-                  <g:message code="active" default="Aktiv?"/>
+                  <g:message code="active"/>
                 </label>
+                <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
               </td>
-              <td valign="top" class="value">
-                <g:checkBox name="enabled" value="${pate.user.enabled}"/>
-              </td>
-            </tr>
-
           </app:isAdmin>
+            <td width="150" valign="middle">
+              <label>
+                <g:message code="password"/>:
+              </label>
+              <g:link controller="profile" action="changePassword" id="${pate.id}">Ändern</g:link>
+            </td>
 
-          </tbody>
-        </table>
+			<td width="280"  valign="middle">
+			<label for="email">
+				<g:message code="pate.profile.email"/>
+            </label>:
+            <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
+            </td>
+			<td valign="middle">
+			    <label for="locale">
+                <g:message code="languageSelection"/>
+				</label>:
+				<app:localeSelect class="drop-down-150" name="locale" value="${pate?.user?.locale}"/>
+				</td>
+		</tr>
+		 </table>
+		</div>
+
+          
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

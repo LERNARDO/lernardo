@@ -3,7 +3,7 @@
   <title>Lernardo | Einrichtung anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Einrichtung anlegen</h1>
   </div>
@@ -124,7 +124,7 @@
           </tbody>
         </table>
       </div>
-      <div class="buttons">
+      <div class="green">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
