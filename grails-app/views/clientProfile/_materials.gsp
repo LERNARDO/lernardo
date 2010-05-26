@@ -8,5 +8,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Materialien eingetragen</span>
+  <span class="italic">Keine Materialien erhalten</span>
 </g:else>

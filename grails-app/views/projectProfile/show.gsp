@@ -26,14 +26,14 @@
           <td valign="top" class="name">
             <g:message code="project.profile.startDate"/>:
           </td>
-          <td valign="top" class="value"><g:formatDate date="${project.profile.startDate}" format="dd. MMMM. yyyy"/></td>
+          <td valign="top" class="value"><g:formatDate date="${project.profile.startDate}" format="dd. MMMM yyyy"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="project.profile.endDate"/>:
           </td>
-          <td valign="top" class="value"><g:formatDate date="${project.profile.endDate}" format="dd. MMMM. yyyy"/></td>
+          <td valign="top" class="value"><g:formatDate date="${project.profile.endDate}" format="dd. MMMM yyyy"/></td>
         </tr>
 
         </tbody>
@@ -45,14 +45,14 @@
       <div class="spacer"></div>
     </div>
 
-    <h1>Projekttage</h1>
+    <h5>Projekttage (${projectDays.size()})</h5>
     <g:if test="${projectDays}">     
       <ul>
         <g:each in="${projectDays}" var="projectDay" status="j">
-          <li>
+          <div class="element-box">
             <g:formatDate date="${projectDay.profile.date}" format="dd. MMMM yyyy, HH:mm"/><br/>
 
-            <p class="bold">Einheiten <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-units${j}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einheit hinzufügen" /></a></app:isMeOrAdmin></p>
+            <span class="bold">Einheiten <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-units${j}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einheit hinzufügen" /></a></app:isMeOrAdmin></span>
             <jq:jquery>
               <jq:toggle sourceId="show-units${j}" targetId="units${j}"/>
             </jq:jquery>
@@ -71,7 +71,7 @@
               </app:getProjectDayUnits>
             </div>
 
-            <p class="bold">Pädagogen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-educators${j}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagoge hinzufügen" /></a></app:isMeOrAdmin></p>
+            <span class="bold">Pädagogen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-educators${j}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagoge hinzufügen" /></a></app:isMeOrAdmin></span>
             <jq:jquery>
               <jq:toggle sourceId="show-educators${j}" targetId="educators${j}"/>
             </jq:jquery>
@@ -90,7 +90,7 @@
               </app:getProjectDayEducators>
             </div>
 
-            <p class="bold">Resourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources${j}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressource hinzufügen" /></a></app:isMeOrAdmin></p>
+            <span class="bold">Resourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources${j}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressource hinzufügen" /></a></app:isMeOrAdmin></span>
             <jq:jquery>
               <jq:toggle sourceId="show-resources${j}" targetId="resources${j}"/>
             </jq:jquery>
@@ -109,13 +109,13 @@
               </app:getProjectDayResources>
             </div>
 
-          </li>
+          </div>
         </g:each>
       </ul>
     </g:if>
 
     <div>
-      <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
@@ -133,7 +133,7 @@
     </div>
 
     <div>
-      <h1>Einrichtung <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities?.size() == 0}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></g:if></app:isMeOrAdmin></h1>
+      <h5>Einrichtung <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities?.size() == 0}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></g:if></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>

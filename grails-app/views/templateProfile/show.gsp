@@ -30,7 +30,7 @@
     </app:isEducator>
 
     <div>
-      <h1>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
@@ -48,7 +48,7 @@
     </div>
 
     <div>
-      <h1>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-methods" targetId="methods"/>
       </jq:jquery>

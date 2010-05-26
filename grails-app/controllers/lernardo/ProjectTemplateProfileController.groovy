@@ -134,7 +134,9 @@ class ProjectTemplateProfileController {
       def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
       List projectUnits = links.collect {it.source}
 
-      render template:'projectUnits', model: [projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
+      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+
+      render template:'projectUnits', model: [allGroupActivityTemplats: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
     }
 
     def removeProjectUnit = {
@@ -161,8 +163,8 @@ class ProjectTemplateProfileController {
 
     def addGroupActivityTemplate = {
       Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
-      Entity projectUnit = Entity.get(params.projectUnit)
-      Entity projectTemplate = Entity.get(params.id)
+      Entity projectUnit = Entity.get(params.id)
+      //Entity projectTemplate = Entity.get(params.id)
 
       // check if the groupActivityTemplate isn't already linked to the projectUnit
       def c = Link.createCriteria()
@@ -175,20 +177,24 @@ class ProjectTemplateProfileController {
         // link groupActivityTemplate to projectUnit
         new Link(source: groupActivityTemplate, target: projectUnit, type:metaDataService.ltProjectUnitMember).save()
 
+      // find all groupActivityTemplates linked to the unit
+      def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitMember)
+      List groupActivityTemplates = links.collect {it.source}
+
       // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+     // List projectUnits = links.collect {it.source}
 
       // calculate realDuration
-       Integer calculatedDuration = calculateDuration(projectUnits)
+       //Integer calculatedDuration = calculateDuration(projectUnits)
 
-      render template:'projectUnits', model: [projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+      render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, projectUnit: projectUnit, entity: entityHelperService.loggedIn]
     }
 
     def removeGroupActivityTemplate = {
       Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
-      Entity projectUnit = Entity.get(params.projectUnit)
-      Entity projectTemplate = Entity.get(params.id)
+      Entity projectUnit = Entity.get(params.id)
+      //Entity projectTemplate = Entity.get(params.id)
 
       // delete link
       def c = Link.createCriteria()
@@ -199,14 +205,18 @@ class ProjectTemplateProfileController {
       }
       link.delete()
 
+      // find all groupActivityTemplates linked to the unit
+      def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitMember)
+      List groupActivityTemplates = links.collect {it.source}
+
       // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+      //List projectUnits = links.collect {it.source}
 
       // calculate realDuration
-      Integer calculatedDuration = calculateDuration(projectUnits)
+      //Integer calculatedDuration = calculateDuration(projectUnits)
 
-      render template:'projectUnits', model: [projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+      render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, projectUnit: projectUnit, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     }
 
     Integer calculateDuration(List projectUnits) {

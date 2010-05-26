@@ -163,6 +163,15 @@ a {
 a:hover {
     text-decoration:underline; }
 
+/* used for ajax element headers */
+h5 {
+    color: #444;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0.8em 0 0.3em;
+    padding: 5px;
+    background: #ccc; }
+
 h1 {
     color: #444;
     font-size: 20px;
@@ -202,6 +211,13 @@ ul {
         line-height: 19px; }
 
 /* ----- PRIVATE ----- */
+
+.element-box {
+  border: 1px solid #999;
+  background: #ccc;
+  padding: 5px;
+  margin-top: 5px;
+}
 
 .cal_navigation ul li {
     float: left;

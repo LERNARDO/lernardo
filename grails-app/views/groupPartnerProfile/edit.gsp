@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Sponsorennetzwerk bearbeiten</title>
@@ -51,7 +52,13 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="service" id="service" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="service" id="service" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+              %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>
           </tr>
                         

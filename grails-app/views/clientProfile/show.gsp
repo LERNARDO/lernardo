@@ -263,18 +263,27 @@
     </app:isMeOrAdmin>
 
     <div>
-      <h1>Performance <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Schulleistungungen <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-performances" targetId="performances"/>
       </jq:jquery>
       <div id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="hideform('#performances')">
-          <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="performance" />
-          <g:textField size="30" name="text" value=""/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <table>
+            <tr>
+              <td>Datum:</td>
+              <td><g:datePicker name="date" value="" precision="day"/></td>
+            </tr>
+            <tr>
+              <td>Text:</td>
+              <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
         </g:formRemote>
       </div>
       <div id="performances2">
@@ -283,18 +292,27 @@
     </div>
 
     <div>
-      <h1>Health <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Health hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Gesundheitseinträge <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gesundheitseintrag hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-healths" targetId="healths"/>
       </jq:jquery>
       <div id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="hideform('#healths')">
-          <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="health" />
-          <g:textField size="30" name="text" value=""/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <table>
+            <tr>
+              <td>Datum:</td>
+              <td><g:datePicker name="date" value="" precision="day"/></td>
+            </tr>
+            <tr>
+              <td>Text:</td>
+              <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
         </g:formRemote>
       </div>
       <div id="healths2">
@@ -303,18 +321,27 @@
     </div>
 
     <div>
-      <h1>Material <app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Erhaltene Materialien <app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-materials" targetId="materials"/>
       </jq:jquery>
       <div id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="hideform('#materials')">
-          <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="material" />
-          <g:textField size="30" name="text" value=""/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <table>
+            <tr>
+              <td>Datum:</td>
+              <td><g:datePicker name="date" value="" precision="day"/></td>
+            </tr>
+            <tr>
+              <td>Text:</td>
+              <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
         </g:formRemote>
       </div>
       <div id="materials2">
