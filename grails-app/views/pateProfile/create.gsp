@@ -97,20 +97,6 @@
             </td>
         </tr>
 
-        <tr class="prop">
-
-
-
-
-          </tr>
-
-          <tr  class="prop">
-
-          </tr>
-
-		</table>
-
-
         <div class="email">
 		<table>
 		<tr>

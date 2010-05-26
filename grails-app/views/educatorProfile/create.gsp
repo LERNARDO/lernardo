@@ -258,7 +258,7 @@
 			<td width="105"  valign="middle" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" id="contactZip" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
             </td>
-			<td width=",210"  valign="middle" class="value">
+			<td width="210"  valign="middle" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" id="contactCity" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
             </td>
 			<td valign="middle" class="value">
