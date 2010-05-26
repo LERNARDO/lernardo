@@ -77,6 +77,20 @@
           <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="partner.profile.services"/>:
+          </td>
+          <td valign="top" class="value">
+            <ul>
+              <g:each in="${partner.profile.services}" var="service">
+                <li><app:getPartnerService service="${service}"/></li>
+              </g:each>
+            </ul>
+            %{-- ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}--}%
+          </td>
+        </tr>
+
         <app:isAdmin>
           <tr class="prop">
             <td valign="top" class="name">
@@ -97,7 +111,7 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+%{--    <div>
       <h1>Dienstleistungen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-services"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
         <jq:toggle sourceId="show-services" targetId="services"/>
@@ -113,7 +127,7 @@
       <div id="services2">
         <g:render template="services" model="${partner}"/>
       </div>
-    </div>
+    </div>--}%
 
     <div>
       <h1>Ansprechpersonen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h1>

@@ -47,7 +47,7 @@ class ClientProfile extends Profile {
     //Date joinDate2 - removed on 20.04.2010
     //Date endDate2 - removed on 20.04.2010
     Boolean job // changed on 20.04.2010, before: doesWork
-    String jobType // changed on 20.04.2010, before: work
+    Integer jobType // changed on 20.04.2010, before: work
     Integer jobIncome // changed on 20.04.2010, before: income
     String jobFrequency // added on 20.04.2010
 

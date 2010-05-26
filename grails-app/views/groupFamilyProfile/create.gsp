@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Familie anlegen</title>
@@ -66,6 +67,22 @@
             </td>
           </tr>
 
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="familyProblems">
+                <g:message code="groupFamily.profile.familyProblems"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="familyProblems" id="familyProblems" multiple="true" from="${grailsApplication.config.problems_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="familyProblems" id="familyProblems" multiple="true" from="${grailsApplication.config.problems_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+            </td>
+          </tr>
+          
           <tr class="prop">
             <td valign="top" class="name">
               <label for="familyIncome">

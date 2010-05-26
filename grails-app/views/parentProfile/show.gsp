@@ -59,7 +59,11 @@
              ${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">keine Daten eingetragen</div>'}
 			</td>
 			<td valign="top" class="value-show" colspan="2" >
-           <g:join in="${parent.profile.languages}" delimiter=", "/>
+              <ul>
+                <g:each in="${parent.profile.languages}" var="language">
+                  <li><app:getLanguages language="${language}"/></li>
+                </g:each>
+              </ul>
 			</td>
 			<td valign="top" class="value-show">
              ${fieldValue(bean: parent, field: 'profile.education') ?: '<div class="italic">keine Daten eingetragen</div>'}

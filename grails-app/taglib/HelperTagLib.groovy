@@ -15,6 +15,68 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
+  // receives a nationality ID and renders either the german or spanish word for it
+  def getNationalities = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request)
+    int nationality = attrs.nationality.toInteger()
+    if (locale.toString() == "de")
+      out << grailsApplication.config.nationalities_de[nationality]
+    if (locale.toString() == "es")
+      out << grailsApplication.config.nationalities_es[nationality]
+  }
+
+  // receives a language ID and renders either the german or spanish word for it
+  def getLanguages = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request)
+    int language = attrs.language.toInteger()   
+    if (locale.toString() == "de")
+      out << grailsApplication.config.languages_de[language]
+    if (locale.toString() == "es")
+      out << grailsApplication.config.languages_es[language]
+  }
+
+  // receives a partner service ID and renders either the german or spanish word for it
+  def getPartnerService = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request)
+    int service = attrs.service.toInteger()
+    if (locale.toString() == "de")
+      out << grailsApplication.config.partner_de[service]
+    if (locale.toString() == "es")
+      out << grailsApplication.config.partner_es[service]
+  }
+
+  // receives a school level ID and renders either the german or spanish word for it
+  def getSchoolLevel = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request)
+    int level = attrs.level.toInteger()
+    if (locale.toString() == "de")
+      out << grailsApplication.config.schoolLevels_de[level]
+    if (locale.toString() == "es")
+      out << grailsApplication.config.schoolLevels_es[level]
+  }
+
+  // receives a familyProblem ID and renders either the german or spanish word for it
+  def getFamilyProblem = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request)
+    int problem = attrs.problem.toInteger()
+    if (locale.toString() == "de")
+      out << grailsApplication.config.problems_de[problem]
+    if (locale.toString() == "es")
+      out << grailsApplication.config.problems_es[problem]
+  }
+
+  // receives a jobType ID and renders either the german or spanish word for it
+  def getJobType = {attrs ->
+    //log.info "Job ID: " + attrs.job
+    Locale locale = RequestContextUtils.getLocale(request)
+    //log.info "Locale: " + locale.toString()
+    int job = attrs.job.toInteger()
+    if (locale.toString() == "de")
+      out << grailsApplication.config.jobs_de[job]
+    if (locale.toString() == "es")
+      out << grailsApplication.config.jobs_es[job]
+  }
+
   def getClientName = {attrs ->
     Entity entity = Entity.get(attrs.client)
     out << entity.profile.fullName
@@ -265,9 +327,9 @@ class HelperTagLib {
 
   def showGender = {attrs ->
     if (attrs.gender == 1)
-      out << 'Männlich'
+      out << message(code:'male')
     else
-      out << 'Weiblich'
+      out << message(code:'female')
   }
 
   def getNewInboxMessages = {attrs ->

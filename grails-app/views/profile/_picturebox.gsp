@@ -16,6 +16,6 @@
 <div class="${boxclass}">
   <table width="250" align="center">
     <tr><th class="rang"><h1>${name}</h1></th></tr>
-    <tr><td class="profile-pic"><img src="${g.resource(dir:'images/avatar', file:imageUrl)}" width="150" height="150"/></td></tr>
+    <tr><td class="profile-pic"><img src="${g.resource(dir:'images/avatar', file:imageUrl)}" width="150" height="150" alt="picture"/></td></tr>
   </table>
 </div>

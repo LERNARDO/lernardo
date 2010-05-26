@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Pate anlegen</title>
@@ -17,7 +18,7 @@
     </g:hasErrors>
     <g:form action="save" method="post">
       <div class="dialog">
-        <table>
+        <table border=1>
         <tbody>
 		<tr class="prop">
 			<td valign="top" class="name">
@@ -62,7 +63,7 @@
             </td>
 		</tr>
     </table>
-    <table>
+    <table border=1>
         <tr>
         <td valign="top" class="name">
                 <label for="zip">
@@ -107,20 +108,30 @@
                 <g:message code="pate.profile.motherTongue"/>
               </label>
             </td>
-          <td colspan=2 valign="top" class="name">
+
+            <td colspan=2 valign="top" class="name">
               <label for="languages">
                 <g:message code="pate.profile.languages"/>
               </label>
+            </td>
+
+            <td valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select  name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select  name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
 
           </tr>
 
           <tr  class="prop">
             <td colspan=2 valign="top" class="value">
-              <g:select class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate?.profile?.motherTongue}"/>
+              <g:select id="drop-down-220" class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate?.profile?.motherTongue}"/>
             </td>
             <td colspan=2 valign="top" class="value">
-              <g:select id="liste-240" class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate?.profile?.languages}"/>
+              <g:select id="liste-450" class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate?.profile?.languages}"/>
             </td>
           </tr>
 

@@ -95,9 +95,38 @@ log4j = {
 
 }
 
-nationalities = ['Deutschland', 'England', 'Frankreich', 'Spanien', 'Portugal', 'Österreich', 'Mexiko', 'Italien']
-languages = ['Deutsch', 'Englisch', 'Französisch', 'Spanisch', 'Tsotsil', 'Tseltal', 'Zoque', 'Tojolabal', 'Kanjobal', 'Lacandon', 'Quiche', 'Chol', 'Cakchiquel']
+// custom maps to store data
+
+nationalities_de = [1:'Deutschland',2:'England',3:'Frankreich',4:'Spanien',5:'Portugal',6:'Österreich',7:'Mexiko',8:'Italien']
+nationalities_es = [1:'Alemania',2:'Inglaterra',3:'Francia',4:'España',5:'Portugal',6:'Austria',7:'México',8:'Italia']
+languages_de = [1:'Deutsch',2:'Englisch',3:'Französisch',4:'Spanisch',5:'Mexikanisch',6:'Tsotsil',7:'Tseltal',8:'Zoque',
+                9:'Tojolabal',10:'Kanjobal',11:'Lacandon',12:'Quiche',13:'Chol',14:'Cakchiquel']
+languages_es = [1:'alemán',2:'inglés',3:'francés',4:'español',5:'mexicana',6:'Tsotsil',7:'Tseltal',8:'Zoque',9:'Tojolabal',
+                10:'Kanjobal',11:'Lacandon',12:'Quiche',13:'Chol',14:'Cakchiquel']
+
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
+jobs_de = [1:'Schuhputzer',2:'Kaugummiverkäufer',3:'Kunsthandwerkverkäufer',4:'Bauhilfsarbeiter',5:'Hausarbeit',6:'Kinderaufpassen',
+           7:'Autowäscher',8:'Austeiler (Werbung)',9:'Träger, Verpacker im Supermarkt',10:'Hilfe in Werkstatt',
+           11:'Kunsthandwerker (Textil, Schmuck)',12:'Müllsammler',13:'Autoscheibenputzer',14:'Fahrgeldeinsammler (öfftl. Kleinbusse)']
+jobs_es = [1:'Boleros',2:'Chicleros',3:'Vendedores de artesanías',4:'Ayudantes de albañil (peón)',5:'Trabajo doméstico',6:'Niñeras-os',
+           7:'Lavadores de coches',8:'Repartidores',9:'Cargadores (bolsas del mercado)',10:'Ayudantes de mecánica',
+           11:'Artesanos (bordadores-pulseras-madera-collares)',12:'Pepenadores (recoger basura)',13:'Limpia parabrisas',
+           14:'Cobradores (colectivos)']
+problems_de = [1:'Alkoholismus',2:'Drogen',3:'Vandalismus',4:'Trennung (Mutter-Vater)',5:'Abwesenheit des Vaters / der Mutter',
+               6:'Gewalt (psychologisch, sexuell, symbolisch, physisch (Eltern gegen die Kinder, Partner untereinander)',
+               7:'Arbeitslosigkeit',8:'Armut (Hunger, Krankheiten, Not)',9:'Behinderung/Krankheit eines Familienangehörigen',
+               10:'Ablehnung der Kinder von Vater/Mutter',11:'Waisen']
+problems_es = [1:'Alcoholismo',2:'Drogadicción',3:'Vandalismo',4:'Separación (mamá-papá)',5:'Ausencia del padre-madre',
+               6:'Violencia: psicológica, sexual, simbólica, física (de madre-padre hacía los hij@s, de pareja a pareja)',
+               7:'Desempleo',8:'Pobreza',9:'Discapacidad de un familiar',10:'Rechazo de padres-madres hacia los hijos',11:'Horfandad']
+schoolLevels_de = [1:'1. Kl. Primarschule',2:'2. Kl. Primarschule',3:'3. Kl. Primarschule',4:'4. Kl. Primarschule',5:'5. Kl. Primarschule',
+                   6:'6. Kl. Primarschule',7:'1. Kl. Sekundarschule',8:'2. Kl. Sekundarschule',9:'3. Kl. Sekundarschule',
+                   10:'1. Kl. Preparatoria',11:'2. Kl. Preparatoria',12:'3. Kl. Preparatoria',13:'Studium']
+schoolLevels_es = [1:'1er grado primaria',2:'2do grado primaria',3:'3er grado primaria',4:'4to grado primaria',5:'5to grado primaria',
+                   6:'6to grado primaria',7:'1er grado secundaria',8:'2er grado secundaria',9:'3er grado secundaria',10:'1er grado preparatoria',
+                   11:'2er grado preparatoria',12:'3er grado preparatoria',13:'Estudios']
+partner_de = [1:'Projekte, Arbeit',2:'Dienstleistungen',3:'Finanzierung',4:'Personal (Freiwillige)']
+partner_es = [1:'en colaboración',2:'Prestadores de servicios',3:'Monetarios',4:'Personal (voluntarios)']
 
 quotesMap = [0:'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              1:'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',

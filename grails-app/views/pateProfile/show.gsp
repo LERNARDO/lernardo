@@ -81,7 +81,13 @@
           <td valign="top" class="name">
             <g:message code="pate.profile.languages"/>:
           </td>
-          <td valign="top" class="value"><g:join in="${pate.profile.languages}" delimiter=", "/></td>
+          <td valign="top" class="value">
+            <ul>
+              <g:each in="${pate.profile.languages}" var="language">
+                <li><app:getLanguages language="${language}"/></li>
+              </g:each>
+            </ul>
+          </td>
         </tr>
 
         <app:isAdmin>

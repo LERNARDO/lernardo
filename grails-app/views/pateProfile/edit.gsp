@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo | Pate bearbeiten</title>
@@ -87,14 +88,35 @@
                 <g:message code="pate.profile.country"/>
               </label>
             </td>
+<<<<<<< HEAD
+=======
+            <td valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+            </td>
+>>>>>>> 034191bbb07ddb345330df259e8460a52677e5b1
           </tr>
 
           <tr>
            <td width="90" valign="middle" class="value">
                 <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
             </td>
+<<<<<<< HEAD
             <td  width="215" valign="middle" class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
+=======
+            <td valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+>>>>>>> 034191bbb07ddb345330df259e8460a52677e5b1
             </td>
             <td width="280" valign="middle" class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="40" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>

@@ -44,6 +44,19 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <g:message code="groupFamily.profile.familyProblems"/>:
+          </td>
+          <td valign="top" class="value">
+            <ul>
+              <g:each in="${group.profile.familyProblems}" var="problem">
+                <li><app:getFamilyProblem problem="${problem}"/></li>
+              </g:each>
+            </ul>%{--').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}--}%
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <g:message code="groupFamily.profile.familyIncome"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
