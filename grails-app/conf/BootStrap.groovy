@@ -82,6 +82,7 @@ class BootStrap {
     // system admin users
     entityHelperService.createEntityWithUserAndProfile("lernardoadmin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.systemAdminRole)
+      ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Lernardo"
       prf.lastName = "Admin"
@@ -90,7 +91,7 @@ class BootStrap {
     // admin users
     entityHelperService.createEntityWithUserAndProfile("alexanderzeillinger", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
-      //ent.user.locale = new Locale ("es", "ES")
+      ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Alexander"
       prf.lastName = "Zeillinger"
@@ -98,6 +99,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lkult.at", "Patrizia Rosenkranz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+       ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Patrizia"
       prf.lastName = "Rosenkranz"
@@ -105,6 +107,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lkult.at", "Daniel Szabo") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Daniel"
       prf.lastName = "Szabo"
@@ -112,6 +115,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile("kurtludikovsky", etUser, "kll@lkult.at", "Kurt Ludikovsky") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
       prf.firstName = "Kurt"
       prf.lastName = "Ludikovsky"
@@ -125,6 +129,7 @@ class BootStrap {
     // admin users
     entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.locale = new Locale ("es", "ES")
       EducatorProfile prf = (EducatorProfile)ent.profile
       prf.gender = 1
       prf.title = "DI"
@@ -153,6 +158,7 @@ class BootStrap {
 
     entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
+      ent.user.locale = new Locale ("es", "ES")
       EducatorProfile prf = (EducatorProfile)ent.profile
       prf.gender = 1
       prf.title = "Ing. Dkfm."
@@ -185,6 +191,7 @@ class BootStrap {
     EntityType etParent = metaDataService.etParent
 
     entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@lernardo.at", "Sabine Zeillinger") {Entity ent ->
+      ent.user.locale = new Locale ("de", "DE")
       ParentProfile prf = (ParentProfile)ent.profile
       prf.firstName = "Sabine"
       prf.lastName = "Zeillinger"
@@ -206,6 +213,7 @@ class BootStrap {
     EntityType etClient = metaDataService.etClient
 
     entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+      ent.user.locale = new Locale ("de", "DE")
       ClientProfile prf = (ClientProfile)ent.profile
       prf.firstName = "Kira"
       prf.lastName = "Zeillinger"
@@ -228,6 +236,7 @@ class BootStrap {
     }
 
     entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
+      ent.user.locale = new Locale ("de", "DE")
       ClientProfile prf = (ClientProfile)ent.profile
       prf.firstName = "Keano"
       prf.lastName = "Zeillinger"
@@ -255,6 +264,7 @@ class BootStrap {
     EntityType etChild = metaDataService.etChild
 
     entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@lernardo.at", "Karin Zeillinger") {Entity ent ->
+      ent.user.locale = new Locale ("de", "DE")
       ChildProfile prf = (ChildProfile)ent.profile
       prf.firstName = "Karin"
       prf.lastName = "Zeillinger"
@@ -269,6 +279,7 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
+      ent.user.locale = new Locale ("de", "DE")
       ent.user.addToAuthorities(metaDataService.adminRole)
       OperatorProfile prf = (OperatorProfile)ent.profile
       prf.zip = ""
@@ -284,6 +295,7 @@ class BootStrap {
     EntityType etPartner = metaDataService.etPartner
 
     entityHelperService.createEntityWithUserAndProfile ("raiffeisenbank", etPartner, "raika@sueninos.org", "Raiffeisen Bank") {Entity ent->
+      ent.user.locale = new Locale ("de", "DE")
       PartnerProfile prf = (PartnerProfile)ent.profile
       prf.zip = ""
       prf.city = ""
@@ -300,6 +312,7 @@ class BootStrap {
     EntityType etFacility = metaDataService.etFacility
 
     entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
+      ent.user.locale = new Locale ("de", "DE")
       FacilityProfile prf = (FacilityProfile)ent.profile
       prf.country = "Mexiko"
       prf.zip = "29247"

@@ -117,25 +117,25 @@
           </div>
         </div>
 
-%{--        <ub:meOrAdmin entityName="${entity.name}">
+        <ub:meOrAdmin entityName="${entity.name}">
           <app:isEducator entity="${entity}">
           <div class="profile-group"><div class="second">Pädagogik</div></div>
           <div class="profile-box">
             <div class="second">
               <ul>
-                --}%%{--<app:isEducator entity="${entity}">--}%%{--
+                <app:isEducator entity="${entity}">
                   <li class="profile-template"><g:link controller="template" action="index">Aktivitätsvorlagen verwalten</g:link></li>
-                --}%%{--</app:isEducator>--}%%{--
-                --}%%{--<app:isFacility entity="${entity}">
+                </app:isEducator>
+                <app:isFacility entity="${entity}">
                   <li class="profile-activities"><g:link controller="profile" action="attendance" id="${entity.id}">Anwesenheits-/Essenslisten</g:link></li>
-                </app:isFacility>--}%%{--
+                </app:isFacility>
                   <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsvorlagengruppen verwalten</g:link></li>
                   <li class="profile-template"><g:link controller="groupActivityProfile" action="index">Aktivitätsgruppen verwalten</g:link></li>
               </ul>
             </div>
           </div>
           </app:isEducator>
-        </ub:meOrAdmin>--}%
+        </ub:meOrAdmin>
 
         <div class="profile-group"><div class="second">Administration</div></div>
         <div class="profile-box">
@@ -143,10 +143,10 @@
             <ul>
               <app:isAdmin>
                 <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation erstellen</g:link></li>
-                %{--<li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile verwalten</g:link></li>--}%
+                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile verwalten</g:link></li>
               %{--<li><g:link controller="adm" action="index">Verwaltung</g:link></li>--}%
               </app:isAdmin>
-%{--              <app:isSysAdmin>
+              <app:isSysAdmin>
                 <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber verwalten</g:link></li>
                 <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User verwalten</g:link></li>
               </app:isSysAdmin>
@@ -167,7 +167,7 @@
               </app:isOperator>
               <app:isEducator entity="${entity}">
                 <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>
-              </app:isEducator>--}%
+              </app:isEducator>
             </ul>
           </div>
         </div>

@@ -16,7 +16,10 @@ class CalendarController {
 
     def destination = {
       Entity entity = Entity.get(params.id)
-      redirect controller: entity.type.supertype.name + 'Profile', action:'show', id: params.id  
+      if (entity.type.supertype.name == 'activity')
+        redirect controller: entity.type.supertype.name, action:'show', id: params.id
+      else
+        redirect controller: entity.type.supertype.name + 'Profile', action:'show', id: params.id
     }
 
     def show = {
