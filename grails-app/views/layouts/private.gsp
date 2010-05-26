@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div id="banner">
+    <div id="banner-private">
       <g:render template="/templates/imagenav"/>
     </div>
 

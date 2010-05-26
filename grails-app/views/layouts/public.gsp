@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="public">
-      <div id="doc4" class="yui-t6">
+      <div id="doc5" class="yui-t3">
 
         <div id="hd">
           <g:render template="/templates/header" />
@@ -23,17 +23,6 @@
         <div id="banner"></div>
 
         <div id="bd">
-
-          <div id="yui-main">
-            <div id="main" class="yui-b">
-              <g:if test="${flash.message}">
-                <div id="flash-msg">
-                  ${flash.message}
-                </div>
-              </g:if>
-              <g:layoutBody />
-            </div>
-          </div>
 
           <div id="sidebar" class="yui-b">
             <app:isNotLoggedIn>
@@ -70,7 +59,7 @@
               </div><!-- sidebox -->
             </app:isNotLoggedIn>
 
-            <div class="sidebox">
+            %{--<div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader"><g:message code="sideboxheader.about"/></div>
                 <div class="sideboxcontent">
@@ -88,7 +77,7 @@
                   </ul>
                 </div>
               </div><!-- innersidebox -->
-            </div><!-- sidebox -->
+            </div><!-- sidebox -->--}%
 
             <div class="sidebox">
               <div class="innersidebox">
@@ -111,6 +100,17 @@
             </div><!-- sidebox -->
 
           </div><!-- yui-b -->
+
+          <div id="yui-main">
+            <div id="main" class="yui-b">
+              <g:if test="${flash.message}">
+                <div id="flash-msg">
+                  ${flash.message}
+                </div>
+              </g:if>
+              <g:layoutBody />
+            </div>
+          </div>
 
         </div><!-- bd -->
 
