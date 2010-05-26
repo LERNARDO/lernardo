@@ -1,5 +1,7 @@
 package lernardo
 
+import de.uenterprise.ep.Link
+
 class MethodController {
   def entityHelperService
     
@@ -27,7 +29,7 @@ class MethodController {
         }
     }
 
-    def delete = {
+    def del = {
         def methodInstance = Method.get( params.id )
         if(methodInstance) {
             try {

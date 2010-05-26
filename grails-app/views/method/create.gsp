@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: methodInstance, field: 'name', 'errors')}" id="name" name="name" value="${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}"/>
+              <g:textField size="40" class="${hasErrors(bean: methodInstance, field: 'name', 'errors')}" id="name" name="name" value="${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -40,7 +40,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: methodInstance, field: 'description', 'errors')}" id="description" name="description" value="${fieldValue(bean: methodInstance, field: 'description').decodeHTML()}"/>
+              <g:textArea rows="5" cols="50" class="${hasErrors(bean: methodInstance, field: 'description', 'errors')}" id="description" name="description" value="${fieldValue(bean: methodInstance, field: 'description').decodeHTML()}"/>
             </td>
           </tr>
 

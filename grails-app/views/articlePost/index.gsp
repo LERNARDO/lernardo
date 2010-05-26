@@ -4,7 +4,7 @@
 </head>
 
 <body>
-  <h1>${listTitle ?: articleList ? articleList[0].category.description : "Keine Artikel gefunden" }</h1>
+  %{--<h1>${listTitle ?: articleList ? articleList[0].category.description : "Keine Artikel gefunden" }</h1>--}%
   <div id="article-container">
  
     <g:if test="${currentEntity}">
