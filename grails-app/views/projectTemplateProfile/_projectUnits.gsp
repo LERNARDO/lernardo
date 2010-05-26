@@ -3,7 +3,7 @@
   <span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration ?: 0} min
 
   <g:each in="${projectUnits}" var="projectUnit" status="i">
-    <div class="element-box">${projectUnit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeProjectUnit" update="projectunits2" id="${projectTemplate.id}" params="[projectUnit: projectUnit.id]"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Projekteinheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin>
+    <div class="element-box">${projectUnit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeProjectUnit" update="projectunits2" id="${projectTemplate.id}" params="[projectUnit: projectUnit.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Projekteinheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin>
 
       <p class="bold">Aktivitätsvorlagengruppen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-groups${i}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlagengruppe hinzufügen" /></a></app:isMeOrAdmin></p>
       <jq:jquery>

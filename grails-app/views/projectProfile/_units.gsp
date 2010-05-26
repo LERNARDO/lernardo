@@ -2,7 +2,7 @@
   <ul>
     <g:each in="${units}" var="unit" status="i">
       <li>
-        ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2${j}" id="${projectDay.id}" params="[unit: unit.id]"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
+        ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2${j}" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
 
         <p class="bold">Aktivitäten</p>
         <app:getProjectUnitActivities projectUnit="${unit}">
