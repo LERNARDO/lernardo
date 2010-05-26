@@ -18,21 +18,10 @@
     </g:hasErrors>
     <g:form action="save" method="post">
       <div class="dialog">
-        <table border=1>
+        <table>
         <tbody>
 		<tr class="prop">
-			<td valign="top" class="name">
-				  <label for="gender">
-					*Geschlecht*
-				  </label>
-			</td>
-			<td valign="top" class="name">
-				  <label for="title">
-					*Titel*
-				  </label>
-			</td>
-
-			<td valign="top" class="name">
+			<td height="22" valign="top" class="name">
 				  <label for="firstName">
 					<g:message code="pate.profile.firstName"/>
 				  </label>
@@ -43,27 +32,33 @@
               </label>
             </td>
             <td valign="top" class="name">
-              <label for="birthDate">
-               *Geburtsdatum*
+              <label for="motherTongue">
+                <g:message code="pate.profile.motherTongue"/>
+              </label>
+            </td>
+
+            <td valign="top" class="name">
+              <label for="languages">
+                <g:message code="pate.profile.languages"/>
               </label>
             </td>
 		</tr>
 		<tr>
-			<td width="90" height="35" valign="middle"  class="value">
-
-            </td>
-			<td width="120"  valign="middle"  class="value">
-
-             </td>
-			<td width="180"  valign="middle" class="value">
+			<td width="180"  valign="top" class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25"  id="firstName" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
             </td>
-			<td   width="210"  valign="middle"  class="value">
+			<td width="210" valign="top"  class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
+            </td>
+            <td width="210" valign="top" class="value">
+              <g:select class="drop-down-205 ${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate?.profile?.motherTongue}"/>
+            </td>
+            <td width="210" valign="top" class="value">
+              <g:select class="drop-down-200 ${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate?.profile?.languages}"/>
             </td>
 		</tr>
     </table>
-    <table border=1>
+    <table>
         <tr>
         <td valign="top" class="name">
                 <label for="zip">
@@ -94,45 +89,23 @@
             <td  width="215" valign="middle" class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
             </td>
-            <td width="280" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="40" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
+            <td width="295" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
-            <td  height="35" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
+            <td width="210" height="35" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="29" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
             </td>
         </tr>
 
         <tr class="prop">
-            <td colspan=2 valign="top" class="name">
-              <label for="motherTongue">
-                <g:message code="pate.profile.motherTongue"/>
-              </label>
-            </td>
 
-            <td colspan=2 valign="top" class="name">
-              <label for="languages">
-                <g:message code="pate.profile.languages"/>
-              </label>
-            </td>
 
-            <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
-                <g:select  name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
-                <g:select  name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
-              </g:if>
-            </td>
+
 
           </tr>
 
           <tr  class="prop">
-            <td colspan=2 valign="top" class="value">
-              <g:select id="drop-down-220" class="${hasErrors(bean: pate, field: 'profile.motherTongue', 'errors')}" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate?.profile?.motherTongue}"/>
-            </td>
-            <td colspan=2 valign="top" class="value">
-              <g:select id="liste-450" class="${hasErrors(bean: pate, field: 'profile.languages', 'errors')}" multiple="true" name="languages" from="${grailsApplication.config.languages}" value="${pate?.profile?.languages}"/>
-            </td>
+
           </tr>
 
 		</table>
