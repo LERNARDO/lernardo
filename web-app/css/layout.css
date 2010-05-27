@@ -1305,6 +1305,15 @@ table#msg-composer td {
 	margin-bottom: 6px;
 	height: 23px;
 }
+.email2 {
+	border: solid 2px #009900;
+	padding: 8px 0px 4px 10px ;
+	background-color:#CCC;
+	-moz-border-radius:15px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	height: 47px;
+}
 
 .buttonGreen {
     border: 1px solid #666;
@@ -1444,4 +1453,6 @@ h4 {
 #drop-down-220 {
 	width: 220px;
 	}
+	
+
 
