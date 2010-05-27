@@ -11,11 +11,13 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
     <g:hasErrors bean="${pate}">
       <div class="errors">
         <g:renderErrors bean="${pate}" as="list"/>
       </div>
     </g:hasErrors>
+    
     <g:form action="save" method="post">
       <div class="dialog">
         <table>
@@ -58,10 +60,10 @@
             </td>
             <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
-                <g:select class="drop-down-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
-                <g:select class="drop-down-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
             </td>
           </tr>
@@ -105,6 +107,7 @@
               <g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="29" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
             </td>
           </tr>
+        </table>
 
           <div class="email">
             <table>
@@ -131,7 +134,7 @@
             </table>
           </div>
 
-        </table>
+
 
         <div class="buttons">
           <g:submitButton name="submitButton" value="${message(code:'save')}"/>
@@ -139,7 +142,7 @@
           <div class="spacer"></div>
         </div>
 
-      </div>
+      </div> <!-- div close dialog -->
     </g:form>
   </div>
 </div>

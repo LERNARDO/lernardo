@@ -3,7 +3,7 @@
   <title>Lernardo | Profil - ${facility.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${facility.profile.fullName}</h1>
   </div>
@@ -11,74 +11,66 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
-        <tbody>
-
+      <table>
         <tr class="prop">
-          <td valign="top" class="name">
+          <td valign="top" class="name-show">
             <g:message code="facility.profile.name"/>:
           </td>
-          <td valign="top" class="value"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
+          <td colspan="3" valign="top" class="name-show">
             <g:message code="facility.profile.description"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="facility.profile.country"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="290" valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
+          <td colspan="3" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="facility.profile.zip"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="facility.profile.city"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
+          <td valign="top" class="name-show">
             <g:message code="facility.profile.street"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="facility.profile.email"/>:
+          <td valign="top" class="name-show">
+            <g:message code="facility.profile.zip"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: facility, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="name-show">
+            <g:message code="facility.profile.city"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="facility.profile.country"/>:
+          </td>
         </tr>
+        <tr class="prop">
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+      </table>
 
-        <app:isAdmin>
+      <div class="email">
+       <table>
           <tr class="prop">
-            <td valign="top" class="name">
+            <app:isAdmin>
+            <td width="60" valign="top">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            <td width="50" valign="top" ><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            </app:isAdmin>
+            <td width="60" valign="top" >
+              <g:message code="facility.profile.email"/>:
+            </td>
+            <td valign="top" >${fieldValue(bean: facility, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
-        </app:isAdmin>
+        </table>
+      </div> <!-- div email close -->
 
-        </tbody>
-      </table>
     </div>
 
     <app:isMeOrAdmin entity="${facility}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
