@@ -20,7 +20,96 @@
 
     <g:form action="update" method="post" id="${pate.id}">
       <div class="dialog">
+              <table>
+          <tr class="prop">
+            <td height="22" valign="top" class="name">
+              <label for="firstName">
+                <g:message code="pate.profile.firstName"/>
+              </label>
+            </td>
+            <td valign="top" class="name">
+              <label for="lastName">
+                <g:message code="pate.profile.lastName"/>
+              </label>
+            </td>
+            <td valign="top" class="name">
+              <label for="motherTongue">
+                <g:message code="pate.profile.motherTongue"/>
+              </label>
+            </td>
+            <td valign="top" class="name">
+              <label for="languages">
+                <g:message code="pate.profile.languages"/>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td width="180" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
+            </td>
+            <td width="210" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
+            </td>
+            <td width="210" valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+            </td>
+            <td width="210" valign="top" class="value">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+            </td>
+          </tr>
+        </table>
 
+        <table>
+          <tr>
+            <td valign="top" class="name">
+              <label for="zip">
+                <g:message code="pate.profile.zip"/>
+              </label>
+            </td>
+            <td valign="top" class="name">
+              <label for="city">
+                <g:message code="pate.profile.city"/>
+              </label>
+            </td>
+            <td valign="top" class="name">
+              <label for="street">
+                <g:message code="pate.profile.street"/>
+              </label>
+            </td>
+            <td valign="top" class="name">
+              <label for="country">
+                <g:message code="pate.profile.country"/>
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td width="90" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
+            </td>
+            <td width="215" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
+            </td>
+            <td width="295" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
+            </td>
+            <td width="210" height="35" valign="middle" class="value">
+              <g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="29" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
+            </td>
+          </tr>
+        </table>
+
+        <!--
                 <table>
         <tbody>
 		<tr class="prop">
@@ -88,8 +177,6 @@
                 <g:message code="pate.profile.country"/>
               </label>
             </td>
-<<<<<<< HEAD
-=======
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
                 <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
@@ -98,7 +185,6 @@
                 <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
             </td>
->>>>>>> 034191bbb07ddb345330df259e8460a52677e5b1
           </tr>
 
           <tr>
@@ -150,7 +236,7 @@
           </tr>
 
 		</table>
-
+       -->
 
         <div class="email">
 		<table>

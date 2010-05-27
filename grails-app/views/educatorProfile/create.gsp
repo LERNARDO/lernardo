@@ -20,11 +20,8 @@
 
     <g:form action="save" method="post">
       <div class="dialog">
-        
-		
-		<table>
-        <tbody>
-		<tr class="prop">
+ 		<table>
+ 		  <tr class="prop">
 			<td valign="top" class="name">
 				  <label for="gender">
 					<g:message code="educator.profile.gender"/>
@@ -51,8 +48,8 @@
                 <g:message code="educator.profile.birthDate"/>
               </label>
             </td>
-		</tr>
-		<tr>
+		  </tr>
+		  <tr>
 			<td width="90" height="35" valign="middle"  class="value">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
@@ -68,7 +65,7 @@
 			<td valign="middle" class="value">
               <g:datePicker name="birthDate" value="${educator?.profile?.birthDate}" precision="day"/>
             </td>
-		</tr>	
+		  </tr>	
 		</table>
 		
 		<table>

@@ -3,7 +3,7 @@
   <title>Lernardo | Profil - ${facility.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${facility.profile.fullName}</h1>
   </div>
@@ -11,19 +11,19 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table >
+      <table>
         <tr class="prop">
           <td valign="top" class="name-show">
             <g:message code="facility.profile.name"/>:
           </td>
-          <td valign="top" class="name-show">
+          <td colspan="3" valign="top" class="name-show">
             <g:message code="facility.profile.description"/>:
           </td>
         </tr>
 
         <tr class="prop">
           <td width="290" valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
-          <td valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td colspan="3" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -44,7 +44,7 @@
           <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
       </table>
 
@@ -69,7 +69,7 @@
 
     <app:isMeOrAdmin entity="${facility}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
