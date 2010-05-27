@@ -32,7 +32,7 @@
       </li>
 
       <li>
-        <div id="projects" class="imgbox">
+        <div id="hprojects" class="imgbox">
           <g:link controller="projectProfile" action="list">
             <img src="${g.resource(dir:'images/iconex', file:'projects.png')}" alt="Projekte" />
             <h3><g:message code="imgmenu.projects.name"/></h3>

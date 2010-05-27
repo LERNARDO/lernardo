@@ -80,6 +80,26 @@
       </div>
     </g:if>
 
+    <g:if test="${theme.profile.type == 'Subthema'}">
+      <div>
+        <h5>Projekte <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projects"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekte hinzufügen" /></a></app:isMeOrAdmin></h5>
+        <jq:jquery>
+          <jq:toggle sourceId="show-projects" targetId="projects"/>
+        </jq:jquery>
+        <div id="projects" style="display:none">
+          <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="hideform('#projects')">
+            <g:select name="project" from="${allProjects}" optionKey="id" optionValue="profile"/>
+            <div class="spacer"></div>
+            <g:submitButton name="button" value="${message(code:'add')}"/>
+            <div class="spacer"></div>
+          </g:formRemote>
+        </div>
+        <div id="projects2">
+          <g:render template="projects" model="[projects: projects, theme: theme]"/>
+        </div>
+      </div>
+    </g:if>
+
   </div>
 </div>
 </body>

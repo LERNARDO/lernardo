@@ -44,10 +44,18 @@ class ThemeProfileController {
             // find all subthemes of this theme
             def links = Link.findAllByTargetAndType(theme, metaDataService.ltSubTheme)
             List subthemes = links.collect {it.source}
-            [theme: theme,
+
+            def allProjects = Entity.findAllByType(metaDataService.etProject)
+            // find all projects linked to this theme
+            links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
+            List projects = links.collect {it.source}
+
+          [theme: theme,
              entity: entityHelperService.loggedIn,
              allSubthemes: allSubthemes,
-             subthemes: subthemes]
+             subthemes: subthemes,
+             allProjects: allProjects,
+             projects: projects]
         }
     }
 
@@ -122,7 +130,7 @@ class ThemeProfileController {
     def addSubTheme = {
       Entity theme = Entity.get(params.id)
 
-      // check if the child isn't already linked to the pate
+      // check if the subtheme isn't already linked to the theme
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.subtheme))
@@ -155,5 +163,43 @@ class ThemeProfileController {
       List subthemes = links.collect {it.source}
 
       render template:'subthemes', model: [subthemes: subthemes, theme: theme, entity: entityHelperService.loggedIn]
+    }
+
+    def addProject = {
+      Entity theme = Entity.get(params.id)
+
+      // check if the project isn't already linked to the theme
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.project))
+        eq('target', theme)
+        eq('type', metaDataService.ltGroupMember)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.project), target: theme, type:metaDataService.ltGroupMember).save()
+
+      // find all project of this theme
+      def links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
+      List projects = links.collect {it.source}
+
+      render template:'projects', model: [projects: projects, theme: theme, entity: entityHelperService.loggedIn]
+    }
+
+    def removeProject = {
+      Entity theme = Entity.get(params.id)
+
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.project))
+        eq('target', theme)
+        eq('type', metaDataService.ltGroupMember)
+      }
+      link.delete()
+
+      // find all projects of this theme
+      def links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
+      List projects = links.collect {it.source}
+
+      render template:'projects', model: [projects: projects, theme: theme, entity: entityHelperService.loggedIn]
     }
 }
