@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Aktivitätsvorlage</title>
+  <title>Aktivitätsvorlage</title>
   <meta name="layout" content="private"/>
   <g:javascript library="jquery"/>
 </head>

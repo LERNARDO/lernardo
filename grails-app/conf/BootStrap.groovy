@@ -80,11 +80,11 @@ class BootStrap {
     EntityType etUser = metaDataService.etUser
 
     // system admin users
-    entityHelperService.createEntityWithUserAndProfile("lernardoadmin", etUser, "admin@lernardo.at", "Lernardo Admin") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("sueninosadmin", etUser, "admin@sueninos.org", "Sueninos Admin") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.systemAdminRole)
       ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
-      prf.firstName = "Lernardo"
+      prf.firstName = "Sueninos"
       prf.lastName = "Admin"
     }
 
@@ -97,7 +97,7 @@ class BootStrap {
       prf.lastName = "Zeillinger"
     }
 
-    entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lkult.at", "Patrizia Rosenkranz") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
       ent.user.addToAuthorities(metaDataService.adminRole)
        ent.user.locale = new Locale ("de", "DE")
       UserProfile prf = (UserProfile)ent.profile
@@ -190,7 +190,7 @@ class BootStrap {
     log.debug ("==> creating default parents")
     EntityType etParent = metaDataService.etParent
 
-    entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@lernardo.at", "Sabine Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@sueninos.org", "Sabine Zeillinger") {Entity ent ->
       ent.user.locale = new Locale ("de", "DE")
       ParentProfile prf = (ParentProfile)ent.profile
       prf.firstName = "Sabine"
@@ -212,7 +212,7 @@ class BootStrap {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
 
-    entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@lernardo.at", "Kira Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@sueninos.org", "Kira Zeillinger") {Entity ent ->
       ent.user.locale = new Locale ("de", "DE")
       ClientProfile prf = (ClientProfile)ent.profile
       prf.firstName = "Kira"
@@ -235,7 +235,7 @@ class BootStrap {
       prf.familyStatus = ""
     }
 
-    entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@lernardo.at", "Keano Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@sueninos.org", "Keano Zeillinger") {Entity ent ->
       ent.user.locale = new Locale ("de", "DE")
       ClientProfile prf = (ClientProfile)ent.profile
       prf.firstName = "Keano"
@@ -263,7 +263,7 @@ class BootStrap {
     log.debug ("==> creating default children")
     EntityType etChild = metaDataService.etChild
 
-    entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@lernardo.at", "Karin Zeillinger") {Entity ent ->
+    entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@sueninos.org", "Karin Zeillinger") {Entity ent ->
       ent.user.locale = new Locale ("de", "DE")
       ChildProfile prf = (ChildProfile)ent.profile
       prf.firstName = "Karin"

@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Colonias</title>
+  <title>Colonias</title>
 </head>
 <body>
 <div class="headerBlue">

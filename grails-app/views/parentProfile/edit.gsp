@@ -1,7 +1,7 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Erziehungsberechtigten bearbeiten</title>
+  <title>Erziehungsberechtigten bearbeiten</title>
 </head>
 <body>
 <div class="headerGreen">

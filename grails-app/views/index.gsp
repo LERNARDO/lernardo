@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo</title>
+  <title>Sueninos</title>
   <meta name="layout" content="public" />
 </head>
 

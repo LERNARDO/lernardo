@@ -1,7 +1,7 @@
 <%@ page import="lernardo.PublicationType" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Dokument anlegen</title>
+  <title>Dokument anlegen</title>
 </head>
 <body>
 <div class="headerBlue">

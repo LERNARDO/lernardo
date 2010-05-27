@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Liste aller Profile</title>
+  <title>Liste aller Profile</title>
   <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
   <script type="text/javascript">
   $(document).ready(function()

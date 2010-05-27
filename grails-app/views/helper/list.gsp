@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Hilfethemen</title>
+  <title>Hilfethemen</title>
   <meta name="layout" content="private"/>
 </head>
 <body>

@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Profil - ${pate.profile.fullName}</title>
+  <title>Profil - ${pate.profile.fullName}</title>
 </head>
 <body>
 <div class="headerBlue">

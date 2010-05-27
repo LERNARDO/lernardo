@@ -2,7 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
     <meta name="layout" content="print" />
-    <title>Lernardo | Anwesenheits- und Essensliste</title>
+    <title>Anwesenheits- und Essensliste</title>
     <style>
       #container {
         border: 1px solid #ccc;

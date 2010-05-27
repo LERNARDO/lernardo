@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Artikel erstellen</title>
+  <title>Artikel erstellen</title>
   <meta name="layout" content="public"/>
 </head>
 

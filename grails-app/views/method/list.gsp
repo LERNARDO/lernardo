@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Bewertungsmethoden</title>
+  <title>Bewertungsmethoden</title>
 </head>
 <body>
 <div class="headerBlue">

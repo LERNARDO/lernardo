@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Profilbild hochgeladen</title>
+  <title>Profilbild hochgeladen</title>
   <meta name="layout" content="private" />
 </head>
 <body>

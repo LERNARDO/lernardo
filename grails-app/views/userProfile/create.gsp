@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | User anlegen</title>
+  <title>User anlegen</title>
 </head>
 <body>
 <div class="headerGreen">

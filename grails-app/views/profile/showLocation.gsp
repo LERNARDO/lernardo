@@ -20,7 +20,7 @@
     }
     //]]>
   </script>
-  <title>Lernardo | Standort</title>
+  <title>Standort</title>
   <meta name="layout" content="private"/>
 </head>
 <body>

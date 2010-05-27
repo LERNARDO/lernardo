@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Nachricht</title>
+  <title>Nachricht</title>
   <meta name="layout" content="private"/>
 </head>
 <body>

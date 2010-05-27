@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Betreutengruppe bearbeiten</title>
+  <title>Betreutengruppe bearbeiten</title>
 </head>
 <body>
 <div class="headerBlue">

@@ -1,7 +1,7 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private" />
-  <title>Lernardo | Partner bearbeiten</title>
+  <title>Partner bearbeiten</title>
 </head>
 <body>
   <div class="headerBlue">

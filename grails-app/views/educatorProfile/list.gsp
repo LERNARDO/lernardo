@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Pädagogen</title>
+  <title>Pädagogen</title>
 </head>
 <body>
 <div class="headerGreen">

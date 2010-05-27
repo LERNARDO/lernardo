@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Kalender</title>
+  <title>Kalender</title>
   <meta name="layout" content="private"/>
   <g:javascript library="jquery" />
   <g:javascript src="jquery/fullcalendar.js"/>

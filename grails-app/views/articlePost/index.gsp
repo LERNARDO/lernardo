@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | News</title>
+  <title>Neuigkeiten</title>
   <meta name="layout" content="public" />
 </head>
 

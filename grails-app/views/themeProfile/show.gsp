@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Profil - ${theme.profile.fullName}</title>
+  <title>Profil - ${theme.profile.fullName}</title>
 </head>
 <body>
 <div class="headerBlue">

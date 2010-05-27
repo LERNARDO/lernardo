@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Passwort vergessen?</title>
+  <title>Passwort vergessen?</title>
   <meta name="layout" content="public"/>
 </head>
 

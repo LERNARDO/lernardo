@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Colonia anlegen</title>
+  <title>Colonia anlegen</title>
 </head>
 <body>
 <div class="headerBlue">

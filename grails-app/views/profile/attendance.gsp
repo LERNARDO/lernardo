@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Anwesenheits- und Essensliste</title>
+  <title>Anwesenheits- und Essensliste</title>
   <script type="text/javascript">
     function anyCheck(form) {
       var total = 0;

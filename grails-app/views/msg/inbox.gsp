@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Posteingang</title>
+  <title>Posteingang</title>
   <meta name="layout" content="private"/>
 </head>
 <body>

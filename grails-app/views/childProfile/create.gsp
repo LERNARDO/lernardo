@@ -1,7 +1,7 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Kind anlegen</title>
+  <title>Kind anlegen</title>
 </head>
 <body>
 

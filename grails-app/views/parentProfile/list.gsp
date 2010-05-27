@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Erziehungsberechtigte</title>
+  <title>Erziehungsberechtigte</title>
 </head>
 <body>
 <div class="headerGreen">

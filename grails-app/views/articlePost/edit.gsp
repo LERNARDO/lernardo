@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Artikel bearbeiten</title>
+  <title>Artikel bearbeiten</title>
   <meta name="layout" content="public" />
 </head>
 

@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private" />
-  <title>Lernardo | Themenraumaktivitäten anlegen</title>
+  <title>Themenraumaktivitäten anlegen</title>
 </head>
 <body>
   <div class="headerBlue">

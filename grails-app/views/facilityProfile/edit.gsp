@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Einrichtung bearbeiten</title>
+  <title>Einrichtung bearbeiten</title>
 </head>
 <body>
 <div class="headerGreen">

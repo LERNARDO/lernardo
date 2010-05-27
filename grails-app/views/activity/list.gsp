@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Lernardo | Themenraumaktivitäten</title>
+    <title>Themenraumaktivitäten</title>
   </head>
   <body>
 

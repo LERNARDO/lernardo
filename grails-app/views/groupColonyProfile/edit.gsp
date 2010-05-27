@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Colonia bearbeiten</title>
+  <title>Colonia bearbeiten</title>
 </head>
 <body>
 <div class="headerBlue">

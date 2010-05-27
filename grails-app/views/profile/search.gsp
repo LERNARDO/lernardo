@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Profilsuche</title>
+  <title>Profilsuche</title>
   <g:javascript library="jquery"/>
 </head>
 <body>

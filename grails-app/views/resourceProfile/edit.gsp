@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Ressource bearbeiten</title>
+  <title>Ressource bearbeiten</title>
 </head>
 <body>
 <div class="headerBlue">

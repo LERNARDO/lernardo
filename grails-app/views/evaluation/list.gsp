@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Beurteilungen</title>
+  <title>Beurteilungen</title>
   <meta name="layout" content="private"/>
 </head>
 <body>

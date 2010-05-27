@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Sponsorennetzwerke</title>
+  <title>Sponsorennetzwerke</title>
 </head>
 <body>
 <div class="headerBlue">

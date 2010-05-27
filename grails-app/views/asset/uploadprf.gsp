@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Profilbild hochladen</title>
+  <title>Profilbild hochladen</title>
   <meta name="layout" content="private" />
 </head>
 <body>

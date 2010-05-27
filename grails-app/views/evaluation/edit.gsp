@@ -1,7 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Beurteilung bearbeiten</title>
+  <title>Beurteilung bearbeiten</title>
 </head>
 <body>
 <div class="headerBlue">

@@ -1,7 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Passwort ändern</title>
+  <title>Passwort ändern</title>
 </head>
 
 <body>

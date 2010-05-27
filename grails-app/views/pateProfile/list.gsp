@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Paten</title>
+  <title>Paten</title>
 </head>
 <body>
 <div class="headerGreen">

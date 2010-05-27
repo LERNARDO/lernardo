@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Netzwerk</title>
+  <title>Netzwerk</title>
   <meta name="layout" content="private"/>
 </head>
 

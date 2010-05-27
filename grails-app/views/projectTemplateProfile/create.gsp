@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Projektvorlage anlegen</title>
+  <title>Projektvorlage anlegen</title>
 </head>
 <body>
 <div class="headerBlue">

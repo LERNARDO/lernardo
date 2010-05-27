@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Betreiber bearbeiten</title>
+  <title>Betreiber bearbeiten</title>
 </head>
 <body>
 <div class="headerBlue">

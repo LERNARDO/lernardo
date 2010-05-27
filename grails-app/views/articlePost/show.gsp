@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Artikelansicht</title>
+  <title>Artikelansicht</title>
   <meta name="layout" content="public" />
 </head>
 

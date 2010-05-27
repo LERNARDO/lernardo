@@ -1,5 +1,5 @@
 <head>
-  <title>Lernardo | Einrichtungskalender</title>
+  <title>Einrichtungskalender</title>
   <meta name="layout" content="private-cal" />
   <g:javascript library="jquery" />
   <g:javascript src="jquery/fullcalendar.js"/>

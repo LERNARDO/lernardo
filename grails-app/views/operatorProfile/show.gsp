@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Profil - ${operator.profile.fullName}</title>
+  <title>Profil - ${operator.profile.fullName}</title>
   <g:javascript library="jquery"/>
 </head>
 <body>

@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Betreiber anlegen</title>
+  <title>Betreiber anlegen</title>
 </head>
 <body>
 <div class="headerGreen">

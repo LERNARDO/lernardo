@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo | Lernardo Aktivitätsvorlagen</title>
+  <title>Lernardo Aktivitätsvorlagen</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 </g:if>
 <div class="headerBlue">
   <div class="second">
-    <h1>Lernardo Aktivitätsvorlagen</h1>
+    <h1>Aktivitätsvorlagen</h1>
   </div>
 </div>
 <div class="boxGray">

@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private-cal"/>
-  <title>Lernardo | Übersicht</title>
+  <title>Übersicht</title>
 </head>
 <body>
 
