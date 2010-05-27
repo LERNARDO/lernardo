@@ -75,13 +75,13 @@
       </div>
     </app:isMeOrAdmin>
 
-%{--    <div>
-      <h1>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h1>
+    <div>
+      <h5>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
       <div id="educators" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator']" update="educators2" before="hideform('#educators')">
+        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="hideform('#educators')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="Hinzufügen"/>
@@ -94,22 +94,22 @@
     </div>
 
     <div>
-      <h1>Betreute <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreuten hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Betreutengruppen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-clientgroups"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreutengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
-        <jq:toggle sourceId="show-clients" targetId="clients"/>
+        <jq:toggle sourceId="show-clientgroups" targetId="clientgroups"/>
       </jq:jquery>
-      <div id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClient']" update="clients2" before="hideform('#clients')">
-          <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
+      <div id="clientgroups" style="display:none">
+        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClientGroup', id: facility.id]" update="clientgroups2" before="hideform('#clientgroups')">
+          <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="Hinzufügen"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="clients2">
-        <g:render template="clients" model="${clients}"/>
+      <div id="clientgroups2">
+        <g:render template="clientgroups" model="${clientgroups}"/>
       </div>
-    </div>--}%
+    </div>
 
     <div>
       <h5>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>

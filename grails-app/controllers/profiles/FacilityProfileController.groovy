@@ -43,23 +43,22 @@ class FacilityProfileController {
           def links = Link.findAllByTargetAndType(entity, metaDataService.ltResource)
           List resources = links.collect {it.source}
 
-          //def allEducators = Entity.findAllByType(metaDataService.etEducator)
+          def allEducators = Entity.findAllByType(metaDataService.etEducator)
           // find all educators of this facility
-          //def links = Link.findAllByTargetAndType(entity, metaDataService.ltWorking)
-          //List educators = links.collect {it.source}
+          links = Link.findAllByTargetAndType(entity, metaDataService.ltWorking)
+          List educators = links.collect {it.source}
 
-          //def allClients = Entity.findAllByType(metaDataService.etClient)
-
-          // find all facilities of this operator
-          //links = Link.findAllByTargetAndType(entity, metaDataService.ltClientship)
-          //List clients = links.collect {it.source}
+          def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
+          // find all clientgroups of this facility
+          links = Link.findAllByTargetAndType(entity, metaDataService.ltClientship)
+          List clientGroups = links.collect {it.source}
 
           return [facility: facility,
                   entity: entity,
-/*                allEducators: allEducators,
+                  allEducators: allEducators,
                   educators: educators,
-                  allClients: allClients,
-                  clients: clients,*/
+                  allClientGroups: allClientGroups,
+                  clientGroups: clientGroups,
                   allResources: allResources,
                   resources: resources]
         }
@@ -100,77 +99,81 @@ class FacilityProfileController {
       render template:'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
     }
 
-    /*    def addEducator = {
+    def addEducator = {
+      Entity facility = Entity.get(params.id)
+
       // check if the educator isn't already linked to the facility
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.educator))
-        eq('target', entityHelperService.loggedIn)
+        eq('target', facility)
         eq('type', metaDataService.ltWorking)
       }
       if (!link)
-        new Link(source:Entity.get(params.educator), target: entityHelperService.loggedIn, type:metaDataService.ltWorking).save()
+        new Link(source:Entity.get(params.educator), target: facility, type:metaDataService.ltWorking).save()
+
       // find all educators of this facility
-      List educators = []
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-      links.each {
-          educators << it.source
-      }
-      render template:'educators', model: [educators: educators, entity: entityHelperService.loggedIn]
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+      List educators = links.collect {it.source}
+
+      render template:'educators', model: [educators: educators, facility: facility, entity: entityHelperService.loggedIn]
     }
 
     def removeEducator = {
+      Entity facility = Entity.get(params.id)
+
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.id))
-        eq('target', entityHelperService.loggedIn)
+        eq('source', Entity.get(params.educator))
+        eq('target', facility)
         eq('type', metaDataService.ltWorking)
       }
       link.delete()
+
       // find all educators of this facility
-      List educators = []
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
-      links.each {
-          educators << it.source
-      }
-      render template:'educators', model: [educators: educators, entity: entityHelperService.loggedIn]
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+      List educators = links.collect {it.source}
+
+      render template:'educators', model: [educators: educators, facility: facility, entity: entityHelperService.loggedIn]
     }
   
-    def addClient = {
+    def addClientGroup = {
+      Entity facility = Entity.get(params.id)
+
       // check if the client isn't already linked to the facility
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.client))
-        eq('target', entityHelperService.loggedIn)
+        eq('source', Entity.get(params.clientgroup))
+        eq('target', facility)
         eq('type', metaDataService.ltClientship)
       }
       if (!link)
-        new Link(source:Entity.get(params.client), target: entityHelperService.loggedIn, type:metaDataService.ltClientship).save()
-      // find all clients of this facility
-      List clients = []
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltClientship)
-      links.each {
-          clients << it.source
-      }
-      render template:'clients', model: [clients: clients, entity: entityHelperService.loggedIn]
+        new Link(source:Entity.get(params.clientgroup), target: facility, type:metaDataService.ltClientship).save()
+
+      // find all clientgroups of this facility
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
+      List clientgroups = links.collect {it.source}
+
+      render template:'clientgroups', model: [clientgroups: clientgroups, facility: facility, entity: entityHelperService.loggedIn]
     }
 
-    def removeClient = {
+    def removeClientGroup = {
+      Entity facility = Entity.get(params.id)
+
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.id))
-        eq('target', entityHelperService.loggedIn)
+        eq('source', Entity.get(params.clientgroup))
+        eq('target', facility)
         eq('type', metaDataService.ltClientship)
       }
       link.delete()
-      // find all clients of this facility
-      List clients = []
-      def links = Link.findAllByTargetAndType(entityHelperService.loggedIn, metaDataService.ltClientship)
-      links.each {
-          clients << it.source
-      }
-      render template:'clients', model: [clients: clients, entity: entityHelperService.loggedIn]
-    }*/
+
+      // find all clientgroups of this facility
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
+      List clientgroups = links.collect {it.source}
+
+      render template:'clientgroups', model: [clientgroups: clientgroups, facility: facility, entity: entityHelperService.loggedIn]
+    }
 
     def del = {
         Entity facility = Entity.get(params.id)
