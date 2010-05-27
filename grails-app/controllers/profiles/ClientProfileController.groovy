@@ -9,6 +9,7 @@ import org.grails.plugins.springsecurity.service.AuthenticateService
 import lernardo.Status
 import standard.MetaDataService
 import standard.FunctionService
+import lernardo.CDate
 
 class ClientProfileController {
     MetaDataService metaDataService
@@ -153,5 +154,18 @@ class ClientProfileController {
       Entity client = Entity.get(params.id)
       client.profile.removeFromStatus(Status.get(params.material))
       render template:'materials', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def addDate = {
+      CDate date = new CDate(params)
+      Entity client = Entity.get(params.id)
+      client.profile.addToDates(date)
+      render template:'dates', model: [client: client, entity: entityHelperService.loggedIn]
+    }
+
+    def removeDate = {
+      Entity client = Entity.get(params.id)
+      client.profile.removeFromDates(CDate.get(params.date))
+      render template:'dates', model: [client: client, entity: entityHelperService.loggedIn]
     }
 }
