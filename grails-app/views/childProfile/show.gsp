@@ -77,6 +77,7 @@
     <app:isMeOrAdmin entity="${child}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${child?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
