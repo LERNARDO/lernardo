@@ -150,6 +150,10 @@
       </div>
     </div>
 
+    <g:remoteLink update="execute-result" class="buttonGray" action="execute" id="${project.id}" before="if(!confirm('Es werden jetzt alle Aktivitäten instanziert. Bist du sicher?')) return false">Projekt einplanen/aktualisieren</g:remoteLink>
+    <div class="clear"></div>
+    <div id="execute-result"></div>
+
   </div>
 </div>
 

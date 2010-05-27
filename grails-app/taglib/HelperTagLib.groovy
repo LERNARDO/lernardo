@@ -154,13 +154,13 @@ class HelperTagLib {
       out << '<span class="italic">Keine Resourcen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
-  // finds all activities linked to a projectUnit
-  def getProjectUnitActivities = {attrs, body ->
+  // finds all activity groups linked to a projectUnit
+  def getProjectUnitActivityGroups = {attrs, body ->
     def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnit)
     if (link)
-      link.each {out << body(activities: it.source)}
+      link.each {out << body(activityGroups: it.source)}
     else
-      out << '<span class="italic">Keine Aktivitäten gefunden</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">Keine Aktivitätsvorlagengruppen gefunden</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   // finds all parents linked to a projectUnit

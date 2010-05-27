@@ -136,7 +136,7 @@ class ProjectTemplateProfileController {
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
-      render template:'projectUnits', model: [allGroupActivityTemplats: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
+      render template:'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
     }
 
     def removeProjectUnit = {
@@ -188,7 +188,7 @@ class ProjectTemplateProfileController {
       // calculate realDuration
        //Integer calculatedDuration = calculateDuration(projectUnits)
 
-      render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, projectUnit: projectUnit, entity: entityHelperService.loggedIn]
+      render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
     }
 
     def removeGroupActivityTemplate = {
@@ -216,7 +216,7 @@ class ProjectTemplateProfileController {
       // calculate realDuration
       //Integer calculatedDuration = calculateDuration(projectUnits)
 
-      render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, projectUnit: projectUnit, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+      render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
     }
 
     Integer calculateDuration(List projectUnits) {

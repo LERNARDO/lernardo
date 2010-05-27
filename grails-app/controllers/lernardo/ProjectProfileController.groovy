@@ -265,7 +265,11 @@ class ProjectProfileController {
       def results = Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember)
       List groups = results.collect {it.source}
 
-      List activitytemplates = []
+      // link each group to the project unit
+      groups.each {
+        new Link(source: it, target: projectUnit, type: metaDataService.ltProjectUnit).save()
+      }
+/*      List activitytemplates = []
 
       // then find all activity templates linked to the groups
       groups.each {
@@ -274,17 +278,18 @@ class ProjectProfileController {
         results.each { bla ->
           activitytemplates << bla.source
         }
-      }
+      }*/
 
+      // DO THIS AT A LATER POINT WITH THE SUBMIT BUTTON
       // create an activity instance of each activity template
-      activitytemplates.each {
+     /* activitytemplates.each {
         EntityType etActivity = metaDataService.etActivity
         Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.date = new Date()
           ent.profile.fullName = it.profile.fullName
           ent.profile.duration = it.profile.duration
-        }
+        }*/
         /*if (df.format(currentDate) == 'Montag') {
           ent.profile.date.setHours(params.int('mondayStartHour'))
           ent.profile.date.setMinutes(params.int('mondayStartMinute'))
@@ -292,8 +297,8 @@ class ProjectProfileController {
         }*/
 
         // link it to the project unit
-        new Link(source: activity, target: projectUnit, type: metaDataService.ltProjectUnit).save()
-      }
+        //new Link(source: activity, target: projectUnit, type: metaDataService.ltProjectUnit).save()
+      //}
 
       // previous stuff
       // check if the unit isn't already linked to the projectDay
@@ -310,7 +315,7 @@ class ProjectProfileController {
       def links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayUnit)
       List units = links.collect {it.source}
 
-      render template:'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn]
+      render template:'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j]
 
     }
 
@@ -336,11 +341,11 @@ class ProjectProfileController {
       }
 
       // delete all links to the activities and the activities themselves
-      activities.each {
+      /*activities.each {
         links = Link.findAllBySourceOrTarget(it, it)
         links.each {it.delete()}
         it.delete()
-      }
+      }*/
              
       // delete projectUnit
       Entity.get(params.unit).delete()
@@ -349,7 +354,7 @@ class ProjectProfileController {
       links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayUnit)
       List units = links.collect {it.source}
 
-      render template:'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn]
+      render template:'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j]
     }
 
     def addGroupActivityTemplate = {
@@ -531,7 +536,7 @@ class ProjectProfileController {
       def links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayResource)
       List resources = links.collect {it.source}
 
-      render template:'resources', model: [resources: resources, projectDay: projectDay, entity: entityHelperService.loggedIn]
+      render template:'resources', model: [resources: resources, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j]
     }
 
     def addEducator = {
@@ -569,7 +574,7 @@ class ProjectProfileController {
       def links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayEducator)
       List educators = links.collect {it.source}
 
-      render template:'educators', model: [educators: educators, projectDay: projectDay, entity: entityHelperService.loggedIn]
+      render template:'educators', model: [educators: educators, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j]
     }
 
     def addParent = {
@@ -607,7 +612,7 @@ class ProjectProfileController {
       def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitParent)
       List parents = links.collect {it.source}
 
-      render template:'parents', model: [parents: parents, unit: projectUnit, entity: entityHelperService.loggedIn]
+      render template:'parents', model: [parents: parents, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i, j:params.j]
     }
 
     def addPartner = {
@@ -645,7 +650,82 @@ class ProjectProfileController {
       def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitPartner)
       List partners = links.collect {it.source}
 
-      render template:'partners', model: [partners: partners, unit: projectUnit, entity: entityHelperService.loggedIn]
+      render template:'partners', model: [partners: partners, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i, j:params.j]
+    }
+
+    // this action takesa a project and creates all activities
+    def execute = {
+      Entity project = Entity.get(params.id)
+
+      // make sure the project has clients and a facility
+      /*def links = Link.findAllByTargetAndType(project,metaDataService.ltGroupMemberFacility)
+      def links2 = Link.findAllByTargetAndType(project,metaDataService.ltGroupMemberClient)
+      if (!links || links2) {
+        redirect action: 'show', id: project.id
+        return
+      }*/
+
+      // make sure each unit in each project day has activity template groups added, otherwise there
+      // would be nothing to instantiate
+
+      // 1. find all projectDays belonging to the project
+      def links = Link.findAllByTargetAndType(project,metaDataService.ltProjectMember)
+      List projectDays = links.collect {it.source}
+
+      // 2. loop through each projectDay and find all projectUnits
+
+      List projectUnits = []
+      projectDays.each {
+        links = Link.findAllByTargetAndType(it,metaDataService.ltProjectDayUnit)
+        if (links.size() == 0) {
+          render "<span class='red'>Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten</span>"
+
+          // figure out why this won't "return"
+          return
+        }
+        links.each {
+          projectUnits << it.source 
+        }
+      }
+
+      // 3. loop through each projectUnit and find all activity template groups
+      List groups = []
+      projectUnits.each {
+        links = Link.findAllByTargetAndType(it,metaDataService.ltProjectUnit)
+        links.each {
+          groups << it.source
+        }
+      }
+
+      // 4. find all activity templates of each group
+      List templates = []
+      groups.each {
+        links = Link.findAllByTargetAndType(it,metaDataService.ltGroupMember)
+        links.each {
+          templates << it.source
+        }
+      }
+
+      // 5. instantiate all activities from the list of templates
+      Date currentDate = new Date()
+      Calendar calendar = new GregorianCalendar()
+      calendar.setTime( currentDate )
+      templates.each {
+
+        EntityType etActivity = metaDataService.etActivity
+        Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
+          ent.profile.date = calendar.getTime()
+          ent.profile.fullName = it.profile.fullName
+          ent.profile.duration = it.profile.duration
+        }
+        render "Activity instantiated at: " + calendar.getTime()
+        // get new time for next activity
+        calendar.add(Calendar.MINUTE, activity.profile.duration)
+      }
+      
+      render "<p>Ergebnis - Projekttage: " + projectDays.size() + " Projekteinheiten: " + projectUnits.size() + " Aktivitätsvorlagengruppen: " + groups.size() + " Aktivitätsvorlagen: " + templates.size() + "</p>"
+      
     }
 }
 

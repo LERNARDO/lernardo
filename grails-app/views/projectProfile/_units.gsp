@@ -2,16 +2,16 @@
   <ul>
     <g:each in="${units}" var="unit" status="i">
       <li>
-        ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2${j}" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
+        ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2${j}" id="${projectDay.id}" params="[unit: unit.id, j: j]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
 
-        <p class="bold">Aktivitäten</p>
-        <app:getProjectUnitActivities projectUnit="${unit}">
+        <p class="bold">Aktivitätsvorlagengruppen</p>
+        <app:getProjectUnitActivityGroups projectUnit="${unit}">
           <ul>
-            <g:each in="${activities}" var="activity">
-              <li><g:link controller="activity" action="show" id="${activity.id}" params="[entity:activity.id]">${activity.profile.fullName}</g:link></li>
+            <g:each in="${activityGroups}" var="activityGroup">
+              <li><g:link controller="groupActivityTemplateProfile" action="show" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile.fullName}</g:link></li>
             </g:each>
           </ul>
-        </app:getProjectUnitActivities>
+        </app:getProjectUnitActivityGroups>
 
         <p class="bold">Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-parents${j}${i}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></p>
         <jq:jquery>
