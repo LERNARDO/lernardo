@@ -23,19 +23,27 @@
 
 body {
     font-family: verdana,arial,helvetica,sans-serif;
-    font-size: 12px; }
+    font-size: 12px;
+    background: #ece9d8; }
 
-/* comment in to change width */
+/* used for private layout */
 #doc4 {
-    width: 1145px; }
+    width: 1145px;
+    background: #fff;}
+
+/* used for public layout */
+#doc5 {
+    width: 1024px;
+    background: #fff;
+}
 
 #hd {
-    height: 110px;
-    background: url(../images/head2.jpg) #F0F0F0 no-repeat 0 0;
+    height: 70px;
+    background: url(../images/sueninos-logo.png) #fff no-repeat 15px 15px;
     position: relative;
-    -moz-box-shadow: #888 0px -4px 8px;
+    /*-moz-box-shadow: #888 0px -4px 8px;
     border-right: 1px solid #aaa;
-    border-left: 1px solid #aaa; }
+    border-left: 1px solid #aaa;*/ }
     #hd #info {
         text-align: right;
         float: right;
@@ -48,24 +56,25 @@ body {
         float: left; }
 
 #bd {
-    background: #f0f0f0;
+    background: #fff;
     padding-top: 10px;
-    -moz-box-shadow: #888 0px 4px 8px;
+    /*-moz-box-shadow: #888 0px 4px 8px;
     border-bottom: 1px solid #aaa;
     border-right: 1px solid #aaa;
-    border-left: 1px solid #aaa; }
+    border-left: 1px solid #aaa;*/ }
 
 #ft {
-    background: #e1e1e1; /*#d9d9d9;*/
+    font-size: 10px;
+    background: #e2dbc8; /*#d9d9d9;*/
     clear: both;
     text-align: center;
     padding: 10px;
-    border-top: 1px solid #fff;
+    /*border-top: 1px solid #fff;
     border-right: 1px solid #aaa;
     border-left: 1px solid #aaa;
-    -moz-box-shadow: #888 0px 4px 8px;}
+    -moz-box-shadow: #888 0px 4px 8px;*/}
     #ft a {
-        color: #444; }
+        color: #e83d06; }
 
 .strong {
     font-weight: bold; }
@@ -108,10 +117,11 @@ body {
 /* ----- NAVIGATION -----*/
 
 #nav {
-    float: right;
+    float: left;
     position: absolute;
-    bottom: 10px;
-    right: 0; }
+    bottom: 0;
+    left: 200px;
+    font-family: Arial, 'Times New Roman', serif;}
     #nav ul {
         list-style: none;
         padding: 0; }
@@ -120,21 +130,25 @@ body {
         float: left;
         margin: 0; }
         #nav li a {
-            background: #FFF url(../images/menu-li.jpg) no-repeat scroll 0 0;
-            color: #FFF;
+            /*background: #FFF url(../images/menu-li.jpg) no-repeat scroll 0 0;*/
+            color: #535353;
+            font-size: 16px;
             display: block;
             float: left;
-            height: 40px;
-            line-height: 40px;
+            height: 25px;
+            line-height: 25px;
             text-align: center;
             text-decoration: none;
-            text-transform: uppercase;
+            text-transform: none;
+            font-weight: bold;
             width: 131px; }
         #nav li a:hover {
             color: #FFF;
-            background: #FFF url(../images/menu-li.jpg) no-repeat scroll 0 -40px;
+            background: #FF9400;
             text-decoration: none !important;
-            -moz-box-shadow: #000 0px 0 4px; }
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            /*-moz-box-shadow: #000 0px 0 4px;*/ }
 
 /* ----- FONTS ----- */
 
@@ -158,10 +172,19 @@ body {
     padding-bottom: 5px; }
 
 a {
-    color:#46597B;
+    color:#f45f00;
     text-decoration: none; }
 a:hover {
     text-decoration:underline; }
+
+/* used for ajax element headers */
+h5 {
+    color: #444;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0.8em 0 0.3em;
+    padding: 5px;
+    background: #ccc; }
 
 h1 {
     color: #444;
@@ -203,6 +226,13 @@ ul {
 
 /* ----- PRIVATE ----- */
 
+.element-box {
+  border: 1px solid #999;
+  background: #ccc;
+  padding: 5px;
+  margin-top: 5px;
+}
+
 .cal_navigation ul li {
     float: left;
     list-style-type: none;
@@ -234,7 +264,7 @@ ul {
         font-weight: bold; }
 
 #private {
-    background:url(../images/background_private.jpg) repeat-x; }
+    /*background:url(../images/background_private.jpg) repeat-x;*/ }
 /*
 #private a {
     color: #3b59bb;
@@ -243,7 +273,13 @@ ul {
 
 #banner {
     height: 115px;
-    background:url(../images/head-bg.jpg) no-repeat; }
+}
+
+#banner-private {
+    height: 100px;
+    background: -moz-linear-gradient(90deg,#f9ba12,#ff9200) #567ec6; /*url(../images/head-bg.jpg) no-repeat; }*/
+    margin: 0 15px;
+}
 
 #profile-pic {
     text-align: center; }
@@ -551,16 +587,16 @@ ul {
 /* ----- PUBLIC ----- */
 
 #public {
-    background: url(../images/background_public.jpg) repeat-x; }
+    /*background: url(../images/background_public.jpg) repeat-x;*/ }
     #public #banner {
-        height: 336px;
-        width: 974px;
-        background: url(../images/banner.jpg);}
+        height: 149px;
+        /*width: 974px;*/
+        background: #fff url(../images/sueninos-banner.png) 15px 0 no-repeat;}
     #public #sidebar {
-        margin: 20px 0; }
+        margin: 0 0; }
     #public #main {
         /*margin: 20px 0;*/
-        padding: 0 20px;
+        padding: 0 15px 0 0;
         border-right: 1px solid #CCC;
         line-height: 18px;
         /*width: 655px;*/ }
@@ -585,14 +621,14 @@ ul {
         width: 150px; }
 
 .sidebox {
-    -moz-border-radius: 5px;
-    background: #708dc2;
-    border: 1px solid #607cb1;
-    margin: 0 15px 20px 0;
-    color: #fff;
-    -moz-box-shadow: #555 3px 3px 4px; }
+    /*-moz-border-radius: 5px;*/
+    background: #f0f0f0;
+    /*border: 1px solid #7b7b7b;*/
+    margin: 0 0 10px 15px;
+    color: #7b7b7b;
+    /*-moz-box-shadow: #555 3px 3px 4px;*/ }
     .sidebox a {
-        color: #fff; }
+        color: #fa7d00; }
     .sidebox a:hover {
         text-align: left;
         overflow: visible;
@@ -601,20 +637,20 @@ ul {
 
 .innersidebox {
     /*background: url(../images/gradient_1.png) repeat-x bottom;*/
-    background: -moz-linear-gradient(-90deg,#708dc2,#405a90);
-    border: 1px solid #708dc2;
-    -moz-border-radius: 5px;
+    background: #f0f0f0;
+    /*border: 1px solid #708dc2;*/
+    /*-moz-border-radius: 5px;*/
     padding: 5px 10px 10px 10px; }
 
 .sideboxheader {
-    border-bottom: 1px solid #8faad9;
+    border-bottom: 1px solid #7b7b7b;
     font-weight: bold;
     padding-bottom: 3px;
     text-align: center; }
 
 .sideboxcontent {
     padding-top: 10px;
-    border-top: 1px solid #5c77a6; }
+    /*border-top: 1px solid #5c77a6;*/ }
     .sideboxcontent ul {
         margin-left: 10px; }
         .sideboxcontent ul li {
@@ -780,11 +816,11 @@ table #profile-list tr {
 #article-container { }
     #article-container h1 {
         color: #7e7e7e;
-        font-size: 22px;
+        font-size: 20px;
         margin-bottom: 30px; }
     #article-container .createArticle {
         font-weight: bold;
-        color: #a00; }
+        /*color: #a00;*/ }
     #article-container .item {
         margin: 0 0 10px 0;
         border-bottom: 1px dashed #ccc;
@@ -801,13 +837,13 @@ table #profile-list tr {
             #article-container .item .header a {
                 color: #444; }
                 #article-container .item .header a:hover {
-                    color: #339;
+                    color: #fa7d00;
                     text-decoration: none; }
         #article-container .item .header .adminlink {
             font-weight: bold;
-            color: #44a; }
+            color: #fa7d00; }
         #article-container .item a {
-            color: #46597B; /*#7e7e7e;*/
+            /*color: #46597B;*/ /*#7e7e7e;*/
             text-decoration: none; }
             #article-container .item a:hover {
                 text-decoration: underline; }

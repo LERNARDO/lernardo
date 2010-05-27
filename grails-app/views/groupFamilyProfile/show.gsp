@@ -81,7 +81,7 @@
     </app:isMeOrAdmin>
 
     <div>
-      <h1>Erziehungsberechtigte <app:isMeOrAdmin entity="${group}"><a href="#" id="show-parents"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Erziehungsberechtigte <app:isMeOrAdmin entity="${group}"><a href="#" id="show-parents"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
@@ -99,7 +99,7 @@
     </div>
 
     <div>
-      <h1>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
@@ -117,7 +117,7 @@
     </div>
 
     <div>
-      <h1>Kinder <app:isMeOrAdmin entity="${group}"><a href="#" id="show-childs"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kinder hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Kinder <app:isMeOrAdmin entity="${group}"><a href="#" id="show-childs"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kinder hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-childs" targetId="childs"/>
       </jq:jquery>

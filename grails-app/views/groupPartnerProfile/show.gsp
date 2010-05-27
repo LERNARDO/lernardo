@@ -47,7 +47,7 @@
     </app:isMeOrAdmin>
 
     <div>
-      <h1>Partner <app:isMeOrAdmin entity="${group}"><a href="#" id="show-partners"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Partner <app:isMeOrAdmin entity="${group}"><a href="#" id="show-partners"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-partners" targetId="partners"/>
       </jq:jquery>

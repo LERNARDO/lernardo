@@ -111,22 +111,51 @@
     </div>--}%
 
     <div>
-      <h1>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
       <div id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="hideform('#contacts')">
 
-          Vorname: <g:textField name="firstName" size="30"/>
-          Nachname: <g:textField name="lastName" size="30"/>
-          Land: <g:textField name="country" size="30"/>
-          PLZ: <g:textField name="zip" size="30"/>
-          Stadt: <g:textField name="city" size="30"/>
-          Straße: <g:textField name="street" size="30"/>
-          Telefon: <g:textField name="phone" size="30"/>
-          E-Mail: <g:textField name="email" size="30"/>
-          Funktion: <g:textField name="function" size="30"/>
+          <table>
+            <tr>
+              <td>Vorname: </td>
+              <td><g:textField name="firstName" size="30"/></td>
+            </tr>
+            <tr>
+              <td>Nachname: </td>
+              <td><g:textField name="lastName" size="30"/></td>
+            </tr>
+            <tr>
+              <td>Land: </td>
+              <td><g:textField name="country" size="30"/></td>
+            </tr>
+            <tr>
+              <td>PLZ: </td>
+              <td><g:textField name="zip" size="30"/></td>
+            </tr>
+            <tr>
+              <td>Stadt: </td>
+              <td><g:textField name="city" size="30"/></td>
+            </tr>
+            <tr>
+              <td>Straße: </td>
+              <td><g:textField name="street" size="30"/></td>
+            </tr>
+            <tr>
+              <td>Telefon: </td>
+              <td><g:textField name="phone" size="30"/></td>
+            </tr>
+            <tr>
+              <td>E-Mail: </td>
+              <td><g:textField name="email" size="30"/></td>
+            </tr>
+            <tr>
+              <td>Funktion: </td>
+              <td><g:textField name="function" size="30"/></td>
+            </tr>
+          </table>
 
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -139,7 +168,7 @@
     </div>
 
     <div>
-      <h1>Ressourcen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Ressourcen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>

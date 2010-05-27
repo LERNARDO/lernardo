@@ -62,7 +62,7 @@
 
     <g:if test="${theme.profile.type == 'Thema'}">
       <div>
-        <h1>Subthemen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-subthemes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:isMeOrAdmin></h1>
+        <h5>Subthemen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-subthemes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:isMeOrAdmin></h5>
         <jq:jquery>
           <jq:toggle sourceId="show-subthemes" targetId="subthemes"/>
         </jq:jquery>

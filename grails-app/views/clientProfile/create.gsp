@@ -294,7 +294,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.size', 'errors')}" size="30" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size').decodeHTML()}"/> (cm)
+              <g:select from="${100..250}" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size')}"/> (cm)
             </td>
           </tr>
 
@@ -305,7 +305,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.weight', 'errors')}" size="30" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight').decodeHTML()}"/> (kg)
+              <g:select from="${10..150}" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
             </td>
           </tr>
 

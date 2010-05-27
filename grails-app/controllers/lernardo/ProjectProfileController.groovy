@@ -147,6 +147,7 @@ class ProjectProfileController {
     }
 
     def save = {
+      log.info params
       EntityType etProject = metaDataService.etProject
 
       try {
@@ -185,6 +186,7 @@ class ProjectProfileController {
               (params.sunday && df.format(currentDate) == 'Sonntag')) {
               //log.info "found"
 
+              // create project day
               EntityType etProjectDay = metaDataService.etProjectDay
               Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -196,30 +198,32 @@ class ProjectProfileController {
                 projectDay.profile.date.setHours(params.int('mondayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('mondayStartMinute'))
               }
-              if (df.format(currentDate) == 'Dienstag') {
+              else if (df.format(currentDate) == 'Dienstag') {
                 projectDay.profile.date.setHours(params.int('tuesdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('tuesdayStartMinute'))
               }
-              if (df.format(currentDate) == 'Mittwoch') {
+              else if (df.format(currentDate) == 'Mittwoch') {
                 projectDay.profile.date.setHours(params.int('wednesdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('wednesdayStartMinute'))
               }
-              if (df.format(currentDate) == 'Donnerstag') {
+              else if (df.format(currentDate) == 'Donnerstag') {
                 projectDay.profile.date.setHours(params.int('thursdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('thursdayStartMinute'))
               }
-               if (df.format(currentDate) == 'Freitag') {
+              else if (df.format(currentDate) == 'Freitag') {
                 projectDay.profile.date.setHours(params.int('fridayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('fridayStartMinute'))
               }
-              if (df.format(currentDate) == 'Samstag') {
+              else if (df.format(currentDate) == 'Samstag') {
                 projectDay.profile.date.setHours(params.int('saturdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('saturdayStartMinute'))
               }
-              if (df.format(currentDate) == 'Sonntag') {
+              else if (df.format(currentDate) == 'Sonntag') {
                 projectDay.profile.date.setHours(params.int('sundayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('sundayStartMinute'))
               }
+
+              // TODO: figure out why hours and minutes are saved but later on not saved anymore?!
 
               new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
 

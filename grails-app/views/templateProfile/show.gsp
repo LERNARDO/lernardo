@@ -30,12 +30,12 @@
     </app:isEducator>
 
     <div>
-      <h1>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
       <div id="resources" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'template', action:'addResource', id:template.id]" update="resources2" before="hideform('#resources')">
+        <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id:template.id]" update="resources2" before="hideform('#resources')">
           <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -48,12 +48,12 @@
     </div>
 
     <div>
-      <h1>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-methods" targetId="methods"/>
       </jq:jquery>
       <div id="methods" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'template', action:'addMethod', id:template.id]" update="methods2" before="hideform('#methods')">
+        <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="hideform('#methods')">
           <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

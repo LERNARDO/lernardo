@@ -46,26 +46,26 @@
     </div>
 
     <div>
-      <h1>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projectunits"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Projekteinheiten (${projectUnits.size()}) <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projectunits"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-projectunits" targetId="projectunits"/>
       </jq:jquery>
       <div id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="hideform('#projectunits')">
-          <g:textField name="fullName" value=""/>
+          Name: <g:textField name="fullName" size="40" value=""/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div id="projectunits2">
-        <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate]"/>
+        <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates]"/>
       </div>
     </div>
 
-    <g:if test="${projectUnits}">
+    %{--<g:if test="${projectUnits}">
       <div>
-        <h1>Aktivitätsvorlagengruppen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-groupActivityTemplates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlagengruppe hinzufügen" /></a></app:isMeOrAdmin></h1>
+        <h5>Aktivitätsvorlagengruppen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-groupActivityTemplates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlagengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
         <jq:jquery>
           <jq:toggle sourceId="show-groupActivityTemplates" targetId="groupActivityTemplates"/>
         </jq:jquery>
@@ -79,7 +79,7 @@
           </g:formRemote>
         </div>
       </div>
-    </g:if>
+    </g:if>--}%
 
   </div>
 </div>

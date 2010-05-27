@@ -15,8 +15,8 @@ class ClientProfile extends Profile {
     String interests
     Date birthDate
     Byte gender
-    Byte size // added on 20.04.2010
-    Byte weight // added on 20.04.2010
+    Integer size // added on 20.04.2010
+    Integer weight // added on 20.04.2010
 
     String currentCountry // changed on 20.04.2010, before: country
     String currentZip // changed on 20.04.2010, before: PLZ

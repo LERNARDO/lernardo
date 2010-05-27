@@ -40,23 +40,51 @@
     </app:isMeOrAdmin>
 
     <div>
-      <h1>Repräsentanten <app:isMeOrAdmin entity="${group}"><a href="#" id="show-representatives"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Repräsentanten <app:isMeOrAdmin entity="${group}"><a href="#" id="show-representatives"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-representatives" targetId="representatives"/>
       </jq:jquery>
       <div id="representatives" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="hideform('#representatives')">
 
-          <g:message code="contact.firstName"/>: <g:textField size="30" name="firstName" value=""/> <br/>
-          <g:message code="contact.lastName"/>: <g:textField size="30" name="lastName" value=""/> <br/>
-          <g:message code="contact.country"/>: <g:textField size="30" name="country" value=""/> <br/>
-          <g:message code="contact.zip"/>: <g:textField size="30" name="zip" value=""/> <br/>
-          <g:message code="contact.city"/>: <g:textField size="30" name="city" value=""/> <br/>
-          <g:message code="contact.street"/>: <g:textField size="30" name="street" value=""/> <br/>
-          <g:message code="contact.phone"/>: <g:textField size="30" name="phone" value=""/> <br/>
-          <g:message code="contact.email"/>: <g:textField size="30" name="email" value=""/> <br/>
-          <g:message code="contact.function"/>: <g:textField size="30" name="function" value=""/>              
-
+          <table>
+            <tr>
+              <td><g:message code="contact.firstName"/>: </td>
+              <td><g:textField size="30" name="firstName" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.lastName"/>: </td>
+              <td><g:textField size="30" name="lastName" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.country"/>: </td>
+              <td><g:textField size="30" name="country" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.zip"/>: </td>
+              <td><g:textField size="30" name="zip" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.city"/>: </td>
+              <td><g:textField size="30" name="city" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.street"/>: </td>
+              <td><g:textField size="30" name="street" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.phone"/>: </td>
+              <td><g:textField size="30" name="phone" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.email"/>: </td>
+              <td><g:textField size="30" name="email" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.function"/>: </td>
+              <td><g:textField size="30" name="function" value=""/></td>
+            </tr>
+          </table>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
@@ -68,20 +96,43 @@
     </div>
 
     <div>
-      <h1>Gebäude <app:isMeOrAdmin entity="${group}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Gebäude <app:isMeOrAdmin entity="${group}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-buildings" targetId="buildings"/>
       </jq:jquery>
       <div id="buildings" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="hideform('#buildings')">
 
-          <g:message code="building.name"/>: <g:textField size="30" name="name" value=""/> <br/>
-          <g:message code="building.zip"/>: <g:textField size="30" name="zip" value=""/> <br/>
-          <g:message code="building.city"/>: <g:textField size="30" name="city" value=""/> <br/>
-          <g:message code="building.street"/>: <g:textField size="30" name="street" value=""/> <br/>
-          <g:message code="building.phone"/>: <g:textField size="30" name="phone" value=""/> <br/>
-          <g:message code="building.email"/>: <g:textField size="30" name="email" value=""/> <br/>
-          <g:message code="building.authority"/>: <g:textField size="30" name="authority" value=""/>
+          <table>
+            <tr>
+              <td><g:message code="building.name"/>: </td>
+              <td><g:textField size="30" name="name" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="building.zip"/>: </td>
+              <td><g:textField size="30" name="zip" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="building.city"/>: </td>
+              <td><g:textField size="30" name="city" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="building.street"/>: </td>
+              <td><g:textField size="30" name="street" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="building.phone"/>: </td>
+              <td><g:textField size="30" name="phone" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="building.email"/>: </td>
+              <td><g:textField size="30" name="email" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="building.authority"/>: </td>
+              <td><g:textField size="30" name="authority" value=""/></td>
+            </tr>
+          </table>
 
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -94,7 +145,7 @@
     </div>
 
     <div>
-      <h1>Einrichtungen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Einrichtungen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
@@ -112,7 +163,7 @@
     </div>
 
     <div>
-      <h1>Ressourcen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h5>Ressourcen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>

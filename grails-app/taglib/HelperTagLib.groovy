@@ -82,6 +82,13 @@ class HelperTagLib {
     out << entity.profile.fullName
   }
 
+  def showLocale = {attrs ->
+    if (attrs.locale.toString() == 'de')
+      out << 'Deutsch'
+    else
+      out << 'Spanisch'
+  }
+
   def localeSelect = {attrs ->
           attrs['from'] = grailsApplication.config.locales
           attrs['value'] = (attrs['value'] ? attrs['value'] : RequestContextUtils.getLocale(request))
@@ -439,11 +446,11 @@ class HelperTagLib {
     def vote = element.voting
 
     out << '<div>'
-    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
-    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
-    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }
-    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 4]) { vote > 3 ? star : star_empty }
-    out << remoteLink(update: updateDiv, controller: 'template', action: 'vote', params: [element: element.id, val: 5]) { vote > 4 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 4]) { vote > 3 ? star : star_empty }
+    out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 5]) { vote > 4 ? star : star_empty }
     out << '</div>'
 
   }

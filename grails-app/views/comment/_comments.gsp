@@ -18,7 +18,7 @@
             <ub:meOrAdmin entityName="${creator.name}">
               <div class="actions">
                 %{--<g:link controller="comment" action="delete" id="${template.id}" params="[comment:comment.id]" onclick="return confirm('Kommentar wirklich löschen?');">Löschen</g:link>--}%
-                <g:remoteLink controller="comment" action="delete" update="comments" id="${commented.id}" params="[comment: comment.id]">Löschen <img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Kommentar entfernen" align="top"/></g:remoteLink>
+                <g:remoteLink controller="comment" action="delete" update="comments" id="${commented.id}" params="[comment: comment.id]" before="if(!confirm('Bist Du sicher?')) return false">Löschen <img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Kommentar entfernen" align="top"/></g:remoteLink>
               </div>
             </ub:meOrAdmin>
           </div>
