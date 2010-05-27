@@ -479,10 +479,15 @@ class ProfileController {
             ne("type", metaDataService.etActivity)
             ne("type", metaDataService.etTemplate)
             ne("type", metaDataService.etResource)
+            ne("type", metaDataService.etGroupActivity)
+            ne("type", metaDataService.etGroupActivityTemplate)
+            ne("type", metaDataService.etGroupClient)
             ne("type", metaDataService.etGroupColony)
             ne("type", metaDataService.etGroupFamily)
-            ne("type", metaDataService.etGroupLevel)
-            ne("type", metaDataService.etGroupNetwork)
+            ne("type", metaDataService.etGroupPartner)
+            ne("type", metaDataService.etProject)
+            ne("type", metaDataService.etProjectTemplate)
+            ne("type", metaDataService.etTheme)
             if (!authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
               ne("name", "lernardoadmin")
               ne("type", metaDataService.etUser)
@@ -497,6 +502,7 @@ class ProfileController {
           entities = Entity.findAllByType(EntityType.findByName(params.entityType))
           count = entities.size()
         }
+
         return ['entityType': params.entityType,
                 'entityList': entities,
                 'entityCount': count,
