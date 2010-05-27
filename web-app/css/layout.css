@@ -47,7 +47,7 @@ body {
     #hd #info {
         text-align: right;
         float: right;
-        margin: 10px; }
+        margin: 10px 15px 0 0; }
         #hd #info a {
             font-weight: bold; }
     #hd #logo {
@@ -117,10 +117,10 @@ body {
 /* ----- NAVIGATION -----*/
 
 #nav {
-    float: left;
+    float: right;
     position: absolute;
     bottom: 0;
-    left: 200px;
+    right: 15px;
     font-family: Arial, 'Times New Roman', serif;}
     #nav ul {
         list-style: none;
@@ -591,13 +591,13 @@ ul {
     #public #banner {
         height: 149px;
         /*width: 974px;*/
-        background: #fff url(../images/sueninos-banner.png) 15px 0 no-repeat;}
+        background: #fff url(../images/banner.png) 15px 0 no-repeat;}
     #public #sidebar {
         margin: 0 0; }
     #public #main {
         /*margin: 20px 0;*/
         padding: 0 15px 0 0;
-        border-right: 1px solid #CCC;
+        /*border-right: 1px solid #CCC;*/
         line-height: 18px;
         /*width: 655px;*/ }
         #public #main h1 {
