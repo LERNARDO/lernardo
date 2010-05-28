@@ -17,63 +17,62 @@ class HelperTagLib {
 
   // receives a nationality ID and renders either the german or spanish word for it
   def getNationalities = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request)
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int nationality = attrs.nationality.toInteger()
-    if (locale.toString() == "de")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.nationalities_de[nationality]
-    if (locale.toString() == "es")
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.nationalities_es[nationality]
   }
 
   // receives a language ID and renders either the german or spanish word for it
   def getLanguages = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request)
-    int language = attrs.language.toInteger()   
-    if (locale.toString() == "de")
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
+    int language = attrs.language.toInteger()
+    log.info locale.toString()
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.languages_de[language]
-    if (locale.toString() == "es")
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.languages_es[language]
   }
 
   // receives a partner service ID and renders either the german or spanish word for it
   def getPartnerService = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request)
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int service = attrs.service.toInteger()
-    if (locale.toString() == "de")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.partner_de[service]
-    if (locale.toString() == "es")
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.partner_es[service]
   }
 
   // receives a school level ID and renders either the german or spanish word for it
   def getSchoolLevel = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request)
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int level = attrs.level.toInteger()
-    if (locale.toString() == "de")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.schoolLevels_de[level]
-    if (locale.toString() == "es")
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.schoolLevels_es[level]
   }
 
   // receives a familyProblem ID and renders either the german or spanish word for it
   def getFamilyProblem = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request)
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int problem = attrs.problem.toInteger()
-    if (locale.toString() == "de")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.problems_de[problem]
-    if (locale.toString() == "es")
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.problems_es[problem]
   }
 
   // receives a jobType ID and renders either the german or spanish word for it
   def getJobType = {attrs ->
-    //log.info "Job ID: " + attrs.job
-    Locale locale = RequestContextUtils.getLocale(request)
-    //log.info "Locale: " + locale.toString()
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int job = attrs.job.toInteger()
-    if (locale.toString() == "de")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.jobs_de[job]
-    if (locale.toString() == "es")
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.jobs_es[job]
   }
 

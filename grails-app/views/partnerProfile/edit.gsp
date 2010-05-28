@@ -107,10 +107,10 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
               </g:if>
               %{--<g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>--}%

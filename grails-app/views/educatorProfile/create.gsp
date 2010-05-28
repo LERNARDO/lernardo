@@ -125,10 +125,10 @@
               <g:select class="liste-280" name="inChargeOf" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" multiple="true" value="${educator?.profile?.inChargeOf}"/>
             </td>
 			<td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select id="liste-240" name="languages" multipl="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
             </td>

@@ -84,10 +84,10 @@
 			  <g:checkBox name="job" value="${child?.profile?.job}"/>
             </td>
 			<td  height="35" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value"/>
               </g:if>
 			</td>

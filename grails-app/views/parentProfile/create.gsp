@@ -69,10 +69,10 @@
                <g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}" value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/>
             </td>
              <td valign="top" class="value" colspan="2" >
-               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                  <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
                </g:if>
-               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                  <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
                </g:if>
              </td>
