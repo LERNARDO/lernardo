@@ -67,8 +67,8 @@
 		 <app:isAdmin>
               <g:message code="active"/>: 
               <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/> 
-		   </app:isAdmin>	  
-            
+		   </app:isAdmin>
+          
 		</div>
 	
 

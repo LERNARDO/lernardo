@@ -49,6 +49,7 @@ class BootStrap {
       if (GrailsUtil.environment == "development") {
         createDefaultActivityTemplates()
         //createDefaultActivities()
+        createDefaultColonias()
         createDefaultParents()
         createDefaultClients()
         createDefaultChilds()
@@ -57,7 +58,6 @@ class BootStrap {
         //createDefaultEvents()
         //createDefaultAttendances()
         createDefaultFamilies()
-        createDefaultColonias()
         createDefaultResources()
         createDefaultMethods()
         createDefaultClientGroups()

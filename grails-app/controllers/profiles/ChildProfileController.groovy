@@ -78,6 +78,8 @@ class ChildProfileController {
       Entity child = Entity.get(params.id)
 
       child.profile.properties = params
+      child.profile.fullName = params.lastName + " " + params.firstName
+
       child.user.properties = params
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
 

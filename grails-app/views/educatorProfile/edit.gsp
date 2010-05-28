@@ -66,7 +66,7 @@
               <g:textField class="${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
 			<td valign="middle" class="value">
-              <g:datePicker name="birthDate" value="${educator?.profile?.birthDate}" precision="day"/>
+              <g:datePicker name="birthDate" value="${educator?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
             </td>
 		</tr>	
 		</table>
@@ -300,7 +300,12 @@
                 <label for="enabled">
                   <g:message code="active"/>
                 </label>
-                <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
+                <app:isAdmin>
+                  <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
+                </app:isAdmin>
+                <app:notAdmin>
+                  <g:checkBox name="enabled" value="${educator?.user?.enabled}" disabled="true"/>
+                </app:notAdmin>
               </td>
           </app:isAdmin>
             <td width="150" valign="middle">

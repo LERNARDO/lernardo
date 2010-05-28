@@ -81,6 +81,8 @@ class EducatorProfileController {
       Entity educator = Entity.get(params.id)
 
       educator.profile.properties = params
+      educator.profile.fullName = params.lastName + " " + params.firstName
+
       educator.user.properties = params
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 

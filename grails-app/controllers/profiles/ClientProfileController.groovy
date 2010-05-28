@@ -39,7 +39,11 @@ class ClientProfileController {
             redirect(action:list)
         }
         else {
-            return [client: client, entity: entity]
+            def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
+            Entity colonia = link.source
+            link = Link.findByTargetAndType(client, metaDataService.ltFacility)
+            Entity school = link.source
+            return [client: client, entity: entity, colonia: colonia, school: school]
         }
     }
 
@@ -72,7 +76,10 @@ class ClientProfileController {
             redirect action:'list'
         }
         else {
-            return [client: client, entity: entityHelperService.loggedIn]
+            return [client: client,
+                    entity: entityHelperService.loggedIn,
+                    allColonias: Entity.findAllByType(metaDataService.etGroupColony),
+                    allFacilities: Entity.findAllByType(metaDataService.etFacility)]
         }
     }
 
@@ -80,8 +87,18 @@ class ClientProfileController {
       Entity client = Entity.get(params.id)
 
       client.profile.properties = params
+      client.profile.fullName = params.lastName + " " + params.firstName
+      
       client.user.properties = params
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
+
+      // update link to colonia
+      Link.findByTargetAndType(client, metaDataService.ltColonia).delete()
+      new Link(source: Entity.get(params.currentColonia), target: client, type: metaDataService.ltColonia).save()
+
+      // update link to school
+      Link.findByTargetAndType(client, metaDataService.ltFacility).delete()
+      new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
       if(!client.hasErrors() && client.save()) {
           flash.message = message(code:"client.updated", args:[client.profile.fullName])
@@ -93,12 +110,13 @@ class ClientProfileController {
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn]
+        return [entity: entityHelperService.loggedIn,
+                allColonias: Entity.findAllByType(metaDataService.etGroupColony),
+                allFacilities: Entity.findAllByType(metaDataService.etFacility)]
     }
 
     def save = {
       EntityType etClient = metaDataService.etClient
-      println params
 
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
@@ -107,6 +125,12 @@ class ClientProfileController {
           ent.user.password = authenticateService.encodePassword("pass")
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+
+        // create link to colonia
+        new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+
+        // create link to school
+        new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
         flash.message = message(code:"client.created", args:[entity.profile.fullName])
         redirect action:'list'

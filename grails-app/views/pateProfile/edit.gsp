@@ -246,7 +246,12 @@
                 <label for="enabled">
                   <g:message code="active"/>
                 </label>
-                <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
+                <app:isAdmin>
+                  <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
+                </app:isAdmin>
+                <app:notAdmin>
+                  <g:checkBox name="enabled" value="${pate?.user?.enabled}" disabled="true"/>
+                </app:notAdmin>
               </td>
           </app:isAdmin>
             <td width="150" valign="middle">

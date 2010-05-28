@@ -42,7 +42,7 @@
 
       <div id="select-box">
         <g:form name="form1" action="list">
-          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Paedagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Paten',Parent:'Erziehungsberechtigte']}" value="${entityType}" optionKey="key" optionValue="value"/>
+          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Paedagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Pate',Erziehungsberechtigter:'Erziehungsberechtigte',Kind:'Kinder']}" value="${entityType}" optionKey="key" optionValue="value"/>
         </g:form>
 
         <script type="text/javascript">

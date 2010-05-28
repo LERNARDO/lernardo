@@ -63,7 +63,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day"/>
+              <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
             </td>
           </tr>
 
@@ -80,6 +80,17 @@
 
           <tr>
             <td><span class="bold">Derzeitige Adresse</span></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="currentColonia">
+                <g:message code="client.profile.currentColonia"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="currentColonia" from="${allColonias}" id="currentColonia" optionKey="id" optionValue="profile"/>
+            </td>
           </tr>
 
           <tr class="prop">
@@ -174,7 +185,12 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: client, field: 'profile.familyStatus', 'errors')}" name="familyStatus" from="${['bei Eltern']}" value="${client?.profile?.familyStatus}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select name="familyStatus" from="${grailsApplication.config.familyRelation_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select name="familyStatus" from="${grailsApplication.config.familyRelation_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
           </tr>
 
@@ -191,6 +207,17 @@
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="school">
+                <g:message code="client.profile.school"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select name="school" id="name" from="${allFacilities}" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 

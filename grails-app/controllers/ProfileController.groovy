@@ -488,9 +488,10 @@ class ProfileController {
             ne("type", metaDataService.etProject)
             ne("type", metaDataService.etProjectTemplate)
             ne("type", metaDataService.etTheme)
-            if (!authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
-              ne("name", "lernardoadmin")
+            if (!authenticateService.ifAllGranted('ROLE_ADMIN') && !authenticateService.ifAllGranted('ROLE_SYSTEMADMIN')) {
+              ne("name", "sueninosadmin")
               ne("type", metaDataService.etUser)
+            }
           }
 
           //entities = Entity.list(params)

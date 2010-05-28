@@ -50,7 +50,7 @@
 
 			</td>
 			<td valign="top" class="value">
-              <g:datePicker name="birthDate" value="${parent?.profile?.birthDate}" precision="day"/>
+              <g:datePicker name="birthDate" value="${parent?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
 			</td>
 		  </tr>
 
@@ -169,7 +169,12 @@
                 <label for="enabled">
                   <g:message code="active"/>
                 </label>
-                <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
+                <app:isAdmin>
+                  <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
+                </app:isAdmin>
+                <app:notAdmin>
+                  <g:checkBox name="enabled" value="${parent?.user?.enabled}" disabled="true"/>
+                </app:notAdmin>
               </td>
           </app:isAdmin>
             <td width="150" valign="middle">

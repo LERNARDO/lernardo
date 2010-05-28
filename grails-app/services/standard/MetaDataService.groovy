@@ -136,6 +136,8 @@ class MetaDataService {
   static final String LT_PROJECT_DAY_EDUCATOR = "Projekttag Pädagoge"
   static final String LT_PROJECT_DAY_RESOURCE = "Projekttag Resource"
   static final String LT_PROJECT_TEMPLATE = "Projektvorlage"
+  static final String LT_COLONIA = "Kolonie"
+  static final String LT_FACILITY = "Einrichtung"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -236,6 +238,8 @@ class MetaDataService {
     getLtProjectDayEducator()
     getLtProjectDayResource()
     getLtProjectTemplate()
+    getLtColonia()
+    getLtFacility()
 
     getLtActEducator()
     getLtActClient()
@@ -340,6 +344,8 @@ class MetaDataService {
   LinkType getLtProjectDayEducator()     {defaultObjectService.openLT (LT_PROJECT_DAY_EDUCATOR, lstOther) }
   LinkType getLtProjectDayResource()     {defaultObjectService.openLT (LT_PROJECT_DAY_RESOURCE, lstOther) }
   LinkType getLtProjectTemplate()        {defaultObjectService.openLT (LT_PROJECT_TEMPLATE, lstOther) }
+  LinkType getLtColonia()                {defaultObjectService.openLT (LT_COLONIA, lstOther) }
+  LinkType getLtFacility()               {defaultObjectService.openLT (LT_FACILITY, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

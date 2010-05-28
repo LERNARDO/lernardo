@@ -129,7 +129,12 @@
 
               </td>
               <td valign="top" class="value">
-                <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
+                <app:isAdmin>
+                  <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
+                </app:isAdmin>
+                <app:notAdmin>
+                  <g:checkBox name="enabled" value="${operator?.user?.enabled}" disabled="true"/>
+                </app:notAdmin>
               </td>
             </tr>
           </app:isAdmin>

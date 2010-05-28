@@ -16,6 +16,16 @@ class HelperTagLib {
   static namespace = "app"
 
   // receives a nationality ID and renders either the german or spanish word for it
+  def getFamilyStatus = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
+    int status = attrs.status.toInteger()
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config.familyRelation_de[status]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config.familyRelation_es[status]
+  }
+
+  // receives a nationality ID and renders either the german or spanish word for it
   def getNationalities = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int nationality = attrs.nationality.toInteger()
@@ -29,7 +39,6 @@ class HelperTagLib {
   def getLanguages = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
     int language = attrs.language.toInteger()
-    log.info locale.toString()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
       out << grailsApplication.config.languages_de[language]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
@@ -82,7 +91,7 @@ class HelperTagLib {
   }
 
   def showLocale = {attrs ->
-    if (attrs.locale.toString() == 'de')
+    if (attrs.locale.toString() == 'de' || attrs.locale.toString() == 'de_DE')
       out << 'Deutsch'
     else
       out << 'Spanisch'
@@ -390,6 +399,11 @@ class HelperTagLib {
 
   def isAdmin = {attrs, body->
     if (authenticateService.ifAllGranted('ROLE_ADMIN') || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+      out << body()
+  }
+
+  def notAdmin = {attrs, body->
+    if (!authenticateService.ifAllGranted('ROLE_ADMIN') && !authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
       out << body()
   }
 

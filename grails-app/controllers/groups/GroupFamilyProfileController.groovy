@@ -44,6 +44,7 @@ class GroupFamilyProfileController {
           // find all clients linked to this group
           links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
           List clients = links.collect {it.source}
+          //allClients -= clients
 
           def allChilds = Entity.findAllByType(metaDataService.etChild)
           // find all childs linked to this group

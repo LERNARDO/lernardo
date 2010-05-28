@@ -64,7 +64,7 @@
               <input type="text" size="40"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
 			<td  height="35"  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
-              <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day"/>
+              <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
             </td>
 		</tr>
 		<tr class="prop"> <!-- Prompt--> 

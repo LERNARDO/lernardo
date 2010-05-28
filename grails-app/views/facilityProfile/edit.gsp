@@ -88,7 +88,12 @@
                 </label>
               </td>
               <td width="30" valign="top" class="value">
-                <g:checkBox name="enabled" value="${facility.user.enabled}"/>
+                <app:isAdmin>
+                  <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
+                </app:isAdmin>
+                <app:notAdmin>
+                  <g:checkBox name="enabled" value="${facility?.user?.enabled}" disabled="true"/>
+                </app:notAdmin>
               </td>
             </app:isAdmin>
             <td width="70" valign="top" class="name">

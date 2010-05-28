@@ -83,6 +83,8 @@ class PateProfileController {
     Entity pate = Entity.get(params.id)
 
     pate.profile.properties = params
+    pate.profile.fullName = params.lastName + " " + params.firstName
+
     pate.user.properties = params
     RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 

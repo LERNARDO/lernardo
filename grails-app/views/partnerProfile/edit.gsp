@@ -136,7 +136,12 @@
                       </label>
                     </td>
                     <td valign="top" class="value">
-                        <g:checkBox name="enabled" value="${fieldValue(bean:partner,field:'user.enabled')}" />
+                      <app:isAdmin>
+                        <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
+                      </app:isAdmin>
+                      <app:notAdmin>
+                        <g:checkBox name="enabled" value="${partner?.user?.enabled}" disabled="true"/>
+                      </app:notAdmin>
                     </td>
                 </tr>
               </app:isAdmin>

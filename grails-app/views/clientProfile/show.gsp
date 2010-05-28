@@ -55,6 +55,13 @@
 
         <tr class="prop">
           <td valign="top" class="name">
+            <g:message code="client.profile.currentColonia"/>:
+          </td>
+          <td valign="top" class="value"><g:link controller="${colonia.type.supertype.name +'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
             <g:message code="client.profile.currentStreet"/>:
           </td>
           <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
@@ -114,7 +121,7 @@
           <td valign="top" class="name">
             <g:message code="client.profile.familyStatus"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: client, field: 'profile.familyStatus')}</td>
+          <td valign="top" class="value"><app:getFamilyStatus status="${client.profile.familyStatus}"/></td>
         </tr>
 
         <tr class="prop">
@@ -128,6 +135,13 @@
               </g:each>
             </ul>
           </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="client.profile.school"/>:
+          </td>
+          <td valign="top" class="value"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></td>
         </tr>
 
         <tr class="prop">

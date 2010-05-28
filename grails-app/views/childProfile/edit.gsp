@@ -59,7 +59,7 @@
               <input type="text" size="40"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
 			<td  height="35"  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
-              <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day"/>
+              <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
             </td>
 		</tr>
 
@@ -106,8 +106,13 @@
               <label for="enabled">
                 <g:message code="active"/>
               </label>
-              <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
-			  
+              <app:isAdmin>
+                <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
+              </app:isAdmin>
+              <app:notAdmin>
+                <g:checkBox name="enabled" value="${child?.user?.enabled}" disabled="true"/> 
+              </app:notAdmin>
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="email">
                 <g:message code="child.profile.email"/>

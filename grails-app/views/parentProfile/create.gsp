@@ -48,7 +48,7 @@
                <g:textField class="${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
             </td>
              <td valign="top" class="value">
-               <g:datePicker name="birthDate" value="${parent?.profile?.birthDate}" precision="day"/>
+               <g:datePicker name="birthDate" value="${parent?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
              </td>
            </tr>
 

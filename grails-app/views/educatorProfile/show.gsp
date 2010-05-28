@@ -298,7 +298,8 @@
 			</td>
 			<td valign="middle">
                 <g:message code="languageSelection"/>:
-				<app:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>
+				%{--<app:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>--}%
+                <app:showLocale locale="${parent?.user?.locale}"/>
 				</td>
 		</tr>
 		 </table>

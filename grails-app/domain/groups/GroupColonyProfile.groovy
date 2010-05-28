@@ -18,4 +18,8 @@ class GroupColonyProfile extends Profile{
       description (blank: true, maxSize: 500)
     }
 
+    String toString(){
+      return "${fullName}"
+    }
+
 }

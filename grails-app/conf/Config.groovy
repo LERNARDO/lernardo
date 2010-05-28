@@ -127,6 +127,8 @@ schoolLevels_es = [1:'1er grado primaria',2:'2do grado primaria',3:'3er grado pr
                    11:'2er grado preparatoria',12:'3er grado preparatoria',13:'Estudios']
 partner_de = [1:'Projekte, Arbeit',2:'Dienstleistungen',3:'Finanzierung',4:'Personal (Freiwillige)']
 partner_es = [1:'en colaboración',2:'Prestadores de servicios',3:'Monetarios',4:'Personal (voluntarios)']
+familyRelation_de = [1:'Eltern',2:'Vater',3:'Mutter',4:'Andere']
+familyRelation_es = [1:'Padres',2:'Padre',3:'Madre',4:'Otros']
 
 quotesMap = [0:'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              1:'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',
