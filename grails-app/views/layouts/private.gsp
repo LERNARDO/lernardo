@@ -73,9 +73,10 @@
           </div>
         </ub:meOrAdmin>--}%
 
-        <div class="profile-group"><div class="second">Kommunikation</div></div>
+        %{--<div class="profile-group"><div class="second">Kommunikation</div></div>--}%
         <div class="profile-box">
           <div class="second">
+            <div class="header">Kommunikation</div>
             <ul>
               <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
               <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente ansehen</g:link></li>
@@ -119,9 +120,10 @@
 
         <ub:meOrAdmin entityName="${entity.name}">
           <app:isEducator entity="${entity}">
-          <div class="profile-group"><div class="second">Pädagogik</div></div>
+          %{--<div class="profile-group"><div class="second">Pädagogik</div></div>--}%
           <div class="profile-box">
             <div class="second">
+              <div class="header">Pädagogik</div>
               <ul>
                 <app:isEducator entity="${entity}">
                   <li class="profile-template"><g:link controller="templateProfile" action="index">Aktivitätsvorlagen verwalten</g:link></li>
@@ -131,15 +133,17 @@
                 </app:isFacility>--}%
                   <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsvorlagengruppen verwalten</g:link></li>
                   <li class="profile-template"><g:link controller="groupActivityProfile" action="index">Aktivitätsgruppen verwalten</g:link></li>
+                <li class="profile-template"><g:link controller="projectTemplateProfile" action="index">Projektvorlagen verwalten</g:link></li>
               </ul>
             </div>
           </div>
           </app:isEducator>
         </ub:meOrAdmin>
 
-        <div class="profile-group"><div class="second">Administration</div></div>
+        %{--<div class="profile-group"><div class="second">Administration</div></div>--}%
         <div class="profile-box">
           <div class="second">
+            <div class="header">Administration</div>
             <ul>
               <app:isAdmin>
                 <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation erstellen</g:link></li>
@@ -172,9 +176,10 @@
           </div>
         </div>
 
-        <div class="profile-group"><div class="second">Hilfe</div></div>
+        %{--<div class="profile-group"><div class="second">Hilfe</div></div>--}%
         <div class="profile-box">
           <div class="second">
+            <div class="header">Hilfe</div>
             <ul>
               <li class="icon-help"><g:link controller="helper" id="${entity.id}">Hilfethemen anzeigen</g:link></li>
             </ul>
