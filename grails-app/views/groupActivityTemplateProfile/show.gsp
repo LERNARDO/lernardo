@@ -74,17 +74,25 @@
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${group}">
+    <app:isMeOrAdmin entity="${entity}">
       <div class="buttons">
         <g:link class="buttonBlue" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
-        <g:link class="buttonBlue" controller="groupActivityProfile" action="create" id="${group.id}">Neue Aktivitätsgruppe planen</g:link>
+
+        %{-- only the operator may instantiate an activity group --}%
+        <app:isOperator entity="${entity}">
+          %{-- and only when it is done --}%
+          <g:if test="${group.profile.status == 'fertig'}">
+            <g:link class="buttonBlue" controller="groupActivityProfile" action="create" id="${group.id}">Neue Aktivitätsgruppe planen</g:link>
+          </g:if>
+        </app:isOperator>
+        
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
 
     <div>
-      <h5>Aktivitätsvorlagen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-templates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Aktivitätsvorlagen <app:isEducator entity="${entity}"><a href="#" id="show-templates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen" /></a></app:isEducator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-templates" targetId="templates"/>
       </jq:jquery>

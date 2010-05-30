@@ -31,8 +31,9 @@ class CommentController {
 
   def save = {
     Entity entity = Entity.get(params.id)
-   
-    Comment comment = new Comment(content: params.content, creator: entityHelperService.loggedIn.id).save()
+    Entity creator = entityHelperService.loggedIn
+
+    Comment comment = new Comment(content: params.content, creator: creator.id).save()
 
     entity.profile.addToComments(comment)
 
