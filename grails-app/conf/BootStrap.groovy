@@ -1,6 +1,6 @@
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Link
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Link
 
 import lernardo.Helper
 import lernardo.Evaluation
@@ -16,9 +16,9 @@ import profiles.EducatorProfile
 import profiles.UserProfile
 
 import grails.util.GrailsUtil
-import de.uenterprise.ep.DefaultObjectService
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.ProfileHelperService
+import at.openfactory.ep.DefaultObjectService
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
 import standard.FunctionService
 import standard.MetaDataService
 import profiles.ChildProfile
@@ -26,7 +26,7 @@ import profiles.ParentProfile
 import profiles.PartnerProfile
 import lernardo.Method
 import lernardo.Element
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 import lernardo.Comment
 import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder

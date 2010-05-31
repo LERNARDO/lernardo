@@ -1,6 +1,6 @@
 package lernardo
 
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Link
 
 class MethodController {
   def entityHelperService

@@ -1,4 +1,4 @@
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 import standard.NetworkService
 
 class NetworkController {

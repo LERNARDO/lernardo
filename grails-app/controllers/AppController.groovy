@@ -1,14 +1,15 @@
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Account
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Account
 import org.springframework.web.servlet.support.RequestContextUtils
-import de.uenterprise.ep.SecHelperService
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.SecHelperService
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.security.DefaultSecurityManager
 
 class AppController {
     SecHelperService secHelperService
     EntityHelperService entityHelperService
-    AuthenticateService authenticateService
+    DefaultSecurityManager defaultSecurityManager
+
 
     def start = {
       Entity entity = entityHelperService.loggedIn
@@ -40,7 +41,7 @@ class AppController {
         Random randomGenerator = new Random()
         def random = randomGenerator.nextInt(300)+100
         String pass = 'pass' + random.toString()
-        user.password = authenticateService.encodePassword(pass)
+        user.password = defaultSecurityManager.encodePassword(pass)
         try {
           sendMail {
             to      "${user.email}"

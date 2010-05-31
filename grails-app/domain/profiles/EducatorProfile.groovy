@@ -1,6 +1,6 @@
 package profiles
 
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 import lernardo.CDate
 
 class EducatorProfile extends Profile {

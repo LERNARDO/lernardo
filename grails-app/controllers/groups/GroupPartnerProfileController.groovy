@@ -1,12 +1,12 @@
 package groups
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
-import de.uenterprise.ep.ProfileHelperService
-import de.uenterprise.ep.EntityHelperService
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
+import at.openfactory.ep.ProfileHelperService
+import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 
 class GroupPartnerProfileController {
     MetaDataService metaDataService
@@ -110,7 +110,7 @@ class GroupPartnerProfileController {
 
         flash.message = message(code:"group.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn])
         return
       }

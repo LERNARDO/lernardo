@@ -1,6 +1,6 @@
 package lernardo
 
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 
 class Event {
 

@@ -1,7 +1,7 @@
 package standard
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Link
 
 class NetworkService {
 

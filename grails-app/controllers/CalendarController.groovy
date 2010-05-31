@@ -1,9 +1,9 @@
 import org.joda.time.DateTime
 
 import grails.converters.JSON
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Link
-import de.uenterprise.ep.EntityHelperService
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Link
+import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 
 class CalendarController {

@@ -1,13 +1,13 @@
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.ProfileHelperService
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
 import standard.FunctionService
 import standard.MetaDataService
 import lernardo.Method
 import lernardo.Element
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -106,7 +106,7 @@ class TemplateProfileController {
 
         redirect action:'show', id:entity.id
 
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[template: ee.entity, entity: entityHelperService.loggedIn, resources: Entity.findAllByType(metaDataService.etResource)])
         return
       }

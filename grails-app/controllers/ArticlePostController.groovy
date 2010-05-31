@@ -1,5 +1,5 @@
 import posts.ArticlePost
-import de.uenterprise.ep.EntityHelperService
+import at.openfactory.ep.EntityHelperService
 
 class ArticlePostController {
   EntityHelperService entityHelperService

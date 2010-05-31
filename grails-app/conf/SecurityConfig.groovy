@@ -5,8 +5,8 @@ security {
   cacheUsers = false
   useRequestMapDomainClass = false
 
-  loginUserDomainClass = "de.uenterprise.ep.Account"
-  authorityDomainClass = "de.uenterprise.ep.Role"
+  loginUserDomainClass = "at.openfactory.ep.Account"
+  authorityDomainClass = "at.openfactory.ep.Role"
   requestMapClass = "Requestmap"
 
   userName = "email"

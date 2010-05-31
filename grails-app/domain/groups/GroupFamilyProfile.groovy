@@ -1,6 +1,6 @@
 package groups
 
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 
 class GroupFamilyProfile extends Profile {
 

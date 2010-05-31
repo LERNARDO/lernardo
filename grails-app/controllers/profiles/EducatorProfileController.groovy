@@ -1,19 +1,19 @@
 package profiles
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
-import org.grails.plugins.springsecurity.service.AuthenticateService
-import de.uenterprise.ep.EntityHelperService
+import at.openfactory.ep.EntityHelperService
 import lernardo.CDate
 import standard.MetaDataService
 import standard.FunctionService
+import at.openfactory.ep.security.DefaultSecurityManager
 
 class EducatorProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
-    AuthenticateService authenticateService
+    DefaultSecurityManager defaultSecurityManager
     FunctionService functionService
 
     def index = {
@@ -58,7 +58,7 @@ class EducatorProfileController {
             try {
                 flash.message = message(code:"educator.deleted", args:[educator.profile.fullName])
                 educator.delete(flush:true)
-                redirect(action:"list")
+                redirect(controller:"profile", action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"educator.notDeleted", args:[educator.profile.fullName])
@@ -79,7 +79,7 @@ class EducatorProfileController {
             redirect action:'list'
         }
         else {
-            return [educator: educator, entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+            return [educator: educator, entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner)]
         }
     }
 

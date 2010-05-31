@@ -1,12 +1,12 @@
 import java.text.SimpleDateFormat
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.ProfileHelperService
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
 import standard.MetaDataService
 import standard.FunctionService
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 import lernardo.ClientEvaluation
 
 class ActivityController {
@@ -302,7 +302,7 @@ class ActivityController {
       functionService.createEvent(entityHelperService.loggedIn, Entity.get(params.int('facility')).profile.fullName+': Aktivität "'+entity.profile.fullName+'"', entity.profile.date)
       functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "'+entity.profile.fullName+'" angelegt.')
       redirect action:'show', id:entity.id
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[activityInstance: ee.entity, entity: entityHelperService.loggedIn, 'template': template,'facilities': facilities, 'educators': educators, 'clients': clients])
         return
       }*/

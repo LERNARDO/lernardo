@@ -1,10 +1,12 @@
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Link
 import posts.ArticlePost
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
 import lernardo.Method
 import lernardo.Element
+import at.openfactory.ep.security.DefaultSecurityManager
+import at.openfactory.ep.SecHelperService
 
 class HelperTagLib {
   def entityHelperService
@@ -12,7 +14,7 @@ class HelperTagLib {
   def networkService
   def filterService
   def secHelperService
-  def authenticateService
+  DefaultSecurityManager defaultSecurityManager
   static namespace = "app"
 
 /*  def getTemplateCount = {attrs ->
@@ -371,37 +373,37 @@ class HelperTagLib {
   }
 
   def isParent = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etParent.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etParent.name || secHelperService.isAdmin())
       out << body()
   }
 
   def isPate = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etPate.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etPate.name || secHelperService.isAdmin() )
       out << body()
   }
 
   def isPartner = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etPartner.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etPartner.name || secHelperService.isAdmin())
       out << body()
   }
 
   def isClient = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etClient.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etClient.name || secHelperService.isAdmin())
       out << body()
   }
 
   def isFacility = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etFacility.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etFacility.name || secHelperService.isAdmin())
       out << body()
   }
  
   def isEducator = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etEducator.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etEducator.name || secHelperService.isAdmin())
       out << body()
   }
 
   def isOperator = {attrs, body->
-    if (attrs.entity.type.name == metaDataService.etOperator.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (attrs.entity.type.name == metaDataService.etOperator.name || secHelperService.isAdmin())
       out << body()
   }
 
@@ -485,22 +487,22 @@ class HelperTagLib {
   }
 
   def isAdmin = {attrs, body->
-    if (authenticateService.ifAllGranted('ROLE_ADMIN') || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (secHelperService.isAdmin())
       out << body()
   }
 
   def notAdmin = {attrs, body->
-    if (!authenticateService.ifAllGranted('ROLE_ADMIN') && !authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (secHelperService.isAdmin())
       out << body()
   }
 
   def isMeOrAdmin = {attrs, body->
-    if (attrs.entity == entityHelperService.loggedIn || authenticateService.ifAllGranted('ROLE_ADMIN') || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (secHelperService.isMeOrAdmin(attrs.entity))
       out << body()
   }
 
   def isSysAdmin = {attrs, body->
-    if (authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
+    if (secHelperService.hasRole('ROLE_SYSTEMADMIN'))
       out << body()
   }
 
@@ -510,7 +512,7 @@ class HelperTagLib {
   }
 
   def notMe = {attrs, body->
-    if (entityHelperService.loggedIn?.id != attrs.entity.id)
+    if (secHelperService.isNotMe(attrs.entity))
       out << body()
   }
 

@@ -1,22 +1,22 @@
 package profiles
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.EntityHelperService
 import lernardo.Contact
 import standard.FunctionService
 import standard.MetaDataService
-import de.uenterprise.ep.Profile
-import de.uenterprise.ep.ProfileHelperService
+import at.openfactory.ep.Profile
+import at.openfactory.ep.ProfileHelperService
+import at.openfactory.ep.security.DefaultSecurityManager
 
 class FacilityProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
-    AuthenticateService authenticateService
     FunctionService functionService
+    DefaultSecurityManager defaultSecurityManager
     ProfileHelperService profileHelperService
 
     def index = {
@@ -188,7 +188,7 @@ class FacilityProfileController {
 
     def removeResource = {
       Entity facility = Entity.get(params.id)
-
+      
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.resource))

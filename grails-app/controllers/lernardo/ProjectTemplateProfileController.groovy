@@ -1,12 +1,12 @@
 package lernardo
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.ProfileHelperService
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
 import standard.MetaDataService
-import de.uenterprise.ep.Profile
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Profile
+import at.openfactory.ep.Link
 
 class ProjectTemplateProfileController {
     MetaDataService metaDataService
@@ -125,7 +125,7 @@ class ProjectTemplateProfileController {
         }
         flash.message = message(code:"projectTemplate.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[projectTemplate: ee.entity, entity: entityHelperService.loggedIn])
         return
       }

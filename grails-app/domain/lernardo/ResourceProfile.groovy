@@ -1,6 +1,6 @@
 package lernardo
 
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 
 class ResourceProfile extends Profile {
 

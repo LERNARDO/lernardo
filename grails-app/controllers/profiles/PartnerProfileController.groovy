@@ -1,19 +1,19 @@
 package profiles
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.EntityHelperService
 import lernardo.Contact
 import standard.MetaDataService
 import standard.FunctionService
+import at.openfactory.ep.security.DefaultSecurityManager
 
 class PartnerProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
-    AuthenticateService authenticateService
+    DefaultSecurityManager defaultSecurityManager
     FunctionService functionService
 
     def index = {

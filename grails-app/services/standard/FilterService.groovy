@@ -1,9 +1,9 @@
 package standard
 
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 import lernardo.Msg
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.EntityType
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.EntityType
 
 class FilterService {
   EntityHelperService entityHelperService

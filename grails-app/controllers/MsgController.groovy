@@ -1,6 +1,6 @@
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 import lernardo.Msg
-import de.uenterprise.ep.EntityHelperService
+import at.openfactory.ep.EntityHelperService
 import standard.FilterService
 import standard.FunctionService
 

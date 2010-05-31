@@ -1,6 +1,6 @@
 package lernardo
 
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 import standard.FunctionService
 import standard.MetaDataService
 

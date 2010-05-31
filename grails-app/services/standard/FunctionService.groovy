@@ -1,6 +1,6 @@
 package standard
 
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 import lernardo.Event
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.EntityHelperService

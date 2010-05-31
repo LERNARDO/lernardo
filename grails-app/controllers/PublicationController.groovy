@@ -1,9 +1,9 @@
 
-import de.uenterprise.ep.Entity
+import at.openfactory.ep.Entity
 import org.springframework.web.multipart.MultipartFile
 import lernardo.Publication
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.AssetService
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.AssetService
 import standard.MetaDataService
 import standard.FilterService
 import standard.PublicationHelperService

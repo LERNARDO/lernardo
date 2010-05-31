@@ -1,12 +1,12 @@
 package standard
 
 import lernardo.PublicationType
-import de.uenterprise.ep.DefaultObjectService
-import de.uenterprise.ep.EntitySuperType
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.LinkSuperType
-import de.uenterprise.ep.LinkType
-import de.uenterprise.ep.Role
+import at.openfactory.ep.DefaultObjectService
+import at.openfactory.ep.EntitySuperType
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.LinkSuperType
+import at.openfactory.ep.LinkType
+import at.openfactory.ep.Role
 
 class MetaDataService {
 

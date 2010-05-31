@@ -1,19 +1,20 @@
 package profiles
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import standard.FunctionService
+import at.openfactory.ep.SecHelperService
+import at.openfactory.ep.security.DefaultSecurityManager
 
 class ChildProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
-    AuthenticateService authenticateService
     FunctionService functionService
+    DefaultSecurityManager defaultSecurityManager
 
     def index = {
         redirect action:"list", params:params
@@ -109,13 +110,13 @@ class ChildProfileController {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.properties = params
-          ent.user.password = authenticateService.encodePassword("pass")
+          ent.user.password = defaultSecurityManager.encodePassword("pass")
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
         flash.message = message(code:"child.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[child: ee.entity, entity: entityHelperService.loggedIn])
         return
       }

@@ -1,7 +1,7 @@
 import grails.converters.JSON
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Link
-import de.uenterprise.ep.EntityType
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Link
+import at.openfactory.ep.EntityType
 
 import posts.ArticlePost
 import lernardo.Event
@@ -10,8 +10,7 @@ import lernardo.Msg
 import lernardo.Attendance
 import java.text.SimpleDateFormat
 
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.EntityHelperService
 import org.hibernate.SessionFactory
 import standard.GeoCoderService
 import standard.MetaDataService
@@ -19,6 +18,8 @@ import standard.NetworkService
 import standard.FunctionService
 import standard.FilterService
 import lernardo.Method
+import at.openfactory.ep.security.DefaultSecurityManager
+import at.openfactory.ep.SecHelperService
 
 class ProfileController {
     GeoCoderService geoCoderService
@@ -26,9 +27,10 @@ class ProfileController {
     EntityHelperService entityHelperService
     MetaDataService metaDataService
     FilterService filterService
-    AuthenticateService authenticateService
     SessionFactory sessionFactory
     FunctionService functionService
+    DefaultSecurityManager defaultSecurityManager
+    SecHelperService secHelperService
 
     def index = { }
 
@@ -246,7 +248,7 @@ class ProfileController {
     def checkPassword = {
       if (params.password == params.password2) {
         Entity entity = Entity.get(params.id)
-        entity.user.password = authenticateService.encodePassword(params.password)
+        entity.user.password = defaultSecurityManager.encodePassword(params.password)
         entity.save()
         flash.message = message(code:"pass.changed")
         redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:entity.id
@@ -500,7 +502,7 @@ class ProfileController {
             ne("type", metaDataService.etProject)
             ne("type", metaDataService.etProjectTemplate)
             ne("type", metaDataService.etTheme)
-            if (!authenticateService.ifAllGranted('ROLE_ADMIN') && !authenticateService.ifAllGranted('ROLE_SYSTEMADMIN')) {
+            if (!secHelperService.isAdmin()) {
               ne("name", "sueninosadmin")
               ne("type", metaDataService.etUser)
             }

@@ -1,5 +1,5 @@
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityHelperService
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityHelperService
 
 class AppFilters {
   EntityHelperService entityHelperService

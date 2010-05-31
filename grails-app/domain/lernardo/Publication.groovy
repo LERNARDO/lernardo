@@ -1,7 +1,7 @@
 package lernardo
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.Asset
+import at.openfactory.ep.Entity
+import at.openfactory.ep.Asset
 
 class Publication {
 

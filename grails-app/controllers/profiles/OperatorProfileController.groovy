@@ -1,18 +1,18 @@
 package profiles
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.EntityHelperService
 import standard.FunctionService
 import standard.MetaDataService
+import at.openfactory.ep.security.DefaultSecurityManager
 
 class OperatorProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
-    AuthenticateService authenticateService
+    DefaultSecurityManager defaultSecurityManager
     FunctionService functionService
 
     def index = {
@@ -107,13 +107,13 @@ class OperatorProfileController {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etOperator, params.email, params.fullName) {Entity ent ->
           ent.profile.properties = params
           ent.user.properties = params
-          ent.user.password = authenticateService.encodePassword("pass")
+          ent.user.password = defaultSecurityManager.encodePassword("pass")
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
         flash.message = message(code:"operator.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[operator: ee.entity, entity: entityHelperService.loggedIn])
         return
       }
