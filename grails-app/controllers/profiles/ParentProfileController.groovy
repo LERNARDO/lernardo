@@ -12,7 +12,7 @@ import at.openfactory.ep.security.DefaultSecurityManager
 class ParentProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
-  DefaultSecurityManager defaultSecurityManager
+  def securityManager
   FunctionService functionService
 
   def index = {

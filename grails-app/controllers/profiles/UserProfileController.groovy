@@ -12,7 +12,7 @@ import at.openfactory.ep.security.DefaultSecurityManager
 class UserProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
-    DefaultSecurityManager defaultSecurityManager
+    def securityManager
     FunctionService functionService
 
     def index = {
@@ -105,7 +105,7 @@ class UserProfileController {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etUser, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.properties = params
-          ent.user.password = defaultSecurityManager.encodePassword("pass")
+          ent.user.password = securityManager.encodePassword("pass")
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

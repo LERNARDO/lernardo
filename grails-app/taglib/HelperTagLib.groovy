@@ -14,7 +14,7 @@ class HelperTagLib {
   def networkService
   def filterService
   def secHelperService
-  DefaultSecurityManager defaultSecurityManager
+  def securityManager
   static namespace = "app"
 
 /*  def getTemplateCount = {attrs ->

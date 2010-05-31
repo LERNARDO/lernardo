@@ -31,15 +31,16 @@
                   <div class="sideboxheader">Login</div>
                   <div class="sideboxcontent">
 
-                    <form action="${resource (file:'j_spring_security_check')}" method="post">
+
+                    <g:form controller="security" action="do_login" method="post">
                       <table>
                         <tr>
                           <td style="width: 100px; height: 20px">E-Mail:</td>
-                          <td><g:textField name="j_username" tabindex="1" /></td>
+                          <td><g:textField name="userid" tabindex="1" /></td>
                         </tr>
                         <tr>
                           <td style="width: 100px; height: 20px">Passwort:</td>
-                          <td><g:passwordField name="j_password" tabindex="2" /></td>
+                          <td><g:passwordField name="password" tabindex="2" /></td>
                         </tr>
                         <tr>
                           <td colspan="2" style="height: 25px"><g:checkBox name="remember_me" /> Angemeldet bleiben</td>
@@ -52,7 +53,7 @@
 
                       <div id="forgot-pwd"><g:link controller="app" action="password">Passwort vergessen?</g:link></div>
 
-                    </form>
+                    </g:form>
                     
                   </div>
                 </div><!-- innersidebox -->

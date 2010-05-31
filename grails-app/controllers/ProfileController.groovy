@@ -29,7 +29,7 @@ class ProfileController {
     FilterService filterService
     SessionFactory sessionFactory
     FunctionService functionService
-    DefaultSecurityManager defaultSecurityManager
+    def securityManager
     SecHelperService secHelperService
 
     def index = { }
@@ -248,7 +248,7 @@ class ProfileController {
     def checkPassword = {
       if (params.password == params.password2) {
         Entity entity = Entity.get(params.id)
-        entity.user.password = defaultSecurityManager.encodePassword(params.password)
+        entity.user.password = securityManager.encodePassword(params.password)
         entity.save()
         flash.message = message(code:"pass.changed")
         redirect controller: entity.type.supertype.name + 'Profile', action:'show', id:entity.id

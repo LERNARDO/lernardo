@@ -8,16 +8,13 @@ import at.openfactory.ep.EntityHelperService
 import lernardo.Contact
 import standard.FunctionService
 import standard.MetaDataService
-import at.openfactory.ep.Profile
-import at.openfactory.ep.ProfileHelperService
 import at.openfactory.ep.security.DefaultSecurityManager
 
 class FacilityProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     FunctionService functionService
-    DefaultSecurityManager defaultSecurityManager
-    ProfileHelperService profileHelperService
+    def securityManager
 
     def index = {
         redirect action:"list", params:params

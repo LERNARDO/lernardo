@@ -3,12 +3,11 @@ import at.openfactory.ep.Account
 import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.SecHelperService
 import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.security.DefaultSecurityManager
 
 class AppController {
     SecHelperService secHelperService
     EntityHelperService entityHelperService
-    DefaultSecurityManager defaultSecurityManager
+    def securityManager
 
 
     def start = {
@@ -41,7 +40,7 @@ class AppController {
         Random randomGenerator = new Random()
         def random = randomGenerator.nextInt(300)+100
         String pass = 'pass' + random.toString()
-        user.password = defaultSecurityManager.encodePassword(pass)
+        user.password = securityManager.encodePassword(pass)
         try {
           sendMail {
             to      "${user.email}"

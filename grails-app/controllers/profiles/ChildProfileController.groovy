@@ -14,7 +14,7 @@ class ChildProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     FunctionService functionService
-    DefaultSecurityManager defaultSecurityManager
+    def securityManager
 
     def index = {
         redirect action:"list", params:params
@@ -110,7 +110,7 @@ class ChildProfileController {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->
           ent.profile.properties = params
           ent.user.properties = params
-          ent.user.password = defaultSecurityManager.encodePassword("pass")
+          ent.user.password = securityManager.encodePassword("pass")
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

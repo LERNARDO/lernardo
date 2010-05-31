@@ -50,6 +50,12 @@ grails {
   }
 }
 
+secmgr {
+  starturl     = "/start"
+  publicurl    = "/"
+}
+
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
