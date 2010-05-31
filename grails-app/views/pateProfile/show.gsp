@@ -30,7 +30,7 @@
         <tr class="prop">
           <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
-          <td width="160" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.motherTongue')}</td>
+          <td width="160" valign="top" class="value-show"><app:getLanguages language="${pate.profile.motherTongue}"/></td>
           <td width="170" valign="top" class="value-show">
             <ul>
               <g:each in="${pate.profile.languages}" var="language">
@@ -59,7 +59,7 @@
           <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">Leer</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="210" align="top" class="value-show">${fieldValue(bean: pate, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="210" align="top" class="value-show"><app:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
       </table>
 

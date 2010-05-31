@@ -36,10 +36,12 @@
       </g:if>
     </g:if>
 
-    <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neue Betreutengruppe anlegen</g:link>
-      <div class="spacer"></div>
-    </div>
+    <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="create">Neue Betreutengruppe anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:hasRoleOrType>
 
   </div>
 </div>

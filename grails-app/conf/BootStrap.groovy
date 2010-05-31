@@ -303,7 +303,7 @@ class BootStrap {
       prf.street = ""
       prf.phone = ""
       prf.description = ""
-      prf.country = ""
+      prf.country = "1"
       prf.website = ""
     }
   }
@@ -585,7 +585,7 @@ class BootStrap {
   void createDefaultMethods() {
     log.debug ("==> creating default methods")
 
-    Method method = new Method(name: "5 Säulen", description: "Die Standard Bewertungsmethode bei Lernardo", type: "template").save()
+    Method method = new Method(name: "5 Säulen", description: "", type: "template").save()
 
     method.addToElements(new Element(name: "Bewegung & Ernährung"))
     method.addToElements(new Element(name: "Handwerk & Kunst"))

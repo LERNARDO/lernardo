@@ -51,18 +51,18 @@
               <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td width="210" valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
             </td>
             <td width="210" valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
             </td>
@@ -104,7 +104,13 @@
               <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
             <td width="210" height="35" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="29" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+              %{--<g:textField class="${hasErrors(bean: pate, field: 'profile.country', 'errors')}" size="29" id="country" name="country" value="${fieldValue(bean: pate, field: 'profile.country').decodeHTML()}"/>--}%
             </td>
           </tr>
         </table>
@@ -178,10 +184,10 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select name="motherTongue" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
             </td>
@@ -196,10 +202,10 @@
               <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
 =======
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de'}">
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                 <g:select name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
 >>>>>>> 034191bbb07ddb345330df259e8460a52677e5b1

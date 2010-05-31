@@ -196,7 +196,9 @@
           <div class="bold">Betreutengruppen</div>
           <g:link controller="groupClientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupClientProfile" action="list">Alle anzeigen (${allClientGroups})</g:link></div>
-          <div><g:link controller="groupClientProfile" action="create">Neu anlegen</g:link></div>
+          <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
+            <div><g:link controller="groupClientProfile" action="create">Neu anlegen</g:link></div>
+          </app:hasRoleOrType>
         </div>
       </div>
       <div class="clear"></div>

@@ -79,7 +79,6 @@ class PateProfileController {
   }
 
   def update = {
-    println params
     Entity pate = Entity.get(params.id)
 
     pate.profile.properties = params

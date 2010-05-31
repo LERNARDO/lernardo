@@ -31,6 +31,7 @@ class TemplateProfile extends Profile {
     fullName (blank: false)
     description (blank: true, maxSize: 2000)
     chosenMaterials (size: 2..50)
+    duration (max: 500)
   }
 
   String toString(){

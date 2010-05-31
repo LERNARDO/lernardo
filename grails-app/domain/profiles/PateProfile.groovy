@@ -24,7 +24,6 @@ class PateProfile extends Profile {
     fullName (blank: true)
     firstName (blank: false, size: 2..50)
     lastName (blank: false, size: 2..50)
-    country (size: 2..50)
     zip (size: 4..10)
     city (size: 2..50)
     street (size: 2..50)

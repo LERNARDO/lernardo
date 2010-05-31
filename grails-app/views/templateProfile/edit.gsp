@@ -99,7 +99,7 @@
             </label>
           </td>
           <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
-            <g:select id="status" name="status" from="${['fertig','unfertig']}" value="${template?.profile?.status}"/>
+            <g:select id="status" name="status" from="${['fertig','in Bearbeitung']}" value="${template?.profile?.status}"/>
           </td>
         </tr>
 

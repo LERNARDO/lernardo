@@ -75,7 +75,7 @@
           <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">Leer</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="210" align="top" class="value-show">${fieldValue(bean: partner, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="210" align="top" class="value-show"><app:getNationalities nationality="${partner.profile.country}"/></td>
         </tr>
       </table>
 
