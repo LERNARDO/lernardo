@@ -4,7 +4,7 @@
   <title>Pate bearbeiten</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Pate bearbeiten</h1>
   </div>

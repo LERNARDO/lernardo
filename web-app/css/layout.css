@@ -1474,6 +1474,12 @@ h4 {
 #drop-down-220 {
 	width: 220px;
 	}
-	
+.detail{
+	float:left;
+	width:100px}	
+
+.gruppierung{
+	width: 800px;
+	clear:both;}
 
 

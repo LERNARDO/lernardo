@@ -3,7 +3,7 @@
   <title>Profil - ${partner.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${partner.profile.fullName}</h1>
   </div>
@@ -11,102 +11,97 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
-        <tbody>
 
-        <tr class="prop">
-          <td valign="top" class="name">
+      <table>
+         <tr class="prop">
+            <td class="name-show">
             <g:message code="partner.profile.name"/>:
-          </td>
-          <td valign="top" class="value"><g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.email"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'user.email')}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
+            </td>
+            <td colspan="2" valign="top" class="name-show">
+             <g:message code="partner.profile.description"/>:
+            </td>
+            <td valign="top" class="name-show">
             <g:message code="partner.profile.website"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
+            </td>
+         </tr>
+         <tr class="prop">
+            <td  class="value-show">
+              <g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link>
+            </td>
+           <td  colspan="2" class="value-show">
+             ${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}
+           </td>
+           <td  class="value-show">
+             ${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">keine Daten eingetragen</div>'}
+           </td>
+         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.description"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
+            <td class="name-show">
+           <g:message code="partner.profile.phone"/>:
+            </td>
+            <td colspan="3" valign="top" class="name-show">
+             <g:message code="partner.profile.services"/>:
+            </td>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.country"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.zip"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.city"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.street"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.phone"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="partner.profile.services"/>:
-          </td>
-          <td valign="top" class="value">
+         </tr>
+         <tr class="prop">
+            <td width="200" class="value-show">
+              ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}               </td>
+           <td width="421" colspan="3" class="value-show">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
                 <li><app:getPartnerService service="${service}"/></li>
               </g:each>
             </ul>
-            %{-- ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}--}%
+           </td>
+         </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name-show">
+            <g:message code="partner.profile.street"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="partner.profile.zip"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="partner.profile.city"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="partner.profile.country"/>:
           </td>
         </tr>
+        <tr class="prop">
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">Leer</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="210" align="top" class="value-show">${fieldValue(bean: partner, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+      </table>
 
-        <app:isAdmin>
+    <div class="email">
+       <table>
           <tr class="prop">
-            <td valign="top" class="name">
+            <app:isAdmin>
+            <td width="60" valign="top">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            <td width="50" valign="top" ><g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            </app:isAdmin>
+            <td width="60" valign="top" >
+              <g:message code="facility.profile.email"/>:
+            </td>
+            <td valign="top" >${fieldValue(bean: partner, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
-        </app:isAdmin>
+        </table>
+      </div> <!-- div email close -->
 
-        </tbody>
-      </table>
+
     </div>
 
     <app:isMeOrAdmin entity="${partner}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>

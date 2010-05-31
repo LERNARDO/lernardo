@@ -4,7 +4,7 @@
   <title>Partner anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Partner anlegen</h1>
   </div>
@@ -20,149 +20,118 @@
 
     <g:form action="save" method="post">
       <div class="dialog">
-        <table>
-          <tbody>
 
-          <tr class="prop">
+            <table>
+         <tr class="prop">
+            <td class="name">
+            <g:message code="partner.profile.name"/>:
+            </td>
+            <td colspan="2" valign="top" class="name">
+             <g:message code="partner.profile.description"/>:
+            </td>
             <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="partner.profile.name"/>
-              </label>
+            <g:message code="partner.profile.website"/>:
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="30" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
+         </tr>
+         <tr class="prop">
+            <td valign="top"  class="value">
+              <g:textField class="${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="42" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
+             </td>
+           <td valign="top" colspan="2" class="value">
+             <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="45" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
             </td>
-          </tr>
+           <td valign="top" class="value">
+             <g:textField class="${hasErrors(bean: partner, field: 'profile.website', 'errors')}" size="30" maxlength="80" id="website" name="website" value="${fieldValue(bean: partner, field: 'profile.website')}"/>
+            </td>
+         </tr>
 
-          <tr class="prop">
+        <tr class="prop">
             <td valign="top" class="name">
-              <label for="description">
-                <g:message code="partner.profile.description"/>
-              </label>
+           <g:message code="partner.profile.phone"/>:
             </td>
-            <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="50" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
+            <td colspan="3" valign="top" class="name">
+             <g:message code="partner.profile.services"/>:
             </td>
-          </tr>
-          
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="email">
-                <g:message code="partner.profile.email"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
-            </td>
-          </tr>
 
-          <tr class="prop">
-            <td valign="website" class="name">
-              <label for="email">
-                <g:message code="partner.profile.website"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.website', 'errors')}" size="30" maxlength="80" id="website" name="website" value="${fieldValue(bean: partner, field: 'profile.website')}"/>
-            </td>
-          </tr>
+         </tr>
+         <tr class="prop">
+            <td valign="top"width="200" class="value">
+            <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="42" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
+           <td width="421" colspan="3" class="value">
+           <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+           <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+            </g:if>
+            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+            <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+            </g:if>
+          %{--<g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>--}%
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="country">
-                <g:message code="partner.profile.country"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: partner, field: 'profile.country').decodeHTML()}"/>
-            </td>
-          </tr>
+           </td>
+         </tr>
+        
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="partner.profile.street"/>:
+          </td>
+          <td valign="top" class="name">
+            <g:message code="partner.profile.zip"/>:
+          </td>
+          <td valign="top" class="name">
+            <g:message code="partner.profile.city"/>:
+          </td>
+          <td valign="top" class="name">
+            <g:message code="partner.profile.country"/>:
+          </td>
+        </tr>
+        <tr class="prop">
+          <td width="290" valign="top" class="value">
+            <g:textField class="${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="42" id="street" name="street" value="${fieldValue(bean: partner, field: 'profile.street').decodeHTML()}"/>
+         </td>
+          <td width="101" valign="top" class="value">
+            <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="12" id="zip" name="zip" value="${fieldValue(bean: partner, field: 'profile.zip').decodeHTML()}"/>
+          </td>
+          <td width="220" valign="top" class="value">
+            <g:textField class="${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>          
+          </td>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="zip">
-                <g:message code="partner.profile.zip"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.zip', 'errors')}" size="30" id="zip" name="zip" value="${fieldValue(bean: partner, field: 'profile.zip').decodeHTML()}"/>
-            </td>
-          </tr>
+          <td width="210" align="top" class="value">
+            <g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: partner, field: 'profile.country').decodeHTML()}"/>
+         </td>
+        </tr>
+      </table>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="city">
-                <g:message code="partner.profile.city"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="street">
-                <g:message code="partner.profile.street"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="30" id="street" name="street" value="${fieldValue(bean: partner, field: 'profile.street').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="phone">
-                <g:message code="partner.profile.phone"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="phone">
-                <g:message code="partner.profile.services"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
-              </g:if>
-              %{--<g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>--}%
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="locale">
-                <g:message code="languageSelection"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <app:localeSelect name="locale" value="${partner?.user?.locale}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="enabled">
-                <g:message code="active"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
-            </td>
-          </tr>
-
-          </tbody>
-        </table>
+       <div class="email">
+          <table>
+            <tr class="prop">
+              <app:isAdmin>
+                <td width="60" valign="middle" class="name">
+                  <label for="enabled">
+                    <g:message code="active"/>
+                  </label>
+                </td>
+                <td width="40" valign="middle" class="value">
+                  <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
+                </td>
+              </app:isAdmin>
+              <td width="70" valign="middle" class="name">
+                <label for="email">
+                  <g:message code="partner.profile.email"/>
+                </label>
+              </td>
+              <td width="320" valign="middle" class="value">
+                <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
+              </td>
+              <td width="130" valign="middle" class="name">
+                <label for="locale">
+                  <g:message code="languageSelection"/>
+                </label>
+              </td>
+              <td valign="middle" class="value">
+                <app:localeSelect class="drop-down-150" name="locale" value="${partner?.user?.locale}"/>
+              </td>
+            </tr>
+          </table>
+        </div> <!--div email close -->
 
       </div>
       <div class="buttons">

@@ -60,7 +60,7 @@
                 <g:message code="facility.profile.country"/>
               </label>
             </td>
-           </tr>
+          </tr>
 
           <tr class="prop">
             <td width="290" valign="middle" class="value">
@@ -78,36 +78,36 @@
           </tr>
         </table>
         <div class="email">
-        <table>
-          <tr class="prop">
-            <app:isAdmin>
-              <td width="60" valign="middle" class="name">
-                <label for="enabled">
-                  <g:message code="active"/>
+          <table>
+            <tr class="prop">
+              <app:isAdmin>
+                <td width="60" valign="middle" class="name">
+                  <label for="enabled">
+                    <g:message code="active"/>
+                  </label>
+                </td>
+                <td width="40" valign="middle" class="value">
+                  <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
+                </td>
+              </app:isAdmin>
+              <td width="70" valign="middle" class="name">
+                <label for="email">
+                  <g:message code="facility.profile.email"/>
                 </label>
               </td>
-              <td width="40" valign="middle" class="value">
-                <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
+              <td width="320" valign="middle" class="value">
+                <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
               </td>
-            </app:isAdmin>
-            <td width="70" valign="middle" class="name">
-              <label for="email">
-                <g:message code="facility.profile.email"/>
-              </label>
-            </td>
-            <td width="320" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
-            </td>
-            <td width="130" valign="middle" class="name">
-              <label for="locale">
-                <g:message code="languageSelection"/>
-              </label>
-            </td>
-            <td valign="middle" class="value">
-              <app:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
-            </td>
-          </tr>
-        </table>
+              <td width="130" valign="middle" class="name">
+                <label for="locale">
+                  <g:message code="languageSelection"/>
+                </label>
+              </td>
+              <td valign="middle" class="value">
+                <app:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
+              </td>
+            </tr>
+          </table>
         </div> <!--div email close -->
       </div>  <!-- div dialog close -->
       <div class="green">
