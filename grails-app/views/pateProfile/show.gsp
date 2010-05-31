@@ -3,7 +3,7 @@
   <title>Profil - ${pate.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${pate.profile.fullName}</h1>
   </div>
@@ -11,77 +11,27 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
-        <tbody>
-
+      <table>
         <tr class="prop">
-          <td valign="top" class="name">
+          <td height="22" valign="top" class="name-show">
             <g:message code="pate.profile.firstName"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
+          <td valign="top" class="name-show">
             <g:message code="pate.profile.lastName"/>:
           </td>
-          <td valign="top" class="value"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.email"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'user.email')}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.country"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.zip"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.city"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.street"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.emails"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.emails')}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
+          <td valign="top" class="name-show">
             <g:message code="pate.profile.motherTongue"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: pate, field: 'profile.motherTongue')}</td>
+          <td valign="top" class="name-show">
+            <g:message code="pate.profile.languages"/>:
+          </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="pate.profile.languages"/>:
-          </td>
-          <td valign="top" class="value">
+          <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
+          <td width="160" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.motherTongue')}</td>
+          <td width="170" valign="top" class="value-show">
             <ul>
               <g:each in="${pate.profile.languages}" var="language">
                 <li><app:getLanguages language="${language}"/></li>
@@ -89,23 +39,55 @@
             </ul>
           </td>
         </tr>
+      </table>
+      <table>
+        <tr class="prop">
+          <td valign="top" class="name-show">
+            <g:message code="pate.profile.zip"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="pate.profile.city"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="pate.profile.street"/>:
+          </td>
+          <td valign="top" class="name-show">
+            <g:message code="pate.profile.country"/>:
+          </td>
+        </tr>
+        <tr class="prop">
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">Leer</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="210" align="top" class="value-show">${fieldValue(bean: pate, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+      </table>
 
-        <app:isAdmin>
+      <div class="email">
+        <table>
           <tr class="prop">
-            <td valign="top" class="name">
+            <app:isAdmin>
+            <td width="60" valign="top">
               <g:message code="active"/>:
             </td>
-            <td valign="top" class="value"><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-          </tr>
-        </app:isAdmin>
+            <td width="50" valign="top" ><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            </app:isAdmin>
+            <td width="145" valign="top" class="name">
+              <g:message code="pate.profile.emails"/>:
+            </td>
+            <td width="50" valign="top" class="value">${fieldValue(bean: pate, field: 'profile.emails')}</td>
+            <td width="60" valign="top" >
+              <g:message code="pate.profile.email"/>:
+            </td>
+            <td valign="top" >${fieldValue(bean: pate, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
-        </tbody>
-      </table>
-    </div>
+          </tr>
+        </table>
+      </div> <!-- div email close -->
 
     <app:isMeOrAdmin entity="${pate}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
@@ -128,7 +110,7 @@
         <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
       </div>
     </div>
-
+    </div>
   </div>
 </div>
 </body>

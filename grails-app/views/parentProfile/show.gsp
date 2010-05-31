@@ -56,7 +56,7 @@
 		  </tr>
 		  <tr>
 			<td valign="top" class="value-show">
-             ${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">keine Daten eingetragen</div>'}
+             ${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">leer</div>'}
 			</td>
 			<td valign="top" class="value-show" colspan="2" >
               <ul>
