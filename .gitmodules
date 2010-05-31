@@ -1,6 +1,3 @@
-[submodule "plugins/ubase-snapshot"]
-	path = plugins/ubase-snapshot
-	url = git@github.com:uenterprise/ubase.git
 [submodule "plugins/pdf-snapshot"]
 	path = plugins/pdf-snapshot
 	url = git@github.com:mkuhl/grails-pdfplugin.git
