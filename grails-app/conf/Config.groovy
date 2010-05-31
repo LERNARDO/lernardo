@@ -105,6 +105,8 @@ languages_es = [1:'alemán',2:'inglés',3:'francés',4:'español',5:'mexicana',6
                 10:'Kanjobal',11:'Lacandon',12:'Quiche',13:'Chol',14:'Cakchiquel']
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
+inchargeof_de = [1:'Direktion',2:'Programmkoordination',3:'Programm',4:'Projekt',5:'Bereiche',6:'Tutor',7:'Köchin',8:'Freiwilliger']
+inchargeof_es = [1:'Direktion',2:'Programmkoordination',3:'Programm',4:'Projekt',5:'Bereiche',6:'Tutor',7:'Köchin',8:'Freiwilliger']
 jobs_de = [1:'Schuhputzer',2:'Kaugummiverkäufer',3:'Kunsthandwerkverkäufer',4:'Bauhilfsarbeiter',5:'Hausarbeit',6:'Kinderaufpassen',
            7:'Autowäscher',8:'Austeiler (Werbung)',9:'Träger, Verpacker im Supermarkt',10:'Hilfe in Werkstatt',
            11:'Kunsthandwerker (Textil, Schmuck)',12:'Müllsammler',13:'Autoscheibenputzer',14:'Fahrgeldeinsammler (öfftl. Kleinbusse)']

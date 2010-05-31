@@ -23,7 +23,8 @@ class GroupClientProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [groups: Entity.findAllByType(metaDataService.etGroupClient),
-                groupTotal: Entity.countByType(metaDataService.etGroupClient)]
+                groupTotal: Entity.countByType(metaDataService.etGroupClient),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

@@ -53,10 +53,10 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="service" id="service" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+                <g:select name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="service" id="service" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+                <g:select name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
               </g:if>
               %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>

@@ -43,21 +43,21 @@ class MetaDataService {
   static final String EST_PROJECT_UNIT = "projectUnit"
 
   static final String ET_USER = "User"                   // EntityType
-  static final String ET_EDUCATOR = "Paedagoge"
+  static final String ET_EDUCATOR = "Pädagoge"
   static final String ET_CLIENT = "Betreuter"
   static final String ET_CHILD = "Kind"
   static final String ET_OPERATOR = "Betreiber"
   static final String ET_FACILITY = "Einrichtung"
   static final String ET_TEMPLATE = "Vorlage"
-  static final String ET_ACTIVITY = "Aktivitaet"
+  static final String ET_ACTIVITY = "Aktivität"
   static final String ET_GROUP_PARTNER = "Gruppe Partner"
   static final String ET_GROUP_FAMILY = "Gruppe Familie"
   static final String ET_GROUP_CLIENT = "Gruppe Betreute"
   static final String ET_GROUP_COLONY = "Gruppe Siedlung"
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
   static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
-  static final String ET_GROUP_ACTIVITY_TEMPLATE = "Gruppe Aktivitaetsvorlagen"
-  static final String ET_GROUP_ACTIVITY = "Gruppe Aktivitaeten"
+  static final String ET_GROUP_ACTIVITY_TEMPLATE = "Gruppe Aktivitätsvorlagen"
+  static final String ET_GROUP_ACTIVITY = "Gruppe Aktivitäten"
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
@@ -100,6 +100,7 @@ class MetaDataService {
   static final String ROLE_MOD = "ROLE_MOD"
   static final String ROLE_ADMIN = "ROLE_ADMIN"
   static final String ROLE_SYSTEMADMIN = "ROLE_SYSTEMADMIN"
+  static final String ROLE_LEAD_EDUCATOR = "ROLE_LEAD_EDUCATOR"
 
   static final String LST_PERSONAL = "personal"          // LinkSuperType
   static final String LST_OTHER = "other"
@@ -250,6 +251,7 @@ class MetaDataService {
     getModRole()
     getAdminRole()
     getSystemAdminRole()
+    getLeadEducatorRole()
 
     getPtDoc1()
     getPtDoc2()
@@ -353,10 +355,11 @@ class MetaDataService {
   LinkType getLtActFacility() {defaultObjectService.openLT (LT_ACT_FACILITY, lstOther) }
   LinkType getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
 
-  Role getUserRole()        {defaultObjectService.openRole (ROLE_USER, "regular user") }
-  Role getModRole()         {defaultObjectService.openRole (ROLE_MOD, "moderator") }
-  Role getAdminRole()       {defaultObjectService.openRole (ROLE_ADMIN, "administrator") }
-  Role getSystemAdminRole() {defaultObjectService.openRole (ROLE_SYSTEMADMIN, "system administrator") }
+  Role getUserRole()         {defaultObjectService.openRole (ROLE_USER, "regular user") }
+  Role getModRole()          {defaultObjectService.openRole (ROLE_MOD, "moderator") }
+  Role getAdminRole()        {defaultObjectService.openRole (ROLE_ADMIN, "administrator") }
+  Role getSystemAdminRole()  {defaultObjectService.openRole (ROLE_SYSTEMADMIN, "system administrator") }
+  Role getLeadEducatorRole() {defaultObjectService.openRole (ROLE_LEAD_EDUCATOR, "leading educator") }
 
   PublicationType getPtDoc1 () {this.openPT (PT_DOC1, "Typ 1")}
   PublicationType getPtDoc2 () {this.openPT (PT_DOC2, "Typ 2")}

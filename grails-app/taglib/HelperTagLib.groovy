@@ -15,6 +15,22 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
+    def hasRoleOrType = {attrs, body ->
+
+      Entity entity = attrs.entity
+
+      List roles = attrs.roles
+      def hasRoles = roles.findAll { entity.user?.authorities*.authority.contains(it) }
+      //log.info hasRoles
+
+      List types = attrs.types
+      def hasType = types.findAll { entity.type?.name == it }
+      //log.info hasType
+
+      if (hasRoles || hasType)
+        out << body()
+    }
+
   // receives a nationality ID and renders either the german or spanish word for it
   def getFamilyStatus = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
@@ -43,6 +59,16 @@ class HelperTagLib {
       out << grailsApplication.config.languages_de[language]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.languages_es[language]
+  }
+
+  // receives a inChargeOf ID and renders either the german or spanish word for it
+  def getInChargeOf = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
+    int inchargeof = attrs.inchargeof.toInteger()
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config.inchargeof_de[inchargeof]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config.inchargeof_es[inchargeof]
   }
 
   // receives a partner service ID and renders either the german or spanish word for it
@@ -307,7 +333,7 @@ class HelperTagLib {
     if (attrs.entity.type.name == metaDataService.etFacility.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
       out << body()
   }
-
+ 
   def isEducator = {attrs, body->
     if (attrs.entity.type.name == metaDataService.etEducator.name || secHelperService.isAdmin() || authenticateService.ifAllGranted('ROLE_SYSTEMADMIN'))
       out << body()

@@ -23,7 +23,8 @@ class GroupFamilyProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [groups: Entity.findAllByType(metaDataService.etGroupFamily),
-                groupTotal: Entity.countByType(metaDataService.etGroupFamily)]
+                groupTotal: Entity.countByType(metaDataService.etGroupFamily),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

@@ -116,7 +116,11 @@
 	            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="top" class="value-show">
-			  ${educator.profile.inChargeOf ? g.join(in:educator.profile.inChargeOf) : '<div class="italic">Leer</div>'}
+			  <ul>
+                <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
+                  <li><app:getInChargeOf inchargeof="${inchargeof}"/></li>
+                </g:each>
+              </ul>
             </td>
 			<td valign="top" class="value-show">
 			  <ul>

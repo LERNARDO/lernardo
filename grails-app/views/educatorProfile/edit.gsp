@@ -122,10 +122,15 @@
 		</tr>
 		<tr>
 			<td valign="top" class="value">
-              <g:textField  class="${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" id="interests" size="42" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
+              <g:textArea rows="3" cols="39" class="${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" id="interests" size="42" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
             </td>
 			<td valign="top" class="value">
-              <g:select class="liste-280" name="inChargeOf" from="${['Direktion','Programmkoordination','Programm','Projekt','Bereiche','Tutor','Köchin','Freiwilliger']}" multiple="true" value="${educator?.profile?.inChargeOf}"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value"/>
+              </g:if>
             </td>
 			<td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">

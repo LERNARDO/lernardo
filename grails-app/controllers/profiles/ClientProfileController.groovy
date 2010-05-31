@@ -40,7 +40,7 @@ class ClientProfileController {
         }
         else {
             def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-            Entity colonia = link.source
+            Entity colonia = link?.source
             link = Link.findByTargetAndType(client, metaDataService.ltFacility)
             Entity school = link.source
             return [client: client, entity: entity, colonia: colonia, school: school]

@@ -25,7 +25,8 @@ class GroupColonyProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [groups: Entity.findAllByType(metaDataService.etGroupColony),
-                groupTotal: Entity.countByType(metaDataService.etGroupColony)]
+                groupTotal: Entity.countByType(metaDataService.etGroupColony),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

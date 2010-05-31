@@ -188,7 +188,9 @@
           <div class="bold">Sponsorennetzwerke</div>
           <g:link controller="groupPartnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupPartnerProfile" action="list">Alle anzeigen (${allPartnerGroups})</g:link></div>
-          <div><g:link controller="groupPartnerProfile" action="create">Neu anlegen</g:link></div>
+          <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+            <div><g:link controller="groupPartnerProfile" action="create">Neu anlegen</g:link></div>
+          </app:hasRoleOrType>
         </div>
         <div class="box">
           <div class="bold">Betreutengruppen</div>
