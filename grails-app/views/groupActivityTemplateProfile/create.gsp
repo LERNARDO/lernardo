@@ -62,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select id="status" name="status" from="${['fertig','unfertig']}" value="${group?.profile?.status}"/>
+              <g:select id="status" name="status" from="${['fertig','in Bearbeitung']}" value="${group?.profile?.status}"/>
             </td>
           </tr>
 
