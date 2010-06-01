@@ -3,7 +3,7 @@
   <title>Ressource bearbeiten</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Ressource bearbeiten</h1>
   </div>
