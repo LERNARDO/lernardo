@@ -85,16 +85,16 @@
         </table>
       </div> <!-- div email close -->
 
-    <app:isMeOrAdmin entity="${pate}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
+        <app:isMeOrAdmin entity="${pate}">
+          <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
+        </app:isMeOrAdmin>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
-
+    
     <div>
-      <h1>Patenkinder <app:isMeOrAdmin entity="${pate}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h1>Patenkinder <app:isOperator entity="${entity}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
       <jq:jquery>
         <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
       </jq:jquery>

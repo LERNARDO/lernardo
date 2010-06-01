@@ -25,7 +25,8 @@ class ChildProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [childList: Entity.findAllByType(metaDataService.etChild),
-                childTotal: Entity.countByType(metaDataService.etChild)]
+                childTotal: Entity.countByType(metaDataService.etChild),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

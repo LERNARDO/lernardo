@@ -26,7 +26,8 @@ class PartnerProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [partnerList: Entity.findAllByType(metaDataService.etPartner),
-                partnerTotal: Entity.countByType(metaDataService.etPartner)]
+                partnerTotal: Entity.countByType(metaDataService.etPartner),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

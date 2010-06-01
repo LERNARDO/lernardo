@@ -72,7 +72,9 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="del" id="${group.id}" onclick="return confirm('Bist du sicher?');"><g:message code="delete"/></g:link>
+        <app:isOperator entity="${entity}">
+          <g:link class="buttonGray" action="del" id="${group.id}" onclick="${app.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
+        </app:isOperator>
         <g:link class="buttonGray" action="show" id="${group.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

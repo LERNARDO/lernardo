@@ -25,7 +25,8 @@ class OperatorProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [operatorList: Entity.findAllByType(metaDataService.etOperator),
-                operatorTotal: Entity.countByType(metaDataService.etOperator)]
+                operatorTotal: Entity.countByType(metaDataService.etOperator),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

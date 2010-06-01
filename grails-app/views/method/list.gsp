@@ -37,10 +37,12 @@
       </g:if>
     </g:if>
 
-    <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neue Bewertungsmethode anlegen</g:link>
-      <div class="spacer"></div>
-    </div>
+    <app:isAdmin>
+      <div class="buttons">
+        <g:link class="buttonBlue" action="create">Neue Bewertungsmethode anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isAdmin>
 
   </div>
 </div>

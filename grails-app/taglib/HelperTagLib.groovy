@@ -15,6 +15,28 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
+  def getLinks = {attrs ->
+    Integer id = attrs.id
+    Entity entity = Entity.get(id)
+
+    def linksTarget = Link.findAllByTarget(entity)
+    List sourceNames = linksTarget.collect {it.source.profile.fullName}
+    //log.info sourceNames
+
+    def linksSource = Link.findAllBySource(entity)
+    List targetNames = linksSource.collect {it.target.profile.fullName}
+    //log.info targetNames
+
+    if (sourceNames.size() == 0 && targetNames.size() == 0)
+      out << "return confirm('Es bestehen keine Beziehungen! Bist du sicher?')"
+    else if (sourceNames.size() > 0 && targetNames.size() == 0)
+      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + "! Bist du sicher?')"
+    else if (sourceNames.size() == 0 && targetNames.size() > 0)
+      out << "return confirm('Es bestehen Beziehungen von " + targetNames + "! Bist du sicher?')"
+    else
+      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + " und von " + targetNames + "! Bist du sicher?')"
+  }
+
     def hasRoleOrType = {attrs, body ->
 
       Entity entity = attrs.entity

@@ -25,7 +25,8 @@ class PateProfileController {
   def list = {
     params.max = Math.min(params.max ? params.int('max') : 10, 100)
     return [pateList: Entity.findAllByType(metaDataService.etPate),
-            pateTotal: Entity.countByType(metaDataService.etPate)]
+            pateTotal: Entity.countByType(metaDataService.etPate),
+            entity: entityHelperService.loggedIn]
   }
 
   def show = {

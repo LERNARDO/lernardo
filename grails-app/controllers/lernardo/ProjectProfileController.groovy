@@ -24,7 +24,8 @@ class ProjectProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 20,  100)
         return[projectList: Entity.findAllByType(metaDataService.etProject),
-               projectTotal: Entity.countByType(metaDataService.etProject)]
+               projectTotal: Entity.countByType(metaDataService.etProject),
+               entity: entityHelperService.loggedIn]
     }
 
     def show = {
@@ -177,13 +178,13 @@ class ProjectProfileController {
           Date currentDate = calendarStart.getTime();
           //log.info df.format(currentDate)
 
-          if ((params.monday && df.format(currentDate) == 'Montag') ||
-              (params.tuesday && df.format(currentDate) == 'Dienstag') ||
-              (params.wednesday && df.format(currentDate) == 'Mittwoch') ||
-              (params.thursday && df.format(currentDate) == 'Donnerstag') ||
-              (params.friday && df.format(currentDate) == 'Freitag') ||
-              (params.saturday && df.format(currentDate) == 'Samstag') ||
-              (params.sunday && df.format(currentDate) == 'Sonntag')) {
+          if ((params.monday && (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday')) ||
+              (params.tuesday && (df.format(currentDate) == 'Dienstag' || df.format(currentDate) == 'Tuesday')) ||
+              (params.wednesday && (df.format(currentDate) == 'Mittwoch' || df.format(currentDate) == 'Wednesday')) ||
+              (params.thursday && (df.format(currentDate) == 'Donnerstag' || df.format(currentDate) == 'Thursday')) ||
+              (params.friday && (df.format(currentDate) == 'Freitag' || df.format(currentDate) == 'Friday')) ||
+              (params.saturday && (df.format(currentDate) == 'Samstag' || df.format(currentDate) == 'Saturday')) ||
+              (params.sunday && (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday'))) {
               //log.info "found"
 
               // create project day
@@ -194,31 +195,31 @@ class ProjectProfileController {
                 ent.profile.fullName = params.fullName
               }
 
-              if (df.format(currentDate) == 'Montag') {
+              if (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday') {
                 projectDay.profile.date.setHours(params.int('mondayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('mondayStartMinute'))
               }
-              else if (df.format(currentDate) == 'Dienstag') {
+              else if (df.format(currentDate) == 'Dienstag' || df.format(currentDate) == 'Tuesday') {
                 projectDay.profile.date.setHours(params.int('tuesdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('tuesdayStartMinute'))
               }
-              else if (df.format(currentDate) == 'Mittwoch') {
+              else if (df.format(currentDate) == 'Mittwoch' || df.format(currentDate) == 'Wednesday') {
                 projectDay.profile.date.setHours(params.int('wednesdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('wednesdayStartMinute'))
               }
-              else if (df.format(currentDate) == 'Donnerstag') {
+              else if (df.format(currentDate) == 'Donnerstag' || df.format(currentDate) == 'Thursday') {
                 projectDay.profile.date.setHours(params.int('thursdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('thursdayStartMinute'))
               }
-              else if (df.format(currentDate) == 'Freitag') {
+              else if (df.format(currentDate) == 'Freitag' || df.format(currentDate) == 'Friday') {
                 projectDay.profile.date.setHours(params.int('fridayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('fridayStartMinute'))
               }
-              else if (df.format(currentDate) == 'Samstag') {
+              else if (df.format(currentDate) == 'Samstag' || df.format(currentDate) == 'Saturday') {
                 projectDay.profile.date.setHours(params.int('saturdayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('saturdayStartMinute'))
               }
-              else if (df.format(currentDate) == 'Sonntag') {
+              else if (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday') {
                 projectDay.profile.date.setHours(params.int('sundayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('sundayStartMinute'))
               }

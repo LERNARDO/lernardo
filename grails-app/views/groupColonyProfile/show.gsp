@@ -18,7 +18,7 @@
           <td valign="top" class="name">
             <g:message code="groupColony.profile.name"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
@@ -40,7 +40,7 @@
     </app:isMeOrAdmin>
 
     <div>
-      <h5>Repräsentanten <app:isMeOrAdmin entity="${group}"><a href="#" id="show-representatives"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Repräsentanten <app:isOperator entity="${entity}"><a href="#" id="show-representatives"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-representatives" targetId="representatives"/>
       </jq:jquery>
@@ -96,7 +96,7 @@
     </div>
 
     <div>
-      <h5>Gebäude <app:isMeOrAdmin entity="${group}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Gebäude <app:isOperator entity="${entity}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-buildings" targetId="buildings"/>
       </jq:jquery>
@@ -145,7 +145,7 @@
     </div>
 
     <div>
-      <h5>Einrichtungen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Einrichtungen <app:isOperator entity="${entity}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
@@ -163,7 +163,7 @@
     </div>
 
     <div>
-      <h5>Ressourcen <app:isMeOrAdmin entity="${group}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Ressourcen <app:isOperator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>

@@ -35,10 +35,12 @@
       </g:if>
     </g:if>
 
-    <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neuen Betreuten anlegen</g:link>
-      <div class="spacer"></div>
-    </div>
+    <app:isOperator entity="${entity}">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="create">Neuen Betreuten anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isOperator>
     
   </div>
 </div>

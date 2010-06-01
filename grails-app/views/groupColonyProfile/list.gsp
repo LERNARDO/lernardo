@@ -44,10 +44,12 @@
       </g:if>
     </g:if>
 
-    <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neue Colonia anlegen</g:link>
-      <div class="spacer"></div>
-    </div>
+    <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="create">Neue Colonia anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:hasRoleOrType>
 
   </div>
 </div>

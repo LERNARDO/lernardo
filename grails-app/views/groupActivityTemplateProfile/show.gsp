@@ -18,7 +18,7 @@
           <td valign="top" class="name">
             <g:message code="groupActivityTemplate.profile.name"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">

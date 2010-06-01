@@ -10,12 +10,12 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <ub:meOrAdmin entityName="${entity.name}">
+    <app:isOperator entity="${entity}">
       <div class="action-buttons">
         <g:link class="buttonBlue" controller="publication" id="${entity.id}" action="create"><img src="${g.resource (dir:'images/icons', file:'icon_document.png')}" alt="icon" align="top"/> Neues Dokument anlegen</g:link>
         <div class="spacer" style="margin-bottom: 10px"></div>
       </div>
-    </ub:meOrAdmin>
+    </app:isOperator>
     <g:if test="${!pubtypes}">
     <div class="info-msg">
       Keine Dokumente vorhanden!

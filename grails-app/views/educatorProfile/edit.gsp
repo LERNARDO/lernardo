@@ -341,6 +341,9 @@
  
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <app:isOperator entity="${entity}">
+          <g:link class="buttonGray" action="del" id="${educator.id}" onclick="${app.getLinks(id: educator.id)}"><g:message code="delete"/></g:link>
+        </app:isOperator>
         <g:link class="buttonGray" action="show" id="${educator.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

@@ -27,7 +27,8 @@ class ClientProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [clientList: Entity.findAllByType(metaDataService.etClient),
-                clientTotal: Entity.countByType(metaDataService.etClient)]
+                clientTotal: Entity.countByType(metaDataService.etClient),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

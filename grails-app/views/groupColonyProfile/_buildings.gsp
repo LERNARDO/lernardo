@@ -1,7 +1,7 @@
 <g:if test="${group.profile.buildings}">
   <ul>
   <g:each in="${group.profile.buildings}" var="building">
-    <li>Name: ${building.name} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeBuilding" update="buildings2" id="${group.id}" params="[building: building.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Gebäude entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+    <li>Name: ${building.name} <app:isOperator entity="${entity}"><g:remoteLink action="removeBuilding" update="buildings2" id="${group.id}" params="[building: building.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Gebäude entfernen" align="top"/></g:remoteLink></app:isOperator></li>
     <li>PLZ: ${building.zip}</li>
     <li>Stadt: ${building.city}</li>
     <li>Straße: ${building.street}</li>

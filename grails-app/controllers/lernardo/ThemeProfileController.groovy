@@ -23,7 +23,8 @@ class ThemeProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 20,  100)
         return[themeList: Entity.findAllByType(metaDataService.etTheme),
-               themeTotal: Entity.countByType(metaDataService.etTheme)]
+               themeTotal: Entity.countByType(metaDataService.etTheme),
+               entity: entityHelperService.loggedIn]
     }
 
     def show = {

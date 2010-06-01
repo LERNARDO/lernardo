@@ -40,8 +40,10 @@
         </g:if>
       </g:if>
 
-      <g:link class="buttonGreen" action="create">Neue Ressource anlegen</g:link>
-      <div class="spacer"></div>
+      <app:isOperator entity="${entity}">
+        <g:link class="buttonGreen" action="create">Neue Ressource anlegen</g:link>
+        <div class="spacer"></div>
+      </app:isOperator>
       
     </div>
   </div>

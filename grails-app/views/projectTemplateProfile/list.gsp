@@ -36,8 +36,10 @@
         </g:if>
       </g:if>
 
-      <g:link class="buttonBlue" action="create">Neue Projektvorlage anlegen</g:link>
-      <div class="spacer"></div>
+      <app:isEducator entity="${entity}">
+        <g:link class="buttonBlue" action="create">Neue Projektvorlage anlegen</g:link>
+        <div class="spacer"></div>
+      </app:isEducator>
 
     </div>
   </div>

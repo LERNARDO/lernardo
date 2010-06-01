@@ -24,7 +24,6 @@
 
     <app:isEducator entity="${entity}">
       <g:link class="buttonBlue" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
-      <g:link class="buttonGray" action="del" id="${template.id}" onclick="return confirm('Aktivitätsvorlage wirklich löschen?');">Löschen</g:link>
       <g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>

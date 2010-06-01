@@ -42,10 +42,12 @@
       </g:if>
     </g:if>
 
-    <div class="buttons">
-      <g:link class="buttonBlue" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>
-      <div class="spacer"></div>
-    </div>
+    <app:isEducator entity="${entity}">
+      <div class="buttons">
+        <g:link class="buttonBlue" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isEducator>
 
   </div>
 </div>

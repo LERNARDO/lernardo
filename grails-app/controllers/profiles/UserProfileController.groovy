@@ -25,7 +25,8 @@ class UserProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [userList: Entity.findAllByType(metaDataService.etUser),
-                userTotal: Entity.countByType(metaDataService.etUser)]
+                userTotal: Entity.countByType(metaDataService.etUser),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

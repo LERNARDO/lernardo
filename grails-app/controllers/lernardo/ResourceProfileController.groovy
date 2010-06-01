@@ -22,7 +22,8 @@ class ResourceProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 20,  100)
         return[resourceList: Entity.findAllByType(metaDataService.etResource),
-               resourceTotal: Entity.countByType(metaDataService.etResource)]
+               resourceTotal: Entity.countByType(metaDataService.etResource),
+               entity: entityHelperService.loggedIn]
     }
 
     def show = {

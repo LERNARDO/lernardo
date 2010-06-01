@@ -26,7 +26,8 @@ class EducatorProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
         return [educatorList: Entity.findAllByType(metaDataService.etEducator),
-                educatorTotal: Entity.countByType(metaDataService.etEducator)]
+                educatorTotal: Entity.countByType(metaDataService.etEducator),
+                entity: entityHelperService.loggedIn]
     }
 
     def show = {

@@ -23,7 +23,8 @@ class ProjectTemplateProfileController {
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 20,  100)
         return[projectTemplateList: Entity.findAllByType(metaDataService.etProjectTemplate),
-               projectTemplateTotal: Entity.countByType(metaDataService.etProjectTemplate)]
+               projectTemplateTotal: Entity.countByType(metaDataService.etProjectTemplate),
+               entity: entityHelperService.loggedIn]
     }
 
     def show = {
