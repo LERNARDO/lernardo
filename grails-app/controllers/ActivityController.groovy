@@ -164,6 +164,7 @@ class ActivityController {
             //log.info "found"
             Entity entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
               ent.profile = profileHelperService.createProfileFor(ent) as Profile
+              ent.profile.type = "Themenraum"
               ent.profile.date = currentDate //loopDay + startHour
               if (df.format(currentDate) == 'Montag') {
                 ent.profile.date.setHours(params.int('mondayStartHour'))

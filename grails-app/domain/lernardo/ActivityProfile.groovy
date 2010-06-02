@@ -9,6 +9,7 @@ class ActivityProfile extends Profile {
 
   Date date
   Integer duration
+  String type
 
   Date dateCreated
   Date lastUpdated

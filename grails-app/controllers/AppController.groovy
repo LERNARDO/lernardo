@@ -21,7 +21,7 @@ class AppController {
         redirect controller:'profile', action:'showNews', id:entity.id
       }
       else
-        redirect action:'sorry'
+        redirect action:'home'
     }
 
     def home = {

@@ -187,15 +187,48 @@ class ProjectProfileController {
               (params.sunday && (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday'))) {
               //log.info "found"
 
+            if (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('mondayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('mondayStartMinute'))
+                //projectDay.profile.date.setHours(params.int('mondayStartHour'))
+                //projectDay.profile.date.setMinutes(params.int('mondayStartMinute'))
+              }
+              else if (df.format(currentDate) == 'Dienstag' || df.format(currentDate) == 'Tuesday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('tuesdayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('tuesdayStartMinute'))
+              }
+              else if (df.format(currentDate) == 'Mittwoch' || df.format(currentDate) == 'Wednesday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('wednesdayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('wednesdayStartMinute'))
+              }
+              else if (df.format(currentDate) == 'Donnerstag' || df.format(currentDate) == 'Thursday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('thursdayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('thursdayStartMinute'))
+              }
+              else if (df.format(currentDate) == 'Freitag' || df.format(currentDate) == 'Friday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('fridayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('fridayStartMinute'))
+              }
+              else if (df.format(currentDate) == 'Samstag' || df.format(currentDate) == 'Saturday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('saturdayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
+              }
+              else if (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday') {
+                calendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
+                calendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
+              }
+            
               // create project day
               EntityType etProjectDay = metaDataService.etProjectDay
               Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
-                ent.profile.date = currentDate
+                ent.profile.date = calendarStart.getTime();
                 ent.profile.fullName = params.fullName
               }
 
-              if (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday') {
+              log.info projectDay.profile.date
+
+              /*if (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday') {
                 projectDay.profile.date.setHours(params.int('mondayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('mondayStartMinute'))
               }
@@ -222,7 +255,9 @@ class ProjectProfileController {
               else if (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday') {
                 projectDay.profile.date.setHours(params.int('sundayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('sundayStartMinute'))
-              }
+              }*/
+              log.info projectDay.profile.save(flush:true)
+              log.info projectDay.profile.date
 
               // TODO: figure out why hours and minutes are saved but later on not saved anymore?!
 
@@ -689,42 +724,48 @@ class ProjectProfileController {
         }
       }
 
-      // 3. loop through each projectUnit and find all activity template groups
-      List groups = []
-      projectUnits.each {
-        links = Link.findAllByTargetAndType(it,metaDataService.ltProjectUnit)
-        links.each {
-          groups << it.source
+      // now we know that every projectDay has projectUnits and templates so we loop through each day now
+
+      projectDays.each { pd ->
+        links = Link.findAllByTargetAndType(it,metaDataService.ltProjectDayUnit)
+        projectUnits = links.collect {it.source}
+
+        // 3. loop through each projectUnit and find all activity template groups
+        projectUnits.each {
+          links = Link.findAllByTargetAndType(it,metaDataService.ltProjectUnit)
+          List groups = links.collect {it.source}
+
+          // 4. find all activity templates of each group
+          groups.each {
+            links = Link.findAllByTargetAndType(it,metaDataService.ltGroupMember)
+            List templates = links.collect {it.source}
+
+            // 5. instantiate all activities from the list of templates
+            Date currentDate = pd.date
+            Calendar calendar = new GregorianCalendar()
+            calendar.setTime( currentDate )
+
+            templates.each {     
+              EntityType etActivity = metaDataService.etActivity
+              Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
+                ent.profile = profileHelperService.createProfileFor(ent) as Profile
+                ent.profile.type = "Projekt"
+                ent.profile.date = calendar.getTime()
+                ent.profile.fullName = it.profile.fullName
+                ent.profile.duration = it.profile.duration
+              }
+
+              // TODO: create links here!!
+
+              render "Activity instantiated at: " + calendar.getTime()
+              // get new time for next activity
+              calendar.add(Calendar.MINUTE, activity.profile.duration)
+            }
+
+          }
         }
       }
 
-      // 4. find all activity templates of each group
-      List templates = []
-      groups.each {
-        links = Link.findAllByTargetAndType(it,metaDataService.ltGroupMember)
-        links.each {
-          templates << it.source
-        }
-      }
-
-      // 5. instantiate all activities from the list of templates
-      Date currentDate = new Date()
-      Calendar calendar = new GregorianCalendar()
-      calendar.setTime( currentDate )
-      templates.each {
-
-        EntityType etActivity = metaDataService.etActivity
-        Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.date = calendar.getTime()
-          ent.profile.fullName = it.profile.fullName
-          ent.profile.duration = it.profile.duration
-        }
-        render "Activity instantiated at: " + calendar.getTime()
-        // get new time for next activity
-        calendar.add(Calendar.MINUTE, activity.profile.duration)
-      }
-      
       render "<p>Ergebnis - Projekttage: " + projectDays.size() + " Projekteinheiten: " + projectUnits.size() + " Aktivitätsvorlagengruppen: " + groups.size() + " Aktivitätsvorlagen: " + templates.size() + "</p>"
       
     }

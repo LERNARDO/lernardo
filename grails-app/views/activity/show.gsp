@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title>Themenraumaktivität</title>
+    <title>Aktivität</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="private" />    
   </head>
@@ -9,7 +9,7 @@
   <body>
     <div class="headerBlue">
       <div class="second">
-        <h1>Themenraumaktivität</h1>
+        <h1>Aktivität</h1>
       </div>
     </div>
 
@@ -78,30 +78,33 @@
             <div class="spacer"></div>
         </app:isEducator>
 
-    %{--clients and their status may only be added after the activity has started--}%
-    <g:if test="${new Date() > activity.profile.date}">
-      <div>
-        <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
-        <jq:jquery>
-          <jq:toggle sourceId="show-clients" targetId="clients"/>
-        </jq:jquery>
-        <div id="clients" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="hideform('#clients')">
-            <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
-            <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
-            <div class="spacer"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
-          </g:formRemote>
+    %{-- this is only valid for theme activities --}%
+    <g:if test="${activity.profile.type == 'theme'}">
+      %{--clients and their status may only be added after the activity has started--}%
+      <g:if test="${new Date() > activity.profile.date}">
+        <div>
+          <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
+          <jq:jquery>
+            <jq:toggle sourceId="show-clients" targetId="clients"/>
+          </jq:jquery>
+          <div id="clients" style="display:none">
+            <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="hideform('#clients')">
+              <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
+              <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
+              <div class="spacer"></div>
+              <g:submitButton name="button" value="${message(code:'add')}"/>
+              <div class="spacer"></div>
+            </g:formRemote>
+          </div>
+          <div id="clients2">
+            <g:render template="clients" model="${activity}"/>
+          </div>
         </div>
-        <div id="clients2">
-          <g:render template="clients" model="${activity}"/>
-        </div>
-      </div>
+      </g:if>
+      <g:else>
+        <p>Betreute können ab Beginn der Aktivität zugeordnet und beurteilt werden!</p>
+      </g:else>
     </g:if>
-    <g:else>
-      <p>Betreute können ab Beginn der Aktivität zugeordnet und beurteilt werden!</p>
-    </g:else>
 
       </div>
     </div>

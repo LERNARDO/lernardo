@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Themenraumaktivitäten</title>
+    <title>Aktivitäten</title>
   </head>
   <body>
 
@@ -15,14 +15,14 @@
 
     <div class="headerBlue">
       <div class="second">
-        <h1>Themenraumaktivitäten</h1>
+        <h1>Aktivitäten</h1>
       </div>
     </div>
 
     <div class="boxGray">
       <div class="second">
         <div id="body-list">
-          <p>${activityCount} Themenraumaktivität(en)
+          <p>${activityCount} Aktivität(en)
             <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
             <g:else>insgesamt</g:else>
             gefunden.
@@ -46,6 +46,7 @@
                 <g:sortableColumn property="title" title="Aktivit&auml;t" />
                 <g:sortableColumn property="facility" title="Einrichtung" />
                 <g:sortableColumn property="date" title="Datum" />
+                <th>Typ</th>
                 <th>Kommentare</th>
               </tr>
             </thead>
@@ -56,6 +57,7 @@
                 <td><app:getFacility entity="${activity}">${facility.profile.fullName}</app:getFacility></td>
                 %{--<td><app:getCreator entity="${activity}">${creator.profile.fullName}</app:getCreator></td>--}%
                 <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
+                <td>${activity.profile.type}</td>
                 <td>${activity.profile.comments.size()}</td>
               </tr>
             </g:each>
