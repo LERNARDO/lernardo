@@ -690,6 +690,7 @@ class ProjectProfileController {
 
     // this action takes a project and creates all activities
     def execute = {
+      render "<span class='red'>Bitte warten.. Aktivitäten werden instanziert!</span><br/>"
       Entity project = Entity.get(params.id)
 
       // make sure the project has clients and a facility
@@ -725,17 +726,36 @@ class ProjectProfileController {
       }
       //log.info "Projekteinheiten: " + projectUnits.size()
 
-      // now we know that every projectDay has projectUnits and templates so we loop through each day now
+      // now we know that every projectDay has projectUnits and templates so we continue
 
+      // delete all current project activities that have not started yet
+      links = Link.findAllByTargetAndType(project, metaDataService.ltActProject)
+      List activities = links.collect {it.source}
+
+      log.info "Found " + activities.size() + " existing activities"
+      render "Es werden " + activities.size() + " vorhande Aktivitäten aktualisiert!<br/>"
+
+      if (activities) {
+        activities.each {
+          if (new Date() < it.profile.date) {
+            links = Link.findAllBySourceOrTarget(it,it)
+            links.each {it.delete()}
+          }
+          it.delete()
+        }
+      }
+
+      // then do the big loop
+      log.info "Starting big loop"
       projectDays.each { pd ->
         links = Link.findAllByTargetAndType(pd,metaDataService.ltProjectDayUnit)
         projectUnits = links.collect {it.source}
 
-        //log.info "Projekteinheiten: " + projectUnits.size()
+        log.info "Projekteinheiten: " + projectUnits.size()
 
         // 3. loop through each projectUnit and find all activity template groups
-        projectUnits.each {
-          links = Link.findAllByTargetAndType(it,metaDataService.ltProjectUnit)
+        projectUnits.each { pu ->
+          links = Link.findAllByTargetAndType(pu,metaDataService.ltProjectUnit)
           List groups = links.collect {it.source}
 
           Date currentDate = pd.profile.date
@@ -743,8 +763,8 @@ class ProjectProfileController {
           calendar.setTime( currentDate )
 
           // 4. find all activity templates of each group
-          groups.each {
-            links = Link.findAllByTargetAndType(it,metaDataService.ltGroupMember)
+          groups.each { pg ->
+            links = Link.findAllByTargetAndType(pg,metaDataService.ltGroupMember)
             List templates = links.collect {it.source}
 
             // 5. instantiate all activities from the list of templates
@@ -759,10 +779,70 @@ class ProjectProfileController {
               }
 
               // TODO: create links here!!
+              // link this project activity to the project
+              new Link(source: activity, target: project, type: metaDataService.ltActProject).save()
+
+              // link facility to activity
+              def link = Link.findByTargetAndType(project, metaDataService.ltGroupMemberFacility)
+              if (link) {
+                Entity facility = link.source
+                new Link(source: facility, target: activity, type: metaDataService.ltActFacility).save()
+                log.info "Facility linked to activity"
+              }                
+
+              // link clients to activity
+              links = Link.findAllByTargetAndType(project, metaDataService.ltGroupMemberClient)
+              if (links) {
+                List clients = links.collect {it.source}
+                clients.each {
+                  new Link(source: it, target: activity, type: metaDataService.ltActClient).save()
+                  log.info "Client linked to activity"
+                }
+              }
+
+              // link resources to activity
+              links = Link.findAllByTargetAndType(pd, metaDataService.ltProjectDayResource)
+              if (links) {
+                List resources = links.collect {it.source}
+                resources.each {
+                  new Link(source: it, target: activity, type: metaDataService.ltResource).save()
+                  log.info "Resource linked to activity"
+                }
+              }
+
+              // link educators to activity
+              links = Link.findAllByTargetAndType(pd, metaDataService.ltProjectDayEducator)
+              if (links) {
+                List educators = links.collect {it.source}
+                educators.each {
+                  new Link(source: it, target: activity, type: metaDataService.ltActEducator).save()
+                  log.info "Educator linked to activity"
+                }
+              }
+
+              // link partners to activity
+              links = Link.findAllByTargetAndType(pu, metaDataService.ltProjectUnitPartner)
+              if (links) {
+                List partners = links.collect {it.source}
+                partners.each {
+                  new Link(source: it, target: activity, type: metaDataService.ltActPartner).save()
+                  log.info "Partner linked to activity"
+                }
+              }
+
+              // link parents to activity
+              links = Link.findAllByTargetAndType(pu, metaDataService.ltProjectUnitParent)
+              if (links) {
+                List parents = links.collect {it.source}
+                parents.each {
+                  new Link(source: it, target: activity, type: metaDataService.ltActParent).save()
+                  log.info "Parent linked to activity"
+                }
+              }
 
               log.info "Activity instantiated!"
 
-              render "Activity instantiated at: " + calendar.getTime() + "<br/>"
+              render "Aktivität '" + activity.profile.fullName + "' instanziert am " + calendar.getTime() + "<br/>"
               // get new time for next activity
               calendar.add(Calendar.MINUTE, activity.profile.duration)
             }
@@ -771,8 +851,7 @@ class ProjectProfileController {
         }
       }
 
-      render "Projekt wurde instanziert!"
-      //render "<p>Ergebnis - Projekttage: " + projectDays.size() + " Projekteinheiten: " + projectUnits.size() + " Aktivitätsvorlagengruppen: " + groups.size() + " Aktivitätsvorlagen: " + templates.size() + "</p>"
+      render "<span class='green'>Projekt wurde instanziert!</span><br/>"
       
     }
 }

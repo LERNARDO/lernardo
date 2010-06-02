@@ -145,6 +145,9 @@ class MetaDataService {
   static final String LT_ACT_CLIENT = "Betreuter"
   static final String LT_ACT_FACILITY = "Einrichtung"
   static final String LT_ACT_TEMPLATE = "Vorlage"
+  static final String LT_ACT_PROJECT = "Projekt"
+  static final String LT_ACT_PARTNER = "Partner"
+  static final String LT_ACT_PARENT = "Erziehungsberechtigter"
 
   static final String PT_DOC1 = "Typ1"
   static final String PT_DOC2 = "Typ2"
@@ -246,6 +249,9 @@ class MetaDataService {
     getLtActClient()
     getLtActFacility()
     getLtActTemplate()
+    getLtActProject()
+    getLtActPartner()
+    getLtActParent()
 
     getUserRole()
     getModRole()
@@ -354,6 +360,9 @@ class MetaDataService {
   LinkType getLtActClient()   {defaultObjectService.openLT (LT_ACT_CLIENT, lstOther) }
   LinkType getLtActFacility() {defaultObjectService.openLT (LT_ACT_FACILITY, lstOther) }
   LinkType getLtActTemplate() {defaultObjectService.openLT (LT_ACT_TEMPLATE, lstOther) }
+  LinkType getLtActProject()  {defaultObjectService.openLT (LT_ACT_PROJECT, lstOther) }
+  LinkType getLtActPartner()  {defaultObjectService.openLT (LT_ACT_PARTNER, lstOther) }
+  LinkType getLtActParent()   {defaultObjectService.openLT (LT_ACT_PARENT, lstOther) }
 
   Role getUserRole()         {defaultObjectService.openRole (ROLE_USER, "regular user") }
   Role getModRole()          {defaultObjectService.openRole (ROLE_MOD, "moderator") }

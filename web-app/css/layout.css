@@ -76,6 +76,10 @@ body {
     color: #d00; }
 }
 
+.green {
+    color: #0d0;
+}
+
 .notEnabled {
     color: #f44; }
 
