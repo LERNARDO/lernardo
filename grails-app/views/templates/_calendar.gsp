@@ -10,7 +10,7 @@
     dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
     dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
     firstDay: 1,
-    minTime: 8,
+    minTime: 4,
     maxTime: 22,
     firstHour: 10,
     defaultView: 'agendaWeek',

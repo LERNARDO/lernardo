@@ -256,7 +256,6 @@ class ProjectProfileController {
                 projectDay.profile.date.setHours(params.int('sundayStartHour'))
                 projectDay.profile.date.setMinutes(params.int('sundayStartMinute'))
               }*/
-              log.info projectDay.profile.save(flush:true)
               log.info projectDay.profile.date
 
               // TODO: figure out why hours and minutes are saved but later on not saved anymore?!
@@ -689,7 +688,7 @@ class ProjectProfileController {
       render template:'partners', model: [partners: partners, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i, j:params.j]
     }
 
-    // this action takesa a project and creates all activities
+    // this action takes a project and creates all activities
     def execute = {
       Entity project = Entity.get(params.id)
 
@@ -707,6 +706,7 @@ class ProjectProfileController {
       // 1. find all projectDays belonging to the project
       def links = Link.findAllByTargetAndType(project,metaDataService.ltProjectMember)
       List projectDays = links.collect {it.source}
+      log.info "Projekttage: " + projectDays.size()
 
       // 2. loop through each projectDay and find all projectUnits
 
@@ -723,17 +723,24 @@ class ProjectProfileController {
           projectUnits << it.source 
         }
       }
+      //log.info "Projekteinheiten: " + projectUnits.size()
 
       // now we know that every projectDay has projectUnits and templates so we loop through each day now
 
       projectDays.each { pd ->
-        links = Link.findAllByTargetAndType(it,metaDataService.ltProjectDayUnit)
+        links = Link.findAllByTargetAndType(pd,metaDataService.ltProjectDayUnit)
         projectUnits = links.collect {it.source}
+
+        //log.info "Projekteinheiten: " + projectUnits.size()
 
         // 3. loop through each projectUnit and find all activity template groups
         projectUnits.each {
           links = Link.findAllByTargetAndType(it,metaDataService.ltProjectUnit)
           List groups = links.collect {it.source}
+
+          Date currentDate = pd.profile.date
+          Calendar calendar = new GregorianCalendar()
+          calendar.setTime( currentDate )
 
           // 4. find all activity templates of each group
           groups.each {
@@ -741,11 +748,7 @@ class ProjectProfileController {
             List templates = links.collect {it.source}
 
             // 5. instantiate all activities from the list of templates
-            Date currentDate = pd.date
-            Calendar calendar = new GregorianCalendar()
-            calendar.setTime( currentDate )
-
-            templates.each {     
+            templates.each {
               EntityType etActivity = metaDataService.etActivity
               Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
                 ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -757,7 +760,9 @@ class ProjectProfileController {
 
               // TODO: create links here!!
 
-              render "Activity instantiated at: " + calendar.getTime()
+              log.info "Activity instantiated!"
+
+              render "Activity instantiated at: " + calendar.getTime() + "<br/>"
               // get new time for next activity
               calendar.add(Calendar.MINUTE, activity.profile.duration)
             }
@@ -766,7 +771,8 @@ class ProjectProfileController {
         }
       }
 
-      render "<p>Ergebnis - Projekttage: " + projectDays.size() + " Projekteinheiten: " + projectUnits.size() + " Aktivitätsvorlagengruppen: " + groups.size() + " Aktivitätsvorlagen: " + templates.size() + "</p>"
+      render "Projekt wurde instanziert!"
+      //render "<p>Ergebnis - Projekttage: " + projectDays.size() + " Projekteinheiten: " + projectUnits.size() + " Aktivitätsvorlagengruppen: " + groups.size() + " Aktivitätsvorlagen: " + templates.size() + "</p>"
       
     }
 }

@@ -10,8 +10,6 @@ class AppController {
     EntityHelperService entityHelperService
     AuthenticateService authenticateService
 
-    def index = { }
-
     def start = {
       Entity entity = entityHelperService.loggedIn
       if (entity) {
