@@ -30,7 +30,7 @@ environments {
 	}
 	production {
 		dataSource {
-            dbCreate = "update"
+            dbCreate = "create-drop"
             url = "jdbc:postgresql://localhost:5432/lernardo"
             loggingSql = false
             hibernate.default_schema = 'prod'
