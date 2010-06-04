@@ -3,7 +3,7 @@
   <title>Familien</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Familien</h1>
   </div>
@@ -38,7 +38,7 @@
 
     <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonBlue" action="create">Neue Familie anlegen</g:link>
+        <g:link class="buttonGreen" action="create">Neue Familie anlegen</g:link>
         <div class="spacer"></div>
       </div>
     </app:hasRoleOrType>

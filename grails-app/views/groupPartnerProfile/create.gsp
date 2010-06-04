@@ -4,7 +4,7 @@
   <title>Sponsorennetzwerk anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Sponsorennetzwerk anlegen</h1>
   </div>
@@ -29,34 +29,36 @@
                 <g:message code="groupPartner.profile.name"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
+             <td valign="top" class="name">
               <label for="description">
                 <g:message code="groupPartner.profile.description"/>
               </label>
+              </td>
+          </tr>
+
+          <tr class="prop">
+            <td width="155px" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="40" name="description" value="${fieldValue(bean: group, field: 'profile.description')}"/>
+              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="100" name="description" value="${fieldValue(bean: group, field: 'profile.description')}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name">
+            <td colspan="2" valign="top" class="name">
               <label for="service">
                 <g:message code="groupPartner.profile.service"/>
               </label>
             </td>
-            <td valign="top" class="value">
+            </tr>
+           <tr>
+            <td colspan="2" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+                <g:select  class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
               </g:if>
               %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>

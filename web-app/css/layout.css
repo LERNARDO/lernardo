@@ -1506,4 +1506,13 @@ h4 {
 .hinweis:hover {
         background: #666;
 		color: #fff;
-        text-decoration: none; }	
+        text-decoration: none; }
+
+.value {
+	padding-top:1px;
+	padding-bottom: 6px;
+}
+
+.max-textbox {
+	width: 790px;
+	}
