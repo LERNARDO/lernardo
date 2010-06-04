@@ -23,7 +23,7 @@
     
 		<table>
           <tbody>
-				<tr class="prop"> <!-- Prompt-->  
+				<tr class="prop"> <!-- Prompt-->
 			<td valign="top" class="name">
               <label for="gender">
                 <g:message code="child.profile.gender"/>
@@ -64,7 +64,7 @@
 		</tr>
 
 	
-		<tr class="prop"> <!-- Prompt--> 
+		<tr class="prop"> <!-- Prompt-->
 			<td> &nbsp; </td>
 			<td><label for="jobType">
                 <g:message code="child.profile.jobType"/>
