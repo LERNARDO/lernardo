@@ -22,8 +22,6 @@
       <div class="dialog">
 
         <table>
-          <tbody>
-
           <tr class="prop"><!-- Prompt-->
             <td valign="top" class="name">
               <label for="gender">
@@ -93,13 +91,10 @@
               <g:textArea class="${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
             </td>
           </tr>
-
-          </tbody>
         </table>
         <h4>Derzeitige Adresse</h4>
         <div class="contact">
           <table>
-
             <tr>
               <td colspan="4" valign="top" class="name">
                 <label for="currentColonia">
@@ -157,7 +152,6 @@
         <div class="contact">
           <table>
             <tr>
-
               <td valign="top" class="name">
                 <label for="originZip">
                   <g:message code="client.profile.originZip"/>
@@ -168,33 +162,29 @@
                   <g:message code="client.profile.originCity"/>
                 </label>
               </td>
-              <td colspan="2" valign="top" class="name">
+              <td valign="top" class="name">
                 <label for="originCountry">
                   <g:message code="client.profile.originCountry"/>
                 </label>
               </td>
             </tr>
             <tr>
-
               <td width="105" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
               </td>
-              <td width=",210" valign="top" class="value">
+              <td width="210" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
               </td>
-              <td colspan="2" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
               </td>
-
             </tr>
-
           </table>
         </div>
 
         <h4>Weitere Daten</h4>
         <div class="contact">
           <table>
-
             <tr class="prop">
               <td valign="top" class="name">
                 <label for="familyStatus">
@@ -246,7 +236,6 @@
                 </g:if>
               </td>
             </tr>
-
             <tr class="prop">
               <td></td>
               <td valign="top" class="name">
@@ -260,7 +249,6 @@
                 </label>
               </td>
             </tr>
-
             <tr>
               <td valign="top" class="value">
                 <label for="schoolDropout">
@@ -337,7 +325,6 @@
                 <input type="text" size="28" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>
-
             <tr class="prop">
               <td></td>
               <td colspan="3" valign="top" class="name">
