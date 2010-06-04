@@ -1383,17 +1383,20 @@ table#msg-composer td {
 #body-list .odd {
         background: #fff; }
 		
-.value-show {
+.value-show-block {
 	background-color: #FFF;
 	border-right: 20px solid #dfdfdf;	
 	border-bottom: 10px solid #dfdfdf;
 	padding: 3px;
 }
-.value-show-comb {
+.value-show {
+	background-image:url(../images/icons/value-show-short.png);
+	background-repeat:repeat-x;
 	border-right: 20px solid #dfdfdf;	
 	border-bottom: 10px solid #dfdfdf;
 	padding: 3px;
 }
+
 	
 .name-show {
 	border-right: 20px solid #dfdfdf;

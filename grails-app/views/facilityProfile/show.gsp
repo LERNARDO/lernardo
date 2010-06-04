@@ -23,7 +23,7 @@
 
         <tr class="prop">
           <td width="290" valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
-          <td colspan="3" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         <tr class="prop">
