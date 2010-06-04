@@ -37,7 +37,7 @@
               <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description')}"/>
+              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="2" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description')}"/>
             </td>
           </tr>
         </table>
