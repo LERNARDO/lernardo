@@ -3,7 +3,7 @@
   <title>Profil - ${client.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${client.profile.fullName}</h1>
   </div>

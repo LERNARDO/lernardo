@@ -3,7 +3,7 @@
   <title>Betreute</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Betreute</h1>
   </div>
@@ -37,7 +37,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="create">Neuen Betreuten anlegen</g:link>
+        <g:link class="buttonGreen" action="create">Neuen Betreuten anlegen</g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>

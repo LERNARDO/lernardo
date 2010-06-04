@@ -1345,19 +1345,19 @@ table#msg-composer td {
         text-decoration: none; }*/
 
 .email {
-	border: solid 2px #009900;
+	border: solid 1px #009900;
 	padding: 8px 0px 4px 10px ;
 	background-color:#CCC;
-	-moz-border-radius:15px;
+	/*-moz-border-radius:15px;*/
 	margin-top: 6px;
 	margin-bottom: 6px;
 	height: 23px;
 }
 .email2 {
-	border: solid 2px #009900;
+	border: solid 1px #009900;
 	padding: 8px 0px 4px 10px ;
 	background-color:#CCC;
-	-moz-border-radius:15px;
+	/*-moz-border-radius:15px;*/
 	margin-top: 6px;
 	margin-bottom: 6px;
 	height: 47px;
@@ -1464,6 +1464,14 @@ h4 {
 	}
 .liste-200 {
 	width: 200px;
+	height: 60px;
+	}
+.liste-210 {
+	width: 210px;
+	height: 60px;
+	}
+.liste-190 {
+	width: 190px;
 	height: 60px;
 	}
 #liste-240 {
