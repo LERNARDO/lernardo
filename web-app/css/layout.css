@@ -1493,4 +1493,14 @@ h4 {
 .gruppierung{
 	width: 800px;
 	clear:both;}
-	
+
+.hinweis  {
+    background: #ccc;
+    padding: 4px 5px;
+    color: #ccc;
+	font-size: 12px;
+ }
+.hinweis:hover {
+        background: #666;
+		color: #fff;
+        text-decoration: none; }	

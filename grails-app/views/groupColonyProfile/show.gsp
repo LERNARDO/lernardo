@@ -3,7 +3,7 @@
   <title>Profil - ${group.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${group.profile.fullName}</h1>
   </div>
@@ -11,21 +11,22 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
+      <table>
         <tbody>
 
         <tr class="prop">
-          <td valign="top" class="name">
+          <td valign="top" class="name-show">
             <g:message code="groupColony.profile.name"/>:
           </td>
-          <td valign="top" class="value"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td valign="top" class="name-show">
+            <g:message code="groupColony.profile.description"/>:
+          </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupColony.profile.description"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="155px" valign="top" class="value-show"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
         </tbody>
@@ -34,13 +35,14 @@
 
     <app:isMeOrAdmin entity="${group}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
 
     <div>
-      <h5>Repräsentanten <app:isOperator entity="${entity}"><a href="#" id="show-representatives"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" /></a></app:isOperator></h5>
+      <h5>Repräsentanten <app:isOperator entity="${entity}"><a href="#" id="show-representatives"><span class="hinweis"> <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" />
+        Neuen Repräsentanten anlegen!</span> </a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-representatives" targetId="representatives"/>
       </jq:jquery>

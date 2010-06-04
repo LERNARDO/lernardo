@@ -3,7 +3,7 @@
   <title>Colonia anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Colonia anlegen</h1>
   </div>
@@ -28,20 +28,22 @@
                 <g:message code="groupColony.profile.name"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
             <td valign="top" class="name">
               <label for="description">
                 <g:message code="groupColony.profile.description"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="40" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+
+          </tr>
+
+          <tr class="prop">
+            <td width="155px" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
+            <td valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="100" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+            </td>
+
           </tr>
 
           </tbody>
