@@ -64,6 +64,7 @@ environments {
 
 }
 
+
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console
@@ -72,8 +73,21 @@ log4j = {
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
+    appenders {
+     'null' name: 'stacktrace'  // turn off stacktrace.log
 
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+     console(
+             name: 'stdout',
+             threshold: org.apache.log4j.Level.DEBUG,
+             layout: pattern(conversionPattern: "${appName}%d{HH:mm:ss} [%5p] %c %m%n"))
+   }
+
+   root {
+     error "stdout"
+   }
+
+
+    /*error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
 	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
 	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
@@ -91,7 +105,7 @@ log4j = {
   debug  'grails.app.bootstrap'
   debug  'grails.app.dataSource'
   debug  'grails.app.controller'
-  debug  'grails.app.service'
+  debug  'grails.app.service'*/
 
 }
 

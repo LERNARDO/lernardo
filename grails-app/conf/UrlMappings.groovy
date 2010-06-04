@@ -17,8 +17,8 @@ class UrlMappings {
       "/" (controller:'app', action:'home') // public start
       "/start" (controller:'app', action:'start') // private start
 
-      "404"(view:'404')
-      "500"(view:'500')
+      //"404"(view:'404')
+      //"500"(view:'500')
       //"500"(view:'/error')
 	}
 }
