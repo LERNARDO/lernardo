@@ -25,24 +25,24 @@
     <tbody>
 
 		<tr class="prop"> <!-- Prompt-->
-			<td valign="middle" class="name">
+			<td valign="top" class="name">
               <label for="gender">
                 <g:message code="client.profile.gender"/>
               </label>
             </td>
 
 
-			<td valign="middle" class="name">
+			<td valign="top" class="name">
 				<label for="firstName">
                 <g:message code="client.profile.firstName"/>
 				</label></td>
 
-            <td valign="middle" class="name">
+            <td valign="top" class="name">
               <label for="lastName">
                 <g:message code="client.profile.lastName"/>
               </label>
             </td>
-            <td  valign="middle" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
+            <td  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
 			<label for="birthDate">
                 <g:message code="client.profile.birthDate"/>
               </label>
@@ -51,17 +51,17 @@
 		</tr>
 		<tr>  <!-- Inhalt-->
 
-			<td  width="120" height="35" valign="middle" class="value ${hasErrors(bean: client, field: 'profile.gender', 'errors')}">
+			<td  width="120" valign="top" class="value ${hasErrors(bean: client, field: 'profile.gender', 'errors')}">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
-			<td  width="200" valign="middle" class="value ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}">
+			<td  width="200" valign="top" class="value ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}">
 				<input type="text" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
 			</td>
 
-			<td  width="270" valign="middle" class="value ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}">
+			<td  width="270" valign="top" class="value ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}">
               <input type="text" size="38"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
             </td>
-			<td  height="35"  valign="middle" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" >
+			<td  height="35"  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" >
               <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
             </td>
 		</tr>
@@ -137,16 +137,16 @@
             </td>
         </tr>
         <tr>
-            <td width="280" height="35" valign="middle" class="value">
+            <td width="280" height="35" valign="top" class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="41" id="currentStreet" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
-            <td width="105" valign="middle"  class="value">
+            <td width="105" valign="top"  class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" id="currentZip" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
-            <td width="210" valign="middle"  class="value">
+            <td width="210" valign="top"  class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="28" id="currentCity" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
             </td>
-            <td  valign="middle"  class="value">
+            <td  valign="top"  class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
             </td>
 
@@ -177,13 +177,13 @@
         </tr>
         <tr>
 
-            <td width="105"  valign="middle" class="value">
+            <td width="105"  valign="top" class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
             </td>
-            <td width=",210"  valign="middle" class="value">
+            <td width=",210"  valign="top" class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
             </td>
-            <td colspan="2" valign="middle" class="value">
+            <td colspan="2" valign="top" class="value">
               <g:textField class="${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
             </td>
 
@@ -317,13 +317,13 @@
                         </label></td>
                   </tr>
                   <tr>  <!-- Inhalt-->
-                  <td  valign="middle" class="value ${hasErrors(bean: client, field: 'profile.job', 'errors')}">
+                  <td  valign="top" class="value ${hasErrors(bean: client, field: 'profile.job', 'errors')}">
                         <label for="job">
                           <g:message code="client.profile.job"/>
                         </label>
                         <g:checkBox name="job" value="${client?.profile?.job}"/>
                       </td>
-                      <td  height="35" valign="middle" class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
+                      <td  height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
                         <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                           <g:select  name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value"/>
                         </g:if>
@@ -331,7 +331,7 @@
                           <g:select  name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value"/>
                         </g:if>
                       </td>
-                      <td  valign="middle"class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
+                      <td  valign="top"class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
                         <input type="text" id="jobIncome" size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>
                       </td>
                       <td class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
@@ -363,13 +363,13 @@
    <div class="email">
 		<table>
 		<tr>
-			<td width="90"  valign="middle">
+			<td width="90"  valign="top">
 			<label for="enabled">
                 <g:message code="active"/>
              </label>
 			 <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
 			</td>
-			<td width="350"  valign="middle">
+			<td width="350"  valign="top">
 			<label for="email">
 				<g:message code="client.profile.email"/>
             </label>:

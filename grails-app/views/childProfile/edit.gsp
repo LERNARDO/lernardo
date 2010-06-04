@@ -24,22 +24,22 @@
 		<table>
           <tbody>
 				<tr class="prop"> <!-- Prompt-->  
-			<td valign="middle" class="name">
+			<td valign="top" class="name">
               <label for="gender">
                 <g:message code="child.profile.gender"/>
               </label>
             </td>
-			<td valign="middle" class="name">
+			<td valign="top" class="name">
 				<label for="firstName">
                 <g:message code="child.profile.firstName"/>
 				</label></td>
 			 
-            <td valign="middle" class="name">
+            <td valign="top" class="name">
               <label for="lastName">
                 <g:message code="child.profile.lastName"/>
               </label>
             </td>
-            <td  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
+            <td  valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
 			<label for="birthDate">
                 <g:message code="child.profile.birthDate"/>
               </label>
@@ -48,17 +48,17 @@
 		</tr>
 		<tr>  <!-- Inhalt-->
 			
-			<td  width="120" height="35" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.gender', 'errors')}">
+			<td  width="120" height="35" valign="top" class="value ${hasErrors(bean: child, field: 'profile.gender', 'errors')}">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
-			<td  width="200" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}">
+			<td  width="200" valign="top" class="value ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}">
 				<input type="text" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName')}"/>
 			</td>
 		
-			<td  width="280" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}">
+			<td  width="280" valign="top" class="value ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}">
               <input type="text" size="40"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
-			<td  height="35"  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
+			<td   valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
               <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
             </td>
 		</tr>
@@ -77,13 +77,13 @@
               </label></td>
 		</tr>
 		<tr>  <!-- Inhalt-->
-		<td  valign="middle" class="value ${hasErrors(bean: child, field: 'profile.job', 'errors')}">
+		<td  valign="top" class="value ${hasErrors(bean: child, field: 'profile.job', 'errors')}">
               <label for="job">
                 <g:message code="child.profile.job"/>
               </label>
 			  <g:checkBox name="job" value="${child?.profile?.job}"/>
             </td>
-			<td  height="35" valign="middle" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
+			<td  height="35" valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value"/>
               </g:if>
@@ -91,7 +91,7 @@
                 <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value"/>
               </g:if>
 			</td>
-			<td  valign="middle"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
+			<td  valign="top"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
               <input type="text" id="jobIncome" size="40" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
 			</td>
 			<td class="value ${hasErrors(bean: child, field: 'profile.jobFrequency', 'errors')}">
@@ -119,7 +119,9 @@
             </label>
 			 : &nbsp;
 			<g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="80" maxlength="80" id="email" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
- 		
+ 		    &nbsp; &nbsp; &nbsp;
+             <g:message code="showTips"/>
+			<g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
 		</div>
         
           %{--</tbody>
@@ -128,21 +130,13 @@
 	</div>
 
       <div class="buttons">
-	  <table border="0">
-		  <tr>
-			<td width="650" align="left"><label for="showTips">
-                <g:message code="showTips"/>
-				<g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
-              </label></td>
-			<td >
+
         <g:submitButton  name="submitButton" value="${message(code:'save')}"/>
         <app:isOperator entity="${entity}">
           <g:link class="buttonGray" action="del" id="${child.id}" onclick="${app.getLinks(id: child.id)}"><g:message code="delete"/></g:link>
         </app:isOperator>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
-        <div class="spacer"></div></td>
-		  </tr>
-	</table>
+        <div class="spacer"></div>
         
  
       </div>
