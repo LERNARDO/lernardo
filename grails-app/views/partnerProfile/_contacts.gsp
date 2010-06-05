@@ -9,6 +9,7 @@
     <li>Telefon: ${contact.phone}</li>
     <li>E-Mail: ${contact.email}</li>
     <li>Funktion: ${contact.function}</li>
+    <hr />
   </g:each>
   </ul>
 </g:if>

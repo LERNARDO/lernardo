@@ -1523,7 +1523,8 @@ h4 {
     margin-top: 12px;}
 
 .zusatz-add {
-    padding: 6px;
+    padding-top: 6px;
+     padding-bottom: 12px;
 }
 .zusatz-show {
     background-color: #fff;
@@ -1542,4 +1543,10 @@ h5 {
 	font-weight:bold;
     border-bottom: 1px solid #fff;
     padding-bottom: 6px;
+}
+
+.buttons {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
 }

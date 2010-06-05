@@ -47,12 +47,12 @@
       </div>
     </app:hasRoleOrType>
 
-    <div>
+    <div class="zusatz">
       <h5>Partner <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a href="#" id="show-partners"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-partners" targetId="partners"/>
       </jq:jquery>
-      <div id="partners" style="display:none">
+      <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupPartnerProfile', action:'addPartner', id:group.id]" update="partners2" before="hideform('#partners')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -60,7 +60,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="partners2">
+      <div class="zusatz-show" id="partners2">
         <g:render template="partners" model="[partners: partners, group: group]"/>
       </div>
     </div>

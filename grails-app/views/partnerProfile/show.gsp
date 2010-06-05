@@ -124,12 +124,12 @@
       </div>
     </div>--}%
 
-    <div>
+    <div class="zusatz">
       <h5>Ansprechpersonen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
-      <div id="contacts" style="display:none">
+      <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="hideform('#contacts')">
 
           <table>
@@ -176,7 +176,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="contacts2">
+      <div class="zusatz-show" id="contacts2">
         <g:render template="contacts" model="${partner}"/>
       </div>
     </div>
