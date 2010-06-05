@@ -3,7 +3,7 @@
   <title>Aktivitätsvorlagengruppen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Aktivitätsvorlagengruppen</h1>
   </div>
@@ -44,7 +44,7 @@
 
     <app:isEducator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>
+        <g:link class="buttonGreen" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>
         <div class="spacer"></div>
       </div>
     </app:isEducator>

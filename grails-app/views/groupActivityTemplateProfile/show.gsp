@@ -3,7 +3,7 @@
   <title>Profil - ${group.profile.fullName}</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Profil - ${group.profile.fullName}</h1>
   </div>
@@ -76,14 +76,14 @@
 
     <app:isMeOrAdmin entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonBlue" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
 
         %{-- only the operator may instantiate an activity group --}%
         <app:isOperator entity="${entity}">
           %{-- and only when it is done --}%
           <g:if test="${group.profile.status == 'fertig'}">
-            <g:link class="buttonBlue" controller="groupActivityProfile" action="create" id="${group.id}">Neue Aktivitätsgruppe planen</g:link>
+            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Neue Aktivitätsgruppe planen</g:link>
           </g:if>
         </app:isOperator>
         
@@ -91,12 +91,12 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+    <div class="zusatz">
       <h5>Aktivitätsvorlagen <app:isEducator entity="${entity}"><a href="#" id="show-templates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen" /></a></app:isEducator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-templates" targetId="templates"/>
       </jq:jquery>
-      <div id="templates" style="display:none">
+      <div class="zusatz-add" id="templates" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2" before="hideform('#templates')">
           <g:select name="template" from="${allTemplates}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -104,7 +104,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="templates2">
+      <div class="zusatz-show" id="templates2">
         <g:render template="templates" model="[group: group, entity: entity, templates: templates]"/>
       </div>
     </div>

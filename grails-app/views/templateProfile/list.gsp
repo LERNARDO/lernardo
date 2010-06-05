@@ -19,12 +19,7 @@
 <div class="boxGray">
   <div class="second">
     <div id="body-list">
-      <div style="float:right;">
-        <app:isEducator entity="${entity}">
-          <g:link class="buttonGreen" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
-          <div class="spacer" style="margin-bottom: 5px"></div>
-        </app:isEducator>
-      </div>
+
       <p>${templateCount} Aktivitätsvorlage(n) gefunden</p>
 
       <table>
@@ -55,6 +50,12 @@
         </div>
       </g:if>
 
+     <div class="buttons">
+        <app:isEducator entity="${entity}">
+          <g:link class="buttonGreen" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
+          <div class="spacer" style="margin-bottom: 5px"></div>
+        </app:isEducator>
+      </div>
     </div>
   </div>
 </div>

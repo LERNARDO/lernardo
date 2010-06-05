@@ -3,7 +3,7 @@
   <title>Aktivitätsvorlagengruppe bearbeiten</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Aktivitätsvorlagengruppe bearbeiten</h1>
   </div>
