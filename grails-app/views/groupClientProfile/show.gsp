@@ -34,12 +34,12 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+    <div class="zusatz">
       <h5>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
-      <div id="clients" style="display:none">
+      <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="hideform('#clients')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -47,7 +47,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="clients2">
+      <div class="zusatz-show" id="clients2">
         <g:render template="clients" model="[clients: clients, group: group]"/>
       </div>
     </div>

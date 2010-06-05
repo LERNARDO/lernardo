@@ -16,7 +16,7 @@
           <td valign="top" class="name-show">
             <g:message code="groupFamily.profile.name"/>:
           </td>
-        <tr class="prop">
+        
           <td valign="top" class="name-show">
             <g:message code="groupFamily.profile.familyIncome"/>:
           </td>
@@ -69,12 +69,12 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+    <div class="zusatz">
       <h5>Erziehungsberechtigte <app:isMeOrAdmin entity="${group}"><a href="#" id="show-parents"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
-      <div id="parents" style="display:none">
+      <div class="zusatz-add" id="parents" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="hideform('#parents')">
           <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -82,17 +82,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="parents2">
+      <div class="zusatz-show" id="parents2">
         <g:render template="parents" model="[parents: parents, group: group]"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
-      <div id="clients" style="display:none">
+      <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="hideform('#clients')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -100,17 +100,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="clients2">
+      <div class="zusatz-show" id="clients2">
         <g:render template="clients" model="[clients: clients, group: group]"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Kinder <app:isMeOrAdmin entity="${group}"><a href="#" id="show-childs"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-childs" targetId="childs"/>
       </jq:jquery>
-      <div id="childs" style="display:none">
+      <div class="zusatz-add" id="childs" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="hideform('#childs')">
           <g:select name="child" from="${allChilds}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -118,7 +118,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="childs2">
+      <div class="zusatz-show" id="childs2">
         <g:render template="childs" model="[childs: childs, group: group]"/>
       </div>
     </div>
