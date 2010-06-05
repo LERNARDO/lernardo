@@ -11,7 +11,7 @@
     </div>
   </div>
 </g:if>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Aktivitätsvorlagen</h1>
   </div>
@@ -21,7 +21,7 @@
     <div id="body-list">
       <div style="float:right;">
         <app:isEducator entity="${entity}">
-          <g:link class="buttonBlue" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
+          <g:link class="buttonGreen" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
           <div class="spacer" style="margin-bottom: 5px"></div>
         </app:isEducator>
       </div>

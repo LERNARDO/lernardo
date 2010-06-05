@@ -1,4 +1,4 @@
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Kommentare</h1>
   </div>

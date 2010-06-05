@@ -5,7 +5,7 @@
 </head>
 
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Aktivitätsvorlage</h1>
   </div>
@@ -23,19 +23,19 @@
     </table>
 
     <app:isEducator entity="${entity}">
-      <g:link class="buttonBlue" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
+      <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
       <g:if test="${template.profile.status == 'fertig'}">
-        <g:link class="buttonBlue" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
+        <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>
       <div class="spacer"></div>
     </app:isEducator>
 
-    <div>
+    <div class="zusatz">
       <h5>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
-      <div id="resources" style="display:none">
+      <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id:template.id]" update="resources2" before="hideform('#resources')">
           <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -43,17 +43,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="resources2">
+      <div class="zusatz-show" id="resources2">
         <g:render template="resources" model="[resources: resources, entity: entity, template: template]"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-methods" targetId="methods"/>
       </jq:jquery>
-      <div id="methods" style="display:none">
+      <div class="zusatz-add" id="methods" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="hideform('#methods')">
           <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
           <div class="spacer"></div>
@@ -61,7 +61,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="methods2">
+      <div class="zusatz-show" id="methods2">
         <g:render template="methods" model="[entity: entity, template: template]"/>
       </div>
     </div>
