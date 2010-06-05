@@ -1517,3 +1517,23 @@ h4 {
 .max-textbox {
 	width: 790px;
 	}
+.zusatz {
+    border: 1px solid #fff;
+    background-color: #eee;
+    margin-top: 12px;}
+
+.zusatz-add {
+    padding: 6px;
+}
+.zusatz-show {
+    background-color: #fff;
+    margin: 6px;
+    padding-top: 6px;
+    border: 1px solid #ccc;
+}
+
+.zusatz li { list-style: none; }
+
+h5 {
+    margin-top: 0;
+}

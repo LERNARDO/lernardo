@@ -228,12 +228,12 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+    <div class="zusatz">
       <h5>Schulleistungungen <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-performances" targetId="performances"/>
       </jq:jquery>
-      <div id="performances" style="display:none">
+      <div class="zusatz-add" id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="hideform('#performances')">
           <g:hiddenField name="type" value="performance" />
           <table>
@@ -252,12 +252,12 @@
           </table>
         </g:formRemote>
       </div>
-      <div id="performances2">
+      <div class="zusatz-show" id="performances2">
         <g:render template="performances" model="${client}"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Gesundheitseinträge <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gesundheitseintrag hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-healths" targetId="healths"/>
@@ -281,12 +281,12 @@
           </table>
         </g:formRemote>
       </div>
-      <div id="healths2">
+      <div class="zusatz-show" id="healths2">
         <g:render template="healths" model="${client}"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Erhaltene Materialien <app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-materials" targetId="materials"/>
@@ -310,12 +310,12 @@
           </table>
         </g:formRemote>
       </div>
-      <div id="materials2">
+      <div class="zusatz-show" id="materials2">
         <g:render template="materials" model="${client}"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Eintrittsdaten / Austrittsdaten <app:isMeOrAdmin entity="${client}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-dates" targetId="dates"/>
@@ -329,7 +329,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="dates2">
+      <div class="zusatz-show" id="dates2">
         <g:render template="dates" model="${client}"/>
       </div>
     </div>
