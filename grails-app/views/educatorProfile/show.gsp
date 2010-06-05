@@ -319,12 +319,12 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+    <div class="zusatz">
       <h5>Eintrittsdaten / Austrittsdaten <app:isMeOrAdmin entity="${educator}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-dates" targetId="dates"/>
       </jq:jquery>
-      <div id="dates" style="display:none">
+      <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="hideform('#dates')">
           <g:datePicker name="date" value="" precision="day"/>
           <g:hiddenField name="type" value="${educator.profile.dates.size() % 2 == 0 ? 'join' : 'end'}" />
@@ -333,7 +333,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="dates2">
+      <div class="zusatz-show" id="dates2">
         <g:render template="dates" model="${educator}"/>
       </div>
     </div>
