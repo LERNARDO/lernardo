@@ -30,7 +30,7 @@
 </script>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Liste aller Profile</h1>
   </div>

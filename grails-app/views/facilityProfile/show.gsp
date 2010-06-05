@@ -75,12 +75,12 @@
       </div>
     </app:isMeOrAdmin>
 
-    <div>
+    <div class="zusatz" >
       <h5>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
-      <div id="educators" style="display:none">
+      <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="hideform('#educators')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -88,17 +88,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="educators2">
+      <div class="zusatz-show" id="educators2">
         <g:render template="educators" model="${educators}"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz" >
       <h5>Betreutengruppen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-clientgroups"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreutengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clientgroups" targetId="clientgroups"/>
       </jq:jquery>
-      <div id="clientgroups" style="display:none">
+      <div class="zusatz-add" id="clientgroups" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClientGroup', id: facility.id]" update="clientgroups2" before="hideform('#clientgroups')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -106,17 +106,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="clientgroups2">
+      <div class="zusatz-show" id="clientgroups2">
         <g:render template="clientgroups" model="${clientgroups}"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz" >
       <h5>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
-      <div id="contacts" style="display:none">
+      <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="hideform('#contacts')">
 
           <table>
@@ -163,17 +163,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="contacts2">
+      <div class="zusatz-show" id="contacts2">
         <g:render template="contacts" model="${facility}"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz" >
       <h5>Ressourcen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
-      <div id="resources" style="display:none">
+      <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="hideform('#resources')">
           <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -181,7 +181,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="resources2">
+      <div class="zusatz-show"  id="resources2">
         <g:render template="resources" model="[resources: resources, facility: facility]"/>
       </div>
     </div>
