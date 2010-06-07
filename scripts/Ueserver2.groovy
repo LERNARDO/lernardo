@@ -45,6 +45,7 @@ grails deploy show   - shows to which instance the deploy would go to
     case 'release':
       updateMeta(metadata)
       buildConfig.grails.war.destFile = "${app}-prod.war"
+      compile()
       war()
     break ;
     
@@ -52,6 +53,7 @@ grails deploy show   - shows to which instance the deploy would go to
     case 'deploy':
       cont = context.substring(1)
       updateMeta(metadata)
+      compile()
       war()
       
       ant.exec(executable:"/opt/prog/build/scripts/deploy_war.sh") {
