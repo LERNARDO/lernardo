@@ -22,8 +22,9 @@ environments {
 	}
 	test {
 		dataSource {
-            dbCreate = "update"
-            url = "jdbc:postgresql://lab.uenterprise.de:5432/lernardo"
+            dbCreate = "create-drop"
+            //url = "jdbc:postgresql://lab.uenterprise.de:5432/lernardo"
+            url = "jdbc:postgresql://localhost:5432/lernardo"
             loggingSql = false
             hibernate.default_schema = 'test'
 		}

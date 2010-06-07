@@ -57,6 +57,7 @@
       <h4>Derzeitige Adresse</h4>
         <div class="contact">
           <table>
+            <g:if test="${currentColonia}">
             <tr class="prop">
               <td valign="top" class="name-show">
                       <g:message code="client.profile.currentColonia"/>:
@@ -65,6 +66,7 @@
             <tr class="prop">
               <td valign="top" class="value-show"><g:link controller="${colonia.type.supertype.name +'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></td>
             </tr>
+              </g:if>
 
             <tr class="prop">
               <td valign="top" class="name-show">
@@ -135,7 +137,7 @@
                   </g:each>
                 </ul>
               </td>
-              <td width="230" valign="top" class="value-show"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></td>
+              <td width="230" valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if></td>
               <td width="210" valign="top" class="value-show"><app:getSchoolLevel level="${client.profile.schoolLevel}"/></td>
             </tr>
             <tr class="prop">
@@ -318,7 +320,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Eintrittsdaten / Austrittsdaten <app:isMeOrAdmin entity="${client}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Eintritt und Austritt bei Sueninos <app:isMeOrAdmin entity="${client}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-dates" targetId="dates"/>
       </jq:jquery>

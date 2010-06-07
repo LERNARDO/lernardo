@@ -10,7 +10,4 @@ class Status {
       text (maxSize: 10000)
     }
 
-    static mapping = {
-      sort "date":"desc"
-    }
 }

@@ -233,7 +233,7 @@ class BootStrap {
       prf.size = 120
       prf.weight = 120
       prf.job = false
-      prf.familyStatus = ""
+      prf.familyStatus = "1"
     }
 
     entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@sueninos.org", "Keano Zeillinger") {Entity ent ->
@@ -256,7 +256,7 @@ class BootStrap {
       prf.size = 120
       prf.weight = 120
       prf.job = false
-      prf.familyStatus = ""
+      prf.familyStatus = "1"
     }
   }
 

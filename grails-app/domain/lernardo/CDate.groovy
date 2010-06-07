@@ -8,9 +8,4 @@ class CDate {
     static constraints = {
     }
 
-    static mapping = {
-         sort "date"
-      }
-
-
 }

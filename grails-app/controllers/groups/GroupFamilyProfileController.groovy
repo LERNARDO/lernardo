@@ -43,7 +43,7 @@ class GroupFamilyProfileController {
 
           def allClients = Entity.findAllByType(metaDataService.etClient)
           // find all clients linked to this group
-          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
+          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
           List clients = links.collect {it.source}
           //allClients -= clients
 
@@ -178,13 +178,13 @@ class GroupFamilyProfileController {
     def link = c.get {
       eq('source', Entity.get(params.client))
       eq('target', group)
-      eq('type', metaDataService.ltGroupMemberClient)
+      eq('type', metaDataService.ltGroupFamily)
     }
     if (!link)
-      new Link(source:Entity.get(params.client), target: group, type:metaDataService.ltGroupMemberClient).save()
+      new Link(source:Entity.get(params.client), target: group, type:metaDataService.ltGroupFamily).save()
 
     // find all clients linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
     List clients = links.collect {it.source}
 
     render template:'clients', model: [clients: clients, group: group, entity: entityHelperService.loggedIn]
@@ -197,12 +197,12 @@ class GroupFamilyProfileController {
     def link = c.get {
       eq('source', Entity.get(params.client))
       eq('target', group)
-      eq('type', metaDataService.ltGroupMemberClient)
+      eq('type', metaDataService.ltGroupFamily)
     }
     link.delete()
 
     // find all clients linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
     List clients = links.collect {it.source}
 
     render template:'clients', model: [clients: clients, group: group, entity: entityHelperService.loggedIn]
