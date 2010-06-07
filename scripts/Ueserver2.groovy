@@ -28,7 +28,7 @@ grails deploy show   - shows to which instance the deploy would go to
   def context  ;
   switch (grailsSettings.grailsEnv) {
     case 'development':
-      context  = "/dev"
+      context  = "/dev-v2"
       break ;
     
     default:
