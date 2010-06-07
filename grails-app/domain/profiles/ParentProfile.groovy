@@ -11,6 +11,8 @@ class ParentProfile extends Profile {
     Date birthDate
     Byte gender
 
+    String comment // added on 07.06.2010
+
     String currentCountry // added on 20.04.2010
     String currentZip // changed on 20.04.2010, before: PLZ
     String currentCity // changed on 20.04.2010, before: city
@@ -39,6 +41,7 @@ class ParentProfile extends Profile {
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 20)
       education (blank: true)
+      comment (blank: true, maxSize: 5000)
     }
 
     String toString(){

@@ -66,7 +66,8 @@
               </ul>
 			</td>
 			<td valign="top" class="value-show">
-             ${fieldValue(bean: parent, field: 'profile.education') ?: '<div class="italic">keine Daten eingetragen</div>'}
+            <app:getSchoolLevel level="${parent.profile.education}"/>
+             %{--${fieldValue(bean: parent, field: 'profile.education') ?: '<div class="italic">keine Daten eingetragen</div>'}--}%
 			</td>
 
 		  </tr>
@@ -161,6 +162,8 @@
 		</tr>
 		 </table>
 	</div>
+
+      Kommentar: ${fieldValue(bean: parent, field: 'profile.comment')}
 
 
 

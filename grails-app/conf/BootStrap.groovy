@@ -205,7 +205,8 @@ class BootStrap {
       prf.birthDate = new Date()
       prf.job = false
       prf.maritalStatus = ""
-      prf.education = ""
+      prf.education = "1"
+      prf.comment = "Best parent ever!"
     }
   }
 

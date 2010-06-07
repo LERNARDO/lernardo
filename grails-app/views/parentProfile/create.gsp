@@ -77,7 +77,13 @@
                </g:if>
              </td>
              <td valign="top" class="value">
-               <g:select id="education" name="education" from="${['1. Primaria', '2. Primaria', '3. Primaria', '4. Primaria', '5. Primaria', '6. Primaria', '1. Secundaria', '2. Secundaria', '3. Secundaria', '1. Präparatoria', '2. Präparatoria', '3. Präparatoria']}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+               %{--<g:select id="education" name="education" from="${['1. Primaria', '2. Primaria', '3. Primaria', '4. Primaria', '5. Primaria', '6. Primaria', '1. Secundaria', '2. Secundaria', '3. Secundaria', '1. Präparatoria', '2. Präparatoria', '3. Präparatoria']}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>--}%
             </td>
            </tr>
 
@@ -137,7 +143,13 @@
          </tr>
          <tr>
              <td valign="middle" class="value">
-               <g:textField class="${hasErrors(bean: parent, field: 'profile.country', 'errors')}" size="20" id="currentCountry" name="currentCountry" value="${fieldValue(bean: parent, field: 'profile.currentCountry').decodeHTML()}"/>
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+               %{--<g:textField class="${hasErrors(bean: parent, field: 'profile.country', 'errors')}" size="20" id="currentCountry" name="currentCountry" value="${fieldValue(bean: parent, field: 'profile.currentCountry').decodeHTML()}"/>--}%
              </td>
              <td width="105" valign="middle"  class="value">
                <g:textField class="${hasErrors(bean: parent, field: 'profile.currentCity', 'errors')}" size="30" id="currentCity" name="currentCity" value="${fieldValue(bean: parent, field: 'profile.currentCity').decodeHTML()}"/>
@@ -175,7 +187,9 @@
 				</td>
 		</tr>
 		 </table>
-		</div> 
+		</div>
+
+        Kommentar: <g:textArea name="comment" rows="5" cols="50" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
 
       </div>
       <div class="buttons">
