@@ -9,4 +9,8 @@ class Status {
     static constraints = {
       text (maxSize: 10000)
     }
+
+    static mapping = {
+      sort "date":"desc"
+    }
 }

@@ -91,7 +91,7 @@
                   <g:link controller="profile" action="enable" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/></g:link>
                 </app:notEnabled>
                 <app:isAdmin>
-                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="return confirm('Bist du sicher?');"><img src="${resource (dir:'images/icons', file:'icon_remove.png')}" alt="Löschen" align="top"/></g:link>
+                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}"><img src="${resource (dir:'images/icons', file:'icon_remove.png')}" alt="Löschen" align="top"/></g:link>
                 </app:isAdmin>
               </app:notMe>
               <app:isSysAdmin>

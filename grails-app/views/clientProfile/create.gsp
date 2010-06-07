@@ -54,12 +54,12 @@
 			<td  width="120" valign="top" class="value ${hasErrors(bean: client, field: 'profile.gender', 'errors')}">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
-			<td  width="200" valign="top" class="value ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}">
-				<input type="text" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
+			<td  width="200" valign="top" class="value">
+				<g:textField class="${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
 			</td>
 
-			<td  width="270" valign="top" class="value ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}">
-              <input type="text" size="38"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
+			<td  width="270" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="38"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
             </td>
 			<td  height="35"  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" >
               <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>

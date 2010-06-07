@@ -31,17 +31,19 @@
         <tr class="prop">
           <td width="130" valign="top" class="value-show"><app:showGender gender="${client.profile.gender}"/></td>
           <td width="200" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="270" valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link></td>
+          <td width="270" valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
           <td width="35" valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
+          %{--<app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge']">--}%
           <td valign="top" class="name-show">
             <g:message code="client.profile.size"/>:
           </td>
           <td valign="top" class="name-show">
             <g:message code="client.profile.weight"/>:
           </td>
+          %{--</app:hasRoleOrType>--}%
           <td valign="top" class="name-show">
             <g:message code="client.profile.interests"/>:
           </td>

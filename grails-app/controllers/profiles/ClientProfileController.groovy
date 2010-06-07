@@ -44,7 +44,11 @@ class ClientProfileController {
             Entity colonia = link?.source
             link = Link.findByTargetAndType(client, metaDataService.ltFacility)
             Entity school = link.source
-            return [client: client, entity: entity, colonia: colonia, school: school]
+
+            // check if the client belongs to a family
+            link = Link.findBySourceAndType(client, metaDataService.ltGroupMemberClient)
+            Entity family = link?.target ?: null
+            return [client: client, entity: entity, colonia: colonia, school: school, family: family]
         }
     }
 
@@ -136,7 +140,10 @@ class ClientProfileController {
         flash.message = message(code:"client.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[client: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[client: ee.entity,
+                                      entity: entityHelperService.loggedIn,
+                                      allColonias: Entity.findAllByType(metaDataService.etGroupColony),
+                                      allFacilities: Entity.findAllByType(metaDataService.etFacility)])
         return
       }
 

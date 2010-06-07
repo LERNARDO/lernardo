@@ -44,7 +44,7 @@
 
       <div id="profile-navigation" class="yui-b">
 
-       %{-- <div id="profile-pic">
+        <div id="profile-pic">
           <div class="name">
             <div class="second">
               ${entity.profile.fullName}
@@ -53,7 +53,7 @@
           <div id="picture">
             <div style="position: absolute; top: 37px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:link></div>
             <div style=""><ub:profileImage name="${entity.name}" width="180" height="233"/></div>
-            %{--<div class="clear"></div>--
+            <div class="clear"></div>
           </div>
           <div class="type" style="margin-top: -2px">
             <div class="second">
@@ -62,16 +62,17 @@
           </div>
         </div>
 
-        %{--<ub:meOrAdmin entityName="${entity.name}">
-          <div class="profile-group"><div class="second">Profil</div></div>
+        <ub:meOrAdmin entityName="${entity.name}">
+          %{--<div class="profile-group"><div class="second">Profil</div></div>--}%
           <div class="profile-box">
             <div class="second">
+              <div class="header">Profil</div>
               <ul>
                 <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
               </ul>
             </div>
           </div>
-        </ub:meOrAdmin>--}%
+        </ub:meOrAdmin>
 
         %{--<div class="profile-group"><div class="second">Kommunikation</div></div>--}%
         <div class="profile-box">

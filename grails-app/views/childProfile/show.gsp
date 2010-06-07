@@ -33,7 +33,7 @@
 			</td>
 			<td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.firstName')}
 			</td>
-			<td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.lastName')}
+			<td valign="top" class="value-show"><g:link action="show" id="${child.id}" params="[entity:child.id]">${child.profile.lastName}</g:link>
 			</td>
 			<td valign="top" class="value-show"><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy"/>
 			</td>
@@ -68,6 +68,10 @@
               <g:message code="active"/>: 
               <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/> 
 		   </app:isAdmin>
+          <td width="60" valign="top" >
+            <g:message code="child.profile.email"/>:
+            </td>
+            <td  valign="top" >${fieldValue(bean: child, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           
 		</div>
 	
