@@ -3,4 +3,4 @@
 	url = git@github.com:mkuhl/grails-pdfplugin.git
 [submodule "plugins/obase-2.0"]
 	path = plugins/obase-2.0
-	url = git@github.com:openfactory/obase.git
+	url = git://github.com/openfactory/obase.git
