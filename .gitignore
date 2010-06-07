@@ -14,7 +14,7 @@ test/reports
 
 !buildFiles/*
 
-#plugins/
+plugins/
 
 target/*
 /web-app/WEB-INF/tld/c.tld
