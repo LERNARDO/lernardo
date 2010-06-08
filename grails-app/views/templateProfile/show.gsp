@@ -12,15 +12,79 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <table class="listing">
-      <tr class="prop"><td class="name" style="width: 200px"><g:message code="activityTemplate.name"/>:</td><td class="value">${template.profile.fullName}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.description"/>:</td><td class="value">${template.profile.description.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.chosenMaterials"/>:</td><td class="value">${template.profile.chosenMaterials.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.duration"/>:</td><td class="value">${template.profile.duration} Minuten</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.socialForm"/>:</td><td class="value">${template.profile.socialForm}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.amountEducators"/>:</td><td class="value">${template.profile.amountEducators}</td></tr>
-      <tr class="prop"><td class="name"><g:message code="activityTemplate.status"/>:</td><td class="value">${template.profile.status}</td></tr>
-    </table>
+   <table>
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show">
+            <label for="fullName">
+              <g:message code="activityTemplate.name"/>:
+            </label>
+          </td>
+           <td valign="top" class="name-show">
+            <label for="duration">
+              <g:message code="activityTemplate.duration"/>:
+            </label>
+          </td>
+          </tr>
+
+        <tr>
+          <td colspan="2" valign="top" class="value-show">
+            ${template.profile.fullName}</td>
+          <td valign="top" class="value-show">
+            ${template.profile.duration} Minuten </td>
+        </tr>
+
+       <tr class="prop">
+          <td width="210px" valign="top" class="name-show">
+            <label for="socialForm">
+              <g:message code="activityTemplate.socialForm"/>:
+            </label>
+          </td>
+           <td width="190px" valign="top" class="name-show">
+            <label for="status">
+              <g:message code="activityTemplate.status"/>:
+            </label>
+          </td>
+         <td valign="top" class="name-show">
+            <label for="amountEducators">
+              <g:message code="activityTemplate.amountEducators"/>:
+            </label>
+          </td>
+
+          </tr>
+        <tr>
+           <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
+            ${template.profile.socialForm}
+           </td>
+           <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
+            ${template.profile.status}
+           </td>
+          <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
+            ${template.profile.amountEducators}
+          </td>
+
+        </tr>
+       <tr class="prop">
+          <td colspan="2" valign="top" class="name-show">
+            <label for="description">
+              <g:message code="activityTemplate.description"/>:
+            </label>
+          </td>
+         <td valign="top" class="name-show">
+            <label for="chosenMaterials">
+              <g:message code="activityTemplate.chosenMaterials"/>:
+            </label>
+          </td>
+         </tr>
+        <tr>
+          <td  colspan="2" valign="top" class="value-show-block"> ${template.profile.description.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
+          <td width="390" valign="top" class="value-show-block"> ${template.profile.chosenMaterials.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
+        </tr>
+
+      </table>
+
+    
 
     <app:isEducator entity="${entity}">
       <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>

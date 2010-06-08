@@ -63,13 +63,13 @@
 
           </tr>
         <tr>
-           <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
+           <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
             <g:select id="socialForm" name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${fieldValue(bean:template,field:'profile.socialForm')}"/>
           </td>
-           <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
+           <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
             <g:select id="status" name="status" from="${['fertig','in Bearbeitung']}" value="${template?.profile?.status}"/>
           </td>
-          <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
+          <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
             <g:select id="amountEducators" name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> (Vorschlag)
           </td>
 

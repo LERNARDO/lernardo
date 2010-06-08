@@ -3,7 +3,7 @@
   <title>Projektvorlage</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Projektvorlage</h1>
   </div>
@@ -40,19 +40,19 @@
     </div>
     <div class="buttons">
       <app:isEducator entity="${entity}">
-        <g:link class="buttonBlue" action="edit" id="${projectTemplate?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonBlue" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
+        <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
       </app:isEducator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Projekteinheiten (${projectUnits.size()}) <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projectunits"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-projectunits" targetId="projectunits"/>
       </jq:jquery>
-      <div id="projectunits" style="display:none">
+      <div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="hideform('#projectunits')">
           Name: <g:textField name="fullName" size="40" value=""/>
           <div class="spacer"></div>
@@ -60,7 +60,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="projectunits2">
+      <div class=zusatz-show" id="projectunits2">
         <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates]"/>
       </div>
     </div>

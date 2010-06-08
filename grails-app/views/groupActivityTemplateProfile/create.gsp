@@ -3,7 +3,7 @@
   <title>Aktivitätsvorlagengruppe anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Aktivitätsvorlagengruppe anlegen</h1>
   </div>
@@ -20,7 +20,6 @@
     <g:form action="save" method="post">
       <div class="dialog">
         <table>
-          <tbody>
 
           <tr class="prop">
             <td valign="top" class="name">
@@ -28,43 +27,43 @@
                 <g:message code="groupActivityTemplate.profile.name"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="groupActivityTemplate.profile.description"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="50" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
             <td valign="top" class="name">
               <label for="realDuration">
                 <g:message code="groupActivityTemplate.profile.realDuration"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="10" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (min)
-            </td>
-          </tr>
-
-          <tr class="prop">
             <td valign="top" class="name">
               <label for="status">
                 <g:message code="groupActivityTemplate.profile.status"/>
               </label>
             </td>
-            <td valign="top" class="value">
+            </tr>
+          <tr>
+            <td width="500px" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="75" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+            </td>
+            <td width="170px" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (min)
+            </td>
+             <td valign="top" class="value">
               <g:select id="status" name="status" from="${['fertig','in Bearbeitung']}" value="${group?.profile?.status}"/>
             </td>
           </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name">
+              <label for="description">
+                <g:message code="groupActivityTemplate.profile.description"/>
+              </label>
+            </td>
+          </tr>
+           <tr>
+            <td colspan="3" valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          
 
 %{--      <tr class="prop">
             <td valign="top" class="name">
@@ -76,8 +75,7 @@
               <g:select multiple="true" name="templates" from="${templates}" optionKey="id" optionValue="profile"/>
             </td>
           </tr>--}%
-                   
-          </tbody>
+
         </table>
       </div>
       <div class="buttons">
