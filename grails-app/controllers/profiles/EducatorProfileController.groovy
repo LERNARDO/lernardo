@@ -53,7 +53,7 @@ class EducatorProfileController {
             try {
                 flash.message = message(code:"educator.deleted", args:[educator.profile.fullName])
                 educator.delete(flush:true)
-                redirect(controller:"profile", action:"list")
+                redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"educator.notDeleted", args:[educator.profile.fullName])

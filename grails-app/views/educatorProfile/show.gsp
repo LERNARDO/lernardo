@@ -90,7 +90,7 @@
 			${fieldValue(bean: educator, field: 'profile.employment') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td valign="middle" class="value-show">
-			${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">Leer</div>'}
+			${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">Nein</div>'}
             </td>
 		</tr>
 
@@ -213,7 +213,8 @@
 			${fieldValue(bean: educator, field: 'profile.originCity') ?: '<div class="italic">Leer</div>'}
             </td>
 			<td width="110" valign="middle" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.originCountry') ?: '<div class="italic">Leer</div>'}
+            <app:getNationalities nationality="${educator.profile.originCountry}"/>
+			%{--${fieldValue(bean: educator, field: 'profile.originCountry') ?: '<div class="italic">Leer</div>'}--}%
             </td>
 		
 		 </tr>
@@ -277,10 +278,10 @@
 		</tr>
 		<tr>
 			<td width="280" height="25" valign="middle" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">Leere</div>'}
+			${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">Leer</div>'}
             </td>	
 			<td width="340" valign="middle" class="value-show">
-			${fieldValue(bean: educator, field: 'profile.contactMail') ?: '<div class="italic">keine Daten eingetragen</div>'}
+			${fieldValue(bean: educator, field: 'profile.contactMail') ?: '<div class="italic">Leer</div>'}
             </td>	
 		</tr>
 		</table>

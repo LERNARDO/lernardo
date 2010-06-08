@@ -62,8 +62,8 @@
 			<td width="180"  valign="middle" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" size="25"  id="firstName" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
             </td>
-			<td   width="210"  valign="middle"  class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
+			<td   width="200"  valign="middle"  class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
 			<td valign="middle" class="value">
               <g:datePicker name="birthDate" value="${educator?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
@@ -223,8 +223,14 @@
               <g:textField class="${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
             </td>
 			<td valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: educator, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: educator, field: 'profile.originCountry').decodeHTML()}"/>
-            </td>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select name="originCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+              </g:if>
+              %{--<g:textField class="${hasErrors(bean: educator, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: educator, field: 'profile.originCountry').decodeHTML()}"/>
+            --}%</td>
 		
 		 </tr>
 		

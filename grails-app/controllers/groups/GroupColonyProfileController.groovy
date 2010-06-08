@@ -40,8 +40,18 @@ class GroupColonyProfileController {
         else {
           def allFacilities = Entity.findAllByType(metaDataService.etFacility)
           // find all facilities linked to this group
-          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
           List facilities = links.collect {it.source}
+
+          def allPartners = Entity.findAllByType(metaDataService.etPartner)
+          // find all partners linked to this group
+          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
+          List partners = links.collect {it.source}
+
+          def allEducators = Entity.findAllByType(metaDataService.etEducator)
+          // find all educators linked to this group
+          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
+          List educators = links.collect {it.source}
 
           def c = Entity.createCriteria()
           def allResources = c.list {
@@ -59,7 +69,11 @@ class GroupColonyProfileController {
                   facilities: facilities,
                   allFacilities: allFacilities,
                   resources: resources,
-                  allResources: allResources]
+                  allResources: allResources,
+                  partners: partners,
+                  allPartners: allPartners,
+                  educators: educators,
+                  allEducators: allEducators]
         }
     }
 
@@ -166,13 +180,13 @@ class GroupColonyProfileController {
       def link = c.get {
         eq('source', Entity.get(params.facility))
         eq('target', group)
-        eq('type', metaDataService.ltGroupMember)
+        eq('type', metaDataService.ltGroupMemberFacility)
       }
       if (!link)
-        new Link(source:Entity.get(params.facility), target: group, type:metaDataService.ltGroupMember).save()
+        new Link(source:Entity.get(params.facility), target: group, type:metaDataService.ltGroupMemberFacility).save()
 
       // find all facilities linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
       List facilities = links.collect {it.source}
 
       render template:'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
@@ -185,12 +199,12 @@ class GroupColonyProfileController {
       def link = c.get {
         eq('source', Entity.get(params.facility))
         eq('target', group)
-        eq('type', metaDataService.ltGroupMember)
+        eq('type', metaDataService.ltGroupMemberFacility)
       }
       link.delete()
 
       // find all facilities linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
       List facilities = links.collect {it.source}
 
       render template:'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
@@ -233,5 +247,81 @@ class GroupColonyProfileController {
 
     render template:'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
+
+    def addPartner = {
+      Entity group = Entity.get(params.id)
+
+      // check if the partner isn't already linked to the group
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.partner))
+        eq('target', group)
+        eq('type', metaDataService.ltGroupMemberPartner)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.partner), target: group, type:metaDataService.ltGroupMemberPartner).save()
+
+      // find all partners linked to this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
+      List partners = links.collect {it.source}
+
+      render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+    }
+
+    def removePartner = {
+      Entity group = Entity.get(params.id)
+
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.partner))
+        eq('target', group)
+        eq('type', metaDataService.ltGroupMemberPartner)
+      }
+      link.delete()
+
+      // find all partners linked to this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
+      List partners = links.collect {it.source}
+
+      render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+    }
+
+    def addEducator = {
+      Entity group = Entity.get(params.id)
+
+      // check if the partner isn't already linked to the group
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.educator))
+        eq('target', group)
+        eq('type', metaDataService.ltGroupMemberEducator)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.educator), target: group, type:metaDataService.ltGroupMemberEducator).save()
+
+      // find all partners linked to this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
+      List educators = links.collect {it.source}
+
+      render template:'educators', model: [educators: educators, group: group, entity: entityHelperService.loggedIn]
+    }
+
+    def removeEducator = {
+      Entity group = Entity.get(params.id)
+
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.educator))
+        eq('target', group)
+        eq('type', metaDataService.ltGroupMemberEducator)
+      }
+      link.delete()
+
+      // find all partners linked to this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
+      List educators = links.collect {it.source}
+
+      render template:'educators', model: [educators: educators, group: group, entity: entityHelperService.loggedIn]
+    }
 
 }

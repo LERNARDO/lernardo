@@ -182,6 +182,42 @@
       </div>
     </div>
 
+    <div class="zusatz">
+      <h5>Partner <app:isOperator entity="${entity}"><a href="#" id="show-partners"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isOperator></h5>
+      <jq:jquery>
+        <jq:toggle sourceId="show-partners" targetId="partners"/>
+      </jq:jquery>
+      <div class="zusatz-add"id="partners" style="display:none">
+        <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="hideform('#partners')">
+          <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="partners2">
+        <g:render template="partners" model="[partners: partners, group: group]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
+      <h5>Pädagogen <app:isOperator entity="${entity}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
+      <jq:jquery>
+        <jq:toggle sourceId="show-educators" targetId="educators"/>
+      </jq:jquery>
+      <div class="zusatz-add"id="educators" style="display:none">
+        <g:formRemote name="formRemote6" url="[controller:'groupColonyProfile', action:'addEducator', id:group.id]" update="educators2" before="hideform('#educators')">
+          <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="educators2">
+        <g:render template="educators" model="[educators: educators, group: group]"/>
+      </div>
+    </div>
+
   </div>
 </div>
 </body>

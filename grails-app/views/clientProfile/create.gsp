@@ -1,4 +1,5 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
+<%@ page import="de.uenterprise.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Betreuten anlegen</title>
@@ -113,6 +114,7 @@
               <g:select name="currentColonia" from="${allColonias}" id="currentColonia" optionKey="id" optionValue="profile"/>
             </td>
         </tr>
+
         <tr>
             <td valign="top" class="name">
               <label for="currentStreet">
@@ -236,7 +238,7 @@
               </g:if>
             </td>
            <td  width="230" valign="top" class="value">
-              <g:select class="drop-down-200" name="school" id="name" from="${allFacilities}" optionKey="id" optionValue="profile"/>
+              <g:select class="drop-down-200" name="school" id="allFacilities" from="${allFacilities}" optionKey="id" optionValue="profile"/>
             </td>
           <td  width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
