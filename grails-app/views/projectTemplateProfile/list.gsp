@@ -3,7 +3,7 @@
   <title>Projektvorlagen</title>
 </head>
 <body>
-  <div class="headerBlue">
+  <div class="headerGreen">
     <div class="second">
       <h1>Projektvorlagen</h1>
     </div>
@@ -37,7 +37,7 @@
       </g:if>
 
       <app:isEducator entity="${entity}">
-        <g:link class="buttonBlue" action="create">Neue Projektvorlage anlegen</g:link>
+        <g:link class="buttonGreen" action="create">Neue Projektvorlage anlegen</g:link>
         <div class="spacer"></div>
       </app:isEducator>
 
