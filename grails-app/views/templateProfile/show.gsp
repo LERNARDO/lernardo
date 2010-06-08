@@ -28,7 +28,7 @@
 
         <tr>
           <td colspan="2" valign="top" class="value-show">
-            ${template.profile.fullName}</td>
+            <g:link controller="templateProfile" action="show" id="${template.id}" params="[entity: template.id]">${template.profile.fullName}</g:link></td>
           <td valign="top" class="value-show">
             ${template.profile.duration} Minuten </td>
         </tr>
@@ -95,7 +95,7 @@
     </app:isEducator>
 
     <div class="zusatz">
-      <h5>Planbare Ressourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Planbare Ressourcen <app:isEducator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isEducator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
@@ -113,7 +113,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Gewichtungsmethode <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Gewichtungsmethode <app:isEducator entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isEducator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-methods" targetId="methods"/>
       </jq:jquery>

@@ -70,7 +70,7 @@
 
         <ul>
         <g:each in="${templates}" var="template">
-          <li>${template.profile.fullName} (${template.profile.duration} min)</li>
+          <li><g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link> (${template.profile.duration} min)</li>
         </g:each>
         </ul>
       </g:if>

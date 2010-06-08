@@ -36,21 +36,24 @@ class GroupFamilyProfileController {
             redirect(action:list)
         }
         else {
+          Integer totalLinks = 0
           def allParents = Entity.findAllByType(metaDataService.etParent)
           // find all parents linked to this group
           def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
           List parents = links.collect {it.source}
+          totalLinks += links.size()
 
           def allClients = Entity.findAllByType(metaDataService.etClient)
           // find all clients linked to this group
           links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
           List clients = links.collect {it.source}
-          //allClients -= clients
+          totalLinks += links.size()
 
           def allChilds = Entity.findAllByType(metaDataService.etChild)
           // find all childs linked to this group
           links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
           List childs = links.collect {it.source}
+          totalLinks += links.size()
 
           return [group: group,
                   entity: entity,
@@ -59,7 +62,8 @@ class GroupFamilyProfileController {
                   clients: clients,
                   allClients: allClients,
                   childs: childs,
-                  allChilds: allChilds]
+                  allChilds: allChilds,
+                  totalLinks: totalLinks]
         }
     }
 
@@ -101,7 +105,7 @@ class GroupFamilyProfileController {
 
       group.profile.properties = params
 
-      if(!group.hasErrors() && group.save()) {
+      if(!group.profile.hasErrors() && group.profile.save()) {
           flash.message = message(code:"group.updated", args:[group.profile.fullName])
           redirect action:'show', id: group.id
       }

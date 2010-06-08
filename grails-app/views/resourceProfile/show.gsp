@@ -46,7 +46,9 @@
       </table>
     </div>
     <div class="buttons">
-      <g:link class="buttonGreen" action="edit" id="${resource?.id}"><g:message code="edit"/></g:link>
+      <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
+        <g:link class="buttonGreen" action="edit" id="${resource?.id}"><g:message code="edit"/></g:link>
+      </app:hasRoleOrType>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

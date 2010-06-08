@@ -79,13 +79,12 @@
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
 
-        %{-- only the operator may instantiate an activity group --}%
-        <app:isOperator entity="${entity}">
+        <app:isEducator entity="${entity}">
           %{-- and only when it is done --}%
           <g:if test="${group.profile.status == 'fertig'}">
-            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Neue Aktivitätsgruppe planen</g:link>
+            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock instanzieren</g:link>
           </g:if>
-        </app:isOperator>
+        </app:isEducator>
         
         <div class="spacer"></div>
       </div>

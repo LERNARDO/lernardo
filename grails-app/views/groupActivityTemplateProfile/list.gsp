@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsvorlagengruppen</title>
+  <title>Aktivitätsblockvorlagen</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsvorlagengruppen</h1>
+    <h1>Aktivitätsblockvorlagen</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${groupTotal} Aktivitätsvorlagengruppen insgesamt vorhanden</p>
+    <p>${groupTotal} Aktivitätsblockvorlagen insgesamt vorhanden</p>
     <g:if test="${groupTotal > 0}">
       <div id="body-list">
         <table>
@@ -44,7 +44,7 @@
 
     <app:isEducator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>
+        <g:link class="buttonGreen" action="create">Neue Aktivitätsblockvorlage anlegen</g:link>
         <div class="spacer"></div>
       </div>
     </app:isEducator>

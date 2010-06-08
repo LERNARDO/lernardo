@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsgruppen</title>
+  <title>Aktivitätsblöcke</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsgruppen</h1>
+    <h1>Aktivitätsblöcke</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${groupTotal} Aktivitätsgruppen insgesamt vorhanden</p>
+    <p>${groupTotal} Aktivitätsblöcke insgesamt vorhanden</p>
     <g:if test="${groupTotal > 0}">
       <div id="body-list">
         <table>

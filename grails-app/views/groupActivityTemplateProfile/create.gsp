@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsvorlagengruppe anlegen</title>
+  <title>Aktivitätsblockvorlage anlegen</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsvorlagengruppe anlegen</h1>
+    <h1>Aktivitätsblockvorlage anlegen</h1>
   </div>
 </div>
 <div class="boxGray">

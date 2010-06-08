@@ -4,7 +4,7 @@
     <li>
       <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link> 
        &nbsp;
-      <app:isMeOrAdmin entity="${entity}"><g:remoteLink controller="groupClientProfile" action="removeClient" update="clients2" id="${group.id}" params="[client: client.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Betreuten entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin>
+      <app:isOperator entity="${entity}"><g:remoteLink controller="groupClientProfile" action="removeClient" update="clients2" id="${group.id}" params="[client: client.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Betreuten entfernen" align="top"/></g:remoteLink></app:isOperator>
 
     </li>
   </g:each>

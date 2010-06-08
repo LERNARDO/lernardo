@@ -36,7 +36,17 @@ class GroupActivityTemplateProfileController {
             redirect(action:list)
         }
         else {
-          def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+          //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+
+          // get all templates that are set to completed
+          def c = Entity.createCriteria()
+          def allTemplates = c {
+             eq("type", metaDataService.etTemplate)
+             profile {
+                eq("status", "fertig")
+             }
+          }
+
           // find all templates linked to this group
           def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
           List templates = links.collect {it.source}

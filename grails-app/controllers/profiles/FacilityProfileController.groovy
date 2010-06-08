@@ -39,7 +39,16 @@ class FacilityProfileController {
             redirect(action:list)
         }
         else {
-          def allResources = Entity.findAllByType(metaDataService.etResource)
+          //def allResources = Entity.findAllByType(metaDataService.etResource)
+
+          def c = Entity.createCriteria()
+          def allResources = c {
+             eq("type", metaDataService.etResource)
+             profile {
+                eq("type", "planbar")
+             }
+          }
+
           // find all resources of this facility
           def links = Link.findAllByTargetAndType(entity, metaDataService.ltResource)
           List resources = links.collect {it.source}

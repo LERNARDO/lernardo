@@ -69,6 +69,8 @@
       </div>
     </app:isMeOrAdmin>
 
+    <p>${totalLinks == 1 ? '1 unmittelbares Familienmitglied' : totalLinks + ' unmittelbare Familienmitglieder'}</p>
+
     <div class="zusatz">
       <h5>Erziehungsberechtigte <app:isMeOrAdmin entity="${group}"><a href="#" id="show-parents"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isMeOrAdmin></h5>
       <jq:jquery>

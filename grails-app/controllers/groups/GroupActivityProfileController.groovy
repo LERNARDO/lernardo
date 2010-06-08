@@ -195,7 +195,7 @@ class GroupActivityProfileController {
         flash.message = message(code:"group.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn, template: groupActivityTemplate])
         return
       }
 

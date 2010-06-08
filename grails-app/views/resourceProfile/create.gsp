@@ -49,20 +49,20 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="type" from="${['planbar','verbrauchbar','vorzusehend']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
+              <g:select name="type" from="${['verbrauchbar','vorzusehend']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
             </td>
           </tr>
 
-          <tr class="prop">
+          %{--<tr class="prop">
             <td valign="top" class="name">
               <label for="classification">
                 <g:message code="resource.profile.classification"/>
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select name="classification" from="${['Ressourcen die nur in einer Einrichtung verfügbar sind (Notebook, Turnsaal)','Ressourcen der Colonia unbeweglich/beweglich (abhängig von Einrichtung)','Ressourcen die für alle Einrichtungen verfügbar stehen (beweglich & unbeweglich)']}" value="${fieldValue(bean:resource,field:'profile.classification')}" />
+              <g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="${fieldValue(bean:resource,field:'profile.classification')}" />
             </td>
-          </tr>
+          </tr>--}%<g:hiddenField name="classification" value=""/>
 
           </tbody>
         </table>

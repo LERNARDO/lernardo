@@ -35,7 +35,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Betreute <app:isOperator entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>

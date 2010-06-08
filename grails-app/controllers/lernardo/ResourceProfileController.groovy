@@ -6,6 +6,7 @@ import de.uenterprise.ep.EntityHelperService
 import de.uenterprise.ep.ProfileHelperService
 import standard.MetaDataService
 import de.uenterprise.ep.Profile
+import de.uenterprise.ep.Link
 
 class ResourceProfileController {
     MetaDataService metaDataService
@@ -41,6 +42,8 @@ class ResourceProfileController {
     def del = {
         Entity resource = Entity.get(params.id)
         if(resource) {
+            // delete all links
+            Link.findAllBySourceOrTarget(resource, resource).each {it.delete()}
             try {
                 flash.message = message(code:"resource.deleted", args:[resource.profile.fullName])
                 resource.delete(flush:true)

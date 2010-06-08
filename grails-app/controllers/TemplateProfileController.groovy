@@ -72,10 +72,20 @@ class TemplateProfileController {
 
     def show = {
       Entity template = Entity.get(params.id)
+      Entity entity = params.entity ? template : entityHelperService.loggedIn
       def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
       def commentList = links.collect {it.source}
 
-      List allResources = Entity.findAllByType(metaDataService.etResource)
+      //List allResources = Entity.findAllByType(metaDataService.etResource)
+
+      def c = Entity.createCriteria()
+      def allResources = c {
+         eq("type", metaDataService.etResource)
+         profile {
+            eq("type", "planbar")
+         }
+      }
+
       // find all resources of this facility
       links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
       List resources = links.collect {it.source}
@@ -84,7 +94,7 @@ class TemplateProfileController {
 
       return ['template': template,
               'commentList': commentList,
-              'entity': entityHelperService.loggedIn,
+              'entity': entity,
               'allResources': allResources,
               'resources': resources,
               'allMethods': methods]
