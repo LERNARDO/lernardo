@@ -141,6 +141,7 @@ class MetaDataService {
   static final String LT_FACILITY = "Einrichtung"
   static final String LT_GROUP_FAMILY = "Familienmitglied"
   static final String LT_LEAD_EDUCATOR = "Leitender Pädagoge"
+  static final String LT_THEME_OF_FACILITY = "Thema der Einrichtung"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -248,6 +249,7 @@ class MetaDataService {
     getLtFacility()
     getLtGroupFamily()
     getLtLeadEducator()
+    getLtThemeOfFacility()
 
     getLtActEducator()
     getLtActClient()
@@ -360,6 +362,7 @@ class MetaDataService {
   LinkType getLtFacility()               {defaultObjectService.openLT (LT_FACILITY, lstOther) }
   LinkType getLtGroupFamily()            {defaultObjectService.openLT (LT_GROUP_FAMILY, lstOther) }
   LinkType getLtLeadEducator()           {defaultObjectService.openLT (LT_LEAD_EDUCATOR, lstOther) }
+  LinkType getLtThemeOfFacility()        {defaultObjectService.openLT (LT_THEME_OF_FACILITY, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

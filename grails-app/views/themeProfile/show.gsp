@@ -49,18 +49,25 @@
           <td valign="top" class="value">${fieldValue(bean: theme, field: 'profile.type')}</td>
         </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name">
+            <g:message code="facility"/>:
+          </td>
+          <td valign="top" class="value"><g:link controller="facilityProfile" action="show" id="${facility.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link></td>
+        </tr>
+
         </tbody>
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${theme}">
+    <app:isMeOrAdmin entity="${entity}">
       <div class="buttons">
         <g:link class="buttonBlue" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
 
-    <g:if test="${theme.profile.type == 'Thema'}">
+    <g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
       <div>
         <h5>Subthemen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-subthemes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:isMeOrAdmin></h5>
         <jq:jquery>

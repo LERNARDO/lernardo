@@ -73,10 +73,21 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: theme, field: 'profile.type', 'errors')}" from="${['Thema','Subthema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
+              <g:select class="${hasErrors(bean: theme, field: 'profile.type', 'errors')}" from="${['Übergeordnetes Thema','Untergeordnetes Thema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
             </td>
           </tr>
                         
+          <tr class="prop">
+            <td valign="top" class="name">
+              <label for="type">
+                <g:message code="facility"/>
+              </label>
+            </td>
+            <td valign="top" class="value">
+              <g:select from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
+            </td>
+          </tr>
+
           </tbody>
         </table>
       </div>

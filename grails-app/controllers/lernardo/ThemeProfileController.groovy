@@ -51,12 +51,17 @@ class ThemeProfileController {
             links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
             List projects = links.collect {it.source}
 
+            // find facility the theme is linked to
+            def link = Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)
+            Entity facility = link?.target
+
           [theme: theme,
              entity: entityHelperService.loggedIn,
              allSubthemes: allSubthemes,
              subthemes: subthemes,
              allProjects: allProjects,
-             projects: projects]
+             projects: projects,
+             facility: facility]
         }
     }
 
@@ -89,7 +94,7 @@ class ThemeProfileController {
             redirect action:'list'
         }
         else {
-            [theme: theme, entity: entityHelperService.loggedIn]
+            [theme: theme, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
         }
     }
 
@@ -99,16 +104,23 @@ class ThemeProfileController {
       theme.profile.properties = params
 
       if(!theme.profile.hasErrors() && theme.profile.save()) {
+
+          // delete current link
+          Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)?.delete()
+
+          // link theme to facility
+          new Link(source: theme, target: Entity.get(params.facility), type: metaDataService.ltThemeOfFacility).save()
+
           flash.message = message(code:"theme.updated", args:[theme.profile.fullName])
           redirect action:'show', id: theme.id
       }
       else {
-          render view:'edit', model:[theme: theme, entity: entityHelperService.loggedIn]
+          render view:'edit', model:[theme: theme, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
       }
     }
 
     def create = {
-      return [entity: entityHelperService.loggedIn]
+      return [entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
     }
 
     def save = {
@@ -119,10 +131,14 @@ class ThemeProfileController {
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
+
+        // link theme to facility
+        new Link(source: entity, target: Entity.get(params.facility), type: metaDataService.ltThemeOfFacility).save()
+
         flash.message = message(code:"theme.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[theme: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[theme: ee.entity, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
         return
       }
 

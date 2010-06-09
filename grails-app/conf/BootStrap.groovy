@@ -128,7 +128,7 @@ class BootStrap {
 
     // admin users
     entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
+      //ent.user.addToAuthorities(metaDataService.adminRole)
       ent.user.addToAuthorities(metaDataService.leadEducatorRole)
       ent.user.locale = new Locale ("es", "ES")
       EducatorProfile prf = (EducatorProfile)ent.profile

@@ -171,7 +171,7 @@ class FacilityProfileController {
       link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
       Entity leadEducator = link.source
 
-      render template:'leadEducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
+      render template:'leadeducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
     }
 
     def removeLeadEducator = {
@@ -189,7 +189,7 @@ class FacilityProfileController {
       link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
       Entity leadEducator = link?.source
 
-      render template:'leadEducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
+      render template:'leadeducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
     }
 
     def addClientGroup = {
