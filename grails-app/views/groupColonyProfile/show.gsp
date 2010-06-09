@@ -147,6 +147,38 @@
     </div>
 
     <div class="zusatz">
+      <h5>Planbare Ressourcen <app:isOperator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
+      <jq:jquery>
+        <jq:toggle sourceId="show-resources" targetId="resources"/>
+      </jq:jquery>
+      <div class="zusatz-add"id="resources" style="display:none">
+        <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="hideform('#resources')">
+          <table>
+            <tr>
+              <td><g:message code="resource.profile.name"/>: </td>
+              <td><g:textField size="30" name="fullName" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.description"/>: </td>
+              <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.classification"/>: </td>
+              <td><g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="" /></td>
+            </tr>
+          </table>
+
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="resources2">
+        <g:render template="resources" model="[resources: resources, group: group]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
       <h5>Einrichtungen <app:isOperator entity="${entity}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
@@ -161,24 +193,6 @@
       </div>
       <div class="zusatz-show" id="facilities2">
         <g:render template="facilities" model="[facilities: facilities, group: group]"/>
-      </div>
-    </div>
-
-    <div class="zusatz">
-      <h5>Ressourcen <app:isOperator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-resources" targetId="resources"/>
-      </jq:jquery>
-      <div class="zusatz-add"id="resources" style="display:none">
-        <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="hideform('#resources')">
-          <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
-      </div>
-      <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[resources: resources, group: group]"/>
       </div>
     </div>
 

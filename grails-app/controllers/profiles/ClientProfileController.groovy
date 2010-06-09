@@ -47,7 +47,8 @@ class ClientProfileController {
 
             // check if the client belongs to a family
             link = Link.findBySourceAndType(client, metaDataService.ltGroupFamily)
-            Entity family = link?.target ?: null
+            Entity family = link?.target
+
             return [client: client, entity: entity, colonia: colonia, school: school, family: family]
         }
     }

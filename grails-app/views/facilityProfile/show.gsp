@@ -78,7 +78,25 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz" >
-      <h5>Pädagogen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:isOperator entity="${facility}"><a href="#" id="show-leadeducator"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></g:if></h5>
+      <jq:jquery>
+        <jq:toggle sourceId="show-leadeducator" targetId="leadeducator"/>
+      </jq:jquery>
+      <div class="zusatz-add" id="leadeducator" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducator2" before="hideform('#leadeducator')">
+          <g:select name="leadeducator" from="${allEducators}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="Hinzufügen"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="leadeducator2">
+        <g:render template="leadeducator" model="${leadeducator}"/>
+      </div>
+    </div>
+
+    <div class="zusatz" >
+      <h5>Pädagogen <app:isOperator entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
@@ -96,7 +114,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Betreutengruppen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-clientgroups"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreutengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Betreutengruppen <app:isOperator entity="${facility}"><a href="#" id="show-clientgroups"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreutengruppe hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clientgroups" targetId="clientgroups"/>
       </jq:jquery>
@@ -114,7 +132,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Ansprechpersonen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Ansprechpersonen <app:isOperator entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
@@ -171,13 +189,26 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Ressourcen <app:isMeOrAdmin entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Planbare Ressourcen <app:isOperator entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="hideform('#resources')">
-          <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
+          <table>
+            <tr>
+              <td><g:message code="resource.profile.name"/>: </td>
+              <td><g:textField size="30" name="fullName" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.description"/>: </td>
+              <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.classification"/>: </td>
+              <td><g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="" /></td>
+            </tr>
+          </table>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>

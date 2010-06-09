@@ -57,7 +57,7 @@
       <h4>Derzeitige Adresse</h4>
         <div class="contact">
           <table>
-            <g:if test="${colonia.profile.fullName}">
+            <g:if test="${colonia}">
             <tr class="prop">
               <td valign="top" class="name-show">
                       <g:message code="client.profile.currentColonia"/>:

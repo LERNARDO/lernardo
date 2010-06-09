@@ -398,7 +398,7 @@ class BootStrap {
       ent.profile.fullName = "Klavier"
       ent.profile.description = "Ein echtes Bechstein Klavier!"
       ent.profile.type = "planbar"
-      ent.profile.classification = "Ressourcen die nur in einer Einrichtung verfügbar sind (Notebook, Turnsaal)"
+      ent.profile.classification = "Diese Ressource ist nur für diese Einrichtung verfügbar."
     }
   }
 

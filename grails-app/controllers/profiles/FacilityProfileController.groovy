@@ -9,12 +9,15 @@ import org.grails.plugins.springsecurity.service.AuthenticateService
 import lernardo.Contact
 import standard.FunctionService
 import standard.MetaDataService
+import de.uenterprise.ep.Profile
+import de.uenterprise.ep.ProfileHelperService
 
 class FacilityProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     AuthenticateService authenticateService
     FunctionService functionService
+    ProfileHelperService profileHelperService
 
     def index = {
         redirect action:"list", params:params
@@ -39,16 +42,6 @@ class FacilityProfileController {
             redirect(action:list)
         }
         else {
-          //def allResources = Entity.findAllByType(metaDataService.etResource)
-
-          def c = Entity.createCriteria()
-          def allResources = c {
-             eq("type", metaDataService.etResource)
-             profile {
-                eq("type", "planbar")
-             }
-          }
-
           // find all resources of this facility
           def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
           List resources = links.collect {it.source}
@@ -58,13 +51,17 @@ class FacilityProfileController {
           links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
           List educators = links.collect {it.source}
 
+          // find lead educator
+          def link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
+          Entity leadEducator = link?.source
+
           def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
           // find all clientgroups of this facility
           links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
           List clientGroups = links.collect {it.source}
 
           // find colonia of this facility
-          def link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
+          link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
           Entity colony = link?.target
 
           return [facility: facility,
@@ -73,23 +70,24 @@ class FacilityProfileController {
                   educators: educators,
                   allClientGroups: allClientGroups,
                   clientGroups: clientGroups,
-                  allResources: allResources,
                   resources: resources,
-                  colony: colony]
+                  colony: colony,
+                  leadeducator: leadEducator]
         }
     }
 
     def addResource = {
       Entity facility = Entity.get(params.id)
-      // check if the resource isn't already linked to the facility
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.resource))
-        eq('target', facility)
-        eq('type', metaDataService.ltResource)
+
+      EntityType etResource = metaDataService.etResource
+
+      Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.properties = params
+        ent.profile.type = "planbar"
       }
-      if (!link)
-        new Link(source:Entity.get(params.resource), target: facility, type:metaDataService.ltResource).save()
+      new Link(source:entity, target: facility, type:metaDataService.ltResource).save()
+
       // find all resources of this facility
       def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
       List resources = links.collect {it.source}
@@ -107,6 +105,10 @@ class FacilityProfileController {
         eq('type', metaDataService.ltResource)
       }
       link.delete()
+
+      // delete resource as well
+      Entity.get(params.resource).delete()
+
       // find all resources of this facility
       def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
       List resources = links.collect {it.source}
@@ -151,7 +153,45 @@ class FacilityProfileController {
 
       render template:'educators', model: [educators: educators, facility: facility, entity: entityHelperService.loggedIn]
     }
-  
+
+    def addLeadEducator = {
+      Entity facility = Entity.get(params.id)
+
+      // check if the educator isn't already linked to the facility
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.leadeducator))
+        eq('target', facility)
+        eq('type', metaDataService.ltLeadEducator)
+      }
+      if (!link)
+        new Link(source:Entity.get(params.leadeducator), target: facility, type:metaDataService.ltLeadEducator).save()
+
+      // find lead educator of this facility
+      link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
+      Entity leadEducator = link.source
+
+      render template:'leadEducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
+    }
+
+    def removeLeadEducator = {
+      Entity facility = Entity.get(params.id)
+
+      def c = Link.createCriteria()
+      def link = c.get {
+        eq('source', Entity.get(params.leadeducator))
+        eq('target', facility)
+        eq('type', metaDataService.ltLeadEducator)
+      }
+      link.delete()
+
+      // find lead educator of this facility
+      link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
+      Entity leadEducator = link?.source
+
+      render template:'leadEducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
+    }
+
     def addClientGroup = {
       Entity facility = Entity.get(params.id)
 

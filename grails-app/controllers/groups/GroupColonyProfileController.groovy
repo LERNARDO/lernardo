@@ -53,13 +53,6 @@ class GroupColonyProfileController {
           links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
           List educators = links.collect {it.source}
 
-          def c = Entity.createCriteria()
-          def allResources = c.list {
-            eq('type', metaDataService.etResource)
-            profile {
-              eq('type', 'planbar')
-            }
-          }
           // find all resources linked to this group
           links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
           List resources = links.collect {it.source}
@@ -71,7 +64,6 @@ class GroupColonyProfileController {
                   facilities: facilities,
                   allFacilities: allFacilities,
                   resources: resources,
-                  allResources: allResources,
                   partners: partners,
                   allPartners: allPartners,
                   educators: educators,
@@ -215,15 +207,14 @@ class GroupColonyProfileController {
   def addResource = {
     Entity group = Entity.get(params.id)
 
-    // check if the resource isn't already linked to the group
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.resource))
-      eq('target', group)
-      eq('type', metaDataService.ltResource)
+    EntityType etResource = metaDataService.etResource
+
+    Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.properties = params
+      ent.profile.type = "planbar"
     }
-    if (!link)
-      new Link(source:Entity.get(params.resource), target: group, type:metaDataService.ltResource).save()
+    new Link(source:entity, target: group, type:metaDataService.ltResource).save()
 
     // find all resources linked to this group
     def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
@@ -242,6 +233,9 @@ class GroupColonyProfileController {
       eq('type', metaDataService.ltResource)
     }
     link.delete()
+
+    // delete resource as well
+    Entity.get(params.resource).delete()
 
     // find all resources linked to this group
     def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)

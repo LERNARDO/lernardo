@@ -140,6 +140,7 @@ class MetaDataService {
   static final String LT_COLONIA = "Kolonie"
   static final String LT_FACILITY = "Einrichtung"
   static final String LT_GROUP_FAMILY = "Familienmitglied"
+  static final String LT_LEAD_EDUCATOR = "Leitender Pädagoge"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -246,6 +247,7 @@ class MetaDataService {
     getLtColonia()
     getLtFacility()
     getLtGroupFamily()
+    getLtLeadEducator()
 
     getLtActEducator()
     getLtActClient()
@@ -357,6 +359,7 @@ class MetaDataService {
   LinkType getLtColonia()                {defaultObjectService.openLT (LT_COLONIA, lstOther) }
   LinkType getLtFacility()               {defaultObjectService.openLT (LT_FACILITY, lstOther) }
   LinkType getLtGroupFamily()            {defaultObjectService.openLT (LT_GROUP_FAMILY, lstOther) }
+  LinkType getLtLeadEducator()           {defaultObjectService.openLT (LT_LEAD_EDUCATOR, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

@@ -38,7 +38,11 @@ class ChildProfileController {
             redirect(action:list)
         }
         else {
-            return [child: child, entity: entity]
+            // check if the child belongs to a family
+            def link = Link.findBySourceAndType(child, metaDataService.ltGroupMemberChild)
+            Entity family = link?.target
+          
+            return [child: child, entity: entity, family: family]
         }
     }
 

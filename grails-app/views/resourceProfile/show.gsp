@@ -35,12 +35,15 @@
           <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.type').decodeHTML()}</td>
         </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="resource.profile.classification"/>:
-          </td>
-          <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.classification').decodeHTML()}</td>
-        </tr>
+        %{-- only planable resources have a classification --}%
+        <g:if test="${resource.profile.type == 'planbar'}">
+          <tr class="prop">
+            <td valign="top" class="name-show">
+              <g:message code="resource.profile.classification"/>:
+            </td>
+            <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.classification').decodeHTML()}</td>
+          </tr>
+        </g:if>
 
         </tbody>
       </table>
