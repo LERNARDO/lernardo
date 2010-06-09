@@ -3,7 +3,7 @@
   <title>Aktivitätsblock anlegen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Aktivitätsblock anlegen</h1>
   </div>
@@ -23,12 +23,11 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name">
+            <td height="30" colspan="3" valign="top" class="name">
               <label for="fullName">
-                <g:message code="groupActivityTemplate"/>
+                <g:message code="groupActivityTemplate"/>:
               </label>
-            </td>
-            <td valign="top" class="value">
+            
               <g:link controller="groupActivityTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
             </td>
           </tr>
@@ -39,8 +38,26 @@
                 <g:message code="groupActivity.profile.name"/>
               </label>
             </td>
+            <td valign="top" class="name">
+              <label for="realDuration">
+                <g:message code="groupActivity.profile.realDuration"/>
+              </label>
+            </td>
+            <td  valign="top" class="name">
+              <label for="date">
+                <g:message code="groupActivity.profile.date"/>
+              </label>
+            </td>
+            </tr>
+            <tr>
+            <td width="280px" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
+            </td>
+            <td width="180px" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" id="realDuration" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
+            </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
+              <g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>
             </td>
           </tr>
 
@@ -66,28 +83,7 @@
             </td>
           </tr>--}%
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="realDuration">
-                <g:message code="groupActivity.profile.realDuration"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="10" id="realDuration" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="date">
-                <g:message code="groupActivity.profile.date"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>
-            </td>
-          </tr>
-
+        
           </tbody>
         </table>
       </div>
