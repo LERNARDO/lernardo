@@ -323,6 +323,8 @@
 		</tr>
 		 </table>
 		</div>
+
+        Colonia: <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
 	
       </div>
       <div class="buttons">

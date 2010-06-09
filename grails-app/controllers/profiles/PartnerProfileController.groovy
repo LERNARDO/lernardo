@@ -39,7 +39,12 @@ class PartnerProfileController {
             redirect(action:list)
         }
         else {
-            return [partner: partner, entity: entity]
+
+            // find colonia of this partner
+            def link = Link.findBySourceAndType(partner, metaDataService.ltGroupMemberPartner)
+            Entity colony = link?.target
+
+            return [partner: partner, entity: entity, colony: colony]
         }
     }
 
@@ -72,7 +77,7 @@ class PartnerProfileController {
             redirect action:'list'
         }
         else {
-            return [partner: partner, entity: entityHelperService.loggedIn]
+            return [partner: partner, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
         }
     }
 
@@ -84,16 +89,30 @@ class PartnerProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
       if(!partner.hasErrors() && partner.save()) {
+
+          // delete current link
+          def c = Link.createCriteria()
+          def link = c.get {
+            eq('source', partner)
+            eq('target', Entity.get(params.colonia))
+            eq('type', metaDataService.ltGroupMemberPartner)
+          }
+          if (link)
+            link.delete()
+
+          // link facility to colonia
+          new Link(source:partner, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberPartner).save()
+
           flash.message = message(code:"partner.updated", args:[partner.profile.fullName])
           redirect action:'show', id: partner.id
       }
       else {
-          render view:'edit', model:[partner: partner, entity: entityHelperService.loggedIn]
+          render view:'edit', model:[partner: partner, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
       }
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn]
+        return [entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
 
     def save = {
@@ -107,10 +126,13 @@ class PartnerProfileController {
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
+        // link partner to colonia
+        new Link(source:entity, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberPartner).save()
+
         flash.message = message(code:"partner.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[partner: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[partner: ee.entity, entity: entityHelperService.loggedIn], allColonias: Entity.findAllByType(metaDataService.etGroupColony))
         return
       }
 

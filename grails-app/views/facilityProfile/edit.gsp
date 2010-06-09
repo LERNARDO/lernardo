@@ -133,6 +133,9 @@
           </tr>
         </table>
         </div> <!--div email close -->
+
+        Colonia: <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
+        
       </div> <!-- div dialog close -->
       
       <div class="buttons">

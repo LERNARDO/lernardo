@@ -64,6 +64,8 @@ class GroupColonyProfileController {
           links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
           List resources = links.collect {it.source}
 
+          // find colonia 
+
           return [group: group,
                   entity: entity,
                   facilities: facilities,

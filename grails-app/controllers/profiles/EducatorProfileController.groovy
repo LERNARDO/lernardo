@@ -39,9 +39,14 @@ class EducatorProfileController {
             redirect(action:list)
         }
         else {
+          // find if this educator was enlisted
           Link link = Link.findBySourceAndType (educator, metaDataService.ltEnlisted)
           Entity enlistedBy = link?.target
-          return [educator: educator, entity: entity, enlistedBy: enlistedBy]
+
+          // find colonia of this educator
+          link = Link.findBySourceAndType(educator, metaDataService.ltGroupMemberEducator)
+          Entity colony = link?.target
+          return [educator: educator, entity: entity, enlistedBy: enlistedBy, colony: colony]
         }
     }
 
@@ -74,7 +79,7 @@ class EducatorProfileController {
             redirect action:'list'
         }
         else {
-            return [educator: educator, entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner)]
+            return [educator: educator, entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
         }
     }
 
@@ -87,23 +92,37 @@ class EducatorProfileController {
       educator.user.properties = params
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
-      // create link to partner
-      Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}
-      if (params.enlisted) {
-        new Link (source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
-      }
-      
       if(!educator.hasErrors() && educator.save()) {
+
+          // create link to partner
+          Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}
+          if (params.enlisted) {
+            new Link (source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
+          }
+
+          // delete current link
+          def c = Link.createCriteria()
+          def link = c.get {
+            eq('source', educator)
+            eq('target', Entity.get(params.colonia))
+            eq('type', metaDataService.ltGroupMemberEducator)
+          }
+          if (link)
+            link.delete()
+
+          // link educator to colonia
+          new Link(source:educator, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberEducator).save()
+
           flash.message = message(code:"educator.updated", args:[educator.profile.fullName])
           redirect action:'show', id: educator.id
       }
       else {
-          render view:'edit', model:[educator: educator, entity: entityHelperService.loggedIn]
+          render view:'edit', model:[educator: educator, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
       }
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner)]
+        return [entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
 
     def save = {
@@ -123,10 +142,14 @@ class EducatorProfileController {
         if (params.enlisted) {
           new Link (source: entity, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
         }
+
+        // link educator to colonia
+        new Link(source:entity, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberEducator).save()
+
         flash.message = message(code:"educator.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[educator: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[educator: ee.entity, entity: entityHelperService.loggedIn], partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony))
         return
       }
 

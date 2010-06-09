@@ -50,18 +50,22 @@ class FacilityProfileController {
           }
 
           // find all resources of this facility
-          def links = Link.findAllByTargetAndType(entity, metaDataService.ltResource)
+          def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
           List resources = links.collect {it.source}
 
           def allEducators = Entity.findAllByType(metaDataService.etEducator)
           // find all educators of this facility
-          links = Link.findAllByTargetAndType(entity, metaDataService.ltWorking)
+          links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
           List educators = links.collect {it.source}
 
           def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
           // find all clientgroups of this facility
-          links = Link.findAllByTargetAndType(entity, metaDataService.ltClientship)
+          links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
           List clientGroups = links.collect {it.source}
+
+          // find colonia of this facility
+          def link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
+          Entity colony = link?.target
 
           return [facility: facility,
                   entity: entity,
@@ -70,7 +74,8 @@ class FacilityProfileController {
                   allClientGroups: allClientGroups,
                   clientGroups: clientGroups,
                   allResources: allResources,
-                  resources: resources]
+                  resources: resources,
+                  colony: colony]
         }
     }
 
@@ -214,7 +219,7 @@ class FacilityProfileController {
             redirect action:'list'
         }
         else {
-            return [facility: facility, entity: entityHelperService.loggedIn]
+            return [facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
         }
     }
 
@@ -226,16 +231,30 @@ class FacilityProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
 
       if(!facility.hasErrors() && facility.save()) {
+
+          // delete current link
+          def c = Link.createCriteria()
+          def link = c.get {
+            eq('source', facility)
+            eq('target', Entity.get(params.colonia))
+            eq('type', metaDataService.ltGroupMemberFacility)
+          }
+          if (link)
+            link.delete()
+
+          // link facility to colonia
+          new Link(source:facility, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberFacility).save()
+
           flash.message = message(code:"facility.updated", args:[facility.profile.fullName])
           redirect action:'show', id: facility.id
       }
       else {
-          render view:'edit', model:[facility: facility, entity: entityHelperService.loggedIn]
+          render view:'edit', model:[facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
       }
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn]
+        return [entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
 
     def save = {
@@ -249,10 +268,13 @@ class FacilityProfileController {
         }
         RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
+        // link facility to colonia
+        new Link(source:entity, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberFacility).save()
+
         flash.message = message(code:"facility.created", args:[entity.profile.fullName])
         redirect action:'list'
       } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[facility: ee.entity, entity: entityHelperService.loggedIn])
+        render (view:"create", model:[facility: ee.entity, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
         return
       }
 
