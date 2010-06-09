@@ -18,7 +18,7 @@
           <td valign="top" class="name">
             <g:message code="projectTemplate.profile.name"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value"><g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
@@ -41,7 +41,9 @@
     <div class="buttons">
       <app:isEducator entity="${entity}">
         <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
+        <g:if test="${projectTemplate.profile.status == 'fertig'}">
+          <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
+        </g:if>
       </app:isEducator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
@@ -60,7 +62,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div class=zusatz-show" id="projectunits2">
+      <div class="zusatz-show" id="projectunits2">
         <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates]"/>
       </div>
     </div>

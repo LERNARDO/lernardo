@@ -37,7 +37,7 @@
               <g:textField class="${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="100" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName')}"/>
             </td>
               <td valign="top" class="value">
-              <g:select from="${['fertig','unfertig']}" id="status" name="status" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}"/>
+              <g:select from="${['fertig','in Bearbeitung']}" id="status" name="status" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}"/>
             </td>
           </tr>
 

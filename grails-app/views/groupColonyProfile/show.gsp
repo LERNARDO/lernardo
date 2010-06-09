@@ -98,7 +98,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Gebäude <app:isOperator entity="${entity}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
+      <h5>Gebäude (welches sich nicht im ERP befindet) <app:isOperator entity="${entity}"><a href="#" id="show-buildings"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-buildings" targetId="buildings"/>
       </jq:jquery>
@@ -164,7 +164,7 @@
             </tr>
             <tr>
               <td><g:message code="resource.profile.classification"/>: </td>
-              <td><g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="" /></td>
+              <td><g:select name="classification" from="${['Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="" /></td>
             </tr>
           </table>
 

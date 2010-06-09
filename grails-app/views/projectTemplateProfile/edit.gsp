@@ -51,7 +51,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select from="${['fertig','unfertig']}" id="status" name="status" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}"/>
+              <g:select from="${['fertig','in Bearbeitung']}" id="status" name="status" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}"/>
             </td>
           </tr>
                         

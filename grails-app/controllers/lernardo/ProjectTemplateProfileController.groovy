@@ -29,6 +29,7 @@ class ProjectTemplateProfileController {
 
     def show = {
         Entity projectTemplate = Entity.get( params.id )
+        Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
         if(!projectTemplate) {
             flash.message = "projectTemplateProfile not found with id ${params.id}"
@@ -45,7 +46,7 @@ class ProjectTemplateProfileController {
             Integer calculatedDuration = calculateDuration(projectUnits)
 
             [projectTemplate: projectTemplate,
-             entity: entityHelperService.loggedIn,
+             entity: entity,
              projectUnits: projectUnits,
              allGroupActivityTemplates: allGroupActivityTemplates,
              calculatedDuration: calculatedDuration]
@@ -121,24 +122,29 @@ class ProjectTemplateProfileController {
     def addProjectUnit = {
       Entity projectTemplate = Entity.get(params.id)
 
-      // create projectUnit
-      EntityType etProjectUnit = metaDataService.etProjectUnit
-      Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.properties = params
-      }
+      try {
+        // create projectUnit
+        EntityType etProjectUnit = metaDataService.etProjectUnit
+        Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
+          ent.profile.properties = params
+        }
 
-      // link projectUnit and projectTemplate
-      new Link(source: projectUnit, target: projectTemplate, type:metaDataService.ltProjectUnit).save()
+        // link projectUnit and projectTemplate
+        new Link(source: projectUnit, target: projectTemplate, type:metaDataService.ltProjectUnit).save()
 
-      // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+        // find all projectunits of this projectTemplate
+        def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+        List projectUnits = links.collect {it.source}
 
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+        List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
-      render template:'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
+        render template:'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]        
+      } catch (de.uenterprise.ep.EntityException ee) {
+      render "Projekteinheit konnte nicht gespeichert werden!"
+      return
     }
+}
 
     def removeProjectUnit = {
       Entity projectTemplate = Entity.get(params.id)
