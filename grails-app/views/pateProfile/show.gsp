@@ -61,6 +61,13 @@
           <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="210" align="top" class="value-show"><app:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
+
+       <tr>
+        <td colspan="4" height="30" valign="top" class="name-show">
+          <g:message code="pate.profile.emails"/>: ${fieldValue(bean: pate, field: 'profile.emails')}
+        </td>
+
+       </tr>
       </table>
 
       <div class="email">
@@ -72,10 +79,7 @@
             </td>
             <td width="50" valign="top" ><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </app:isAdmin>
-            <td width="145" valign="top" class="name">
-              <g:message code="pate.profile.emails"/>:
-            </td>
-            <td width="50" valign="top" class="value">${fieldValue(bean: pate, field: 'profile.emails')}</td>
+  
             <td width="60" valign="top" >
               <g:message code="pate.profile.email"/>:
             </td>
