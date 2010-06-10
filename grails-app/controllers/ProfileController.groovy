@@ -114,7 +114,7 @@ class ProfileController {
 
     def showUsers = {
       params.glossary = params.glossary ?: 'Alle'
-      params.max = Math.min(params.max ? params.int('max') : 6,  100)
+      params.max = Math.min(params.max ? params.int('max') : 16,  100)
       params.offset = params.offset ? params.int('offset') : 0
 
       List users = []
@@ -131,12 +131,18 @@ class ProfileController {
           ne("type", metaDataService.etGroupFamily)
           ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
+          ne("type", metaDataService.etGroupActivity)
+          ne("type", metaDataService.etGroupActivityTemplate)
+          ne("type", metaDataService.etTheme)
+          ne("type", metaDataService.etProject)
+          ne("type", metaDataService.etProjectTemplate)
+          ne("type", metaDataService.etUser)
           profile {
             order("lastName", "asc")
           }
         }
         numUsers = users.size()
-        def upperBound = params.offset + 6 < users.size() ? params.offset + 6 : users.size()
+        def upperBound = params.offset + 16 < users.size() ? params.offset + 16 : users.size()
         users = users.subList(params.offset,upperBound)
       }
       else {
@@ -151,6 +157,12 @@ class ProfileController {
           ne("type", metaDataService.etGroupFamily)
           ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
+          ne("type", metaDataService.etGroupActivity)
+          ne("type", metaDataService.etGroupActivityTemplate)
+          ne("type", metaDataService.etTheme)
+          ne("type", metaDataService.etProject)
+          ne("type", metaDataService.etProjectTemplate)
+          ne("type", metaDataService.etUser)
           profile {
             ilike("fullName",params.glossary+"%")
             order("fullName", "asc")
@@ -158,7 +170,7 @@ class ProfileController {
           cacheable(true)
         }
         numUsers = users.size()
-        def upperBound = params.offset + 6 < users.size() ? params.offset + 6 : users.size()
+        def upperBound = params.offset + 16 < users.size() ? params.offset + 16 : users.size()
         users = users.subList(params.offset,upperBound)
       }
 

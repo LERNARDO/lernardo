@@ -62,17 +62,17 @@
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${group}">
+    <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
+    </app:hasRoleOrType>
 
     <p>${totalLinks == 1 ? '1 unmittelbares Familienmitglied' : totalLinks + ' unmittelbare Familienmitglieder'}</p>
 
     <div class="zusatz">
-      <h5>Erziehungsberechtigte <app:isMeOrAdmin entity="${group}"><a href="#" id="show-parents"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <h5>Erziehungsberechtigte <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a href="#" id="show-parents"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
@@ -90,7 +90,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Betreute <app:isMeOrAdmin entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <h5>Betreute <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
@@ -108,7 +108,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Kinder <app:isMeOrAdmin entity="${group}"><a href="#" id="show-childs"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <h5>Kinder <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a href="#" id="show-childs"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-childs" targetId="childs"/>
       </jq:jquery>

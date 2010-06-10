@@ -23,7 +23,7 @@
 
     <div class="spacer"></div>
 
-    <g:if test="${numEntities > 6}">
+    <g:if test="${numEntities > 16}">
       <div class="paginateButtons">
         <util:remotePaginate action="showUsers" total="${numEntities}" update="userlist-results" next="Nächste Seite" prev="Vorherige Seite" params="[glossary:glossary]"/>
       </div>
