@@ -94,11 +94,12 @@ class ActivityController {
 
     def show = {
       Entity activity = Entity.get(params.id)
+      Entity entity = params.entity ? activity : entityHelperService.loggedIn
 
       List clients = Entity.findAllByType(metaDataService.etClient)
 
       return ['activity':activity,
-              'entity': entityHelperService.loggedIn,
+              'entity': entity,
               'clients': clients]
     }
 

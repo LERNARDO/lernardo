@@ -546,17 +546,22 @@ ul {
 .imgmenu {
     background-position: right;
     height: 115px;
-    float: right;
+    float: left;
     margin-right: 0;
-    list-style-type: none; }
-    .imgmenu li {
-        float: left;
-        padding: 0 50px 0 0; }
-        .imgmenu li a {
-            color: #222;
-            text-decoration: none; }
-            .imgmenu li a:hover {
-                color: #aaa; }
+    list-style-type: none;
+    margin-top: -35px;}
+    .imgmenu ol {
+      margin: 0;
+      padding: 0; }
+      .imgmenu li {
+          float: left;
+          padding: 0 0 0 0;
+          width: 120px}
+          .imgmenu li a {
+              color: #222;
+              text-decoration: none; }
+              .imgmenu li a:hover {
+                  color: #aaa; }
 
 /* ----- PUBLIC ----- */
 

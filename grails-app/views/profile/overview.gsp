@@ -242,7 +242,7 @@
           </app:isEducator>
         </div>
         <div class="box">
-          <div class="bold">Themenraumaktivitäten</div>
+          <div class="bold">Aktivitäten</div>
           <g:link controller="activity" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="activity" action="list">Alle anzeigen (${allActivities})</g:link></div>
           %{--<div><g:link controller="template" action="create">Neu anlegen</g:link></div>--}%

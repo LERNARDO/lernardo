@@ -24,9 +24,9 @@
 
       <li>
         <div id="activities" class="imgbox">
-          <g:link controller="groupActivityProfile" action="list">
+          <g:link controller="groupActivityTemplateProfile" action="list">
             <img src="${g.resource(dir:'images/iconex', file:'all_activities.png')}" alt="Aktivitäten" />
-            <h3>Aktivitätsblockvorla</h3>
+            <h3>Aktivitätsblockvorlagen</h3>
             %{-- writing the full word somehow fucks up the layout, need to find the problem --}%
           </g:link>
         </div>
@@ -37,6 +37,15 @@
           <g:link controller="projectProfile" action="list">
             <img src="${g.resource(dir:'images/iconex', file:'projects.png')}" alt="Projekte" />
             <h3><g:message code="imgmenu.projects.name"/></h3>
+          </g:link>
+        </div>
+      </li>
+
+      <li>
+        <div id="hactivities" class="imgbox">
+          <g:link controller="activity" action="list">
+            <img src="${g.resource(dir:'images/iconex', file:'projects.png')}" alt="Projekte" />
+            <h3>Aktivitäten</h3>
           </g:link>
         </div>
       </li>

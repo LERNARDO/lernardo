@@ -20,7 +20,7 @@
           <tr><td class="name">Vorlage:</td><td class="value"><app:getTemplate entity="${activity}">
             <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
             </app:getTemplate></td></tr>
-          <tr><td class="name">Name:</td><td class="value">${activity.profile.fullName}</td></tr>
+          <tr><td class="name">Name:</td><td class="value"><g:link controller="activity" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link></td></tr>
           <tr><td class="name">Beginn:</td><td class="value"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td></tr>
           <tr><td class="name">Dauer:</td><td class="value">${activity.profile.duration} Minuten</td></tr>
 
