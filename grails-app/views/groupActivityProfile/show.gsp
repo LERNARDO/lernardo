@@ -13,7 +13,14 @@
     <div class="dialog">
       <table>
         <tbody>
+        <tr class="prop">
+            <td height="30" colspan="3" valign="top" class="name">
+              <label for="fullName">
+                <g:message code="groupActivityTemplate"/>:
+              </label>
 
+                </td>
+          </tr>
         <tr class="prop">
           <td valign="top" class="name-show">
             <g:message code="groupActivity.profile.name"/>:
@@ -27,24 +34,30 @@
 
           </tr>
           <tr>
-          <td width="200" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td widht="150" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
-           <td valign="top" class="value-show"><g:formatDate date="${group.profile.date}" format="dd. MMMM yyyy, HH:mm"/></td>
+          <td width="280" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td width="150" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
+           <td width="300" valign="top" class="value-show"><g:formatDate date="${group.profile.date}" format="dd. MMMM yyyy, HH:mm"/></td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
+          <td valign="top" class="name-show">
             <g:message code="groupActivity.profile.educationalObjective"/>:
           </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td colspan="2" valign="top" class="name-show">
+            <g:message code="groupActivity.profile.educationalObjectiveText"/>:
+          </td>
+          </tr>
+          <tr>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
+          <td colspan="2" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
+
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivity.profile.educationalObjectiveText"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
+
+           </tr>
 
         <tr class="prop">
 
