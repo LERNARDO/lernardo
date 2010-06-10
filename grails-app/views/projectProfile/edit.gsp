@@ -62,19 +62,7 @@
 
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:projectProfileInstance,field:'startDate','errors')}">
-                                    <g:datePicker name="startDate" value="${projectProfileInstance?.startDate}" precision="minute" ></g:datePicker>
-                                </td>
-                            </tr> 
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="entity">
-                                    <g:message code="projectProfile.entity.label" default="Entity" />
-                                  </label>
-
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean:projectProfileInstance,field:'entity','errors')}">
-                                    <g:select optionKey="id" from="${de.uenterprise.ep.Entity.list()}" name="entity.id" value="${projectProfileInstance?.entity?.id}" ></g:select>
+                                    <g:datePicker name="startDate" value="${projectProfileInstance?.startDate}" precision="minute" />
                                 </td>
                             </tr> 
                         
@@ -86,7 +74,7 @@
 
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean:projectProfileInstance,field:'endDate','errors')}">
-                                    <g:datePicker name="endDate" value="${projectProfileInstance?.endDate}" precision="minute" ></g:datePicker>
+                                    <g:datePicker name="endDate" value="${projectProfileInstance?.endDate}" precision="minute" />
                                 </td>
                             </tr> 
                         

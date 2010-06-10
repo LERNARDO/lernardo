@@ -97,26 +97,17 @@
 		
 		<tr>
 			<td valign="top" class="name-show">
-              <label for="currentStreet">
                  <g:message code="parent.profile.currentCountry"/>
-
-              </label>
             </td>
 						<td valign="top" class="name-show">
-              <label for="currentZip">
                 <g:message code="parent.profile.currentCity"/>
-              </label>
             </td>
 			<td valign="top" class="name-show">
-              <label for="currentCity">
                 <g:message code="parent.profile.currentStreet"/>
-              </label>
             </td>
 
 			<td valign="top" class="name-show">
-              <label for="currentCountry">
               <g:message code="parent.profile.currentZip"/>
-              </label>
             </td>
 		</tr>
 		<tr>

@@ -1,7 +1,7 @@
 <g:if test="${facility.profile.contacts}">
   <ul>
   <g:each in="${facility.profile.contacts}" var="contact">
-    <li>${contact.firstName + ' ' + contact.lastName}<app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeContact" update="contacts2" id="${facility.id}" params="[contact: contact.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Ansprechperson entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+    <li>${contact.firstName + ' ' + contact.lastName}<app:isOperator entity="${entity}"><g:remoteLink action="removeContact" update="contacts2" id="${facility.id}" params="[contact: contact.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Ansprechperson entfernen" align="top"/></g:remoteLink></app:isOperator></li>
   </g:each>
   </ul>
 </g:if>

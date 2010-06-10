@@ -97,8 +97,7 @@ body {
     }
 
 .spacer {
-    clear: both;
-    -margin-bottom: 5px; }
+    clear: both; }
 
 /* ----- NAVIGATION -----*/
 
@@ -314,7 +313,6 @@ ul {
     border-bottom: none;
     font-weight: bold;
     margin: 15px 0 0 5px;
-    -padding: 2px;
     text-align: center;
     width: 120px;
     color: #333;
@@ -341,7 +339,6 @@ ul {
     /*background-color: #dfdfdf;*/
     background: #f0f0f0;
     /*border: 1px solid #999;*/
-    -padding: 5px;
     /*-moz-box-shadow: #aaa 2px 2px 4px;*/
     margin-bottom: 15px; }
     .profile-box .second {
@@ -411,7 +408,6 @@ ul {
 
 .helperButton {
     border: 1px solid #f33;
-    -moz-border-radius: 2px;
     background: #f66;
     font-size: 10px;
     padding: 1px;
@@ -423,7 +419,6 @@ ul {
         text-decoration: none; }
 
 #profile-content {
-    -moz-border-radius: 5px;
     background-color: #dfdfdf;
     border: 1px solid #ccc;
     padding: 5px 10px 15px 10px;
@@ -453,73 +448,56 @@ ul {
     #profile-navigation a {
         text-decoration: none; }
         #profile-navigation a:hover {
-            color: #000; /*#46597B; */
-            -text-decoration: underline; }
+            color: #000; /*#46597B; */ }
 
     #profile-navigation .profile-profil {
-        background: url(../images/icons/icon_profile.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-nachricht {
-        background: url(../images/icons/icon_mail.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_mail.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-telefon {
-        background: url(../images/icons/icon_handy.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_handy.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-leistung {
-        background: url(../images/icons/icon_star.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-netzwerk {
-        background: url(../images/icons/icon_contact.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_contact.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-galerie {
-        background: url(../images/icons/icon_galerie.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_galerie.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-activities {
-        background: url(../images/icons/icon_activities.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_activities.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-calendar {
-        background: url(../images/icons/icon_calendar.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_calendar.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-location {
-        background: url(../images/icons/icon_location.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_location.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .profile-template, .profile-template {
-        background: url(../images/icons/icon_template.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_template.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .icon-person {
-        background: url(../images/icons/icon_person.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_person.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .icon-edit {
-        background: url(../images/icons/icon_edit.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_edit.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .icon-help {
-        background: url(../images/icons/icon_help.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_help.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .icon-admin {
-        background: url(../images/icons/icon_admin.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_admin.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .icon-news {
-        background: url(../images/icons/icon_news.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_news.png) 0 50% no-repeat;
+        padding-left: 20px; }
     #profile-navigation .icon-document {
-        background: url(../images/icons/icon_document.png) no-repeat;
-        padding-left: 20px;
-        background-position: 0 50%; }
+        background: url(../images/icons/icon_document.png) 0 50% no-repeat;
+        padding-left: 20px; }
 /* ----- ADMIN ----- */
 
 #adminArea {
@@ -908,7 +886,7 @@ div.actionlinks div.userlinks a {
     /*border: 1px solid #345ca4 !important;*/
     background: #080;
     padding: 4px 5px !important;
-    margin: 5px 5px 0 0px !important;
+    margin: 5px 5px 0 0 !important;
     text-align: center;
     float: left;
     /*-moz-border-radius: 5px;*/
@@ -924,7 +902,7 @@ div.actionlinks div.userlinks a {
     /*border: 1px solid #666;*/
     background: #888;
     padding: 5px;
-    margin: 5px 5px 0 0px;
+    margin: 5px 5px 0 0;
     text-align: center;
     float: left;
     /*-moz-border-radius: 5px;*/
@@ -945,8 +923,7 @@ div.actionlinks div.userlinks a {
     padding: 5px;
     margin: 10px;
     width: 210px;
-    text-align: center;
-    -moz-border-radius: 5px; }
+    text-align: center; }
     #newTemplate a {
         color: #fff; }
 
@@ -964,7 +941,7 @@ table#msg-composer td {
 }*/
 
 #inbox-message-overview.message-rows {
-  border: collapse;
+  border-collapse: collapse;
   width: 100%;
 }
 
@@ -975,7 +952,7 @@ table#msg-composer td {
 }
 
 .show-msg td.msg-name {
-  padding: 5px 0px;
+  padding: 5px 0;
 }
 
 .show-msg td.msg-content {
@@ -1161,7 +1138,6 @@ table#msg-composer td {
     padding: 0; }
 
 #comments-block {
-    -moz-border-radius: 5px;
     background-color: #dfdfdf;
     border: 1px solid #ccc;
     padding: 5px 10px 10px 10px;
@@ -1191,7 +1167,6 @@ table#msg-composer td {
         float: right; }
 
 .user-entry {
-    -moz-border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fdfdfd;
     padding: 5px;
@@ -1204,7 +1179,6 @@ table#msg-composer td {
     clear: both;
     padding-left: 80px; }
     .community-entry-comments .entry {
-        -moz-border-radius: 5px;
         border: 1px solid #ccc;
         background-color: #e8e6e8;
         padding: 5px; }
@@ -1271,8 +1245,7 @@ table#msg-composer td {
     color: #606060;
     margin: 10px 10px;
     border: 1px solid #ffc7ab;
-    background-color:#fff4f3;
-    -moz-border-radius: 3px; }
+    background-color:#fff4f3; }
 
 .info-msg {
     background-color:#efefef;
@@ -1346,7 +1319,7 @@ table#msg-composer td {
 
 .email {
 	border: solid 1px #009900;
-	padding: 8px 0px 4px 10px ;
+	padding: 8px 0 4px 10px ;
 	background-color:#CCC;
 	/*-moz-border-radius:15px;*/
 	margin-top: 6px;
@@ -1355,7 +1328,7 @@ table#msg-composer td {
 }
 .email2 {
 	border: solid 1px #009900;
-	padding: 8px 0px 4px 10px ;
+	padding: 8px 0 4px 10px ;
 	background-color:#CCC;
 	/*-moz-border-radius:15px;*/
 	margin-top: 6px;

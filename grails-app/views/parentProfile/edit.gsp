@@ -136,9 +136,7 @@
             </td>
 
 			<td valign="top" class="name">
-              <label for="currentCountry">
               <g:message code="parent.profile.currentZip"/>
-              </label>
             </td>
 		</tr>
 		<tr>

@@ -56,9 +56,9 @@ class FacilityProfileController {
           Entity leadEducator = link?.source
 
           def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
-          // find all clientgroups of this facility
-          links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
-          List clientGroups = links.collect {it.source}
+          // find all clients linked to the facility
+          links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
+          List clients = links.collect {it.source}
 
           // find colonia of this facility
           link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
@@ -69,11 +69,101 @@ class FacilityProfileController {
                   allEducators: allEducators,
                   educators: educators,
                   allClientGroups: allClientGroups,
-                  clientGroups: clientGroups,
+                  clients: clients,
                   resources: resources,
                   colony: colony,
                   leadeducator: leadEducator]
         }
+    }
+
+    def del = {
+        Entity facility = Entity.get(params.id)
+        if(facility) {
+            // delete all links
+            Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
+            try {
+                flash.message = message(code:"facility.deleted", args:[facility.profile.fullName])
+                facility.delete(flush:true)
+                redirect(action:"list")
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e) {
+                flash.message = message(code:"facility.notDeleted", args:[facility.profile.fullName])
+                redirect(action:"show",id:params.id)
+            }
+        }
+        else {
+            flash.message = "FacilityProfile not found with id ${params.id}"
+            redirect(action:"list")
+        }
+    }
+
+    def edit = {
+        Entity facility = Entity.get(params.id)
+
+        if(!facility) {
+            flash.message = "FacilityProfile not found with id ${params.id}"
+            redirect action:'list'
+        }
+        else {
+            return [facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+        }
+    }
+
+    def update = {
+      Entity facility = Entity.get(params.id)
+
+      facility.profile.properties = params
+      facility.user.properties = params
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
+
+      if(!facility.hasErrors() && facility.save()) {
+
+          // delete current link
+          def c = Link.createCriteria()
+          def link = c.get {
+            eq('source', facility)
+            eq('target', Entity.get(params.colonia))
+            eq('type', metaDataService.ltGroupMemberFacility)
+          }
+          if (link)
+            link.delete()
+
+          // link facility to colonia
+          new Link(source:facility, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberFacility).save()
+
+          flash.message = message(code:"facility.updated", args:[facility.profile.fullName])
+          redirect action:'show', id: facility.id
+      }
+      else {
+          render view:'edit', model:[facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      }
+    }
+
+    def create = {
+        return [entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    }
+
+    def save = {
+      EntityType etFacility = metaDataService.etFacility
+
+      try {
+        Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
+          ent.profile.properties = params
+          ent.user.properties = params
+          ent.user.password = authenticateService.encodePassword("pass")
+        }
+        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+
+        // link facility to colonia
+        new Link(source:entity, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberFacility).save()
+
+        flash.message = message(code:"facility.created", args:[entity.profile.fullName])
+        redirect action:'list'
+      } catch (de.uenterprise.ep.EntityException ee) {
+        render (view:"create", model:[facility: ee.entity, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
+        return
+      }
+
     }
 
     def addResource = {
@@ -97,7 +187,7 @@ class FacilityProfileController {
 
     def removeResource = {
       Entity facility = Entity.get(params.id)
-      
+
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', Entity.get(params.resource))
@@ -192,134 +282,51 @@ class FacilityProfileController {
       render template:'leadeducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
     }
 
-    def addClientGroup = {
+    def addClients = {
       Entity facility = Entity.get(params.id)
+      Entity clientgroup = Entity.get(params.clientgroup)
 
-      // check if the client isn't already linked to the facility
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.clientgroup))
-        eq('target', facility)
-        eq('type', metaDataService.ltClientship)
+      // find all clients linked to the clientgroup
+      def links = Link.findAllByTargetAndType(clientgroup, metaDataService.ltGroupMemberClient)
+      List clients = links.collect {it.source}
+
+      // link each client to the facility now
+      clients.each { client ->
+        def c = Link.createCriteria()
+        def link = c.get {
+          eq('source', client)
+          eq('target', facility)
+          eq('type', metaDataService.ltGroupMemberClient)
+        }
+        if (!link)
+          new Link(source: client, target: facility, type: metaDataService.ltGroupMemberClient).save()
       }
-      if (!link)
-        new Link(source:Entity.get(params.clientgroup), target: facility, type:metaDataService.ltClientship).save()
 
-      // find all clientgroups of this facility
-      def links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
-      List clientgroups = links.collect {it.source}
+      // find all clients of this facility
+      links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
+      clients = links.collect {it.source}
 
-      render template:'clientgroups', model: [clientgroups: clientgroups, facility: facility, entity: entityHelperService.loggedIn]
+      render template:'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
     }
 
-    def removeClientGroup = {
+    def removeClient = {
       Entity facility = Entity.get(params.id)
 
       def c = Link.createCriteria()
       def link = c.get {
-        eq('source', Entity.get(params.clientgroup))
+        eq('source', Entity.get(params.client))
         eq('target', facility)
-        eq('type', metaDataService.ltClientship)
+        eq('type', metaDataService.ltGroupMemberClient)
       }
       link.delete()
 
-      // find all clientgroups of this facility
-      def links = Link.findAllByTargetAndType(facility, metaDataService.ltClientship)
-      List clientgroups = links.collect {it.source}
+      // find all clients of this facility
+      def links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
+      List clients = links.collect {it.source}
 
-      render template:'clientgroups', model: [clientgroups: clientgroups, facility: facility, entity: entityHelperService.loggedIn]
+      render template:'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
     }
-
-    def del = {
-        Entity facility = Entity.get(params.id)
-        if(facility) {
-            // delete all links
-            Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
-            try {
-                flash.message = message(code:"facility.deleted", args:[facility.profile.fullName])
-                facility.delete(flush:true)
-                redirect(action:"list")
-            }
-            catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"facility.notDeleted", args:[facility.profile.fullName])
-                redirect(action:"show",id:params.id)
-            }
-        }
-        else {
-            flash.message = "FacilityProfile not found with id ${params.id}"
-            redirect(action:"list")
-        }
-    }
-
-    def edit = {
-        Entity facility = Entity.get(params.id)
-
-        if(!facility) {
-            flash.message = "FacilityProfile not found with id ${params.id}"
-            redirect action:'list'
-        }
-        else {
-            return [facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-        }
-    }
-
-    def update = {
-      Entity facility = Entity.get(params.id)
-
-      facility.profile.properties = params
-      facility.user.properties = params
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
-
-      if(!facility.hasErrors() && facility.save()) {
-
-          // delete current link
-          def c = Link.createCriteria()
-          def link = c.get {
-            eq('source', facility)
-            eq('target', Entity.get(params.colonia))
-            eq('type', metaDataService.ltGroupMemberFacility)
-          }
-          if (link)
-            link.delete()
-
-          // link facility to colonia
-          new Link(source:facility, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberFacility).save()
-
-          flash.message = message(code:"facility.updated", args:[facility.profile.fullName])
-          redirect action:'show', id: facility.id
-      }
-      else {
-          render view:'edit', model:[facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-      }
-    }
-
-    def create = {
-        return [entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-    }
-
-    def save = {
-      EntityType etFacility = metaDataService.etFacility
-
-      try {
-        Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
-          ent.profile.properties = params
-          ent.user.properties = params
-          ent.user.password = authenticateService.encodePassword("pass")
-        }
-        RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
-
-        // link facility to colonia
-        new Link(source:entity, target: Entity.get(params.colonia), type:metaDataService.ltGroupMemberFacility).save()
-
-        flash.message = message(code:"facility.created", args:[entity.profile.fullName])
-        redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
-        render (view:"create", model:[facility: ee.entity, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
-        return
-      }
-
-    }
-
+  
     def addContact = {
       Contact contact = new Contact()
       contact.properties = params

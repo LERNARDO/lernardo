@@ -15,14 +15,10 @@
    <table>
         <tr class="prop">
           <td colspan="2" valign="top" class="name-show">
-            <label for="fullName">
               <g:message code="activityTemplate.name"/>:
-            </label>
           </td>
            <td valign="top" class="name-show">
-            <label for="duration">
               <g:message code="activityTemplate.duration"/>:
-            </label>
           </td>
           </tr>
 
@@ -35,19 +31,13 @@
 
        <tr class="prop">
           <td width="210px" valign="top" class="name-show">
-            <label for="socialForm">
               <g:message code="activityTemplate.socialForm"/>:
-            </label>
           </td>
            <td width="190px" valign="top" class="name-show">
-            <label for="status">
               <g:message code="activityTemplate.status"/>:
-            </label>
           </td>
          <td valign="top" class="name-show">
-            <label for="amountEducators">
               <g:message code="activityTemplate.amountEducators"/>:
-            </label>
           </td>
 
           </tr>
@@ -65,14 +55,10 @@
         </tr>
        <tr class="prop">
           <td colspan="2" valign="top" class="name-show">
-            <label for="description">
               <g:message code="activityTemplate.description"/>:
-            </label>
           </td>
          <td valign="top" class="name-show">
-            <label for="chosenMaterials">
               <g:message code="activityTemplate.chosenMaterials"/>:
-            </label>
           </td>
          </tr>
         <tr>

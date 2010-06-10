@@ -15,10 +15,7 @@
         <tbody>
         <tr class="prop">
             <td height="30" colspan="3" valign="top" class="name">
-              <label for="fullName">
                 <g:message code="groupActivityTemplate"/>:
-              </label>
-
                 </td>
           </tr>
         <tr class="prop">

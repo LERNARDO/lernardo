@@ -22,11 +22,9 @@ class GroupActivityProfileController {
 
     def list = {
         params.max = Math.min( params.max ? params.int('max') : 10,  100)
-        return [groups: Entity.findAllByType(metaDataService.etGroupActivity),
-                groupTotal: Entity.countByType(metaDataService.etGroupActivity),
-                entity: entityHelperService.loggedIn]
+        return [groups: Entity.findAllByType(metaDataService.etGroupActivity), groupTotal: Entity.countByType(metaDataService.etGroupActivity)]
     }
-
+    
     def show = {
         def group = Entity.get(params.id)
         Entity entity = params.entity ? group : entityHelperService.loggedIn

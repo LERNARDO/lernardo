@@ -78,7 +78,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz" >
-      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:isOperator entity="${facility}"><a href="#" id="show-leadeducator"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></g:if></h5>
+      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:isOperator entity="${entity}"><a href="#" id="show-leadeducator"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></g:if></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-leadeducator" targetId="leadeducator"/>
       </jq:jquery>
@@ -96,7 +96,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Pädagogen <app:isOperator entity="${facility}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
+      <h5>Pädagogen <app:isOperator entity="${entity}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
@@ -114,25 +114,25 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Betreutengruppen <app:isOperator entity="${facility}"><a href="#" id="show-clientgroups"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreutengruppe hinzufügen" /></a></app:isOperator></h5>
+      <h5>Betreute <app:isOperator entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
-        <jq:toggle sourceId="show-clientgroups" targetId="clientgroups"/>
+        <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
-      <div class="zusatz-add" id="clientgroups" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClientGroup', id: facility.id]" update="clientgroups2" before="hideform('#clientgroups')">
+      <div class="zusatz-add" id="clients" style="display:none">
+        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClients', id: facility.id]" update="clients2" before="hideform('#clients')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="Hinzufügen"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div class="zusatz-show" id="clientgroups2">
-        <g:render template="clientgroups" model="${clientgroups}"/>
+      <div class="zusatz-show" id="clients2">
+        <g:render template="clients" model="${clients}"/>
       </div>
     </div>
 
     <div class="zusatz" >
-      <h5>Ansprechpersonen <app:isOperator entity="${facility}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isOperator></h5>
+      <h5>Ansprechpersonen <app:isOperator entity="${entity}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
@@ -189,7 +189,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Planbare Ressourcen <app:isOperator entity="${facility}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
+      <h5>Planbare Ressourcen <app:isOperator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>

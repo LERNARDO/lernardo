@@ -330,10 +330,6 @@ class BootStrap {
     def admin = Entity.findByName ('lernardoadmin')
     def alex = Entity.findByName ('alexanderzeillinger')
     def patrizia = Entity.findByName ('patriziarosenkranz')
-    /*def kira = Entity.findByName ('kirazeillinger')
-    def keano = Entity.findByName ('keanozeillinger')
-    def christian = Entity.findByName ('christianszinicz')
-    def sueninoszentrum = Entity.findByName ('sueninoszentrum')*/
 
     // make admin a friend of everyone
     List users = Entity.list()

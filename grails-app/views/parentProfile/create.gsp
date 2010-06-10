@@ -119,10 +119,7 @@
 
          <tr>
              <td valign="top" class="name">
-               <label for="currentCountry">
                   <g:message code="parent.profile.currentCountry"/>
-
-               </label>
              </td>
                          <td valign="top" class="name">
                <label for="currentCity">
