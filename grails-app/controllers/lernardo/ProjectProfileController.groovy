@@ -30,6 +30,7 @@ class ProjectProfileController {
 
     def show = {
         Entity project = Entity.get( params.id )
+        Entity entity = params.entity ? project : entityHelperService.loggedIn
 
         if(!project) {
             flash.message = "projectProfile not found with id ${params.id}"
@@ -79,7 +80,7 @@ class ProjectProfileController {
             Integer calculatedDuration = calculateDuration(projectUnits)
 
             [project: project,
-             entity: entityHelperService.loggedIn,
+             entity: entity,
              projectUnits: projectUnits,
              allGroupActivityTemplates: allGroupActivityTemplates,
              calculatedDuration: calculatedDuration,

@@ -25,7 +25,7 @@
           <tbody>
           <g:each in="${groups}" status="i" var="group">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName')}</g:link></td>
+              <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName')}</g:link></td>
               <td><app:getGroupSize entity="${group}"/></td>
               <td><app:getGroupDuration entity="${group}"/></td>
               %{--<td><app:getCreator entity="${group}">${creator.profile.fullName}</app:getCreator></td>--}%

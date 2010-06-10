@@ -40,7 +40,16 @@ class ProjectTemplateProfileController {
             def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
             List projectUnits = links.collect {it.source}
 
-            List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+            //List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+
+            // get all groupactivitytemplates that are set to completed
+            def c = Entity.createCriteria()
+            def allGroupActivityTemplates = c.list {
+               eq("type", metaDataService.etGroupActivityTemplate)
+               profile {
+                  eq("status", "fertig")
+               }
+            }
 
             // calculate realDuration
             Integer calculatedDuration = calculateDuration(projectUnits)

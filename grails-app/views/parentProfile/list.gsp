@@ -22,7 +22,7 @@
           <tbody>
           <g:each in="${parentList}" status="i" var="parent">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${parent.id}">${fieldValue(bean: parent, field: 'profile.fullName')}</g:link></td>
+              <td><g:link action="show" id="${parent.id}" params="[entity: parent.id]">${fieldValue(bean: parent, field: 'profile.fullName')}</g:link></td>
             </tr>
           </g:each>
           </tbody>

@@ -41,15 +41,21 @@ class HelperTagLib {
 
       Entity entity = attrs.entity
 
-      List roles = attrs.roles
-      def hasRoles = roles.findAll { entity.user?.authorities*.authority.contains(it) }
-      //log.info hasRoles
+      def hasRoles = false
+
+      if (entity.user) {
+        List roles = attrs.roles
+        hasRoles = roles.findAll { entity.user?.authorities*.authority.contains(it) }
+        //log.info hasRoles
+      }
 
       List types = attrs.types
       def hasType = types.findAll { entity.type?.name == it }
       //log.info hasType
 
-      if (hasRoles || hasType)
+      def isMe = attrs.me == 'true' ? entity == entityHelperService.loggedIn : false
+
+      if (hasRoles || hasType || isMe)
         out << body()
     }
 

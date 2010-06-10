@@ -22,7 +22,7 @@
           <tbody>
           <g:each in="${clientList}" status="i" var="client">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${client.id}">${fieldValue(bean: client, field: 'profile.fullName')}</g:link></td>
+              <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.fullName')}</g:link></td>
             </tr>
           </g:each>
           </tbody>

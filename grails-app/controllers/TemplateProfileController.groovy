@@ -73,6 +73,7 @@ class TemplateProfileController {
     def show = {
       Entity template = Entity.get(params.id)
       Entity entity = params.entity ? template : entityHelperService.loggedIn
+
       def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
       def commentList = links.collect {it.source}
 
