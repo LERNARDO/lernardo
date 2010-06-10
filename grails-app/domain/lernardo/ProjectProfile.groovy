@@ -4,6 +4,7 @@ import de.uenterprise.ep.Profile
 
 class ProjectProfile extends Profile {
 
+    SortedSet comments
     static hasMany = [comments: Comment]
 
     Date startDate

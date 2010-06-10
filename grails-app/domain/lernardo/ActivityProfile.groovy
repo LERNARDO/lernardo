@@ -4,6 +4,7 @@ import de.uenterprise.ep.Profile
 
 class ActivityProfile extends Profile {
 
+  SortedSet comments
   static hasMany = [clientEvaluations: ClientEvaluation,
                     comments: Comment]
 

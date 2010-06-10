@@ -5,6 +5,7 @@ import lernardo.Comment
 
 class  GroupActivityProfile extends Profile {
 
+    SortedSet comments
     static hasMany = [comments: Comment]
 
     Integer realDuration

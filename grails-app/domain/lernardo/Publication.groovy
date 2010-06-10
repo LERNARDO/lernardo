@@ -4,6 +4,7 @@ import de.uenterprise.ep.Entity
 import de.uenterprise.ep.Asset
 
 class Publication {
+
   static belongsTo = [entity:Entity]
 
   PublicationType type

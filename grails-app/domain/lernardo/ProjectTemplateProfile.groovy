@@ -4,6 +4,7 @@ import de.uenterprise.ep.Profile
 
 class ProjectTemplateProfile extends Profile {
 
+    SortedSet comments
     static hasMany = [comments: Comment]
 
     String description

@@ -1,6 +1,6 @@
 package lernardo
 
-class Comment {
+class Comment implements Comparable {
 
   Integer creator
   String content
@@ -9,5 +9,9 @@ class Comment {
 
   static constraints = {
     content (blank: false, maxSize: 5000)
+  }
+
+  int compareTo (obj) {
+    dateCreated.compareTo(obj.dateCreated)
   }
 }

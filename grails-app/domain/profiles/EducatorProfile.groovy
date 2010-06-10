@@ -5,6 +5,7 @@ import lernardo.CDate
 
 class EducatorProfile extends Profile {
 
+    SortedSet dates
     static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
                       inChargeOf: String, // changed on 20.04.2010, before: function
                       dates: CDate] // added on 20.04.2010

@@ -5,6 +5,7 @@ import lernardo.Comment
 
 class GroupActivityTemplateProfile extends Profile {
 
+    SortedSet comments
     static hasMany = [comments: Comment]
 
     String description
