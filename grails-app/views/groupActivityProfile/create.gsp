@@ -27,7 +27,7 @@
               <label for="fullName">
                 <g:message code="groupActivityTemplate"/>:
               </label>
-            
+
               <g:link controller="groupActivityTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
             </td>
           </tr>
@@ -43,13 +43,13 @@
                 <g:message code="groupActivity.profile.realDuration"/>
               </label>
             </td>
-            <td  valign="top" class="name">
+            <td valign="top" class="name">
               <label for="date">
                 <g:message code="groupActivity.profile.date"/>
               </label>
             </td>
-            </tr>
-            <tr>
+          </tr>
+          <tr>
             <td width="280px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
             </td>
@@ -60,30 +60,28 @@
               <g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>
             </td>
           </tr>
-
-%{--          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="educationalObjective">
-                <g:message code="groupActivityProfile.educationalObjective.label" default="Educational Objective"/>
-              </label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: group, field: 'educationalObjective', 'errors')}">
-              <input type="text" id="educationalObjective" name="educationalObjective" value="${fieldValue(bean: group, field: 'educationalObjective')}"/>
-            </td>
-          </tr>
-
           <tr class="prop">
             <td valign="top" class="name">
+              <label for="educationalObjective">
+                <g:message code="groupActivity.profile.educationalObjective"/>
+              </label>
+            </td>
+            <td colspan="2" valign="top" class="name">
               <label for="educationalObjectiveText">
                 <g:message code="groupActivity.profile.educationalObjectiveText"/>
               </label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: group, field: 'educationalObjectiveText', 'errors')}">
-              <textarea rows="5" cols="40" name="educationalObjectiveText">${fieldValue(bean: group, field: 'educationalObjectiveText')}</textarea>
+          </tr>
+          <tr class="prop">
+            <td valign="top" class="value">
+              <g:select from="${['a','b','c']}" class="drop-down-240" id="educationalObjective" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
             </td>
-          </tr>--}%
 
-        
+            <td colspan="2" valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="1" cols="80" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>
+            </td>
+          </tr>
+
           </tbody>
         </table>
       </div>
