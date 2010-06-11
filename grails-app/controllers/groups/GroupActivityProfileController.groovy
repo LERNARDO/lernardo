@@ -143,7 +143,7 @@ class GroupActivityProfileController {
         new Link(source: Entity.get(templates), target: group, type: metaDataService.ltGroupMember).save()
       }*/
 
-      if(!group.hasErrors() && group.save()) {
+      if(!group.profile.hasErrors() && group.profile.save()) {
           flash.message = message(code:"group.updated", args:[group.profile.fullName])
           redirect action:'show', id: group.id
       }
@@ -165,8 +165,6 @@ class GroupActivityProfileController {
         Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
-          ent.profile.educationalObjective = ""
-          ent.profile.educationalObjectiveText = ""
         }
 
         // find all templates of this linked to the groupActivityTemplate
