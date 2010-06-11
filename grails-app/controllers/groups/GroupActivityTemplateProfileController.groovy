@@ -139,6 +139,7 @@ class GroupActivityTemplateProfileController {
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
+
 /*        // create links
         new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
         def templates = params.templates
