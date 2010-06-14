@@ -213,9 +213,9 @@ ul {
 
 .element-box {
   border: 1px solid #999;
-  background: #ccc;
+  background: #eee;
   padding: 5px;
-  margin-top: 5px;
+  margin: 5px;
 }
 
 .cal_navigation ul li {
@@ -1405,6 +1405,13 @@ h4 {
 .drop-down-200 {
 	width: 200px;
 	}
+.drop-down-210 {
+	width: 210px;
+	}
+.drop-down-220 {
+	width: 220px;
+	}
+
 .drop-down-150 {
 	width: 150px;
 	}
@@ -1561,4 +1568,15 @@ h5 {
 
 #body-list tr:hover {
     background-color: #ff9933;
+}
+
+/**********************************************************/
+
+.project-top {
+    border-top: solid 1px #000;
+    border-left: solid 1px #000;
+    border-right: solid 1px #000;
+    border-bottom: solid 1px #000;
+    padding-left: 6px;
+    padding-top: 6px;
 }

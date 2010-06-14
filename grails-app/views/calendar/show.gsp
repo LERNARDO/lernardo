@@ -9,7 +9,7 @@
 
 <body>
 
-  <div class="headerBlue">
+  <div class="headerGreen">
     <div class="second">
       <h1>Legende</h1>
     </div>
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="headerBlue">
+  <div class="headerGreen">
     <div class="second">
       <h1>Pädagogen</h1>
     </div>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="headerBlue">
+  <div class="headerGreen">
     <div class="second">
       <h1>Kalender von ${active.profile.fullName}</h1>
     </div>

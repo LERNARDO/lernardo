@@ -3,7 +3,7 @@
   <title>Projekt</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Projekt</h1>
   </div>
@@ -11,40 +11,47 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
-        <tbody>
+      <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link></p>
+              
+       <table>
+          <tr class="prop">
+            <td valign="top" class="name-show">
+              <label for="fullName">
+                <g:message code="project.profile.name"/>
+              </label>
+            </td>
+            <td valign="top" class="name-show">
+              <label for="startDate">
+                <g:message code="project.profile.startDate"/>
+              </label>
+             </td>
+             <td valign="top" class="name-show">
+              <label for="endDate">
+                <g:message code="project.profile.endDate"/>
+              </label>
+            </td>
+            </tr>
+            <tr>
+            <td width="300" valign="top" class="value-show">
+              ${fieldValue(bean: project, field: 'profile.fullName')}
+            </td>
+            <td width="230" valign="top" class="value-show">
+              <g:formatDate date="${project.profile.startDate}" format="dd. MMMM yyyy"/>
+            </td>
+             <td width="230" valign="top" class="value-show">
+              <g:formatDate date="${project.profile.endDate}" format="dd. MMMM yyyy"/>
+            </td>
+          </tr>
+         </table>
 
-        <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link></p>
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="project.profile.name"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: project, field: 'profile.fullName')}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="project.profile.startDate"/>:
-          </td>
-          <td valign="top" class="value"><g:formatDate date="${project.profile.startDate}" format="dd. MMMM yyyy"/></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="project.profile.endDate"/>:
-          </td>
-          <td valign="top" class="value"><g:formatDate date="${project.profile.endDate}" format="dd. MMMM yyyy"/></td>
-        </tr>
-
-        </tbody>
-      </table>
+      
     </div>
     <div class="buttons">
       <g:if test="${new Date() < project.profile.startDate}"><g:link class="buttonBlue" action="edit" id="${project?.id}"><g:message code="edit"/></g:link></g:if>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
-
+    <div class="zusatz">
     <h5>Projekttage (${projectDays.size()})</h5>
     <g:if test="${projectDays}">     
       <ul>
@@ -113,13 +120,13 @@
         </g:each>
       </ul>
     </g:if>
-
-    <div>
+    </div>
+    <div class="zusatz">
       <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
-      <div id="clients" style="display:none">
+      <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClient', id:project.id]" update="clients2" before="hideform('#clients')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -127,17 +134,17 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="clients2">
+      <div class="show" id="clients2">
         <g:render template="clients" model="[clients: clients, project: project]"/>
       </div>
     </div>
 
-    <div>
+    <div class="zusatz">
       <h5>Einrichtung <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities?.size() == 0}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></g:if></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
-      <div id="facilities" style="display:none">
+      <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote  name="formRemote" url="[controller:'projectProfile', action:'addFacility', id: project.id]" update="facilities2" before="hideform('#facilities')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -145,7 +152,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="facilities2">
+      <div class="zusatz-show" id="facilities2">
         <g:render template="facilities" model="[facilities: facilities, project: project]"/>
       </div>
     </div>

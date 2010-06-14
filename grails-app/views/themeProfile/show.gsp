@@ -5,60 +5,78 @@
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${theme.profile.fullName}</h1>
+    <h1>Thema - ${theme.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
+        <table>
+          <tbody>
+          <tr class="prop">
+            <td valign="top" class="name-show">
+              <label for="fullName">
+                <g:message code="theme.profile.name"/>
+              </label>
+            </td>
+             <td valign="top" class="name-show">
+              <label for="startDate">
+                <g:message code="theme.profile.startDate"/>
+              </label>
+            </td>
+            <td valign="top" class="name-show">
+              <label for="endDate">
+                <g:message code="theme.profile.endDate"/>
+              </label>
+            </td>
+            </tr>
+          <tr>
+            <td width="300" valign="top" class="value-show">
+              ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}
+            </td>
+           <td width="230" valign="top" class="value-show">
+              <g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy"/>
+           </td>
+            <td width="230" valign="top" class="value-show">
+             <g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy"/>
+            </td>
+          </tr>
+            <tr class="prop">
+            <td valign="top" class="name-show">
+              <label for="type">
+                <g:message code="theme.profile.type"/>
+              </label>
+              </td>
+           <td colspan="2" valign="top" class="name-show">
+              <label for="type">
+                <g:message code="facility"/>
+              </label>
+            </td>
+          </tr>
 
-      <table class="listing">
-        <tbody>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="theme.profile.name"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="theme.profile.description"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: theme, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="theme.profile.startDate"/>:
-          </td>
-          <td valign="top" class="value"><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy"/></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="theme.profile.endDate"/>:
-          </td>
-          <td valign="top" class="value"><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy"/></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="theme.profile.type"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: theme, field: 'profile.type')}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="facility"/>:
-          </td>
-          <td valign="top" class="value"><g:link controller="facilityProfile" action="show" id="${facility.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link></td>
-        </tr>
-
-        </tbody>
-      </table>
+          <tr class="prop">
+            <td valign="top" class="value-show">
+             ${fieldValue(bean: theme, field: 'profile.type')}
+            </td>
+            <td colspan="2" valign="top" class="value-show">
+              <g:link controller="facilityProfile" action="show" id="${facility.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link>
+            </td>
+          </tr>
+          <tr class="prop">
+            <td valign="top" class="name-show-block">
+              <label for="description">
+                <g:message code="theme.profile.description"/>
+              </label>
+            </td>
+            </tr>
+          <tr>
+            <td colspan="3" valign="top" class="value-show-block">
+              ${fieldValue(bean: theme, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      
     </div>
 
     <app:isMeOrAdmin entity="${entity}">

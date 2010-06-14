@@ -13,7 +13,7 @@
       </div>
     </g:if>
 
-    <div class="headerBlue">
+    <div class="headerGreen">
       <div class="second">
         <h1>Aktivitäten</h1>
       </div>

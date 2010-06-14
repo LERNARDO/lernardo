@@ -3,7 +3,7 @@
   <title>Projekte</title>
 </head>
 <body>
-  <div class="headerBlue">
+  <div class="headerGreen">
     <div class="second">
       <h1>Projekte</h1>
     </div>
