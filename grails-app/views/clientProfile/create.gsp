@@ -1,5 +1,5 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
-<%@ page import="de.uenterprise.ep.Entity" %>
+<%@ page import="at.openfactory.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="client.profile.create"/></title>
