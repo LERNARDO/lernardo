@@ -128,6 +128,7 @@ class MetaDataService {
   static final String LT_RESOURCE = "Ressource"
   static final String LT_ENLISTED = "Angeworben"
   static final String LT_SUBTHEME = "Subthema"
+  //static final String LT_SUBTHEME = "Untergeordnetes Thema"  // hf
   static final String LT_PROJECT_MEMBER = "Projektmitglied"
   static final String LT_PROJECT_UNIT = "Projekteinheit"
   static final String LT_PROJECT_UNIT_MEMBER = "Projekteinheitmitglied"

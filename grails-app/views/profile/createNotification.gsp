@@ -5,7 +5,7 @@
     <title>Notifikation erstellen</title>
   </head>
   <body>
-    <div class="headerBlue">
+    <div class="headerGreen">
       <div class="second">
         <h1>Notifikation erstellen</h1>
       </div>

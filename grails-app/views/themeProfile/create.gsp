@@ -63,7 +63,7 @@
 
           <tr class="prop">
             <td valign="top" class="value">
-              <g:select  class="${hasErrors(bean: theme, field: 'profile.type', 'errors')} drop-down-280" from="${['Übergeordnetes Thema','Untergeordnetes Thema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
+              <g:select  class="${hasErrors(bean: theme, field: 'profile.type', 'errors')} drop-down-280" from="${['Übergeordnetes Thema','Subthema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
             </td>
             <td colspan="2" valign="top" class="value">
               <g:select from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>

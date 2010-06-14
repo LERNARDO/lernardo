@@ -1498,9 +1498,10 @@ h5 {
     margin-bottom: 20px;
 }
 #flash-msg {
-    background-color: #fff;
+    background-color: #eee;
     border: 1px dotted #ff9933;
     color: #333;
+    text-align: left;
 }
 
 .toolTip {

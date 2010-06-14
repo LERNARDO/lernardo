@@ -26,5 +26,6 @@
     <g:render template="pubtype" model="[entity:entity, type:it.key, publist:it.value]"/>
   </g:each>
     </div>
+
   </div>
   </body>

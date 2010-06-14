@@ -11,32 +11,44 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
-        <tbody>
+      <table>
+          <tbody>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="projectTemplate.profile.name"/>:
-          </td>
-          <td valign="top" class="value"><g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link></td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name-show">
+              <label for="fullName">
+                <g:message code="projectTemplate.profile.name"/>
+              </label>
+            </td>
+            <td valign="top" class="name-show">
+              <label for="status">
+                <g:message code="projectTemplate.profile.status"/>
+              </label>
+            </td>
+            </tr>
+            <tr>
+            <td width="650px" valign="top" class="value-show">
+              <g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link>
+            </td>
+              <td width="120px" valign="top" class="value-show">
+              ${fieldValue(bean: projectTemplate, field: 'profile.status')}
+            </td>
+          </tr>
+          <tr class="prop">
+            <td colspan="2" valign="top" class="name-show">
+              <label for="description">
+                <g:message code="projectTemplate.profile.description"/>
+              </label>
+            </td>
+          </tr>
+            <tr>
+            <td colspan="2" valign="top" class="value-show-block">
+              ${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            </td>
+          </tr>
+          </tbody>
+        </table>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="projectTemplate.profile.description"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="projectTemplate.profile.status"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: projectTemplate, field: 'profile.status')}</td>
-        </tr>
-
-        </tbody>
-      </table>
     </div>
     <div class="buttons">
       <app:isEducator entity="${entity}">

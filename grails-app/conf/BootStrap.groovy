@@ -640,6 +640,9 @@ class BootStrap {
       ent.profile.endDate = new Date(2010-1900,11,01)
     }
 
+    // link theme to facility
+    new Link(source: theme, target: Entity.findByName('sueninoszentrum'), type: metaDataService.ltThemeOfFacility).save()
+
     Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Subthema 1"
@@ -651,6 +654,8 @@ class BootStrap {
 
     // link subtheme to theme
     new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
+    // link subtheme to facility
+    new Link(source: subtheme, target: Entity.findByName('sueninoszentrum'), type: metaDataService.ltThemeOfFacility).save()
   }
 
   void createDefaultProjectTemplates() {

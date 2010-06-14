@@ -73,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: theme, field: 'profile.type', 'errors')}" from="${['Übergeordnetes Thema','Untergeordnetes Thema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
+              <g:select class="${hasErrors(bean: theme, field: 'profile.type', 'errors')}" from="${['Übergeordnetes Thema','Subthema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
             </td>
           </tr>
                         
