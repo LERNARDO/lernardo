@@ -139,7 +139,7 @@ class ThemeProfileController {
 
         flash.message = message(code:"theme.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[theme: ee.entity, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
         return
       }

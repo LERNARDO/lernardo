@@ -9,6 +9,7 @@ import lernardo.Contact
 import standard.FunctionService
 import standard.MetaDataService
 import at.openfactory.ep.security.DefaultSecurityManager
+import at.openfactory.ep.Profile
 
 class FacilityProfileController {
     MetaDataService metaDataService
@@ -157,7 +158,7 @@ class FacilityProfileController {
 
         flash.message = message(code:"facility.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[facility: ee.entity, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
         return
       }

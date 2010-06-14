@@ -156,7 +156,7 @@ class ProjectTemplateProfileController {
         Integer calculatedDuration = calculateDuration(projectUnits)
 
         render template:'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]        
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
       render "Projekteinheit konnte nicht gespeichert werden!"
       return
     }

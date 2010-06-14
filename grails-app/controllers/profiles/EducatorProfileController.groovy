@@ -148,7 +148,7 @@ class EducatorProfileController {
 
         flash.message = message(code:"educator.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (at.openfactory.ep.EntityException ee) {
         render (view:"create", model:[educator: ee.entity, entity: entityHelperService.loggedIn], partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony))
         return
       }
