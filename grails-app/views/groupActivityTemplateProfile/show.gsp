@@ -11,67 +11,53 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <table class="listing">
-        <tbody>
+       <table>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplate.profile.name"/>:
-          </td>
-          <td valign="top" class="value"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-        </tr>
+          <tr class="prop">
+            <td valign="top" class="name-show">
+              <label for="fullName">
+                <g:message code="groupActivityTemplate.profile.name"/>
+              </label>
+            </td>
+            <td valign="top" class="name-show">
+              <label for="realDuration">
+                <g:message code="groupActivityTemplate.profile.realDuration"/>
+              </label>
+            </td>
+            <td valign="top" class="name-show">
+              <label for="status">
+                <g:message code="groupActivityTemplate.profile.status"/>
+              </label>
+            </td>
+            </tr>
+          <tr>
+            
+            <td width="500px" valign="top" class="value-show"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link>
+            </td>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplate.profile.description"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
+            <td width="170px" valign="top" class="value-show">
+              ${fieldValue(bean: group, field: 'profile.realDuration')} min
+            </td>
+             <td valign="top" class="value-show">
+              ${fieldValue(bean: group, field: 'profile.status').decodeHTML()}
+            </td>
+          </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplate.profile.realDuration"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
-        </tr>
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name">
+              <label for="description">
+                <g:message code="groupActivityTemplate.profile.description"/>
+              </label>
+            </td>
+          </tr>
+           <tr>
+            <td colspan="3" height="60" valign="top" class="value-show-block">
+              ${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            </td>
+          </tr>
+        </table>
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplate.profile.status"/>:
-          </td>
-          <td valign="top" class="value">${fieldValue(bean: group, field: 'profile.status').decodeHTML()}</td>
-        </tr>
-
-%{--        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplate.profile.realDuration"/>:
-          </td>
-          <td valign="top" class="value"><app:getGroupDuration entity="${group}"/></td>
-        </tr>--}%
-
-%{--        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplateProfile.dateCreated.label" default="Ersteller"/>:
-          </td>
-          <td valign="top" class="value"><app:getCreator entity="${group}">${creator.profile.fullName}</app:getCreator></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplateProfile.lastUpdated.label" default="Letzter Bearbeiter"/>:
-          </td>
-          <td valign="top" class="value"><app:getEditor entity="${group}">${editor.profile.fullName}</app:getEditor></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name">
-            <g:message code="groupActivityTemplateProfile.lastUpdated.label" default="Aktivitätsvorlagen"/>:
-          </td>
-          <td valign="top" class="value"><app:getGroup entity="${group}"><ul><g:each in="${members}" var="member"><li><g:link controller="template" action="show" id="${member.id}">${member.profile.fullName}</g:link></li></g:each></ul></app:getGroup></td>
-        </tr>--}%
-
-        </tbody>
-      </table>
+      
     </div>
 
     <app:isMeOrAdmin entity="${entity}">
