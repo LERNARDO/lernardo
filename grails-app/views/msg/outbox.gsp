@@ -3,7 +3,7 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Postfach: Postausgang</h1>
   </div>
@@ -65,7 +65,7 @@
       </g:if>
 
       <div class="buttons">
-        <g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Zum Posteingang</g:link>
+        <g:link class="buttonGreen" controller="msg" action="inbox" id="${entity.id}">Zum Posteingang</g:link>
         %{--<g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Postausgang</g:link>--}%
         <div class="spacer"></div>
       </div>

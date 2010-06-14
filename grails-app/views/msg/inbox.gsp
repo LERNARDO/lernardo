@@ -10,7 +10,7 @@
     </div>
   </div>
 </g:if>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Postfach: Posteingang</h1>
   </div>
@@ -95,7 +95,7 @@
 
       <div class="buttons">
         %{--<g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>--}%
-        <g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Zum Postausgang</g:link>
+        <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}">Zum Postausgang</g:link>
         <div class="spacer"></div>
       </div>
       

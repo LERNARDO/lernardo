@@ -11,7 +11,7 @@
     </div>
   </div>
 </g:if>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Ereignisse</h1>
   </div>

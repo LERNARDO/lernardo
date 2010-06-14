@@ -3,7 +3,7 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreene">
   <div class="second">
     <h1>Mein Postfach: Nachricht</h1>
   </div>
@@ -35,9 +35,9 @@
         <input type="hidden" name="id" value="${msgInstance?.id}"/>
         %{--reply is only possible when sender account is enabled--}%
         <app:isEnabled entity="${msgInstance.sender}">
-          <g:link class="buttonBlue" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id]">Antworten</g:link>
+          <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id]">Antworten</g:link>
         </app:isEnabled>
-        <g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]">Löschen</g:link>
+        <g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]">Löschen</g:link>
         <g:link class="buttonGray" action="inbox" params="[name:entity.name]">Zurück</g:link>
         <div class="spacer"></div>
       </g:form>
