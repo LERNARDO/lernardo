@@ -1547,3 +1547,17 @@ h5 {
 
 .profile-box .second ul li a:hover {
       color: #ccc; }
+
+#body-list a {
+    color: #000;
+}
+#body-list a:hover {
+    color: #fff;
+    text-decoration: none !important;
+   
+
+}
+
+#body-list tr:hover {
+    background-color: #ccc;
+}
