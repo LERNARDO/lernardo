@@ -40,7 +40,7 @@ class ThemeProfileController {
               eq("type", metaDataService.etTheme)
               profile {
                 eq("type", "Subthema")
-               //eq('type', metaDataService.ltSubTheme)
+               //eq('type', metaDataService.ltSubTheme)  //hf ?
               }
             }
             // find all subthemes of this theme
