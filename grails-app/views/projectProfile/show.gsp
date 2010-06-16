@@ -47,7 +47,7 @@
       
     </div>
     <div class="buttons">
-      <g:if test="${new Date() < project.profile.startDate}"><g:link class="buttonBlue" action="edit" id="${project?.id}"><g:message code="edit"/></g:link></g:if>
+      <g:if test="${new Date() < project.profile.startDate}"><g:link class="buttonGreen" action="edit" id="${project?.id}"><g:message code="edit"/></g:link></g:if>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
