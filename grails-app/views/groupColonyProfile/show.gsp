@@ -41,7 +41,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Repräsentanten <app:isOperator entity="${entity}"><a href="#" id="show-representatives"> <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" />
+      <h5><g:message code="representantives"/> <app:isOperator entity="${entity}"><a href="#" id="show-representatives"> <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" />
      </a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-representatives" targetId="representatives"/>

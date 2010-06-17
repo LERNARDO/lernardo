@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="layout" content="main" />
+        <meta name="layout" content="privat" />
         <g:set var="entityName" value="${message(code:'projectProfile.label', default:'ProjectProfile')}" />
         <title>Edit ${entityName}</title>
     </head>
