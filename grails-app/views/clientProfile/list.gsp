@@ -13,16 +13,20 @@
     <p>${clientTotal} Betreute insgesamt vorhanden</p>
     <g:if test="${clientTotal > 0}">
       <div id="body-list">
-        <table>
+        <table border>
           <thead>
           <tr>
             <g:sortableColumn property="lastName" title="${message(code:'client.profile.name')}"/>
+            <g:sortableColumn property="currentStreet" title="${message(code:'client.profile.currentStreet')}"/>
+            <g:sortableColumn property="currentCity" title="${message(code:'client.profile.currentCity')}"/>
           </tr>
           </thead>
           <tbody>
           <g:each in="${clientList}" status="i" var="client">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
               <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.fullName')}</g:link></td>
+              <td>${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<div class="italic">---</div>'}</td>
+              <td>${fieldValue(bean: client, field: 'profile.currentCity') ?: '<div class="italic">---</div>'}</td>
             </tr>
           </g:each>
           </tbody>
