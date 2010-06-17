@@ -23,6 +23,7 @@
           <g:each in="${facilities}" status="i" var="facility">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
               <td><g:link action="show" id="${facility.id}" params="[entity: facility.id]">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link></td>
+              <td>${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">---</div>'}</td>
             </tr>
           </g:each>
           </tbody>
