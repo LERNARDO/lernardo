@@ -71,10 +71,10 @@
         </table>
 
         <app:isEducator entity="${entity}">
-            <g:link class="buttonBlue" action="edit" id="${activity.id}">Bearbeiten</g:link>
-            <g:link class="buttonBlue" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Löschen</g:link>
-            %{--<g:link class="buttonGray" action>Zurück</g:link>--}%
-            <a href="" class="buttonGray" onclick="history.go(-2)">Zurück</a>
+            <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
+            <g:link class="buttonGreen" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Löschen</g:link>
+            <g:link class="buttonGray" action>Zurück</g:link>  %{-- hf 20102406   --}%
+            %{--<a href="" class="buttonGray" onclick="history.go(-2)">Zurück</a> --}%
             <div class="spacer"></div>
         </app:isEducator>
 

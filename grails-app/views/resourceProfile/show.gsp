@@ -12,41 +12,47 @@
   <div class="second">
     <div class="dialog">
       <table>
-        <tbody>
-
-        <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="resource.profile.name"/>:
-          </td>
-          <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="resource.profile.description"/>:
-          </td>
-          <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="resource.profile.type"/>:
-          </td>
-          <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.type').decodeHTML()}</td>
-        </tr>
-
-        %{-- only planable resources have a classification --}%
-        <g:if test="${resource.profile.type == 'planbar'}">
+          <tbody>
           <tr class="prop">
             <td valign="top" class="name-show">
-              <g:message code="resource.profile.classification"/>:
+              <label for="fullName">
+                <g:message code="resource.profile.name"/>
+              </label>
             </td>
-            <td valign="top" class="value-show">${fieldValue(bean: resource, field: 'profile.classification').decodeHTML()}</td>
-          </tr>
-        </g:if>
+            <td valign="top" class="name-show">
+              <label for="type">
+                <g:message code="resource.profile.type"/>
+              </label>
+            </td>
 
-        </tbody>
-      </table>
+          </tr>
+
+          <tr class="prop">
+            <td width="540" valign="top" class="value-show">
+              ${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}
+            </td>
+              <td width="340" valign="top" class="value-show">
+              ${fieldValue(bean: resource, field: 'profile.type').decodeHTML()}
+              </td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="2" valign="top" class="name-show">
+              <label for="description">
+                <g:message code="resource.profile.description"/>
+              </label>
+            </td>
+            </tr>
+            <tr>
+              <td colspan="2"  valign="top" class="value-show-block">
+                ${fieldValue(bean: resource, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+              </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+      
     </div>
     <div class="buttons">
       <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">

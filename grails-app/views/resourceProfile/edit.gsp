@@ -21,53 +21,45 @@
       <div class="dialog">
         <table>
           <tbody>
-
           <tr class="prop">
             <td valign="top" class="name">
               <label for="fullName">
                 <g:message code="resource.profile.name"/>
               </label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}">
-              <input type="text" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="resource.profile.description"/>
-              </label>
-            </td>
-            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.description', 'errors')}">
-              <textarea id="description" rows="5" cols="40" name="description">${fieldValue(bean: resource, field: 'profile.description')}</textarea>
-            </td>
-          </tr>
-
-          <tr class="prop">
             <td valign="top" class="name">
               <label for="type">
                 <g:message code="resource.profile.type"/>
               </label>
             </td>
-            <td valign="top" class="value ${hasErrors(bean: resource, field: 'profile.type', 'errors')}">
-              <g:select name="type" from="${['verbrauchbar','vorzusehend']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
+
+          </tr>
+
+          <tr class="prop">
+            <td width="540" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
+            </td>
+              <td width="340" valign="top" class="value">
+              <g:select class="drop-down-240" name="type" from="${['verbrauchbar','vorzusehend']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
             </td>
           </tr>
 
-          %{--<tr class="prop">
-            <td valign="top" class="name">
-              <label for="classification">
-                <g:message code="resource.profile.classification"/>
+          <tr class="prop">
+            <td colspan="2" valign="top" class="name">
+              <label for="description">
+                <g:message code="resource.profile.description"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="${fieldValue(bean:resource,field:'profile.classification')}" />
+            </tr>
+            <tr>
+              <td colspan="2"  valign="top" class="value">
+              <g:textArea class="${hasErrors(bean: resource, field: 'profile.description', 'errors')}" id="description" rows="1" cols="120" name="description" value="${fieldValue(bean: resource, field: 'profile.description')}"/>
             </td>
-          </tr>--}%<g:hiddenField name="classification" value=""/>
+          </tr>
 
           </tbody>
         </table>
+
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

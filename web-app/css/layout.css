@@ -1572,7 +1572,7 @@ h5 {
 
 /**********************************************************/
 
-.project-top {
+.project-top{
     border-top: solid 1px #000;
     border-left: solid 1px #000;
     border-right: solid 1px #000;
@@ -1580,3 +1580,14 @@ h5 {
     padding-left: 6px;
     padding-top: 6px;
 }
+
+.activityInstance-top{
+    border-top: solid 1px #000;
+    border-left: solid 1px #000;
+    border-right: solid 1px #000;
+    border-bottom: solid 1px #000;
+    padding-left: 6px;
+    padding-top: 6px;
+}
+
+
