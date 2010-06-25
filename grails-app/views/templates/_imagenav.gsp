@@ -1,6 +1,8 @@
 
   <head>
-    <g:javascript src="bounce.js"/>
+
+    %{-- <g:javascript src="bounce.js"/>
+    die hüpfenden Symbole ...  --}%
   </head>
 
     <ol class="imgmenu" id="bounce">
@@ -15,7 +17,7 @@
 
       <li>
         <div id="htemplates" class="imgbox">
-          <g:link controller="templateProfile" action="list">
+          <g:link controller="templateProfile" action="index">
             <img src="${g.resource(dir:'images/iconex', file:'activity-templates.png')}" alt="Aktivitätsvorlagen" />
             <h3><g:message code="imgmenu.template.name"/></h3>
           </g:link>

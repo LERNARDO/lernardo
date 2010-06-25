@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta name="layout" content="private" />
-    <title>Aktivitäten</title>
+    <title>Themenräume</title>
   </head>
   <body>
 
@@ -12,17 +12,24 @@
         </div>
       </div>
     </g:if>
+  <div class="tabGrey">
+    <div class="second">
+      <h1><g:link controller="templateProfile" action="index">Aktivitätsvorlagen</g:link></h1>
+    </div>
+  </div>
 
-    <div class="headerGreen">
+
+    <div class="tabGreen">
       <div class="second">
-        <h1>Aktivitäten</h1>
+        <h1>Themenräume</h1>
       </div>
     </div>
+ <div class="clearFloat"> </div>
 
     <div class="boxGray">
       <div class="second">
         <div id="body-list">
-          <p>${activityCount} Aktivität(en)
+          <p>${activityCount} Themenräume
             <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
             <g:else>insgesamt</g:else>
             gefunden.
