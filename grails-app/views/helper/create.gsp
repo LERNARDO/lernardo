@@ -4,7 +4,7 @@
   <title>Hilfethema erstellen</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Hilfethema erstellen</h1>
   </div>

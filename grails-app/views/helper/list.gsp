@@ -3,7 +3,7 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Hilfethemen ${helperFor}</h1>
   </div>
@@ -20,7 +20,7 @@
 
     <app:isAdmin>
       <div class="buttons">
-        <g:link class="buttonBlue" action="create" params="[entity:entity.id]">Neues Thema anlegen</g:link>
+        <g:link class="buttonGreen" action="create" params="[entity:entity.id]">Neues Thema anlegen</g:link>
         <div class="spacer"></div>
       </div>
     </app:isAdmin>
