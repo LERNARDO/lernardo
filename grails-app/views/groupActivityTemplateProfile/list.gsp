@@ -3,11 +3,18 @@
   <title>Aktivitätsblockvorlagen</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="tabGreen">
   <div class="second">
     <h1>Aktivitätsblockvorlagen</h1>
   </div>
 </div>
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="groupActivityProfile" action="index">Aktivitätsblöcke</g:link></h1>
+  </div>
+</div>
+<div class="clearFloat"> </div>
+
 <div class="boxGray">
   <div class="second">
     <p>${groupTotal} Aktivitätsblockvorlagen insgesamt vorhanden</p>

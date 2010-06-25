@@ -44,8 +44,8 @@
       <li>
         <div id="hactivities" class="imgbox">
           <g:link controller="activity" action="list">
-            <img src="${g.resource(dir:'images/iconex', file:'projects.png')}" alt="Projekte" />
-            <h3>Aktivitäten</h3>
+            <img src="${g.resource(dir:'images/iconex', file:'projects.png')}" alt="Themenraum" />
+            <h3>Themenraum</h3>
           </g:link>
         </div>
       </li>

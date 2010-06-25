@@ -1282,6 +1282,19 @@ table#msg-composer td {
     .headerGreen .second {
         padding: 4px 5px;
     }
+.headerGrey {
+    background: -moz-linear-gradient(-90deg,#eee,#999) #eee;
+     }
+    .headerGrey h1 {
+        color: #000;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-weight: normal;
+        font-size: 14px; }
+    .headerGrey .second {
+        padding: 4px 5px;
+    }
 	
 	.buttonGreen {
     background: #008800;
@@ -1588,6 +1601,63 @@ h5 {
     border-bottom: solid 1px #000;
     padding-left: 6px;
     padding-top: 6px;
+}
+
+/********************************************************/
+.tabGreen {
+    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
+     }
+    .tabGreen h1 {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-weight: normal;
+        font-size: 14px; }
+    .tabGreen .second {
+        padding: 4px 5px;
+    }
+.tabGrey {
+    background: -moz-linear-gradient(-90deg,#eee,#999) #eee;
+     }
+    .tabGrey h1 {
+        color: #000;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-weight: normal;
+        font-size: 14px; }
+    .tabGrey .second {
+        padding: 4px 5px;
+    }
+
+.tabGrey, .tabGreen {
+   width: 200px;
+   position: absoulte;
+   float: left;
+}
+
+.tabGrey a,  .tabGrey a:hover{
+    color: #000;
+    text-decoration: none;
+}
+
+.tabGrey{
+    border-left: 1px solid #ccc;
+    border-right: 1px solid  #ccc;
+}
+.tabGrey:hover{
+    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+.tabGrey a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+
+.clearFloat{
+    clear:both;
 }
 
 

@@ -8,6 +8,7 @@
     <h1>Themen</h1>
   </div>
 </div>
+
 <div class="boxGray">
   <div class="second">
     <p>${themeTotal} Themen insgesamt vorhanden</p>
