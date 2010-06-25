@@ -43,7 +43,7 @@
       </div>
 
       <div id="profile-navigation" class="yui-b">
-
+       <!--
         <div id="profile-pic">
           <div class="name">
             <div class="second">
@@ -66,16 +66,46 @@
           <div class="profile-box">
             <div class="second">
               <div class="header">Profil</div>
+              
               <ul>
                 <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
               </ul>
             </div>
           </div>
         </app:hasRoleOrType>
-
+        -->
         <div class="profile-box">
           <div class="second">
-            <div class="header">Kommunikation</div>
+            <div class="header">Kommunikation &nbsp; &nbsp;<a href="#" id="kommunikation-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+              <jq:jquery>
+              <jq:toggle sourceId="kommunikation-toggler" targetId="kommunikation-toggled"/>
+              </jq:jquery>
+              <div id="kommunikation-toggled">
+            <div id="profile-pic">
+          <div class="name">
+            <div class="second">
+              ${entity.profile.fullName}
+            </div>
+          </div>
+          <div id="picture">
+            <div style="position: absolute; top: 37px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:link></div>
+            <div style=""><ub:profileImage name="${entity.name}" width="180" height="233"/></div>
+            <div class="clear"></div>
+          </div>
+          <div class="type" style="margin-top: -2px">
+            <div class="second">
+              ${entity.type.name}
+            </div>
+          </div>
+        </div>
+            <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
+            <ul>
+            <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
+            </ul>
+            </app:hasRoleOrType>
+            
+
+
             <ul>
               <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
               <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente ansehen</g:link></li>
@@ -111,19 +141,25 @@
                 </app:notMe>
               </app:hasRoleOrType>
             </ul>
+            </div>
           </div>
         </div>
 
         <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
           <div class="profile-box">
             <div class="second">
-              <div class="header">Pädagogik</div>
-              <ul>
-                <li class="profile-template"><g:link controller="templateProfile" action="index">Aktivitätsvorlagen verwalten</g:link></li>
-                <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsblockvorlagen verwalten</g:link></li>
-                <li class="profile-template"><g:link controller="groupActivityProfile" action="index">Aktivitätsblöcke verwalten</g:link></li>
-                <li class="profile-template"><g:link controller="projectTemplateProfile" action="index">Projektvorlagen verwalten</g:link></li>
-              </ul>
+              <div class="header">Pädagogik &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+              <jq:jquery>
+              <jq:toggle sourceId="paedagogik-toggler" targetId="paedagogik-toggled"/>
+              </jq:jquery>
+              <div id="paedagogik-toggled">
+                <ul>
+                  <li class="profile-template"><g:link controller="templateProfile" action="index">Aktivitätsvorlagen verwalten</g:link></li>
+                  <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsblockvorlagen verwalten</g:link></li>
+                  <li class="profile-template"><g:link controller="groupActivityProfile" action="index">Aktivitätsblöcke verwalten</g:link></li>
+                  <li class="profile-template"><g:link controller="projectTemplateProfile" action="index">Projektvorlagen verwalten</g:link></li>
+                </ul>
+              </div>
             </div>
           </div>
         </app:hasRoleOrType>
@@ -131,7 +167,11 @@
         <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
         <div class="profile-box">
           <div class="second">
-            <div class="header">Administration</div>
+            <div class="header">Administration&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+             <jq:jquery>
+              <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
+              </jq:jquery>
+              <div id="administration-toggled">
             <ul>
               <app:isAdmin>
                 <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation erstellen</g:link></li>
@@ -160,6 +200,7 @@
                 <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen verwalten</g:link></li>
               </app:isEducator>
             </ul>
+            </div>
           </div>
         </div>
         </app:hasRoleOrType>

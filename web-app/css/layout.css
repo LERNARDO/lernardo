@@ -889,7 +889,7 @@ div.actionlinks div.userlinks a {
 .boxGray input[type=submit] {
   border: none;
     /*border: 1px solid #345ca4 !important;*/
-    background: #080;
+    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
     padding: 4px 5px !important;
     margin: 5px 5px 0 0 !important;
     text-align: center;
@@ -1297,7 +1297,7 @@ table#msg-composer td {
     }
 	
 	.buttonGreen {
-    background: #008800;
+    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
     padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
@@ -1569,7 +1569,7 @@ h5 {
 .profile-box .second ul li a:hover {
       color: #fff !important;
       display: block;
-      background-color: #f93;}
+      background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;}
 
 #body-list a {
     color: #000;
@@ -1580,7 +1580,7 @@ h5 {
 }
 
 #body-list tr:hover {
-    background-color: #ff9933;
+    background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;
 }
 
 /**********************************************************/
@@ -1640,16 +1640,10 @@ h5 {
 .tabGrey a,  .tabGrey a:hover{
     color: #000;
     text-decoration: none;
-}
 
-.tabGrey{
-    border-left: 1px solid #ccc;
-    border-right: 1px solid  #ccc;
 }
 .tabGrey:hover{
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
+    background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;
 }
 .tabGrey a:hover{
     color: #fff;

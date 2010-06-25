@@ -3,11 +3,18 @@
   <title>Projekte</title>
 </head>
 <body>
-  <div class="headerGreen">
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="projectTemplateProfile" action="list">Projektvorlagen</g:link></h1>
+  </div>
+</div>
+
+  <div class="tabGreen">
     <div class="second">
       <h1>Projekte</h1>
     </div>
   </div>
+<div class="clearFloat"> </div>
   <div class="boxGray">
     <div class="second">
       <p>${projectTotal} Projekt(e) insgesamt vorhanden</p>

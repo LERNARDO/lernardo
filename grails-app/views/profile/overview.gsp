@@ -4,9 +4,9 @@
 </head>
 <body>
 
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
-    <h1>Glossar <a href="#" id="glossar-toggler">(ein-/ausblenden)</a></h1>
+    <h1>Glossar <a href="#" id="glossar-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
   </div>
 </div>
 <jq:jquery>
@@ -19,9 +19,9 @@
   </div>
 </div>
 
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
-    <h1>Suche <a href="#" id="suche-toggler">(ein-/ausblenden)</a></h1>
+    <h1>Suche <a href="#" id="suche-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
   </div>
 </div>
 <jq:jquery>
@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Übersicht</h1>
   </div>
@@ -63,7 +63,7 @@
 
       %{--the first panel should only be visible to admins--}%
       <app:isAdmin>
-        <h1>Admin <a href="#" id="admin-toggler">(ein-/ausblenden)</a></h1>
+        <h1>Admin <a href="#" id="admin-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
         <jq:jquery>
           <jq:toggle sourceId="admin-toggler" targetId="admin-toggled"/>
         </jq:jquery>
@@ -90,7 +90,7 @@
         <div class="clear"></div>
       </app:isAdmin>
 
-      <h1>Personen <a href="#" id="personen-toggler">(ein-/ausblenden)</a></h1>
+      <h1>Personen <a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
       <jq:jquery>
         <jq:toggle sourceId="personen-toggler" targetId="personen-toggled"/>
       </jq:jquery>
@@ -146,7 +146,7 @@
       </div>
       <div class="clear"></div>
 
-      <h1>Andere <a href="#" id="andere-toggler">(ein-/ausblenden)</a></h1>
+      <h1>Andere <a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
       <jq:jquery>
         <jq:toggle sourceId="andere-toggler" targetId="andere-toggled"/>
       </jq:jquery>
@@ -188,7 +188,7 @@
       <div class="clear"></div>
 
 
-      <h1>Gruppen <a href="#" id="gruppen-toggler">(ein-/ausblenden)</a></h1>
+      <h1>Gruppen <a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
       <jq:jquery>
         <jq:toggle sourceId="gruppen-toggler" targetId="gruppen-toggled"/>
       </jq:jquery>
@@ -228,7 +228,7 @@
       </div>
       <div class="clear"></div>
 
-      <h1>Planung <a href="#" id="planung-toggler">(ein-/ausblenden)</a></h1>
+      <h1>Planung <a href="#" id="planung-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></h1>
       <jq:jquery>
         <jq:toggle sourceId="planung-toggler" targetId="planung-toggled"/>
       </jq:jquery>
