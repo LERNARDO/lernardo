@@ -108,7 +108,18 @@
             </ul>
           </td>
         </tr>
-
+       <tr>
+        <td colspan="3" valign="top" class="name-show">
+        Colonia:
+        </td>
+          </tr>
+        <tr>
+        <td  valign="top" class="value-show">
+        <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic">Keiner Colonia zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
+        </td>
+        <td colspan="3" valign="top" >
+        </td>
+        </tr>
       </table>
 
       <h4>Derzeitige Adresse</h4>
@@ -268,9 +279,6 @@
 
         </table>
       </div>
-
-      Colonia: <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic">Keiner Colonia zugewiesen <img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
-
     </div>
 
     <app:isMeOrAdmin entity="${educator}">

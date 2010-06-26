@@ -37,7 +37,7 @@
               <g:textField class="${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="42" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
              </td>
            <td valign="top" colspan="2" class="value">
-             <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="6" cols="45" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
+             <g:textArea class="${hasErrors(bean: partner, field: 'profile.description', 'errors')}" rows="1" cols="45" id="description" name="description" value="${fieldValue(bean: partner, field: 'profile.description').decodeHTML()}"/>
             </td>
            <td valign="top" class="value">
              <g:textField class="${hasErrors(bean: partner, field: 'profile.website', 'errors')}" size="30" maxlength="80" id="website" name="website" value="${fieldValue(bean: partner, field: 'profile.website')}"/>
@@ -58,16 +58,25 @@
             <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="42" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
            <td width="421" colspan="3" class="value">
            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-           <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+           <g:select class="liste-300" name="services" id="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
             </g:if>
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-            <g:select name="services" id="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+            <g:select class="liste-300"  name="services" id="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
             </g:if>
           %{--<g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="30" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>--}%
 
            </td>
          </tr>
-
+        <tr class="prop">
+          <td colspan="4" valign="middle" class="name">
+          Colonia:
+          </td>
+          </tr>
+          <tr class="prop">
+          <td colspan="4" valign="middle" class="value">
+          <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
+          </td>
+          </tr>
         <tr class="prop">
           <td valign="top" class="name">
             <g:message code="partner.profile.street"/>:
@@ -159,8 +168,6 @@
           </tr>
         </table>
         </div> <!--div email close -->
-
-        Colonia: <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
 
         </div>
       <div class="buttons">

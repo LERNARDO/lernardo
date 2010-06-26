@@ -141,6 +141,16 @@
               </g:if>
             </td>
 		</tr>
+          <tr class="prop">
+          <td colspan="3" valign="middle" class="name">
+          Colonia:
+          </td>
+          </tr>
+          <tr class="prop">
+          <td colspan="3" valign="middle" class="value">
+          <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
+          </td>
+          </tr>
 		</table>
 				
 		<h4>Derzeitige Adresse</h4>
@@ -342,8 +352,6 @@
 		 </table>
 		</div>
 
-        Colonia: <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
-        
       </div>
  
       

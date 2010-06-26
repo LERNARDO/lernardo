@@ -31,63 +31,34 @@
                 <g:message code="user.profile.firstName"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="90" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
+             <td valign="top" class="name">
               <label for="lastName">
                 <g:message code="user.profile.lastName"/>
               </label>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="90" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
-            </td>
+
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="email">
-                <g:message code="user.profile.email"/>
-              </label>
+           <td width="440" valign="top" class="value">
+              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="90" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
+            <td width="440" valign="top" class="value">
+              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="locale">
-                <g:message code="languageSelection"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <app:localeSelect class="drop-down-280" name="locale" value="${user?.user?.locale}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="showTips">
-                <g:message code="showTips"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:checkBox name="showTips" value="${user.profile.showTips}"/>
-            </td>
-          </tr>
-
-          <app:isAdmin>
-            <tr class="prop">
-              <td valign="top" class="name">
+          </tbody>
+        </table>
+      </div>
+       <div class="email">
+		<table>
+		<tr>
+			<app:isAdmin>
+			<td width="80"  valign="middle">
                 <label for="enabled">
                   <g:message code="active"/>
                 </label>
-              </td>
-              <td valign="top" class="value">
                 <app:isAdmin>
                   <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
                 </app:isAdmin>
@@ -95,23 +66,30 @@
                   <g:checkBox name="enabled" value="${user?.user?.enabled}" disabled="true"/>
                 </app:notAdmin>
               </td>
-            </tr>
           </app:isAdmin>
-
-          <tr class="prop">
-            <td valign="top" class="name">
+            <td width="150" valign="middle">
               <label>
-                <g:message code="password"/>
+                <g:message code="password"/>:
               </label>
+              <g:link controller="profile" action="changePassword" id="${user.id}">Ändern</g:link>
             </td>
-            <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${user.id}">Passwort ändern</g:link>
-            </td>
-          </tr>
 
-          </tbody>
-        </table>
-      </div>
+			<td width="280"  valign="middle">
+			<label for="email">
+				<g:message code="user.profile.email"/>
+            </label>:
+            <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
+            </td>
+			<td valign="middle">
+			    <label for="locale">
+                <g:message code="languageSelection"/>
+				</label>:
+				<app:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
+				</td>
+		</tr>
+		 </table>
+		</div>
+
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="show" id="${user.id}"><g:message code="cancel"/></g:link>

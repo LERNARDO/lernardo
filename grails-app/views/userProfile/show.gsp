@@ -21,35 +21,41 @@
           <td valign="top" class="name-show">
             <g:message code="user.profile.firstName"/>:
           </td>
-          <td valign="top" width="700" class="value-show">${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name-show">
+           <td valign="top" class="name-show">
             <g:message code="user.profile.lastName"/>:
           </td>
-          <td valign="top" class="value-show">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()}</td>
+
+
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="user.profile.email"/>:
-          </td>
-          <td valign="top" class="value-show">${fieldValue(bean: user, field: 'user.email')}</td>
+         <td valign="top" width="400" class="value-show">${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</td>
+          <td valign="top" width="400" class="value-show">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()}</td>
         </tr>
 
-        <app:isAdmin>
-          <tr class="prop">
-            <td valign="top" class="name-show">
-              <g:message code="active"/>:
-            </td>
-            <td valign="top" class="value-show"><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-          </tr>
-        </app:isAdmin>
 
         </tbody>
       </table>
     </div>
+
+     <div class="email">
+        <table>
+          <tr class="prop">
+            <app:isAdmin>
+            <td width="60" valign="top">
+              <g:message code="active"/>:
+            </td>
+            <td width="50" valign="top" ><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            </app:isAdmin>
+
+            <td width="60" valign="top" >
+              <g:message code="user.profile.email"/>:
+            </td>
+            <td valign="top" >${fieldValue(bean: user, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+
+          </tr>
+        </table>
+      </div> <!-- div email close -->
 
     <app:isMeOrAdmin entity="${user}">
       <div class="buttons">

@@ -46,10 +46,13 @@
 			<td  width="120"  valign="middle" class="name-show">
             <g:message code="parent.profile.maritalStatus"/>:
 			</td>
-			<td  width="200"  valign="middle" class="name-show" colspan="2" >
+			<td  width="200"  valign="middle" class="name-show" >
             <g:message code="parent.profile.languages"/>:
 			</td>
-			 <td width="280"  valign="middle"class="name-show">
+           <td  width="220"  valign="middle" class="name-show" >
+            Kommentar:
+            </td>
+			 <td width="250"  valign="middle"class="name-show">
             <g:message code="parent.profile.education"/>:
 			</td>
 
@@ -58,13 +61,16 @@
 			<td valign="top" class="value-show">
              ${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">leer</div>'}
 			</td>
-			<td valign="top" class="value-show" colspan="2" >
+			<td valign="top" class="value-show" >
               <ul>
                 <g:each in="${parent.profile.languages}" var="language">
                   <li><app:getLanguages language="${language}"/></li>
                 </g:each>
               </ul>
 			</td>
+            <td valign="top" class="value-show-block" >
+            ${fieldValue(bean: parent, field: 'profile.comment')}
+            </td>
 			<td valign="top" class="value-show">
             <app:getSchoolLevel level="${parent.profile.education}"/>
              %{--${fieldValue(bean: parent, field: 'profile.education') ?: '<div class="italic">keine Daten eingetragen</div>'}--}%
@@ -154,7 +160,7 @@
 		 </table>
 	</div>
 
-      Kommentar: ${fieldValue(bean: parent, field: 'profile.comment')}
+
 
 
 

@@ -23,28 +23,40 @@
 
         <tr class="prop">
           <td width="290" valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
-          <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">leer</div>'}</td>
+        </tr>
+        <tr class="prop">
+        <td colspan="4" valign="top" class="name-show">
+        Colonia:
+        </td>
+          </tr>
+        <tr>
+        <td  valign="top" class="value-show">
+        <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic">Keiner Colonia zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
+        </td>
+        <td colspan="3" valign="top" >
+        </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show">
+          <td valign="bottom" class="name-show">
             <g:message code="facility.profile.street"/>:
           </td>
-          <td valign="top" class="name-show">
+          <td valign="bottom" class="name-show">
             <g:message code="facility.profile.zip"/>:
           </td>
-          <td valign="top" class="name-show">
+          <td valign="bottom" class="name-show">
             <g:message code="facility.profile.city"/>:
           </td>
-          <td valign="top" class="name-show">
+          <td valign="bottom" class="name-show">
             <g:message code="facility.profile.country"/>:
           </td>
         </tr>
         <tr class="prop">
-          <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">leeer</div>'}</td>
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">leer</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">leer</div>'}</td>
+          <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">leer</div>'}</td>
         </tr>
       </table>
 
@@ -65,7 +77,6 @@
         </table>
       </div> <!-- div email close -->
 
-    Colonia: <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic">Keiner Colonia zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else> 
 
     </div>
 

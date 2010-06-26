@@ -40,7 +40,17 @@
               <g:textArea class="${hasErrors(bean: facility, field: 'profile.description', 'errors')}" rows="1" cols="81" id="description" name="description" value="${fieldValue(bean: facility, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
-
+          <tr class="prop">
+          <td colspan="4" valign="middle" class="name">
+          Colonia:
+          </td>
+          </tr>
+          <tr class="prop">
+          <td colspan="4" valign="middle" class="value">
+          <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
+          </td>
+          </tr>
+         
           <tr class="prop">
             <td height="25" valign="top" class="name">
               <label for="street">
@@ -134,8 +144,6 @@
         </table>
         </div> <!--div email close -->
 
-        Colonia: <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
-        
       </div> <!-- div dialog close -->
       
       <div class="buttons">

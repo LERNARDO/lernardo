@@ -58,10 +58,12 @@
 			<td   valign="middle" class="name">
             <g:message code="parent.profile.maritalStatus"/>:
 			</td>
-			<td    valign="middle" class="name" colspan="2" >
+			<td    valign="middle" class="name">
             <g:message code="parent.profile.languages"/>:
 			</td>
-
+            <td    valign="middle" class="name">
+             Kommentar:
+           </td>
 			<td valign="middle" class="name">
             <g:message code="parent.profile.education"/>:
           </td>
@@ -70,14 +72,18 @@
 			<td valign="top" class="value">
               <g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}" value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/>
              </td>
-			<td valign="top" class="value" colspan="2" >
+			<td valign="top" class="value"  >
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+                <g:select id="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+                <g:select id="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
               </g:if>
 			</td>
+            <td valign="top" class="value"  >
+            <g:textArea name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
+            
+            </td>
 			<td valign="top" class="value">
                  %{--<g:select id="education" name="education" from="${1..12}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>--}%
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
@@ -208,7 +214,6 @@
 		 </table>
 		</div>
 
-        Kommentar: <g:textArea name="comment" rows="5" cols="50" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
 
       </div>
       <div class="buttons">
