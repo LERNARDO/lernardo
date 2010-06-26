@@ -97,12 +97,12 @@
         <div class="spacer"></div>
       </div>
     
-    <div>
+    <div class="zusatz">
       <h1>Patenkinder <app:isOperator entity="${entity}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
       <jq:jquery>
         <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
       </jq:jquery>
-      <div id="godchildren" style="display:none">
+      <div class="zusatz-add" id="godchildren" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="hideform('#godchildren')">
           <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -110,7 +110,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div id="godchildren2">
+      <div class="zusatz-show" id="godchildren2">
         <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
       </div>
     </div>

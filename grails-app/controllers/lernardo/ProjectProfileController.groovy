@@ -272,6 +272,11 @@ class ProjectProfileController {
         redirect action:'list'
         
       } catch (de.uenterprise.ep.EntityException ee) {
+
+        /* Entity projectTemplate = Entity.get(params.id)
+        render (view:"create", model:[entity: ee.entity, template: projectTemplate])      // hafo !?  kein Absturz, Fehleranz getht troztdem nicht
+        */
+
         render (view:"create", model:[project: ee.entity, entity: entityHelperService.loggedIn])
         return
       }

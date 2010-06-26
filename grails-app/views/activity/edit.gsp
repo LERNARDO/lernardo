@@ -3,7 +3,7 @@
     <title>Aktivität bearbeiten</title>
   </head>
   <body>
-    <div class="headerBlue">
+    <div class="headerGreen">
       <div class="second">
         <h1>Aktivität bearbeiten</h1>
       </div>
@@ -18,56 +18,52 @@
         </g:hasErrors>
 
         <g:form action="update" method="post" id="${activity.id}">
+         Vorlage:<app:getTemplate entity="${activity}">
+                 <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+                 </app:getTemplate>
           <table>
               <tbody>
 
                 <tr>
-                  <td class="label">Vorlage:</td>
-                  <td class="value"><app:getTemplate entity="${activity}">
-                    <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
-                    </app:getTemplate>
+                  <td valign="bottom" class="label">Titel:</td>
+                  <td valign="bottom" class="label">Datum:</td>
+                   <td valign="bottom" class="label">Dauer in Minuten:</td>
+                </tr>
+
+                <tr>
+                  <td width="220" valign="top" class="value ${hasErrors(bean:activity,field:'profile.fullName','errors')}"><g:textField name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName')}"/>
+                  </td>
+                  <td  width="350" valign="top" class="value ${hasErrors(bean:activity,field:'profile.date','errors')}"><g:datePicker name="date" value="${activity.profile.date}" precision="minute"/>
+                  </td>
+                  <td width="220" valign="top" class="value ${hasErrors(bean:activity,field:'profile.duration','errors')}"><g:textField name="duration" value="${fieldValue(bean:activity, field:'profile.duration')}"/>
                   </td>
                 </tr>
 
-                <tr>
-                  <td class="label">Titel:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'profile.fullName','errors')}"><g:textField name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName')}"/></td>
-                </tr>
 
                 <tr>
-                  <td class="label">Datum:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'profile.date','errors')}"><g:datePicker name="date" value="${activity.profile.date}" precision="minute"/></td>
-                </tr>
-
-                <tr>
-                  <td class="label">Dauer:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'profile.duration','errors')}"><g:textField name="duration" size="30" value="${fieldValue(bean:activity, field:'profile.duration')}"/> (in Minuten)</td>
-                </tr>
-
-                <tr>
-                  <td class="label">Einrichtung:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'facility','errors')}">
-                    <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
-                  </td>
+                  <td valign="bottom" class="label">Einrichtung:</td>
+                  <td valign="bottom" class="label">Betreute:</td>
+                  <td valign="bottom" class="label">Pädagogen:</td>
                 </tr>
 
                 %{--TODO: highlight currently selected educators--}%
                 <tr>
-                  <td class="label">Pädagogen:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'educators','errors')}">
+                  <td valign="top" class="value ${hasErrors(bean:activity,field:'facility','errors')}">
+                    <g:select class="drop-down-205" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
+                  </td>
+
+                    <td valign="top" class="value ${hasErrors(bean:activity,field:'clients','errors')}">
+                     <g:select multiple="true" optionKey="id" optionValue="profile" from="${clients}" size="10" class="long-field" name="clients"/>
+                     
+                    </td>
+                    <td valign="top"  class="value ${hasErrors(bean:activity,field:'educators','errors')}">
                     <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/>
-                    <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere PädagogInnen ausgewählt werden</p>
+
                   </td>
                 </tr>
 
                 %{--TODO: highlight currently selected clients--}%
-                <tr>
-                  <td class="label">Betreute:</td>
-                  <td class="value ${hasErrors(bean:activity,field:'clients','errors')}">
-                    <g:select multiple="true" optionKey="id" optionValue="profile" from="${clients}" name="clients"/>
-                    <br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere Betreute ausgewählt werden</p>
-                  </td>
-                </tr>
+            
 
               </tbody>
           </table>

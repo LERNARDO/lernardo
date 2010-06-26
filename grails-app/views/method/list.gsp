@@ -3,7 +3,7 @@
   <title>Bewertungsmethoden</title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
     <h1>Bewertungsmethoden</h1>
   </div>
@@ -39,7 +39,7 @@
 
     <app:isAdmin>
       <div class="buttons">
-        <g:link class="buttonBlue" action="create">Neue Bewertungsmethode anlegen</g:link>
+        <g:link class="buttonGreen" action="create">Neue Bewertungsmethode anlegen</g:link>
         <div class="spacer"></div>
       </div>
     </app:isAdmin>

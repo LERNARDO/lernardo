@@ -33,7 +33,7 @@
             </td>
           </tr>
           <tr>
-            <td valign="top" class="value">
+            <td valign="top"  class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" size="41" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td colspan="3" valign="top" class="value">
