@@ -34,7 +34,7 @@ body {
             font-weight: bold; }
     #hd #logo {
         width: 210px;
-        height: 110px;
+        height: 70px;
         float: left; }
 
 #bd {
@@ -550,7 +550,7 @@ ul {
     float: left;
     margin-right: 0;
     list-style-type: none;
-    margin-top: -35px;}
+   }
     .imgmenu ol {
       margin: 0;
       padding: 0; }

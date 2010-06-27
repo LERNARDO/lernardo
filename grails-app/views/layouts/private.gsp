@@ -104,19 +104,17 @@
             </ul>
             </app:hasRoleOrType>
             
-
-
             <ul>
-              <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil ansehen</g:link></li>
-              <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente ansehen</g:link></li>
+              <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil</g:link></li>
+              <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente</g:link></li>
 
               <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="yes">
-                <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse ansehen</g:link></li>
+                <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse</g:link></li>
               </app:hasRoleOrType>
 
               <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
                 <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
-                  <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach ansehen</g:link> <app:getNewInboxMessages entity="${entity}"/></li>
+                  <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach</g:link> <app:getNewInboxMessages entity="${entity}"/></li>
                 </app:hasRoleOrType>
                 <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
                   <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}">Artikel ansehen</g:link></li>
@@ -156,12 +154,12 @@
               <div id="administration-toggled">
             <ul>
               <app:isAdmin>
-                <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation erstellen</g:link></li>
-                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation</g:link></li>
+                <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile</g:link></li>
               </app:isAdmin>
               <app:isSysAdmin>
-                <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber verwalten</g:link></li>
-                <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber</g:link></li>
+                <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User</g:link></li>
               </app:isSysAdmin>
 
             </ul>
@@ -181,10 +179,9 @@
               <div id="paedagogik-toggled">
                 <ul>
                   <app:isEducator entity="${entity}">
-                  <li class="profile-template"><g:link controller="templateProfile" action="index">Aktivitätsvorlagen verwalten</g:link></li>
-                  <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsblockvorlagen verwalten</g:link></li>
-                  <li class="profile-template"><g:link controller="groupActivityProfile" action="index">Aktivitätsblöcke verwalten</g:link></li>
-                  <li class="profile-template"><g:link controller="projectTemplateProfile" action="index">Projektvorlagen verwalten</g:link></li>
+                  <li class="profile-template"><g:link controller="templateProfile" action="index">Aktivitäten</g:link></li>
+                  <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsblöcke </g:link></li>
+                  <li class="profile-template"><g:link controller="projectTemplateProfile" action="index">Projekte</g:link></li>
                   </app:isEducator>
                 </ul>
               </div>
@@ -207,7 +204,7 @@
                 <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen </g:link></li>
                 <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte </g:link></li>
                 <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]">Kinder </g:link></li>
-                <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten verwalten</g:link></li>
+                <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten </g:link></li>
                </app:isOperator>
             </ul>
             </div>

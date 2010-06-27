@@ -20,7 +20,7 @@
         <div id="htemplates" class="imgbox">
           <g:link controller="templateProfile" action="index">
             <img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsvorlage.png')}" alt="Aktivitätsvorlagen" />
-            <h3><g:message code="imgmenu.template.name"/></h3>
+            <h3>Aktivitäten</h3>
           </g:link>
         </div>
       </li>
@@ -29,7 +29,7 @@
         <div id="activities" class="imgbox">
           <g:link controller="groupActivityTemplateProfile" action="list">
             <img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblockvorlage.png')}" alt="Aktivitäten" />
-            <h3> V-Aktivitätsblock</h3>
+            <h3>Aktivitätsblock</h3>
             %{-- writing the full word somehow fucks up the layout, need to find the problem --}%
           </g:link>
         </div>
@@ -37,8 +37,8 @@
 
       <li>
         <div id="hprojects" class="imgbox">
-          <g:link controller="projectProfile" action="list">
-            <img src="${g.resource(dir:'images/icons', file:'kf_projekte.png')}" alt="Projekte" />
+          <g:link controller="projectTemplateProfile" action="list">
+            <img src="${g.resource(dir:'images/icons', file:'kf_projektvorlage.png')}" alt="Projekte" />
             <h3><g:message code="imgmenu.projects.name"/></h3>
           </g:link>
         </div>
