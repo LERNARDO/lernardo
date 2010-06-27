@@ -9,12 +9,13 @@
       <li>
         <div id="profile" class="imgbox">
           <g:link controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">
-            <img src="${g.resource(dir:'images/iconex', file:'profil-neu.png')}" alt="Profile" />
+            <img src="${g.resource(dir:'images/icons', file:'kf_profil.png')}" alt="Profile" />
             <h3><g:message code="imgmenu.profile.name"/> </h3>
           </g:link>
         </div>
       </li>
 
+      <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
       <li>
         <div id="htemplates" class="imgbox">
           <g:link controller="templateProfile" action="index">
@@ -51,6 +52,7 @@
           </g:link>
         </div>
       </li>
+      </app:hasRoleOrType>
 
       <li>
         <div id="calendar" class="imgbox">

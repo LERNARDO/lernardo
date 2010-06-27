@@ -1377,12 +1377,12 @@ table#msg-composer td {
 /* overview screen */
 
 .overview {
-  padding: 10px;
+  padding: 0 10px;
 }
 
 .overview .box {
   border: 1px solid #bdbdbd;
-  margin: 0 35px 35px 0;
+  margin: 0 15px 0px 0;
   text-align: center;
   float: left;
   padding: 5px;
@@ -1394,6 +1394,7 @@ table#msg-composer td {
   border: 1px solid #bdbd9b;
   background: #fff;
 }
+
 
 h4 {
 	color: #003300;
