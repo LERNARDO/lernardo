@@ -138,7 +138,8 @@ body {
 /* ----- FONTS ----- */
 
 .bold {
-    font-weight: bold; }
+    font-weight: bold;
+    padding-bottom: 3px;}
 
 .titles {
     width: 140px; }

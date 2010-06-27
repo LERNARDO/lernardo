@@ -97,7 +97,7 @@
       <div class="overview" id="personen-toggled">
         <div class="box">
           <div class="bold">Betreute</div>
-          <g:link controller="clientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="clientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreuter.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="clientProfile" action="list">Alle anzeigen (${allClients})</g:link></div>
           <app:isOperator entity="${entity}">
             <div><g:link controller="clientProfile" action="create">Neu anlegen</g:link></div>
@@ -105,7 +105,7 @@
         </div>
         <div class="box">
           <div class="bold">Pädagogen</div>
-          <g:link controller="educatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="educatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paedagoge.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="educatorProfile" action="list">Alle anzeigen (${allEducators})</g:link></div>
           <app:isOperator entity="${entity}">
             <div><g:link controller="educatorProfile" action="create">Neu anlegen</g:link></div>
@@ -113,7 +113,7 @@
         </div>
         <div class="box">
           <div class="bold">Erziehungsberechtigte</div>
-          <g:link controller="parentProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="parentProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_erziehungsberechtigte.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="parentProfile" action="list">Alle anzeigen (${allParents})</g:link></div>
           <app:isOperator entity="${entity}">
             <div><g:link controller="parentProfile" action="create">Neu anlegen</g:link></div>
@@ -121,7 +121,7 @@
         </div>
         <div class="box">
           <div class="bold">Kinder</div>
-          <g:link controller="childProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="childProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_kinder.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="childProfile" action="list">Alle anzeigen (${allChilds})</g:link></div>
           <app:isOperator entity="${entity}">
             <div><g:link controller="childProfile" action="create">Neu anlegen</g:link></div>
@@ -129,7 +129,7 @@
         </div>
         <div class="box">
           <div class="bold">Paten</div>
-          <g:link controller="pateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="pateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paten.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="pateProfile" action="list">Alle anzeigen (${allPates})</g:link></div>
           <app:isOperator entity="${entity}">
             <div><g:link controller="pateProfile" action="create">Neu anlegen</g:link></div>
@@ -137,7 +137,7 @@
         </div>
         <div class="box">
           <div class="bold">Partner</div>
-          <g:link controller="partnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="partnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_partner.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="partnerProfile" action="list">Alle anzeigen (${allPartners})</g:link></div>
           <app:isOperator entity="${entity}">
             <div><g:link controller="partnerProfile" action="create">Neu anlegen</g:link></div>
@@ -169,7 +169,7 @@
         </div>
         <div class="box">
           <div class="bold">Gewichtungsmethoden</div>
-          <g:link controller="method" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="method" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_gewichtung.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="method" action="list">Alle anzeigen (${allMethods})</g:link></div>
           <app:isAdmin>
             <div><g:link controller="method" action="create">Neu anlegen</g:link></div>
@@ -203,7 +203,7 @@
         </div>
         <div class="box">
           <div class="bold">Familien</div>
-          <g:link controller="groupFamilyProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="groupFamilyProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_familie.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupFamilyProfile" action="list">Alle anzeigen (${allFamilies})</g:link></div>
           <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
             <div><g:link controller="groupFamilyProfile" action="create">Neu anlegen</g:link></div>
@@ -211,7 +211,7 @@
         </div>
         <div class="box">
           <div class="bold">Sponsorennetzwerke</div>
-          <g:link controller="groupPartnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="groupPartnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_sponsorennetzwerk.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupPartnerProfile" action="list">Alle anzeigen (${allPartnerGroups})</g:link></div>
           <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
             <div><g:link controller="groupPartnerProfile" action="create">Neu anlegen</g:link></div>
@@ -219,7 +219,7 @@
         </div>
         <div class="box">
           <div class="bold">Betreutengruppen</div>
-          <g:link controller="groupClientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="groupClientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreutengruppe.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupClientProfile" action="list">Alle anzeigen (${allClientGroups})</g:link></div>
           <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
             <div><g:link controller="groupClientProfile" action="create">Neu anlegen</g:link></div>
@@ -235,21 +235,21 @@
       <div class="overview" id="planung-toggled">
         <div class="box">
           <div class="bold">Aktivitätsvorlagen</div>
-          <g:link controller="templateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="templateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsvorlage.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="templateProfile" action="list">Alle anzeigen (${allActivityTemplates})</g:link></div>
           <app:isEducator entity="${entity}">
             <div><g:link controller="templateProfile" action="create">Neu anlegen</g:link></div>
           </app:isEducator>
         </div>
         <div class="box">
-          <div class="bold">Aktivitäten</div>
-          <g:link controller="activity" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <div class="bold">Themenraum</div>
+          <g:link controller="activity" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themenraum.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="activity" action="list">Alle anzeigen (${allActivities})</g:link></div>
           %{--<div><g:link controller="template" action="create">Neu anlegen</g:link></div>--}%
         </div>
         <div class="box">
           <div class="bold">AV-Blöcke</div>
-          <g:link controller="groupActivityTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="groupActivityTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblockvorlage.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupActivityTemplateProfile" action="list">Alle anzeigen (${allActivityTemplateGroups})</g:link></div>
           <app:isEducator entity="${entity}">
             <div><g:link controller="groupActivityTemplateProfile" action="create">Neu anlegen</g:link></div>
@@ -257,13 +257,13 @@
         </div>
         <div class="box">
           <div class="bold">A-Blöcke</div>
-          <g:link controller="groupActivityProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="groupActivityProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblock.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupActivityProfile" action="list">Alle anzeigen (${allActivityGroups})</g:link></div>
           %{--<div><g:link controller="groupActivityProfile" action="create">Neu anlegen</g:link></div>--}%
         </div>
         <div class="box">
           <div class="bold">Projektvorlagen</div>
-          <g:link controller="projectTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="projectTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_projektvorlage.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="projectTemplateProfile" action="list">Alle anzeigen (${allProjectTemplates})</g:link></div>
           <app:isEducator entity="${entity}">
             <div><g:link controller="projectTemplateProfile" action="create">Neu anlegen</g:link></div>
@@ -271,7 +271,7 @@
         </div>
         <div class="box">
           <div class="bold">Projekte</div>
-          <g:link controller="projectProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'notes.png')}" alt="Notiz" align="top"/></g:link>
+          <g:link controller="projectProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_projekte.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="projectProfile" action="list">Alle anzeigen (${allProjects})</g:link></div>
           %{--<div>Neu anlegen</div>--}%
         </div>
