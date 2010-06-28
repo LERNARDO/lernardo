@@ -338,7 +338,7 @@ ul {
     color: #7b7b7b;
     /*-moz-border-radius: 5px;*/
     /*background-color: #dfdfdf;*/
-    background: #f0f0f0;
+    background: #dfdfdf;
     /*border: 1px solid #999;*/
     /*-moz-box-shadow: #aaa 2px 2px 4px;*/
     margin-bottom: 15px; }
@@ -402,7 +402,8 @@ ul {
         padding: 5px;
         /*-moz-border-radius-bottomleft: 5px;
         -moz-border-radius-bottomright: 5px;*/
-        border-top: none}
+        border-top: none};
+
 
 #newHelper {
     float: right; }
@@ -1672,5 +1673,7 @@ h5 {
     width: 330px;
     height: 80px;
 }
+
+
 
 

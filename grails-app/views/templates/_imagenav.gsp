@@ -15,7 +15,7 @@
         </div>
       </li>
 
-      <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
+      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
       <li>
         <div id="htemplates" class="imgbox">
           <g:link controller="templateProfile" action="index">
@@ -30,7 +30,6 @@
           <g:link controller="groupActivityTemplateProfile" action="list">
             <img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblockvorlage.png')}" alt="Aktivitäten" />
             <h3>Aktivitätsblock</h3>
-            %{-- writing the full word somehow fucks up the layout, need to find the problem --}%
           </g:link>
         </div>
       </li>
