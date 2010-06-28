@@ -86,12 +86,23 @@
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
       <div class="zusatz-add" id="resources" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id:template.id]" update="resources2" before="hideform('#resources')">
-          <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
+            
+        <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="hideform('#resources')">
+          <table>
+            <tr>
+              <td><g:message code="resource.profile.name"/>: </td>
+              <td><g:textField size="30" name="fullName" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.description"/>: </td>
+              <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
+            </tr>
+          </table>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
+
       </div>
       <div class="zusatz-show" id="resources2">
         <g:render template="resources" model="[resources: resources, entity: entity, template: template]"/>

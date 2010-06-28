@@ -15,6 +15,11 @@ class HelperTagLib {
   def authenticateService
   static namespace = "app"
 
+/*  def getTemplateCount = {attrs ->
+    def result = Entity.countByType(metaDataService.etTemplate)
+    out << '(' + result + ')'
+  }*/
+
   def getLinks = {attrs ->
     Integer id = attrs.id
     Entity entity = Entity.get(id)
@@ -222,7 +227,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(activityGroups: it.source)}
     else
-      out << '<span class="italic">Keine Aktivitätsvorlagengruppen gefunden</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">Keine Aktivitätsblockvorlagen gefunden</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   // finds all parents linked to a projectUnit
@@ -249,7 +254,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(groupActivityTemplates: it.source)}
     else
-      out << '<span class="italic">Keine Aktivitätsvorlagengruppen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">Keine Aktivitätsblockvorlagen zugewiesen</span> <img src="' + g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   def getResources = {attrs, body ->
@@ -270,6 +275,24 @@ class HelperTagLib {
 
   def getGroupSize = {attrs, body ->
     def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
+
+    if (result == 0)
+      out << '0 <img src="'+ g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
+    else
+      out << result
+  }
+
+  def getGroupFacilities = {attrs, body ->
+    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
+
+    if (result == 0)
+      out << '0 <img src="'+ g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
+    else
+      out << result
+  }
+
+  def getGroupResources = {attrs, body ->
+    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltResource)
 
     if (result == 0)
       out << '0 <img src="'+ g.resource(dir:'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'

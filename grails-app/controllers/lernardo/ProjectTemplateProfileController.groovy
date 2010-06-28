@@ -167,6 +167,10 @@ class ProjectTemplateProfileController {
       }
       link.delete()
 
+      def blocks = Link.findAllByTargetAndType(Entity.get(params.projectUnit), metaDataService.ltProjectUnitMember)
+      if (blocks)
+        blocks.each {it.delete()}
+
       // delete projectUnit
       Entity.get(params.projectUnit).delete()
 

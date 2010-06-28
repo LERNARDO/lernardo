@@ -119,12 +119,13 @@ class FacilityProfileController {
       if(!facility.hasErrors() && facility.save()) {
 
           // delete current link
-          def c = Link.createCriteria()
+          def link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
+          /*def c = Link.createCriteria()
           def link = c.get {
             eq('source', facility)
             eq('target', Entity.get(params.colonia))
             eq('type', metaDataService.ltGroupMemberFacility)
-          }
+          }*/
           if (link)
             link.delete()
 

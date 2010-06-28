@@ -181,15 +181,15 @@ class TemplateProfileController {
     def addResource = {
       Entity template = Entity.get(params.id)
 
-      // check if the resource isn't already linked to the template
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.resource))
-        eq('target', template)
-        eq('type', metaDataService.ltResource)
+      EntityType etResource = metaDataService.etResource
+
+      Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.properties = params
+        ent.profile.type = "planbar"
+        ent.profile.classification = ""
       }
-      if (!link)
-        new Link(source:Entity.get(params.resource), target: template, type:metaDataService.ltResource).save()
+      new Link(source:entity, target: template, type:metaDataService.ltResource).save()
 
       // find all resources of this template
       def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
@@ -209,6 +209,9 @@ class TemplateProfileController {
       }
       link.delete()
 
+      // delete resource as well
+      Entity.get(params.resource).delete()
+      
       // find all resources of this template
       def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
       List resources = links.collect {it.source}
@@ -245,7 +248,10 @@ class TemplateProfileController {
     // als Ergebnis wird die aktualisierte starbox (taglib) geliefert
     def vote = {
       Element element = Element.get(params.element)
-      element.voting = params.val as Integer
+      if (element.voting == params.val as Integer)
+        element.voting = 0
+      else
+        element.voting = params.val as Integer
   
       render app.starBox(element: element.id)
     }

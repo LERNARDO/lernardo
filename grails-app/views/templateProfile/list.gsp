@@ -1,3 +1,4 @@
+<%@ page import="de.uenterprise.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo Aktivitätsvorlagen</title>
@@ -13,7 +14,7 @@
 </g:if>
 <div class="tabGreen">
   <div class="second">
-    <h1>Aktivitätsvorlagen</h1>
+    <h1>Aktivitätsvorlagen %{--<app:getTemplateCount/>--}%</h1>
   </div>
 </div>
 <div class="tabGrey">

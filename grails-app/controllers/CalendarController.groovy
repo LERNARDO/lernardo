@@ -92,11 +92,16 @@ class CalendarController {
           def dtEnd = new DateTime (it.profile.endDate)
           //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
           eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'theme']
-
         }
 
         // get themeroomactivities
-        List themeroomList = Entity.findAllByType(metaDataService.etActivity)
+        def c = Entity.createCriteria()
+        List themeroomList = c.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
+        }
 
         themeroomList.each {
           def dtStart = new DateTime (it.profile.date)
@@ -106,6 +111,18 @@ class CalendarController {
           eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: 'activity']
 
         }
+
+        // get project units
+/*        List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
+      
+        projectUnits.each {
+          def dtStart = new DateTime (it.profile.startDate)
+          //dtStart = dtStart.plusHours(1)
+          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+          //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'projectunit']
+        }  */
+
 
         def json = eventList as JSON;
         render json

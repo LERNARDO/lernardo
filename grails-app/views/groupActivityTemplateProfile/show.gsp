@@ -62,6 +62,7 @@
 
     <app:isMeOrAdmin entity="${entity}">
       <div class="buttons">
+        <g:link class="buttonGreen" action="list">Zurück zur Liste</g:link>
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
 

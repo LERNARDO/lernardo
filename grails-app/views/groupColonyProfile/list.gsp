@@ -29,8 +29,8 @@
               <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName')}</g:link></td>
               <td>${group.profile.representatives.size()}</td>
               <td>${group.profile.buildings.size()}</td>
-              <td>-</td>
-              <td>-</td>
+              <td><app:getGroupFacilities entity="${group}"/></td>
+              <td><app:getGroupResources entity="${group}"/></td>
             </tr>
           </g:each>
           </tbody>
