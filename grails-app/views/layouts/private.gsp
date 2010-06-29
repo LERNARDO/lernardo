@@ -104,21 +104,24 @@
             </div>
           </div>
         </div>
+
             <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
-            <ul>
-            <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
-            </ul>
+              <ul>
+                <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
+              </ul>
             </app:hasRoleOrType>
             
             <ul>
               <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil</g:link></li>
               <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente</g:link></li>
 
-              <app:hasRoleOrType entity="${currentEntity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="yes">
+              %{--this concerns the entity we are currently looking at = entity --}%
+              <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="yes">
                 <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse</g:link></li>
               </app:hasRoleOrType>
 
-              <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
+              %{--this concerns the entity we are currently looking at = entity --}%
+              <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
                 <app:hasRoleOrType entity="${currentEntity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                   <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach</g:link> <app:getNewInboxMessages entity="${entity}"/></li>
                 </app:hasRoleOrType>
@@ -127,7 +130,8 @@
                 </app:hasRoleOrType>
               </app:hasRoleOrType>
 
-              <app:hasRoleOrType entity="${currentEntity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
+              %{--this concerns the entity we are currently looking at = entity --}%
+              <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                 <app:notMe entity="${entity}">
                   <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]">Nachricht senden</g:link></li>
                   <app:isFriend entity="${entity}">
@@ -149,7 +153,7 @@
           </div>
         </div>
 
-
+        %{--this concerns myself = currentEntity --}%
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
 
           <div class="profile-box">

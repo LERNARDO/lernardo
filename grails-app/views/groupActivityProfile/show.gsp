@@ -15,7 +15,7 @@
         <tbody>
         <tr class="prop">
             <td height="30" colspan="3" valign="top" class="name">
-                <g:message code="groupActivityTemplate"/>:
+                <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
                 </td>
           </tr>
         <tr class="prop">

@@ -50,14 +50,14 @@ class MetaDataService {
   static final String ET_FACILITY = "Einrichtung"
   static final String ET_TEMPLATE = "Vorlage"
   static final String ET_ACTIVITY = "Aktivität"
-  static final String ET_GROUP_PARTNER = "Gruppe Partner"
-  static final String ET_GROUP_FAMILY = "Gruppe Familie"
-  static final String ET_GROUP_CLIENT = "Gruppe Betreute"
-  static final String ET_GROUP_COLONY = "Gruppe Siedlung"
+  static final String ET_GROUP_PARTNER = "Sponsorennetzwerk"
+  static final String ET_GROUP_FAMILY = "Familie"
+  static final String ET_GROUP_CLIENT = "Betreutengruppe"
+  static final String ET_GROUP_COLONY = "Siedlung"
   static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
   static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
-  static final String ET_GROUP_ACTIVITY_TEMPLATE = "Gruppe Aktivitätsvorlagen"
-  static final String ET_GROUP_ACTIVITY = "Gruppe Aktivitäten"
+  static final String ET_GROUP_ACTIVITY_TEMPLATE = "Aktivitätsvorlagenblock"
+  static final String ET_GROUP_ACTIVITY = "Aktivitätsblock"
   static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
@@ -143,6 +143,7 @@ class MetaDataService {
   static final String LT_GROUP_FAMILY = "Familienmitglied"
   static final String LT_LEAD_EDUCATOR = "Leitender Pädagoge"
   static final String LT_THEME_OF_FACILITY = "Thema der Einrichtung"
+  static final String LT_TEMPLATE = "Vorlage"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -251,6 +252,7 @@ class MetaDataService {
     getLtGroupFamily()
     getLtLeadEducator()
     getLtThemeOfFacility()
+    getLtTemplate()
 
     getLtActEducator()
     getLtActClient()
@@ -364,6 +366,7 @@ class MetaDataService {
   LinkType getLtGroupFamily()            {defaultObjectService.openLT (LT_GROUP_FAMILY, lstOther) }
   LinkType getLtLeadEducator()           {defaultObjectService.openLT (LT_LEAD_EDUCATOR, lstOther) }
   LinkType getLtThemeOfFacility()        {defaultObjectService.openLT (LT_THEME_OF_FACILITY, lstOther) }
+  LinkType getLtTemplate()               {defaultObjectService.openLT (LT_TEMPLATE, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }
