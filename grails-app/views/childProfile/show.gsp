@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${child.profile.fullName}</title>
+  <title><g:message code="child"/> - ${child.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Kind - ${child.profile.fullName}</h1>
+    <h1><g:message code="child"/> - ${child.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">

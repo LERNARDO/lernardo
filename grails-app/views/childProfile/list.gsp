@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Kinder</title>
+  <title><g:message code="children"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Kinder</h1>
+    <h1><g:message code="children"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${childTotal} Kind(er) insgesamt vorhanden</p>
+    <p>${childTotal} <g:message code="child.profile.c_total"/></p>
     <g:if test="${childTotal > 0}">
       <div id="body-list">
         <table>
@@ -37,7 +37,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neues Kind anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="child.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>

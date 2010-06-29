@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Kind bearbeiten</title>
+  <title><g:message code="child.profile.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Kind bearbeiten</h1>
+    <h1><g:message code="child.profile.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -56,7 +56,7 @@
 			</td>
 		
 			<td  width="280" valign="top" class="value ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}">
-              <input type="text" size="40"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
+              <input type="text" size="35"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
 			<td   valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
               <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
@@ -92,10 +92,10 @@
               </g:if>
 			</td>
 			<td  valign="top"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
-              <input type="text" id="jobIncome" size="40" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
+              <input type="text" id="jobIncome" size="35" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
 			</td>
 			<td class="value ${hasErrors(bean: child, field: 'profile.jobFrequency', 'errors')}">
-              <input type="text" size="32" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
+              <input type="text" size="30" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
 			</td>
 		</tr>
 		
@@ -118,7 +118,7 @@
                 <g:message code="child.profile.email"/>
             </label>
 			 : &nbsp;
-			<g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="80" maxlength="80" id="email" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
+			<g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="60" maxlength="80" id="email" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
  		    &nbsp; &nbsp; &nbsp;
              <g:message code="showTips"/>
 			<g:checkBox name="showTips" value="${child?.profile?.showTips}"/>

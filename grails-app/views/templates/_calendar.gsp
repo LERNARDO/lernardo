@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <jq:jquery>
   $('.cal').fullCalendar({
     header: {
@@ -5,24 +6,43 @@
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     },
-    monthNames: ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
-    monthNamesShort: ['Jan','Feb','März','April','Mai','Jun','Jul','Aug','Sept','Okt','Nov','Dez'],
-    dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
-    dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+    <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+      monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+	  monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	  dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	  dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+	  dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+      buttonText: {
+        prev: '&nbsp;&#9668;&nbsp;', // left triangle
+        next: '&nbsp;&#9658;&nbsp;', // right triangle
+        today: 'hoy',
+        month: 'mes',
+        week: 'semana',
+        agendaWeek : 'semana',
+        agendaDay: 'dia'
+      },
+    </g:if>
+    <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+      monthNames: ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+      monthNamesShort: ['Jan','Feb','März','April','Mai','Jun','Jul','Aug','Sept','Okt','Nov','Dez'],
+      dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+      dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+      buttonText: {
+        prev: '&nbsp;&#9668;&nbsp;', // left triangle
+        next: '&nbsp;&#9658;&nbsp;', // right triangle
+        today: 'Heute',
+        month: 'Monat',
+        week: 'Woche',
+        agendaWeek : 'Woche',
+        agendaDay: 'Tag'
+      },
+    </g:if>
     firstDay: 1,
     minTime: 4,
     maxTime: 22,
     firstHour: 10,
     defaultView: 'agendaWeek',
-    buttonText: {
-        prev: '&nbsp;&#9668;&nbsp;', // left triangle
-        next: '&nbsp;&#9658;&nbsp;', // right triangle
-        today: '<g:message code="_cal.today"/>',
-        month: '<g:message code="_cal.month"/>',
-        week: '<g:message code="_cal.week"/>',
-        agendaWeek : '<g:message code="_cal.agendaWeek"/>',
-        agendaDay: '<g:message code="_cal.agendaDay"/>'
-    },
+
     titleFormat: {
         agendaWeek: "MMM d[ yyyy]{ '&#8212;'[ MMM] d, yyyy}", // Sep 7 - 13 2009
         agendaDay: 'dddd, d MMM yyyy'                       // Tuesday, Sep 8, 2009
