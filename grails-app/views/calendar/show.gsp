@@ -1,5 +1,5 @@
 <head>
-  <title>Einrichtungskalender</title>
+  <title><g:message code="cal.title"/></title>
   <meta name="layout" content="private-cal" />
   <g:javascript library="jquery" />
   <g:javascript src="jquery/fullcalendar.js"/>
@@ -11,20 +11,20 @@
 
   <div class="headerGreen">
     <div class="second">
-      <h1>Legende</h1>
+      <h1><g:message code="cal.caption"/></h1>
     </div>
   </div>
   <div class="boxGray">
     <div class="second">
-      <span style="background: #5b5; padding: 5px; color: #fff">Themen</span>
-      <span style="background: #55b; padding: 5px; color: #fff">Aktivitätsgruppen</span>
-      <span style="background: #b55; padding: 5px; color: #fff">Themenraumaktivitäten</span>
+      <span style="background: #5b5; padding: 5px; color: #fff"><g:message code="cal.theme"/></span>
+      <span style="background: #55b; padding: 5px; color: #fff"><g:message code="cal.groupActivity"/></span>
+      <span style="background: #b55; padding: 5px; color: #fff"><g:message code="cal.activityInstance"/></span>
     </div>
   </div>
 
   <div class="headerGreen">
     <div class="second">
-      <h1>Pädagogen</h1>
+      <h1><g:message code="educator"/></h1>
     </div>
   </div>
   <div class="boxGray">
@@ -37,7 +37,7 @@
 
   <div class="headerGreen">
     <div class="second">
-      <h1>Kalender von ${active.profile.fullName}</h1>
+      <h1><g:message code="cal.owned"/> ${active.profile.fullName}</h1>
     </div>
   </div>
   <div class="boxGray">
