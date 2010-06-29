@@ -17,11 +17,11 @@
     buttonText: {
         prev: '&nbsp;&#9668;&nbsp;', // left triangle
         next: '&nbsp;&#9658;&nbsp;', // right triangle
-        today: 'Heute',
-        month: 'Monat',
-        week: 'Woche',
-        agendaWeek : 'Woche',
-        agendaDay: 'Tag'
+        today: '<g:message code="_cal.today"/>',
+        month: '<g:message code="_cal.month"/>',
+        week: '<g:message code="_cal.week"/>',
+        agendaWeek : '<g:message code="_cal.agendaWeek"/>',
+        agendaDay: '<g:message code="_cal.agendaDay"/>'
     },
     titleFormat: {
         agendaWeek: "MMM d[ yyyy]{ '&#8212;'[ MMM] d, yyyy}", // Sep 7 - 13 2009
