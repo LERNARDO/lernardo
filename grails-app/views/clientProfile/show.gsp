@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${client.profile.fullName}</title>
+  <title><g:message code="client"/> - ${client.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${client.profile.fullName}</h1>
+    <h1><g:message code="client"/> - ${client.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -233,7 +233,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Schulleistungungen <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="client.profile.schoolPerformance"/> <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-performances" targetId="performances"/>
       </jq:jquery>
@@ -242,11 +242,11 @@
           <g:hiddenField name="type" value="performance" />
           <table>
             <tr>
-              <td>Datum:</td>
+              <td><g:message code="date"/>:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td><g:message code="text"/>:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -262,7 +262,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Gesundheitseinträge <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gesundheitseintrag hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="client.profile.healthNotes"/> <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gesundheitseintrag hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-healths" targetId="healths"/>
       </jq:jquery>
@@ -271,11 +271,11 @@
           <g:hiddenField name="type" value="health" />
           <table>
             <tr>
-              <td>Datum:</td>
+              <td><g:message code="date"/>:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td><g:message code="text"/>:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -291,7 +291,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Erhaltene Materialien <app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="client.profile.materials"/><app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-materials" targetId="materials"/>
       </jq:jquery>
@@ -300,11 +300,11 @@
           <g:hiddenField name="type" value="material" />
           <table>
             <tr>
-              <td>Datum:</td>
+              <td><g:message code="date"/>:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td><g:message code="text"/>:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -320,7 +320,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Eintritt und Austritt bei Sueninos <app:isMeOrAdmin entity="${client}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="client.profile.inOut"/><app:isMeOrAdmin entity="${client}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-dates" targetId="dates"/>
       </jq:jquery>

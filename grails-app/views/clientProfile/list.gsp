@@ -5,12 +5,12 @@
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreute</h1>
+    <h1>${message(code:'client')}</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${clientTotal} Betreute insgesamt vorhanden</p>
+    <p>${clientTotal} <g:message code="client.profile.c_total"/></p>
     <g:if test="${clientTotal > 0}">
       <div id="body-list">
         <table border>
@@ -41,7 +41,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neuen Betreuten anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="client.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>

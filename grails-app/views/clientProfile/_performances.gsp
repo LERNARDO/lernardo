@@ -1,5 +1,4 @@
 <g:if test="${client.profile.status}">
-
   <ul>
   <g:each in="${client.profile.status}" var="performance">
     <g:if test="${performance.type == 'performance'}">
@@ -7,9 +6,8 @@
     </g:if>
   </g:each>
   </ul>
-
 </g:if>
 <g:else>
-  <span class="italic">Keine Schulleistungen eingetragen</span>
+  <span class="italic"><g:message code="client.profile.schoolPerformance.empty"/> </span>
 </g:else>
 

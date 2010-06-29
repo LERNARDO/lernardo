@@ -2,12 +2,12 @@
 <%@ page import="de.uenterprise.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreuten anlegen</title>
+  <title><g:message code="client.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreuten anlegen</h1>
+    <h1><g:message code="client.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -98,7 +98,7 @@
 
     </tbody>
 	</table>
-        <h4>Derzeitige Adresse</h4>
+        <h4><g:message code="client.profile.curAddress"/></h4>
         <div class="contact">
         <table>
 
@@ -156,7 +156,7 @@
         </table>
         </div>
 
-        <h4>Herkunft</h4>
+        <h4><g:message code="client.profile.origin"/></h4>
         <div class="contact">
         <table>
         <tr>
@@ -194,7 +194,7 @@
         </table>
         </div>
 
-    <h4>Weitere Daten</h4>
+    <h4><g:message code="client.profile.more"/></h4>
     <div class="contact">
         <table>
 

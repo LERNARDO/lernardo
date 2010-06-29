@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreuten bearbeiten</title>
+  <title><g:message code="client.profile.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreuten bearbeiten</h1>
+    <h1><g:message code="client.profile.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -92,7 +92,7 @@
             </td>
           </tr>
         </table>
-        <h4>Derzeitige Adresse</h4>
+        <h4><g:message code="client.profile.curAddress"/></h4>
         <div class="contact">
           <table>
             <tr>
@@ -148,7 +148,7 @@
           </table>
         </div>
 
-        <h4>Herkunft</h4>
+        <h4><g:message code="client.profile.origin"/></h4>
         <div class="contact">
           <table>
             <tr>
@@ -182,7 +182,7 @@
           </table>
         </div>
 
-        <h4>Weitere Daten</h4>
+        <h4><g:message code="client.profile.more"/></h4>
         <div class="contact">
           <table>
             <tr class="prop">
