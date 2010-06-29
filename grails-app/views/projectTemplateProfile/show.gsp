@@ -57,6 +57,7 @@
           <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
         </g:if>
       </app:isEducator>
+      <g:link class="buttonGreen" action="create" id="${projectTemplate.id}">Vorlage duplizieren</g:link>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

@@ -102,8 +102,10 @@ class TemplateProfileController {
     }
 
     def create = {
+      Entity template = Entity.get(params.id)
       return ['entity': entityHelperService.loggedIn,
-              'resources': Entity.findAllByType(metaDataService.etResource)]
+              'resources': Entity.findAllByType(metaDataService.etResource),
+              'template': template]
     }
 
     def save = {

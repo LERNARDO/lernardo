@@ -128,7 +128,9 @@ class GroupActivityTemplateProfileController {
     }
 
     def create = {
-        return [entity: entityHelperService.loggedIn]
+        Entity group = Entity.get(params.id)
+        return [entity: entityHelperService.loggedIn,
+                group: group]
     }
 
     def save = {

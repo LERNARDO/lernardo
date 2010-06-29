@@ -41,8 +41,6 @@
             </td>
           </tr>
 
-
-
           <tr class="prop">
             <td colspan="2" valign="top" class="name">
               <label for="description">

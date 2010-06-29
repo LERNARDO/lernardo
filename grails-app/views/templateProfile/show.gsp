@@ -70,13 +70,12 @@
 
       </table>
 
-    
-
     <app:isEducator entity="${entity}">
       <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
       <g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>
+      <g:link class="buttonGreen" action="create" id="${template.id}">Vorlage duplizieren</g:link>
       <div class="spacer"></div>
     </app:isEducator>
 

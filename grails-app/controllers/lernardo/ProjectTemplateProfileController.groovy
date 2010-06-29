@@ -108,7 +108,9 @@ class ProjectTemplateProfileController {
     }
 
     def create = {
-      return [entity: entityHelperService.loggedIn]
+      Entity projectTemplate = Entity.get(params.id)
+      return [entity: entityHelperService.loggedIn,
+              projectTemplate: projectTemplate]
     }
 
     def save = {

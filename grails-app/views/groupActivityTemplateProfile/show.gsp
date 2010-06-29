@@ -72,7 +72,8 @@
             <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock instanzieren</g:link>
           </g:if>
         </app:isEducator>
-        
+
+        <g:link class="buttonGreen" action="create" id="${group.id}">Vorlage duplizieren</g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
