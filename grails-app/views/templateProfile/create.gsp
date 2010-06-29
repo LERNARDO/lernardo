@@ -103,6 +103,8 @@
 
       </table>
 
+      Typ: <g:select id="type" name="type" from="${['normale Aktivitätsvorlage','Themenraumaktivitätsvorlage']}" value="${template?.profile?.type}"/>
+
       </div>
 
       <div class="buttons">

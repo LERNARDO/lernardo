@@ -99,6 +99,8 @@
 
       </table>
 
+      Typ: <g:select id="type" name="type" from="${['normale Aktivitätsvorlage','Themenraumaktivitätsvorlage']}" value="${template?.profile?.type}"/>
+
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

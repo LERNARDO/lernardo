@@ -359,6 +359,7 @@ class BootStrap {
       ent.profile.amountEducators = 2
       ent.profile.status = "fertig"
       ent.profile.duration = 30
+      ent.profile.type = "normale Aktivitätsvorlage"
     }
 
     entityHelperService.createEntity("tanzen", etTemplate) {Entity ent ->
@@ -370,6 +371,7 @@ class BootStrap {
       ent.profile.amountEducators = 1
       ent.profile.status = "fertig"
       ent.profile.duration = 10
+      ent.profile.type = "Themenraumaktivitätsvorlage"
     }
   }
 

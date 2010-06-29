@@ -29,6 +29,10 @@
     <div class="boxGray">
       <div class="second">
         <div id="body-list">
+
+          <g:link class="buttonGreen" controller="activity" action="create">Themenraumaktivitäten planen</g:link>
+          <div class="clear"></div>
+
           <p>${activityCount} Themenräume
             <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
             <g:else>insgesamt</g:else>

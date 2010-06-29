@@ -14,6 +14,7 @@ class TemplateProfile extends Profile {
   String amountEducators // added on 30.04.2010
   String status // added on 30.04.2010
   Integer duration
+  String type // added on 29.06.2010
 
   //String attribution - removed on 30.04.2010
   //String qualifications - removed on 30.04.2010

@@ -105,7 +105,7 @@ class ActivityController {
 
     def create = {
       // get template the activity is created from
-      Entity template = Entity.get(params.id)
+      //Entity template = Entity.get(params.id)
 
       // get a list of facilities the current entity is working in
       def facilities = []
@@ -117,19 +117,27 @@ class ActivityController {
       def clients = Entity.findAllByType(metaDataService.etClient)
       def resources = Entity.findAllByType(metaDataService.etResource)
 
-      return ['template': template,
+      def c = Entity.createCriteria()
+      def templates = c.list {
+        profile {
+          eq("type", "Themenraumaktivitätsvorlage")
+        }
+      }
+
+      return [/*'template': template,*/
               'facilities': facilities,
               'educators': educators,
               'clients': clients,
               'entity': entityHelperService.loggedIn,
-              'resources': resources]
+              'resources': resources,
+              'templates': templates]
     }
 
     def save = {
       //log.info params
       EntityType etActivity = metaDataService.etActivity
 
-      Entity template = Entity.get(params.id)
+      Entity template = Entity.get(params.template)
        // params.fullName
       // params.periodStart
       // params.periodEnd
