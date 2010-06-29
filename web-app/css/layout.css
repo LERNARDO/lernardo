@@ -1502,14 +1502,19 @@ h4 {
     margin-top: 12px;}
 
 .zusatz-add {
-    padding-top: 6px;
-     padding-bottom: 12px;
+    padding: 6px 0 12px 6px;
 }
 .zusatz-show {
     background-color: #fff;
     margin: 6px;
     padding: 6px;
     border: 1px solid #ccc;
+}
+.zusatz-show ul {
+   padding: 0;
+}
+.zusatz-show li {
+    margin-left: 0;
 }
 
 .zusatz li { list-style: none; }

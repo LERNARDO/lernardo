@@ -64,7 +64,7 @@
 
           <tr class="prop">
             <td valign="top" class="value">
-              <g:select from="${['a','b','c']}" class="drop-down-240" id="educationalObjective" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
+              <g:select from="${['erreicht','nicht erreicht']}" class="drop-down-240" id="educationalObjective" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
             </td>
 
             <td  colspan="2" valign="top" class="value">
