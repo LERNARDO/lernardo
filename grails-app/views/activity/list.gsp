@@ -14,7 +14,7 @@
     </g:if>
   <div class="tabGrey">
     <div class="second">
-      <h1><g:link controller="templateProfile" action="index">Aktivitätsvorlagen</g:link></h1>
+      <h1><g:link controller="activity" action="create">Themenraum anlegen</g:link></h1>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
       <div class="second">
         <div id="body-list">
 
-          <g:link class="buttonGreen" controller="activity" action="create">Themenraumaktivitäten planen</g:link>
+         
           <div class="clear"></div>
 
           <p>${activityCount} Themenräume

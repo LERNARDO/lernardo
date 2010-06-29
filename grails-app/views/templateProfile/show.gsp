@@ -13,6 +13,16 @@
 <div class="boxGray">
   <div class="second">
    <table>
+      <tr class="prop">
+          <td colspan="3" valign="top" class="name-show">
+          Typ:
+     </td>
+     </tr>
+         <tr class="prop">
+          <td colspan="3" valign="top" class="value-show">
+           ${template.profile.type}
+     </td>
+     </tr>
         <tr class="prop">
           <td colspan="2" valign="top" class="name-show">
               <g:message code="activityTemplate.name"/>:
@@ -70,7 +80,7 @@
 
       </table>
 
-    Typ: ${template.profile.type}
+
 
     <app:isEducator entity="${entity}">
       <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>

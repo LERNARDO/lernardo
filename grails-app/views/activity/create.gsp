@@ -21,6 +21,10 @@
 
       <table>
         <tr class="prop">
+
+           Aktivitätsvorlage: <g:select name="template" from="${templates}" optionKey="id" optionValue="profile"/>
+
+
           <td valign="top" class="name">
             <label for="fullName">
               <g:message code="activityInstance.profile.name"/>
@@ -57,10 +61,10 @@
         </tr>
         <tr>
           <td class="value">
-            <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
+            <g:select class="drop-down-220" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
           </td>
           <td class="value">
-            <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/>
+            <g:select   multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/>
             <!--<br/><p class="gray">Durch Drücken und Halten der STRG-Taste können mehrere PädagogInnen ausgewählt werden</p>-->
           </td>
           <td class="value">
@@ -121,8 +125,8 @@
           </td>
         </tr>
       </table>
+     <p> </p>
 
-      Aktivitätsvorlage: <g:select name="template" from="${templates}" optionKey="id" optionValue="profile"/>
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

@@ -17,6 +17,21 @@
     </g:hasErrors>
     <g:form action="update" method="post" id="${template.id}">
        <table>
+
+        <tr class="prop">
+          <td colspan="3" valign="top" class="name">
+            <label for="fullName">
+              Typ:
+            </label>
+            </td>
+          </tr>
+         <tr>
+          <tr>
+          <td colspan="3" valign="top" class="value">
+            <g:select id="type" name="type" from="${['normale Aktivitätsvorlage','Themenraumaktivitätsvorlage']}" value="${template?.profile?.type}"/>
+          </td>
+         </tr>
+
         <tr class="prop">
           <td colspan="2" valign="top" class="name">
             <label for="fullName">
@@ -98,8 +113,6 @@
         </tr>
 
       </table>
-
-      Typ: <g:select id="type" name="type" from="${['normale Aktivitätsvorlage','Themenraumaktivitätsvorlage']}" value="${template?.profile?.type}"/>
 
 
       <div class="buttons">

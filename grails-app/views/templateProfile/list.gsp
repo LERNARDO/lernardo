@@ -17,11 +17,7 @@
     <h1>Aktivitätsvorlagen %{--<app:getTemplateCount/>--}%</h1>
   </div>
 </div>
-<div class="tabGrey">
-  <div class="second"> 
-    <h1><g:link controller="activity" action="list">Themenräume</g:link></h1>
-  </div>
-</div>
+
 <div class="clearFloat"> </div>
 
 <div class="boxGray">
