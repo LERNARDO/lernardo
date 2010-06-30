@@ -166,12 +166,12 @@
               <div id="administration-toggled">
                 <ul>
                   <app:isAdmin>
-                    <li class="icon-admin"><g:link controller="profile" action="createNotification">Notifikation</g:link></li>
-                    <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile</g:link></li>
+                    <li class="icon-admin"><g:link controller="profile" action="createNotification"><g:message code="notifications"/> </g:link></li>
+                    <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/> </g:link></li>
                   </app:isAdmin>
                   <app:isSysAdmin>
-                    <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
-                    <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]"><g:message code="user"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]"><g:message code="operator"/> </g:link></li>
+                    <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]"><g:message code="user"/> </g:link></li>
                   </app:isSysAdmin>
 
                 </ul>
@@ -222,7 +222,7 @@
                     <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/></g:link></li>
                     <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
                     <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
-                    <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner</g:link></li>
+                    <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]"><g:message code="partners"/></g:link></li>
 
                   </app:isOperator>
                 </ul>
@@ -249,8 +249,8 @@
                         <li class="icon-admin"><g:link controller="resourceProfile" action="index"><g:message code="resources"/></g:link></li>
                       </app:isEducator>
                     </app:isOperator>
-                    <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
-                    <li class="icon-admin"><g:link controller="themeProfile" action="index" params="[name:entity.name]"><g:message code="children"/>Themen</g:link></li>
+                    <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/> </g:link></li>
+                    <li class="icon-admin"><g:link controller="themeProfile" action="index" params="[name:entity.name]"><g:message code="themes"/> </g:link></li>
                   </app:isOperator>
 
                 </ul>
