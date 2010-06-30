@@ -48,7 +48,7 @@
     </app:hasRoleOrType>
 
     <div class="zusatz">
-      <h5>Partner <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a href="#" id="show-partners"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5>Partner <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a href="#" id="show-partners"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-partners" targetId="partners"/>
       </jq:jquery>

@@ -147,8 +147,6 @@
           </table>
         </div> <!--div email close -->
 
-        Colonia: <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
-
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

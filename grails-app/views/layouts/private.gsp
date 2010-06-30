@@ -94,7 +94,7 @@
             </div>
           </div>
           <div id="picture">
-            <div style="position: absolute; top: 45px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}"/></g:link></div>
+            %{--<div style="position: absolute; top: 45px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}"/></g:link></div>--}%
             <div style=""><ub:profileImage name="${entity.name}" width="180" height="233"/></div>
             <div class="clear"></div>
           </div>
@@ -217,6 +217,7 @@
                 <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte </g:link></li>
                 <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]">Kinder </g:link></li>
                 <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten </g:link></li>
+                <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]">Partner </g:link></li>
                </app:isOperator>
             </ul>
             </div>
