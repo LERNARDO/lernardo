@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${user.profile.fullName}</title>
+  <title><g:message code="user"/> - ${user.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1 style="float: left">Profil - ${user.profile.fullName}</h1>
+    <h1 style="float: left"><g:message code="user"/> - ${user.profile.fullName}</h1>
     <div class="icons" style="text-align: right;">
       <g:link action="edit" id="${user.id}"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:link>
     </div>
@@ -51,7 +51,7 @@
             <td width="60" valign="top" >
               <g:message code="user.profile.email"/>:
             </td>
-            <td valign="top" >${fieldValue(bean: user, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top" >${fieldValue(bean: user, field: 'user.email') ?: '<div class="italic"><g:message code="noData"/></div>'}</td>
 
           </tr>
         </table>

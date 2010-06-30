@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>User anlegen</title>
+  <title><g:message code="user.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>User anlegen</h1>
+    <h1><g:message code="user.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

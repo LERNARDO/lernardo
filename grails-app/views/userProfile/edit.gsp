@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>User bearbeiten</title>
+  <title><g:message code="user.profile.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1 style="float: left">User bearbeiten</h1>
+    <h1 style="float: left"><g:message code="user.profile.edit"/></h1>
     <div class="icons" style="text-align: right;">
       <g:link action="show" id="${user.id}"><img src="${resource (dir:'images/icons', file:'icon_cancel.png')}" alt="${message(code:'cancel')}" align="top"/></g:link>
     </div>
@@ -71,7 +71,7 @@
               <label>
                 <g:message code="password"/>:
               </label>
-              <g:link controller="profile" action="changePassword" id="${user.id}">Ändern</g:link>
+              <g:link controller="profile" action="changePassword" id="${user.id}"><g:message code="change"/></g:link>
             </td>
 
 			<td width="270"  valign="middle">
