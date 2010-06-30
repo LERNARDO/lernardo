@@ -107,23 +107,23 @@
 
             <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
               <ul>
-                <li class="icon-person"><g:link controller="asset" action="uploadprf">Bild ändern</g:link></li>
+                <li class="icon-person"><g:link controller="asset" action="uploadprf"><g:message code="privat.picture.change"/></g:link></li>    
               </ul>
             </app:hasRoleOrType>
             
             <ul>
-              <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Profil</g:link></li>
-              <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}">Dokumente</g:link></li>
+              <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}"><g:message code="privat.profile"/></g:link></li>
+              <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link></li>
 
               %{--this concerns the entity we are currently looking at = entity --}%
               <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="yes">
-                <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}">Ereignisse</g:link></li>
+                <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
               </app:hasRoleOrType>
 
               %{--this concerns the entity we are currently looking at = entity --}%
               <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
                 <app:hasRoleOrType entity="${currentEntity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
-                  <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}">Postfach</g:link> <app:getNewInboxMessages entity="${entity}"/></li>
+                  <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <app:getNewInboxMessages entity="${entity}"/></li>
                 </app:hasRoleOrType>
                 <app:hasRoleOrType entity="${currentEntity}" roles="[]" types="['Pädagoge']" me="false">
                   <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}">Artikel ansehen</g:link></li>
@@ -159,7 +159,7 @@
           <div class="profile-box">
           <div class="second">
           
-               <div class="header">Administration&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+               <div class="header"><g:message code="privat.head.admin"/>&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
               </jq:jquery>
@@ -170,8 +170,8 @@
                 <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]">Alle Profile</g:link></li>
               </app:isAdmin>
               <app:isSysAdmin>
-                <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]">Betreiber</g:link></li>
-                <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]">User</g:link></li>
+                <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
+                <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]"><g:message code="user"/></g:link></li>
               </app:isSysAdmin>
 
             </ul>
@@ -184,16 +184,16 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
           <div class="profile-box">
             <div class="second">
-              <div class="header">Planung &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+              <div class="header"><g:message code="privat.head.plan"/> &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
               <jq:jquery>
               <jq:toggle sourceId="paedagogik-toggler" targetId="paedagogik-toggled"/>
               </jq:jquery>
               <div id="paedagogik-toggled">
                 <ul>
                   <app:isEducator entity="${currentEntity}">
-                  <li class="profile-template"><g:link controller="templateProfile" action="index">Aktivitäten</g:link></li>
-                  <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsblöcke </g:link></li>
-                  <li class="profile-template"><g:link controller="projectTemplateProfile" action="index">Projekte</g:link></li>
+                  <li class="profile-template"><g:link controller="templateProfile" action="index"><g:message code="activities"/></g:link></li>
+                  <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="index"><g:message code="groupActivity"/> </g:link></li>
+                  <li class="profile-template"><g:link controller="projectTemplateProfile" action="index"><g:message code="projects"/></g:link></li>
                   </app:isEducator>
                 </ul>
               </div>
@@ -204,7 +204,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
          <div class="profile-box">
           <div class="second">
-            <div class="header">Personen&nbsp; &nbsp;<a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+            <div class="header"><g:message code="privat.head.pers"/>&nbsp; &nbsp;<a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="personen-toggler" targetId="personen-toggled"/>
               </jq:jquery>
@@ -212,11 +212,11 @@
             <ul>
 
               <app:isOperator entity="${currentEntity}">
-                <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]">Betreute </g:link></li>
-                <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]">Pädagogen </g:link></li>
-                <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]">Erziehungsberechtigte </g:link></li>
-                <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]">Kinder </g:link></li>
-                <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]">Paten </g:link></li>
+                <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/> </g:link></li>
                </app:isOperator>
             </ul>
             </div>
@@ -227,21 +227,21 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
          <div class="profile-box">
           <div class="second">
-            <div class="header">Andere&nbsp; &nbsp;<a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+            <div class="header"><g:message code="privat.head.others"/>&nbsp; &nbsp;<a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="andere-toggler" targetId="andere-toggled"/>
               </jq:jquery>
               <div id="andere-toggled">
             <ul>
               <app:isOperator entity="${currentEntity}">
-                <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]">Einrichtungen</g:link></li>
+                <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facilities"/></g:link></li>
               <app:isOperator entity="${currentEntity}">
                 <app:isEducator entity="${currentEntity}">
-                <li class="icon-admin"><g:link controller="resourceProfile" action="index">Ressourcen</g:link></li>
+                <li class="icon-admin"><g:link controller="resourceProfile" action="index"><g:message code="resources"/></g:link></li>
               </app:isEducator>
                </app:isOperator>
-                <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]">Gewichtung</g:link></li>
-                <li class="icon-admin"><g:link controller="themeProfile" action="index" params="[name:entity.name]">Themen</g:link></li>
+                <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
+                <li class="icon-admin"><g:link controller="themeProfile" action="index" params="[name:entity.name]"><g:message code="children"/>Themen</g:link></li>
               </app:isOperator>
 
             </ul>
@@ -253,17 +253,17 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
          <div class="profile-box">
           <div class="second">
-            <div class="header">Gruppen&nbsp; &nbsp;<a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+            <div class="header"><g:message code="privat.head.groups"/>&nbsp; &nbsp;<a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="gruppen-toggler" targetId="gruppen-toggled"/>
               </jq:jquery>
               <div id="gruppen-toggled">
             <ul>
               <app:isOperator entity="${currentEntity}">
-                <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]">Colonias </g:link></li>
-                <li class="icon-admin"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]">Familien </g:link></li>
-                <li class="icon-admin"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]">Sponsorennetzwerke </g:link></li>
-                <li class="icon-admin"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]">Betreutengruppen </g:link></li>
+                <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]"><g:message code="groupColonies"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]"><g:message code="groupFamilies"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]"><g:message code="groupPartners"/> </g:link></li>
+                <li class="icon-admin"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]"><g:message code="groupClients"/> </g:link></li>
               </app:isOperator>
 
             </ul>
@@ -279,9 +279,9 @@
         <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
         <div class="profile-box">
           <div class="second">
-            <div class="header">Hilfe</div>
+            <div class="header"><g:message code="privat.head.help"/></div>
             <ul>
-              <li class="icon-help"><g:link controller="helper" id="${entity.id}">Hilfethemen anzeigen</g:link></li>
+              <li class="icon-help"><g:link controller="helper" id="${entity.id}"><g:message code="privat.showHelp"/></g:link></li>
             </ul>
           </div>
         </div>
