@@ -65,6 +65,8 @@ class ProjectTemplateProfileController {
     def del = {
         Entity projectTemplate = Entity.get(params.id)
         if(projectTemplate) {
+            // delete all links
+            Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
             try {
                 flash.message = message(code:"projectTemplate.deleted", args:[projectTemplate.profile.fullName])
                 projectTemplate.delete(flush:true)
@@ -150,7 +152,10 @@ class ProjectTemplateProfileController {
 
         List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
-        render template:'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]        
+        // calculate realDuration
+        Integer calculatedDuration = calculateDuration(projectUnits)
+
+        render template:'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]        
       } catch (de.uenterprise.ep.EntityException ee) {
       render "Projekteinheit konnte nicht gespeichert werden!"
       return
@@ -180,7 +185,10 @@ class ProjectTemplateProfileController {
       def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
       List projectUnits = links.collect {it.source}
 
-      render template:'projectUnits', model: [projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
+      // calculate realDuration
+      Integer calculatedDuration = calculateDuration(projectUnits)
+
+      render template:'projectUnits', model: [projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     }
 
     def addGroupActivityTemplate = {
@@ -210,6 +218,7 @@ class ProjectTemplateProfileController {
       // calculate realDuration
        //Integer calculatedDuration = calculateDuration(projectUnits)
 
+      render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde hinzugefügt</span>'
       render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
     }
 
@@ -238,6 +247,7 @@ class ProjectTemplateProfileController {
       // calculate realDuration
       //Integer calculatedDuration = calculateDuration(projectUnits)
 
+      render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde entfernt</span><br/>'
       render template:'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
     }
 

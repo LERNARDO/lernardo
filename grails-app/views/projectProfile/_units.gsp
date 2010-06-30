@@ -1,4 +1,5 @@
 <g:if test="${units}">
+  <div style="border-bottom: 1px solid #eee; margin-bottom: 5px;">
   <ul>
     <g:each in="${units}" var="unit" status="i">
       <li>
@@ -54,6 +55,7 @@
       </li>
     </g:each>
   </ul>
+  </div>
 </g:if>
 <g:else>
   <span class="italic">Keine Einheiten zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>

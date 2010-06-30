@@ -103,6 +103,8 @@ class ProjectProfileController {
   def del = {
     Entity project = Entity.get(params.id)
     if (project) {
+      // delete all links
+      Link.findAllBySourceOrTarget(project, project).each {it.delete()}
       try {
         flash.message = message(code: "project.deleted", args: [project.profile.fullName])
         project.delete(flush: true)
