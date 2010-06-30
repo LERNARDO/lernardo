@@ -55,7 +55,7 @@
 		<table>
 		<tr>
 			<app:isAdmin>
-			<td width="80"  valign="middle">
+			<td width="85"  valign="middle">
                 <label for="enabled">
                   <g:message code="active"/>
                 </label>
@@ -74,7 +74,7 @@
               <g:link controller="profile" action="changePassword" id="${user.id}">Ändern</g:link>
             </td>
 
-			<td width="280"  valign="middle">
+			<td width="270"  valign="middle">
 			<label for="email">
 				<g:message code="user.profile.email"/>
             </label>:

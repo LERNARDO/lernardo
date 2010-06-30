@@ -1,11 +1,11 @@
 <head>
-  <title>Postausgang</title>
+  <title><g:message code="msg.outbox"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Postfach: Postausgang</h1>
+    <h1><g:message code="msg.outbox"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -35,7 +35,7 @@
 
         <g:if test="${msgInstanceList.size() == 0}">
           <div class="info-msg-postbox">
-            Du hast derzeit keine Nachrichten in deinem Postausgang!
+            <g:message code="msg.outbox.emptyMsg"/>
           </div>
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
@@ -52,7 +52,7 @@
             <td class="subject">
               <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">${msgInstance.subject}</g:link></span>
             </td>
-            <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">Löschen</g:link></td>
+            <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']"><g:message code="delete"/></g:link></td>
           </tr>
         </g:each>
 
@@ -65,7 +65,7 @@
       </g:if>
 
       <div class="buttons">
-        <g:link class="buttonGreen" controller="msg" action="inbox" id="${entity.id}">Zum Posteingang</g:link>
+        <g:link class="buttonGreen" controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.outbox.toOutbox"/></g:link>
         %{--<g:link class="buttonBlue" controller="msg" action="outbox" id="${entity.id}">Postausgang</g:link>--}%
         <div class="spacer"></div>
       </div>

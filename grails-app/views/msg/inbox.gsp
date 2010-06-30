@@ -1,18 +1,18 @@
 <head>
-  <title>Posteingang</title>
+  <title><g:message code="msg.inbox"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Dein Postfach bietet dir die Möglichkeit eine Nachrichten an andere User zu schicken und selber zu erhalten.
+      <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="tipp"/>:</b> <g:message code="msg.inbox.tipp"/>
     </div>
   </div>
 </g:if>
 <div class="headerGreen">
   <div class="second">
-    <h1>Postfach: Posteingang</h1>
+    <h1><g:message code="msg.inbox"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -42,7 +42,7 @@
 
         <g:if test="${msgInstanceList.size() == 0}">
           <div class="info-msg-postbox">
-            Du hast derzeit keine Nachrichten in deinem Posteingang!
+            <g:message code="msg.inbox.emptyMsg"/>
           </div>
         </g:if>
         <g:each in="${msgInstanceList}" status="i" var="msgInstance">
@@ -60,7 +60,7 @@
             <td class="name-date">
               <g:if test="${!msgInstance.read}">
                 <span class="state">
-                  Neue Nachricht
+                  <g:message code="msg.inbox.newMsg"/>
                   %{--
                     <g:else>
                       (GELESEN)
@@ -81,7 +81,7 @@
             <td class="subject">
               <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'inbox']">${msgInstance.subject}</g:link></span>
             </td>
-            <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'inbox']">Löschen</g:link></td>
+            <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'inbox']"><g:message code="delete"/></g:link></td>
           </tr>
         </g:each>
 
@@ -95,10 +95,10 @@
 
       <div class="buttons">
         %{--<g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>--}%
-        <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}">Zum Postausgang</g:link>
+        <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
         <div class="spacer"></div>
       </div>
-      
+
     </div>
   </div>
 </div>
