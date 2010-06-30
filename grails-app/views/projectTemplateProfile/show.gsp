@@ -51,19 +51,19 @@
 
     </div>
     <div class="buttons">
-      <app:isEducator entity="${entity}">
+      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
         <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}"><g:message code="edit"/></g:link>
         <g:if test="${projectTemplate.profile.status == 'fertig'}">
           <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
         </g:if>
-      </app:isEducator>
+      </app:hasRoleOrType>
       <g:link class="buttonGreen" action="create" id="${projectTemplate.id}">Vorlage duplizieren</g:link>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5>Projekteinheiten (${projectUnits.size()}) <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projectunits"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projectunits"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-projectunits" targetId="projectunits"/>
       </jq:jquery>
