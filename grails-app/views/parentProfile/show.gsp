@@ -118,7 +118,7 @@
 		</tr>
 		<tr>
 			<td valign="middle" class="value-show">
-			${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">Leer</div>'}
+              <app:getNationalities nationality="${parent.profile.currentCountry}"/>
             </td>
 			<td width="105" valign="middle"  class="value-show">
 			  ${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">Leer</div>'}

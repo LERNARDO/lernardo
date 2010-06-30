@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="client"/> - ${client.profile.fullName}</title>
+  <title>Profil - ${client.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1><g:message code="client"/> - ${client.profile.fullName}</h1>
+    <h1>Profil - ${client.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -153,7 +153,7 @@
             </tr>
             <tr class="prop">
               <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-              <td valign="top" class="value-show"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></td>
+              <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></g:if></td>
               <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
             </tr>
             <tr class="prop">
@@ -169,7 +169,7 @@
             </tr>
             <tr class="prop">
               <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-              <td valign="top" class="value-show"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></td>
+              <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></g:if></td>
               <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
             </tr>
             <tr class="prop">
@@ -203,7 +203,7 @@
             <tr class="prop">
               <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.support}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
               <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-              
+
             </tr>
           </table>
         </div>
@@ -233,7 +233,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.schoolPerformance"/> <app:isMeOrAdmin entity="${client}"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Schulleistungungen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a href="#" id="show-performances"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-performances" targetId="performances"/>
       </jq:jquery>
@@ -242,11 +242,11 @@
           <g:hiddenField name="type" value="performance" />
           <table>
             <tr>
-              <td><g:message code="date"/>:</td>
+              <td>Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td><g:message code="text"/>:</td>
+              <td>Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -262,7 +262,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.healthNotes"/> <app:isMeOrAdmin entity="${client}"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gesundheitseintrag hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Gesundheitseinträge <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a href="#" id="show-healths"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gesundheitseintrag hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-healths" targetId="healths"/>
       </jq:jquery>
@@ -271,11 +271,11 @@
           <g:hiddenField name="type" value="health" />
           <table>
             <tr>
-              <td><g:message code="date"/>:</td>
+              <td>Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td><g:message code="text"/>:</td>
+              <td>Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -291,7 +291,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.materials"/><app:isMeOrAdmin entity="${client}"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Erhaltene Materialien <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a href="#" id="show-materials"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Material hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-materials" targetId="materials"/>
       </jq:jquery>
@@ -300,11 +300,11 @@
           <g:hiddenField name="type" value="material" />
           <table>
             <tr>
-              <td><g:message code="date"/>:</td>
+              <td>Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td><g:message code="text"/>:</td>
+              <td>Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -320,7 +320,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.inOut"/><app:isMeOrAdmin entity="${client}"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Eintritt und Austritt bei Sueninos <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a href="#" id="show-dates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Datum hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-dates" targetId="dates"/>
       </jq:jquery>
