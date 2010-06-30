@@ -208,79 +208,27 @@ class FacilityProfileController {
     }
 
     def addEducator = {
-      Entity facility = Entity.get(params.id)
-
-      // check if the educator isn't already linked to the facility
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.educator))
-        eq('target', facility)
-        eq('type', metaDataService.ltWorking)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.educator), target: facility, type:metaDataService.ltWorking).save()
-
-      // find all educators of this facility
-      def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-      List educators = links.collect {it.source}
-
-      render template:'educators', model: [educators: educators, facility: facility, entity: entityHelperService.loggedIn]
+      def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'educators', model: [educators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removeEducator = {
-      Entity facility = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.educator))
-        eq('target', facility)
-        eq('type', metaDataService.ltWorking)
-      }
-      link.delete()
-
-      // find all educators of this facility
-      def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-      List educators = links.collect {it.source}
-
-      render template:'educators', model: [educators: educators, facility: facility, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltWorking)
+      render template:'educators', model: [educators: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
     }
 
     def addLeadEducator = {
-      Entity facility = Entity.get(params.id)
-
-      // check if the educator isn't already linked to the facility
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.leadeducator))
-        eq('target', facility)
-        eq('type', metaDataService.ltLeadEducator)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.leadeducator), target: facility, type:metaDataService.ltLeadEducator).save()
-
-      // find lead educator of this facility
-      link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
-      Entity leadEducator = link.source
-
-      render template:'leadeducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
+      def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'leadeducator', model: [leadeducator: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removeLeadEducator = {
-      Entity facility = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.leadeducator))
-        eq('target', facility)
-        eq('type', metaDataService.ltLeadEducator)
-      }
-      link.delete()
-
-      // find lead educator of this facility
-      link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
-      Entity leadEducator = link?.source
-
-      render template:'leadeducator', model: [leadeducator: leadEducator, facility: facility, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
+      render template:'leadeducator', model: [leadeducator: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
     }
 
     def addClients = {

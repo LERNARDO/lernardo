@@ -7,11 +7,13 @@ import de.uenterprise.ep.ProfileHelperService
 import standard.MetaDataService
 import de.uenterprise.ep.Link
 import de.uenterprise.ep.Profile
+import standard.FunctionService
 
 class ThemeProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
+    FunctionService functionService
 
     def index = {
         redirect action:"list", params:params
@@ -146,78 +148,26 @@ class ThemeProfileController {
     }
 
     def addSubTheme = {
-      Entity theme = Entity.get(params.id)
-
-      // check if the subtheme isn't already linked to the theme
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.subtheme))
-        eq('target', theme)
-        eq('type', metaDataService.ltSubTheme)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.subtheme), target: theme, type:metaDataService.ltSubTheme).save()
-
-      // find all subthemes of this theme
-      def links = Link.findAllByTargetAndType(theme, metaDataService.ltSubTheme)
-      List subthemes = links.collect {it.source}
-
-      render template:'subthemes', model: [subthemes: subthemes, theme: theme, entity: entityHelperService.loggedIn]
+      def linking = functionService.linkEntities(params.subtheme, params.id, metaDataService.ltSubTheme)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'subthemes', model: [subthemes: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removeSubTheme = {
-      Entity theme = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.subtheme))
-        eq('target', theme)
-        eq('type', metaDataService.ltSubTheme)
-      }
-      link.delete()
-
-      // find all subthemes of this theme
-      def links = Link.findAllByTargetAndType(theme, metaDataService.ltSubTheme)
-      List subthemes = links.collect {it.source}
-
-      render template:'subthemes', model: [subthemes: subthemes, theme: theme, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.subtheme, params.id, metaDataService.ltSubTheme)
+      render template:'subthemes', model: [subthemes: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
     }
 
     def addProject = {
-      Entity theme = Entity.get(params.id)
-
-      // check if the project isn't already linked to the theme
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.project))
-        eq('target', theme)
-        eq('type', metaDataService.ltGroupMember)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.project), target: theme, type:metaDataService.ltGroupMember).save()
-
-      // find all project of this theme
-      def links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
-      List projects = links.collect {it.source}
-
-      render template:'projects', model: [projects: projects, theme: theme, entity: entityHelperService.loggedIn]
+      def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'projects', model: [projects: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removeProject = {
-      Entity theme = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.project))
-        eq('target', theme)
-        eq('type', metaDataService.ltGroupMember)
-      }
-      link.delete()
-
-      // find all projects of this theme
-      def links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
-      List projects = links.collect {it.source}
-
-      render template:'projects', model: [projects: projects, theme: theme, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.project, params.id, metaDataService.ltGroupMember)
+      render template:'projects', model: [projects: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
     }
 }

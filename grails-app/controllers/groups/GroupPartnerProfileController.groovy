@@ -118,41 +118,15 @@ class GroupPartnerProfileController {
     }
 
   def addPartner = {
-    Entity group = Entity.get(params.id)
-
-    // check if the partner isn't already linked to the group
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.partner))
-      eq('target', group)
-      eq('type', metaDataService.ltGroupMember)
-    }
-    if (!link)
-      new Link(source:Entity.get(params.partner), target: group, type:metaDataService.ltGroupMember).save()
-
-    // find all partners linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
-    List partners = links.collect {it.source}
-
-    render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+    def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template:'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removePartner = {
-    Entity group = Entity.get(params.id)
-
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.partner))
-      eq('target', group)
-      eq('type', metaDataService.ltGroupMember)
-    }
-    link.delete()
-
-    // find all partners linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
-    List partners = links.collect {it.source}
-
-    render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+    def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMember)
+    render template:'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
 }

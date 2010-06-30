@@ -90,16 +90,6 @@ class PateProfileController {
 
     if (!pate.hasErrors() && pate.save()) {
 
-/*      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
-      if (params.clients) {
-        if(params.clients.class.isArray())
-          params.clients.each {
-            new Link(source: Entity.get(it), target: pate, type: metaDataService.ltPate).save()
-          }
-        else
-          new Link(source: Entity.get(params.clients), target: pate, type: metaDataService.ltPate).save()
-      }*/
-
       flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
       redirect action: 'show', id: pate.id
     }
@@ -121,14 +111,7 @@ class PateProfileController {
         ent.user.properties = params
         ent.user.password = authenticateService.encodePassword("pass")
       }
-/*      if (params.clients) {
-        if(params.clients.class.isArray())
-          params.clients.each {
-            new Link(source: Entity.get(it), target: entity, type: metaDataService.ltPate).save()
-          }
-        else
-          new Link(source: Entity.get(params.clients), target: entity, type: metaDataService.ltPate).save()
-      }*/
+
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "pate.created", args: [entity.profile.fullName])
@@ -141,40 +124,14 @@ class PateProfileController {
   }
 
     def addGodchildren = {
-      Entity pate = Entity.get(params.id)
-
-      // check if the child isn't already linked to the pate
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.child))
-        eq('target', pate)
-        eq('type', metaDataService.ltPate)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.child), target: pate, type:metaDataService.ltPate).save()
-
-      // find all godchildren of this pate
-      def links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
-      List godchildren = links.collect {it.source}
-
-      render template:'godchildren', model: [godchildren: godchildren, pate: pate, entity: entityHelperService.loggedIn]
+      def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'godchildren', model: [godchildren: linking.results, pate: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removeGodchildren = {
-      Entity pate = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.child))
-        eq('target', pate)
-        eq('type', metaDataService.ltPate)
-      }
-      link.delete()
-
-      // find all godchildren of this pate
-      def links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
-      List godchildren = links.collect {it.source}
-
-      render template:'godchildren', model: [godchildren: godchildren, pate: pate, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltPate)
+      render template:'godchildren', model: [godchildren: breaking.results, pate: breaking.target, entity: entityHelperService.loggedIn]
     }
 }

@@ -40,26 +40,6 @@ class TemplateProfileController {
 
       template.profile.properties = params
 
-      // delete old links
-      //Link.findAllByTargetAndType(template, metaDataService.ltResource).each {it.delete()}
-
-      // create new links
-/*      if (params.materials) {
-        def materials = params.materials
-        if (materials.class.isArray()) {
-          materials.each {
-            new Link(source: Entity.get(it), target: template, type: metaDataService.ltResource).save()
-          }
-        }
-        else {
-          new Link(source: Entity.get(materials), target: template, type: metaDataService.ltResource).save()
-        }
-      }*/
-      
-/*      functionService.getParamAsList(params.materials).each {
-        new Link(source: Entity.get(it), target: template, type: metaDataService.ltResource).save()
-      }*/
-
       if(!template.hasErrors() && template.save()) {
           flash.message = message(code:"template.updated", args:[template.profile.fullName])
           redirect action:'show', id: template.id
@@ -76,8 +56,6 @@ class TemplateProfileController {
 
       def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
       def commentList = links.collect {it.source}
-
-      //List allResources = Entity.findAllByType(metaDataService.etResource)
 
       def c = Entity.createCriteria()
       def allResources = c {
@@ -116,23 +94,6 @@ class TemplateProfileController {
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
         }
-
-        // create new links
-/*        if (params.materials) {
-          def materials = params.materials
-          if (materials.class.isArray()) {
-            materials.each {
-              new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
-            }
-          }
-          else {
-            new Link(source: Entity.get(materials), target: entity, type: metaDataService.ltResource).save()
-          }
-        }*/
-
-/*        functionService.getParamAsList(params.materials).each {
-          new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
-        }*/
 
         flash.message = message(code:"template.created", args:[entity.profile.fullName])
 

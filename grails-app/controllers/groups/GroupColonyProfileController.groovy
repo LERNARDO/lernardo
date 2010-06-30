@@ -9,11 +9,13 @@ import standard.MetaDataService
 import lernardo.Contact
 import lernardo.Building
 import de.uenterprise.ep.Profile
+import standard.FunctionService
 
 class GroupColonyProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
+    FunctionService functionService
 
     def index = {
         redirect action:"list", params:params
@@ -140,70 +142,6 @@ class GroupColonyProfileController {
 
     }
 
-    def addRepresentative = {
-      Contact contact = new Contact(params)
-      Entity group = Entity.get(params.id)
-      group.profile.addToRepresentatives(contact)
-      render template:'representatives', model: [group: group, entity: entityHelperService.loggedIn]
-    }
-
-    def removeRepresentative = {
-      Entity group = Entity.get(params.id)
-      group.profile.removeFromRepresentatives(Contact.get(params.representative))
-      render template:'representatives', model: [group: group, entity: entityHelperService.loggedIn]
-    }
-
-    def addBuilding = {
-      Building building = new Building(params)
-      Entity group = Entity.get(params.id)
-      group.profile.addToBuildings(building)
-      render template:'buildings', model: [group: group, entity: entityHelperService.loggedIn]
-    }
-
-    def removeBuilding = {
-      Entity group = Entity.get(params.id)
-      group.profile.removeFromBuildings(Building.get(params.building))
-      render template:'buildings', model: [group: group, entity: entityHelperService.loggedIn]
-    }
-
-    def addFacility = {
-      Entity group = Entity.get(params.id)
-
-      // check if the facility isn't already linked to the group
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.facility))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberFacility)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.facility), target: group, type:metaDataService.ltGroupMemberFacility).save()
-
-      // find all facilities linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
-      List facilities = links.collect {it.source}
-
-      render template:'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
-    }
-
-    def removeFacility = {
-      Entity group = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.facility))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberFacility)
-      }
-      link.delete()
-
-      // find all facilities linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
-      List facilities = links.collect {it.source}
-
-      render template:'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
-    }
-
   def addResource = {
     Entity group = Entity.get(params.id)
 
@@ -244,80 +182,66 @@ class GroupColonyProfileController {
     render template:'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
 
-    def addPartner = {
+  def addRepresentative = {
+      Contact contact = new Contact(params)
       Entity group = Entity.get(params.id)
+      group.profile.addToRepresentatives(contact)
+      render template:'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+    }
 
-      // check if the partner isn't already linked to the group
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.partner))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberPartner)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.partner), target: group, type:metaDataService.ltGroupMemberPartner).save()
+    def removeRepresentative = {
+      Entity group = Entity.get(params.id)
+      group.profile.removeFromRepresentatives(Contact.get(params.representative))
+      render template:'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+    }
 
-      // find all partners linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
-      List partners = links.collect {it.source}
+    def addBuilding = {
+      Building building = new Building(params)
+      Entity group = Entity.get(params.id)
+      group.profile.addToBuildings(building)
+      render template:'buildings', model: [group: group, entity: entityHelperService.loggedIn]
+    }
 
-      render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+    def removeBuilding = {
+      Entity group = Entity.get(params.id)
+      group.profile.removeFromBuildings(Building.get(params.building))
+      render template:'buildings', model: [group: group, entity: entityHelperService.loggedIn]
+    }
+
+    def addFacility = {
+      def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    }
+
+    def removeFacility = {
+      def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+      render template:'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    }
+
+    def addPartner = {
+      def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removePartner = {
-      Entity group = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.partner))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberPartner)
-      }
-      link.delete()
-
-      // find all partners linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
-      List partners = links.collect {it.source}
-
-      render template:'partners', model: [partners: partners, group: group, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+      render template:'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
     }
 
     def addEducator = {
-      Entity group = Entity.get(params.id)
-
-      // check if the partner isn't already linked to the group
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.educator))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberEducator)
-      }
-      if (!link)
-        new Link(source:Entity.get(params.educator), target: group, type:metaDataService.ltGroupMemberEducator).save()
-
-      // find all partners linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
-      List educators = links.collect {it.source}
-
-      render template:'educators', model: [educators: educators, group: group, entity: entityHelperService.loggedIn]
+      def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template:'educators', model: [educators: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
     }
 
     def removeEducator = {
-      Entity group = Entity.get(params.id)
-
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', Entity.get(params.educator))
-        eq('target', group)
-        eq('type', metaDataService.ltGroupMemberEducator)
-      }
-      link.delete()
-
-      // find all partners linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
-      List educators = links.collect {it.source}
-
-      render template:'educators', model: [educators: educators, group: group, entity: entityHelperService.loggedIn]
+      def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+      render template:'educators', model: [educators: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
     }
 
 }

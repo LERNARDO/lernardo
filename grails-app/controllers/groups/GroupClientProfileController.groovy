@@ -7,11 +7,13 @@ import de.uenterprise.ep.ProfileHelperService
 import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
 import de.uenterprise.ep.Profile
+import standard.FunctionService
 
 class GroupClientProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
+    FunctionService functionService
 
     def index = {
         redirect action:"list", params:params
@@ -118,41 +120,15 @@ class GroupClientProfileController {
     }
 
   def addClient = {
-    Entity group = Entity.get(params.id)
-
-    // check if the client isn't already linked to the group
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.client))
-      eq('target', group)
-      eq('type', metaDataService.ltGroupMemberClient)
-    }
-    if (!link)
-      new Link(source:Entity.get(params.client), target: group, type:metaDataService.ltGroupMemberClient).save()
-
-    // find all clients linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
-
-    render template:'clients', model: [clients: clients, group: group, entity: entityHelperService.loggedIn]
+    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template:'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
-    Entity group = Entity.get(params.id)
-
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.client))
-      eq('target', group)
-      eq('type', metaDataService.ltGroupMemberClient)
-    }
-    link.delete()
-
-    // find all clients linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
-
-    render template:'clients', model: [clients: clients, group: group, entity: entityHelperService.loggedIn]
+    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    render template:'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
 }
