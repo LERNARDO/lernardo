@@ -76,7 +76,7 @@
         -->
         <div class="headerGreen">
           <div class="second">
-            <h1>  ${entity.profile.fullName} <a href="#" id="kommunikation-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a>
+            <h1>  ${entity.profile.fullName} <a href="#" id="kommunikation-toggler"><img alt="ein-/ausblenden" src="${resource (dir:'images/icons', file:'icon_add.png')}"></a>
             </h1>
           </div>
         </div>
@@ -94,7 +94,7 @@
             </div>
           </div>
           <div id="picture">
-            <div style="position: absolute; top: 45px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:link></div>
+            <div style="position: absolute; top: 45px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}"/></g:link></div>
             <div style=""><ub:profileImage name="${entity.name}" width="180" height="233"/></div>
             <div class="clear"></div>
           </div>
@@ -159,7 +159,7 @@
           <div class="profile-box">
           <div class="second">
           
-               <div class="header">Administration&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+               <div class="header">Administration&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="${resource (dir:'images/icons', file:'icon_add.png')}"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
               </jq:jquery>
@@ -184,7 +184,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
           <div class="profile-box">
             <div class="second">
-              <div class="header">Planung &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+              <div class="header">Planung &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="${resource (dir:'images/icons', file:'icon_add.png')}"></a></div>
               <jq:jquery>
               <jq:toggle sourceId="paedagogik-toggler" targetId="paedagogik-toggled"/>
               </jq:jquery>
@@ -204,7 +204,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
          <div class="profile-box">
           <div class="second">
-            <div class="header">Personen&nbsp; &nbsp;<a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+            <div class="header">Personen&nbsp; &nbsp;<a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src="${resource (dir:'images/icons', file:'icon_add.png')}"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="personen-toggler" targetId="personen-toggled"/>
               </jq:jquery>
@@ -227,7 +227,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
          <div class="profile-box">
           <div class="second">
-            <div class="header">Andere&nbsp; &nbsp;<a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+            <div class="header">Andere&nbsp; &nbsp;<a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="${resource (dir:'images/icons', file:'icon_add.png')}"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="andere-toggler" targetId="andere-toggled"/>
               </jq:jquery>
@@ -253,7 +253,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
          <div class="profile-box">
           <div class="second">
-            <div class="header">Gruppen&nbsp; &nbsp;<a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src="/lernardo/images/icons/icon_add.png"></a></div>
+            <div class="header">Gruppen&nbsp; &nbsp;<a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src="${resource (dir:'images/icons', file:'icon_add.png')}"></a></div>
              <jq:jquery>
               <jq:toggle sourceId="gruppen-toggler" targetId="gruppen-toggled"/>
               </jq:jquery>

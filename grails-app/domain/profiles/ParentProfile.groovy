@@ -33,7 +33,7 @@ class ParentProfile extends Profile {
       fullName (blank: true)
       firstName (blank: false, size: 2..50)
       lastName (blank: false, size: 2..50)
-      currentCountry (size: 2..50)
+      currentCountry (size: 1..50)
       currentZip (size: 4..10)
       currentCity (size: 2..50)
       currentStreet (size: 2..50)
