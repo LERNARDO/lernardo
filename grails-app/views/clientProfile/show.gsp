@@ -54,7 +54,7 @@
           <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.interests') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
       </table>
-      <h4>Derzeitige Adresse</h4>
+      <h4><g:message code="client.profile.curAddress"/></h4>
         <div class="contact">
           <table>
             <g:if test="${colonia}">
@@ -90,7 +90,7 @@
             </tr>
           </table>
         </div>
-      <h4>Herkunft</h4>
+      <h4><g:message code="client.profile.origin"/></h4>
         <div class="contact">
           <table>
             <tr class="prop">
@@ -111,7 +111,7 @@
             </tr>
           </table>
         </div>
-      <h4>Weitere Daten</h4>
+      <h4><g:message code="client.profile.more"/></h4>
         <div class="contact">
           <table>
             <tr class="prop">

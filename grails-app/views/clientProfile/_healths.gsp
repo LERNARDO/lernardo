@@ -8,5 +8,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Gesundheitsaufzeichnungen eingetragen</span>
+  <span class="italic"><g:message code="client.profile.healthNotes.empty"/></span>
 </g:else>

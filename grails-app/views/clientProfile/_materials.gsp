@@ -8,5 +8,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Materialien erhalten</span>
+  <span class="italic"><g:message code="client.profile.materials.empty"/></span>
 </g:else>

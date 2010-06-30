@@ -10,6 +10,6 @@
 
 </g:if>
 <g:else>
-  <span class="italic">Keine Schulleistungen eingetragen</span>
+  <span class="italic"><g:message code="client.profile.schoolPerformance.empty"/></span>
 </g:else>
 
