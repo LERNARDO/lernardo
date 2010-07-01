@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Erziehungsberechtigten anlegen</title>
+  <title><g:message code="parent.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Erziehungsberechtigten anlegen</h1>
+    <h1><g:message code="parent.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -60,7 +60,7 @@
              <g:message code="parent.profile.languages"/>:
              </td>
               <td    valign="middle" class="name">
-             Kommentar:
+             <g:message code="parent.profile.desc"/>:
              </td>
              <td valign="middle" class="name">
              <g:message code="parent.profile.education"/>:
@@ -68,7 +68,14 @@
            </tr>
            <tr>
              <td valign="top" class="value">
-               <g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}" value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/>
+               %{-- }<g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}"
+                      value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/> --}%
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                 <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_es}" optionKey="key" optionValue="value"/>
+               </g:if>
+               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                 <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_de}" optionKey="key" optionValue="value"/>
+               </g:if>
             </td>
              <td valign="top" class="value">
                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">

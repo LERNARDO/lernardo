@@ -124,6 +124,16 @@ class HelperTagLib {
       out << grailsApplication.config.schoolLevels_es[level]
   }
 
+  // receives a  maritalStatus ID and renders either the german or spanish word for it
+  def getMaritalStatus = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")
+    int level = attrs.level.toInteger()
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config. maritalStatus_de[level]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config. maritalStatus_es[level]
+  }
+
   // receives a familyProblem ID and renders either the german or spanish word for it
   def getFamilyProblem = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale ("de", "DE")

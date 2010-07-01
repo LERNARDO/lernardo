@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${parent.profile.fullName}</title>
+  <title><g:message code="parent"/> - ${parent.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${parent.profile.fullName}</h1>
+    <h1><g:message code="parent"/> - ${parent.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -59,7 +59,8 @@
 		  </tr>
 		  <tr>
 			<td valign="top" class="value-show">
-             ${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">leer</div>'}
+             %{-- ${fieldValue(bean: parent, field: 'profile.maritalStatus') ?: '<div class="italic">leer</div>'} --}%
+              <app:getMaritalStatus level="${parent.profile.maritalStatus}"/>
 			</td>
 			<td valign="top" class="value-show" >
               <ul>

@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Pädagoge anlegen</title>
+  <title><g:message code="educator.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Pädagoge anlegen</h1>
+    <h1><g:message code="educator.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -141,7 +141,7 @@
 
           <tr class="prop">
           <td colspan="3" valign="middle" class="name">
-          Colonia:
+          <g:message code="educator.profile.colonia"/>:
           </td>
           </tr>
           <tr class="prop">
@@ -151,7 +151,7 @@
           </tr>
 		</table>
 				
-		<h4>Derzeitige Adresse</h4>
+		<h4><g:message code="educator.profile.curAddress"/></h4>
 		<div class="contact">
 		<table>
 		<tr>
@@ -195,7 +195,7 @@
 		</table>
 		</div>
 		
-		<h4>Herkunft</h4>
+		<h4><g:message code="educator.profile.origin"/></h4>
 		<div class="contact">
 		<table>
 		<tr>
@@ -245,7 +245,7 @@
 		</table>
 		</div>		
 		
-		<h4>Kontakt im Notfall</h4>
+		<h4><g:message code="educator.profile.emContact"/></h4>
 		<div class="contact">
 		<table>
 		<tr>

@@ -145,6 +145,8 @@ partner_de = [1:'Projekte, Arbeit',2:'Dienstleistungen',3:'Finanzierung',4:'Pers
 partner_es = [1:'en colaboración',2:'Prestadores de servicios',3:'Monetarios',4:'Personal (voluntarios)']
 familyRelation_de = [1:'Eltern',2:'Vater',3:'Mutter',4:'Andere']
 familyRelation_es = [1:'Padres',2:'Padre',3:'Madre',4:'Otros']
+maritalStatus_de = [1:'ledig',2:'verheiratet',3:'getrennt lebend',4:'geschieden',5:'verwitwet',6:'verpartnert',7:'unbekannt']
+maritalStatus_es = [1:'soltero',2:'casado',3:'separado',4:'ser divorciado',5:'viudo',6:'e_verpartnert',7:'desconocido']
 
 quotesMap = [0:'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              1:'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',
