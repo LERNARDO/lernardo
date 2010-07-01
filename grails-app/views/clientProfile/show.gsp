@@ -239,7 +239,6 @@
       </jq:jquery>
       <div class="zusatz-add" id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="hideform('#performances')">
-          <g:hiddenField name="type" value="performance" />
           <table>
             <tr>
               <td>Datum:</td>
@@ -268,7 +267,6 @@
       </jq:jquery>
       <div id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="hideform('#healths')">
-          <g:hiddenField name="type" value="health" />
           <table>
             <tr>
               <td>Datum:</td>
@@ -297,7 +295,6 @@
       </jq:jquery>
       <div id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="hideform('#materials')">
-          <g:hiddenField name="type" value="material" />
           <table>
             <tr>
               <td>Datum:</td>
@@ -327,7 +324,6 @@
       <div id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="hideform('#dates')">
           <g:datePicker name="date" value="" precision="day"/>
-          %{--<g:hiddenField name="type" value="${client.profile.dates.size() % 2 == 0 ? 'join' : 'end'}" />--}%
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>

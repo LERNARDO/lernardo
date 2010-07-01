@@ -2,14 +2,18 @@ package profiles
 
 import de.uenterprise.ep.Profile
 import lernardo.CDate
-import lernardo.Status
+import lernardo.Performances
+import lernardo.Materials
+import lernardo.Healths
 
 class ClientProfile extends Profile {
 
     SortedSet dates, status
     static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
                       dates: CDate, // added on 20.04.2010
-                      status: Status] // added on 20.04.2010
+                      materials: Materials,
+                      performances: Performances,
+                      healths: Healths] // added on 20.04.2010
 
     String firstName
     String lastName

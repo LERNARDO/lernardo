@@ -1,8 +1,7 @@
 package lernardo
 
-class Status implements Comparable {
+class Healths implements Comparable {
 
-    String type // performance, health or material
     String text
     Date date
 

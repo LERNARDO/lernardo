@@ -504,6 +504,11 @@ class HelperTagLib {
       out << body()
   }
 
+  def isMe = {attrs, body->
+    if (entityHelperService.loggedIn?.id == attrs.entity.id)
+      out << body()
+  }
+
   def notMe = {attrs, body->
     if (entityHelperService.loggedIn?.id != attrs.entity.id)
       out << body()

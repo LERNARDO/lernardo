@@ -88,31 +88,33 @@
             </jq:jquery>
             <div id="kommunikation-toggled">
               <div id="profile-pic">
-                <div class="name">
+                %{--<div class="name">
                   <div class="second">
                     ${entity.profile.fullName}
                   </div>
-                </div>
+                </div>--}%
                 <div id="picture">
                   %{--<div style="position: absolute; top: 45px; right: 62px"><g:link controller="asset" action="uploadprf"><img src="${resource (dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}"/></g:link></div>--}%
                   <div style=""><ub:profileImage name="${entity.name}" width="180" height="233"/></div>
                   <div class="clear"></div>
                 </div>
-                <div class="type" style="margin-top: -2px">
+                <div class="type" style="margin-top: -3px">
                   <div class="second">
                     ${entity.type.name}
                   </div>
                 </div>
               </div>
 
-              <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
+              %{--<app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">--}%
+              <app:isMe entity="${entity}">
                 <ul>
                   <li class="icon-person"><g:link controller="asset" action="uploadprf"><g:message code="privat.picture.change"/></g:link></li>
                 </ul>
-              </app:hasRoleOrType>
+              </app:isMe>
+              %{--</app:hasRoleOrType>--}%
 
               <ul>
-                <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}"><g:message code="privat.profile"/></g:link></li>
+                <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
                 <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link></li>
 
               %{--this concerns the entity we are currently looking at = entity --}%
@@ -134,7 +136,7 @@
                 <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                   <app:notMe entity="${entity}">
                     <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]">Nachricht senden</g:link></li>
-                    <app:isFriend entity="${entity}">
+                    %{--<app:isFriend entity="${entity}">
                       <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
                     </app:isFriend>
                     <app:notFriend entity="${entity}">
@@ -145,7 +147,7 @@
                     </app:isBookmark>
                     <app:notBookmark entity="${entity}">
                       <li class="profile-netzwerk"><g:link controller="profile" action="addBookmark" id="${entity.id}">Bookmark setzen</g:link></li>
-                    </app:notBookmark>
+                    </app:notBookmark>--}%
                   </app:notMe>
                 </app:hasRoleOrType>
               </ul>
@@ -154,7 +156,7 @@
         </div>
 
       %{--this concerns myself = currentEntity --}%
-        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
+        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
 
           <div class="profile-box">
             <div class="second">
@@ -181,7 +183,7 @@
         </app:hasRoleOrType>
 
 
-        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
+        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
 
@@ -203,7 +205,7 @@
           </div>
         </app:hasRoleOrType>
 
-        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
+        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
 
@@ -231,7 +233,7 @@
           </div>
         </app:hasRoleOrType>
 
-        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
+        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
 
@@ -259,7 +261,7 @@
           </div>
         </app:hasRoleOrType>
 
-        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="true">
+        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
 

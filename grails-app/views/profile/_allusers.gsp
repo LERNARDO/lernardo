@@ -2,7 +2,7 @@
     <g:render template="glossary" model="[glossary: glossary]"/>
 
     <g:if test="${entities.size() == 0}">
-      Keine Mitglieder gefunden!
+      Keine Einträge gefunden!
     </g:if>
     <g:each in="${entities}" var="entity">
       <div class="member">
