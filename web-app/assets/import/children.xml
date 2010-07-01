@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<children>
+  <child>
+    <firstname>vorname</firstname>
+    <lastname>nachname</lastname>
+    <birthdate>22.02.1982</birthdate>
+    <gender>1</gender>
+    <job>false</job>
+    <jobtype>1</jobtype>
+    <jobincome>1000</jobincome>
+    <jobfrequency>häufigkeit</jobfrequency>
+    <email>testxml@xml.com</email>
+    <status>false</status>
+  </child>
+</children>

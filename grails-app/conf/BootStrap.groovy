@@ -28,6 +28,9 @@ import lernardo.Method
 import lernardo.Element
 import de.uenterprise.ep.Profile
 import lernardo.Comment
+import org.springframework.core.io.Resource
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import standard.InterfaceMaintenanceService
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -35,6 +38,7 @@ class BootStrap {
   MetaDataService metaDataService
   FunctionService functionService
   ProfileHelperService profileHelperService
+  InterfaceMaintenanceService interfaceMaintenanceService
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
@@ -45,6 +49,8 @@ class BootStrap {
       createDefaultEducators()
 
       //createDefaultLinks()
+
+      importChildren()
 
       if (GrailsUtil.environment == "development") {
         createDefaultActivityTemplates()
@@ -73,6 +79,17 @@ class BootStrap {
   }
 
   def destroy = {
+  }
+
+  void importChildren() {
+    Resource children_xml = ApplicationHolder.application.parentContext.getResource("assets/import/children.xml")
+    if (children_xml.exists()) {
+      log.debug "$children_xml.description found. bootstrapping children"
+      interfaceMaintenanceService.importChildren(children_xml.inputStream)
+    }
+    else {
+      log.warn("children input xml at $children_xml.description not found. no children are bootstrapped")
+    }
   }
 
   void createDefaultUsers() {
