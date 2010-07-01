@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Erziehungsberechtigte</title>
+  <title><g:message code="parents"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Erziehungsberechtigte</h1>
+    <h1><g:message code="parents"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${parentTotal} Erziehungsberechtigte(r) insgesamt vorhanden</p>
+    <p>${parentTotal} <g:message code="parent.profile.c_total"/></p>
     <g:if test="${parentTotal > 0}">
       <div id="body-list">
         <table>
@@ -38,7 +38,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neuen Erziehungsberechtigten anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="parent.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>

@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Pädagogen</title>
+  <title><g:message code="educators"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Pädagogen</h1>
+    <h1><g:message code="educators"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${educatorTotal} Pädagoge(n) insgesamt vorhanden</p>
+    <p>${educatorTotal} <g:message code="educator.profile.c_total"/></p>
     <g:if test="${educatorTotal > 0}">
       <div id="body-list">
         <table>
@@ -37,7 +37,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neuen Pädagogen anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="educator.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>
