@@ -6,10 +6,12 @@ import de.uenterprise.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import de.uenterprise.ep.EntityHelperService
 import org.grails.plugins.springsecurity.service.AuthenticateService
-import lernardo.Status
+import lernardo.Materials
 import standard.MetaDataService
 import standard.FunctionService
 import lernardo.CDate
+import lernardo.Performances
+import lernardo.Healths
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -161,42 +163,42 @@ class ClientProfileController {
   }
 
   def addPerformance = {
-    Status status = new Status(params)
+    Performances performance = new Performances(params)
     Entity client = Entity.get(params.id)
-    client.profile.addToStatus(status)
-    render template: 'performances', model: [client: client, entity: entityHelperService.loggedIn]
+    client.profile.addToPerformances(performance)
+    render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
   }
 
   def removePerformance = {
     Entity client = Entity.get(params.id)
-    client.profile.removeFromStatus(Status.get(params.performance))
-    render template: 'performances', model: [client: client, entity: entityHelperService.loggedIn]
+    client.profile.removeFromPerformances(Performances.get(params.performance))
+    render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
   }
 
   def addHealth = {
-    Status status = new Status(params)
+    Healths health = new Healths(params)
     Entity client = Entity.get(params.id)
-    client.profile.addToStatus(status)
-    render template: 'healths', model: [client: client, entity: entityHelperService.loggedIn]
+    client.profile.addToHealths(health)
+    render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
   }
 
   def removeHealth = {
     Entity client = Entity.get(params.id)
-    client.profile.removeFromStatus(Status.get(params.health))
-    render template: 'healths', model: [client: client, entity: entityHelperService.loggedIn]
+    client.profile.removeFromHealths(Healths.get(params.health))
+    render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
   }
 
   def addMaterial = {
-    Status status = new Status(params)
+    Materials material = new Materials(params)
     Entity client = Entity.get(params.id)
-    client.profile.addToStatus(status)
-    render template: 'materials', model: [client: client, entity: entityHelperService.loggedIn]
+    client.profile.addToMaterials(material)
+    render template: 'materials', model: [client: client, currentEntity: entityHelperService.loggedIn]
   }
 
   def removeMaterial = {
     Entity client = Entity.get(params.id)
-    client.profile.removeFromStatus(Status.get(params.material))
-    render template: 'materials', model: [client: client, entity: entityHelperService.loggedIn]
+    client.profile.removeFromMaterials(Materials.get(params.material))
+    render template: 'materials', model: [client: client, currentEntity: entityHelperService.loggedIn]
   }
 
   def addDate = {

@@ -22,7 +22,7 @@ environments {
 	}
 	test {
 		dataSource {
-            dbCreate = "update"
+            dbCreate = "create-drop"
             //url = "jdbc:postgresql://lab.uenterprise.de:5432/lernardo"
             url = "jdbc:postgresql://localhost:5432/lernardo"
             loggingSql = false

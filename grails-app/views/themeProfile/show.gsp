@@ -88,7 +88,7 @@
 
     <g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
       <div class="zusatz">
-        <h5>Subthemen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-subthemes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:isMeOrAdmin></h5>
+        <h5>Subthemen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a href="#" id="show-subthemes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:hasRoleOrType></h5>
         <jq:jquery>
           <jq:toggle sourceId="show-subthemes" targetId="subthemes"/>
         </jq:jquery>
