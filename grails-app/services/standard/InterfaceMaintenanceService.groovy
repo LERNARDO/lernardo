@@ -40,7 +40,7 @@ class InterfaceMaintenanceService {
           ChildProfile prf = (ChildProfile)ent.profile
           prf.firstName = child.firstname.text()
           prf.lastName = child.lastname.text()
-          SimpleDateFormat sdfToDate = new SimpleDateFormat("dd.MM.yyyy");
+          SimpleDateFormat sdfToDate = new SimpleDateFormat("yyyy-MM-dd");
           prf.birthDate = sdfToDate.parse(child.birthdate.text());
           prf.gender = child.gender.toInteger()
           prf.job = child.job.toBoolean()
