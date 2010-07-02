@@ -3,6 +3,7 @@ package standard
 import de.uenterprise.ep.Entity
 import lernardo.Msg
 import de.uenterprise.ep.EntityHelperService
+import de.uenterprise.ep.EntityType
 
 class FilterService {
   EntityHelperService entityHelperService
@@ -80,4 +81,19 @@ class FilterService {
     return results
   }
 
+  def findUsers (String name, EntityType type) {
+    def c = Entity.createCriteria()
+    def results = c.list {
+      if (type != 'all')
+        eq('type', type)
+      or {
+        ilike('name',"%"+name+"%")
+        profile {
+          ilike('fullName',"%"+name+"%")
+        }
+      }
+      maxResults(15)
+    }
+    return results
+  }
 }

@@ -264,19 +264,19 @@ class ProfileController {
 
     def searchMe = {
       if (!params.name) {
-        render "Bitte einen Namen eingeben!"
+        render ""
         return
       }
       List searchList = filterService.findUsers(params.name)
       if (searchList.size() == 0) {
-        render "Keine Ergebnisse gefunden!"
+        render '<span class="italic">Keine Ergebnisse gefunden!</span>'
         return
       }
       else {
         render(template:'searchresults', model:[searchList: searchList])
       }
     }
-
+ 
     def showNews = {
       Entity entity = Entity.get(params.id)
       return ['entity': entity,

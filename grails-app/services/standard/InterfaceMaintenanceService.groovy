@@ -17,13 +17,13 @@ class InterfaceMaintenanceService {
 
     def importChildren(def source, boolean fullLoad = false) {
 
-      log.debug("==> importing children")
+      log.info("==> importing children")
 
       // Basic stuff each entity will use
       EntityType etChild = metaDataService.etChild
   
       def children = new XmlSlurper().parse(source)
-      log.debug("reading ${children.child.size()} children from xml");
+      log.info("reading ${children.child.size()} children from xml");
 
       def isDevEnv = Environment.current == Environment.DEVELOPMENT
 
@@ -55,7 +55,7 @@ class InterfaceMaintenanceService {
           ent.save()
         //}
         //if (n % 500 == 0)
-          log.debug(n)
+          log.info(n)
       }
     }
 }

@@ -407,7 +407,7 @@ class HelperTagLib {
 
   def active = {attrs ->
     if (attrs.glossary == attrs.letter)
-      out << '<span style="background: #567EC6; padding: 1px 3px; color: #fff;">' << attrs.letter << '</span>'
+      out << '<span style="background: #050; padding: 1px 3px; color: #fff;">' << attrs.letter << '</span>'
     else
       out << attrs.letter
   }

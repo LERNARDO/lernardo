@@ -40,11 +40,11 @@
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
       <div class="zusatz-add" id="clients" style="display:none">
+        Betreute eingrenzen: <g:remoteField name="instantSearch" update="clientselect" paramName="name" url="[controller:'groupClientProfile', action:'updateselect']" />
         <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="hideform('#clients')">
-          <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <div id="clientselect">
+            <g:render template="searchbox" model="[allClients: allClients]"/>
+          </div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="clients2">

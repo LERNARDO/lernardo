@@ -8,12 +8,14 @@ import de.uenterprise.ep.EntityHelperService
 import standard.MetaDataService
 import de.uenterprise.ep.Profile
 import standard.FunctionService
+import standard.FilterService
 
 class GroupClientProfileController {
     MetaDataService metaDataService
     EntityHelperService entityHelperService
     ProfileHelperService profileHelperService
     FunctionService functionService
+    FilterService filterService
 
     def index = {
         redirect action:"list", params:params
@@ -129,6 +131,14 @@ class GroupClientProfileController {
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
     render template:'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def updateselect = {
+    def allClients = Entity.findAllByType(metaDataService.etClient)
+    if (params.name) {
+      allClients = filterService.findUsers(params.name, metaDataService.etClient)
+    }
+    render(template:'searchbox', model:[allClients: allClients])
   }
 
 }

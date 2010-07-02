@@ -3,7 +3,7 @@
   <child>
     <firstname>vorname</firstname>
     <lastname>nachname</lastname>
-    <birthdate>22.02.1982</birthdate>
+    <birthdate>1982-02-22</birthdate>
     <gender>1</gender>
     <job>false</job>
     <jobtype>1</jobtype>
@@ -15,7 +15,7 @@
   <child>
     <firstname>vorname2</firstname>
     <lastname>nachname2</lastname>
-    <birthdate>22.02.1982</birthdate>
+    <birthdate>1982-02-22</birthdate>
     <gender>2</gender>
     <job>true</job>
     <jobtype>2</jobtype>
