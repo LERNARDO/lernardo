@@ -31,6 +31,9 @@ import lernardo.Comment
 import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import standard.InterfaceMaintenanceService
+import at.openfactory.ep.attr.DynAttrSet
+import at.openfactory.ep.attr.DynAttr
+import at.openfactory.ep.LinkHelperService
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -39,6 +42,7 @@ class BootStrap {
   FunctionService functionService
   ProfileHelperService profileHelperService
   InterfaceMaintenanceService interfaceMaintenanceService
+  LinkHelperService linkHelperService
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
@@ -48,7 +52,7 @@ class BootStrap {
       createDefaultFacilities()
       createDefaultEducators()
 
-      //createDefaultLinks()
+      createDefaultLinks()
 
       importChildren()
 
@@ -358,9 +362,18 @@ class BootStrap {
       }
     }
 
-    // friend links
-    new Link(source:alex, target:patrizia, type:metaDataService.ltFriendship).save()
+    // friend links - make alex the initiator via dynamic link attribute
+    Link liap = linkHelperService.createLink(alex, patrizia, metaDataService.ltFriendship) {link, dad->
+      dad.initiator = "true"
+    }
+    // back link does not (necessarily) has a dynattr
     new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
+
+    // here's how we would ask for the a dynattr (given the link)
+    if (liap.das.initiator) {
+      println "$liap.source.name has initiated the relationship"
+    }
+
   }
 
   void createDefaultActivityTemplates() {
