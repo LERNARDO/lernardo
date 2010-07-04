@@ -2,9 +2,9 @@ package standard
 
 import at.openfactory.ep.Entity
 import lernardo.Event
-import de.uenterprise.ep.Link
-import de.uenterprise.ep.EntityHelperService
-import de.uenterprise.ep.LinkType
+import at.openfactory.ep.Link
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.LinkType
 
 class FunctionService {
   MetaDataService metaDataService

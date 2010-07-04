@@ -8,8 +8,9 @@ import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import lernardo.Contact
 import lernardo.Building
-import de.uenterprise.ep.Profile
+import at.openfactory.ep.Profile
 import standard.FunctionService
+import at.openfactory.ep.EntityException
 
 class GroupColonyProfileController {
     MetaDataService metaDataService
@@ -135,7 +136,7 @@ class GroupColonyProfileController {
 
         flash.message = message(code:"group.created", args:[entity.profile.fullName])
         redirect action:'list'
-      } catch (de.uenterprise.ep.EntityException ee) {
+      } catch (EntityException ee) {
         render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn])
         return
       }

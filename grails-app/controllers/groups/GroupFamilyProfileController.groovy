@@ -8,6 +8,7 @@ import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import at.openfactory.ep.Profile
 import standard.FunctionService
+import at.openfactory.ep.EntityException
 
 class GroupFamilyProfileController {
   MetaDataService metaDataService
@@ -131,7 +132,7 @@ class GroupFamilyProfileController {
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
       redirect action: 'list'
-    } catch (de.uenterprise.ep.EntityException ee) {
+    } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn])
       return
     }

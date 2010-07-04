@@ -1,4 +1,4 @@
-<%@ page import="de.uenterprise.ep.Entity" %>
+<%@ page import="at.openfactory.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
   <title>Lernardo Aktivitätsvorlagen</title>

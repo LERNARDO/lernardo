@@ -1,22 +1,21 @@
 package profiles
 
-import de.uenterprise.ep.Entity
-import de.uenterprise.ep.EntityType
-import de.uenterprise.ep.Link
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
-import de.uenterprise.ep.EntityHelperService
-import org.grails.plugins.springsecurity.service.AuthenticateService
+import at.openfactory.ep.EntityHelperService
 import lernardo.Materials
 import standard.MetaDataService
 import standard.FunctionService
 import lernardo.CDate
 import lernardo.Performances
 import lernardo.Healths
+import at.openfactory.ep.EntityException
 
 class ClientProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
-  AuthenticateService authenticateService
   FunctionService functionService
 
   def index = {
@@ -140,7 +139,7 @@ class ClientProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
-        ent.user.password = authenticateService.encodePassword("pass")
+        ent.user.password = securityManager.encodePassword("pass")
       }
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
@@ -152,7 +151,7 @@ class ClientProfileController {
 
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
       redirect action: 'list'
-    } catch (de.uenterprise.ep.EntityException ee) {
+    } catch (EntityException ee) {
       render(view: "create", model: [client: ee.entity,
               entity: entityHelperService.loggedIn,
               allColonias: Entity.findAllByType(metaDataService.etGroupColony),

@@ -9,6 +9,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import java.text.SimpleDateFormat
 import standard.FunctionService
+import at.openfactory.ep.EntityException
 
 class ProjectProfileController {
   MetaDataService metaDataService
@@ -237,7 +238,7 @@ class ProjectProfileController {
 
       redirect action: 'list'
 
-    } catch (de.uenterprise.ep.EntityException ee) {
+    } catch (EntityException ee) {
 
       render(view: "create", model: [project: ee.entity, entity: entityHelperService.loggedIn])
       return
