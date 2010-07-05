@@ -17,7 +17,7 @@ environments {
 			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
             url =      "jdbc:postgresql://localhost:5432/lernardo"
             loggingSql = false
-            hibernate.default_schema = 'dev_v2'
+            hibernate.default_schema = 'dev'
 		}
 	}
 	test {
