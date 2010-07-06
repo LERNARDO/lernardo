@@ -45,7 +45,7 @@ class AppController {
           sendMail {
             to      "${user.email}"
             subject "Lernardo - Dein Passwort"
-            html    g.render(template:'passwordMail', model:[entity:e,password:pass])
+            html    g.render(template:'passwordemail', model:[entity:e,password:pass])
           }
         } catch(Exception ex) {
           log.error "Problem sending email $ex.message", ex
