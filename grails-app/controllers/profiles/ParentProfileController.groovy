@@ -108,7 +108,7 @@ class ParentProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
-        ent.user.password = DefaultSecurityManager.encodePassword("pass")
+        ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

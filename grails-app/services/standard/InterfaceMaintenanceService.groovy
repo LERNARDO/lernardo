@@ -11,6 +11,7 @@ class InterfaceMaintenanceService {
     MetaDataService metaDataService
     def securityManager
     FunctionService functionService
+    def grailsApplication 
 
     boolean transactional = true
 
@@ -32,7 +33,7 @@ class InterfaceMaintenanceService {
         //if (fullLoad || Environment.current != Environment.DEVELOPMENT || n < 300) {
 
           def ent = new Entity(name: functionService.createNick("${child.firstname.text()}","${child.lastname.text()}"), type: etChild)
-          ent.user = new Account(email: "${child.email.text()}", password: securityManager.encodePassword("pass"), enabled: child.status.toBoolean())
+          ent.user = new Account(email: "${child.email.text()}", password: securityManager.encodePassword(grailsApplication.config.defaultpass), enabled: child.status.toBoolean())
           ent.profile = new ChildProfile()
           ent.profile.fullName = "${child.firstname.text()} ${child.lastname.text()}"
 
