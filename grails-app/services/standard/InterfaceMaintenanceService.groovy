@@ -25,7 +25,7 @@ class InterfaceMaintenanceService {
       def children = new XmlSlurper().parse(source)
       log.info("reading ${children.child.size()} children from xml");
 
-      def isDevEnv = Environment.current == Environment.DEVELOPMENT
+      // def isDevEnv = Environment.current == Environment.DEVELOPMENT
 
       children.child.eachWithIndex {child, n ->
 
