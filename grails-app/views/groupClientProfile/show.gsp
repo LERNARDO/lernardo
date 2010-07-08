@@ -42,7 +42,7 @@
       </jq:jquery>
       <div class="zusatz-add" id="clients" style="display:none">
 
-      Die Betreuten können nach folgenden Merkmalen eingegrenzt werden:<br/>
+      Die Betreuten können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)<br/>
         <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect">
 
           <table>

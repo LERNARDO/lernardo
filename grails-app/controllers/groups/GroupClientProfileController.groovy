@@ -177,7 +177,7 @@ class GroupClientProfileController {
         if (params.birthDate1 != 'all')
           between('birthDate', params.birthDate1, params.birthDate2)
       }
-      maxResults(15)
+      maxResults(30)
     }
 
     render(template:'searchresults', model:[allClients: allClients])
