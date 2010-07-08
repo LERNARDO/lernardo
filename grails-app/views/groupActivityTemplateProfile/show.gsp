@@ -84,12 +84,85 @@
         <jq:toggle sourceId="show-templates" targetId="templates"/>
       </jq:jquery>
       <div class="zusatz-add" id="templates" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2" before="hideform('#templates')">
-          <g:select name="template" from="${allTemplates}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
+        Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)<br/>
+        <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect">
+
+          <table>
+            <tr>
+              <td>Name:</td>
+              <td><g:textField name="name" /></td>
+            </tr>
+            <tr>
+              <td>Dauer:</td>
+              <td>zwischen <g:select from="${1..240}" name="duration1" noSelection="['all':'Alle']"/> bis <g:select from="${1..240}" name="duration2" noSelection="['all':'Alle']"/> (min)</td>
+            </tr>
+            <tr>
+              <td>Methode:</td>
+              <td>
+                Typ: <g:select name="method" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements', params:'\'id=\' + this.value')}"/>
+
+                <div id="elements"></div>
+                
+              </td>
+            </tr>
+          </table>
+
+          <script type="text/javascript">
+
+            function kontrolle2() {
+
+              var selector1 = document.getElementById("selector1");
+              if (selector1)
+                document.getElementById("hidden").removeChild(selector1);
+              var selector2 = document.getElementById("selector2");
+              if (selector2)
+                document.getElementById("hidden").removeChild(selector2);
+
+              var wme1 = document.createElement("select");
+              wme.id = "selector1";
+              wme.name = "star1";
+              wme.multiple = true;
+
+              var wme2 = document.createElement("select");
+              wme.id = "selector2";
+              wme.name = "star2";
+              wme.multiple = true;
+
+              var checked = new Array();
+                for (var zaehler = 0; zaehler < (document.getElementsByName("star1").length); zaehler++) {
+
+                   var optn1 = document.createElement("OPTION");
+                   optn.text = document.getElementsByName("star1")[zaehler].value;
+                   optn.value = document.getElementsByName("star1")[zaehler].key;
+                   optn.selected = true;
+                   wme1.options.add(optn1);
+
+                   var optn2 = document.createElement("OPTION");
+                   optn.text = document.getElementsByName("star2")[zaehler].value;
+                   optn.value = document.getElementsByName("star2")[zaehler].key;
+                   optn.selected = true;
+                   wme2.options.add(optn2);
+
+              }
+
+              document.getElementById("hidden").appendChild(wme1);
+              document.getElementById("hidden").appendChild(wme2);
+            }
+
+            </script>
+
+            <div id="hidden" style="display: none"></div>
+
+          <g:submitButton onclick="kontrolle2();" name="button" value="Eingrenzen"/>
           <div class="spacer"></div>
         </g:formRemote>
+
+        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2">
+          <div id="templateselect">
+            <g:render template="searchresults" model="[allTemplates: allTemplates]"/>
+          </div>
+        </g:formRemote>
+
       </div>
       <div class="zusatz-show" id="templates2">
         <g:render template="templates" model="[group: group, entity: entity, templates: templates]"/>

@@ -123,7 +123,6 @@ class GroupClientProfileController {
     }
 
   def addClient = {
-    println params
     def bla = functionService.getParamAsList(params.members)
 
     bla.each {

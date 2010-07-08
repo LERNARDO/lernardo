@@ -2,6 +2,7 @@ package lernardo
 
 class Method {
 
+    SortedSet elements
     static hasMany = [elements: Element]
 
     String name

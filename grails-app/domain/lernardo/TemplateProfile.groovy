@@ -12,7 +12,7 @@ class TemplateProfile extends Profile {
   String chosenMaterials // added on 30.04.2010
   String socialForm
   String amountEducators // added on 30.04.2010
-  String status // added on 30.04.2010
+  String status // added on 30.04.2010       
   Integer duration
   String type // added on 29.06.2010
 

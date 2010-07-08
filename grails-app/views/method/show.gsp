@@ -42,7 +42,7 @@
     %{--</app:isMeOrAdmin>--}%
 
     <div class="zusatz">
-      <h5>Elemente <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-elements"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Elemente <app:isOperator entity="${currentEntity}"><a href="#" id="show-elements"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></app:isOperator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-elements" targetId="elements"/>
       </jq:jquery>

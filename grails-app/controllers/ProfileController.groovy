@@ -46,7 +46,7 @@ class ProfileController {
        allPartners: Entity.countByType(metaDataService.etPartner),
        allFacilities: Entity.countByType(metaDataService.etFacility),
        allResources: Entity.countByType(metaDataService.etResource),
-       allMethods: Method.count(),
+       allMethods: Method.countByType("template"),
        allThemes: Entity.countByType(metaDataService.etTheme),
        allColonias: Entity.countByType(metaDataService.etGroupColony),
        allFamilies: Entity.countByType(metaDataService.etGroupFamily),

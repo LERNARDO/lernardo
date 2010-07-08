@@ -8,7 +8,7 @@ import lernardo.Healths
 
 class ClientProfile extends Profile {
 
-    SortedSet dates, status
+    SortedSet dates, materials, performances, healths
     static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
                       dates: CDate, // added on 20.04.2010
                       materials: Materials,

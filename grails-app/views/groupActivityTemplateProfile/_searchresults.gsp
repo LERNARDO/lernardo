@@ -1,21 +1,7 @@
-<g:if test="${allClients}">
+<g:if test="${allTemplates}">
 
-  <g:each in="${allClients}" var="searchInstance">
-    <div class="member">
-
-      <div class="member-pic">
-        <g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">
-          <ub:profileImage name="${searchInstance.name}" width="50" height="50" align="left"/>
-        </g:link>
-      </div>
-
-      <div class="member-info">
-        <div class="member-name"><g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">${searchInstance.profile.fullName}</g:link></div>
-        <div class="member-uni">${searchInstance.type.name}</div>
-        <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" />
-      </div>
-
-    </div>
+  <g:each in="${allTemplates}" var="searchInstance">
+    <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" /> <g:link controller="templateProfile" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link><br/>
   </g:each>
   <div class="spacer"></div>
 
@@ -28,8 +14,8 @@
       document.getElementById("hidden").removeChild(selector);
 
     var wme = document.createElement("select");
-    wme.id = "selector";
-    wme.name = "members";
+    wme.id = "selector"
+    wme.name = "templates";
     wme.multiple = true;
 
     var checked = new Array();
