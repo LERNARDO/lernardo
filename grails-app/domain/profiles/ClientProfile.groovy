@@ -19,7 +19,7 @@ class ClientProfile extends Profile {
     String lastName
     String interests
     Date birthDate
-    Byte gender
+    Integer gender
     Integer size // added on 20.04.2010
     Integer weight // added on 20.04.2010
 
