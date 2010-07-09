@@ -47,7 +47,7 @@
 
         <tr>
           <td colspan="2" valign="top" class="value">
-            <g:textField class="${hasErrors(bean:template,field:'profile.fullName','errors')}" size="51" id="fullName" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
+            <g:textField class="countable${template.profile.constraints.fullName.maxSize} ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="51" id="fullName" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
           </td>
           <td valign="top" class="value">
             <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="20" id="duration" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (in Minuten)

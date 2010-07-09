@@ -22,11 +22,11 @@ class PateProfile extends Profile {
   
   static constraints = {
     fullName (blank: true)
-    firstName (blank: false, size: 2..50)
-    lastName (blank: false, size: 2..50)
+    firstName (blank: false, size: 2..50, maxSize: 50)
+    lastName (blank: false, size: 2..50, maxSize: 50)
     zip (size: 4..10)
-    city (size: 2..50)
-    street (size: 2..50)
+    city (size: 2..50, maxSize: 50)
+    street (size: 2..50, maxSize: 50)
   }
 
   String toString(){

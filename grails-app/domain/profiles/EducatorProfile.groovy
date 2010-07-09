@@ -49,8 +49,8 @@ class EducatorProfile extends Profile {
     static constraints = {
       fullName (blank: true)
       title (blank: true, maxSize: 50)
-      firstName (blank: false, size: 2..50)
-      lastName (blank: false, size: 2..50)
+      firstName (blank: false, size: 2..50, maxSize: 50)
+      lastName (blank: false, size: 2..50, maxSize: 50)
       education (blank: true, maxSize: 10000)
       interests (blank: true, maxSize: 1000)
       currentCountry (size: 1..50)

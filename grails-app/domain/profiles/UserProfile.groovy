@@ -12,8 +12,8 @@ class UserProfile extends Profile {
 
     static constraints = {
       fullName (blank: true)
-      firstName (blank: false)
-      lastName (blank: false)
+      firstName (blank: false, maxSize: 50)
+      lastName (blank: false, maxSize: 50)
     }
 
     String toString(){

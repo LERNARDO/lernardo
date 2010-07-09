@@ -34,11 +34,11 @@
           </tr>
         <tr class="prop">
             <td width="440" valign="top" class="value">
-              <g:textField class=" ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
             </td>
 
             <td width="440" valign="top" class="value">
-              <g:textField class="${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
       </table>

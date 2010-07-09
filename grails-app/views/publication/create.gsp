@@ -27,7 +27,7 @@
 
         <div class="text-field ${hasErrors(bean: publication, field: 'name', 'errors')}">
           <label for="name">Titel:</label><br />
-          <g:textField id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
+          <g:textField class="countable${publication.constraints.name.maxSize}" id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
         </div>
 
         %{--TODO: figure out how to make this box red on validation error--}%

@@ -45,10 +45,10 @@
           </tr>
           <tr>
             <td width="180" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
+              <g:textField class="countable${pate.profile.constraints.firstName.maxSize} ${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25" id="firstName" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
             </td>
             <td width="210" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
+              <g:textField class="countable${pate.profile.constraints.lastName.maxSize} ${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" id="lastName" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
@@ -98,10 +98,10 @@
               <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
             </td>
             <td width="215" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
+              <g:textField class="countable${pate.profile.constraints.city.maxSize} ${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
             </td>
             <td width="295" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
+              <g:textField class="countable${pate.profile.constraints.street.maxSize} ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
             <td width="210" height="35" valign="middle" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">

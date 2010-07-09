@@ -99,7 +99,6 @@ class UserProfileController {
 
     def save = {
       EntityType etUser = metaDataService.etUser
-      println params
 
       try {
         Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etUser, params.email, params.lastName + " " + params.firstName) {Entity ent ->

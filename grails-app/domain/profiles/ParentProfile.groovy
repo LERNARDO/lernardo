@@ -31,8 +31,8 @@ class ParentProfile extends Profile {
 
     static constraints = {
       fullName (blank: true)
-      firstName (blank: false, size: 2..50)
-      lastName (blank: false, size: 2..50)
+      firstName (blank: false, size: 2..50, maxSize: 50)
+      lastName (blank: false, size: 2..50, maxSize: 50)
       currentCountry (size: 1..50)
       currentZip (size: 4..10)
       currentCity (size: 2..50)

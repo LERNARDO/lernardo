@@ -11,7 +11,7 @@ class ProjectProfile extends Profile {
     Date endDate
 
     static constraints = {
-      fullName (blank: false)
+      fullName (blank: false, maxSize: 50)
     }
 
     String toString(){

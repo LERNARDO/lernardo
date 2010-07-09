@@ -36,7 +36,7 @@
             </tr>
             <tr>
             <td width="650px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="100" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName')}"/>
+              <g:textField class="countable${projectTemplate.profile.constraints.fullName.maxSize} ${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="100" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName')}"/>
             </td>
               <td valign="top" class="value">
               <g:select from="${['fertig','in Bearbeitung']}" id="status" name="status" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}"/>
@@ -51,7 +51,7 @@
           </tr>
             <tr>
             <td colspan="2" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: projectTemplate, field: 'profile.description', 'errors')}" rows="5" cols="125" name="description" value="${fieldValue(bean: projectTemplate, field: 'profile.description')}"/>
+              <g:textArea class="countable${projectTemplate.profile.constraints.description.maxSize} ${hasErrors(bean: projectTemplate, field: 'profile.description', 'errors')}" rows="5" cols="125" name="description" value="${fieldValue(bean: projectTemplate, field: 'profile.description')}"/>
             </td>
           </tr>
           </tbody>

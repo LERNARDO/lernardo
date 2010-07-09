@@ -35,7 +35,7 @@
 
           <tr class="prop">
             <td width="540" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}" size="80" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
+              <g:textField class="countable50 ${hasErrors(bean: resource, field: 'profile.fullName', 'errors')}" size="80" id="fullName" name="fullName" value="${fieldValue(bean: resource, field: 'profile.fullName')}"/>
             </td>
               <td width="340" valign="top" class="value">
               <g:select class="drop-down-240" name="type" from="${['verbrauchbar','vorzusehend']}" value="${fieldValue(bean:resource,field:'profile.type')}" />
@@ -51,7 +51,7 @@
             </tr>
             <tr>
               <td colspan="2"  valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: resource, field: 'profile.description', 'errors')}" id="description" rows="1" cols="120" name="description" value="${fieldValue(bean: resource, field: 'profile.description')}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: resource, field: 'profile.description', 'errors')}" id="description" rows="3" cols="120" name="description" value="${fieldValue(bean: resource, field: 'profile.description')}"/>
             </td>
           </tr>
 
