@@ -75,7 +75,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
         }
 
@@ -131,7 +130,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
           ne("type", metaDataService.etGroupActivity)
           ne("type", metaDataService.etGroupActivityTemplate)
@@ -157,7 +155,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
           ne("type", metaDataService.etGroupActivity)
           ne("type", metaDataService.etGroupActivityTemplate)

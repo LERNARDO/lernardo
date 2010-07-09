@@ -28,7 +28,7 @@
             </td>
             <td valign="top" class="name">
             <label for="realDuration">
-              <g:message code="groupActivityTemplate.profile.realDuration"/>
+              <g:message code="groupActivityTemplate.profile.realDuration"/> (min)
             </label>
            </td>
            <td valign="top" class="name">
@@ -39,7 +39,7 @@
            </tr>
            <tr>
             <td width="500px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="75" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="75" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="170px" valign="top" class="value">
              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
@@ -58,7 +58,7 @@
             </tr>
             <tr>
             <td colspan="3" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
