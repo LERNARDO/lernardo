@@ -32,7 +32,7 @@
     </table>
     <div class="buttons">
       <g:form>
-        <input type="hidden" name="id" value="${msgInstance?.id}"/>
+        <g:hiddenField name="id" value="${msgInstance?.id}"/>
         %{--reply is only possible when sender account is enabled--}%
         <app:isEnabled entity="${msgInstance.sender}">
           <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id]">Antworten</g:link>

@@ -53,11 +53,11 @@
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
             <td width="200" valign="top" class="value ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}">
-              <input class="countable${client.profile.constraints.firstName.maxSize}" type="text" size="25" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
+              <g:textField class="countable${client.profile.constraints.firstName.maxSize}" size="25" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
             </td>
 
             <td width="270" valign="top" class="value ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}">
-              <input class="countable${client.profile.constraints.lastName.maxSize}" type="text" size="38" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
+              <g:textField class="countable${client.profile.constraints.lastName.maxSize}" size="38" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
             </td>
             <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
               <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>

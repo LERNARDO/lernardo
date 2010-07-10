@@ -16,7 +16,7 @@
       </div>
     </g:hasErrors>
     <g:form method="post" id="${project.id}">
-      <input type="hidden" name="version" value="${project?.version}"/>
+      <g:hiddenField name="version" value="${project?.version}"/>
       <div class="dialog">
         <table>
           <tbody>

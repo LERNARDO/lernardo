@@ -23,179 +23,196 @@
       <div class="dialog">
 
         <table>
-    <tbody>
+          <tbody>
 
-		<tr class="prop"> <!-- Prompt-->
-			<td valign="top" class="name">
-              <label for="gender">
-                <g:message code="client.profile.gender"/>
-              </label>
-            </td>
+		    <tr class="prop"> <!-- Prompt-->
+			  <td valign="top" class="name">
+                <label for="gender">
+                  <g:message code="client.profile.gender"/>
+                </label>
+              </td>
 
+              <td valign="top" class="name">
+                <label for="firstName">
+                  <g:message code="client.profile.firstName"/>
+                </label>
+              </td>
 
-			<td valign="top" class="name">
-				<label for="firstName">
-                <g:message code="client.profile.firstName"/>
-				</label></td>
+              <td valign="top" class="name">
+                <label for="lastName">
+                  <g:message code="client.profile.lastName"/>
+                </label>
+              </td>
 
-            <td valign="top" class="name">
-              <label for="lastName">
-                <g:message code="client.profile.lastName"/>
-              </label>
-            </td>
-            <td  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
-			<label for="birthDate">
-                <g:message code="client.profile.birthDate"/>
-              </label>
-            </td>
+              <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
+                <label for="birthDate">
+                  <g:message code="client.profile.birthDate"/>
+                </label>
+              </td>
+		    </tr>
 
-		</tr>
-		<tr>  <!-- Inhalt-->
+            <tr>  <!-- Inhalt-->
+              <td width="120" valign="top" class="value ${hasErrors(bean: client, field: 'profile.gender', 'errors')}">
+                <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
+              </td>
 
-			<td  width="120" valign="top" class="value ${hasErrors(bean: client, field: 'profile.gender', 'errors')}">
-              <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
-            </td>
-			<td  width="200" valign="top" class="value">
-			  <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="25" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
-			</td>
+              <td width="200" valign="top" class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="25" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
+              </td>
 
-			<td  width="270" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="38" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
-            </td>
-			<td  height="35"  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" >
-              <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
-            </td>
-		</tr>
+              <td width="270" valign="top" class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="38" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
+              </td>
+
+              <td height="35"  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" >
+                <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
+              </td>
+		    </tr>
       
-         <tr>
-           <td valign="top" class="name">
-              <label for="size">
-                <g:message code="client.profile.size"/>
-              </label>
-            </td>
-           <td>
-            <label for="weight">
-                <g:message code="client.profile.weight"/>
-              </label>
-            <td colspan="2" valign="top" class="name">
-              <label for="interests">
-                <g:message code="client.profile.interests"/>
-              </label>
-            </td>
-           </tr>
-           <tr>
-           <td valign="top" class="value">
-              <g:select from="${100..250}" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size')}"/> (cm)
-            </td>
-           <td valign="top" class="value">
-              <g:select from="${10..150}" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
-            </td>
-           <td colspan="2" valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
-            </td>
-          </tr>
+            <tr>
+              <td valign="top" class="name">
+                <label for="size">
+                  <g:message code="client.profile.size"/>
+                </label>
+              </td>
 
+              <td>
+                <label for="weight">
+                  <g:message code="client.profile.weight"/>
+                </label>
+              </td>
 
-    </tbody>
-	</table>
+              <td colspan="2" valign="top" class="name">
+                <label for="interests">
+                  <g:message code="client.profile.interests"/>
+                </label>
+              </td>
+            </tr>
+
+            <tr>
+             <td valign="top" class="value">
+               <g:select from="${100..250}" id="size" name="size" value="${fieldValue(bean: client, field: 'profile.size')}"/> (cm)
+             </td>
+
+             <td valign="top" class="value">
+               <g:select from="${10..150}" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
+             </td>
+
+             <td colspan="2" valign="top" class="value">
+               <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
+             </td>
+            </tr>
+
+          </tbody>
+	    </table>
+
         <h4><g:message code="client.profile.curAddress"/></h4>
         <div class="contact">
-        <table>
+          <table>
 
-        <tr>
-            <td colspan="4" valign="top" class="name">
-              <label for="currentColonia">
-                <g:message code="client.profile.currentColonia"/>
-              </label>
-            </td>
-        </tr>
-           <tr>
-            <td valign="top" class="value">
-              <g:select name="currentColonia" from="${allColonias}" id="currentColonia" optionKey="id" optionValue="profile"/>
-            </td>
-        </tr>
+            <tr>
+              <td colspan="4" valign="top" class="name">
+                <label for="currentColonia">
+                  <g:message code="client.profile.currentColonia"/>
+                </label>
+              </td>
+            </tr>
 
-        <tr>
-            <td valign="top" class="name">
-              <label for="currentStreet">
-                <g:message code="client.profile.currentStreet"/>
-              </label>
-            </td>
-                        <td valign="top" class="name">
-              <label for="currentZip">
-                <g:message code="client.profile.currentZip"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="currentCity">
-                <g:message code="client.profile.currentCity"/>
-              </label>
-            </td>
+            <tr>
+              <td valign="top" class="value">
+                <g:select name="currentColonia" from="${allColonias}" id="currentColonia" optionKey="id" optionValue="profile"/>
+              </td>
+            </tr>
 
-            <td valign="top" class="name">
-              <label for="currentCountry">
-                <g:message code="client.profile.currentCountry"/>
-              </label>
-            </td>
-        </tr>
-        <tr>
-            <td width="280" height="35" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="41" id="currentStreet" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
-            </td>
-            <td width="105" valign="top"  class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" id="currentZip" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
-            </td>
-            <td width="210" valign="top"  class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="28" id="currentCity" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
-            </td>
-            <td  valign="top"  class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
-            </td>
+            <tr>
+              <td valign="top" class="name">
+                <label for="currentStreet">
+                  <g:message code="client.profile.currentStreet"/>
+                </label>
+              </td>
 
-        </tr>
-        </table>
+              <td valign="top" class="name">
+                <label for="currentZip">
+                  <g:message code="client.profile.currentZip"/>
+                </label>
+              </td>
+
+              <td valign="top" class="name">
+                <label for="currentCity">
+                  <g:message code="client.profile.currentCity"/>
+                </label>
+              </td>
+
+              <td valign="top" class="name">
+                <label for="currentCountry">
+                  <g:message code="client.profile.currentCountry"/>
+                </label>
+              </td>
+            </tr>
+
+            <tr>
+              <td width="280" height="35" valign="top" class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="41" id="currentStreet" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
+              </td>
+
+              <td width="105" valign="top"  class="value">
+                <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" id="currentZip" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
+              </td>
+
+              <td width="210" valign="top"  class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="28" id="currentCity" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
+              </td>
+
+              <td  valign="top"  class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
+              </td>
+            </tr>
+          </table>
         </div>
 
         <h4><g:message code="client.profile.origin"/></h4>
         <div class="contact">
-        <table>
-        <tr>
+          <table>
+            <tr>
 
-            <td valign="top" class="name">
-              <label for="originZip">
-                <g:message code="client.profile.originZip"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="originCity">
-                <g:message code="client.profile.originCity"/>
-              </label>
-            </td>
-             <td colspan="2" valign="top" class="name">
-              <label for="originCountry">
-                <g:message code="client.profile.originCountry"/>
-              </label>
-            </td>
-        </tr>
-        <tr>
+              <td valign="top" class="name">
+                <label for="originZip">
+                  <g:message code="client.profile.originZip"/>
+                </label>
+              </td>
 
-            <td width="105"  valign="top" class="value">
-              <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
-            </td>
-            <td width=",210"  valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
-            </td>
-            <td colspan="2" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
-            </td>
+              <td valign="top" class="name">
+                <label for="originCity">
+                  <g:message code="client.profile.originCity"/>
+                </label>
+              </td>
 
-         </tr>
+              <td colspan="2" valign="top" class="name">
+                <label for="originCountry">
+                  <g:message code="client.profile.originCountry"/>
+                </label>
+              </td>
+            </tr>
 
-        </table>
+            <tr>
+              <td width="105"  valign="top" class="value">
+                <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
+              </td>
+
+              <td width=",210"  valign="top" class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
+              </td>
+
+              <td colspan="2" valign="top" class="value">
+                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
+              </td>
+            </tr>
+
+          </table>
         </div>
 
-    <h4><g:message code="client.profile.more"/></h4>
-    <div class="contact">
+        <h4><g:message code="client.profile.more"/></h4>
+        <div class="contact">
         <table>
 
           <tr class="prop">
