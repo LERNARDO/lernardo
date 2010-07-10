@@ -39,7 +39,7 @@
             </label>
           </td>
           <td valign="top" class="value">
-            <g:textField class="${hasErrors(bean: msgInstance, field: 'subject', 'errors')}" size="70" id="subject" name="subject" value="${fieldValue(bean: msgInstance, field: 'subject')}"/>
+            <g:textField class="countable50 ${hasErrors(bean: msgInstance, field: 'subject', 'errors')}" size="70" id="subject" name="subject" value="${fieldValue(bean: msgInstance, field: 'subject')}"/>
           </td>
         </tr>
 
@@ -50,7 +50,7 @@
             </label>
           </td>
           <td valign="top" class="value">
-            <g:textArea class="${hasErrors(bean: msgInstance, field: 'content', 'errors')}" rows="10" cols="70" id="content" name="content" value="${fieldValue(bean: msgInstance, field: 'content')}"/>
+            <g:textArea class="countable2000 ${hasErrors(bean: msgInstance, field: 'content', 'errors')}" rows="10" cols="70" id="content" name="content" value="${fieldValue(bean: msgInstance, field: 'content')}"/>
           </td>
         </tr>
         <tr>

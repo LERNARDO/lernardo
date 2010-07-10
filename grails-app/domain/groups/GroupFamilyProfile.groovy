@@ -13,7 +13,7 @@ class GroupFamilyProfile extends Profile {
     Integer familyIncome // changed on 21.04.2010, before: totalIncome
 
     static constraints = {
-      fullName (blank: false, size: 2..50)
+      fullName (blank: false, size: 2..50, maxSize: 50)
       livingConditions (blank: true, maxSize: 500)
       socioeconomicData (blank: true, maxSize: 500)
       otherInfo (blank: true, maxSize: 500)

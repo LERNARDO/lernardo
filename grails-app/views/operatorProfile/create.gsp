@@ -29,7 +29,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.fullName', 'errors')}" size="103" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.fullName', 'errors')}" size="103" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -62,7 +62,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.city', 'errors')}" size="103" id="city" name="city" value="${fieldValue(bean: operator, field: 'profile.city').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.city', 'errors')}" size="103" id="city" name="city" value="${fieldValue(bean: operator, field: 'profile.city').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -73,7 +73,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.street', 'errors')}" size="103" id="street" name="street" value="${fieldValue(bean: operator, field: 'profile.street').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.street', 'errors')}" size="103" id="street" name="street" value="${fieldValue(bean: operator, field: 'profile.street').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -84,7 +84,7 @@
               </label>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: operator, field: 'profile.description', 'errors')}" id="description" rows="6" cols="100" name="description" value="${fieldValue(bean: operator, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: operator, field: 'profile.description', 'errors')}" id="description" rows="6" cols="100" name="description" value="${fieldValue(bean: operator, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 

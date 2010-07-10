@@ -14,7 +14,7 @@ class  GroupActivityProfile extends Profile {
     String educationalObjectiveText
 
     static constraints = {
-      fullName (blank: false, size: 2..50)
+      fullName (blank: false, size: 2..50, maxSize: 50)
       educationalObjectiveText (blank: true, maxSize: 2000)
     }
 }

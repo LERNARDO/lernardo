@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <td width="265px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="265px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" id="familyIncome" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
@@ -68,13 +68,13 @@
           </tr>
           <tr>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}" rows="5" cols="36" name="livingConditions" value="${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML()}"/>
+              <g:textArea class="countable${group.profile.constraints.livingConditions.maxSize} ${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}" rows="5" cols="36" name="livingConditions" value="${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}" rows="5" cols="36" name="socioeconomicData" value="${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML()}"/>
+              <g:textArea class="countable${group.profile.constraints.socioeconomicData.maxSize} ${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}" rows="5" cols="36" name="socioeconomicData" value="${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}" rows="5" cols="36" name="otherInfo" value="${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML()}"/>
+              <g:textArea class="countable${group.profile.constraints.otherInfo.maxSize} ${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}" rows="5" cols="36" name="otherInfo" value="${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML()}"/>
             </td>
           </tr>
           <tr class="prop">

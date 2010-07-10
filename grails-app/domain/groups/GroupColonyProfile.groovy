@@ -14,7 +14,7 @@ class GroupColonyProfile extends Profile{
     //String otherFacilities - removed on 21.04.2010
   
     static constraints = {
-      fullName (blank: false, size: 2..50)
+      fullName (blank: false, size: 2..50, maxSize: 50)
       description (blank: true, maxSize: 2000)
     }
 

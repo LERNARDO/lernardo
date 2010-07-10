@@ -10,6 +10,7 @@ class Method {
     String type
 
     static constraints = {
+      name (maxSize: 50)
       description (maxSize: 2000)
     }
 

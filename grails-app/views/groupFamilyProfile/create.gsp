@@ -41,7 +41,7 @@
             </tr>
             <tr>
             <td width="265px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td  width="265px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" id="familyIncome" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
@@ -70,13 +70,13 @@
            </tr>
            <tr>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}" rows="5" cols="36" name="livingConditions" value="${fieldValue(bean: group, field: 'profile.livingConditions')}"/>
+              <g:textArea class="countable500 ${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}" rows="5" cols="36" name="livingConditions" value="${fieldValue(bean: group, field: 'profile.livingConditions')}"/>
             </td>
              <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}" rows="5" cols="36" name="socioeconomicData" value="${fieldValue(bean: group, field: 'profile.socioeconomicData')}"/>
+              <g:textArea class="countable500 ${hasErrors(bean: group, field: 'profile.socioeconomicData', 'errors')}" rows="5" cols="36" name="socioeconomicData" value="${fieldValue(bean: group, field: 'profile.socioeconomicData')}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}" rows="5" cols="36" name="otherInfo" value="${fieldValue(bean: group, field: 'profile.otherInfo')}"/>
+              <g:textArea class="countable500 ${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}" rows="5" cols="36" name="otherInfo" value="${fieldValue(bean: group, field: 'profile.otherInfo')}"/>
             </td>
           </tr>
          <tr class="prop">

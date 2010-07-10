@@ -19,11 +19,17 @@
               'maxCharsWarning': 50
           });
 
+          $('.countable500').jqEasyCounter({
+              'maxChars': 500,
+              'maxCharsWarning': 500
+          });
+
           $('.countable2000').jqEasyCounter({
               'maxChars': 2000,
               'maxCharsWarning': 2000
           });
-  });
+
+      });
   </script>
 
 </head>

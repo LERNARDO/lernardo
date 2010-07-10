@@ -17,12 +17,12 @@ class FacilityProfile extends Profile {
     Boolean showTips = true
 
     static constraints = {
-      fullName (blank: false, size: 2..50)
+      fullName (blank: false, size: 2..50, maxSize: 50)
       description (blank: true, maxSize: 2000)
       country (size: 2..50)
       zip (size: 4..10)
-      city (size: 2..50)
-      street (size: 2..50)
+      city (size: 2..50, maxSize: 50)
+      street (size: 2..50, maxSize: 50)
     }
 
     String toString(){
