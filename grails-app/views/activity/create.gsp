@@ -43,7 +43,7 @@
         </tr>
         <tr>
           <td width="300" valign="top" class="value">
-            <g:textField class="${hasErrors(bean: activityInstance, field: 'fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: activityInstance, field: 'profile.fullName')}"/>
+            <g:textField class="countable50 ${hasErrors(bean: activityInstance, field: 'fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: activityInstance, field: 'profile.fullName')}"/>
           </td>
           <td width="230" valign="top" class="value">
             <g:datePicker name="periodStart" value="${activityInstance?.profile?.periodStart}" precision="day"/>

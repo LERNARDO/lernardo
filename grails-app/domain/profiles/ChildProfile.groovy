@@ -22,7 +22,7 @@ class ChildProfile extends Profile {
       lastName (blank: false, size: 2..50, maxSize: 50)
       jobType (nullable: true)
       jobIncome (nullable: true)
-      jobFrequency (nullable: true, blank: true, maxSize: 20)
+      jobFrequency (nullable: true, blank: true, maxSize: 50)
     }
 
     String toString(){

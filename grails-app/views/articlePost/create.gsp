@@ -15,10 +15,10 @@
   <g:form action="save" method="post" id="${postInstance.id}">
 
     <p><span class="strong">Titel</span><br/>
-    <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField name="title" size="100" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
+    <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="100" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
 
     <p><span class="strong">Teaser</span><br/>
-    <span class="${hasErrors(bean: postInstance, field: 'teaser', 'errors')}"><g:textArea name="teaser" rows="3" cols="100" value="${fieldValue(bean:postInstance,field:'teaser').decodeHTML()}"/></span>
+    <span class="${hasErrors(bean: postInstance, field: 'teaser', 'errors')}"><g:textArea class="countable500" name="teaser" rows="3" cols="100" value="${fieldValue(bean:postInstance,field:'teaser').decodeHTML()}"/></span>
     <br/><span class="gray">(der Teaser ist optional und muss nicht ausgefüllt werden)</span></p>
     
     <span class="strong">Inhalt</span>

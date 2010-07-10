@@ -53,11 +53,11 @@
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
             <td width="200" valign="top" class="value ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}">
-              <input type="text" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
+              <input class="countable${client.profile.constraints.firstName.maxSize}" type="text" size="25" id="firstName" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
             </td>
 
             <td width="270" valign="top" class="value ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}">
-              <input type="text" size="38" maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
+              <input class="countable${client.profile.constraints.lastName.maxSize}" type="text" size="38" id="lastName" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
             </td>
             <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
               <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
@@ -88,7 +88,7 @@
               <g:select from="${10..150}" id="weight" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
             </td>
             <td colspan="2" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
+              <g:textArea class="countable${client.profile.constraints.interests.maxSize} ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" id="interests" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
             </td>
           </tr>
         </table>
@@ -132,18 +132,17 @@
             </tr>
             <tr>
               <td width="280" height="35" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="41" id="currentStreet" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="41" id="currentStreet" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
               </td>
               <td width="105" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" id="currentZip" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
               <td width="210" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="28" id="currentCity" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.currentCity.maxSize} ${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="28" id="currentCity" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.currentCountry.maxSize} ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
               </td>
-
             </tr>
           </table>
         </div>
@@ -173,10 +172,10 @@
                 <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
               </td>
               <td width="210" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.originCity.maxSize} ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.originCountry.maxSize} ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
               </td>
             </tr>
           </table>
@@ -260,7 +259,7 @@
                 <g:datePicker name="schoolDropoutDate" value="${client?.profile?.schoolDropoutDate}" precision="day"/>
               </td>
               <td colspan="2" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" id="schoolDropoutReason" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.schoolDropoutReason.maxSize} ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" id="schoolDropoutReason" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
               </td>
             </tr>
             <tr class="prop">
@@ -287,7 +286,7 @@
                 <g:datePicker name="schoolRestartDate" value="${client?.profile?.schoolDropoutDate}" precision="day"/>
               </td>
               <td colspan="2" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="64" id="schoolRestartReason" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
+                <g:textField class="countable${client.profile.constraints.schoolRestartReason.maxSize} ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="64" id="schoolRestartReason" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
               </td>
             </tr>
             <tr><td colspan="4">&nbsp;</td></tr>
@@ -319,10 +318,10 @@
                 </g:if>
               </td>
               <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
-                <input type="text" id="jobIncome" size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>
+                <g:textField id="jobIncome" size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>
               </td>
               <td class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
-                <input type="text" size="28" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
+                <g:textField size="28" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>
             <tr class="prop">
@@ -339,7 +338,7 @@
                 <g:checkBox name="support" value="${client?.profile?.support}"/>
               </td>
               <td colspan="3" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" id="supportDescription" name="supportDescription" value="${client?.profile?.supportDescription}"/>
+                <g:textField class="countable${client.profile.constraints.supportDescription.maxSize} ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" id="supportDescription" name="supportDescription" value="${client?.profile?.supportDescription}"/>
               </td>
             </tr>
 
