@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${pate.profile.fullName}</title>
+  <title><g:message code="pate"/> - ${pate.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${pate.profile.fullName}</h1>
+    <h1><g:message code="pate"/> - ${pate.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -98,7 +98,7 @@
       </div>
     
     <div class="zusatz">
-      <h1>Patenkinder <app:isOperator entity="${entity}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
+      <h1><g:message code="pate.profile.gcs"/> <app:isOperator entity="${entity}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
       <jq:jquery>
         <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
       </jq:jquery>

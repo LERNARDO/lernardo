@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Pate bearbeiten</title>
+  <title><g:message code="pate.profile.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Pate bearbeiten</h1>
+    <h1><g:message code="pate.profile.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -22,7 +22,7 @@
       <div class="dialog">
               <table>
           <tr class="prop">
-            <td height="22" valign="top" class="name">
+            <td valign="top" class="name">
               <label for="firstName">
                 <g:message code="pate.profile.firstName"/>
               </label>
@@ -94,16 +94,16 @@
           </tr>
 
           <tr>
-            <td width="90" valign="middle" class="value">
+            <td width="90" valign="top" class="value">
               <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" id="zip" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
             </td>
-            <td width="215" valign="middle" class="value">
+            <td width="215" valign="top" class="value">
               <g:textField class="countable${pate.profile.constraints.city.maxSize} ${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
             </td>
-            <td width="295" valign="middle" class="value">
+            <td width="295" valign="top" class="value">
               <g:textField class="countable${pate.profile.constraints.street.maxSize} ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" id="street" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
-            <td width="210" height="35" valign="middle" class="value">
+            <td width="210" height="35" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
               </g:if>

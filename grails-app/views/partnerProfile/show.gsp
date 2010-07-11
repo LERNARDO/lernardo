@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${partner.profile.fullName}</title>
+  <title><g:message code="partner"/> - ${partner.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${partner.profile.fullName}</h1>
+    <h1><g:message code="partner"/> - ${partner.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -29,10 +29,10 @@
               <g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link>
             </td>
            <td  colspan="2" class="value-show">
-             ${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}
+             ${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
            </td>
            <td  class="value-show">
-             ${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">keine Daten eingetragen</div>'}
+             ${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
            </td>
          </tr>
 
@@ -47,7 +47,7 @@
          </tr>
          <tr class="prop">
             <td width="200" class="value-show">
-              ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}               </td>
+              ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}               </td>
            <td width="421" colspan="3" class="value-show">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
@@ -58,12 +58,12 @@
          </tr>
         <tr class="prop">
         <td colspan="4" valign="top" class="name-show">
-        Colonia:
+        <g:message code="partner.profile.colonia"/>:
         </td>
           </tr>
         <tr>
         <td  valign="top" class="value-show">
-        <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic">Keiner Colonia zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else> 
+        <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="partner.profile.colonia.empty"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else> 
         </td>
         <td colspan="3" valign="top" >
         </td>
@@ -83,9 +83,9 @@
           </td>
         </tr>
         <tr class="prop">
-          <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">Leer</div>'}</td>
-          <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
           <td width="210" align="top" class="value-show"><app:getNationalities nationality="${partner.profile.country}"/></td>
         </tr>
       </table>
@@ -102,7 +102,7 @@
             <td width="60" valign="top" >
               <g:message code="facility.profile.email"/>:
             </td>
-            <td valign="top" >${fieldValue(bean: partner, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top" >${fieldValue(bean: partner, field: 'user.email') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
           </tr>
         </table>
       </div> <!-- div email close -->
@@ -118,7 +118,7 @@
     </app:isMeOrAdmin>
 
 %{--    <div>
-      <h1>Dienstleistungen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-services"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-services"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
       <jq:jquery>
         <jq:toggle sourceId="show-services" targetId="services"/>
       </jq:jquery>
@@ -136,7 +136,7 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5>Ansprechpersonen <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="partner.profile.contacts"/> <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
@@ -145,39 +145,39 @@
 
           <table>
             <tr>
-              <td>Vorname: </td>
+              <td><g:message code="partner.profile.contactFirstName"/>: </td>
               <td><g:textField name="firstName" size="30"/></td>
             </tr>
             <tr>
-              <td>Nachname: </td>
+              <td><g:message code="partner.profile.contactLastName"/>: </td>
               <td><g:textField name="lastName" size="30"/></td>
             </tr>
             <tr>
-              <td>Land: </td>
+              <td><g:message code="partner.profile.contactCountry"/>: </td>
               <td><g:textField name="country" size="30"/></td>
             </tr>
             <tr>
-              <td>PLZ: </td>
+              <td><g:message code="partner.profile.contactZip"/>: </td>
               <td><g:textField name="zip" size="30"/></td>
             </tr>
             <tr>
-              <td>Stadt: </td>
+              <td><g:message code="partner.profile.contactCity"/>: </td>
               <td><g:textField name="city" size="30"/></td>
             </tr>
             <tr>
-              <td>Straße: </td>
+              <td><g:message code="partner.profile.contactStreet"/>: </td>
               <td><g:textField name="street" size="30"/></td>
             </tr>
             <tr>
-              <td>Telefon: </td>
+              <td><g:message code="partner.profile.contactPhone"/>: </td>
               <td><g:textField name="phone" size="30"/></td>
             </tr>
             <tr>
-              <td>E-Mail: </td>
+              <td><g:message code="partner.profile.contactEmail"/>: </td>
               <td><g:textField name="email" size="30"/></td>
             </tr>
             <tr>
-              <td>Funktion: </td>
+              <td><g:message code="partner.profile.contactFunction"/>: </td>
               <td><g:textField name="function" size="30"/></td>
             </tr>
           </table>      

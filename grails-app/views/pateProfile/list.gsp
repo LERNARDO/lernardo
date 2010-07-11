@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Paten</title>
+  <title><g:message code="paten"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Paten</h1>
+    <h1><g:message code="paten"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${pateTotal} Pate(n) insgesamt vorhanden</p>
+    <p>${pateTotal} <g:message code="pate.profile.c_total"/></p>
     <g:if test="${pateTotal > 0}">
       <div id="body-list">
         <table>
@@ -38,7 +38,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neuen Paten anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="pate.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>
