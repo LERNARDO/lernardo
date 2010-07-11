@@ -11,7 +11,7 @@ class ProjectTemplateProfile extends Profile {
     String status
 
     static constraints = {
-      fullName (blank: false)
+      fullName (blank: false, maxSize: 50)
       description (blank: true, maxSize: 2000)
     }
 

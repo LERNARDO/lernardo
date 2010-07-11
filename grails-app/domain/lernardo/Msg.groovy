@@ -15,7 +15,7 @@ class Msg {
     Boolean read = false
 
     static constraints = {
-      subject(blank:false)
+      subject(blank:false,maxSize:50)
       content(blank:false,maxSize:2000)
       dateCreated (nullable: true)
       lastUpdated (nullable: true)

@@ -43,10 +43,10 @@
                         
 			</td>
 			<td valign="top" class="value">
-            <g:textField class="${hasErrors(bean:parent,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:parent,field:'profile.firstName').decodeHTML()}"/>
+            <g:textField class="countable${parent.profile.constraints.firstName.maxSize} ${hasErrors(bean:parent,field:'profile.firstName','errors')}" size="30" id="firstName" name="firstName" value="${fieldValue(bean:parent,field:'profile.firstName').decodeHTML()}"/>
             </td>
 			<td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
+              <g:textField class="countable${parent.profile.constraints.lastName.maxSize} ${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
 
 			</td>
 			<td valign="top" class="value">
@@ -87,7 +87,7 @@
               </g:if>
 			</td>
             <td valign="top" class="value"  >
-            <g:textArea name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
+            <g:textArea class="countable${parent.profile.constraints.comment.maxSize}" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
             
             </td>
 			<td valign="top" class="value">
@@ -163,11 +163,11 @@
            			
             </td>
 			<td width="105" valign="middle"  class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.currentCity', 'errors')}" size="30" id="currentCity" name="currentCity" value="${fieldValue(bean: parent, field: 'profile.currentCity').decodeHTML()}"/>
+              <g:textField class="countable${parent.profile.constraints.currentCity.maxSize} ${hasErrors(bean: parent, field: 'profile.currentCity', 'errors')}" size="30" id="currentCity" name="currentCity" value="${fieldValue(bean: parent, field: 'profile.currentCity').decodeHTML()}"/>
             			 
             </td>
 			<td width="210" valign="middle"  class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" id="currentStreet" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
+              <g:textField class="countable${parent.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" id="currentStreet" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
 
             </td>
 			<td   valign="middle"  class="value">

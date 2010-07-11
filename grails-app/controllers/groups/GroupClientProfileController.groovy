@@ -123,10 +123,17 @@ class GroupClientProfileController {
     }
 
   def addClient = {
-    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template:'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    def bla = functionService.getParamAsList(params.members)
+
+    bla.each {
+      def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    }
+    //def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    //if (linking.duplicate)
+    //  render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template:'clients', model: [clients: Link.findAllByTargetAndType(Entity.get(params.id), metaDataService.ltGroupMemberClient).collect {it.source}, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
@@ -136,10 +143,43 @@ class GroupClientProfileController {
 
   def updateselect = {
     def allClients = Entity.findAllByType(metaDataService.etClient)
-    if (params.name) {
-      allClients = filterService.findUsers(params.name, metaDataService.etClient)
+    params.type = metaDataService.etClient
+
+    def c = Entity.createCriteria()
+    allClients = c.list {
+      if (params.type != 'all')
+        eq('type', params.type)
+      if (params.name)
+        or {
+          ilike('name',"%"+params.name+"%")
+          profile {
+            ilike('fullName',"%"+params.name+"%")
+          }
+        }
+      profile {
+        if (params.city)
+          ilike('currentCity',"%"+params.city+"%")
+        if (params.gender.toInteger() > 0)
+          eq('gender',params.gender.toInteger())
+        if (params.job.toInteger() > 0) {
+          if (params.job.toInteger() == 1)
+            eq('job',true)
+          if (params.job.toInteger() == 2)
+            eq('job',false)
+        }
+        if (params.schoolLevel != 'all')
+          eq('schoolLevel', params.schoolLevel.toInteger())
+        if (params.size1 != 'all')
+          between('size', params.size1.toInteger(), params.size2.toInteger())
+        if (params.weight1 != 'all')
+          between('weight', params.weight1.toInteger(), params.weight2.toInteger())
+        if (params.birthDate1 != 'all')
+          between('birthDate', params.birthDate1, params.birthDate2)
+      }
+      maxResults(30)
     }
-    render(template:'searchbox', model:[allClients: allClients])
+
+    render(template:'searchresults', model:[allClients: allClients])
   }
 
 }

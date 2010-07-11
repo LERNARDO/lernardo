@@ -46,7 +46,7 @@ class ProfileController {
        allPartners: Entity.countByType(metaDataService.etPartner),
        allFacilities: Entity.countByType(metaDataService.etFacility),
        allResources: Entity.countByType(metaDataService.etResource),
-       allMethods: Method.count(),
+       allMethods: Method.countByType("template"),
        allThemes: Entity.countByType(metaDataService.etTheme),
        allColonias: Entity.countByType(metaDataService.etGroupColony),
        allFamilies: Entity.countByType(metaDataService.etGroupFamily),
@@ -75,7 +75,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
         }
 
@@ -131,7 +130,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
           ne("type", metaDataService.etGroupActivity)
           ne("type", metaDataService.etGroupActivityTemplate)
@@ -157,7 +155,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupLevel)
           ne("type", metaDataService.etGroupNetwork)
           ne("type", metaDataService.etGroupActivity)
           ne("type", metaDataService.etGroupActivityTemplate)

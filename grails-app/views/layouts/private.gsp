@@ -9,6 +9,29 @@
   <g:layoutHead/>
   <g:javascript library="jquery"/>
   <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+          $('.countable50').jqEasyCounter({
+              'maxChars': 50,
+              'maxCharsWarning': 50
+          });
+
+          $('.countable500').jqEasyCounter({
+              'maxChars': 500,
+              'maxCharsWarning': 500
+          });
+
+          $('.countable2000').jqEasyCounter({
+              'maxChars': 2000,
+              'maxCharsWarning': 2000
+          });
+
+      });
+  </script>
+
 </head>
 <body>
 <g:if test="${!entity}">

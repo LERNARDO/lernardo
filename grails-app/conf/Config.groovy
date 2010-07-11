@@ -115,6 +115,9 @@ log4j = {
 
 }
 
+// the default password used when creating new entity accounts
+defaultpass = "pass"
+
 // custom maps to store data
 
 nationalities_de = [1:'Deutschland',2:'England',3:'Frankreich',4:'Spanien',5:'Portugal',6:'Österreich',7:'Mexiko',8:'Italien']

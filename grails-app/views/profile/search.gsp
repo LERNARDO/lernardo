@@ -30,7 +30,7 @@
           <div class="form-content">
             <div>
               <label for="name">Bitte einen Namen eingeben:</label>
-              <input id="name" type="text" name="name"/>
+              <g:textField id="name" name="name"/>
             </div>
             <div class="buttons" style="padding-bottom: 5px">
               <g:submitButton name="button" value="Suchen"/>

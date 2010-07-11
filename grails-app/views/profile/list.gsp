@@ -1,6 +1,7 @@
 <html>
 <head>
   <meta name="layout" content="private"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>Liste aller Profile</title>
   <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
   <script type="text/javascript">

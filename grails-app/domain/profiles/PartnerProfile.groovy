@@ -21,10 +21,10 @@ class PartnerProfile extends Profile {
 
     static constraints = {
       fullName (blank: false, size: 2..50)
-      description (blank: true, maxSize: 500)
+      description (blank: true, maxSize: 2000)
       zip (size: 4..10)
-      city (size: 2..50)
-      street (size: 2..50)
+      city (size: 2..50, maxSize: 50)
+      street (size: 2..50, maxSize: 50)
       phone (size: 2..20)
       //email (size: 2..20)
       website (blank: true, size: 2..50)

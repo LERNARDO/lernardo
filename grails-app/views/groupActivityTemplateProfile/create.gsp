@@ -40,7 +40,7 @@
             </tr>
           <tr>
             <td width="500px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="75" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="75" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="170px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (min)
@@ -59,7 +59,7 @@
           </tr>
            <tr>
             <td colspan="3" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 

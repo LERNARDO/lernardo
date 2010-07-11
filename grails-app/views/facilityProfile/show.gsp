@@ -89,7 +89,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz" >
-      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:isOperator entity="${entity}"><a href="#" id="show-leadeducator"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></g:if></h5>
+      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-leadeducator"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></g:if></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-leadeducator" targetId="leadeducator"/>
       </jq:jquery>
@@ -107,7 +107,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Pädagogen <app:isOperator entity="${entity}"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
+      <h5>Pädagogen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
@@ -125,7 +125,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Betreute <app:isOperator entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>
+      <h5>Betreute <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
@@ -143,7 +143,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Ansprechpersonen <app:isOperator entity="${entity}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isOperator></h5>
+      <h5>Ansprechpersonen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
@@ -200,7 +200,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Planbare Ressourcen <app:isOperator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
+      <h5>Planbare Ressourcen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:hasRoleOrType></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>

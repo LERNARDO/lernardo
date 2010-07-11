@@ -7,6 +7,6 @@ class GroupNetworkProfile extends Profile {
     String description
 
     static constraints = {
-      description (maxSize: 10000)
+      description (maxSize: 2000)
     }
 }

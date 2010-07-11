@@ -446,7 +446,7 @@ ul {
 }
 
 #profile-navigation {
-    padding: 10px; }
+    padding: 10px 10px 0 10px; }
     #profile-navigation a {
         text-decoration: none; }
         #profile-navigation a:hover {
@@ -1672,7 +1672,4 @@ h5 {
     width: 330px;
     height: 80px;
 }
-
-
-
 

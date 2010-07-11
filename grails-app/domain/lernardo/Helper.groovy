@@ -10,8 +10,8 @@ class Helper {
     Date lastUpdated
 
     static constraints = {
-      title(blank: false)
-      content(blank: false, maxSize:2000)
+      title(blank: false, maxSize: 50)
+      content(blank: false, maxSize: 2000)
       type(blank: false)
     }
 }

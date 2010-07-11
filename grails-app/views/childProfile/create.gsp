@@ -57,11 +57,11 @@
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:child,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
 			<td  width="200" valign="top" class="value ${hasErrors(bean: child, field: 'profile.firstName', 'errors')}">
-				<input type="text" size="25" maxlength="50" id="firstName" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName')}"/>
+		      <g:textField class="countable50" size="25" id="firstName" name="firstName" value="${fieldValue(bean: child, field: 'profile.firstName')}"/>
 			</td>
 		
 			<td  width="280" valign="top" class="value ${hasErrors(bean: child, field: 'profile.lastName', 'errors')}">
-              <input type="text" size="35"  maxlength="50" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
+              <g:textField class="countable50" size="35" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
 			<td  height="35"  valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
               <g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
@@ -95,10 +95,10 @@
               </g:if>
 			</td>
 			<td  valign="top"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
-              <input type="text" id="jobIncome" size="35" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
+              <g:textField id="jobIncome" size="35" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
 			</td>
 			<td class="value ${hasErrors(bean: child, field: 'profile.jobFrequency', 'errors')}">
-              <input type="text" size="30" maxlength="20" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
+              <g:textField class="countable50" size="30" id="jobFrequency" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
 			</td>
 		</tr>
 	  </tbody>

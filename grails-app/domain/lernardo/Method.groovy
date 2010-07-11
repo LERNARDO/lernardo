@@ -2,6 +2,7 @@ package lernardo
 
 class Method {
 
+    SortedSet elements
     static hasMany = [elements: Element]
 
     String name
@@ -9,6 +10,7 @@ class Method {
     String type
 
     static constraints = {
+      name (maxSize: 50)
       description (maxSize: 2000)
     }
 

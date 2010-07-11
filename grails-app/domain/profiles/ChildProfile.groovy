@@ -18,11 +18,11 @@ class ChildProfile extends Profile {
   
     static constraints = {
       fullName (blank: true)
-      firstName (blank: false, size: 2..50)
-      lastName (blank: false, size: 2..50)
+      firstName (blank: false, size: 2..50, maxSize: 50)
+      lastName (blank: false, size: 2..50, maxSize: 50)
       jobType (nullable: true)
       jobIncome (nullable: true)
-      jobFrequency (nullable: true, blank: true, maxSize: 20)
+      jobFrequency (nullable: true, blank: true, maxSize: 50)
     }
 
     String toString(){

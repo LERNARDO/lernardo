@@ -15,7 +15,7 @@ class Publication {
   Integer accesslevel = 0
 
   static constraints = {
-    name (blank: false)
+    name (blank: false, maxSize: 50)
     asset (nullable: false)
     dateCreated (nullable: true)
   }

@@ -9,6 +9,22 @@ class AppController {
     EntityHelperService entityHelperService
     def securityManager
 
+    def error500 = {
+      println params
+
+      // TODO: enable
+      /*try {
+        sendMail {
+          to      "aaz@uenterprise.de"
+          subject "Lernardo - Fehler 500"
+          html    g.render(template:'/errortemplate', model:[request:params.request, exception: params.exception])
+        }
+      } catch(Exception ex) {
+        log.error "Problem sending email $ex.message", ex
+      }*/
+
+      render view:'/500'
+    }
 
     def start = {
       Entity entity = entityHelperService.loggedIn
@@ -45,7 +61,7 @@ class AppController {
           sendMail {
             to      "${user.email}"
             subject "Lernardo - Dein Passwort"
-            html    g.render(template:'passwordMail', model:[entity:e,password:pass])
+            html    g.render(template:'passwordemail', model:[entity:e,password:pass])
           }
         } catch(Exception ex) {
           log.error "Problem sending email $ex.message", ex

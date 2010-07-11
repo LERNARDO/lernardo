@@ -12,7 +12,7 @@ class TemplateProfile extends Profile {
   String chosenMaterials // added on 30.04.2010
   String socialForm
   String amountEducators // added on 30.04.2010
-  String status // added on 30.04.2010
+  String status // added on 30.04.2010       
   Integer duration
   String type // added on 29.06.2010
 
@@ -30,9 +30,9 @@ class TemplateProfile extends Profile {
   Date lastUpdated
 
   static constraints = {
-    fullName (blank: false, size: 2..70)
+    fullName (blank: false, size: 2..50, maxSize: 50)
     description (blank: true, maxSize: 2000)
-    chosenMaterials (size: 2..50)
+    chosenMaterials (size: 2..50, maxSize: 50)
     duration (max: 500)
   }
 

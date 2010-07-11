@@ -8,7 +8,7 @@ import lernardo.Healths
 
 class ClientProfile extends Profile {
 
-    SortedSet dates, status
+    SortedSet dates, materials, performances, healths
     static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
                       dates: CDate, // added on 20.04.2010
                       materials: Materials,
@@ -19,7 +19,7 @@ class ClientProfile extends Profile {
     String lastName
     String interests
     Date birthDate
-    Byte gender
+    Integer gender
     Integer size // added on 20.04.2010
     Integer weight // added on 20.04.2010
 
@@ -65,19 +65,19 @@ class ClientProfile extends Profile {
 
     static constraints = {
       fullName (blank: true)
-      firstName (blank: false, size: 2..50)
-      lastName (blank: false, size: 2..50)
-      currentCountry (size: 2..50)
+      firstName (blank: false, size: 2..50, maxSize: 50)
+      lastName (blank: false, size: 2..50, maxSize: 50)
+      currentCountry (size: 2..50, maxSize: 50)
       currentZip (size: 4..10)
-      currentCity (size: 2..50)
-      currentStreet (size: 2..50)
-      originCountry (size: 2..50)
+      currentCity (size: 2..50, maxSize: 50)
+      currentStreet (size: 2..50, maxSize: 50)
+      originCountry (size: 2..50, maxSize: 50)
       originZip (size: 4..10)
-      originCity (size: 2..50)
-      interests (blank: true, maxSize: 1000)
+      originCity (size: 2..50, maxSize: 50)
+      interests (blank: true, maxSize: 2000)
       jobType (nullable: true)
       jobIncome (nullable: true)
-      jobFrequency (nullable: true, blank: true, maxSize: 20)
+      jobFrequency (nullable: true, blank: true, maxSize: 50)
       schoolDropoutDate (nullable: true)
       schoolDropoutReason (nullable: true, blank: false, maxSize: 500)
       schoolRestartDate (nullable: true)

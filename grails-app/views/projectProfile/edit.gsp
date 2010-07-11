@@ -16,7 +16,7 @@
       </div>
     </g:hasErrors>
     <g:form method="post" id="${project.id}">
-      <input type="hidden" name="version" value="${project?.version}"/>
+      <g:hiddenField name="version" value="${project?.version}"/>
       <div class="dialog">
         <table>
           <tbody>
@@ -29,7 +29,7 @@
 
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: project, field: 'fullName', 'errors')}" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: project, field: 'profile.fullName')}"/>
+              <g:textField class="countable${project.profile.constraints.fullName.maxSize} ${hasErrors(bean: project, field: 'fullName', 'errors')}" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: project, field: 'profile.fullName')}"/>
             </td>
           </tr>
 

@@ -28,7 +28,6 @@ class MetaDataService {
   static final String EST_GROUP_CLIENT = "groupClient"
   static final String EST_GROUP_COLONY = "groupColony"
   static final String EST_GROUP_NETWORK = "groupNetwork"
-  static final String EST_GROUP_LEVEL = "groupLevel"
   static final String EST_GROUP_ACTIVITY_TEMPLATE = "groupActivityTemplate"
   static final String EST_GROUP_ACTIVITY = "groupActivity"
   static final String EST_COMMENT_TEMPLATE = "commentTemplate"
@@ -82,7 +81,6 @@ class MetaDataService {
   static final String PRT_GROUP_CLIENT = "GroupClient"
   static final String PRT_GROUP_COLONY = "GroupColony"
   static final String PRT_GROUP_NETWORK = "GroupNetwork"
-  static final String PRT_GROUP_LEVEL = "GroupLevel"
   static final String PRT_GROUP_ACTIVITY_TEMPLATE = "GroupActivityTemplate"
   static final String PRT_GROUP_ACTIVITY = "GroupActivity"
   static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
@@ -172,7 +170,6 @@ class MetaDataService {
     getEstGroupClient()
     getEstGroupColony()
     getEstGroupNetwork()
-    getEstGroupLevel()
     getEstGroupActivityTemplate()
     getEstGroupActivity()
     getEstCommentTemplate()
@@ -199,7 +196,6 @@ class MetaDataService {
     getEtGroupClient()
     getEtGroupColony()
     getEtGroupNetwork()
-    getEtGroupLevel()
     getEtGroupActivityTemplate()
     getEtGroupActivity()
     getEtCommentTemplate()
@@ -286,7 +282,6 @@ class MetaDataService {
   EntitySuperType getEstGroupClient()           {defaultObjectService.openEST (EST_GROUP_CLIENT, PRT_GROUP_CLIENT) }
   EntitySuperType getEstGroupColony()           {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
   EntitySuperType getEstGroupNetwork()          {defaultObjectService.openEST (EST_GROUP_NETWORK, PRT_GROUP_NETWORK) }
-  EntitySuperType getEstGroupLevel()            {defaultObjectService.openEST (EST_GROUP_LEVEL, PRT_GROUP_LEVEL) }
   EntitySuperType getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
   EntitySuperType getEstGroupActivity  ()       {defaultObjectService.openEST (EST_GROUP_ACTIVITY, PRT_GROUP_ACTIVITY) }
   EntitySuperType getEstCommentTemplate()       {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
@@ -313,7 +308,6 @@ class MetaDataService {
   EntityType getEtGroupClient()     {defaultObjectService.openET (ET_GROUP_CLIENT, estGroupClient) }
   EntityType getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
   EntityType getEtGroupNetwork()    {defaultObjectService.openET (ET_GROUP_NETWORK, estGroupNetwork) }
-  EntityType getEtGroupLevel()      {defaultObjectService.openET (ET_GROUP_LEVEL, estGroupLevel) }
   EntityType getEtGroupActivityTemplate() {defaultObjectService.openET (ET_GROUP_ACTIVITY_TEMPLATE, estGroupActivityTemplate) }
   EntityType getEtGroupActivity()   {defaultObjectService.openET (ET_GROUP_ACTIVITY, estGroupActivity) }
   EntityType getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }

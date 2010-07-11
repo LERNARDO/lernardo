@@ -39,7 +39,7 @@
             </tr>
           <tr>
             <td width="300" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="42" id="fullName" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="42" id="fullName" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
             </td>
            <td width="230" valign="top" class="value">
               <g:datePicker class="${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" name="startDate" value="${theme?.profile?.startDate}" precision="day"/>
@@ -80,7 +80,7 @@
             </tr>
           <tr>
             <td colspan="3" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: theme, field: 'profile.description', 'errors')}" rows="1" cols="120" name="description" value="${fieldValue(bean: theme, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: theme, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: theme, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 

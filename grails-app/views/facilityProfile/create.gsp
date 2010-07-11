@@ -33,10 +33,10 @@
           </tr>
           <tr>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" size="41" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.fullName', 'errors')}" size="41" maxlength="80" id="fullName" name="fullName" value="${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td colspan="3" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: facility, field: 'profile.description', 'errors')}" rows="1" cols="81" id="description" name="description" value="${fieldValue(bean: facility, field: 'profile.description').decodeHTML()}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: facility, field: 'profile.description', 'errors')}" rows="1" cols="81" id="description" name="description" value="${fieldValue(bean: facility, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
           <tr class="prop">
@@ -73,13 +73,13 @@
 
           <tr class="prop">
             <td width="290" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="41" id="street" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="41" id="street" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
             </td>
             <td width="101" valign="middle" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.zip', 'errors')}" size="12" id="zip" name="zip" value="${fieldValue(bean: facility, field: 'profile.zip').decodeHTML()}"/>
             </td>
             <td width="220" valign="middle" class="value">
-              <g:textField class="${hasErrors(bean: facility, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: facility, field: 'profile.city').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: facility, field: 'profile.city').decodeHTML()}"/>
             </td>
             <td valign="middle" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: facility, field: 'profile.country').decodeHTML()}"/>
