@@ -21,7 +21,6 @@
           </td>
         </tr>
 
-		<!-- test hf -->
         <tr class="prop">
           <td width="290" valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
           <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">leer</div>'}</td>
