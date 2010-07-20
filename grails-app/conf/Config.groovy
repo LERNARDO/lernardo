@@ -1,3 +1,5 @@
+import grails.util.Environment
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
@@ -6,9 +8,11 @@
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
-// if(System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
+def myenv = Environment.current;
+def configFile = "file:${System.properties.'catalina.base' ?: System.properties.'base.dir'}/app-config/lernardo-config.groovy"
+println "[$myenv] reading configuration from $configFile"
+grails.config.locations = [ configFile ]
+
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
@@ -32,9 +36,6 @@ grails.converters.encoding="UTF-8"
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
-// mail plugin configuration…
-grails.mail.default.from="lernardomailer@gmail.com"
-
 grails.views.javascript.library="jquery"
 
 grails {
@@ -54,22 +55,6 @@ secmgr {
   starturl     = "/start"
   publicurl    = "/"
 }
-
-
-// set per-environment serverURL stem for creating absolute links
-environments {
-    production {
-        grails.serverURL = "http://www.changeme.com"
-    }
-    development {
-        grails.serverURL = "http://localhost:8080/${appName}"
-    }
-    test {
-        grails.serverURL = "http://localhost:8080/${appName}"
-    }
-
-}
-
 
 // log4j configuration
 log4j = {
@@ -119,7 +104,6 @@ log4j = {
 defaultpass = "pass"
 
 // custom maps to store data
-
 nationalities_de = [1:'Deutschland',2:'England',3:'Frankreich',4:'Spanien',5:'Portugal',6:'Österreich',7:'Mexiko',8:'Italien']
 nationalities_es = [1:'Alemania',2:'Inglaterra',3:'Francia',4:'España',5:'Portugal',6:'Austria',7:'México',8:'Italia']
 languages_de = [1:'Deutsch',2:'Englisch',3:'Französisch',4:'Spanisch',5:'Mexikanisch',6:'Tsotsil',7:'Tseltal',8:'Zoque',
