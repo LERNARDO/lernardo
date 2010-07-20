@@ -17,7 +17,6 @@ environments {
       url = "jdbc:postgresql://localhost:5432/lernardo"
       loggingSql = false
       hibernate.default_schema = 'dev'
-      grails.serverURL = "http://localhost:8080/lernardo"
 		}
 	}
 	test {
