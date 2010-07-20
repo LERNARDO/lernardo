@@ -153,9 +153,7 @@
 			</td>
 			<td valign="middle">
                 <g:message code="languageSelection"/>:
-				%{--<app:localeSelect class="drop-down-150" name="locale" value="${parent?.user?.locale}"/>--}%
-                %{--${parent?.user?.locale}--}%
-                <app:showLocale locale="${parent?.user?.locale}"/>
+                ${parent?.user?.locale?.getDisplayLanguage()}
 				</td>
 		</tr>
 		 </table>

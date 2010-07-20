@@ -1,4 +1,9 @@
 package standard
+
+/*
+ * returns a location usable by Google Maps based on a name of a location
+ * not used ATM 
+ */
 class GeoCoderService {
 
   boolean transactional = false
@@ -15,13 +20,13 @@ class GeoCoderService {
     def connection = url.openConnection()
 
     def result = [:]
-    if(connection.responseCode == 200){
+    if (connection.responseCode == 200) {
       def xml = connection.content.text
       def geonames = new XmlSlurper().parseText(xml)
       result.lat = geonames.geoname.lat as String
       result.lng = geonames.geoname.lng as String
     }
-    else{
+    else {
       log.error("GeocoderService.geocodeLocation FAILED")
       log.error(url)
       log.error(connection.responseCode)

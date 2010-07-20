@@ -2,7 +2,10 @@ package standard
 
 import standard.ApplicationService
 
-// Session counter by: http://www.ecotronics.ch/webdesign/grails.htm
+/*
+ * Session counter by: http://www.ecotronics.ch/webdesign/grails.htm
+ * not used ATM
+ */
 
 class SessionService {
   static scope = "session"

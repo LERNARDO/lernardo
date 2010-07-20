@@ -12,8 +12,10 @@ class FunctionService {
 
   boolean transactional = true
 
-  // links 2 entities and returns all remaining entities linked to the target
-  def linkEntities (String s, String t, LinkType linktype) {
+  /*
+   * links two entities and returns all entities linked to the target
+   */
+  def linkEntities(String s, String t, LinkType linktype) {
     Entity source = Entity.get(s)
     Entity target = Entity.get(t)
     Boolean duplicate = false
@@ -35,8 +37,10 @@ class FunctionService {
     return [results: results, source: source, target: target, duplicate: duplicate]
   }
 
-  // breaks 2 entities and returns all remaining entities linked to the target
-  def breakEntities (String s, String t, LinkType linktype) {
+  /*
+   * breaks two entities and returns all entities linked to the target
+   */
+  def breakEntities(String s, String t, LinkType linktype) {
     Entity source = Entity.get(s)
     Entity target = Entity.get(t)
 
@@ -53,36 +57,44 @@ class FunctionService {
     return [results: results, source: source, target: target]
   }
 
-  // creates a new event on the dashboard
+  /*
+   * creates a new event on the dashboard
+   */
   def createEvent(Entity entity, String content, Date date = new Date()) {
     new Event(entity: entity, content: content, date: date).save()
   }
 
-  // constructs a nickname
-  def createNick (String firstName, String fullName) {
+  /*
+   * constructs a nickname from a first name and a last name
+   */
+  def createNick(String firstName, String fullName) {
     def nickname = (firstName + fullName).toLowerCase()
-    def matcher = (nickname =~/[^a-z0-9]+/)
+    def matcher = (nickname =~ /[^a-z0-9]+/)
     def newname = matcher.replaceAll("-")
     return newname
   }
 
-  // constructs a nickname
-  def createNick (String fullName) {
+  /*
+   * constructs a nickname from a full name
+   */
+  def createNick(String fullName) {
     def nickname = fullName.toLowerCase()
-    def matcher = (nickname =~/[^a-z0-9]+/)
+    def matcher = (nickname =~ /[^a-z0-9]+/)
     def newname = matcher.replaceAll("-")
     return newname
   }
 
-  /* the return type of a multiple select box is inconsistent (string when a single entry was selected, or a list when
-     multiple entries were selected) so this helper method takes the parameter and returns it as a list either way */
+  /*
+   * the return type of a multiple select box is inconsistent (string when a single entry was selected, or a list when
+   * multiple entries were selected) so this helper method takes the parameter and returns it as a list either way
+   */
   def getParamAsList(param) {
-		def paramList = []
-		if (param && param != 'null') {
-			(param?.class?.isArray()) ? paramList << (param as List) : paramList << (param)
-			paramList = paramList.flatten()
-		}
-		return paramList
-	}
-  
+    def paramList = []
+    if (param && param != 'null') {
+      (param?.class?.isArray()) ? paramList << (param as List) : paramList << (param)
+      paramList = paramList.flatten()
+    }
+    return paramList
+  }
+
 }

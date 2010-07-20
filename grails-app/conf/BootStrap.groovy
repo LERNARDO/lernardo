@@ -219,14 +219,14 @@ class BootStrap {
       prf.firstName = "Sabine"
       prf.lastName = "Zeillinger"
       prf.gender = 2
-      prf.currentCountry = "Österreich"
+      prf.currentCountry = "6"
       prf.currentZip = "2352"
       prf.currentCity = "Gumpoldskirchen"
       prf.currentStreet = ""
       prf.addToLanguages("1")
       prf.birthDate = new Date()
       prf.job = false
-      prf.maritalStatus = ""
+      prf.maritalStatus = "1"
       prf.education = "1"
       prf.comment = "Best parent ever!"
     }
