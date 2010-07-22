@@ -75,7 +75,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupNetwork)
         }
 
        userList.each {
@@ -130,7 +129,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupNetwork)
           ne("type", metaDataService.etGroupActivity)
           ne("type", metaDataService.etGroupActivityTemplate)
           ne("type", metaDataService.etTheme)
@@ -155,7 +153,6 @@ class ProfileController {
           ne("type", metaDataService.etResource)
           ne("type", metaDataService.etGroupColony)
           ne("type", metaDataService.etGroupFamily)
-          ne("type", metaDataService.etGroupNetwork)
           ne("type", metaDataService.etGroupActivity)
           ne("type", metaDataService.etGroupActivityTemplate)
           ne("type", metaDataService.etTheme)
