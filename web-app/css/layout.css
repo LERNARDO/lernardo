@@ -435,14 +435,14 @@ ul {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin: 0 0 4px 0;
-    border: 1px solid #999;
+    border: 1px solid #090;
     padding: 2px;
 }
 #private-content input.errors, #private-content textarea.errors, #private-content select.errors {
     border: 1px solid #f00;
 }
 #private-content input:hover, #private-content select:hover, #private-content textarea:hover {
-     border: 1px solid #000;
+     border: 1px solid #060;
 }
 
 #profile-navigation {
@@ -800,15 +800,14 @@ table #profile-list tr {
         font-size: 20px;
         margin-bottom: 30px; }
     #article-container .createArticle {
-        font-weight: bold;
-        /*color: #a00;*/ }
+        font-weight: bold; }
     #article-container .item {
         margin: 0 0 10px 0;
         border-bottom: 1px dashed #ccc;
         padding: 0; }
         #article-container .item .links {
             text-align: right;
-            padding: 5px 0 5px 0;
+            padding: 0 0 5px 0;
             font-size: 11px; }
         #article-container .item .header {
             margin-right: 10px;
@@ -836,14 +835,14 @@ table #profile-list tr {
         #article-container .item .info a {
             border-bottom: 1px dashed #999; }
         #article-container .item .teaser {
-            padding: 15px 0 0 0;
+            padding: 5px 0 0 0;
             margin: 0;
             color: #5a5a5a; }
             #article-container .item .teaser p {
                 line-height: 19px; }
             #article-container .item .content {
                 margin: 0;
-                padding: 5px 0 10px 0;
+                padding: 5px 0 5px 0;
                 line-height: 19px; }
 
 /* ----- GLOBAL ACTION LINKS ----- */
@@ -891,7 +890,7 @@ div.actionlinks div.userlinks a {
 .boxGray input[type=submit] {
   border: none;
     /*border: 1px solid #345ca4 !important;*/
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
+    background: #090; /*-moz-linear-gradient(-90deg,#009900,#005500) #009900; */
     padding: 4px 5px !important;
     margin: 5px 5px 0 0 !important;
     text-align: center;
@@ -908,7 +907,7 @@ div.actionlinks div.userlinks a {
 .buttonGray {
     /*border: 1px solid #666;*/
     background: #888;
-    padding: 5px;
+    padding: 6px 5px 5px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
     float: left;
@@ -917,6 +916,21 @@ div.actionlinks div.userlinks a {
     display: block; }
     .buttonGray:hover {
         background: #666;
+        /*border: 1px solid #444;*/
+        text-decoration: none; }
+
+.buttonRed {
+    /*border: 1px solid #666;*/
+    background: #900;
+    padding: 6px 5px 5px 5px;
+    margin: 5px 5px 0 0;
+    text-align: center;
+    float: left;
+    /*-moz-border-radius: 5px;*/
+    color: #fff !important;
+    display: block; }
+    .buttonRed:hover {
+        background: #600;
         /*border: 1px solid #444;*/
         text-decoration: none; }
 
