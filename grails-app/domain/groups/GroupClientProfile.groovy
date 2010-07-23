@@ -2,6 +2,10 @@ package groups
 
 import at.openfactory.ep.Profile
 
+/*
+ * used for grouping clients together by creating a link from the group to each client
+ */
+
 class GroupClientProfile extends Profile {
 
     String description

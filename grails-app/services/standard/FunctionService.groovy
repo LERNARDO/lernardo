@@ -5,6 +5,7 @@ import lernardo.Event
 import at.openfactory.ep.Link
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.LinkType
+import lernardo.Msg
 
 class FunctionService {
   MetaDataService metaDataService
@@ -95,6 +96,23 @@ class FunctionService {
       paramList = paramList.flatten()
     }
     return paramList
+  }
+
+  /*
+   * creates a private message
+   */
+  boolean createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {
+    Msg msg = new Msg()
+    msg.read = read
+    msg.sender = sender
+    msg.receiver = receiver
+    msg.entity = entity
+    msg.subject = subject
+    msg.content = content
+    if (msg.save(flush: true))
+      return true
+    else
+      return false
   }
 
 }

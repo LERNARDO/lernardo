@@ -2,6 +2,10 @@ package groups
 
 import at.openfactory.ep.Profile
 
+/*
+ * used for grouping parents, clients and children together by creating a link from the group to each family member
+ */
+
 class GroupFamilyProfile extends Profile {
 
     static hasMany = [familyProblems: String] // added on 21.04.2010

@@ -21,15 +21,19 @@ class PublicationController {
 
   def profile = {
     params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-    Entity e = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
-    if (!e) {
+    Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
+    if (!entity) {
       response.sendError (404, 'no such profile')
       return
     }
 
-    Map finalMap = [:]
-    def pubs = publicationHelperService.findPublicationsByType(e)
-    finalMap = pubs
+    def pubs = publicationHelperService.findPublicationsByType(entity)
+    Map finalMap = pubs
+
+    /*
+     * the code below should check the access level of a document to decide whether or not a publication is visible
+     * to the user - NOT USED ATM
+     */
 
     /*log.info pubs
     log.info pubs[0]
@@ -69,7 +73,7 @@ class PublicationController {
       //pubs = finalMap
     }*/
 
-    return [entity:e, pubtypes:finalMap]
+    return [entity: entity, pubtypes: finalMap]
   }
 
   def create = {
@@ -79,14 +83,14 @@ class PublicationController {
   }
 
   def save = {
-    Entity e = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
-    if (!e) {
+    Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
+    if (!entity) {
       response.sendError (404, 'no such profile')
       return
     }
 
     Publication pub = new Publication(params)
-    pub.entity = e ?: entityHelperService.loggedIn
+    pub.entity = entity
 
     // handle the file
     MultipartFile mpf = request.getFile('file')
@@ -94,10 +98,10 @@ class PublicationController {
       pub.errors.reject ('publication.file.nullable.error')
     else {
       pub.asset = assetService.storeAsset (pub.entity, "Publication", mpf)
-      log.debug "created asset $pub.asset.id of type $pub.asset.storage.contentType with storage $pub.asset.storage.storageId "
+      //log.debug "created asset $pub.asset.id of type $pub.asset.storage.contentType with storage $pub.asset.storage.storageId "
     }
 
-    log.debug "attempt to save publication: $params"
+    //log.debug "attempt to save publication: $params"
     if(pub.save(flush:true) && !pub.hasErrors()) {
       flash.message = message(code:"publication.created", args:[pub.name])
       redirect (action:"profile", id:pub.entity.id)

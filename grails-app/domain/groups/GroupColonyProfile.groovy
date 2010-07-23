@@ -4,6 +4,10 @@ import at.openfactory.ep.Profile
 import lernardo.Contact
 import lernardo.Building
 
+/*
+ * used for grouping planable resources, facilities, partners and educators together by creating a link from the group to each member
+ */
+
 class GroupColonyProfile extends Profile{
 
     static hasMany = [representatives: Contact,

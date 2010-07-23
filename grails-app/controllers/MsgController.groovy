@@ -16,6 +16,9 @@ class MsgController {
   // the delete, save and update actions only accept POST requests
   static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
+  /*
+   * shows the inbox of a given entity
+   */
   def inbox = {
     params.max = Math.min( params.max ? params.int('max') : 10,  100)
     params.offset = params.offset ? params.int('offset') : 0
@@ -26,6 +29,9 @@ class MsgController {
             'entity': Entity.get(params.id)]
   }
 
+  /*
+   * shows the outbox of a given entity
+   */
   def outbox = {
     params.max = Math.min( params.max ? params.int('max') : 10,  100)
     params.offset = params.offset ? params.int('offset') : 0
@@ -56,7 +62,7 @@ class MsgController {
     def message = Msg.get( params.id )
     if(message) {
       try {
-        // not working as well
+        // not working
         //flash.message = message(code:"msg.deleted", args:[message.subject])
         message.delete(flush:true)
         redirect action:params.box, id: params.entity
@@ -110,33 +116,21 @@ class MsgController {
   }
 
   def save = {
+    Entity entity = Entity.get(params.entity)
+    Entity currentEntity = entityHelperService.loggedIn
+
     // create first instance to be saved in outbox of sender
-    def message = new Msg()
-    message.sender = entityHelperService.loggedIn
-    message.receiver = Entity.get(params.entity)
-    message.read = true // the sender wrote it so it is already read of course
-    message.entity = entityHelperService.loggedIn
-    message.content = params.content
-    message.subject = params.subject
+    functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
+
     // create second instance to be saved in inbox of receiver
-    def message2 = new Msg()
-    message2.sender = entityHelperService.loggedIn
-    message2.receiver = Entity.get(params.entity)
-    message2.read = false
-    message2.entity = Entity.get(params.entity)
-    message2.content = params.content
-    message2.subject = params.subject
-    if(!message.hasErrors() && message.save(flush:true) && message2.save(flush:true)) {
-        // TODO: find out why this flash message suddenly won't work anymore
-        //flash.message = message(code:"msg.sent", args:[message.subject])
+    functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
+     
+    // TODO: find out why this flash message suddenly won't work anymore
+    //flash.message = message(code:"msg.sent", args:[message.subject])
 
-        functionService.createEvent(message.sender, 'Du hast '+message.receiver.profile.fullName+' eine Nachricht geschickt.')
-        functionService.createEvent(message.receiver, message.sender.profile.fullName+' hat dir eine Nachricht geschickt.')
+    functionService.createEvent(currentEntity, 'Du hast ' + entity.profile.fullName + ' eine Nachricht geschickt.')
+    functionService.createEvent(entity, currentEntity.profile.fullName + ' hat dir eine Nachricht geschickt.')
 
-        redirect controller: message2.entity.type.supertype.name +'Profile', action:'show', id:entityHelperService.loggedIn.id, params:[entity:entityHelperService.loggedIn]
-    }
-    else {
-        render view:'create', model:[msgInstance: message, entity: Entity.get(params.entity)]
-    }
+    redirect controller: entity.type.supertype.name +'Profile', action:'show', id:entityHelperService.loggedIn.id, params:[entity:entityHelperService.loggedIn]
   }
 }

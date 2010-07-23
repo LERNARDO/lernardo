@@ -3,7 +3,11 @@ package groups
 import at.openfactory.ep.Profile
 import lernardo.Comment
 
-class  GroupActivityProfile extends Profile {
+/*
+ * used for grouping activities together by creating a link from the group to each activity
+ */
+
+class GroupActivityProfile extends Profile {
 
     SortedSet comments
     static hasMany = [comments: Comment]

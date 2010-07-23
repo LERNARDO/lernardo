@@ -51,7 +51,6 @@ class BootStrap {
       createDefaultOperator()
       createDefaultFacilities()
       createDefaultEducators()
-
       createDefaultLinks()
 
       importChildren()
@@ -85,6 +84,9 @@ class BootStrap {
   def destroy = {
   }
 
+  /*
+   * loads children into the database by importing an XML file
+   */
   void importChildren() {
     Resource children_xml = ApplicationHolder.application.parentContext.getResource("assets/import/children.xml")
     if (children_xml.exists()) {
