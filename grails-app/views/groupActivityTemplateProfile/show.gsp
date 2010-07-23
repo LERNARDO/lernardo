@@ -84,22 +84,23 @@
         <jq:toggle sourceId="show-templates" targetId="templates"/>
       </jq:jquery>
       <div class="zusatz-add" id="templates" style="display:none">
-        Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)<br/>
+        <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect">
 
           <table>
             <tr>
               <td>Name:</td>
-              <td><g:textField name="name" /></td>
+              <td><g:textField name="name" size="30"/></td>
             </tr>
             <tr>
               <td>Dauer:</td>
-              <td>zwischen <g:select from="${1..240}" name="duration1" noSelection="['all':'Alle']"/> bis <g:select from="${1..240}" name="duration2" noSelection="['all':'Alle']"/> (min)</td>
+              <td><g:select from="${1..239}" name="duration1" noSelection="['all':'Beliebig']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value')}"/>
+                  <span id="secondSelect">%{--bis <g:select from="${1..240}" name="duration2" noSelection="['all':'Alle']"/>--}%</span> (min)</td>
             </tr>
             <tr>
-              <td>Methode:</td>
+              <td style="vertical-align: top">Methode:</td>
               <td>
-                Typ: <g:select name="method" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements', params:'\'id=\' + this.value')}"/>
+                <g:select name="method" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements', params:'\'id=\' + this.value')}"/>
 
                 <div id="elements"></div>
                 
@@ -158,7 +159,7 @@
         </g:formRemote>
 
         <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2">
-          <div id="templateselect">
+          <div id="templateselect" style="margin-top: 10px;">
             <g:render template="searchresults" model="[allTemplates: allTemplates]"/>
           </div>
         </g:formRemote>

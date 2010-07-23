@@ -435,14 +435,14 @@ ul {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin: 0 0 4px 0;
-    border: 1px solid #090;
+    border: 1px solid #999;
     padding: 2px;
 }
 #private-content input.errors, #private-content textarea.errors, #private-content select.errors {
     border: 1px solid #f00;
 }
 #private-content input:hover, #private-content select:hover, #private-content textarea:hover {
-     border: 1px solid #060;
+     border: 1px solid #666;
 }
 
 #profile-navigation {
@@ -874,7 +874,7 @@ div.actionlinks div.userlinks a {
 .buttonBlue {
     /*border: 1px solid #345ca4;*/
     background: #66f;
-    padding: 4px 5px;
+    padding: 6px 5px 5px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
     float: left;

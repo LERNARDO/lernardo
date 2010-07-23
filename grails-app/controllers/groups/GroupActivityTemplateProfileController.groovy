@@ -249,4 +249,11 @@ class GroupActivityTemplateProfileController {
     render(template: 'methods', model: [method: method])
   }
 
+  def secondselect = {
+    if (params.value == "all")
+      render ''
+    else
+      render template: 'secondselect', model:[value: params.value.toInteger() + 1]
+  }
+
 }
