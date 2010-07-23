@@ -271,7 +271,7 @@ class ProjectProfileController {
 
     // link each group to the project unit
     groups.each {
-      new Link(source: it, target: projectUnit, type: metaDataService.ltProjectUnit).save()
+      new Link(source: it as Entity, target: projectUnit, type: metaDataService.ltProjectUnit).save()
     }
 
     // find all units linked to this projectDay
@@ -543,7 +543,6 @@ class ProjectProfileController {
               ent.profile.duration = it.profile.duration
             }
 
-            // TODO: create links here!!
             // link this project activity to the project
             new Link(source: activity, target: project, type: metaDataService.ltActProject).save()
 
@@ -560,7 +559,7 @@ class ProjectProfileController {
             if (links) {
               List clients = links.collect {it.source}
               clients.each {
-                new Link(source: it, target: activity, type: metaDataService.ltActClient).save()
+                new Link(source: it as Entity, target: activity, type: metaDataService.ltActClient).save()
                 log.info "Client linked to activity"
               }
             }
@@ -570,7 +569,7 @@ class ProjectProfileController {
             if (links) {
               List resources = links.collect {it.source}
               resources.each {
-                new Link(source: it, target: activity, type: metaDataService.ltResource).save()
+                new Link(source: it as Entity, target: activity, type: metaDataService.ltResource).save()
                 log.info "Resource linked to activity"
               }
             }
@@ -580,7 +579,7 @@ class ProjectProfileController {
             if (links) {
               List educators = links.collect {it.source}
               educators.each {
-                new Link(source: it, target: activity, type: metaDataService.ltActEducator).save()
+                new Link(source: it as Entity, target: activity, type: metaDataService.ltActEducator).save()
                 log.info "Educator linked to activity"
               }
             }
@@ -590,7 +589,7 @@ class ProjectProfileController {
             if (links) {
               List partners = links.collect {it.source}
               partners.each {
-                new Link(source: it, target: activity, type: metaDataService.ltActPartner).save()
+                new Link(source: it as Entity, target: activity, type: metaDataService.ltActPartner).save()
                 log.info "Partner linked to activity"
               }
             }
@@ -600,7 +599,7 @@ class ProjectProfileController {
             if (links) {
               List parents = links.collect {it.source}
               parents.each {
-                new Link(source: it, target: activity, type: metaDataService.ltActParent).save()
+                new Link(source: it as Entity, target: activity, type: metaDataService.ltActParent).save()
                 log.info "Parent linked to activity"
               }
             }

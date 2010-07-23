@@ -3,13 +3,18 @@ import at.openfactory.ep.Link
 import java.text.SimpleDateFormat
 import org.springframework.web.servlet.support.RequestContextUtils
 import lernardo.Element
+import at.openfactory.ep.EntityHelperService
+import standard.MetaDataService
+import standard.NetworkService
+import standard.FilterService
+import at.openfactory.ep.SecHelperService
 
 class HelperTagLib {
-  def entityHelperService
-  def metaDataService
-  def networkService
-  def filterService
-  def secHelperService
+  EntityHelperService entityHelperService
+  MetaDataService metaDataService
+  NetworkService networkService
+  FilterService filterService
+  SecHelperService secHelperService
   def securityManager
   static namespace = "app"
 

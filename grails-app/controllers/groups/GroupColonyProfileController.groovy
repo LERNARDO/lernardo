@@ -13,135 +13,135 @@ import standard.FunctionService
 import at.openfactory.ep.EntityException
 
 class GroupColonyProfileController {
-    MetaDataService metaDataService
-    EntityHelperService entityHelperService
-    ProfileHelperService profileHelperService
-    FunctionService functionService
+  MetaDataService metaDataService
+  EntityHelperService entityHelperService
+  ProfileHelperService profileHelperService
+  FunctionService functionService
 
-    def index = {
-        redirect action:"list", params:params
+  def index = {
+    redirect action: "list", params: params
+  }
+
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
+  def list = {
+    params.max = Math.min(params.max ? params.int('max') : 10, 100)
+    return [groups: Entity.findAllByType(metaDataService.etGroupColony),
+            groupTotal: Entity.countByType(metaDataService.etGroupColony),
+            entity: entityHelperService.loggedIn]
+  }
+
+  def show = {
+    def group = Entity.get(params.id)
+    Entity entity = params.entity ? group : entityHelperService.loggedIn
+
+    if (!group) {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect(action: list)
     }
+    else {
+      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+      // find all facilities linked to this group
+      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
+      List facilities = links.collect {it.source}
 
-    // the delete, save and update actions only accept POST requests
-    static allowedMethods = [delete:'POST', save:'POST', update:'POST']
+      def allPartners = Entity.findAllByType(metaDataService.etPartner)
+      // find all partners linked to this group
+      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
+      List partners = links.collect {it.source}
 
-    def list = {
-        params.max = Math.min( params.max ? params.int('max') : 10,  100)
-        return [groups: Entity.findAllByType(metaDataService.etGroupColony),
-                groupTotal: Entity.countByType(metaDataService.etGroupColony),
-                entity: entityHelperService.loggedIn]
+      def allEducators = Entity.findAllByType(metaDataService.etEducator)
+      // find all educators linked to this group
+      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
+      List educators = links.collect {it.source}
+
+      // find all resources linked to this group
+      links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
+      List resources = links.collect {it.source}
+
+      // find colonia
+
+      return [group: group,
+              entity: entity,
+              facilities: facilities,
+              allFacilities: allFacilities,
+              resources: resources,
+              partners: partners,
+              allPartners: allPartners,
+              educators: educators,
+              allEducators: allEducators]
     }
+  }
 
-    def show = {
-        def group = Entity.get(params.id)
-        Entity entity = params.entity ? group : entityHelperService.loggedIn
-
-        if(!group) {
-            flash.message = "groupProfile not found with id ${params.id}"
-            redirect(action:list)
-        }
-        else {
-          def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-          // find all facilities linked to this group
-          def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
-          List facilities = links.collect {it.source}
-
-          def allPartners = Entity.findAllByType(metaDataService.etPartner)
-          // find all partners linked to this group
-          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
-          List partners = links.collect {it.source}
-
-          def allEducators = Entity.findAllByType(metaDataService.etEducator)
-          // find all educators linked to this group
-          links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
-          List educators = links.collect {it.source}
-
-          // find all resources linked to this group
-          links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-          List resources = links.collect {it.source}
-
-          // find colonia 
-
-          return [group: group,
-                  entity: entity,
-                  facilities: facilities,
-                  allFacilities: allFacilities,
-                  resources: resources,
-                  partners: partners,
-                  allPartners: allPartners,
-                  educators: educators,
-                  allEducators: allEducators]
-        }
-    }
-
-    def del = {
-        Entity group = Entity.get(params.id)
-        if(group) {
-            // delete all links
-            Link.findAllBySourceOrTarget(group, group).each {it.delete()}
-            try {
-                flash.message = message(code:"group.deleted", args:[group.profile.fullName])
-                group.delete(flush:true)
-                redirect(action:"list")
-            }
-            catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"group.notDeleted", args:[group.profile.fullName])
-                redirect(action:"show",id:params.id)
-            }
-        }
-        else {
-            flash.message = "groupProfile not found with id ${params.id}"
-            redirect(action:"list")
-        }
-    }
-
-    def edit = {
-        Entity group = Entity.get(params.id)
-
-        if(!group) {
-            flash.message = "groupProfile not found with id ${params.id}"
-            redirect action:'list'
-        }
-        else {
-            [group: group, entity: entityHelperService.loggedIn]
-        }
-    }
-
-    def update = {
-      Entity group = Entity.get(params.id)
-
-      group.profile.properties = params
-
-      if(!group.hasErrors() && group.save()) {
-          flash.message = message(code:"group.updated", args:[group.profile.fullName])
-          redirect action:'show', id: group.id
-      }
-      else {
-          render view:'edit', model:[group: group, entity: entityHelperService.loggedIn]
-      }
-    }
-
-    def create = {
-        return [entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
-    }
-
-    def save = {
-      EntityType etGroupColony = metaDataService.etGroupColony
-
+  def del = {
+    Entity group = Entity.get(params.id)
+    if (group) {
+      // delete all links
+      Link.findAllBySourceOrTarget(group, group).each {it.delete()}
       try {
-        Entity entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
-          ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.properties = params
-        }
+        flash.message = message(code: "group.deleted", args: [group.profile.fullName])
+        group.delete(flush: true)
+        redirect(action: "list")
+      }
+      catch (org.springframework.dao.DataIntegrityViolationException e) {
+        flash.message = message(code: "group.notDeleted", args: [group.profile.fullName])
+        redirect(action: "show", id: params.id)
+      }
+    }
+    else {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect(action: "list")
+    }
+  }
 
-        flash.message = message(code:"group.created", args:[entity.profile.fullName])
-        redirect action:'list'
-      } catch (EntityException ee) {
-        render (view:"create", model:[group: ee.entity, entity: entityHelperService.loggedIn])
-        return
+  def edit = {
+    Entity group = Entity.get(params.id)
+
+    if (!group) {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect action: 'list'
+    }
+    else {
+      [group: group, entity: entityHelperService.loggedIn]
+    }
+  }
+
+  def update = {
+    Entity group = Entity.get(params.id)
+
+    group.profile.properties = params
+
+    if (!group.hasErrors() && group.save()) {
+      flash.message = message(code: "group.updated", args: [group.profile.fullName])
+      redirect action: 'show', id: group.id
+    }
+    else {
+      render view: 'edit', model: [group: group, entity: entityHelperService.loggedIn]
+    }
+  }
+
+  def create = {
+    return [entity: entityHelperService.loggedIn, templates: Entity.findAllByType(metaDataService.etTemplate)]
+  }
+
+  def save = {
+    EntityType etGroupColony = metaDataService.etGroupColony
+
+    try {
+      Entity entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.properties = params
       }
 
+      flash.message = message(code: "group.created", args: [entity.profile.fullName])
+      redirect action: 'list'
+    } catch (EntityException ee) {
+      render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn])
+      return
     }
+
+  }
 
   def addResource = {
     Entity group = Entity.get(params.id)
@@ -153,13 +153,13 @@ class GroupColonyProfileController {
       ent.profile.properties = params
       ent.profile.type = "planbar"
     }
-    new Link(source:entity, target: group, type:metaDataService.ltResource).save()
+    new Link(source: entity, target: group, type: metaDataService.ltResource).save()
 
     // find all resources linked to this group
     def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
     List resources = links.collect {it.source}
 
-    render template:'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
 
   def removeResource = {
@@ -180,69 +180,69 @@ class GroupColonyProfileController {
     def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
     List resources = links.collect {it.source}
 
-    render template:'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
 
   def addRepresentative = {
-      Contact contact = new Contact(params)
-      Entity group = Entity.get(params.id)
-      group.profile.addToRepresentatives(contact)
-      render template:'representatives', model: [group: group, entity: entityHelperService.loggedIn]
-    }
+    Contact contact = new Contact(params)
+    Entity group = Entity.get(params.id)
+    group.profile.addToRepresentatives(contact)
+    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+  }
 
-    def removeRepresentative = {
-      Entity group = Entity.get(params.id)
-      group.profile.removeFromRepresentatives(Contact.get(params.representative))
-      render template:'representatives', model: [group: group, entity: entityHelperService.loggedIn]
-    }
+  def removeRepresentative = {
+    Entity group = Entity.get(params.id)
+    group.profile.removeFromRepresentatives(Contact.get(params.representative))
+    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+  }
 
-    def addBuilding = {
-      Building building = new Building(params)
-      Entity group = Entity.get(params.id)
-      group.profile.addToBuildings(building)
-      render template:'buildings', model: [group: group, entity: entityHelperService.loggedIn]
-    }
+  def addBuilding = {
+    Building building = new Building(params)
+    Entity group = Entity.get(params.id)
+    group.profile.addToBuildings(building)
+    render template: 'buildings', model: [group: group, entity: entityHelperService.loggedIn]
+  }
 
-    def removeBuilding = {
-      Entity group = Entity.get(params.id)
-      group.profile.removeFromBuildings(Building.get(params.building))
-      render template:'buildings', model: [group: group, entity: entityHelperService.loggedIn]
-    }
+  def removeBuilding = {
+    Entity group = Entity.get(params.id)
+    group.profile.removeFromBuildings(Building.get(params.building))
+    render template: 'buildings', model: [group: group, entity: entityHelperService.loggedIn]
+  }
 
-    def addFacility = {
-      def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
-      if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-      render template:'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
-    }
+  def addFacility = {
+    def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+  }
 
-    def removeFacility = {
-      def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
-      render template:'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
-    }
+  def removeFacility = {
+    def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+    render template: 'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
 
-    def addPartner = {
-      def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
-      if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-      render template:'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
-    }
+  def addPartner = {
+    def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+  }
 
-    def removePartner = {
-      def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
-      render template:'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
-    }
+  def removePartner = {
+    def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+    render template: 'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
 
-    def addEducator = {
-      def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
-      if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-      render template:'educators', model: [educators: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
-    }
+  def addEducator = {
+    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'educators', model: [educators: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+  }
 
-    def removeEducator = {
-      def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
-      render template:'educators', model: [educators: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
-    }
+  def removeEducator = {
+    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+    render template: 'educators', model: [educators: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
 
 }

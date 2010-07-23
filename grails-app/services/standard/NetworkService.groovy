@@ -2,13 +2,14 @@ package standard
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
+import at.openfactory.ep.EntityHelperService
 
 class NetworkService {
 
   boolean transactional = true
 
-  def metaDataService
-  def entityHelperService
+  MetaDataService metaDataService
+  EntityHelperService entityHelperService
 
   /*
    * returns all facilities a given entity is working in
