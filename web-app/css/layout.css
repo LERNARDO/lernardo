@@ -1276,7 +1276,7 @@ table#msg-composer td {
      }
     .headerGreen h1 {
         color: #fff;
-        margin: 0;
+        margin: auto 0;
         padding: 0;
         border: 0;
         font-weight: normal;

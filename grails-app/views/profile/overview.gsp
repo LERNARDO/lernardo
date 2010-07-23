@@ -22,18 +22,6 @@
 <div class="headerGreen">
   <div class="second">
     <h1>Suche <a href="#" id="suche-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-    %{--<script type="text/javascript">
-
-      $(document).ready(function() {
-          $("#membersearch-results").bind("ajaxSend", function() {
-              //$(this).fadeIn();
-            $(this).update('<img src="${createLinkTo(dir:'images',file:'spinner.gif')}" border="0" alt="Loading..." title="Loading..." width="16" height="16" />');}
-            }).bind("ajaxComplete", function() {
-              $(this).fadeOut();
-          }
-      );
-
-     </script>--}%
   </div>
 </div>
 <jq:jquery>
@@ -43,7 +31,7 @@
   <div class="second">
 
     <div id="body-list">
-      Bitte einen Namen eingeben: <g:remoteField name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" />
+      Bitte einen Namen eingeben: <g:remoteField name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
 
       %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
       
@@ -62,9 +50,6 @@
         </fieldset>
       </g:formRemote>--}%
 
-      <div id="spinner" class="spinner" style="display:none;">
-<img src="${createLinkTo(dir:'images',file:'spinner.gif')}" alt="Spinner" />
-</div>
       <div class="membersearch-results" id="membersearch-results">
       </div>
 

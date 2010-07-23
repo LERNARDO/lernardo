@@ -455,7 +455,7 @@ class ProjectProfileController {
 
   // this action takes a project and creates all activities
   def execute = {
-    render "<span class='red'>Bitte warten.. Aktivitäten werden instanziert!</span><br/>"
+    //render "<span class='red'>Bitte warten.. Aktivitäten werden instanziert!</span><br/>"
     Entity project = Entity.get(params.id)
 
     // make sure the project has clients and a facility

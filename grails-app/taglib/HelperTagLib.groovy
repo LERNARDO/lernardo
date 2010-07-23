@@ -27,13 +27,13 @@ class HelperTagLib {
     List targetNames = linksSource.collect {it.target.profile.fullName}
 
     if (sourceNames.size() == 0 && targetNames.size() == 0)
-      out << "return confirm('Es bestehen keine Beziehungen! Bist du sicher?')"
+      out << "return confirm('Es bestehen keine Beziehungen! Löschen bitte bestätigen!')"
     else if (sourceNames.size() > 0 && targetNames.size() == 0)
-      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + "! Bist du sicher?')"
+      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + "! Löschen bitte bestätigen!')"
     else if (sourceNames.size() == 0 && targetNames.size() > 0)
-      out << "return confirm('Es bestehen Beziehungen von " + targetNames + "! Bist du sicher?')"
+      out << "return confirm('Es bestehen Beziehungen von " + targetNames + "! Löschen bitte bestätigen!')"
     else
-      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + " und von " + targetNames + "! Bist du sicher?')"
+      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + " und von " + targetNames + "! Löschen bitte bestätigen!')"
   }
 
   /*

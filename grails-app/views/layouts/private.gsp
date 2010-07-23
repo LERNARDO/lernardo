@@ -99,7 +99,7 @@
         -->
         <div class="headerGreen">
           <div class="second">
-            <h1>${entity.profile.fullName} <a href="#" id="kommunikation-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a>
+            <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'bullet_green.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'bullet_red.png')}" alt="inaktiv"/></g:else></g:if> <a href="#" id="kommunikation-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}" style="top: 3px; position: relative"></a>
             </h1>
           </div>
         </div>
@@ -128,13 +128,13 @@
                 </div>
               </div>
 
-              %{--<app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">--}%
-              <app:isMe entity="${entity}">
+              <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
+              %{--<app:isMe entity="${entity}">--}%
                 <ul>
-                  <li class="icon-person"><g:link controller="asset" action="uploadprf"><g:message code="privat.picture.change"/></g:link></li>
+                  <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
                 </ul>
-              </app:isMe>
-              %{--</app:hasRoleOrType>--}%
+              %{--</app:isMe>--}%
+              </app:hasRoleOrType>
 
               <ul>
                 <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
@@ -158,7 +158,10 @@
               %{--this concerns the entity we are currently looking at = entity --}%
                 <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                   <app:notMe entity="${entity}">
-                    <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]">Nachricht senden</g:link></li>
+                    %{--a user can only be messages when enabled--}%
+                    <g:if test="${entity.user.enabled}">
+                      <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]">Nachricht senden</g:link></li>
+                    </g:if>
                     %{--<app:isFriend entity="${entity}">
                       <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
                     </app:isFriend>

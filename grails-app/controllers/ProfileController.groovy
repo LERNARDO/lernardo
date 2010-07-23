@@ -614,4 +614,10 @@ class ProfileController {
     }
   }
 
+  def uploadprf = {
+    Entity entity = Entity.get(params.id)
+
+    render view:'/asset/uploadprf', model:[entity: entity]
+    }
+
 }

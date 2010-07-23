@@ -253,7 +253,7 @@ class BootStrap {
       prf.originZip = "2352"
       prf.originCity = "Gumpoldskirchen"
       prf.addToLanguages("1")
-      prf.birthDate = new Date()
+      prf.birthDate = new Date(2005-1900,01,20)
       prf.schoolLevel = 1
       prf.size = 120
       prf.weight = 120
@@ -276,7 +276,7 @@ class BootStrap {
       prf.originZip = "2352"
       prf.originCity = "Gumpoldskirchen"
       prf.addToLanguages("1")
-      prf.birthDate = new Date()
+      prf.birthDate = new Date(2006-1900,03,20)
       prf.schoolLevel = 1
       prf.size = 120
       prf.weight = 120

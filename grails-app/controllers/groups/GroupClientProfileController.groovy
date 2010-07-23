@@ -142,6 +142,7 @@ class GroupClientProfileController {
   }
 
   def updateselect = {
+    println params
     def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 

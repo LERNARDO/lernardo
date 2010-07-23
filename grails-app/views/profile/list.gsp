@@ -43,7 +43,7 @@
 
       <div id="select-box">
         <g:form name="form1" action="list">
-          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Pädagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Pate',Erziehungsberechtigter:'Erziehungsberechtigte',Kind:'Kinder']}" value="${entityType}" optionKey="key" optionValue="value"/>
+          Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Paedagoge:'Paedagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Pate',Erziehungsberechtigter:'Erziehungsberechtigte',Kind:'Kinder']}" value="${entityType}" optionKey="key" optionValue="value"/>
         </g:form>
 
         <script type="text/javascript">
@@ -82,7 +82,7 @@
             </td>
             <td class="col">${entity.type.name}</td>
             <td class="col"><g:formatBoolean boolean="${entity.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td class="col">${entity.user.authorities.authority}</td>
+            <td class="col"><g:join in="${entity.user.authorities.collect {it.authority}}"/></td>
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
                 <app:isEnabled entity="${entity}">
@@ -92,7 +92,7 @@
                   <g:link controller="profile" action="enable" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/></g:link>
                 </app:notEnabled>
                 <app:isAdmin>
-                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}"><img src="${resource (dir:'images/icons', file:'icon_remove.png')}" alt="Löschen" align="top"/></g:link>
+                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}"><img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/></g:link>
                 </app:isAdmin>
               </app:notMe>
               <app:isSysAdmin>

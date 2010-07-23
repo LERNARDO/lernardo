@@ -33,17 +33,17 @@
     wme.multiple = true;
 
     var checked = new Array();
-      for (var zaehler = 0; zaehler < (document.getElementsByName("memberchecked").length); zaehler++) {
-       if (document.getElementsByName("memberchecked")[zaehler].checked) {
+    for (var zaehler = 0; zaehler < (document.getElementsByName("memberchecked").length); zaehler++) {
+      if (document.getElementsByName("memberchecked")[zaehler].checked) {
 
-         checked.push(document.getElementsByName("memberchecked")[zaehler].id);
+        checked.push(document.getElementsByName("memberchecked")[zaehler].id);
 
-         var optn = document.createElement("OPTION");
+        var optn = document.createElement("OPTION");
           optn.text = document.getElementsByName("memberchecked")[zaehler].id;
           optn.value = document.getElementsByName("memberchecked")[zaehler].id;
           optn.selected = true;
           wme.options.add(optn);
-       }
+      }
     }
 
     document.getElementById("hidden").appendChild(wme);
