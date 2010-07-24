@@ -46,14 +46,14 @@ class ProjectProfileController {
       // find all units linked to the template
       def links = Link.findAllByTargetAndType(template, metaDataService.ltProjectUnit)
       List units = links.collect {it.source}
-
+     
       def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      // find all facilities linked to this group
+      // find all facilities linked to this project
       links = Link.findAllByTargetAndType(project, metaDataService.ltGroupMemberFacility)
       List facilities = links.collect {it.source}
 
       def allClients = Entity.findAllByType(metaDataService.etClient)
-      // find all clients linked to this group
+      // find all clients linked to this project
       links = Link.findAllByTargetAndType(project, metaDataService.ltGroupMemberClient)
       List clients = links.collect {it.source}
 
@@ -154,7 +154,42 @@ class ProjectProfileController {
   }
 
   def save = {
-    log.info params
+    //log.info params
+
+    // first check the number of project days is > 0
+    int checkdays = 0
+
+    Date tperiodStart = params.startDate
+    Date tperiodEnd = params.endDate
+
+    Calendar tcalendarStart = new GregorianCalendar();
+    tcalendarStart.setTime(tperiodStart);
+
+    Calendar tcalendarEnd = new GregorianCalendar();
+    tcalendarEnd.setTime(tperiodEnd);
+
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
+
+    while (tcalendarStart <= tcalendarEnd) {
+       Date currentDate = tcalendarStart.getTime();
+
+       if ((params.monday && (tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday')) ||
+           (params.tuesday && (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday')) ||
+           (params.wednesday && (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday')) ||
+           (params.thursday && (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday')) ||
+           (params.friday && (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) ||
+           (params.saturday && (tdf.format(currentDate) == 'Samstag' || tdf.format(currentDate) == 'Saturday')) ||
+           (params.sunday && (tdf.format(currentDate) == 'Sonntag' || tdf.format(currentDate) == 'Sunday'))) {
+            checkdays++
+         }
+      tcalendarStart.add(Calendar.DATE, 1)
+    }
+    if (checkdays == 0) {
+      flash.message = 'Es gibt keine Tage in dem gewählten Zeitraum!'
+      render(view: "create", model: [entity: entityHelperService.loggedIn, template: Entity.get(params.id)])
+      return
+    }
+
     EntityType etProject = metaDataService.etProject
 
     try {
@@ -248,15 +283,15 @@ class ProjectProfileController {
 
   def addUnit = {
     Entity projectDay = Entity.get(params.id)
+    Entity projectUnitTemplate = Entity.get(params.unit)
 
     // create a new unit and copy the properties from the unit template
     EntityType etProjectUnit = metaDataService.etProjectUnit
     Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Einheit"
+      ent.profile.fullName = projectUnitTemplate.profile.fullName
     }
 
-    Entity projectUnitTemplate = Entity.get(params.unit)
     //projectUnit.properties = projectUnitTemplate.properties
 
     // link the new unit to the project
@@ -278,7 +313,13 @@ class ProjectProfileController {
     def links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayUnit)
     List units = links.collect {it.source}
 
-    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j]
+    // get all parents
+    def allParents = Entity.findAllByType(metaDataService.etParent)
+
+    // get all partners
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+
+    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j, allParents: allParents, allPartners: allPartners]
 
   }
 
