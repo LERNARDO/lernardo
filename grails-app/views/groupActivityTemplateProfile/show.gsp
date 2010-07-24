@@ -85,7 +85,7 @@
       </jq:jquery>
       <div class="zusatz-add" id="templates" style="display:none">
         <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
-        <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect">
+        <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
 
           <table>
             <tr>
@@ -94,8 +94,8 @@
             </tr>
             <tr>
               <td>Dauer:</td>
-              <td><g:select from="${1..239}" name="duration1" noSelection="['all':'Beliebig']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value')}"/>
-                  <span id="secondSelect">%{--bis <g:select from="${1..240}" name="duration2" noSelection="['all':'Alle']"/>--}%</span> (min)</td>
+              <td><g:select from="${1..239}" name="duration1" noSelection="['all':'Beliebig']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
+                  <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
             </tr>
             <tr>
               <td style="vertical-align: top">Methode:</td>

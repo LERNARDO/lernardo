@@ -172,8 +172,8 @@ class GroupActivityTemplateProfileController {
   def updateselect = {
     //println params
     def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
-    def star1 = params.star1
-    def star2 = params.star2
+    def star1 = functionService.getParamAsList(params.star1)
+    def star2 = functionService.getParamAsList(params.star2)
 
     def c = Entity.createCriteria()
     allTemplates = c.list {
@@ -250,10 +250,19 @@ class GroupActivityTemplateProfileController {
   }
 
   def secondselect = {
+    if (params.currentvalue == 'undefined')
+      params.currentvalue = 0
+
     if (params.value == "all")
-      render ''
-    else
-      render template: 'secondselect', model:[value: params.value.toInteger() + 1]
+      render '<span id="duration2" style="display: none">0</span>'
+    else {
+      int value = params.int('value')
+      int currentvalue = params.int('currentvalue')
+
+      if (currentvalue <= value)
+       currentvalue = value + 1
+      render template: 'secondselect', model:[value: value + 1, currentvalue: currentvalue]
+    }
   }
 
 }
