@@ -74,7 +74,7 @@ class MethodController {
       }
       methodInstance.properties = params
       if (!methodInstance.hasErrors() && methodInstance.save()) {
-        flash.message = message(code: "method.updated", args: [methodInstance.name.id])
+        flash.message = message(code: "method.updated", args: [methodInstance.name])
 
         redirect action: 'show', id: methodInstance.id
       }
