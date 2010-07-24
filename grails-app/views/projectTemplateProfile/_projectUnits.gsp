@@ -11,7 +11,7 @@
         <jq:toggle sourceId="show-groups${i}" targetId="groups${i}"/>
       </jq:jquery>
       <div id="groups${i}" style="display:none; margin: 0 0 5px 15px; background: #ccc; padding: 5px">
-        <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id:projectUnit.id, params:[i: i]]" update="groups2${i}" before="hideform('#groups${i}')">
+        <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id:projectUnit.id, params:[i: i]]" update="groups2${i}" before="showspinner('#groups2${i}')">
           Aktivitätsblockvorlagen: <g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/>
           %{--<g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>--}%
           <div class="spacer"></div>

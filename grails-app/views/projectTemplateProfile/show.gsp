@@ -68,7 +68,7 @@
         <jq:toggle sourceId="show-projectunits" targetId="projectunits"/>
       </jq:jquery>
       <div class="zusatz-add" id="projectunits" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="hideform('#projectunits')">
+        <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
           Name: <g:textField name="fullName" size="40" value=""/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

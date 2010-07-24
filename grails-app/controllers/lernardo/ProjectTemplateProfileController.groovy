@@ -157,7 +157,19 @@ class ProjectTemplateProfileController {
 
       render template: 'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
-      render "Projekteinheit konnte nicht gespeichert werden!"
+
+      render '<span class="red">Projekteinheit konnte nicht gespeichert werden!</span><br/>'
+
+      // find all projectunits of this projectTemplate
+      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+      List projectUnits = links.collect {it.source}
+
+      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+
+      // calculate realDuration
+      Integer calculatedDuration = calculateDuration(projectUnits)
+
+      render template: 'projectUnits', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnits: projectUnits, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
       return
     }
   }
