@@ -1,0 +1,1 @@
+bis <g:select from="${value..240}" name="duration2" id="duration2" value="${currentvalue}"/>

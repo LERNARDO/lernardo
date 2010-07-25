@@ -2,6 +2,10 @@ package groups
 
 import at.openfactory.ep.Profile
 
+/*
+ * used for grouping partners together by creating a link from the group to each partner
+ */
+
 class GroupPartnerProfile extends Profile {
 
     String description

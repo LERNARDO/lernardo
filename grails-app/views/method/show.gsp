@@ -46,8 +46,8 @@
       <jq:jquery>
         <jq:toggle sourceId="show-elements" targetId="elements"/>
       </jq:jquery>
-      <div class="zusath-add" id="elements" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'method', action:'addElement', id:methodInstance.id]" update="elements2" before="hideform('#elements')" after="cleartext()">
+      <div class="zusatz-add" id="elements" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'method', action:'addElement', id:methodInstance.id]" update="elements2" before="showspinner('#elements2')" after="cleartext()">
           Bezeichnung: <g:textField id="hide" name="name" size="40"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

@@ -10,23 +10,27 @@ class FilterService {
 
   boolean transactional = true
 
-  // returns the number of new inbox messages
-  int getNewInboxMessages (String id, def params=[]) {
+  /*
+   * returns the number of new inbox messages of a given entity
+   */
+  int getNewInboxMessages(String id, def params = []) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.get(id))
-      ne('sender',entityHelperService.loggedIn)
-      eq('read',false)
+      eq('entity', Entity.get(id))
+      ne('sender', entityHelperService.loggedIn)
+      eq('read', false)
     }
     return results.size()
   }
 
-  // returns all inbox messages for a given entity
-  def getInbox (String id, def params=[]) {
+  /*
+   * returns all inbox messages of a given entity
+   */
+  def getInbox(String id, def params = []) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.get(id))
-      ne('sender',entityHelperService.loggedIn)
+      eq('entity', Entity.get(id))
+      ne('sender', entityHelperService.loggedIn)
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
@@ -34,21 +38,26 @@ class FilterService {
     return results
   }
 
-  def getInboxCount (String id) {
+  /*
+   * returns the number of all inbox messages of a given entity
+   */
+  def getInboxCount(String id) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.get(id))
-      ne('sender',entityHelperService.loggedIn)
+      eq('entity', Entity.get(id))
+      ne('sender', entityHelperService.loggedIn)
     }
     return results.size()
   }
 
-  // returns all outbox messages for a given entity
-  def getOutbox (String id, def params=[]) {
+  /*
+   * returns all outbox messages of a given entity
+   */
+  def getOutbox(String id, def params = []) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.get(id))
-      eq('sender',entityHelperService.loggedIn)
+      eq('entity', Entity.get(id))
+      eq('sender', entityHelperService.loggedIn)
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
@@ -56,24 +65,28 @@ class FilterService {
     return results
   }
 
-  def getOutboxCount (String id) {
+  /*
+   * returns the number of all outbox messages of a given entity
+   */
+  def getOutboxCount(String id) {
     def c = Msg.createCriteria()
     def results = c.list {
-      eq('entity',Entity.get(id))
-      eq('sender',entityHelperService.loggedIn)
+      eq('entity', Entity.get(id))
+      eq('sender', entityHelperService.loggedIn)
     }
     return results.size()
   }
 
-
-  // returns entities for user search
-  def findUsers (String name) {
+  /*
+   * returns all entities that match a given search parameter
+   */
+  def findUsers(String name) {
     def c = Entity.createCriteria()
     def results = c.list {
       or {
-        ilike('name',"%"+name+"%")
+        ilike('name', "%" + name + "%")
         profile {
-          ilike('fullName',"%"+name+"%")
+          ilike('fullName', "%" + name + "%")
         }
       }
       maxResults(15)
@@ -81,15 +94,18 @@ class FilterService {
     return results
   }
 
-  def findUsers (String name, EntityType type) {
+  /*
+   * returns all entities that match a given search parameter and type
+   */
+  def findUsers(String name, EntityType type) {
     def c = Entity.createCriteria()
     def results = c.list {
       if (type != 'all')
         eq('type', type)
       or {
-        ilike('name',"%"+name+"%")
+        ilike('name', "%" + name + "%")
         profile {
-          ilike('fullName',"%"+name+"%")
+          ilike('fullName', "%" + name + "%")
         }
       }
       maxResults(15)

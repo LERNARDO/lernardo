@@ -14,7 +14,7 @@
 </g:if>
 <div class="tabGreen">
   <div class="second">
-    <h1>Aktivitätsvorlagen %{--<app:getTemplateCount/>--}%</h1>
+    <h1>Aktivitätsvorlagen</h1>
   </div>
 </div>
 

@@ -12,3 +12,8 @@ showform = function(id) {
 cleartext = function(){
   document.getElementById('hide').value='';
 };
+
+// shows the spinner
+showspinner = function(id) {
+  $(id).html('<img id="spinner" src="http://sueninos.lernardo.net/images/spinner.gif" alt="Spinner"/>');
+};

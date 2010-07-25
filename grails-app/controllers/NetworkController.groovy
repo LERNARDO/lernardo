@@ -4,6 +4,10 @@ import standard.NetworkService
 class NetworkController {
   NetworkService networkService
 
+  /*
+   * shows the network of a given entity
+   * NOT USED ATM
+   */
   def index = {
     Entity entity = Entity.get(params.id)
     return ['entity': entity,

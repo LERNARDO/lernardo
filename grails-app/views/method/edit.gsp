@@ -38,10 +38,10 @@
 
           <tr class="prop">
             <td width="280" valign="top" class="value">
-              <g:textField size="40" class="countable${methodInstance.profile.constraints.name.maxSize} ${hasErrors(bean: methodInstance, field: 'name', 'errors')}" id="name" name="name" value="${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}"/>
+              <g:textField size="40" class="countable${methodInstance.constraints.name.maxSize} ${hasErrors(bean: methodInstance, field: 'name', 'errors')}" id="name" name="name" value="${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}"/>
             </td>
             <td width="400" valign="top" class="value">
-              <g:textArea rows="3" cols="80" class="countable${methodInstance.profile.constraints.description.maxSize} ${hasErrors(bean: methodInstance, field: 'description', 'errors')}" id="description" name="description" value="${fieldValue(bean: methodInstance, field: 'description').decodeHTML()}"/>
+              <g:textArea rows="3" cols="80" class="countable${methodInstance.constraints.description.maxSize} ${hasErrors(bean: methodInstance, field: 'description', 'errors')}" id="description" name="description" value="${fieldValue(bean: methodInstance, field: 'description').decodeHTML()}"/>
             </td>
           </tr>
                         
@@ -50,7 +50,7 @@
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="del" id="${methodInstance.id}"><g:message code="delete"/></g:link>
+        <g:link class="buttonRed" action="del" id="${methodInstance.id}">><g:message code="delete"/></g:link>
         <g:link class="buttonGray" action="show" id="${methodInstance.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

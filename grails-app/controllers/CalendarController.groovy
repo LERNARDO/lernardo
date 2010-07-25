@@ -10,121 +10,109 @@ class CalendarController {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
 
-    def index = {
-      redirect action:'show'
-    }
+  def index = {
+    redirect action: 'show'
+  }
 
-    def destination = {
-      Entity entity = Entity.get(params.id)
-      if (entity.type.supertype.name == 'activity')
-        redirect controller: entity.type.supertype.name, action:'show', id: params.id
-      else
-        redirect controller: entity.type.supertype.name + 'Profile', action:'show', id: params.id
-    }
+  /*
+   * redirects to the appropriate show view of the calendar entry that was clicked on
+   */
+  def destination = {
+    Entity entity = Entity.get(params.id)
+    if (entity.type.supertype.name == 'activity')
+      redirect controller: entity.type.supertype.name, action: 'show', id: params.id
+    else
+      redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+  }
 
-    def show = {
-      Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
+  /*
+   * shows the calendar
+   */
+  def show = {
+    Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
 
-      List educators = []
-      
-      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
-        // find facility the educator is working for
-        Link link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
+    List educators = []
 
-        if (link) {
-          Entity facility = link.target
+    if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
+      // find facility the educator is working for
+      Link link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
 
-          // find all educators working in that facility
-          def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-          educators = links.collect {it.source}
-        }
+      if (link) {
+        Entity facility = link.target
+
+        // find all educators working in that facility
+        def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+        educators = links.collect {it.source}
       }
-      else
-        educators = Entity.findAllByType(metaDataService.etEducator)
+    }
+    else
+      educators = Entity.findAllByType(metaDataService.etEducator)
 
-      return ['id':params.id,
-              'entity':entityHelperService.loggedIn,
-              'educators':educators,
-              'active': entity]
+    return ['id': params.id,
+            'entity': entityHelperService.loggedIn,
+            'educators': educators,
+            'active': entity]
+  }
+
+  /*
+   * retrieves the entries to display in the calendar like activities or themes
+   */
+  def events = {
+    def eventList = []
+
+    // get groupactivities
+    List activityList = Entity.findAllByType(metaDataService.etGroupActivity)
+
+    activityList.each {
+      def dtStart = new DateTime(it.profile.date)
+      //dtStart = dtStart.plusHours(1)
+      def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
+      //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+      eventList << [id: it.id, title: it.profile.fullName, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: 'group']
     }
 
-    // handles event requests
-    def events = {
-        //Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
+    // get themes
+    List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-        // create empty list for final results
-/*        List activityList = []
-
-        if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
-          // get a list of facilities the current entity is working in
-          def links = Link.findAllBySourceAndType(entity, metaDataService.ltWorking)
-          List facilities = links.collect {it.target}
-
-          // find all activities for the given facility or facilities
-          facilities.each {
-            List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
-
-            tempList.each {bla ->
-              activityList << bla.target
-              }
-          }
-        }*/
-
-        def eventList = []
-
-        // get groupactivities
-        List activityList = Entity.findAllByType(metaDataService.etGroupActivity)
-
-        activityList.each {
-            def dtStart = new DateTime (it.profile.date)
-            //dtStart = dtStart.plusHours(1)
-            def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
-            //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-            eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: 'group']
-        }
-
-        // get themes
-        List themeList = Entity.findAllByType(metaDataService.etTheme)
-
-        themeList.each {
-          def dtStart = new DateTime (it.profile.startDate)
-          //dtStart = dtStart.plusHours(1)
-          def dtEnd = new DateTime (it.profile.endDate)
-          //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'theme']
-        }
-
-        // get themeroomactivities
-        def c = Entity.createCriteria()
-        List themeroomList = c.list {
-          eq("type", metaDataService.etActivity)
-          profile {
-            eq("type", "Themenraum")
-          }
-        }
-
-        themeroomList.each {
-          def dtStart = new DateTime (it.profile.date)
-          //dtStart = dtStart.plusHours(1)
-          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-          //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay:false, className: 'activity']
-
-        }
-
-        // get project units
-/*        List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
-      
-        projectUnits.each {
-          def dtStart = new DateTime (it.profile.startDate)
-          //dtStart = dtStart.plusHours(1)
-          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-          //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-          eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'projectunit']
-        }  */
-
-
-        def json = eventList as JSON;
-        render json
+    themeList.each {
+      def dtStart = new DateTime(it.profile.startDate)
+      //dtStart = dtStart.plusHours(1)
+      def dtEnd = new DateTime(it.profile.endDate)
+      //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+      eventList << [id: it.id, title: it.profile.fullName, start: dtStart.toDate(), end: dtEnd.toDate(), className: 'theme']
     }
+
+    // get themeroomactivities
+    def c = Entity.createCriteria()
+    List themeroomList = c.list {
+      eq("type", metaDataService.etActivity)
+      profile {
+        eq("type", "Themenraum")
+      }
+    }
+
+    themeroomList.each {
+      def dtStart = new DateTime(it.profile.date)
+      //dtStart = dtStart.plusHours(1)
+      def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+      //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+      eventList << [id: it.id, title: it.profile.fullName, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: 'activity']
+
+    }
+
+    // get project units
+    /*  List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
+
+    projectUnits.each {
+      def dtStart = new DateTime (it.profile.startDate)
+      //dtStart = dtStart.plusHours(1)
+      def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+      //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
+      eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'projectunit']
+    }  */
+
+
+    def json = eventList as JSON;
+    render json
+  }
 }

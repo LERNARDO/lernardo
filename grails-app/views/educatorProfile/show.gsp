@@ -273,7 +273,7 @@
             </td>
             <td valign="middle">
               <g:message code="languageSelection"/>:
-              <app:showLocale locale="${parent?.user?.locale}"/>
+              ${educator?.user?.locale?.getDisplayLanguage()}
             </td>
           </tr>
 

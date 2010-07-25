@@ -3,6 +3,10 @@ package groups
 import at.openfactory.ep.Profile
 import lernardo.Comment
 
+/*
+ * used for grouping activity templates together by creating a link from the group to each activity template
+ */
+
 class GroupActivityTemplateProfile extends Profile {
 
     SortedSet comments

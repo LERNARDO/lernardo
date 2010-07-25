@@ -19,7 +19,7 @@
           <jq:toggle sourceId="show-parents${j}${i}" targetId="parents${j}${i}"/>
         </jq:jquery>
         <div id="parents${j}${i}" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i, j: j]]" update="parents2${j}${i}" before="hideform('#parents${j}${i}')">
+          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i, j: j]]" update="parents2${j}${i}" before="showspinner('#parents2${j}${i}')">
             <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -38,7 +38,7 @@
           <jq:toggle sourceId="show-partners${j}${i}" targetId="partners${j}${i}"/>
         </jq:jquery>
         <div id="partners${j}${i}" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i, j: j]]" update="partners2${j}${i}" before="hideform('#partners${j}${i}')">
+          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i, j: j]]" update="partners2${j}${i}" before="showspinner('#partners2${j}${i}')">
             <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>

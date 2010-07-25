@@ -121,7 +121,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Gewichtungsmethode <app:isEducator entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isEducator></h5>
+      <h5>Bewertungssmethoden <app:isEducator entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isEducator></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-methods" targetId="methods"/>
       </jq:jquery>

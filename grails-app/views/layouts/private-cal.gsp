@@ -8,6 +8,7 @@
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:layoutHead/>
   <g:javascript library="jquery"/>
+  <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
 </head>
 <body>
 <g:if test="${!entity}">
