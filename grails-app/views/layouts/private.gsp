@@ -12,24 +12,24 @@
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
 
   <script type="text/javascript">
-      $(document).ready(function(){
+    $(document).ready(function() {
 
-          $('.countable50').jqEasyCounter({
-              'maxChars': 50,
-              'maxCharsWarning': 50
-          });
-
-          $('.countable500').jqEasyCounter({
-              'maxChars': 500,
-              'maxCharsWarning': 500
-          });
-
-          $('.countable2000').jqEasyCounter({
-              'maxChars': 2000,
-              'maxCharsWarning': 2000
-          });
-
+      $('.countable50').jqEasyCounter({
+        'maxChars': 50,
+        'maxCharsWarning': 50
       });
+
+      $('.countable500').jqEasyCounter({
+        'maxChars': 500,
+        'maxCharsWarning': 500
+      });
+
+      $('.countable2000').jqEasyCounter({
+        'maxChars': 2000,
+        'maxCharsWarning': 2000
+      });
+
+    });
   </script>
 
 </head>
@@ -158,22 +158,22 @@
               %{--this concerns the entity we are currently looking at = entity --}%
                 <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                   <app:notMe entity="${entity}">
-                    %{--a user can only be messages when enabled--}%
+                  %{--a user can only be messages when enabled--}%
                     <g:if test="${entity.user.enabled}">
                       <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]">Nachricht senden</g:link></li>
                     </g:if>
-                    %{--<app:isFriend entity="${entity}">
-                      <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
-                    </app:isFriend>
-                    <app:notFriend entity="${entity}">
-                      <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" id="${entity.id}">Als Freund hinzufügen</g:link></li>
-                    </app:notFriend>
-                    <app:isBookmark entity="${entity}">
-                      <li class="profile-netzwerk"><g:link controller="profile" action="removeBookmark" id="${entity.id}">Bookmark entfernen</g:link></li>
-                    </app:isBookmark>
-                    <app:notBookmark entity="${entity}">
-                      <li class="profile-netzwerk"><g:link controller="profile" action="addBookmark" id="${entity.id}">Bookmark setzen</g:link></li>
-                    </app:notBookmark>--}%
+                  %{--<app:isFriend entity="${entity}">
+                    <li class="profile-netzwerk"><g:link controller="profile" action="removeFriend" id="${entity.id}">Als Freund entfernen</g:link></li>
+                  </app:isFriend>
+                  <app:notFriend entity="${entity}">
+                    <li class="profile-netzwerk"><g:link controller="profile" action="addFriend" id="${entity.id}">Als Freund hinzufügen</g:link></li>
+                  </app:notFriend>
+                  <app:isBookmark entity="${entity}">
+                    <li class="profile-netzwerk"><g:link controller="profile" action="removeBookmark" id="${entity.id}">Bookmark entfernen</g:link></li>
+                  </app:isBookmark>
+                  <app:notBookmark entity="${entity}">
+                    <li class="profile-netzwerk"><g:link controller="profile" action="addBookmark" id="${entity.id}">Bookmark setzen</g:link></li>
+                  </app:notBookmark>--}%
                   </app:notMe>
                 </app:hasRoleOrType>
               </ul>
@@ -186,7 +186,7 @@
 
           <div class="profile-box">
             <div class="second">
-             %{--Menue links Administration--}%
+              %{--Menue links Administration--}%
               <div class="header"><g:message code="privat.head.admin"/>&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
               <jq:jquery>
                 <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
@@ -194,12 +194,12 @@
               <div id="administration-toggled">
                 <ul>
                   <app:isAdmin>
-                    <li class="icon-admin"><g:link controller="profile" action="createNotification"><g:message code="notifications"/> </g:link></li>
-                    <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/> </g:link></li>
+                    <li class="icon-admin"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
                   </app:isAdmin>
                   <app:isSysAdmin>
-                    <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]"><g:message code="operator"/> </g:link></li>
-                    <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]"><g:message code="user"/> </g:link></li>
+                    <li class="icon-admin"><g:link controller="operatorProfile" action="index" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="userProfile" action="index" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                   </app:isSysAdmin>
 
                 </ul>
@@ -212,7 +212,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
-             %{--Menue links Planung--}%
+              %{--Menue links Planung--}%
               <div class="header"><g:message code="privat.head.plan"/> &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
               <jq:jquery>
@@ -262,7 +262,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
-             %{--Menue links Andere--}%
+              %{--Menue links Andere--}%
               <div class="header"><g:message code="privat.head.others"/>&nbsp; &nbsp;<a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
               <jq:jquery>
@@ -277,8 +277,8 @@
                         <li class="icon-admin"><g:link controller="resourceProfile" action="index"><g:message code="resources"/></g:link></li>
                       </app:isEducator>
                     </app:isOperator>
-                    <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/> </g:link></li>
-                    <li class="icon-admin"><g:link controller="themeProfile" action="index" params="[name:entity.name]"><g:message code="themes"/> </g:link></li>
+                    <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="themeProfile" action="index" params="[name:entity.name]"><g:message code="themes"/></g:link></li>
                   </app:isOperator>
 
                 </ul>
@@ -324,11 +324,9 @@
           </div>
         </app:hasRoleOrType>
 
-       
-
       </div><!-- profile-navigation-->
     </div><!--bd-->
-
+      <!-- test --->
     <div id="ft">
       <g:render template="/templates/footer"/>
     </div>
