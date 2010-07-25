@@ -183,7 +183,7 @@
 
           <div class="profile-box">
             <div class="second">
-
+             %{--Menue links Administration--}%
               <div class="header"><g:message code="privat.head.admin"/>&nbsp; &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
               <jq:jquery>
                 <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
@@ -209,7 +209,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
-
+             %{--Menue links Planung--}%
               <div class="header"><g:message code="privat.head.plan"/> &nbsp; &nbsp;<a href="#" id="paedagogik-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
               <jq:jquery>
@@ -231,7 +231,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
-
+              %{--Menue links Personen--}%
               <div class="header"><g:message code="privat.head.pers"/>&nbsp; &nbsp;<a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
               <jq:jquery>
@@ -259,7 +259,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
-
+             %{--Menue links Andere--}%
               <div class="header"><g:message code="privat.head.others"/>&nbsp; &nbsp;<a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
               <jq:jquery>
@@ -287,7 +287,7 @@
         <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
-
+              %{--Menue links Gruppen--}%
               <div class="header"><g:message code="privat.head.groups"/>&nbsp; &nbsp;<a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
               <jq:jquery>
@@ -309,12 +309,10 @@
         </app:hasRoleOrType>
 
 
-
-
-
         <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
           <div class="profile-box">
             <div class="second">
+              %{--Menue links Hilfe--}%
               <div class="header"><g:message code="privat.head.help"/></div>
               <ul>
                 <li class="icon-help"><g:link controller="helper" id="${entity.id}"><g:message code="privat.showHelp"/></g:link></li>
@@ -322,6 +320,8 @@
             </div>
           </div>
         </app:hasRoleOrType>
+
+       
 
       </div><!-- profile-navigation-->
     </div><!--bd-->
