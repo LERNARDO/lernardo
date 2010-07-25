@@ -1687,3 +1687,11 @@ h5 {
     height: 80px;
 }
 
+.ein {
+   display: block;
+}
+.aus {
+    display: none;
+}
+
+
