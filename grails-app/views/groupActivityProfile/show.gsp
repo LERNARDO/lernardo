@@ -129,20 +129,20 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Betreutengruppen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clientgroups"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreutengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
-        <jq:toggle sourceId="show-clientgroups" targetId="clientgroups"/>
+        <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
-      <div  class="zusatz-add" id="clientgroups" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clientgroups2" before="hideform('#clientgroups')">
+      <div class="zusatz-add" id="clients" style="display:none">
+        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div  class="zusatz-show" id="clientgroups2">
-        <g:render template="clientgroups" model="${clientgroups}"/>
+      <div class="zusatz-show" id="clients2">
+        <g:render template="clients" model="${clients}"/>
       </div>
     </div>
 
