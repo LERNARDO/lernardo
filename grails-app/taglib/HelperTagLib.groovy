@@ -19,6 +19,15 @@ class HelperTagLib {
   static namespace = "app"
 
   /*
+   * get the tags of a given entity
+   */
+  def getTags = {attrs, body ->
+    Entity entity = attrs.entity
+    List tags = entity.tagslinks.collect {it.tag}
+    out << body(tags: tags)
+  }
+
+  /*
    * before deleting an entity this method finds any links to and from the entity and returns a confirmation message
    */
   def getLinks = {attrs ->

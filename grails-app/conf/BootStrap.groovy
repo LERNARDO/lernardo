@@ -34,6 +34,7 @@ import standard.InterfaceMaintenanceService
 import at.openfactory.ep.attr.DynAttrSet
 import at.openfactory.ep.attr.DynAttr
 import at.openfactory.ep.LinkHelperService
+import at.openfactory.ep.Tag
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -52,6 +53,7 @@ class BootStrap {
       createDefaultFacilities()
       createDefaultEducators()
       createDefaultLinks()
+      createDefaultTags()
 
       importChildren()
 
@@ -704,6 +706,13 @@ class BootStrap {
       ent.profile.description = "keine Beschreibung"
       ent.profile.status = "fertig"
     }
+  }
+
+  void createDefaultTags () {
+    log.debug ("==> creating default tags")
+
+    new Tag(name: 'abwesend').save()
+    new Tag(name: 'krank').save()
   }
 
 }

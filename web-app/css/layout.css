@@ -1694,4 +1694,26 @@ h5 {
     display: none;
 }
 
+/* TAGS */
+
+.tags {
+
+}
+
+.atag {
+    border: 1px solid #ccc;
+    background: #eee;
+    margin-right: 1px;
+    color: rgb(99,129,71);
+    text-decoration: none;
+}
+
+.atag img {
+    top: 2px;
+    position: relative;
+}
+
+.tagbuttons {
+    font-size: 10px;
+}
 

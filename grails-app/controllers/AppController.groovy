@@ -3,11 +3,16 @@ import at.openfactory.ep.Account
 import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.SecHelperService
 import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.Tag
+import standard.FunctionService
+import at.openfactory.ep.TagLinkType
+import at.openfactory.ep.EntityTagLink
 
 class AppController {
   SecHelperService secHelperService
   EntityHelperService entityHelperService
   def securityManager
+  FunctionService functionService
 
   /*
    * this should forward the exception to the developer then render the 500 view
@@ -87,5 +92,55 @@ class AppController {
       flash.message = message(code: "account.notFound", args: [params.email])
       render view: 'password', model: [params: params]
     }
+  }
+
+  /*
+   * adds a tag to an entity
+   */
+  def addTag = {
+    Entity entity = Entity.get(params.entity)
+    Tag tag = Tag.findByName(params.tag)
+
+    // make sure the entity isn't already marked with this tag
+    if (!EntityTagLink.findByTagAndEntity(tag, entity)) {
+    TagLinkType tlt = new TagLinkType(name: 'default').save()
+    //println "taglinktype: " + tlt
+    EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save()
+    //println "entitytaglink: " + etl
+
+    entity.addToTagslinks(etl)
+    //println "entity taglinks: " + entity.tagslinks
+    tag.addToEntityLinks(etl)
+    //println "tag taglinks: " + tag.entityLinks
+    }
+    else {
+      //render '<span class="red italic">' + entity.profile.fullName + ' ist bereits als ' + tag.name + ' getaggt!</span>'
+    }
+
+    // get all tags of the entity
+    List tags = entity.tagslinks.collect {it.tag}
+    //println "all entity tags: " + tags
+
+    render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
+  }
+
+  /*
+   * removes a tag from an entity
+   */
+  def removeTag = {
+    Entity entity = Entity.get(params.entity)
+    Tag tag = Tag.get(params.tag)
+
+    EntityTagLink etl = EntityTagLink.findByTagAndEntity(tag, entity)
+    //println etl
+    
+    entity.removeFromTagslinks(etl)
+    tag.removeFromEntityLinks(etl)
+
+    etl.delete()
+
+    List tags = entity.tagslinks.collect {it.tag}
+
+    render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
   }
 }
