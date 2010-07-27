@@ -90,7 +90,8 @@ class EducatorProfileController {
     educator.profile.fullName = params.lastName + " " + params.firstName
 
     educator.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
+    if (educator == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
     if (!educator.hasErrors() && educator.save()) {
 
@@ -135,7 +136,7 @@ class EducatorProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to partner
       Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}

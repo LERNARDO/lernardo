@@ -84,7 +84,8 @@ class PartnerProfileController {
 
     partner.profile.properties = params
     partner.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
+    if (partner == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
     if (!partner.hasErrors() && partner.save()) {
 
@@ -122,7 +123,7 @@ class PartnerProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // link partner to colonia
       new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()

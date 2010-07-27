@@ -86,7 +86,8 @@ class ParentProfileController {
     parent.profile.fullName = params.lastName + " " + params.firstName
 
     parent.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
+    if (parent == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
 
     if (!parent.hasErrors() && parent.save()) {
       flash.message = message(code: "parent.updated", args: [parent.profile.fullName])
@@ -110,7 +111,7 @@ class ParentProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "parent.created", args: [entity.profile.fullName])
       redirect action: 'list'

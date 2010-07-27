@@ -86,7 +86,8 @@ class PateProfileController {
     pate.profile.fullName = params.lastName + " " + params.firstName
 
     pate.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
+    if (pate == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
     if (!pate.hasErrors() && pate.save()) {
 
@@ -111,8 +112,7 @@ class PateProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "pate.created", args: [entity.profile.fullName])
       redirect action: 'list'

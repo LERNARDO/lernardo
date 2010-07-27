@@ -84,7 +84,8 @@ class OperatorProfileController {
 
     operator.profile.properties = params
     operator.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
+    if (operator == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 
     if (!operator.hasErrors() && operator.save()) {
       flash.message = message(code: "operator.updated", args: [operator.profile.fullName])
@@ -108,7 +109,7 @@ class OperatorProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "operator.created", args: [entity.profile.fullName])
       redirect action: 'list'

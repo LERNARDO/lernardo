@@ -16,6 +16,7 @@ import at.openfactory.ep.EntityException
 class ClientProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
+  def securityManager
   FunctionService functionService
 
   def index = {
@@ -101,7 +102,8 @@ class ClientProfileController {
     client.profile.fullName = params.lastName + " " + params.firstName
 
     client.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
+    if (client == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
     // check and (brute force) update link to colonia
     def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
@@ -141,7 +143,7 @@ class ClientProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to colonia
       new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()

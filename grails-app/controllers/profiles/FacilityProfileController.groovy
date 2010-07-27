@@ -111,7 +111,8 @@ class FacilityProfileController {
 
     facility.profile.properties = params
     facility.user.properties = params
-    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
+    if (facility == entityHelperService.loggedIn)
+      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
 
     if (!facility.hasErrors() && facility.save()) {
 
@@ -150,7 +151,7 @@ class FacilityProfileController {
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
+      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // link facility to colonia
       new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
