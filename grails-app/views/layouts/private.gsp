@@ -31,18 +31,14 @@
 
     });
   </script>
+
   <script type="text/javascript">
     <!--
-    
-    Tabs2 = new Array("b1", "b2");
-
-    function resetCSS (myTabs) {
-        for (var i = 0; i < myTabs.length; i++)
-        document.getElementById(myTabs[i]).className = "aus";
-    }
-    function setCSS (eId, myTabs) {
-       resetCSS(myTabs);
-       document.getElementById(eId).className = "ein";
+    function changeTab (aktiv_tab, aktiv_inhalt, passiv_tab, passiv_inhalt) {
+        document.getElementById(aktiv_tab).className = "aktiv_tab";
+        document.getElementById(aktiv_inhalt).className = "aktiv_inhalt";
+        document.getElementById(passiv_tab).className = "passiv_tab";
+        document.getElementById(passiv_inhalt).className = "passiv_inhalt";
     }
     -->
   </script>
@@ -171,7 +167,7 @@
 
               </table>
 
-              </div>
+            </div>
           </div>
         </div>
       %{--this concerns myself = currentEntity --}%
@@ -181,35 +177,32 @@
             <div class="second">
               %{--Menue links Administration / Verwaltung--}%
               <div class="header">
-                <label onclick="setCSS('b2', Tabs2)"><g:message code="privat.head.verw"/>&nbsp;&nbsp;|</label>
-                <label onclick="setCSS('b1', Tabs2)"><g:message code="privat.head.admin"/> &nbsp;</label>
-
-
+                <label id="tab-verwaltung" class="aktiv_tab" onclick="changeTab('tab-verwaltung', 'inhalt-verwaltung', 'tab-admin', 'inhalt-admin')"><g:message code="privat.head.verw"/>&nbsp;&nbsp;|</label>
+                <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"><g:message code="privat.head.admin"/> &nbsp;</label>
 
                 &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
               <jq:jquery>
                 <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
               </jq:jquery>
               <div id="administration-toggled">
-                <div id="b1" class="aus">
+                <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
 
-                      <li class="icon-admin"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
-                     <app:isAdmin>
+                    <li class="icon-admin"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
+                    <app:isAdmin>
                       <li class="icon-admin"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
-                      </app:isAdmin>
+                    </app:isAdmin>
 
-                  
                   </ul>
                 </div>
 
-                <div id="b2" class="ein">
+                <div id="inhalt-verwaltung" class="aktiv_inhalt">
                   <ul>
                     <app:isAdmin>
                       <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
                       <li class="icon-admin"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                       <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
-                     <hr />
+                      <hr/>
                     </app:isAdmin>
                     <li class="icon-admin"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/></g:link></li>
                     <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
@@ -217,7 +210,7 @@
                     <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/></g:link></li>
                     <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
                     <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]"><g:message code="partners"/></g:link></li>
-                    <hr />
+                    <hr/>
                     <li class="icon-admin"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]"><g:message code="groupFamilies"/></g:link></li>
                     <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]"><g:message code="groupColonies"/></g:link></li>
                     <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facility"/></g:link></li>
@@ -250,7 +243,7 @@
                   <ul>
                     <app:isOperator entity="${currentEntity}">
                       <li class="icon-admin"><g:link controller="resourceProfile" action="index" params="[name:entity.name]"><g:message code="resources"/></g:link></li>
-                      </app:isOperator>
+                    </app:isOperator>
                   </ul>
                 </div>
 

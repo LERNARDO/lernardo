@@ -1687,12 +1687,7 @@ h5 {
     height: 80px;
 }
 
-.ein {
-   display: block;
-}
-.aus {
-    display: none;
-}
+
 
 /* TAGS */
 
@@ -1717,3 +1712,22 @@ h5 {
     font-size: 10px;
 }
 
+
+.aktiv_tab {
+   color: #005500;
+
+}
+.aktiv_inhalt {
+   display: block;
+}
+.passiv_tab {
+   color: #555;
+   cursor: pointer;
+}
+.passiv_tab:hover {
+   color:  #fa7d00;
+   cursor: pointer;
+}
+.passiv_inhalt {
+    display: none;
+}
