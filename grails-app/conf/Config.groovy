@@ -106,9 +106,9 @@ defaultpass = "pass"
 // custom maps to store data
 nationalities_de = [1:'Deutschland',2:'England',3:'Frankreich',4:'Spanien',5:'Portugal',6:'Österreich',7:'Mexiko',8:'Italien']
 nationalities_es = [1:'Alemania',2:'Inglaterra',3:'Francia',4:'España',5:'Portugal',6:'Austria',7:'México',8:'Italia']
-languages_de = [1:'Deutsch',2:'Englisch',3:'Französisch',4:'Spanisch',5:'Mexikanisch',6:'Tsotsil',7:'Tseltal',8:'Zoque',
+languages_de = [1:'Spanisch',2:'Deutsch',3:'Englisch',4:'Französisch',5:'Mexikanisch',6:'Tsotsil',7:'Tseltal',8:'Zoque',
                 9:'Tojolabal',10:'Kanjobal',11:'Lacandon',12:'Quiche',13:'Chol',14:'Cakchiquel']
-languages_es = [1:'alemán',2:'inglés',3:'francés',4:'español',5:'mexicana',6:'Tsotsil',7:'Tseltal',8:'Zoque',9:'Tojolabal',
+languages_es = [1:'español',2:'alemán',3:'inglés',4:'francés',5:'mexicana',6:'Tsotsil',7:'Tseltal',8:'Zoque',9:'Tojolabal',
                 10:'Kanjobal',11:'Lacandon',12:'Quiche',13:'Chol',14:'Cakchiquel']
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
