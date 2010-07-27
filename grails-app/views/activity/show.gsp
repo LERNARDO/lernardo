@@ -43,46 +43,46 @@
 
           <tr>
             <td valign="top" class="value-show"><app:getFacility entity="${activity}">
-            <app:isEnabled entity="${facility}">
-              <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
-            </app:isEnabled>
-            <app:notEnabled entity="${facility}">
-              <span class="notEnabled">${facility.profile.fullName}</span>
-            </app:notEnabled>
-            </app:getFacility></td>
+              <app:isEnabled entity="${facility}">
+                <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
+              </app:isEnabled>
+              <app:notEnabled entity="${facility}">
+                <span class="notEnabled">${facility.profile.fullName}</span>
+              </app:notEnabled>
+              </app:getFacility>
+            </td>
 
-            <td></td>
+            <td valign="top" class="value-show"><app:getClients entity="${activity}">
+              <g:each in="${clients}" var="client">
+                <app:isEnabled entity="${client}">
+                  <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
+                </app:isEnabled>
+                <app:notEnabled entity="${client}">
+                  <span class="notEnabled">${client.profile.fullName}</span>
+                </app:notEnabled><br>
+              </g:each>
+              </app:getClients>
+            </td>
 
             <td valign="top" class="value-show-block"><app:getEducators entity="${activity}">
-            <g:each in="${educators}" var="educator">
-              <app:isEnabled entity="${educator}">
-                <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}">${educator.profile.fullName}</g:link>
-              </app:isEnabled>
-              <app:notEnabled entity="${educator}">
-                <span class="notEnabled">${educator.profile.fullName}</span>
-              </app:notEnabled><br>
-            </g:each>
-            </app:getEducators></td>
+              <g:each in="${educators}" var="educator">
+                <app:isEnabled entity="${educator}">
+                  <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}">${educator.profile.fullName}</g:link>
+                </app:isEnabled>
+                <app:notEnabled entity="${educator}">
+                  <span class="notEnabled">${educator.profile.fullName}</span>
+                </app:notEnabled><br>
+              </g:each>
+              </app:getEducators>
+            </td>
           </tr>
-
-%{--          <tr><td class="name">Teilnehmer:</td><td class="value"><app:getClients entity="${activity}">
-            <g:each in="${clients}" var="client">
-              <app:isEnabled entity="${client}">
-                <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
-              </app:isEnabled>
-              <app:notEnabled entity="${client}">
-                <span class="notEnabled">${client.profile.fullName}</span>
-              </app:notEnabled><br>
-            </g:each>
-            </app:getClients></td>
-          </tr>--}%
 
         </table>
 
         <app:isEducator entity="${entity}">
             <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
             <g:link class="buttonGreen" action="del" onclick="return confirm('Aktivität wirklich löschen?');" id="${activity.id}">Löschen</g:link>
-            <g:link class="buttonGray" action>Zurück</g:link>  %{-- hf 20102406   --}%
+            <g:link class="buttonGray" action="list">Zurück</g:link>  %{-- hf 20102406   --}%
             %{--<a href="" class="buttonGray" onclick="history.go(-2)">Zurück</a> --}%
             <div class="spacer"></div>
         </app:isEducator>
