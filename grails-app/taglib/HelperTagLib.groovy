@@ -28,6 +28,16 @@ class HelperTagLib {
   }
 
   /*
+   * checks whether to render a tag button
+   */
+  def showTagButton = {attrs, body ->
+    List tags = attrs.tags
+    List tagnames = tags.collect {it.name}
+    if (!tagnames.contains(attrs.button))
+      out << body()
+  }
+
+  /*
    * before deleting an entity this method finds any links to and from the entity and returns a confirmation message
    */
   def getLinks = {attrs ->

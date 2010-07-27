@@ -98,7 +98,7 @@
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
       <div  class="zusatz-add" id="facilities" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="hideform('#facilities')">
+        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -116,7 +116,7 @@
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
       <div  class="zusatz-add" id="educators" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="hideform('#educators')">
+        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -152,7 +152,7 @@
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
       <div  class="zusatz-add" id="parents" style="display:none">
-        <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="hideform('#parents')">
+        <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2')">
           <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -170,7 +170,7 @@
         <jq:toggle sourceId="show-partners" targetId="partners"/>
       </jq:jquery>
       <div  class="zusatz-add" id="partners" style="display:none">
-        <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="hideform('#partners')">
+        <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

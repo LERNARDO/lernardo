@@ -11,6 +11,14 @@
 
 
 <span class="tagbuttons">
-  <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'abwesend', update: update]">war abwesend</g:remoteLink> -
-  <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'krank', update: update]">war krank</g:remoteLink>
+
+  <app:showTagButton tags="${tags}" button="abwesend">
+    <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'abwesend', update: update]">abwesend markieren</g:remoteLink>
+  </app:showTagButton>
+  
+  <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']" me="false">
+    <app:showTagButton tags="${tags}" button="krank">
+      <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'krank', update: update]">krank markieren</g:remoteLink>
+    </app:showTagButton>
+  </app:hasRoleOrType>
 </span>
