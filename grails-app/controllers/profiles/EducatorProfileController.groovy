@@ -158,6 +158,7 @@ class EducatorProfileController {
   def addDate = {
     CDate date = new CDate(params)
     Entity educator = Entity.get(params.id)
+    date.type = educator.profile.dates.size() % 2 == 0 ? 'Eintritt' : 'Austritt'
     educator.profile.addToDates(date)
     render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
   }

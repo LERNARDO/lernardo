@@ -297,14 +297,13 @@
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="hideform('#dates')">
           <g:datePicker name="date" value="" precision="day"/>
-          <g:hiddenField name="type" value="${educator.profile.dates.size() % 2 == 0 ? 'join' : 'end'}"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="dates2">
-        <g:render template="dates" model="${educator}"/>
+        <g:render template="dates" model="[educator: educator, entity: entity]"/>
       </div>
     </div>
 

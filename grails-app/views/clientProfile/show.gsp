@@ -330,7 +330,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="dates2">
-        <g:render template="dates" model="${client}"/>
+        <g:render template="dates" model="[client: client, entity: entity]"/>
       </div>
     </div>
 
