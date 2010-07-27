@@ -39,7 +39,7 @@
         <tbody>
         <g:each status="i" in="${templateList}" var="templateInstance">
           <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-            <td class="col"><g:link action="show" id="${templateInstance.id}" params="[entity: templateInstance.id]">${templateInstance.profile.fullName}</g:link></td>
+            <td class="col"><g:link action="show" id="${templateInstance.id}" params="[entity: templateInstance.id]">${templateInstance.profile.fullName.decodeHTML()}</g:link></td>
             <td class="col2">${templateInstance.profile.duration}</td>
             <td>${templateInstance.profile.socialForm}</td>
             <td>${templateInstance.profile.comments.size()}</td>

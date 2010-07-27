@@ -23,7 +23,7 @@
           <tbody>
           <g:each in="${methodInstanceList}" status="i" var="method">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${method.id}">${fieldValue(bean: method, field: 'name')}</g:link></td>
+              <td><g:link action="show" id="${method.id}">${fieldValue(bean: method, field: 'name').decodeHTML()}</g:link></td>
               <td>${method.elements.size()}</td>
             </tr>
           </g:each>

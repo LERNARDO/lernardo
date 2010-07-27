@@ -22,7 +22,7 @@
           <tbody>
           <g:each in="${operatorList}" status="i" var="operator">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${operator.id}" params="[entity: operator.id]">${fieldValue(bean: operator, field: 'profile.fullName')}</g:link></td>
+              <td><g:link action="show" id="${operator.id}" params="[entity: operator.id]">${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}</g:link></td>
             </tr>
           </g:each>
           </tbody>

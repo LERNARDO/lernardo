@@ -24,7 +24,7 @@
           <tbody>
           <g:each in="${clientList}" status="i" var="client">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.fullName')}</g:link></td>
+              <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</g:link></td>
               <td>${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<div class="italic">---</div>'}</td>
               <td>${fieldValue(bean: client, field: 'profile.currentCity') ?: '<div class="italic">---</div>'}</td>
             </tr>

@@ -24,7 +24,7 @@
           <tbody>
           <g:each in="${themeList}" status="i" var="theme">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${theme.id}">${fieldValue(bean: theme, field: 'profile.fullName')}</g:link></td>
+              <td><g:link action="show" id="${theme.id}">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</g:link></td>
               <td>${theme.profile.type}</td>
             </tr>
           </g:each>
