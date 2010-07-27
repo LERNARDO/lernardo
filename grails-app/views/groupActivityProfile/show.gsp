@@ -129,6 +129,24 @@
     </div>
 
     <div class="zusatz" >
+      <h5>Supplierung <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-substitutes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Supplierung hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <jq:jquery>
+        <jq:toggle sourceId="show-substitutes" targetId="substitutes"/>
+      </jq:jquery>
+      <div  class="zusatz-add" id="substitutes" style="display:none">
+        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2')">
+          <g:select name="substitute" from="${allEducators}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div  class="zusatz-show" id="substitutes2">
+        <g:render template="substitutes" model="${substitutes}"/>
+      </div>
+    </div>
+
+    <div class="zusatz" >
       <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
       <jq:jquery>
         <jq:toggle sourceId="show-clients" targetId="clients"/>
