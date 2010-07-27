@@ -48,7 +48,7 @@ class GroupActivityProfileController {
       List allPartners = Entity.findAllByType(metaDataService.etPartner)
       List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner).collect {it.source} // find all partners linked to this group
 
-      List allParents = Entity.findAllByType(metaDataService.etParent)
+      def allParents = functionService.findParents(group)
       List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent).collect {it.source} // find all parents linked to this group
 
       List allEducators = Entity.findAllByType(metaDataService.etEducator)
@@ -240,5 +240,11 @@ class GroupActivityProfileController {
   def removeClient = {
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
     render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def updateparents = {
+    Entity group = Entity.get(params.id)
+    def allParents = functionService.findParents(group)
+    render template: 'parentselect', model: [allParents: allParents, group: group]
   }
 }

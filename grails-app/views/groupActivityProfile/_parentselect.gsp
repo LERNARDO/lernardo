@@ -1,0 +1,1 @@
+<g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/> <g:remoteLink update="parentselect" action="updateparents" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>

@@ -115,4 +115,35 @@ class FunctionService {
       return false
   }
 
+  /*
+   * receives an activity group, finds all clients linked to it, finds all families linked to the client and returns all parents linked to the families
+   */
+  def findParents(Entity group) {
+    // 1. find all clients linked to the group
+    List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source}
+    //println clients
+
+    // 2. find all families of the clients
+    List families = []
+    clients.each {
+      List links = Link.findAllBySourceAndType(it as Entity, metaDataService.ltGroupFamily)?.collect {it.target}
+      links.each {
+        if (!families.contains(it))
+          families << it
+      }
+    }
+    //println families
+
+    // 3. find all parents of the families
+    List allParents = []
+    families.each {
+      List parents = Link.findAllByTargetAndType(it as Entity, metaDataService.ltGroupMemberParent)?.collect {it.source}
+      parents.each {
+        allParents.add(it)
+      }
+    }
+    //println allParents
+    return allParents
+  }
+
 }
