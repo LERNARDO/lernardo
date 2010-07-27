@@ -498,6 +498,21 @@ class HelperTagLib {
   }
 
   /*
+   * checks whether the given entity was created by the current user
+   */
+  def isCreator = {attrs, body ->
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', entityHelperService.loggedIn)
+      eq('target', attrs.entity)
+      eq('type', metaDataService.ltCreator)
+    }
+    // show also when the current user is an operator, admin or sysadmin
+    if (link || entityHelperService.loggedIn.type.name == metaDataService.etOperator.name || secHelperService.isAdmin() || secHelperService.hasRole('ROLE_SYSTEMADMIN'))
+      out << body()
+  }
+
+  /*
    * sets the active state of each letter of the glossary
    */
   def active = {attrs ->

@@ -157,13 +157,16 @@ class GroupActivityProfileController {
         ent.profile.educationalObjectiveText = ""
       }
 
+      // create link to creator
+      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+
       // find all templates of this linked to the groupActivityTemplate
       def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
       List templates = links.collect {it.source}
 
       // and link them to the new groupActivity
       templates.each {
-        new Link(source: it, target: entity, type: metaDataService.ltGroupMember).save()
+        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
       }
 
       // link template to instance

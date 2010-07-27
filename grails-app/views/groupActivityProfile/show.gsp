@@ -68,12 +68,12 @@
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${group}">
+    <app:isCreator entity="${group}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
+    </app:isCreator>
 
     <div class="zusatz" >
       <h5>Aktivitäten</h5>
