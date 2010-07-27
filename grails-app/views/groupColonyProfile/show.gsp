@@ -47,7 +47,7 @@
         <jq:toggle sourceId="show-representatives" targetId="representatives"/>
       </jq:jquery>
       <div class="zusatz-add" id="representatives" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="hideform('#representatives')">
+        <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="showspinner('#representatives2')">
 
           <table>
             <tr>
@@ -103,7 +103,7 @@
         <jq:toggle sourceId="show-buildings" targetId="buildings"/>
       </jq:jquery>
       <div class="zusatz-add"id="buildings" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="hideform('#buildings')">
+        <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="showspinner('#buildings2')">
 
           <table>
             <tr>
@@ -152,7 +152,7 @@
         <jq:toggle sourceId="show-resources" targetId="resources"/>
       </jq:jquery>
       <div class="zusatz-add"id="resources" style="display:none">
-        <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="hideform('#resources')">
+        <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2')">
           <table>
             <tr>
               <td><g:message code="resource.profile.name"/>: </td>
@@ -184,7 +184,7 @@
         <jq:toggle sourceId="show-facilities" targetId="facilities"/>
       </jq:jquery>
       <div class="zusatz-add" id="facilities" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="hideform('#facilities')">
+        <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -202,7 +202,7 @@
         <jq:toggle sourceId="show-partners" targetId="partners"/>
       </jq:jquery>
       <div class="zusatz-add"id="partners" style="display:none">
-        <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="hideform('#partners')">
+        <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -220,7 +220,7 @@
         <jq:toggle sourceId="show-educators" targetId="educators"/>
       </jq:jquery>
       <div class="zusatz-add"id="educators" style="display:none">
-        <g:formRemote name="formRemote6" url="[controller:'groupColonyProfile', action:'addEducator', id:group.id]" update="educators2" before="hideform('#educators')">
+        <g:formRemote name="formRemote6" url="[controller:'groupColonyProfile', action:'addEducator', id:group.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

@@ -87,7 +87,7 @@
           <jq:toggle sourceId="show-groupActivityTemplates" targetId="groupActivityTemplates"/>
         </jq:jquery>
         <div id="groupActivityTemplates" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id: projectTemplate.id]" update="projectunits2" before="hideform('#groupActivityTemplates')">
+          <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id: projectTemplate.id]" update="projectunits2" before="showspinner('#groupActivityTemplates')">
             Aktivitätsvorlagengruppe: <g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/><br/>
             Hinzufügen zu: <g:select name="projectUnit" from="${projectUnits}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>

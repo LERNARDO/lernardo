@@ -123,7 +123,7 @@
         <jq:toggle sourceId="show-services" targetId="services"/>
       </jq:jquery>
       <div id="services" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="hideform('#services')">
+        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
           <g:textField name="service" size="30"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -141,7 +141,7 @@
         <jq:toggle sourceId="show-contacts" targetId="contacts"/>
       </jq:jquery>
       <div class="zusatz-add" id="contacts" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="hideform('#contacts')">
+        <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2')">
 
           <table>
             <tr>

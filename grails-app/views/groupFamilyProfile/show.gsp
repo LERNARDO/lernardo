@@ -77,7 +77,7 @@
         <jq:toggle sourceId="show-parents" targetId="parents"/>
       </jq:jquery>
       <div class="zusatz-add" id="parents" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="hideform('#parents')">
+        <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="showspinner('#parents2')">
           <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -95,7 +95,7 @@
         <jq:toggle sourceId="show-clients" targetId="clients"/>
       </jq:jquery>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="hideform('#clients')">
+        <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -113,7 +113,7 @@
         <jq:toggle sourceId="show-childs" targetId="childs"/>
       </jq:jquery>
       <div class="zusatz-add" id="childs" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="hideform('#childs')">
+        <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="showspinner('#childs2')">
           <g:select name="child" from="${allChilds}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

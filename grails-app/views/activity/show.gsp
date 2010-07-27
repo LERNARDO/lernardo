@@ -97,7 +97,7 @@
             <jq:toggle sourceId="show-clients" targetId="clients"/>
           </jq:jquery>
           <div id="clients" style="display:none">
-            <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="hideform('#clients')">
+            <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
               <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
               <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
               <div class="spacer"></div>

@@ -98,7 +98,7 @@
       </jq:jquery>
       <div class="zusatz-add" id="resources" style="display:none">
             
-        <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="hideform('#resources')">
+        <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2')">
           <table>
             <tr>
               <td><g:message code="resource.profile.name"/>: </td>
@@ -126,7 +126,7 @@
         <jq:toggle sourceId="show-methods" targetId="methods"/>
       </jq:jquery>
       <div class="zusatz-add" id="methods" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="hideform('#methods')">
+        <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2')">
           <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

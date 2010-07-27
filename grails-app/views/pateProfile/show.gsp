@@ -103,7 +103,7 @@
         <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
       </jq:jquery>
       <div class="zusatz-add" id="godchildren" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="hideform('#godchildren')">
+        <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
           <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
