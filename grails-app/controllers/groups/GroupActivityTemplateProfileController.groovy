@@ -118,6 +118,7 @@ class GroupActivityTemplateProfileController {
 
   def create = {
     Entity group = Entity.get(params.id)
+       
     return [entity: entityHelperService.loggedIn,
             group: group]
   }

@@ -85,6 +85,7 @@
           </tbody>
         </table>
       </div>
+      <p>Errechnete Gesamtdauer: ${calculatedDuration} Minuten</p>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>

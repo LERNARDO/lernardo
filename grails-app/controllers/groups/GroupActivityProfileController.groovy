@@ -132,7 +132,17 @@ class GroupActivityProfileController {
 
   def create = {
     Entity groupActivityTemplate = Entity.get(params.id)
-    return [entity: entityHelperService.loggedIn, template: groupActivityTemplate]
+
+    // find all templates linked to this group
+    def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
+    List templates = links.collect {it.source}
+
+    def calculatedDuration = 0
+    templates.each {
+      calculatedDuration += it.profile.duration
+    }
+
+    return [entity: entityHelperService.loggedIn, template: groupActivityTemplate, calculatedDuration: calculatedDuration]
   }
 
   def save = {
