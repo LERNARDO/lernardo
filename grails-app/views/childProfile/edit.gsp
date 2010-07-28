@@ -85,10 +85,10 @@
             </td>
 			<td  height="35" valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value"/>
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${child.profile.jobType}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value"/>
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${child.profile.jobType}"/>
               </g:if>
 			</td>
 			<td  valign="top"class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
