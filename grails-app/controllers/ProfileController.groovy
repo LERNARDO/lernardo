@@ -71,18 +71,32 @@ class ProfileController {
   }
 
   def saveNotification = {
+    //println params
     def c = Entity.createCriteria()
     def userList = c.list {
-      ne("type", metaDataService.etCommentTemplate)
-      ne("type", metaDataService.etActivity)
-      ne("type", metaDataService.etTemplate)
-      ne("type", metaDataService.etResource)
-      ne("type", metaDataService.etGroupColony)
-      ne("type", metaDataService.etGroupFamily)
+      or {
+        if (params.user)
+          eq("type", metaDataService.etUser)
+        if (params.operator)
+          eq("type", metaDataService.etOperator)
+        if (params.client)
+          eq("type", metaDataService.etClient)
+        if (params.educator)
+          eq("type", metaDataService.etEducator)
+        if (params.parent)
+          eq("type", metaDataService.etParent)
+        if (params.child)
+          eq("type", metaDataService.etChild)
+        if (params.pate)
+          eq("type", metaDataService.etPate)
+        if (params.partner)
+          eq("type", metaDataService.etPartner)
+      }
     }
 
     Entity admin = Entity.findByName('sueninosadmin')
     userList.each {
+      //println it.profile.fullName + " of type " + it.type.name + " received a message"
       functionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
       functionService.createMessage(admin, it as Entity, it as Entity, params.subject, params.content)
     }
