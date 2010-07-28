@@ -49,15 +49,14 @@ class BootStrap {
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
       createDefaultUsers()
-      createDefaultOperator()
-      createDefaultFacilities()
-      createDefaultEducators()
-      createDefaultLinks()
-      createDefaultTags()
 
-      importChildren()
-
-      if (GrailsUtil.environment == "development") {
+      if (GrailsUtil.environment == "development" || GrailsUtil.environment == "test") {
+        importChildren()
+        createDefaultOperator()
+        createDefaultFacilities()
+        createDefaultEducators()
+        //createDefaultLinks()
+        createDefaultTags()
         createDefaultActivityTemplates()
         //createDefaultActivities()
         createDefaultColonias()
@@ -76,9 +75,10 @@ class BootStrap {
         createDefaultThemes()
         createDefaultComments()
         createDefaultProjectTemplates()
+        //createDefaultHelpers()
       }
 
-      createDefaultHelpers()
+
       //createDefaultEvaluations()
     }
   }
@@ -105,47 +105,48 @@ class BootStrap {
     EntityType etUser = metaDataService.etUser
 
     // system admin users
-    entityHelperService.createEntityWithUserAndProfile("sueninosadmin", etUser, "admin@sueninos.org", "Sueninos Admin") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.systemAdminRole)
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.user.locale = new Locale ("de", "DE")
-      UserProfile prf = (UserProfile)ent.profile
-      prf.firstName = "Sueninos"
-      prf.lastName = "Admin"
+    if (!Entity.findByName('sueninosadmin')) {
+      entityHelperService.createEntityWithUserAndProfile("sueninosadmin", etUser, "admin@sueninos.org", "Sueninos Admin") {Entity ent ->
+        ent.user.addToAuthorities(metaDataService.systemAdminRole)
+        ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.locale = new Locale ("de", "DE")
+        UserProfile prf = (UserProfile)ent.profile
+        prf.firstName = "Sueninos"
+        prf.lastName = "Admin"
+    }
     }
 
     // admin users
-    entityHelperService.createEntityWithUserAndProfile("alexanderzeillinger", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.user.locale = new Locale ("de", "DE")
-      UserProfile prf = (UserProfile)ent.profile
-      prf.firstName = "Alexander"
-      prf.lastName = "Zeillinger"
+    if (!Entity.findByName('alexanderzeillinger')) {
+      entityHelperService.createEntityWithUserAndProfile("alexanderzeillinger", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
+        ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.locale = new Locale ("de", "DE")
+        UserProfile prf = (UserProfile)ent.profile
+        prf.firstName = "Alexander"
+        prf.lastName = "Zeillinger"
+      }
     }
 
-    entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-       ent.user.locale = new Locale ("de", "DE")
-      UserProfile prf = (UserProfile)ent.profile
-      prf.firstName = "Patrizia"
-      prf.lastName = "Rosenkranz"
+    if (!Entity.findByName('patriziarosenkranz')) {
+      entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
+        ent.user.addToAuthorities(metaDataService.adminRole)
+         ent.user.locale = new Locale ("de", "DE")
+        UserProfile prf = (UserProfile)ent.profile
+        prf.firstName = "Patrizia"
+        prf.lastName = "Rosenkranz"
+      }
     }
 
-    entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lkult.at", "Daniel Szabo") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.user.locale = new Locale ("de", "DE")
-      UserProfile prf = (UserProfile)ent.profile
-      prf.firstName = "Daniel"
-      prf.lastName = "Szabo"
+    if (!Entity.findByName('danielszabo')) {
+      entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lkult.at", "Daniel Szabo") {Entity ent ->
+        ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.locale = new Locale ("de", "DE")
+        UserProfile prf = (UserProfile)ent.profile
+        prf.firstName = "Daniel"
+        prf.lastName = "Szabo"
+      }
     }
 
-    entityHelperService.createEntityWithUserAndProfile("kurtludikovsky", etUser, "kll@lkult.at", "Kurt Ludikovsky") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.user.locale = new Locale ("de", "DE")
-      UserProfile prf = (UserProfile)ent.profile
-      prf.firstName = "Kurt"
-      prf.lastName = "Ludikovsky"
-    }
   }
 
   void createDefaultEducators() {
@@ -153,63 +154,67 @@ class BootStrap {
     EntityType etEducator = metaDataService.etEducator
 
     // admin users
-    entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
-      //ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.user.addToAuthorities(metaDataService.leadEducatorRole)
-      ent.user.locale = new Locale ("es", "ES")
-      EducatorProfile prf = (EducatorProfile)ent.profile
-      prf.gender = 1
-      prf.title = "DI"
-      prf.birthDate = new Date(1968-1900,02,18)
-      prf.currentCountry = "Mexiko"
-      prf.currentZip = "29215"
-      prf.currentCity = "San Cristóbal de Las Casas"
-      prf.currentStreet = "Av. Norte Oriente 13a"
-      prf.originCountry = "1"
-      prf.originZip = ""
-      prf.originCity = ""
-      prf.originStreet = ""
-      prf.contactPhone = ""
-      prf.contactCountry = ""
-      prf.contactCity = ""
-      prf.contactStreet = ""
-      prf.contactZip = ""
-      prf.contactMail = ""
-      prf.education = ""
-      prf.firstName = "Christian"
-      prf.lastName = "Szinicz"
-      prf.interests = ""
-      prf.employment = ""
-      prf.addToLanguages("1")
+    if (!Entity.findByName('christianszinicz')) {
+      entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
+        //ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.addToAuthorities(metaDataService.leadEducatorRole)
+        ent.user.locale = new Locale ("es", "ES")
+        EducatorProfile prf = (EducatorProfile)ent.profile
+        prf.gender = 1
+        prf.title = "DI"
+        prf.birthDate = new Date(1968-1900,02,18)
+        prf.currentCountry = "Mexiko"
+        prf.currentZip = "29215"
+        prf.currentCity = "San Cristóbal de Las Casas"
+        prf.currentStreet = "Av. Norte Oriente 13a"
+        prf.originCountry = "1"
+        prf.originZip = ""
+        prf.originCity = ""
+        prf.originStreet = ""
+        prf.contactPhone = ""
+        prf.contactCountry = ""
+        prf.contactCity = ""
+        prf.contactStreet = ""
+        prf.contactZip = ""
+        prf.contactMail = ""
+        prf.education = ""
+        prf.firstName = "Christian"
+        prf.lastName = "Szinicz"
+        prf.interests = ""
+        prf.employment = ""
+        prf.addToLanguages("1")
+      }
     }
 
-    entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      ent.user.locale = new Locale ("es", "ES")
-      EducatorProfile prf = (EducatorProfile)ent.profile
-      prf.gender = 1
-      prf.title = "Ing. Dkfm."
-      prf.birthDate = new Date(1939-1900,04,17)
-      prf.currentCountry = "Mexiko"
-      prf.currentZip = "4600"
-      prf.currentCity = "Schleißheim bei Wels"
-      prf.currentStreet = ""
-      prf.originCountry = "1"
-      prf.originZip = ""
-      prf.originCity = ""
-      prf.originStreet = ""
-      prf.contactPhone = ""
-      prf.contactCountry = ""
-      prf.contactCity = ""
-      prf.contactStreet = ""
-      prf.contactZip = ""
-      prf.contactMail = ""
-      prf.education = ""
-      prf.firstName = "Ludwig"
-      prf.lastName = "Szinicz"
-      prf.interests = ""
-      prf.employment = ""
-      prf.addToLanguages("1")
+    if (!Entity.findByName('ludwigszinicz')) {
+      entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
+        ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.locale = new Locale ("es", "ES")
+        EducatorProfile prf = (EducatorProfile)ent.profile
+        prf.gender = 1
+        prf.title = "Ing. Dkfm."
+        prf.birthDate = new Date(1939-1900,04,17)
+        prf.currentCountry = "Mexiko"
+        prf.currentZip = "4600"
+        prf.currentCity = "Schleißheim bei Wels"
+        prf.currentStreet = ""
+        prf.originCountry = "1"
+        prf.originZip = ""
+        prf.originCity = ""
+        prf.originStreet = ""
+        prf.contactPhone = ""
+        prf.contactCountry = ""
+        prf.contactCity = ""
+        prf.contactStreet = ""
+        prf.contactZip = ""
+        prf.contactMail = ""
+        prf.education = ""
+        prf.firstName = "Ludwig"
+        prf.lastName = "Szinicz"
+        prf.interests = ""
+        prf.employment = ""
+        prf.addToLanguages("1")
+      }
     }
   }
 
@@ -217,22 +222,24 @@ class BootStrap {
     log.debug ("==> creating default parents")
     EntityType etParent = metaDataService.etParent
 
-    entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@sueninos.org", "Sabine Zeillinger") {Entity ent ->
-      ent.user.locale = new Locale ("de", "DE")
-      ParentProfile prf = (ParentProfile)ent.profile
-      prf.firstName = "Sabine"
-      prf.lastName = "Zeillinger"
-      prf.gender = 2
-      prf.currentCountry = "6"
-      prf.currentZip = "2352"
-      prf.currentCity = "Gumpoldskirchen"
-      prf.currentStreet = ""
-      prf.addToLanguages("1")
-      prf.birthDate = new Date()
-      prf.job = false
-      prf.maritalStatus = "1"
-      prf.education = "1"
-      prf.comment = "Best parent ever!"
+    if (!Entity.findByName('sabinezeillinger')) {
+      entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@sueninos.org", "Sabine Zeillinger") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Sabine"
+        prf.lastName = "Zeillinger"
+        prf.gender = 2
+        prf.currentCountry = "6"
+        prf.currentZip = "2352"
+        prf.currentCity = "Gumpoldskirchen"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+      }
     }
   }
 
@@ -240,50 +247,54 @@ class BootStrap {
     log.debug ("==> creating default clients")
     EntityType etClient = metaDataService.etClient
 
-    entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@sueninos.org", "Kira Zeillinger") {Entity ent ->
-      ent.user.locale = new Locale ("de", "DE")
-      ClientProfile prf = (ClientProfile)ent.profile
-      prf.firstName = "Kira"
-      prf.lastName = "Zeillinger"
-      prf.gender = 2
-      prf.interests = ""
-      prf.currentCountry = "Österreich"
-      prf.currentZip = "2352"
-      prf.currentCity = "Gumpoldskirchen"
-      prf.currentStreet = ""
-      prf.originCountry = "Österreich"
-      prf.originZip = "2352"
-      prf.originCity = "Gumpoldskirchen"
-      prf.addToLanguages("1")
-      prf.birthDate = new Date(2005-1900,01,20)
-      prf.schoolLevel = 1
-      prf.size = 120
-      prf.weight = 120
-      prf.job = false
-      prf.familyStatus = "1"
+    if (!Entity.findByName('kirazeillinger')) {
+      entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@sueninos.org", "Kira Zeillinger") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ClientProfile prf = (ClientProfile)ent.profile
+        prf.firstName = "Kira"
+        prf.lastName = "Zeillinger"
+        prf.gender = 2
+        prf.interests = ""
+        prf.currentCountry = "Österreich"
+        prf.currentZip = "2352"
+        prf.currentCity = "Gumpoldskirchen"
+        prf.currentStreet = ""
+        prf.originCountry = "Österreich"
+        prf.originZip = "2352"
+        prf.originCity = "Gumpoldskirchen"
+        prf.addToLanguages("1")
+        prf.birthDate = new Date(2005-1900,01,20)
+        prf.schoolLevel = 1
+        prf.size = 120
+        prf.weight = 120
+        prf.job = false
+        prf.familyStatus = "1"
+      }
     }
 
-    entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@sueninos.org", "Keano Zeillinger") {Entity ent ->
-      ent.user.locale = new Locale ("de", "DE")
-      ClientProfile prf = (ClientProfile)ent.profile
-      prf.firstName = "Keano"
-      prf.lastName = "Zeillinger"
-      prf.gender = 1
-      prf.interests = ""
-      prf.currentCountry = "Österreich"
-      prf.currentZip = "2352"
-      prf.currentCity = "Gumpoldskirchen"
-      prf.currentStreet = ""
-      prf.originCountry = "Österreich"
-      prf.originZip = "2352"
-      prf.originCity = "Gumpoldskirchen"
-      prf.addToLanguages("1")
-      prf.birthDate = new Date(2006-1900,03,20)
-      prf.schoolLevel = 1
-      prf.size = 120
-      prf.weight = 120
-      prf.job = false
-      prf.familyStatus = "1"
+    if (!Entity.findByName('keanozeillinger')) {
+      entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@sueninos.org", "Keano Zeillinger") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ClientProfile prf = (ClientProfile)ent.profile
+        prf.firstName = "Keano"
+        prf.lastName = "Zeillinger"
+        prf.gender = 1
+        prf.interests = ""
+        prf.currentCountry = "Österreich"
+        prf.currentZip = "2352"
+        prf.currentCity = "Gumpoldskirchen"
+        prf.currentStreet = ""
+        prf.originCountry = "Österreich"
+        prf.originZip = "2352"
+        prf.originCity = "Gumpoldskirchen"
+        prf.addToLanguages("1")
+        prf.birthDate = new Date(2006-1900,03,20)
+        prf.schoolLevel = 1
+        prf.size = 120
+        prf.weight = 120
+        prf.job = false
+        prf.familyStatus = "1"
+      }
     }
   }
 
@@ -291,14 +302,16 @@ class BootStrap {
     log.debug ("==> creating default children")
     EntityType etChild = metaDataService.etChild
 
-    entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@sueninos.org", "Karin Zeillinger") {Entity ent ->
-      ent.user.locale = new Locale ("de", "DE")
-      ChildProfile prf = (ChildProfile)ent.profile
-      prf.firstName = "Karin"
-      prf.lastName = "Zeillinger"
-      prf.gender = 2
-      prf.birthDate = new Date()
-      prf.job = false
+    if (!Entity.findByName('karinzeillinger')) {
+      entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@sueninos.org", "Karin Zeillinger") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ChildProfile prf = (ChildProfile)ent.profile
+        prf.firstName = "Karin"
+        prf.lastName = "Zeillinger"
+        prf.gender = 2
+        prf.birthDate = new Date()
+        prf.job = false
+      }
     }
   }
 
@@ -306,15 +319,17 @@ class BootStrap {
     log.debug ("==> creating default operator")
     EntityType etOperator = metaDataService.etOperator
 
-    entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
-      ent.user.locale = new Locale ("de", "DE")
-      ent.user.addToAuthorities(metaDataService.adminRole)
-      OperatorProfile prf = (OperatorProfile)ent.profile
-      prf.zip = ""
-      prf.city = ""
-      prf.street = ""
-      prf.phone = ""
-      prf.description = ""
+    if (!Entity.findByName('sueninos')) {
+      entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        ent.user.addToAuthorities(metaDataService.adminRole)
+        OperatorProfile prf = (OperatorProfile)ent.profile
+        prf.zip = ""
+        prf.city = ""
+        prf.street = ""
+        prf.phone = ""
+        prf.description = ""
+      }
     }
   }
 
@@ -322,16 +337,18 @@ class BootStrap {
     log.debug ("==> creating default partners")
     EntityType etPartner = metaDataService.etPartner
 
-    entityHelperService.createEntityWithUserAndProfile ("raiffeisenbank", etPartner, "raika@sueninos.org", "Raiffeisen Bank") {Entity ent->
-      ent.user.locale = new Locale ("de", "DE")
-      PartnerProfile prf = (PartnerProfile)ent.profile
-      prf.zip = ""
-      prf.city = ""
-      prf.street = ""
-      prf.phone = ""
-      prf.description = ""
-      prf.country = "1"
-      prf.website = ""
+    if (!Entity.findByName('raiffeisenbank')) {
+      entityHelperService.createEntityWithUserAndProfile ("raiffeisenbank", etPartner, "raika@sueninos.org", "Raiffeisen Bank") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        PartnerProfile prf = (PartnerProfile)ent.profile
+        prf.zip = ""
+        prf.city = ""
+        prf.street = ""
+        prf.phone = ""
+        prf.description = ""
+        prf.country = "1"
+        prf.website = ""
+      }
     }
   }
 
@@ -339,14 +356,16 @@ class BootStrap {
     log.debug ("==> creating default facilities")
     EntityType etFacility = metaDataService.etFacility
 
-    entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
-      ent.user.locale = new Locale ("de", "DE")
-      FacilityProfile prf = (FacilityProfile)ent.profile
-      prf.country = "Mexiko"
-      prf.zip = "29247"
-      prf.city = "	San Cristóbal de Las Casas"
-      prf.street = "	Prolongación Ramón Larrainzar #139"
-      prf.description = ""
+    if (!Entity.findByName('sueninoszentrum')) {
+      entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        FacilityProfile prf = (FacilityProfile)ent.profile
+        prf.country = "Mexiko"
+        prf.zip = "29247"
+        prf.city = "	San Cristóbal de Las Casas"
+        prf.street = "	Prolongación Ramón Larrainzar #139"
+        prf.description = ""
+      }
     }
   }
 
@@ -361,8 +380,8 @@ class BootStrap {
     List users = Entity.list()
     users.each {
       if (it.name != 'lernardoadmin') {
-        new Link(source: it, target: admin, type: metaDataService.ltFriendship).save()
-        new Link(source: admin, target: it, type: metaDataService.ltFriendship).save()
+        new Link(source: it as Entity, target: admin, type: metaDataService.ltFriendship).save()
+        new Link(source: admin, target: it as Entity, type: metaDataService.ltFriendship).save()
       }
     }
 
@@ -385,28 +404,32 @@ class BootStrap {
 
     EntityType etTemplate = metaDataService.etTemplate
 
-    entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Weide mit Hindernissen"
-      ent.profile.description = "Die Bänke werden in Reihen aufgestellt; es können möglichst viele Bewegungsformen ausprobiert werden"
-      ent.profile.chosenMaterials = "Holzbänke"
-      ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-      ent.profile.amountEducators = 2
-      ent.profile.status = "fertig"
-      ent.profile.duration = 30
-      ent.profile.type = "normale Aktivitätsvorlage"
+    if (!Entity.findByName('weidemithindernissen')) {
+      entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Weide mit Hindernissen"
+        ent.profile.description = "Die Bänke werden in Reihen aufgestellt; es können möglichst viele Bewegungsformen ausprobiert werden"
+        ent.profile.chosenMaterials = "Holzbänke"
+        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
+        ent.profile.amountEducators = 2
+        ent.profile.status = "fertig"
+        ent.profile.duration = 30
+        ent.profile.type = "normale Aktivitätsvorlage"
+      }
     }
 
-    entityHelperService.createEntity("tanzen", etTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Tanzen"
-      ent.profile.description = "Die Kinder tanzen im Kreis"
-      ent.profile.chosenMaterials = "Springschnüre"
-      ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-      ent.profile.amountEducators = 1
-      ent.profile.status = "fertig"
-      ent.profile.duration = 10
-      ent.profile.type = "Themenraumaktivitätsvorlage"
+    if (!Entity.findByName('tanzen')) {
+      entityHelperService.createEntity("tanzen", etTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Tanzen"
+        ent.profile.description = "Die Kinder tanzen im Kreis"
+        ent.profile.chosenMaterials = "Springschnüre"
+        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
+        ent.profile.amountEducators = 1
+        ent.profile.status = "fertig"
+        ent.profile.duration = 10
+        ent.profile.type = "Themenraumaktivitätsvorlage"
+      }
     }
   }
 
@@ -414,9 +437,7 @@ class BootStrap {
     log.debug ("==> creating default comments")
 
     Comment comment = new Comment(content: 'Ich bin ein Kommentar', creator: Entity.findByName('alexanderzeillinger').id).save()
-
     Entity entity = Entity.findByName('tanzen')
-
     entity.profile.addToComments(comment)
 
   }
@@ -426,20 +447,23 @@ class BootStrap {
 
     EntityType etResource = metaDataService.etResource
 
-    entityHelperService.createEntity("klavier", etResource) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Klavier"
-      ent.profile.description = "Ein echtes Bechstein Klavier!"
-      ent.profile.type = "planbar"
-      ent.profile.classification = "Diese Ressource ist nur für diese Einrichtung verfügbar."
+    if (!Entity.findByName('klavier')) {
+      entityHelperService.createEntity("klavier", etResource) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Klavier"
+        ent.profile.description = "Ein echtes Bechstein Klavier!"
+        ent.profile.type = "planbar"
+        ent.profile.classification = "Diese Ressource ist nur für diese Einrichtung verfügbar."
+      }
     }
   }
 
   void createDefaultActivities() {
     log.debug ("==> creating default activities")
 
-     EntityType etActivity = metaDataService.etActivity
+    EntityType etActivity = metaDataService.etActivity
 
+    if (!Entity.findByName('klettern')) {
       def entity = entityHelperService.createEntity("klettern", etActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.fullName = "Klettern"
@@ -453,6 +477,7 @@ class BootStrap {
       new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
+    }
   }
 
   void createDefaultPosts() {
@@ -584,21 +609,23 @@ class BootStrap {
 
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
-    Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Zeillinger"
-      ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
-                                     ausreichendes Einkommen und Sabine Zeillinger kümmert sich um den Haushalt."""
-      ent.profile.socioeconomicData = "Alles in Ordnung"
-      ent.profile.otherInfo = """Familie Zeillinger besitzt 2 Katzen und 2 Autos"""
-      ent.profile.amountHousehold = 2
-      ent.profile.familyIncome = 1540
-    }
+    if (!Entity.findByName('group')) {
+      Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Zeillinger"
+        ent.profile.livingConditions = """Leben in einem soliden österreichischen Mehrfamilienwohnhaus. Alexander Zeillinger erhält ein
+                                       ausreichendes Einkommen und Sabine Zeillinger kümmert sich um den Haushalt."""
+        ent.profile.socioeconomicData = "Alles in Ordnung"
+        ent.profile.otherInfo = """Familie Zeillinger besitzt 2 Katzen und 2 Autos"""
+        ent.profile.amountHousehold = 2
+        ent.profile.familyIncome = 1540
+      }
 
-    // create some links to that group
-    new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
-    new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
-    new Link(source: Entity.findByName('kirazeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
+      // create some links to that group
+      new Link(source: Entity.findByName('alexanderzeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
+      new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
+      new Link(source: Entity.findByName('kirazeillinger'), target: entity, type: metaDataService.ltGroupMember).save()
+    }
   }
 
   void createDefaultColonias() {
@@ -619,14 +646,16 @@ class BootStrap {
   void createDefaultMethods() {
     log.debug ("==> creating default methods")
 
-    Method method = new Method(name: "5 Säulen", description: "", type: "template").save()
+    if (!Method.findByName('5 Säulen')) {
+      Method method = new Method(name: "5 Säulen", description: "", type: "template").save()
 
-    method.addToElements(new Element(name: "Bewegung & Ernährung"))
-    method.addToElements(new Element(name: "Handwerk & Kunst"))
-    method.addToElements(new Element(name: "Persönliche Kompetenz"))
-    method.addToElements(new Element(name: "Soziale und emotionale Intelligenz"))
-    method.addToElements(new Element(name: "Lernen lernen"))
-    method.addToElements(new Element(name: "Teilleistungstraining"))   
+      method.addToElements(new Element(name: "Bewegung & Ernährung"))
+      method.addToElements(new Element(name: "Handwerk & Kunst"))
+      method.addToElements(new Element(name: "Persönliche Kompetenz"))
+      method.addToElements(new Element(name: "Soziale und emotionale Intelligenz"))
+      method.addToElements(new Element(name: "Lernen lernen"))
+      method.addToElements(new Element(name: "Teilleistungstraining"))
+    }
   }
 
   void createDefaultClientGroups() {
@@ -700,19 +729,23 @@ class BootStrap {
 
     EntityType etProjectTemplate = metaDataService.etProjectTemplate
 
-    entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Projektvorlage 1"
-      ent.profile.description = "keine Beschreibung"
-      ent.profile.status = "fertig"
+    if (!Entity.findByName('projectTemplate')) {
+      entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Projektvorlage 1"
+        ent.profile.description = "keine Beschreibung"
+        ent.profile.status = "fertig"
+      }
     }
   }
 
   void createDefaultTags () {
     log.debug ("==> creating default tags")
 
-    new Tag(name: 'abwesend').save()
-    new Tag(name: 'krank').save()
+    if (!Tag.findByName('abwesend'))
+      new Tag(name: 'abwesend').save()
+    if (!Tag.findByName('krank'))
+      new Tag(name: 'krank').save()
   }
 
 }
