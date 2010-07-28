@@ -175,7 +175,17 @@ class GroupActivityProfileController {
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
       redirect action: 'list'
     } catch (EntityException ee) {
-      render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn, template: groupActivityTemplate])
+
+      // find all templates linked to this group
+      def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
+      List templates = links.collect {it.source}
+
+      def calculatedDuration = 0
+      templates.each {
+        calculatedDuration += it.profile.duration
+      }
+
+      render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
       return
     }
 

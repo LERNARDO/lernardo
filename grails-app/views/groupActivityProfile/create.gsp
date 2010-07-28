@@ -22,15 +22,15 @@
         <table>
           <tbody>
 
-          <tr class="prop">
+          %{--<tr class="prop">
             <td height="30" colspan="3" valign="top" class="name">
               <label for="fullName">
                 <g:message code="groupActivityTemplate"/>:
               </label>
 
-              <g:link controller="groupActivityTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${fieldValue(bean: template, field: 'profile.fullName')}</g:link>
             </td>
-          </tr>
+          </tr>--}%
 
           <tr class="prop">
             <td valign="top" class="name">
