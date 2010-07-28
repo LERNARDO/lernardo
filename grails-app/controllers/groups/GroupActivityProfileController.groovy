@@ -51,7 +51,7 @@ class GroupActivityProfileController {
       def allParents = functionService.findParents(group)
       List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent).collect {it.source} // find all parents linked to this group
 
-      List allEducators = Entity.findAllByType(metaDataService.etEducator)
+      def allEducators = functionService.findEducators(group)
       List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator).collect {it.source} // find all educators linked to this group
 
       List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember).collect {it.source} // find all grouptemplates linked to this group
@@ -271,5 +271,11 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
     def allParents = functionService.findParents(group)
     render template: 'parentselect', model: [allParents: allParents, group: group]
+  }
+
+  def updateeducators = {
+    Entity group = Entity.get(params.id)
+    def allEducators = functionService.findEducators(group)
+    render template: 'educatorselect', model: [allEducators: allEducators, group: group]
   }
 }

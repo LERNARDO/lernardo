@@ -117,7 +117,9 @@
       </jq:jquery>
       <div  class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2')">
-          <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
+          <div id="educatorselect">
+            <g:render template="educatorselect" model="[allEducators: allEducators, group: group]"/>
+          </div>          
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>

@@ -146,4 +146,27 @@ class FunctionService {
     return allParents
   }
 
+  /*
+   * receives an activity group, find the facility linked to it and returns all educators linked to the facility
+   */
+  def findEducators(Entity group) {
+    // 1. find facility linked to the group
+    Entity facility = Link.findByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.source
+
+    // 2. find all educators linked to the facility
+    def c = Link.createCriteria()
+    def allEducators = c.get {
+      eq('target', facility)
+      or {
+        eq('type', metaDataService.ltWorking)
+        eq('type', metaDataService.ltLeadEducator)
+      }
+      projections {
+        distinct('source')        
+      }
+    }
+
+    return allEducators
+  }
+
 }
