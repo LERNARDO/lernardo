@@ -59,10 +59,10 @@
             <td>&nbsp;</td>
             <td class="drop-down-280" valign="top">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+                <g:select name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+                <g:select name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
               </g:if>
               %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>

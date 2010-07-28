@@ -87,11 +87,10 @@ class HelperTagLib {
    */
   def getFamilyStatus = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int status = attrs.status.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.familyRelation_de[status]
+      out << grailsApplication.config.familyRelation_de[attrs.status]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.familyRelation_es[status]
+      out << grailsApplication.config.familyRelation_es[attrs.status]
   }
 
   /*
@@ -99,11 +98,10 @@ class HelperTagLib {
    */
   def getNationalities = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int nationality = attrs.nationality.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.nationalities_de[nationality]
+      out << grailsApplication.config.nationalities_de[attrs.nationality]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.nationalities_es[nationality]
+      out << grailsApplication.config.nationalities_es[attrs.nationality]
   }
 
   /*
@@ -111,11 +109,10 @@ class HelperTagLib {
    */
   def getLanguages = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int language = attrs.language.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.languages_de[language]
+      out << grailsApplication.config.languages_de[attrs.language]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.languages_es[language]
+      out << grailsApplication.config.languages_es[attrs.language]
   }
 
   /*
@@ -123,11 +120,10 @@ class HelperTagLib {
    */
   def getInChargeOf = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int inchargeof = attrs.inchargeof.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.inchargeof_de[inchargeof]
+      out << grailsApplication.config.inchargeof_de[attrs.inchargeof]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.inchargeof_es[inchargeof]
+      out << grailsApplication.config.inchargeof_es[attrs.inchargeof]
   }
 
   /*
@@ -135,11 +131,10 @@ class HelperTagLib {
    */
   def getPartnerService = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int service = attrs.service.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.partner_de[service]
+      out << grailsApplication.config.partner_de[attrs.service]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.partner_es[service]
+      out << grailsApplication.config.partner_es[attrs.service]
   }
 
   /*
@@ -147,11 +142,10 @@ class HelperTagLib {
    */
   def getSchoolLevel = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int level = attrs.level.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.schoolLevels_de[level]
+      out << grailsApplication.config.schoolLevels_de[attrs.level]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.schoolLevels_es[level]
+      out << grailsApplication.config.schoolLevels_es[attrs.level]
   }
 
   /*
@@ -159,11 +153,10 @@ class HelperTagLib {
    */
   def getMaritalStatus = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int level = attrs.level.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.maritalStatus_de[level]
+      out << grailsApplication.config.maritalStatus_de[attrs.level]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.maritalStatus_es[level]
+      out << grailsApplication.config.maritalStatus_es[attrs.level]
   }
 
   /*
@@ -171,11 +164,10 @@ class HelperTagLib {
    */
   def getFamilyProblem = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int problem = attrs.problem.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.problems_de[problem]
+      out << grailsApplication.config.problems_de[attrs.problem]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.problems_es[problem]
+      out << grailsApplication.config.problems_es[attrs.problem]
   }
 
   /*
@@ -183,11 +175,10 @@ class HelperTagLib {
    */
   def getJobType = {attrs ->
     Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    int job = attrs.job.toInteger()
     if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.jobs_de[job]
+      out << grailsApplication.config.jobs_de[attrs.job]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.jobs_es[job]
+      out << grailsApplication.config.jobs_es[attrs.job]
   }
 
   /*
@@ -528,7 +519,7 @@ class HelperTagLib {
   def getQuoteOfTheDay = {
     Date myDate = new Date()
     SimpleDateFormat df = new SimpleDateFormat("dd")
-    int day = df.format(myDate).toInteger()
+    String day = df.format(myDate)
     out << '<span class="quote">"' + grailsApplication.config.quotesMap[day] + '"</span>'
     out << '<p class="quoter">von ' + grailsApplication.config.quoterMap[day] + '</p>'
   }
@@ -539,7 +530,7 @@ class HelperTagLib {
   def getPicOfTheDay = { attrs, body ->
     Date myDate = new Date()
     SimpleDateFormat df = new SimpleDateFormat("dd")
-    String day = df.format(myDate)//.toInteger()
+    String day = df.format(myDate)
     out << body(day)
   }
 
@@ -619,7 +610,7 @@ class HelperTagLib {
   }
 
   def notAdmin = {attrs, body ->
-    if (secHelperService.isAdmin())
+    if (!secHelperService.isAdmin())
       out << body()
   }
 

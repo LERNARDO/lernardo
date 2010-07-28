@@ -96,7 +96,7 @@
 		  <tr>
 			<td valign="top" class="value-show-comb"> <g:message code="parent.profile.job"/>:
               <g:formatBoolean boolean="${parent.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-			<td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobType')}</td>
+			<td valign="top" class="value-show"><app:getJobType job="${parent.profile.jobType}"/></td>
 			<td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobIncome')}</td>
 			<td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</td>
 		  </tr>

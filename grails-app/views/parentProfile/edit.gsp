@@ -72,10 +72,10 @@
 			<td valign="top" class="value">
               %{-- <g:select name="maritalStatus" from="${['ledig','verheiratet','getrennt lebend','geschieden','verwitwet','verpartnert','unbekannt']}" value="${fieldValue(bean:parent,field:'profile.maritalStatus')}"/> --}%
                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_es}" optionKey="key" optionValue="value"/>
+                <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_es}" optionKey="key" optionValue="value" value="${parent.profile.maritalStatus}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_de}" optionKey="key" optionValue="value"/>
+                <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_de}" optionKey="key" optionValue="value" value="${parent.profile.maritalStatus}"/>
               </g:if>
              </td>
 			<td valign="top" class="value"  >
@@ -93,15 +93,14 @@
 			<td valign="top" class="value">
                  %{--<g:select id="education" name="education" from="${1..12}" value="${fieldValue(bean: parent, field: 'profile.education')}"/>--}%
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-205" name="education" id="education" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${parent.profile.education}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-205" name="education" id="education" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${parent.profile.education}"/>
               </g:if>
 			</td>
 		  </tr>
 
-		 <g:if test="${parent.profile.job}">
 		    <tr>
 			<td    valign="middle" class="name">
             &nbsp;
@@ -118,16 +117,21 @@
 		  <tr>
 			<td valign="top" class="value-comb"> <g:message code="parent.profile.job"/>:
            
-             <g:formatBoolean boolean="${parent.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+             <g:checkBox name="job" value="${parent?.profile?.job}"/></td>
            <td valign="top" class="value">
-           <g:textField class="${hasErrors(bean: parent, field: 'profile.jobType', 'errors')}" size="30" id="jobType" name="jobType" value="${fieldValue(bean: parent, field: 'profile.jobType').decodeHTML()}"/> </td>
+             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${parent.profile.jobType}"/>
+              </g:if>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                <g:select name="jobType" id="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${parent.profile.jobType}"/>
+              </g:if>
+           %{--<g:textField class="${hasErrors(bean: parent, field: 'profile.jobType', 'errors')}" size="30" id="jobType" name="jobType" value="${fieldValue(bean: parent, field: 'profile.jobType').decodeHTML()}"/>--}% </td>
            <td valign="top" class="value">
            <g:textField class="${hasErrors(bean: parent, field: 'profile.jobIncome', 'errors')}" size="30" id="jobIncome" name="jobIncome" value="${parent?.profile?.jobIncome?.toInteger()}"/> </td>
            <td valign="top" class="value">
            <g:textField class="${hasErrors(bean: parent, field: 'profile.jobFrequency', 'errors')}" size="30" id="jobFrequency" name="jobFrequency" value="${parent?.profile?.jobFrequency?.toInteger()}"/> </td>
 
 		  </tr>
-		 </g:if>
 
 		<tr>
 			<td valign="top" class="name">
@@ -154,10 +158,10 @@
 		<tr>
 			<td valign="middle" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}"/>
               </g:if>
               %{--<g:textField class="${hasErrors(bean: parent, field: 'profile.currentCountry', 'errors')}" size="20" id="currentCountry" name="currentCountry" value="${fieldValue(bean: parent, field: 'profile.currentCountry').decodeHTML()}"/>--}%
            			

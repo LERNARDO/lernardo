@@ -23,7 +23,7 @@ class ParentProfile extends Profile {
     String education // changed on 20.04.2010, before: qualification
 
     Boolean job // changed on 20.04.2010, before: doesWork
-    Integer jobType // changed on 20.04.2010, before: work
+    String jobType // changed on 20.04.2010, before: work
     Integer jobIncome // changed on 20.04.2010, before: income
     String jobFrequency // added on 20.04.2010
 

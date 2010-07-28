@@ -37,7 +37,7 @@ class ClientProfile extends Profile {
     //String attendance - removed on 20.04.2010
 
     //String school - removed on 20.04.2010
-    Integer schoolLevel
+    String schoolLevel
 
     Boolean schoolDropout = false // changed on 20.04.2010, before: dropout
     Date schoolDropoutDate // added on 20.04.2010
@@ -52,7 +52,7 @@ class ClientProfile extends Profile {
     //Date joinDate2 - removed on 20.04.2010
     //Date endDate2 - removed on 20.04.2010
     Boolean job // changed on 20.04.2010, before: doesWork
-    Integer jobType // changed on 20.04.2010, before: work
+    String jobType // changed on 20.04.2010, before: work
     Integer jobIncome // changed on 20.04.2010, before: income
     String jobFrequency // added on 20.04.2010
 

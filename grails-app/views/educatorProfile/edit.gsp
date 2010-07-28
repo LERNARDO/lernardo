@@ -126,18 +126,18 @@
             </td>
 			<td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator.profile.inChargeOf}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator.profile.inChargeOf}"/>
               </g:if>
             </td>
 			<td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${educator.profile.languages}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${educator.profile.languages}"/>
               </g:if>
             </td>
 		</tr>
@@ -233,11 +233,11 @@
               <g:textField class="countable${educator.profile.constraints.originCity.maxSize} ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
             </td>
 			<td valign="middle" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}" >
+                <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${educator.profile.nationalities}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="originCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+                <g:select name="originCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${educator.profile.nationalities}"/>
               </g:if>
               %{--<g:textField class="${hasErrors(bean: educator, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: educator, field: 'profile.originCountry').decodeHTML()}"/>
             --}%</td>

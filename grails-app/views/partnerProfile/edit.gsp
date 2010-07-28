@@ -103,10 +103,10 @@
           </td>
           <td width="210" align="top" class="value">
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-              <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+              <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${partner.profile.country}"/>
             </g:if>
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-              <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+              <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${partner.profile.country}"/>
             </g:if>
             %{--<g:textField class="${hasErrors(bean: partner, field: 'profile.country', 'errors')}" size="30" id="country" name="country" value="${fieldValue(bean: partner, field: 'profile.country').decodeHTML()}"/>--}%
          </td>
