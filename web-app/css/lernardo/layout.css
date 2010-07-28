@@ -6,7 +6,7 @@
 body {
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
-    background: #ece9d8; }
+    background: #fee; }
 
 /* used for private layout */
 #doc4 {
@@ -21,7 +21,7 @@ body {
 
 #hd {
     height: 70px;
-    background: url(../images/sueninos-logo.png) #fff no-repeat 15px 15px;
+    background: url(../../images/sueninos-logo.png) #fff no-repeat 15px 15px;
     position: relative;
     /*-moz-box-shadow: #888 0px -4px 8px;
     border-right: 1px solid #aaa;
@@ -453,52 +453,52 @@ ul {
             color: #000; /*#46597B; */ }
 
     #profile-navigation .profile-profil {
-        background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_profile.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-nachricht {
-        background: url(../images/icons/icon_mail.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_mail.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-telefon {
-        background: url(../images/icons/icon_handy.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_handy.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-leistung {
-        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_star.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-netzwerk {
-        background: url(../images/icons/icon_contact.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_contact.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-galerie {
-        background: url(../images/icons/icon_galerie.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_galerie.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-activities {
-        background: url(../images/icons/icon_activities.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_activities.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-calendar {
-        background: url(../images/icons/icon_calendar.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_calendar.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-location {
-        background: url(../images/icons/icon_location.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_location.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .profile-template, .profile-template {
-        background: url(../images/icons/icon_template.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_template.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .icon-person {
-        background: url(../images/icons/icon_person.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_person.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .icon-edit {
-        background: url(../images/icons/icon_edit.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_edit.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .icon-help {
-        background: url(../images/icons/icon_help.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_help.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .icon-admin {
-        background: url(../images/icons/icon_admin.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_admin.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .icon-news {
-        background: url(../images/icons/icon_news.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_news.png) 0 50% no-repeat;
         padding-left: 20px; }
     #profile-navigation .icon-document {
-        background: url(../images/icons/icon_document.png) 0 50% no-repeat;
+        background: url(../../images/icons/icon_document.png) 0 50% no-repeat;
         padding-left: 20px; }
 /* ----- ADMIN ----- */
 
@@ -572,7 +572,7 @@ ul {
     #public #banner {
         height: 149px;
         /*width: 974px;*/
-        background: #fff url(../images/banner.png) 15px 0 no-repeat;}
+        background: #fff url(../../images/banner.png) 15px 0 no-repeat;}
     #public #sidebar {
         margin: 0 0; }
     #public #main {
@@ -1370,7 +1370,7 @@ table#msg-composer td {
 	padding: 3px;
 }
 .value-show {
-	background-image:url(../images/icons/value-show-short.png);
+	background-image:url(../../images/icons/value-show-short.png);
 	background-repeat:repeat-x;
 	border-right: 20px solid #dfdfdf;	
 	border-bottom: 10px solid #dfdfdf;

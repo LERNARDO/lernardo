@@ -44,3 +44,13 @@ environments {
 
 // this will be used if no "from" is supplied in a mail
 grails.mail.default.from="lernardomailer@gmail.com"
+
+// ---------------------------------------------------------------------------------------------
+// layout configuration
+// ---------------------------------------------------------------------------------------------
+
+// one of the current projects:
+// "sueninos"
+// "lernardo"
+
+project = "sueninos"
