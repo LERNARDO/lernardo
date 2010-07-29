@@ -89,10 +89,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz" >
-      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-leadeducator"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></g:if></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-leadeducator" targetId="leadeducator"/>
-      </jq:jquery>
+      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducator'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></g:if></h5>
       <div class="zusatz-add" id="leadeducator" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducator2" before="showspinner('#leadeducator2')">
           <g:select name="leadeducator" from="${allEducators}" optionKey="id" optionValue="profile"/>
@@ -107,10 +104,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Pädagogen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-educators"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-educators" targetId="educators"/>
-      </jq:jquery>
+      <h5>Pädagogen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
@@ -125,10 +119,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Betreute <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:hasRoleOrType></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-clients" targetId="clients"/>
-      </jq:jquery>
+      <h5>Betreute <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClients', id: facility.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
@@ -143,10 +134,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Ansprechpersonen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:hasRoleOrType></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-contacts" targetId="contacts"/>
-      </jq:jquery>
+      <h5>Ansprechpersonen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#contacts'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="showspinner('#contacts2')">
 
@@ -200,10 +188,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Planbare Ressourcen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:hasRoleOrType></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-resources" targetId="resources"/>
-      </jq:jquery>
+      <h5>Planbare Ressourcen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2')">
           <table>

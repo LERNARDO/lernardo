@@ -36,12 +36,8 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Betreute <app:isOperator entity="${group}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-clients" targetId="clients"/>
-      </jq:jquery>
+      <h5>Betreute <app:isOperator entity="${group}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-
       Die Betreuten können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)<br/>
         <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect">
 

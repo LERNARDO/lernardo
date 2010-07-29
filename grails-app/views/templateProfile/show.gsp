@@ -92,10 +92,7 @@
     </app:isEducator>
 
     <div class="zusatz">
-      <h5>Planbare Ressourcen <app:isEducator entity="${entity}"><a href="#" id="show-resources"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isEducator></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-resources" targetId="resources"/>
-      </jq:jquery>
+      <h5>Planbare Ressourcen <app:isEducator entity="${entity}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isEducator></h5>
       <div class="zusatz-add" id="resources" style="display:none">
             
         <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2')">
@@ -121,10 +118,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Bewertungssmethoden <app:isEducator entity="${entity}"><a href="#" id="show-methods"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isEducator></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-methods" targetId="methods"/>
-      </jq:jquery>
+      <h5>Bewertungssmethoden <app:isEducator entity="${entity}"><a onclick="toggle('#methods'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gewichtungsmethode hinzufügen" /></a></app:isEducator></h5>
       <div class="zusatz-add" id="methods" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2')">
           <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>

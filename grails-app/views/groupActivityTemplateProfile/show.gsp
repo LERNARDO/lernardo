@@ -79,10 +79,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Aktivitätsvorlagen <app:isEducator entity="${entity}"><a href="#" id="show-templates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen" /></a></app:isEducator></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-templates" targetId="templates"/>
-      </jq:jquery>
+      <h5>Aktivitätsvorlagen <app:isEducator entity="${entity}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen" /></a></app:isEducator></h5>
       <div class="zusatz-add" id="templates" style="display:none">
         <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">

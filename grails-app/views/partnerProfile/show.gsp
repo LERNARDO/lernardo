@@ -118,10 +118,7 @@
     </app:isMeOrAdmin>
 
 %{--    <div>
-      <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-services"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="show-services" targetId="services"/>
-      </jq:jquery>
+      <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
       <div id="services" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
           <g:textField name="service" size="30"/>
@@ -136,10 +133,7 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <app:isMeOrAdmin entity="${partner}"><a href="#" id="show-contacts"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-contacts" targetId="contacts"/>
-      </jq:jquery>
+      <h5><g:message code="partner.profile.contacts"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#contacts'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2')">
 

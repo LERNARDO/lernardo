@@ -92,10 +92,7 @@
       %{--clients and their status may only be added after the activity has started--}%
       <g:if test="${new Date() > activity.profile.date}">
         <div>
-          <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
-          <jq:jquery>
-            <jq:toggle sourceId="show-clients" targetId="clients"/>
-          </jq:jquery>
+          <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h1>
           <div id="clients" style="display:none">
             <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
               <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>

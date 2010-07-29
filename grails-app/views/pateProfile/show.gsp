@@ -98,10 +98,7 @@
       </div>
     
     <div class="zusatz">
-      <h1><g:message code="pate.profile.gcs"/> <app:isOperator entity="${entity}"><a href="#" id="show-godchildren"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="show-godchildren" targetId="godchildren"/>
-      </jq:jquery>
+      <h1><g:message code="pate.profile.gcs"/> <app:isOperator entity="${entity}"><a onclick="toggle('#godchildren'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
       <div class="zusatz-add" id="godchildren" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
           <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>

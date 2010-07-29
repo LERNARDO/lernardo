@@ -14,10 +14,7 @@
           </ul>
         </app:getProjectUnitActivityGroups>
 
-        <p class="bold">Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-parents${j}${i}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></p>
-        <jq:jquery>
-          <jq:toggle sourceId="show-parents${j}${i}" targetId="parents${j}${i}"/>
-        </jq:jquery>
+        <p class="bold">Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#parents${j}${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></p>
         <div id="parents${j}${i}" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i, j: j]]" update="parents2${j}${i}" before="showspinner('#parents2${j}${i}')">
             <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
@@ -33,10 +30,7 @@
           </app:getProjectUnitParents>
         </div>
 
-        <p class="bold">Partner <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-partners${j}${i}"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isMeOrAdmin></p>
-        <jq:jquery>
-          <jq:toggle sourceId="show-partners${j}${i}" targetId="partners${j}${i}"/>
-        </jq:jquery>
+        <p class="bold">Partner <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#partners${j}${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isMeOrAdmin></p>
         <div id="partners${j}${i}" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i, j: j]]" update="partners2${j}${i}" before="showspinner('#partners2${j}${i}')">
             <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>

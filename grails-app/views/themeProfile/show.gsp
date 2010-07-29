@@ -88,10 +88,7 @@
 
     <g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
       <div class="zusatz">
-        <h5>Subthemen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a href="#" id="show-subthemes"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:hasRoleOrType></h5>
-        <jq:jquery>
-          <jq:toggle sourceId="show-subthemes" targetId="subthemes"/>
-        </jq:jquery>
+        <h5>Subthemen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a onclick="toggle('#subthemes'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Subthema hinzufügen" /></a></app:hasRoleOrType></h5>
         <div class="zusatz" id="subthemes" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addSubTheme', id: theme.id]" update="subthemes2" before="showspinner('#subthemes2')">
             <g:select name="subtheme" from="${allSubthemes}" optionKey="id" optionValue="profile"/>
@@ -108,10 +105,7 @@
 
     <g:if test="${theme.profile.type == 'Subthema'}">
       <div class="zusatz">
-        <h5>Projekte <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projects"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekte hinzufügen" /></a></app:isMeOrAdmin></h5>
-        <jq:jquery>
-          <jq:toggle sourceId="show-projects" targetId="projects"/>
-        </jq:jquery>
+        <h5>Projekte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#projects'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekte hinzufügen" /></a></app:isMeOrAdmin></h5>
         <div class="zusatz-add" id="projects" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2')">
             <g:select name="project" from="${allProjects}" optionKey="id" optionValue="profile"/>

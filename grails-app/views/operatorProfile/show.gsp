@@ -92,10 +92,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Einrichtungen <app:isMeOrAdmin entity="${operator}"><a href="#" id="show-facilities"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-facilities" targetId="facilities"/>
-      </jq:jquery>
+      <h5>Einrichtungen <app:isMeOrAdmin entity="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote  name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>

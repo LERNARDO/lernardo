@@ -52,10 +52,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Einrichtung <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities?.size() == 0}"><a href="#" id="show-facilities"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></app:isMeOrAdmin></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-facilities" targetId="facilities"/>
-      </jq:jquery>
+      <h5>Einrichtung <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities?.size() == 0}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addFacility', id: project.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -70,10 +67,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-clients" targetId="clients"/>
-      </jq:jquery>
+      <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClient', id:project.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
@@ -95,10 +89,7 @@
             <div class="element-box">
               <g:formatDate date="${projectDay.profile.date}" format="dd. MMMM yyyy, HH:mm"/><br/>
 
-              <span class="bold">Einheiten <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-units${j}"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></app:isMeOrAdmin></span>
-              <jq:jquery>
-                <jq:toggle sourceId="show-units${j}" targetId="units${j}"/>
-              </jq:jquery>
+              <span class="bold">Einheiten <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#units${j}'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></app:isMeOrAdmin></span>
               <div id="units${j}" style="display:none">
                 <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id, params:[j:j]]" update="units2${j}" before="showspinner('#units2${j}')">
                   <g:select name="unit" from="${units}" optionKey="id" optionValue="profile"/>
@@ -114,10 +105,7 @@
                 </app:getProjectDayUnits>
               </div>
 
-              <span class="bold">Pädagogen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-educators${j}"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:isMeOrAdmin></span>
-              <jq:jquery>
-                <jq:toggle sourceId="show-educators${j}" targetId="educators${j}"/>
-              </jq:jquery>
+              <span class="bold">Pädagogen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#educators${j}'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:isMeOrAdmin></span>
               <div id="educators${j}" style="display:none">
                 <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addEducator', id:projectDay.id, params:[j:j]]" update="educators2${j}" before="showspinner('#educators2${j}')">
                   <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
@@ -133,10 +121,7 @@
                 </app:getProjectDayEducators>
               </div>
 
-              <span class="bold">Resourcen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-resources${j}"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></app:isMeOrAdmin></span>
-              <jq:jquery>
-                <jq:toggle sourceId="show-resources${j}" targetId="resources${j}"/>
-              </jq:jquery>
+              <span class="bold">Resourcen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#resources${j}'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></app:isMeOrAdmin></span>
               <div id="resources${j}" style="display:none">
                 <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addResource', id:projectDay.id, params:[j:j]]" update="resources2${j}" before="showspinner('#resources2${j}')">
                   <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>

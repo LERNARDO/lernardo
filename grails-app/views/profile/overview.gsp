@@ -6,12 +6,9 @@
 
 <div class="headerGreen">
   <div class="second">
-    <h1>Glossar <a href="#" id="glossar-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+    <h1>Glossar <a onclick="toggle('#glossar-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
   </div>
 </div>
-<jq:jquery>
-  <jq:toggle sourceId="glossar-toggler" targetId="glossar-toggled"/>
-</jq:jquery>
 <div class="boxGray" id="glossar-toggled">
   <div class="second" id="userlist-results">
     <p>Bitte eine Auswahl treffen!</p>
@@ -21,12 +18,9 @@
 
 <div class="headerGreen">
   <div class="second">
-    <h1>Suche <a href="#" id="suche-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+    <h1>Suche <a onclick="toggle('#suche-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
   </div>
 </div>
-<jq:jquery>
-  <jq:toggle sourceId="suche-toggler" targetId="suche-toggled"/>
-</jq:jquery>
 <div class="boxGray" id="suche-toggled">
   <div class="second">
 
@@ -67,10 +61,7 @@
 
       %{--the first panel should only be visible to admins--}%
       <app:isAdmin>
-        <h1>Admin <a href="#" id="admin-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-        <jq:jquery>
-          <jq:toggle sourceId="admin-toggler" targetId="admin-toggled"/>
-        </jq:jquery>
+        <h1>Admin <a onclick="toggle('#admin-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
         <div class="overview" id="admin-toggled">
           <div class="box">
             <div class="bold">Betreiber (${allOperators})</div>
@@ -94,10 +85,7 @@
         <div class="clear"></div>
       </app:isAdmin>
 
-      <h1>Personen <a href="#" id="personen-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="personen-toggler" targetId="personen-toggled"/>
-      </jq:jquery>
+      <h1>Personen <a onclick="toggle('#personen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="personen-toggled">
         <div class="box">
           <div class="bold">Betreute (${allClients})</div>
@@ -150,10 +138,7 @@
       </div>
       <div class="clear"></div>
 
-      <h1>Andere <a href="#" id="andere-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="andere-toggler" targetId="andere-toggled"/>
-      </jq:jquery>
+      <h1>Andere <a onclick="toggle('#andere-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="andere-toggled">
         <div class="box">
           <div class="bold">Einrichtungen (${allFacilities})</div>
@@ -192,10 +177,7 @@
       <div class="clear"></div>
 
 
-      <h1>Gruppen <a href="#" id="gruppen-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="gruppen-toggler" targetId="gruppen-toggled"/>
-      </jq:jquery>
+      <h1>Gruppen <a onclick="toggle('#gruppen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="gruppen-toggled">
         <div class="box">
           <div class="bold">Colonias (${allColonias})</div>
@@ -232,10 +214,7 @@
       </div>
       <div class="clear"></div>
 
-      <h1>Planung <a href="#" id="planung-toggler"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
-      <jq:jquery>
-        <jq:toggle sourceId="planung-toggler" targetId="planung-toggled"/>
-      </jq:jquery>
+      <h1>Planung <a onclick="toggle('#planung-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="planung-toggled">
         <div class="box">
           <div class="bold">Aktivitätsvorlagen (${allActivityTemplates})</div>

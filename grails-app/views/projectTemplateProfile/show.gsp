@@ -63,10 +63,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-projectunits"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-projectunits" targetId="projectunits"/>
-      </jq:jquery>
+      <h5>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
           Name: <g:textField name="fullName" size="40" value=""/>
@@ -82,10 +79,7 @@
 
     %{--<g:if test="${projectUnits}">
       <div>
-        <h5>Aktivitätsvorlagengruppen <app:isMeOrAdmin entity="${entity}"><a href="#" id="show-groupActivityTemplates"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlagengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
-        <jq:jquery>
-          <jq:toggle sourceId="show-groupActivityTemplates" targetId="groupActivityTemplates"/>
-        </jq:jquery>
+        <h5>Aktivitätsvorlagengruppen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#groupActivityTemplates'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlagengruppe hinzufügen" /></a></app:isMeOrAdmin></h5>
         <div id="groupActivityTemplates" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id: projectTemplate.id]" update="projectunits2" before="showspinner('#groupActivityTemplates')">
             Aktivitätsvorlagengruppe: <g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/><br/>

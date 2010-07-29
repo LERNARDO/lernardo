@@ -42,10 +42,7 @@
     %{--</app:isMeOrAdmin>--}%
 
     <div class="zusatz">
-      <h5>Elemente <app:isOperator entity="${currentEntity}"><a href="#" id="show-elements"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></app:isOperator></h5>
-      <jq:jquery>
-        <jq:toggle sourceId="show-elements" targetId="elements"/>
-      </jq:jquery>
+      <h5>Elemente <app:isOperator entity="${currentEntity}"><a onclick="toggle('#elements'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add" id="elements" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'method', action:'addElement', id:methodInstance.id]" update="elements2" before="showspinner('#elements2')" after="cleartext()">
           Bezeichnung: <g:textField id="hide" name="name" size="40"/>

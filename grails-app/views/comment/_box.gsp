@@ -8,10 +8,7 @@
 
     <app:isEducator entity="${currentEntity}">
       <div class="comments-actions">
-        <a href="#" id="comment-toggler"> Kommentar hinzufügen <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kommentar hinzufügen" /></a>
-        <jq:jquery>
-          <jq:toggle sourceId="comment-toggler" targetId="comment-div"/>
-        </jq:jquery>
+        <a onclick="toggle('#comment-div'); return false" href="#">Kommentar hinzufügen <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kommentar hinzufügen" /></a>
       </div>
       <div id="comment-div" style="display:none; margin-bottom: 10px">
         <g:formRemote name="formRemote" url="[controller:'comment', action:'save', id: commented.id]" update="comments" before="hideform('#comment-div'); for ( var i = 0; i < parent.frames.length; ++i ) if ( parent.frames[i].FCK ) parent.frames[i].FCK.UpdateLinkedField();">

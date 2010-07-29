@@ -112,16 +112,13 @@
         -->
         <div class="headerGreen">
           <div class="second">
-            <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'bullet_green.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'bullet_red.png')}" alt="inaktiv"/></g:else></g:if> <a href="#" id="kommunikation-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}" style="top: 3px; position: relative"></a>
+            <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'bullet_green.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'bullet_red.png')}" alt="inaktiv"/></g:else></g:if> <a onclick="toggle('#kommunikation-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}" style="top: 3px; position: relative"></a>
             </h1>
           </div>
         </div>
 
         <div class="profile-box">
           <div class="second">
-            <jq:jquery>
-              <jq:toggle sourceId="kommunikation-toggler" targetId="kommunikation-toggled"/>
-            </jq:jquery>
             <div id="kommunikation-toggled">
 
               <table>
@@ -182,10 +179,7 @@
                 <label id="tab-verwaltung" class="aktiv_tab" onclick="changeTab('tab-verwaltung', 'inhalt-verwaltung', 'tab-admin', 'inhalt-admin')"><g:message code="privat.head.verw"/>&nbsp;&nbsp;|</label>
                 <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"><g:message code="privat.head.admin"/> &nbsp;</label>
 
-                &nbsp;<a href="#" id="administration-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
-              <jq:jquery>
-                <jq:toggle sourceId="administration-toggler" targetId="administration-toggled"/>
-              </jq:jquery>
+                &nbsp;<a onclick="toggle('#administration-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
               <div id="administration-toggled">
                 <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
@@ -235,11 +229,8 @@
               %{--Menue links Personen--}%
               <div class="header">
                 <g:message code="privat.head.paedag"/> &nbsp;&nbsp;
-                <a href="#" id="paedag-toggler"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
+                <a onclick="toggle('#paedag-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a></div>
 
-              <jq:jquery>
-                <jq:toggle sourceId="paedag-toggler" targetId="paedag-toggled"/>
-              </jq:jquery>
               <div id="paedag-toggled">
                 <div id="a1" class="ein">
                   <ul>
