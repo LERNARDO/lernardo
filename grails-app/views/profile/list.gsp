@@ -3,12 +3,12 @@
   <meta name="layout" content="private"/>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>Liste aller Profile</title>
-  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
+%{--  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
   <script type="text/javascript">
-  $(document).ready(function()
-  {
-    // TODO: figure out why qtip refuses to work although it definitely should
-     $('img[src][alt]').qtip({
+    $(document).ready(function()
+    {
+      // TODO: figure out why qtip refuses to work although it definitely should
+      $('img[src][alt]').qtip({
         content: {
            text: false // Use each elements title attribute
         },
@@ -24,11 +24,10 @@
               color: '#89B7DA'
            },
            background: '#EEEEEE'
-        }
-
-     });
-  });
-</script>
+        }  
+      });
+    });
+  </script>--}%
 </head>
 <body>
 <div class="headerGreen">
@@ -86,23 +85,23 @@
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
                 <app:isEnabled entity="${entity}">
-                  <g:link controller="profile" action="disable" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_enabled.png')}" alt="Deaktivieren" align="top"/></g:link>
+                  <g:link controller="profile" action="disable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_enabled.png')}" alt="Deaktivieren" align="top"/>--}%Deaktivieren</g:link> -
                 </app:isEnabled>
                 <app:notEnabled entity="${entity}">
-                  <g:link controller="profile" action="enable" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/></g:link>
+                  <g:link controller="profile" action="enable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/>--}%Aktivieren</g:link> -
                 </app:notEnabled>
                 <app:isAdmin>
-                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}"><img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/></g:link>
+                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}">%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%Löschen</g:link> -
                 </app:isAdmin>
               </app:notMe>
-              <app:isSysAdmin>
-                <ub:hasNoRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                  <g:link controller="profile" action="giveAdminRole" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_noadmin.png')}" alt="Admin geben" align="top"/></g:link>
-                </ub:hasNoRoles>
+              <app:isSysAdmin entity="${currentEntity}">
+                <app:hasNotRoles entity="${entity}" roles="['ROLE_ADMIN']">
+                  <g:link controller="profile" action="giveAdminRole" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_noadmin.png')}" alt="Admin geben" align="top"/>--}%Admin geben</g:link>
+                </app:hasNotRoles>
 
-                <ub:hasAllRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                  <g:link controller="profile" action="takeAdminRole" id="${entity.id}"><img src="${resource (dir:'images/icons', file:'icon_anadmin.png')}" alt="Admin nehmen" align="top"/></g:link>
-                </ub:hasAllRoles>
+                <app:hasRoles entity="${entity}" roles="['ROLE_ADMIN']">
+                  <g:link controller="profile" action="takeAdminRole" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_anadmin.png')}" alt="Admin nehmen" align="top"/>--}%Admin nehmen</g:link>
+                </app:hasRoles>
               </app:isSysAdmin>
             </td>
           </tr>

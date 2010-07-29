@@ -620,8 +620,14 @@ class HelperTagLib {
   }
 
   def isSysAdmin = {attrs, body ->
-    if (secHelperService.hasRole('ROLE_SYSTEMADMIN'))
-      out << body()
+    // "secHelperService.hasRole" is broken so let's use this
+    def entity = attrs.entity ?: entityHelperService.loggedIn
+
+    entity.user.authorities.each {
+      if (it.authority == "ROLE_SYSTEMADMIN")
+        out << body()
+        return
+    }
   }
 
   def isMe = {attrs, body ->
@@ -632,6 +638,22 @@ class HelperTagLib {
   def notMe = {attrs, body ->
     if (secHelperService.isNotMe(attrs.entity))
       out << body()
+  }
+
+  def hasNotRoles = {attrs, body ->
+    def entity = attrs.entity ?: entityHelperService.loggedIn
+
+    def res = !attrs.roles.find { entity.user?.authorities*.authority.contains (it) }
+    if (res)
+      out << body()
+  }
+
+  def hasRoles = {attrs, body ->
+    def entity = attrs.entity ?: entityHelperService.loggedIn
+
+    def matching = attrs.roles.findAll { entity.user?.authorities*.authority.contains(it) }
+    if (matching)
+      out << body()    
   }
 
   private boolean friend(attrs) {

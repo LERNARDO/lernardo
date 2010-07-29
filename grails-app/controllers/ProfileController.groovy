@@ -128,6 +128,7 @@ class ProfileController {
    */
   def takeAdminRole = {
     Entity entity = Entity.get(params.id)
+    // 29.07.2010: removeFrom not working here anymore for some mysterious reason?!
     entity?.user?.removeFromAuthorities(metaDataService.adminRole)
     flash.message = message(code: "user.takeAdmin", args: [entity.profile.fullName])
     redirect action: 'list'
