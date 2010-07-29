@@ -5,6 +5,7 @@
 </head>
 
 <body>
+
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
@@ -12,13 +13,14 @@
     </div>
   </div>
 </g:if>
+
 <div class="tabGreen">
   <div class="second">
     <h1>Aktivitätsvorlagen</h1>
   </div>
 </div>
 
-<div class="clearFloat"> </div>
+<div class="clearFloat"></div>
 
 <div class="boxGray">
   <div class="second">
@@ -54,7 +56,7 @@
         </div>
       </g:if>
 
-     <div class="buttons">
+      <div class="buttons">
         <app:isEducator entity="${entity}">
           <g:link class="buttonGreen" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
           <div class="spacer" style="margin-bottom: 5px"></div>

@@ -7,7 +7,7 @@
   <div class="second">
     <h1 style="float: left"><g:message code="user.profile.edit"/></h1>
     <div class="icons" style="text-align: right;">
-      <g:link action="show" id="${user.id}"><img src="${resource (dir:'images/icons', file:'icon_cancel.png')}" alt="${message(code:'cancel')}" align="top"/></g:link>
+      <g:link action="show" id="${user.id}"><img src="${resource(dir: 'images/icons', file: 'icon_cancel.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
     </div>
   </div>
 </div>
@@ -21,26 +21,22 @@
     </g:hasErrors>
 
     <g:form action="update" method="post" id="${user.id}">
+
       <div class="dialog">
         <table>
           <tbody>
 
           <tr class="prop">
             <td valign="top" class="name">
-              <label for="firstName">
-                <g:message code="user.profile.firstName"/>
-              </label>
+              <label for="firstName"><g:message code="user.profile.firstName"/></label>
             </td>
-             <td valign="top" class="name">
-              <label for="lastName">
-                <g:message code="user.profile.lastName"/>
-              </label>
+            <td valign="top" class="name">
+              <label for="lastName"><g:message code="user.profile.lastName"/></label>
             </td>
-
           </tr>
 
           <tr class="prop">
-           <td width="440" valign="top" class="value">
+            <td width="440" valign="top" class="value">
               <g:textField class="countable${user.profile.constraints.firstName.maxSize} ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
             </td>
             <td width="440" valign="top" class="value">
@@ -51,14 +47,13 @@
           </tbody>
         </table>
       </div>
-       <div class="email">
-		<table>
-		<tr>
-			<app:isAdmin>
-			<td width="85"  valign="middle">
-                <label for="enabled">
-                  <g:message code="active"/>
-                </label>
+
+      <div class="email">
+        <table>
+          <tr>
+            <app:isAdmin>
+              <td width="85" valign="middle">
+                <label for="enabled"><g:message code="active"/></label>
                 <app:isAdmin>
                   <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
                 </app:isAdmin>
@@ -66,29 +61,25 @@
                   <g:checkBox name="enabled" value="${user?.user?.enabled}" disabled="true"/>
                 </app:notAdmin>
               </td>
-          </app:isAdmin>
+            </app:isAdmin>
+
             <td width="150" valign="middle">
-              <label>
-                <g:message code="password"/>:
-              </label>
+              <label><g:message code="password"/>:</label>
               <g:link controller="profile" action="changePassword" id="${user.id}"><g:message code="change"/></g:link>
             </td>
 
-			<td width="270"  valign="middle">
-			<label for="email">
-				<g:message code="user.profile.email"/>
-            </label>:
-            <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
+            <td width="270" valign="middle">
+              <label for="email"><g:message code="user.profile.email"/>:</label>
+              <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
             </td>
-			<td valign="middle">
-			    <label for="locale">
-                <g:message code="languageSelection"/>
-				</label>:
-				<app:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
-				</td>
-		</tr>
-		 </table>
-		</div>
+
+            <td valign="middle">
+              <label for="locale"><g:message code="languageSelection"/>:</label>
+              <app:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
+            </td>
+          </tr>
+        </table>
+      </div>
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
