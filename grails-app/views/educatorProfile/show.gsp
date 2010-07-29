@@ -108,18 +108,21 @@
             </ul>
           </td>
         </tr>
-       <tr>
+
+        %{--<tr>
         <td colspan="3" valign="top" class="name-show">
         <g:message code="educator.profile.colonia"/>:
         </td>
           </tr>
+
         <tr>
         <td  valign="top" class="value-show">
         <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="educator.profile.colonia.empty"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
         </td>
         <td colspan="3" valign="top" >
         </td>
-        </tr>
+        </tr>--}%
+
       </table>
 
       <h4><g:message code="educator.profile.curAddress"/></h4>

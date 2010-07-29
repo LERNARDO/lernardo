@@ -139,7 +139,7 @@
             </td>
 		</tr>
 
-          <tr class="prop">
+          %{--<tr class="prop">
           <td colspan="3" valign="middle" class="name">
           <g:message code="educator.profile.colonia"/>:
           </td>
@@ -148,7 +148,7 @@
           <td colspan="3" valign="middle" class="value">
             <g:select from="${allColonias}" name="colonia" optionKey="id" optionValue="profile"/>
 	       </td>
-          </tr>
+          </tr>--}%
 		</table>
 				
 		<h4><g:message code="educator.profile.curAddress"/></h4>

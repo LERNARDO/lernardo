@@ -141,7 +141,8 @@
               </g:if>
             </td>
 		</tr>
-          <tr class="prop">
+
+          %{--<tr class="prop">
           <td colspan="3" valign="middle" class="name">
           <g:message code="educator.profile.colonia"/>:
           </td>
@@ -150,7 +151,7 @@
           <td colspan="3" valign="middle" class="value">
           <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
           </td>
-          </tr>
+          </tr>--}%
 		</table>
 				
 		<h4><g:message code="educator.profile.curAddress"/></h4>

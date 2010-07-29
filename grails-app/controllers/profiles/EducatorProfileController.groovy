@@ -101,7 +101,7 @@ class EducatorProfileController {
         new Link(source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
       }
 
-      // delete current link
+      /*// delete current link
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', educator)
@@ -112,7 +112,7 @@ class EducatorProfileController {
         link.delete()
 
       // link educator to colonia
-      new Link(source: educator, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
+      new Link(source: educator, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()*/
 
       flash.message = message(code: "educator.updated", args: [educator.profile.fullName])
       redirect action: 'show', id: educator.id
@@ -123,7 +123,9 @@ class EducatorProfileController {
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [entity: entityHelperService.loggedIn,
+            partner: Entity.findAllByType(metaDataService.etPartner),
+            /*allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
   }
 
   def save = {
@@ -145,7 +147,7 @@ class EducatorProfileController {
       }
 
       // link educator to colonia
-      new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
+      //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
       flash.message = message(code: "educator.created", args: [entity.profile.fullName])
       redirect action: 'list'
