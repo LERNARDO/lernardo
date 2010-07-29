@@ -15,21 +15,11 @@
       <table>
         
         <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.gender"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.title"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.firstName"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.lastName"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.birthDate"/>
-          </td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.gender"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.title"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.firstName"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.lastName"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.birthDate"/></td>
         </tr>
 
         <tr>
@@ -37,40 +27,35 @@
             <app:showGender gender="${educator.profile.gender}"/>
           </td>
           <td width="120" valign="middle" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.title') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: educator, field: 'profile.title') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td width="180" valign="middle" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.firstName') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: educator, field: 'profile.firstName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td width="210" valign="middle" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.lastName') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: educator, field: 'profile.lastName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td valign="middle" class="value-show">
             <g:formatDate date="${educator.profile.birthDate}" format="dd. MM. yyyy"/>
           </td>
         </tr>
+
       </table>
 
       <table>
 
         <tr>
-          <td class="name-show">
-            <g:message code="educator.profile.education"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.employment"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.enlisted"/>
-          </td>
+          <td class="name-show"><g:message code="educator.profile.education"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.employment"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.enlisted"/></td>
         </tr>
 
         <tr>
           <td width="280" height="25" valign="middle" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.education') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+            ${fieldValue(bean: educator, field: 'profile.education') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td width="280" valign="middle" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.employment') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+            ${fieldValue(bean: educator, field: 'profile.employment') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td valign="middle" class="value-show">
             ${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">'+message(code:'no')+'</div>'}
@@ -78,20 +63,14 @@
         </tr>
 
         <tr>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.interests"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.inChargeOf"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="educator.profile.languages"/>
-          </td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.interests"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.inChargeOf"/></td>
+          <td valign="top" class="name-show"><g:message code="educator.profile.languages"/></td>
         </tr>
 
         <tr>
           <td height="60" valign="top" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td valign="top" class="value-show">
             <ul>
@@ -130,32 +109,24 @@
         <table>
 
           <tr>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.currentStreet"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.currentZip"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.currentCity"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.currentCountry"/>
-            </td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.currentStreet"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.currentZip"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.currentCity"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.currentCountry"/></td>
           </tr>
 
           <tr>
             <td width="280" height="25" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.currentStreet') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.currentStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="105" valign="middle" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="210" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="110" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
           </tr>
 
@@ -167,29 +138,21 @@
         <table>
 
           <tr>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.originStreet"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.originZip"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.originCity"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.originCountry"/>
-            </td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.originStreet"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.originZip"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.originCity"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.originCountry"/></td>
           </tr>
 
           <tr>
             <td width="280" height="25" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.originStreet') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.originStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="105" valign="middle" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="210" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.originCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.originCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="110" valign="middle" class="value-show">
               <app:getNationalities nationality="${educator.profile.originCountry}"/>
@@ -205,32 +168,24 @@
         <table>
 
           <tr>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.contactStreet"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.contactZip"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.contactCity"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.contactCountry"/>
-            </td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactStreet"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactZip"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactCity"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactCountry"/></td>
           </tr>
 
           <tr>
             <td width="280" height="25" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactStreet') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="105" valign="middle" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.contactZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="210" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="110" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
           </tr>
 
@@ -239,20 +194,16 @@
         <table>
 
           <tr>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.contactPhone"/>
-            </td>
-            <td valign="top" class="name-show">
-              <g:message code="educator.profile.contactMail"/>
-            </td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactPhone"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactMail"/></td>
           </tr>
 
           <tr>
             <td width="280" height="25" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="340" valign="middle" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactMail') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactMail') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
           </tr>
 
@@ -265,17 +216,17 @@
           <tr>
             <app:isAdmin>
               <td width="100" valign="middle">
-                <g:message code="active"/>:
+                <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
             </app:isAdmin>
 
             <td width="280" valign="middle">
-              <g:message code="educator.profile.email"/>:
+              <span class="bold"><g:message code="educator.profile.email"/>:</span>
               ${fieldValue(bean: educator, field: 'user.email') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td valign="middle">
-              <g:message code="languageSelection"/>:
+              <span class="bold"><g:message code="languageSelection"/>:</span>
               ${educator?.user?.locale?.getDisplayLanguage()}
             </td>
           </tr>
