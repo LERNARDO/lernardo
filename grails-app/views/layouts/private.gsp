@@ -9,6 +9,7 @@
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:layoutHead/>
   <g:javascript library="jquery"/>
+  <jqui:resources/>
   <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
 
