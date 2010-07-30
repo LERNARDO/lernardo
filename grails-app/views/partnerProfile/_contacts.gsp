@@ -1,17 +1,19 @@
 <g:if test="${partner.profile.contacts}">
-  <ul>
-  <g:each in="${partner.profile.contacts}" var="contact">
-    <li><g:message code="partner.profile.contactName"/>: ${contact.firstName + ' ' + contact.lastName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeContact" update="contacts2" id="${partner.id}" params="[contact: contact.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Ansprechperson entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
-    <li><g:message code="partner.profile.contactCountry"/>: ${contact.country}</li>
-    <li><g:message code="partner.profile.contactZip"/>: ${contact.zip}</li>
-    <li><g:message code="partner.profile.contactCity"/>: ${contact.city}</li>
-    <li><g:message code="partner.profile.contactStreet"/>: ${contact.street}</li>
-    <li><g:message code="partner.profile.contactPhone"/>: ${contact.phone}</li>
-    <li><g:message code="partner.profile.contactEmail"/>: ${contact.email}</li>
-    <li><g:message code="partner.profile.contactFunction"/>: ${contact.function}</li>
-    <hr />
-  </g:each>
-  </ul>
+  <table>
+    <g:each in="${partner.profile.contacts}" var="representative">
+      <tr class="prop">
+        <td valign="top" class="italic" width="100"><g:message code="representantives.name"/>:</td><td colspan="6" class="value">${representative.firstName}  ${representative.lastName}</td>
+        <td><app:isOperator entity="${entity}"><g:remoteLink action="removeContact" update="contacts2" id="${partner.id}" params="[contact: representative.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="Ansprechperson entfernen" align="top"/></g:remoteLink></app:isOperator></td></tr>
+      <tr class="prop">
+        <td valign="top" class="italic"><g:message code="representantives.adr"/>:</td><td colspan="6" class="value">${representative.zip} ${representative.city}, ${representative.street}</td></tr>
+      <tr class="prop">
+        <td valign="top" class="italic"><g:message code="representantives.phone"/>:</td><td class="value" width="150">${representative.phone ?: '<span class="italic">keine Angabe</span>'}</td>
+        <td valign="top" class="italic" width="60"><g:message code="representantives.email"/>:</td><td class="value" width="160">${representative.email ?: '<span class="italic">keine Angabe</span>'}</td>
+        <td valign="top" class="italic" width="100"><g:message code="representantives.function"/>:</td><td class="value">${representative.function ?: '<span class="italic">keine Angabe</span>'}</td>
+      </tr>
+      <tr><td colspan="8" style="border-width:1px; border-color:transparent transparent lightgray; border-style:solid; padding:3px;"></td></tr>
+    </g:each>
+  </table>
 </g:if>
 <g:else>
   <span class="italic"><g:message code="partner.profile.contact.empty"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>

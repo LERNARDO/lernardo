@@ -150,10 +150,14 @@ class PartnerProfileController {
     render template: 'services', model: [partner: partner, entity: entityHelperService.loggedIn]
   }
 
-  def addContact = {
-    Contact contact = new Contact()
-    contact.properties = params
+  def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
+    if (cc.hasErrors()) {
+      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+      return
+    }
+    Contact contact = new Contact(params)
     partner.profile.addToContacts(contact)
     render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
   }
@@ -164,4 +168,18 @@ class PartnerProfileController {
     Contact.get(params.contact).delete()
     render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
   }
+}
+
+/*
+* command object to handle validation of contacts
+*/
+class ContactCommand {
+  String firstName
+  String lastName
+
+  static constraints = {
+    firstName(blank: false, maxSize: 50)
+    lastName(blank: false, maxSize: 50)
+  }
+
 }

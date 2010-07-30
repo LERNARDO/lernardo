@@ -274,10 +274,14 @@ class FacilityProfileController {
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }
 
-  def addContact = {
-    Contact contact = new Contact()
-    contact.properties = params
+  def addContact = {ContactCommand cc ->
     Entity facility = Entity.get(params.id)
+    if (cc.hasErrors()) {
+      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+      return
+    }
+    Contact contact = new Contact(params)
     facility.profile.addToContacts(contact)
     render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
   }
