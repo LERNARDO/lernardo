@@ -16,6 +16,8 @@
   <script type="text/javascript">
     $(document).ready(function() {
 
+      $('#flash-msg').delay(3000).fadeOut(2000);
+
       $('.countable50').jqEasyCounter({
         'maxChars': 50,
         'maxCharsWarning': 50
