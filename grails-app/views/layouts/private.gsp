@@ -15,8 +15,15 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+      
+      $(".datepicker-birthday").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd. mm. yy',
+        minDate: new Date(1900,1,1),
+        maxDate: new Date()});
 
-      $('#flash-msg').delay(3000).fadeOut(2000);
+      $('#flash-msg').delay(3000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
       $('.countable50').jqEasyCounter({
         'maxChars': 50,
