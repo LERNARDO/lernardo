@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="${resource(dir:'css/' + project,file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:layoutHead/>
-  <g:javascript library="jquery"/>
+  <g:javascript library="jquery" plugin="jquery"/>
   <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
 </head>
 <body>
