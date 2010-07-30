@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Familie anlegen</title>
+  <title><g:message code="groupFamily.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Familie anlegen</h1>
+    <h1><g:message code="groupFamily.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
