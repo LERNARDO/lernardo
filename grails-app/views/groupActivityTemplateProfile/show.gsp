@@ -155,7 +155,7 @@
           <div class="spacer"></div>
         </g:formRemote>
 
-        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2">
+        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addTemplate', id:group.id]" update="templates2" before="showspinner('#templates2')">
           <div id="templateselect" style="margin-top: 10px;">
             <g:render template="searchresults" model="[allTemplates: allTemplates]"/>
           </div>
