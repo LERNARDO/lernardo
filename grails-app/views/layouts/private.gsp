@@ -47,6 +47,8 @@
     -->
   </script>
 
+  <ga:trackPageviewAsynch />
+
 </head>
 <body>
 <g:if test="${!entity}">
