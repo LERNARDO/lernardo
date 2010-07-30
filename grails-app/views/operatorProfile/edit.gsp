@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreiber bearbeiten</title>
+  <title><g:message code="operator.profile.edit"/></title>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
-    <h1>Betreiber bearbeiten</h1>
+    <h1><g:message code="operator.profile.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">

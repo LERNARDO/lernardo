@@ -33,35 +33,35 @@
           <td valign="top" class="name-show">
             <g:message code="operator.profile.zip"/>:
           </td>
-          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.zip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.zip') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name-show">
             <g:message code="operator.profile.city"/>:
           </td>
-          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.city') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name-show">
             <g:message code="operator.profile.street"/>:
           </td>
-          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.street') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name-show">
             <g:message code="operator.profile.description"/>:
           </td>
-          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.description') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.description') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name-show">
             <g:message code="operator.profile.phone"/>:
           </td>
-          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.phone') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -92,7 +92,7 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5>Einrichtungen <app:isMeOrAdmin entity="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="operator.profile.facility"/> <app:isMeOrAdmin entity="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote  name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
