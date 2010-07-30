@@ -16,16 +16,16 @@
 		<tbody>
 		  <tr>
 			<td  width="120"  valign="middle" class="name-show">
-            <g:message code="child.profile.gender"/>:
+            <g:message code="child.profile.gender"/>
 			</td>
 			<td  width="200"  valign="middle" class="name-show">
-            <g:message code="child.profile.firstName"/>:
+            <g:message code="child.profile.firstName"/>
 			</td>
 			 <td width="280"  valign="middle"class="name-show">
-            <g:message code="child.profile.lastName"/>:
+            <g:message code="child.profile.lastName"/>
 			</td>
 			<td valign="middle" class="name-show">
-            <g:message code="child.profile.birthDate"/>:
+            <g:message code="child.profile.birthDate"/>
           </td>
 		  </tr>
 		  <tr>
@@ -45,13 +45,13 @@
             &nbsp;
 			</td>
 			<td  width="200"  valign="middle" class="name-show">
-            <g:message code="child.profile.jobType"/>:
+            <g:message code="child.profile.jobType"/>
 			</td>
 			 <td width="280"  valign="middle"class="name-show">
-            <g:message code="child.profile.jobIncome"/>:
+            <g:message code="child.profile.jobIncome"/>
 			</td>
 			<td valign="middle" class="name-show">
-             <g:message code="child.profile.jobFrequency"/>:
+             <g:message code="child.profile.jobFrequency"/>
           </td>
 		  <tr>
 			<td valign="top" class="value-show-comb"> <g:message code="child.profile.job"/>: <g:formatBoolean boolean="${child.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
@@ -65,11 +65,11 @@
 
 		<div class="email">
 		 <app:isAdmin>
-              <g:message code="active"/>: 
+              <span class="bold"><g:message code="active"/></span>
               <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/> 
 		   </app:isAdmin>
           <td width="60" valign="top" >
-            <g:message code="child.profile.email"/>:
+            <span class="bold"><g:message code="child.profile.email"/>:</span>
             </td>
             <td  valign="top" >${fieldValue(bean: child, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           

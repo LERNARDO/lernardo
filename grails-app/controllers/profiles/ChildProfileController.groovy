@@ -103,7 +103,6 @@ class ChildProfileController {
 
   def save = {
     EntityType etChild = metaDataService.etChild
-    println params
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->
@@ -121,4 +120,6 @@ class ChildProfileController {
     }
 
   }
+
+  def beforeInterceptor = [action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']]
 }

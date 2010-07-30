@@ -51,6 +51,20 @@ grails.mail.default.from="lernardomailer@gmail.com"
 
 // one of the current projects:
 // "sueninos"
-// "lernardo"
+// "noe"
 
 project = "sueninos"
+
+// ---------------------------------------------------------------------------------------------
+// google analytics tracker
+// ---------------------------------------------------------------------------------------------
+
+// one of the following IDs:
+// "UA-17725364-2" for http://sueninos.lernardo.net
+// "UA-17725364-3" for http://noe.lernardo.net
+
+google.analytics.webPropertyID = "UA-17725364-2"
+
+// by default, tracking is enabled for the 'production' Env only, but that can be overwritten
+// both ways (i.e emergency disable tracking)
+// google.analytics.enabled = false
