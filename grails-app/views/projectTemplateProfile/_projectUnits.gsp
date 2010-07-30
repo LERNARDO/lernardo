@@ -1,7 +1,7 @@
 <g:if test="${projectUnits}">
 
   <span class="bold">Anzahl Einheiten:</span> ${projectUnits.size()}<br />
-  <span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration ?: 0} min
+  <span id="updateduration"><g:render template="updateduration" model="[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]"/></span>
 
   <g:each in="${projectUnits}" var="projectUnit" status="i">
     <div class="element-box">${i+1}. Projekteinheit: ${projectUnit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeProjectUnit" update="projectunits2" id="${projectTemplate.id}" params="[projectUnit: projectUnit.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Projekteinheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin>

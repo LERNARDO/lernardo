@@ -263,6 +263,19 @@ class ProjectTemplateProfileController {
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
   }
 
+  def updateduration = {
+    Entity projectTemplate = Entity.get(params.id)
+
+    // find all projectUnits linked to this projectTemplate
+    def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+    List projectUnits = links.collect {it.source}
+
+    // calculate realDuration
+    Integer calculatedDuration = calculateDuration(projectUnits)
+
+    render template:'updateduration', model:[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]   
+  }
+
   Integer calculateDuration(List projectUnits) {
     // find all groupActivityTemplates linked to all projectUnits of this projectTemplate
     List groupActivityTemplates = []
