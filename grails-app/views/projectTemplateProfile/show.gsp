@@ -63,15 +63,16 @@
     </div>
 
     <div class="zusatz">
-      <h5>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <div class="zusatz-add" id="projectunits" style="display:none">
+      <h5>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="addProjectUnit" update="projectunits2" id="${projectTemplate.id}" before="showspinner('#projectunits2')"><img src="${g.resource(dir:'images/icons', file:'icon_add-plus.png')}" alt="Projekteinheit hinzufügen" /></g:remoteLink>
+        %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:isMeOrAdmin></h5>
+      %{--<div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
           Name: <g:textField name="fullName" size="40" value=""/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
-      </div>
+      </div>--}%
       <div class="zusatz-show" id="projectunits2">
         <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates]"/>
       </div>

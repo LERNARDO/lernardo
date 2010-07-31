@@ -135,12 +135,20 @@ class ProjectTemplateProfileController {
   def addProjectUnit = {
     Entity projectTemplate = Entity.get(params.id)
 
+    // find all existing project units of this project template so we can find the unit number
+    def linksc = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+    List units = linksc.collect {it.source}
+    int counter = 1
+    if (units)
+      counter = units.size() + 1
+
     try {
       // create projectUnit
       EntityType etProjectUnit = metaDataService.etProjectUnit
       Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        ent.profile.fullName = "Einheit " + counter
       }
 
       // link projectUnit and projectTemplate
