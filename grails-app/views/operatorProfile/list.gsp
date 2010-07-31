@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreiber</title>
+  <title><g:message code="operator"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreiber</h1>
+    <h1><g:message code="operator"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${operatorTotal} Betreiber insgesamt vorhanden</p>
+    <p>${operatorTotal} <g:message code="operator.profile.c_total"/></p>
     <g:if test="${operatorTotal > 0}">
       <div id="body-list">
         <table>
@@ -36,7 +36,7 @@
     </g:if>
 
     <div class="buttons">
-      <g:link class="buttonGreen" action="create">Neuen Betreiber anlegen</g:link>
+      <g:link class="buttonGreen" action="create"><g:message code="operator.profile.create"/></g:link>
       <div class="spacer"></div>
     </div>
     

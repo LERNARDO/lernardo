@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Familien</title>
+  <title><g:message code="groupFamilies"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Familien</h1>
+    <h1><g:message code="groupFamilies"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${groupTotal} Familien insgesamt vorhanden</p>
+    <p>${groupTotal} <g:message code="groupFamily.profile.c_total"/></p>
     <g:if test="${groupTotal > 0}">
       <div id="body-list">
         <table>
@@ -38,7 +38,7 @@
 
     <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Familie anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="groupFamily.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:hasRoleOrType>

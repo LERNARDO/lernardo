@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${group.profile.fullName}</title>
+  <title><g:message code="groupFamily"/> - ${group.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${group.profile.fullName}</h1>
+    <h1><g:message code="groupFamily"/> - ${group.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -69,10 +69,10 @@
       </div>
     </app:hasRoleOrType>
 
-    <p>${totalLinks == 1 ? '1 unmittelbares Familienmitglied' : totalLinks + ' unmittelbare Familienmitglieder'}</p>
+    <p>${totalLinks == 1 ? message(code:'groupFamily.profile.member') : totalLinks + ' ' + message(code:'groupFamily.profile.members')}</p>
 
     <div class="zusatz">
-      <h5>Erziehungsberechtigte <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.parents"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="parents" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="showspinner('#parents2')">
           <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
@@ -119,7 +119,7 @@
           <input id="tags" />
       </div>--}%
 
-      <h5>Betreute <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients'); return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.clients"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients'); return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
@@ -134,7 +134,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Kinder <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.childs"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="childs" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="showspinner('#childs2')">
           <g:select name="child" from="${allChilds}" optionKey="id" optionValue="profile"/>

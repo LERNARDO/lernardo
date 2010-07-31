@@ -3,11 +3,11 @@
 <tr>
   <th class="title">${type.name}</th>
   %{-- TODO: uncomment when implemented --}%
-  %{--<ub:meOrAdmin entityName="${entity}"><th class="title">Sichtbarkeit</th></ub:meOrAdmin>--}%
-  <th>Dateityp</th>
-  <th class="date">Datum</th>
+  %{--<ub:meOrAdmin entityName="${entity}"><th class="title"><g:message code="publication.type.visibility"/></th></ub:meOrAdmin>--}%
+  <th><g:message code="publication.type"/></th>
+  <th class="date"><g:message code="publication.type.date"/></th>
   <ub:meOrAdmin entityName="${entity.name}">
-    <th class="action">Funktionen</th>
+    <th class="action"><g:message code="publication.type.function"/></th>
   </ub:meOrAdmin>
 </tr>
 
@@ -19,7 +19,7 @@
     <td><app:getFileType type="${pub.asset.storage.contentType}"/></td>
     <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy"/></td>
     <ub:meOrAdmin entityName="${entity.name}">
-      <td class="action"> <g:link action="delete" id="${pub.id}">Löschen</g:link> </td>
+      <td class="action"> <g:link action="delete" id="${pub.id}"><g:message code="delete"/></g:link> </td>
     </ub:meOrAdmin>
   </tr>
 </g:each>
