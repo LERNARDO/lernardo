@@ -326,7 +326,7 @@ class ProjectProfileController {
     // get all partners
     def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
-    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j, allParents: allParents, allPartners: allPartners]
+    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, allParents: allParents, allPartners: allPartners]
 
   }
 
@@ -358,7 +358,7 @@ class ProjectProfileController {
     links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayUnit)
     List units = links.collect {it.source}
 
-    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, j: params.j]
+    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn]
   }
 
   def addGroupActivityTemplate = {
@@ -457,48 +457,48 @@ class ProjectProfileController {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'resources', model: [resources: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn, j: params.j]
+    render template: 'resources', model: [resources: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeResource = {
     def breaking = functionService.breakEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
-    render template: 'resources', model: [resources: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn, j: params.j]
+    render template: 'resources', model: [resources: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'educators', model: [educators: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn, j: params.j]
+    render template: 'educators', model: [educators: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
-    render template: 'educators', model: [educators: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn, j: params.j]
+    render template: 'educators', model: [educators: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'parents', model: [parents: linking.results, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i, j: params.j]
+    render template: 'parents', model: [parents: linking.results, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
-    render template: 'parents', model: [parents: breaking.results, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i, j: params.j]
+    render template: 'parents', model: [parents: breaking.results, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'partners', model: [partners: linking.results, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i, j: params.j]
+    render template: 'partners', model: [partners: linking.results, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
-    render template: 'partners', model: [partners: breaking.results, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i, j: params.j]
+    render template: 'partners', model: [partners: breaking.results, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   // this action takes a project and creates all activities
@@ -525,18 +525,23 @@ class ProjectProfileController {
     // 2. loop through each projectDay and find all projectUnits
 
     List projectUnits = []
+    boolean exit = false
     projectDays.each {
       links = Link.findAllByTargetAndType(it, metaDataService.ltProjectDayUnit)
       if (links.size() == 0) {
-        render "<span class='red'>Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten</span>"
-
-        // figure out why this won't "return"
+        render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + it.profile.date.format('dd. MM. yyyy') + '!</p>'
+        exit = true
+      }
+      else {
+        links.each {
+          projectUnits << it.source
+        }
+      }
+      if (exit)
         return
-      }
-      links.each {
-        projectUnits << it.source
-      }
     }
+    if (exit)
+        return
     //log.info "Projekteinheiten: " + projectUnits.size()
 
     // now we know that every projectDay has projectUnits and templates so we continue
@@ -665,6 +670,30 @@ class ProjectProfileController {
 
     render "<span class='green'>Projekt wurde instanziert!</span><br/>"
 
+  }
+
+  def updateprojectday = {
+    Entity project = Entity.get(params.project)
+    Entity projectDay = Entity.get(params.id)
+
+    // find projectTemplate of this project
+    Entity template = Link.findByTargetAndType(project, metaDataService.ltProjectTemplate).source
+
+    // find all units linked to the template
+    def links = Link.findAllByTargetAndType(template, metaDataService.ltProjectUnit)
+    List units = links.collect {it.source}
+
+    // get all resources
+    def allResources = Entity.findAllByType(metaDataService.etResource)
+
+    // get all educators
+    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+
+    render template:'projectDay', model:[projectDay: projectDay,
+                                         entity: entityHelperService.loggedIn,
+                                         allResources: allResources,
+                                         allEducators: allEducators,
+                                         units: units]
   }
 }
 

@@ -3,7 +3,7 @@
   <ul>
     <g:each in="${units}" var="unit" status="i">
       <li>
-        ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2${j}" id="${projectDay.id}" params="[unit: unit.id, j: j]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
+        ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
 
         <p class="bold">Aktivitätsvorlagengruppen</p>
         <app:getProjectUnitActivityGroups projectUnit="${unit}">
@@ -14,9 +14,9 @@
           </ul>
         </app:getProjectUnitActivityGroups>
 
-        <p class="bold">Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#parents${j}${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></p>
-        <div id="parents${j}${i}" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i, j: j]]" update="parents2${j}${i}" before="showspinner('#parents2${j}${i}')">
+        <p class="bold">Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></p>
+        <div id="parents${i}" style="display:none">
+          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i]]" update="parents2${i}" before="showspinner('#parents2${i}')">
             <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -24,15 +24,15 @@
           </g:formRemote>
         </div>
 
-        <div id="parents2${j}${i}">
+        <div id="parents2${i}">
           <app:getProjectUnitParents projectUnit="${unit}">
-            <g:render template="parents" model="[parents: parents, unit: unit, i: i, j: j]"/>
+            <g:render template="parents" model="[parents: parents, unit: unit, i: i]"/>
           </app:getProjectUnitParents>
         </div>
 
-        <p class="bold">Partner <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#partners${j}${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isMeOrAdmin></p>
-        <div id="partners${j}${i}" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i, j: j]]" update="partners2${j}${i}" before="showspinner('#partners2${j}${i}')">
+        <p class="bold">Partner <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#partners${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isMeOrAdmin></p>
+        <div id="partners${i}" style="display:none">
+          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i]]" update="partners2${i}" before="showspinner('#partners2${i}')">
             <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -40,9 +40,9 @@
           </g:formRemote>
         </div>
 
-        <div id="partners2${j}${i}">
+        <div id="partners2${i}">
           <app:getProjectUnitPartners projectUnit="${unit}">
-            <g:render template="parents" model="[partners: partners, unit: unit, i: i, j: j]"/>
+            <g:render template="parents" model="[partners: partners, unit: unit, i: i]"/>
           </app:getProjectUnitPartners>
         </div>
 
