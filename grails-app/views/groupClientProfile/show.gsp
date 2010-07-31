@@ -86,7 +86,7 @@
           <div class="spacer"></div>
         </g:formRemote>
 
-        <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2">
+        <g:formRemote name="formRemote" url="[controller:'groupClientProfile', action:'addClient', id:group.id]" update="clients2" before="showspinner('#clients2')">
           <div id="clientselect">
             <g:render template="searchresults" model="[allClients: allClients]"/>
           </div>

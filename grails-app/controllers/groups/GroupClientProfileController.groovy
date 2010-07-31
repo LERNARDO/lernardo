@@ -123,12 +123,16 @@ class GroupClientProfileController {
   }
 
   def addClient = {
-    def bla = functionService.getParamAsList(params.members)
-
-    bla.each {
-      def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
-      if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    if (!params.members)
+      render '<p class="italic red">Bitte zumindest einen Betreuten auswählen!</p>'
+    else {
+      def bla = functionService.getParamAsList(params.members)
+  
+      bla.each {
+        def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
+        if (linking.duplicate)
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+      }
     }
     //def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
     //if (linking.duplicate)
