@@ -4,5 +4,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Kein leitender Pädagoge zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
+  <span class="italic"><g:message code="leadEducator.empty"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
 </g:else>

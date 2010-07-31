@@ -6,5 +6,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Pädagogen zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
+  <span class="italic"><g:message code="educators.empty"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
 </g:else>

@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Colonia anlegen</title>
+  <title><g:message code="groupColony.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Colonia anlegen</h1>
+    <h1><g:message code="groupColony.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

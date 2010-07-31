@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Einrichtungen</title>
+  <title><g:message code="facilities"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Einrichtungen</h1>
+    <h1><g:message code="facilities"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${facilityTotal} Einrichtung(en) insgesamt vorhanden</p>
+    <p>${facilityTotal} <g:message code="facility.profile.c_total"/></p>
     <g:if test="${facilityTotal > 0}">
       <div id="body-list">
         <table>
@@ -40,7 +40,7 @@
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Einrichtung anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="facility.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isOperator>

@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${facility.profile.fullName}</title>
+  <title><g:message code="facility"/> - ${facility.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${facility.profile.fullName}</h1>
+    <h1><g:message code="facility"/> - ${facility.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -32,7 +32,7 @@
           </tr>
         <tr>
         <td  valign="top" class="value-show">
-        <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic">Keiner Colonia zugewiesen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
+        <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="facility.profile.noCol"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
         </td>
         <td colspan="3" valign="top" >
         </td>
@@ -89,12 +89,12 @@
     </app:isMeOrAdmin>
 
     <div class="zusatz" >
-      <h5>Leitender Pädagoge <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducator'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></g:if></h5>
+      <h5><g:message code="leadEducator"/> <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducator'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></g:if></h5>
       <div class="zusatz-add" id="leadeducator" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducator2" before="showspinner('#leadeducator2')">
           <g:select name="leadeducator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
@@ -104,12 +104,12 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Pädagogen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></h5>
+      <h5><g:message code="educators"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
@@ -119,12 +119,12 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Betreute <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:hasRoleOrType></h5>
+      <h5><g:message code="clients"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClients', id: facility.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
-          <g:submitButton name="button" value="Hinzufügen"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
@@ -134,45 +134,45 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Ansprechpersonen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#contacts'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:hasRoleOrType></h5>
+      <h5><g:message code="contacts"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#contacts'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ansprechperson hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="showspinner('#contacts2')">
 
           <table>
             <tr>
-              <td>Vorname: </td>
+              <td><g:message code="contact.firstName"/>: </td>
               <td><g:textField name="firstName" size="30"/></td>
             </tr>
             <tr>
-              <td>Nachname: </td>
+              <td><g:message code="contact.lastName"/>: </td>
               <td><g:textField name="lastName" size="30"/></td>
             </tr>
             <tr>
-              <td>Land: </td>
+              <td><g:message code="contact.country"/>: </td>
               <td><g:textField name="country" size="30"/></td>
             </tr>
             <tr>
-              <td>PLZ: </td>
+              <td><g:message code="contact.zip"/>: </td>
               <td><g:textField name="zip" size="30"/></td>
             </tr>
             <tr>
-              <td>Stadt: </td>
+              <td><g:message code="contact.city"/>: </td>
               <td><g:textField name="city" size="30"/></td>
             </tr>
             <tr>
-              <td>Straße: </td>
+              <td><g:message code="contact.street"/>: </td>
               <td><g:textField name="street" size="30"/></td>
             </tr>
             <tr>
-              <td>Telefon: </td>
+              <td><g:message code="contact.phone"/>: </td>
               <td><g:textField name="phone" size="30"/></td>
             </tr>
             <tr>
-              <td>E-Mail: </td>
+              <td><g:message code="contact.email"/>: </td>
               <td><g:textField name="email" size="30"/></td>
             </tr>
             <tr>
-              <td>Funktion: </td>
+              <td><g:message code="contact.function"/>: </td>
               <td><g:textField name="function" size="30"/></td>
             </tr>
           </table>
@@ -188,7 +188,7 @@
     </div>
 
     <div class="zusatz" >
-      <h5>Planbare Ressourcen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:hasRoleOrType></h5>
+      <h5><g:message code="resource.profile"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2')">
           <table>
@@ -201,8 +201,8 @@
               <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="resource.profile.classification"/>: </td>
-              <td><g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="" /></td>
+              <td><g:message code="resource.profile.class"/>: </td>
+              <td><g:select name="classification" from="${[message(code:'resource.profile.sel0'), message(code:'resource.profile.sel1'), message(code:'resource.profile.sel2')]}" value="" /></td>
             </tr>
           </table>
           <div class="spacer"></div>

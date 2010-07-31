@@ -16,5 +16,5 @@
   </table>
 </g:if>
 <g:else>
-  <span class="italic">Keine Ansprechpersonen eingetragen <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
+  <span class="italic"><g:message code="contacts.empty"/> <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
 </g:else>
