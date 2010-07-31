@@ -142,12 +142,16 @@ class GroupActivityTemplateProfileController {
   }
 
   def addTemplate = {
-    def bla = functionService.getParamAsList(params.templates)
+    if (!params.templates)
+      render '<p class="italic red">Bitte zumindest eine Vorlage auswählen!</p>'
+    else { 
+      def bla = functionService.getParamAsList(params.templates)
 
-    bla.each {
-      def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
-      if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      bla.each {
+        def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
+        if (linking.duplicate)
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+      }
     }
 
     def calculatedDuration = 0

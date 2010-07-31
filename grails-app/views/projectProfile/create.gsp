@@ -42,10 +42,12 @@
               <g:textField class="countable50 ${hasErrors(bean: project?.profile, field: 'fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: project, field: 'profile.fullName')}"/>
             </td>
             <td width="230" valign="top" class="value">
-              <g:datePicker name="startDate" value="${project?.profile?.startDate}" precision="day"/>
+              <g:textField name="startDate" class="datepicker-birthday" value="${project?.profile?.startDate?.format('dd. MM. yyyy')}"/>
+              %{--<g:datePicker name="startDate" value="${project?.profile?.startDate}" precision="day"/>--}%
             </td>
              <td width="230" valign="top" class="value">
-              <g:datePicker name="endDate" value="${project?.profile?.endDate}" precision="day"/>
+              <g:textField name="endDate" class="datepicker-birthday" value="${project?.profile?.endDate?.format('dd. MM. yyyy')}"/>
+              %{--<g:datePicker name="endDate" value="${project?.profile?.endDate}" precision="day"/>--}%
             </td>
           </tr>
          </table>

@@ -15,6 +15,10 @@ class ParentProfileController {
   def securityManager
   FunctionService functionService
 
+  def beforeInterceptor = [
+          action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
+  ]
+  
   def index = {
     redirect action: "list", params: params
   }

@@ -14,16 +14,16 @@
       <table>
         <tr class="prop">
           <td height="22" valign="top" class="name-show">
-            <g:message code="pate.profile.firstName"/>:
+            <g:message code="pate.profile.firstName"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.lastName"/>:
+            <g:message code="pate.profile.lastName"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.motherTongue"/>:
+            <g:message code="pate.profile.motherTongue"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.languages"/>:
+            <g:message code="pate.profile.languages"/>
           </td>
         </tr>
 
@@ -43,16 +43,16 @@
       <table>
         <tr class="prop">
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.zip"/>:
+            <g:message code="pate.profile.zip"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.city"/>:
+            <g:message code="pate.profile.city"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.street"/>:
+            <g:message code="pate.profile.street"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="pate.profile.country"/>:
+            <g:message code="pate.profile.country"/>
           </td>
         </tr>
         <tr class="prop">
@@ -75,13 +75,13 @@
           <tr class="prop">
             <app:isAdmin>
             <td width="60" valign="top">
-              <g:message code="active"/>:
+              <span class="bold"><g:message code="active"/></span>
             </td>
             <td width="50" valign="top" ><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </app:isAdmin>
   
             <td width="60" valign="top" >
-              <g:message code="pate.profile.email"/>:
+              <span class="bold"><g:message code="pate.profile.email"/>:</span>
             </td>
             <td valign="top" >${fieldValue(bean: pate, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
 
@@ -98,7 +98,7 @@
       </div>
     
     <div class="zusatz">
-      <h1><g:message code="pate.profile.gcs"/> <app:isOperator entity="${entity}"><a onclick="toggle('#godchildren'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h1>
+      <h5><g:message code="pate.profile.gcs"/> <app:isOperator entity="${entity}"><a onclick="toggle('#godchildren'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Patenkind hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add" id="godchildren" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
           <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>

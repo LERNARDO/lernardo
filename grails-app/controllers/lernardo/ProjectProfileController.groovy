@@ -17,6 +17,13 @@ class ProjectProfileController {
   ProfileHelperService profileHelperService
   FunctionService functionService
 
+  def beforeInterceptor = [
+          action:{
+            params.startDate = params.startDate ? Date.parse("dd. MM. yy", params.startDate) : null
+            params.endDate = params.endDate ? Date.parse("dd. MM. yy", params.endDate) : null},
+            only:['save','update']
+  ]
+
   def index = {
     redirect action: "list", params: params
   }

@@ -65,7 +65,8 @@
               </td>
 
               <td height="35"  valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" >
-                <g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>
+                <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${client?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
+                %{--<g:datePicker name="birthDate" value="${client?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>--}%
               </td>
 		    </tr>
       
@@ -289,7 +290,8 @@
               <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
             </td>
            <td valign="top" class="value">
-             <g:datePicker name="schoolDropoutDate" value="${client?.profile?.schoolDropoutDate}" precision="day"/>
+             <g:textField name="schoolDropoutDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolDropoutDate?.format('dd. MM. yyyy')}"/>
+             %{--<g:datePicker name="schoolDropoutDate" value="${client?.profile?.schoolDropoutDate}" precision="day"/>--}%
             </td>
            <td colspan="2" valign="top" class="value">
               <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" id="schoolDropoutReason" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
@@ -316,7 +318,8 @@
               <g:checkBox name="schoolRestart" value="${client?.profile?.schoolDropout}"/>
             </td>
            <td valign="top" class="value">
-             <g:datePicker name="schoolRestartDate" value="${client?.profile?.schoolDropoutDate}" precision="day"/>
+             <g:textField name="schoolRestartDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolRestartDate?.format('dd. MM. yyyy')}"/>
+             %{--<g:datePicker name="schoolRestartDate" value="${client?.profile?.schoolRestartDate}" precision="day"/>--}%
             </td>
            <td colspan="2" valign="top" class="value">
               <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="64" id="schoolRestartReason" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>

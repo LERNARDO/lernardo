@@ -11,10 +11,10 @@
 
     var selector = document.getElementById("selector");
     if (selector)
-      document.getElementById("hidden").removeChild(selector);
+      document.getElementById("hidden2").removeChild(selector);
 
     var wme = document.createElement("select");
-    wme.id = "selector"
+    wme.id = "selector";
     wme.name = "templates";
     wme.multiple = true;
 
@@ -25,19 +25,19 @@
          checked.push(document.getElementsByName("memberchecked")[zaehler].id);
 
          var optn = document.createElement("OPTION");
-          optn.text = document.getElementsByName("memberchecked")[zaehler].id;
-          optn.value = document.getElementsByName("memberchecked")[zaehler].id;
-          optn.selected = true;
-          wme.options.add(optn);
+         optn.text = document.getElementsByName("memberchecked")[zaehler].id;
+         optn.value = document.getElementsByName("memberchecked")[zaehler].id;
+         optn.selected = true;
+         wme.options.add(optn);
        }
     }
 
-    document.getElementById("hidden").appendChild(wme);
+    document.getElementById("hidden2").appendChild(wme);
   }
 
   </script>
 
-  <div id="hidden" style="display: none"></div>
+  <div id="hidden2" style="display: none"></div>
 
   <g:submitButton onclick="kontrolle();" name="button" value="${message(code:'add')}"/>
   <div class="spacer"></div>
