@@ -118,7 +118,7 @@ class ParentProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "parent.created", args: [entity.profile.fullName])
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [parent: ee.entity, entity: entityHelperService.loggedIn])
       return

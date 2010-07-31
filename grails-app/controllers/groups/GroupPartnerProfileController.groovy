@@ -109,7 +109,7 @@ class GroupPartnerProfileController {
       }
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn])
       return

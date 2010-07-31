@@ -154,7 +154,7 @@ class EducatorProfileController {
       //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
       flash.message = message(code: "educator.created", args: [entity.profile.fullName])
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [educator: ee.entity, entity: entityHelperService.loggedIn], partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony))
       return

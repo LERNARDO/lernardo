@@ -157,7 +157,7 @@ class FacilityProfileController {
       new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.created", args: [entity.profile.fullName])
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [facility: ee.entity, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
       return

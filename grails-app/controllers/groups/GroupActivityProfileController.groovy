@@ -173,7 +173,7 @@ class GroupActivityProfileController {
       new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
 
       // find all templates linked to this group

@@ -278,7 +278,7 @@ class ProjectProfileController {
         calendarStart.add(Calendar.DATE, 1)
       }
 
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
 
     } catch (EntityException ee) {
 

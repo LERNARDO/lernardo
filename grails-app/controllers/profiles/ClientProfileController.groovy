@@ -160,7 +160,7 @@ class ClientProfileController {
       new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
-      redirect action: 'list'
+      redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render(view: "create", model: [client: ee.entity,
               entity: entityHelperService.loggedIn,
