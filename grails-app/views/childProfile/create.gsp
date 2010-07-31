@@ -64,7 +64,7 @@
               <g:textField class="countable50" size="35" id="lastName" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName')}"/>
             </td>
 			<td  height="35"  valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}" >
-              <g:textField name="birthDate" size="30" class="datepicker-birthday"/>
+              <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${child?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
               %{--<g:datePicker name="birthDate" value="${child?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>--}%
             </td>
 		</tr>

@@ -15,13 +15,13 @@
       <table>
          <tr class="prop">
             <td class="name-show">
-            <g:message code="partner.profile.name"/>:
+            <g:message code="partner.profile.name"/>
             </td>
             <td colspan="2" valign="top" class="name-show">
-             <g:message code="partner.profile.description"/>:
+             <g:message code="partner.profile.description"/>
             </td>
             <td valign="top" class="name-show">
-            <g:message code="partner.profile.website"/>:
+            <g:message code="partner.profile.website"/>
             </td>
          </tr>
          <tr class="prop">
@@ -38,10 +38,10 @@
 
         <tr class="prop">
             <td class="name-show">
-           <g:message code="partner.profile.phone"/>:
+           <g:message code="partner.profile.phone"/>
             </td>
             <td colspan="3" valign="top" class="name-show">
-             <g:message code="partner.profile.services"/>:
+             <g:message code="partner.profile.services"/>
             </td>
 
          </tr>
@@ -58,7 +58,7 @@
          </tr>
         <tr class="prop">
         <td colspan="4" valign="top" class="name-show">
-        <g:message code="partner.profile.colonia"/>:
+        <g:message code="partner.profile.colonia"/>
         </td>
           </tr>
         <tr>
@@ -70,16 +70,16 @@
         </tr>
         <tr class="prop">
           <td valign="top" class="name-show">
-            <g:message code="partner.profile.street"/>:
+            <g:message code="partner.profile.street"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="partner.profile.zip"/>:
+            <g:message code="partner.profile.zip"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="partner.profile.city"/>:
+            <g:message code="partner.profile.city"/>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="partner.profile.country"/>:
+            <g:message code="partner.profile.country"/>
           </td>
         </tr>
         <tr class="prop">
@@ -95,12 +95,12 @@
           <tr class="prop">
             <app:isAdmin>
             <td width="60" valign="top">
-              <g:message code="active"/>:
+              <span class="bold"><g:message code="active"/></span>
             </td>
             <td width="50" valign="top" ><g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </app:isAdmin>
             <td width="60" valign="top" >
-              <g:message code="facility.profile.email"/>:
+              <span class="bold"><g:message code="facility.profile.email"/>:</span>
             </td>
             <td valign="top" >${fieldValue(bean: partner, field: 'user.email') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
           </tr>

@@ -15,6 +15,13 @@ class ActivityController {
   FunctionService functionService
   ProfileHelperService profileHelperService
 
+  def beforeInterceptor = [
+          action:{
+            params.periodStart = params.periodStart ? Date.parse("dd. MM. yy", params.periodStart) : null
+            params.periodEnd = params.periodEnd ? Date.parse("dd. MM. yy", params.periodEnd) : null},
+            only:['save','update']
+  ]
+
   def index = {
     redirect action: list
   }
