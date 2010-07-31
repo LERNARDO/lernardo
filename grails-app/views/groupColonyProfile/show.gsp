@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${group.profile.fullName}</title>
+  <title><g:message code="groupColony"/> - ${group.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${group.profile.fullName}</h1>
+    <h1><g:message code="groupColony"/> - ${group.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -95,7 +95,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Gebäude (welches sich nicht im ERP befindet) <app:isOperator entity="${entity}"><a onclick="toggle('#buildings'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
+      <h5><g:message code="building"/> (<g:message code="building.info"/>) <app:isOperator entity="${entity}"><a onclick="toggle('#buildings'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add"id="buildings" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="showspinner('#buildings2')">
 
@@ -141,7 +141,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Planbare Ressourcen <app:isOperator entity="${entity}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
+      <h5><g:message code="resource.profile"/> <app:isOperator entity="${entity}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add"id="resources" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2')">
           <table>
@@ -155,7 +155,7 @@
             </tr>
             <tr>
               <td><g:message code="resource.profile.classification"/>: </td>
-              <td><g:select name="classification" from="${['Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="" /></td>
+              <td><g:select name="classification" from="${[message(code:'resource.profile.sel1'), message(code:'resource.profile.sel2')]}" value="" /></td>
             </tr>
           </table>
 
@@ -170,7 +170,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Einrichtungen <app:isOperator entity="${entity}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isOperator></h5>
+      <h5><g:message code="facilities"/> <app:isOperator entity="${entity}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -185,7 +185,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Partner <app:isOperator entity="${entity}"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isOperator></h5>
+      <h5><g:message code="partners"/> <app:isOperator entity="${entity}"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add"id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
@@ -200,7 +200,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Pädagogen <app:isOperator entity="${entity}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
+      <h5><g:message code="educators"/> <app:isOperator entity="${entity}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add"id="educators" style="display:none">
         <g:formRemote name="formRemote6" url="[controller:'groupColonyProfile', action:'addEducator', id:group.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
