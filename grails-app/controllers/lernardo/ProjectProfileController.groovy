@@ -160,8 +160,14 @@ class ProjectProfileController {
     return [entity: entityHelperService.loggedIn, template: projectTemplate]
   }
 
-  def save = {
-    //log.info params
+  def save = {ProjectCommand pc->
+    println params
+    Entity projectTemplate = Entity.get(params.id)
+
+    if (pc.hasErrors()) {
+      render view:'create', model:[pc:pc, template: projectTemplate]
+      return
+    }
 
     // first check the number of project days is > 0
     int checkdays = 0
@@ -207,7 +213,7 @@ class ProjectProfileController {
       flash.message = message(code: "project.created", args: [entity.profile.fullName])
 
       // create link to template
-      new Link(source: Entity.get(params.id), target: entity, type: metaDataService.ltProjectTemplate).save()
+      new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
 
       // create project days
       Date periodStart = params.startDate
@@ -695,6 +701,34 @@ class ProjectProfileController {
                                          allEducators: allEducators,
                                          units: units]
   }
+}
+
+/*
+* command object to handle validation of the project
+*/
+class ProjectCommand {
+  String fullName
+  Date startDate
+  Date endDate
+  Boolean monday
+  Boolean tuesday
+  Boolean wednesday
+  Boolean thursday
+  Boolean friday
+  Boolean saturday
+  Boolean sunday
+  Boolean weekdays
+
+  static constraints = {
+    fullName(blank: false)
+    startDate(nullable: false)
+    endDate(nullable: false, validator: {ed, pc ->
+      return ed > pc.startDate
+    })
+    weekdays(validator: {wd, pc ->
+      return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)})
+  }
+
 }
 
 
