@@ -46,12 +46,12 @@
             <g:textField class="countable50 ${hasErrors(bean: activityInstance, field: 'fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: activityInstance, field: 'profile.fullName')}"/>
           </td>
           <td width="230" valign="top" class="value">
-            <g:textField name="periodStart" size="30" class="datepicker-birthday" value="${activityInstance?.profile?.periodStart?.format('dd. MM. yyyy')}"/>
+            <g:textField name="periodStart" size="30" class="datepicker" value="${activityInstance?.profile?.periodStart?.format('dd. MM. yyyy')}"/>
             %{--<g:datePicker name="periodStart" value="${activityInstance?.profile?.periodStart}" precision="day"/>--}%
             %{--<g:datePicker name="startDate" value="${activityInstance?.profile?.startDate}" precision="day"/>--}%
           </td>
           <td width="230" valign="top" class="value">
-            <g:textField name="periodEnd" size="30" class="datepicker-birthday" value="${activityInstance?.profile?.periodEnd?.format('dd. MM. yyyy')}"/>
+            <g:textField name="periodEnd" size="30" class="datepicker" value="${activityInstance?.profile?.periodEnd?.format('dd. MM. yyyy')}"/>
             %{--<g:datePicker name="periodEnd" value="${activityInstance?.profile?.periodEnd}" precision="day"/>--}%
             %{--<g:datePicker name="endDate" value="${activityInstance?.profile?.endDate}" precision="day"/>--}%
           </td>
