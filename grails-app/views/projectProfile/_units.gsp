@@ -2,7 +2,7 @@
   <div style="border-bottom: 1px solid #eee; margin-bottom: 5px;">
   <ul>
     <g:each in="${units}" var="unit" status="i">
-      <li>
+      <li style="border-bottom: 1px solid #ccc; margin-bottom: 5px">
         ${unit.profile.fullName} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin><br/>
 
         <p class="bold">Aktivitätsvorlagengruppen</p>
