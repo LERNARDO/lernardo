@@ -21,7 +21,15 @@
         changeYear: true,
         dateFormat: 'dd. mm. yy',
         minDate: new Date(1900,1,1),
-        maxDate: new Date()});
+        maxDate: new Date(),
+        firstDay: 1});
+
+      $(".datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd. mm. yy',
+        minDate: new Date(1900,1,1),
+        firstDay: 1});
 
       $('#flash-msg').delay(3000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 

@@ -43,11 +43,11 @@
               <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: pc, field: 'fullName')}"/>
             </td>
             <td width="230" valign="top" class="value">
-              <g:textField name="startDate" class="datepicker-birthday ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${pc?.startDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${pc?.startDate?.format('dd. MM. yyyy')}"/>
               %{--<g:datePicker name="startDate" value="${project?.profile?.startDate}" precision="day"/>--}%
             </td>
              <td width="230" valign="top" class="value">
-              <g:textField name="endDate" class="datepicker-birthday ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${pc?.endDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${pc?.endDate?.format('dd. MM. yyyy')}"/>
               %{--<g:datePicker name="endDate" value="${project?.profile?.endDate}" precision="day"/>--}%
             </td>
           </tr>
