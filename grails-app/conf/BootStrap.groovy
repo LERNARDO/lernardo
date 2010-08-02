@@ -186,6 +186,68 @@ class BootStrap {
       }
     }
 
+    if (!Entity.findByName('angelikamerkel')) {
+      entityHelperService.createEntityWithUserAndProfile("angelikamerkel", etEducator, "angelika@sueninos.org", "Angelika Merkel") {Entity ent ->
+        //ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.locale = new Locale ("es", "ES")
+        EducatorProfile prf = (EducatorProfile)ent.profile
+        prf.gender = 1
+        prf.title = "-"
+        prf.birthDate = new Date(1900-1900,02,18)
+        prf.currentCountry = "Mexiko"
+        prf.currentZip = "12453"
+        prf.currentCity = ""
+        prf.currentStreet = ""
+        prf.originCountry = "1"
+        prf.originZip = ""
+        prf.originCity = ""
+        prf.originStreet = ""
+        prf.contactPhone = ""
+        prf.contactCountry = ""
+        prf.contactCity = ""
+        prf.contactStreet = ""
+        prf.contactZip = ""
+        prf.contactMail = ""
+        prf.education = ""
+        prf.firstName = "Angelika"
+        prf.lastName = "Merkel"
+        prf.interests = ""
+        prf.employment = ""
+        prf.addToLanguages("1")
+      }
+    }
+
+    if (!Entity.findByName('arnoldschwarzenegger')) {
+      entityHelperService.createEntityWithUserAndProfile("arnoldschwarzenegger", etEducator, "arnold@sueninos.org", "Arndold Schwarzenegger") {Entity ent ->
+        //ent.user.addToAuthorities(metaDataService.adminRole)
+        ent.user.locale = new Locale ("es", "ES")
+        EducatorProfile prf = (EducatorProfile)ent.profile
+        prf.gender = 1
+        prf.title = "DI"
+        prf.birthDate = new Date(1968-1900,02,18)
+        prf.currentCountry = "Mexiko"
+        prf.currentZip = "29215"
+        prf.currentCity = "San Cristóbal de Las Casas"
+        prf.currentStreet = "Av. Norte Oriente 13a"
+        prf.originCountry = "1"
+        prf.originZip = ""
+        prf.originCity = ""
+        prf.originStreet = ""
+        prf.contactPhone = ""
+        prf.contactCountry = ""
+        prf.contactCity = ""
+        prf.contactStreet = ""
+        prf.contactZip = ""
+        prf.contactMail = ""
+        prf.education = ""
+        prf.firstName = "Christian"
+        prf.lastName = "Szinicz"
+        prf.interests = ""
+        prf.employment = ""
+        prf.addToLanguages("1")
+      }
+    }
+
     if (!Entity.findByName('ludwigszinicz')) {
       entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
@@ -241,6 +303,127 @@ class BootStrap {
         prf.comment = "Best parent ever!"
       }
     }
+
+    if (!Entity.findByName('franzmartyr')) {
+      entityHelperService.createEntityWithUserAndProfile("franzmartyr", etParent, "franz.martyr@sueninos.org", "Franz Martyr") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Franz"
+        prf.lastName = "Martyr"
+        prf.gender = 1
+        prf.currentCountry = "6"
+        prf.currentZip = "2352"
+        prf.currentCity = "Gumpoldskirchen"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+      }
+    }
+
+    if (!Entity.findByName('franziskamartyr')) {
+      entityHelperService.createEntityWithUserAndProfile("franziskamartyr", etParent, "franziska.martyr@sueninos.org", "Franziska Martyr") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Franziska"
+        prf.lastName = "Martyr"
+        prf.gender = 2
+        prf.currentCountry = "6"
+        prf.currentZip = "2352"
+        prf.currentCity = "Gumpoldskirchen"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+      }
+    }
+
+    if (!Entity.findByName('maximfries')) {
+      entityHelperService.createEntityWithUserAndProfile("maximfries", etParent, "maxim.fries@sueninos.org", "Maxim Fries") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Maxim"
+        prf.lastName = "Fries"
+        prf.gender = 2
+        prf.currentCountry = "6"
+        prf.currentZip = "54687"
+        prf.currentCity = "Irgendwo"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+      }
+    }
+
+    if (!Entity.findByName('maximusfries')) {
+      entityHelperService.createEntityWithUserAndProfile("maximusfries", etParent, "maximus.fries@sueninos.org", "Maximus Fries") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Maximus"
+        prf.lastName = "Fries"
+        prf.gender = 1
+        prf.currentCountry = "6"
+        prf.currentZip = "54687"
+        prf.currentCity = "Irgendwo"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+      }
+    }
+
+    if (!Entity.findByName('michaelbullyherbig')) {
+      entityHelperService.createEntityWithUserAndProfile("michaelbullyherbig", etParent, "michael.herbig@sueninos.org", "Michael Bully Herbig") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Michael Bully"
+        prf.lastName = "Herbig"
+        prf.gender = 1
+        prf.currentCountry = "6"
+        prf.currentZip = "25460"
+        prf.currentCity = "Wilden Westen"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+        }
+      }
+
+    if (!Entity.findByName('michaelaherbig')) {
+      entityHelperService.createEntityWithUserAndProfile("michaelaherbig", etParent, "michaela.herbig@sueninos.org", "Michaela Herbig") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ParentProfile prf = (ParentProfile)ent.profile
+        prf.firstName = "Michaela"
+        prf.lastName = "Herbig"
+        prf.gender = 2
+        prf.currentCountry = "6"
+        prf.currentZip = "25460"
+        prf.currentCity = "Wilden Westen"
+        prf.currentStreet = ""
+        prf.addToLanguages("1")
+        prf.birthDate = new Date()
+        prf.job = false
+        prf.maritalStatus = "1"
+        prf.education = "1"
+        prf.comment = "Best parent ever!"
+        }
+      }
+    
   }
 
   void createDefaultClients() {
@@ -296,6 +479,107 @@ class BootStrap {
         prf.familyStatus = "1"
       }
     }
+
+      if (!Entity.findByName('maxfries')) {
+      entityHelperService.createEntityWithUserAndProfile("maxfries", etClient, "max.fries@sueninos.org", "Max Fries") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ClientProfile prf = (ClientProfile)ent.profile
+        prf.firstName = "Max"
+        prf.lastName = "Fries"
+        prf.gender = 1
+        prf.interests = ""
+        prf.currentCountry = "Österreich"
+        prf.currentZip = "12345"
+        prf.currentCity = "Kirchenhausen"
+        prf.currentStreet = ""
+        prf.originCountry = "Österreich"
+        prf.originZip = "1234"
+        prf.originCity = "blabla"
+        prf.addToLanguages("1")
+        prf.birthDate = new Date(2005-1900,03,20)
+        prf.schoolLevel = '1'
+        prf.size = 164
+        prf.weight = 50
+        prf.job = false
+        prf.familyStatus = "1"
+      }
+    }
+
+    if (!Entity.findByName('hullybully')) {
+      entityHelperService.createEntityWithUserAndProfile("hullybully", etClient, "hully.bully@sueninos.org", "Hully Bully") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ClientProfile prf = (ClientProfile)ent.profile
+        prf.firstName = "Hully"
+        prf.lastName = "Bully"
+        prf.gender = 1
+        prf.interests = ""
+        prf.currentCountry = "Österreich"
+        prf.currentZip = "12345"
+        prf.currentCity = "Kirchenhausen"
+        prf.currentStreet = ""
+        prf.originCountry = "Österreich"
+        prf.originZip = "1234"
+        prf.originCity = "blabla"
+        prf.addToLanguages("1")
+        prf.birthDate = new Date(1995-1900,03,20)
+        prf.schoolLevel = '6'
+        prf.size = 170
+        prf.weight = 60
+        prf.job = false
+        prf.familyStatus = "1"
+      }
+    }
+
+    if (!Entity.findByName('martinmartyr')) {
+      entityHelperService.createEntityWithUserAndProfile("martinmartyr", etClient, "martin.martyr@sueninos.org", "Max Fries") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ClientProfile prf = (ClientProfile)ent.profile
+        prf.firstName = "Martin"
+        prf.lastName = "Martyr"
+        prf.gender = 1
+        prf.interests = ""
+        prf.currentCountry = "Österreich"
+        prf.currentZip = "54321"
+        prf.currentCity = "Oberunterbach"
+        prf.currentStreet = ""
+        prf.originCountry = "Österreich"
+        prf.originZip = "1234"
+        prf.originCity = "blabla"
+        prf.addToLanguages("1")
+        prf.birthDate = new Date(1990-1900,03,20)
+        prf.schoolLevel = '9'
+        prf.size = 185
+        prf.weight = 75
+        prf.job = false
+        prf.familyStatus = "1"
+      }
+    }
+
+    if (!Entity.findByName('kurtfries')) {
+      entityHelperService.createEntityWithUserAndProfile("kurtfries", etClient, "kurt.fries@sueninos.org", "Kurt Fries") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ClientProfile prf = (ClientProfile)ent.profile
+        prf.firstName = "Kurt"
+        prf.lastName = "Fries"
+        prf.gender = 1
+        prf.interests = ""
+        prf.currentCountry = "Österreich"
+        prf.currentZip = "12345"
+        prf.currentCity = "Kirchenhausen"
+        prf.currentStreet = ""
+        prf.originCountry = "Österreich"
+        prf.originZip = "1234"
+        prf.originCity = "blabla"
+        prf.addToLanguages("1")
+        prf.birthDate = new Date(1994-1900,03,20)
+        prf.schoolLevel = '1'
+        prf.size = 190
+        prf.weight = 80
+        prf.job = false
+        prf.familyStatus = "1"
+      }
+    }
+    
   }
 
   void createDefaultChilds() {
@@ -308,6 +592,18 @@ class BootStrap {
         ChildProfile prf = (ChildProfile)ent.profile
         prf.firstName = "Karin"
         prf.lastName = "Zeillinger"
+        prf.gender = 2
+        prf.birthDate = new Date()
+        prf.job = false
+      }
+    }
+
+    if (!Entity.findByName('ulrikemartyr')) {
+      entityHelperService.createEntityWithUserAndProfile("ulrikemartyr", etChild, "ulrike.martyr@sueninos.org", "UlrikeMartyr") {Entity ent ->
+        ent.user.locale = new Locale ("de", "DE")
+        ChildProfile prf = (ChildProfile)ent.profile
+        prf.firstName = "Ulrike"
+        prf.lastName = "Martyr"
         prf.gender = 2
         prf.birthDate = new Date()
         prf.job = false
@@ -350,6 +646,35 @@ class BootStrap {
         prf.website = ""
       }
     }
+
+    if (!Entity.findByName('dorftischler')) {
+      entityHelperService.createEntityWithUserAndProfile ("dorftischler", etPartner, "dorf.tischler@sueninos.org", "Dorftiscler") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        PartnerProfile prf = (PartnerProfile)ent.profile
+        prf.zip = ""
+        prf.city = ""
+        prf.street = ""
+        prf.phone = ""
+        prf.description = ""
+        prf.country = "1"
+        prf.website = ""
+      }
+    }
+
+    if (!Entity.findByName('doktorheinz')) {
+      entityHelperService.createEntityWithUserAndProfile ("doktorheinz", etPartner, "doktor.heinz@sueninos.org", "Dr. Heinz") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        PartnerProfile prf = (PartnerProfile)ent.profile
+        prf.zip = ""
+        prf.city = ""
+        prf.street = ""
+        prf.phone = ""
+        prf.description = ""
+        prf.country = "1"
+        prf.website = ""
+      }
+    }
+    
   }
 
   void createDefaultFacilities () {
@@ -367,6 +692,31 @@ class BootStrap {
         prf.description = ""
       }
     }
+
+    if (!Entity.findByName('cincodelamarza')) {
+      entityHelperService.createEntityWithUserAndProfile ("cincodelamarza", etFacility, "cinco@sueninos.org", "Cindo de la Marza") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        FacilityProfile prf = (FacilityProfile)ent.profile
+        prf.country = "Mexiko"
+        prf.zip = "29247"
+        prf.city = "	San Cristóbal de Las Casas"
+        prf.street = ""
+        prf.description = ""
+      }
+    }
+
+    if (!Entity.findByName('casadelasueninos')) {
+      entityHelperService.createEntityWithUserAndProfile ("casadelasueninos", etFacility, "casa@sueninos.org", "Casa de la Sueninos") {Entity ent->
+        ent.user.locale = new Locale ("de", "DE")
+        FacilityProfile prf = (FacilityProfile)ent.profile
+        prf.country = "Mexiko"
+        prf.zip = ""
+        prf.city = ""
+        prf.street = ""
+        prf.description = ""
+      }
+    }
+    
   }
 
   void createDefaultLinks () {
@@ -431,6 +781,49 @@ class BootStrap {
         ent.profile.type = "Themenraumaktivitätsvorlage"
       }
     }
+
+     if (!Entity.findByName('Break Dance')) {
+      entityHelperService.createEntity("breakdance", etTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Break Dance"
+        ent.profile.description = "Die Kinder tanzen Break Dance"
+        ent.profile.chosenMaterials = "Soundblaster"
+        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
+        ent.profile.amountEducators = 1
+        ent.profile.status = "fertig"
+        ent.profile.duration = 30
+        ent.profile.type = "normale Aktivitätsvorlage"
+      }
+    }
+
+    if (!Entity.findByName('Jiu Jitsu')) {
+      entityHelperService.createEntity("jiujitsu", etTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Jiu Jitsue"
+        ent.profile.description = "Die Kinder bekommen Jiu Jitsu unterricht"
+        ent.profile.chosenMaterials = ""
+        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
+        ent.profile.amountEducators = 1
+        ent.profile.status = "fertig"
+        ent.profile.duration = 45
+        ent.profile.type = "normale Aktivitätsvorlage"
+      }
+    }
+
+    if (!Entity.findByName('Kapoera')) {
+      entityHelperService.createEntity("kapoera", etTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "Kapoera"
+        ent.profile.description = ""
+        ent.profile.chosenMaterials = ""
+        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
+        ent.profile.amountEducators = 1
+        ent.profile.status = "fertig"
+        ent.profile.duration = 30
+        ent.profile.type = "normale Aktivitätsvorlage"
+      }
+    }
+
   }
 
   void createDefaultComments() {
