@@ -161,7 +161,6 @@ class ProjectProfileController {
   }
 
   def save = {ProjectCommand pc->
-    println params
     Entity projectTemplate = Entity.get(params.id)
 
     if (pc.hasErrors()) {
@@ -695,7 +694,7 @@ class ProjectProfileController {
     // get all educators
     def allEducators = Entity.findAllByType(metaDataService.etEducator)
 
-    render template:'projectDay', model:[projectDay: projectDay,
+    render template:'projectday', model:[projectDay: projectDay,
                                          entity: entityHelperService.loggedIn,
                                          allResources: allResources,
                                          allEducators: allEducators,
