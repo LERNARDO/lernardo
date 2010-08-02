@@ -1516,7 +1516,7 @@ h4 {
     margin-top: 12px;}
 
 .zusatz-add {
-    padding: 6px 0 12px 6px;
+    padding: 6px 0 6px 6px;
 }
 .zusatz-show {
     background-color: #fff;
@@ -1747,4 +1747,25 @@ h5 {
 .daybox a {
     color: #fff;
     text-decoration: none;
+}
+
+.remoteresults {
+    width: 794px;
+    border: 1px solid #ccc;
+    height: 208px;
+    overflow-y: scroll;
+    
+}
+.remoteresult {
+    border-bottom: 1px solid #9c9;
+    border-right: 1px solid #9c9;
+    background: #beb;
+    padding: 2px 4px;
+    float: left;
+    width: 250px;
+}
+.remoteresult:hover {
+    background: #9c9;
+    border-bottom: 1px solid #7a7;
+    border-right: 1px solid #7a7;
 }

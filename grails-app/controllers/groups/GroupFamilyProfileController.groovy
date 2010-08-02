@@ -9,6 +9,7 @@ import standard.MetaDataService
 import at.openfactory.ep.Profile
 import standard.FunctionService
 import at.openfactory.ep.EntityException
+import standard.FilterService
 
 class GroupFamilyProfileController {
   MetaDataService metaDataService
@@ -40,7 +41,7 @@ class GroupFamilyProfileController {
     }
     else {
       Integer totalLinks = 0
-      def allParents = Entity.findAllByType(metaDataService.etParent)
+
       // find all parents linked to this group
       def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
       List parents = links.collect {it.source}
@@ -61,7 +62,6 @@ class GroupFamilyProfileController {
       return [group: group,
               entity: entity,
               parents: parents,
-              allParents: allParents,
               clients: clients,
               allClients: allClients,
               childs: childs,
@@ -173,6 +173,96 @@ class GroupFamilyProfileController {
   def removeChild = {
     def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
     render template: 'childs', model: [childs: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all parents matching the search parameter
+   */
+  def remoteParents = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etParent)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'parentresults', model: [results: results, group: params.id])
+    }
+  }
+
+  /*
+   * retrieves all clients matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, group: params.id])
+    }
+  }
+
+  /*
+   * retrieves all children matching the search parameter
+   */
+  def remoteChildren = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etChild)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'childrenresults', model: [results: results, group: params.id])
+    }
   }
 
 }

@@ -74,12 +74,11 @@
     <div class="zusatz">
       <h5><g:message code="groupFamily.profile.parents"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="parents" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupFamilyProfile', action:'addParent', id:group.id]" update="parents2" before="showspinner('#parents2')">
-          <g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
+
+        Suche:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteParents" action="remoteParents" id="${group.id}" before="showspinner('#remoteParents')"/>
+        <div id="remoteParents"></div>
+
       </div>
       <div class="zusatz-show" id="parents2">
         <g:render template="parents" model="[parents: parents, group: group]"/>
@@ -87,46 +86,13 @@
     </div>
 
     <div class="zusatz">
-      %{--<script type="text/javascript">
-          $(function() {
-              var availableTags = ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"];
-              $("#tags2").autocomplete({
-                  source: availableTags
-              });
-
-              $("#tags").autocomplete(
-                // rest url
-                //"bla/getallclients"
-               { url: "bla/getallclients",
-                dataType:"json"
-                , formatItem: function(data,i,max,value,term){
-                    return value;
-                  }
-                , parse: function(data){
-                    var acd = new Array();
-                    for(var i=0;i<data.length;i++){
-                      acd[acd.length] = { data:data[i], value:data[i].name, result:data[i].name };
-                    }
-                    return acd;
-                  }
-                }
-            );
-          });
-          </script>
-      
-      <div class="ui-widget">
-          <label for="tags">Tags: </label>
-          <input id="tags" />
-      </div>--}%
-
       <h5><g:message code="groupFamily.profile.clients"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients'); return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupFamilyProfile', action:'addClient', id:group.id]" update="clients2" before="showspinner('#clients2')">
-          <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
+
+        Suche:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${group.id}" before="showspinner('#remoteClients')"/>
+        <div id="remoteClients"></div>
+
       </div>
       <div class="zusatz-show" id="clients2">
         <g:render template="clients" model="[clients: clients, group: group]"/>
@@ -136,12 +102,17 @@
     <div class="zusatz">
       <h5><g:message code="groupFamily.profile.childs"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="childs" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="showspinner('#childs2')">
+
+        Suche:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteChildren" action="remoteChildren" id="${group.id}" before="showspinner('#remoteChildren')"/>
+        <div id="remoteChildren"></div>
+
+        %{--<g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="showspinner('#childs2')">
           <g:select name="child" from="${allChilds}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
-        </g:formRemote>
+        </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="childs2">
         <g:render template="childs" model="[childs: childs, group: group]"/>
