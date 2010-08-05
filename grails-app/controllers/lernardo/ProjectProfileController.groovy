@@ -162,7 +162,7 @@ class ProjectProfileController {
 
   def save = {ProjectCommand pc->
     Entity projectTemplate = Entity.get(params.id)
-
+   
     if (pc.hasErrors()) {
       render view:'create', model:[pc:pc, template: projectTemplate]
       return
@@ -717,6 +717,22 @@ class ProjectCommand {
   Boolean saturday
   Boolean sunday
   Boolean weekdays
+
+  String mondayStartHour
+  String tuesdayStartHour
+  String wednesdayStartHour
+  String thursdayStartHour
+  String fridayStartHour
+  String saturdayStartHour
+  String sundayStartHour
+
+  String mondayStartMinute
+  String tuesdayStartMinute
+  String wednesdayStartMinute
+  String thursdayStartMinute
+  String fridayStartMinute
+  String saturdayStartMinute
+  String sundayStartMinute
 
   static constraints = {
     fullName(blank: false)
