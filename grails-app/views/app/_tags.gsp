@@ -18,7 +18,7 @@
   
   <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']" me="false">
     <app:showTagButton tags="${tags}" button="krank">
-      <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'krank', update: update]">krank markieren</g:remoteLink>
+      | <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'krank', update: update]">krank markieren</g:remoteLink>
     </app:showTagButton>
   </app:hasRoleOrType>
 </span>
