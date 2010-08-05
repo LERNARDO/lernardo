@@ -7,6 +7,7 @@ import at.openfactory.ep.Tag
 import standard.FunctionService
 import at.openfactory.ep.TagLinkType
 import at.openfactory.ep.EntityTagLink
+import at.openfactory.ep.Asset
 
 class AppController {
   SecHelperService secHelperService
@@ -142,5 +143,19 @@ class AppController {
     List tags = entity.tagslinks.collect {it.tag}
 
     render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
+  }
+
+  /*
+   * deletes the profile pic of a given entity
+   */
+  def deleteProfilePic = {
+    Entity entity = Entity.get(params.id)
+
+    Asset asset = Asset.findByEntity(entity)
+    entity.removeFromAssets(asset)
+    asset.delete()
+
+    flash.message = "Profilbild wurde gelöscht!"
+    redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id
   }
 }

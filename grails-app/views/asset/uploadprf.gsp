@@ -18,11 +18,15 @@
 
         <div class="buttons">
           <g:submitButton name="submit" value="Speichern"/>
+          <g:if test="${entity.assets}">
+            <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}">Löschen</g:link>
+          </g:if>
           <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">Abbrechen</g:link>
           <div class="spacer"></div>
         </div>
         
       </g:uploadForm>
+
     </div>
   </div>
 </body>
