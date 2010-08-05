@@ -125,12 +125,12 @@ class MsgController {
     // create second instance to be saved in inbox of receiver
     functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
      
-    // TODO: find out why this flash message suddenly won't work anymore
-    //flash.message = message(code:"msg.sent", args:[message.subject])
+    flash.message = message(code:"msg.sent", args:[params.subject])
 
     functionService.createEvent(currentEntity, 'Du hast ' + entity.profile.fullName + ' eine Nachricht geschickt.')
     functionService.createEvent(entity, currentEntity.profile.fullName + ' hat dir eine Nachricht geschickt.')
 
-    redirect controller: entity.type.supertype.name +'Profile', action:'show', id:entityHelperService.loggedIn.id, params:[entity:entityHelperService.loggedIn]
+    //redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
+    redirect action:'inbox', id: entityHelperService.loggedIn.id
   }
 }
