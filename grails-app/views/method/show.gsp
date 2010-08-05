@@ -1,7 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
   <title>Profil - ${methodInstance.name}</title>
-  <g:javascript library="jquery"/>
 </head>
 <body>
 <div class="headerGreen">

@@ -1,4 +1,4 @@
-<head><g:javascript library="jquery" /></head><div class="userlist-results">
+<head></head><div class="userlist-results">
     <g:render template="glossary" model="[glossary: glossary]"/>
 
     <g:if test="${entities.size() == 0}">
