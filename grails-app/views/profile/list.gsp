@@ -72,12 +72,13 @@
         <g:each status="i" in="${entityList}" var="entity">
           <tr class="row-${entity.type.supertype.name}">
             <td>
-              <app:isEnabled entity="${entity}">
+              %{--<app:isEnabled entity="${entity}">
                 <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
               </app:isEnabled>
               <app:notEnabled entity="${entity}">
                 <span class="notEnabled">${entity.profile.fullName}</span>
-              </app:notEnabled>
+              </app:notEnabled>--}%
+              <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
             </td>
             <td class="col">${entity.type.name}</td>
             <td class="col"><g:formatBoolean boolean="${entity.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
