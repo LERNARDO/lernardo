@@ -22,7 +22,8 @@
         dateFormat: 'dd. mm. yy',
         minDate: new Date(1900,1,1),
         maxDate: new Date(),
-        firstDay: 1});
+        firstDay: 1,
+        yearRange: 'c-99:c+99'});
 
       $(".datepicker").datepicker({
         changeMonth: true,

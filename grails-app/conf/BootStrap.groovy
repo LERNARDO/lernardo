@@ -218,14 +218,14 @@ class BootStrap {
     }
 
     if (!Entity.findByName('arnoldschwarzenegger')) {
-      entityHelperService.createEntityWithUserAndProfile("arnoldschwarzenegger", etEducator, "arnold@sueninos.org", "Arndold Schwarzenegger") {Entity ent ->
+      entityHelperService.createEntityWithUserAndProfile("arnoldschwarzenegger", etEducator, "arnold@sueninos.org", "Arnold Schwarzenegger") {Entity ent ->
         //ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("es", "ES")
         EducatorProfile prf = (EducatorProfile)ent.profile
         prf.gender = 1
         prf.title = "DI"
         prf.birthDate = new Date(1968-1900,02,18)
-        prf.currentCountry = "Mexiko"
+        prf.currentCountry = "Österreich"
         prf.currentZip = "29215"
         prf.currentCity = "San Cristóbal de Las Casas"
         prf.currentStreet = "Av. Norte Oriente 13a"
@@ -240,8 +240,8 @@ class BootStrap {
         prf.contactZip = ""
         prf.contactMail = ""
         prf.education = ""
-        prf.firstName = "Christian"
-        prf.lastName = "Szinicz"
+        prf.firstName = "Arnold"
+        prf.lastName = "Schwarzenegger"
         prf.interests = ""
         prf.employment = ""
         prf.addToLanguages("1")
