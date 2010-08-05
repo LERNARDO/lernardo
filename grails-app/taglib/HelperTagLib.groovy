@@ -198,13 +198,14 @@ class HelperTagLib {
 
   /*
    * returns the filetype of a publication
+   * Reference: http://en.wikipedia.org/wiki/Internet_media_type
    */
   def getFileType = {attrs ->
-    if (attrs.type == 'application/vnd.ms-excel')
+    if (attrs.type == 'application/vnd.ms-excel' || attrs.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
       out << "Excel"
     else if (attrs.type == 'image/jpeg' || attrs.type == 'image/png' || attrs.type == 'image/gif' || attrs.type == 'image/bmp')
       out << "Bild"
-    else if (attrs.type == 'application/msword')
+    else if (attrs.type == 'application/msword' || attrs.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
       out << "Word"
     else if (attrs.type == 'application/force-download' || attrs.type == 'application/pdf')
       out << "PDF"
@@ -216,7 +217,7 @@ class HelperTagLib {
       out << "Flash"
     else if (attrs.type == 'application/zip')
       out << "Archiv"
-    else if (attrs.type == 'audio/mpeg3' || attrs.type == 'audio/x-mpeg3')
+    else if (attrs.type == 'audio/mpeg3' || attrs.type == 'audio/x-mpeg3' || attrs.type == 'audio/mpeg')
       out << "MP3"
     else if (attrs.type == 'video/avi')
       out << "Video"
