@@ -14,7 +14,7 @@
         Dein Profilbild wurde erfolgreich aktualisiert!
       </g:if>
       <g:else>
-        Dein Profilbild konnten nicht aktualisiert werden!
+        Dein Profilbild konnte nicht aktualisiert werden!
       </g:else>
     </div>
   </div>
