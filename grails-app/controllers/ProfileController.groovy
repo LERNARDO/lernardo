@@ -70,8 +70,13 @@ class ProfileController {
     return [msgInstance: msgInstance, entity: entityHelperService.loggedIn]
   }
 
-  def saveNotification = {
-    //println params
+  def saveNotification = {NotificationCommand nc->
+
+    if (nc.hasErrors()) {
+      render view:'createNotification', model:[msgInstance: nc, entity: entityHelperService.loggedIn]
+      return
+    }
+    
     def c = Entity.createCriteria()
     def userList = c.list {
       or {
@@ -634,5 +639,32 @@ class ProfileController {
 
     render view:'/asset/uploadprf', model:[entity: entity]
     }
+
+}
+
+/*
+* command object to handle validation of a notification
+*/
+class NotificationCommand {
+  String subject
+  String content
+
+  String user
+  String operator
+  String client
+  String educator
+  String parent
+  String child
+  String pate
+  String partner
+
+  Boolean selection
+
+  static constraints = {
+    subject(blank: false)
+    content(blank: false)
+    selection(validator: {sel, nc ->
+      return !(!nc.user && !nc.operator && !nc.client && !nc.educator && !nc.parent && !nc.child && !nc.pate && !nc.partner)})
+  }
 
 }
