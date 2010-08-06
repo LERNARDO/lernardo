@@ -11,23 +11,18 @@
 </div>
 <div class="boxGray">
   <div class="second">
-      <g:if test="${flash.message}">
-        <div class="message">${flash.message}</div>
-      </g:if>
 
       <g:hasErrors bean="${publication}">
-        <div id="flash-msg">
-          <div class="errors">
-            <g:renderErrors bean="${publication}" as="list"/>
-          </div>
+        <div class="errors">
+          <g:renderErrors bean="${publication}" as="list"/>
         </div>
       </g:hasErrors>
 
       <g:uploadForm action="save" id="${entity.id}">
 
-        <div class="text-field ${hasErrors(bean: publication, field: 'name', 'errors')}">
+        <div class="text-field">
           <label for="name"><g:message code="publication.profile.name"/>:</label><br />
-          <g:textField class="countable${publication.constraints.name.maxSize}" id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
+          <g:textField class="${hasErrors(bean: publication, field: 'name', 'errors')} countable${publication.constraints.name.maxSize}" id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
         </div>
 
         %{-- 06.08.2010: disabled for now --}%
@@ -42,7 +37,6 @@
         </div>--}%
 
         %{-- TODO: uncomment when implemented
-
         <div>
           <br/>
           <label for="category"><g:message code="publication.profile.share"/>:</label><br />
@@ -54,7 +48,6 @@
           </g:select>
         </div>--}%
 
-        %{--TODO: figure out how to make this box red on validation error--}%
         <div class="file-field">
           <label for="file"><g:message code="publication.profile.file"/>:</label><br />
           <input size="50" id="file" type="file" name="file"/>

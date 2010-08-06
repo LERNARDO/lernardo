@@ -108,7 +108,7 @@ class PublicationController {
       redirect (action:"profile", id:pub.entity.id)
     }
     else {
-       render view:'create', model:[entity:e, publication:pub]
+       render view:'create', model:[entity: entity, publication:pub]
       }
   }
 
