@@ -29,7 +29,6 @@ class MetaDataService {
   static final String EST_GROUP_COLONY = "groupColony"
   static final String EST_GROUP_ACTIVITY_TEMPLATE = "groupActivityTemplate"
   static final String EST_GROUP_ACTIVITY = "groupActivity"
-  static final String EST_COMMENT_TEMPLATE = "commentTemplate"
   static final String EST_PATE = "pate"
   static final String EST_PARTNER = "partner"
   static final String EST_RESOURCE = "resource"
@@ -81,7 +80,6 @@ class MetaDataService {
   static final String PRT_GROUP_COLONY = "GroupColony"
   static final String PRT_GROUP_ACTIVITY_TEMPLATE = "GroupActivityTemplate"
   static final String PRT_GROUP_ACTIVITY = "GroupActivity"
-  static final String PRT_COMMENT_TEMPLATE = "CommentTemplate"
   static final String PRT_PATE = "Pate"
   static final String PRT_PARTNER = "Partner"
   static final String PRT_RESOURCE = "Resource"
@@ -170,7 +168,6 @@ class MetaDataService {
     getEstGroupColony()
     getEstGroupActivityTemplate()
     getEstGroupActivity()
-    getEstCommentTemplate()
     getEstPate()
     getEstPartner()
     getEstResource()
@@ -195,7 +192,6 @@ class MetaDataService {
     getEtGroupColony()
     getEtGroupActivityTemplate()
     getEtGroupActivity()
-    getEtCommentTemplate()
     getEtPate()
     getEtPartner()
     getEtResource()
@@ -281,7 +277,6 @@ class MetaDataService {
   EntitySuperType getEstGroupColony()           {defaultObjectService.openEST (EST_GROUP_COLONY, PRT_GROUP_COLONY) }
   EntitySuperType getEstGroupActivityTemplate() {defaultObjectService.openEST (EST_GROUP_ACTIVITY_TEMPLATE, PRT_GROUP_ACTIVITY_TEMPLATE) }
   EntitySuperType getEstGroupActivity  ()       {defaultObjectService.openEST (EST_GROUP_ACTIVITY, PRT_GROUP_ACTIVITY) }
-  EntitySuperType getEstCommentTemplate()       {defaultObjectService.openEST (EST_COMMENT_TEMPLATE, PRT_COMMENT_TEMPLATE) }
   EntitySuperType getEstPate()                  {defaultObjectService.openEST (EST_PATE, PRT_PATE) }
   EntitySuperType getEstPartner()               {defaultObjectService.openEST (EST_PARTNER, PRT_PARTNER) }
   EntitySuperType getEstResource()              {defaultObjectService.openEST (EST_RESOURCE, PRT_RESOURCE) }
@@ -306,7 +301,6 @@ class MetaDataService {
   EntityType getEtGroupColony()     {defaultObjectService.openET (ET_GROUP_COLONY, estGroupColony) }
   EntityType getEtGroupActivityTemplate() {defaultObjectService.openET (ET_GROUP_ACTIVITY_TEMPLATE, estGroupActivityTemplate) }
   EntityType getEtGroupActivity()   {defaultObjectService.openET (ET_GROUP_ACTIVITY, estGroupActivity) }
-  EntityType getEtCommentTemplate() {defaultObjectService.openET (ET_COMMENT_TEMPLATE, estCommentTemplate) }
   EntityType getEtPate()            {defaultObjectService.openET (ET_PATE, estPate) }
   EntityType getEtPartner()         {defaultObjectService.openET (ET_PARTNER, estPartner) }
   EntityType getEtResource()        {defaultObjectService.openET (ET_RESOURCE, estResource) }

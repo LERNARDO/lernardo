@@ -154,7 +154,6 @@ class ProfileController {
     if (params.glossary == "Alle") {
       def c = Entity.createCriteria()
       users = c.list {
-        ne("type", metaDataService.etCommentTemplate)
         ne("type", metaDataService.etActivity)
         ne("type", metaDataService.etTemplate)
         ne("type", metaDataService.etResource)
@@ -166,6 +165,8 @@ class ProfileController {
         ne("type", metaDataService.etProject)
         ne("type", metaDataService.etProjectTemplate)
         ne("type", metaDataService.etUser)
+        ne("type", metaDataService.etProjectDay)
+        ne("type", metaDataService.etProjectUnit)
         profile {
           order("lastName", "asc")
         }
@@ -178,7 +179,6 @@ class ProfileController {
       //log.debug("start glossary for " + params.glossary)
       def c = Entity.createCriteria()
       users = c.list {
-        ne("type", metaDataService.etCommentTemplate)
         ne("type", metaDataService.etActivity)
         ne("type", metaDataService.etTemplate)
         ne("type", metaDataService.etResource)
@@ -190,6 +190,8 @@ class ProfileController {
         ne("type", metaDataService.etProject)
         ne("type", metaDataService.etProjectTemplate)
         ne("type", metaDataService.etUser)
+        ne("type", metaDataService.etProjectDay)
+        ne("type", metaDataService.etProjectUnit)
         profile {
           ilike("fullName", params.glossary + "%")
           order("fullName", "asc")
@@ -481,7 +483,6 @@ class ProfileController {
     if (params.entityType == 'all') {
       def c = Entity.createCriteria()
       entities = c.list {
-        ne("type", metaDataService.etCommentTemplate)
         ne("type", metaDataService.etActivity)
         ne("type", metaDataService.etTemplate)
         ne("type", metaDataService.etResource)
@@ -494,6 +495,8 @@ class ProfileController {
         ne("type", metaDataService.etProject)
         ne("type", metaDataService.etProjectTemplate)
         ne("type", metaDataService.etTheme)
+        ne("type", metaDataService.etProjectDay)
+        ne("type", metaDataService.etProjectUnit)
         if (!secHelperService.isAdmin()) {
           ne("name", "sueninosadmin")
           ne("type", metaDataService.etUser)

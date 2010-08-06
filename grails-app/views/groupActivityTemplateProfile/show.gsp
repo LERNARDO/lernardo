@@ -46,7 +46,6 @@
 
     <app:isMeOrAdmin entity="${entity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="list">Zurück zur Liste</g:link>
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
 
@@ -58,6 +57,7 @@
         </app:isEducator>
 
         <g:link class="buttonGreen" action="create" id="${group.id}">Vorlage duplizieren</g:link>
+        <g:link class="buttonGray" action="list">Zurück</g:link>
         <div class="spacer"></div>
       </div>
     </app:isMeOrAdmin>
