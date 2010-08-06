@@ -2,6 +2,7 @@
   <meta name="layout" content="private"/>
   <title>Profil - ${group.profile.fullName}</title>
 </head>
+
 <body>
 <div class="headerGreen">
   <div class="second">
@@ -13,56 +14,42 @@
     <div class="dialog">
       <table>
         <tbody>
-        <tr class="prop">
-            <td height="30" colspan="3" valign="top" class="name">
-                <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
-                </td>
-          </tr>
-        <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="groupActivity.profile.name"/>:
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="groupActivity.profile.realDuration"/>:
-          </td>
-           <td valign="top" class="name-show">
-            <g:message code="groupActivity.profile.date"/>:
-          </td>
 
-          </tr>
-          <tr>
+        <tr class="prop">
+          <td height="30" colspan="3" valign="top" class="name">
+            <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name-show"><g:message code="groupActivity.profile.name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupActivity.profile.realDuration"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupActivity.profile.date"/>:</td>
+        </tr>
+
+        <tr>
           <td width="280" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
           <td width="150" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
-           <td width="300" valign="top" class="value-show"><g:formatDate date="${group.profile.date}" format="dd. MMMM yyyy, HH:mm"/></td>
+          <td width="300" valign="top" class="value-show"><g:formatDate date="${group.profile.date}" format="dd. MMMM yyyy, HH:mm"/></td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="groupActivity.profile.educationalObjective"/>:
-          </td>
-          <td colspan="2" valign="top" class="name-show">
-            <g:message code="groupActivity.profile.educationalObjectiveText"/>:
-          </td>
-          </tr>
-          <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
-          </td>
-          <td colspan="2" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
-          </td>
-
+          <td valign="top" class="name-show"><g:message code="groupActivity.profile.educationalObjective"/>:</td>
+          <td colspan="2" valign="top" class="name-show"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
         </tr>
 
-        <tr class="prop">
-
-           </tr>
-
-        <tr class="prop">
-
+        <tr>
+          <td valign="top" class="value-show">
+            ${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
+          <td colspan="2" valign="top" class="value-show">
+            ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
         </tr>
 
-        <tr class="prop">
-
-        </tr>
+        <tr class="prop"></tr>
+        <tr class="prop"></tr>
+        <tr class="prop"></tr>
 
         </tbody>
       </table>
@@ -75,26 +62,26 @@
       </div>
     </app:isCreator>
 
-    <div class="zusatz" >
+    <div class="zusatz">
       <h5>Aktivitäten</h5>
       <div class="zusatz-show">
-      <g:if test="${templates}">
-        <p>
-          <span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}"><img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/> <span class="red">Die Errechnete Gesamtdauer übersteigt die geplante Dauer dieses Aktivitätsblocks!</span></g:if>
-        </p>
-
-        <ul>
-        <g:each in="${templates}" var="template">
-          <li><g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link> (${template.profile.duration} min)</li>
-        </g:each>
-        </ul>
-      </g:if>
+        <g:if test="${templates}">
+          <p>
+            <span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}"><img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/> <span class="red">Die Errechnete Gesamtdauer übersteigt die geplante Dauer dieses Aktivitätsblocks!</span></g:if>
+          </p>
+          <ul>
+            <g:each in="${templates}" var="template">
+              <li><g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link> (${template.profile.duration} min)</li>
+            </g:each>
+          </ul>
+        </g:if>
       </div>
     </div>
 
-    <div class="zusatz" >
-      <h5>Einrichtungen <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></g:if></app:isMeOrAdmin></h5>
-      <div  class="zusatz-add" id="facilities" style="display:none">
+    <div class="zusatz">
+      <h5>Einrichtungen <app:isMeOrAdmin entity="${entity}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -102,31 +89,33 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div  class="zusatz-show" id="facilities2">
+      <div class="zusatz-show" id="facilities2">
         <g:render template="facilities" model="[facilities: facilities, group: group]"/>
       </div>
     </div>
 
-    <div class="zusatz" >
-      <h5>Pädagogen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagoge hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <div  class="zusatz-add" id="educators" style="display:none">
+    <div class="zusatz">
+      <h5>Pädagogen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#educators');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2')">
           <div id="educatorselect">
             <g:render template="educatorselect" model="[allEducators: allEducators, group: group]"/>
-          </div>          
+          </div>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div  class="zusatz-show" id="educators2">
+      <div class="zusatz-show" id="educators2">
         <g:render template="educators" model="${educators}"/>
       </div>
     </div>
 
-    <div class="zusatz" >
-      <h5>Supplierung <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Supplierung hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <div  class="zusatz-add" id="substitutes" style="display:none">
+    <div class="zusatz">
+      <h5>Supplierung <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#substitutes');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="substitutes" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2')">
           <g:select name="substitute" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -134,13 +123,14 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div  class="zusatz-show" id="substitutes2">
+      <div class="zusatz-show" id="substitutes2">
         <g:render template="substitutes" model="${substitutes}"/>
       </div>
     </div>
 
-    <div class="zusatz" >
-      <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isMeOrAdmin></h5>
+    <div class="zusatz">
+      <h5>Betreute <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
@@ -154,26 +144,28 @@
       </div>
     </div>
 
-    <div class="zusatz" >
-      <h5>Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#parents'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <div  class="zusatz-add" id="parents" style="display:none">
+    <div class="zusatz">
+      <h5>Erziehungsberechtigte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#parents');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="parents" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2')">
           <div id="parentselect">
-            <g:render template="parentselect" model="[allParents: allParents, group: group]"/> 
+            <g:render template="parentselect" model="[allParents: allParents, group: group]"/>
           </div>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div  class="zusatz-show" id="parents2">
+      <div class="zusatz-show" id="parents2">
         <g:render template="parents" model="${parents}"/>
       </div>
     </div>
 
-    <div class="zusatz" >
-      <h5>Partner <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></app:isMeOrAdmin></h5>
-      <div  class="zusatz-add" id="partners" style="display:none">
+    <div class="zusatz">
+      <h5>Partner <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#partners');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -181,7 +173,7 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div  class="zusatz-show" id="partners2">
+      <div class="zusatz-show" id="partners2">
         <g:render template="partners" model="${partners}"/>
       </div>
     </div>

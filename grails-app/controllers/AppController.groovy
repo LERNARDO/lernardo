@@ -114,9 +114,9 @@ class AppController {
     tag.addToEntityLinks(etl)
     //println "tag taglinks: " + tag.entityLinks
     }
-    else {
+    //else {
       //render '<span class="red italic">' + entity.profile.fullName + ' ist bereits als ' + tag.name + ' getaggt!</span>'
-    }
+    //}
 
     // get all tags of the entity
     List tags = entity.tagslinks.collect {it.tag}
