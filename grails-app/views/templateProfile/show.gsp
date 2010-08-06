@@ -87,6 +87,7 @@
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>--}%
       <g:link class="buttonGreen" action="create" id="${template.id}">Vorlage duplizieren</g:link>
+      <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
     </app:isEducator>
 
