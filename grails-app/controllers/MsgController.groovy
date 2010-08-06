@@ -109,6 +109,11 @@ class MsgController {
 
   def create = {
     def message = new Msg()
+
+    // if this is an answer to a message use the subject
+    if (params.subject)
+      message.subject = params.subject
+
     Entity entity = Entity.get(params.id)
     return ['msgInstance':message,
             'receiver':entity,

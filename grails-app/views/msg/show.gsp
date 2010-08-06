@@ -35,7 +35,7 @@
         <g:hiddenField name="id" value="${msgInstance?.id}"/>
         %{--reply is only possible when sender account is enabled--}%
         <app:isEnabled entity="${msgInstance.sender}">
-          <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id]">Antworten</g:link>
+          <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject]">Antworten</g:link>
         </app:isEnabled>
         <g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]">Löschen</g:link>
         <g:link class="buttonGray" action="inbox" params="[name:entity.name]">Zurück</g:link>
