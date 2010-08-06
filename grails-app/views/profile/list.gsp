@@ -82,7 +82,7 @@
             </td>
             <td class="col">${entity.type.name}</td>
             <td class="col"><g:formatBoolean boolean="${entity?.user?.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td class="col"><g:join in="${entity.user.authorities.collect {it.authority}}"/></td>
+            <td class="col"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></td>
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
                 <app:isEnabled entity="${entity}">
