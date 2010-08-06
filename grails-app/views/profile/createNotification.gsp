@@ -13,9 +13,9 @@
     <div class="boxGray">
       <div class="second">
 
-        <g:hasErrors bean="${msgInstance}">
+        <g:hasErrors bean="${nc}">
           <div class="errors">
-            <g:renderErrors bean="${msgInstance}" as="list"/>
+            <g:renderErrors bean="${nc}" as="list"/>
           </div>
         </g:hasErrors>
 
@@ -23,15 +23,15 @@
 
         <g:form action="saveNotification" method="post">
 
-          <p class="${hasErrors(bean:msgInstance,field:'selection','errors')}">
-            <g:checkBox name="user" value="${msgInstance?.user}"/> User<br/>
-            <g:checkBox name="operator" value="${msgInstance?.operator}"/> Betreiber<br/>
-            <g:checkBox name="client" value="${msgInstance?.client}"/> Betreute<br/>
-            <g:checkBox name="educator" value="${msgInstance?.educator}"/> Pädagogen<br/>
-            <g:checkBox name="parent" value="${msgInstance?.parent}"/> Erziehungsberechtigte<br/>
-            <g:checkBox name="child" value="${msgInstance?.child}"/> Kinder<br/>
-            <g:checkBox name="pate" value="${msgInstance?.pate}"/> Paten<br/>
-            <g:checkBox name="partner" value="${msgInstance?.partner}"/> Partner<br/>
+          <p class="${hasErrors(bean:nc,field:'selection','errors')}">
+            <g:checkBox name="user" value="${nc?.user}"/> User<br/>
+            <g:checkBox name="operator" value="${nc?.operator}"/> Betreiber<br/>
+            <g:checkBox name="client" value="${nc?.client}"/> Betreute<br/>
+            <g:checkBox name="educator" value="${nc?.educator}"/> Pädagogen<br/>
+            <g:checkBox name="parent" value="${nc?.parent}"/> Erziehungsberechtigte<br/>
+            <g:checkBox name="child" value="${nc?.child}"/> Kinder<br/>
+            <g:checkBox name="pate" value="${nc?.pate}"/> Paten<br/>
+            <g:checkBox name="partner" value="${nc?.partner}"/> Partner<br/>
           </p>
 
           <table class="form">
@@ -39,15 +39,15 @@
 
             <tr>
               <td>Titel:</td>
-              <td class="value"><g:textField class="${hasErrors(bean:msgInstance,field:'subject','errors')}" name="subject" size="60" value="${fieldValue(bean:msgInstance,field:'subject')}"/></td>
+              <td class="value"><g:textField class="${hasErrors(bean:nc,field:'subject','errors')}" name="subject" size="60" value="${fieldValue(bean:nc,field:'subject')}"/></td>
             </tr>
 
             <tr>
               <td>Inhalt:</td>
-              <td class="value ${hasErrors(bean:msgInstance,field:'content','errors')}">
+              <td class="value ${hasErrors(bean:nc,field:'content','errors')}">
                 <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
                 <fckeditor:editor name="content" id="content" width="700" height="300" toolbar="Post" fileBrowser="default">
-                  ${msgInstance?.content}
+                  ${nc?.content}
                 </fckeditor:editor>
               </td>
             </tr>

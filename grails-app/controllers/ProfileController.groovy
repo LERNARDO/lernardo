@@ -73,7 +73,7 @@ class ProfileController {
   def saveNotification = {NotificationCommand nc->
 
     if (nc.hasErrors()) {
-      render view:'createNotification', model:[msgInstance: nc, entity: entityHelperService.loggedIn]
+      render view:'createNotification', model:[nc: nc, entity: entityHelperService.loggedIn]
       return
     }
     
