@@ -618,7 +618,7 @@ class BootStrap {
     if (!Entity.findByName('sueninos')) {
       entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
         ent.user.locale = new Locale ("de", "DE")
-        ent.user.addToAuthorities(metaDataService.adminRole)
+        //ent.user.addToAuthorities(metaDataService.adminRole)
         OperatorProfile prf = (OperatorProfile)ent.profile
         prf.zip = ""
         prf.city = ""

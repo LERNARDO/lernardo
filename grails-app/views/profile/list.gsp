@@ -81,8 +81,8 @@
               <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
             </td>
             <td class="col">${entity.type.name}</td>
-            <td class="col"><g:formatBoolean boolean="${entity?.user?.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td class="col"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></td>
+            <td class="col"><g:if test="${entity.user}"><g:formatBoolean boolean="${entity?.user?.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></g:if></td>
+            <td class="col"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
                 <app:isEnabled entity="${entity}">
