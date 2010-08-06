@@ -30,8 +30,8 @@
           <g:textField class="countable${publication.constraints.name.maxSize}" id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
         </div>
 
-        %{--TODO: figure out how to make this box red on validation error--}%
-        <div>
+        %{-- 06.08.2010: disabled for now --}%
+        %{--<div>
           <label for="category"><g:message code="publication.profile.category"/>:</label><br />
           <g:select id="category" name="type.id" value="${publication?.type?.id}"
             from="${PublicationType.list()}"
@@ -39,7 +39,7 @@
             optionValue="name"
             noSelection="${['null': message(code:'publication.profile.categoryEmpty')]}">
           </g:select>
-        </div>
+        </div>--}%
 
         %{-- TODO: uncomment when implemented
 

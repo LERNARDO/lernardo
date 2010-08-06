@@ -91,6 +91,7 @@ class PublicationController {
 
     Publication pub = new Publication(params)
     pub.entity = entity
+    pub.type = metaDataService.ptDoc1 // temporarily hardcoded
 
     // handle the file
     MultipartFile mpf = request.getFile('file')
@@ -135,5 +136,36 @@ class PublicationController {
 
     redirect (action:"profile", id: entity.id)
   }
+
+  def edit = {
+      Publication pub = Publication.get(params.id)
+
+      if(!pub) {
+          flash.message = message(code:"publication.notFound", args:[params.id])
+          redirect action:'list'
+      }
+      else {
+          [entity: entityHelperService.loggedIn, publication: pub]
+      }
+  }
+
+  def update = {
+      Publication publication = Publication.get(params.id)
+      if(publication) {
+          publication.name = params.name
+          if(!publication.hasErrors() && publication.save()) {
+              flash.message = message(code:"publication.updated", args:[publication.name])
+              redirect (action:'profile', params:[name:params.entity])
+          }
+          else {
+              render view:'edit', model:[entity: entityHelperService.loggedIn, publication:publication]
+          }
+      }
+      else {
+          flash.message = message(code:"publication.notFound", args:[params.id])
+          redirect action:"profile"
+      }
+  }
+
 
 }
