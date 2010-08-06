@@ -55,7 +55,6 @@ class MetaDataService {
   static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
   static final String ET_GROUP_ACTIVITY_TEMPLATE = "Aktivitätsvorlagenblock"
   static final String ET_GROUP_ACTIVITY = "Aktivitätsblock"
-  static final String ET_COMMENT_TEMPLATE = "Vorlagenkommentar"
   static final String ET_PATE = "Pate"
   static final String ET_PARTNER = "Partner"
   static final String ET_RESOURCE = "Ressource"
