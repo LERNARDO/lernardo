@@ -134,6 +134,7 @@ class ThemeProfileController {
   }
 
   def save = {
+
     EntityType etTheme = metaDataService.etTheme
 
     try {
