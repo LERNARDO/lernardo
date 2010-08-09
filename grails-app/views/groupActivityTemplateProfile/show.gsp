@@ -44,23 +44,23 @@
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${entity}">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
-        %{--<g:link class="buttonBlue" action="create">Duplizieren</g:link>--}%
+    <div class="buttons">
+      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
 
-        <app:isEducator entity="${entity}">
+        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="create" id="${group.id}">Vorlage duplizieren</g:link>
+
+        <app:isEducator entity="${currentEntity}">
         %{-- and only when it is done --}%
           <g:if test="${group.profile.status == 'fertig'}">
             <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock instanzieren</g:link>
           </g:if>
         </app:isEducator>
 
-        <g:link class="buttonGreen" action="create" id="${group.id}">Vorlage duplizieren</g:link>
-        <g:link class="buttonGray" action="list">Zurück</g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isMeOrAdmin>
+      </app:hasRoleOrType>
+      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5>Aktivitätsvorlagen <app:isEducator entity="${entity}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></app:isEducator></h5>
