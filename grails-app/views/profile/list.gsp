@@ -1,33 +1,31 @@
-<html>
 <head>
   <meta name="layout" content="private"/>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>Liste aller Profile</title>
-%{--  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
-  <script type="text/javascript">
-    $(document).ready(function()
-    {
-      // TODO: figure out why qtip refuses to work although it definitely should
-      $('img[src][alt]').qtip({
-        content: {
-           text: false // Use each elements title attribute
-        },
-        position: {
-           corner: {
-              target: 'topMiddle',
-              tooltip: 'bottomMiddle'
-           }
-        },
-        style: {
-           border: {
-              width: 1,
-              color: '#89B7DA'
-           },
-           background: '#EEEEEE'
-        }  
+  %{--  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
+    <script type="text/javascript">
+      $(document).ready(function()
+      {
+        // TODO: figure out why qtip refuses to work although it definitely should
+        $('img[src][alt]').qtip({
+          content: {
+             text: false // Use each elements title attribute
+          },
+          position: {
+             corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomMiddle'
+             }
+          },
+          style: {
+             border: {
+                width: 1,
+                color: '#89B7DA'
+             },
+             background: '#EEEEEE'
+          }
+        });
       });
-    });
-  </script>--}%
+    </script>--}%
 </head>
 <body>
 <div class="headerGreen">
@@ -69,44 +67,9 @@
         </tr>
         </thead>
         <tbody>
-        <g:each status="i" in="${entityList}" var="entity">
-          <tr class="row-${entity.type.supertype.name}">
-            <td>
-              %{--<app:isEnabled entity="${entity}">
-                <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
-              </app:isEnabled>
-              <app:notEnabled entity="${entity}">
-                <span class="notEnabled">${entity.profile.fullName}</span>
-              </app:notEnabled>--}%
-              <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
-            </td>
-            <td class="col">${entity.type.name}</td>
-            <td class="col"><g:if test="${entity.user}"><g:formatBoolean boolean="${entity?.user?.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></g:if></td>
-            <td class="col"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
-            <td class="col" style="width: 100px">
-              <app:notMe entity="${entity}">
-                <g:if test="${entity.user}">
-                  <app:isEnabled entity="${entity}">
-                    <g:link controller="profile" action="disable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_enabled.png')}" alt="Deaktivieren" align="top"/>--}%Deaktivieren</g:link> -
-                  </app:isEnabled>
-                  <app:notEnabled entity="${entity}">
-                    <g:link controller="profile" action="enable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/>--}%Aktivieren</g:link> -
-                  </app:notEnabled>
-                </g:if>
-                <app:isAdmin>
-                  <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}">%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%Löschen</g:link> -
-                </app:isAdmin>
-              </app:notMe>
-              <app:isSysAdmin entity="${currentEntity}">
-                <app:hasNotRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                  <g:link controller="profile" action="giveAdminRole" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_noadmin.png')}" alt="Admin geben" align="top"/>--}%Admin geben</g:link>
-                </app:hasNotRoles>
-
-                <app:hasRoles entity="${entity}" roles="['ROLE_ADMIN']">
-                  <g:link controller="profile" action="takeAdminRole" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_anadmin.png')}" alt="Admin nehmen" align="top"/>--}%Admin nehmen</g:link>
-                </app:hasRoles>
-              </app:isSysAdmin>
-            </td>
+        <g:each in="${entityList}" var="entity" status="i">
+          <tr id="listentity-${i}" class="row-${entity.type.supertype.name}">
+            <g:render template="listentity" model="[entity: entity, currentEntity: currentEntity, i: i]"/>
           </tr>
         </g:each>
         </tbody>
@@ -124,4 +87,3 @@
   </div>
 </div>
 </body>
-</html>

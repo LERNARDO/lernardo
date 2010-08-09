@@ -124,8 +124,7 @@ class ProfileController {
   def giveAdminRole = {
     Entity entity = Entity.get(params.id)
     entity?.user?.addToAuthorities(metaDataService.adminRole)
-    flash.message = message(code: "user.giveAdmin", args: [entity.profile.fullName])
-    redirect action: 'list'
+    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
   }
 
   /*
@@ -133,10 +132,9 @@ class ProfileController {
    */
   def takeAdminRole = {
     Entity entity = Entity.get(params.id)
-    // 29.07.2010: removeFrom not working here anymore for some mysterious reason?!
-    entity?.user?.removeFromAuthorities(metaDataService.adminRole)
-    flash.message = message(code: "user.takeAdmin", args: [entity.profile.fullName])
-    redirect action: 'list'
+    def role = entity.user.authorities.find { it.id == (metaDataService.adminRole.id)}
+    entity.user.removeFromAuthorities(role)
+    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
   }
 
   /*
@@ -514,8 +512,7 @@ class ProfileController {
 
     return ['entityType': params.entityType,
             'entityList': entities,
-            'entityCount': count,
-            'entity': entityHelperService.loggedIn]
+            'entityCount': count]
   }
 
   /*

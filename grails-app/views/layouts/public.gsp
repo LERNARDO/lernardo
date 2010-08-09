@@ -16,7 +16,7 @@
       <div id="doc5" class="yui-t3">
 
         <div id="hd">
-          <g:render template="/templates/header" />
+          <g:render template="/templates/header"/>
           <div id="nav">
             <g:render template="/templates/navigation" />
           </div>
