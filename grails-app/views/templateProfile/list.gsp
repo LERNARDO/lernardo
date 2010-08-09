@@ -57,11 +57,12 @@
       </g:if>
 
       <div class="buttons">
-        <app:isEducator entity="${entity}">
+        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <g:link class="buttonGreen" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
           <div class="spacer" style="margin-bottom: 5px"></div>
-        </app:isEducator>
+        </app:hasRoleOrType>
       </div>
+      
     </div>
   </div>
 </div>

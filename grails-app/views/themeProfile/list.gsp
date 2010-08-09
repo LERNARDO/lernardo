@@ -38,7 +38,7 @@
       </g:if>
     </g:if>
 
-    <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
+    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
       <div class="buttons">
         <g:link class="buttonGreen" action="create">Neues Thema anlegen</g:link>
         <div class="spacer"></div>

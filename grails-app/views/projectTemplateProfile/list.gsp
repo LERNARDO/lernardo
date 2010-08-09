@@ -43,10 +43,10 @@
         </g:if>
       </g:if>
 
-      <app:isEducator entity="${entity}">
+      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
         <g:link class="buttonGreen" action="create">Neue Projektvorlage anlegen</g:link>
         <div class="spacer"></div>
-      </app:isEducator>
+      </app:hasRoleOrType>
 
     </div>
   </div>

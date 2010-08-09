@@ -28,12 +28,12 @@
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${group}">
+    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
+    </app:hasRoleOrType>
 
     <div class="zusatz">
       <h5>Betreute <app:isOperator entity="${group}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>

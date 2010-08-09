@@ -63,8 +63,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Projekteinheiten <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="addProjectUnit" update="projectunits2" id="${projectTemplate.id}" before="showspinner('#projectunits2')"><img src="${g.resource(dir:'images/icons', file:'icon_add-plus.png')}" alt="Projekteinheit hinzufügen" /></g:remoteLink>
-        %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:isMeOrAdmin></h5>
+      <h5>Projekteinheiten <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false"><g:remoteLink action="addProjectUnit" update="projectunits2" id="${projectTemplate.id}" before="showspinner('#projectunits2')"><img src="${g.resource(dir:'images/icons', file:'icon_add-plus.png')}" alt="Projekteinheit hinzufügen" /></g:remoteLink>
+        %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:hasRoleOrType></h5>
       %{--<div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
           Name: <g:textField name="fullName" size="40" value=""/>
