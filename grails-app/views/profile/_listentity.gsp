@@ -25,7 +25,7 @@
                   <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}">%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%Löschen</g:link> -
                 </app:isAdmin>
               </app:notMe>
-              <app:isSysAdmin entity="${currentEntity}">
+              %{--<app:isSysAdmin entity="${currentEntity}">--}%
                 <app:hasNotRoles entity="${entity}" roles="['ROLE_ADMIN']">
                   <g:remoteLink update="listentity-${i}" controller="profile" action="giveAdminRole" id="${entity.id}" params="[i:i]" before="showspinner('#entity-roles-${i}')">%{--<img src="${resource (dir:'images/icons', file:'icon_noadmin.png')}" alt="Admin geben" align="top"/>--}%Admin geben</g:remoteLink>
                 </app:hasNotRoles>
@@ -33,5 +33,5 @@
                 <app:hasRoles entity="${entity}" roles="['ROLE_ADMIN']">
                   <g:remoteLink update="listentity-${i}" controller="profile" action="takeAdminRole" id="${entity.id}" params="[i:i]" before="showspinner('#entity-roles-${i}')">%{--<img src="${resource (dir:'images/icons', file:'icon_anadmin.png')}" alt="Admin nehmen" align="top"/>--}%Admin nehmen</g:remoteLink>
                 </app:hasRoles>
-              </app:isSysAdmin>
+              %{--</app:isSysAdmin>--}%
             </td>

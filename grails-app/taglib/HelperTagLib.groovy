@@ -644,7 +644,7 @@ class HelperTagLib {
   def hasNotRoles = {attrs, body ->
     def entity = attrs.entity ?: entityHelperService.loggedIn
 
-    def res = !attrs.roles.find { entity.user?.authorities*.authority.contains (it) }
+    def res = !attrs.roles.find { entity.user.authorities*.authority.contains(it) }
     if (res)
       out << body()
   }
@@ -652,8 +652,8 @@ class HelperTagLib {
   def hasRoles = {attrs, body ->
     def entity = attrs.entity ?: entityHelperService.loggedIn
 
-    def matching = attrs.roles.findAll { entity.user?.authorities*.authority.contains(it) }
-    if (matching)
+    def res = attrs.roles.findAll { entity.user.authorities*.authority.contains(it) }
+    if (res)
       out << body()    
   }
 
