@@ -8,6 +8,7 @@ import at.openfactory.ep.EntityHelperService
 import lernardo.Contact
 import standard.MetaDataService
 import standard.FunctionService
+import lernardo.Msg
 
 class PartnerProfileController {
   MetaDataService metaDataService
@@ -51,6 +52,7 @@ class PartnerProfileController {
     if (partner) {
       // delete all links
       Link.findAllBySourceOrTarget(partner, partner).each {it.delete()}
+      Msg.findAllByEntity(partner).delete()
       try {
         flash.message = message(code: "partner.deleted", args: [partner.profile.fullName])
         partner.delete(flush: true)

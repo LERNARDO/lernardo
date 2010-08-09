@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 import standard.FunctionService
 import standard.MetaDataService
+import lernardo.Msg
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -51,6 +52,7 @@ class OperatorProfileController {
     if (operator) {
       // delete all links
       Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
+      Msg.findAllByEntity(operator).delete()
       try {
         flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
         operator.delete(flush: true)

@@ -8,6 +8,7 @@ import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import standard.FunctionService
 import at.openfactory.ep.security.DefaultSecurityManager
+import lernardo.Msg
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -55,6 +56,7 @@ class ParentProfileController {
     if (parent) {
       // delete all links
       Link.findAllBySourceOrTarget(parent, parent).each {it.delete()}
+      Msg.findAllByEntity(parent).delete()
       try {
         flash.message = message(code: "parent.deleted", args: [parent.profile.fullName])
         parent.delete(flush: true)

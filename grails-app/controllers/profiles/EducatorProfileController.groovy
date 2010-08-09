@@ -9,6 +9,8 @@ import lernardo.CDate
 import standard.MetaDataService
 import standard.FunctionService
 import at.openfactory.ep.security.DefaultSecurityManager
+import lernardo.Msg
+import lernardo.Post
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -59,6 +61,8 @@ class EducatorProfileController {
     if (educator) {
       // delete all links
       Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
+      Msg.findAllByEntity(educator).delete()
+      Post.findByAuthor(educator).delete()
       try {
         flash.message = message(code: "educator.deleted", args: [educator.profile.fullName])
         educator.delete(flush: true)

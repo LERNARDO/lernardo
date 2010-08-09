@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import standard.FunctionService
+import lernardo.Msg
 
 class ChildProfileController {
   MetaDataService metaDataService
@@ -54,6 +55,7 @@ class ChildProfileController {
     if (child) {
       // delete all links to and from this child
       Link.findAllBySourceOrTarget(child, child).each {it.delete()}
+      Msg.findAllByEntity(child).delete()
       try {
         flash.message = message(code: "child.deleted", args: [child.profile.fullName])
         child.delete(flush: true)

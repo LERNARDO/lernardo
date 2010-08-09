@@ -8,6 +8,7 @@ import at.openfactory.ep.EntityHelperService
 import standard.FunctionService
 import standard.MetaDataService
 import at.openfactory.ep.security.DefaultSecurityManager
+import lernardo.Msg
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -50,6 +51,7 @@ class PateProfileController {
     if (pate) {
       // delete all links to this entity
       Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
+      Msg.findAllByEntity(pate).delete()
       
       try {
         flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
