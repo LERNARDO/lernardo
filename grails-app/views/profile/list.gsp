@@ -85,12 +85,14 @@
             <td class="col"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
             <td class="col" style="width: 100px">
               <app:notMe entity="${entity}">
-                <app:isEnabled entity="${entity}">
-                  <g:link controller="profile" action="disable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_enabled.png')}" alt="Deaktivieren" align="top"/>--}%Deaktivieren</g:link> -
-                </app:isEnabled>
-                <app:notEnabled entity="${entity}">
-                  <g:link controller="profile" action="enable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/>--}%Aktivieren</g:link> -
-                </app:notEnabled>
+                <g:if test="${entity.user}">
+                  <app:isEnabled entity="${entity}">
+                    <g:link controller="profile" action="disable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_enabled.png')}" alt="Deaktivieren" align="top"/>--}%Deaktivieren</g:link> -
+                  </app:isEnabled>
+                  <app:notEnabled entity="${entity}">
+                    <g:link controller="profile" action="enable" id="${entity.id}">%{--<img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/>--}%Aktivieren</g:link> -
+                  </app:notEnabled>
+                </g:if>
                 <app:isAdmin>
                   <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${app.getLinks(id: entity.id)}">%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%Löschen</g:link> -
                 </app:isAdmin>
