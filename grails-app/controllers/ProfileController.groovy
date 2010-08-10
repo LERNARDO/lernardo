@@ -288,8 +288,36 @@ class ProfileController {
    */
   def showNews = {
     Entity entity = Entity.get(params.id)
+
+    SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd")
+
+    List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'asc'])
+
+    Calendar cal = Calendar.getInstance()
+    List eventsToday = []
+    allEvents.each {
+      if (tdf.format(it.date) == tdf.format(cal.getTime()))
+      eventsToday << it
+    }
+
+    cal.add(Calendar.DATE, -1)
+    List eventsYesterday = []
+    allEvents.each {
+      if (tdf.format(it.date) == tdf.format(cal.getTime()))
+      eventsYesterday << it
+    }
+
+    cal.add(Calendar.DATE, 2)
+    List eventsTomorrow = []
+    allEvents.each {
+      if (tdf.format(it.date) == tdf.format(cal.getTime()))
+      eventsTomorrow << it
+    }
+    
     return ['entity': entity,
-            'eventList': Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'asc'])]
+            'eventsToday': eventsToday,
+            'eventsYesterday': eventsYesterday,
+            'eventsTomorrow': eventsTomorrow]
   }
 
   /*

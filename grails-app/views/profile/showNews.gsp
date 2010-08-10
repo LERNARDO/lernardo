@@ -3,6 +3,7 @@
   <meta name="layout" content="private"/>
   <title><g:message code="events"/></title>
 </head>
+
 <body>
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
@@ -18,49 +19,45 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
     <p><span class="strong"><g:message code="tomorrow"/></span></p>
     <p>
-      <g:set var="count" value="0"/>
-      <g:each in="${eventList}" var="event" status="i">
-        <g:if test="${event.date.day == Calendar.getInstance().DAY_OF_MONTH+1}">
+      <g:if test="${eventsTomorrow}">
+        <g:each in="${eventsTomorrow}" var="event" status="i">
           <g:formatDate date="${event.date}" format="HH:mm"/> - ${event.content}<br/>
-          <g:set var="count" value="${i}"/>
-        </g:if>
-      </g:each>
-      <g:if test="${count == '0'}">
-        <span class="italic"><g:message code="profile.showNews.tomorrowMsg"/></span>
+        </g:each>
       </g:if>
+      <g:else>
+        <span class="italic"><g:message code="profile.showNews.tomorrowMsg"/></span>
+      </g:else>
     </p>
     <div class="cleartop"></div>
 
     <p><span class="strong"><g:message code="today"/> (<g:formatDate date="${Calendar.getInstance().time}" format="dd.MM.yyyy"/>)</span></p>
     <p>
-      <g:set var="count" value="0"/>
-      <g:each in="${eventList}" var="event">
-        <g:if test="${event.date.day == Calendar.getInstance().DAY_OF_MONTH}">
+      <g:if test="${eventsToday}">
+        <g:each in="${eventsToday}" var="event" status="i">
           <g:formatDate date="${event.date}" format="HH:mm"/> - ${event.content}<br/>
-          <g:set var="count" value="${i}"/>
-        </g:if>
-      </g:each>
-      <g:if test="${count == '0'}">
-        <span class="italic"><g:message code="profile.showNews.todayMsg"/></span>
+        </g:each>
       </g:if>
+      <g:else>
+        <span class="italic"><g:message code="profile.showNews.todayMsg"/></span>
+      </g:else>
     </p>
     <div class="cleartop"></div>
 
     <p><span class="strong"><g:message code="yesterday"/></span></p>
     <p>
-      <g:set var="count" value="0"/>
-      <g:each in="${eventList}" var="event">
-        <g:if test="${event.date.day == Calendar.getInstance().DAY_OF_MONTH-1}">
+      <g:if test="${eventsYesterday}">
+        <g:each in="${eventsYesterday}" var="event" status="i">
           <g:formatDate date="${event.date}" format="HH:mm"/> - ${event.content}<br/>
-          <g:set var="count" value="${i}"/>
-        </g:if>
-      </g:each>
-      <g:if test="${count == '0'}">
-        <span class="italic"><g:message code="profile.showNews.yesterdayMsg"/></span>
+        </g:each>
       </g:if>
+      <g:else>
+        <span class="italic"><g:message code="profile.showNews.yesterdayMsg"/></span>
+      </g:else>
     </p>
+    
   </div>
 </div>
 </body>
