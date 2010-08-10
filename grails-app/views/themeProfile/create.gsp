@@ -21,83 +21,57 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="theme.profile.name"/>
-              </label>
-            </td>
-             <td valign="top" class="name">
-              <label for="startDate">
-                <g:message code="theme.profile.startDate"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="endDate">
-                <g:message code="theme.profile.endDate"/>
-              </label>
-            </td>
-            </tr>
+            <td valign="top" class="name"><g:message code="theme.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="theme.profile.startDate"/></td>
+            <td valign="top" class="name"><g:message code="theme.profile.endDate"/></td>
+          </tr>
+
           <tr>
             <td width="300" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="42" id="fullName" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="42" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
             </td>
-           <td width="230" valign="top" class="value">
+            <td width="230" valign="top" class="value">
               <g:textField name="startDate" size="30" class="datepicker ${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" value="${theme?.profile?.startDate?.format('dd. MM. yyyy')}"/>
-              %{--<g:datePicker class="${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" name="startDate" value="${theme?.profile?.startDate}" precision="day"/>--}%
-            </td> 
+            </td>
             <td width="230" valign="top" class="value">
               <g:textField name="endDate" size="30" class="datepicker ${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" value="${theme?.profile?.endDate?.format('dd. MM. yyyy')}"/>
-              %{--<g:datePicker class="${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" name="endDate" value="${theme?.profile?.endDate}" precision="day"/>--}%
-            </td>
-          </tr>
-            <tr class="prop">
-            <td valign="top" class="name">
-              <label for="type">
-                <g:message code="theme.profile.type"/>
-              </label>
-              </td>
-           <td colspan="2" valign="top" class="name">
-              <label for="type">
-                <g:message code="facility"/>
-              </label>
             </td>
           </tr>
 
           <tr class="prop">
+            <td valign="top" class="name"><g:message code="theme.profile.type"/></td>
+            <td colspan="2" valign="top" class="name"><g:message code="facility"/></td>
+          </tr>
+
+          <tr class="prop">
             <td valign="top" class="value">
-              <g:select  class="${hasErrors(bean: theme, field: 'profile.type', 'errors')} drop-down-280" from="${['Übergeordnetes Thema','Subthema']}" id="type" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
+              <g:select class="${hasErrors(bean: theme, field: 'profile.type', 'errors')} drop-down-280" from="${['Übergeordnetes Thema','Subthema']}" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
             </td>
             <td colspan="2" valign="top" class="value">
               <g:select from="${allFacilities}" class="drop-down-220" name="facility" optionKey="id" optionValue="profile" value=""/>
             </td>
           </tr>
 
-
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="theme.profile.description"/>
-              </label>
-            </td>
-            </tr>
+            <td valign="top" class="name"><g:message code="theme.profile.description"/></td>
+          </tr>
+
           <tr>
             <td colspan="3" valign="top" class="value">
               <g:textArea class="countable2000 ${hasErrors(bean: theme, field: 'profile.description', 'errors')}" rows="3" cols="120" name="description" value="${fieldValue(bean: theme, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
-
-
-
-
           </tbody>
         </table>
       </div>
+
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
+      
     </g:form>
   </div>
 </div>
