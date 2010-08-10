@@ -57,7 +57,7 @@
                 <g:sortableColumn property="title" title="Aktivit&auml;t" />
                 <g:sortableColumn property="facility" title="Einrichtung" />
                 <g:sortableColumn property="date" title="Datum" />
-                <th>Typ</th>
+                %{--<th>Typ</th>--}%
                 <th>Kommentare</th>
               </tr>
             </thead>
@@ -67,7 +67,7 @@
                 <td><g:link action="show" id="${activity.id}" params="[name:entity.name]">${activity.profile.fullName}</g:link></td>
                 <td><app:getFacility entity="${activity}">${facility.profile.fullName}</app:getFacility></td>
                 <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
-                <td>${activity.profile.type}</td>
+                %{--<td>${activity.profile.type}</td>--}%
                 <td>${activity.profile.comments.size()}</td>
               </tr>
             </g:each>
