@@ -57,6 +57,7 @@
     <div class="buttons">
       <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
         <g:link class="buttonGreen" action="edit" id="${resource?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: resource.id)}" id="${resource.id}">Löschen</g:link>
       </app:hasRoleOrType>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>

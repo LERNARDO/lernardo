@@ -6,6 +6,7 @@ import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.ProfileHelperService
 import standard.MetaDataService
 import at.openfactory.ep.Profile
+import at.openfactory.ep.Link
 
 class ResourceProfileController {
   MetaDataService metaDataService

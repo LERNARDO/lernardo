@@ -81,7 +81,7 @@
 
         <app:isEducator entity="${entity}">
             <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
-            <g:link class="buttonGreen" action="del" onclick="${app.getLinks(id: activity.id)}" id="${activity.id}">Löschen</g:link>
+            <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: activity.id)}" id="${activity.id}">Löschen</g:link>
             <g:link class="buttonGray" action="list">Zurück</g:link>  %{-- hf 20102406   --}%
             %{--<a href="" class="buttonGray" onclick="history.go(-2)">Zurück</a> --}%
             <div class="spacer"></div>
