@@ -34,7 +34,7 @@
             <app:showGender gender="${parent.profile.gender}"/>
           </td>
           <td valign="top" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}
+            ${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
           </td>
           <td valign="top" class="value-show">
             <g:link action="show" id="${parent.id}" params="[entity:parent.id]">${parent.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if>
