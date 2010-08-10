@@ -23,36 +23,29 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupClient.profile.name"/>
-              </label>
-            </td>
-             <td valign="top" class="name">
-              <label for="description">
-                <g:message code="groupClient.profile.description"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="groupClient.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="groupClient.profile.description"/></td>
           </tr>
 
           <tr class="prop">
-          <td width="200px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
+            <td width="200px" valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description')}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
             </td>
-
           </tr>
 
           </tbody>
         </table>
       </div>
+
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
+      
     </g:form>
   </div>
 </div>

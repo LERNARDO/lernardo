@@ -23,17 +23,8 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupColony.profile.name"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="groupColony.profile.description"/>
-              </label>
-            </td>
-
+            <td valign="top" class="name"><g:message code="groupColony.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="groupColony.profile.description"/></td>
           </tr>
 
           <tr class="prop">
@@ -43,17 +34,18 @@
             <td valign="top" class="value">
               <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
             </td>
-
           </tr>
 
           </tbody>
         </table>
       </div>
+
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
+      
     </g:form>
   </div>
 </div>

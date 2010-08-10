@@ -44,8 +44,7 @@
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td valign="middle" class="value">
-              <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${educator?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
-              %{--<g:datePicker name="birthDate" value="${educator?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>--}%
+              <g:textField name="birthDate" size="30" class="datepicker-birthday ${hasErrors(bean: educator, field: 'profile.birthDate', 'errors')}" value="${educator?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
             </td>
           </tr>
         </table>
@@ -82,18 +81,18 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator.profile.inChargeOf}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator.profile.inChargeOf}"/>
               </g:if>
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${educator.profile.languages}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${educator.profile.languages}"/>
               </g:if>
             </td>
           </tr>
@@ -142,48 +141,32 @@
         <h4><g:message code="educator.profile.origin"/></h4>
         <div class="contact">
           <table>
+
             <tr>
-              <td valign="top" class="name">
-                <label for="originStreet">
-                  <g:message code="educator.profile.originStreet"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="originZip">
-                  <g:message code="educator.profile.originZip"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="originCity">
-                  <g:message code="educator.profile.originCity"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="originCountry">
-                  <g:message code="educator.profile.originCountry"/>
-                </label>
-              </td>
+              <td valign="top" class="name"><g:message code="educator.profile.originStreet"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.originZip"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.originCity"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.originCountry"/></td>
             </tr>
+
             <tr>
               <td width="280" height="35" valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="41" id="originStreet" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="41" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
               </td>
               <td width="105" valign="middle" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
+                <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
               </td>
               <td width=",210" valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td valign="middle" class="value">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+                  <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${educator.profile.originCountry}"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select name="originCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+                  <g:select name="originCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${educator.profile.originCountry}"/>
                 </g:if>
-                %{--<g:textField class="${hasErrors(bean: educator, field: 'profile.originCountry', 'errors')}" size="30" id="originCountry" name="originCountry" value="${fieldValue(bean: educator, field: 'profile.originCountry').decodeHTML()}"/>
-                --}%</td>
-
+              </td>
             </tr>
 
           </table>
@@ -192,65 +175,47 @@
         <h4><g:message code="educator.profile.emContact"/></h4>
         <div class="contact">
           <table>
+
             <tr>
-              <td valign="top" class="name">
-                <label for="contactStreet">
-                  <g:message code="educator.profile.contactStreet"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="contactZip">
-                  <g:message code="educator.profile.contactZip"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="contactCity">
-                  <g:message code="educator.profile.contactCity"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="contactCountry">
-                  <g:message code="educator.profile.contactCountry"/>
-                </label>
-              </td>
+              <td valign="top" class="name"><g:message code="educator.profile.contactStreet"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.contactZip"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.contactCity"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.contactCountry"/></td>
             </tr>
+
             <tr>
               <td width="280" height="35" valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" id="contactStreet" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
               </td>
               <td width="105" valign="middle" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" id="contactZip" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
+                <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
               </td>
               <td width="210" valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" id="contactCity" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
               </td>
               <td valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" id="contactCountry" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
               </td>
             </tr>
+
           </table>
 
           <table>
+
             <tr>
-              <td valign="top" class="name">
-                <label for="contactPhone">
-                  <g:message code="educator.profile.contactPhone"/>
-                </label>
-              </td>
-              <td valign="top" class="name">
-                <label for="contactMail">
-                  <g:message code="educator.profile.contactMail"/>
-                </label>
-              </td>
+              <td valign="top" class="name"><g:message code="educator.profile.contactPhone"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.contactMail"/></td>
             </tr>
+
             <tr>
               <td width="280" height="35" valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" id="contactPhone" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
               </td>
               <td valign="middle" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" id="contactMail" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
+                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
               </td>
             </tr>
+
           </table>
         </div>
 
@@ -258,33 +223,29 @@
           <table>
             <tr>
               <td width="90" valign="middle">
-                <label for="enabled">
-                  <g:message code="active"/>
-                </label>
+                <g:message code="active"/>
                 <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
               </td>
               <td width="350" valign="middle">
-                <label for="email">
-                  <g:message code="educator.profile.email"/>
-                </label>:
-              <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
+                <g:message code="educator.profile.email"/>:
+                <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
               </td>
               <td>
-                <label for="locale">
-                  <g:message code="languageSelection"/>
-                </label>:
-              <app:localeSelect class="drop-down-200" name="locale" value="${educator?.user?.locale}"/>
+                <g:message code="languageSelection"/>:
+                <app:localeSelect class="drop-down-200" name="locale" value="${educator?.user?.locale}"/>
               </td>
             </tr>
           </table>
         </div>
 
       </div>
+
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
+      
     </g:form>
   </div>
 </div>

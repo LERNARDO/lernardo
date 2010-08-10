@@ -39,18 +39,18 @@
             </td>
             <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${pate.profile.motherTongue}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${pate.profile.motherTongue}"/>
               </g:if>
             </td>
             <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${pate.profile.languages}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value"/>
+                <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${pate.profile.languages}"/>
               </g:if>
             </td>
           </tr>
@@ -78,10 +78,10 @@
             </td>
             <td width="210" height="35" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value"/>
+                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${pate.profile.country}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value"/>
+                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${pate.profile.country}"/>
               </g:if>
             </td>
           </tr>
@@ -92,15 +92,17 @@
           <table>
 
             <tr>
-              <td width="90" valign="middle"><g:message code="active"/>
-                <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
+              <td width="90" valign="middle">
+                <g:message code="active"/>
+                <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
               </td>
-              <td width="350" valign="middle"><g:message code="educator.profile.email"/>:
-                <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
+              <td width="350" valign="middle">
+                <g:message code="educator.profile.email"/>:
+                <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
               </td>
               <td>
                 <g:message code="languageSelection"/>:
-                <app:localeSelect class="drop-down-200" name="locale" value="${educator?.user?.locale}"/>
+                <app:localeSelect class="drop-down-200" name="locale" value="${pate?.user?.locale}"/>
               </td>
             </tr>
 

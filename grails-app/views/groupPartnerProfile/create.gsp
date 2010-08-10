@@ -24,43 +24,31 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupPartner.profile.name"/>
-              </label>
-            </td>
-             <td valign="top" class="name">
-              <label for="description">
-                <g:message code="groupPartner.profile.description"/>
-              </label>
-              </td>
+            <td valign="top" class="name"><g:message code="groupPartner.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="groupPartner.profile.description"/></td>
           </tr>
 
           <tr class="prop">
             <td width="200px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description')}"/>
+              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td colspan="2" valign="top" class="name">
-              <label for="service">
-                <g:message code="groupPartner.profile.service"/>
-              </label>
-            </td>
-            </tr>
-           <tr>
+            <td colspan="2" valign="top" class="name"><g:message code="groupPartner.profile.service"/></td>
+          </tr>
+
+          <tr>
             <td colspan="2" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select  class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value"/>
+                <g:select class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
               </g:if>
-              %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>
           </tr>
 
