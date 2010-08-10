@@ -345,7 +345,7 @@ class ActivityController {
     Entity activity = Entity.get(params.id)
 
     // delete all links to activity
-    Link.findAllByTarget(activity).each {it.delete()}
+    Link.findAllBySourceOrTarget(activity, activity).each {it.delete()}
 
     flash.message = message(code: "activity.deleted", args: [activity.profile.fullName])
     activity.delete(flush: true)
