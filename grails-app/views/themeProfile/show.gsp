@@ -11,6 +11,7 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
+
       <table>
         <tbody>
 
@@ -69,7 +70,7 @@
     <g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
       <div class="zusatz">
         <h5>Subthemen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a onclick="toggle('#subthemes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Subthema hinzufügen"/></a></app:hasRoleOrType></h5>
-        <div class="zusatz" id="subthemes" style="display:none">
+        <div class="zusatz-add" id="subthemes" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addSubTheme', id: theme.id]" update="subthemes2" before="showspinner('#subthemes2')">
             <g:select name="subtheme" from="${allSubthemes}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>
@@ -77,7 +78,7 @@
             <div class="spacer"></div>
           </g:formRemote>
         </div>
-        <div class="zusatz" id="subthemes2">
+        <div class="zusatz-show" id="subthemes2">
           <g:render template="subthemes" model="[subthemes: subthemes, theme: theme]"/>
         </div>
       </div>

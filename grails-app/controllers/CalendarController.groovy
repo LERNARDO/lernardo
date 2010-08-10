@@ -78,6 +78,7 @@ class CalendarController {
       def dtStart = new DateTime(it.profile.startDate)
       dtStart = dtStart.plusHours(2)
       def dtEnd = new DateTime(it.profile.endDate)
+      dtEnd = dtEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
       //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
       eventList << [id: it.id, title: it.profile.fullName, start: dtStart.toDate(), end: dtEnd.toDate(), className: 'theme']
     }
