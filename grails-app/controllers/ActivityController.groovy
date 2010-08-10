@@ -152,8 +152,35 @@ class ActivityController {
   /*
    * saves a batch of theme room activities between a certain time range
    */
-  def save = {
-    //log.info params
+  def save = {ActivityCommand ac->
+
+    if (ac.hasErrors()) {
+
+      def facilities = []
+      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name)
+        Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      else
+        facilities = Entity.findAllByType(metaDataService.etFacility)
+      def educators = Entity.findAllByType(metaDataService.etEducator)
+      def clients = Entity.findAllByType(metaDataService.etClient)
+      def resources = Entity.findAllByType(metaDataService.etResource)
+
+      def c = Entity.createCriteria()
+      def templates = c.list {
+        profile {
+          eq("type", "Themenraumaktivitätsvorlage")
+        }
+      }
+
+      render view:'create', model:[ac:ac, 'facilities': facilities,
+            'educators': educators,
+            'clients': clients,
+            'entity': entityHelperService.loggedIn,
+            'resources': resources,
+            'templates': templates]
+      return
+    }
+
     EntityType etActivity = metaDataService.etActivity
 
     Entity template = Entity.get(params.template)
@@ -338,4 +365,85 @@ class ActivityController {
     activity.profile.removeFromClientEvaluations(ClientEvaluation.get(params.clientEvaluation))
     render template: 'clients', model: [activity: activity, entity: entityHelperService.loggedIn]
   }
+}
+
+/*
+* command object to handle validation of theme room activities
+*/
+class ActivityCommand {
+  String fullName
+  Date periodStart
+  Date periodEnd
+  Boolean monday
+  Boolean tuesday
+  Boolean wednesday
+  Boolean thursday
+  Boolean friday
+  Boolean saturday
+  Boolean sunday
+  Boolean weekdays
+
+  String mondayStartHour
+  String tuesdayStartHour
+  String wednesdayStartHour
+  String thursdayStartHour
+  String fridayStartHour
+  String saturdayStartHour
+  String sundayStartHour
+
+  String mondayEndHour
+  String tuesdayEndHour
+  String wednesdayEndHour
+  String thursdayEndHour
+  String fridayEndHour
+  String saturdayEndHour
+  String sundayEndHour
+
+  String mondayStartMinute
+  String tuesdayStartMinute
+  String wednesdayStartMinute
+  String thursdayStartMinute
+  String fridayStartMinute
+  String saturdayStartMinute
+  String sundayStartMinute
+
+  String mondayEndMinute
+  String tuesdayEndMinute
+  String wednesdayEndMinute
+  String thursdayEndMinute
+  String fridayEndMinute
+  String saturdayEndMinute
+  String sundayEndMinute
+
+  static constraints = {
+    fullName(blank: false)
+    periodStart(nullable: false)
+    periodEnd(nullable: false, validator: {pe, ac ->
+      return pe >= ac.periodStart
+    })
+    mondayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.mondayStartHour
+    })
+    tuesdayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.tuesdayStartHour
+    })
+    wednesdayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.wednesdayStartHour
+    })
+    thursdayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.thursdayStartHour
+    })
+    fridayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.fridayStartHour
+    })
+    saturdayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.saturdayStartHour
+    })
+    sundayEndHour(nullable: true, validator: {pe, ac ->
+      return pe >= ac.sundayStartHour
+    })
+    weekdays(validator: {wd, pc ->
+      return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)})
+  }
+
 }
