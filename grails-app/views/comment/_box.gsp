@@ -16,7 +16,7 @@
 
             <div class="value">
               <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-              <fckeditor:editor name="content" id="content" width="815" height="200" toolbar="Post" fileBrowser="default">
+              <fckeditor:editor name="content" id="content" width="815" height="200" toolbar="Basic" fileBrowser="default">
               </fckeditor:editor>
             </div>
 

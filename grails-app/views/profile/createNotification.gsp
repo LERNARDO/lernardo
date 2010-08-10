@@ -46,7 +46,7 @@
               <td>Inhalt:</td>
               <td class="value ${hasErrors(bean:nc,field:'content','errors')}">
                 <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-                <fckeditor:editor name="content" id="content" width="700" height="300" toolbar="Post" fileBrowser="default">
+                <fckeditor:editor name="content" id="content" width="700" height="300" toolbar="Basic" fileBrowser="default">
                   ${nc?.content}
                 </fckeditor:editor>
               </td>
