@@ -184,8 +184,10 @@
 
                   <div id="inhalt-verwaltung" class="aktiv_inhalt">
                     <ul>
-                      <app:isAdmin>
+                      <app:isOperator entity="${currentEntity}">
                         <li class="icon-admin"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
+                      </app:isOperator>
+                      <app:isAdmin>
                         <li class="icon-admin"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                         <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                         <hr/>

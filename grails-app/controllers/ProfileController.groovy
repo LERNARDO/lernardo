@@ -219,8 +219,7 @@ class ProfileController {
 
     //Link.findAllBySourceOrTarget(entity, entity)?.each { it.delete() }
 
-    flash.message = message(code: "user.deactivated", args: [entity.profile.fullName])
-    redirect action: 'list'
+    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
   }
 
   /*
@@ -236,8 +235,7 @@ class ProfileController {
 
     entity.user.enabled = true
 
-    flash.message = message(code: "user.activated", args: [entity.profile.fullName])
-    redirect action: 'list'
+    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
   }
 
   /*
