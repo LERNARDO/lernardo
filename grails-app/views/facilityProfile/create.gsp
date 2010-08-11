@@ -10,11 +10,8 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <g:hasErrors bean="${facility}">
-      <div class="errors">
-        <g:renderErrors bean="${facility}" as="list"/>
-      </div>
-    </g:hasErrors>
+
+    <g:render template="/templates/errors" model="[bean: facility]"/>
 
     <g:form action="save" method="post">
       <div class="dialog">

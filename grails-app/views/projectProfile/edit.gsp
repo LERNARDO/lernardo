@@ -10,11 +10,9 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <g:hasErrors bean="${project}">
-      <div class="errors">
-        <g:renderErrors bean="${project}" as="list"/>
-      </div>
-    </g:hasErrors>
+
+    <g:render template="/templates/errors" model="[bean: project]"/>
+
     <g:form method="post" id="${project.id}">
       <g:hiddenField name="version" value="${project?.version}"/>
       <div class="dialog">

@@ -12,11 +12,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:hasErrors bean="${partner}">
-      <div class="errors">
-        <g:renderErrors bean="${partner}" as="list"/>
-      </div>
-    </g:hasErrors>
+    <g:render template="/templates/errors" model="[bean: partner]"/>
 
     <g:form action="update" method="post" id="${partner.id}">
       <div class="dialog">

@@ -11,11 +11,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:hasErrors bean="${group}">
-      <div class="errors">
-        <g:renderErrors bean="${group}" as="list"/>
-      </div>
-    </g:hasErrors>
+    <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form action="save" method="post">
       <div class="dialog">

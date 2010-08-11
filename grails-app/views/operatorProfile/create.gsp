@@ -11,11 +11,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:hasErrors bean="${operator}">
-      <div class="errors">
-        <g:renderErrors bean="${operator}" as="list"/>
-      </div>
-    </g:hasErrors>
+    <g:render template="/templates/errors" model="[bean: operator]"/>
 
     <g:form action="save" method="post">
       <div class="dialog">

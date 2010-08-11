@@ -11,11 +11,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:hasErrors bean="${template}">
-      <div class="errors">
-        <g:renderErrors bean="${template}" as="list"/>
-      </div>
-    </g:hasErrors>
+    <g:render template="/templates/errors" model="[bean: template]"/>
 
     <g:form action="update" method="post" id="${template.id}">
       <table>
