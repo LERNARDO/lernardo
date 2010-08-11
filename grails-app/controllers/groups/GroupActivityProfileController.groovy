@@ -40,23 +40,23 @@ class GroupActivityProfileController {
     }
     else {
       List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-      List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient).collect {it.source} // find all clients linked to this group
+      List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source} // find all clients linked to this group
 
       List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      List facilities = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility).collect {it.source} // find all facilities linked to this group
+      List facilities = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.collect {it.source} // find all facilities linked to this group
 
       List allPartners = Entity.findAllByType(metaDataService.etPartner)
-      List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner).collect {it.source} // find all partners linked to this group
+      List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)?.collect {it.source} // find all partners linked to this group
 
       def allParents = functionService.findParents(group)
-      List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent).collect {it.source} // find all parents linked to this group
+      List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)?.collect {it.source} // find all parents linked to this group
 
       def allEducators = functionService.findEducators(group)
-      List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator).collect {it.source} // find all educators linked to this group
+      List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)?.collect {it.source} // find all educators linked to this group
 
-      List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember).collect {it.source} // find all grouptemplates linked to this group
+      List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)?.collect {it.source} // find all grouptemplates linked to this group
 
-      def template = Link.findByTargetAndType(group, metaDataService.ltTemplate).source // find template
+      def template = Link.findByTargetAndType(group, metaDataService.ltTemplate)?.source // find template
 
       def calculatedDuration = 0
       groupTemplates.each {
