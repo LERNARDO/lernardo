@@ -11,10 +11,10 @@
   <div class="boxGray">
     <div class="second">
       <g:if test="${asset}">
-        Dein Profilbild wurde erfolgreich aktualisiert!
+        Das Profilbild wurde erfolgreich aktualisiert!
       </g:if>
       <g:else>
-        Dein Profilbild konnte nicht aktualisiert werden!
+        Das Profilbild konnte nicht aktualisiert werden!
       </g:else>
     </div>
   </div>
