@@ -32,10 +32,10 @@
 
           <tr>
             <td width="180" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
             </td>
             <td width="210" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
