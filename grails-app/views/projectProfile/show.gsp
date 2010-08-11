@@ -80,7 +80,7 @@
         </div>
 
         <div id="projectDay">
-          <g:render template="projectday" model="[projectDay: projectDays[0], allResources: allResources, allEducators: allEducators, allParents: allParents, units: units]"/>
+          <g:render template="projectday" model="[projectDay: projectDays[0], allResources: allResources, allEducators: allEducators, allParents: allParents, units: units, entity: entity]"/>
         </div>
 
 

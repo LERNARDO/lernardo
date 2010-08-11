@@ -13,7 +13,7 @@
 
   <div id="units2">
     <app:getProjectDayUnits projectDay="${projectDay}">
-      <g:render template="units" model="[units: units, projectDay: projectDay, allParents: allParents]"/>
+      <g:render template="units" model="[units: units, projectDay: projectDay, allParents: allParents, entity: entity]"/>
     </app:getProjectDayUnits>
   </div>
 
@@ -29,7 +29,7 @@
 
   <div id="educators2">
     <app:getProjectDayEducators projectDay="${projectDay}">
-      <g:render template="educators" model="[educators: educators, projectDay: projectDay]"/>
+      <g:render template="educators" model="[educators: educators, projectDay: projectDay, entity: entity]"/>
     </app:getProjectDayEducators>
   </div>
 
@@ -45,7 +45,7 @@
 
   <div id="resources2">
     <app:getProjectDayResources projectDay="${projectDay}">
-      <g:render template="resources" model="[resources: resources, projectDay: projectDay]"/>
+      <g:render template="resources" model="[resources: resources, projectDay: projectDay, entity: entity]"/>
     </app:getProjectDayResources>
   </div>
 

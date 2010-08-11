@@ -556,20 +556,26 @@ class ProjectProfileController {
     List activities = links.collect {it.source}
 
     log.info "Found " + activities.size() + " existing activities"
-    render "Es werden " + activities.size() + " vorhande Aktivitäten aktualisiert!<br/>"
 
     if (activities) {
+      render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
       activities.each {
         if (new Date() < it.profile.date) {
           links = Link.findAllBySourceOrTarget(it, it)
           links.each {it.delete()}
+          it.delete()
         }
-        it.delete()
       }
+    }
+    else {
+      render "<p>Es wurden folgende Aktivitäten geplant:</p>"
     }
 
     // then do the big loop
     log.info "Starting big loop"
+
+    SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy 'um' hh:mm")
+
     projectDays.each { pd ->
       links = Link.findAllByTargetAndType(pd, metaDataService.ltProjectDayUnit)
       projectUnits = links.collect {it.source}
@@ -664,7 +670,7 @@ class ProjectProfileController {
 
             log.info "Activity instantiated!"
 
-            render "Aktivität '" + activity.profile.fullName + "' instanziert am " + calendar.getTime() + "<br/>"
+            render '<img src="' + resource(dir:'images/icons', file: 'icon_tick.png') + '"/> Aktivität <a href="' + createLink(controller:'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> am ' + df.format(calendar.getTime()) + '.<br/>'
             // get new time for next activity
             calendar.add(Calendar.MINUTE, activity.profile.duration)
           }
@@ -673,7 +679,7 @@ class ProjectProfileController {
       }
     }
 
-    render "<span class='green'>Projekt wurde instanziert!</span><br/>"
+    render "<br/><span class='green'>Projekt wurde geplant!</span>"
 
   }
 

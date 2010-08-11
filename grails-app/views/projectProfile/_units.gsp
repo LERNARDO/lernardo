@@ -26,7 +26,7 @@
 
         <div id="parents2${i}">
           <app:getProjectUnitParents projectUnit="${unit}">
-            <g:render template="parents" model="[parents: parents, unit: unit, i: i]"/>
+            <g:render template="parents" model="[parents: parents, unit: unit, i: i, entity: entity]"/>
           </app:getProjectUnitParents>
         </div>
 
@@ -42,7 +42,7 @@
 
         <div id="partners2${i}">
           <app:getProjectUnitPartners projectUnit="${unit}">
-            <g:render template="parents" model="[partners: partners, unit: unit, i: i]"/>
+            <g:render template="parents" model="[partners: partners, unit: unit, i: i, entity: entity]"/>
           </app:getProjectUnitPartners>
         </div>
 
