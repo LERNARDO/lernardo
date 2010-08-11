@@ -38,11 +38,11 @@
             </td>
 
             <td width="200" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName')}"/>
+              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
             </td>
 
             <td width="270" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="38" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName')}"/>
+              <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="38" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
             </td>
 
             <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">

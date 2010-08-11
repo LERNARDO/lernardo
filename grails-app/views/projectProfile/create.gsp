@@ -30,7 +30,7 @@
 
           <tr>
             <td width="300" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: pc, field: 'fullName')}"/>
+              <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
             </td>
             <td width="230" valign="top" class="value">
               <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${pc?.startDate?.format('dd. MM. yyyy')}"/>
