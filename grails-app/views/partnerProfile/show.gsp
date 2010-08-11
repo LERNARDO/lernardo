@@ -103,9 +103,9 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdmin entity="${partner}">
+      <app:isMeOrAdminOrOperator entity="${partner}">
         <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdmin>
+      </app:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
     </div>   
@@ -126,8 +126,8 @@
   </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#contacts');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="partner.profile.contacts"/> <app:isOperator entity="${partner}"><a onclick="toggle('#contacts');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></app:isOperator></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2')">
 

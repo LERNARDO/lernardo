@@ -620,6 +620,11 @@ class HelperTagLib {
       out << body()
   }
 
+  def isMeOrAdminOrOperator = {attrs, body ->
+    if (secHelperService.isMeOrAdmin(attrs.entity) || entityHelperService.loggedIn.type.id == metaDataService.etOperator.id)
+      out << body()
+  }
+
   def isSysAdmin = {attrs, body ->
     // "secHelperService.hasRole" is broken so let's use this
     def entity = attrs.entity ?: entityHelperService.loggedIn

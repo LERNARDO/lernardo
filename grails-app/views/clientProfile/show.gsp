@@ -225,12 +225,12 @@
       </div>
     </div>
 
-    <app:isMeOrAdmin entity="${client}">
+    <app:isMeOrAdminOrOperator entity="${client}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${client?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
+    </app:isMeOrAdminOrOperator>
 
     <div class="zusatz">
       <h5>Schulleistungungen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#performances'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Performance hinzufügen" /></a></app:hasRoleOrType></h5>
@@ -253,7 +253,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="performances2">
-        <g:render template="performances" model="${client}"/>
+        <g:render template="performances" model="[client: client, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -278,7 +278,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="healths2">
-        <g:render template="healths" model="${client}"/>
+        <g:render template="healths" model="[client: client, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -303,7 +303,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="materials2">
-        <g:render template="materials" model="${client}"/>
+        <g:render template="materials" model="[client: client, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -318,7 +318,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="dates2">
-        <g:render template="dates" model="[client: client, entity: entity]"/>
+        <g:render template="dates" model="[client: client, entity: currentEntity]"/>
       </div>
     </div>
 

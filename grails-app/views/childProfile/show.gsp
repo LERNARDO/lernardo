@@ -21,7 +21,7 @@
 			<td  width="200"  valign="middle" class="name-show">
             <g:message code="child.profile.firstName"/>
 			</td>
-			 <td width="280"  valign="middle"class="name-show">
+			 <td width="280"  valign="middle" class="name-show">
             <g:message code="child.profile.lastName"/>
 			</td>
 			<td valign="middle" class="name-show">
@@ -47,7 +47,7 @@
 			<td  width="200"  valign="middle" class="name-show">
             <g:message code="child.profile.jobType"/>
 			</td>
-			 <td width="280"  valign="middle"class="name-show">
+			 <td width="280"  valign="middle" class="name-show">
             <g:message code="child.profile.jobIncome"/>
 			</td>
 			<td valign="middle" class="name-show">
@@ -78,9 +78,9 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdmin entity="${child}">
+      <app:isMeOrAdminOrOperator entity="${child}">
         <g:link class="buttonGreen" action="edit" id="${child?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdmin>
+      </app:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

@@ -236,15 +236,15 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdmin entity="${educator}">
+      <app:isMeOrAdminOrOperator entity="${educator}">
         <g:link class="buttonGreen" action="edit" id="${educator?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdmin>
+      </app:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="educator.profile.inOut"/> <app:isMeOrAdmin entity="${educator}"><a onclick="toggle('#dates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="educator.profile.inOut"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#dates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="showspinner('#dates2')">
           <g:datePicker name="date" value="" precision="day"/>
@@ -254,7 +254,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="dates2">
-        <g:render template="dates" model="[educator: educator, entity: entity]"/>
+        <g:render template="dates" model="[educator: educator, entity: currentEntity]"/>
       </div>
     </div>
 

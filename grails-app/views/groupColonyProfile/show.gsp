@@ -33,15 +33,15 @@
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${group}">
+    <app:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
+    </app:isOperator>
 
     <div class="zusatz">
-      <h5><g:message code="representantives"/> <app:isOperator entity="${entity}"><a onclick="toggle('#representatives'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" />
+      <h5><g:message code="representantives"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#representatives'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Repräsentant hinzufügen" />
      </a></app:isOperator></h5>
       <div class="zusatz-add" id="representatives" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="showspinner('#representatives2')">
@@ -90,13 +90,13 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="representatives2">
-        <g:render template="representatives" model="${group}"/>
+        <g:render template="representatives" model="[group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="building"/> (<g:message code="building.info"/>) <app:isOperator entity="${entity}"><a onclick="toggle('#buildings'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
-      <div class="zusatz-add"id="buildings" style="display:none">
+      <h5><g:message code="building"/> (<g:message code="building.info"/>) <app:isOperator entity="${currentEntity}"><a onclick="toggle('#buildings'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Gebäude hinzufügen" /></a></app:isOperator></h5>
+      <div class="zusatz-add" id="buildings" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="showspinner('#buildings2')">
 
           <table>
@@ -136,13 +136,13 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="buildings2">
-        <g:render template="buildings" model="${group}"/>
+        <g:render template="buildings" model="[group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resource.profile"/> <app:isOperator entity="${entity}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
-      <div class="zusatz-add"id="resources" style="display:none">
+      <h5><g:message code="resource.profile"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isOperator></h5>
+      <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2')">
           <table>
             <tr>
@@ -165,12 +165,12 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[resources: resources, group: group]"/>
+        <g:render template="resources" model="[resources: resources, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="facilities"/> <app:isOperator entity="${entity}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isOperator></h5>
+      <h5><g:message code="facilities"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isOperator></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -180,13 +180,13 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="facilities2">
-        <g:render template="facilities" model="[facilities: facilities, group: group]"/>
+        <g:render template="facilities" model="[facilities: facilities, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="partners"/> <app:isOperator entity="${entity}"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isOperator></h5>
-      <div class="zusatz-add"id="partners" style="display:none">
+      <h5><g:message code="partners"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></app:isOperator></h5>
+      <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -195,13 +195,13 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="partners2">
-        <g:render template="partners" model="[partners: partners, group: group]"/>
+        <g:render template="partners" model="[partners: partners, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="educators"/> <app:isOperator entity="${entity}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
-      <div class="zusatz-add"id="educators" style="display:none">
+      <h5><g:message code="educators"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Pädagogen hinzufügen" /></a></app:isOperator></h5>
+      <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote6" url="[controller:'groupColonyProfile', action:'addEducator', id:group.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
@@ -210,7 +210,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="educators2">
-        <g:render template="educators" model="[educators: educators, group: group]"/>
+        <g:render template="educators" model="[educators: educators, group: group, entity: currentEntity]"/>
       </div>
     </div>
 

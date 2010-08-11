@@ -46,24 +46,20 @@
 
     <div class="buttons">
       <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
-
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonGreen" action="create" id="${group.id}">Vorlage duplizieren</g:link>
 
-        <app:isEducator entity="${currentEntity}">
         %{-- and only when it is done --}%
           <g:if test="${group.profile.status == 'fertig'}">
             <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock instanzieren</g:link>
           </g:if>
-        </app:isEducator>
-
       </app:hasRoleOrType>
       <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5>Aktivitätsvorlagen <app:isEducator entity="${entity}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></app:isEducator></h5>
+      <h5>Aktivitätsvorlagen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="templates" style="display:none">
         <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
@@ -147,7 +143,7 @@
 
       </div>
       <div class="zusatz-show" id="templates2">
-        <g:render template="templates" model="[group: group, entity: entity, templates: templates]"/>
+        <g:render template="templates" model="[group: group, templates: templates, entity: currentEntity]"/>
       </div>
     </div>
 

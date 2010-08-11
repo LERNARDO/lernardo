@@ -79,13 +79,15 @@
 
         </table>
 
-        <app:isEducator entity="${entity}">
+        <div class="buttons">
+          <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
             <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
             <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: activity.id)}" id="${activity.id}">Löschen</g:link>
-            <g:link class="buttonGray" action="list">Zurück</g:link>  %{-- hf 20102406   --}%
-            %{--<a href="" class="buttonGray" onclick="history.go(-2)">Zurück</a> --}%
-            <div class="spacer"></div>
-        </app:isEducator>
+          </app:hasRoleOrType>
+          <g:link class="buttonGray" action="list">Zurück</g:link>
+          <div class="spacer"></div>
+        </div>
+
 
     %{-- this is only valid for theme activities --}%
     <g:if test="${activity.profile.type == 'theme'}">

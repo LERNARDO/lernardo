@@ -6,7 +6,7 @@
   
   <ul>
   <g:each in="${templates}" var="template" status="i">
-    <li>${i+1}) <g:link controller="${template.type.supertype.name +'Profile'}" action="show" id="${template.id}" params="[entity:entity.id]">${template.profile.fullName}</g:link> (${template.profile.duration} min) <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeTemplate" update="templates2" id="${group.id}" params="[template: template.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Aktivitätsvorlage entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+    <li>${i+1}) <g:link controller="${template.type.supertype.name +'Profile'}" action="show" id="${template.id}" params="[entity:entity.id]">${template.profile.fullName}</g:link> (${template.profile.duration} min) <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeTemplate" update="templates2" id="${group.id}" params="[template: template.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Aktivitätsvorlage entfernen" align="top"/></g:remoteLink></app:hasRoleOrType></li>
   </g:each>
   </ul>
 

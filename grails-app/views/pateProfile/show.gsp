@@ -77,15 +77,15 @@
       </div>
 
       <div class="buttons">
-        <app:isMeOrAdmin entity="${pate}">
+        <app:isMeOrAdminOrOperator entity="${pate}">
           <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
-        </app:isMeOrAdmin>
+        </app:isMeOrAdminOrOperator>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="pate.profile.gcs"/> <app:isOperator entity="${entity}"><a onclick="toggle('#godchildren');
+        <h5><g:message code="pate.profile.gcs"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#godchildren');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></app:isOperator></h5>
         <div class="zusatz-add" id="godchildren" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
@@ -96,7 +96,7 @@
           </g:formRemote>
         </div>
         <div class="zusatz-show" id="godchildren2">
-          <g:render template="godchildren" model="[godchildren: godchildren, pate: pate]"/>
+          <g:render template="godchildren" model="[godchildren: godchildren, pate: pate, entity: currentEntity]"/>
         </div>
       </div>
     </div>

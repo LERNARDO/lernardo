@@ -162,9 +162,9 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdmin entity="${parent}">
+      <app:isMeOrAdminOrOperator entity="${parent}">
         <g:link class="buttonGreen" action="edit" id="${parent?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdmin>
+      </app:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
