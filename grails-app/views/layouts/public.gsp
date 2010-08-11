@@ -33,7 +33,6 @@
                   <div class="sideboxheader">Login</div>
                   <div class="sideboxcontent">
 
-
                     <g:form controller="security" action="do_login" method="post">
                       <table>
                         <tr>
@@ -88,8 +87,9 @@
                 <div class="sideboxcontent">
                   <app:getQuoteOfTheDay />
                 </div>
-              </div><!-- innersidebox -->
-            </div><!-- sidebox -->
+              </div>
+            </div>
+
             <div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader"><g:message code="sideboxheader.picture"/></div>
@@ -99,8 +99,8 @@
                     <img src='${resource(dir:"images/static/daily_pic2",file:day)}' width="235" height="180" alt="bild des tages" id="randomPicture"/>
                   </app:getPicOfTheDay>
                 </div>
-              </div><!-- innersidebox -->
-            </div><!-- sidebox -->
+              </div>
+            </div>
 
           </div><!-- yui-b -->
 

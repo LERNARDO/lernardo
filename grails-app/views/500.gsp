@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta name="layout" content="public"/>
 	<title>Fehler 500</title>
   </head>
   <body>

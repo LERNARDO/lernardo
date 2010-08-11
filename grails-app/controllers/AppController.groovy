@@ -15,6 +15,10 @@ class AppController {
   def securityManager
   FunctionService functionService
 
+  def error404 = {
+    render view: '/404'
+  }
+
   /*
    * this should forward the exception to the developer then render the 500 view
    * TODO: complete the mail part
