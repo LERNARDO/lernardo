@@ -7,7 +7,7 @@
   <div class="second">
 
     <app:isEducator entity="${currentEntity}">
-      <div class="comments-actions">
+      <div class="add-comment">
         <a onclick="toggle('#comment-div'); return false" href="#">Kommentar hinzufügen <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kommentar hinzufügen" /></a>
       </div>
       <div id="comment-div" style="display:none; margin-bottom: 10px">
