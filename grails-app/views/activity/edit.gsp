@@ -31,14 +31,13 @@
                 </tr>
 
                 <tr>
-                  <td width="220" valign="top" class="value ${hasErrors(bean:activity,field:'profile.fullName','errors')}"><g:textField class="countable${activity.profile.constraints.fullName.maxSize}" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName')}"/>
+                  <td width="220" valign="top" class="value ${hasErrors(bean:activity,field:'profile.fullName','errors')}"><g:textField class="countable${activity.profile.constraints.fullName.maxSize}" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
                   </td>
                   <td  width="350" valign="top" class="value ${hasErrors(bean:activity,field:'profile.date','errors')}"><g:datePicker name="date" value="${activity.profile.date}" precision="minute"/>
                   </td>
                   <td width="220" valign="top" class="value ${hasErrors(bean:activity,field:'profile.duration','errors')}"><g:textField name="duration" value="${fieldValue(bean:activity, field:'profile.duration')}"/>
                   </td>
                 </tr>
-
 
                 <tr>
                   <td valign="bottom" class="label">Einrichtung:</td>

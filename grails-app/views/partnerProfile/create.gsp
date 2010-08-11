@@ -52,10 +52,10 @@
               <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="42" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
             <td width="421" colspan="3" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="liste-300" name="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${partner.profile.services}"/>
+                <g:select class="liste-300" name="services" multiple="true" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${partner?.profile?.services}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="liste-300" name="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${partner.profile.services}"/>
+                <g:select class="liste-300" name="services" multiple="true" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${partner?.profile?.services}"/>
               </g:if>
             </td>
           </tr>
@@ -89,10 +89,10 @@
             </td>
             <td width="210" align="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${partner.profile.country}"/>
+                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${partner?.profile?.country}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${partner.profile.country}"/>
+                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${partner?.profile?.country}"/>
               </g:if>
             </td>
           </tr>
