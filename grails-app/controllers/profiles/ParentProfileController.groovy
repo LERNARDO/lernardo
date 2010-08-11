@@ -57,8 +57,8 @@ class ParentProfileController {
     if (parent) {
       // delete all links
       Link.findAllBySourceOrTarget(parent, parent).each {it.delete()}
-      Msg.findAllByEntity(parent).delete()
-      Event.findAllByEntity(parent).delete()
+      Msg.findAllByEntity(parent).each {it.delete()}
+      Event.findAllByEntity(parent).each {it.delete()}
       try {
         flash.message = message(code: "parent.deleted", args: [parent.profile.fullName])
         parent.delete(flush: true)

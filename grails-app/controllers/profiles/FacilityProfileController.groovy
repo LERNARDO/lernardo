@@ -80,8 +80,8 @@ class FacilityProfileController {
     if (facility) {
       // delete all links
       Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
-      Msg.findAllByEntity(facility).delete()
-      Event.findAllByEntity(facility).delete()
+      Msg.findAllByEntity(facility).each {it.delete()}
+      Event.findAllByEntity(facility).each {it.delete()}
       try {
         flash.message = message(code: "facility.deleted", args: [facility.profile.fullName])
         facility.delete(flush: true)

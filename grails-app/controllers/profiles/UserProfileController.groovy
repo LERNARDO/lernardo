@@ -49,8 +49,8 @@ class UserProfileController {
     if (user) {
       // delete all links
       Link.findAllBySourceOrTarget(user, user).each {it.delete()}
-      Msg.findAllByEntity(user).delete()
-      Event.findAllByEntity(user).delete()
+      Msg.findAllByEntity(user).each {it.delete()}
+      Event.findAllByEntity(user).each {it.delete()}
       try {
         flash.message = message(code: "user.deleted", args: [user.profile.fullName])
         user.delete(flush: true)

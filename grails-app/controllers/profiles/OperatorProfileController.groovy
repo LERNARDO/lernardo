@@ -53,8 +53,8 @@ class OperatorProfileController {
     if (operator) {
       // delete all links
       Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
-      Msg.findAllByEntity(operator).delete()
-      Event.findAllByEntity(operator).delete()
+      Msg.findAllByEntity(operator).each {it.delete()}
+      Event.findAllByEntity(operator).each {it.delete()}
       try {
         flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
         operator.delete(flush: true)

@@ -71,8 +71,8 @@ class ClientProfileController {
     if (client) {
       // delete all links
       Link.findAllBySourceOrTarget(client, client).each {it.delete()}
-      Msg.findAllByEntity(client).delete()
-      Event.findAllByEntity(client).delete()
+      Msg.findAllByEntity(client).each {it.delete()}
+      Event.findAllByEntity(client).each {it.delete()}
       try {
         flash.message = message(code: "client.deleted", args: [client.profile.fullName])
         client.delete(flush: true)

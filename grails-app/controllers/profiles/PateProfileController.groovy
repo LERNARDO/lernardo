@@ -52,8 +52,8 @@ class PateProfileController {
     if (pate) {
       // delete all links to this entity
       Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
-      Msg.findAllByEntity(pate).delete()
-      Event.findAllByEntity(pate).delete()      
+      Msg.findAllByEntity(pate).each {it.delete()}
+      Event.findAllByEntity(pate).each {it.delete()} 
       try {
         flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
         pate.delete(flush: true)

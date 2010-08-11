@@ -53,8 +53,8 @@ class PartnerProfileController {
     if (partner) {
       // delete all links
       Link.findAllBySourceOrTarget(partner, partner).each {it.delete()}
-      Msg.findAllByEntity(partner).delete()
-      Event.findAllByEntity(partner).delete()
+      Msg.findAllByEntity(partner).each {it.delete()}
+      Event.findAllByEntity(partner).each {it.delete()}
       try {
         flash.message = message(code: "partner.deleted", args: [partner.profile.fullName])
         partner.delete(flush: true)

@@ -62,9 +62,9 @@ class EducatorProfileController {
     if (educator) {
       // delete all links
       Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
-      Msg.findAllByEntity(educator).delete()
-      Post.findByAuthor(educator).delete()
-      Event.findAllByEntity(educator).delete()
+      Msg.findAllByEntity(educator).each {it.delete()}
+      Post.findByAuthor(educator).each {it.delete()}
+      Event.findAllByEntity(educator).each {it.delete()}
       try {
         flash.message = message(code: "educator.deleted", args: [educator.profile.fullName])
         educator.delete(flush: true)
