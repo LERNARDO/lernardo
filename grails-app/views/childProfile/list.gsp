@@ -35,7 +35,7 @@
       </g:if>
     </g:if>
 
-    <app:isOperator entity="${entity}">
+    <app:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="child.profile.create"/></g:link>
         <div class="spacer"></div>

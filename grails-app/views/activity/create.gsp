@@ -28,7 +28,7 @@
 
         <tr>
           <td width="300" valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
           </td>
           <td width="230" valign="top" class="value">
             <g:textField name="periodStart" size="30" class="datepicker ${hasErrors(bean: ac, field: 'periodStart', 'errors')}" value="${ac?.periodStart?.format('dd. MM. yyyy')}"/>

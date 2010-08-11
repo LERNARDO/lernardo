@@ -61,8 +61,7 @@ class ActivityController {
       activityList = activityList.subList(params.offset, upperBound)
 
       return ['activityList': activityList,
-              'activityCount': activityCount,
-              'entity': entityHelperService.loggedIn]
+              'activityCount': activityCount]
     }
 
     if (params.myDate_year && params.myDate_month && params.myDate_day) {
@@ -94,12 +93,10 @@ class ActivityController {
 
       return ['activityList': activityList,
               'activityCount': activityCount,
-              'dateSelected': inputDate,
-              'entity': entityHelperService.loggedIn]
+              'dateSelected': inputDate]
     }
     return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
-            'activityCount': Entity.countByType(metaDataService.etActivity),
-            'entity': entityHelperService.loggedIn]
+            'activityCount': Entity.countByType(metaDataService.etActivity)]
   }
 
   /*
@@ -144,7 +141,6 @@ class ActivityController {
             'facilities': facilities,
             'educators': educators,
             'clients': clients,
-            'entity': entityHelperService.loggedIn,
             'resources': resources,
             'templates': templates]
   }
@@ -175,7 +171,6 @@ class ActivityController {
       render view:'create', model:[ac:ac, 'facilities': facilities,
             'educators': educators,
             'clients': clients,
-            'entity': entityHelperService.loggedIn,
             'resources': resources,
             'templates': templates]
       return
@@ -302,12 +297,10 @@ class ActivityController {
     return ['activity': activity,
             'facilities': facilities,
             'educators': educators,
-            'clients': clients,
-            'entity': entityHelperService.loggedIn]
+            'clients': clients]
   }
 
   def update = {
-    // TODO: fix validation
     Entity activity = Entity.get(params.id)
 
     activity.profile.properties = params
@@ -336,7 +329,7 @@ class ActivityController {
       redirect action: 'show', id: activity.id
     }
     else {
-      render view: 'edit', model: [activityInstance: activity, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [activityInstance: activity]
     }
 
   }

@@ -30,8 +30,7 @@ class ChildProfileController {
   def list = {
     params.max = Math.min(params.max ? params.int('max') : 10, 100)
     return [childList: Entity.findAllByType(metaDataService.etChild),
-            childTotal: Entity.countByType(metaDataService.etChild),
-            entity: entityHelperService.loggedIn]
+            childTotal: Entity.countByType(metaDataService.etChild)]
   }
 
   def show = {
@@ -47,7 +46,7 @@ class ChildProfileController {
       def link = Link.findBySourceAndType(child, metaDataService.ltGroupMemberChild)
       Entity family = link?.target
 
-      return [child: child, entity: entity, family: family]
+      return [child: child, family: family]
     }
   }
 
@@ -82,7 +81,7 @@ class ChildProfileController {
       redirect action: 'list'
     }
     else {
-      return [child: child, entity: entityHelperService.loggedIn]
+      return [child: child]
     }
   }
 
@@ -101,13 +100,11 @@ class ChildProfileController {
       redirect action: 'show', id: child.id
     }
     else {
-      render view: 'edit', model: [child: child, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [child: child]
     }
   }
 
-  def create = {
-    return [entity: entityHelperService.loggedIn]
-  }
+  def create = {}
 
   def save = {
     EntityType etChild = metaDataService.etChild
@@ -123,7 +120,7 @@ class ChildProfileController {
       flash.message = message(code: "child.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [child: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [child: ee.entity])
       return
     }
 
