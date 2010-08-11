@@ -156,6 +156,6 @@ class AppController {
     asset.delete()
 
     flash.message = "Profilbild wurde gelöscht!"
-    redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id
+    redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity.id]
   }
 }

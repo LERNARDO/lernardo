@@ -80,16 +80,17 @@
       </table>
 
 
-
-    <app:isEducator entity="${entity}">
-      <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
-      %{--<g:if test="${template.profile.status == 'fertig'}">
-        <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
-      </g:if>--}%
-      <g:link class="buttonGreen" action="create" id="${template.id}">Vorlage duplizieren</g:link>
+    <div class="buttons">
+      <app:isEducator entity="${entity}">
+        <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
+        %{--<g:if test="${template.profile.status == 'fertig'}">
+          <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
+        </g:if>--}%
+        <g:link class="buttonGreen" action="create" id="${template.id}">Vorlage duplizieren</g:link>
+      </app:isEducator>
       <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
-    </app:isEducator>
+    </div>
 
     <div class="zusatz">
       <h5>Planbare Ressourcen <app:isEducator entity="${entity}"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Ressourcen hinzufügen" /></a></app:isEducator></h5>
