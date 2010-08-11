@@ -9,6 +9,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import at.openfactory.ep.security.DefaultSecurityManager
 import lernardo.Msg
+import lernardo.Event
 
 class UserProfileController {
   MetaDataService metaDataService
@@ -49,6 +50,7 @@ class UserProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(user, user).each {it.delete()}
       Msg.findAllByEntity(user).delete()
+      Event.findAllByEntity(user).delete()
       try {
         flash.message = message(code: "user.deleted", args: [user.profile.fullName])
         user.delete(flush: true)

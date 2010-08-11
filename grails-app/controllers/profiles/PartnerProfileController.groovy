@@ -9,6 +9,7 @@ import lernardo.Contact
 import standard.MetaDataService
 import standard.FunctionService
 import lernardo.Msg
+import lernardo.Event
 
 class PartnerProfileController {
   MetaDataService metaDataService
@@ -53,6 +54,7 @@ class PartnerProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(partner, partner).each {it.delete()}
       Msg.findAllByEntity(partner).delete()
+      Event.findAllByEntity(partner).delete()
       try {
         flash.message = message(code: "partner.deleted", args: [partner.profile.fullName])
         partner.delete(flush: true)

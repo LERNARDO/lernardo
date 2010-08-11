@@ -13,6 +13,7 @@ import lernardo.Performances
 import lernardo.Healths
 import at.openfactory.ep.EntityException
 import lernardo.Msg
+import lernardo.Event
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -71,6 +72,7 @@ class ClientProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(client, client).each {it.delete()}
       Msg.findAllByEntity(client).delete()
+      Event.findAllByEntity(client).delete()
       try {
         flash.message = message(code: "client.deleted", args: [client.profile.fullName])
         client.delete(flush: true)
