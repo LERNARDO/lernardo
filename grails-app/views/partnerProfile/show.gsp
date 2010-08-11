@@ -102,12 +102,13 @@
 
     </div>
 
-    <app:isMeOrAdmin entity="${partner}">
-      <div class="buttons">
+    <div class="buttons">
+      <app:isMeOrAdmin entity="${partner}">
         <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isMeOrAdmin>
+      </app:isMeOrAdmin>
+      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <div class="spacer"></div>
+    </div>   
 
   %{--    <div>
     <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>

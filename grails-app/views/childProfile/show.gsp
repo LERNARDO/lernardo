@@ -74,17 +74,16 @@
             <td  valign="top" >${fieldValue(bean: child, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           
 		</div>
-	
 
     </div>
 
-    <app:isMeOrAdmin entity="${child}">
-      <div class="buttons">
+    <div class="buttons">
+      <app:isMeOrAdmin entity="${child}">
         <g:link class="buttonGreen" action="edit" id="${child?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isMeOrAdmin>
+      </app:isMeOrAdmin>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
   </div>
 </div>

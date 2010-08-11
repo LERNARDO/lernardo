@@ -235,13 +235,13 @@
       </div>
     </div>
 
-    <app:isMeOrAdmin entity="${educator}">
-      <div class="buttons">
+    <div class="buttons">
+      <app:isMeOrAdmin entity="${educator}">
         <g:link class="buttonGreen" action="edit" id="${educator?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isMeOrAdmin>
+      </app:isMeOrAdmin>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="educator.profile.inOut"/> <app:isMeOrAdmin entity="${educator}"><a onclick="toggle('#dates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:isMeOrAdmin></h5>
