@@ -10,11 +10,13 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
     <g:hasErrors bean="${resource}">
       <div class="errors">
         <g:renderErrors bean="${resource}" as="list"/>
       </div>
     </g:hasErrors>
+
     <g:form action="save" method="post">
       <div class="dialog">
         <table>

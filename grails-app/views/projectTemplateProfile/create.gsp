@@ -10,11 +10,13 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
     <g:hasErrors bean="${projectTemplate}">
       <div class="errors">
         <g:renderErrors bean="${projectTemplate}" as="list"/>
       </div>
     </g:hasErrors>
+
     <g:form action="save" method="post">
       <div class="dialog">
         <table>
@@ -34,11 +36,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="2" valign="top" class="name">
-              <label for="description">
-                <g:message code="projectTemplate.profile.description"/>
-              </label>
-            </td>
+            <td colspan="2" valign="top" class="name"><g:message code="projectTemplate.profile.description"/></td>
           </tr>
 
           <tr>

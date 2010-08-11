@@ -21,63 +21,52 @@
 
       <div class="dialog">
         <table>
+
           <tr class="prop">
             <td colspan="3" valign="top" class="name">Typ:</td>
           </tr>
+
           <tr>
             <td colspan="3" valign="top" class="name">
               <g:select id="type" name="type" from="${['normale Aktivitätsvorlage','Themenraumaktivitätsvorlage']}" value="${template?.profile?.type}"/>
             </td>
           </tr>
+
           <tr class="prop">
-            <td colspan="2" valign="top" class="name">
-              <label for="fullName"><g:message code="activityTemplate.name"/>:</label>
-            </td>
-            <td valign="top" class="name">
-              <label for="duration"><g:message code="activityTemplate.duration"/>:</label>
-            </td>
+            <td colspan="2" valign="top" class="name"><g:message code="activityTemplate.name"/>:</td>
+            <td valign="top" class="name"><g:message code="activityTemplate.duration"/>:</td>
           </tr>
 
           <tr>
             <td colspan="2" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="51" id="fullName" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="51" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="20" id="duration" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (in Minuten)
+              <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="20" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (in Minuten)
             </td>
           </tr>
 
           <tr class="prop">
-            <td width="210px" valign="top" class="name">
-              <label for="socialForm"><g:message code="activityTemplate.socialForm"/>:</label>
-            </td>
-            <td width="190px" valign="top" class="name">
-              <label for="status"><g:message code="activityTemplate.status"/>:</label>
-            </td>
-            <td valign="top" class="name">
-              <label for="amountEducators"><g:message code="activityTemplate.amountEducators"/>:</label>
-            </td>
+            <td width="210px" valign="top" class="name"><g:message code="activityTemplate.socialForm"/>: </td>
+            <td width="190px" valign="top" class="name"><g:message code="activityTemplate.status"/>:</td>
+            <td valign="top" class="name"><g:message code="activityTemplate.amountEducators"/>:</td>
           </tr>
 
           <tr>
             <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
-              <g:select id="socialForm" name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${fieldValue(bean:template,field:'profile.socialForm')}"/>
+              <g:select name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${fieldValue(bean:template,field:'profile.socialForm')}"/>
             </td>
             <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
-              <g:select id="status" name="status" from="${['fertig','in Bearbeitung']}" value="${template?.profile?.status}"/>
+              <g:select name="status" from="${['fertig','in Bearbeitung']}" value="${template?.profile?.status}"/>
             </td>
             <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
-              <g:select id="amountEducators" name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> (Vorschlag)
+              <g:select name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> (Vorschlag)
             </td>
           </tr>
 
           <tr class="prop">
-            <td colspan="2" valign="top" class="name">
-              <label for="description"><g:message code="activityTemplate.description"/>:</label>
-            </td>
-            <td valign="top" class="name">
-              <label for="chosenMaterials"><g:message code="activityTemplate.chosenMaterials"/>:</label>
-            </td>
+            <td colspan="2" valign="top" class="name"><g:message code="activityTemplate.description"/>:</td>
+            <td valign="top" class="name"><g:message code="activityTemplate.chosenMaterials"/>:</td>
           </tr>
 
           <tr>

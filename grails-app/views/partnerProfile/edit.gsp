@@ -21,11 +21,13 @@
     <g:form action="update" method="post" id="${partner.id}">
       <div class="dialog">
         <table>
+
           <tr class="prop">
             <td class="name"><g:message code="partner.profile.name"/>:</td>
             <td colspan="2" valign="top" class="name"><g:message code="partner.profile.description"/>:</td>
             <td valign="top" class="name"><g:message code="partner.profile.website"/>:</td>
           </tr>
+
           <tr class="prop">
             <td valign="top" class="value">
               <g:textField class="countable${partner.profile.constraints.fullName.maxSize} ${hasErrors(bean: partner, field: 'profile.fullName', 'errors')}" size="42" id="fullName" name="fullName" value="${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}"/>
@@ -41,8 +43,8 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="partner.profile.phone"/>:</td>
             <td colspan="3" valign="top" class="name"><g:message code="partner.profile.services"/>:</td>
-
           </tr>
+
           <tr class="prop">
             <td valign="top" width="200" class="value">
               <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="42" id="phone" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
@@ -55,22 +57,24 @@
               </g:if>
             </td>
           </tr>
+
           <tr class="prop">
-            <td colspan="4" valign="middle" class="name">
-              Colonia:
-            </td>
+            <td colspan="4" valign="middle" class="name">Colonia:</td>
           </tr>
+
           <tr class="prop">
             <td colspan="4" valign="middle" class="value">
               <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
+
           <tr class="prop">
             <td valign="top" class="name"><g:message code="partner.profile.street"/>:</td>
             <td valign="top" class="name"><g:message code="partner.profile.zip"/>:</td>
             <td valign="top" class="name"><g:message code="partner.profile.city"/>:</td>
             <td valign="top" class="name"><g:message code="partner.profile.country"/>:</td>
           </tr>
+
           <tr class="prop">
             <td width="290" valign="top" class="value">
               <g:textField class="countable${partner.profile.constraints.street.maxSize} ${hasErrors(bean: partner, field: 'profile.street', 'errors')}" size="42" id="street" name="street" value="${fieldValue(bean: partner, field: 'profile.street').decodeHTML()}"/>
@@ -90,10 +94,12 @@
               </g:if>
             </td>
           </tr>
+
         </table>
 
         <div class="email2">
           <table>
+
             <tr class="prop">
               <app:isAdmin>
                 <td width="90" valign="top" class="name">
@@ -108,29 +114,22 @@
                   </app:notAdmin>
                 </td>
               </app:isAdmin>
-              <td width="70" valign="top" class="name">
-                <g:message code="facility.profile.email"/>
-              </td>
+              <td width="70" valign="top" class="name"><g:message code="facility.profile.email"/></td>
               <td width="320" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
               </td>
-              <td width="130" valign="top" class="name">
-                <g:message code="languageSelection"/>
-              </td>
+              <td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
               <td valign="top" class="value">
                 <app:localeSelect class="drop-down-150" name="locale" value="${partner?.user?.locale}"/>
               </td>
             </tr>
+
             <tr>
-              <td valign="top" class="name">
-                <g:message code="showTips"/>
-              </td>
+              <td valign="top" class="name"><g:message code="showTips"/></td>
               <td valign="top" class="value">
                 <g:checkBox name="showTips" value="${partner.profile.showTips}"/>
               </td>
-              <td valign="top" class="name">
-                <g:message code="password"/>
-              </td>
+              <td valign="top" class="name"><g:message code="password"/></td>
               <td valign="top" class="value">
                 <g:link controller="profile" action="changePassword" id="${partner.id}"><g:message code="change"/></g:link>
               </td>

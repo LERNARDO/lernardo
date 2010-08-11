@@ -21,51 +21,31 @@
     <g:form action="update" method="post" id="${group.id}">
       <div class="dialog">
         <table>
+
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupFamily.profile.name"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="familyIncome">
-                <g:message code="groupFamily.profile.familyIncome"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="amountHousehold">
-                <g:message code="groupFamily.profile.amountHousehold"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.familyIncome"/></td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.amountHousehold"/></td>
           </tr>
+
           <tr>
             <td width="265px" valign="top" class="value">
-              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="265px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" id="familyIncome" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
             </td>
             <td width="265px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" id="amountHousehold" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
             </td>
           </tr>
+
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="livingConditions">
-                <g:message code="groupFamily.profile.livingConditions"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="socioeconomicData">
-                <g:message code="groupFamily.profile.socioeconomicData"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="otherInfo">
-                <g:message code="groupFamily.profile.otherInfo"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.livingConditions"/></td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.socioeconomicData"/></td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.otherInfo"/></td>
           </tr>
+
           <tr>
             <td valign="top" class="value">
               <g:textArea class="countable${group.profile.constraints.livingConditions.maxSize} ${hasErrors(bean: group, field: 'profile.livingConditions', 'errors')}" rows="5" cols="36" name="livingConditions" value="${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML()}"/>
@@ -77,23 +57,22 @@
               <g:textArea class="countable${group.profile.constraints.otherInfo.maxSize} ${hasErrors(bean: group, field: 'profile.otherInfo', 'errors')}" rows="5" cols="36" name="otherInfo" value="${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML()}"/>
             </td>
           </tr>
+
           <tr class="prop">
-            <td colspan="3" valign="top" class="name">
-              <label for="familyProblems">
-                <g:message code="groupFamily.profile.familyProblems"/>
-              </label>
-            </td>
+            <td colspan="3" valign="top" class="name"><g:message code="groupFamily.profile.familyProblems"/></td>
           </tr>
+
           <tr>
             <td colspan="3" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="familyProblems" class="max-textbox" id="familyProblems" multiple="true" from="${grailsApplication.config.problems_es}" optionKey="key" optionValue="value" value="${group.profile.familyProblems}"/>
+                <g:select name="familyProblems" class="max-textbox" multiple="true" from="${grailsApplication.config.problems_es}" optionKey="key" optionValue="value" value="${group?.profile?.familyProblems}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="familyProblems" class="max-textbox" id="familyProblems" multiple="true" from="${grailsApplication.config.problems_de}" optionKey="key" optionValue="value" value="${group.profile.familyProblems}"/>
+                <g:select name="familyProblems" class="max-textbox" multiple="true" from="${grailsApplication.config.problems_de}" optionKey="key" optionValue="value" value="${group?.profile?.familyProblems}"/>
               </g:if>
             </td>
           </tr>
+          
         </table>
       </div>
 

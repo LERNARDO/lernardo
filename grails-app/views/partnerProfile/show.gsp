@@ -14,17 +14,13 @@
     <div class="dialog">
 
       <table>
+
         <tr class="prop">
-          <td class="name-show">
-            <g:message code="partner.profile.name"/>
-          </td>
-          <td colspan="2" valign="top" class="name-show">
-            <g:message code="partner.profile.description"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="partner.profile.website"/>
-          </td>
+          <td class="name-show"><g:message code="partner.profile.name"/></td>
+          <td colspan="2" valign="top" class="name-show"><g:message code="partner.profile.description"/></td>
+          <td valign="top" class="name-show"><g:message code="partner.profile.website"/></td>
         </tr>
+
         <tr class="prop">
           <td class="value-show">
             <g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link>
@@ -38,14 +34,10 @@
         </tr>
 
         <tr class="prop">
-          <td class="name-show">
-            <g:message code="partner.profile.phone"/>
-          </td>
-          <td colspan="3" valign="top" class="name-show">
-            <g:message code="partner.profile.services"/>
-          </td>
-
+          <td class="name-show"><g:message code="partner.profile.phone"/></td>
+          <td colspan="3" valign="top" class="name-show"><g:message code="partner.profile.services"/></td>
         </tr>
+
         <tr class="prop">
           <td width="200" class="value-show">
             ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
@@ -57,30 +49,34 @@
             </ul>
           </td>
         </tr>
+
         <tr class="prop">
           <td colspan="4" valign="top" class="name-show">
             <g:message code="partner.profile.colonia"/>
           </td>
         </tr>
+
         <tr>
           <td valign="top" class="value-show">
             <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="partner.profile.colonia.empty"/> <img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
           </td>
-          <td colspan="3" valign="top">
-          </td>
+          <td colspan="3" valign="top"></td>
         </tr>
+
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="partner.profile.street"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.zip"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.city"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.country"/></td>
         </tr>
+
         <tr class="prop">
           <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           <td width="210" align="top" class="value-show"><app:getNationalities nationality="${partner.profile.country}"/></td>
         </tr>
+
       </table>
 
       <div class="email">
@@ -98,7 +94,7 @@
             <td valign="top">${fieldValue(bean: partner, field: 'user.email') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           </tr>
         </table>
-      </div> <!-- div email close -->
+      </div>
 
     </div>
 
@@ -108,22 +104,22 @@
       </app:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list">Zurück</g:link>
       <div class="spacer"></div>
-    </div>   
+    </div>
 
-  %{--    <div>
-    <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
-    <div id="services" style="display:none">
-      <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
-        <g:textField name="service" size="30"/>
-        <div class="spacer"></div>
-        <g:submitButton name="button" value="${message(code:'add')}"/>
-        <div class="spacer"></div>
-      </g:formRemote>
-    </div>
-    <div id="services2">
-      <g:render template="services" model="${partner}"/>
-    </div>
-  </div>--}%
+    %{--    <div>
+      <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <div id="services" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
+          <g:textField name="service" size="30"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div id="services2">
+        <g:render template="services" model="${partner}"/>
+      </div>
+    </div>--}%
 
     <div class="zusatz">
       <h5><g:message code="partner.profile.contacts"/> <app:isOperator entity="${partner}"><a onclick="toggle('#contacts');

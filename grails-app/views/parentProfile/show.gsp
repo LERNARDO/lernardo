@@ -15,18 +15,10 @@
         <tbody>
 
         <tr>
-          <td width="120" valign="middle" class="name-show">
-            <g:message code="parent.profile.gender"/>
-          </td>
-          <td width="200" valign="middle" class="name-show">
-            <g:message code="parent.profile.firstName"/>
-          </td>
-          <td width="280" valign="middle" class="name-show">
-            <g:message code="parent.profile.lastName"/>
-          </td>
-          <td valign="middle" class="name-show">
-            <g:message code="parent.profile.birthDate"/>
-          </td>
+          <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.gender"/></td>
+          <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.firstName"/></td>
+          <td width="280" valign="middle" class="name-show"><g:message code="parent.profile.lastName"/></td>
+          <td valign="middle" class="name-show"><g:message code="parent.profile.birthDate"/></td>
         </tr>
 
         <tr>
@@ -45,18 +37,10 @@
         </tr>
 
         <tr>
-          <td width="120" valign="middle" class="name-show">
-            <g:message code="parent.profile.maritalStatus"/>
-          </td>
-          <td width="200" valign="middle" class="name-show">
-            <g:message code="parent.profile.languages"/>
-          </td>
-          <td width="220" valign="middle" class="name-show">
-            Kommentar
-          </td>
-          <td width="250" valign="middle" class="name-show">
-            <g:message code="parent.profile.education"/>
-          </td>
+          <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.maritalStatus"/></td>
+          <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.languages"/></td>
+          <td width="220" valign="middle" class="name-show">Kommentar</td>
+          <td width="250" valign="middle" class="name-show"><g:message code="parent.profile.education"/></td>
         </tr>
 
         <tr>
@@ -80,18 +64,12 @@
 
         <g:if test="${parent.profile.job}">
           <tr>
-            <td width="120" valign="middle" class="name-show">
-              &nbsp;
-            </td>
-            <td width="200" valign="middle" class="name-show">
-              <g:message code="parent.profile.jobType"/>
-            </td>
-            <td width="280" valign="middle" class="name-show">
-              <g:message code="parent.profile.jobIncome"/>
-            </td>
-            <td valign="middle" class="name-show">
-              <g:message code="parent.profile.jobFrequency"/>
-            </td>
+            <td width="120" valign="middle" class="name-show"></td>
+            <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.jobType"/></td>
+            <td width="280" valign="middle" class="name-show"><g:message code="parent.profile.jobIncome"/></td>
+            <td valign="middle" class="name-show"><g:message code="parent.profile.jobFrequency"/></td>
+          </tr>
+
           <tr>
             <td valign="top" class="value-show-comb">
               <g:message code="parent.profile.job"/>:
@@ -104,18 +82,10 @@
         </g:if>
 
         <tr>
-          <td valign="top" class="name-show">
-            <g:message code="parent.profile.currentCountry"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="parent.profile.currentCity"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="parent.profile.currentStreet"/>
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="parent.profile.currentZip"/>
-          </td>
+          <td valign="top" class="name-show"><g:message code="parent.profile.currentCountry"/></td>
+          <td valign="top" class="name-show"><g:message code="parent.profile.currentCity"/></td>
+          <td valign="top" class="name-show"><g:message code="parent.profile.currentStreet"/></td>
+          <td valign="top" class="name-show"><g:message code="parent.profile.currentZip"/></td>
         </tr>
 
         <tr>
@@ -154,7 +124,7 @@
               <span class="bold"><g:message code="languageSelection"/>:</span>
               ${parent?.user?.locale?.getDisplayLanguage()}
             </td>
-            
+
           </tr>
         </table>
       </div>

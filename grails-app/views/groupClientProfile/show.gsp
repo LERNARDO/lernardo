@@ -13,18 +13,17 @@
   <div class="second">
     <div class="dialog">
       <table>
-            <tr class="prop">
-                <td valign="top" class="name-show">
-                   <g:message code="groupClient.profile.name" />:
-                </td>
-              <td valign="top" class="name-show">
-                 <g:message code="groupClient.profile.description" />:
-              </td>
-            </tr>
-            <tr class="prop">
-              <td width="200" valign="top" class="value-show">${fieldValue(bean:group, field:'profile.fullName').decodeHTML()}</td>
-              <td width="500" valign="top" class="value-show">${fieldValue(bean:group, field:'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name-show"><g:message code="groupClient.profile.name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupClient.profile.description"/>:</td>
+        </tr>
+
+        <tr class="prop">
+          <td width="200" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td width="500" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        </tr>
+        
       </table>
     </div>
 
@@ -36,15 +35,16 @@
     </app:hasRoleOrType>
 
     <div class="zusatz">
-      <h5>Betreute <app:isOperator entity="${currentEntity}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Betreute hinzufügen" /></a></app:isOperator></h5>
+      <h5>Betreute <app:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isOperator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-      Die Betreuten können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)<br/>
+        Die Betreuten können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)<br/>
         <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect">
 
           <table>
             <tr>
               <td>Name:</td>
-              <td><g:textField name="name" /></td>
+              <td><g:textField name="name"/></td>
             </tr>
             <tr>
               <td>Geburtsdatum:</td>
@@ -64,7 +64,7 @@
             </tr>
             <tr>
               <td>Stadt:</td>
-              <td><g:textField name="city" /></td>
+              <td><g:textField name="city"/></td>
             </tr>
             <tr>
               <td>Schulstufe:</td>

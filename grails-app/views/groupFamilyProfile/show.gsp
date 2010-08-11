@@ -12,51 +12,42 @@
   <div class="second">
     <div class="dialog">
       <table>
+
         <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="groupFamily.profile.name"/>:
-          </td>
-        
-          <td valign="top" class="name-show">
-            <g:message code="groupFamily.profile.familyIncome"/>:
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="groupFamily.profile.amountHousehold"/>:
-          </td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.familyIncome"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.amountHousehold"/>:</td>
         </tr>
+
         <tr class="prop">
           <td width="242" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
           <td width="242" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="242" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
+
         <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="groupFamily.profile.livingConditions"/>:
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="groupFamily.profile.socioeconomicData"/>:
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="groupFamily.profile.otherInfo"/>:
-          </td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.livingConditions"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.socioeconomicData"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.otherInfo"/>:</td>
         </tr>
+
         <tr class="prop">
           <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
+
         <tr class="prop">
-          <td colspan="3" valign="top" class="name-show">
-            <g:message code="groupFamily.profile.familyProblems"/>:
-          </td>
+          <td colspan="3" valign="top" class="name-show"><g:message code="groupFamily.profile.familyProblems"/>:</td>
         </tr>
+
         <tr class="prop">
-          <td colspan="3"  valign="top" class="value-show-block">
+          <td colspan="3" valign="top" class="value-show-block">
             <ul>
               <g:each in="${group.profile.familyProblems}" var="problem">
                 <li><app:getFamilyProblem problem="${problem}"/></li>
               </g:each>
-            </ul>%{--').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}--}%
+            </ul>
           </td>
         </tr>
       </table>
@@ -69,10 +60,11 @@
       </div>
     </app:hasRoleOrType>
 
-    <p>${totalLinks == 1 ? message(code:'groupFamily.profile.member') : totalLinks + ' ' + message(code:'groupFamily.profile.members')}</p>
+    <p>${totalLinks == 1 ? message(code: 'groupFamily.profile.member') : totalLinks + ' ' + message(code: 'groupFamily.profile.members')}</p>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.parents"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.parents"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="parents" style="display:none">
 
         Suche:<br/>
@@ -86,7 +78,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.clients"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients'); return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.clients"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients');
+      return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
         Suche:<br/>
@@ -100,7 +93,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.childs"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.childs"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="childs" style="display:none">
 
         Suche:<br/>

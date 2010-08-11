@@ -33,33 +33,23 @@
           </tr>--}%
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupActivity.profile.name"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="realDuration">
-                <g:message code="groupActivity.profile.realDuration"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="date">
-                <g:message code="groupActivity.profile.date"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="groupActivity.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="groupActivity.profile.realDuration"/></td>
+            <td valign="top" class="name"><g:message code="groupActivity.profile.date"/></td>
           </tr>
+
           <tr>
             <td width="280px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="180px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" id="realDuration" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
             </td>
             <td valign="top" class="value">
               <g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>
             </td>
           </tr>
+
           %{--<tr class="prop">
             <td valign="top" class="name">
               <label for="educationalObjective">

@@ -45,6 +45,7 @@
               <g:textArea class="countable${projectTemplate.profile.constraints.description.maxSize} ${hasErrors(bean: projectTemplate, field: 'profile.description', 'errors')}" rows="5" cols="125" name="description" value="${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
+          
           </tbody>
         </table>
 

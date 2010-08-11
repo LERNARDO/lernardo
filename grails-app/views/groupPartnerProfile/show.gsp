@@ -14,13 +14,10 @@
       <table>
 
         <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="groupPartner.profile.name"/>:
-          </td>
-          <td valign="top" class="name-show">
-            <g:message code="groupPartner.profile.description"/>:
-          </td>
+          <td valign="top" class="name-show"><g:message code="groupPartner.profile.name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupPartner.profile.description"/>:</td>
         </tr>
+
         <tr class="prop">
           <td width="200" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
           <td width="500" valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
@@ -28,10 +25,9 @@
 
         <tr class="prop">
           <td valign="top" class="name-show">&nbsp;</td>
-          <td valign="top" class="name-show">
-            <g:message code="groupPartner.profile.service"/>:
-          </td>
+          <td valign="top" class="name-show"><g:message code="groupPartner.profile.service"/>:</td>
         </tr>
+        
         <tr class="prop">
           <td valign="top" class="name-show">&nbsp;</td>
           <td valign="top" class="value-show"><li><app:getPartnerService service="${group.profile.service}"/></li></td>

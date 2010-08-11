@@ -12,42 +12,33 @@
   <div class="second">
     <div class="dialog">
       <table>
-          <tbody>
+        <tbody>
 
-          <tr class="prop">
-            <td valign="top" class="name-show">
-              <label for="fullName">
-                <g:message code="projectTemplate.profile.name"/>
-              </label>
-            </td>
-            <td valign="top" class="name-show">
-              <label for="status">
-                <g:message code="projectTemplate.profile.status"/>
-              </label>
-            </td>
-            </tr>
-            <tr>
-            <td width="650px" valign="top" class="value-show">
-              <g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link>
-            </td>
-              <td width="120px" valign="top" class="value-show">
-              ${fieldValue(bean: projectTemplate, field: 'profile.status')}
-            </td>
-          </tr>
-          <tr class="prop">
-            <td colspan="2" valign="top" class="name-show">
-              <label for="description">
-                <g:message code="projectTemplate.profile.description"/>
-              </label>
-            </td>
-          </tr>
-            <tr>
-            <td colspan="2" valign="top" class="value-show-block">
-              ${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
-            </td>
-          </tr>
-          </tbody>
-        </table>
+        <tr class="prop">
+          <td valign="top" class="name-show"><g:message code="projectTemplate.profile.name"/></td>
+          <td valign="top" class="name-show"><g:message code="projectTemplate.profile.status"/></td>
+        </tr>
+
+        <tr>
+          <td width="650px" valign="top" class="value-show">
+            <g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link>
+          </td>
+          <td width="120px" valign="top" class="value-show">
+            ${fieldValue(bean: projectTemplate, field: 'profile.status')}
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="projectTemplate.profile.description"/></td>
+        </tr>
+
+        <tr>
+          <td colspan="2" valign="top" class="value-show-block">
+            ${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+          </td>
+        </tr>
+        </tbody>
+      </table>
 
     </div>
     <div class="buttons">
@@ -63,8 +54,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Projekteinheiten <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false"><g:remoteLink action="addProjectUnit" update="projectunits2" id="${projectTemplate.id}" before="showspinner('#projectunits2')"><img src="${g.resource(dir:'images/icons', file:'icon_add-plus.png')}" alt="Projekteinheit hinzufügen" /></g:remoteLink>
-        %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:hasRoleOrType></h5>
+      <h5>Projekteinheiten <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false"><g:remoteLink action="addProjectUnit" update="projectunits2" id="${projectTemplate.id}" before="showspinner('#projectunits2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="Projekteinheit hinzufügen"/></g:remoteLink>
+      %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:hasRoleOrType></h5>
       %{--<div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
           Name: <g:textField name="fullName" size="40" value=""/>

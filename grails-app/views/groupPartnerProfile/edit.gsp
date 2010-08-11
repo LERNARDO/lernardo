@@ -22,30 +22,20 @@
       <div class="dialog">
         <table>
           <tbody>
-                        
-          <tr class="prop">
-            <td valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupPartner.profile.name"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="groupPartner.profile.description"/>
-              </label>
-            </td>
 
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="groupPartner.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="groupPartner.profile.description"/></td>
           </tr>
-          <tr class="prop">
 
+          <tr class="prop">
             <td width="200" valign="top" class="value">
-              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" rows="27" id="fullName" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" rows="27" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
               <g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="2" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
             </td>
           </tr>
-
 
           <tr class="prop">
             <td>&nbsp;</td>
@@ -55,6 +45,7 @@
               </label>
             </td>
           </tr>
+          
           <tr class="prop">
             <td>&nbsp;</td>
             <td class="drop-down-280" valign="top">
@@ -67,7 +58,7 @@
               %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>
           </tr>
-                        
+
           </tbody>
         </table>
       </div>

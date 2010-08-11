@@ -23,20 +23,16 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="firstName"><g:message code="user.profile.firstName"/></label>
-            </td>
-            <td valign="top" class="name">
-              <label for="lastName"><g:message code="user.profile.lastName"/></label>
-            </td>
+            <td valign="top" class="name"><g:message code="user.profile.firstName"/></td>
+            <td valign="top" class="name"><g:message code="user.profile.lastName"/></td>
           </tr>
 
           <tr class="prop">
             <td width="440" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" id="firstName" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
             </td>
             <td width="440" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" id="lastName" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
 
@@ -48,15 +44,15 @@
 
           <tr>
             <td width="90" valign="middle">
-              <label for="enabled"><g:message code="active"/></label>
+              <g:message code="active"/>
               <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
             </td>
             <td width="350" valign="middle">
-              <label for="email"><g:message code="user.profile.email"/>:</label>
-              <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" id="email" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
+              <g:message code="user.profile.email"/>:
+              <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
             </td>
             <td>
-              <label for="locale"><g:message code="languageSelection"/>:</label>
+              <g:message code="languageSelection"/>:
               <app:localeSelect class="drop-down-200" name="locale" value="${user?.user?.locale}"/>
             </td>
           </tr>
