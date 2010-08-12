@@ -17,10 +17,15 @@ class HelperController {
 
   def list = {
     Entity entity = Entity.get(params.id)
-    def helper = Helper.findAllByType(entity.type.name)
 
-    return [helperInstanceList: helper,
-            helperInstanceTotal: helper.size(),
+    List helpers = []
+    if (entity.type.id == metaDataService.etUser.id)
+      helpers = Helper.list()
+    else
+      helpers = Helper.findAllByType(entity.type.name)
+
+    return [helperInstanceList: helpers,
+            helperInstanceTotal: helpers.size(),
             entity: entity]
   }
 

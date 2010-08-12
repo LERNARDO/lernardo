@@ -21,7 +21,7 @@
         </tr>
         <tr>
           <td width="300" valign="top" class="value-show">
-            ${fieldValue(bean: project, field: 'profile.fullName')}
+            ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}
           </td>
           <td width="230" valign="top" class="value-show">
             <g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/>
