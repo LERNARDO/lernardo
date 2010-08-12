@@ -5,8 +5,9 @@ class AppFilters {
   EntityHelperService entityHelperService
 
   static filters = {
-    currentEntity (controller:"*", action:"*") {
-      after = {model->
+
+    currentEntity(controller: "*", action: "*") {
+      after = {model ->
         if (model) {
           Entity e = entityHelperService.getLoggedIn()
           if (e)
@@ -14,5 +15,15 @@ class AppFilters {
         }
       }
     }
+
+    loginCheck(controller: "(groupActivityProfile|groupActivityTemplateProfile|groupClientProfile|groupColonyProfile|groupFamilyProfile|groupPartnerProfile|projectProfile|projectTemplateProfile|resourceProfile|themeProfile|childProfile|clientProfile|educatorProfile|facilityProfile|operatorProfile|parentProfile|partnerProfile|pateProfile|userProfile|activity|msg|template)", action: "*") {
+      before = {
+        Entity e = entityHelperService.getLoggedIn()
+        if (!e) {
+          redirect controller: 'app', action: 'home'
+        }
+      }
+    }
+
   }
 }
