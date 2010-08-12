@@ -41,7 +41,6 @@
           <td valign="bottom" class="label">Pädagogen:</td>
         </tr>
 
-        %{--TODO: highlight currently selected educators--}%
         <tr>
           <td valign="top" class="value ${hasErrors(bean: activity, field: 'facility', 'errors')}">
             <g:select class="drop-down-205" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
@@ -53,8 +52,6 @@
             <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/>
           </td>
         </tr>
-
-        %{--TODO: highlight currently selected clients--}%
 
         </tbody>
       </table>

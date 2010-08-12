@@ -122,7 +122,7 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <app:isOperator entity="${partner}"><a onclick="toggle('#contacts');
+      <h5><g:message code="partner.profile.contacts"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></app:isOperator></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2')">
@@ -172,7 +172,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="contacts2">
-        <g:render template="contacts" model="${partner}"/>
+        <g:render template="contacts" model="[partner: partner, entity: currentEntity]"/>
       </div>
     </div>
 
