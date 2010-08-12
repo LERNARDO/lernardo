@@ -289,7 +289,7 @@ class ProfileController {
 
     SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd")
 
-    List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'asc'])
+    List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'desc'])
 
     Calendar cal = Calendar.getInstance()
     List eventsToday = []
