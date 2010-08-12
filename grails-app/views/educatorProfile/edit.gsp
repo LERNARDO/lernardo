@@ -313,12 +313,11 @@
               <g:link controller="profile" action="changePassword" id="${educator.id}"><g:message code="change"/></g:link>
             </td>
 
-            %{--<td width="280"  valign="middle">
-               <label for="email">
-                   <g:message code="educator.profile.email"/>
-               </label>:
-                 <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="30" id="email" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
-               </td>--}%
+            <td width="280"  valign="middle">
+              <g:message code="educator.profile.email"/>:
+              <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="30" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
+            </td>
+
             <td valign="middle">
               <label for="locale">
                 <g:message code="languageSelection"/>
