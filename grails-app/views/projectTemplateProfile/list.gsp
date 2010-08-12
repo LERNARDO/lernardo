@@ -24,12 +24,16 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'projectTemplate.profile.name')}"/>
+        <g:sortableColumn property="status" title="${message(code:'projectTemplate.profile.status')}"/>
+        <th>Projekteinheiten</th>
       </tr>
       </thead>
       <tbody>
       <g:each in="${projectTemplateList}" status="i" var="project">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>${fieldValue(bean: project, field: 'profile.status')}</td>
+          <td><app:getProjectTemplateUnitsCount template="${project}"/></td>
         </tr>
       </g:each>
       </tbody>

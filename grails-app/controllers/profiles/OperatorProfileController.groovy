@@ -72,7 +72,7 @@ class OperatorProfileController {
       try {
         flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
         operator.delete(flush: true)
-        redirect(controller: "profile", action: "list")
+        redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "operator.notDeleted", args: [operator.profile.fullName])

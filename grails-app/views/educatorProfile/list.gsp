@@ -17,12 +17,16 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'educator.profile.name')}"/>
+        <g:sortableColumn property="education" title="${message(code:'educator.profile.education')}"/>
+        <g:sortableColumn property="employment" title="${message(code:'educator.profile.employment')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${educatorList}" status="i" var="educator">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>${fieldValue(bean: educator, field: 'profile.education')}</td>
+          <td>${fieldValue(bean: educator, field: 'profile.employment')}</td>
         </tr>
       </g:each>
       </tbody>

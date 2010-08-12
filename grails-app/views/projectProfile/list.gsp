@@ -24,12 +24,16 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'project.profile.name')}"/>
+        <g:sortableColumn property="startDate" title="${message(code:'project.profile.startDate')}"/>
+        <g:sortableColumn property="endDate" title="${message(code:'project.profile.endDate')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${projectList}" status="i" var="project">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
+          <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/></td>
         </tr>
       </g:each>
       </tbody>

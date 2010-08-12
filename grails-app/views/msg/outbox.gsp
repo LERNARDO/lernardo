@@ -50,9 +50,9 @@
               <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
             </td>
             <td class="subject">
-              <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">${msgInstance.subject}</g:link></span>
+              <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']">${msgInstance.subject.decodeHTML()}</g:link></span>
             </td>
-            <td class="delete-msg"><g:link class="buttonBlue" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']"><g:message code="delete"/></g:link></td>
+            <td class="delete-msg"><g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'outbox']"><g:message code="delete"/></g:link></td>
           </tr>
         </g:each>
 

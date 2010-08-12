@@ -262,7 +262,8 @@ ul {
 
 #banner-private {
     height: 100px;
-    background: -moz-linear-gradient(90deg,#f9ba12,#ff9200) #f9ba12; /*url(../images/head-bg.jpg) no-repeat; }*/
+    background: -moz-linear-gradient(90deg,#f9ba12,#ff9200);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9ba12), to(#ff9200));
     margin: 0 15px;
 }
 
@@ -1289,7 +1290,8 @@ table#msg-composer td {
         padding: 3px; }
 
 .headerGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
+    background: -moz-linear-gradient(-90deg,#009900,#005500);
+    background: -webkit-gradient(linear, left top, left bottom, from(#009900), to(#005500));
      }
     .headerGreen h1 {
         color: #fff;
@@ -1302,7 +1304,8 @@ table#msg-composer td {
         padding: 4px 5px;
     }
 .headerGrey {
-    background: -moz-linear-gradient(-90deg,#eee,#999) #eee;
+    background: -moz-linear-gradient(-90deg,#eee,#999);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
      }
     .headerGrey h1 {
         color: #000;
@@ -1316,7 +1319,9 @@ table#msg-composer td {
     }
 	
 	.buttonGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
+    background: -moz-linear-gradient(-90deg,#009900,#005500);
+    background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#050));
+
     padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
@@ -1633,7 +1638,8 @@ h5 {
 
 /********************************************************/
 .tabGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
+    background: -moz-linear-gradient(-90deg,#009900,#005500);
+    background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#050));
      }
     .tabGreen h1 {
         color: #fff;
@@ -1646,7 +1652,8 @@ h5 {
         padding: 4px 5px;
     }
 .tabGrey {
-    background: -moz-linear-gradient(-90deg,#eee,#999) #eee;
+    background: -moz-linear-gradient(-90deg,#eee,#999);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
      }
     .tabGrey h1 {
         color: #000;
@@ -1661,7 +1668,7 @@ h5 {
 
 .tabGrey, .tabGreen {
    width: 200px;
-   position: absoulte;
+   position: absolute;
    float: left;
 }
 
@@ -1671,7 +1678,8 @@ h5 {
 
 }
 .tabGrey:hover{
-    background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;
+    background: -moz-linear-gradient(-90deg,#f93,#f9b911);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f93), to(#f9b911));
 }
 .tabGrey a:hover{
     color: #fff;

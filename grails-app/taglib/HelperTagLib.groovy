@@ -226,6 +226,14 @@ class HelperTagLib {
   }
 
   /*
+   * finds the number of units linked to a project template
+   */
+  def getProjectTemplateUnitsCount = {attrs, body ->
+    def units = Link.countByTargetAndType(attrs.template, metaDataService.ltProjectUnit)
+    out << units
+  }
+
+  /*
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->

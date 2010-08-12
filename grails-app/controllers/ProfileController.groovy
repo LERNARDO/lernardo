@@ -99,14 +99,13 @@ class ProfileController {
       }
     }
 
-    Entity admin = Entity.findByName('sueninosadmin')
+    Entity currentEntity = entityHelperService.loggedIn
     userList.each {
-      //println it.profile.fullName + " of type " + it.type.name + " received a message"
-      functionService.createEvent(it, 'Du hast eine Administrator-Nachricht erhalten.')
-      functionService.createMessage(admin, it as Entity, it as Entity, params.subject, params.content)
+      functionService.createEvent(it, 'Du hast eine Notifikation erhalten.')
+      functionService.createMessage(currentEntity, it as Entity, it as Entity, params.subject, params.content)
     }
     flash.message = message(code: "admin.notificationSuccess")
-    redirect controller: entityHelperService.loggedIn.type.supertype.name + 'Profile', action: "show", id: entityHelperService.loggedIn.id
+    redirect controller: currentEntity.type.supertype.name + 'Profile', action: "show", id: currentEntity.id
   }
 
   /*

@@ -9,6 +9,16 @@
     <g:set var="project" value="${grailsApplication.config.project}"/> 
     <link rel="stylesheet" href="${resource(dir:'css/' + project,file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
     <link rel="icon" href="${resource(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
+    <g:javascript library="jquery" plugin="jquery"/>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        $('#flash-msg').delay(3000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
+
+      });
+    </script>
+
     <ga:trackPageviewAsynch /> 
   </head>
   <body>

@@ -76,7 +76,7 @@ class ParentProfileController {
       try {
         flash.message = message(code: "parent.deleted", args: [parent.profile.fullName])
         parent.delete(flush: true)
-        redirect(controller:"profile", action: "list")
+        redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "parent.notDeleted", args: [parent.profile.fullName])

@@ -17,11 +17,11 @@
       <tbody>
 
       <tr class="prop">
-        <td valign="top" class="value msg-title">${fieldValue(bean: msgInstance, field: 'subject')}</td>
+        <td valign="top" class="value msg-title">${fieldValue(bean: msgInstance, field: 'subject').decodeHTML()}</td>
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="value msg-name">An <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName}</g:link> am <g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></td>
+        <td valign="top" class="value msg-name">An <g:link controller="post" action="profile" params="[name:msgInstance.receiver.name]">${msgInstance.receiver.profile.fullName.decodeHTML()}</g:link> am <g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></td>
       </tr>
 
       <tr class="prop">
@@ -30,18 +30,17 @@
 
       </tbody>
     </table>
+
     <div class="buttons">
-      <g:form>
-        <g:hiddenField name="id" value="${msgInstance?.id}"/>
-        %{--reply is only possible when sender account is enabled--}%
-        <app:isEnabled entity="${msgInstance.sender}">
-          <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject]">Antworten</g:link>
-        </app:isEnabled>
-        <g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]">Löschen</g:link>
-        <g:link class="buttonGray" action="inbox" params="[name:entity.name]">Zurück</g:link>
-        <div class="spacer"></div>
-      </g:form>
+      %{--reply is only possible when sender account is enabled--}%
+      <app:isEnabled entity="${msgInstance.sender}">
+        <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject]">Antworten</g:link>
+      </app:isEnabled>
+      <g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]">Löschen</g:link>
+      <g:link class="buttonGray" action="inbox" params="[name:entity.name]">Zurück</g:link>
+      <div class="spacer"></div>
     </div>
+
   </div>
 </div>
 </body>

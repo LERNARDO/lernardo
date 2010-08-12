@@ -17,12 +17,14 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'groupFamily.profile.name')}"/>
+        <g:sortableColumn property="amountHousehold" title="${message(code:'groupFamily.profile.amountHousehold')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${groups}" status="i" var="group">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>${fieldValue(bean: group, field: 'profile.amountHousehold')}</td>
         </tr>
       </g:each>
       </tbody>

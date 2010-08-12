@@ -9,6 +9,7 @@ import standard.MetaDataService
 import standard.FunctionService
 import lernardo.Msg
 import lernardo.Event
+import java.util.regex.Pattern
 
 class ChildProfileController {
   MetaDataService metaDataService
@@ -17,7 +18,12 @@ class ChildProfileController {
   def securityManager
 
   def beforeInterceptor = [
-          action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
+          action:{
+            /*if (!Pattern.matches( "\d{2}\.\s\d{2}\.\s\d{4}", params.birthDate)) {
+              flash.message "ups"
+              render view: 'list'
+            }*/
+            params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
   ]
 
   def index = {
@@ -74,7 +80,7 @@ class ChildProfileController {
       try {
         flash.message = message(code: "child.deleted", args: [child.profile.fullName])
         child.delete(flush: true)
-        redirect(controller: "profile", action: "list")
+        redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "child.notDeleted", args: [child.profile.fullName])

@@ -17,12 +17,14 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'child.profile.name')}"/>
+        <g:sortableColumn property="birthDate" title="${message(code:'child.profile.birthDate')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${childList}" status="i" var="child">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${child.id}" params="[entity: child.id]">${fieldValue(bean: child, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
       </g:each>
       </tbody>

@@ -17,12 +17,14 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'pate.profile.name')}"/>
+        <g:sortableColumn property="country" title="${message(code:'pate.profile.country')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${pateList}" status="i" var="pate">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${pate.id}" params="[entity: pate.id]">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><app:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
       </g:each>
       </tbody>
