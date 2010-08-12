@@ -56,9 +56,9 @@ class ActivityController {
       else
         activityList = Entity.findAllByType(metaDataService.etActivity, params)
 
-      def activityCount = activityList.size()
-      def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
-      activityList = activityList.subList(params.offset, upperBound)
+      def activityCount = Entity.countByType(metaDataService.etActivity)
+      //def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+      //activityList = activityList.subList(params.offset, upperBound)
 
       return ['activityList': activityList,
               'activityCount': activityCount]
@@ -278,7 +278,7 @@ class ActivityController {
       calendarStart.add(Calendar.DATE, 1)
     }
 
-    //redirect action:'create', id: params.id
+    flash.message = "Themenraumaktivitäten wurden geplant!"
     redirect action: 'list'
   }
 
