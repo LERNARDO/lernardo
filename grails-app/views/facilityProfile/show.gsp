@@ -65,13 +65,13 @@
 
     </div>
 
-    <app:isMeOrAdmin entity="${facility}">
-      <div class="buttons">
+    <div class="buttons">
+      <app:isMeOrAdminOrOperator entity="${facility}">
         <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isMeOrAdmin>
+      </app:isMeOrAdminOrOperator>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="leadEducator"/> <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducator');

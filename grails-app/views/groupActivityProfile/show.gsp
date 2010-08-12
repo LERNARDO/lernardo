@@ -55,12 +55,14 @@
       </table>
     </div>
 
-    <app:isCreator entity="${group}">
-      <div class="buttons">
+
+    <div class="buttons">
+      <app:isCreator entity="${group}">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isCreator>
+      </app:isCreator>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5>Aktivitäten</h5>
