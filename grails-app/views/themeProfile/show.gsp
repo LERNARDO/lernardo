@@ -88,7 +88,7 @@
 
     <g:if test="${theme.profile.type == 'Subthema'}">
       <div class="zusatz">
-        <h5>Projekte <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#projects');
+        <h5>Projekte <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte hinzufügen"/></a></app:isMeOrAdmin></h5>
         <div class="zusatz-add" id="projects" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2')">
