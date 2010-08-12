@@ -37,9 +37,22 @@ class ClientProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
 
-    return [clientList: Entity.findAllByType(metaDataService.etClient),
+    def c = Entity.createCriteria()
+    def clients = c.list {
+      eq("type", metaDataService.etClient)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [clientList: clients,
             clientTotal: Entity.countByType(metaDataService.etClient),
             entity: entityHelperService.loggedIn]
   }

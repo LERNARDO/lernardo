@@ -21,8 +21,22 @@ class ResourceProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 20, 100)
-    return [resourceList: Entity.findAllByType(metaDataService.etResource),
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def resources = c.list {
+      eq("type", metaDataService.etResource)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [resourceList: resources,
             resourceTotal: Entity.countByType(metaDataService.etResource),
             entity: entityHelperService.loggedIn]
   }

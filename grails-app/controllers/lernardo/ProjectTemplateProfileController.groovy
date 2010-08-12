@@ -21,8 +21,22 @@ class ProjectTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 20, 100)
-    return [projectTemplateList: Entity.findAllByType(metaDataService.etProjectTemplate),
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def projecttemplates = c.list {
+      eq("type", metaDataService.etProjectTemplate)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [projectTemplateList: projecttemplates,
             projectTemplateTotal: Entity.countByType(metaDataService.etProjectTemplate),
             entity: entityHelperService.loggedIn]
   }

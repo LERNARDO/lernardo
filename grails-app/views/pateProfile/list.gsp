@@ -10,31 +10,27 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${pateTotal} <g:message code="pate.profile.c_total"/></p>
-    <g:if test="${pateTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'pate.profile.name')}"/>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${pateList}" status="i" var="pate">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${pate.id}" params="[entity: pate.id]">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link></td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
 
-      <g:if test="${pateTotal > 20}">
-        <div class="paginateButtons">
-          <g:paginate total="${pateTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+    <p>${pateTotal} <g:message code="pate.profile.c_total"/></p>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="fullName" title="${message(code:'pate.profile.name')}"/>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${pateList}" status="i" var="pate">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${pate.id}" params="[entity: pate.id]">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${pateTotal}"/>
+    </div>
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
@@ -42,7 +38,7 @@
         <div class="spacer"></div>
       </div>
     </app:isOperator>
-    
+
   </div>
 </div>
 </body>

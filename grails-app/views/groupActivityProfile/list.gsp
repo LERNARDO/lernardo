@@ -17,33 +17,29 @@
 <div class="clearFloat"></div>
 <div class="boxGray">
   <div class="second">
-    <p>${groupTotal} Aktivitätsblöcke insgesamt vorhanden</p>
-    <g:if test="${groupTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>
-            <th>Datum</th>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${groups}" status="i" var="group">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-              <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
 
-      <g:if test="${groupTotal > 10}">
-        <div class="paginateButtons">
-          <g:paginate total="${groupTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+    <p>${groupTotal} Aktivitätsblöcke insgesamt vorhanden</p>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>
+        <th>Datum</th>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${groups}" status="i" var="group">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${groupTotal}"/>
+    </div>
 
     %{--<div class="buttons">
       <g:link class="buttonBlue" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>

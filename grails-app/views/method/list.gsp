@@ -10,32 +10,29 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
     <p>${methodInstanceTotal} Bewertungsmethoden insgesamt vorhanden</p>
-    <g:if test="${methodInstanceTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'method.name')}"/>
-            <th>Elemente</th>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${methodInstanceList}" status="i" var="method">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${method.id}">${fieldValue(bean: method, field: 'name').decodeHTML()}</g:link></td>
-              <td>${method.elements.size()}</td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
-      <g:if test="${methodInstanceTotal > 20}">
-        <div class="paginateButtons">
-          <g:paginate total="${methodInstanceTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="name" title="${message(code:'method.name')}"/>
+        <th>Elemente</th>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${methodInstanceList}" status="i" var="method">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${method.id}">${fieldValue(bean: method, field: 'name').decodeHTML()}</g:link></td>
+          <td>${method.elements.size()}</td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${methodInstanceTotal}"/>
+    </div>
 
     <app:isAdmin>
       <div class="buttons">

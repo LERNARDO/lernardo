@@ -29,8 +29,22 @@ class ParentProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
-    return [parentList: Entity.findAllByType(metaDataService.etParent),
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def parents = c.list {
+      eq("type", metaDataService.etParent)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [parentList: parents,
             parentTotal: Entity.countByType(metaDataService.etParent),
             entity: entityHelperService.loggedIn]
   }

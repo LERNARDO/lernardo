@@ -10,30 +10,27 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
     <p>${childTotal} <g:message code="child.profile.c_total"/></p>
-    <g:if test="${childTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="lastName" title="${message(code:'child.profile.name')}"/>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${childList}" status="i" var="child">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${child.id}" params="[entity: child.id]">${fieldValue(bean: child, field: 'profile.fullName').decodeHTML()}</g:link></td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
-      <g:if test="${childTotal > 20}">
-        <div class="paginateButtons">
-          <g:paginate total="${childTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="fullName" title="${message(code:'child.profile.name')}"/>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${childList}" status="i" var="child">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${child.id}" params="[entity: child.id]">${fieldValue(bean: child, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${childTotal}"/>
+    </div>
 
     <app:isOperator entity="${currentEntity}">
       <div class="buttons">

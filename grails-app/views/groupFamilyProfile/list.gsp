@@ -10,31 +10,27 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${groupTotal} <g:message code="groupFamily.profile.c_total"/></p>
-    <g:if test="${groupTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'groupFamily.profile.name')}"/>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${groups}" status="i" var="group">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
 
-      <g:if test="${groupTotal > 10}">
-        <div class="paginateButtons">
-          <g:paginate total="${groupTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+    <p>${groupTotal} <g:message code="groupFamily.profile.c_total"/></p>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="fullName" title="${message(code:'groupFamily.profile.name')}"/>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${groups}" status="i" var="group">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${group.id}">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${groupTotal}"/>
+    </div>
 
     <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">

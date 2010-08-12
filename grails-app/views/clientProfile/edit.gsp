@@ -136,18 +136,18 @@
             <tr>
               <td width="160px" valign="top" class="value">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_es}" optionKey="key" optionValue="value" value="${client.profile.familyStatus}"/>
+                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_es}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_de}" optionKey="key" optionValue="value" value="${client.profile.familyStatus}"/>
+                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_de}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
                 </g:if>
               </td>
               <td width="250" valign="top" class="value">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${client.profile.languages}"/>
+                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${client?.profile?.languages}"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${client.profile.languages}"/>
+                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${client?.profile?.languages}"/>
                 </g:if>
               </td>
               <td width="230" valign="top" class="value">
@@ -155,10 +155,10 @@
               </td>
               <td width="210" valign="top" class="value">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${client.profile.schoolLevel}"/>
+                  <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${client.profile.schoolLevel}"/>
+                  <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}"/>
                 </g:if>
               </td>
             </tr>
@@ -219,10 +219,10 @@
               </td>
               <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select name="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${client.profile.jobType}"/>
+                  <g:select name="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${client?.profile?.jobType}"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select name="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${client.profile.jobType}"/>
+                  <g:select name="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${client?.profile?.jobType}"/>
                 </g:if>
               </td>
               <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">

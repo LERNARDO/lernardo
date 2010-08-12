@@ -25,8 +25,22 @@ class PartnerProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
-    return [partnerList: Entity.findAllByType(metaDataService.etPartner),
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def partners = c.list {
+      eq("type", metaDataService.etPartner)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [partnerList: partners,
             partnerTotal: Entity.countByType(metaDataService.etPartner),
             entity: entityHelperService.loggedIn]
   }

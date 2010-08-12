@@ -21,8 +21,21 @@ class TemplateProfileController {
 
   def list = {
     params.offset = params.offset ? params.int('offset') : 0
-    params.max = params.max ? params.int('max') : 15
-    return ['templateList': Entity.findAllByType(metaDataService.etTemplate),
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def templates = c.list {
+      eq("type", metaDataService.etTemplate)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return ['templateList': templates,
             'templateCount': Entity.countByType(metaDataService.etTemplate),
             'entity': entityHelperService.loggedIn]
   }

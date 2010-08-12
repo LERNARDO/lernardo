@@ -24,8 +24,22 @@ class GroupActivityProfileController {
   }
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
-    return [groups: Entity.findAllByType(metaDataService.etGroupActivity),
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def groupactivities = c.list {
+      eq("type", metaDataService.etGroupActivity)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [groups: groupactivities,
             groupTotal: Entity.countByType(metaDataService.etGroupActivity),
             entity: entityHelperService.loggedIn]
   }

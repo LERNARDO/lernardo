@@ -10,33 +10,29 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${facilityTotal} <g:message code="facility.profile.c_total"/></p>
-    <g:if test="${facilityTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="fullName" title="${message(code:'facility.profile.name')}"/>
-            <th>${message(code:'facility.profile.street')}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${facilities}" status="i" var="facility">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${facility.id}" params="[entity: facility.id]">${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}</g:link></td>
-              <td>${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">---</div>'}</td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
 
-      <g:if test="${facilityTotal > 20}">
-        <div class="paginateButtons">
-          <g:paginate total="${facilityTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+    <p>${facilityTotal} <g:message code="facility.profile.c_total"/></p>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="fullName" title="${message(code:'facility.profile.name')}"/>
+        <th>${message(code: 'facility.profile.street')}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${facilities}" status="i" var="facility">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${facility.id}" params="[entity: facility.id]">${fieldValue(bean: facility, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">---</div>'}</td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${facilityTotal}"/>
+    </div>
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
@@ -44,7 +40,7 @@
         <div class="spacer"></div>
       </div>
     </app:isOperator>
-    
+
   </div>
 </div>
 </body>

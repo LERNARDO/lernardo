@@ -25,8 +25,22 @@ class UserProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
-    return [userList: Entity.findAllByType(metaDataService.etUser),
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def users = c.list {
+      eq("type", metaDataService.etUser)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [userList: users,
             userTotal: Entity.countByType(metaDataService.etUser),
             entity: entityHelperService.loggedIn]
   }

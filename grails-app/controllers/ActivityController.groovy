@@ -46,7 +46,7 @@ class ActivityController {
       if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
-          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility, params)
 
           tempList.each {bla ->
             activityList << bla.target
@@ -54,7 +54,7 @@ class ActivityController {
         }
       }
       else
-        activityList = Entity.findAllByType(metaDataService.etActivity)
+        activityList = Entity.findAllByType(metaDataService.etActivity, params)
 
       def activityCount = activityList.size()
       def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()

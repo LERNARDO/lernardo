@@ -701,6 +701,51 @@ ul {
 
 /* ----- LIST and TABLE overrides ----- */
 
+.default-table {
+    border: 1px solid #bbb;
+    width: 100%; }
+    .default-table td {
+        padding: 5px; }
+        .default-table td a {
+            color: #141;
+            text-decoration: none;
+        }
+        .default-table td a:hover {
+            color: #272;
+            text-decoration: underline;
+        }
+    .default-table th {
+        background: #ccd;
+        color: #333;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: bold;
+        line-height: 17px;
+        padding: 2px 6px; }
+        .default-table th a {
+            color: #333;
+            display: block;
+            font-size: 11px;
+            text-decoration: none;
+            width: 100%; }
+        .default-table th:hover {
+            background: #bbc;
+        }
+        .default-table th.asc a, th.desc a {
+            background-position: right;
+            background-repeat: no-repeat; }
+        .default-table th.asc a {
+            background-image: url(../../images/skin/sorted_asc.gif); }
+        .default-table th.desc a {
+            background-image: url(../../images/skin/sorted_desc.gif); }
+    .default-table tr {
+        font-size: 11px;
+        border: 1px solid #999;}
+    .default-table tr.odd {
+        background: #eef; }
+    .default-table tr.even {
+        background: #fef; }
+
 table .label {
     height: 25px;
     padding-right: 10px; }
@@ -725,44 +770,47 @@ label {
     #body-list td {
         padding: 5px; }
         #body-list td .col {
-            width: 200px; }
+            /*width: 200px;*/ }
         #body-list td .col2 {
-            width: 150px; }
+            /*width: 150px;*/ }
         #body-list td .col4 {
             width: 150px; }
     #body-list .list th, .list td {
         border-left: 1px solid #ddd; }
     #body-list th {
-        background: #Fd4 /*url(../images/skin/shadow.jpg) repeat scroll 0 0*/;
+        background: #Fd4 /*url(../../images/skin/shadow.jpg) repeat scroll 0 0*/;
         color: #333;
         font-size: 11px;
         text-transform: uppercase;
         font-weight: bold;
         line-height: 17px;
         padding: 2px 6px; }
-        #body-list th a:link, #body-list th a:visited, #body-list th a:hover {
+        #body-list th a:link, #body-list th a:visited {
             color: #333;
             display: block;
             font-size: 11px;
             text-decoration: none;
             width: 100%; }
+        #body-list th:hover {
+            background: #bbb;
+            color: #fff;
+        }
         #body-list th.asc a, th.desc a {
             background-position: right;
             background-repeat: no-repeat; }
         #body-list th.asc a {
-            background-image: url(../images/skin/sorted_asc.gif); }
+            background-image: url(../../images/skin/sorted_asc.gif); }
         #body-list th.desc a {
-            background-image: url(../images/skin/sorted_desc.gif); }
+            background-image: url(../../images/skin/sorted_desc.gif); }
     #body-list tr {
         font-size: 11px;
-            border: 1px solid #999;}
-    #body-list .odd {
+        border: 1px solid #999;}
+    #body-list tr.odd {
         background: #eef; }
+    #body-list tr.even {
+        background: #fef; }
     #body-list #select-box {
         margin-bottom: 10px; }
-    #body-list a:link, #body-list a:visited {
-        /*color: #46597B;*/
-    }
 
 table #profile-list tr {
     border: 1px solid #ccc; }
@@ -770,13 +818,14 @@ table #profile-list tr {
 /* PAGINATION */
 
 .paginateButtons {
-    background: #fff url(../images/skin/shadow.jpg) bottom repeat-x;
-    border: 1px solid #ccc;
+    background: #ccd /*url(../../images/skin/shadow.jpg) bottom repeat-x*/;
+    border: 1px solid #aaa;
+    border-top: none;
     color: #666;
-    font-size: 10px;
+    font-size: 11px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-top: 5px;
+    margin-bottom: 5px;
 }
     .paginateButtons a {
         background: #fff;
@@ -1351,7 +1400,7 @@ table#msg-composer td {
 
 .overview .box {
   border: 1px solid #bdbdbd;
-  margin: 0 15px 0px 0;
+  margin: 0 15px 0 0;
   text-align: center;
   float: left;
   padding: 5px;

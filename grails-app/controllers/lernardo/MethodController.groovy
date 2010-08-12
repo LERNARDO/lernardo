@@ -12,7 +12,7 @@ class MethodController {
 
   def list = {
     params.max = Math.min(params.max ? params.max.toInteger() : 10, 100)
-    List methods = Method.findAllByType('template')
+    List methods = Method.findAllByType('template', params)
     [methodInstanceList: methods, methodInstanceTotal: methods.size()]
   }
 

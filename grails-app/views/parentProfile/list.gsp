@@ -10,31 +10,27 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <p>${parentTotal} <g:message code="parent.profile.c_total"/></p>
-    <g:if test="${parentTotal > 0}">
-      <div id="body-list">
-        <table>
-          <thead>
-          <tr>
-            <g:sortableColumn property="lastName" title="${message(code:'parent.profile.name')}"/>
-          </tr>
-          </thead>
-          <tbody>
-          <g:each in="${parentList}" status="i" var="parent">
-            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-              <td><g:link action="show" id="${parent.id}" params="[entity: parent.id]">${fieldValue(bean: parent, field: 'profile.fullName').decodeHTML()}</g:link></td>
-            </tr>
-          </g:each>
-          </tbody>
-        </table>
-      </div>
 
-      <g:if test="${parentTotal > 20}">
-        <div class="paginateButtons">
-          <g:paginate total="${parentTotal}"/>
-        </div>
-      </g:if>
-    </g:if>
+    <p>${parentTotal} <g:message code="parent.profile.c_total"/></p>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="fullName" title="${message(code:'parent.profile.name')}"/>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${parentList}" status="i" var="parent">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="show" id="${parent.id}" params="[entity: parent.id]">${fieldValue(bean: parent, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
+
+    <div class="paginateButtons">
+      <g:paginate total="${parentTotal}"/>
+    </div>
 
     <app:isOperator entity="${entity}">
       <div class="buttons">
@@ -42,7 +38,7 @@
         <div class="spacer"></div>
       </div>
     </app:isOperator>
-    
+
   </div>
 </div>
 </body>
