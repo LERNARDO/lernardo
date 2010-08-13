@@ -123,6 +123,7 @@ class ProfileController {
   def giveAdminRole = {
     Entity entity = Entity.get(params.id)
     entity?.user?.addToAuthorities(metaDataService.adminRole)
+    functionService.createMessage(entityHelperService.loggedIn, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.")
     render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
   }
 
@@ -133,6 +134,7 @@ class ProfileController {
     Entity entity = Entity.get(params.id)
     def role = entity.user.authorities.find { it.id == (metaDataService.adminRole.id)}
     entity.user.removeFromAuthorities(role)
+    functionService.createMessage(entityHelperService.loggedIn, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators wieder genommen.")
     render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
   }
 
