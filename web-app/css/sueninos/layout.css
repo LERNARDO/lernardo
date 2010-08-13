@@ -1668,7 +1668,7 @@ h5 {
 
 .tabGrey, .tabGreen {
    width: 200px;
-   position: absolute;
+   /*position: absolute;*/
    float: left;
 }
 
