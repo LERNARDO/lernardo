@@ -81,6 +81,8 @@ class ProjectTemplateProfileController {
     if (projectTemplate) {
       // delete all links
       Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
+      Event.findAllByEntity(projectTemplate).each {it.delete}
+
       try {
         flash.message = message(code: "projectTemplate.deleted", args: [projectTemplate.profile.fullName])
         projectTemplate.delete(flush: true)

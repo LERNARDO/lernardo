@@ -9,6 +9,8 @@ import standard.MetaDataService
 import at.openfactory.ep.Profile
 import standard.FunctionService
 import at.openfactory.ep.EntityException
+import lernardo.Msg
+import lernardo.Event
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -101,6 +103,7 @@ class GroupActivityProfileController {
 
       // delete all links to and from this group first
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
+      Event.findAllByEntity(group).each {it.delete}
 
       try {
         flash.message = message(code: "group.deleted", args: [group.profile.fullName])
