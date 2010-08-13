@@ -9,6 +9,8 @@ class ThemeProfile extends Profile {
     String description
     String type
 
+    Date dateCreated
+
     static constraints = {
       fullName (blank: false, size: 2..50, maxSize: 50)
       description (blank: true, maxSize: 2000)

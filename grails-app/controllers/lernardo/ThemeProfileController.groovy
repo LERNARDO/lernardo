@@ -32,8 +32,8 @@ class ThemeProfileController {
   def list = {
     params.offset = params.offset ? params.int('offset') : 0
     params.max = Math.min(params.max ? params.int('max') : 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
+    params.sort = params.sort ?: "dateCreated"
+    params.order = params.order ?: "desc"
 
     def c = Entity.createCriteria()
     def themes = c.list {
