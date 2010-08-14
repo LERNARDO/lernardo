@@ -28,19 +28,16 @@ class CommentController {
 
   def save = {
     Entity entity = Entity.get(params.id)
-    Entity creator = entityHelperService.loggedIn
+    Entity currentEntity = entityHelperService.loggedIn
 
-    Comment comment = new Comment(content: params.content, creator: creator.id).save()
-
+    Comment comment = new Comment(content: params.content, creator: currentEntity.id).save()
     entity.profile.addToComments(comment)
 
-    //flash.message = message(code:"comment.created", args:[entity.profile.fullName])
-
-    functionService.createEvent(entityHelperService.loggedIn, 'Du hast ein Kommentar zu "' + entity.profile.fullName + '" erstellt.')
+    functionService.createEvent(currentEntity, 'Du hast ein Kommentar zu "' + entity.profile.fullName + '" erstellt.')
     List receiver = Entity.findAllByType(metaDataService.etEducator)
     receiver.each {
-      if (it != entityHelperService.loggedIn)
-        functionService.createEvent(it as Entity, entityHelperService.loggedIn.profile.fullName+' hat ein Kommentar zu "'+entity.profile.fullName+'" erstellt.')
+      if (it.id != currentEntity.id)
+        functionService.createEvent(it as Entity, currentEntity.profile.fullName+' hat ein Kommentar zu "'+entity.profile.fullName+'" erstellt.')
     }
 
     render template:'comments', model:[commented: entity]

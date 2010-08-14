@@ -501,14 +501,15 @@ class HelperTagLib {
    * checks whether the given entity was created by the current user
    */
   def isCreator = {attrs, body ->
+    Entity currentEntity = entityHelperService.loggedIn
     def c = Link.createCriteria()
     def link = c.get {
-      eq('source', entityHelperService.loggedIn)
+      eq('source', currentEntity)
       eq('target', attrs.entity)
       eq('type', metaDataService.ltCreator)
     }
     // show also when the current user is an operator, admin or sysadmin
-    if (link || entityHelperService.loggedIn.type.name == metaDataService.etOperator.name || secHelperService.isAdmin() || secHelperService.hasRole('ROLE_SYSTEMADMIN'))
+    if (link || currentEntity.type.name == metaDataService.etOperator.name || secHelperService.isAdmin() || secHelperService.hasRole('ROLE_SYSTEMADMIN'))
       out << body()
   }
 
@@ -671,26 +672,26 @@ class HelperTagLib {
   }
 
   private boolean friend(attrs) {
-    Entity current = entityHelperService.loggedIn
-    if (!current)
+    Entity currentEntity = entityHelperService.loggedIn
+    if (!currentEntity)
       return false
-    Entity e = attrs.entity ?: entityHelperService.loggedIn
+    Entity e = attrs.entity ?: currentEntity
     if (!e)
       return false
 
-    def result = networkService.isFriendOf(current, e)
+    def result = networkService.isFriendOf(currentEntity, e)
     return result
   }
 
   private boolean bookmark(attrs) {
-    Entity current = entityHelperService.loggedIn
-    if (!current)
+    Entity currentEntity = entityHelperService.loggedIn
+    if (!currentEntity)
       return false
-    Entity e = attrs.entity ?: entityHelperService.loggedIn
+    Entity e = attrs.entity ?: currentEntity
     if (!e)
       return false
 
-    def result = networkService.isBookmarkOf(current, e)
+    def result = networkService.isBookmarkOf(currentEntity, e)
     return result
   }
 

@@ -43,8 +43,7 @@ class GroupActivityTemplateProfileController {
     }
 
     return [groups: groupactivitytemplates,
-            groupTotal: Entity.countByType(metaDataService.etGroupActivityTemplate),
-            entity: entityHelperService.loggedIn]
+            groupTotal: Entity.countByType(metaDataService.etGroupActivityTemplate)]
   }
 
   def show = {
@@ -116,7 +115,7 @@ class GroupActivityTemplateProfileController {
       redirect action: 'list'
     }
     else {
-      [group: group, entity: entityHelperService.loggedIn]
+      [group: group]
     }
   }
 
@@ -130,15 +129,14 @@ class GroupActivityTemplateProfileController {
       redirect action: 'show', id: group.id
     }
     else {
-      render view: 'edit', model: [group: group, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [group: group]
     }
   }
 
   def create = {
     Entity group = Entity.get(params.id)
        
-    return [entity: entityHelperService.loggedIn,
-            group: group]
+    return [group: group]
   }
 
   def save = {
@@ -153,7 +151,7 @@ class GroupActivityTemplateProfileController {
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [group: ee.entity])
       return
     }
 

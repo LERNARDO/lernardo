@@ -42,8 +42,7 @@ class GroupActivityProfileController {
     }
 
     return [groups: groupactivities,
-            groupTotal: Entity.countByType(metaDataService.etGroupActivity),
-            entity: entityHelperService.loggedIn]
+            groupTotal: Entity.countByType(metaDataService.etGroupActivity)]
   }
 
   def show = {
@@ -129,7 +128,7 @@ class GroupActivityProfileController {
       redirect action: 'list'
     }
     else {
-      [group: group, entity: entityHelperService.loggedIn]
+      [group: group]
     }
   }
 
@@ -143,7 +142,7 @@ class GroupActivityProfileController {
       redirect action: 'show', id: group.id
     }
     else {
-      render view: 'edit', model: [group: group, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [group: group]
     }
   }
 
@@ -159,7 +158,7 @@ class GroupActivityProfileController {
       calculatedDuration += it.profile.duration
     }
 
-    return [entity: entityHelperService.loggedIn, template: groupActivityTemplate, calculatedDuration: calculatedDuration]
+    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration]
   }
 
   def save = {
@@ -202,7 +201,7 @@ class GroupActivityProfileController {
         calculatedDuration += it.profile.duration
       }
 
-      render(view: "create", model: [group: ee.entity, entity: entityHelperService.loggedIn, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
+      render(view: "create", model: [group: ee.entity, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
       return
     }
 

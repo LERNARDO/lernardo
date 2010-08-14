@@ -29,11 +29,13 @@ class CalendarController {
    * shows the calendar
    */
   def show = {
-    Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
+    Entity currentEntity = entityHelperService.loggedIn
+
+    Entity entity = params.id ? Entity.get(params.id) : currentEntity
 
     List educators = []
 
-    if (entityHelperService.loggedIn.type.name == metaDataService.etEducator) {
+    if (currentEntity.type.name == metaDataService.etEducator) {
       // find facility the educator is working for
       Link link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
 
@@ -49,7 +51,6 @@ class CalendarController {
       educators = Entity.findAllByType(metaDataService.etEducator)
 
     return ['id': params.id,
-            'entity': entityHelperService.loggedIn,
             'educators': educators,
             'active': entity]
   }

@@ -37,8 +37,7 @@ class ProfileController {
   * retrieves the total number of each entity
   */
   def overview = {
-    [entity: entityHelperService.loggedIn,
-    allOperators: Entity.countByType(metaDataService.etOperator),
+    [allOperators: Entity.countByType(metaDataService.etOperator),
     allUsers: Entity.countByType(metaDataService.etUser),
     allClients: Entity.countByType(metaDataService.etClient),
     allEducators: Entity.countByType(metaDataService.etEducator),
@@ -67,13 +66,13 @@ class ProfileController {
    */
   def createNotification = {
     Msg msgInstance = new Msg()
-    return [msgInstance: msgInstance, entity: entityHelperService.loggedIn]
+    return [msgInstance: msgInstance]
   }
 
   def saveNotification = {NotificationCommand nc->
 
     if (nc.hasErrors()) {
-      render view:'createNotification', model:[nc: nc, entity: entityHelperService.loggedIn]
+      render view:'createNotification', model:[nc: nc]
       return
     }
     
@@ -123,8 +122,9 @@ class ProfileController {
   def giveAdminRole = {
     Entity entity = Entity.get(params.id)
     entity?.user?.addToAuthorities(metaDataService.adminRole)
-    functionService.createMessage(entityHelperService.loggedIn, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.")
-    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
+    Entity currentEntity = entityHelperService.loggedIn
+    functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.")
+    render template:'listentity', model:[entity: entity, currentEntity: currentEntity, i: params.i]
   }
 
   /*
@@ -134,8 +134,9 @@ class ProfileController {
     Entity entity = Entity.get(params.id)
     def role = entity.user.authorities.find { it.id == (metaDataService.adminRole.id)}
     entity.user.removeFromAuthorities(role)
-    functionService.createMessage(entityHelperService.loggedIn, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.")
-    render template:'listentity', model:[entity: entity, currentEntity: entityHelperService.loggedIn, i: params.i]
+    Entity currentEntity = entityHelperService.loggedIn
+    functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.")
+    render template:'listentity', model:[entity: entity, currentEntity: currentEntity, i: params.i]
   }
 
   /*
@@ -368,8 +369,7 @@ class ProfileController {
   def print = {
     // find out if this works without this workaround now
     //params.date = new Date(params.year.toInteger()-1900,params.month.toInteger()-1,params.day.toInteger())
-    Entity entity = entityHelperService.loggedIn
-    def image = "hort_" + entity.name + ".jpg"
+    def image = "hort_" + entityHelperService.loggedIn.name + ".jpg"
 
     int sumAttend = 0
     int sumEat = 0
@@ -547,9 +547,10 @@ class ProfileController {
    */
   def addFriend = {
     Entity entity = Entity.get(params.id)
+    Entity currentEntity = entityHelperService.loggedIn
 
     def linkInstance = new Link()
-    linkInstance.source = entityHelperService.loggedIn
+    linkInstance.source = currentEntity
     linkInstance.type = metaDataService.ltFriendship
     linkInstance.target = entity
 
@@ -557,14 +558,14 @@ class ProfileController {
     def linkBack = new Link()
     linkBack.source = entity
     linkBack.type = metaDataService.ltFriendship
-    linkBack.target = entityHelperService.loggedIn
+    linkBack.target = currentEntity
 
     if (linkInstance.save(flush: true) && linkBack.save(flush: true)) {
       def name = linkInstance.target.profile.fullName ?: linkInstance.target.profile.lastName + " " + linkInstance.target.profile.firstName
       flash.message = message(code: "user.addFriend", args: [name])
 
-      functionService.createEvent(entityHelperService.loggedIn, 'Du hast ' + name + ' als Freund hinzugefügt.')
-      functionService.createEvent(entity, entityHelperService.loggedIn.profile.id + ' hat dich als Freund hinzugefügt.')
+      functionService.createEvent(currentEntity, 'Du hast ' + name + ' als Freund hinzugefügt.')
+      functionService.createEvent(entity, currentEntity.profile.id + ' hat dich als Freund hinzugefügt.')
 
       redirect controller: entity.type.supertype.name + 'Profile', action: 'show', params: [id: entity.id, entity: entity.id]
     }
@@ -579,17 +580,18 @@ class ProfileController {
    */
   def removeFriend = {
     Entity entity = Entity.get(params.id)
+    Entity currentEntity = entityHelperService.loggedIn
 
     def c = Link.createCriteria()
     def linkInstance = c.get {
-      eq('source', entityHelperService.loggedIn)
+      eq('source', currentEntity)
       eq('target', entity)
       eq('type', metaDataService.ltFriendship)
     }
     def d = Link.createCriteria()
     def linkInstanceBack = d.get {
       eq('source', entity)
-      eq('target', entityHelperService.loggedIn)
+      eq('target', currentEntity)
       eq('type', metaDataService.ltFriendship)
     }
     if (linkInstance && linkInstanceBack) {
@@ -599,8 +601,8 @@ class ProfileController {
         def name = entity.profile.fullName ?: entity.profile.lastName + " " + entity.profile.firstName
         flash.message = message(code: "user.removeFriend", args: [name])
 
-        functionService.createEvent(entityHelperService.loggedIn, 'Du hast ' + name + ' als Freund entfernt.')
-        functionService.createEvent(entity, entityHelperService.loggedIn.profile.id + ' hat dich als Freund entfernt.')
+        functionService.createEvent(currentEntity, 'Du hast ' + name + ' als Freund entfernt.')
+        functionService.createEvent(entity, currentEntity.profile.id + ' hat dich als Freund entfernt.')
 
         redirect controller: entity.type.supertype.name + 'Profile', action: 'show', params: [id: entity.id, entity: entity.id]
       }

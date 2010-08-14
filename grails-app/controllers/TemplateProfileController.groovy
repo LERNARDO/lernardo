@@ -36,14 +36,12 @@ class TemplateProfileController {
     }
 
     return ['templateList': templates,
-            'templateCount': Entity.countByType(metaDataService.etTemplate),
-            'entity': entityHelperService.loggedIn]
+            'templateCount': Entity.countByType(metaDataService.etTemplate)]
   }
 
   def edit = {
     Entity template = Entity.get(params.id)
-    return ['template': template,
-            'entity': entityHelperService.loggedIn]
+    return ['template': template]
   }
 
   def update = {
@@ -55,7 +53,7 @@ class TemplateProfileController {
       redirect action: 'show', id: template.id
     }
     else {
-      render view: 'edit', model: [template: template, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [template: template]
     }
 
   }
@@ -91,13 +89,14 @@ class TemplateProfileController {
 
   def create = {
     Entity template = Entity.get(params.id)
-    return ['entity': entityHelperService.loggedIn,
-            'resources': Entity.findAllByType(metaDataService.etResource),
+    return ['resources': Entity.findAllByType(metaDataService.etResource),
             'template': template]
   }
 
   def save = {
     EntityType etTemplate = metaDataService.etTemplate
+
+    Entity currentEntity = entityHelperService.loggedIn
 
     try {
       Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
@@ -105,10 +104,10 @@ class TemplateProfileController {
         ent.profile.properties = params
       }
 
-      functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
+      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {
-        if (it != entityHelperService.loggedIn)
+        if (it.id != currentEntity.id)
           functionService.createEvent(it as Entity, 'Es wurde die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
       }
 
@@ -116,7 +115,7 @@ class TemplateProfileController {
       redirect action: 'show', id: entity.id
 
     } catch (at.openfactory.ep.EntityException ee) {
-      render view: "create", model: [template: ee.entity, entity: entityHelperService.loggedIn, resources: Entity.findAllByType(metaDataService.etResource)]
+      render view: "create", model: [template: ee.entity, entity: currentEntity, resources: Entity.findAllByType(metaDataService.etResource)]
       return
     }
 

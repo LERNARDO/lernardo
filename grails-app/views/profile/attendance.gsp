@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<g:if test="${entity.profile.showTips}">
+<g:if test="${currentEntity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
       <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</b> Der tägliche Essenbeitrag bezieht sich auf die Mittagsmahlzeit und fällt für jeden Betreuten an. Der Betrag kann über die Profildaten der Einrichtung geändert werden.
@@ -47,7 +47,7 @@
     <div id="body-list">
       <p>${entityCount} Profile gefunden</p>
 
-      <g:form controller="profile" action="attendance" method="post" params="[name:entity.name]">
+      <g:form controller="profile" action="attendance" method="post" params="[name:currentEntity.name]">
         Datum:<g:datePicker name="date" value="${date}" precision="day" years="${2009..2020}"/>
         <div class="buttons">
           <g:submitButton name="submitButton" value="Datum ändern" icon="true"/>
@@ -65,7 +65,7 @@
         </g:else></p>
       <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
 
-      <g:form action="saveAttendance" method="post" name="clients" id="clients" params="[name: entity.name, year: year, month: month, day: day]">
+      <g:form action="saveAttendance" method="post" name="clients" id="clients" params="[name: currentEntity.name, year: year, month: month, day: day]">
 
         <table id="profile-list">
           <thead>

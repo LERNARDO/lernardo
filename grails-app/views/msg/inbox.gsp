@@ -3,7 +3,7 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<g:if test="${entity.profile.showTips}">
+<g:if test="${currentEntity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
       <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="tipp"/>:</b> <g:message code="msg.inbox.tipp"/>

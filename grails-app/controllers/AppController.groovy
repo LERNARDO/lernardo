@@ -43,12 +43,12 @@ class AppController {
    * this is the private start
    */
   def start = {
-    Entity entity = entityHelperService.loggedIn
-    if (entity) {
-      Locale locale = entity.user?.locale ?: new Locale("de", "DE");
+    Entity currentEntity = entityHelperService.loggedIn
+    if (currentEntity) {
+      Locale locale = currentEntity.user?.locale ?: new Locale("de", "DE");
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
 
-      redirect controller: 'profile', action: 'showNews', id: entity.id
+      redirect controller: 'profile', action: 'showNews', id: currentEntity.id
     }
     else
       redirect action: 'home'

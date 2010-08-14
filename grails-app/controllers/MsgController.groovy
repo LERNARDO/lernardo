@@ -136,6 +136,6 @@ class MsgController {
     functionService.createEvent(entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + currentEntity.profile.fullName + '</a>  hat dir eine Nachricht geschickt.')
 
     //redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
-    redirect action:'inbox', id: entityHelperService.loggedIn.id
+    redirect action:'inbox', id: currentEntity.id
   }
 }

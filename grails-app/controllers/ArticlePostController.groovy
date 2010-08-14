@@ -1,5 +1,6 @@
 import posts.ArticlePost
 import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.Entity
 
 class ArticlePostController {
   EntityHelperService entityHelperService
@@ -51,10 +52,13 @@ class ArticlePostController {
 
   def save = {
     ArticlePost article = new ArticlePost(params)
-    article.author = entityHelperService.loggedIn
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    article.author = currentEntity
     if (!article.hasErrors() && article.save()) {
       flash.message = message(code: "article.created", args: [article.title])
-      redirect action: "index", params: [name: entityHelperService.loggedIn.name]
+      redirect action: "index", params: [name: currentEntity.name]
     }
     else {
       render view:"create", model:[postInstance:article]

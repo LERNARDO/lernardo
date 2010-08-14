@@ -34,8 +34,10 @@ class ActivityController {
     params.max = params.max ? params.int('max') : 10
     params.myDate_year = params.myDate_year ?: 'alle'
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     // get a list of facilities the current entity is linked to
-    List links = Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking)
+    List links = Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking)
     List facilities = links.collect {it.target}
 
     // create empty list for final results
@@ -43,7 +45,7 @@ class ActivityController {
 
     if (params.myDate_year == 'alle' || params.list == 'Alle') {
 
-      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
+      if (currentEntity.type.name == metaDataService.etEducator.name) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
           List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility, params)
@@ -70,7 +72,7 @@ class ActivityController {
       inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
 
       // get all activities of the facilities within the timeframe
-      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name) {
+      if (currentEntity.type.name == metaDataService.etEducator.name) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
           List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
@@ -120,10 +122,12 @@ class ActivityController {
     // get template the activity is created from
     //Entity template = Entity.get(params.id)
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     // get a list of facilities the current entity is working in
     def facilities = []
-    if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name)
-      Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+    if (currentEntity.type.name == metaDataService.etEducator.name)
+      Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
     def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -150,11 +154,13 @@ class ActivityController {
    */
   def save = {ActivityCommand ac->
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     if (ac.hasErrors()) {
 
       def facilities = []
-      if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name)
-        Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+      if (currentEntity.type.name == metaDataService.etEducator.name)
+        Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
       else
         facilities = Entity.findAllByType(metaDataService.etFacility)
       def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -257,8 +263,8 @@ class ActivityController {
         // create links to educators
         functionService.getParamAsList(params.educators).each {
           new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActEducator).save()
-          if (Entity.get(it) != entityHelperService.loggedIn) {
-            functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName + ' hat die Aktivität "' + entity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+          if (Entity.get(it).id != currentEntity.id) {
+            functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + entity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
           }
         }
 
@@ -285,10 +291,12 @@ class ActivityController {
   def edit = {
     Entity activity = Entity.get(params.id)
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     // get a list of facilities the current entity is working in
     def facilities = []
-    if (entityHelperService.loggedIn.type.name == metaDataService.etEducator.name)
-      Link.findAllBySourceAndType(entityHelperService.loggedIn, metaDataService.ltWorking).each {facilities << it.target}
+    if (currentEntity.type.name == metaDataService.etEducator.name)
+      Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
     def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -303,6 +311,8 @@ class ActivityController {
   def update = {
     Entity activity = Entity.get(params.id)
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     activity.profile.properties = params
 
     // delete old links of educators and clients
@@ -311,21 +321,21 @@ class ActivityController {
 
     functionService.getParamAsList(params.educators).each {
       new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActEducator).save()
-      if (Entity.get(it) != entityHelperService.loggedIn) {
-        functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+      if (Entity.get(it).id != currentEntity.id) {
+        functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
       }
     }
 
     functionService.getParamAsList(params.clients).each {
       new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActClient).save()
-      if (Entity.get(it) != entityHelperService.loggedIn) {
-        functionService.createEvent(Entity.get(it), entityHelperService.loggedIn.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+      if (Entity.get(it).id != currentEntity.id) {
+        functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
       }
     }
 
     if (!activity.hasErrors() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
-      functionService.createEvent(entityHelperService.loggedIn, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
+      functionService.createEvent(currentEntity, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
       redirect action: 'show', id: activity.id
     }
     else {
