@@ -94,16 +94,19 @@ log4j = {
 	       'org.springframework',
 	       'org.hibernate'
 
-    warn   'org.mortbay.log'
+    warn   'org.mortbay.log'*/
 
   info   'grails.app'
   info   'grails.app.tagLib'
   debug  'grails.app.bootstrap'
   debug  'grails.app.dataSource'
   debug  'grails.app.controller'
-  debug  'grails.app.service'*/
+  debug  'grails.app.service'
 
 }
+
+// change this value to control the amount of bootstrapped dummy entities
+dummies = 20
 
 // the default password used when creating new entity accounts
 defaultpass = "pass"

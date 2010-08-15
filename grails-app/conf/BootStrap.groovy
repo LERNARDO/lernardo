@@ -44,6 +44,7 @@ class BootStrap {
   ProfileHelperService profileHelperService
   InterfaceMaintenanceService interfaceMaintenanceService
   LinkHelperService linkHelperService
+  def GrailsApplication
 
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
@@ -53,7 +54,7 @@ class BootStrap {
       if (GrailsUtil.environment == "development" || GrailsUtil.environment == "test") {
         importChildren()
         createDefaultOperator()
-        createDefaultFacilities()
+         createDefaultFacilities()
         createDefaultEducators()
         //createDefaultLinks()
         createDefaultTags()
@@ -64,7 +65,7 @@ class BootStrap {
         createDefaultClients()
         createDefaultChilds()
         createDefaultPosts()
-        createDefaultPartner()
+         createDefaultPartner()
         //createDefaultEvents()
         //createDefaultAttendances()
         createDefaultFamilies()
@@ -630,93 +631,45 @@ class BootStrap {
   }
 
   void createDefaultPartner() {
-    log.debug ("==> creating default partners")
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy partners")
     EntityType etPartner = metaDataService.etPartner
 
-    if (!Entity.findByName('raiffeisenbank')) {
-      entityHelperService.createEntityWithUserAndProfile ("raiffeisenbank", etPartner, "raika@sueninos.org", "Raiffeisen Bank") {Entity ent->
-        ent.user.locale = new Locale ("de", "DE")
-        PartnerProfile prf = (PartnerProfile)ent.profile
-        prf.zip = ""
-        prf.city = ""
-        prf.street = ""
-        prf.phone = ""
-        prf.description = ""
-        prf.country = "1"
-        prf.website = ""
-      }
-    }
-
-    if (!Entity.findByName('dorftischler')) {
-      entityHelperService.createEntityWithUserAndProfile ("dorftischler", etPartner, "dorf.tischler@sueninos.org", "Dorftiscler") {Entity ent->
-        ent.user.locale = new Locale ("de", "DE")
-        PartnerProfile prf = (PartnerProfile)ent.profile
-        prf.zip = ""
-        prf.city = ""
-        prf.street = ""
-        prf.phone = ""
-        prf.description = ""
-        prf.country = "1"
-        prf.website = ""
-      }
-    }
-
-    if (!Entity.findByName('doktorheinz')) {
-      entityHelperService.createEntityWithUserAndProfile ("doktorheinz", etPartner, "doktor.heinz@sueninos.org", "Dr. Heinz") {Entity ent->
-        ent.user.locale = new Locale ("de", "DE")
-        PartnerProfile prf = (PartnerProfile)ent.profile
-        prf.zip = ""
-        prf.city = ""
-        prf.street = ""
-        prf.phone = ""
-        prf.description = ""
-        prf.country = "1"
-        prf.website = ""
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyPartner" + i)) {
+        entityHelperService.createEntityWithUserAndProfile ("dummyPartner" + i, etPartner, "dummyPartner" + i + "@sueninos.org", "dummyPartner" + i) {Entity ent->
+          ent.user.locale = new Locale ("de", "DE")
+          PartnerProfile prf = (PartnerProfile)ent.profile
+          prf.zip = "12345"
+          prf.city = "DummyCity"
+          prf.street = "DummyStreet"
+          prf.phone = "DummyPhone"
+          prf.description = "dummyDescription"
+          prf.country = "1"
+          prf.website = "http://www.dummySite.com"
+        }
       }
     }
     
   }
 
   void createDefaultFacilities () {
-    log.debug ("==> creating default facilities")
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy facilities")
     EntityType etFacility = metaDataService.etFacility
 
-    if (!Entity.findByName('sueninoszentrum')) {
-      entityHelperService.createEntityWithUserAndProfile ("sueninoszentrum", etFacility, "sueninoszentrum@sueninos.org", "Sueninos Zentrum") {Entity ent->
-        ent.user.locale = new Locale ("de", "DE")
-        FacilityProfile prf = (FacilityProfile)ent.profile
-        prf.country = "Mexiko"
-        prf.zip = "29247"
-        prf.city = "	San Cristóbal de Las Casas"
-        prf.street = "	Prolongación Ramón Larrainzar #139"
-        prf.description = ""
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyFacility" + i)) {
+        entityHelperService.createEntityWithUserAndProfile ("dummyFacility" + i, etFacility, "dummyFacility" + i + "@sueninos.org", "DummyFacility" + i) {Entity ent->
+          ent.user.locale = new Locale ("de", "DE")
+          FacilityProfile prf = (FacilityProfile)ent.profile
+          prf.country = "Mexiko"
+          prf.zip = "12345"
+          prf.city = "DummyCity"
+          prf.street = "DummyStreet"
+          prf.description = "DummyDescription"
+        }
       }
     }
 
-    if (!Entity.findByName('cincodelamarza')) {
-      entityHelperService.createEntityWithUserAndProfile ("cincodelamarza", etFacility, "cinco@sueninos.org", "Cindo de la Marza") {Entity ent->
-        ent.user.locale = new Locale ("de", "DE")
-        FacilityProfile prf = (FacilityProfile)ent.profile
-        prf.country = "Mexiko"
-        prf.zip = "29247"
-        prf.city = "	San Cristóbal de Las Casas"
-        prf.street = ""
-        prf.description = ""
-      }
-    }
-
-    if (!Entity.findByName('casadelasueninos')) {
-      entityHelperService.createEntityWithUserAndProfile ("casadelasueninos", etFacility, "casa@sueninos.org", "Casa de la Sueninos") {Entity ent->
-        ent.user.locale = new Locale ("de", "DE")
-        FacilityProfile prf = (FacilityProfile)ent.profile
-        prf.country = "Mexiko"
-        prf.zip = ""
-        prf.city = ""
-        prf.street = ""
-        prf.description = ""
-      }
-    }
-    
   }
 
   void createDefaultLinks () {
@@ -866,7 +819,7 @@ class BootStrap {
 
       new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltActEducator).save()
       new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('sueninoszentrum'), target: entity, type: metaDataService.ltActFacility).save()
+      new Link(source: Entity.findByName('dummyFacility0'), target: entity, type: metaDataService.ltActFacility).save()
       new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
       new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
@@ -1033,7 +986,7 @@ class BootStrap {
     }
 
     // create some links to that group
-    new Link(source: Entity.findByName('sueninoszentrum'), target: entity, type: metaDataService.ltGroupMember).save()
+    new Link(source: Entity.findByName('dummyFacility0'), target: entity, type: metaDataService.ltGroupMember).save()
   }
 
   void createDefaultMethods() {
@@ -1100,7 +1053,7 @@ class BootStrap {
     }
 
     // link theme to facility
-    new Link(source: theme, target: Entity.findByName('sueninoszentrum'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: theme, target: Entity.findByName('dummyFacility0'), type: metaDataService.ltThemeOfFacility).save()
 
     Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -1114,7 +1067,7 @@ class BootStrap {
     // link subtheme to theme
     new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
     // link subtheme to facility
-    new Link(source: subtheme, target: Entity.findByName('sueninoszentrum'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: subtheme, target: Entity.findByName('dummyFacility0'), type: metaDataService.ltThemeOfFacility).save()
   }
 
   void createDefaultProjectTemplates() {
