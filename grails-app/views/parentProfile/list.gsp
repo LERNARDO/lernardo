@@ -32,7 +32,7 @@
       <g:paginate total="${parentTotal}"/>
     </div>
 
-    <app:isOperator entity="${entity}">
+    <app:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="parent.profile.create"/></g:link>
         <div class="spacer"></div>

@@ -47,8 +47,7 @@ class EducatorProfileController {
     }
 
     return [educatorList: educators,
-            educatorTotal: Entity.countByType(metaDataService.etEducator),
-            entity: entityHelperService.loggedIn]
+            educatorTotal: Entity.countByType(metaDataService.etEducator)]
   }
 
   def show = {
@@ -103,7 +102,7 @@ class EducatorProfileController {
       redirect action: 'list'
     }
     else {
-      return [educator: educator, entity: entityHelperService.loggedIn, partner: Entity.findAllByType(metaDataService.etPartner)]
+      return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner)]
     }
   }
 
@@ -114,7 +113,7 @@ class EducatorProfileController {
     educator.profile.fullName = params.lastName + " " + params.firstName
 
     educator.user.properties = params
-    if (educator == entityHelperService.loggedIn)
+    if (educator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
     if (!educator.hasErrors() && educator.save()) {
@@ -142,13 +141,12 @@ class EducatorProfileController {
       redirect action: 'show', id: educator.id
     }
     else {
-      render view: 'edit', model: [educator: educator, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit', model: [educator: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn,
-            partner: Entity.findAllByType(metaDataService.etPartner),
+    return [partner: Entity.findAllByType(metaDataService.etPartner),
             /*allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
   }
 
@@ -176,7 +174,7 @@ class EducatorProfileController {
       flash.message = message(code: "educator.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [educator: ee.entity, entity: entityHelperService.loggedIn], partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony))
+      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
       return
     }
 

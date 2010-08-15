@@ -36,7 +36,7 @@
       <g:paginate total="${resourceTotal}"/>
     </div>
 
-    <app:isOperator entity="${entity}">
+    <app:isOperator entity="${currentEntity}">
       <g:link class="buttonGreen" action="create">Neue Ressource anlegen</g:link>
       <div class="spacer"></div>
     </app:isOperator>

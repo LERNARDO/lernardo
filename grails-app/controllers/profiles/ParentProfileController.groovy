@@ -45,8 +45,7 @@ class ParentProfileController {
     }
 
     return [parentList: parents,
-            parentTotal: Entity.countByType(metaDataService.etParent),
-            entity: entityHelperService.loggedIn]
+            parentTotal: Entity.countByType(metaDataService.etParent)]
   }
 
   def show = {
@@ -97,7 +96,7 @@ class ParentProfileController {
       redirect action: 'list'
     }
     else {
-      return [parent: parent, entity: entityHelperService.loggedIn]
+      return [parent: parent]
     }
   }
 
@@ -108,7 +107,7 @@ class ParentProfileController {
     parent.profile.fullName = params.lastName + " " + params.firstName
 
     parent.user.properties = params
-    if (parent == entityHelperService.loggedIn)
+    if (parent.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
 
     if (!parent.hasErrors() && parent.save()) {
@@ -116,13 +115,11 @@ class ParentProfileController {
       redirect action: 'show', id: parent.id
     }
     else {
-      render view: 'edit', model: [parent: parent, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [parent: parent]
     }
   }
 
-  def create = {
-    return [entity: entityHelperService.loggedIn]
-  }
+  def create = {}
 
   def save = {
     EntityType etParent = metaDataService.etParent
@@ -138,7 +135,7 @@ class ParentProfileController {
       flash.message = message(code: "parent.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [parent: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [parent: ee.entity])
       return
     }
 

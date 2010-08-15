@@ -40,8 +40,7 @@ class OperatorProfileController {
     }
 
     return [operatorList: operators,
-            operatorTotal: Entity.countByType(metaDataService.etOperator),
-            entity: entityHelperService.loggedIn]
+            operatorTotal: Entity.countByType(metaDataService.etOperator)]
   }
 
   def show = {
@@ -93,7 +92,7 @@ class OperatorProfileController {
       redirect action: 'list'
     }
     else {
-      return [operator: operator, entity: entityHelperService.loggedIn]
+      return [operator: operator]
     }
   }
 
@@ -102,7 +101,7 @@ class OperatorProfileController {
 
     operator.profile.properties = params
     operator.user.properties = params
-    if (operator == entityHelperService.loggedIn)
+    if (operator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 
     if (!operator.hasErrors() && operator.save()) {
@@ -110,13 +109,11 @@ class OperatorProfileController {
       redirect action: 'show', id: operator.id
     }
     else {
-      render view: 'edit', model: [operator: operator, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [operator: operator]
     }
   }
 
-  def create = {
-    return [entity: entityHelperService.loggedIn]
-  }
+  def create = {}
 
   def save = {
     EntityType etOperator = metaDataService.etOperator
@@ -132,7 +129,7 @@ class OperatorProfileController {
       flash.message = message(code: "operator.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [operator: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [operator: ee.entity])
       return
     }
 

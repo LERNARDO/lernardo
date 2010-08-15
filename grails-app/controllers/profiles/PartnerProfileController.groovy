@@ -41,8 +41,7 @@ class PartnerProfileController {
     }
 
     return [partnerList: partners,
-            partnerTotal: Entity.countByType(metaDataService.etPartner),
-            entity: entityHelperService.loggedIn]
+            partnerTotal: Entity.countByType(metaDataService.etPartner)]
   }
 
   def show = {
@@ -93,7 +92,7 @@ class PartnerProfileController {
       redirect action: 'list'
     }
     else {
-      return [partner: partner, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
@@ -102,7 +101,7 @@ class PartnerProfileController {
 
     partner.profile.properties = params
     partner.user.properties = params
-    if (partner == entityHelperService.loggedIn)
+    if (partner.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
     if (!partner.hasErrors() && partner.save()) {
@@ -124,12 +123,12 @@ class PartnerProfileController {
       redirect action: 'show', id: partner.id
     }
     else {
-      render view: 'edit', model: [partner: partner, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit', model: [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
   }
 
   def save = {
@@ -149,7 +148,7 @@ class PartnerProfileController {
       flash.message = message(code: "partner.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [partner: ee.entity, entity: entityHelperService.loggedIn], allColonias: Entity.findAllByType(metaDataService.etGroupColony))
+      render(view: "create", model: [partner: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
       return
     }
 

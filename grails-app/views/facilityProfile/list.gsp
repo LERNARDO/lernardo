@@ -34,7 +34,7 @@
       <g:paginate total="${facilityTotal}"/>
     </div>
 
-    <app:isOperator entity="${entity}">
+    <app:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="facility.profile.create"/></g:link>
         <div class="spacer"></div>

@@ -48,8 +48,7 @@ class ProjectProfileController {
     }
 
     return [projectList: projects,
-            projectTotal: Entity.countByType(metaDataService.etProject),
-            entity: entityHelperService.loggedIn]
+            projectTotal: Entity.countByType(metaDataService.etProject)]
   }
 
   def show = {
@@ -153,7 +152,7 @@ class ProjectProfileController {
       redirect action: 'list'
     }
     else {
-      [project: project, entity: entityHelperService.loggedIn]
+      [project: project]
     }
   }
 
@@ -167,13 +166,13 @@ class ProjectProfileController {
       redirect action: 'show', id: project.id
     }
     else {
-      render view: 'edit', model: [project: project, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [project: project]
     }
   }
 
   def create = {
     Entity projectTemplate = Entity.get(params.id)
-    return [entity: entityHelperService.loggedIn, template: projectTemplate]
+    return [template: projectTemplate]
   }
 
   def save = {ProjectCommand pc->
@@ -214,7 +213,7 @@ class ProjectProfileController {
     }
     if (checkdays == 0) {
       flash.message = 'Es gibt keine Tage in dem gewählten Zeitraum!'
-      render(view: "create", model: [entity: entityHelperService.loggedIn, template: Entity.get(params.id)])
+      render(view: "create", model: [template: Entity.get(params.id)])
       return
     }
 
@@ -303,7 +302,7 @@ class ProjectProfileController {
 
     } catch (EntityException ee) {
 
-      render(view: "create", model: [project: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [project: ee.entity])
       return
     }
 

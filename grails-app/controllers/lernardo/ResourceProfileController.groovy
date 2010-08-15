@@ -37,8 +37,7 @@ class ResourceProfileController {
     }
 
     return [resourceList: resources,
-            resourceTotal: Entity.countByType(metaDataService.etResource),
-            entity: entityHelperService.loggedIn]
+            resourceTotal: Entity.countByType(metaDataService.etResource)]
   }
 
   def show = {
@@ -49,7 +48,7 @@ class ResourceProfileController {
       redirect(action: list)
     }
     else {
-      [resource: resource, entity: entityHelperService.loggedIn]
+      [resource: resource]
     }
   }
 
@@ -82,7 +81,7 @@ class ResourceProfileController {
       redirect action: 'list'
     }
     else {
-      [resource: resource, entity: entityHelperService.loggedIn]
+      [resource: resource]
     }
   }
 
@@ -96,13 +95,11 @@ class ResourceProfileController {
       redirect action: 'show', id: resource.id
     }
     else {
-      render view: 'edit', model: [resource: resource, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [resource: resource]
     }
   }
 
-  def create = {
-    return [entity: entityHelperService.loggedIn]
-  }
+  def create = {}
 
   def save = {
     EntityType etResource = metaDataService.etResource

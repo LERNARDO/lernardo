@@ -42,8 +42,7 @@ class FacilityProfileController {
     }
 
     return [facilities: facilities,
-            facilityTotal: Entity.countByType(metaDataService.etFacility),
-            entity: entityHelperService.loggedIn]
+            facilityTotal: Entity.countByType(metaDataService.etFacility)]
   }
 
   def show = {
@@ -120,7 +119,7 @@ class FacilityProfileController {
       redirect action: 'list'
     }
     else {
-      return [facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
@@ -129,7 +128,7 @@ class FacilityProfileController {
 
     facility.profile.properties = params
     facility.user.properties = params
-    if (facility == entityHelperService.loggedIn)
+    if (facility.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
 
     if (!facility.hasErrors() && facility.save()) {
@@ -152,12 +151,12 @@ class FacilityProfileController {
       redirect action: 'show', id: facility.id
     }
     else {
-      render view: 'edit', model: [facility: facility, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit', model: [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
   }
 
   def save = {
@@ -177,7 +176,7 @@ class FacilityProfileController {
       flash.message = message(code: "facility.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [facility: ee.entity, entity: entityHelperService.loggedIn, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
+      render(view: "create", model: [facility: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
       return
     }
 

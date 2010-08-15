@@ -34,7 +34,7 @@
       <g:paginate total="${clientTotal}"/>
     </div>
 
-    <app:isOperator entity="${entity}">
+    <app:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="client.profile.create"/></g:link>
         <div class="spacer"></div>

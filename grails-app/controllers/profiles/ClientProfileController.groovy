@@ -53,8 +53,7 @@ class ClientProfileController {
     }
 
     return [clientList: clients,
-            clientTotal: Entity.countByType(metaDataService.etClient),
-            entity: entityHelperService.loggedIn]
+            clientTotal: Entity.countByType(metaDataService.etClient)]
   }
 
   def show = {
@@ -113,7 +112,6 @@ class ClientProfileController {
       def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
       Entity colonia = link?.source ?: null
       return [client: client,
-              entity: entityHelperService.loggedIn,
               colonia: colonia,
               allColonias: Entity.findAllByType(metaDataService.etGroupColony),
               allFacilities: Entity.findAllByType(metaDataService.etFacility)]
@@ -127,7 +125,7 @@ class ClientProfileController {
     client.profile.fullName = params.lastName + " " + params.firstName
 
     client.user.properties = params
-    if (client == entityHelperService.loggedIn)
+    if (client.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
     // check and (brute force) update link to colonia
@@ -149,13 +147,12 @@ class ClientProfileController {
       redirect action: 'show', id: client.id
     }
     else {
-      render view: 'edit', model: [client: client, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [client: client]
     }
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn,
-            allColonias: Entity.findAllByType(metaDataService.etGroupColony),
+    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony),
             allFacilities: Entity.findAllByType(metaDataService.etFacility)]
   }
 
@@ -180,7 +177,6 @@ class ClientProfileController {
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render(view: "create", model: [client: ee.entity,
-              entity: entityHelperService.loggedIn,
               allColonias: Entity.findAllByType(metaDataService.etGroupColony),
               allFacilities: Entity.findAllByType(metaDataService.etFacility)])
       return

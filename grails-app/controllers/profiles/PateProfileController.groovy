@@ -41,8 +41,7 @@ class PateProfileController {
     }
 
     return [pateList: pates,
-            pateTotal: Entity.countByType(metaDataService.etPate),
-            entity: entityHelperService.loggedIn]
+            pateTotal: Entity.countByType(metaDataService.etPate)]
   }
 
   def show = {
@@ -92,7 +91,7 @@ class PateProfileController {
       redirect action: 'list'
     }
     else {
-      return [pate: pate, entity: entityHelperService.loggedIn, clients: Entity.findAllByType(metaDataService.etClient)]
+      return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
     }
   }
 
@@ -103,7 +102,7 @@ class PateProfileController {
     pate.profile.fullName = params.lastName + " " + params.firstName
 
     pate.user.properties = params
-    if (pate == entityHelperService.loggedIn)
+    if (pate.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
     if (!pate.hasErrors() && pate.save()) {
@@ -112,12 +111,12 @@ class PateProfileController {
       redirect action: 'show', id: pate.id
     }
     else {
-      render view: 'edit', model: [pate: pate, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [pate: pate]
     }
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn, clients: Entity.findAllByType(metaDataService.etClient)]
+    return [clients: Entity.findAllByType(metaDataService.etClient)]
   }
 
   def save = {
@@ -134,7 +133,7 @@ class PateProfileController {
       flash.message = message(code: "pate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [pate: ee.entity, entity: entityHelperService.loggedIn, clients: Entity.findAllByType(metaDataService.etClient)])
+      render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient)])
       return
     }
 

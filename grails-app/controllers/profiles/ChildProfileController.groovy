@@ -112,7 +112,7 @@ class ChildProfileController {
     child.profile.fullName = params.lastName + " " + params.firstName
 
     child.user.properties = params
-    if (child == entityHelperService.loggedIn)
+    if (child.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
 
     if (!child.hasErrors() && child.save()) {

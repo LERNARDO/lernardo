@@ -136,7 +136,7 @@
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <app:isOperator entity="${entity}">
+        <app:isOperator entity="${currentEntity}">
           <g:link class="buttonRed" action="del" id="${partner.id}" onclick="${app.getLinks(id: partner.id)}"><g:message code="delete"/></g:link>
         </app:isOperator>
         <g:link class="buttonGray" action="show" id="${partner.id}"><g:message code="cancel"/></g:link>

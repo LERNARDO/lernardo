@@ -46,8 +46,7 @@ class ThemeProfileController {
     }
 
     return [themeList: themes,
-            themeTotal: Entity.countByType(metaDataService.etTheme),
-            entity: entityHelperService.loggedIn]
+            themeTotal: Entity.countByType(metaDataService.etTheme)]
   }
 
   def show = {
@@ -80,7 +79,6 @@ class ThemeProfileController {
       Entity facility = link?.target
 
       [theme: theme,
-              entity: entityHelperService.loggedIn,
               allSubthemes: allSubthemes,
               subthemes: subthemes,
               allProjects: allProjects,
@@ -118,7 +116,7 @@ class ThemeProfileController {
       redirect action: 'list'
     }
     else {
-      [theme: theme, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+      [theme: theme, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
     }
   }
 
@@ -139,12 +137,12 @@ class ThemeProfileController {
       redirect action: 'show', id: theme.id
     }
     else {
-      render view: 'edit', model: [theme: theme, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+      render view: 'edit', model: [theme: theme, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
     }
   }
 
   def create = {
-    return [entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+    return [allFacilities: Entity.findAllByType(metaDataService.etFacility)]
   }
 
   def save = {
@@ -163,7 +161,7 @@ class ThemeProfileController {
       flash.message = message(code: "theme.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [theme: ee.entity, entity: entityHelperService.loggedIn, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
+      render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
       return
     }
 

@@ -37,8 +37,7 @@ class ProjectTemplateProfileController {
     }
 
     return [projectTemplateList: projecttemplates,
-            projectTemplateTotal: Entity.countByType(metaDataService.etProjectTemplate),
-            entity: entityHelperService.loggedIn]
+            projectTemplateTotal: Entity.countByType(metaDataService.etProjectTemplate)]
   }
 
   def show = {
@@ -107,7 +106,7 @@ class ProjectTemplateProfileController {
       redirect action: 'list'
     }
     else {
-      [projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
+      [projectTemplate: projectTemplate]
     }
   }
 
@@ -121,14 +120,13 @@ class ProjectTemplateProfileController {
       redirect action: 'show', id: projectTemplate.id
     }
     else {
-      render view: 'edit', model: [projectTemplate: projectTemplate, entity: entityHelperService.loggedIn]
+      render view: 'edit', model: [projectTemplate: projectTemplate]
     }
   }
 
   def create = {
     Entity projectTemplate = Entity.get(params.id)
-    return [entity: entityHelperService.loggedIn,
-            projectTemplate: projectTemplate]
+    return [projectTemplate: projectTemplate]
   }
 
   def save = {
@@ -142,7 +140,7 @@ class ProjectTemplateProfileController {
       flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [projectTemplate: ee.entity, entity: entityHelperService.loggedIn])
+      render(view: "create", model: [projectTemplate: ee.entity])
       return
     }
 
