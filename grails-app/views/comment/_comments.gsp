@@ -19,7 +19,7 @@
             <td style="width: 100%; vertical-align: top">
               <ub:meOrAdmin entityName="${creator.name}">
                 <div class="actions">
-                  <g:remoteLink controller="comment" action="delete" update="comments" id="${commented.id}" params="[comment: comment.id]" before="if(!confirm('Bist Du sicher?')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Kommentar entfernen" align="top"/></g:remoteLink>
+                  <g:remoteLink controller="comment" action="delete" update="comments" id="${commented.id}" params="[comment: comment.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Kommentar entfernen" align="top"/></g:remoteLink>
                 </div>
               </ub:meOrAdmin>
               <div class="infobar">

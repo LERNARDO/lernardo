@@ -47,7 +47,7 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGreen" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('Bist du sicher?');">Löschen</g:link>
+        <g:link class="buttonGreen" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');">Löschen</g:link>
         <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
         <div class="spacer"></div>
       </div>
