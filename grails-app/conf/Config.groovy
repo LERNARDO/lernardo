@@ -98,10 +98,10 @@ log4j = {
 
   info   'grails.app'
   info   'grails.app.tagLib'
-  debug  'grails.app.bootstrap'
-  debug  'grails.app.dataSource'
-  debug  'grails.app.controller'
-  debug  'grails.app.service'
+  info  'grails.app.bootstrap'
+  info  'grails.app.dataSource'
+  info  'grails.app.controller'
+  info  'grails.app.service'
 
 }
 
