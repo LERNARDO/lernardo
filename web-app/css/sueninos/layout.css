@@ -826,16 +826,18 @@ table #profile-list tr {
     font-size: 11px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-bottom: 5px;
-}
+    margin-bottom: 5px; }
     .paginateButtons a {
         background: #fff;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #ccc #aaa #aaa #ccc;
+        border: 1px solid #999;
         color: #666;
         margin: 0 3px;
         padding: 2px 6px; }
+    .paginateButtons a:hover {
+        text-decoration: none;
+        background: #393;
+        color: #fff;
+        border: 1px solid #060; }
     .paginateButtons span {
         padding: 2px 3px; }
 
@@ -844,8 +846,7 @@ table #profile-list tr {
     font-size: 11px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-bottom: 5px;
-}
+    margin-bottom: 5px; }
     .paginateButtonsPublic a {
         /*color: #666;*/
         margin: 0 3px;
