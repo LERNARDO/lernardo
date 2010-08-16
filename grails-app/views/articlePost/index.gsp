@@ -26,5 +26,9 @@
       </div>
     </g:each>
 
+    <div class="paginateButtonsPublic">
+      <g:paginate action="index" total="${articleCount}"/>
+    </div>
+
   </div>
 </body>
