@@ -74,8 +74,8 @@ class BootStrap {
         createDefaultResources()
         createDefaultMethods()
         createDefaultClientGroups()
-         createDefaultActivityTemplateGroups()
-         createDefaultThemes()
+        createDefaultActivityTemplateGroups()
+        createDefaultThemes()
         createDefaultComments()
         createDefaultProjectTemplates()
         //createDefaultHelpers()
@@ -697,21 +697,43 @@ class BootStrap {
   }
 
   void createDefaultActivityTemplateGroups() {
-    log.info ("==> creating default activitytemplategroups")
-
+    log.info ("==> creating " + grailsApplication.config.dummies + " dummy activity template groups")
     EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
 
-    Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Vorlagengruppe 1"
-      ent.profile.description = ""
-      ent.profile.status = "fertig"
-      ent.profile.realDuration = 60
+    Random generator = new Random()
+
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyActivityTemplateGroup" + i)) {
+        Entity entity = entityHelperService.createEntity("dummyActivityTemplateGroup" + i, etGroupActivityTemplate) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
+          ent.profile.fullName = "dummyActivityTemplateGroup" + i
+          ent.profile.description = "dummyDescription"
+          ent.profile.realDuration = generator.nextInt(60) + 30
+          if (generator.nextInt(2) == 0)
+            ent.profile.status = "fertig"
+          else
+            ent.profile.status = "in Bearbeitung"
+        }
+
+        // create some links to that group
+        def links = generator.nextInt(3) + 2 // amount of activity templates to add
+        List activitytemplates = []
+        for ( j in 1..links ) {
+          def done = false
+          while (!done) {
+            def activitytemplate = generator.nextInt(20) + 1
+            if (!activitytemplates.contains(activitytemplate)) {
+              activitytemplates << activitytemplate
+              done = true
+            }
+          }
+        }
+        activitytemplates.each {
+          new Link(source: Entity.findByName("dummyTemplate" + it), target: entity, type: metaDataService.ltGroupMember).save()
+        }
+      }
     }
 
-    // create some links to that group
-    new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltGroupMember).save()
-    new Link(source: Entity.findByName('tanzen'), target: entity, type: metaDataService.ltGroupMember).save()
   }
 
   void createDefaultThemes() {
