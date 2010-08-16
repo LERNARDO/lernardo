@@ -55,16 +55,16 @@ class BootStrap {
         importChildren()
         createDefaultOperator()
          createDefaultFacilities()
-        createDefaultEducators()
+         createDefaultEducators()
         //createDefaultLinks()
         createDefaultTags()
-        createDefaultActivityTemplates()
+         createDefaultActivityTemplates()
         //createDefaultActivities()
         createDefaultColonias()
-        createDefaultParents()
-        createDefaultClients()
-        createDefaultChilds()
-        createDefaultPosts()
+         createDefaultParents()
+         createDefaultClients()
+         createDefaultChildren()
+         createDefaultPosts()
          createDefaultPartner()
         //createDefaultEvents()
         //createDefaultAttendances()
@@ -151,465 +151,150 @@ class BootStrap {
   }
 
   void createDefaultEducators() {
-    log.debug ("==> creating default educators")
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy educators")
     EntityType etEducator = metaDataService.etEducator
 
-    // admin users
-    if (!Entity.findByName('christianszinicz')) {
-      entityHelperService.createEntityWithUserAndProfile("christianszinicz", etEducator, "christian@sueninos.org", "Christian Szinicz") {Entity ent ->
-        //ent.user.addToAuthorities(metaDataService.adminRole)
-        ent.user.addToAuthorities(metaDataService.leadEducatorRole)
-        ent.user.locale = new Locale ("es", "ES")
-        EducatorProfile prf = (EducatorProfile)ent.profile
-        prf.gender = 1
-        prf.title = "DI"
-        prf.birthDate = new Date(1968-1900,02,18)
-        prf.currentCountry = "Mexiko"
-        prf.currentZip = "29215"
-        prf.currentCity = "San Cristóbal de Las Casas"
-        prf.currentStreet = "Av. Norte Oriente 13a"
-        prf.originCountry = "1"
-        prf.originZip = ""
-        prf.originCity = ""
-        prf.originStreet = ""
-        prf.contactPhone = ""
-        prf.contactCountry = ""
-        prf.contactCity = ""
-        prf.contactStreet = ""
-        prf.contactZip = ""
-        prf.contactMail = ""
-        prf.education = ""
-        prf.firstName = "Christian"
-        prf.lastName = "Szinicz"
-        prf.interests = ""
-        prf.employment = ""
-        prf.addToLanguages("1")
+    Random generator = new Random()
+
+    // ent.user.addToAuthorities(metaDataService.leadEducatorRole)
+
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyEducator" + i)) {
+        entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@sueninos.org", "dummyEducator" + i) {Entity ent ->
+          ent.user.locale = new Locale ("de", "DE")
+          EducatorProfile prf = (EducatorProfile)ent.profile
+          prf.gender = generator.nextInt(2) + 1
+          prf.title = "DummyTitle"
+          prf.firstName = "DummyFirstname"
+          prf.lastName = "DummyLastName"
+          prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
+          prf.currentCountry = "DummyCountry"
+          prf.currentZip = "1234"
+          prf.currentCity = "DummyCity"
+          prf.currentStreet = "DummyStreet"
+          prf.originCountry = (generator.nextInt(8) + 1).toString()
+          prf.originZip = "1234"
+          prf.originCity = "DummyCity"
+          prf.originStreet = "DummyStreet"
+          prf.contactPhone = "1234"
+          prf.contactCountry = "DummyCountry"
+          prf.contactCity = "DummyCity"
+          prf.contactStreet = "DummyStreet"
+          prf.contactZip = "1345"
+          prf.contactMail = "dummy@dummy.com"
+          prf.education = (generator.nextInt(13) + 1).toString()
+          prf.interests = "DummyInterests"
+          prf.employment = "DummyEmployment"
+          prf.addToLanguages((generator.nextInt(14) + 1).toString())
+        }
       }
     }
 
-    if (!Entity.findByName('angelikamerkel')) {
-      entityHelperService.createEntityWithUserAndProfile("angelikamerkel", etEducator, "angelika@sueninos.org", "Angelika Merkel") {Entity ent ->
-        //ent.user.addToAuthorities(metaDataService.adminRole)
-        ent.user.locale = new Locale ("es", "ES")
-        EducatorProfile prf = (EducatorProfile)ent.profile
-        prf.gender = 1
-        prf.title = "-"
-        prf.birthDate = new Date(1900-1900,02,18)
-        prf.currentCountry = "Mexiko"
-        prf.currentZip = "12453"
-        prf.currentCity = ""
-        prf.currentStreet = ""
-        prf.originCountry = "1"
-        prf.originZip = ""
-        prf.originCity = ""
-        prf.originStreet = ""
-        prf.contactPhone = ""
-        prf.contactCountry = ""
-        prf.contactCity = ""
-        prf.contactStreet = ""
-        prf.contactZip = ""
-        prf.contactMail = ""
-        prf.education = ""
-        prf.firstName = "Angelika"
-        prf.lastName = "Merkel"
-        prf.interests = ""
-        prf.employment = ""
-        prf.addToLanguages("1")
-      }
-    }
-
-    if (!Entity.findByName('arnoldschwarzenegger')) {
-      entityHelperService.createEntityWithUserAndProfile("arnoldschwarzenegger", etEducator, "arnold@sueninos.org", "Arnold Schwarzenegger") {Entity ent ->
-        //ent.user.addToAuthorities(metaDataService.adminRole)
-        ent.user.locale = new Locale ("es", "ES")
-        EducatorProfile prf = (EducatorProfile)ent.profile
-        prf.gender = 1
-        prf.title = "DI"
-        prf.birthDate = new Date(1968-1900,02,18)
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "29215"
-        prf.currentCity = "San Cristóbal de Las Casas"
-        prf.currentStreet = "Av. Norte Oriente 13a"
-        prf.originCountry = "1"
-        prf.originZip = ""
-        prf.originCity = ""
-        prf.originStreet = ""
-        prf.contactPhone = ""
-        prf.contactCountry = ""
-        prf.contactCity = ""
-        prf.contactStreet = ""
-        prf.contactZip = ""
-        prf.contactMail = ""
-        prf.education = ""
-        prf.firstName = "Arnold"
-        prf.lastName = "Schwarzenegger"
-        prf.interests = ""
-        prf.employment = ""
-        prf.addToLanguages("1")
-      }
-    }
-
-    if (!Entity.findByName('ludwigszinicz')) {
-      entityHelperService.createEntityWithUserAndProfile("ludwigszinicz", etEducator, "ludwig@sueninos.org", "Ludwig Szinicz") {Entity ent ->
-        ent.user.addToAuthorities(metaDataService.adminRole)
-        ent.user.locale = new Locale ("es", "ES")
-        EducatorProfile prf = (EducatorProfile)ent.profile
-        prf.gender = 1
-        prf.title = "Ing. Dkfm."
-        prf.birthDate = new Date(1939-1900,04,17)
-        prf.currentCountry = "Mexiko"
-        prf.currentZip = "4600"
-        prf.currentCity = "Schleißheim bei Wels"
-        prf.currentStreet = ""
-        prf.originCountry = "1"
-        prf.originZip = ""
-        prf.originCity = ""
-        prf.originStreet = ""
-        prf.contactPhone = ""
-        prf.contactCountry = ""
-        prf.contactCity = ""
-        prf.contactStreet = ""
-        prf.contactZip = ""
-        prf.contactMail = ""
-        prf.education = ""
-        prf.firstName = "Ludwig"
-        prf.lastName = "Szinicz"
-        prf.interests = ""
-        prf.employment = ""
-        prf.addToLanguages("1")
-      }
-    }
   }
 
   void createDefaultParents() {
-    log.debug ("==> creating default parents")
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy parents")
     EntityType etParent = metaDataService.etParent
 
-    if (!Entity.findByName('sabinezeillinger')) {
-      entityHelperService.createEntityWithUserAndProfile("sabinezeillinger", etParent, "sabine@sueninos.org", "Sabine Zeillinger") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Sabine"
-        prf.lastName = "Zeillinger"
-        prf.gender = 2
-        prf.currentCountry = "6"
-        prf.currentZip = "2352"
-        prf.currentCity = "Gumpoldskirchen"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
-      }
-    }
+    Random generator = new Random()
 
-    if (!Entity.findByName('franzmartyr')) {
-      entityHelperService.createEntityWithUserAndProfile("franzmartyr", etParent, "franz.martyr@sueninos.org", "Franz Martyr") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Franz"
-        prf.lastName = "Martyr"
-        prf.gender = 1
-        prf.currentCountry = "6"
-        prf.currentZip = "2352"
-        prf.currentCity = "Gumpoldskirchen"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
-      }
-    }
-
-    if (!Entity.findByName('franziskamartyr')) {
-      entityHelperService.createEntityWithUserAndProfile("franziskamartyr", etParent, "franziska.martyr@sueninos.org", "Franziska Martyr") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Franziska"
-        prf.lastName = "Martyr"
-        prf.gender = 2
-        prf.currentCountry = "6"
-        prf.currentZip = "2352"
-        prf.currentCity = "Gumpoldskirchen"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
-      }
-    }
-
-    if (!Entity.findByName('maximfries')) {
-      entityHelperService.createEntityWithUserAndProfile("maximfries", etParent, "maxim.fries@sueninos.org", "Maxim Fries") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Maxim"
-        prf.lastName = "Fries"
-        prf.gender = 2
-        prf.currentCountry = "6"
-        prf.currentZip = "54687"
-        prf.currentCity = "Irgendwo"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
-      }
-    }
-
-    if (!Entity.findByName('maximusfries')) {
-      entityHelperService.createEntityWithUserAndProfile("maximusfries", etParent, "maximus.fries@sueninos.org", "Maximus Fries") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Maximus"
-        prf.lastName = "Fries"
-        prf.gender = 1
-        prf.currentCountry = "6"
-        prf.currentZip = "54687"
-        prf.currentCity = "Irgendwo"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
-      }
-    }
-
-    if (!Entity.findByName('michaelbullyherbig')) {
-      entityHelperService.createEntityWithUserAndProfile("michaelbullyherbig", etParent, "michael.herbig@sueninos.org", "Michael Bully Herbig") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Michael Bully"
-        prf.lastName = "Herbig"
-        prf.gender = 1
-        prf.currentCountry = "6"
-        prf.currentZip = "25460"
-        prf.currentCity = "Wilden Westen"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyParent" + i)) {
+        entityHelperService.createEntityWithUserAndProfile("dummyParent" + i, etParent, "dummyParent" + i + "@sueninos.org", "dummyParent" + i) {Entity ent ->
+          ent.user.locale = new Locale ("de", "DE")
+          ParentProfile prf = (ParentProfile)ent.profile
+          prf.firstName = "DummyFirstname"
+          prf.lastName = "DummyLastName"
+          prf.gender = generator.nextInt(2) + 1
+          prf.currentCountry = (generator.nextInt(8) + 1).toString()
+          prf.currentZip = "1234"
+          prf.currentCity = "DummyCity"
+          prf.currentStreet = "DummyStreet"
+          prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
+          prf.maritalStatus = (generator.nextInt(7) + 1).toString()
+          prf.education = (generator.nextInt(13) + 1).toString()
+          prf.comment = "DummyComment"
+          prf.job = generator.nextBoolean()
+          if (prf.job) {
+            prf.jobType = (generator.nextInt(14) + 1).toString()
+            prf.jobIncome = generator.nextInt(150) + 50
+            prf.jobFrequency = "DummyFrequency"
+          }
         }
       }
+    }
 
-    if (!Entity.findByName('michaelaherbig')) {
-      entityHelperService.createEntityWithUserAndProfile("michaelaherbig", etParent, "michaela.herbig@sueninos.org", "Michaela Herbig") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ParentProfile prf = (ParentProfile)ent.profile
-        prf.firstName = "Michaela"
-        prf.lastName = "Herbig"
-        prf.gender = 2
-        prf.currentCountry = "6"
-        prf.currentZip = "25460"
-        prf.currentCity = "Wilden Westen"
-        prf.currentStreet = ""
-        prf.addToLanguages("1")
-        prf.birthDate = new Date()
-        prf.job = false
-        prf.maritalStatus = "1"
-        prf.education = "1"
-        prf.comment = "Best parent ever!"
-        }
-      }
-    
   }
 
   void createDefaultClients() {
-    log.debug ("==> creating default clients")
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy clients")
     EntityType etClient = metaDataService.etClient
 
-    if (!Entity.findByName('kirazeillinger')) {
-      entityHelperService.createEntityWithUserAndProfile("kirazeillinger", etClient, "kira@sueninos.org", "Kira Zeillinger") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ClientProfile prf = (ClientProfile)ent.profile
-        prf.firstName = "Kira"
-        prf.lastName = "Zeillinger"
-        prf.gender = 2
-        prf.interests = ""
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "2352"
-        prf.currentCity = "Gumpoldskirchen"
-        prf.currentStreet = ""
-        prf.originCountry = "Österreich"
-        prf.originZip = "2352"
-        prf.originCity = "Gumpoldskirchen"
-        prf.addToLanguages("1")
-        prf.birthDate = new Date(2005-1900,01,20)
-        prf.schoolLevel = '1'
-        prf.size = 120
-        prf.weight = 120
-        prf.job = false
-        prf.familyStatus = "1"
+    Random generator = new Random()
+
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyClient" + i)) {
+        entityHelperService.createEntityWithUserAndProfile("dummyClient" + i, etClient, "dummyClient" + i + "@sueninos.org", "dummyClient" + i) {Entity ent ->
+          ent.user.locale = new Locale ("de", "DE")
+          ClientProfile prf = (ClientProfile)ent.profile
+          prf.firstName = "DummyFirstname"
+          prf.lastName = "DummyLastName"
+          prf.gender = generator.nextInt(2) + 1
+          prf.interests = "DummyInterests"
+          prf.currentCountry = "DummyCountry"
+          prf.currentZip = "1234"
+          prf.currentCity = "DummyCity"
+          prf.currentStreet = "DummyStreet"
+          prf.originCountry = "DummyCountry"
+          prf.originZip = "1234"
+          prf.originCity = "DummyCity"
+          prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
+          prf.schoolLevel = (generator.nextInt(13) + 1).toString()
+          prf.size = generator.nextInt(130) + 50
+          prf.weight = generator.nextInt(40) + 30
+          prf.familyStatus = (generator.nextInt(4) + 1).toString()
+          prf.job = generator.nextBoolean()
+          if (prf.job) {
+            prf.jobType = (generator.nextInt(14) + 1).toString()
+            prf.jobIncome = generator.nextInt(150) + 50
+            prf.jobFrequency = "DummyFrequency"
+          }
+          prf.support = generator.nextBoolean()
+          if (prf.support)
+            prf.supportDescription = "DummyDescription"
+        }
       }
     }
 
-    if (!Entity.findByName('keanozeillinger')) {
-      entityHelperService.createEntityWithUserAndProfile("keanozeillinger", etClient, "keano@sueninos.org", "Keano Zeillinger") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ClientProfile prf = (ClientProfile)ent.profile
-        prf.firstName = "Keano"
-        prf.lastName = "Zeillinger"
-        prf.gender = 1
-        prf.interests = ""
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "2352"
-        prf.currentCity = "Gumpoldskirchen"
-        prf.currentStreet = ""
-        prf.originCountry = "Österreich"
-        prf.originZip = "2352"
-        prf.originCity = "Gumpoldskirchen"
-        prf.addToLanguages("1")
-        prf.birthDate = new Date(2006-1900,03,20)
-        prf.schoolLevel = '1'
-        prf.size = 120
-        prf.weight = 120
-        prf.job = false
-        prf.familyStatus = "1"
-      }
-    }
-
-      if (!Entity.findByName('maxfries')) {
-      entityHelperService.createEntityWithUserAndProfile("maxfries", etClient, "max.fries@sueninos.org", "Max Fries") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ClientProfile prf = (ClientProfile)ent.profile
-        prf.firstName = "Max"
-        prf.lastName = "Fries"
-        prf.gender = 1
-        prf.interests = ""
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "12345"
-        prf.currentCity = "Kirchenhausen"
-        prf.currentStreet = ""
-        prf.originCountry = "Österreich"
-        prf.originZip = "1234"
-        prf.originCity = "blabla"
-        prf.addToLanguages("1")
-        prf.birthDate = new Date(2005-1900,03,20)
-        prf.schoolLevel = '1'
-        prf.size = 164
-        prf.weight = 50
-        prf.job = false
-        prf.familyStatus = "1"
-      }
-    }
-
-    if (!Entity.findByName('hullybully')) {
-      entityHelperService.createEntityWithUserAndProfile("hullybully", etClient, "hully.bully@sueninos.org", "Hully Bully") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ClientProfile prf = (ClientProfile)ent.profile
-        prf.firstName = "Hully"
-        prf.lastName = "Bully"
-        prf.gender = 1
-        prf.interests = ""
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "12345"
-        prf.currentCity = "Kirchenhausen"
-        prf.currentStreet = ""
-        prf.originCountry = "Österreich"
-        prf.originZip = "1234"
-        prf.originCity = "blabla"
-        prf.addToLanguages("1")
-        prf.birthDate = new Date(1995-1900,03,20)
-        prf.schoolLevel = '6'
-        prf.size = 170
-        prf.weight = 60
-        prf.job = false
-        prf.familyStatus = "1"
-      }
-    }
-
-    if (!Entity.findByName('martinmartyr')) {
-      entityHelperService.createEntityWithUserAndProfile("martinmartyr", etClient, "martin.martyr@sueninos.org", "Max Fries") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ClientProfile prf = (ClientProfile)ent.profile
-        prf.firstName = "Martin"
-        prf.lastName = "Martyr"
-        prf.gender = 1
-        prf.interests = ""
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "54321"
-        prf.currentCity = "Oberunterbach"
-        prf.currentStreet = ""
-        prf.originCountry = "Österreich"
-        prf.originZip = "1234"
-        prf.originCity = "blabla"
-        prf.addToLanguages("1")
-        prf.birthDate = new Date(1990-1900,03,20)
-        prf.schoolLevel = '9'
-        prf.size = 185
-        prf.weight = 75
-        prf.job = false
-        prf.familyStatus = "1"
-      }
-    }
-
-    if (!Entity.findByName('kurtfries')) {
-      entityHelperService.createEntityWithUserAndProfile("kurtfries", etClient, "kurt.fries@sueninos.org", "Kurt Fries") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ClientProfile prf = (ClientProfile)ent.profile
-        prf.firstName = "Kurt"
-        prf.lastName = "Fries"
-        prf.gender = 1
-        prf.interests = ""
-        prf.currentCountry = "Österreich"
-        prf.currentZip = "12345"
-        prf.currentCity = "Kirchenhausen"
-        prf.currentStreet = ""
-        prf.originCountry = "Österreich"
-        prf.originZip = "1234"
-        prf.originCity = "blabla"
-        prf.addToLanguages("1")
-        prf.birthDate = new Date(1994-1900,03,20)
-        prf.schoolLevel = '1'
-        prf.size = 190
-        prf.weight = 80
-        prf.job = false
-        prf.familyStatus = "1"
-      }
-    }
-    
   }
 
-  void createDefaultChilds() {
-    log.debug ("==> creating default children")
+  void createDefaultChildren() {
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy children")
     EntityType etChild = metaDataService.etChild
 
-    if (!Entity.findByName('karinzeillinger')) {
-      entityHelperService.createEntityWithUserAndProfile("karinzeillinger", etChild, "karin@sueninos.org", "Karin Zeillinger") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ChildProfile prf = (ChildProfile)ent.profile
-        prf.firstName = "Karin"
-        prf.lastName = "Zeillinger"
-        prf.gender = 2
-        prf.birthDate = new Date()
-        prf.job = false
+    Random generator = new Random()
+
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyChild" + i)) {
+        entityHelperService.createEntityWithUserAndProfile("dummyChild" + i, etChild, "dummyChild" + i + "@sueninos.org", "dummyChild" + i) {Entity ent ->
+          ent.user.locale = new Locale ("de", "DE")
+          ChildProfile prf = (ChildProfile)ent.profile
+          prf.firstName = "DummyFirstname"
+          prf.lastName = "DummyLastName"
+          prf.gender = generator.nextInt(2) + 1
+          prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
+          prf.job = generator.nextBoolean()
+          if (prf.job) {
+            prf.jobType = (generator.nextInt(14) + 1).toString()
+            prf.jobIncome = generator.nextInt(150) + 50
+            prf.jobFrequency = "DummyFrequency"
+          }
+        }
       }
     }
 
-    if (!Entity.findByName('ulrikemartyr')) {
-      entityHelperService.createEntityWithUserAndProfile("ulrikemartyr", etChild, "ulrike.martyr@sueninos.org", "UlrikeMartyr") {Entity ent ->
-        ent.user.locale = new Locale ("de", "DE")
-        ChildProfile prf = (ChildProfile)ent.profile
-        prf.firstName = "Ulrike"
-        prf.lastName = "Martyr"
-        prf.gender = 2
-        prf.birthDate = new Date()
-        prf.job = false
-      }
-    }
   }
 
   void createDefaultOperator() {
@@ -619,7 +304,6 @@ class BootStrap {
     if (!Entity.findByName('sueninos')) {
       entityHelperService.createEntityWithUserAndProfile ("sueninos", etOperator, "sueninos@sueninos.org", "Sueninos") {Entity ent->
         ent.user.locale = new Locale ("de", "DE")
-        //ent.user.addToAuthorities(metaDataService.adminRole)
         OperatorProfile prf = (OperatorProfile)ent.profile
         prf.zip = ""
         prf.city = ""
@@ -628,6 +312,7 @@ class BootStrap {
         prf.description = ""
       }
     }
+
   }
 
   void createDefaultPartner() {
@@ -703,77 +388,30 @@ class BootStrap {
   }
 
   void createDefaultActivityTemplates() {
-    log.debug ("==> creating default templates")
-
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy templates")
     EntityType etTemplate = metaDataService.etTemplate
 
-    if (!Entity.findByName('weidemithindernissen')) {
-      entityHelperService.createEntity("weidemithindernissen", etTemplate) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "Weide mit Hindernissen"
-        ent.profile.description = "Die Bänke werden in Reihen aufgestellt; es können möglichst viele Bewegungsformen ausprobiert werden"
-        ent.profile.chosenMaterials = "Holzbänke"
-        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-        ent.profile.amountEducators = 2
-        ent.profile.status = "fertig"
-        ent.profile.duration = 30
-        ent.profile.type = "normale Aktivitätsvorlage"
-      }
-    }
+    Random generator = new Random()
 
-    if (!Entity.findByName('tanzen')) {
-      entityHelperService.createEntity("tanzen", etTemplate) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "Tanzen"
-        ent.profile.description = "Die Kinder tanzen im Kreis"
-        ent.profile.chosenMaterials = "Springschnüre"
-        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-        ent.profile.amountEducators = 1
-        ent.profile.status = "fertig"
-        ent.profile.duration = 10
-        ent.profile.type = "Themenraumaktivitätsvorlage"
-      }
-    }
-
-     if (!Entity.findByName('Break Dance')) {
-      entityHelperService.createEntity("breakdance", etTemplate) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "Break Dance"
-        ent.profile.description = "Die Kinder tanzen Break Dance"
-        ent.profile.chosenMaterials = "Soundblaster"
-        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-        ent.profile.amountEducators = 1
-        ent.profile.status = "fertig"
-        ent.profile.duration = 30
-        ent.profile.type = "normale Aktivitätsvorlage"
-      }
-    }
-
-    if (!Entity.findByName('Jiu Jitsu')) {
-      entityHelperService.createEntity("jiujitsu", etTemplate) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "Jiu Jitsue"
-        ent.profile.description = "Die Kinder bekommen Jiu Jitsu unterricht"
-        ent.profile.chosenMaterials = ""
-        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-        ent.profile.amountEducators = 1
-        ent.profile.status = "fertig"
-        ent.profile.duration = 45
-        ent.profile.type = "normale Aktivitätsvorlage"
-      }
-    }
-
-    if (!Entity.findByName('Kapoera')) {
-      entityHelperService.createEntity("kapoera", etTemplate) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "Kapoera"
-        ent.profile.description = ""
-        ent.profile.chosenMaterials = ""
-        ent.profile.socialForm = "Großgruppe (bis 15 Kinder)"
-        ent.profile.amountEducators = 1
-        ent.profile.status = "fertig"
-        ent.profile.duration = 30
-        ent.profile.type = "normale Aktivitätsvorlage"
+    for ( i in 1..grailsApplication.config.dummies ) {
+      if (!Entity.findByName("dummyTemplate" + i)) {
+        entityHelperService.createEntity("dummyTemplate" + i, etTemplate) {Entity ent ->
+          ent.profile = profileHelperService.createProfileFor(ent) as Profile
+          ent.profile.fullName = "dummyTemplate" + i
+          ent.profile.description = "dummyDescription"
+          ent.profile.chosenMaterials = "dummyMaterials"
+          ent.profile.socialForm = "DummySocialForm"
+          ent.profile.amountEducators = generator.nextInt(3) + 1
+          if (generator.nextInt(2) == 0)
+            ent.profile.status = "fertig"
+          else
+            ent.profile.status = "in Bearbeitung"
+          ent.profile.duration = generator.nextInt(50) + 10
+          if (generator.nextInt(2) == 0)
+            ent.profile.type = "normale Aktivitätsvorlage"
+          else
+            ent.profile.type = "Themenraumaktivitätsvorlage"
+        }
       }
     }
 
@@ -782,8 +420,8 @@ class BootStrap {
   void createDefaultComments() {
     log.debug ("==> creating default comments")
 
-    Comment comment = new Comment(content: 'Ich bin ein Kommentar', creator: Entity.findByName('alexanderzeillinger').id).save()
-    Entity entity = Entity.findByName('tanzen')
+    Comment comment = new Comment(content: 'DummyComment', creator: Entity.findByName('alexanderzeillinger').id).save()
+    Entity entity = Entity.findByName("dummyTemplate1")
     entity.profile.addToComments(comment)
 
   }
@@ -817,54 +455,25 @@ class BootStrap {
         ent.profile.duration = 60
       }
 
-      new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltActEducator).save()
-      new Link(source: Entity.findByName('keanozeillinger'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('dummyFacility0'), target: entity, type: metaDataService.ltActFacility).save()
-      new Link(source: Entity.findByName('weidemithindernissen'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('christianszinicz'), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName('dummyEducator1'), target: entity, type: metaDataService.ltActEducator).save()
+      new Link(source: Entity.findByName('dummyClient1'), target: entity, type: metaDataService.ltActClient).save()
+      new Link(source: Entity.findByName('dummyFacility1'), target: entity, type: metaDataService.ltActFacility).save()
+      new Link(source: Entity.findByName('dummyTemplate1'), target: entity, type: metaDataService.ltActTemplate).save()
+      new Link(source: Entity.findByName('dummyEducator1'), target: entity, type: metaDataService.ltCreator).save()
       //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
     }
   }
 
   void createDefaultPosts() {
-    log.debug ("==> creating default posts")
+    log.debug ("==> creating " + grailsApplication.config.dummies + " dummy posts")
 
-    new ArticlePost(title:'Lernardo im Hort Kaumberg',
-            teaser:'''Mit Beginn September 2009 erweitert Lernardo aufgrund der hohen Nachfrage und positiven
-            Resonanz seine Einrichtungen mit einem neuen Standort in Kaumberg.''',
-            content:'''Dank Kaumberg's Bürgermeister Michael Singraber konnte im Sommer 2009 sehr schnell
-            passende Räumlichkeiten gefunden werden. Zur Verfügung gestellt wurde ein Klassenraum der Volksschule
-            Kaumberg in dem ca. 10 Kinder zwischen 7 und 10 Jahre betreut werden. Der Beginn erfolgt am 07.
-            September, als Hortleiterin wird Hannah Mutzbauer eingesetzt, die sich bereits in Hort Löwenzahn
-            bewährt hat. Den Kindern stehen neben dem Klassenraum die Wiese sowie die Freizeitanlage der Schule
-            zur vollen Verfügung.''',
-            author:Entity.findByName('christianszinicz')).save()
-    new ArticlePost(title:'Gesund durch Ernährungsexpertin',
-            teaser:'''Hort Löwenzahn freut sich über die Unterstützung durch Birgit Blaesen, einer
-            Ernährungsexpertin mit langjähriger Erfahrung, die das Pädagogen Team im Hinblick auf die optimale
-            und vielseitige Ernährung der Kinder unterstützen wird.''',
-            content:'''Birgit Blaesen absolvierte 1997 bis 1998 die makrobiotische Kochschule in Schweden
-            und erweiterte ihr Fachwissen in den darauf folgenden Jahren mit der Ausbildung in traditioneller
-            chinesischer Medizin. Von 2002 bis 2003 absolvierte sie die Ausbildung zur Ernährungsberaterin in
-            der Wiener Schule für TCM. Zu ihren weiteren Kenntnissen gehört Shiatsu, Zen und Naikan und Ashtanga
-            Yoga. Zu ihren bisherigen beruflichen Tätigkeiten zählen u.A. die makrobiotische Küchenleitung im
-            Technischen Verlag der Uni Graz, die Unternehmensgründung von "Buntes Brot" im Juni 2001,
-            Ernährungprojekt "besser essen - besser leben", diverse Tätigkeiten im Shiatsu Bereich, sowie
-            Gründung und Leitung eines Gesundheitszentrums in Pottenstein in 2009.''',
-            author:Entity.findByName('christianszinicz')).save()
-    new ArticlePost(title:'Hort Löwenzahn erhält Auszeichnung',
-            teaser:'''Beim 4. jährlichen Kinderbetreuungspreis organisiert vom Bundesministerium für Wirtschaft,
-            Familie und Jugend erhielt der Hort "Löwenzahn Weissenbach" den 4. Preis und eine Prämie von
-            €500,-.''',
-            content:'''Der Ferienhort Löwenzahn wird für die Sommerferien den Kindern in der Region Triestingtal
-            und im Speziellen den Kindern der Marktgemeinde Weissenbach angeboten. Es bietet ein
-            abwechslungsreiches Programm für 6-13 Jährige: Themen wie woher kommt das Essen; das Wasser lebt;
-            Ferien am Pool; das magische Baumhaus; Natur als Klettergarten; Lernen und Spielen werden behandelt
-            bzw. erlebt. Lernen und Spielen versteht sich während der letzten beiden Ferienwochen als
-            Vorbereitung für das kommende Schuljahr. Bei diesem Ferienhort gibt es sogar einen sogenannten Tag
-            der Ruhe, an dem die Kinder selber entscheiden können, was sie machen möchten. Am 31.8 gibt es einen
-            Abschlussausflug in den Märchenpark St. Margarethen.''',
-            author:Entity.findByName('christianszinicz')).save()
+    for ( i in 1..grailsApplication.config.dummies ) {
+      new ArticlePost(title: 'DummyTitle' + i,
+              teaser: 'DummyTeaser' + i,
+              content: 'DummyContent' + i,
+              author: Entity.findByName('dummyEducator1')).save()
+    }
+
   }
 
   void createDefaultEvents() {
