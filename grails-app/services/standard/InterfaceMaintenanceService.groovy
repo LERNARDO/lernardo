@@ -60,7 +60,7 @@ class InterfaceMaintenanceService {
       ent.save()
       //}
       //if (n % 500 == 0)
-      log.info(n)
+      log.debug(n)
     }
   }
 }

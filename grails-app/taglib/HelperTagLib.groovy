@@ -234,6 +234,14 @@ class HelperTagLib {
   }
 
   /*
+   * finds the number of clients linked to a client group
+   */
+  def getGroupClientsCount = {attrs, body ->
+    def clients = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberClient)
+    out << clients
+  }
+
+  /*
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->
