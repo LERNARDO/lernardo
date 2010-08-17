@@ -533,8 +533,8 @@ class ProfileController {
       entities = entities.subList(params.offset, upperBound)
     }
     else {
-      entities = Entity.findAllByType(EntityType.findByName(params.entityType))
-      count = entities.size()
+      entities = Entity.findAllByType(EntityType.findByName(params.entityType), params)
+      count = Entity.countByType(EntityType.findByName(params.entityType))
     }
 
     return ['entityType': params.entityType,

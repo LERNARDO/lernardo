@@ -25,7 +25,7 @@
   <div class="second">
 
     <div id="body-list">
-      Bitte einen Namen eingeben: <g:remoteField name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
+      Bitte einen Namen eingeben: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
 
       %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
       
