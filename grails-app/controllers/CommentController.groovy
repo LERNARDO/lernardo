@@ -18,7 +18,6 @@ class CommentController {
     entity.profile.removeFromComments(comment)
     comment.delete()
 
-    //flash.message = message(code: "comment.deleted")
     render template:'comments', model:[commented: entity]
   }
 
