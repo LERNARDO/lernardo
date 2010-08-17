@@ -28,7 +28,7 @@
           <td valign="top" class="value-show">
             ${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
           </td>
-          <td valign="top" class="value-show">
+          <td valign="top" class="value-show-block">
             <g:link action="show" id="${parent.id}" params="[entity:parent.id]">${parent.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if>
           </td>
           <td valign="top" class="value-show">
@@ -47,7 +47,7 @@
           <td valign="top" class="value-show">
             <app:getMaritalStatus level="${parent.profile.maritalStatus}"/>
           </td>
-          <td valign="top" class="value-show">
+          <td valign="top" class="value-show-block">
             <ul>
               <g:each in="${parent.profile.languages}" var="language">
                 <li><app:getLanguages language="${language}"/></li>

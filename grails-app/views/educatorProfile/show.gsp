@@ -72,14 +72,14 @@
           <td height="60" valign="top" class="value-show">
             ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
-          <td valign="top" class="value-show">
+          <td valign="top" class="value-show-block">
             <ul>
               <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
                 <li><app:getInChargeOf inchargeof="${inchargeof}"/></li>
               </g:each>
             </ul>
           </td>
-          <td valign="top" class="value-show">
+          <td valign="top" class="value-show-block">
             <ul>
               <g:each in="${educator.profile.languages}" var="language">
                 <li><app:getLanguages language="${language}"/></li>

@@ -39,9 +39,9 @@
         </tr>
 
         <tr class="prop">
-          <td width="200" class="value-show">
+          <td valign="top" width="200" class="value-show">
             ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td width="421" colspan="3" class="value-show">
+          <td width="421" colspan="3" class="value-show-block">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
                 <li><app:getPartnerService service="${service}"/></li>

@@ -25,7 +25,7 @@
           <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
           <td width="160" valign="top" class="value-show"><app:getLanguages language="${pate.profile.motherTongue}"/></td>
-          <td width="170" valign="top" class="value-show">
+          <td width="170" valign="top" class="value-show-block">
             <ul>
               <g:each in="${pate.profile.languages}" var="language">
                 <li><app:getLanguages language="${language}"/></li>
