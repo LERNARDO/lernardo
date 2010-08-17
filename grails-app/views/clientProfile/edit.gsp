@@ -254,12 +254,14 @@
         <div class="email2">
           <table>
             <tr>
-              <td width="90" valign="top">
-                <g:message code="active"/>
-              </td>
-              <td width="30">
-                <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
-              </td>
+              <app:isOperator entity="${currentEntity}">
+                <td width="90" valign="top">
+                  <g:message code="active"/>
+                </td>
+                <td width="30">
+                  <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
+                </td>
+              </app:isOperator>
               <td width="85" valign="top">
                 <g:message code="client.profile.email"/>:
               </td>

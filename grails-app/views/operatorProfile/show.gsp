@@ -54,12 +54,12 @@
           <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.profile.showTips}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
-        <app:isAdmin>
+        <app:isOperator entity="${currentEntity}">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="active"/>:</td>
             <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
-        </app:isAdmin>
+        </app:isOperator>
 
         </tbody>
       </table>

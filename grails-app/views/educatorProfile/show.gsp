@@ -214,12 +214,12 @@
         <table>
 
           <tr>
-            <app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
               <td width="100" valign="middle">
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
-            </app:isAdmin>
+            </app:isOperator>
 
             <td width="280" valign="middle">
               <span class="bold"><g:message code="educator.profile.email"/>:</span>

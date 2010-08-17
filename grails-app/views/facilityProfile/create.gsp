@@ -68,12 +68,10 @@
         <div class="email">
           <table>
             <tr class="prop">
-              <app:isAdmin>
-                <td width="60" valign="middle" class="name"><g:message code="active"/></td>
-                <td width="40" valign="middle" class="value">
-                  <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
-                </td>
-              </app:isAdmin>
+              <td width="60" valign="middle" class="name"><g:message code="active"/></td>
+              <td width="40" valign="middle" class="value">
+                <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
+              </td>
               <td width="70" valign="middle" class="name"><g:message code="facility.profile.email"/></td>
               <td width="320" valign="middle" class="value">
                 <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>

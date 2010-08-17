@@ -67,17 +67,12 @@
         <div class="email2">
           <table>
             <tr class="prop">
-              <app:isAdmin>
+              <app:isOperator entity="${currentEntity}">
                 <td width="90" valign="top" class="name"><g:message code="active"/></td>
                 <td width="30" valign="top" class="value">
-                  <app:isAdmin>
-                    <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
-                  </app:isAdmin>
-                  <app:notAdmin>
-                    <g:checkBox name="enabled" value="${facility?.user?.enabled}" disabled="true"/>
-                  </app:notAdmin>
+                  <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
                 </td>
-              </app:isAdmin>
+              </app:isOperator>
               <td width="70" valign="top" class="name"><g:message code="facility.profile.email"/></td>
               <td width="320" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>

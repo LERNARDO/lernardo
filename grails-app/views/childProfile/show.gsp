@@ -49,10 +49,10 @@
       </table>
 
       <div class="email">
-        <app:isAdmin>
+        <app:isOperator entity="${currentEntity}">
           <span class="bold"><g:message code="active"/></span>
           <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
-        </app:isAdmin>
+        </app:isOperator>
         <td width="60" valign="top">
           <span class="bold"><g:message code="child.profile.email"/>:</span>
         </td>

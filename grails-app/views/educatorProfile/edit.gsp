@@ -293,19 +293,11 @@
       <div class="email">
         <table>
           <tr>
-            <app:isAdmin>
-              <td width="80" valign="middle">
-                <label for="enabled">
-                  <g:message code="active"/>
-                </label>
-                <app:isAdmin>
-                  <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
-                </app:isAdmin>
-                <app:notAdmin>
-                  <g:checkBox name="enabled" value="${educator?.user?.enabled}" disabled="true"/>
-                </app:notAdmin>
-              </td>
-            </app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
+              <td width="80" valign="middle"><g:message code="active"/>
+                <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
+             </td>
+            </app:isOperator>
             <td width="150" valign="middle">
               <label>
                 <g:message code="password"/>:

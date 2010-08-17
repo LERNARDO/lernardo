@@ -64,10 +64,10 @@
         <table>
 
           <tr class="prop">
-            <app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
               <td width="60" valign="top"><span class="bold"><g:message code="active"/></span></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isAdmin>
+            </app:isOperator>
 
             <td width="60" valign="top"><span class="bold"><g:message code="pate.profile.email"/>:</span></td>
             <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>

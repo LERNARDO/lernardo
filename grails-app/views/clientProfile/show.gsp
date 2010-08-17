@@ -173,10 +173,10 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
               <td width="60" valign="top" class="bold"><g:message code="active"/></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${client.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isAdmin>
+            </app:isOperator>
             <td width="60" valign="top" class="bold"><g:message code="client.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: client, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </table>

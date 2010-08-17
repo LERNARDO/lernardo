@@ -85,7 +85,7 @@
         <div class="email">
           <table>
             <tr>
-              <app:isAdmin>
+              <app:isOperator entity="${currentEntity}">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
                   <app:isAdmin>
@@ -95,7 +95,7 @@
                     <g:checkBox name="enabled" value="${pate?.user?.enabled}" disabled="true"/>
                   </app:notAdmin>
                 </td>
-              </app:isAdmin>
+              </app:isOperator>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
                 <g:link controller="profile" action="changePassword" id="${pate.id}">Ändern</g:link>

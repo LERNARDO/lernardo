@@ -139,17 +139,12 @@
         <div class="email">
           <table>
             <tr>
-              <app:isAdmin>
+              <app:isOperator entity="${currentEntity}">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
-                  <app:isAdmin>
-                    <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
-                  </app:isAdmin>
-                  <app:notAdmin>
-                    <g:checkBox name="enabled" value="${parent?.user?.enabled}" disabled="true"/>
-                  </app:notAdmin>
+                  <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
                 </td>
-              </app:isAdmin>
+              </app:isOperator>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
                 <g:link controller="profile" action="changePassword" id="${parent.id}">Ändern</g:link>
