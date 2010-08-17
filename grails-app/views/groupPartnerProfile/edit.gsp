@@ -34,24 +34,17 @@
           </tr>
 
           <tr class="prop">
-            <td>&nbsp;</td>
-            <td valign="top" class="name">
-              <label for="service">
-                <g:message code="groupPartner.profile.service"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="groupPartner.profile.service"/></td>
           </tr>
           
           <tr class="prop">
-            <td>&nbsp;</td>
             <td class="drop-down-280" valign="top">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
+                <g:select name="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
+                <g:select name="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${group.profile.service}"/>
               </g:if>
-              %{--<g:select class="${hasErrors(bean: group, field: 'profile.service', 'errors')}" id="service" name="service" from="['a','b']" value="${fieldValue(bean: group, field: 'profile.service')}"/>--}%
             </td>
           </tr>
 

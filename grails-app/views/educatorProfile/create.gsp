@@ -27,19 +27,19 @@
           </tr>
 
           <tr>
-            <td width="90" height="35" valign="middle" class="value">
+            <td width="90" height="35" valign="top" class="value">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
-            <td width="120" valign="middle" class="value">
+            <td width="120" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
             </td>
-            <td width="180" valign="middle" class="value">
+            <td width="180" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
             </td>
-            <td width="200" valign="middle" class="value">
+            <td width="200" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField name="birthDate" size="30" class="datepicker-birthday ${hasErrors(bean: educator, field: 'profile.birthDate', 'errors')}" value="${educator?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
             </td>
           </tr>
@@ -54,13 +54,13 @@
           </tr>
 
           <tr>
-            <td width="290" height="35" valign="middle" class="value">
+            <td width="290" height="35" valign="top" class="value">
               <g:select class="drop-down-280" name="education" from="${['Pädagoge','Psychologe','Soziologe','Lehrer (staatl. Ausbildung)','Erzieher','Psychopädagoge','Bildender Künstler','Arzt','Krankenschwester','Wirtschafter','Buchhalter/Steuerberater']}" value="${fieldValue(bean:educator,field:'profile.education')}"/>
             </td>
-            <td width="290" valign="middle" class="value">
+            <td width="290" valign="top" class="value">
               <g:select class="drop-down-280" name="employment" from="${['Angestellt','Freier Mitarbeiter','Freiwilliger']}" value="${fieldValue(bean:educator,field:'profile.employment')}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:select class="drop-down-240" name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
@@ -117,16 +117,16 @@
             </tr>
 
             <tr>
-              <td width="280" height="35" valign="middle" class="value">
+              <td width="280" height="35" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="41" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="middle" class="value">
+              <td width="105" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
-              <td width="210" valign="middle" class="value">
+              <td width="210" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
               </td>
-              <td valign="middle" class="value">
+              <td valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
               </td>
             </tr>
@@ -146,16 +146,16 @@
             </tr>
 
             <tr>
-              <td width="280" height="35" valign="middle" class="value">
+              <td width="280" height="35" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="41" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="middle" class="value">
+              <td width="105" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
               </td>
-              <td width=",210" valign="middle" class="value">
+              <td width=",210" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
               </td>
-              <td valign="middle" class="value">
+              <td valign="top" class="value">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                   <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${educator?.profile?.originCountry}"/>
                 </g:if>
@@ -180,16 +180,16 @@
             </tr>
 
             <tr>
-              <td width="280" height="35" valign="middle" class="value">
+              <td width="280" height="35" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="middle" class="value">
+              <td width="105" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
               </td>
-              <td width="210" valign="middle" class="value">
+              <td width="210" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
               </td>
-              <td valign="middle" class="value">
+              <td valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
               </td>
             </tr>
@@ -204,10 +204,10 @@
             </tr>
 
             <tr>
-              <td width="280" height="35" valign="middle" class="value">
+              <td width="280" height="35" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
               </td>
-              <td valign="middle" class="value">
+              <td valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
               </td>
             </tr>

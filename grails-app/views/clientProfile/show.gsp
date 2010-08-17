@@ -197,11 +197,11 @@
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="showspinner('#performances2')">
           <table>
             <tr>
-              <td>Datum:</td>
+              <td valign="middle">Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td valign="top">Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -219,15 +219,15 @@
     <div class="zusatz">
       <h5>Gesundheitseinträge <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#healths');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gesundheitseintrag hinzufügen"/></a></app:hasRoleOrType></h5>
-      <div id="healths" style="display:none">
+      <div class="zusatz-add" id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="showspinner('#healths2')">
           <table>
             <tr>
-              <td>Datum:</td>
+              <td valign="middle">Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td valign="top">Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -245,15 +245,15 @@
     <div class="zusatz">
       <h5>Erhaltene Materialien <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></app:hasRoleOrType></h5>
-      <div id="materials" style="display:none">
+      <div class="zusatz-add" id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2')">
           <table>
             <tr>
-              <td>Datum:</td>
+              <td valign="middle">Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td valign="top">Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -271,7 +271,7 @@
     <div class="zusatz">
       <h5>Eintritt und Austritt bei Sueninos <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:hasRoleOrType></h5>
-      <div id="dates" style="display:none">
+      <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2')">
           <g:datePicker name="date" value="" precision="day"/>
           <div class="spacer"></div>

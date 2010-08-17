@@ -36,7 +36,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="middle" class="value">
+            <td colspan="4" valign="top" class="value">
               <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
@@ -49,16 +49,16 @@
           </tr>
 
           <tr class="prop">
-            <td width="290" valign="middle" class="value">
+            <td width="290" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="41" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
             </td>
-            <td width="101" valign="middle" class="value">
+            <td width="101" valign="top" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.zip', 'errors')}" size="12" name="zip" value="${fieldValue(bean: facility, field: 'profile.zip').decodeHTML()}"/>
             </td>
-            <td width="220" valign="middle" class="value">
+            <td width="220" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: facility, field: 'profile.city').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.country', 'errors')}" size="30" name="country" value="${fieldValue(bean: facility, field: 'profile.country').decodeHTML()}"/>
             </td>
           </tr>

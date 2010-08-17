@@ -114,7 +114,7 @@
           </tr>
 
           <tr>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent?.profile?.currentCountry}"/>
               </g:if>
@@ -122,13 +122,13 @@
                 <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent?.profile?.currentCountry}"/>
               </g:if>
             </td>
-            <td width="105" valign="middle" class="value">
+            <td width="105" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: parent, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: parent, field: 'profile.currentCity').decodeHTML()}"/>
             </td>
-            <td width="210" valign="middle" class="value">
+            <td width="210" valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: parent, field: 'profile.currentZip', 'errors')}" size="30" name="currentZip" value="${fieldValue(bean: parent, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
           </tr>

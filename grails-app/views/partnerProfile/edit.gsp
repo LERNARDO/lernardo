@@ -81,7 +81,7 @@
             <td width="220" valign="top" class="value">
               <g:textField class="countable${partner.profile.constraints.city.maxSize} ${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>
             </td>
-            <td width="210" align="top" class="value">
+            <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${partner.profile.country}"/>
               </g:if>

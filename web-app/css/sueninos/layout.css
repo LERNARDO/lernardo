@@ -1359,21 +1359,22 @@ table#msg-composer td {
 .email {
 	border: solid 1px #009900;
 	padding: 8px 0 4px 10px ;
-	background-color:#CCC;
+	background: #8c8; /*ccc*/
 	margin-top: 6px;
 	margin-bottom: 6px;
 	height: 20px;
 }
+
 .email2 {
 	border: solid 1px #009900;
 	padding: 8px 0 4px 10px ;
-	background-color:#CCC;
+	background: #8c8; /*ccc*/
 	margin-top: 6px;
 	margin-bottom: 6px;
 	height: 47px;
 }
 
-.name{
+.name {
 	margin-bottom: 3px;
 }
 
@@ -1395,14 +1396,14 @@ table#msg-composer td {
 		
 .value-show-block {
 	background-color: #FFF;
-	border-right: 20px solid #dfdfdf;	
+	border-right: 20px solid #dfdfdf;
 	border-bottom: 10px solid #dfdfdf;
 	padding: 3px;
 }
 .value-show {
 	background-image:url(../../images/icons/value-show-short.png);
 	background-repeat:repeat-x;
-	border-right: 20px solid #dfdfdf;	
+	border-right: 20px solid #dfdfdf;
 	border-bottom: 10px solid #dfdfdf;
 	padding: 3px;
 }
@@ -1440,15 +1441,16 @@ table#msg-composer td {
   background: #fff;
 }
 
-
 h4 {
 	color: #003300;
 	font-size: 12px;
 	font-weight:bold;
 	margin: 4px 0;
 	}
+
 .contact {
-	border:1px solid #fff;
+	border: 1px solid #aaa; /* fff */
+    /*background: #cdcdcd;*/
 	padding-left: 6px;
 	padding-right: 6px;
 	padding-top: 3px;
@@ -1541,7 +1543,7 @@ h4 {
 	width: 790px;
 	}
 .zusatz {
-    border: 1px solid #fff;
+    border: 1px solid #aaa; /*#fff;*/
     background-color: #eee;
     margin-top: 12px;}
 
@@ -1569,13 +1571,13 @@ h5 {
     color: #003300;
 	font-size: 12px;
 	font-weight:bold;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #aaa; /* #fff */
     padding-bottom: 6px;
 }
 
 .buttons {
-    padding-bottom: 6px;
-    border-bottom: 2px solid #fff;
+    /*padding-bottom: 6px;*/
+    /*border-bottom: 2px solid #fff;*/
     margin-bottom: 20px;
 }
 #flash-msg {
