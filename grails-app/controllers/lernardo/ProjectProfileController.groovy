@@ -61,7 +61,7 @@ class ProjectProfileController {
     }
     else {
       // find projectTemplate of this project
-      Entity template = Link.findByTargetAndType(project, metaDataService.ltProjectTemplate).source
+      Entity template = Link.findByTargetAndType(project, metaDataService.ltProjectTemplate)?.source
 
       // find all units linked to the template
       def links = Link.findAllByTargetAndType(template, metaDataService.ltProjectUnit)

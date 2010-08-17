@@ -105,10 +105,15 @@ class ParentProfileController {
 
     parent.profile.properties = params
     parent.profile.fullName = params.lastName + " " + params.firstName
-
     parent.user.properties = params
+
     if (parent.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
+
+    // "parent.hasErrors()" returns false even though properties in the nested class "profile" did not validate
+    
+    // when validating a parent object it should check validation of nested objects as well because right now nested
+    // properties that failed validation are not saved and the "show" view is called as if everything worked fine
 
     if (!parent.hasErrors() && parent.save()) {
       flash.message = message(code: "parent.updated", args: [parent.profile.fullName])
