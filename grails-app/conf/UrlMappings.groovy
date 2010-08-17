@@ -16,6 +16,7 @@ class UrlMappings {
 		  }
 	   }
 
+      "/" (controller:'security', action:'login')
       "/" (controller:'app', action:'home') // public start
       "/start" (controller:'app', action:'start') // private start
 
