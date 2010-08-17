@@ -126,7 +126,7 @@ class ProjectProfileController {
     if (project) {
       // delete all links
       Link.findAllBySourceOrTarget(project, project).each {it.delete()}
-      Event.findAllByEntity(project).each {it.delete}
+      Event.findAllByEntity(project).each {it.delete()}
 
       try {
         flash.message = message(code: "project.deleted", args: [project.profile.fullName])
