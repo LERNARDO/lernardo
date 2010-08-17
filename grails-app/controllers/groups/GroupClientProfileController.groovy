@@ -159,13 +159,12 @@ class GroupClientProfileController {
   }
 
   def updateselect = {
-    println params
     def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 
     def c = Entity.createCriteria()
     allClients = c.list {
-      if (params.type != 'all')
+      if (params.type != "all")
         eq('type', params.type)
       if (params.name)
         or {
@@ -185,13 +184,13 @@ class GroupClientProfileController {
           if (params.job.toInteger() == 2)
             eq('job', false)
         }
-        if (params.schoolLevel != 'all')
-          eq('schoolLevel', params.schoolLevel.toInteger())
-        if (params.size1 != 'all')
+        if (params.schoolLevel != "all")
+          eq('schoolLevel', params.schoolLevel)
+        if (params.size1 != "all")
           between('size', params.size1.toInteger(), params.size2.toInteger())
-        if (params.weight1 != 'all')
+        if (params.weight1 != "all")
           between('weight', params.weight1.toInteger(), params.weight2.toInteger())
-        if (params.birthDate1 != 'all')
+        if (params.birthDate1)
           between('birthDate', params.birthDate1, params.birthDate2)
       }
       maxResults(30)

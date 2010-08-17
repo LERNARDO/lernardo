@@ -1630,7 +1630,8 @@ h5 {
 .profile-box .second ul li a:hover {
       color: #fff !important;
       display: block;
-      background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;}
+      background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;
+      /*padding-left: 5px;*/}
 
 #body-list a {
     color: #000;

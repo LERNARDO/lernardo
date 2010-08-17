@@ -48,7 +48,7 @@
             </tr>
             <tr>
               <td>Geburtsdatum:</td>
-              <td>zwischen <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="['all':'Alle']"/> und <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="['all':'Alle']"/></td>
+              <td>zwischen <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="[null:'Alle']"/> und <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="['all':'Alle']"/></td>
             </tr>
             <tr>
               <td>Geschlecht:</td>
