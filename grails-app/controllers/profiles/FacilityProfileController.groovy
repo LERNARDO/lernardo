@@ -309,4 +309,64 @@ class FacilityProfileController {
     Contact.get(params.contact).delete()
     render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
   }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteEducators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'educatorresults', model: [results: results, facility: params.id])
+    }
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etGroupClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, facility: params.id])
+    }
+  }
 }

@@ -150,4 +150,34 @@ class PateProfileController {
     def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltPate)
     render template:'godchildren', model: [godchildren: breaking.results, pate: breaking.target, entity: entityHelperService.loggedIn]
   }
+
+  /*
+   * retrieves all clients matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, pate: params.id])
+    }
+  }
 }

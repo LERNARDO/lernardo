@@ -1,0 +1,19 @@
+<g:if test="${results}">
+  <div class="remoteresults">
+    <g:each in="${results}" var="entity">
+      <g:remoteLink url="[controller:'facilityProfile', action:'addEducator', id:facility, params:[educator: entity.id]]" update="educators2" before="showspinner('#educators2')">
+      <div class="remoteresult">
+        <table>
+          <tr>
+            <td><ub:profileImage name="${entity.name}" width="65"/></td>
+            <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><br/>
+            ${entity.profile.currentZip ?: '<div class="italic">Leer</div>'} ${entity.profile.currentCity ?: '<div class="italic">Leer</div>'}<br/>
+            ${entity.profile.currentStreet ?: '<div class="italic">Leer</div>'}
+            <app:getNationalities nationality="${entity.profile.currentCountry}"/></td>
+          </tr>
+        </table>
+      </div>
+      </g:remoteLink>
+    </g:each>
+  </div>
+</g:if>
