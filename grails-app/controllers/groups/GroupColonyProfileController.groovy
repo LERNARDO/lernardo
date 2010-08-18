@@ -215,6 +215,19 @@ class GroupColonyProfileController {
     render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
   }
 
+  def editRepresentative = {
+    Entity group = Entity.get(params.id)
+    Contact representative = Contact.get(params.representative)
+    render template: 'editrepresentative', model: [group: group, representative: representative, entity: entityHelperService.loggedIn]
+  }
+
+  def updateRepresentative = {
+    Entity group = Entity.get(params.id)
+    Contact contact = Contact.get(params.representative)
+    contact.properties = params
+    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+  }
+
   def addBuilding = {
     Building building = new Building(params)
     Entity group = Entity.get(params.id)

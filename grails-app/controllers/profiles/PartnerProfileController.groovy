@@ -185,6 +185,19 @@ class PartnerProfileController {
     Contact.get(params.contact).delete()
     render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
   }
+
+  def editContact = {
+    Entity partner = Entity.get(params.id)
+    Contact contact = Contact.get(params.contact)
+    render template: 'editcontact', model: [partner: partner, representative: contact, entity: entityHelperService.loggedIn]
+  }
+
+  def updateContact = {
+    Entity partner = Entity.get(params.id)
+    Contact contact = Contact.get(params.representative)
+    contact.properties = params
+    render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+  }
 }
 
 /*

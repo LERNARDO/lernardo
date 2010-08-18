@@ -310,6 +310,19 @@ class FacilityProfileController {
     render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
   }
 
+  def editContact = {
+    Entity facility = Entity.get(params.id)
+    Contact contact = Contact.get(params.contact)
+    render template: 'editcontact', model: [facility: facility, representative: contact, entity: entityHelperService.loggedIn]
+  }
+
+  def updateContact = {
+    Entity facility = Entity.get(params.id)
+    Contact contact = Contact.get(params.representative)
+    contact.properties = params
+    render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+  }
+
   /*
    * retrieves all educators matching the search parameter
    */
