@@ -7,11 +7,13 @@ import at.openfactory.ep.ProfileHelperService
 import standard.MetaDataService
 import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
+import standard.FunctionService
 
 class ResourceProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
+  FunctionService functionService
 
   def index = {
     redirect action: "list", params: params
@@ -104,11 +106,21 @@ class ResourceProfileController {
   def save = {
     EntityType etResource = metaDataService.etResource
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     try {
       Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
+
+      functionService.createEvent(currentEntity, 'Du hast die Resource <a href="' + createLink(controller: 'resourceProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      List receiver = Entity.findAllByType(metaDataService.etEducator)
+      receiver.each {
+        if (it.id != currentEntity.id)
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Resource <a href="' + createLink(controller: 'resourceProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      }
+
       flash.message = message(code: "resource.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {

@@ -264,7 +264,7 @@ class ActivityController {
         functionService.getParamAsList(params.educators).each {
           new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActEducator).save()
           if (Entity.get(it).id != currentEntity.id) {
-            functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + entity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+            functionService.createEvent(Entity.get(it), '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> mit dir als TeilnehmerIn angelegt.')
           }
         }
 
@@ -322,16 +322,16 @@ class ActivityController {
     functionService.getParamAsList(params.educators).each {
       new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActEducator).save()
       if (Entity.get(it).id != currentEntity.id) {
-        functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+        functionService.createEvent(Entity.get(it), '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> aktualisiert.')
       }
     }
 
     functionService.getParamAsList(params.clients).each {
       new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActClient).save()
       if (Entity.get(it).id != currentEntity.id) {
-        functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+        functionService.createEvent(Entity.get(it), '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> aktualisiert.')
       }
-    }
+    }   
 
     if (!activity.hasErrors() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])

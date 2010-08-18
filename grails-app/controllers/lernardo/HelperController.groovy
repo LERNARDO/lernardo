@@ -116,7 +116,7 @@ class HelperController {
 
     List receiver = Entity.findAllByType(type)
     receiver.each {
-      functionService.createEvent(it as Entity, 'Es wurde das Hilfethema "' + helperInstance.title + '" angelegt.')
+      functionService.createEvent(it as Entity, 'Es wurde das Hilfethema <a href="' + createLink(controller: 'helper', action: 'list') + '">' + helperInstance.title + '</a> angelegt.')
     }
 
     if (helperInstance.save(flush: true)) {

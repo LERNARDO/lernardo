@@ -104,11 +104,11 @@ class TemplateProfileController {
         ent.profile.properties = params
       }
 
-      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
+      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {
         if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, 'Es wurde die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
 
       flash.message = message(code: "template.created", args: [entity.profile.fullName])
