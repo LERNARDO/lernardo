@@ -235,6 +235,12 @@ class FacilityProfileController {
   }
 
   def addLeadEducator = {
+    def tempLink = Link.findByTargetAndType(Entity.get(params.id), metaDataService.ltLeadEducator)
+    if (tempLink) {
+      render '<span class="italic red">Dieser Einrichtung wurde bereits ein leitender Pädagoge zugewiesen</span>'
+      render template: 'leadeducator', model: [leadeducator: Entity.get(params.leadeducator), facility: Entity.get(params.id), entity: entityHelperService.loggedIn]
+      return
+    }
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
