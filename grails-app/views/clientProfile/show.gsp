@@ -143,19 +143,21 @@
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.job"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.jobType"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.jobIncome"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.jobFrequency"/></td>
-          </tr>
+          <g:if test="${client.profile.job}">
+            <tr class="prop">
+              <td valign="top" class="name-show"><g:message code="client.profile.job"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobType"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobIncome"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobFrequency"/></td>
+            </tr>
 
-          <tr class="prop">
-            <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td valign="top" class="value-show"><g:if test="${client.profile.jobType}"><app:getJobType job="${client.profile.jobType}"/></g:if><g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
-            <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          </tr>
+            <tr class="prop">
+              <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+              <td valign="top" class="value-show"><g:if test="${client.profile.jobType}"><app:getJobType job="${client.profile.jobType}"/></g:if><g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
+              <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+              <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            </tr>
+          </g:if>
 
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="client.profile.support"/></td>
