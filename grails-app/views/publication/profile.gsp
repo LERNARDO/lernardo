@@ -10,12 +10,12 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <app:isOperator entity="${entity}">
+    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
       <div class="action-buttons">
         <g:link class="buttonGreen" controller="publication" id="${entity.id}" action="create"><img src="${g.resource (dir:'images/icons', file:'icon_document.png')}" alt="icon" align="top"/> <g:message code="publication.profile.create"/></g:link>
         <div class="spacer" style="margin-bottom: 10px"></div>
       </div>
-    </app:isOperator>
+    </app:hasRoleOrType>
     <g:if test="${!pubtypes}">
     <div class="info-msg">
       <g:message code="publication.profile.empty"/>
