@@ -159,15 +159,17 @@
             </tr>
           </g:if>
 
-          <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.support"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.supportDescription"/></td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.support}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          </tr>
+          <g:if test="${client.profile.support}">
+            <tr class="prop">
+              <td valign="top" class="name-show"><g:message code="client.profile.support"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.supportDescription"/></td>
+            </tr>
+  
+            <tr class="prop">
+              <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.support}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+              <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            </tr>
+          </g:if>
 
         </table>
       </div>
