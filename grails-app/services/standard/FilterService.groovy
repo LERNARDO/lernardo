@@ -17,7 +17,7 @@ class FilterService {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      ne('sender', entityHelperService.loggedIn)
+      ne('sender', Entity.get(id))  // loggedIn
       eq('read', false)
     }
     return results.size()
@@ -30,7 +30,7 @@ class FilterService {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      ne('sender', entityHelperService.loggedIn)
+      ne('sender', Entity.get(id)) // loggedIn
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
@@ -45,7 +45,7 @@ class FilterService {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      ne('sender', entityHelperService.loggedIn)
+      ne('sender', Entity.get(id)) // loggedIn
     }
     return results.size()
   }
@@ -57,7 +57,7 @@ class FilterService {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      eq('sender', entityHelperService.loggedIn)
+      eq('sender', Entity.get(id)) // loggedIn
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
