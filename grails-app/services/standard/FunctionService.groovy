@@ -155,7 +155,7 @@ class FunctionService {
 
     // 2. find all educators linked to the facility
     def c = Link.createCriteria()
-    def allEducators = c.get {
+    def allEducators = c.list {
       eq('target', facility)
       or {
         eq('type', metaDataService.ltWorking)
