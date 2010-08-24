@@ -88,9 +88,7 @@ class TemplateProfileController {
   }
 
   def create = {
-    Entity template = Entity.get(params.id)
-    return ['resources': Entity.findAllByType(metaDataService.etResource),
-            'template': template]
+    return ['resources': Entity.findAllByType(metaDataService.etResource)]
   }
 
   def save = {
@@ -115,7 +113,7 @@ class TemplateProfileController {
       redirect action: 'show', id: entity.id
 
     } catch (at.openfactory.ep.EntityException ee) {
-      render view: "create", model: [template: ee.entity, entity: currentEntity, resources: Entity.findAllByType(metaDataService.etResource)]
+      render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]
       return
     }
 
