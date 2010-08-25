@@ -73,11 +73,16 @@
             ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td valign="top" class="value-show-block">
+            <g:if test="${educator.profile.inChargeOf}">
             <ul>
               <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
                 <li><app:getInChargeOf inchargeof="${inchargeof}"/></li>
               </g:each>
             </ul>
+            </g:if>
+            <g:else>
+              <div class="italic">${message(code:'noData')}</div>
+            </g:else>
           </td>
           <td valign="top" class="value-show-block">
             <ul>
