@@ -42,25 +42,50 @@ class ActivityController {
 
     // create empty list for final results
     List activityList = []
+    def activityCount
 
-    if (params.myDate_year == 'alle' || params.list == 'Alle') {
+    // geta all activities
+    if (params.myDate_year == 'alle' || params.list == "Alle") {
 
-      if (currentEntity.type.name == metaDataService.etEducator.name) {
+      // show educator only his own activities
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
-          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility, params)
+          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
           tempList.each {bla ->
-            activityList << bla.target
+            // there are 2 types of activites, we only want theme room activities here
+            if (bla.target.type == "Themenraum")
+              activityList << bla.target
           }
         }
+        activityCount = activityList.size()
+        def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+        activityList = activityList.subList(params.offset, upperBound)
       }
       else
-        activityList = Entity.findAllByType(metaDataService.etActivity, params)
+      {
+        def c = Entity.createCriteria()
+        activityList = c.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
+          maxResults(params.max)
+          firstResult(params.offset)
+        }
 
-      def activityCount = Entity.countByType(metaDataService.etActivity)
-      //def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
-      //activityList = activityList.subList(params.offset, upperBound)
+        def d = Entity.createCriteria()
+        def count = d.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
+        }
+
+        activityCount = count.size()
+
+      }
 
       return ['activityList': activityList,
               'activityCount': activityCount]
@@ -72,33 +97,55 @@ class ActivityController {
       inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
 
       // get all activities of the facilities within the timeframe
-      if (currentEntity.type.name == metaDataService.etEducator.name) {
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
           List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
           tempList.each {bla ->
-            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate + 1)
+            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate + 1 && bla.target.type == "Themenraum")
               activityList << bla.target
           }
         }
+        activityCount = activityList.size()
+        def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+        activityList = activityList.subList(params.offset, upperBound)
       }
-      else
-        Entity.findAllByType(metaDataService.etActivity).each {bla ->
+      else {
+        /*Entity.findAllByType(metaDataService.etActivity).each {bla ->
           if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1)
-            activityList << bla
+            activityList << bla*/
+
+        def c = Entity.createCriteria()
+        activityList = c.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+            between("date", inputDate, inputDate + 1)
+          }
+          maxResults(params.max)
+          firstResult(params.offset)
         }
 
-      def activityCount = activityList.size()
-      def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
-      activityList = activityList.subList(params.offset, upperBound)
+        def d = Entity.createCriteria()
+        def count = d.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+            between("date", inputDate, inputDate + 1)
+          }
+        }
+
+         activityCount = count.size()
+      }
 
       return ['activityList': activityList,
               'activityCount': activityCount,
               'dateSelected': inputDate]
     }
-    return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
-            'activityCount': Entity.countByType(metaDataService.etActivity)]
+    return
+    /*return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
+            'activityCount': Entity.countByType(metaDataService.etActivity)]*/
   }
 
   /*
@@ -137,7 +184,7 @@ class ActivityController {
     def c = Entity.createCriteria()
     def templates = c.list {
       profile {
-        eq("type", "Themenraumaktivitätsvorlage")
+        eq("type", "Themenraum")
       }
     }
 
@@ -170,7 +217,7 @@ class ActivityController {
       def c = Entity.createCriteria()
       def templates = c.list {
         profile {
-          eq("type", "Themenraumaktivitätsvorlage")
+          eq("type", "Themenraum")
         }
       }
 
