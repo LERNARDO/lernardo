@@ -97,28 +97,28 @@
                 document.getElementById("hidden").removeChild(selector2);
 
               var wme1 = document.createElement("select");
-              wme.id = "selector1";
-              wme.name = "star1";
-              wme.multiple = true;
+              wme1.id = "selector1";
+              wme1.name = "star1";
+              wme1.multiple = true;
 
               var wme2 = document.createElement("select");
-              wme.id = "selector2";
-              wme.name = "star2";
-              wme.multiple = true;
+              wme2.id = "selector2";
+              wme2.name = "star2";
+              wme2.multiple = true;
 
-              var checked = new Array();
+              //var checked = new Array();
               for (var zaehler = 0; zaehler < (document.getElementsByName("star1").length); zaehler++) {
 
                 var optn1 = document.createElement("OPTION");
-                optn.text = document.getElementsByName("star1")[zaehler].value;
-                optn.value = document.getElementsByName("star1")[zaehler].key;
-                optn.selected = true;
+                optn1.text = document.getElementsByName("star1")[zaehler].value;
+                optn1.value = document.getElementsByName("star1")[zaehler].key;
+                optn1.selected = true;
                 wme1.options.add(optn1);
 
                 var optn2 = document.createElement("OPTION");
-                optn.text = document.getElementsByName("star2")[zaehler].value;
-                optn.value = document.getElementsByName("star2")[zaehler].key;
-                optn.selected = true;
+                optn2.text = document.getElementsByName("star2")[zaehler].value;
+                optn2.value = document.getElementsByName("star2")[zaehler].key;
+                optn2.selected = true;
                 wme2.options.add(optn2);
 
               }
