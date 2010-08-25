@@ -51,14 +51,15 @@ class PartnerProfileController {
     if (!partner) {
       flash.message = "PartnerProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      // find colonia of this partner
-      def link = Link.findBySourceAndType(partner, metaDataService.ltGroupMemberPartner)
-      Entity colony = link?.target
 
-      return [partner: partner, entity: entity, colony: colony]
-    }
+    // find colonia of this partner
+    def link = Link.findBySourceAndType(partner, metaDataService.ltGroupMemberPartner)
+    Entity colony = link?.target
+
+    return [partner: partner, entity: entity, colony: colony]
+
   }
 
   def del = {
@@ -90,10 +91,11 @@ class PartnerProfileController {
     if (!partner) {
       flash.message = "PartnerProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-    }
+
+    return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+
   }
 
   def update = {

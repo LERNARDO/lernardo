@@ -113,7 +113,7 @@
 
               <table>
                 <tr>
-                  <td width="135">
+                  <td style="width: 135px">
                     <ub:profileImage name="${entity.name}" width="130"/>
                   </td>
                   <td>

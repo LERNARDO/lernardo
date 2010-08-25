@@ -53,39 +53,40 @@ class GroupColonyProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      // find all facilities linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
-      List facilities = links.collect {it.source}
 
-      def allPartners = Entity.findAllByType(metaDataService.etPartner)
-      // find all partners linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
-      List partners = links.collect {it.source}
+    def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    // find all facilities linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
+    List facilities = links.collect {it.source}
 
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
-      // find all educators linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
-      List educators = links.collect {it.source}
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    // find all partners linked to this group
+    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
+    List partners = links.collect {it.source}
 
-      // find all resources linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-      List resources = links.collect {it.source}
+    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    // find all educators linked to this group
+    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
+    List educators = links.collect {it.source}
 
-      // find colonia
+    // find all resources linked to this group
+    links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
+    List resources = links.collect {it.source}
 
-      return [group: group,
-              entity: entity,
-              facilities: facilities,
-              allFacilities: allFacilities,
-              resources: resources,
-              partners: partners,
-              allPartners: allPartners,
-              educators: educators,
-              allEducators: allEducators]
-    }
+    // find colonia
+
+    return [group: group,
+            entity: entity,
+            facilities: facilities,
+            allFacilities: allFacilities,
+            resources: resources,
+            partners: partners,
+            allPartners: allPartners,
+            educators: educators,
+            allEducators: allEducators]
+
   }
 
   def del = {

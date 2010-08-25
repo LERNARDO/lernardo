@@ -10,7 +10,6 @@ import at.openfactory.ep.Profile
 import standard.FunctionService
 import at.openfactory.ep.EntityException
 import lernardo.Method
-import lernardo.Msg
 import lernardo.Event
 
 class GroupActivityTemplateProfileController {
@@ -53,35 +52,36 @@ class GroupActivityTemplateProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
 
-      // get all templates that are set to completed
-      def c = Entity.createCriteria()
-      def allTemplates = c.list {
-        eq("type", metaDataService.etTemplate)
-        profile {
-          eq("status", "fertig")
-        }
+    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+
+    // get all templates that are set to completed
+    def c = Entity.createCriteria()
+    def allTemplates = c.list {
+      eq("type", metaDataService.etTemplate)
+      profile {
+        eq("status", "fertig")
       }
-
-      // find all templates linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
-      List templates = links.collect {it.source}
-
-      def calculatedDuration = 0
-      templates.each {
-        calculatedDuration += it.profile.duration
-      }
-
-      return [group: group,
-              entity: entity,
-              allTemplates: allTemplates,
-              templates: templates,
-              calculatedDuration: calculatedDuration,
-              methods: Method.findAllByType('template')]
     }
+
+    // find all templates linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+    List templates = links.collect {it.source}
+
+    def calculatedDuration = 0
+    templates.each {
+      calculatedDuration += it.profile.duration
+    }
+
+    return [group: group,
+            entity: entity,
+            allTemplates: allTemplates,
+            templates: templates,
+            calculatedDuration: calculatedDuration,
+            methods: Method.findAllByType('template')]
+
   }
 
   def del = {
@@ -201,12 +201,12 @@ class GroupActivityTemplateProfileController {
 
   def updateselect = {
     //println params
-    def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
     def star1 = functionService.getParamAsList(params.star1)
     def star2 = functionService.getParamAsList(params.star2)
 
     def c = Entity.createCriteria()
-    allTemplates = c.list {
+    def allTemplates = c.list {
       eq('type', metaDataService.etTemplate)
       if (params.name)
         or {

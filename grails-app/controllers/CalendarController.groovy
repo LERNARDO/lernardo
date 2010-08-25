@@ -44,7 +44,7 @@ class CalendarController {
 
         // find all educators working in that facility
         def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-        educators = links.collect {it.source}
+        educators = links.collect {it.source} // IntelliJ gives a false warning here
       }
     }
     else
@@ -115,6 +115,6 @@ class CalendarController {
 
 
     def json = eventList as JSON;
-    render json
+    render json // IntelliJ gives a false warning here
   }
 }

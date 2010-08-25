@@ -9,7 +9,6 @@ import standard.MetaDataService
 import at.openfactory.ep.Profile
 import standard.FunctionService
 import at.openfactory.ep.EntityException
-import standard.FilterService
 
 class GroupFamilyProfileController {
   MetaDataService metaDataService
@@ -51,36 +50,37 @@ class GroupFamilyProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      Integer totalLinks = 0
 
-      // find all parents linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
-      List parents = links.collect {it.source}
-      totalLinks += links.size()
+    Integer totalLinks = 0
 
-      def allClients = Entity.findAllByType(metaDataService.etClient)
-      // find all clients linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
-      List clients = links.collect {it.source}
-      totalLinks += links.size()
+    // find all parents linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
+    List parents = links.collect {it.source}
+    totalLinks += links.size()
 
-      def allChilds = Entity.findAllByType(metaDataService.etChild)
-      // find all childs linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
-      List childs = links.collect {it.source}
-      totalLinks += links.size()
+    def allClients = Entity.findAllByType(metaDataService.etClient)
+    // find all clients linked to this group
+    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
+    List clients = links.collect {it.source}
+    totalLinks += links.size()
 
-      return [group: group,
-              entity: entity,
-              parents: parents,
-              clients: clients,
-              allClients: allClients,
-              childs: childs,
-              allChilds: allChilds,
-              totalLinks: totalLinks]
-    }
+    def allChilds = Entity.findAllByType(metaDataService.etChild)
+    // find all childs linked to this group
+    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
+    List childs = links.collect {it.source}
+    totalLinks += links.size()
+
+    return [group: group,
+            entity: entity,
+            parents: parents,
+            clients: clients,
+            allClients: allClients,
+            childs: childs,
+            allChilds: allChilds,
+            totalLinks: totalLinks]
+
   }
 
   def del = {

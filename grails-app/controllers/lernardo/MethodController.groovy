@@ -53,10 +53,11 @@ class MethodController {
     if (!methodInstance) {
       flash.message = "Method not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [methodInstance: methodInstance]
-    }
+
+    return [methodInstance: methodInstance]
+
   }
 
   def update = {

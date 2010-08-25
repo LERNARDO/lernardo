@@ -52,18 +52,19 @@ class GroupClientProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allClients = Entity.findAllByType(metaDataService.etClient)
-      // find all clients linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
-      List clients = links.collect {it.source}
 
-      return [group: group,
-              entity: entity,
-              clients: clients,
-              allClients: allClients]
-    }
+    def allClients = Entity.findAllByType(metaDataService.etClient)
+    // find all clients linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
+    List clients = links.collect {it.source}
+
+    return [group: group,
+            entity: entity,
+            clients: clients,
+            allClients: allClients]
+
   }
 
   def del = {
@@ -159,11 +160,11 @@ class GroupClientProfileController {
   }
 
   def updateselect = {
-    def allClients = Entity.findAllByType(metaDataService.etClient)
+    //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 
     def c = Entity.createCriteria()
-    allClients = c.list {
+    def allClients = c.list {
       if (params.type != "all")
         eq('type', params.type)
       if (params.name)

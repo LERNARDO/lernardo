@@ -80,7 +80,7 @@ class FilterService {
   /*
    * returns all entities that match a given search parameter
    */
-  def findUsers(String name) {
+  List findUsers(String name) {
     def c = Entity.createCriteria()
     def results = c.list {
       or {

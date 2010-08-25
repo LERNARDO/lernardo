@@ -7,7 +7,6 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 import standard.FunctionService
 import standard.MetaDataService
-import at.openfactory.ep.security.DefaultSecurityManager
 import lernardo.Msg
 import lernardo.Event
 
@@ -51,13 +50,14 @@ class PateProfileController {
     if (!pate) {
       flash.message = "PateProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      List links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
-      List godchildren = links.collect {it.source}
 
-      return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
-    }
+    List links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
+    List godchildren = links.collect {it.source}
+
+    return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
+
   }
 
   def del = {
@@ -89,10 +89,11 @@ class PateProfileController {
     if (!pate) {
       flash.message = "PateProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
-    }
+
+    return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
+    
   }
 
   def update = {

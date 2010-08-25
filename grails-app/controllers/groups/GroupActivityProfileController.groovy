@@ -9,7 +9,6 @@ import standard.MetaDataService
 import at.openfactory.ep.Profile
 import standard.FunctionService
 import at.openfactory.ep.EntityException
-import lernardo.Msg
 import lernardo.Event
 
 class GroupActivityProfileController {
@@ -52,48 +51,49 @@ class GroupActivityProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-      List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source} // find all clients linked to this group
 
-      List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      List facilities = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.collect {it.source} // find all facilities linked to this group
+    List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
+    List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source} // find all clients linked to this group
 
-      List allPartners = Entity.findAllByType(metaDataService.etPartner)
-      List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)?.collect {it.source} // find all partners linked to this group
+    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    List facilities = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.collect {it.source} // find all facilities linked to this group
 
-      def allParents = functionService.findParents(group)
-      List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)?.collect {it.source} // find all parents linked to this group
+    List allPartners = Entity.findAllByType(metaDataService.etPartner)
+    List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)?.collect {it.source} // find all partners linked to this group
 
-      def allEducators = functionService.findEducators(group)
-      List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)?.collect {it.source} // find all educators linked to this group
+    def allParents = functionService.findParents(group)
+    List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)?.collect {it.source} // find all parents linked to this group
 
-      List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)?.collect {it.source} // find all grouptemplates linked to this group
+    def allEducators = functionService.findEducators(group)
+    List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)?.collect {it.source} // find all educators linked to this group
 
-      def template = Link.findByTargetAndType(group, metaDataService.ltTemplate)?.source // find template
+    List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)?.collect {it.source} // find all grouptemplates linked to this group
 
-      def calculatedDuration = 0
-      groupTemplates.each {
-        calculatedDuration += it.profile.duration
-      }
+    def template = Link.findByTargetAndType(group, metaDataService.ltTemplate)?.source // find template
 
-      return [group: group,
-              entity: entity,
-              templates: groupTemplates,
-              calculatedDuration: calculatedDuration,
-              allEducators: allEducators,
-              educators: educators,
-              allParents: allParents,
-              parents: parents,
-              allPartners: allPartners,
-              partners: partners,
-              allFacilities: allFacilities,
-              facilities: facilities,
-              allClientGroups: allClientgroups,
-              clients: clients,
-              template: template]
+    def calculatedDuration = 0
+    groupTemplates.each {
+      calculatedDuration += it.profile.duration
     }
+
+    return [group: group,
+            entity: entity,
+            templates: groupTemplates,
+            calculatedDuration: calculatedDuration,
+            allEducators: allEducators,
+            educators: educators,
+            allParents: allParents,
+            parents: parents,
+            allPartners: allPartners,
+            partners: partners,
+            allFacilities: allFacilities,
+            facilities: facilities,
+            allClientGroups: allClientgroups,
+            clients: clients,
+            template: template]
+
   }
 
   def del = {

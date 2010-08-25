@@ -47,18 +47,19 @@ class GroupPartnerProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allPartners = Entity.findAllByType(metaDataService.etPartner)
-      // find all partners linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
-      List partners = links.collect {it.source}
 
-      return [group: group,
-              entity: entity,
-              partners: partners,
-              allPartners: allPartners]
-    }
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    // find all partners linked to this group
+    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
+    List partners = links.collect {it.source}
+
+    return [group: group,
+            entity: entity,
+            partners: partners,
+            allPartners: allPartners]
+
   }
 
   def del = {

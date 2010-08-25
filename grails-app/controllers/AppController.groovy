@@ -110,7 +110,7 @@ class AppController {
     if (!EntityTagLink.findByTagAndEntity(tag, entity)) {
     TagLinkType tlt = new TagLinkType(name: 'default').save()
     //println "taglinktype: " + tlt
-    EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save()
+    EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save() // IntelliJ fails to recognize the "tag" relationship
     //println "entitytaglink: " + etl
 
     entity.addToTagslinks(etl)

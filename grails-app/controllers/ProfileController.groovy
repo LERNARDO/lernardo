@@ -113,7 +113,7 @@ class ProfileController {
    */
   def geocode = {
     def result = geoCoderService.geocodeLocation(params.name)
-    render result as JSON
+    render result as JSON // IntelliJ gives a false warning here
   }
 
   /*
@@ -148,8 +148,8 @@ class ProfileController {
     params.max = Math.min(params.max ? params.int('max') : 16, 100)
     params.offset = params.offset ? params.int('offset') : 0
 
-    List users = []
-    def numUsers = 0
+    List users
+    def numUsers
 
     if (params.glossary == "Alle") {
       def c = Entity.createCriteria()
@@ -650,7 +650,7 @@ class ProfileController {
       eq('type', metaDataService.ltBookmark)
     }
     if (linkInstance) {
-      def n = linkInstance.target.name
+      //def n = linkInstance.target.name
       try {
         linkInstance.delete(flush: true)
         flash.message = message(code: "user.removeBookmark", args: [entity.profile.fullName])

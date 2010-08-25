@@ -63,19 +63,20 @@ class ClientProfileController {
     if (!client) {
       flash.message = "ClientProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-      Entity colonia = link?.source ?: null
-      link = Link.findByTargetAndType(client, metaDataService.ltFacility)
-      Entity school = link?.source ?: null
 
-      // check if the client belongs to a family
-      link = Link.findBySourceAndType(client, metaDataService.ltGroupFamily)
-      Entity family = link?.target
+    def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
+    Entity colonia = link?.source ?: null
+    link = Link.findByTargetAndType(client, metaDataService.ltFacility)
+    Entity school = link?.source ?: null
 
-      return [client: client, entity: entity, colonia: colonia, school: school, family: family]
-    }
+    // check if the client belongs to a family
+    link = Link.findBySourceAndType(client, metaDataService.ltGroupFamily)
+    Entity family = link?.target
+
+    return [client: client, entity: entity, colonia: colonia, school: school, family: family]
+
   }
 
   def del = {
@@ -107,15 +108,16 @@ class ClientProfileController {
     if (!client) {
       flash.message = "ClientProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-      Entity colonia = link?.source ?: null
-      return [client: client,
-              colonia: colonia,
-              allColonias: Entity.findAllByType(metaDataService.etGroupColony),
-              allFacilities: Entity.findAllByType(metaDataService.etFacility)]
-    }
+
+    def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
+    Entity colonia = link?.source ?: null
+    
+    return [client: client,
+            colonia: colonia,
+            allColonias: Entity.findAllByType(metaDataService.etGroupColony),
+            allFacilities: Entity.findAllByType(metaDataService.etFacility)]
   }
 
   def update = {

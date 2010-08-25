@@ -7,7 +7,6 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 import standard.FunctionService
 import standard.MetaDataService
-import at.openfactory.ep.security.DefaultSecurityManager
 import lernardo.Msg
 import lernardo.Event
 
@@ -51,10 +50,11 @@ class UserProfileController {
     if (!user) {
       flash.message = "UserProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      return [user: user, entity: entity]
-    }
+
+    return [user: user, entity: entity]
+
   }
 
   def del = {
@@ -86,10 +86,11 @@ class UserProfileController {
     if (!user) {
       flash.message = "UserProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [user: user]
-    }
+
+    return [user: user]
+
   }
 
   def update = {

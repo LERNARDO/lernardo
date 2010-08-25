@@ -50,12 +50,13 @@ class MsgController {
     if(!message) {
       flash.message = message(code:"msg.notFound", args:[params.id])
       redirect action:index, params:[name:params.name]
+      return
     }
-    else {
-      return ['msgInstance': message,
-              'entity':Entity.get(params.entity),
-              'box':params.box]
-    }
+
+    return ['msgInstance': message,
+            'entity':Entity.get(params.entity),
+            'box':params.box]
+
   }
 
   def del = {
@@ -83,10 +84,11 @@ class MsgController {
     if(!message) {
       flash.message = message(code:"msg.notFound", args:[params.id])
       redirect action:'index', params:[name:params.name]
+      return
     }
-    else {
-      return ['msgInstance': message]
-    }
+
+    return ['msgInstance': message]
+
   }
 
   def update = {

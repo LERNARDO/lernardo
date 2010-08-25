@@ -52,40 +52,41 @@ class FacilityProfileController {
     if (!facility) {
       flash.message = "FacilityProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      // find all resources of this facility
-      def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-      List resources = links.collect {it.source}
 
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
-      // find all educators of this facility
-      links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-      List educators = links.collect {it.source}
+    // find all resources of this facility
+    def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
+    List resources = links.collect {it.source}
 
-      // find lead educator
-      def link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
-      Entity leadEducator = link?.source
+    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    // find all educators of this facility
+    links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
+    List educators = links.collect {it.source}
 
-      def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
-      // find all clients linked to the facility
-      links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-      List clients = links.collect {it.source}
+    // find lead educator
+    def link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
+    Entity leadEducator = link?.source
 
-      // find colonia of this facility
-      link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
-      Entity colony = link?.target
+    def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
+    // find all clients linked to the facility
+    links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
+    List clients = links.collect {it.source}
 
-      return [facility: facility,
-              entity: entity,
-              allEducators: allEducators,
-              educators: educators,
-              allClientGroups: allClientGroups,
-              clients: clients,
-              resources: resources,
-              colony: colony,
-              leadeducator: leadEducator]
-    }
+    // find colonia of this facility
+    link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
+    Entity colony = link?.target
+
+    return [facility: facility,
+            entity: entity,
+            allEducators: allEducators,
+            educators: educators,
+            allClientGroups: allClientGroups,
+            clients: clients,
+            resources: resources,
+            colony: colony,
+            leadeducator: leadEducator]
+
   }
 
   def del = {
@@ -117,10 +118,11 @@ class FacilityProfileController {
     if (!facility) {
       flash.message = "FacilityProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-    }
+
+    return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    
   }
 
   def update = {

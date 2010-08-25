@@ -364,7 +364,7 @@ class ProjectProfileController {
 
     // find all activities linking to this unit
     def links = Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit)
-    List activities = links.collect {it.source}
+    //List activities = links.collect {it.source}
 
     // delete all links to the unit
     links.each {
