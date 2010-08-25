@@ -55,10 +55,12 @@ class ActivityController {
 
           tempList.each {bla ->
             // there are 2 types of activites, we only want theme room activities here
-            if (bla.target.type == "Themenraum")
+            if (bla.target.profile.type == "Themenraum")
               activityList << bla.target
           }
         }
+        activityList.sort {it.profile.date}
+        activityList.reverse()
         activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
@@ -70,6 +72,7 @@ class ActivityController {
           eq("type", metaDataService.etActivity)
           profile {
             eq("type", "Themenraum")
+            order("date","desc")
           }
           maxResults(params.max)
           firstResult(params.offset)
@@ -103,10 +106,12 @@ class ActivityController {
           List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
 
           tempList.each {bla ->
-            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate + 1 && bla.target.type == "Themenraum")
+            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate + 1 && bla.target.profile.type == "Themenraum")
               activityList << bla.target
           }
         }
+        activityList.sort {it.profile.date}
+        activityList.reverse()
         activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
@@ -122,6 +127,7 @@ class ActivityController {
           profile {
             eq("type", "Themenraum")
             between("date", inputDate, inputDate + 1)
+            order("date","desc")
           }
           maxResults(params.max)
           firstResult(params.offset)

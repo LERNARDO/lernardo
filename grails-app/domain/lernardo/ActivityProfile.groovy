@@ -18,4 +18,8 @@ class ActivityProfile extends Profile {
   static constraints = {
     fullName (blank: false, size: 1..50, maxSize: 50)
   }
+
+  String toString(){
+      return "${fullName}"
+    }
 }
