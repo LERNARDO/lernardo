@@ -27,7 +27,7 @@ class ActivityController {
   }
 
   /*
-   * lists either all activities or only activites of a selected date of a given entity
+   * lists either all activities or only activities of a selected date of a given entity
    */
   def list = {
     params.offset = params.offset ? params.int('offset') : 0
@@ -94,6 +94,7 @@ class ActivityController {
               'activityCount': activityCount]
     }
 
+    // get all activities between a given date range    
     if (params.myDate_year && params.myDate_month && params.myDate_day) {
       Date inputDate = new Date()
       String input = "${params.myDate_year}/${params.myDate_month}/${params.myDate_day}"
@@ -190,7 +191,7 @@ class ActivityController {
     def c = Entity.createCriteria()
     def templates = c.list {
       profile {
-        eq("type", "Themenraum")
+        eq("type", "Themenraumaktivitätsvorlage")
       }
     }
 
@@ -223,7 +224,7 @@ class ActivityController {
       def c = Entity.createCriteria()
       def templates = c.list {
         profile {
-          eq("type", "Themenraum")
+          eq("type", "Themenraumaktivitätsvorlage")
         }
       }
 
