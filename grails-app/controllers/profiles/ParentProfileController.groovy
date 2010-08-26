@@ -57,9 +57,8 @@ class ParentProfileController {
       return
     }
 
-    // check if the parent belongs to a family
-    def link = Link.findBySourceAndType(parent, metaDataService.ltGroupMemberParent)
-    Entity family = link?.target
+    // find family of the parent if there is one
+    Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
 
     return [parent: parent, entity: entity, family: family]
 

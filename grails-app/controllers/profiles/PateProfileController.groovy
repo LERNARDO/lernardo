@@ -53,8 +53,7 @@ class PateProfileController {
       return
     }
 
-    List links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
-    List godchildren = links.collect {it.source}
+    List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
 
     return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
 

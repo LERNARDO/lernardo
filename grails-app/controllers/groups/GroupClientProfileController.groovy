@@ -57,8 +57,7 @@ class GroupClientProfileController {
 
     def allClients = Entity.findAllByType(metaDataService.etClient)
     // find all clients linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
     return [group: group,
             entity: entity,

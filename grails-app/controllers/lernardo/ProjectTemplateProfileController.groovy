@@ -52,8 +52,7 @@ class ProjectTemplateProfileController {
     }
     else {
       // find all projectUnits linked to this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
       //List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -181,8 +180,7 @@ class ProjectTemplateProfileController {
       new Link(source: projectUnit, target: projectTemplate, type: metaDataService.ltProjectUnit).save()
 
       // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -195,8 +193,7 @@ class ProjectTemplateProfileController {
       render '<span class="red">Projekteinheit konnte nicht gespeichert werden!</span><br/>'
 
       // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -228,8 +225,7 @@ class ProjectTemplateProfileController {
     Entity.get(params.projectUnit).delete()
 
     // find all projectunits of this projectTemplate
-    def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-    List projectUnits = links.collect {it.source}
+    List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
     // calculate realDuration
     Integer calculatedDuration = calculateDuration(projectUnits)
@@ -254,8 +250,7 @@ class ProjectTemplateProfileController {
       new Link(source: groupActivityTemplate, target: projectUnit, type: metaDataService.ltProjectUnitMember).save()
 
     // find all groupActivityTemplates linked to the unit
-    def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitMember)
-    List groupActivityTemplates = links.collect {it.source}
+    List groupActivityTemplates = functionService.findAllByLink(null, projectUnit, metaDataService.ltProjectUnitMember)
 
     // find all projectunits of this projectTemplate
     //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
@@ -283,8 +278,7 @@ class ProjectTemplateProfileController {
     link.delete()
 
     // find all groupActivityTemplates linked to the unit
-    def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitMember)
-    List groupActivityTemplates = links.collect {it.source}
+    List groupActivityTemplates = functionService.findAllByLink(null, projectUnit, metaDataService.ltProjectUnitMember)
 
     // find all projectunits of this projectTemplate
     //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
@@ -301,8 +295,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     // find all projectUnits linked to this projectTemplate
-    def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-    List projectUnits = links.collect {it.source}
+    List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
     // calculate realDuration
     Integer calculatedDuration = calculateDuration(projectUnits)

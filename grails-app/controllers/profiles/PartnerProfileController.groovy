@@ -55,8 +55,7 @@ class PartnerProfileController {
     }
 
     // find colonia of this partner
-    def link = Link.findBySourceAndType(partner, metaDataService.ltGroupMemberPartner)
-    Entity colony = link?.target
+    Entity colony = functionService.findByLink(partner, null, metaDataService.ltGroupMemberPartner)
 
     return [partner: partner, entity: entity, colony: colony]
 

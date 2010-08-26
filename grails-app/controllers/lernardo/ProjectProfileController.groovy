@@ -61,21 +61,18 @@ class ProjectProfileController {
     }
     else {
       // find projectTemplate of this project
-      Entity template = Link.findByTargetAndType(project, metaDataService.ltProjectTemplate)?.source
+      Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
       // find all units linked to the template
-      def links = Link.findAllByTargetAndType(template, metaDataService.ltProjectUnit)
-      List units = links.collect {it.source}
-     
+      List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnit)
+
       def allFacilities = Entity.findAllByType(metaDataService.etFacility)
       // find all facilities linked to this project
-      links = Link.findAllByTargetAndType(project, metaDataService.ltGroupMemberFacility)
-      List facilities = links.collect {it.source}
+      List facilities = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberFacility)
 
       def allClients = Entity.findAllByType(metaDataService.etClient)
       // find all clients linked to this project
-      links = Link.findAllByTargetAndType(project, metaDataService.ltGroupMemberClient)
-      List clients = links.collect {it.source}
+      List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
 
       // get all resources
       def allResources = Entity.findAllByType(metaDataService.etResource)
@@ -90,12 +87,10 @@ class ProjectProfileController {
       def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
       // find all projectdays linked to this project
-      links = Link.findAllByTargetAndType(project, metaDataService.ltProjectMember)
-      List projectDays = links.collect {it.source}
+      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
 
       // find all projectUnits linked to this project
-      links = Link.findAllByTargetAndType(project, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -328,8 +323,7 @@ class ProjectProfileController {
     // linked to the projectUnitTemplates
 
     // first find all activity template groups linked to the project unit template
-    def results = Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember)
-    List groups = results.collect {it.source}
+    List groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
 
     // link each group to the project unit
     groups.each {
@@ -337,8 +331,7 @@ class ProjectProfileController {
     }
 
     // find all units linked to this projectDay
-    def links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayUnit)
-    List units = links.collect {it.source}
+    List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
     // get all parents
     def allParents = Entity.findAllByType(metaDataService.etParent)
@@ -374,9 +367,8 @@ class ProjectProfileController {
     // delete projectUnit
     Entity.get(params.unit).delete()
 
-    // find all projectunits of this project
-    links = Link.findAllByTargetAndType(projectDay, metaDataService.ltProjectDayUnit)
-    List units = links.collect {it.source}
+    // find all project units of this project
+    List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
     render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn]
   }
@@ -397,9 +389,8 @@ class ProjectProfileController {
     // link groupActivityTemplate to projectUnit
       new Link(source: groupActivityTemplate, target: projectUnit, type: metaDataService.ltProjectUnitMember).save()
 
-    // find all projectunits of this project
-    def links = Link.findAllByTargetAndType(project, metaDataService.ltProjectUnit)
-    List projectUnits = links.collect {it.source}
+    // find all project units of this project
+    List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
     // calculate realDuration
     Integer calculatedDuration = calculateDuration(projectUnits)
@@ -422,8 +413,7 @@ class ProjectProfileController {
     link.delete()
 
     // find all projectunits of this project
-    def links = Link.findAllByTargetAndType(project, metaDataService.ltProjectUnit)
-    List projectUnits = links.collect {it.source}
+    List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
     // calculate realDuration
     Integer calculatedDuration = calculateDuration(projectUnits)
@@ -538,8 +528,7 @@ class ProjectProfileController {
     // would be nothing to instantiate
 
     // 1. find all projectDays belonging to the project
-    def links = Link.findAllByTargetAndType(project, metaDataService.ltProjectMember)
-    List projectDays = links.collect {it.source}
+    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     log.info "Projekttage: " + projectDays.size()
 
     // 2. loop through each projectDay and find all projectUnits
@@ -547,7 +536,7 @@ class ProjectProfileController {
     List projectUnits = []
     boolean exit = false
     projectDays.each {
-      links = Link.findAllByTargetAndType(it, metaDataService.ltProjectDayUnit)
+      def links = Link.findAllByTargetAndType(it, metaDataService.ltProjectDayUnit)
       if (links.size() == 0) {
         render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + it.profile.date.format('dd. MM. yyyy') + '!</p>'
         exit = true
@@ -567,8 +556,7 @@ class ProjectProfileController {
     // now we know that every projectDay has projectUnits and templates so we continue
 
     // delete all current project activities that have not started yet
-    links = Link.findAllByTargetAndType(project, metaDataService.ltActProject)
-    List activities = links.collect {it.source}
+    List activities = functionService.findAllByLink(null, project, metaDataService.ltActProject)
 
     log.info "Found " + activities.size() + " existing activities"
 
@@ -576,7 +564,7 @@ class ProjectProfileController {
       render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
       activities.each {
         if (new Date() < it.profile.date) {
-          links = Link.findAllBySourceOrTarget(it, it)
+          def links = Link.findAllBySourceOrTarget(it, it)
           links.each {it.delete()}
           it.delete()
         }
@@ -592,15 +580,13 @@ class ProjectProfileController {
     SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy 'um' hh:mm")
 
     projectDays.each { pd ->
-      links = Link.findAllByTargetAndType(pd, metaDataService.ltProjectDayUnit)
-      projectUnits = links.collect {it.source}
+      projectUnits = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayUnit)
 
       log.info "Projekteinheiten: " + projectUnits.size()
 
       // 3. loop through each projectUnit and find all activity template groups
       projectUnits.each { pu ->
-        links = Link.findAllByTargetAndType(pu, metaDataService.ltProjectUnit)
-        List groups = links.collect {it.source}
+        List groups = functionService.findAllByLink(null, pu as Entity, metaDataService.ltProjectUnit)
 
         Date currentDate = pd.profile.date
         Calendar calendar = new GregorianCalendar()
@@ -608,8 +594,7 @@ class ProjectProfileController {
 
         // 4. find all activity templates of each group
         groups.each { pg ->
-          links = Link.findAllByTargetAndType(pg, metaDataService.ltGroupMember)
-          List templates = links.collect {it.source}
+          List templates = functionService.findAllByLink(null, pg as Entity, metaDataService.ltGroupMember)
 
           // 5. instantiate all activities from the list of templates
           templates.each {
@@ -634,9 +619,8 @@ class ProjectProfileController {
             }
 
             // link clients to activity
-            links = Link.findAllByTargetAndType(project, metaDataService.ltGroupMemberClient)
-            if (links) {
-              List clients = links.collect {it.source}
+            List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+            if (clients) {
               clients.each {
                 new Link(source: it as Entity, target: activity, type: metaDataService.ltActClient).save()
                 log.info "Client linked to activity"
@@ -644,9 +628,8 @@ class ProjectProfileController {
             }
 
             // link resources to activity
-            links = Link.findAllByTargetAndType(pd, metaDataService.ltProjectDayResource)
-            if (links) {
-              List resources = links.collect {it.source}
+            List resources = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayResource)
+            if (resources) {
               resources.each {
                 new Link(source: it as Entity, target: activity, type: metaDataService.ltResource).save()
                 log.info "Resource linked to activity"
@@ -654,9 +637,8 @@ class ProjectProfileController {
             }
 
             // link educators to activity
-            links = Link.findAllByTargetAndType(pd, metaDataService.ltProjectDayEducator)
-            if (links) {
-              List educators = links.collect {it.source}
+            List educators = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayEducator)
+            if (educators) {
               educators.each {
                 new Link(source: it as Entity, target: activity, type: metaDataService.ltActEducator).save()
                 log.info "Educator linked to activity"
@@ -664,9 +646,8 @@ class ProjectProfileController {
             }
 
             // link partners to activity
-            links = Link.findAllByTargetAndType(pu, metaDataService.ltProjectUnitPartner)
-            if (links) {
-              List partners = links.collect {it.source}
+            List partners = functionService.findAllByLink(null, pu as Entity, metaDataService.ltProjectUnitPartner)
+            if (partners) {
               partners.each {
                 new Link(source: it as Entity, target: activity, type: metaDataService.ltActPartner).save()
                 log.info "Partner linked to activity"
@@ -674,9 +655,8 @@ class ProjectProfileController {
             }
 
             // link parents to activity
-            links = Link.findAllByTargetAndType(pu, metaDataService.ltProjectUnitParent)
-            if (links) {
-              List parents = links.collect {it.source}
+            List parents = functionService.findAllByLink(null, pu as Entity, metaDataService.ltProjectUnitParent)
+            if (parents) {
               parents.each {
                 new Link(source: it as Entity, target: activity, type: metaDataService.ltActParent).save()
                 log.info "Parent linked to activity"
@@ -703,11 +683,10 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
 
     // find projectTemplate of this project
-    Entity template = Link.findByTargetAndType(project, metaDataService.ltProjectTemplate).source
+    Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
     // find all units linked to the template
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltProjectUnit)
-    List units = links.collect {it.source}
+    List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnit)
 
     // get all resources
     def allResources = Entity.findAllByType(metaDataService.etResource)

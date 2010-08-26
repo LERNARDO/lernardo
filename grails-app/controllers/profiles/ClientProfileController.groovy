@@ -66,14 +66,9 @@ class ClientProfileController {
       return
     }
 
-    def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-    Entity colonia = link?.source ?: null
-    link = Link.findByTargetAndType(client, metaDataService.ltFacility)
-    Entity school = link?.source ?: null
-
-    // check if the client belongs to a family
-    link = Link.findBySourceAndType(client, metaDataService.ltGroupFamily)
-    Entity family = link?.target
+    Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+    Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+    Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
 
     return [client: client, entity: entity, colonia: colonia, school: school, family: family]
 

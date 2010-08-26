@@ -66,17 +66,14 @@ class ThemeProfileController {
         }
       }
       // find all subthemes of this theme
-      def links = Link.findAllByTargetAndType(theme, metaDataService.ltSubTheme)
-      List subthemes = links.collect {it.source}
+      List subthemes = functionService.findAllByLink(null, theme, metaDataService.ltSubTheme)
 
       def allProjects = Entity.findAllByType(metaDataService.etProject)
       // find all projects linked to this theme
-      links = Link.findAllByTargetAndType(theme, metaDataService.ltGroupMember)
-      List projects = links.collect {it.source}
+      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 
       // find facility the theme is linked to
-      def link = Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)
-      Entity facility = link?.target
+      Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
       [theme: theme,
               allSubthemes: allSubthemes,

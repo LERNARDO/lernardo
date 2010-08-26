@@ -55,8 +55,7 @@ class OperatorProfileController {
 
     def allFacilities = Entity.findAllByType(metaDataService.etFacility)
     // find all facilities of this operator
-    def links = Link.findAllByTargetAndType(entity, metaDataService.ltOperation)
-    List facilities = links.collect {it.source}
+    List facilities = functionService.findAllByLink(null, entity, metaDataService.ltOperation)
 
     return [operator: operator, entity: entity, facilities: facilities, allFacilities: allFacilities]
 

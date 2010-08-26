@@ -62,29 +62,15 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     Entity entity = params.entity ? template : entityHelperService.loggedIn
 
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
-    def commentList = links.collect {it.source}
-
-    def c = Entity.createCriteria()
-    def allResources = c.list {
-      eq("type", metaDataService.etResource)
-      profile {
-        eq("type", "planbar")
-      }
-    }
-
-    // find all resources of this facility
-    links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
-    List resources = links.collect {it.source}
-
-    List methods = Method.findAllByType('template')
+    def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
+    def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
+    def allMethods = Method.findAllByType('template')
 
     return ['template': template,
             'commentList': commentList,
             'entity': entity,
-            'allResources': allResources,
             'resources': resources,
-            'allMethods': methods]
+            'allMethods': allMethods]
   }
 
   def create = {
@@ -164,8 +150,7 @@ class TemplateProfileController {
     new Link(source: entity, target: template, type: metaDataService.ltResource).save()
 
     // find all resources of this template
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
   }
@@ -188,8 +173,7 @@ class TemplateProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources of this template
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
   }

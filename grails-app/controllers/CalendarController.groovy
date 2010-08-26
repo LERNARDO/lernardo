@@ -5,10 +5,12 @@ import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
 import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
+import standard.FunctionService
 
 class CalendarController {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
+  FunctionService functionService
 
   def index = {
     redirect action: 'show'
@@ -37,14 +39,11 @@ class CalendarController {
 
     if (currentEntity.type.name == metaDataService.etEducator) {
       // find facility the educator is working for
-      Link link = Link.findBySourceAndType(entity, metaDataService.ltWorking)
+      def facility = functionService.findByLink(entity, null, metaDataService.ltWorking)
 
-      if (link) {
-        Entity facility = link.target
-
+      if (facility) {
         // find all educators working in that facility
-        def links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-        educators = links.collect {it.source} // IntelliJ gives a false warning here
+        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking) // false IntelliJ warning
       }
     }
     else

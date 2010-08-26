@@ -55,23 +55,23 @@ class GroupActivityProfileController {
     }
 
     List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-    List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source} // find all clients linked to this group
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
 
     List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-    List facilities = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.collect {it.source} // find all facilities linked to this group
+    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
 
     List allPartners = Entity.findAllByType(metaDataService.etPartner)
-    List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)?.collect {it.source} // find all partners linked to this group
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
 
     def allParents = functionService.findParents(group)
-    List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)?.collect {it.source} // find all parents linked to this group
+    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
 
     def allEducators = functionService.findEducators(group)
-    List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)?.collect {it.source} // find all educators linked to this group
+    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
 
-    List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)?.collect {it.source} // find all grouptemplates linked to this group
+    List groupTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all grouptemplates linked to this group
 
-    def template = Link.findByTargetAndType(group, metaDataService.ltTemplate)?.source // find template
+    Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
     def calculatedDuration = 0
     groupTemplates.each {
@@ -150,8 +150,7 @@ class GroupActivityProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
 
     // find all templates linked to this group
-    def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
-    List templates = links.collect {it.source}
+    List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
     def calculatedDuration = 0
     templates.each {
@@ -177,8 +176,7 @@ class GroupActivityProfileController {
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
 
       // find all templates of this linked to the groupActivityTemplate
-      def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
-      List templates = links.collect {it.source}
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       // and link them to the new groupActivity
       templates.each {
@@ -193,8 +191,7 @@ class GroupActivityProfileController {
     } catch (EntityException ee) {
 
       // find all templates linked to this group
-      def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
-      List templates = links.collect {it.source}
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       def calculatedDuration = 0
       templates.each {
@@ -271,8 +268,7 @@ class GroupActivityProfileController {
     // get client group
     Entity clientgroup = Entity.get(params.clientgroup)
     // get all clients linked to this group
-    List links = Link.findAllByTargetAndType(clientgroup, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link them to the activity group
     clients.each {
@@ -283,7 +279,7 @@ class GroupActivityProfileController {
 
     Entity activitygroup = Entity.get(params.id)
 
-    List clients2 = Link.findAllByTargetAndType(activitygroup, metaDataService.ltGroupMemberClient).collect {it.source}
+    List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients2, group: activitygroup, entity: entityHelperService.loggedIn]
   }

@@ -56,21 +56,18 @@ class GroupFamilyProfileController {
     Integer totalLinks = 0
 
     // find all parents linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)
-    List parents = links.collect {it.source}
-    totalLinks += links.size()
+    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent)
+    totalLinks += parents.size()
 
     def allClients = Entity.findAllByType(metaDataService.etClient)
     // find all clients linked to this group
-    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupFamily)
-    List clients = links.collect {it.source}
-    totalLinks += links.size()
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupFamily)
+    totalLinks += clients.size()
 
     def allChilds = Entity.findAllByType(metaDataService.etChild)
     // find all childs linked to this group
-    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberChild)
-    List childs = links.collect {it.source}
-    totalLinks += links.size()
+    List childs = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberChild)
+    totalLinks += childs.size()
 
     return [group: group,
             entity: entity,

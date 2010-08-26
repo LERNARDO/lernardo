@@ -14,7 +14,6 @@ import at.openfactory.ep.EntityHelperService
 import org.hibernate.SessionFactory
 import standard.GeoCoderService
 import standard.MetaDataService
-import standard.NetworkService
 import standard.FunctionService
 import standard.FilterService
 import lernardo.Method
@@ -22,7 +21,6 @@ import at.openfactory.ep.SecHelperService
 
 class ProfileController {
   GeoCoderService geoCoderService
-  NetworkService networkService
   EntityHelperService entityHelperService
   MetaDataService metaDataService
   FilterService filterService
@@ -266,7 +264,7 @@ class ProfileController {
   }
 
   /*
-   * retrieves users matching the search paramter of the instant search
+   * retrieves users matching the search parameter of the instant search
    */
   def searchMe = {
     if (!params.name) {
@@ -643,6 +641,7 @@ class ProfileController {
    */
   def removeBookmark = {
     Entity entity = Entity.get(params.id)
+
     def c = Link.createCriteria()
     def linkInstance = c.get {
       eq('source', entityHelperService.loggedIn)

@@ -67,8 +67,7 @@ class GroupActivityTemplateProfileController {
     }
 
     // find all templates linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
-    List templates = links.collect {it.source}
+    List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
 
     def calculatedDuration = 0
     templates.each {

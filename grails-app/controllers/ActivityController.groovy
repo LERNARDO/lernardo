@@ -37,26 +37,25 @@ class ActivityController {
     Entity currentEntity = entityHelperService.loggedIn
 
     // get a list of facilities the current entity is linked to
-    List links = Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking)
-    List facilities = links.collect {it.target}
+    List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
 
     // create empty list for final results
     List activityList = []
     def activityCount
 
-    // geta all activities
+    // get all activities
     if (params.myDate_year == 'alle' || params.list == "Alle") {
 
       // show educator only his own activities
       if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
-          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+          List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
 
-          tempList.each {bla ->
-            // there are 2 types of activites, we only want theme room activities here
-            if (bla.target.profile.type == "Themenraum")
-              activityList << bla.target
+          activities.each {bla ->
+            // there are 2 types of activities, we only want theme room activities here
+            if (bla.profile.type == "Themenraum")
+              activityList << bla
           }
         }
         activityList.sort {it.profile.date}
@@ -104,11 +103,12 @@ class ActivityController {
       if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
-          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+          List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
 
-          tempList.each {bla ->
-            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate + 1 && bla.target.profile.type == "Themenraum")
-              activityList << bla.target
+          activities.each {bla ->
+            // there are 2 types of activities, we only want theme room activities here
+            if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1 && bla.profile.type == "Themenraum")
+              activityList << bla
           }
         }
         activityList.sort {it.profile.date}
@@ -181,7 +181,7 @@ class ActivityController {
     // get a list of facilities the current entity is working in
     def facilities = []
     if (currentEntity.type.name == metaDataService.etEducator.name)
-      Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
     def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -214,7 +214,7 @@ class ActivityController {
 
       def facilities = []
       if (currentEntity.type.name == metaDataService.etEducator.name)
-        Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
+        facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
       else
         facilities = Entity.findAllByType(metaDataService.etFacility)
       def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -228,11 +228,12 @@ class ActivityController {
         }
       }
 
-      render view:'create', model:[ac:ac, 'facilities': facilities,
-            'educators': educators,
-            'clients': clients,
-            'resources': resources,
-            'templates': templates]
+      render view:'create', model:['ac':ac,
+                                   'facilities': facilities,
+                                   'educators': educators,
+                                   'clients': clients,
+                                   'resources': resources,
+                                   'templates': templates]
       return
     }
 
@@ -350,7 +351,7 @@ class ActivityController {
     // get a list of facilities the current entity is working in
     def facilities = []
     if (currentEntity.type.name == metaDataService.etEducator.name)
-      Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
     def educators = Entity.findAllByType(metaDataService.etEducator)

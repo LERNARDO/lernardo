@@ -58,22 +58,18 @@ class GroupColonyProfileController {
 
     def allFacilities = Entity.findAllByType(metaDataService.etFacility)
     // find all facilities linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
-    List facilities = links.collect {it.source}
+    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
 
     def allPartners = Entity.findAllByType(metaDataService.etPartner)
     // find all partners linked to this group
-    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
-    List partners = links.collect {it.source}
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner)
 
     def allEducators = Entity.findAllByType(metaDataService.etEducator)
     // find all educators linked to this group
-    links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
-    List educators = links.collect {it.source}
+    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator)
 
     // find all resources linked to this group
-    links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
     // find colonia
 
@@ -171,8 +167,7 @@ class GroupColonyProfileController {
     new Link(source: entity, target: group, type: metaDataService.ltResource).save()
 
     // find all resources linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
@@ -192,8 +187,7 @@ class GroupColonyProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }

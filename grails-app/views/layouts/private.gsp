@@ -1,7 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
+
+%{--
+future HTML5 doctype
+<!DOCTYPE html>
+--}%
+
 <html>
 <head>
+  %{-- <meta charset="utf-8" /> future HTML5 encoding--}%
   <title>Sueninos - <g:layoutTitle/></title>
   <link rel="stylesheet" href="${g.resource(dir: 'css', file: 'yui-reset-fonts-grids.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>

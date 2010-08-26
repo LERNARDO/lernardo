@@ -56,26 +56,21 @@ class FacilityProfileController {
     }
 
     // find all resources of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     def allEducators = Entity.findAllByType(metaDataService.etEducator)
     // find all educators of this facility
-    links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-    List educators = links.collect {it.source}
+    List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
 
     // find lead educator
-    def link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
-    Entity leadEducator = link?.source
+    Entity leadEducator = functionService.findByLink(null, facility, metaDataService.ltLeadEducator)
 
     def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
     // find all clients linked to the facility
-    links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     // find colonia of this facility
-    link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
-    Entity colony = link?.target
+    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
     return [facility: facility,
             entity: entity,
@@ -197,8 +192,7 @@ class FacilityProfileController {
     new Link(source: entity, target: facility, type: metaDataService.ltResource).save()
 
     // find all resources of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -218,8 +212,7 @@ class FacilityProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -259,8 +252,7 @@ class FacilityProfileController {
     Entity clientgroup = Entity.get(params.clientgroup)
 
     // find all clients linked to the clientgroup
-    def links = Link.findAllByTargetAndType(clientgroup, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link each client to the facility now
     clients.each { client ->
@@ -275,8 +267,7 @@ class FacilityProfileController {
     }
 
     // find all clients of this facility
-    links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-    clients = links.collect {it.source}
+    clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -293,8 +284,7 @@ class FacilityProfileController {
     link.delete()
 
     // find all clients of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }

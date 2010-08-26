@@ -109,14 +109,11 @@ class AppController {
     // make sure the entity isn't already marked with this tag
     if (!EntityTagLink.findByTagAndEntity(tag, entity)) {
     TagLinkType tlt = new TagLinkType(name: 'default').save()
-    //println "taglinktype: " + tlt
-    EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save() // IntelliJ fails to recognize the "tag" relationship
-    //println "entitytaglink: " + etl
 
+    EntityTagLink etl = new EntityTagLink(tag: tag, entity: entity, type: tlt).save() // IntelliJ fails to recognize the "tag" relationship
     entity.addToTagslinks(etl)
-    //println "entity taglinks: " + entity.tagslinks
     tag.addToEntityLinks(etl)
-    //println "tag taglinks: " + tag.entityLinks
+
     }
     //else {
       //render '<span class="red italic">' + entity.profile.fullName + ' ist bereits als ' + tag.name + ' getaggt!</span>'
@@ -124,7 +121,6 @@ class AppController {
 
     // get all tags of the entity
     List tags = entity.tagslinks.collect {it.tag}
-    //println "all entity tags: " + tags
 
     render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
   }
@@ -137,8 +133,7 @@ class AppController {
     Tag tag = Tag.get(params.tag)
 
     EntityTagLink etl = EntityTagLink.findByTagAndEntity(tag, entity)
-    //println etl
-    
+
     entity.removeFromTagslinks(etl)
     tag.removeFromEntityLinks(etl)
 

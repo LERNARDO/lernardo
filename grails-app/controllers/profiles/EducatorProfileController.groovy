@@ -60,14 +60,12 @@ class EducatorProfileController {
     }
 
     // find if this educator was enlisted
-    Link link = Link.findBySourceAndType(educator, metaDataService.ltEnlisted)
-    Entity enlistedBy = link?.target
+    Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
     // find colonia of this educator
-    link = Link.findBySourceAndType(educator, metaDataService.ltGroupMemberEducator)
-    Entity colony = link?.target
+    Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
+    
     return [educator: educator, entity: entity, enlistedBy: enlistedBy, colony: colony]
-
   }
 
   def del = {

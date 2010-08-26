@@ -7,7 +7,7 @@ import at.openfactory.ep.AssetService
 import standard.MetaDataService
 import standard.FilterService
 import standard.PublicationHelperService
-import standard.NetworkService
+import standard.FunctionService
 
 class PublicationController {
   FilterService filterService
@@ -15,7 +15,7 @@ class PublicationController {
   PublicationHelperService publicationHelperService
   EntityHelperService entityHelperService
   AssetService assetService
-  NetworkService networkService
+  FunctionService functionService
 
   def index = { }
 
@@ -54,7 +54,7 @@ class PublicationController {
       pubs = finalMap
       log.info pubs
       // if i'm not a friend drop those pubs a friend could see
-      if (!networkService.isFriendOf(e, entityHelperService.loggedIn)) {
+      if (!functionService.isFriendOf(e, entityHelperService.loggedIn)) {
         pubs.value.each {
           if (it.accesslevel < 2) {
             finalMap.value << it
@@ -63,7 +63,7 @@ class PublicationController {
       }
       pubs = finalMap
       // if i'm not in the network drop those pubs
-      if (!networkService.isNetworkOf(e, entityHelperService.loggedIn)) {
+      if (!functionService.isNetworkOf(e, entityHelperService.loggedIn)) {
         pubs.value.each {
           if (it.accesslevel < 1) {
             finalMap.value << it
