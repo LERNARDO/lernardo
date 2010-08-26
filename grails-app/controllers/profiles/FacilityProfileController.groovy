@@ -5,6 +5,7 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
 import lernardo.Contact
 import standard.FunctionService
 import standard.MetaDataService
@@ -17,6 +18,7 @@ class FacilityProfileController {
   EntityHelperService entityHelperService
   FunctionService functionService
   def securityManager
+  ProfileHelperService profileHelperService
 
   def index = {
     redirect action: "list", params: params
