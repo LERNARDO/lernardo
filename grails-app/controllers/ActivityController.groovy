@@ -58,8 +58,6 @@ class ActivityController {
               activityList << bla
           }
         }
-        activityList.sort {it.profile.date}
-        activityList.reverse()
         activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
@@ -111,8 +109,6 @@ class ActivityController {
               activityList << bla
           }
         }
-        activityList.sort {it.profile.date}
-        activityList.reverse()
         activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
