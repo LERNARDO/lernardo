@@ -162,7 +162,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyEducator" + i)) {
-        entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@sueninos.org", "dummyEducator" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@sueninos.org", "dummyEducator" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           EducatorProfile prf = (EducatorProfile)ent.profile
           prf.gender = generator.nextInt(2) + 1
@@ -189,6 +189,7 @@ class BootStrap {
           prf.employment = "DummyEmployment"
           prf.addToLanguages((generator.nextInt(14) + 1).toString())
         }
+        new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltWorking).save()
       }
     }
 
