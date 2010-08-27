@@ -53,10 +53,10 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
               <td width="60" valign="top"><g:message code="active"/>:</td>
               <td width="50" valign="top"><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isAdmin>
+            </app:isOperator>
             <td width="60" valign="top"><g:message code="facility.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
@@ -85,7 +85,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="leadeducator2">
-        <g:render template="leadeducator" model="${leadeducator}"/>
+        <g:render template="leadeducator" model="[leadeducator: leadeducator, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -93,15 +93,20 @@
       <h5><g:message code="educators"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#educators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagogen hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="educators" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="showspinner('#educators2')">
+
+        Suche:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteEducators" action="remoteEducators" id="${facility.id}" before="showspinner('#remoteEducators')"/>
+        <div id="remoteEducators"></div>
+
+        %{--<g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="showspinner('#educators2')">
           <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
-        </g:formRemote>
+        </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="educators2">
-        <g:render template="educators" model="${educators}"/>
+        <g:render template="educators" model="[educators: educators, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -109,15 +114,20 @@
       <h5><g:message code="clients"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClients', id: facility.id]" update="clients2" before="showspinner('#clients2')">
+
+        Suche:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${facility.id}" before="showspinner('#remoteClients')"/>
+        <div id="remoteClients"></div>
+
+        %{--<g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClients', id: facility.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
-        </g:formRemote>
+        </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="clients2">
-        <g:render template="clients" model="${clients}"/>
+        <g:render template="clients" model="[clients: clients, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -172,7 +182,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="contacts2">
-        <g:render template="contacts" model="${facility}"/>
+        <g:render template="contacts" model="[facility: facility, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -201,7 +211,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[resources: resources, facility: facility]"/>
+        <g:render template="resources" model="[resources: resources, facility: facility, entity: currentEntity]"/>
       </div>
     </div>
 

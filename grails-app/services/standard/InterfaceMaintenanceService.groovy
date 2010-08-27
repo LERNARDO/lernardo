@@ -1,7 +1,6 @@
 package standard
 
 import at.openfactory.ep.EntityType
-import grails.util.Environment
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Account
 import profiles.ChildProfile
@@ -60,7 +59,7 @@ class InterfaceMaintenanceService {
       ent.save()
       //}
       //if (n % 500 == 0)
-      log.info(n)
+      log.debug(n)
     }
   }
 }

@@ -16,22 +16,25 @@
   </div>
   <div class="boxGray">
     <div class="second">
-      <span style="background: #5b5; padding: 5px; color: #fff"><g:message code="cal.theme"/></span>
-      <span style="background: #55b; padding: 5px; color: #fff"><g:message code="cal.groupActivity"/></span>
-      <span style="background: #b55; padding: 5px; color: #fff"><g:message code="cal.activityInstance"/></span>
+      <div style="margin: 5px 0 5px 0">
+        <span style="background: #5b5; padding: 5px; color: #fff; -moz-border-radius: 2px; margin: 0 3px 0 0;"><g:message code="cal.theme"/></span>
+        <span style="background: #55b; padding: 5px; color: #fff; -moz-border-radius: 2px; margin: 0 3px 0 0;"><g:message code="cal.groupActivity"/></span>
+        <span style="background: #b55; padding: 5px; color: #fff; -moz-border-radius: 2px; margin: 0 3px 0 0;"><g:message code="cal.activityInstance"/></span>
+      </div>
     </div>
   </div>
 
   <div class="headerGreen">
     <div class="second">
-      <h1><g:message code="educator"/></h1>
+      <h1><g:message code="educators"/></h1>
     </div>
   </div>
   <div class="boxGray">
     <div class="second">
       <g:each in="${educators}" var="educator">
-        <div style="padding: 3px 4px"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> <g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
+        <div style="padding: 3px 4px; width: 350px; float: left"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> <g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
       </g:each>
+      <div class="clear"></div>
     </div>
   </div>
 

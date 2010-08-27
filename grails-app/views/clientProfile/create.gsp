@@ -237,7 +237,7 @@
               <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
                 <g:textField size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>
               </td>
-              <td class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
+              <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
                 <g:textField size="28" maxlength="20" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>

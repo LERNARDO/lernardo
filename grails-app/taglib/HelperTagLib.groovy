@@ -5,16 +5,16 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import lernardo.Element
 import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
-import standard.NetworkService
 import standard.FilterService
 import at.openfactory.ep.SecHelperService
+import standard.FunctionService
 
 class HelperTagLib {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
-  NetworkService networkService
   FilterService filterService
   SecHelperService secHelperService
+  FunctionService functionService
   def securityManager
   static namespace = "app"
 
@@ -231,6 +231,14 @@ class HelperTagLib {
   def getProjectTemplateUnitsCount = {attrs, body ->
     def units = Link.countByTargetAndType(attrs.template, metaDataService.ltProjectUnit)
     out << units
+  }
+
+  /*
+   * finds the number of clients linked to a client group
+   */
+  def getGroupClientsCount = {attrs, body ->
+    def clients = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberClient)
+    out << clients
   }
 
   /*
@@ -679,8 +687,13 @@ class HelperTagLib {
     if (!e)
       return false
 
-    def result = networkService.isFriendOf(currentEntity, e)
-    return result
+    def c = Link.createCriteria
+    def result = c.get {
+      eq("source", currentEntity)
+      eq("target", e)
+      eq("type", metaDataService.ltFriendship)
+    }
+    return result ? true : false
   }
 
   private boolean bookmark(attrs) {
@@ -691,8 +704,13 @@ class HelperTagLib {
     if (!e)
       return false
 
-    def result = networkService.isBookmarkOf(currentEntity, e)
-    return result
+    def c = Link.createCriteria
+    def result = c.get {
+      eq("source", currentEntity)
+      eq("target", e)
+      eq("type", metaDataService.ltBookmark)
+    }
+    return result ? true : false
   }
 
   /*

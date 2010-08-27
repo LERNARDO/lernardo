@@ -35,10 +35,10 @@
       <table>
         <tr class="prop">
 
-          <app:isAdmin>
+          <app:isSysAdmin>
             <td width="60" valign="top"><g:message code="active"/>:</td>
             <td width="50" valign="top"><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-          </app:isAdmin>
+          </app:isSysAdmin>
 
           <td width="60" valign="top"><g:message code="user.profile.email"/>:</td>
           <td valign="top">${fieldValue(bean: user, field: 'user.email') ?: '<div class="italic"><g:message code="noData"/></div>'}</td>

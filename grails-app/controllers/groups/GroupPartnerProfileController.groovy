@@ -7,11 +7,13 @@ import at.openfactory.ep.ProfileHelperService
 import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import at.openfactory.ep.Profile
+import standard.FunctionService
 
 class GroupPartnerProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
+  FunctionService functionService
 
   def index = {
     redirect action: "list", params: params
@@ -47,18 +49,18 @@ class GroupPartnerProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allPartners = Entity.findAllByType(metaDataService.etPartner)
-      // find all partners linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)
-      List partners = links.collect {it.source}
 
-      return [group: group,
-              entity: entity,
-              partners: partners,
-              allPartners: allPartners]
-    }
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    // find all partners linked to this group
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+
+    return [group: group,
+            entity: entity,
+            partners: partners,
+            allPartners: allPartners]
+
   }
 
   def del = {

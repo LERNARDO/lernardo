@@ -826,17 +826,32 @@ table #profile-list tr {
     font-size: 11px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-bottom: 5px;
-}
+    margin-bottom: 5px; }
     .paginateButtons a {
         background: #fff;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #ccc #aaa #aaa #ccc;
+        border: 1px solid #999;
         color: #666;
         margin: 0 3px;
         padding: 2px 6px; }
+    .paginateButtons a:hover {
+        text-decoration: none;
+        background: #393;
+        color: #fff;
+        border: 1px solid #060; }
     .paginateButtons span {
+        padding: 2px 3px; }
+
+.paginateButtonsPublic {
+    color: #666;
+    font-size: 11px;
+    overflow: hidden;
+    padding: 10px 3px;
+    margin-bottom: 5px; }
+    .paginateButtonsPublic a {
+        /*color: #666;*/
+        margin: 0 3px;
+        padding: 2px 6px; }
+    .paginateButtonsPublic span {
         padding: 2px 3px; }
 
 /* ----- ARTICLES ----- */
@@ -921,67 +936,90 @@ div.actionlinks div.userlinks a {
     margin-bottom: 10px;
 }
 
-.buttonBlue {
-    /*border: 1px solid #345ca4;*/
-    background: #66f;
-    padding: 6px 5px 5px 5px;
-    margin: 5px 5px 0 0;
-    text-align: center;
-    float: left;
-    /*-moz-border-radius: 5px;*/
-    color: #fff !important;
-    display: block;
-    height: 16px; }
-    .buttonBlue:hover {
-        background: #44d;
-        /*border: 1px solid #123a82;*/
-        text-decoration: none; }
-
-.boxGray input[type=submit] {
-  border: none;
-    /*border: 1px solid #345ca4 !important;*/
-    background: #090; /*-moz-linear-gradient(-90deg,#009900,#005500) #009900; */
+#private-content input[type=submit], input[type=submit] {
+    background: -moz-linear-gradient(-90deg,#090,#060);
+    background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#060));
+    border: 1px solid #060;
     padding: 4px 5px !important;
     margin: 5px 5px 0 0 !important;
     text-align: center;
     float: left;
-    /*-moz-border-radius: 5px;*/
     color: #fff !important;
-    display: block; }
-    .boxGray input[type=submit]:hover {
-        background: #060;
-        /*border: 1px solid #123a82 !important;*/
+    display: block;
+font: 12px verdana; }
+    #private-content input[type=submit]:hover, input[type=submit]:hover {
+        background: -moz-linear-gradient(-90deg,#070,#040);
+        background: -webkit-gradient(linear, left top, left bottom, from(#070), to(#040));
+        border: 1px solid #040;
         text-decoration: none;
         cursor: pointer; }
 
-.buttonGray {
-    /*border: 1px solid #666;*/
-    background: #888;
-    padding: 6px 5px 5px 5px;
+.buttonBlue {
+    background: -moz-linear-gradient(-90deg,#009,#006);
+    background: -webkit-gradient(linear, left top, left bottom, from(#009), to(#006));
+    border: 1px solid #006;
+    padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
     float: left;
-    /*-moz-border-radius: 5px;*/
     color: #fff !important;
-    display: block; }
+    display: block;
+    height: 16px; }
+    .buttonBlue:hover {
+        background: -moz-linear-gradient(-90deg,#007,#004);
+        background: -webkit-gradient(linear, left top, left bottom, from(#007), to(#004));
+        border: 1px solid #004;
+        text-decoration: none; }
+
+.buttonGreen {
+    background: -moz-linear-gradient(-90deg,#090,#060);
+    background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#060));
+    border: 1px solid #060;
+    padding: 4px 5px;
+    margin: 5px 5px 0 0;
+    text-align: center;
+    float: left;
+    color: #fff !important;
+    display: block;
+    height: 16px; }
+    .buttonGreen:hover {
+        background: -moz-linear-gradient(-90deg,#070,#040);
+        background: -webkit-gradient(linear, left top, left bottom, from(#070), to(#040));
+        border: 1px solid #040;
+        text-decoration: none; }
+
+.buttonGray {
+    background: -moz-linear-gradient(-90deg,#999,#666);
+    background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666));
+    border: 1px solid #666;
+    padding: 4px 5px;
+    margin: 5px 5px 0 0;
+    text-align: center;
+    float: left;
+    color: #fff !important;
+    display: block;
+    height: 16px; }
     .buttonGray:hover {
-        background: #666;
-        /*border: 1px solid #444;*/
+        background: -moz-linear-gradient(-90deg,#777,#444);
+        background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#444));
+        border: 1px solid #444;
         text-decoration: none; }
 
 .buttonRed {
-    /*border: 1px solid #666;*/
-    background: #900;
-    padding: 6px 5px 5px 5px;
+    background: -moz-linear-gradient(-90deg,#900,#600);
+    background: -webkit-gradient(linear, left top, left bottom, from(#900), to(#600));
+    border: 1px solid #600;
+    padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
     float: left;
-    /*-moz-border-radius: 5px;*/
     color: #fff !important;
-    display: block; }
+    display: block;
+    height: 16px; }
     .buttonRed:hover {
-        background: #600;
-        /*border: 1px solid #444;*/
+        background: -moz-linear-gradient(-90deg,#700,#400);
+        background: -webkit-gradient(linear, left top, left bottom, from(#700), to(#400));
+        border: 1px solid #400;
         text-decoration: none; }
 
 .activity-list-head {
@@ -1317,41 +1355,26 @@ table#msg-composer td {
     .headerGrey .second {
         padding: 4px 5px;
     }
-	
-	.buttonGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500);
-    background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#050));
-
-    padding: 4px 5px;
-    margin: 5px 5px 0 0;
-    text-align: center;
-    float: left;
-    color: #fff !important;
-    display: block;
-    height: 16px; }
-    .buttonGreen:hover {
-        background: #040;
-        text-decoration: none; }
-
 
 .email {
 	border: solid 1px #009900;
 	padding: 8px 0 4px 10px ;
-	background-color:#CCC;
+	background: #8c8; /*ccc*/
 	margin-top: 6px;
 	margin-bottom: 6px;
 	height: 20px;
 }
+
 .email2 {
 	border: solid 1px #009900;
 	padding: 8px 0 4px 10px ;
-	background-color:#CCC;
+	background: #8c8; /*ccc*/
 	margin-top: 6px;
 	margin-bottom: 6px;
 	height: 47px;
 }
 
-.name{
+.name {
 	margin-bottom: 3px;
 }
 
@@ -1373,14 +1396,14 @@ table#msg-composer td {
 		
 .value-show-block {
 	background-color: #FFF;
-	border-right: 20px solid #dfdfdf;	
+	border-right: 20px solid #dfdfdf;
 	border-bottom: 10px solid #dfdfdf;
 	padding: 3px;
 }
 .value-show {
 	background-image:url(../../images/icons/value-show-short.png);
 	background-repeat:repeat-x;
-	border-right: 20px solid #dfdfdf;	
+	border-right: 20px solid #dfdfdf;
 	border-bottom: 10px solid #dfdfdf;
 	padding: 3px;
 }
@@ -1405,7 +1428,7 @@ table#msg-composer td {
 
 .overview .box {
   border: 1px solid #bdbdbd;
-  margin: 0 15px 0 0;
+  margin: 0 15px 15px 0;
   text-align: center;
   float: left;
   padding: 5px;
@@ -1418,15 +1441,16 @@ table#msg-composer td {
   background: #fff;
 }
 
-
 h4 {
 	color: #003300;
 	font-size: 12px;
 	font-weight:bold;
 	margin: 4px 0;
 	}
+
 .contact {
-	border:1px solid #fff;
+	border: 1px solid #aaa; /* fff */
+    /*background: #cdcdcd;*/
 	padding-left: 6px;
 	padding-right: 6px;
 	padding-top: 3px;
@@ -1519,7 +1543,7 @@ h4 {
 	width: 790px;
 	}
 .zusatz {
-    border: 1px solid #fff;
+    border: 1px solid #aaa; /*#fff;*/
     background-color: #eee;
     margin-top: 12px;}
 
@@ -1547,13 +1571,13 @@ h5 {
     color: #003300;
 	font-size: 12px;
 	font-weight:bold;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #aaa; /* #fff */
     padding-bottom: 6px;
 }
 
 .buttons {
-    padding-bottom: 6px;
-    border-bottom: 2px solid #fff;
+    /*padding-bottom: 6px;*/
+    /*border-bottom: 2px solid #fff;*/
     margin-bottom: 20px;
 }
 #flash-msg {
@@ -1608,7 +1632,8 @@ h5 {
 .profile-box .second ul li a:hover {
       color: #fff !important;
       display: block;
-      background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;}
+      background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;
+      /*padding-left: 5px;*/}
 
 #body-list a {
     color: #000;

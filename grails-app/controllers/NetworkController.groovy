@@ -1,8 +1,10 @@
 import at.openfactory.ep.Entity
-import standard.NetworkService
+import standard.MetaDataService
+import standard.FunctionService
 
 class NetworkController {
-  NetworkService networkService
+  MetaDataService metaDataService
+  FunctionService functionService
 
   /*
    * shows the network of a given entity
@@ -10,12 +12,13 @@ class NetworkController {
    */
   def index = {
     Entity entity = Entity.get(params.id)
+    
     return ['entity': entity,
-            'friendsList': networkService.findFriendsOf(entity),
-            'clientsList': networkService.findClientsOf(entity),
-            'bookmarksList': networkService.findBookmarksOf(entity),
-            'operatorsList': networkService.findOperatorsOf(entity),
-            'facilitiesList': networkService.findFacilitiesOf(entity),
-            'facilities2List': networkService.findFacilities2Of(entity)]
+            'friendsList': functionService.findAllByLink(entity, null, metaDataService.ltFriendship),
+            'bookmarksList': functionService.findAllByLink(entity, null, metaDataService.ltBookmark),
+            'operatorsList': functionService.findAllByLink(entity, null, metaDataService.ltOperation),
+            'facilitiesList': functionService.findAllByLink(entity, null, metaDataService.ltWorking),
+            'facilities2List': functionService.findAllByLink(entity, null, metaDataService.ltClientship),
+            'clientsList': functionService.findClientsOf(entity)]
   }
 }

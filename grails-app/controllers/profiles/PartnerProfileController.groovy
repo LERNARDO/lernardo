@@ -51,14 +51,14 @@ class PartnerProfileController {
     if (!partner) {
       flash.message = "PartnerProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      // find colonia of this partner
-      def link = Link.findBySourceAndType(partner, metaDataService.ltGroupMemberPartner)
-      Entity colony = link?.target
 
-      return [partner: partner, entity: entity, colony: colony]
-    }
+    // find colonia of this partner
+    Entity colony = functionService.findByLink(partner, null, metaDataService.ltGroupMemberPartner)
+
+    return [partner: partner, entity: entity, colony: colony]
+
   }
 
   def del = {
@@ -90,10 +90,11 @@ class PartnerProfileController {
     if (!partner) {
       flash.message = "PartnerProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-    }
+
+    return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+
   }
 
   def update = {
@@ -183,6 +184,19 @@ class PartnerProfileController {
     Entity partner = Entity.get(params.id)
     partner.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
+    render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
+  }
+
+  def editContact = {
+    Entity partner = Entity.get(params.id)
+    Contact contact = Contact.get(params.contact)
+    render template: 'editcontact', model: [partner: partner, representative: contact, entity: entityHelperService.loggedIn]
+  }
+
+  def updateContact = {
+    Entity partner = Entity.get(params.id)
+    Contact contact = Contact.get(params.representative)
+    contact.properties = params
     render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
   }
 }

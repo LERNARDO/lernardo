@@ -115,7 +115,7 @@
           </tr>
 
           <tr>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}"/>
               </g:if>
@@ -123,13 +123,13 @@
                 <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}"/>
               </g:if>
             </td>
-            <td width="105" valign="middle" class="value">
+            <td width="105" valign="top" class="value">
               <g:textField class="countable${parent.profile.constraints.currentCity.maxSize} ${hasErrors(bean: parent, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: parent, field: 'profile.currentCity').decodeHTML()}"/>
             </td>
-            <td width="210" valign="middle" class="value">
+            <td width="210" valign="top" class="value">
               <g:textField class="countable${parent.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: parent, field: 'profile.currentStreet', 'errors')}" size="30" name="currentStreet" value="${fieldValue(bean: parent, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: parent, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: parent, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
           </tr>
@@ -139,17 +139,12 @@
         <div class="email">
           <table>
             <tr>
-              <app:isAdmin>
+              <app:isOperator entity="${currentEntity}">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
-                  <app:isAdmin>
-                    <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
-                  </app:isAdmin>
-                  <app:notAdmin>
-                    <g:checkBox name="enabled" value="${parent?.user?.enabled}" disabled="true"/>
-                  </app:notAdmin>
+                  <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
                 </td>
-              </app:isAdmin>
+              </app:isOperator>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
                 <g:link controller="profile" action="changePassword" id="${parent.id}">Ändern</g:link>

@@ -43,7 +43,7 @@
       <div class="email">
         <table>
           <tr>
-            <app:isAdmin>
+            <app:isSysAdmin>
               <td width="85" valign="middle">
                 <g:message code="active"/>
                 <app:isAdmin>
@@ -53,7 +53,7 @@
                   <g:checkBox name="enabled" value="${user?.user?.enabled}" disabled="true"/>
                 </app:notAdmin>
               </td>
-            </app:isAdmin>
+            </app:isSysAdmin>
 
             <td width="150" valign="middle">
               <g:message code="password"/>:

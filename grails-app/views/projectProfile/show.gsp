@@ -11,7 +11,7 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link></p>
+      <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
 
       <table>
         <tr class="prop">

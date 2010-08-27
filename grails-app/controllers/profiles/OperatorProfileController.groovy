@@ -50,15 +50,15 @@ class OperatorProfileController {
     if (!operator) {
       flash.message = "OperatorProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      // find all facilities of this operator
-      def links = Link.findAllByTargetAndType(entity, metaDataService.ltOperation)
-      List facilities = links.collect {it.source}
 
-      return [operator: operator, entity: entity, facilities: facilities, allFacilities: allFacilities]
-    }
+    def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    // find all facilities of this operator
+    List facilities = functionService.findAllByLink(null, entity, metaDataService.ltOperation)
+
+    return [operator: operator, entity: entity, facilities: facilities, allFacilities: allFacilities]
+
   }
 
   def del = {
@@ -90,10 +90,11 @@ class OperatorProfileController {
     if (!operator) {
       flash.message = "OperatorProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [operator: operator]
-    }
+
+    return [operator: operator]
+
   }
 
   def update = {

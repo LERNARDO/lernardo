@@ -72,14 +72,11 @@
 
         </table>
 
-        <div class="email">
-          <g:message code="active"/>
-          <app:isAdmin>
+        <div class="email">         
+          <app:isOperator entity="${currentEntity}">
+            <g:message code="active"/>
             <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
-          </app:isAdmin>
-          <app:notAdmin>
-            <g:checkBox name="enabled" value="${child?.user?.enabled}" disabled="true"/>
-          </app:notAdmin>
+          </app:isOperator>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <g:message code="child.profile.email"/>
           : &nbsp;

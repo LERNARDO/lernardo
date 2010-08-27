@@ -53,39 +53,36 @@ class GroupColonyProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      // find all facilities linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)
-      List facilities = links.collect {it.source}
 
-      def allPartners = Entity.findAllByType(metaDataService.etPartner)
-      // find all partners linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)
-      List partners = links.collect {it.source}
+    def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    // find all facilities linked to this group
+    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
 
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
-      // find all educators linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)
-      List educators = links.collect {it.source}
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    // find all partners linked to this group
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner)
 
-      // find all resources linked to this group
-      links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-      List resources = links.collect {it.source}
+    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    // find all educators linked to this group
+    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator)
 
-      // find colonia
+    // find all resources linked to this group
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
-      return [group: group,
-              entity: entity,
-              facilities: facilities,
-              allFacilities: allFacilities,
-              resources: resources,
-              partners: partners,
-              allPartners: allPartners,
-              educators: educators,
-              allEducators: allEducators]
-    }
+    // find colonia
+
+    return [group: group,
+            entity: entity,
+            facilities: facilities,
+            allFacilities: allFacilities,
+            resources: resources,
+            partners: partners,
+            allPartners: allPartners,
+            educators: educators,
+            allEducators: allEducators]
+
   }
 
   def del = {
@@ -170,8 +167,7 @@ class GroupColonyProfileController {
     new Link(source: entity, target: group, type: metaDataService.ltResource).save()
 
     // find all resources linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
@@ -191,8 +187,7 @@ class GroupColonyProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources linked to this group
-    def links = Link.findAllByTargetAndType(group, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
@@ -212,6 +207,19 @@ class GroupColonyProfileController {
   def removeRepresentative = {
     Entity group = Entity.get(params.id)
     group.profile.removeFromRepresentatives(Contact.get(params.representative))
+    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+  }
+
+  def editRepresentative = {
+    Entity group = Entity.get(params.id)
+    Contact representative = Contact.get(params.representative)
+    render template: 'editrepresentative', model: [group: group, representative: representative, entity: entityHelperService.loggedIn]
+  }
+
+  def updateRepresentative = {
+    Entity group = Entity.get(params.id)
+    Contact contact = Contact.get(params.representative)
+    contact.properties = params
     render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
   }
 

@@ -14,9 +14,11 @@
     <g:render template="/templates/errors" model="[bean: activity]"/>
 
     <g:form action="update" method="post" id="${activity.id}">
-      Vorlage:<app:getTemplate entity="${activity}">
-      <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
-    </app:getTemplate>
+      Vorlage:
+      <app:getTemplate entity="${activity}">
+        <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
+      </app:getTemplate>
+
       <table>
         <tbody>
 
@@ -27,11 +29,14 @@
         </tr>
 
         <tr>
-          <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.fullName', 'errors')}"><g:textField class="countable${activity.profile.constraints.fullName.maxSize}" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
+          <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.fullName', 'errors')}">
+            <g:textField class="countable${activity.profile.constraints.fullName.maxSize}" name="fullName" size="30" value="${fieldValue(bean:activity, field:'profile.fullName').decodeHTML()}"/>
           </td>
-          <td width="350" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.date', 'errors')}"><g:datePicker name="date" value="${activity.profile.date}" precision="minute"/>
+          <td width="350" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.date', 'errors')}">
+            <g:datePicker name="date" value="${activity.profile.date}" precision="minute"/>
           </td>
-          <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.duration', 'errors')}"><g:textField name="duration" value="${fieldValue(bean:activity, field:'profile.duration')}"/>
+          <td width="220" valign="top" class="value ${hasErrors(bean: activity, field: 'profile.duration', 'errors')}">
+            <g:textField name="duration" value="${fieldValue(bean:activity, field:'profile.duration')}"/>
           </td>
         </tr>
 

@@ -7,7 +7,6 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 import standard.FunctionService
 import standard.MetaDataService
-import at.openfactory.ep.security.DefaultSecurityManager
 import lernardo.Msg
 import lernardo.Event
 
@@ -51,13 +50,13 @@ class PateProfileController {
     if (!pate) {
       flash.message = "PateProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      List links = Link.findAllByTargetAndType(pate, metaDataService.ltPate)
-      List godchildren = links.collect {it.source}
 
-      return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
-    }
+    List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
+
+    return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
+
   }
 
   def del = {
@@ -89,10 +88,11 @@ class PateProfileController {
     if (!pate) {
       flash.message = "PateProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
-    }
+
+    return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
+    
   }
 
   def update = {
@@ -149,5 +149,35 @@ class PateProfileController {
   def removeGodchildren = {
     def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltPate)
     render template:'godchildren', model: [godchildren: breaking.results, pate: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all clients matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, pate: params.id])
+    }
   }
 }

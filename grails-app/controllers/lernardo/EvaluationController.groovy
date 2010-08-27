@@ -29,10 +29,11 @@ class EvaluationController {
     if (!evaluationInstance) {
       flash.message = "Evaluation not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      return [evaluationInstance: evaluationInstance]
-    }
+
+    return [evaluationInstance: evaluationInstance]
+
   }
 
   def del = {
@@ -61,11 +62,11 @@ class EvaluationController {
     if (!evaluationInstance) {
       flash.message = "Evaluation not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [evaluationInstance: evaluationInstance,
-              entity: entity]
-    }
+
+    return [evaluationInstance: evaluationInstance, entity: entity]
+
   }
 
   def update = {

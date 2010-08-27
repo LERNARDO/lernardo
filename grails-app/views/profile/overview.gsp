@@ -25,7 +25,7 @@
   <div class="second">
 
     <div id="body-list">
-      Bitte einen Namen eingeben: <g:remoteField name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
+      Bitte einen Namen eingeben: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
 
       %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
       
@@ -164,15 +164,15 @@
             <div><g:link controller="method" action="create">Neu anlegen</g:link></div>
           </app:isAdmin>
         </div>
-        <div class="box">
+        %{--<div class="box">
           <div class="bold">Themen (${allThemes})</div>
           <g:link controller="themeProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themen.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="themeProfile" action="list">Alle anzeigen</g:link></div>
-          %{-- only created by lead educator --}%
+          --}%%{-- only created by lead educator --}%%{--
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
             <div><g:link controller="themeProfile" action="create">Neu anlegen</g:link></div>
           </app:hasRoleOrType>
-        </div>
+        </div>--}%
       </div>
       <div class="clear"></div>
 
@@ -257,6 +257,15 @@
           <g:link controller="projectProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_projekte.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="projectProfile" action="list">Alle anzeigen</g:link></div>
           %{--<div>Neu anlegen</div>--}%
+        </div>
+        <div class="box">
+          <div class="bold">Themen (${allThemes})</div>
+          <g:link controller="themeProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themen.png')}" alt="Notiz" align="top"/></g:link>
+          <div><g:link controller="themeProfile" action="list">Alle anzeigen</g:link></div>
+          %{-- only created by lead educator --}%
+          <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
+            <div><g:link controller="themeProfile" action="create">Neu anlegen</g:link></div>
+          </app:hasRoleOrType>
         </div>
       </div>
       <div class="clear"></div>

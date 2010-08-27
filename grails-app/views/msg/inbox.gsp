@@ -6,7 +6,7 @@
 <g:if test="${currentEntity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="tipp"/>:</b> <g:message code="msg.inbox.tipp"/>
+      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="tipp"/>:</span> <g:message code="msg.inbox.tipp"/>
     </div>
   </div>
 </g:if>

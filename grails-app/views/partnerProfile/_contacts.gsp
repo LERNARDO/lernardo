@@ -3,7 +3,10 @@
     <g:each in="${partner.profile.contacts}" var="representative">
       <tr class="prop">
         <td valign="top" class="italic" width="100"><g:message code="representantives.name"/>:</td><td colspan="6" class="value">${representative.firstName}  ${representative.lastName}</td>
-        <td><app:isOperator entity="${entity}"><g:remoteLink action="removeContact" update="contacts2" id="${partner.id}" params="[contact: representative.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="Ansprechperson entfernen" align="top"/></g:remoteLink></app:isOperator></td></tr>
+        <td><app:isOperator entity="${entity}">
+          <g:remoteLink action="editContact" update="contacts2" id="${partner.id}" params="[contact: representative.id]" before="showspinner('#contacts2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="Ansprechperson bearbeiten" align="top"/></g:remoteLink>
+          <g:remoteLink action="removeContact" update="contacts2" id="${partner.id}" params="[contact: representative.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="Ansprechperson entfernen" align="top"/></g:remoteLink>
+        </app:isOperator></td></tr>
       <tr class="prop">
         <td valign="top" class="italic"><g:message code="representantives.adr"/>:</td><td colspan="6" class="value">${representative.zip} ${representative.city}, ${representative.street}</td></tr>
       <tr class="prop">

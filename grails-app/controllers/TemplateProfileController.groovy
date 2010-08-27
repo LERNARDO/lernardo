@@ -62,35 +62,19 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     Entity entity = params.entity ? template : entityHelperService.loggedIn
 
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltComment)
-    def commentList = links.collect {it.source}
-
-    def c = Entity.createCriteria()
-    def allResources = c.list {
-      eq("type", metaDataService.etResource)
-      profile {
-        eq("type", "planbar")
-      }
-    }
-
-    // find all resources of this facility
-    links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
-    List resources = links.collect {it.source}
-
-    List methods = Method.findAllByType('template')
+    def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
+    def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
+    def allMethods = Method.findAllByType('template')
 
     return ['template': template,
             'commentList': commentList,
             'entity': entity,
-            'allResources': allResources,
             'resources': resources,
-            'allMethods': methods]
+            'allMethods': allMethods]
   }
 
   def create = {
-    Entity template = Entity.get(params.id)
-    return ['resources': Entity.findAllByType(metaDataService.etResource),
-            'template': template]
+    return ['resources': Entity.findAllByType(metaDataService.etResource)]
   }
 
   def save = {
@@ -104,18 +88,18 @@ class TemplateProfileController {
         ent.profile.properties = params
       }
 
-      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
+      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {
         if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, 'Es wurde die Aktivitätsvorlage "' + entity.profile.fullName + '" angelegt.')
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
 
       flash.message = message(code: "template.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
 
     } catch (at.openfactory.ep.EntityException ee) {
-      render view: "create", model: [template: ee.entity, entity: currentEntity, resources: Entity.findAllByType(metaDataService.etResource)]
+      render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]
       return
     }
 
@@ -166,8 +150,7 @@ class TemplateProfileController {
     new Link(source: entity, target: template, type: metaDataService.ltResource).save()
 
     // find all resources of this template
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
   }
@@ -190,8 +173,7 @@ class TemplateProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources of this template
-    def links = Link.findAllByTargetAndType(template, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
   }

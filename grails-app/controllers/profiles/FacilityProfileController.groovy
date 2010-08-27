@@ -5,6 +5,7 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
 import lernardo.Contact
 import standard.FunctionService
 import standard.MetaDataService
@@ -17,6 +18,7 @@ class FacilityProfileController {
   EntityHelperService entityHelperService
   FunctionService functionService
   def securityManager
+  ProfileHelperService profileHelperService
 
   def index = {
     redirect action: "list", params: params
@@ -52,40 +54,36 @@ class FacilityProfileController {
     if (!facility) {
       flash.message = "FacilityProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      // find all resources of this facility
-      def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-      List resources = links.collect {it.source}
 
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
-      // find all educators of this facility
-      links = Link.findAllByTargetAndType(facility, metaDataService.ltWorking)
-      List educators = links.collect {it.source}
+    // find all resources of this facility
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
-      // find lead educator
-      def link = Link.findByTargetAndType(facility, metaDataService.ltLeadEducator)
-      Entity leadEducator = link?.source
+    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    // find all educators of this facility
+    List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
 
-      def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
-      // find all clients linked to the facility
-      links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-      List clients = links.collect {it.source}
+    // find lead educator
+    Entity leadEducator = functionService.findByLink(null, facility, metaDataService.ltLeadEducator)
 
-      // find colonia of this facility
-      link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
-      Entity colony = link?.target
+    def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
+    // find all clients linked to the facility
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
-      return [facility: facility,
-              entity: entity,
-              allEducators: allEducators,
-              educators: educators,
-              allClientGroups: allClientGroups,
-              clients: clients,
-              resources: resources,
-              colony: colony,
-              leadeducator: leadEducator]
-    }
+    // find colonia of this facility
+    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+
+    return [facility: facility,
+            entity: entity,
+            allEducators: allEducators,
+            educators: educators,
+            allClientGroups: allClientGroups,
+            clients: clients,
+            resources: resources,
+            colony: colony,
+            leadeducator: leadEducator]
+
   }
 
   def del = {
@@ -117,10 +115,11 @@ class FacilityProfileController {
     if (!facility) {
       flash.message = "FacilityProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
-    }
+
+    return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    
   }
 
   def update = {
@@ -195,8 +194,7 @@ class FacilityProfileController {
     new Link(source: entity, target: facility, type: metaDataService.ltResource).save()
 
     // find all resources of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -216,8 +214,7 @@ class FacilityProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltResource)
-    List resources = links.collect {it.source}
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -235,6 +232,12 @@ class FacilityProfileController {
   }
 
   def addLeadEducator = {
+    def tempLink = Link.findByTargetAndType(Entity.get(params.id), metaDataService.ltLeadEducator)
+    if (tempLink) {
+      render '<span class="italic red">Dieser Einrichtung wurde bereits ein leitender Pädagoge zugewiesen</span>'
+      render template: 'leadeducator', model: [leadeducator: Entity.get(params.leadeducator), facility: Entity.get(params.id), entity: entityHelperService.loggedIn]
+      return
+    }
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
@@ -251,8 +254,7 @@ class FacilityProfileController {
     Entity clientgroup = Entity.get(params.clientgroup)
 
     // find all clients linked to the clientgroup
-    def links = Link.findAllByTargetAndType(clientgroup, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link each client to the facility now
     clients.each { client ->
@@ -267,8 +269,7 @@ class FacilityProfileController {
     }
 
     // find all clients of this facility
-    links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-    clients = links.collect {it.source}
+    clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -285,8 +286,7 @@ class FacilityProfileController {
     link.delete()
 
     // find all clients of this facility
-    def links = Link.findAllByTargetAndType(facility, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -308,5 +308,78 @@ class FacilityProfileController {
     facility.profile.removeFromContacts(Contact.get(params.contact))
     Contact.get(params.contact).delete()
     render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+  }
+
+  def editContact = {
+    Entity facility = Entity.get(params.id)
+    Contact contact = Contact.get(params.contact)
+    render template: 'editcontact', model: [facility: facility, representative: contact, entity: entityHelperService.loggedIn]
+  }
+
+  def updateContact = {
+    Entity facility = Entity.get(params.id)
+    Contact contact = Contact.get(params.representative)
+    contact.properties = params
+    render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteEducators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'educatorresults', model: [results: results, facility: params.id])
+    }
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etGroupClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, facility: params.id])
+    }
   }
 }

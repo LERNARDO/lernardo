@@ -18,7 +18,7 @@ showspinner = function(id) {
   $(id).html('<img id="spinner" src="http://sueninos.lernardo.net/images/spinner.gif" alt="Spinner"/>');
 };
 
-//toggle element
+// toggle element
 toggle = function(id) {
   $(id).toggle(400);
-}
+};

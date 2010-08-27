@@ -81,7 +81,7 @@
             <td width="220" valign="top" class="value">
               <g:textField class="countable${partner.profile.constraints.city.maxSize} ${hasErrors(bean: partner, field: 'profile.city', 'errors')}" size="30" id="city" name="city" value="${fieldValue(bean: partner, field: 'profile.city').decodeHTML()}"/>
             </td>
-            <td width="210" align="top" class="value">
+            <td width="210" valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${partner.profile.country}"/>
               </g:if>
@@ -97,19 +97,14 @@
           <table>
 
             <tr class="prop">
-              <app:isAdmin>
+              <app:isOperator entity="${currentEntity}">
                 <td width="90" valign="top" class="name">
                   <g:message code="active"/>
                 </td>
                 <td width="30" valign="top" class="value">
-                  <app:isAdmin>
-                    <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
-                  </app:isAdmin>
-                  <app:notAdmin>
-                    <g:checkBox name="enabled" value="${partner?.user?.enabled}" disabled="true"/>
-                  </app:notAdmin>
+                  <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
                 </td>
-              </app:isAdmin>
+              </app:isOperator>
               <td width="70" valign="top" class="name"><g:message code="facility.profile.email"/></td>
               <td width="320" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>

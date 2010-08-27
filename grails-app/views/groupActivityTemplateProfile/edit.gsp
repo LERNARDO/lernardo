@@ -40,7 +40,11 @@
           </tr>
           <tr>
             <td colspan="3" valign="top" class="value">
-              <g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+              <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
+              <fckeditor:editor name="description" height="200" toolbar="Post" fileBrowser="default">
+                ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
+              </fckeditor:editor>
+              %{--<g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>--}%
             </td>
           </tr>
 

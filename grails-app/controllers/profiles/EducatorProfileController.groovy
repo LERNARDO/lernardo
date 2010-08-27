@@ -8,7 +8,6 @@ import at.openfactory.ep.EntityHelperService
 import lernardo.CDate
 import standard.MetaDataService
 import standard.FunctionService
-import at.openfactory.ep.security.DefaultSecurityManager
 import lernardo.Msg
 import lernardo.Post
 import lernardo.Event
@@ -57,17 +56,16 @@ class EducatorProfileController {
     if (!educator) {
       flash.message = "EducatorProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      // find if this educator was enlisted
-      Link link = Link.findBySourceAndType(educator, metaDataService.ltEnlisted)
-      Entity enlistedBy = link?.target
 
-      // find colonia of this educator
-      link = Link.findBySourceAndType(educator, metaDataService.ltGroupMemberEducator)
-      Entity colony = link?.target
-      return [educator: educator, entity: entity, enlistedBy: enlistedBy, colony: colony]
-    }
+    // find if this educator was enlisted
+    Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
+
+    // find colonia of this educator
+    Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
+    
+    return [educator: educator, entity: entity, enlistedBy: enlistedBy, colony: colony]
   }
 
   def del = {
@@ -100,10 +98,11 @@ class EducatorProfileController {
     if (!educator) {
       flash.message = "EducatorProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner)]
-    }
+
+    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner)]
+
   }
 
   def update = {

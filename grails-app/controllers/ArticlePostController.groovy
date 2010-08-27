@@ -8,7 +8,8 @@ class ArticlePostController {
   def index = {
     params.offset = params.offset ?: 0
     return ['articleList': ArticlePost.list([max: 10, sort: "dateCreated", order: "desc", offset: params.offset]),
-            'listTitle': 'Aktuelle Ereignisse']
+            'listTitle': 'Aktuelle Ereignisse',
+            'articleCount': ArticlePost.count()]
   }
 
   def show = {

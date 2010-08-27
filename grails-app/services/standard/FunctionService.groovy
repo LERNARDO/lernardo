@@ -13,6 +13,51 @@ class FunctionService {
 
   boolean transactional = true
 
+  /* TIP
+   * def results = links*.target // spread operator doing the same as the collect method
+   * def results = links.collect {it.target}
+   */
+
+  /*
+   * returns a single entity
+   */
+  Entity findByLink(Entity source, Entity target, LinkType type) {
+
+    def c = Link.createCriteria()
+    Entity result = c.get {
+      if (source) eq("source", source)
+      if (target) eq("target", target)
+      eq("type", type)
+      // the link property that is not supplied (i.e. NULL) is the one we are probably looking for so use it as projection value
+      projections {
+        if (!source) distinct("source")
+        if (!target) distinct("target")
+      }
+    }
+    return result
+
+  }
+
+  /*
+   * returns multiple entities as list
+   */
+  List findAllByLink(Entity source, Entity target, LinkType type) {
+
+    def c = Link.createCriteria()
+    List results = c.list {
+      if (source) eq("source", source)
+      if (target) eq("target", target)
+      eq("type", type)
+      // the link property that is not supplied (i.e. NULL) is the one we are probably looking for so use it as projection value
+      projections {
+        if (!source) distinct("source")
+        if (!target) distinct("target")
+      }
+    }
+    return results
+
+  }
+  
   /*
    * links two entities and returns all entities linked to the target
    */
@@ -119,9 +164,9 @@ class FunctionService {
    * receives an activity group, finds all clients linked to it, finds all families linked to the client and returns all parents linked to the families
    */
   def findParents(Entity group) {
+
     // 1. find all clients linked to the group
     List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source}
-    //println clients
 
     // 2. find all families of the clients
     List families = []
@@ -132,7 +177,6 @@ class FunctionService {
           families << it
       }
     }
-    //println families
 
     // 3. find all parents of the families
     List allParents = []
@@ -142,7 +186,7 @@ class FunctionService {
         allParents.add(it)
       }
     }
-    //println allParents
+
     return allParents
   }
 
@@ -150,12 +194,13 @@ class FunctionService {
    * receives an activity group, find the facility linked to it and returns all educators linked to the facility
    */
   def findEducators(Entity group) {
+
     // 1. find facility linked to the group
     Entity facility = Link.findByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.source
 
     // 2. find all educators linked to the facility
     def c = Link.createCriteria()
-    def allEducators = c.get {
+    def allEducators = c.list {
       eq('target', facility)
       or {
         eq('type', metaDataService.ltWorking)
@@ -167,6 +212,23 @@ class FunctionService {
     }
 
     return allEducators
+  }
+
+  /*
+   * returns all clients of a given entity (facility)
+   */
+  def findClientsOf(Entity entity, def params = []) {
+
+    // 1. find facility the entity is working in
+    def facility = findByLink(entity, null, metaDataService.ltWorking)
+
+    // 2. find clients linked to the facility
+    def clients = []
+    if (facility) {
+      clients = findAllByLink(null, facility, metaDataService.ltClientship)
+    }
+
+    return clients
   }
 
 }

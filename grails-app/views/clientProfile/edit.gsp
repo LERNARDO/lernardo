@@ -228,7 +228,7 @@
               <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
                 <g:textField size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>
               </td>
-              <td class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
+              <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
                 <g:textField size="28" maxlength="20" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>
@@ -254,12 +254,14 @@
         <div class="email2">
           <table>
             <tr>
-              <td width="90" valign="top">
-                <g:message code="active"/>
-              </td>
-              <td width="30">
-                <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
-              </td>
+              <app:isOperator entity="${currentEntity}">
+                <td width="90" valign="top">
+                  <g:message code="active"/>
+                </td>
+                <td width="30">
+                  <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
+                </td>
+              </app:isOperator>
               <td width="85" valign="top">
                 <g:message code="client.profile.email"/>:
               </td>

@@ -9,7 +9,7 @@ import standard.MetaDataService
 import standard.FunctionService
 import lernardo.Msg
 import lernardo.Event
-import java.util.regex.Pattern
+//import java.util.regex.Pattern
 
 class ChildProfileController {
   MetaDataService metaDataService
@@ -60,14 +60,14 @@ class ChildProfileController {
     if (!child) {
       flash.message = "ChildProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      // check if the child belongs to a family
-      def link = Link.findBySourceAndType(child, metaDataService.ltGroupMemberChild)
-      Entity family = link?.target
 
-      return [child: child, family: family]
-    }
+    // check if the child belongs to a family
+    Entity family = functionService.findByLink(child, null, metaDataService.ltGroupMemberChild)
+
+    return [child: child, family: family, entity: entity]
+
   }
 
   def del = {
@@ -99,10 +99,11 @@ class ChildProfileController {
     if (!child) {
       flash.message = "ChildProfile not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [child: child]
-    }
+
+    return [child: child]
+
   }
 
   def update = {

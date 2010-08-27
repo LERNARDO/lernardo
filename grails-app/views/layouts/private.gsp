@@ -1,7 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
   "http://www.w3.org/TR/html4/strict.dtd">
+
+%{--
+future HTML5 doctype
+<!DOCTYPE html>
+--}%
+
 <html>
 <head>
+  %{-- <meta charset="utf-8" /> future HTML5 encoding--}%
   <title>Sueninos - <g:layoutTitle/></title>
   <link rel="stylesheet" href="${g.resource(dir: 'css', file: 'yui-reset-fonts-grids.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
@@ -113,7 +120,7 @@
 
               <table>
                 <tr>
-                  <td width="135">
+                  <td style="width: 135px">
                     <ub:profileImage name="${entity.name}" width="130"/>
                   </td>
                   <td>
@@ -201,7 +208,7 @@
                       <hr/>
                       <li class="icon-admin"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]"><g:message code="groupFamilies"/></g:link></li>
                       <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]"><g:message code="groupColonies"/></g:link></li>
-                      <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facility"/></g:link></li>
+                      <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facilities"/></g:link></li>
                       <li class="icon-admin"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]"><g:message code="groupClients"/></g:link></li>
                       <li class="icon-admin"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]"><g:message code="groupPartners"/></g:link></li>
                     </ul>

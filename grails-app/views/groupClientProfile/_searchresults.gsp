@@ -58,5 +58,5 @@
 
 </g:if>
 <g:else>
-  <span class="italic">Keine Treffer!</span>
+  <span class="italic red">Keine Treffer!</span>
 </g:else>

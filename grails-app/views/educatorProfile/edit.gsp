@@ -29,19 +29,19 @@
           </tr>
 
         <tr>
-          <td width="90" height="35" valign="middle" class="value">
+          <td width="90" height="35" valign="top" class="value">
             <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
           </td>
-          <td width="120" valign="middle" class="value">
+          <td width="120" valign="top" class="value">
             <g:textField class="countable${educator.profile.constraints.title.maxSize} ${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
           </td>
-          <td width="180" valign="middle" class="value">
+          <td width="180" valign="top" class="value">
             <g:textField class="countable${educator.profile.constraints.firstName.maxSize} ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
           </td>
-          <td width="200" valign="middle" class="value">
+          <td width="200" valign="top" class="value">
             <g:textField class="countable${educator.profile.constraints.lastName.maxSize} ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
           </td>
-          <td valign="middle" class="value">
+          <td valign="top" class="value">
             <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${educator?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
           </td>
         </tr>
@@ -68,13 +68,13 @@
           </td>
         </tr>
         <tr>
-          <td width="290" height="35" valign="middle" class="value">
+          <td width="290" height="35" valign="top" class="value">
             <g:select class="drop-down-280" name="education" from="${['Pädagoge','Psychologe','Soziologe','Lehrer (staatl. Ausbildung)','Erzieher','Psychopädagoge','Bildender Künstler','Arzt','Krankenschwester','Wirtschafter','Buchhalter/Steuerberater']}" value="${fieldValue(bean:educator,field:'profile.education')}"/>
           </td>
-          <td width="290" valign="middle" class="value">
+          <td width="290" valign="top" class="value">
             <g:select class="drop-down-280" name="employment" from="${['Angestellt','Freier Mitarbeiter','Freiwilliger']}" value="${fieldValue(bean:educator,field:'profile.employment')}"/>
           </td>
-          <td valign="middle" class="value">
+          <td valign="top" class="value">
             <g:select class="drop-down-240" name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
           </td>
         </tr>
@@ -157,16 +157,16 @@
             </td>
           </tr>
           <tr>
-            <td width="280" height="35" valign="middle" class="value">
+            <td width="280" height="35" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="41" id="currentStreet" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
             </td>
-            <td width="105" valign="middle" class="value">
+            <td width="105" valign="top" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="12" id="currentZip" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
-            <td width="210" valign="middle" class="value">
+            <td width="210" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.currentCity.maxSize} ${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" id="currentCity" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.currentCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" id="currentCountry" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
             </td>
 
@@ -200,16 +200,16 @@
             </td>
           </tr>
           <tr>
-            <td width="280" height="35" valign="middle" class="value">
+            <td width="280" height="35" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.originStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="41" id="originStreet" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
             </td>
-            <td width="105" valign="middle" class="value">
+            <td width="105" valign="top" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" id="originZip" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
             </td>
-            <td width="210" valign="middle" class="value">
+            <td width="210" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.originCity.maxSize} ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" id="originCity" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                 <g:select name="originCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${educator.profile.originCountry}"/>
               </g:if>
@@ -250,16 +250,16 @@
             </td>
           </tr>
           <tr>
-            <td width="280" height="35" valign="middle" class="value">
+            <td width="280" height="35" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" id="contactStreet" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
             </td>
-            <td width="105" valign="middle" class="value">
+            <td width="105" valign="top" class="value">
               <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" id="contactZip" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
             </td>
-            <td width="210" valign="middle" class="value">
+            <td width="210" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactCity.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" id="contactCity" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" id="contactCountry" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
             </td>
           </tr>
@@ -279,10 +279,10 @@
             </td>
           </tr>
           <tr>
-            <td width="280" height="35" valign="middle" class="value">
+            <td width="280" height="35" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactPhone.maxSize} ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" id="contactPhone" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
             </td>
-            <td valign="middle" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactMail.maxSize} ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" id="contactMail" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
             </td>
           </tr>
@@ -293,19 +293,11 @@
       <div class="email">
         <table>
           <tr>
-            <app:isAdmin>
-              <td width="80" valign="middle">
-                <label for="enabled">
-                  <g:message code="active"/>
-                </label>
-                <app:isAdmin>
-                  <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
-                </app:isAdmin>
-                <app:notAdmin>
-                  <g:checkBox name="enabled" value="${educator?.user?.enabled}" disabled="true"/>
-                </app:notAdmin>
-              </td>
-            </app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
+              <td width="80" valign="middle"><g:message code="active"/>
+                <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
+             </td>
+            </app:isOperator>
             <td width="150" valign="middle">
               <label>
                 <g:message code="password"/>:

@@ -143,29 +143,33 @@
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.job"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.jobType"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.jobIncome"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.jobFrequency"/></td>
-          </tr>
+          <g:if test="${client.profile.job}">
+            <tr class="prop">
+              <td valign="top" class="name-show"><g:message code="client.profile.job"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobType"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobIncome"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobFrequency"/></td>
+            </tr>
 
-          <tr class="prop">
-            <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td valign="top" class="value-show"><g:if test="${client.profile.jobType}"><app:getJobType job="${client.profile.jobType}"/></g:if><g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
-            <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          </tr>
+            <tr class="prop">
+              <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+              <td valign="top" class="value-show"><g:if test="${client.profile.jobType}"><app:getJobType job="${client.profile.jobType}"/></g:if><g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
+              <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+              <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            </tr>
+          </g:if>
 
-          <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.support"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.supportDescription"/></td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.support}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          </tr>
+          <g:if test="${client.profile.support}">
+            <tr class="prop">
+              <td valign="top" class="name-show"><g:message code="client.profile.support"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.supportDescription"/></td>
+            </tr>
+  
+            <tr class="prop">
+              <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.support}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+              <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            </tr>
+          </g:if>
 
         </table>
       </div>
@@ -173,10 +177,10 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
               <td width="60" valign="top" class="bold"><g:message code="active"/></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${client.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isAdmin>
+            </app:isOperator>
             <td width="60" valign="top" class="bold"><g:message code="client.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: client, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </table>
@@ -197,11 +201,11 @@
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="showspinner('#performances2')">
           <table>
             <tr>
-              <td>Datum:</td>
+              <td valign="middle">Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td valign="top">Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -219,15 +223,15 @@
     <div class="zusatz">
       <h5>Gesundheitseinträge <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#healths');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gesundheitseintrag hinzufügen"/></a></app:hasRoleOrType></h5>
-      <div id="healths" style="display:none">
+      <div class="zusatz-add" id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="showspinner('#healths2')">
           <table>
             <tr>
-              <td>Datum:</td>
+              <td valign="middle">Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td valign="top">Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -245,15 +249,15 @@
     <div class="zusatz">
       <h5>Erhaltene Materialien <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></app:hasRoleOrType></h5>
-      <div id="materials" style="display:none">
+      <div class="zusatz-add" id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2')">
           <table>
             <tr>
-              <td>Datum:</td>
+              <td valign="middle">Datum:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td>Text:</td>
+              <td valign="top">Text:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -271,7 +275,7 @@
     <div class="zusatz">
       <h5>Eintritt und Austritt bei Sueninos <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:hasRoleOrType></h5>
-      <div id="dates" style="display:none">
+      <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2')">
           <g:datePicker name="date" value="" precision="day"/>
           <div class="spacer"></div>

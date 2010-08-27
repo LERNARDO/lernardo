@@ -52,18 +52,18 @@ class GroupClientProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      def allClients = Entity.findAllByType(metaDataService.etClient)
-      // find all clients linked to this group
-      def links = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)
-      List clients = links.collect {it.source}
 
-      return [group: group,
-              entity: entity,
-              clients: clients,
-              allClients: allClients]
-    }
+    def allClients = Entity.findAllByType(metaDataService.etClient)
+    // find all clients linked to this group
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
+
+    return [group: group,
+            entity: entity,
+            clients: clients,
+            allClients: allClients]
+
   }
 
   def del = {
@@ -159,13 +159,12 @@ class GroupClientProfileController {
   }
 
   def updateselect = {
-    println params
-    def allClients = Entity.findAllByType(metaDataService.etClient)
+    //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 
     def c = Entity.createCriteria()
-    allClients = c.list {
-      if (params.type != 'all')
+    def allClients = c.list {
+      if (params.type != "all")
         eq('type', params.type)
       if (params.name)
         or {
@@ -185,13 +184,13 @@ class GroupClientProfileController {
           if (params.job.toInteger() == 2)
             eq('job', false)
         }
-        if (params.schoolLevel != 'all')
-          eq('schoolLevel', params.schoolLevel.toInteger())
-        if (params.size1 != 'all')
+        if (params.schoolLevel != "all")
+          eq('schoolLevel', params.schoolLevel)
+        if (params.size1 != "all")
           between('size', params.size1.toInteger(), params.size2.toInteger())
-        if (params.weight1 != 'all')
+        if (params.weight1 != "all")
           between('weight', params.weight1.toInteger(), params.weight2.toInteger())
-        if (params.birthDate1 != 'all')
+        if (params.birthDate1)
           between('birthDate', params.birthDate1, params.birthDate2)
       }
       maxResults(30)

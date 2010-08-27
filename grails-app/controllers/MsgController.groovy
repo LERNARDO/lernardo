@@ -50,12 +50,13 @@ class MsgController {
     if(!message) {
       flash.message = message(code:"msg.notFound", args:[params.id])
       redirect action:index, params:[name:params.name]
+      return
     }
-    else {
-      return ['msgInstance': message,
-              'entity':Entity.get(params.entity),
-              'box':params.box]
-    }
+
+    return ['msgInstance': message,
+            'entity':Entity.get(params.entity),
+            'box':params.box]
+
   }
 
   def del = {
@@ -83,10 +84,11 @@ class MsgController {
     if(!message) {
       flash.message = message(code:"msg.notFound", args:[params.id])
       redirect action:'index', params:[name:params.name]
+      return
     }
-    else {
-      return ['msgInstance': message]
-    }
+
+    return ['msgInstance': message]
+
   }
 
   def update = {
@@ -133,7 +135,7 @@ class MsgController {
     flash.message = message(code:"msg.sent", args:[params.subject])
 
     functionService.createEvent(currentEntity, 'Du hast <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a> eine Nachricht geschickt.')
-    functionService.createEvent(entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + currentEntity.profile.fullName + '</a>  hat dir eine Nachricht geschickt.')
+    functionService.createEvent(entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a>  hat dir eine Nachricht geschickt.')
 
     //redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
     redirect action:'inbox', id: currentEntity.id

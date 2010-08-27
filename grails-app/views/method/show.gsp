@@ -51,7 +51,7 @@
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="elements2">
-        <g:render template="elements" model="${methodInstance}"/>
+        <g:render template="elements" model="[methodInstance: methodInstance, entity: currentEntity]"/>
       </div>
     </div>
 

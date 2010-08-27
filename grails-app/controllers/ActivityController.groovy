@@ -27,7 +27,7 @@ class ActivityController {
   }
 
   /*
-   * lists either all activities or only activites of a selected date of a given entity
+   * lists either all activities or only activities of a selected date of a given entity
    */
   def list = {
     params.offset = params.offset ? params.int('offset') : 0
@@ -37,68 +37,118 @@ class ActivityController {
     Entity currentEntity = entityHelperService.loggedIn
 
     // get a list of facilities the current entity is linked to
-    List links = Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking)
-    List facilities = links.collect {it.target}
+    List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
 
     // create empty list for final results
     List activityList = []
+    def activityCount
 
-    if (params.myDate_year == 'alle' || params.list == 'Alle') {
+    // get all activities
+    if (params.myDate_year == 'alle' || params.list == "Alle") {
 
-      if (currentEntity.type.name == metaDataService.etEducator.name) {
+      // show educator only his own activities
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
-          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility, params)
+          List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
 
-          tempList.each {bla ->
-            activityList << bla.target
+          activities.each {bla ->
+            // there are 2 types of activities, we only want theme room activities here
+            if (bla.profile.type == "Themenraum")
+              activityList << bla
           }
         }
+        activityCount = activityList.size()
+        def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+        activityList = activityList.subList(params.offset, upperBound)
       }
       else
-        activityList = Entity.findAllByType(metaDataService.etActivity, params)
+      {
+        def c = Entity.createCriteria()
+        activityList = c.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+            order("date","desc")
+          }
+          maxResults(params.max)
+          firstResult(params.offset)
+        }
 
-      def activityCount = Entity.countByType(metaDataService.etActivity)
-      //def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
-      //activityList = activityList.subList(params.offset, upperBound)
+        def d = Entity.createCriteria()
+        def count = d.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
+        }
+
+        activityCount = count.size()
+
+      }
 
       return ['activityList': activityList,
               'activityCount': activityCount]
     }
 
+    // get all activities between a given date range    
     if (params.myDate_year && params.myDate_month && params.myDate_day) {
       Date inputDate = new Date()
       String input = "${params.myDate_year}/${params.myDate_month}/${params.myDate_day}"
       inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
 
       // get all activities of the facilities within the timeframe
-      if (currentEntity.type.name == metaDataService.etEducator.name) {
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
-          List tempList = Link.findAllBySourceAndType(it, metaDataService.ltActFacility)
+          List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
 
-          tempList.each {bla ->
-            if (bla.target.profile.date > inputDate && bla.target.profile.date < inputDate + 1)
-              activityList << bla.target
+          activities.each {bla ->
+            // there are 2 types of activities, we only want theme room activities here
+            if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1 && bla.profile.type == "Themenraum")
+              activityList << bla
           }
         }
+        activityCount = activityList.size()
+        def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
+        activityList = activityList.subList(params.offset, upperBound)
       }
-      else
-        Entity.findAllByType(metaDataService.etActivity).each {bla ->
+      else {
+        /*Entity.findAllByType(metaDataService.etActivity).each {bla ->
           if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1)
-            activityList << bla
+            activityList << bla*/
+
+        def c = Entity.createCriteria()
+        activityList = c.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+            between("date", inputDate, inputDate + 1)
+            order("date","desc")
+          }
+          maxResults(params.max)
+          firstResult(params.offset)
         }
 
-      def activityCount = activityList.size()
-      def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
-      activityList = activityList.subList(params.offset, upperBound)
+        def d = Entity.createCriteria()
+        def count = d.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+            between("date", inputDate, inputDate + 1)
+          }
+        }
+
+         activityCount = count.size()
+      }
 
       return ['activityList': activityList,
               'activityCount': activityCount,
               'dateSelected': inputDate]
     }
-    return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
-            'activityCount': Entity.countByType(metaDataService.etActivity)]
+    return
+    /*return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
+            'activityCount': Entity.countByType(metaDataService.etActivity)]*/
   }
 
   /*
@@ -127,7 +177,7 @@ class ActivityController {
     // get a list of facilities the current entity is working in
     def facilities = []
     if (currentEntity.type.name == metaDataService.etEducator.name)
-      Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
     def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -160,7 +210,7 @@ class ActivityController {
 
       def facilities = []
       if (currentEntity.type.name == metaDataService.etEducator.name)
-        Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
+        facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
       else
         facilities = Entity.findAllByType(metaDataService.etFacility)
       def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -174,11 +224,12 @@ class ActivityController {
         }
       }
 
-      render view:'create', model:[ac:ac, 'facilities': facilities,
-            'educators': educators,
-            'clients': clients,
-            'resources': resources,
-            'templates': templates]
+      render view:'create', model:['ac':ac,
+                                   'facilities': facilities,
+                                   'educators': educators,
+                                   'clients': clients,
+                                   'resources': resources,
+                                   'templates': templates]
       return
     }
 
@@ -264,7 +315,7 @@ class ActivityController {
         functionService.getParamAsList(params.educators).each {
           new Link(source: Entity.get(it), target: entity, type: metaDataService.ltActEducator).save()
           if (Entity.get(it).id != currentEntity.id) {
-            functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + entity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+            functionService.createEvent(Entity.get(it), '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> mit dir als TeilnehmerIn angelegt.')
           }
         }
 
@@ -296,7 +347,7 @@ class ActivityController {
     // get a list of facilities the current entity is working in
     def facilities = []
     if (currentEntity.type.name == metaDataService.etEducator.name)
-      Link.findAllBySourceAndType(currentEntity, metaDataService.ltWorking).each {facilities << it.target}
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
     def educators = Entity.findAllByType(metaDataService.etEducator)
@@ -322,16 +373,16 @@ class ActivityController {
     functionService.getParamAsList(params.educators).each {
       new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActEducator).save()
       if (Entity.get(it).id != currentEntity.id) {
-        functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+        functionService.createEvent(Entity.get(it), '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> aktualisiert.')
       }
     }
 
     functionService.getParamAsList(params.clients).each {
       new Link(source: Entity.get(it), target: activity, type: metaDataService.ltActClient).save()
       if (Entity.get(it).id != currentEntity.id) {
-        functionService.createEvent(Entity.get(it), currentEntity.profile.fullName + ' hat die Aktivität "' + activity.profile.fullName + '" mit dir als TeilnehmerIn angelegt.')
+        functionService.createEvent(Entity.get(it), '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> aktualisiert.')
       }
-    }
+    }   
 
     if (!activity.hasErrors() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])

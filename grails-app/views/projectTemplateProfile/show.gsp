@@ -65,7 +65,7 @@
         </g:formRemote>
       </div>--}%
       <div class="zusatz-show" id="projectunits2">
-        <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates]"/>
+        <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates, entity: currentEntity]"/>
       </div>
     </div>
 

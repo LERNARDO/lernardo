@@ -7,11 +7,13 @@ import at.openfactory.ep.ProfileHelperService
 import standard.MetaDataService
 import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
+import standard.FunctionService
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
+  FunctionService functionService
 
   def index = {
     redirect action: "list", params: params
@@ -50,8 +52,7 @@ class ProjectTemplateProfileController {
     }
     else {
       // find all projectUnits linked to this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
       //List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -80,7 +81,7 @@ class ProjectTemplateProfileController {
     if (projectTemplate) {
       // delete all links
       Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
-      Event.findAllByEntity(projectTemplate).each {it.delete}
+      Event.findAllByEntity(projectTemplate).each {it.delete()}
 
       try {
         flash.message = message(code: "projectTemplate.deleted", args: [projectTemplate.profile.fullName])
@@ -115,7 +116,7 @@ class ProjectTemplateProfileController {
 
     projectTemplate.profile.properties = params
 
-    if (!projectTemplate.profile.hasErrors() && projectTemplate.profile.save()) {
+    if (!projectTemplate.hasErrors() && projectTemplate.save()) {
       flash.message = message(code: "projectTemplate.updated", args: [projectTemplate.profile.fullName])
       redirect action: 'show', id: projectTemplate.id
     }
@@ -132,11 +133,21 @@ class ProjectTemplateProfileController {
   def save = {
     EntityType etProjectTemplate = metaDataService.etProjectTemplate
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     try {
       Entity entity = entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
+
+      functionService.createEvent(currentEntity, 'Du hast die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      List receiver = Entity.findAllByType(metaDataService.etEducator)
+      receiver.each {
+        if (it.id != currentEntity.id)
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      }
+
       flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
@@ -169,8 +180,7 @@ class ProjectTemplateProfileController {
       new Link(source: projectUnit, target: projectTemplate, type: metaDataService.ltProjectUnit).save()
 
       // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -183,8 +193,7 @@ class ProjectTemplateProfileController {
       render '<span class="red">Projekteinheit konnte nicht gespeichert werden!</span><br/>'
 
       // find all projectunits of this projectTemplate
-      def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-      List projectUnits = links.collect {it.source}
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -216,8 +225,7 @@ class ProjectTemplateProfileController {
     Entity.get(params.projectUnit).delete()
 
     // find all projectunits of this projectTemplate
-    def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-    List projectUnits = links.collect {it.source}
+    List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
     // calculate realDuration
     Integer calculatedDuration = calculateDuration(projectUnits)
@@ -242,8 +250,7 @@ class ProjectTemplateProfileController {
       new Link(source: groupActivityTemplate, target: projectUnit, type: metaDataService.ltProjectUnitMember).save()
 
     // find all groupActivityTemplates linked to the unit
-    def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitMember)
-    List groupActivityTemplates = links.collect {it.source}
+    List groupActivityTemplates = functionService.findAllByLink(null, projectUnit, metaDataService.ltProjectUnitMember)
 
     // find all projectunits of this projectTemplate
     //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
@@ -271,8 +278,7 @@ class ProjectTemplateProfileController {
     link.delete()
 
     // find all groupActivityTemplates linked to the unit
-    def links = Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnitMember)
-    List groupActivityTemplates = links.collect {it.source}
+    List groupActivityTemplates = functionService.findAllByLink(null, projectUnit, metaDataService.ltProjectUnitMember)
 
     // find all projectunits of this projectTemplate
     //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
@@ -289,8 +295,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     // find all projectUnits linked to this projectTemplate
-    def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
-    List projectUnits = links.collect {it.source}
+    List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
     // calculate realDuration
     Integer calculatedDuration = calculateDuration(projectUnits)

@@ -25,7 +25,7 @@
           <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
           <td width="160" valign="top" class="value-show"><app:getLanguages language="${pate.profile.motherTongue}"/></td>
-          <td width="170" valign="top" class="value-show">
+          <td width="170" valign="top" class="value-show-block">
             <ul>
               <g:each in="${pate.profile.languages}" var="language">
                 <li><app:getLanguages language="${language}"/></li>
@@ -64,10 +64,10 @@
         <table>
 
           <tr class="prop">
-            <app:isAdmin>
+            <app:isOperator entity="${currentEntity}">
               <td width="60" valign="top"><span class="bold"><g:message code="active"/></span></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isAdmin>
+            </app:isOperator>
 
             <td width="60" valign="top"><span class="bold"><g:message code="pate.profile.email"/>:</span></td>
             <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
@@ -88,12 +88,17 @@
         <h5><g:message code="pate.profile.gcs"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#godchildren');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></app:isOperator></h5>
         <div class="zusatz-add" id="godchildren" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
+
+          Suche:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${pate.id}" before="showspinner('#remoteClients')"/>
+        <div id="remoteClients"></div>
+
+          %{--<g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
             <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>
             <div class="spacer"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
             <div class="spacer"></div>
-          </g:formRemote>
+          </g:formRemote>--}%
         </div>
         <div class="zusatz-show" id="godchildren2">
           <g:render template="godchildren" model="[godchildren: godchildren, pate: pate, entity: currentEntity]"/>

@@ -9,7 +9,6 @@ import standard.MetaDataService
 import at.openfactory.ep.Profile
 import standard.FunctionService
 import at.openfactory.ep.EntityException
-import lernardo.Msg
 import lernardo.Event
 
 class GroupActivityProfileController {
@@ -52,48 +51,49 @@ class GroupActivityProfileController {
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-      List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source} // find all clients linked to this group
 
-      List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-      List facilities = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.collect {it.source} // find all facilities linked to this group
+    List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
 
-      List allPartners = Entity.findAllByType(metaDataService.etPartner)
-      List partners = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberPartner)?.collect {it.source} // find all partners linked to this group
+    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
 
-      def allParents = functionService.findParents(group)
-      List parents = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberParent)?.collect {it.source} // find all parents linked to this group
+    List allPartners = Entity.findAllByType(metaDataService.etPartner)
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
 
-      def allEducators = functionService.findEducators(group)
-      List educators = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberEducator)?.collect {it.source} // find all educators linked to this group
+    def allParents = functionService.findParents(group)
+    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
 
-      List groupTemplates = Link.findAllByTargetAndType(group, metaDataService.ltGroupMember)?.collect {it.source} // find all grouptemplates linked to this group
+    def allEducators = functionService.findEducators(group)
+    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
 
-      def template = Link.findByTargetAndType(group, metaDataService.ltTemplate)?.source // find template
+    List groupTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all grouptemplates linked to this group
 
-      def calculatedDuration = 0
-      groupTemplates.each {
-        calculatedDuration += it.profile.duration
-      }
+    Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
-      return [group: group,
-              entity: entity,
-              templates: groupTemplates,
-              calculatedDuration: calculatedDuration,
-              allEducators: allEducators,
-              educators: educators,
-              allParents: allParents,
-              parents: parents,
-              allPartners: allPartners,
-              partners: partners,
-              allFacilities: allFacilities,
-              facilities: facilities,
-              allClientGroups: allClientgroups,
-              clients: clients,
-              template: template]
+    def calculatedDuration = 0
+    groupTemplates.each {
+      calculatedDuration += it.profile.duration
     }
+
+    return [group: group,
+            entity: entity,
+            templates: groupTemplates,
+            calculatedDuration: calculatedDuration,
+            allEducators: allEducators,
+            educators: educators,
+            allParents: allParents,
+            parents: parents,
+            allPartners: allPartners,
+            partners: partners,
+            allFacilities: allFacilities,
+            facilities: facilities,
+            allClientGroups: allClientgroups,
+            clients: clients,
+            template: template]
+
   }
 
   def del = {
@@ -102,7 +102,7 @@ class GroupActivityProfileController {
 
       // delete all links to and from this group first
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
-      Event.findAllByEntity(group).each {it.delete}
+      Event.findAllByEntity(group).each {it.delete()}
 
       try {
         flash.message = message(code: "group.deleted", args: [group.profile.fullName])
@@ -150,8 +150,7 @@ class GroupActivityProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
 
     // find all templates linked to this group
-    def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
-    List templates = links.collect {it.source}
+    List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
     def calculatedDuration = 0
     templates.each {
@@ -177,8 +176,7 @@ class GroupActivityProfileController {
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
 
       // find all templates of this linked to the groupActivityTemplate
-      def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
-      List templates = links.collect {it.source}
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       // and link them to the new groupActivity
       templates.each {
@@ -193,8 +191,7 @@ class GroupActivityProfileController {
     } catch (EntityException ee) {
 
       // find all templates linked to this group
-      def links = Link.findAllByTargetAndType(groupActivityTemplate, metaDataService.ltGroupMember)
-      List templates = links.collect {it.source}
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       def calculatedDuration = 0
       templates.each {
@@ -271,8 +268,7 @@ class GroupActivityProfileController {
     // get client group
     Entity clientgroup = Entity.get(params.clientgroup)
     // get all clients linked to this group
-    List links = Link.findAllByTargetAndType(clientgroup, metaDataService.ltGroupMemberClient)
-    List clients = links.collect {it.source}
+    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link them to the activity group
     clients.each {
@@ -283,7 +279,7 @@ class GroupActivityProfileController {
 
     Entity activitygroup = Entity.get(params.id)
 
-    List clients2 = Link.findAllByTargetAndType(activitygroup, metaDataService.ltGroupMemberClient).collect {it.source}
+    List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients2, group: activitygroup, entity: entityHelperService.loggedIn]
   }

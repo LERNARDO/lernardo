@@ -14,7 +14,6 @@ import at.openfactory.ep.EntityHelperService
 import org.hibernate.SessionFactory
 import standard.GeoCoderService
 import standard.MetaDataService
-import standard.NetworkService
 import standard.FunctionService
 import standard.FilterService
 import lernardo.Method
@@ -22,7 +21,6 @@ import at.openfactory.ep.SecHelperService
 
 class ProfileController {
   GeoCoderService geoCoderService
-  NetworkService networkService
   EntityHelperService entityHelperService
   MetaDataService metaDataService
   FilterService filterService
@@ -113,7 +111,7 @@ class ProfileController {
    */
   def geocode = {
     def result = geoCoderService.geocodeLocation(params.name)
-    render result as JSON
+    render result as JSON // IntelliJ gives a false warning here
   }
 
   /*
@@ -148,8 +146,8 @@ class ProfileController {
     params.max = Math.min(params.max ? params.int('max') : 16, 100)
     params.offset = params.offset ? params.int('offset') : 0
 
-    List users = []
-    def numUsers = 0
+    List users
+    def numUsers
 
     if (params.glossary == "Alle") {
       def c = Entity.createCriteria()
@@ -266,7 +264,7 @@ class ProfileController {
   }
 
   /*
-   * retrieves users matching the search paramter of the instant search
+   * retrieves users matching the search parameter of the instant search
    */
   def searchMe = {
     if (!params.name) {
@@ -533,8 +531,8 @@ class ProfileController {
       entities = entities.subList(params.offset, upperBound)
     }
     else {
-      entities = Entity.findAllByType(EntityType.findByName(params.entityType))
-      count = entities.size()
+      entities = Entity.findAllByType(EntityType.findByName(params.entityType), params)
+      count = Entity.countByType(EntityType.findByName(params.entityType))
     }
 
     return ['entityType': params.entityType,
@@ -643,6 +641,7 @@ class ProfileController {
    */
   def removeBookmark = {
     Entity entity = Entity.get(params.id)
+
     def c = Link.createCriteria()
     def linkInstance = c.get {
       eq('source', entityHelperService.loggedIn)
@@ -650,7 +649,7 @@ class ProfileController {
       eq('type', metaDataService.ltBookmark)
     }
     if (linkInstance) {
-      def n = linkInstance.target.name
+      //def n = linkInstance.target.name
       try {
         linkInstance.delete(flush: true)
         flash.message = message(code: "user.removeBookmark", args: [entity.profile.fullName])

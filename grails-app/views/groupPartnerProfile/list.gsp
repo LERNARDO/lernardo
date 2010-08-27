@@ -17,12 +17,14 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'groupPartner.profile.name')}"/>
+        <g:sortableColumn property="service" title="${message(code:'groupPartner.profile.service')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${groups}" status="i" var="group">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><app:getPartnerService service="${group.profile.service}"/></td>
         </tr>
       </g:each>
       </tbody>

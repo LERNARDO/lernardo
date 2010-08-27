@@ -18,7 +18,7 @@ class HelperController {
   def list = {
     Entity entity = Entity.get(params.id)
 
-    List helpers = []
+    List helpers
     if (entity.type.id == metaDataService.etUser.id)
       helpers = Helper.list()
     else
@@ -35,10 +35,11 @@ class HelperController {
     if (!helperInstance) {
       flash.message = "Helper not found with id ${params.id}"
       redirect(action: list)
+      return
     }
-    else {
-      return [helperInstance: helperInstance]
-    }
+
+    return [helperInstance: helperInstance]
+
   }
 
   def del = {
@@ -67,11 +68,12 @@ class HelperController {
     if (!helperInstance) {
       flash.message = "Helper not found with id ${params.id}"
       redirect action: 'list'
+      return
     }
-    else {
-      return [helperInstance: helperInstance,
+
+    return [helperInstance: helperInstance,
               entity: entity]
-    }
+
   }
 
   def update = {
@@ -106,7 +108,9 @@ class HelperController {
     Helper helperInstance = new Helper(params)
     Entity entity = Entity.get(params.name)
 
-    def type
+    // set a default type
+    def type = metaDataService.etEducator
+
     if (helperInstance.type == 'Educator')
       type = metaDataService.etEducator
     if (helperInstance.type == 'User')
@@ -116,7 +120,7 @@ class HelperController {
 
     List receiver = Entity.findAllByType(type)
     receiver.each {
-      functionService.createEvent(it as Entity, 'Es wurde das Hilfethema "' + helperInstance.title + '" angelegt.')
+      functionService.createEvent(it as Entity, 'Es wurde das Hilfethema <a href="' + createLink(controller: 'helper', action: 'list') + '">' + helperInstance.title + '</a> angelegt.')
     }
 
     if (helperInstance.save(flush: true)) {
