@@ -213,3 +213,8 @@ quoterMap = ['00':'Maria Montessori',
              '29':'George Bernard Shaw',
              '30':'Albert Einstein',
              '31':'Heraklit']
+
+profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtungen','Pädagoge':'Pädagogen','Betreuter':'Betreute',
+          'User':'User','Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte','Kind':'Kinder']
+profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
+          'User':'Usuario','Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores','Kind':'Niños']

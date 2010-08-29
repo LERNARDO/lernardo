@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreiber anlegen</title>
+  <title><g:message code="operator.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreiber anlegen</h1>
+    <h1><g:message code="operator.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
