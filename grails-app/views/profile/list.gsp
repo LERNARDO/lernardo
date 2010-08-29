@@ -70,11 +70,11 @@
       <table id="profile-list">
         <thead>
         <tr>
-          <g:sortableColumn property="name" title="Name"/>
-          <g:sortableColumn property="type" title="Typ"/>
-          <th>Aktiv</th>
-          <th>Rechte</th>
-          <th>Aktionen</th>
+          <g:sortableColumn property="name" title="${message(code:'profile.list.name')}"/>
+          <g:sortableColumn property="type" title="${message(code:'profile.list.type')}"/>
+          <th><g:message code="profile.list.isActiv"/></th>
+          <th><g:message code="profile.list.rights"/></th>
+          <th><g:message code="profile.list.options"/></th>
         </tr>
         </thead>
         <tbody>
