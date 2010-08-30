@@ -24,7 +24,7 @@
     <p>
       <g:if test="${eventsTomorrow}">
         <g:each in="${eventsTomorrow}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm"/> - ${event.content}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${timeZone}"/> - ${event.content}<br/>
         </g:each>
       </g:if>
       <g:else>
@@ -37,7 +37,7 @@
     <p>
       <g:if test="${eventsToday}">
         <g:each in="${eventsToday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm"/> - ${event.content}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${timeZone}"/> - ${event.content}<br/>
         </g:each>
       </g:if>
       <g:else>
@@ -50,7 +50,7 @@
     <p>
       <g:if test="${eventsYesterday}">
         <g:each in="${eventsYesterday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm"/> - ${event.content}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${timeZone}"/> - ${event.content}<br/>
         </g:each>
       </g:if>
       <g:else>

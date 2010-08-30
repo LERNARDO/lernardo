@@ -24,7 +24,7 @@
         </tr>
 
         <tr class="prop">
-          <td colspan="4" valign="top" class="name-show">Colonia:</td>
+          <td colspan="4" valign="top" class="name-show"><g:message code="facility.profile.colony"/>:</td>
         </tr>
 
         <tr>
@@ -74,18 +74,18 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="leadEducator"/> <g:if test="${!leadeducator}"><app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducator');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagogen hinzufügen"/></a></app:hasRoleOrType></g:if></h5>
-      <div class="zusatz-add" id="leadeducator" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducator2" before="showspinner('#leadeducator2')">
+      <h5><g:message code="leadEducators"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducators');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Leitenden Pädagogen hinzufügen"/></a></app:hasRoleOrType></h5>
+      <div class="zusatz-add" id="leadeducators" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducators2" before="showspinner('#leadeducators2')">
           <g:select name="leadeducator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
         </g:formRemote>
       </div>
-      <div class="zusatz-show" id="leadeducator2">
-        <g:render template="leadeducator" model="[leadeducator: leadeducator, entity: currentEntity]"/>
+      <div class="zusatz-show" id="leadeducators2">
+        <g:render template="leadeducators" model="[leadeducators: leadeducators, entity: currentEntity]"/>
       </div>
     </div>
 

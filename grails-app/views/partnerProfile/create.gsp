@@ -57,7 +57,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="middle" class="name">Colonia:</td>
+            <td colspan="4" valign="middle" class="name"><g:message code="partner.profile.colonia"/>:</td>
           </tr>
 
           <tr class="prop">

@@ -159,6 +159,11 @@ class GroupClientProfileController {
   }
 
   def updateselect = {
+
+    // set second date always to the last day of the year
+    params.birthDate2.setDate(31)
+    params.birthDate2.setMonth(11)
+    
     //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
 

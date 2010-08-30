@@ -64,8 +64,8 @@ class FacilityProfileController {
     // find all educators of this facility
     List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
 
-    // find lead educator
-    Entity leadEducator = functionService.findByLink(null, facility, metaDataService.ltLeadEducator)
+    // find lead educators
+    List leadEducators = functionService.findAllByLink(null, facility, metaDataService.ltLeadEducator)
 
     def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
     // find all clients linked to the facility
@@ -82,7 +82,7 @@ class FacilityProfileController {
             clients: clients,
             resources: resources,
             colony: colony,
-            leadeducator: leadEducator]
+            leadeducators: leadEducators]
 
   }
 
@@ -232,21 +232,15 @@ class FacilityProfileController {
   }
 
   def addLeadEducator = {
-    def tempLink = Link.findByTargetAndType(Entity.get(params.id), metaDataService.ltLeadEducator)
-    if (tempLink) {
-      render '<span class="italic red">Dieser Einrichtung wurde bereits ein leitender Pädagoge zugewiesen</span>'
-      render template: 'leadeducator', model: [leadeducator: Entity.get(params.leadeducator), facility: Entity.get(params.id), entity: entityHelperService.loggedIn]
-      return
-    }
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'leadeducator', model: [leadeducator: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'leadeducators', model: [leadeducators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeLeadEducator = {
     def breaking = functionService.breakEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
-    render template: 'leadeducator', model: [leadeducator: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
+    render template: 'leadeducators', model: [leadeducators: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addClients = {

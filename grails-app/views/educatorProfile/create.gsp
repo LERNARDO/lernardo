@@ -152,7 +152,7 @@
               <td width="105" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
               </td>
-              <td width=",210" valign="top" class="value">
+              <td width="210" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
