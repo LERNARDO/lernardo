@@ -89,7 +89,7 @@
               </td>
               <td valign="top" class="name"><g:message code="password"/></td>
               <td valign="top" class="value">
-                <g:link controller="profile" action="changePassword" id="${facility.id}">Ändern</g:link>
+                <g:link controller="profile" action="changePassword" id="${facility.id}"><g:message code="change"/></g:link>
               </td>
             </tr>
           </table>

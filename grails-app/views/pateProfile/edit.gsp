@@ -98,7 +98,7 @@
               </app:isOperator>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
-                <g:link controller="profile" action="changePassword" id="${pate.id}">Ändern</g:link>
+                <g:link controller="profile" action="changePassword" id="${pate.id}"><g:message code="change"/></g:link>
               </td>
 
               <td width="280" valign="middle">

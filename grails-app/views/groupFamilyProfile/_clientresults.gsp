@@ -7,8 +7,8 @@
           <tr>
             <td><ub:profileImage name="${entity.name}" width="65"/></td>
             <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><br/>
-            ${entity.profile.currentZip ?: '<div class="italic">Leer</div>'} ${entity.profile.currentCity ?: '<div class="italic">Leer</div>'}<br/>
-            ${entity.profile.currentStreet ?: '<div class="italic">Leer</div>'}
+            ${entity.profile.currentZip ?: '<div class="italic">'+message(code:'empty')+'</div>'} ${entity.profile.currentCity ?: '<div class="italic">'+message(code:'empty')+'</div>'}<br/>
+            ${entity.profile.currentStreet ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             <app:getNationalities nationality="${entity.profile.currentCountry}"/></td>
           </tr>
         </table>

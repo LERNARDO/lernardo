@@ -70,9 +70,9 @@
 
           <tr class="prop">
             <td width="270" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">leer</div>'}</td>
+            <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
             <td width="205" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            <td width="165" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">leer</div>'}</td>
+            <td width="165" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           </tr>
 
         </table>
@@ -89,7 +89,7 @@
 
           <tr class="prop">
             <td width="205" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">leer</div>'}</td>
+            <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
             <td width="170" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
 
@@ -195,17 +195,17 @@
     </app:isMeOrAdminOrOperator>
 
     <div class="zusatz">
-      <h5>Schulleistungungen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#performances');
+      <h5><g:message code="client.profile.schoolPerformance"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#performances');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Performance hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="showspinner('#performances2')">
           <table>
             <tr>
-              <td valign="middle">Datum:</td>
+              <td valign="middle"><g:message code="date"/>:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td valign="top">Text:</td>
+              <td valign="top"><g:message code="text"/>:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -221,17 +221,17 @@
     </div>
 
     <div class="zusatz">
-      <h5>Gesundheitseinträge <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#healths');
+      <h5><g:message code="client.profile.healthNotes"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#healths');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gesundheitseintrag hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="showspinner('#healths2')">
           <table>
             <tr>
-              <td valign="middle">Datum:</td>
+              <td valign="middle"><g:message code="date"/>:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td valign="top">Text:</td>
+              <td valign="top"><g:message code="text"/>:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -247,17 +247,17 @@
     </div>
 
     <div class="zusatz">
-      <h5>Erhaltene Materialien <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
+      <h5><g:message code="client.profile.materials"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2')">
           <table>
             <tr>
-              <td valign="middle">Datum:</td>
+              <td valign="middle"><g:message code="date"/>:</td>
               <td><g:datePicker name="date" value="" precision="day"/></td>
             </tr>
             <tr>
-              <td valign="top">Text:</td>
+              <td valign="top"><g:message code="text"/>:</td>
               <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
             </tr>
             <tr>
@@ -273,7 +273,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Eintritt und Austritt bei Sueninos <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
+      <h5><g:message code="client.profile.inOut"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2')">

@@ -98,7 +98,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="password"/></td>
             <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${operator.id}">Passwort ändern</g:link>
+              <g:link controller="profile" action="changePassword" id="${operator.id}"><g:message code="change"/></g:link>
             </td>
           </tr>
 

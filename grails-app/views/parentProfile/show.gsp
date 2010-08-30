@@ -39,7 +39,7 @@
         <tr>
           <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.maritalStatus"/></td>
           <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.languages"/></td>
-          <td width="220" valign="middle" class="name-show">Kommentar</td>
+          <td width="220" valign="middle" class="name-show"><g:message code="parent.profile.description"/></td>
           <td width="250" valign="middle" class="name-show"><g:message code="parent.profile.education"/></td>
         </tr>
 
@@ -93,13 +93,13 @@
             <app:getNationalities nationality="${parent.profile.currentCountry}"/>
           </td>
           <td width="105" valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td width="210" valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">Leer</div>'}
+            ${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
         </tr>
 
@@ -118,7 +118,7 @@
 
             <td width="280" valign="middle">
               <span class="bold"><g:message code="educator.profile.email"/>:</span>
-              ${fieldValue(bean: parent, field: 'user.email') ?: '<div class="italic">Leer</div>'}
+              ${fieldValue(bean: parent, field: 'user.email') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td valign="middle">
               <span class="bold"><g:message code="languageSelection"/>:</span>

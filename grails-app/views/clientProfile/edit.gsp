@@ -286,7 +286,7 @@
                 <g:message code="password"/>:
               </td>
               <td valign="top" class="value">
-                <g:link controller="profile" action="changePassword" id="${client.id}">Passwort ändern</g:link>
+                <g:link controller="profile" action="changePassword" id="${client.id}"><g:message code="change"/></g:link>
               </td>
             </tr>
           </table>

@@ -46,7 +46,7 @@
         </tr>
 
         <tr class="prop">
-          <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">Leer</div>'}</td>
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="210" align="top" class="value-show"><app:getNationalities nationality="${pate.profile.country}"/></td>
@@ -89,7 +89,7 @@
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></app:isOperator></h5>
         <div class="zusatz-add" id="godchildren" style="display:none">
 
-          Suche:<br/>
+          <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${pate.id}" before="showspinner('#remoteClients')"/>
         <div id="remoteClients"></div>
 

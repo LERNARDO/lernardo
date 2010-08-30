@@ -67,7 +67,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="parents" style="display:none">
 
-        Suche:<br/>
+        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteParents" action="remoteParents" id="${group.id}" before="showspinner('#remoteParents')"/>
         <div id="remoteParents"></div>
 
@@ -82,7 +82,7 @@
       return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
-        Suche:<br/>
+        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${group.id}" before="showspinner('#remoteClients')"/>
         <div id="remoteClients"></div>
 
@@ -97,7 +97,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="childs" style="display:none">
 
-        Suche:<br/>
+        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteChildren" action="remoteChildren" id="${group.id}" before="showspinner('#remoteChildren')"/>
         <div id="remoteChildren"></div>
 

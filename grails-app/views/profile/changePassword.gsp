@@ -17,11 +17,11 @@
         <g:form controller="profile" action="checkPassword" id="${entity.id}">
           <table cellpadding="0" cellspacing="0" border="0" id="settings-table">
             <tr>
-              <td class="topic"><g:message code="change.pwd"/><g:message code="change.pwd.new"/>:</td>
+              <td class="topic"><g:message code="change.pwd.new"/>:</td>
               <td><g:passwordField name="password"/></td>
             </tr>
             <tr>
-              <td class="topic"><g:message code="change.pwd"/><g:message code="change.pwd.new2"/>:</td>
+              <td class="topic"><g:message code="change.pwd.new2"/>:</td>
               <td><g:passwordField name="password2"/></td>
             </tr>
             <tr>

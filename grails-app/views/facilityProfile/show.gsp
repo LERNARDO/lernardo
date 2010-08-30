@@ -20,7 +20,7 @@
 
         <tr class="prop">
           <td width="290" valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
-          <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">leer</div>'}</td>
+          <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
         </tr>
 
         <tr class="prop">
@@ -43,9 +43,9 @@
 
         <tr class="prop">
           <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">leeer</div>'}</td>
-          <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">leer</div>'}</td>
-          <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">leer</div>'}</td>
-          <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">leer</div>'}</td>
+          <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+          <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
         </tr>
 
       </table>
@@ -94,7 +94,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagogen hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="educators" style="display:none">
 
-        Suche:<br/>
+        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteEducators" action="remoteEducators" id="${facility.id}" before="showspinner('#remoteEducators')"/>
         <div id="remoteEducators"></div>
 
@@ -115,7 +115,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
-        Suche:<br/>
+        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${facility.id}" before="showspinner('#remoteClients')"/>
         <div id="remoteClients"></div>
 
