@@ -218,3 +218,6 @@ profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtun
           'User':'User','Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte','Kind':'Kinder']
 profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
           'User':'Usuario','Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores','Kind':'Niños']
+
+dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittdatum']
+dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']

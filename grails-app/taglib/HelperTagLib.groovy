@@ -193,6 +193,16 @@ class HelperTagLib {
   }
 
   /*
+   * receives a dateType and renders either the german or spanish word for it     # hafo
+   */
+  def getDateType = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config.dateType_de[attrs.name]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config.dateType_es[attrs.name]
+  }
+  /*
    * outputs selectbox items for each language
    */
   def localeSelect = {attrs ->

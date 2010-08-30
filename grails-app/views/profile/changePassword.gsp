@@ -1,13 +1,13 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Passwort ändern</title>
+  <title><g:message code="change.pwd"/></title>
 </head>
 
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Passwort ändern</h1>
+    <h1><g:message code="change.pwd"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -17,17 +17,17 @@
         <g:form controller="profile" action="checkPassword" id="${entity.id}">
           <table cellpadding="0" cellspacing="0" border="0" id="settings-table">
             <tr>
-              <td class="topic">Neues Passwort:</td>
+              <td class="topic"><g:message code="change.pwd"/><g:message code="change.pwd.new"/>:</td>
               <td><g:passwordField name="password"/></td>
             </tr>
             <tr>
-              <td class="topic">Passwort wiederholen:</td>
+              <td class="topic"><g:message code="change.pwd"/><g:message code="change.pwd.new2"/>:</td>
               <td><g:passwordField name="password2"/></td>
             </tr>
             <tr>
               <td>
-                <g:submitButton name="checkPassword" value="Speichern"/>
-                <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}">Abbrechen</g:link>
+                <g:submitButton name="checkPassword" value="${message(code:'save')}"/>
+                <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}"><g:message code="cancel"/></g:link>
               </td>
               <td>&nbsp;</td>
             </tr>

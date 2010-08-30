@@ -1,31 +1,31 @@
 <head>
   <meta name="layout" content="private-cal"/>
-  <title>Übersicht</title>
+  <title><g:message code="profile.overview"/></title>
 </head>
 <body>
 
 <div class="headerGreen">
   <div class="second">
-    <h1>Glossar <a onclick="toggle('#glossar-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+    <h1><g:message code="profile.overview.glossary"/> <a onclick="toggle('#glossar-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
   </div>
 </div>
 <div class="boxGray" id="glossar-toggled">
   <div class="second" id="userlist-results">
-    <p>Bitte eine Auswahl treffen!</p>
+    <p><g:message code="profile.overview.glossaryLabel"/></p>
     <g:render template="glossary" model="[glossary: glossary]"/>
   </div>
 </div>
 
 <div class="headerGreen">
   <div class="second">
-    <h1>Suche <a onclick="toggle('#suche-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+    <h1><g:message code="profile.overview.search"/> <a onclick="toggle('#suche-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
   </div>
 </div>
 <div class="boxGray" id="suche-toggled">
   <div class="second">
 
     <div id="body-list">
-      Bitte einen Namen eingeben: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
+      <g:message code="profile.overview.searchLabel"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'profile', action:'searchMe']" before="showspinner('#membersearch-results')" />
 
       %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
       
@@ -53,7 +53,7 @@
 
 <div class="headerGreen">
   <div class="second">
-    <h1>Übersicht</h1>
+    <h1><g:message code="profile.overview"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -61,210 +61,210 @@
 
       %{--the first panel should only be visible to admins--}%
       <app:isAdmin>
-        <h1>Admin <a onclick="toggle('#admin-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+        <h1><g:message code="profile.overview.admin"/> <a onclick="toggle('#admin-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
         <div class="overview" id="admin-toggled">
           <div class="box">
-            <div class="bold">Betreiber (${allOperators})</div>
+            <div class="bold"><g:message code="operator"/> (${allOperators})</div>
             <g:link controller="operatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreiber.png')}" alt="Notiz" align="top"/></g:link>
-            <div><g:link controller="operatorProfile" action="list">Alle anzeigen</g:link></div>
-            <div><g:link controller="operatorProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="operatorProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+            <div><g:link controller="operatorProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </div>
           <div class="box">
-            <div class="bold">User (${allUsers})</div>
+            <div class="bold"><g:message code="user"/> (${allUsers})</div>
             <g:link controller="userProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_user.png')}" alt="Notiz" align="top"/></g:link>
-            <div><g:link controller="userProfile" action="list">Alle anzeigen</g:link></div>
-            <div><g:link controller="userProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="userProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+            <div><g:link controller="userProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </div>
           <div class="box">
-            <div class="bold">Verwaltung</div>
+            <div class="bold"><g:message code="management"/></div>
             <g:link controller="profile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_verwaltung.png')}" alt="Notiz" align="top"/></g:link>
-            <div><g:link controller="profile" action="list" params="[name:currentEntity.name]">Alle anzeigen</g:link></div>
-            %{--<div><g:link controller="userProfile" action="create">Neu anlegen</g:link></div>--}%
+            <div><g:link controller="profile" action="list" params="[name:currentEntity.name]"><g:message code="profile.overview.showAll"/></g:link></div>
+            %{--<div><g:link controller="userProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>--}%
           </div>
         </div>
         <div class="clear"></div>
       </app:isAdmin>
 
-      <h1>Personen <a onclick="toggle('#personen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+      <h1><g:message code="profile.overview.persons"/> <a onclick="toggle('#personen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="personen-toggled">
         <div class="box">
-          <div class="bold">Betreute (${allClients})</div>
+          <div class="bold"><g:message code="clients"/> (${allClients})</div>
           <g:link controller="clientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreuter.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="clientProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="clientProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="clientProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="clientProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Pädagogen (${allEducators})</div>
+          <div class="bold"><g:message code="educatos"/> (${allEducators})</div>
           <g:link controller="educatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paedagoge.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="educatorProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="educatorProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="educatorProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="educatorProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Erziehungsberechtigte (${allParents})</div>
+          <div class="bold"><g:message code="parents"/> (${allParents})</div>
           <g:link controller="parentProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_erziehungsberechtigte.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="parentProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="parentProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="parentProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="parentProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Kinder (${allChilds})</div>
+          <div class="bold"><g:message code="childrens"/> (${allChilds})</div>
           <g:link controller="childProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_kinder.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="childProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="childProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="childProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="childProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Paten (${allPates})</div>
+          <div class="bold"><g:message code="paten"/> (${allPates})</div>
           <g:link controller="pateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paten.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="pateProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="pateProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="pateProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="pateProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Partner (${allPartners})</div>
+          <div class="bold"><g:message code="partners"/> (${allPartners})</div>
           <g:link controller="partnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_partner.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="partnerProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="partnerProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="partnerProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="partnerProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
       </div>
       <div class="clear"></div>
 
-      <h1>Andere <a onclick="toggle('#andere-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+      <h1><g:message code="profile.overview.others"/> <a onclick="toggle('#andere-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="andere-toggled">
         <div class="box">
-          <div class="bold">Einrichtungen (${allFacilities})</div>
+          <div class="bold"><g:message code="facilities"/> (${allFacilities})</div>
           <g:link controller="facilityProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_einrichtung.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="facilityProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="facilityProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="facilityProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="facilityProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Ressourcen (${allResources})</div>
+          <div class="bold"><g:message code="resources"/> (${allResources})</div>
           <g:link controller="resourceProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_resourcen.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="resourceProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="resourceProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="resourceProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="resourceProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold">Gewichtungsmethoden (${allMethods})</div>
+          <div class="bold"><g:message code="vMethods"/> (${allMethods})</div>
           <g:link controller="method" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_gewichtung.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="method" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="method" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isAdmin>
-            <div><g:link controller="method" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="method" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isAdmin>
         </div>
         %{--<div class="box">
           <div class="bold">Themen (${allThemes})</div>
           <g:link controller="themeProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themen.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="themeProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="themeProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           --}%%{-- only created by lead educator --}%%{--
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
-            <div><g:link controller="themeProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="themeProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:hasRoleOrType>
         </div>--}%
       </div>
       <div class="clear"></div>
 
 
-      <h1>Gruppen <a onclick="toggle('#gruppen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+      <h1><g:message code="profile.overview.groups"/> <a onclick="toggle('#gruppen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="gruppen-toggled">
         <div class="box">
-          <div class="bold">Colonias (${allColonias})</div>
+          <div class="bold"><g:message code="colonias"/> (${allColonias})</div>
           <g:link controller="groupColonyProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_colonia.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupColonyProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="groupColonyProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
-            <div><g:link controller="groupColonyProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="groupColonyProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:hasRoleOrType>
         </div>
         <div class="box">
-          <div class="bold">Familien (${allFamilies})</div>
+          <div class="bold"><g:message code="groupFamilies"/> (${allFamilies})</div>
           <g:link controller="groupFamilyProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_familie.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupFamilyProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="groupFamilyProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
-            <div><g:link controller="groupFamilyProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="groupFamilyProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:hasRoleOrType>
         </div>
         <div class="box">
-          <div class="bold">Sponsorennetzwerke (${allPartnerGroups})</div>
+          <div class="bold"><g:message code="groupPartners"/> (${allPartnerGroups})</div>
           <g:link controller="groupPartnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_sponsorennetzwerk.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupPartnerProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="groupPartnerProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
-            <div><g:link controller="groupPartnerProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="groupPartnerProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:hasRoleOrType>
         </div>
         <div class="box">
-          <div class="bold">Betreutengruppen (${allClientGroups})</div>
+          <div class="bold"><g:message code="groupClients"/> (${allClientGroups})</div>
           <g:link controller="groupClientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreutengruppe.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupClientProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="groupClientProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
-            <div><g:link controller="groupClientProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="groupClientProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:hasRoleOrType>
         </div>
       </div>
       <div class="clear"></div>
 
-      <h1>Planung <a onclick="toggle('#planung-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
+      <h1><g:message code="profile.overview.plan"/> <a onclick="toggle('#planung-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="planung-toggled">
         <div class="box">
-          <div class="bold">Aktivitätsvorlagen (${allActivityTemplates})</div>
+          <div class="bold"><g:message code="activityTemplate"/> (${allActivityTemplates})</div>
           <g:link controller="templateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsvorlage.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="templateProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="templateProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isEducator entity="${currentEntity}">
-            <div><g:link controller="templateProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="templateProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isEducator>
         </div>
         <div class="box">
-          <div class="bold">Themenraumaktivitäten (${allActivities})</div>
+          <div class="bold"><g:message code="activityInstance"/> (${allActivities})</div>
           <g:link controller="activity" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themenraum.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="activity" action="list">Alle anzeigen</g:link></div>
-          %{--<div><g:link controller="template" action="create">Neu anlegen</g:link></div>--}%
+          <div><g:link controller="activity" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+          %{--<div><g:link controller="template" action="create"><g:message code="profile.overview.createNew"/></g:link></div>--}%
         </div>
         <div class="box">
-          <div class="bold">Aktivitätsblockvorlagen (${allActivityTemplateGroups})</div>
+          <div class="bold"><g:message code="groupActivityTemplate"/> (${allActivityTemplateGroups})</div>
           <g:link controller="groupActivityTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblockvorlage.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupActivityTemplateProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="groupActivityTemplateProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isEducator entity="${currentEntity}">
-            <div><g:link controller="groupActivityTemplateProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="groupActivityTemplateProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isEducator>
         </div>
         <div class="box">
-          <div class="bold">Aktivitätsblöcke (${allActivityGroups})</div>
+          <div class="bold"><g:message code="groupActivity"/> (${allActivityGroups})</div>
           <g:link controller="groupActivityProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblock.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupActivityProfile" action="list">Alle anzeigen</g:link></div>
-          %{--<div><g:link controller="groupActivityProfile" action="create">Neu anlegen</g:link></div>--}%
+          <div><g:link controller="groupActivityProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+          %{--<div><g:link controller="groupActivityProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>--}%
         </div>
         <div class="box">
-          <div class="bold">Projektvorlagen (${allProjectTemplates})</div>
+          <div class="bold"><g:message code="projectTemplate"/> (${allProjectTemplates})</div>
           <g:link controller="projectTemplateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_projektvorlage.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="projectTemplateProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="projectTemplateProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isEducator entity="${currentEntity}">
-            <div><g:link controller="projectTemplateProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="projectTemplateProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isEducator>
         </div>
         <div class="box">
-          <div class="bold">Projekte (${allProjects})</div>
+          <div class="bold"><g:message code="projects"/> (${allProjects})</div>
           <g:link controller="projectProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_projekte.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="projectProfile" action="list">Alle anzeigen</g:link></div>
-          %{--<div>Neu anlegen</div>--}%
+          <div><g:link controller="projectProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+          %{--<div><g:message code="profile.overview.createNew"/></div>--}%
         </div>
         <div class="box">
-          <div class="bold">Themen (${allThemes})</div>
+          <div class="bold"><g:message code="themes"/> (${allThemes})</div>
           <g:link controller="themeProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themen.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="themeProfile" action="list">Alle anzeigen</g:link></div>
+          <div><g:link controller="themeProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           %{-- only created by lead educator --}%
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="[]">
-            <div><g:link controller="themeProfile" action="create">Neu anlegen</g:link></div>
+            <div><g:link controller="themeProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:hasRoleOrType>
         </div>
       </div>

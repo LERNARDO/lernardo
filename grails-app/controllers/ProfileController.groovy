@@ -273,7 +273,8 @@ class ProfileController {
     }
     List searchList = filterService.findUsers(params.name)
     if (searchList.size() == 0) {
-      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      // render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
       return
     }
     else {

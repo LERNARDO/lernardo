@@ -1,7 +1,7 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Liste aller Profile</title>
+  <title><g:message code="profile.list"/></title>
   %{--  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
     <script type="text/javascript">
       $(document).ready(function()
@@ -31,13 +31,13 @@
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Liste aller Profile</h1>
+    <h1><g:message code="profile.list"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
     <div id="body-list">
-      <p>${entityCount} Profile gefunden</p>
+      <p>${entityCount} <g:message code="profile.list.c_total"/></p>
 
       <div id="select-box">
         <g:form name="form1" action="list">
