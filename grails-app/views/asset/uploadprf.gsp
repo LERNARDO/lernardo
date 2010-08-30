@@ -1,27 +1,27 @@
 <head>
-  <title>Profilbild hochladen</title>
+  <title><g:message code="profile.picture.title"/></title>
   <meta name="layout" content="private" />
 </head>
 <body>
   <div class="headerGreen">
     <div class="second">
-      <h1>Profilbild ändern</h1>
+      <h1><g:message code="profile.picture.change"/></h1>
     </div>
   </div>
   <div class="boxGray">
     <div class="second">
       <g:uploadForm controller="asset" action="putprf" params="[entity: entity.name]">
-        <p>Bitte ein Bild auswählen:<br/>
+        <p><g:message code="profile.picture.select"/>:<br/>
         <input size="40" type="file" name="asset"></p>
 
-        <p>Zur optimalen Darstellung ist ein Bildformat von 180 x 233 px empfehlenswert.</p>
+        <p><g:message code="profile.picture.selectInfo"/></p>
 
         <div class="buttons">
-          <g:submitButton name="submit" value="Speichern"/>
+          <g:submitButton name="submit" value="${message(code:'save')}"/>
           <g:if test="${entity.assets}">
-            <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}">Löschen</g:link>
+            <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>
           </g:if>
-          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">Abbrechen</g:link>
+          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>
           <div class="spacer"></div>
         </div>
         

@@ -201,7 +201,7 @@
               <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="resource.profile.class"/>:</td>
+              <td><g:message code="resource.profile.classification"/>:</td>
               <td><g:select name="classification" from="${[message(code:'resource.profile.sel0'), message(code:'resource.profile.sel1'), message(code:'resource.profile.sel2')]}" value=""/></td>
             </tr>
           </table>
