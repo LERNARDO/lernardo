@@ -183,6 +183,8 @@ class ProjectProfileController {
 
     Date tperiodStart = params.startDate
     Date tperiodEnd = params.endDate
+    params.endDate.setHours(23);
+    params.endDate.setMinutes(59);
 
     Calendar tcalendarStart = new GregorianCalendar();
     tcalendarStart.setTime(tperiodStart);

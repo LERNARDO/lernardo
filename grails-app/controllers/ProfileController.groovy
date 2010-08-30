@@ -288,6 +288,10 @@ class ProfileController {
   def showNews = {
     Entity entity = Entity.get(params.id)
 
+    Calendar calendar = Calendar.getInstance()
+    TimeZone timeZone = calendar.getTimeZone()
+    //println timeZone
+
     SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd")
 
     List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'desc'])
@@ -316,7 +320,8 @@ class ProfileController {
     return ['entity': entity,
             'eventsToday': eventsToday,
             'eventsYesterday': eventsYesterday,
-            'eventsTomorrow': eventsTomorrow]
+            'eventsTomorrow': eventsTomorrow,
+            'timeZone': timeZone]
   }
 
   /*

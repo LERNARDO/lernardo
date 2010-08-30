@@ -41,7 +41,7 @@
           <tr>
             <td colspan="3" valign="top" class="value">
               <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-              <fckeditor:editor name="description" height="200" toolbar="Post" fileBrowser="default">
+              <fckeditor:editor name="description" height="200" toolbar="Basic" fileBrowser="default">
                 ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
               </fckeditor:editor>
               %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="6" cols="125" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>--}%

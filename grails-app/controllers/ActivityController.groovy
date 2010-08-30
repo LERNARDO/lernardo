@@ -247,6 +247,8 @@ class ActivityController {
 
     Date periodStart = params.periodStart
     Date periodEnd = params.periodEnd
+    params.periodEnd.setHours(23);
+    params.periodEnd.setMinutes(59);
 
     Calendar calendarStart = new GregorianCalendar();
     calendarStart.setTime(periodStart);

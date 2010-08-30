@@ -108,13 +108,13 @@ class BootStrap {
     EntityType etUser = metaDataService.etUser
 
     // system admin users
-    if (!Entity.findByName('sueninosadmin')) {
-      entityHelperService.createEntityWithUserAndProfile("sueninosadmin", etUser, "admin@sueninos.org", "Sueninos Admin") {Entity ent ->
+    if (!Entity.findByName('admin')) {
+      entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@uenterprise.de", "Admin") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.systemAdminRole)
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
         UserProfile prf = (UserProfile)ent.profile
-        prf.firstName = "Sueninos"
+        prf.firstName = "System"
         prf.lastName = "Admin"
     }
     }
@@ -162,7 +162,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyEducator" + i)) {
-        entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@sueninos.org", "dummyEducator" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@sueninos.org", "dummyEducator" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           EducatorProfile prf = (EducatorProfile)ent.profile
           prf.gender = generator.nextInt(2) + 1
@@ -189,6 +189,7 @@ class BootStrap {
           prf.employment = "DummyEmployment"
           prf.addToLanguages((generator.nextInt(14) + 1).toString())
         }
+        new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltWorking).save()
       }
     }
 
@@ -237,7 +238,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyClient" + i)) {
-        entityHelperService.createEntityWithUserAndProfile("dummyClient" + i, etClient, "dummyClient" + i + "@sueninos.org", "dummyClient" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyClient" + i, etClient, "dummyClient" + i + "@sueninos.org", "dummyClient" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ClientProfile prf = (ClientProfile)ent.profile
           prf.firstName = "DummyFirstname"
@@ -267,6 +268,7 @@ class BootStrap {
           if (prf.support)
             prf.supportDescription = "DummyDescription"
         }
+        new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltGroupMemberClient).save()
       }
     }
 

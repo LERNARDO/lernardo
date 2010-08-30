@@ -30,7 +30,8 @@ future HTML5 doctype
         minDate: new Date(1900, 1, 1),
         maxDate: new Date(),
         firstDay: 1,
-        yearRange: 'c-99:c+99'});
+        yearRange: 'c-99:c+99',
+        showMonthAfterYear: true});
 
       $(".datepicker").datepicker({
         changeMonth: true,
