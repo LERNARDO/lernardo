@@ -1,12 +1,12 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Sponsorennetzwerk bearbeiten</title>
+  <title><g:message code="groupPartner.profile.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Sponsorennetzwerk bearbeiten</h1>
+    <h1><g:message code="groupPartner.profile.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">

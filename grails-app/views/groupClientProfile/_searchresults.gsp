@@ -11,7 +11,7 @@
 
       <div class="member-info">
         <div class="member-name"><g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">${searchInstance.profile.fullName}</g:link></div>
-        <div class="member-uni">${searchInstance.type.name}</div>
+        <div class="member-uni"><app:getProfileTypeName name="${searchInstance.type.name}"/></div>
         <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" />
       </div>
 
@@ -58,5 +58,5 @@
 
 </g:if>
 <g:else>
-  <span class="italic red">Keine Treffer!</span>
+  <span class="italic red"><g:message code="groupClient.clients.notFound"/>!</span>
 </g:else>

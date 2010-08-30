@@ -1,17 +1,17 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Sponsorennetzwerke</title>
+  <title><g:message code="groupPartners"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Sponsorennetzwerke</h1>
+    <h1><g:message code="groupPartners"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
 
-    <p>${groupTotal} Sponsorennetzwerke insgesamt vorhanden</p>
+    <p>${groupTotal} <g:message code="groupPartner.profile.c_total"/></p>
 
     <table class="default-table">
       <thead>
@@ -36,7 +36,7 @@
 
     <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neues Sponsorennetzwerk anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="groupPartner.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:hasRoleOrType>

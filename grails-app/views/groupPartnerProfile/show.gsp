@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${group.profile.fullName}</title>
+  <title><g:message code="groupPartner"/> - ${group.profile.fullName}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${group.profile.fullName}</h1>
+    <h1><g:message code="groupPartner"/> - ${group.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -44,7 +44,7 @@
     </app:hasRoleOrType>
 
     <div class="zusatz">
-      <h5>Partner <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="partners"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupPartnerProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>

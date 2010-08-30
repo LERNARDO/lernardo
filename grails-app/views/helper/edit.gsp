@@ -1,12 +1,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Hilfethema bearbeiten</title>
+  <title><g:message code="helper.topic.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Hilfethema bearbeiten</h1>
+    <h1><g:message code="helper.topic.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -23,12 +23,12 @@
         <tbody>
 
         <tr>
-          <td class="label">Titel:</td>
+          <td class="label"><g:message code="title"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable${helperInstance.constraints.title.maxSize}" name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title').decodeHTML()}"/></td>
         </tr>
 
         <tr>
-          <td class="label">Inhalt:</td>
+          <td class="label"><g:message code="text"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
             <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
             <fckeditor:editor name="content" id="content" width="680" height="300" toolbar="Post" fileBrowser="default">
@@ -46,9 +46,9 @@
       </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGreen" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');">Löschen</g:link>
-        <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGreen" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
+        <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

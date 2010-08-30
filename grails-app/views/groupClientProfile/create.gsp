@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreutengruppe anlegen</title>
+  <title><g:message code="groupClient.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreutengruppe anlegen</h1>
+    <h1><g:message code="groupClient.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

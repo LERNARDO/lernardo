@@ -1,17 +1,17 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreutengruppen</title>
+  <title><g:message code="groupClients"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Betreutengruppen</h1>
+    <h1><g:message code="groupClients"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
 
-    <p>${groupTotal} Betreutengruppen insgesamt vorhanden</p>
+    <p>${groupTotal} <g:message code="groupClient.profile.c_total"/></p>
 
     <table class="default-table">
       <thead>
@@ -36,7 +36,7 @@
 
     <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Betreutengruppe anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="groupClient.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:hasRoleOrType>

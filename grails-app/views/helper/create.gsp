@@ -1,12 +1,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Hilfethema erstellen</title>
+  <title><g:message code="helper.topic.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Hilfethema erstellen</h1>
+    <h1><g:message code="helper.topic.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -23,12 +23,12 @@
         <tbody>
 
         <tr>
-          <td class="label">Titel:</td>
+          <td class="label"><g:message code="title"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
         </tr>
 
         <tr>
-          <td class="label">Inhalt:</td>
+          <td class="label"><g:message code="text"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
             <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
             <fckeditor:editor name="content" id="content" width="500" height="300" toolbar="Post" fileBrowser="default">
@@ -46,8 +46,8 @@
       </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
+        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
+        <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 
