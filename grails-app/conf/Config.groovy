@@ -227,3 +227,5 @@ helpProfileType_es = ['all':'Todos','Betreiber':'Operador','Pädagoge':'Pedagogo
 
 dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittdatum']
 dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']
+
+status_de = [fertig]
