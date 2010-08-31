@@ -202,6 +202,7 @@ class HelperTagLib {
     if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.dateType_es[attrs.name]
   }
+
   /*
    * outputs selectbox items for each language
    */
