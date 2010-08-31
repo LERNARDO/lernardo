@@ -65,7 +65,7 @@ class EducatorProfileController {
     // find colonia of this educator
     //Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
     
-    return [educator: educator, entity: entity, enlistedBy: enlistedBy, colony: colony]
+    return [educator: educator, entity: entity, enlistedBy: enlistedBy/*, colony: colony*/]
   }
 
   def del = {

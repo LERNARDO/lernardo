@@ -7,7 +7,7 @@
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/>Tipp:</span> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
+      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/>:</span> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
     </div>
   </div>
 </g:if>
