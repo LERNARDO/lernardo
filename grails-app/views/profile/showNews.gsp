@@ -8,7 +8,7 @@
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="tipp"/> </span> <g:message code="profile.showNews.tipp"/>
+      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/> </span> <g:message code="profile.showNews.hint"/>
     </div>
   </div>
 </g:if>
