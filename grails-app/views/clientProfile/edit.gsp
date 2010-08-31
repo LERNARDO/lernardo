@@ -144,10 +144,10 @@
               </td>
               <td width="250" valign="top" class="value">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${client?.profile?.languages}"/>
+                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${client?.profile?.languages}"/>
+                  <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
                 </g:if>
               </td>
               <td width="230" valign="top" class="value">

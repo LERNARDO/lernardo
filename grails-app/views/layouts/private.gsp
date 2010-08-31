@@ -31,7 +31,9 @@ future HTML5 doctype
         maxDate: new Date(),
         firstDay: 1,
         yearRange: 'c-99:c+99',
-        showMonthAfterYear: true});
+        showMonthAfterYear: true,
+        appendText: ' (DD. MM. YYYY)',
+        autoSize: true});
 
       $(".datepicker").datepicker({
         changeMonth: true,

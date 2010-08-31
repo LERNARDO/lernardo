@@ -203,7 +203,6 @@ class ActivityController {
    * saves a batch of theme room activities between a certain time range
    */
   def save = {ActivityCommand ac->
-
     Entity currentEntity = entityHelperService.loggedIn
 
     if (ac.hasErrors()) {
@@ -355,10 +354,15 @@ class ActivityController {
     def educators = Entity.findAllByType(metaDataService.etEducator)
     def clients = Entity.findAllByType(metaDataService.etClient)
 
+    List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
+    List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+
     return ['activity': activity,
             'facilities': facilities,
             'educators': educators,
-            'clients': clients]
+            'clients': clients,
+            'currentEducators': currentEducators,
+            'currentClients': currentClients]
   }
 
   def update = {
@@ -392,7 +396,23 @@ class ActivityController {
       redirect action: 'show', id: activity.id
     }
     else {
-      render view: 'edit', model: [activityInstance: activity]
+      // get a list of facilities the current entity is working in
+      def facilities = []
+      if (currentEntity.type.name == metaDataService.etEducator.name)
+        facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+      else
+        facilities = Entity.findAllByType(metaDataService.etFacility)
+      def educators = Entity.findAllByType(metaDataService.etEducator)
+      def clients = Entity.findAllByType(metaDataService.etClient)
+
+      List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
+      List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+      render view: 'edit', model: ['activity': activity,
+                                   'facilities': facilities,
+                                   'educators': educators,
+                                   'clients': clients,
+                                   'currentEducators': currentEducators,
+                                   'currentClients': currentClients]
     }
 
   }
@@ -432,6 +452,7 @@ class ActivityCommand {
   Date periodEnd
 
   String facility
+  String educators
 
   Boolean monday
   Boolean tuesday
@@ -481,26 +502,27 @@ class ActivityCommand {
       return pe >= ac.periodStart
     })
     facility(nullable: false)
+    educators(nullable: false)
     mondayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.mondayStartHour
+      return pe.toInteger() >= ac.mondayStartHour.toInteger()
     })
     tuesdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.tuesdayStartHour
+      return pe.toInteger() >= ac.tuesdayStartHour.toInteger()
     })
     wednesdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.wednesdayStartHour
+      return pe.toInteger() >= ac.wednesdayStartHour.toInteger()
     })
     thursdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.thursdayStartHour
+      return pe.toInteger() >= ac.thursdayStartHour.toInteger()
     })
     fridayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.fridayStartHour
+      return pe.toInteger() >= ac.fridayStartHour.toInteger()
     })
     saturdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.saturdayStartHour
+      return pe.toInteger() >= ac.saturdayStartHour.toInteger()
     })
     sundayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.sundayStartHour
+      return pe.toInteger() >= ac.sundayStartHour.toInteger()
     })
     weekdays(validator: {wd, pc ->
       return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)})

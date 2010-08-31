@@ -77,18 +77,18 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}"/>
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}"/>
+                <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
               </g:if>
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${educator?.profile?.languages}"/>
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${educator?.profile?.languages}"/>
+                <g:select id="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
               </g:if>
             </td>
           </tr>

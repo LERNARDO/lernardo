@@ -51,10 +51,10 @@
             <g:select class="drop-down-205" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
           </td>
           <td valign="top" class="value ${hasErrors(bean: activity, field: 'clients', 'errors')}">
-            <g:select multiple="true" optionKey="id" optionValue="profile" from="${clients}" size="10" class="long-field" name="clients"/>
+            <g:select multiple="true" optionKey="id" optionValue="profile" from="${clients}" size="10" class="long-field" name="clients" value="${currentClients}"/>
           </td>
           <td valign="top" class="value ${hasErrors(bean: activity, field: 'educators', 'errors')}">
-            <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/>
+            <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators" value="${currentEducators}"/>
           </td>
         </tr>
 

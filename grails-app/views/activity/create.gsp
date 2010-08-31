@@ -46,7 +46,7 @@
 
         <tr>
           <td class="value"><g:select class="drop-down-220 ${hasErrors(bean: ac, field: 'facility', 'errors')}" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/></td>
-          <td class="value"><g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/></td>
+          <td class="value"><g:select class="${hasErrors(bean: ac, field: 'educators', 'errors')}" multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators"/></td>
           <td class="value"><g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="resources"/></td>
         </tr>
 
