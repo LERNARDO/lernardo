@@ -355,10 +355,15 @@ class ActivityController {
     def educators = Entity.findAllByType(metaDataService.etEducator)
     def clients = Entity.findAllByType(metaDataService.etClient)
 
+    List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
+    List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+
     return ['activity': activity,
             'facilities': facilities,
             'educators': educators,
-            'clients': clients]
+            'clients': clients,
+            'currentEducators': currentEducators,
+            'currentClients': currentClients]
   }
 
   def update = {
@@ -392,7 +397,23 @@ class ActivityController {
       redirect action: 'show', id: activity.id
     }
     else {
-      render view: 'edit', model: [activityInstance: activity]
+      // get a list of facilities the current entity is working in
+      def facilities = []
+      if (currentEntity.type.name == metaDataService.etEducator.name)
+        facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+      else
+        facilities = Entity.findAllByType(metaDataService.etFacility)
+      def educators = Entity.findAllByType(metaDataService.etEducator)
+      def clients = Entity.findAllByType(metaDataService.etClient)
+
+      List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
+      List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+      render view: 'edit', model: ['activity': activity,
+                                   'facilities': facilities,
+                                   'educators': educators,
+                                   'clients': clients,
+                                   'currentEducators': currentEducators,
+                                   'currentClients': currentClients]
     }
 
   }
