@@ -432,6 +432,7 @@ class ActivityCommand {
   Date periodEnd
 
   String facility
+  String educators
 
   Boolean monday
   Boolean tuesday
@@ -481,6 +482,7 @@ class ActivityCommand {
       return pe >= ac.periodStart
     })
     facility(nullable: false)
+    educators(nullable: false)
     mondayEndHour(nullable: true, validator: {pe, ac ->
       return pe >= ac.mondayStartHour
     })
