@@ -203,7 +203,6 @@ class ActivityController {
    * saves a batch of theme room activities between a certain time range
    */
   def save = {ActivityCommand ac->
-
     Entity currentEntity = entityHelperService.loggedIn
 
     if (ac.hasErrors()) {
@@ -505,25 +504,25 @@ class ActivityCommand {
     facility(nullable: false)
     educators(nullable: false)
     mondayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.mondayStartHour
+      return pe.toInteger() >= ac.mondayStartHour.toInteger()
     })
     tuesdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.tuesdayStartHour
+      return pe.toInteger() >= ac.tuesdayStartHour.toInteger()
     })
     wednesdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.wednesdayStartHour
+      return pe.toInteger() >= ac.wednesdayStartHour.toInteger()
     })
     thursdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.thursdayStartHour
+      return pe.toInteger() >= ac.thursdayStartHour.toInteger()
     })
     fridayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.fridayStartHour
+      return pe.toInteger() >= ac.fridayStartHour.toInteger()
     })
     saturdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.saturdayStartHour
+      return pe.toInteger() >= ac.saturdayStartHour.toInteger()
     })
     sundayEndHour(nullable: true, validator: {pe, ac ->
-      return pe >= ac.sundayStartHour
+      return pe.toInteger() >= ac.sundayStartHour.toInteger()
     })
     weekdays(validator: {wd, pc ->
       return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)})

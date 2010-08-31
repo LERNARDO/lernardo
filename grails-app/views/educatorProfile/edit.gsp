@@ -314,7 +314,7 @@
               <label for="locale">
                 <g:message code="languageSelection"/>
               </label>:
-            <app:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>
+              <app:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>
             </td>
           </tr>
         </table>
