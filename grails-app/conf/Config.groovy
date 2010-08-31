@@ -219,5 +219,13 @@ profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtun
 profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
           'User':'Usuario','Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores','Kind':'Niños']
 
+// helper: "Alle, Pädagogen, ? Leit. Pädagogen ?, Betreiber, Betreute, Erziehungsberechtigte, Paten, Partner"
+helpProfileType_de = ['all':'Alle','Betreiber':'Betreiber','Pädagoge':'Pädagogen','Betreuter':'Betreute',
+          'Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte']
+helpProfileType_es = ['all':'Todos','Betreiber':'Operador','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
+          'Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores']
+
 dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittdatum']
 dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']
+
+status_de = [fertig]

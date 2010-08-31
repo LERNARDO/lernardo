@@ -12,7 +12,7 @@
   <div class="second">
 
     <g:if test="${helperInstanceList.size() > 0}">
-      <p>Es gibt insgesamt ${helperInstanceList.size()} Hilfethemen für "${entity.type.name}".</p>
+      <p> ${helperInstanceList.size()} <g:message code="helper.topic.c_total"/> </p>
     </g:if>
     <g:else>
       <g:message code="helper.topic.empty"/>.

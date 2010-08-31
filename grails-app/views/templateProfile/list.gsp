@@ -1,7 +1,7 @@
 <%@ page import="at.openfactory.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
-  <title>Lernardo Aktivitätsvorlagen</title>
+  <title><g:message code="activityTemplates"/></title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Aktivitätsvorlagen</h1>
+    <h1><g:message code="activityTemplates"/></h1>
   </div>
 </div>
 
@@ -25,7 +25,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${templateCount} Aktivitätsvorlage(n) gefunden</p>
+    <p>${templateCount} <g:message code="activityTemplate.c_total"/></p>
 
     <table class="default-table">
       <thead>
@@ -55,7 +55,7 @@
 
     <div class="buttons">
       <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
-        <g:link class="buttonGreen" controller="templateProfile" action="create">Aktivitätsvorlage erstellen</g:link>
+        <g:link class="buttonGreen" controller="templateProfile" action="create"><g:message code="activityTemplate.create"/></g:link>
         <div class="spacer" style="margin-bottom: 5px"></div>
       </app:hasRoleOrType>
     </div>

@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
@@ -23,7 +24,7 @@
         <tbody>
 
         <tr>
-          <td class="label"><g:message code="title"/>:</td>
+          <td class="label"><g:message code="helper.topic.title"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable${helperInstance.constraints.title.maxSize}" name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title').decodeHTML()}"/></td>
         </tr>
 
@@ -38,16 +39,25 @@
         </tr>
 
         <tr>
-          <td class="label">Für:</td>
-          <td class="value ${hasErrors(bean: helperInstance, field: 'type', 'errors')}"><g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td>
+          <td class="label">Für: </td>
+          <td class="value ${hasErrors(bean: helperInstance, field: 'type', 'errors')}">
+            %{-- <g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
+            --}%
+            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+              <g:select id="type" name="type" from="${grailsApplication.config.helpProfileType_es}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
+            </g:if>
+            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+              <g:select id="type" name="type" from="${grailsApplication.config.helpProfileType_de}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
+            </g:if>
+          </td>
         </tr>
-
+                                                                                                                                                                         "
         </tbody>
       </table>
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGreen" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
+        <g:link class="buttonRed" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
         <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

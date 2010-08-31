@@ -1,12 +1,12 @@
 <head>
-  <title>Aktivitätsvorlage</title>
+  <title><g:message code="activityTemplate"/></title>
   <meta name="layout" content="private"/>
 </head>
 
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsvorlage</h1>
+    <h1><g:message code="activityTemplate"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -71,14 +71,14 @@
       %{--<g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>--}%
-        <g:link class="buttonGreen" action="create" id="${template.id}">Vorlage duplizieren</g:link>
+        <g:link class="buttonGreen" action="create" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
       </app:hasRoleOrType>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5>Planbare Ressourcen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
+      <h5><g:message code="resource.profile"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
@@ -105,7 +105,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Bewertungssmethoden <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#methods');
+      <h5><g:message code="vMethods"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#methods');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gewichtungsmethode hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="methods" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2')">

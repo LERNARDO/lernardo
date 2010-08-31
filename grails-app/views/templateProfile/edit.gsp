@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsvorlage bearbeiten</title>
+  <title><g:message code="activityTemplate.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsvorlage bearbeiten</h1>
+    <h1><g:message code="activityTemplate.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">
