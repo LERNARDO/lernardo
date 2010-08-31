@@ -63,7 +63,7 @@ class EducatorProfileController {
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
     // find colonia of this educator
-    Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
+    //Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
     
     return [educator: educator, entity: entity, enlistedBy: enlistedBy, colony: colony]
   }
