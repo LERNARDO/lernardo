@@ -54,7 +54,7 @@
             <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock instanzieren</g:link>
           </g:if>
       </app:hasRoleOrType>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <g:link class="buttonGray" action="list"><g:message code="backtolist"/></g:link>
       <div class="spacer"></div>
     </div>
 

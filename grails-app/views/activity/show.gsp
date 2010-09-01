@@ -95,7 +95,7 @@
         <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
         <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: activity.id)}" id="${activity.id}">Löschen</g:link>
       </app:hasRoleOrType>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <g:link class="buttonGray" action="list"><g:message code="backtolist"/></g:link>
       <div class="spacer"></div>
     </div>
 

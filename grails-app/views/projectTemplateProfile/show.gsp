@@ -49,7 +49,7 @@
         </g:if>
       </app:hasRoleOrType>
       <g:link class="buttonGreen" action="create" id="${projectTemplate.id}">Vorlage duplizieren</g:link>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:link class="buttonGray" action="list"><g:message code="backtolist"/></g:link>
       <div class="spacer"></div>
     </div>
 

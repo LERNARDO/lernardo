@@ -156,24 +156,6 @@ class GroupFamilyProfileController {
     render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
-  def updateFamilyCount = {
-    def group = Entity.get(params.id)
-
-    def c = Link.createCriteria()
-    def results = c.list {
-      eq("target", group)
-      or {
-        eq("type", metaDataService.ltGroupMemberParent)
-        eq("type", metaDataService.ltGroupFamily)
-        eq("type", metaDataService.ltGroupMemberChild)
-      }
-    }
-
-    int totalLinks = results.size()
-
-    render template: 'familycount', model: [totalLinks: totalLinks]
-  }
-
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     render template: 'parents', model: [parents: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
@@ -291,6 +273,28 @@ class GroupFamilyProfileController {
     else {
       render(template: 'childrenresults', model: [results: results, group: params.id])
     }
+  }
+
+  def updateFamilyCount = {
+    def group = Entity.get(params.id)
+
+    def c = Link.createCriteria()
+    def results = c.list {
+      eq("target", group)
+      or {
+        eq("type", metaDataService.ltGroupMemberParent)
+        eq("type", metaDataService.ltGroupFamily)
+        eq("type", metaDataService.ltGroupMemberChild)
+      }
+    }
+
+    int totalLinks = results.size()
+
+    render template: 'familycount', model: [totalLinks: totalLinks]
+  }
+
+  def bla = {
+    render "two times?"
   }
 
 }

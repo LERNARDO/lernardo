@@ -103,7 +103,7 @@
       <app:isMeOrAdminOrOperator entity="${partner}">
         <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
       </app:isMeOrAdminOrOperator>
-      <g:link class="buttonGray" action="list">Zurück</g:link>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 

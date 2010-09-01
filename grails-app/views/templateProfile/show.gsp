@@ -73,7 +73,7 @@
       </g:if>--}%
         <g:link class="buttonGreen" action="create" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
       </app:hasRoleOrType>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:link class="buttonGray" action="list"><g:message code="backtolist"/></g:link>
       <div class="spacer"></div>
     </div>
 
