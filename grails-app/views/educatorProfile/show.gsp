@@ -33,7 +33,7 @@
             ${fieldValue(bean: educator, field: 'profile.firstName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
           </td>
           <td width="210" valign="top" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.lastName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            <g:link action="show" id="${educator.id}" params="[entity:educator.id]">${educator.profile.lastName}</g:link>
           </td>
           <td valign="top" class="value-show">
             <g:formatDate date="${educator.profile.birthDate}" format="dd. MM. yyyy"/>
