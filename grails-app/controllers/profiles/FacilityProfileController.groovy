@@ -165,6 +165,8 @@ class FacilityProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
+        // override - facilities are always disabled for login
+        ent.user.enabled = false
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)

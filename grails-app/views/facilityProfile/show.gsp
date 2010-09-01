@@ -53,10 +53,10 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <app:isOperator entity="${currentEntity}">
+            %{--<app:isOperator entity="${currentEntity}">
               <td width="60" valign="top"><g:message code="active"/>:</td>
               <td width="50" valign="top"><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isOperator>
+            </app:isOperator>--}%
             <td width="60" valign="top"><g:message code="facility.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
