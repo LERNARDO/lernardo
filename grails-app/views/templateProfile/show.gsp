@@ -78,7 +78,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resource.profile"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
+      <h5><g:message code="resources.required"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
