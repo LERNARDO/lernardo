@@ -56,7 +56,14 @@ class GroupColonyProfileController {
       return
     }
 
-    def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    // only show those facilities that aren't already linked to a colony
+    def tempFacilities = Entity.findAllByType(metaDataService.etFacility)
+    def allFacilities = []
+    tempFacilities.each {
+      if (!Link.findBySourceAndType(it as Entity, metaDataService.ltGroupMemberFacility))
+        allFacilities << it
+    }
+
     // find all facilities linked to this group
     List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
 
