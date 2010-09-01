@@ -3,11 +3,15 @@ import lernardo.Msg
 import at.openfactory.ep.EntityHelperService
 import standard.FilterService
 import standard.FunctionService
+import standard.MetaDataService
+import at.openfactory.ep.SecHelperService
 
 class MsgController {
   EntityHelperService entityHelperService
   FilterService filterService
   FunctionService functionService
+  SecHelperService secHelperService
+  MetaDataService metaDataService
 
   def index = {
     redirect action:"inbox", params:params
@@ -44,14 +48,26 @@ class MsgController {
 
   def show = {
     def message = Msg.get(params.id)
-    if (!message.read)
-      message.read = true
 
     if(!message) {
       flash.message = message(code:"msg.notFound", args:[params.id])
       redirect action:index, params:[name:params.name]
       return
     }
+
+    // flag message as read
+    if (!message.read)
+      // if viewed by an admin or operator ..
+      if (entityHelperService.loggedIn.type.name == metaDataService.etOperator.name || secHelperService.isAdmin())
+      {
+        // .. and it's one of their own messages
+        if (message.entity.id == entityHelperService.loggedIn.id)
+          // flag as read
+          message.read = true
+        // else it just won't be flagged as read
+      }
+      else
+        message.read = true
 
     return ['msgInstance': message,
             'entity':Entity.get(params.entity),
