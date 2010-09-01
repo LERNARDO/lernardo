@@ -112,6 +112,12 @@ dummies = 20
 defaultpass = "pass"
 
 // custom maps to store data
+employment_de = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
+employment_es = ['1':'e_Angestellt','2':'e_Freier Mitarbeiter','3':'e_Freiwilliger']
+education_de = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
+                '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
+education_es = ['1':'e_Pädagoge','2':'e_Psychologe','3':'e_Soziologe','4':'e_Lehrer (staatl. Ausbildung)','5':'e_Erzieher','6':'e_Psychopädagoge','7':'e_Bildender Künstler',
+                '8':'e_Arzt','9':'e_Krankenschwester','10':'e_Wirtschafter','11':'e_Buchhalter/Steuerberater']
 nationalities_de = ['1':'Deutschland','2':'England','3':'Frankreich','4':'Spanien','5':'Portugal','6':'Österreich','7':'Mexiko','8':'Italien']
 nationalities_es = ['1':'Alemania','2':'Inglaterra','3':'Francia','4':'España','5':'Portugal','6':'Austria','7':'México','8':'Italia']
 languages_de = ['1':'Spanisch','2':'Deutsch','3':'Englisch','4':'Französisch','5':'Mexikanisch','6':'Tsotsil','7':'Tseltal','8':'Zoque',

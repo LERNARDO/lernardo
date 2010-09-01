@@ -204,6 +204,28 @@ class HelperTagLib {
   }
 
   /*
+   * receives a education ID and renders either the german or spanish word for it
+   */
+  def getEducation = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config.education_de[attrs.education]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config.education_es[attrs.education]
+  }
+
+  /*
+   * receives an employment ID and renders either the german or spanish word for it
+   */
+  def getEmployment = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config.employment_de[attrs.employment]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config.employment_es[attrs.employment]
+  }
+
+  /*
    * outputs selectbox items for each language
    */
   def localeSelect = {attrs ->

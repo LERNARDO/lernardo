@@ -184,7 +184,7 @@ class BootStrap {
           prf.contactStreet = "DummyStreet"
           prf.contactZip = "1345"
           prf.contactMail = "dummy@dummy.com"
-          prf.education = (generator.nextInt(13) + 1).toString()
+          prf.education = (generator.nextInt(11) + 1).toString()
           prf.interests = "DummyInterests"
           prf.employment = "DummyEmployment"
           prf.addToLanguages((generator.nextInt(14) + 1).toString())

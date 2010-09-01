@@ -52,10 +52,15 @@
 
         <tr>
           <td width="280" height="25" valign="top" class="value-show">
-            <app:getSchoolLevel level="${educator.profile.education}"/>
+            <g:if test="${educator.profile.education}">
+              <app:getEducation education="${educator.profile.education}"/>
+            </g:if>
+            <g:else>
+              <div class="italic"><g:message code="noData"/></div>  
+            </g:else>
           </td>
           <td width="280" valign="top" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.employment') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            <app:getEmployment employment="${educator.profile.employment}"/>
           </td>
           <td valign="top" class="value-show">
             ${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">'+message(code:'no')+'</div>'}
