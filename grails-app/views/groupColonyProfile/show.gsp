@@ -90,7 +90,8 @@
       </div>
     </div>
 
-    <div class="zusatz">
+    %{-- AAZ (01.09.2010): disabled since customer doesn't need it ---}%
+    %{--<div class="zusatz">
       <h5><g:message code="building"/> (<g:message code="building.info"/>) <app:isOperator entity="${currentEntity}"><a onclick="toggle('#buildings');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gebäude hinzufügen"/></a></app:isOperator></h5>
       <div class="zusatz-add" id="buildings" style="display:none">
@@ -135,7 +136,7 @@
       <div class="zusatz-show" id="buildings2">
         <g:render template="buildings" model="[group: group, entity: currentEntity]"/>
       </div>
-    </div>
+    </div>--}%
 
     <div class="zusatz">
       <h5><g:message code="resource.profile"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#resources');
