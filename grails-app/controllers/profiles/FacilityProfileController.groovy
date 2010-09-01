@@ -12,6 +12,7 @@ import standard.MetaDataService
 import at.openfactory.ep.Profile
 import lernardo.Msg
 import lernardo.Event
+import lernardo.Publication
 
 class FacilityProfileController {
   MetaDataService metaDataService
@@ -93,6 +94,7 @@ class FacilityProfileController {
       Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
       Msg.findAllByEntity(facility).each {it.delete()}
       Event.findAllByEntity(facility).each {it.delete()}
+      Publication.findAllByEntity(facility).each {it.delete()}
       try {
         flash.message = message(code: "facility.deleted", args: [facility.profile.fullName])
         facility.delete(flush: true)

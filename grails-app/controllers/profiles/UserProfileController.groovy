@@ -9,6 +9,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import lernardo.Msg
 import lernardo.Event
+import lernardo.Publication
 
 class UserProfileController {
   MetaDataService metaDataService
@@ -64,6 +65,7 @@ class UserProfileController {
       Link.findAllBySourceOrTarget(user, user).each {it.delete()}
       Msg.findAllByEntity(user).each {it.delete()}
       Event.findAllByEntity(user).each {it.delete()}
+      Publication.findAllByEntity(user).each {it.delete()}
       try {
         flash.message = message(code: "user.deleted", args: [user.profile.fullName])
         user.delete(flush: true)

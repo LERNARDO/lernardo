@@ -9,6 +9,7 @@ import standard.MetaDataService
 import standard.FunctionService
 import lernardo.Msg
 import lernardo.Event
+import lernardo.Publication
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -71,6 +72,7 @@ class ParentProfileController {
       Link.findAllBySourceOrTarget(parent, parent).each {it.delete()}
       Msg.findAllByEntity(parent).each {it.delete()}
       Event.findAllByEntity(parent).each {it.delete()}
+      Publication.findAllByEntity(parent).each {it.delete()}
       try {
         flash.message = message(code: "parent.deleted", args: [parent.profile.fullName])
         parent.delete(flush: true)

@@ -9,6 +9,7 @@ import standard.MetaDataService
 import standard.FunctionService
 import lernardo.Msg
 import lernardo.Event
+import lernardo.Publication
 //import java.util.regex.Pattern
 
 class ChildProfileController {
@@ -77,6 +78,7 @@ class ChildProfileController {
       Link.findAllBySourceOrTarget(child, child).each {it.delete()}
       Msg.findAllByEntity(child).each {it.delete()}
       Event.findAllByEntity(child).each {it.delete()}
+      Publication.findAllByEntity(child).each {it.delete()}
       try {
         flash.message = message(code: "child.deleted", args: [child.profile.fullName])
         child.delete(flush: true)

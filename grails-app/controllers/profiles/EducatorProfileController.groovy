@@ -11,6 +11,7 @@ import standard.FunctionService
 import lernardo.Msg
 import lernardo.Post
 import lernardo.Event
+import lernardo.Publication
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -76,6 +77,7 @@ class EducatorProfileController {
       Msg.findAllByEntity(educator).each {it.delete()}
       Post.findByAuthor(educator).each {it.delete()}
       Event.findAllByEntity(educator).each {it.delete()}
+      Publication.findAllByEntity(educator).each {it.delete()}
       try {
         flash.message = message(code: "educator.deleted", args: [educator.profile.fullName])
         educator.delete(flush: true)

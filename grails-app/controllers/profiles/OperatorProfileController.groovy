@@ -9,6 +9,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import lernardo.Msg
 import lernardo.Event
+import lernardo.Publication
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -68,6 +69,7 @@ class OperatorProfileController {
       Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
       Msg.findAllByEntity(operator).each {it.delete()}
       Event.findAllByEntity(operator).each {it.delete()}
+      Publication.findAllByEntity(operator).each {it.delete()}
       try {
         flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
         operator.delete(flush: true)

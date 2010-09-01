@@ -9,6 +9,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import lernardo.Msg
 import lernardo.Event
+import lernardo.Publication
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -65,7 +66,8 @@ class PateProfileController {
       // delete all links to this entity
       Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
       Msg.findAllByEntity(pate).each {it.delete()}
-      Event.findAllByEntity(pate).each {it.delete()} 
+      Event.findAllByEntity(pate).each {it.delete()}
+      Publication.findAllByEntity(pate).each {it.delete()}
       try {
         flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
         pate.delete(flush: true)
