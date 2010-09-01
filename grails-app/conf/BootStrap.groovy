@@ -617,9 +617,9 @@ class BootStrap {
         }
 
         // create some links to that group
-        new Link(source: Entity.findByName("dummyParent" + i), target: entity, type: metaDataService.ltGroupMemberParent).save()
-        new Link(source: Entity.findByName("dummyClient" + i), target: entity, type: metaDataService.ltGroupFamily).save()
-        new Link(source: Entity.findByName("dummyChild" + i), target: entity, type: metaDataService.ltGroupMemberChild).save()
+        new Link(source: Entity.findByName("dummyParent${i}"), target: entity, type: metaDataService.ltGroupMemberParent).save()
+        new Link(source: Entity.findByName("dummyClient${i}"), target: entity, type: metaDataService.ltGroupFamily).save()
+        new Link(source: Entity.findByName("dummyChild${i}"), target: entity, type: metaDataService.ltGroupMemberChild).save()
       }
     }
     
@@ -638,9 +638,9 @@ class BootStrap {
         }
 
         // create some links to that group
-        new Link(source: Entity.findByName("dummyFacility"+i), target: entity, type: metaDataService.ltGroupMemberFacility).save()
-        new Link(source: Entity.findByName("dummyEducator"+i), target: entity, type: metaDataService.ltGroupMemberEducator).save()
-        new Link(source: Entity.findByName("dummyPartner"+i), target: entity, type: metaDataService.ltGroupMemberPartner).save()
+        new Link(source: Entity.findByName("dummyFacility${i}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
+        new Link(source: Entity.findByName("dummyEducator${i}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()
+        new Link(source: Entity.findByName("dummyPartner${i}"), target: entity, type: metaDataService.ltGroupMemberPartner).save()
       }
     }
 

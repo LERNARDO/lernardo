@@ -26,6 +26,7 @@
         <g:sortableColumn property="fullName" title="${message(code:'project.profile.name')}"/>
         <g:sortableColumn property="startDate" title="${message(code:'project.profile.startDate')}"/>
         <g:sortableColumn property="endDate" title="${message(code:'project.profile.endDate')}"/>
+        <th><g:message code="facility"/></th>
       </tr>
       </thead>
       <tbody>
@@ -34,6 +35,11 @@
           <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
           <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/></td>
+          <td>
+            <app:getFacilityOfProject entity="${project}">
+              <g:link controller="facilityProfile" action="show" id="${facility.id}" params="[entity: facility.id]">${facility.profile.fullName.decodeHTML()}</g:link>
+            </app:getFacilityOfProject>
+          </td>
         </tr>
       </g:each>
       </tbody>

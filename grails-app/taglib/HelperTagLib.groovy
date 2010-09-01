@@ -487,6 +487,17 @@ class HelperTagLib {
   }
 
   /*
+   * returns the facility linked to a given activity
+   */
+  def getFacilityOfProject = {attrs, body ->
+    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
+    if (link)
+      out << body(facility: link.source)
+    else
+      out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
+  }
+
+  /*
    * returns the creator (entity) to a given ID
    */
   def getCreator = {attrs, body ->
