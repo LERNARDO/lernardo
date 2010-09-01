@@ -8,6 +8,7 @@ import standard.MetaDataService
 import standard.FilterService
 import at.openfactory.ep.SecHelperService
 import standard.FunctionService
+import lernardo.Publication
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -624,6 +625,14 @@ class HelperTagLib {
     int m = filterService.getNewInboxMessages(attrs.entity.id.toString())
     if (m > 0)
       out << "(" + m + ")"
+  }
+
+  /*
+   * returns the number of publications of an entity
+   */
+  def getPublicationCount = {attrs ->
+    int m = Publication.countByEntity(attrs.entity)
+    out << "(" + m + ")"
   }
 
   /*
