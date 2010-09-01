@@ -42,11 +42,16 @@
           <td valign="top" width="200" class="value-show">
             ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           <td width="421" colspan="3" class="value-show-block">
+            <g:if test="${partner.profile.services}">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
                 <li><app:getPartnerService service="${service}"/></li>
               </g:each>
             </ul>
+            </g:if>
+            <g:else>
+              <div class="italic"><g:message code="none"/></div>
+            </g:else>
           </td>
         </tr>
 
