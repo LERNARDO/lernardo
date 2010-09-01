@@ -96,7 +96,7 @@
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold"><g:message code="educatos"/> (${allEducators})</div>
+          <div class="bold"><g:message code="educators"/> (${allEducators})</div>
           <g:link controller="educatorProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paedagoge.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="educatorProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
@@ -112,7 +112,7 @@
           </app:isOperator>
         </div>
         <div class="box">
-          <div class="bold"><g:message code="childrens"/> (${allChilds})</div>
+          <div class="bold"><g:message code="children"/> (${allChilds})</div>
           <g:link controller="childProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_kinder.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="childProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:isOperator entity="${currentEntity}">
@@ -180,7 +180,7 @@
       <h1><g:message code="profile.overview.groups"/> <a onclick="toggle('#gruppen-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
       <div class="overview" id="gruppen-toggled">
         <div class="box">
-          <div class="bold"><g:message code="colonias"/> (${allColonias})</div>
+          <div class="bold"><g:message code="groupColonies"/> (${allColonias})</div>
           <g:link controller="groupColonyProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_colonia.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="groupColonyProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
           <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">

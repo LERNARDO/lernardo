@@ -35,6 +35,15 @@ class ProfileController {
   * retrieves the total number of each entity
   */
   def overview = {
+    def c = Entity.createCriteria()
+    def count = c.list {
+      eq("type", metaDataService.etActivity)
+      profile {
+        eq("type", "Themenraum")
+      }
+    }
+    def activities = count.size()
+
     [allOperators: Entity.countByType(metaDataService.etOperator),
     allUsers: Entity.countByType(metaDataService.etUser),
     allClients: Entity.countByType(metaDataService.etClient),
@@ -52,7 +61,7 @@ class ProfileController {
     allPartnerGroups: Entity.countByType(metaDataService.etGroupPartner),
     allClientGroups: Entity.countByType(metaDataService.etGroupClient),
     allActivityTemplates: Entity.countByType(metaDataService.etTemplate),
-    allActivities: Entity.countByType(metaDataService.etActivity),
+    allActivities: activities,
     allActivityTemplateGroups: Entity.countByType(metaDataService.etGroupActivityTemplate),
     allActivityGroups: Entity.countByType(metaDataService.etGroupActivity),
     allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate),
