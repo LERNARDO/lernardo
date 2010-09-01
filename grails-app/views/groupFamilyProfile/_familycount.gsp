@@ -1,0 +1,1 @@
+<p>${totalLinks == 1 ? message(code: 'groupFamily.profile.member') : totalLinks + ' ' + message(code: 'groupFamily.profile.members')}</p>

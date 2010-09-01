@@ -65,7 +65,9 @@
       </div>
     </app:hasRoleOrType>
 
-    <p>${totalLinks == 1 ? message(code: 'groupFamily.profile.member') : totalLinks + ' ' + message(code: 'groupFamily.profile.members')}</p>
+    <div id="familyCount">
+      <g:render template="familycount" model="[totalLinks: totalLinks]"/>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="groupFamily.profile.parents"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents');
