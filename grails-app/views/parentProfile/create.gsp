@@ -45,7 +45,7 @@
           <tr>
             <td valign="middle" class="name"><g:message code="parent.profile.maritalStatus"/>:</td>
             <td valign="middle" class="name"><g:message code="parent.profile.languages"/>:</td>
-            <td valign="middle" class="name"><g:message code="parent.profile.desc"/>:</td>
+            <td valign="middle" class="name"><g:message code="parent.profile.description"/>:</td>
             <td valign="middle" class="name"><g:message code="parent.profile.education"/>:</td>
           </tr>
 
