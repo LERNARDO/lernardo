@@ -71,10 +71,10 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${parent?.profile?.education}"/>
+                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${parent?.profile?.education}"/>
+                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
               </g:if>
             </td>
           </tr>

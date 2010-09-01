@@ -109,14 +109,26 @@
           <tr class="prop">
             <td width="160" valign="top" class="value-show"><app:getFamilyStatus status="${client.profile.familyStatus}"/></td>
             <td width="250" valign="top" class="value-show-block">
+              <g:if test="${client.profile.languages}">
               <ul>
                 <g:each in="${client.profile.languages}" var="language">
                   <li><app:getLanguages language="${language}"/></li>
                 </g:each>
               </ul>
+              </g:if>
+              <g:else>
+                <div class="italic"><g:message code="none"/></div>
+              </g:else>
             </td>
             <td width="230" valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if><g:else><div class="italic">keine Schule eingetragen</div></g:else></td>
-            <td width="210" valign="top" class="value-show"><app:getSchoolLevel level="${client.profile.schoolLevel}"/></td>
+            <td width="210" valign="top" class="value-show">
+              <g:if test="${client.profile.schoolLevel}">
+                <app:getSchoolLevel level="${client.profile.schoolLevel}"/>
+              </g:if>
+              <g:else>
+                <div class="italic"><g:message code="none"/></div>
+              </g:else>
+            </td>
           </tr>
 
           <tr class="prop">

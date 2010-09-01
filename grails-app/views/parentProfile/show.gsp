@@ -56,14 +56,19 @@
               </ul>
             </g:if>
             <g:else>
-              <div class="italic"><g:message code="empty"/></div>
+              <div class="italic"><g:message code="none"/></div>
             </g:else>
           </td>
           <td valign="top" class="value-show-block">
             ${fieldValue(bean: parent, field: 'profile.comment') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td valign="top" class="value-show">
-            <app:getSchoolLevel level="${parent.profile.education}"/>
+            <g:if test="${parent.profile.education}">
+              <app:getSchoolLevel level="${parent.profile.education}"/>
+            </g:if>
+            <g:else>
+              <div class="italic"><g:message code="none"/></div>  
+            </g:else>
           </td>
         </tr>
 
