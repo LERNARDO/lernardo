@@ -52,11 +52,12 @@
           <td width="210" align="top" class="value-show"><app:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
 
-        <tr>
+        %{-- AAZ (01.09.2010): disabled until this feature is implemented --}%
+        %{--<tr>
           <td colspan="4" height="30" valign="top" class="name-show">
             <g:message code="pate.profile.emails"/>: <span class="value-show">${fieldValue(bean: pate, field: 'profile.emails')}</span>
           </td>
-        </tr>
+        </tr>--}%
 
       </table>
 
