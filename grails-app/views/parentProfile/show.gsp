@@ -48,14 +48,19 @@
             <app:getMaritalStatus level="${parent.profile.maritalStatus}"/>
           </td>
           <td valign="top" class="value-show-block">
-            <ul>
-              <g:each in="${parent.profile.languages}" var="language">
-                <li><app:getLanguages language="${language}"/></li>
-              </g:each>
-            </ul>
+            <g:if test="${parent.profile.languages}">
+              <ul>
+                <g:each in="${parent.profile.languages}" var="language">
+                  <li><app:getLanguages language="${language}"/></li>
+                </g:each>
+              </ul>
+            </g:if>
+            <g:else>
+              <div class="italic"><g:message code="empty"/></div>
+            </g:else>
           </td>
           <td valign="top" class="value-show-block">
-            ${fieldValue(bean: parent, field: 'profile.comment')}
+            ${fieldValue(bean: parent, field: 'profile.comment') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td valign="top" class="value-show">
             <app:getSchoolLevel level="${parent.profile.education}"/>
