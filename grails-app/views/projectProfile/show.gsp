@@ -30,6 +30,14 @@
             <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/>
           </td>
         </tr>
+
+        <tr>
+          <td class="name-show"><g:message code="projectTemplate.profile.description"/></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="value-show">${template?.profile?.description?.decodeHTML()}</td>
+        </tr>
+
       </table>
 
     </div>
