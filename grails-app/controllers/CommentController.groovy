@@ -39,7 +39,7 @@ class CommentController {
         functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat ein Kommentar zu <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> erstellt.')
     }
 
-    render template:'comments', model:[commented: entity]
+    render template:'comments', model:[commented: entity, currentEntity: currentEntity]
   }
 
 }

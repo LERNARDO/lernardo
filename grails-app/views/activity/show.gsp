@@ -129,7 +129,9 @@
   </div>
 </div>
 
-<g:render template="/comment/box" model="[entity: entity, commented: activity]"/>
+<app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+  <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: activity]"/>
+</app:hasRoleOrType>
 
 </body>
 </html>
