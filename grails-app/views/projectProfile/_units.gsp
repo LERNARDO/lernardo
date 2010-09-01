@@ -5,7 +5,7 @@
       <li style="border-bottom: 1px solid #ccc; margin-bottom: 5px">
         ${unit.profile.fullName} <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></app:hasRoleOrType><br/>
 
-        <p class="bold">Aktivitätsvorlagengruppen</p>
+        <p class="bold">Aktivitätsvorlagenblöcke</p>
         <app:getProjectUnitActivityGroups projectUnit="${unit}">
           <ul>
             <g:each in="${activityGroups}" var="activityGroup">
