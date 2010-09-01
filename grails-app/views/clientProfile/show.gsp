@@ -273,7 +273,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.inOut"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
+      <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.projectName]"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2')">

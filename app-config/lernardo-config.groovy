@@ -53,7 +53,12 @@ grails.mail.default.from="lernardomailer@gmail.com"
 // "sueninos"
 // "noe"
 
+// full project names:
+// "Sueninos"
+// "Lernardo"
+
 project = "sueninos"
+projectName = "Sueninos" // full project name
 
 // ---------------------------------------------------------------------------------------------
 // google analytics tracker
