@@ -254,7 +254,7 @@ class BootStrap {
           prf.originCity = "DummyCity"
           prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.schoolLevel = (generator.nextInt(13) + 1).toString()
+          prf.schoolLevel = (generator.nextInt(16) + 1).toString()
           prf.size = generator.nextInt(130) + 50
           prf.weight = generator.nextInt(40) + 30
           prf.familyStatus = (generator.nextInt(4) + 1).toString()

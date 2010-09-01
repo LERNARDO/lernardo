@@ -142,12 +142,14 @@ problems_de = ['1':'Alkoholismus','2':'Drogen','3':'Vandalismus','4':'Trennung (
 problems_es = ['1':'Alcoholismo','2':'Drogadicción','3':'Vandalismo','4':'Separación (mamá-papá)','5':'Ausencia del padre-madre',
                '6':'Violencia: psicológica, sexual, simbólica, física (de madre-padre hacía los hij@s, de pareja a pareja)',
                '7':'Desempleo','8':'Pobreza','9':'Discapacidad de un familiar','10':'Rechazo de padres-madres hacia los hijos','11':'Horfandad']
-schoolLevels_de = ['1':'1. Kl. Primarschule','2':'2. Kl. Primarschule','3':'3. Kl. Primarschule','4':'4. Kl. Primarschule','5':'5. Kl. Primarschule',
-                   '6':'6. Kl. Primarschule','7':'1. Kl. Sekundarschule','8':'2. Kl. Sekundarschule','9':'3. Kl. Sekundarschule',
-                   '10':'1. Kl. Preparatoria','11':'2. Kl. Preparatoria','12':'3. Kl. Preparatoria','13':'Studium']
-schoolLevels_es = ['1':'1er grado primaria','2':'2do grado primaria','3':'3er grado primaria','4':'4to grado primaria','5':'5to grado primaria',
-                   '6':'6to grado primaria','7':'1er grado secundaria','8':'2er grado secundaria','9':'3er grado secundaria','10':'1er grado preparatoria',
-                   '11':'2er grado preparatoria','12':'3er grado preparatoria','13':'Estudios']
+schoolLevels_de = ['1':'1. Kindergartenjahr','2':'2. Kindergartenjahr','3':'3. Kindergartenjahr','4':'1. Kl. Primarschule','5':'2. Kl. Primarschule',
+                   '6':'3. Kl. Primarschule','7':'4. Kl. Primarschule','8':'5. Kl. Primarschule','9':'6. Kl. Primarschule','10':'1. Kl. Sekundarschule',
+                   '11':'2. Kl. Sekundarschule','12':'3. Kl. Sekundarschule','13':'1. Kl. Preparatoria','14':'2. Kl. Preparatoria','15':'3. Kl. Preparatoria',
+                   '16':'Studium']
+schoolLevels_es = ['1':'1. e_Kindergartenjahr','2':'2. e_Kindergartenjahr','3':'3. e_Kindergartenjahr','4':'1er grado primaria','5':'2do grado primaria',
+                   '6':'3er grado primaria','7':'4to grado primaria','8':'5to grado primaria','9':'6to grado primaria','10':'1er grado secundaria',
+                   '11':'2er grado secundaria','12':'3er grado secundaria','13':'1er grado preparatoria','14':'2er grado preparatoria','15':'3er grado preparatoria',
+                   '16':'Estudios']
 partner_de = ['1':'Projekte, Arbeit','2':'Dienstleistungen','3':'Finanzierung','4':'Personal (Freiwillige)']
 partner_es = ['1':'en colaboración','2':'Prestadores de servicios','3':'Monetarios','4':'Personal (voluntarios)']
 familyRelation_de = ['1':'Eltern','2':'Vater','3':'Mutter','4':'Andere']
