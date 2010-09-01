@@ -43,11 +43,16 @@
 
         <tr class="prop">
           <td colspan="3" valign="top" class="value-show-block">
-            <ul>
-              <g:each in="${group.profile.familyProblems}" var="problem">
-                <li><app:getFamilyProblem problem="${problem}"/></li>
-              </g:each>
-            </ul>
+            <g:if test="${group.profile.familyProblems}">
+              <ul>
+                <g:each in="${group.profile.familyProblems}" var="problem">
+                  <li><app:getFamilyProblem problem="${problem}"/></li>
+                </g:each>
+              </ul>
+            </g:if>
+            <g:else>
+              <div class="italic"><g:message code="noData"/></div>  
+            </g:else>
           </td>
         </tr>
       </table>
