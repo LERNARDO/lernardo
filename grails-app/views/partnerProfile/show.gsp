@@ -50,7 +50,8 @@
           </td>
         </tr>
 
-        <tr class="prop">
+        %{-- AAZ (01.09.2010): not required anymore by customer --}%
+        %{--<tr class="prop">
           <td colspan="4" valign="top" class="name-show">
             <g:message code="partner.profile.colonia"/>
           </td>
@@ -61,7 +62,7 @@
             <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="partner.profile.colonia.empty"/> <img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
           </td>
           <td colspan="3" valign="top"></td>
-        </tr>
+        </tr>--}%
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="partner.profile.street"/></td>

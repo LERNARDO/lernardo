@@ -54,10 +54,11 @@ class PartnerProfileController {
       return
     }
 
+    // AAZ (01.09.2010): not required anymore by customer
     // find colonia of this partner
-    Entity colony = functionService.findByLink(partner, null, metaDataService.ltGroupMemberPartner)
+    //Entity colony = functionService.findByLink(partner, null, metaDataService.ltGroupMemberPartner)
 
-    return [partner: partner, entity: entity, colony: colony]
+    return [partner: partner, entity: entity/*, colony: colony*/]
 
   }
 
@@ -107,7 +108,8 @@ class PartnerProfileController {
 
     if (!partner.hasErrors() && partner.save()) {
 
-      // delete current link
+      // AAZ (01.09.2010): not required anymore by customer
+      /*// delete current link
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', partner)
@@ -118,13 +120,13 @@ class PartnerProfileController {
         link.delete()
 
       // link facility to colonia
-      new Link(source: partner, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()
+      new Link(source: partner, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()*/
 
       flash.message = message(code: "partner.updated", args: [partner.profile.fullName])
       redirect action: 'show', id: partner.id
     }
     else {
-      render view: 'edit', model: [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit', model: [partner: partner/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
     }
   }
 
@@ -143,13 +145,14 @@ class PartnerProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
+      // AAZ (01.09.2010): not required anymore by customer
       // link partner to colonia
-      new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()
+      //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()
 
       flash.message = message(code: "partner.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [partner: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
+      render(view: "create", model: [partner: ee.entity/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/])
       return
     }
 

@@ -56,7 +56,8 @@
             </td>
           </tr>
 
-          <tr class="prop">
+          %{-- AAZ (01.09.2010): not required anymore by customer --}%
+          %{--<tr class="prop">
             <td colspan="4" valign="middle" class="name"><g:message code="partner.profile.colonia"/>:</td>
           </tr>
 
@@ -64,7 +65,7 @@
             <td colspan="4" valign="middle" class="value">
               <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
             </td>
-          </tr>
+          </tr>--}%
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="partner.profile.street"/>:</td>
