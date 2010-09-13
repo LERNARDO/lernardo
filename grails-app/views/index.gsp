@@ -1,5 +1,5 @@
 <head>
-  <title>Sueninos</title>
+  <title>${grailsApplication.config.projectName}</title>
   <meta name="layout" content="public" />
 </head>
 

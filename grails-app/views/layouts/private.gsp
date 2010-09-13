@@ -9,7 +9,7 @@ future HTML5 doctype
 <html>
 <head>
   %{-- <meta charset="utf-8" /> future HTML5 encoding--}%
-  <title>Sueninos - <g:layoutTitle/></title>
+  <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
   <link rel="stylesheet" href="${g.resource(dir: 'css', file: 'yui-reset-fonts-grids.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
   <link rel="stylesheet" href="${resource(dir: 'css/' + project, file: 'layout.css')}" type="text/css" media="screen" charset="utf-8">
