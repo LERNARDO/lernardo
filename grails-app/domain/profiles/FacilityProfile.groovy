@@ -8,11 +8,10 @@ class FacilityProfile extends Profile {
     static hasMany = [contacts: Contact]
 
     String description
-    String country // added on 20.04.2010
-    String zip // changed on 20.04.2010, before: PLZ
-    String city // changed on 20.04.2010, before: city
-    String street // changed on 20.04.2010, before: street
-    // String tel - removed on 20.04.2010
+    String country
+    String zip
+    String city
+    String street
 
     Boolean showTips = true
 

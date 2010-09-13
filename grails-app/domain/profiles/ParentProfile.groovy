@@ -4,28 +4,27 @@ import at.openfactory.ep.Profile
 
 class ParentProfile extends Profile {
 
-    static hasMany = [languages: String] // changed on 20.04.2010, before: string languages
+    static hasMany = [languages: String]
 
     String firstName
     String lastName
     Date birthDate
     Byte gender
 
-    String comment // added on 07.06.2010
+    String comment
 
-    String currentCountry // added on 20.04.2010
-    String currentZip // changed on 20.04.2010, before: PLZ
-    String currentCity // changed on 20.04.2010, before: city
-    String currentStreet // changed on 20.04.2010, before: street
+    String currentCountry
+    String currentZip
+    String currentCity
+    String currentStreet
 
-    //String nationality - removed on 20.04.2010
-    String maritalStatus // changed on 20.04.2010, before: familyStatus
-    String education // changed on 20.04.2010, before: qualification
+    String maritalStatus
+    String education
 
-    Boolean job // changed on 20.04.2010, before: doesWork
-    String jobType // changed on 20.04.2010, before: work
-    Integer jobIncome // changed on 20.04.2010, before: income
-    String jobFrequency // added on 20.04.2010
+    Boolean job
+    String jobType
+    Integer jobIncome
+    String jobFrequency
 
     Boolean showTips = true
 

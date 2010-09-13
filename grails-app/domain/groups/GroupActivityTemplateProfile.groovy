@@ -13,8 +13,8 @@ class GroupActivityTemplateProfile extends Profile {
     static hasMany = [comments: Comment]
 
     String description
-    String status // added on 30.04.2010
-    Integer realDuration // added on 30.04.2010
+    String status
+    Integer realDuration
 
     Date dateCreated
     Date lastUpdated

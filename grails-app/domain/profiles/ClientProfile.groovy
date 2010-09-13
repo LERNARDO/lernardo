@@ -9,57 +9,48 @@ import lernardo.Healths
 class ClientProfile extends Profile {
 
     SortedSet dates, materials, performances, healths
-    static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
-                      dates: CDate, // added on 20.04.2010
+    static hasMany = [languages: String,
+                      dates: CDate,
                       materials: Materials,
                       performances: Performances,
-                      healths: Healths] // added on 20.04.2010
+                      healths: Healths]
 
     String firstName
     String lastName
     String interests
     Date birthDate
     Integer gender
-    Integer size // added on 20.04.2010
-    Integer weight // added on 20.04.2010
+    Integer size
+    Integer weight
 
-    String currentCountry // changed on 20.04.2010, before: country
-    String currentZip // changed on 20.04.2010, before: PLZ
-    String currentCity // changed on 20.04.2010, before: city
-    String currentStreet // changed on 20.04.2010, before: street
+    String currentCountry
+    String currentZip
+    String currentCity
+    String currentStreet
 
-    String originCountry // changed on 20.04.2010, before: country2
-    String originZip // changed on 20.04.2010, before: PLZ2
-    String originCity // changed on 20.04.2010, before: city2
-    //String street2 - removed on 20.04.2010
-    //String nationality - removed on 20.04.2010
-    //String personalDetails - removed on 20.04.2010
-    //String attendance - removed on 20.04.2010
+    String originCountry
+    String originZip
+    String originCity
 
-    //String school - removed on 20.04.2010
     String schoolLevel
 
-    Boolean schoolDropout = false // changed on 20.04.2010, before: dropout
-    Date schoolDropoutDate // added on 20.04.2010
-    String schoolDropoutReason // changed on 20.04.2010, before: dropoutReason
+    Boolean schoolDropout = false
+    Date schoolDropoutDate
+    String schoolDropoutReason
 
-    Boolean schoolRestart = false // added on 20.04.2010
-    Date schoolRestartDate // added on 20.04.2010
-    String schoolRestartReason // added on 20.04.2010
- 
-    //Date joinDate - removed on 20.04.2010
-    //Date endDate - removed on 20.04.2010
-    //Date joinDate2 - removed on 20.04.2010
-    //Date endDate2 - removed on 20.04.2010
-    Boolean job // changed on 20.04.2010, before: doesWork
-    String jobType // changed on 20.04.2010, before: work
-    Integer jobIncome // changed on 20.04.2010, before: income
-    String jobFrequency // added on 20.04.2010
+    Boolean schoolRestart = false
+    Date schoolRestartDate
+    String schoolRestartReason
 
-    String familyStatus // added on 20.04.2010
+    Boolean job
+    String jobType
+    Integer jobIncome
+    String jobFrequency
 
-    Boolean support = false // added on 20.04.2010
-    String supportDescription // added on 20.04.2010
+    String familyStatus
+
+    Boolean support = false
+    String supportDescription
 
     Boolean showTips = true
 

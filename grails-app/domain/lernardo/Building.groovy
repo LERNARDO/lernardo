@@ -2,14 +2,13 @@ package lernardo
 
 class Building {
 
-    String name // added on 21.04.2010
-    // String country // added on 21.04.2010
-    String zip // added on 21.04.2010
-    String city // added on 21.04.2010
-    String street // added on 21.04.2010
-    String phone // added on 21.04.2010
-    String email // added on 21.04.2010
-    String authority // added on 21.04.2010
+    String name
+    String zip
+    String city
+    String street
+    String phone
+    String email
+    String authority
 
     static constraints = {
       name (size: 2..50)

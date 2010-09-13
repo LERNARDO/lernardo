@@ -9,22 +9,12 @@ class TemplateProfile extends Profile {
                     comments: Comment]
 
   String description
-  String chosenMaterials // added on 30.04.2010
+  String chosenMaterials
   String socialForm
-  String amountEducators // added on 30.04.2010
-  String status // added on 30.04.2010       
+  String amountEducators
+  String status
   Integer duration
-  String type // added on 29.06.2010
-
-  //String attribution - removed on 30.04.2010
-  //String qualifications - removed on 30.04.2010
-  //Integer ll - removed on 30.04.2010
-  //Integer be - removed on 30.04.2010
-  //Integer pk - removed on 30.04.2010
-  //Integer si - removed on 30.04.2010
-  //Integer hk - removed on 30.04.2010
-  //Integer tlt - removed on 30.04.2010
-  //Integer requiredEducators - removed on 30.04.2010
+  String type
 
   Date dateCreated
   Date lastUpdated

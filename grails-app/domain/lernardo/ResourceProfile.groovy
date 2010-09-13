@@ -6,7 +6,7 @@ class ResourceProfile extends Profile {
 
   String description
   String type
-  String classification // added on 30.04.2010
+  String classification
 
   static constraints = {
     fullName (blank: false, size: 2..50, maxSize: 50)

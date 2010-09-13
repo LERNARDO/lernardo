@@ -6,9 +6,9 @@ import lernardo.CDate
 class EducatorProfile extends Profile {
 
     SortedSet dates
-    static hasMany = [languages: String, // changed on 20.04.2010, before: string languages
-                      inChargeOf: String, // changed on 20.04.2010, before: function
-                      dates: CDate] // added on 20.04.2010
+    static hasMany = [languages: String,
+                      inChargeOf: String,
+                      dates: CDate]
 
     String title
     String firstName
@@ -16,33 +16,27 @@ class EducatorProfile extends Profile {
     Date birthDate
     Byte gender
 
-    String currentCountry // added on 20.04.2010
-    String currentZip // changed on 20.04.2010, before: PLZ
-    String currentCity // changed on 20.04.2010, before: city
-    String currentStreet // changed on 20.04.2010, before: street
+    String currentCountry
+    String currentZip
+    String currentCity
+    String currentStreet
 
-    //String nationality - removed on 20.04.2010
+    String originCountry
+    String originZip
+    String originCity
+    String originStreet
 
-    String originCountry // added on 20.04.2010
-    String originZip // added on 20.04.2010
-    String originCity // added on 20.04.2010
-    String originStreet // added on 20.04.2010
-
-    String contactCountry // added on 20.04.2010
-    String contactZip // added on 20.04.2010
-    String contactCity // added on 20.04.2010
-    String contactStreet // added on 20.04.2010
-    String contactPhone // added on 20.04.2010
-    String contactMail // added on 20.04.2010
-    // String contact - removed on 20.04.2010
+    String contactCountry
+    String contactZip
+    String contactCity
+    String contactStreet
+    String contactPhone
+    String contactMail
 
     String education
     String interests
 
-    //Date joinDate - removed on 20.04.2010
-    //Date quitDate - removed on 20.04.2010
-  
-    String employment // changed on 20.04.2010, before: Boolean employed
+    String employment
 
     Boolean showTips = true
 

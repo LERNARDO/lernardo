@@ -8,13 +8,13 @@ import at.openfactory.ep.Profile
 
 class GroupFamilyProfile extends Profile {
 
-    static hasMany = [familyProblems: String] // added on 21.04.2010
+    static hasMany = [familyProblems: String]
 
     String livingConditions
-    String socioeconomicData // added on 21.04.2010
-    String otherInfo // changed on 21.04.2010, before: otherData
-    Integer amountHousehold // changed on 21.04.2010, before: personCount
-    Integer familyIncome // changed on 21.04.2010, before: totalIncome
+    String socioeconomicData
+    String otherInfo
+    Integer amountHousehold
+    Integer familyIncome
 
     static constraints = {
       fullName (blank: false, size: 2..50, maxSize: 50)

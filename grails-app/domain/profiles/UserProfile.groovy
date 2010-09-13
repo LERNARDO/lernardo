@@ -1,4 +1,4 @@
-// for other people like "ansprechpersonen" or lernardo personal
+// for other people like "ansprechpersonen" or ue staff
 
 package profiles
 

@@ -4,18 +4,17 @@ import at.openfactory.ep.Profile
 
 class PateProfile extends Profile {
 
-  static hasMany = [languages: String] // changed on 23.04.2010, before: string languages
+  static hasMany = [languages: String]
 
   String firstName
   String lastName
 
-  //String nationality - removed on 23.04.2010
-  String country // added on 23.04.2010
-  String zip // changed on 23.04.2010, before: PLZ
+  String country
+  String zip
   String city
   String street
 
-  String motherTongue // added on 23.04.2010 
+  String motherTongue
   Integer emails = 0
 
   Boolean showTips = true

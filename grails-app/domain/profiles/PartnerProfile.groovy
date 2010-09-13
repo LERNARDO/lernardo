@@ -9,13 +9,12 @@ class PartnerProfile extends Profile {
                       services: String]
 
     String description
-    String country // added on 23.04.2010
-    String zip // changed on 23.04.2010, before: PLZ
+    String country
+    String zip
     String city
     String street
-    String phone // changed on 23.04.2010, before: tel
-    //String email // added on 23.04.2010
-    String website // added on 23.04.2010
+    String phone
+    String website
 
     Boolean showTips = true
 
@@ -26,7 +25,6 @@ class PartnerProfile extends Profile {
       city (size: 2..50, maxSize: 50)
       street (size: 2..50, maxSize: 50)
       phone (size: 2..20)
-      //email (size: 2..20)
       website (blank: true, size: 2..50)
     }
 

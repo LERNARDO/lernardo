@@ -13,9 +13,7 @@ class GroupColonyProfile extends Profile{
     static hasMany = [representatives: Contact,
                       buildings: Building]
 
-    String description // added on 21.04.2010
-    //String generalInformation - removed on 21.04.2010
-    //String otherFacilities - removed on 21.04.2010
+    String description
   
     static constraints = {
       fullName (blank: false, size: 2..50, maxSize: 50)

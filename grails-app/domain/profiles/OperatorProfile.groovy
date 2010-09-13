@@ -4,10 +4,10 @@ import at.openfactory.ep.Profile
 
 class OperatorProfile extends Profile {
 
-    String zip // changed on 04.05.2010, before: PLZ
+    String zip
     String city
     String street
-    String phone // changed on 04.05.2010, before: tel
+    String phone
     String description
     Boolean showTips = true
 
