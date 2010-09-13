@@ -45,7 +45,7 @@
       <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
         <g:if test="${new Date() < project.profile.startDate}"><g:link class="buttonGreen" action="edit" id="${project?.id}"><g:message code="edit"/></g:link></g:if>
       </app:hasRoleOrType>
-      <g:link class="buttonGray" action="list"><g:message code="backtolist"/></g:link>
+      <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
 
