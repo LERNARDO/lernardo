@@ -354,6 +354,36 @@ class FacilityProfileController {
   /*
    * retrieves all educators matching the search parameter
    */
+  def remoteLeadEducators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'leadeducatorresults', model: [results: results, facility: params.id])
+    }
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
   def remoteClients = {
     if (!params.value) {
       render ""

@@ -77,12 +77,17 @@
       <h5><g:message code="leadEducators"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#leadeducators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Leitenden Pädagogen hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="leadeducators" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducators2" before="showspinner('#leadeducators2')">
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteLeadEducators" action="remoteLeadEducators" id="${facility.id}" before="showspinner('#remoteLeadEducators')"/>
+        <div id="remoteLeadEducators"></div>
+
+        %{--<g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducators2" before="showspinner('#leadeducators2')">
           <g:select name="leadeducator" from="${allEducators}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
-        </g:formRemote>
+        </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="leadeducators2">
         <g:render template="leadeducators" model="[leadeducators: leadeducators, entity: currentEntity]"/>
