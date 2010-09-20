@@ -25,7 +25,7 @@
       <g:each in="${educatorList}" status="i" var="educator">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><app:getSchoolLevel level="${educator.profile.education}"/></td>
+          <td><app:getEducation education="${educator.profile.education}"/></td>
           <td>${fieldValue(bean: educator, field: 'profile.employment')}</td>
         </tr>
       </g:each>
