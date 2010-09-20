@@ -14,11 +14,12 @@ class CommentController {
   def delete = {
     Entity entity = Entity.get(params.id)
     Comment comment = Comment.get(params.comment)
+    Entity currentEntity = entityHelperService.loggedIn
 
     entity.profile.removeFromComments(comment)
     comment.delete()
 
-    render template:'comments', model:[commented: entity]
+    render template:'comments', model:[commented: entity, currentEntity: currentEntity]
   }
 
   def create = {
@@ -40,6 +41,21 @@ class CommentController {
     }
 
     render template:'comments', model:[commented: entity, currentEntity: currentEntity]
+  }
+
+  def edit = {
+    Entity entity = Entity.get(params.id)
+    Comment comment = Comment.get(params.comment)
+    render template:'updatecomment', model:[commented: entity, comment: comment, i: params.i]
+  }
+
+  def update = {
+    Entity entity = Entity.get(params.id)
+    Entity currentEntity = entityHelperService.loggedIn
+    Comment comment = Comment.get(params.comment)
+    comment.content = params.content
+    comment.save()
+    render template:'comment', model:[i:params.i, comment: comment, commented: entity, currentEntity: currentEntity]
   }
 
 }
