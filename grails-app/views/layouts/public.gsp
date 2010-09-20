@@ -105,8 +105,8 @@
                 <div class="sideboxheader"><g:message code="sideboxheader.picture"/></div>
                 <div class="sideboxcontent" style="text-align: center">
                   <app:getPicOfTheDay>                    
-                    <g:set var="day" value="sue_2010a-${it}.jpg"/>
-                    <img src='${resource(dir:"images/static/daily_pic2",file:day)}' width="235" height="180" alt="bild des tages" id="randomPicture"/>
+                    <g:set var="day" value="${it}.png"/>
+                    <img src='${resource(dir:"images/"+grailsApplication.config.project+"/static/daily_pic",file:day)}' width="235" height="180" alt="bild des tages" id="randomPicture"/>
                   </app:getPicOfTheDay>
                 </div>
               </div>

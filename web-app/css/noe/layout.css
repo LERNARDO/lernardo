@@ -20,8 +20,8 @@ body {
 }
 
 #hd {
-    height: 70px;
-    background: url(../../images/sueninos-logo.png) #fff no-repeat 15px 15px;
+    height: 87px;
+    background: url(../../images/lernardo-logo.png) #fff no-repeat 15px 15px;
     position: relative;
     /*-moz-box-shadow: #888 0px -4px 8px;
     border-right: 1px solid #aaa;
@@ -34,7 +34,7 @@ body {
             font-weight: bold; }
     #hd #logo {
         width: 210px;
-        height: 70px;
+        height: 87px;
         float: left; }
 
 #bd {
@@ -573,7 +573,7 @@ ul {
     #public #banner {
         height: 149px;
         /*width: 974px;*/
-        background: #fff url(../../images/banner.png) 15px 0 no-repeat;}
+        background: #fff url(../../images/lernardo-banner.png) 15px 0 no-repeat;}
     #public #sidebar {
         margin: 0 0; }
     #public #main {
