@@ -186,7 +186,7 @@ class BootStrap {
           prf.contactMail = "dummy@dummy.com"
           prf.education = (generator.nextInt(11) + 1).toString()
           prf.interests = "DummyInterests"
-          prf.employment = "DummyEmployment"
+          prf.employment = (generator.nextInt(3) + 1).toString()
           prf.addToLanguages((generator.nextInt(14) + 1).toString())
         }
         new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltWorking).save()

@@ -26,7 +26,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><app:getEducation education="${educator.profile.education}"/></td>
-          <td>${fieldValue(bean: educator, field: 'profile.employment')}</td>
+          <td><app:getEmployment employment="${educator.profile.employment}"/></td>
         </tr>
       </g:each>
       </tbody>
