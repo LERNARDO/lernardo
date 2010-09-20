@@ -47,6 +47,13 @@
           </td>
         </tr>
 
+        <tr>
+          <td class="name-show"><g:message code="groupActivityTemplate.profile.description"/>:</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="value-show">${template?.profile?.description?.decodeHTML()}</td>
+        </tr>
+
         <tr class="prop"></tr>
         <tr class="prop"></tr>
         <tr class="prop"></tr>
