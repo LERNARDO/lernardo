@@ -45,7 +45,7 @@
           <tr class="prop">
             <td>&nbsp;</td>
             <td><g:message code="child.profile.jobType"/></td>
-            <td><g:message code="child.profile.jobIncome"/></td>
+            <td><g:message code="child.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
             <td><g:message code="child.profile.jobFrequency"/></td>
           </tr>
 

@@ -33,7 +33,7 @@
           <tr>
             <td width="120" valign="middle" class="name-show"></td>
             <td width="200" valign="middle" class="name-show"><g:message code="child.profile.jobType"/></td>
-            <td width="280" valign="middle" class="name-show"><g:message code="child.profile.jobIncome"/></td>
+            <td width="280" valign="middle" class="name-show"><g:message code="child.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
             <td valign="middle" class="name-show"><g:message code="child.profile.jobFrequency"/></td>
           </tr>
 

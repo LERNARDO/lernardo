@@ -159,7 +159,7 @@
             <tr class="prop">
               <td valign="top" class="name-show"><g:message code="client.profile.job"/></td>
               <td valign="top" class="name-show"><g:message code="client.profile.jobType"/></td>
-              <td valign="top" class="name-show"><g:message code="client.profile.jobIncome"/></td>
+              <td valign="top" class="name-show"><g:message code="client.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
               <td valign="top" class="name-show"><g:message code="client.profile.jobFrequency"/></td>
             </tr>
 

@@ -83,7 +83,7 @@
           <tr>
             <td valign="middle" class="name">&nbsp;</td>
             <td valign="middle" class="name"><g:message code="parent.profile.jobType"/>:</td>
-            <td valign="middle" class="name"><g:message code="parent.profile.jobIncome"/>:</td>
+            <td valign="middle" class="name"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency}):</td>
             <td valign="middle" class="name"><g:message code="parent.profile.jobFrequency"/>:</td>
           </tr>
 
