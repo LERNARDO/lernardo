@@ -70,19 +70,19 @@
         <tr>
           <td width="290" height="35" valign="top" class="value">
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-              <g:select class="drop-down-280" name="education" from="${grailsApplication.config.education_es}" optionKey="key" optionValue="value" value="${educator?.profile?.education ?: ""}" noSelection="['': message(code: 'none')]"/>
+              <g:select class="drop-down-280" name="education" from="${grailsApplication.config.education_es}" optionKey="key" optionValue="value" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]"/>
             </g:if>
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-              <g:select class="drop-down-280" name="education" from="${grailsApplication.config.education_de}" optionKey="key" optionValue="value" value="${educator?.profile?.education ?: ""}" noSelection="['':message(code: 'none')]"/>
+              <g:select class="drop-down-280" name="education" from="${grailsApplication.config.education_de}" optionKey="key" optionValue="value" value="${educator?.profile?.education}" noSelection="['':message(code: 'none')]"/>
             </g:if>
             %{-- <g:select class="drop-down-280" name="education" from="${['Pädagoge','Psychologe','Soziologe','Lehrer (staatl. Ausbildung)','Erzieher','Psychopädagoge','Bildender Künstler','Arzt','Krankenschwester','Wirtschafter','Buchhalter/Steuerberater']}" value="${fieldValue(bean:educator,field:'profile.education')}"/>--}%
           </td>
           <td width="290" valign="top" class="value">
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-280" name="employment" from="${grailsApplication.config.employment_es}" optionKey="key" optionValue="value" value="${educator?.profile?.employment ?: ""}"/>
+                <g:select class="drop-down-280" name="employment" from="${grailsApplication.config.employment_es}" optionKey="key" optionValue="value" value="${educator?.profile?.employment}"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="drop-down-280" name="employment" from="${grailsApplication.config.employment_de}" optionKey="key" optionValue="value" value="${educator?.profile?.employment ?: ""}"/>
+                <g:select class="drop-down-280" name="employment" from="${grailsApplication.config.employment_de}" optionKey="key" optionValue="value" value="${educator?.profile?.employment}"/>
             </g:if>
             %{--<g:select class="drop-down-280" name="employment" from="${['Angestellt','Freier Mitarbeiter','Freiwilliger']}" value="${fieldValue(bean:educator,field:'profile.employment')}"/>
           </td>--}%
@@ -114,10 +114,10 @@
           </td>
           <td valign="top" class="value">
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator.profile.inChargeOf ?: ""}" noSelection="['': message(code: 'none')]"/>
+              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
             </g:if>
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator.profile.inChargeOf ?: ""}" noSelection="['':message(code: 'none')]"/>
+              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}" noSelection="['':message(code: 'none')]"/>
             </g:if>
           </td>
           <td valign="top" class="value">
