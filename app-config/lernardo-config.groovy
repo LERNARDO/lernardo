@@ -58,12 +58,12 @@ grails.mail.default.from="lernardomailer@gmail.com"
 // "Lernardo"
 
 // currency:
-// "Euro"
 // "Pesos"
+// "Euro"
 
 project = "noe"
 projectName = "Lernardo" // full project name
-currency = "Pesos"
+currency = "Euro"
 
 // ---------------------------------------------------------------------------------------------
 // google analytics tracker
