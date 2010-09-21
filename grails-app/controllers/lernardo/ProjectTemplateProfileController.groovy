@@ -157,6 +157,18 @@ class ProjectTemplateProfileController {
 
   }
 
+  def editProjectUnit = {
+    Entity projectUnit = Entity.get(params.projectUnit)
+    render template: "editProjectUnit", model:[projectUnit: projectUnit, i: params.i]
+  }
+
+  def updateProjectUnit = {
+    Entity projectUnit = Entity.get(params.id)
+    projectUnit.profile.fullName = params.fullName
+    projectUnit.save()
+    render projectUnit.profile.fullName
+  }
+
   def addProjectUnit = {
     Entity projectTemplate = Entity.get(params.id)
 
@@ -236,7 +248,7 @@ class ProjectTemplateProfileController {
   def addGroupActivityTemplate = {
     Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
     Entity projectUnit = Entity.get(params.id)
-    //Entity projectTemplate = Entity.get(params.id)
+    Entity projectTemplate = Entity.get(params.projectTemplate)
 
     // check if the groupActivityTemplate isn't already linked to the projectUnit
     def c = Link.createCriteria()
@@ -260,13 +272,13 @@ class ProjectTemplateProfileController {
     //Integer calculatedDuration = calculateDuration(projectUnits)
 
     render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde hinzugefügt</span>'
-    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
+    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i, projectTemplate: projectTemplate]
   }
 
   def removeGroupActivityTemplate = {
     Entity groupActivityTemplate = Entity.get(params.groupActivityTemplate)
     Entity projectUnit = Entity.get(params.id)
-    //Entity projectTemplate = Entity.get(params.id)
+    Entity projectTemplate = Entity.get(params.projectTemplate)
 
     // delete link
     def c = Link.createCriteria()
@@ -288,7 +300,7 @@ class ProjectTemplateProfileController {
     //Integer calculatedDuration = calculateDuration(projectUnits)
 
     render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde entfernt</span><br/>'
-    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i]
+    render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnit, entity: entityHelperService.loggedIn, i: params.i, projectTemplate: projectTemplate]
   }
 
   def updateduration = {

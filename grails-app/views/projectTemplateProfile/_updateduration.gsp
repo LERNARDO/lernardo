@@ -1,1 +1,1 @@
-<span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration ?: 0} min <g:remoteLink update="updateduration" action="updateduration" id="${projectTemplate.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
+<span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration ?: 0} min
