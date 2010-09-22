@@ -600,7 +600,8 @@ ul {
     #public #forgot-pwd {
         padding: 14px 0 0 90px;
         height: 21px;
-        width: 150px; }
+        width: 150px;
+        margin-top: 6px; }
 
 .sidebox {
     /*-moz-border-radius: 5px;*/

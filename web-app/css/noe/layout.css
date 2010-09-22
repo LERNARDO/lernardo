@@ -6,7 +6,7 @@
 body {
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
-    background: #fee; }
+    background: #efefef; }
 
 /* used for private layout */
 #doc4 {
@@ -56,7 +56,7 @@ body {
     border-left: 1px solid #aaa;
     -moz-box-shadow: #888 0px 4px 8px;*/}
     #ft a {
-        color: #e83d06; }
+        color: #29957d; }
 
 .strong {
     font-weight: bold; }
@@ -128,7 +128,7 @@ body {
             width: 131px; }
         #nav li a:hover {
             color: #FFF;
-            background: #FF9400;
+            background: #9ede20;
             text-decoration: none !important;
             -moz-border-radius-topleft: 5px;
             -moz-border-radius-topright: 5px;
@@ -157,7 +157,7 @@ body {
     padding-bottom: 5px; }
 
 a {
-    color:#f45f00;
+    color:#29957d; /*color:#f45f00;*/
     text-decoration: none; }
 a:hover {
     text-decoration:underline; }
@@ -262,8 +262,10 @@ ul {
 
 #banner-private {
     height: 100px;
-    background: -moz-linear-gradient(90deg,#f9ba12,#ff9200);
-    background: -webkit-gradient(linear, left top, left bottom, from(#f9ba12), to(#ff9200));
+    /*background: -moz-linear-gradient(90deg,#3995d0,#2ca8d2); BLUE
+    background: -webkit-gradient(linear, left top, left bottom, from(#3995d0), to(#2ca8d2));*/
+    background: -moz-linear-gradient(90deg,#8adc2e,#9ede20);
+    background: -webkit-gradient(linear, left top, left bottom, from(#8adc2e), to(#9ede20));
     margin: 0 15px;
 }
 
@@ -339,7 +341,7 @@ ul {
     color: #7b7b7b;
     /*-moz-border-radius: 5px;*/
     /*background-color: #dfdfdf;*/
-    background: #dfdfdf;
+    background: #EFEFEF;
     /*border: 1px solid #999;*/
     /*-moz-box-shadow: #aaa 2px 2px 4px;*/
     margin-bottom: 15px; }
@@ -391,7 +393,7 @@ ul {
 .boxGray {
     /*-moz-border-radius-bottomleft: 5px;
     -moz-border-radius-bottomright: 5px;*/
-    background: #dfdfdf;
+    background: #EFEFEF;
     /*-padding: 5px;*/
     margin-bottom: 10px;
     /*border: 1px solid #888;*/
@@ -600,7 +602,8 @@ ul {
     #public #forgot-pwd {
         padding: 14px 0 0 90px;
         height: 21px;
-        width: 150px; }
+        width: 150px;
+        margin-top: 6px; }
 
 .sidebox {
     /*-moz-border-radius: 5px;*/
@@ -610,7 +613,7 @@ ul {
     color: #7b7b7b;
     /*-moz-box-shadow: #555 3px 3px 4px;*/ }
     .sidebox a {
-        color: #fa7d00; }
+        color: #29957d; }
     .sidebox a:hover {
         text-align: left;
         overflow: visible;
@@ -882,11 +885,11 @@ table #profile-list tr {
             #article-container .item .header a {
                 color: #444; }
                 #article-container .item .header a:hover {
-                    color: #fa7d00;
+                    color: #29957d;
                     text-decoration: none; }
         #article-container .item .header .adminlink {
             font-weight: bold;
-            color: #fa7d00; }
+            color: #29957d; }
         #article-container .item a {
             /*color: #46597B;*/ /*#7e7e7e;*/
             text-decoration: none; }
@@ -1328,8 +1331,8 @@ table#msg-composer td {
         padding: 3px; }
 
 .headerGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500);
-    background: -webkit-gradient(linear, left top, left bottom, from(#009900), to(#005500));
+    background: -moz-linear-gradient(-90deg,#CD0041,#AB0020);
+    background: -webkit-gradient(linear, left top, left bottom, from(#CD0041), to(#AB0020));
      }
     .headerGreen h1 {
         color: #fff;
@@ -1630,7 +1633,7 @@ h5 {
      }
 
 .profile-box .second ul li a:hover {
-      color: #f45f00 !important; /*color: #fff !important;
+      color: #29957d !important; /*color: #fff !important;
       display: block;
       background: -moz-linear-gradient(-90deg,#f93,#f9b911) #f93;*/}
 
@@ -1662,8 +1665,8 @@ h5 {
 
 /********************************************************/
 .tabGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500);
-    background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#050));
+    background: -moz-linear-gradient(-90deg,#CD0041,#AB0020);
+    background: -webkit-gradient(linear, left top, left bottom, from(#CD0041), to(#AB0020));
      }
     .tabGreen h1 {
         color: #fff;
@@ -1702,8 +1705,8 @@ h5 {
 
 }
 .tabGrey:hover{
-    background: -moz-linear-gradient(-90deg,#f93,#f9b911);
-    background: -webkit-gradient(linear, left top, left bottom, from(#f93), to(#f9b911));
+    background: -moz-linear-gradient(90deg,#8adc2e,#9ede20);
+    background: -webkit-gradient(linear, left top, left bottom, from(#8adc2e), to(#9ede20));
 }
 .tabGrey a:hover{
     color: #fff;
@@ -1760,7 +1763,7 @@ h5 {
    cursor: pointer;
 }
 .passiv_tab:hover {
-   color:  #fa7d00;
+   color:  #29957d;
    cursor: pointer;
 }
 .passiv_inhalt {
