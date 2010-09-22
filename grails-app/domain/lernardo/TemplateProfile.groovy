@@ -22,7 +22,7 @@ class TemplateProfile extends Profile {
   static constraints = {
     fullName (blank: false, size: 2..50, maxSize: 50)
     description (blank: true, maxSize: 5000)
-    chosenMaterials (size: 2..50, maxSize: 5000)
+    chosenMaterials (size: 2..5000, maxSize: 5000)
     duration (max: 500)
   }
 
