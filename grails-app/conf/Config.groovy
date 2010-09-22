@@ -112,6 +112,8 @@ dummies = 16
 defaultpass = "pass"
 
 // custom maps to store data
+resourceclasses_de = ['1':'Einrichtung','2':'Gemeinde','3':'Überall']
+resourceclasses_es = ['1':'Instalaciones','2':'Colonia','3':'e_Überall']
 employment_de = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
 employment_es = ['1':'e_Angestellt','2':'e_Freier Mitarbeiter','3':'e_Freiwilliger']
 education_de = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
