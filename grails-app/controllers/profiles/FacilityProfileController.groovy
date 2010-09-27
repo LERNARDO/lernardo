@@ -73,7 +73,13 @@ class FacilityProfileController {
     List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     // find colonia of this facility
-    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+    List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
+    Entity colony
+    entities.each {
+      if (it.type.id == metaDataService.etColonia.id) {
+        colony = it as Entity
+      }
+    }
 
     return [facility: facility,
             entity: entity,
@@ -134,18 +140,10 @@ class FacilityProfileController {
 
     if (!facility.hasErrors() && facility.save()) {
 
-      // delete current link
-      def link = Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)
-      /*def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', facility)
-        eq('target', Entity.get(params.colonia))
-        eq('type', metaDataService.ltGroupMemberFacility)
-      }*/
-      if (link)
-        link.delete()
+      // delete previously linked colonia
+      Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)?.delete()
 
-      // link facility to colonia
+      // link new colonia to facility
       new Link(source: facility, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.updated", args: [facility.profile.fullName])
