@@ -22,7 +22,7 @@
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupFamily.profile.name"/></td>
-            <td valign="top" class="name"><g:message code="groupFamily.profile.familyIncome"/></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}"><g:message code="groupFamily.profile.familyIncome"/></g:if></td>
             <td valign="top" class="name"><g:message code="groupFamily.profile.amountHousehold"/></td>
           </tr>
 
@@ -31,7 +31,9 @@
               <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="265px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
+              <g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}">
+                <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
+              </g:if>
             </td>
             <td width="265px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>

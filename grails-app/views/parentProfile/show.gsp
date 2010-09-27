@@ -76,8 +76,8 @@
           <tr>
             <td width="120" valign="middle" class="name-show"></td>
             <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.jobType"/></td>
-            <td width="280" valign="middle" class="name-show"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
-            <td valign="middle" class="name-show"><g:message code="parent.profile.jobFrequency"/></td>
+            <td width="280" valign="middle" class="name-show"><g:if test="${grailsApplication.config.parentProfile.jobIncome}"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency})</g:if></td>
+            <td valign="middle" class="name-show"><g:if test="${grailsApplication.config.parentProfile.jobFrequency}"><g:message code="parent.profile.jobFrequency"/></g:if></td>
           </tr>
 
           <tr>
@@ -86,8 +86,8 @@
               <g:formatBoolean boolean="${parent.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
             </td>
             <td valign="top" class="value-show"><app:getJobType job="${parent.profile.jobType}"/></td>
-            <td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobIncome')}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.parentProfile.jobIncome}">${fieldValue(bean: parent, field: 'profile.jobIncome')}</g:if></td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.parentProfile.jobFrequency}">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</g:if></td>
           </tr>
         </g:if>
 
@@ -110,6 +110,24 @@
           </td>
           <td valign="middle" class="value-show">
             ${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+          </td>
+        </tr>
+
+        <tr>
+          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
+          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.phone}">Telefon</g:if></td>
+        </tr>
+
+        <tr>
+          <td valign="middle" class="value-show">
+            <g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">
+              ${fieldValue(bean: parent, field: 'profile.socialSecurityNumber') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+            </g:if>
+          </td>
+          <td width="105" valign="middle" class="value-show">
+            <g:if test="${grailsApplication.config.parentProfile.phone}">
+              ${fieldValue(bean: parent, field: 'profile.phone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+            </g:if>
           </td>
         </tr>
 

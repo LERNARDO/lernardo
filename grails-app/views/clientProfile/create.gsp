@@ -257,6 +257,56 @@
               </td>
             </tr>
 
+            <tr>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.citizenship}">Staatsbürgerschaft</g:if></td>
+              <td colspan="3" valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
+            <tr>
+
+            <tr>
+              <td width="210" valign="top" class="value">
+                <g:if test="${grailsApplication.config.clientProfile.citizenship}">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.citizenship', 'errors')}" size="10" name="citizenship" value="${fieldValue(bean: client, field: 'profile.citizenship')}"/>
+                </g:if>
+              </td>
+              <td  colspan="3" valign="top" class="value">
+                <g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.socialSecurityNumber', 'errors')}" size="30" name="socialSecurityNumber" value="${fieldValue(bean: client, field: 'profile.socialSecurityNumber')}"/>
+                </g:if>
+              </td>
+            </tr>
+
+            <g:if test="${grailsApplication.config.clientProfile.contact}">
+              <tr>
+                <td valign="top" class="name">Kontakt Name:</td>
+                <td valign="top" class="name">Kontakt Land:</td>
+                <td valign="top" class="name">Kontakt PLZ:</td>
+                <td valign="top" class="name">Kontakt Stadt:</td>
+              <tr>
+
+              <tr>
+                <td width="210" valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactName', 'errors')}" size="10" name="contactName" value="${fieldValue(bean: client, field: 'profile.contactName')}"/>
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactCountry', 'errors')}" size="10" name="contactCountry" value="${fieldValue(bean: client, field: 'profile.contactCountry')}"/>
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactZip', 'errors')}" size="10" name="contactZip" value="${fieldValue(bean: client, field: 'profile.contactZip')}"/>
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactCity', 'errors')}" size="10" name="contactCity" value="${fieldValue(bean: client, field: 'profile.contactCity')}"/>
+                </td>
+              </tr>
+
+              <tr>
+                <td valign="top" class="name">Kontakt Straße:</td>
+                <td valign="top" class="name">Kontakt Telefon:</td>
+                <td colspan="2" valign="top" class="name">Kontakt E-Mail:</td>
+              <tr>
+
+              <tr>
+                <td width="210" valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactStreet', 'errors')}" size="10" name="contactStreet" value="${fieldValue(bean: client, field: 'profile.contactStreet')}"/>
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactPhone', 'errors')}" size="10" name="contactPhone" value="${fieldValue(bean: client, field: 'profile.contactPhone')}"/>
+                  <g:textField colspan="2" class="${hasErrors(bean: client, field: 'profile.contactMail', 'errors')}" size="10" name="contactMail" value="${fieldValue(bean: client, field: 'profile.contactMail')}"/>
+                  </td>
+              </tr>
+            </g:if>
+
           </table>
         </div>
 

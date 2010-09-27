@@ -26,6 +26,7 @@ class EducatorProfile extends Profile {
     String originCity
     String originStreet
 
+    String contactName // added on 27.09.2010
     String contactCountry
     String contactZip
     String contactCity
@@ -55,6 +56,7 @@ class EducatorProfile extends Profile {
       originZip (size: 4..10)
       originCity (size: 2..50, maxSize: 50)
       originStreet (size: 2..50, maxSize: 50)
+      contactName (nullable: true, size: 2..50, maxSize: 50)
       contactCountry (size: 2..50, maxSize: 50)
       contactZip (size: 4..10)
       contactCity (size: 2..50, maxSize: 50)

@@ -28,6 +28,10 @@ class ParentProfile extends Profile {
 
     Boolean showTips = true
 
+    // for Lernardo
+    Integer socialSecurityNumber
+    String phone
+
     static constraints = {
       fullName (blank: true)
       firstName (blank: false, size: 2..50, maxSize: 50)
@@ -41,6 +45,9 @@ class ParentProfile extends Profile {
       jobFrequency (nullable: true, blank: true, maxSize: 20)
       education (blank: true)
       comment (blank: true, maxSize: 2000)
+
+      socialSecurityNumber (nullable: true, size: 10..10)
+      phone (nullable: true)
     }
 
     String toString(){

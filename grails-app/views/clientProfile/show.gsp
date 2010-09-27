@@ -183,6 +183,45 @@
             </tr>
           </g:if>
 
+          <tr class="prop">
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">Staatsbürgerschaft</g:if></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">${fieldValue(bean: client, field: 'profile.citizenship') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
+          </tr>
+
+          <g:if test="${grailsApplication.config.clientProfile.contact}">
+          <tr class="prop">
+            <td valign="top" class="name-show">Kontakt Name:</td>
+            <td valign="top" class="name-show">Kontakt Land:</td>
+            <td valign="top" class="name-show">Kontakt PLZ:</td>
+            <td valign="top" class="name-show">Kontakt Stadt:</td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactCountry') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactZip') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name-show">Kontakt Straße:</td>
+            <td valign="top" class="name-show">Kontakt Telefon:</td>
+            <td colspan="2" valign="top" class="name-show">Kontakt E-Mail:</td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactStreet') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactPhone') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactMail') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          </tr>
+
+          </g:if>
+
         </table>
       </div>
 

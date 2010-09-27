@@ -83,8 +83,8 @@
           <tr>
             <td valign="middle" class="name">&nbsp;</td>
             <td valign="middle" class="name"><g:message code="parent.profile.jobType"/>:</td>
-            <td valign="middle" class="name"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency}):</td>
-            <td valign="middle" class="name"><g:message code="parent.profile.jobFrequency"/>:</td>
+            <td valign="middle" class="name"><g:if test="${grailsApplication.config.parentProfile.jobIncome}"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency}):</g:if></td>
+            <td valign="middle" class="name"><g:if test="${grailsApplication.config.parentProfile.jobFrequency}"><g:message code="parent.profile.jobFrequency"/>:</g:if></td>
           </tr>
 
           <tr>
@@ -100,10 +100,14 @@
               </g:if>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.jobIncome', 'errors')}" size="30" id="jobIncome" name="jobIncome" value="${parent?.profile?.jobIncome?.toInteger()}"/>
+              <g:if test="${grailsApplication.config.parentProfile.jobIncome}">
+                <g:textField class="${hasErrors(bean: parent, field: 'profile.jobIncome', 'errors')}" size="30" id="jobIncome" name="jobIncome" value="${parent?.profile?.jobIncome?.toInteger()}"/>
+              </g:if>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: parent, field: 'profile.jobFrequency', 'errors')}" size="30" id="jobFrequency" name="jobFrequency" value="${parent?.profile?.jobFrequency}"/>
+              <g:if test="${grailsApplication.config.parentProfile.jobFrequency}">
+                <g:textField class="${hasErrors(bean: parent, field: 'profile.jobFrequency', 'errors')}" size="30" id="jobFrequency" name="jobFrequency" value="${parent?.profile?.jobFrequency}"/>
+              </g:if>
             </td>
           </tr>
 
@@ -133,7 +137,28 @@
               <g:textField class="${hasErrors(bean: parent, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: parent, field: 'profile.currentZip').decodeHTML()}"/>
             </td>
           </tr>
+        </table>
 
+        <table>
+
+          <tr>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.phone}">Telefon</g:if></td>
+          <tr>
+
+          <tr>
+            <td width="210" valign="top" class="value">
+              <g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">
+                <g:textField class="${hasErrors(bean: parent, field: 'profile.socialSecurityNumber', 'errors')}" size="10" name="socialSecurityNumber" value="${fieldValue(bean: parent, field: 'profile.socialSecurityNumber')}"/>
+              </g:if>
+            </td>
+            <td valign="top" class="value">
+              <g:if test="${grailsApplication.config.parentProfile.phone}">
+                <g:textField class="${hasErrors(bean: parent, field: 'profile.phone', 'errors')}" size="30" name="phone" value="${fieldValue(bean: parent, field: 'profile.phone')}"/>
+              </g:if>
+            </td>
+          </tr>
+          
         </table>
 
         <div class="email">

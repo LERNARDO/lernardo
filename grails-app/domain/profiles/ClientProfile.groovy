@@ -54,6 +54,18 @@ class ClientProfile extends Profile {
 
     Boolean showTips = true
 
+    // for Lernardo
+    String citizenship
+    Integer socialSecurityNumber
+
+    String contactName // added on 27.09.2010
+    String contactCountry // added on 27.09.2010
+    String contactZip // added on 27.09.2010
+    String contactCity // added on 27.09.2010
+    String contactStreet // added on 27.09.2010
+    String contactPhone // added on 27.09.2010
+    String contactMail // added on 27.09.2010
+
     static constraints = {
       fullName (blank: true)
       firstName (blank: false, size: 2..50, maxSize: 50)
@@ -74,6 +86,16 @@ class ClientProfile extends Profile {
       schoolRestartDate (nullable: true)
       schoolRestartReason (nullable: true, blank: false, maxSize: 500)
       supportDescription (nullable: true, blank: true, maxSize: 500)
+
+      citizenship (nullable: true)
+      socialSecurityNumber (nullable: true, size: 10..10)
+      contactName (nullable: true, size: 2..50, maxSize: 50)
+      contactCountry (nullable: true, size: 2..50, maxSize: 50)
+      contactZip (nullable: true, size: 4..10)
+      contactCity (nullable: true, size: 2..50, maxSize: 50)
+      contactStreet (nullable: true, size: 2..50, maxSize: 50)
+      contactPhone (nullable: true, size: 2..50, maxSize: 50)
+      contactMail (nullable: true, size: 2..50, maxSize: 50)
     }
 
     String toString(){

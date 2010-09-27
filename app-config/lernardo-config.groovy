@@ -78,3 +78,24 @@ google.analytics.webPropertyID = "UA-17725364-2"
 // by default, tracking is enabled for the 'production' Env only, but that can be overwritten
 // both ways (i.e emergency disable tracking)
 // google.analytics.enabled = false
+
+// ---------------------------------------------------------------------------------------------
+// attribute visibility
+// ---------------------------------------------------------------------------------------------
+
+// controls the visibility of attributes for each project
+
+// ClientProfile
+clientProfile.citizenship = true // true for Lernardo, false for Sueninos
+clientProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos
+clientProfile.contact = true // true for Lernardo, false for Sueninos
+
+// GroupFamilyProfile
+groupFamilyProfile.familyIncome = false // false for Lernardo, true for Sueninos
+
+// ParentProfile
+parentProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos
+parentProfile.phone = true // true for Lernardo, false for Sueninos
+parentProfile.jobIncome = false // false for Lernardo, true for Sueninos
+parentProfile.jobFrequency = false // false for Lernardo, true for Sueninos
+
