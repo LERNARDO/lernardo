@@ -1399,21 +1399,21 @@ table#msg-composer td {
 		
 .value-show-block {
 	background-color: #FFF;
-	border-right: 20px solid #dfdfdf;	
-	border-bottom: 10px solid #dfdfdf;
+	border-right: 20px solid #efefef;
+	border-bottom: 10px solid #efefef;
 	padding: 3px;
 }
 .value-show {
 	background-image:url(../../images/icons/value-show-short.png);
 	background-repeat:repeat-x;
-	border-right: 20px solid #dfdfdf;	
-	border-bottom: 10px solid #dfdfdf;
+	border-right: 20px solid #efefef;
+	border-bottom: 10px solid #efefef;
 	padding: 3px;
 }
 
 	
 .name-show {
-	border-right: 20px solid #dfdfdf;
+	border-right: 20px solid #efefef;
 	padding-top: 3px;
 	padding-bottom: 3px;
 	

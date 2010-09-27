@@ -76,7 +76,7 @@ class FacilityProfileController {
     List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
     Entity colony
     entities.each {
-      if (it.type.id == metaDataService.etColonia.id) {
+      if (it.type.id == metaDataService.etGroupColony.id) {
         colony = it as Entity
       }
     }
