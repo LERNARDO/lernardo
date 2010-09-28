@@ -33,7 +33,7 @@
     </app:getProjectDayEducators>
   </div>
 
-  <span class="bold">Resourcen <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></app:hasRoleOrType></span>
+  %{--<span class="bold">Resourcen <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></app:hasRoleOrType></span>
   <div id="resources" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addResource', id:projectDay.id]" update="resources2" before="showspinner('#resources2')">
       <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
@@ -47,6 +47,6 @@
     <app:getProjectDayResources projectDay="${projectDay}">
       <g:render template="resources" model="[resources: resources, projectDay: projectDay, entity: entity]"/>
     </app:getProjectDayResources>
-  </div>
+  </div>--}%
 
 </div>
