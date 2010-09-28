@@ -67,7 +67,7 @@
               </g:if>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="countable2000" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
+              <g:textArea class="countable2000" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
