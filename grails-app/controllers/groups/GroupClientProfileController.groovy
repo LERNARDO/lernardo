@@ -137,7 +137,7 @@ class GroupClientProfileController {
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">Bitte zumindest einen Betreuten auswählen!</p>'
+      render '<p class="italic red">Bitte zumindest einen Betreuten auswï¿½hlen!</p>'
     else {
       def bla = functionService.getParamAsList(params.members)
   
@@ -161,8 +161,10 @@ class GroupClientProfileController {
   def updateselect = {
 
     // set second date always to the last day of the year
-    params.birthDate2.setDate(31)
-    params.birthDate2.setMonth(11)
+    if (params.birthDate1) {
+      params.birthDate2.setDate(31)
+      params.birthDate2.setMonth(11)
+    }
     
     //def allClients = Entity.findAllByType(metaDataService.etClient)
     params.type = metaDataService.etClient
@@ -181,8 +183,8 @@ class GroupClientProfileController {
       profile {
         if (params.city)
           ilike('currentCity', "%" + params.city + "%")
-        if (params.gender.toInteger() > 0)
-          eq('gender', params.gender.toInteger())
+        if (params.int('gender') > 0)
+          eq('gender', params.byte('gender'))
         if (params.job.toInteger() > 0) {
           if (params.job.toInteger() == 1)
             eq('job', true)
