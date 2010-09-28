@@ -92,6 +92,7 @@ clientProfile.contact = true // true for Lernardo, false for Sueninos
 
 // GroupFamilyProfile
 groupFamilyProfile.familyIncome = false // false for Lernardo, true for Sueninos
+groupFamilyProfile.familyProblems = false // false for Lernardo, true for Sueninos
 
 // ParentProfile
 parentProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos

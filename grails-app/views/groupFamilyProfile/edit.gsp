@@ -57,16 +57,18 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="groupFamily.profile.familyProblems"/></td>
+            <td colspan="3" valign="top" class="name"><g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}"><g:message code="groupFamily.profile.familyProblems"/></g:if></td>
           </tr>
 
           <tr>
             <td colspan="3" valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="familyProblems" class="max-textbox" multiple="true" from="${grailsApplication.config.problems_es}" optionKey="key" optionValue="value" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="familyProblems" class="max-textbox" multiple="true" from="${grailsApplication.config.problems_de}" optionKey="key" optionValue="value" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
+              <g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}">
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                  <g:select name="familyProblems" class="max-textbox" multiple="true" from="${grailsApplication.config.problems_es}" optionKey="key" optionValue="value" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
+                </g:if>
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                  <g:select name="familyProblems" class="max-textbox" multiple="true" from="${grailsApplication.config.problems_de}" optionKey="key" optionValue="value" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
+                </g:if>
               </g:if>
             </td>
           </tr>

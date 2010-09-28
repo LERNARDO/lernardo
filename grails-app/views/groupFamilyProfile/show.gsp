@@ -38,21 +38,23 @@
         </tr>
 
         <tr class="prop">
-          <td colspan="3" valign="top" class="name-show"><g:message code="groupFamily.profile.familyProblems"/>:</td>
+          <td colspan="3" valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}"><g:message code="groupFamily.profile.familyProblems"/>:</g:if></td>
         </tr>
 
         <tr class="prop">
           <td colspan="3" valign="top" class="value-show-block">
-            <g:if test="${group.profile.familyProblems}">
-              <ul>
-                <g:each in="${group.profile.familyProblems}" var="problem">
-                  <li><app:getFamilyProblem problem="${problem}"/></li>
-                </g:each>
-              </ul>
+            <g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}">
+              <g:if test="${group.profile.familyProblems}">
+                <ul>
+                  <g:each in="${group.profile.familyProblems}" var="problem">
+                    <li><app:getFamilyProblem problem="${problem}"/></li>
+                  </g:each>
+                </ul>
+              </g:if>
+              <g:else>
+                <div class="italic"><g:message code="noData"/></div>
+              </g:else>
             </g:if>
-            <g:else>
-              <div class="italic"><g:message code="noData"/></div>  
-            </g:else>
           </td>
         </tr>
       </table>
