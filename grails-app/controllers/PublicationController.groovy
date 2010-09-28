@@ -30,6 +30,120 @@ class PublicationController {
     def pubs = publicationHelperService.findPublicationsByType(entity)
     Map finalMap = pubs
 
+    // (1)
+    // if the entity is a group activity template find all documents of the activity templates linked to it
+    Map activitytemplatesdocuments = [:]
+    if (entity.type.id == metaDataService.etGroupActivityTemplate.id) {
+      // find all activity templates linked to the group activity template
+      List activitytemplates = functionService.findAllByLink(null, entity, metaDataService.ltGroupMember)
+
+      // get all documents
+      activitytemplates.each {
+        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+      }
+    }
+
+    // (2)
+    // if the entity is a group activity find the group activity template and its documents and then all
+    // documents of the activity templates linked to the group activity template
+    Map groupactivitytemplatesdocuments = [:]
+    if (entity.type.id == metaDataService.etGroupActivity.id) {
+      // find the group activity template
+      Entity groupactivitytemplate = functionService.findByLink(null, entity, metaDataService.ltTemplate)
+
+      // get documents of template
+      groupactivitytemplatesdocuments << publicationHelperService.findPublicationsByType(groupactivitytemplate)
+
+      // find all activity templates linked to the group activity template
+      List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
+
+      // get all documents
+      activitytemplates.each {
+        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+      }
+    }
+
+    // (3)
+    // if the entity is a project template find all group activity templates and their documents and then all
+    // documents of the activity templates linked to the group activity templates
+    if (entity.type.id == metaDataService.etProjectTemplate.id) {
+
+      // find all project units linked to the project template
+      List projectUnits = functionService.findAllByLink(null, entity, metaDataService.ltProjectUnit)
+
+      // find all group activity templates
+      List groupactivitytemplates = []
+      projectUnits.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        bla.each {
+          groupactivitytemplates << it
+        }
+      }
+
+      // get documents of group activity templates
+      groupactivitytemplates.each {
+        groupactivitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+      }
+
+      // find all activity templates linked to the group activity templates
+      List activitytemplates = []
+      groupactivitytemplates.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        bla.each {
+          activitytemplates << it
+        }
+      }
+
+      // get all documents
+      activitytemplates.each {
+        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+      }
+    }
+
+    // (4)
+    // if the entity is a project find the project template and its documents then all group activity templates and
+    // their documents and then all documents of the activity templates linked to the group activity templates
+    Map projecttemplatedocuments = [:]
+    if (entity.type.id == metaDataService.etProject.id) {
+
+      // find project template
+      Entity projectTemplate = functionService.findByLink(null, entity, metaDataService.ltProjectTemplate)
+
+      // get documents of project template
+      projecttemplatedocuments = publicationHelperService.findPublicationsByType(projectTemplate)
+
+      // find all project units linked to the project template
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
+
+      // find all group activity templates
+      List groupactivitytemplates = []
+      projectUnits.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        bla.each {
+          groupactivitytemplates << it
+        }
+      }
+
+      // get documents of group activity templates
+      groupactivitytemplates.each {
+        groupactivitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+      }
+
+      // find all activity templates linked to the group activity templates
+      List activitytemplates = []
+      groupactivitytemplates.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        bla.each {
+          activitytemplates << it
+        }
+      }
+
+      // get all documents
+      activitytemplates.each {
+        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+      }
+    }
+
     /*
      * the code below should check the access level of a document to decide whether or not a publication is visible
      * to the user - NOT USED ATM
@@ -73,7 +187,11 @@ class PublicationController {
       //pubs = finalMap
     }*/
 
-    return [entity: entity, pubtypes: finalMap]
+    return [entity: entity,
+            pubtypes: finalMap,
+            activitytemplatesdocuments: activitytemplatesdocuments,
+            groupactivitytemplatesdocuments: groupactivitytemplatesdocuments,
+            projecttemplatedocuments: projecttemplatedocuments]
   }
 
   def create = {
