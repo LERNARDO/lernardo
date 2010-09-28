@@ -16,14 +16,16 @@
     <table class="default-table">
       <thead>
       <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'client.profile.name')}"/>
+        <g:sortableColumn property="firstName" title="${message(code:'client.profile.firstName')}"/>
+        <g:sortableColumn property="lastName" title="${message(code:'client.profile.lastName')}"/>
         <g:sortableColumn property="birthDate" title="${message(code:'client.profile.birthDate')}"/>
       </tr>
       </thead>
       <tbody>
       <g:each in="${clientList}" status="i" var="client">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}</g:link></td>
+          <td>${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}</td>
           <td><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
       </g:each>
