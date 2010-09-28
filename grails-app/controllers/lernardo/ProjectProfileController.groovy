@@ -70,7 +70,8 @@ class ProjectProfileController {
       // find all facilities linked to this project
       List facilities = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberFacility)
 
-      def allClients = Entity.findAllByType(metaDataService.etClient)
+      //def allClients = Entity.findAllByType(metaDataService.etClient)
+      List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
       // find all clients linked to this project
       List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
 
@@ -103,7 +104,8 @@ class ProjectProfileController {
               allGroupActivityTemplates: allGroupActivityTemplates,
               calculatedDuration: calculatedDuration,
               clients: clients,
-              allClients: allClients,
+              /*allClients: allClients,*/
+              allClientGroups: allClientgroups,
               projectDays: projectDays,
               template: template,
               allFacilities: allFacilities,
@@ -441,11 +443,31 @@ class ProjectProfileController {
     return calculatedDuration
   }
 
-  def addClient = {
+/*  def addClient = {
     def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
     render template: 'clients', model: [clients: linking.results, project: linking.target, entity: entityHelperService.loggedIn]
+  }*/
+  
+  def addClientGroup = {
+    // get client group
+    Entity clientgroup = Entity.get(params.clientgroup)
+    // get all clients linked to this group
+    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
+
+    // link them to the activity group
+    clients.each {
+      def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    }
+
+    Entity project = Entity.get(params.id)
+
+    List clients2 = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+
+    render template: 'clients', model: [clients: clients2, project: project, entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {

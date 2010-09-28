@@ -67,8 +67,8 @@
     <div class="zusatz">
       <h5>Betreute <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClient', id:project.id]" update="clients2" before="showspinner('#clients2')">
-          <g:select name="client" from="${allClients}" optionKey="id" optionValue="profile"/>
+        <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClientGroup', id:project.id]" update="clients2" before="showspinner('#clients2')">
+          <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>
@@ -78,7 +78,7 @@
         <g:render template="clients" model="[clients: clients, project: project, entity: currentEntity]"/>
       </div>
     </div>
-    
+       
     <div class="zusatz">
       <h5>Projekttage (${projectDays.size()})</h5>
       <g:if test="${projectDays}">
