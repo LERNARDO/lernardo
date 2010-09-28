@@ -149,11 +149,11 @@ class GroupActivityTemplateProfileController {
         ent.profile.properties = params
       }
 
-      functionService.createEvent(currentEntity, 'Du hast die Aktivit‰tsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      functionService.createEvent(currentEntity, 'Du hast die Aktivit√§tsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {
         if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivit‰tsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivit√§tsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
@@ -167,7 +167,7 @@ class GroupActivityTemplateProfileController {
 
   def addTemplate = {
     if (!params.templates)
-      render '<p class="italic red">Bitte zumindest eine Vorlage ausw‰hlen!</p>'
+      render '<p class="italic red">Bitte zumindest eine Vorlage ausw√§hlen!</p>'
     else { 
       def bla = functionService.getParamAsList(params.templates)
 
