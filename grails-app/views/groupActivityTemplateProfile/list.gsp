@@ -34,7 +34,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><app:getGroupSize entity="${group}"/></td>
-          <td><app:getGroupDuration entity="${group}"/></td>
+          <td>${fieldValue(bean: group, field: 'profile.realDuration')}%{--<app:getGroupDuration entity="${group}"/>--}%</td>
           %{--<td><app:getCreator entity="${group}">${creator.profile.fullName}</app:getCreator></td>--}%
         </tr>
       </g:each>
