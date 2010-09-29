@@ -1816,3 +1816,7 @@ h5 {
     background: #fff;
     border: 1px solid #ccc;
 }
+
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }

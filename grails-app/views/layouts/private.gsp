@@ -19,6 +19,7 @@ future HTML5 doctype
   <jqui:resources/>
   <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -41,6 +42,10 @@ future HTML5 doctype
         dateFormat: 'dd. mm. yy',
         minDate: new Date(1900, 1, 1),
         firstDay: 1});
+
+      $('.datetimepicker').datetimepicker({
+        dateFormat: 'dd. mm. yy'
+      });
 
       $('#flash-msg').delay(3000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 

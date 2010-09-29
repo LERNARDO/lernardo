@@ -17,6 +17,12 @@ class GroupActivityProfileController {
   ProfileHelperService profileHelperService
   FunctionService functionService
 
+  def beforeInterceptor = [
+          action:{
+            params.date = params.date ? Date.parse("dd. MM. yy hh:mm", params.date) : null},
+            only:['save','update']
+  ]
+
   // the delete, save and update actions only accept POST requests
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
