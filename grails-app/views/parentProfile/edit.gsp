@@ -121,10 +121,10 @@
           <tr>
             <td valign="top" class="value">
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}"/>
+                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
               </g:if>
               <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}"/>
+                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent.profile.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
               </g:if>
             </td>
             <td width="105" valign="top" class="value">
