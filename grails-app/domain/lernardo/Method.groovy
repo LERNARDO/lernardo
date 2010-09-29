@@ -11,7 +11,7 @@ class Method {
 
     static constraints = {
       name (maxSize: 50)
-      description (maxSize: 2000)
+      description (maxSize: 5000)
     }
 
     String toString(){

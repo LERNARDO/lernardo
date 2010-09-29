@@ -13,7 +13,7 @@ class ThemeProfile extends Profile {
 
     static constraints = {
       fullName (blank: false, size: 2..50, maxSize: 50)
-      description (blank: true, maxSize: 2000)
+      description (blank: true, maxSize: 5000)
       startDate(nullable: false)
       endDate(nullable: false, validator: {ed, tp ->
         return ed > tp.startDate

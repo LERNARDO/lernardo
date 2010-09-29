@@ -12,7 +12,7 @@ class ProjectTemplateProfile extends Profile {
 
     static constraints = {
       fullName (blank: false, maxSize: 50)
-      description (blank: true, maxSize: 2000)
+      description (blank: true, maxSize: 5000)
     }
 
     String toString(){

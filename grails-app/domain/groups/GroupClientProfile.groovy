@@ -12,7 +12,7 @@ class GroupClientProfile extends Profile {
 
     static constraints = {
       fullName (blank: false, size: 2..50, maxSize: 50)
-      description (blank: true, maxSize: 2000)
+      description (blank: true, maxSize: 5000)
     }
 
     String toString(){

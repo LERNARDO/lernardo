@@ -13,7 +13,7 @@ class OperatorProfile extends Profile {
 
     static constraints = {
       fullName (blank: false, maxSize: 50)
-      description (maxSize: 2000)
+      description (maxSize: 5000)
       city (size: 2..50, maxSize: 50)
       street (size: 2..50, maxSize: 50)
     }
