@@ -240,28 +240,15 @@
       <div class="contact">
         <table>
           <tr>
-            <td valign="top" class="name">
-              <label for="contactStreet">
-                <g:message code="educator.profile.contactStreet"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="contactZip">
-                <g:message code="educator.profile.contactZip"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="contactCity">
-                <g:message code="educator.profile.contactCity"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="contactCountry">
-                <g:message code="educator.profile.contactCountry"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactName"/></td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactStreet"/></td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactZip"/></td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactCity"/></td>
           </tr>
           <tr>
+            <td width="280" height="35" valign="top" class="value">
+              <g:textField class="countable${educator.profile.constraints.contactName.maxSize} ${hasErrors(bean: educator, field: 'profile.contactName', 'errors')}" size="30" id="contactName" name="contactName" value="${fieldValue(bean: educator, field: 'profile.contactName').decodeHTML()}"/>
+            </td>
             <td width="280" height="35" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" id="contactStreet" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
             </td>
@@ -271,26 +258,19 @@
             <td width="210" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactCity.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" id="contactCity" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
-              <g:textField class="countable${educator.profile.constraints.contactCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" id="contactCountry" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
-            </td>
           </tr>
         </table>
 
         <table>
           <tr>
-            <td valign="top" class="name">
-              <label for="contactPhone">
-                <g:message code="educator.profile.contactPhone"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="contactMail">
-                <g:message code="educator.profile.contactMail"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactCountry"/></td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactPhone"/></td>
+            <td valign="top" class="name"><g:message code="educator.profile.contactMail"/></td>
           </tr>
           <tr>
+            <td valign="top" class="value">
+              <g:textField class="countable${educator.profile.constraints.contactCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" id="contactCountry" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
+            </td>
             <td width="280" height="35" valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.contactPhone.maxSize} ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" id="contactPhone" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
             </td>

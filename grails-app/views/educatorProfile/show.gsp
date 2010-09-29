@@ -178,13 +178,16 @@
         <table>
 
           <tr>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactName"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.contactStreet"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.contactZip"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.contactCity"/></td>
-            <td valign="top" class="name-show"><g:message code="educator.profile.contactCountry"/></td>
           </tr>
 
           <tr>
+            <td width="280" height="25" valign="top" class="value-show">
+              ${fieldValue(bean: educator, field: 'profile.contactName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            </td>
             <td width="280" height="25" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.contactStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
@@ -194,9 +197,7 @@
             <td width="210" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.contactCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
-            <td width="110" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-            </td>
+
           </tr>
 
         </table>
@@ -204,11 +205,15 @@
         <table>
 
           <tr>
+            <td valign="top" class="name-show"><g:message code="educator.profile.contactCountry"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.contactPhone"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.contactMail"/></td>
           </tr>
 
           <tr>
+            <td width="110" valign="top" class="value-show">
+              ${fieldValue(bean: educator, field: 'profile.contactCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+            </td>
             <td width="280" height="25" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
