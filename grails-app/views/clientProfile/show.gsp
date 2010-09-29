@@ -328,7 +328,8 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:hasRoleOrType></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2')">
-          <g:datePicker name="date" value="" precision="day"/>
+          <g:textField name="date" size="12" class="datepicker" value=""/>
+          %{--<g:datePicker name="date" value="" precision="day"/>--}%
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>

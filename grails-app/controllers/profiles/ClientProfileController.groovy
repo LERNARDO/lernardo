@@ -25,10 +25,11 @@ class ClientProfileController {
 
   def beforeInterceptor = [
           action:{
+            params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null
             params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null
             params.schoolDropoutDate = params.schoolDropoutDate ? Date.parse("dd. MM. yy", params.schoolDropoutDate) : null
             params.schoolRestartDate = params.schoolRestartDate ? Date.parse("dd. MM. yy", params.schoolRestartDate) : null},
-            only:['save','update']
+            only:['save','update','addDate']
   ]
 
   def index = {
