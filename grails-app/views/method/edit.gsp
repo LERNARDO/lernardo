@@ -23,25 +23,17 @@
           <tbody>
                         
           <tr class="prop">
-            <td valign="top" class="name">
-              <label for="name">
-                <g:message code="method.name"/>
-              </label>
-            </td>
-            <td valign="top" class="name">
-              <label for="description">
-                <g:message code="method.description"/>
-              </label>
-            </td>
+            <td valign="top" class="name"><g:message code="method.name"/></td>
+            <td valign="top" class="name"><g:message code="method.description"/></td>
 
           </tr>
 
           <tr class="prop">
             <td width="280" valign="top" class="value">
-              <g:textField size="40" class="countable${methodInstance.constraints.name.maxSize} ${hasErrors(bean: methodInstance, field: 'name', 'errors')}" id="name" name="name" value="${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}"/>
+              <g:textField size="40" class="countable${methodInstance.constraints.name.maxSize} ${hasErrors(bean: methodInstance, field: 'name', 'errors')}" name="name" value="${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}"/>
             </td>
             <td width="400" valign="top" class="value">
-              <g:textArea rows="3" cols="80" class="countable${methodInstance.constraints.description.maxSize} ${hasErrors(bean: methodInstance, field: 'description', 'errors')}" id="description" name="description" value="${fieldValue(bean: methodInstance, field: 'description').decodeHTML()}"/>
+              <g:textArea rows="3" cols="80" class="countable${methodInstance.constraints.description.maxSize} ${hasErrors(bean: methodInstance, field: 'description', 'errors')}" name="description" value="${fieldValue(bean: methodInstance, field: 'description').decodeHTML()}"/>
             </td>
           </tr>
                         
