@@ -156,8 +156,8 @@ partner_de = ['1':'Projekte, Arbeit','2':'Dienstleistungen','3':'Finanzierung','
 partner_es = ['1':'en colaboración','2':'Prestadores de servicios','3':'Monetarios','4':'Personal (voluntarios)']
 familyRelation_de = ['1':'Eltern','2':'Vater','3':'Mutter','4':'Andere']
 familyRelation_es = ['1':'Padres','2':'Padre','3':'Madre','4':'Otros']
-maritalStatus_de = ['1':'ledig','2':'verheiratet','3':'getrennt lebend','4':'geschieden','5':'verwitwet','6':'verpartnert','7':'unbekannt']
-maritalStatus_es = ['1':'soltero','2':'casado','3':'separado','4':'ser divorciado','5':'viudo','6':'e_verpartnert','7':'desconocido']
+maritalStatus_de = ['1':'unbekannt','2':'ledig','3':'verheiratet','4':'getrennt lebend','5':'geschieden','6':'verwitwet','7':'verpartnert']
+maritalStatus_es = ['1':'desconocido','2':'soltero','3':'casado','4':'separado','5':'ser divorciado','6':'viudo','7':'e_verpartnert']
 
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              '01':'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',
