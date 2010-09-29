@@ -228,10 +228,10 @@
               </td>
               <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select name="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${client?.profile?.jobType}"/>
+                  <g:select name="jobType" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${client?.profile?.jobType}" noSelection="['': message(code: 'unknown')]"/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select name="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${client?.profile?.jobType}"/>
+                  <g:select name="jobType" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${client?.profile?.jobType}" noSelection="['': message(code: 'unknown')]"/>
                 </g:if>
               </td>
               <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
