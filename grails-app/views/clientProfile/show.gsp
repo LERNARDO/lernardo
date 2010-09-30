@@ -194,11 +194,16 @@
           </tr>
 
           <g:if test="${grailsApplication.config.clientProfile.contact}">
+
+          <tr>
+            <td colspan="4">Kontakt im Notfall</td>
+          </tr>
+
           <tr class="prop">
-            <td valign="top" class="name-show">Kontakt Name:</td>
-            <td valign="top" class="name-show">Kontakt Land:</td>
-            <td valign="top" class="name-show">Kontakt PLZ:</td>
-            <td valign="top" class="name-show">Kontakt Stadt:</td>
+            <td valign="top" class="name-show">Name:</td>
+            <td valign="top" class="name-show">Land:</td>
+            <td valign="top" class="name-show">PLZ:</td>
+            <td valign="top" class="name-show">Stadt:</td>
           </tr>
 
           <tr class="prop">
@@ -209,9 +214,9 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name-show">Kontakt Straße:</td>
-            <td valign="top" class="name-show">Kontakt Telefon:</td>
-            <td colspan="2" valign="top" class="name-show">Kontakt E-Mail:</td>
+            <td valign="top" class="name-show">Straße:</td>
+            <td valign="top" class="name-show">Telefon:</td>
+            <td colspan="2" valign="top" class="name-show">E-Mail:</td>
           </tr>
 
           <tr class="prop">
