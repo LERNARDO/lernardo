@@ -23,4 +23,8 @@ class PublicationHelperService {
 
     return result
   }
+
+  List findPublicationsOfEntity(Entity owner) {
+    return Publication.findAllByEntity(owner)
+  }
 }

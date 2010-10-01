@@ -632,6 +632,91 @@ class HelperTagLib {
    */
   def getPublicationCount = {attrs ->
     int m = Publication.countByEntity(attrs.entity)
+
+    // group activity template
+    if (attrs.entity.type.id == metaDataService.etGroupActivityTemplate.id) {
+      List activitytemplates = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
+
+      activitytemplates.each {
+        m += Publication.countByEntity(it)
+      }
+    }
+
+    // group activity
+    if (attrs.entity.type.id == metaDataService.etGroupActivity.id) {
+      Entity groupactivitytemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltTemplate)
+
+      m += Publication.countByEntity(groupactivitytemplate)
+
+      List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
+
+      activitytemplates.each {
+        m += Publication.countByEntity(it)  
+      }
+    }
+
+    // project template
+    if (attrs.entity.type.id == metaDataService.etProjectTemplate.id) {
+      List projectUnits = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectUnit)
+
+      List groupactivitytemplates = []
+      projectUnits.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        bla.each {
+          groupactivitytemplates << it
+        }
+      }
+
+      groupactivitytemplates.each {
+        m += Publication.countByEntity(it)
+      }
+
+      List activitytemplates = []
+      groupactivitytemplates.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        bla.each {
+          activitytemplates << it
+        }
+      }
+
+      activitytemplates.each {
+        m += Publication.countByEntity(it) 
+      }
+    }
+
+    // project
+    if (attrs.entity.type.id == metaDataService.etProject.id) {
+      Entity projectTemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltProjectTemplate)
+
+      m += Publication.countByEntity(projectTemplate)
+
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
+
+      List groupactivitytemplates = []
+      projectUnits.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        bla.each {
+          groupactivitytemplates << it
+        }
+      }
+
+      groupactivitytemplates.each {
+        m += Publication.countByEntity(it)
+      }
+
+      List activitytemplates = []
+      groupactivitytemplates.each {
+        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        bla.each {
+          activitytemplates << it
+        }
+      }
+
+      activitytemplates.each {
+        m += Publication.countByEntity(it) 
+      }
+    }
+    
     out << "(" + m + ")"
   }
 

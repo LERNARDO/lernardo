@@ -1,7 +1,7 @@
-<div id="body-list">
+<div id="body-list" style="margin-top: 10px">
 <table>
 <tr>
-  <th class="title">${type.name}</th>
+  <th class="title"><g:message code="publication.profile.name"/>%{--${type.name}--}%</th>
   %{-- TODO: uncomment when implemented --}%
   %{--<ub:meOrAdmin entityName="${entity}"><th class="title"><g:message code="publication.type.visibility"/></th></ub:meOrAdmin>--}%
   %{--<th><g:message code="publication.type"/></th>--}%

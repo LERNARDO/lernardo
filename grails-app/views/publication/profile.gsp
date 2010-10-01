@@ -19,39 +19,31 @@
     </app:hasRoleOrType>
 
     %{--render own documents--}%
-    <g:if test="${!pubtypes}">
+    <g:if test="${!publications}">
       <div class="info-msg">
         <g:message code="publication.profile.empty"/>
       </div>
     </g:if>
 
-    <g:each in="${pubtypes}">
-      <g:render template="pubtype" model="[entity: entity, type: it.key, publist: it.value]"/>
-    </g:each>
+    <g:render template="pubtype" model="[entity: entity, publist: publications]"/>
 
     %{--render other documents--}%
     <g:if test="${activitytemplatesdocuments}">
       <h1>Aus Aktivitätsvorlagen</h1>
 
-      <g:each in="${activitytemplatesdocuments}">
-        <g:render template="other" model="[entity: entity, type: it.key, publist: it.value]"/>
-      </g:each>
+      <g:render template="other" model="[entity: entity, publist: activitytemplatesdocuments]"/>
     </g:if>
 
     <g:if test="${groupactivitytemplatesdocuments}">
       <h1>Aus Aktivitätsblockvorlagen</h1>
 
-      <g:each  in="${groupactivitytemplatesdocuments}">
-        <g:render template="other" model="[entity: entity, type: it.key, publist: it.value]"/>
-      </g:each>
+      <g:render template="other" model="[entity: entity, publist: groupactivitytemplatesdocuments]"/>
     </g:if>
 
     <g:if test="${projecttemplatedocuments}">
       <h1>Aus Projektvorlage</h1>
 
-      <g:each  in="${projecttemplatedocuments}">
-        <g:render template="other" model="[entity: entity, type: it.key, publist: it.value]"/>
-      </g:each>
+      <g:render template="other" model="[entity: entity, publist: projecttemplatedocuments]"/>
     </g:if>
     
   </div>

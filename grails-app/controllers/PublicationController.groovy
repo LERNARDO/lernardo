@@ -27,39 +27,44 @@ class PublicationController {
       return
     }
 
-    def pubs = publicationHelperService.findPublicationsByType(entity)
-    Map finalMap = pubs
+    List publications = publicationHelperService.findPublicationsOfEntity(entity)
 
     // (1)
     // if the entity is a group activity template find all documents of the activity templates linked to it
-    Map activitytemplatesdocuments = [:]
+    List activitytemplatesdocuments = []
     if (entity.type.id == metaDataService.etGroupActivityTemplate.id) {
       // find all activity templates linked to the group activity template
       List activitytemplates = functionService.findAllByLink(null, entity, metaDataService.ltGroupMember)
 
       // get all documents
       activitytemplates.each {
-        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+        def bla = publicationHelperService.findPublicationsOfEntity(it as Entity)
+        bla.each {
+          activitytemplatesdocuments << it
+        }
       }
     }
 
     // (2)
     // if the entity is a group activity find the group activity template and its documents and then all
     // documents of the activity templates linked to the group activity template
-    Map groupactivitytemplatesdocuments = [:]
+    List groupactivitytemplatesdocuments = []
     if (entity.type.id == metaDataService.etGroupActivity.id) {
       // find the group activity template
       Entity groupactivitytemplate = functionService.findByLink(null, entity, metaDataService.ltTemplate)
 
       // get documents of template
-      groupactivitytemplatesdocuments << publicationHelperService.findPublicationsByType(groupactivitytemplate)
+      groupactivitytemplatesdocuments = publicationHelperService.findPublicationsOfEntity(groupactivitytemplate)
 
       // find all activity templates linked to the group activity template
       List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
 
       // get all documents
       activitytemplates.each {
-        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+        def bla = publicationHelperService.findPublicationsOfEntity(it as Entity)
+        bla.each {
+          activitytemplatesdocuments << it
+        }
       }
     }
 
@@ -82,7 +87,10 @@ class PublicationController {
 
       // get documents of group activity templates
       groupactivitytemplates.each {
-        groupactivitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+        def bla = publicationHelperService.findPublicationsOfEntity(it as Entity)
+        bla.each {
+          groupactivitytemplatesdocuments << it
+        }
       }
 
       // find all activity templates linked to the group activity templates
@@ -96,21 +104,24 @@ class PublicationController {
 
       // get all documents
       activitytemplates.each {
-        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+        def bla = publicationHelperService.findPublicationsOfEntity(it as Entity)
+        bla.each {
+          activitytemplatesdocuments << it
+        }
       }
     }
 
     // (4)
     // if the entity is a project find the project template and its documents then all group activity templates and
     // their documents and then all documents of the activity templates linked to the group activity templates
-    Map projecttemplatedocuments = [:]
+    List projecttemplatedocuments = []
     if (entity.type.id == metaDataService.etProject.id) {
 
       // find project template
       Entity projectTemplate = functionService.findByLink(null, entity, metaDataService.ltProjectTemplate)
 
       // get documents of project template
-      projecttemplatedocuments = publicationHelperService.findPublicationsByType(projectTemplate)
+      projecttemplatedocuments = publicationHelperService.findPublicationsOfEntity(projectTemplate)
 
       // find all project units linked to the project template
       List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
@@ -126,7 +137,10 @@ class PublicationController {
 
       // get documents of group activity templates
       groupactivitytemplates.each {
-        groupactivitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+        def bla = publicationHelperService.findPublicationsOfEntity(it as Entity)
+        bla.each {
+          groupactivitytemplatesdocuments << it
+        }
       }
 
       // find all activity templates linked to the group activity templates
@@ -140,7 +154,10 @@ class PublicationController {
 
       // get all documents
       activitytemplates.each {
-        activitytemplatesdocuments << publicationHelperService.findPublicationsByType(it as Entity)
+        def bla = publicationHelperService.findPublicationsOfEntity(it as Entity)
+        bla.each {
+          activitytemplatesdocuments << it
+        }
       }
     }
 
@@ -188,7 +205,7 @@ class PublicationController {
     }*/
 
     return [entity: entity,
-            pubtypes: finalMap,
+            publications: publications,
             activitytemplatesdocuments: activitytemplatesdocuments,
             groupactivitytemplatesdocuments: groupactivitytemplatesdocuments,
             projecttemplatedocuments: projecttemplatedocuments]
