@@ -81,7 +81,8 @@ class PublicationController {
       projectUnits.each {
         def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
         bla.each {
-          groupactivitytemplates << it
+          if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
+            groupactivitytemplates << it
         }
       }
 
@@ -98,7 +99,8 @@ class PublicationController {
       groupactivitytemplates.each {
         def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
         bla.each {
-          activitytemplates << it
+          if (!activitytemplates.contains(it)) // filter duplicate activity templates
+            activitytemplates << it
         }
       }
 
@@ -131,7 +133,8 @@ class PublicationController {
       projectUnits.each {
         def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
         bla.each {
-          groupactivitytemplates << it
+          if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
+            groupactivitytemplates << it
         }
       }
 
@@ -148,7 +151,8 @@ class PublicationController {
       groupactivitytemplates.each {
         def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
         bla.each {
-          activitytemplates << it
+          if (!activitytemplates.contains(it)) // filter duplicate activity templates
+            activitytemplates << it
         }
       }
 
