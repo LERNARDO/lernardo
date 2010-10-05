@@ -165,7 +165,12 @@
               ${fieldValue(bean: educator, field: 'profile.originCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
             <td width="110" valign="top" class="value-show">
-              <app:getNationalities nationality="${educator.profile.originCountry}"/>
+              <g:if test="${educator.profile.originCountry}">
+                <app:getNationalities nationality="${educator.profile.originCountry}"/>
+              </g:if>
+              <g:else>
+                 <div class="italic"><g:message code="unknown"/></div>
+              </g:else>
             </td>
 
           </tr>
