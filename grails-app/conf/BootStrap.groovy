@@ -53,7 +53,7 @@ class BootStrap {
       createDefaultUsers()
 
       if (GrailsUtil.environment == "development" || GrailsUtil.environment == "test") {
-        importChildren()
+        //importChildren()
         createDefaultOperator()
         createDefaultFacilities()
         createDefaultEducators()
@@ -220,7 +220,8 @@ class BootStrap {
           prf.comment = "DummyComment"
           prf.job = generator.nextBoolean()
           if (prf.job) {
-            prf.jobType = (generator.nextInt(14) + 1).toString()
+            //prf.jobType = (generator.nextInt(14) + 1).toString()
+            prf.addToJobtypes((generator.nextInt(14) + 1).toString())
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }
@@ -260,7 +261,8 @@ class BootStrap {
           prf.familyStatus = (generator.nextInt(4) + 1).toString()
           prf.job = generator.nextBoolean()
           if (prf.job) {
-            prf.jobType = (generator.nextInt(14) + 1).toString()
+            //prf.jobType = (generator.nextInt(14) + 1).toString()
+            prf.addToJobtypes((generator.nextInt(14) + 1).toString())
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }
@@ -291,7 +293,8 @@ class BootStrap {
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.job = generator.nextBoolean()
           if (prf.job) {
-            prf.jobType = (generator.nextInt(14) + 1).toString()
+            //prf.jobType = (generator.nextInt(14) + 1).toString()
+            prf.addToJobtypes((generator.nextInt(14) + 1).toString())
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }

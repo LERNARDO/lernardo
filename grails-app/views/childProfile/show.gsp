@@ -31,15 +31,24 @@
 
         <g:if test="${child.profile.job}">
           <tr>
-            <td width="120" valign="middle" class="name-show"></td>
+            <td width="120" valign="middle" class="name-show"><g:message code="child.profile.job"/></td>
             <td width="200" valign="middle" class="name-show"><g:message code="child.profile.jobType"/></td>
             <td width="280" valign="middle" class="name-show"><g:message code="child.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
             <td valign="middle" class="name-show"><g:message code="child.profile.jobFrequency"/></td>
           </tr>
 
           <tr>
-            <td valign="top" class="value-show-comb"><g:message code="child.profile.job"/>: <g:formatBoolean boolean="${child.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            <td valign="top" class="value-show"><app:getJobType job="${child.profile.jobType}"/></td>
+            <td valign="top" class="value-show"><g:formatBoolean boolean="${child.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
+            <td valign="top" class="value-show">
+              <g:if test="${child.profile.jobtypes}">
+                <ul>
+                  <g:each in="${child.profile.jobtypes}" var="jobtype">
+                    <li><app:getJobType job="${jobtype}"/></li>
+                  </g:each>
+                </ul>
+              </g:if>
+              %{--<app:getJobType job="${child.profile.jobType}"/>--}%
+            </td>
             <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobIncome')}</td>
             <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobFrequency')}</td>
           </tr>

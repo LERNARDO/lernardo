@@ -13,7 +13,8 @@ class ClientProfile extends Profile {
                       dates: CDate,
                       materials: Materials,
                       performances: Performances,
-                      healths: Healths]
+                      healths: Healths,
+                      jobtypes: String]
 
     String firstName
     String lastName
@@ -43,7 +44,7 @@ class ClientProfile extends Profile {
     String schoolRestartReason
 
     Boolean job
-    String jobType
+    //String jobType
     Integer jobIncome
     String jobFrequency
 
@@ -78,7 +79,7 @@ class ClientProfile extends Profile {
       originZip (size: 4..10)
       originCity (size: 2..50, maxSize: 50)
       interests (blank: true, maxSize: 2000)
-      jobType (nullable: true)
+      //jobType (nullable: true)
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 50)
       schoolDropoutDate (nullable: true)

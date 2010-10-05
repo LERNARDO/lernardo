@@ -165,7 +165,17 @@
 
             <tr class="prop">
               <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-              <td valign="top" class="value-show"><g:if test="${client.profile.jobType}"><app:getJobType job="${client.profile.jobType}"/></g:if><g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
+              <td valign="top" class="value-show">
+                <g:if test="${client.profile.jobtypes}">
+                  <ul>
+                    <g:each in="${client.profile.jobtypes}" var="jobtype">
+                      <li><app:getJobType job="${jobtype}"/></li>
+                    </g:each>
+                  </ul>
+                </g:if>
+                %{--<g:if test="${client.profile.jobType}">--}%
+                %{--<app:getJobType job="${client.profile.jobType}"/>--}%
+                %{--</g:if>--}%<g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
               <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
               <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
             </tr>

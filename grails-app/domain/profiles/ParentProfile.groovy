@@ -4,7 +4,8 @@ import at.openfactory.ep.Profile
 
 class ParentProfile extends Profile {
 
-    static hasMany = [languages: String]
+    static hasMany = [languages: String,
+                      jobtypes: String]
 
     String firstName
     String lastName
@@ -22,7 +23,7 @@ class ParentProfile extends Profile {
     String education
 
     Boolean job
-    String jobType
+    //String jobType
     Integer jobIncome
     String jobFrequency
 
@@ -40,7 +41,7 @@ class ParentProfile extends Profile {
       currentZip (size: 4..10)
       currentCity (size: 2..50, maxSize: 50)
       currentStreet (size: 2..50, maxSize: 50)
-      jobType (nullable: true)
+      //jobType (nullable: true)
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 20)
       education (blank: true)
