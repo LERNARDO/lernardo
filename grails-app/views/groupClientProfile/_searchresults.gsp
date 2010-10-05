@@ -1,5 +1,7 @@
 <g:if test="${allClients}">
 
+  <p style="margin-top: 10px"><a href="" onclick="selectall(); return false"><g:message code="select.all"/></a> - <a href="" onclick="deselectall(); return false"><g:message code="select.none"/></a></p>
+
   <g:each in="${allClients}" var="searchInstance">
     <div class="member">
 
@@ -20,6 +22,18 @@
   <div class="spacer"></div>
 
   <script type="text/javascript">
+
+  function selectall() {
+    for (var zaehler = 0; zaehler < (document.getElementsByName("memberchecked").length); zaehler++) {
+      document.getElementsByName("memberchecked")[zaehler].checked = true;    
+    }
+  }
+
+  function deselectall() {
+    for (var zaehler = 0; zaehler < (document.getElementsByName("memberchecked").length); zaehler++) {
+      document.getElementsByName("memberchecked")[zaehler].checked = false;    
+    }
+  }
 
   function kontrolle() {
 
