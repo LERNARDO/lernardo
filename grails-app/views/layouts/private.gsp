@@ -133,36 +133,36 @@ future HTML5 doctype
                   </td>
                   <td>
 
-                    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
+                    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
                       <ul>
                         <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
                       </ul>
-                    </app:hasRoleOrType>
+                    </app:accessCheck>
 
                     <ul>
                       <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
                       <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <app:getPublicationCount entity="${entity}"/></li>
 
-                      <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="true">
+                      <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="true">
                         <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
-                      </app:hasRoleOrType>
+                      </app:accessCheck>
 
-                      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
-                        <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
+                      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
+                        <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <app:getNewInboxMessages entity="${entity}"/></li>
-                        </app:hasRoleOrType>
-                        <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
+                        </app:accessCheck>
+                        <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
                           <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="privat.articleList"/></g:link></li>
-                        </app:hasRoleOrType>
-                      </app:hasRoleOrType>
+                        </app:accessCheck>
+                      </app:accessCheck>
 
-                      <app:hasRoleOrType entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
+                      <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                         <app:notMe entity="${entity}">
                           <g:if test="${entity.user.enabled}">
                             <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link></li>
                           </g:if>
                         </app:notMe>
-                      </app:hasRoleOrType>
+                      </app:accessCheck>
 
                     </ul>
                   </td>
@@ -175,7 +175,7 @@ future HTML5 doctype
           </div>
         </div>
       %{--this concerns myself = currentEntity --}%
-        <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false">
+        <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false">
 
           <div class="profile-box">
             <div class="second">
@@ -225,9 +225,9 @@ future HTML5 doctype
                 </div>
             </div>
           </div>
-        </app:hasRoleOrType>
+        </app:accessCheck>
 
-        %{--<app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+        %{--<app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
               --}%%{--Menue links Pädagogik--}%%{--
@@ -248,7 +248,7 @@ future HTML5 doctype
               
             </div>
           </div>
-        </app:hasRoleOrType>--}%
+        </app:accessCheck>--}%
 
         <div class="profile-box">
           <div class="second">

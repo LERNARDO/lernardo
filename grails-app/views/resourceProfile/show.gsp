@@ -42,10 +42,10 @@
 
     </div>
     <div class="buttons">
-      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
         <g:link class="buttonGreen" action="edit" id="${resource?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: resource.id)}" id="${resource.id}">Löschen</g:link>
-      </app:hasRoleOrType>
+      </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

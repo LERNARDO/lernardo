@@ -27,12 +27,12 @@
       </table>
     </div>
 
-    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:hasRoleOrType>
+    </app:accessCheck>
 
     <div class="zusatz">
       <h5><g:message code="groupClient.clients.info"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');

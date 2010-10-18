@@ -61,17 +61,17 @@
     </div>
 
     <div class="buttons">
-      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
+      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
         <g:link class="buttonGreen" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: theme.id)}" id="${theme.id}">Löschen</g:link>
-      </app:hasRoleOrType>
+      </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
       <div class="zusatz">
-        <h5>Subthemen <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a onclick="toggle('#subthemes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Subthema hinzufügen"/></a></app:hasRoleOrType></h5>
+        <h5>Subthemen <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a onclick="toggle('#subthemes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Subthema hinzufügen"/></a></app:accessCheck></h5>
         <div class="zusatz-add" id="subthemes" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addSubTheme', id: theme.id]" update="subthemes2" before="showspinner('#subthemes2')">
             <g:select name="subtheme" from="${allSubthemes}" optionKey="id" optionValue="profile"/>

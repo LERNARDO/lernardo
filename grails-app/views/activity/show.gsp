@@ -91,10 +91,10 @@
     </table>
 
     <div class="buttons">
-      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
+      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
         <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
         <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: activity.id)}" id="${activity.id}">Löschen</g:link>
-      </app:hasRoleOrType>
+      </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
@@ -129,9 +129,9 @@
   </div>
 </div>
 
-<app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+<app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: activity]"/>
-</app:hasRoleOrType>
+</app:accessCheck>
 
 </body>
 </html>

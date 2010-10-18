@@ -45,12 +45,12 @@
       <g:paginate total="${groupTotal}"/>
     </div>
 
-    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <div class="buttons">
         <g:link class="buttonGreen" action="create">Neue Aktivitätsblockvorlage anlegen</g:link>
         <div class="spacer"></div>
       </div>
-    </app:hasRoleOrType>
+    </app:accessCheck>
 
   </div>
 </div>

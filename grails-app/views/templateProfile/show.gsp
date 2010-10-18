@@ -66,20 +66,20 @@
     </table>
 
     <div class="buttons">
-      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false">
+      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false">
         <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
       %{--<g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>--}%
         <g:link class="buttonGreen" action="create" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
-      </app:hasRoleOrType>
+      </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resources.required"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="resources.required"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></app:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
         <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2')">
@@ -105,8 +105,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="vMethods"/> <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#methods');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gewichtungsmethode hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="vMethods"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#methods');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gewichtungsmethode hinzufügen"/></a></app:accessCheck></h5>
       <div class="zusatz-add" id="methods" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2')">
           <g:select name="method" from="${allMethods}" optionKey="id" optionValue="name"/>
@@ -123,8 +123,8 @@
   </div>
 </div>
 
-<app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+<app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: template]"/>
-</app:hasRoleOrType>
+</app:accessCheck>
 
 </body>

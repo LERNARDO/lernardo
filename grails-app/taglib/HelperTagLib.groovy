@@ -62,27 +62,73 @@ class HelperTagLib {
   }
 
   /*
-   * checks if an entity has given roles or a given type or is itself
+   * new access control methods, separated for modular usage
    */
-  def hasRoleOrType = {attrs, body ->
+  def accessCheck = {attrs, body ->
     Entity entity = attrs.entity
 
-    def hasRoles = false
+    boolean hasRoles = false
+    if (attrs.roles)
+      hasRoles = accessHasRoles(entity, attrs.roles)
 
-    if (entity.user) {
-      List roles = attrs.roles
-      hasRoles = roles.findAll { entity.user?.authorities*.authority.contains(it) }
-    }
+    boolean hasTypes = false
+    if (attrs.types)
+      hasTypes = accessHasTypes(entity, attrs.types)
 
-    List types = attrs.types
-    def hasType = types.findAll { entity.type?.name == it }
+    boolean isMe = false
+    if (attrs.me)
+      isMe = accessIsMe(entity)
 
-    def myself = attrs.me == 'true' ? entity == entityHelperService.loggedIn : false
+    boolean isLeadEducator = false
+    if (attrs.facility)
+      isLeadEducator = accessIsLeadEducator(entity, attrs.facility)
 
-    if (hasRoles || hasType || myself)
+    if (hasRoles || hasTypes || isMe || isLeadEducator)
       out << body()
   }
 
+  // checks if a given entity has at least one of the given roles
+  boolean accessHasRoles(Entity entity, List roles) {
+
+    def result = false
+
+    if (entity.user) {
+      result = roles.findAll { entity.user?.authorities*.authority.contains(it) }
+    }
+
+    return result ? true : false
+  }
+
+  // checks if a given entity is of one of the given types
+  boolean accessHasTypes(Entity entity, List types) {
+
+    def result = types.findAll { entity.type?.name == it }
+
+    return result ? true : false
+  }
+
+  // checks if a given entity is the currently logged in entity
+  boolean accessIsMe(Entity entity) {
+
+    def result = entity == entityHelperService.loggedIn
+
+    return result
+  }
+
+  // checks if a given entity is lead educator of a given facility
+  boolean accessIsLeadEducator(Entity entity, Entity facility) {
+
+    def c = Link.createCriteria()
+    def link = c.get {
+      eq('source', entity)
+      eq('target', facility)
+      eq('type', metaDataService.ltLeadEducator)
+    }
+
+    def result = link ? true : false
+
+    return result
+  }
   /*
    * receives a family status ID and renders either the german or spanish word for it
    */

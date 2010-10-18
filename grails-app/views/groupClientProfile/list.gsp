@@ -34,12 +34,12 @@
       <g:paginate total="${groupTotal}"/>
     </div>
 
-    <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="groupClient.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:hasRoleOrType>
+    </app:accessCheck>
 
   </div>
 </div>

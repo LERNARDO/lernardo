@@ -15,7 +15,7 @@
         </div>
       </li>
 
-      <app:hasRoleOrType entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <li>
         <div id="htemplates" class="imgbox">
           <g:link controller="templateProfile" action="index">
@@ -51,7 +51,7 @@
           </g:link>
         </div>
       </li>
-      </app:hasRoleOrType>
+      </app:accessCheck>
 
       <li>
         <div id="calendar" class="imgbox">

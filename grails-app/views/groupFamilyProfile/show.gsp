@@ -60,20 +60,20 @@
       </table>
     </div>
 
-    <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:hasRoleOrType>
+    </app:accessCheck>
 
     <div id="familyCount">
       <g:render template="familycount" model="[totalLinks: totalLinks]"/>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.parents"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.parents"/> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:accessCheck></h5>
       <div class="zusatz-add" id="parents" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -87,8 +87,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.clients"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients');
-      return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.clients"/> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients');
+      return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>
@@ -102,8 +102,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.childs"/> <app:hasRoleOrType entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:hasRoleOrType></h5>
+      <h5><g:message code="groupFamily.profile.childs"/> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:accessCheck></h5>
       <div class="zusatz-add" id="childs" style="display:none">
 
         <g:message code="search"/>:<br/>
