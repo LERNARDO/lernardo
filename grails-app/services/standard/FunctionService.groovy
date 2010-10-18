@@ -76,7 +76,7 @@ class FunctionService {
     if (link)
       duplicate = true
     else
-      new Link(source: source, target: target, type: linktype).save()
+      new Link(source: source, target: target, type: linktype).save(flush:true)
 
     List results = Link.findAllByTargetAndType(target, linktype).collect {it.source}
 
@@ -96,7 +96,7 @@ class FunctionService {
       eq('target', target)
       eq('type', linktype)
     }
-    link.delete()
+    link.delete(flush:true)
 
     List results = Link.findAllByTargetAndType(target, linktype).collect {it.source}
 

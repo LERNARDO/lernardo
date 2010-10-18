@@ -487,6 +487,13 @@ class ProjectProfileController {
     render template: 'facilities', model: [facilities: breaking.results, project: breaking.target, entity: entityHelperService.loggedIn]
   }
 
+  def updateFacilityButton = {
+    Entity project = Entity.get(params.id)
+
+    List facilities = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberFacility)
+    render template: 'facilitybutton', model: [facilities: facilities]
+  }
+
   def addResource = {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
