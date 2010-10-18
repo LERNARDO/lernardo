@@ -59,10 +59,13 @@ class GroupClientProfileController {
     // find all clients linked to this group
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
+    /*List allColonias = Entity.findAllByType(metaDataService.etGroupColony)*/
+
     return [group: group,
             entity: entity,
             clients: clients,
-            allClients: allClients]
+            allClients: allClients,
+            /*allColonias: allColonias*/]
 
   }
 
@@ -202,6 +205,36 @@ class GroupClientProfileController {
       }
       maxResults(30)
     }
+
+    // perform colony check
+    /*List finalClients = []
+
+    if (params.colonia != "all") {
+      allClients.each { client ->
+        // find all client groups the client is linked to
+        List allClientGroups = functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupMemberClient)
+
+        // find all facilities the client groups are linked to
+        List allFacilities = []
+        allClientGroups.each { clientgroup ->
+          List result = functionService.findAllByLink(clientgroup as Entity, null, metaDataService.ltGroupMemberClient)
+          result.each { allFacilities << it}
+        }
+
+        // find all colonies the facilities are linked to
+        List allColonies = []
+        allFacilities.each { facility ->
+          List result = functionService.findAllByLink(facility as Entity, null, metaDataService.ltGroupMemberFacility)
+          result.each {allColonies << it}
+        }
+
+        // check if the parameter colony is one of the list
+        if (allColonies.contains(Entity.get(params.colonia)))
+          finalClients << client
+      }
+    }
+    else
+      finalClients = allClients*/
 
     render(template: 'searchresults', model: [allClients: allClients])
   }

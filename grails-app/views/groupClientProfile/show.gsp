@@ -66,6 +66,10 @@
               <td><g:message code="client.profile.currentCity"/>:</td>
               <td><g:textField name="city"/></td>
             </tr>
+            %{--<tr>
+              <td><g:message code="groupColony"/>:</td>
+              <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
+            </tr>--}%
             <tr>
               <td><g:message code="client.profile.schoolLevel"/>:</td>
               <td>
