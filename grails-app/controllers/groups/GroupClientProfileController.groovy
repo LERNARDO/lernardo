@@ -188,7 +188,7 @@ class GroupClientProfileController {
           ilike('currentCity', "%" + params.city + "%")
         if (params.int('gender') > 0)
           eq('gender', params.byte('gender'))
-        if (params.job.toInteger() > 0) {
+        if (params.job && params.job.toInteger() > 0) {
           if (params.job.toInteger() == 1)
             eq('job', true)
           if (params.job.toInteger() == 2)
@@ -196,9 +196,9 @@ class GroupClientProfileController {
         }
         if (params.schoolLevel != "all")
           eq('schoolLevel', params.schoolLevel)
-        if (params.size1 != "all")
+        if (params.size1 && params.size1 != "all")
           between('size', params.size1.toInteger(), params.size2.toInteger())
-        if (params.weight1 != "all")
+        if (params.weight1 && params.weight1 != "all")
           between('weight', params.weight1.toInteger(), params.weight2.toInteger())
         if (params.birthDate1)
           between('birthDate', params.birthDate1, params.birthDate2)

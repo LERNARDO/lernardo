@@ -89,10 +89,15 @@ google.analytics.webPropertyID = "UA-17725364-2"
 clientProfile.citizenship = true // true for Lernardo, false for Sueninos
 clientProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos
 clientProfile.contact = true // true for Lernardo, false for Sueninos
+clientProfile.size = false // false for Lernardo, true for Sueninos
+clientProfile.weight = false // false for Lernardo, true for Sueninos
+clientProfile.job = false // false for Lernardo, true for Sueninos
 
 // GroupFamilyProfile
 groupFamilyProfile.familyIncome = false // false for Lernardo, true for Sueninos
 groupFamilyProfile.familyProblems = false // false for Lernardo, true for Sueninos
+groupFamilyProfile.amountHousehold = false // false for Lernardo, true for Sueninos
+groupFamilyProfile.city = true // true for Lernardo, false for Sueninos
 
 // ParentProfile
 parentProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos

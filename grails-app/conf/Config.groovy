@@ -106,7 +106,7 @@ log4j = {
 }
 
 // change this value to control the amount of bootstrapped dummy entities
-dummies = 16
+dummies = 3
 
 // the default password used when creating new entity accounts
 defaultpass = "pass"
