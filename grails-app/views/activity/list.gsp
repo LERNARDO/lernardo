@@ -8,7 +8,7 @@
 <g:if test="${currentEntity.profile.showTips}">
   <div class="toolTip">
     <div class="second">
-      <img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><span class="strong"><g:message code="hint"/>:</span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in deinen Einrichtungen.
+      <img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><span class="strong"><g:message code="hint"/></span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in deinen Einrichtungen.
     </div>
   </div>
 </g:if>
