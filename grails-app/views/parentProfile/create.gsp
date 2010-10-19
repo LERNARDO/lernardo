@@ -46,7 +46,7 @@
             <td valign="middle" class="name"><g:message code="parent.profile.maritalStatus"/>:</td>
             <td valign="middle" class="name"><g:message code="parent.profile.languages"/>:</td>
             <td valign="middle" class="name"><g:message code="parent.profile.description"/>:</td>
-            <td valign="middle" class="name"><g:message code="parent.profile.education"/>:</td>
+            <td valign="middle" class="name"><g:if test="${grailsApplication.config.parentProfile.education}"><g:message code="parent.profile.education"/>:</g:if></td>
           </tr>
 
           <tr>
@@ -70,11 +70,13 @@
               <g:textArea class="countable2000" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
+              <g:if test="${grailsApplication.config.parentProfile.education}">
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                  <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
+                </g:if>
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                  <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
+                </g:if>
               </g:if>
             </td>
           </tr>
@@ -91,11 +93,16 @@
               <g:checkBox name="job" value="${parent?.profile?.job}"/>
             </td>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
+              <g:if test="${grailsApplication.config.project == 'noe'}">
+                <g:select name="jobtypes" from="${grailsApplication.config.jobs}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}"/>
               </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
+              <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                  <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
+                </g:if>
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                  <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
+                </g:if>
               </g:if>
             </td>
             <td valign="top" class="value">
@@ -111,7 +118,7 @@
           </tr>
 
           <tr>
-            <td valign="top" class="name"><g:message code="parent.profile.currentCountry"/></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.currentCountry}"><g:message code="parent.profile.currentCountry"/></g:if></td>
             <td valign="top" class="name"><g:message code="parent.profile.currentCity"/></td>
             <td valign="top" class="name"><g:message code="parent.profile.currentStreet"/></td>
             <td valign="top" class="name"><g:message code="parent.profile.currentZip"/></td>
@@ -119,11 +126,13 @@
 
           <tr>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
+              <g:if test="${grailsApplication.config.parentProfile.currentCountry}">
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                  <g:select name="currentCountry" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
+                </g:if>
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                  <g:select name="currentCountry" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
+                </g:if>
               </g:if>
             </td>
             <td width="105" valign="top" class="value">
@@ -144,6 +153,7 @@
           <tr>
             <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
             <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.phone}">Telefon</g:if></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.citizenship}">Staatsbürgerschaft</g:if></td>
           <tr>
 
           <tr>
@@ -155,6 +165,11 @@
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.parentProfile.phone}">
                 <g:textField class="${hasErrors(bean: parent, field: 'profile.phone', 'errors')}" size="30" name="phone" value="${fieldValue(bean: parent, field: 'profile.phone')}"/>
+              </g:if>
+            </td>
+            <td valign="top" class="value">
+              <g:if test="${grailsApplication.config.parentProfile.citizenship}">
+                <g:textField class="${hasErrors(bean: parent, field: 'profile.citizenship', 'errors')}" size="30" name="citizenship" value="${fieldValue(bean: parent, field: 'profile.citizenship')}"/>
               </g:if>
             </td>
           </tr>

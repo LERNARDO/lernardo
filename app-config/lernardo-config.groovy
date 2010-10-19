@@ -104,4 +104,9 @@ parentProfile.socialSecurityNumber = true // true for Lernardo, false for Suenin
 parentProfile.phone = true // true for Lernardo, false for Sueninos
 parentProfile.jobIncome = false // false for Lernardo, true for Sueninos
 parentProfile.jobFrequency = false // false for Lernardo, true for Sueninos
+parentProfile.education = false // false for Lernardo, true for Sueninos
+parentProfile.currentCountry = false // false for Lernardo, true for Sueninos
+parentProfile.citizenship = true // true for Lernardo, false for Sueninos
 
+// jobs for Lernardo
+jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständig','5':'karenziert','6':'Hausfrau/Hausmann']

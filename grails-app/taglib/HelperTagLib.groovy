@@ -228,6 +228,10 @@ class HelperTagLib {
       out << grailsApplication.config.jobs_es[attrs.job]
   }
 
+  def getJobTypeNoe = {attrs ->
+      out << grailsApplication.config.jobs[attrs.job]
+  }
+
   /*
    * receives a profileType Name and renders either the german or spanish word for it     # hafo
    */
