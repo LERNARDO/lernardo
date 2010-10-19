@@ -191,7 +191,7 @@
             <tr>
               <td valign="top" class="value">
                 <g:message code="client.profile.schoolRestart"/>
-                <g:checkBox name="schoolRestart" value="${client?.profile?.schoolDropout}"/>
+                <g:checkBox name="schoolRestart" value="${client?.profile?.schoolRestart}"/>
               </td>
               <td valign="top" class="value">
                 <g:textField name="schoolRestartDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolRestartDate?.format('dd. MM. yyyy')}"/>
