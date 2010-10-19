@@ -280,11 +280,17 @@
               <tr>
 
               <tr>
-                <td width="210" valign="top" class="value">
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactName', 'errors')}" size="10" name="contactName" value="${fieldValue(bean: client, field: 'profile.contactName')}"/>
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactCountry', 'errors')}" size="10" name="contactCountry" value="${fieldValue(bean: client, field: 'profile.contactCountry')}"/>
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactZip', 'errors')}" size="10" name="contactZip" value="${fieldValue(bean: client, field: 'profile.contactZip')}"/>
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactCity', 'errors')}" size="10" name="contactCity" value="${fieldValue(bean: client, field: 'profile.contactCity')}"/>
+                <td valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactName', 'errors')}" size="20" name="contactName" value="${fieldValue(bean: client, field: 'profile.contactName')}"/>
+                </td>
+                <td valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactCountry', 'errors')}" size="20" name="contactCountry" value="${fieldValue(bean: client, field: 'profile.contactCountry')}"/>
+                </td>
+                <td valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactZip', 'errors')}" size="20" name="contactZip" value="${fieldValue(bean: client, field: 'profile.contactZip')}"/>
+                </td>
+                <td valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactCity', 'errors')}" size="20" name="contactCity" value="${fieldValue(bean: client, field: 'profile.contactCity')}"/>
                 </td>
               </tr>
 
@@ -295,11 +301,15 @@
               <tr>
 
               <tr>
-                <td width="210" valign="top" class="value">
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactStreet', 'errors')}" size="10" name="contactStreet" value="${fieldValue(bean: client, field: 'profile.contactStreet')}"/>
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactPhone', 'errors')}" size="10" name="contactPhone" value="${fieldValue(bean: client, field: 'profile.contactPhone')}"/>
-                  <g:textField colspan="2" class="${hasErrors(bean: client, field: 'profile.contactMail', 'errors')}" size="10" name="contactMail" value="${fieldValue(bean: client, field: 'profile.contactMail')}"/>
-                  </td>
+                <td valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactStreet', 'errors')}" size="20" name="contactStreet" value="${fieldValue(bean: client, field: 'profile.contactStreet')}"/>
+                </td>
+                <td valign="top" class="value">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.contactPhone', 'errors')}" size="20" name="contactPhone" value="${fieldValue(bean: client, field: 'profile.contactPhone')}"/>
+                </td>
+                <td valign="top" class="value">
+                  <g:textField colspan="2" class="${hasErrors(bean: client, field: 'profile.contactMail', 'errors')}" size="20" name="contactMail" value="${fieldValue(bean: client, field: 'profile.contactMail')}"/>
+                </td>
               </tr>
             </g:if>
 
