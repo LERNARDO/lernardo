@@ -162,6 +162,10 @@ class HelperTagLib {
       out << grailsApplication.config.languages_es[attrs.language]
   }
 
+  def getLanguagesNoe = {attrs ->
+    out << grailsApplication.config.languages[attrs.language]
+  }
+
   /*
    * receives a inChargeOf ID and renders either the german or spanish word for it
    */
@@ -229,7 +233,7 @@ class HelperTagLib {
   }
 
   def getJobTypeNoe = {attrs ->
-      out << grailsApplication.config.jobs[attrs.job]
+    out << grailsApplication.config.jobs[attrs.job]
   }
 
   /*
@@ -265,6 +269,10 @@ class HelperTagLib {
       out << grailsApplication.config.education_es[attrs.education]
   }
 
+  def getEducationNoe = {attrs ->
+    out << grailsApplication.config.education[attrs.education]
+  }
+
   /*
    * receives an employment ID and renders either the german or spanish word for it
    */
@@ -274,6 +282,10 @@ class HelperTagLib {
       out << grailsApplication.config.employment_de[attrs.employment]
     if (locale.toString() == "es" || locale.toString() == "es_ES")
       out << grailsApplication.config.employment_es[attrs.employment]
+  }
+
+  def getEmploymentNoe = {attrs ->
+    out << grailsApplication.config.employment[attrs.employment]
   }
 
   /*

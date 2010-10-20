@@ -47,23 +47,35 @@
         <tr>
           <td class="name-show"><g:message code="educator.profile.education"/></td>
           <td valign="top" class="name-show"><g:message code="educator.profile.employment"/></td>
-          <td valign="top" class="name-show"><g:message code="educator.profile.enlisted"/></td>
+          <td valign="top" class="name-show"><g:if test="${grailsApplication.educatorProfile.enlisted}"><g:message code="educator.profile.enlisted"/></g:if></td>
         </tr>
 
         <tr>
           <td width="280" height="25" valign="top" class="value-show">
             <g:if test="${educator.profile.education}">
-              <app:getEducation education="${educator.profile.education}"/>
+              <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                <app:getEducation education="${educator.profile.education}"/>
+              </g:if>
+              <g:if test="${grailsApplication.config.project == 'noe'}">
+                <app:getEducation educationNoe="${educator.profile.education}"/>
+              </g:if>
             </g:if>
             <g:else>
               <div class="italic"><g:message code="noData"/></div>  
             </g:else>
           </td>
           <td width="280" valign="top" class="value-show">
-            <app:getEmployment employment="${educator.profile.employment}"/>
+            <g:if test="${grailsApplication.config.project == 'sueninos'}">
+              <app:getEmployment employment="${educator.profile.employment}"/>
+            </g:if>
+            <g:if test="${grailsApplication.config.project == 'noe'}">
+              <app:getEmployment employmentNoe="${educator.profile.employment}"/>
+            </g:if>
           </td>
           <td valign="top" class="value-show">
-            ${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">'+message(code:'no')+'</div>'}
+            <g:if test="${grailsApplication.educatorProfile.enlisted}">
+              ${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">'+message(code:'no')+'</div>'}
+            </g:if>
           </td>
         </tr>
 
@@ -92,7 +104,12 @@
           <td valign="top" class="value-show-block">
             <ul>
               <g:each in="${educator.profile.languages}" var="language">
-                <li><app:getLanguages language="${language}"/></li>
+                <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                  <li><app:getLanguages language="${language}"/></li>
+                </g:if>
+                <g:if test="${grailsApplication.config.project == 'noe'}">
+                  <li><app:getLanguagesNoe language="${language}"/></li>
+                </g:if>
               </g:each>
             </ul>
           </td>
@@ -143,6 +160,7 @@
         </table>
       </div>
 
+      <g:if test="${grailsApplication.config.educatorProfile.origin}">
       <h4><g:message code="educator.profile.origin"/></h4>
       <div class="contact">
         <table>
@@ -177,7 +195,9 @@
 
         </table>
       </div>
+      </g:if>
 
+      <g:if test="${grailsApplication.config.educatorProfile.contact}">
       <h4><g:message code="educator.profile.emContact"/></h4>
       <div class="contact">
         <table>
@@ -229,6 +249,33 @@
 
         </table>
       </div>
+      </g:if>
+
+      <g:if test="${grailsApplication.config.educatorProfile.phone}">
+        <div class="contact">
+          <table>
+
+            <tr>
+              <td valign="top" class="name-show">Telefon #1</td>
+              <td valign="top" class="name-show">Telefon #2</td>
+              <td valign="top" class="name-show">Private E-Mail</td>
+            </tr>
+
+            <tr>
+              <td width="280" height="25" valign="top" class="value-show">
+                ${fieldValue(bean: educator, field: 'profile.phone1') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              </td>
+              <td width="280" height="25" valign="top" class="value-show">
+                ${fieldValue(bean: educator, field: 'profile.phone2') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              </td>
+              <td width="105" valign="top" class="value-show">
+                ${fieldValue(bean: educator, field: 'profile.privEmail') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </g:if>
 
       <div class="email">
         <table>

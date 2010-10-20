@@ -108,5 +108,21 @@ parentProfile.education = false // false for Lernardo, true for Sueninos
 parentProfile.currentCountry = false // false for Lernardo, true for Sueninos
 parentProfile.citizenship = true // true for Lernardo, false for Sueninos
 
+// EducatorProfile
+educatorProfile.enlisted = false // false for Lernardo, true for Sueninos
+educatorProfile.origin = false // false for Lernardo, true for Sueninos
+educatorProfile.contact = false // false for Lernardo, true for Sueninos
+educatorProfile.phone = true // true for Lernardo, false for Sueninos
+
 // jobs for Lernardo
 jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständig','5':'karenziert','6':'Hausfrau/Hausmann']
+
+// languages for Lernardo
+languages = ['1':'Deutsch','2':'Englisch','3':'Französisch','4':'Spanisch','5':'Italienisch']
+
+// education for Lernardo (TODO: temp list, final list to come from PCR)
+education = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
+             '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
+
+// employment for Lernardo (TODO: temp list, final list to come from PCR)
+employment = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']

@@ -39,6 +39,11 @@ class EducatorProfile extends Profile {
 
     String employment
 
+    // added for NOE
+    String phone1
+    String phone2
+    String privEmail
+
     Boolean showTips = true
 
     static constraints = {
@@ -48,21 +53,28 @@ class EducatorProfile extends Profile {
       lastName (blank: false, size: 2..50, maxSize: 50)
       education (blank: true)
       interests (blank: true, maxSize: 2000)
+
       currentCountry (size: 1..50, maxSize: 50)
       currentZip (size: 4..10)
       currentCity (size: 2..50, maxSize: 50)
       currentStreet (size: 2..50, maxSize: 50)
-      originCountry (size: 1..50)
-      originZip (size: 4..10)
-      originCity (size: 2..50, maxSize: 50)
-      originStreet (size: 2..50, maxSize: 50)
+
+      originCountry (nullable: true, size: 1..50)
+      originZip (nullable: true, size: 4..10)
+      originCity (nullable: true, size: 2..50, maxSize: 50)
+      originStreet (nullable: true, size: 2..50, maxSize: 50)
+
       contactName (nullable: true, size: 2..50, maxSize: 50)
-      contactCountry (size: 2..50, maxSize: 50)
-      contactZip (size: 4..10)
-      contactCity (size: 2..50, maxSize: 50)
-      contactStreet (size: 2..50, maxSize: 50)
-      contactPhone (size: 2..50, maxSize: 50)
-      contactMail (size: 2..50, maxSize: 50)
+      contactCountry (nullable: true, size: 2..50, maxSize: 50)
+      contactZip (nullable: true, size: 4..10)
+      contactCity (nullable: true, size: 2..50, maxSize: 50)
+      contactStreet (nullable: true, size: 2..50, maxSize: 50)
+      contactPhone (nullable: true, size: 2..50, maxSize: 50)
+      contactMail (nullable: true, size: 2..50, maxSize: 50)
+
+      phone1 (nullable: true)
+      phone2 (nullable: true)
+      privEmail (email:true, nullable:true)
     }
 
     String toString(){
