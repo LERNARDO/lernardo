@@ -211,14 +211,18 @@ future HTML5 doctype
                       <li class="icon-admin"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
                       <li class="icon-admin"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
                       <li class="icon-admin"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/></g:link></li>
-                      <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
+                      <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                        <li class="icon-admin"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
+                      </g:if>
                       <li class="icon-admin"><g:link controller="partnerProfile" action="index" params="[name:entity.name]"><g:message code="partners"/></g:link></li>
                       <hr/>
                       <li class="icon-admin"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]"><g:message code="groupFamilies"/></g:link></li>
                       <li class="icon-admin"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]"><g:message code="groupColonies"/></g:link></li>
                       <li class="icon-admin"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facilities"/></g:link></li>
                       <li class="icon-admin"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]"><g:message code="groupClients"/></g:link></li>
-                      <li class="icon-admin"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]"><g:message code="groupPartners"/></g:link></li>
+                      <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                        <li class="icon-admin"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]"><g:message code="groupPartners"/></g:link></li>
+                      </g:if>
                     </ul>
                   </div>
 

@@ -36,7 +36,9 @@
               </g:if>
             </td>
             <td width="265px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
+              <g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}">
+                <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
+              </g:if>
             </td>
           </tr>
 

@@ -47,7 +47,7 @@
         <tr>
           <td class="name-show"><g:message code="educator.profile.education"/></td>
           <td valign="top" class="name-show"><g:message code="educator.profile.employment"/></td>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.educatorProfile.enlisted}"><g:message code="educator.profile.enlisted"/></g:if></td>
+          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.educatorProfile.enlisted}"><g:message code="educator.profile.enlisted"/></g:if></td>
         </tr>
 
         <tr>
@@ -73,7 +73,7 @@
             </g:if>
           </td>
           <td valign="top" class="value-show">
-            <g:if test="${grailsApplication.educatorProfile.enlisted}">
+            <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
               ${fieldValue(bean: enlistedBy, field: 'profile.fullName') ?: '<div class="italic">'+message(code:'no')+'</div>'}
             </g:if>
           </td>

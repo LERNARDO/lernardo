@@ -43,7 +43,7 @@
             ${fieldValue(bean: theme, field: 'profile.type')}
           </td>
           <td colspan="2" valign="top" class="value-show">
-            <g:link controller="facilityProfile" action="show" id="${facility.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link>
+            <g:link controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link>
           </td>
         </tr>
 

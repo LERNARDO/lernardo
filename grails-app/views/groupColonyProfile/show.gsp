@@ -208,7 +208,7 @@
       </div>
     </div>
 
-    <div class="zusatz">
+    %{--<div class="zusatz">
       <h5><g:message code="educators"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#educators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagogen hinzufügen"/></a></app:isOperator></h5>
       <div class="zusatz-add" id="educators" style="display:none">
@@ -222,7 +222,7 @@
       <div class="zusatz-show" id="educators2">
         <g:render template="educators" model="[educators: educators, group: group, entity: currentEntity]"/>
       </div>
-    </div>
+    </div>--}%
 
   </div>
 </div>

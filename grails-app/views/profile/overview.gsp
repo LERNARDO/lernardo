@@ -119,14 +119,16 @@
             <div><g:link controller="childProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:isOperator>
         </div>
-        <div class="box">
-          <div class="bold"><g:message code="paten"/> (${allPates})</div>
-          <g:link controller="pateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paten.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="pateProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-          <app:isOperator entity="${currentEntity}">
-            <div><g:link controller="pateProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
-          </app:isOperator>
-        </div>
+        <g:if test="${grailsApplication.config.project == 'sueninos'}">
+          <div class="box">
+            <div class="bold"><g:message code="paten"/> (${allPates})</div>
+            <g:link controller="pateProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_paten.png')}" alt="Notiz" align="top"/></g:link>
+            <div><g:link controller="pateProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+            <app:isOperator entity="${currentEntity}">
+              <div><g:link controller="pateProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
+            </app:isOperator>
+          </div>
+        </g:if>
         <div class="box">
           <div class="bold"><g:message code="partners"/> (${allPartners})</div>
           <g:link controller="partnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_partner.png')}" alt="Notiz" align="top"/></g:link>
@@ -195,14 +197,16 @@
             <div><g:link controller="groupFamilyProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </app:accessCheck>
         </div>
-        <div class="box">
-          <div class="bold"><g:message code="groupPartners"/> (${allPartnerGroups})</div>
-          <g:link controller="groupPartnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_sponsorennetzwerk.png')}" alt="Notiz" align="top"/></g:link>
-          <div><g:link controller="groupPartnerProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-          <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
-            <div><g:link controller="groupPartnerProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
-          </app:accessCheck>
-        </div>
+        <g:if test="${grailsApplication.config.project == 'sueninos'}">
+          <div class="box">
+            <div class="bold"><g:message code="groupPartners"/> (${allPartnerGroups})</div>
+            <g:link controller="groupPartnerProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_sponsorennetzwerk.png')}" alt="Notiz" align="top"/></g:link>
+            <div><g:link controller="groupPartnerProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
+            <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+              <div><g:link controller="groupPartnerProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
+            </app:accessCheck>
+          </div>
+        </g:if>
         <div class="box">
           <div class="bold"><g:message code="groupClients"/> (${allClientGroups})</div>
           <g:link controller="groupClientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreutengruppe.png')}" alt="Notiz" align="top"/></g:link>

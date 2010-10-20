@@ -16,13 +16,13 @@
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="groupFamily.profile.name"/>:</td>
           <td valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}"><g:message code="groupFamily.profile.familyIncome"/>:</g:if></td>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.amountHousehold"/>:</td>
+          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}"><g:message code="groupFamily.profile.amountHousehold"/>:</g:if></td>
         </tr>
 
         <tr class="prop">
           <td width="242" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
           <td width="242" valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
-          <td width="242" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="242" valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
         </tr>
 
         <tr class="prop">
