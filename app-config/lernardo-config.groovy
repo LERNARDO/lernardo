@@ -92,6 +92,9 @@ clientProfile.contact = true // true for Lernardo, false for Sueninos
 clientProfile.size = false // false for Lernardo, true for Sueninos
 clientProfile.weight = false // false for Lernardo, true for Sueninos
 clientProfile.job = false // false for Lernardo, true for Sueninos
+clientProfile.originZip = false // false for Lernardo, true for Sueninos
+clientProfile.originCity = false // false for Lernardo, true for Sueninos
+clientProfile.familyStatus = false // false for Lernardo, true for Sueninos
 
 // GroupFamilyProfile
 groupFamilyProfile.familyIncome = false // false for Lernardo, true for Sueninos
@@ -126,3 +129,7 @@ education = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staat
 
 // employment for Lernardo (TODO: temp list, final list to come from PCR)
 employment = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
+
+// school levels for Lernardo
+schoolLevels = ['1':'1. Schulstufe','2':'2. Schulstufe','3':'3. Schulstufe','4':'4. Schulstufe','5':'5. Schulstufe','6':'6. Schulstufe',
+                '7':'7. Schulstufe','8':'8. Schulstufe','9':'9. Schulstufe','10':'10. Schulstufe','11':'11. Schulstufe','12':'12. Schulstufe']

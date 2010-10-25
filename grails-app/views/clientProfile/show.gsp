@@ -31,10 +31,14 @@
         <tr class="prop">
           %{--<app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge']">--}%
           <td valign="top" class="name-show">
-            <g:message code="client.profile.size"/>
+            <g:if test="${grailsApplication.config.clientProfile.size}">
+              <g:message code="client.profile.size"/>
+            </g:if>
           </td>
           <td valign="top" class="name-show">
-            <g:message code="client.profile.weight"/>
+            <g:if test="${grailsApplication.config.clientProfile.weight}">
+              <g:message code="client.profile.weight"/>
+            </g:if>
           </td>
           %{--</app:accessCheck>--}%
           <td valign="top" class="name-show">
@@ -43,8 +47,8 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.size') + ' cm' ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.weight') + ' kg' ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.size}">${fieldValue(bean: client, field: 'profile.size') + ' cm' ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
+          <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.weight}">${fieldValue(bean: client, field: 'profile.weight') + ' kg' ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
           <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.interests') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </tr>
 
@@ -82,14 +86,14 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.originCity"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.originZip"/></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="client.profile.originCity"/></g:if></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="client.profile.originZip"/></g:if></td>
             <td valign="top" class="name-show"><g:message code="client.profile.originCountry"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="205" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-            <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td width="205" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originCity}">${fieldValue(bean: client, field: 'profile.originCity') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
+            <td width="60" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originZip}">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</g:if></td>
             <td width="170" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
 
@@ -100,14 +104,14 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.familyStatus"/></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="client.profile.familyStatus"/></g:if></td>
             <td valign="top" class="name-show"><g:message code="client.profile.languages"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.school"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.schoolLevel"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="160" valign="top" class="value-show"><app:getFamilyStatus status="${client.profile.familyStatus}"/></td>
+            <td width="160" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><app:getFamilyStatus status="${client.profile.familyStatus}"/></g:if></td>
             <td width="250" valign="top" class="value-show-block">
               <g:if test="${client.profile.languages}">
               <ul>
@@ -123,7 +127,12 @@
             <td width="230" valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if><g:else><div class="italic">keine Schule eingetragen</div></g:else></td>
             <td width="210" valign="top" class="value-show">
               <g:if test="${client.profile.schoolLevel}">
-                <app:getSchoolLevel level="${client.profile.schoolLevel}"/>
+                <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                  <app:getSchoolLevel level="${client.profile.schoolLevel}"/>
+                </g:if>
+                <g:if test="${grailsApplication.config.project == 'noe'}">
+                  <app:getSchoolLevelNoe level="${client.profile.schoolLevel}"/>
+                </g:if>
               </g:if>
               <g:else>
                 <div class="italic"><g:message code="none"/></div>
@@ -131,6 +140,7 @@
             </td>
           </tr>
 
+          <g:if test="${grailsApplication.config.project == 'sueninos'}">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="client.profile.schoolDropout"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.schoolDropoutDate"/></td>
@@ -142,7 +152,9 @@
             <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
+          </g:if>
 
+          <g:if test="${grailsApplication.config.project == 'sueninos'}">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="client.profile.schoolRestart"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.schoolRestartDate"/></td>
@@ -154,7 +166,9 @@
             <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
+          </g:if>
 
+          <g:if test="${grailsApplication.config.project == 'sueninos'}">
           <g:if test="${client.profile.job}">
             <tr class="prop">
               <td valign="top" class="name-show"><g:message code="client.profile.job"/></td>
@@ -179,6 +193,7 @@
               <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
               <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
             </tr>
+          </g:if>
           </g:if>
 
           <g:if test="${client.profile.support}">
@@ -312,6 +327,7 @@
       </div>
     </div>
 
+    <g:if test="${grailsApplication.config.project == 'sueninos'}">
     <div class="zusatz">
       <h5><g:message code="client.profile.materials"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></app:accessCheck></h5>
@@ -337,6 +353,7 @@
         <g:render template="materials" model="[client: client, entity: currentEntity]"/>
       </div>
     </div>
+    </g:if>
 
     <div class="zusatz">
       <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.projectName]"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');

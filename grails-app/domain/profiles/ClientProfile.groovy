@@ -76,8 +76,8 @@ class ClientProfile extends Profile {
       currentCity (size: 2..50, maxSize: 50)
       currentStreet (size: 2..50, maxSize: 50)
       originCountry (size: 2..50, maxSize: 50)
-      originZip (size: 4..10)
-      originCity (size: 2..50, maxSize: 50)
+      originZip (size: 4..10, nullable: true)
+      originCity (size: 2..50, maxSize: 50, nullable: true)
       interests (blank: true, maxSize: 2000)
       //jobType (nullable: true)
       jobIncome (nullable: true)
@@ -97,6 +97,13 @@ class ClientProfile extends Profile {
       contactStreet (nullable: true, size: 2..50, maxSize: 50)
       contactPhone (nullable: true, size: 2..50, maxSize: 50)
       contactMail (nullable: true, size: 2..50, maxSize: 50)
+
+      size (nullable: true)
+      weight (nullable: true)
+
+      familyStatus (nullable: true)
+
+      job (nullable: true)
     }
 
     String toString(){

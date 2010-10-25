@@ -47,17 +47,21 @@
           </tr>
 
           <tr>
-            <td valign="top" class="name"><g:message code="client.profile.size"/></td>
-            <td valign="top" class="name"><g:message code="client.profile.weight"/></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.size}"><g:message code="client.profile.size"/></g:if></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.weight}"><g:message code="client.profile.weight"/></g:if></td>
             <td colspan="2" valign="top" class="name"><g:message code="client.profile.interests"/></td>
           </tr>
 
           <tr>
             <td valign="top" class="value">
-              <g:select from="${100..250}" name="size" value="${fieldValue(bean: client, field: 'profile.size')}"/> (cm)
+              <g:if test="${grailsApplication.config.clientProfile.size}">
+                <g:select from="${100..250}" name="size" value="${fieldValue(bean: client, field: 'profile.size')}"/> (cm)
+              </g:if>
             </td>
             <td valign="top" class="value">
-              <g:select from="${10..150}" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
+              <g:if test="${grailsApplication.config.clientProfile.weight}">
+                <g:select from="${10..150}" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
+              </g:if>
             </td>
             <td colspan="2" valign="top" class="value">
               <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
@@ -111,17 +115,21 @@
           <table>
 
             <tr>
-              <td valign="top" class="name"><g:message code="client.profile.originZip"/></td>
-              <td valign="top" class="name"><g:message code="client.profile.originCity"/></td>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="client.profile.originZip"/></g:if></td>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="client.profile.originCity"/></g:if></td>
               <td colspan="2" valign="top" class="name"><g:message code="client.profile.originCountry"/></td>
             </tr>
 
             <tr>
               <td width="105" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
+                <g:if test="${grailsApplication.config.clientProfile.originZip}">
+                  <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
+                </g:if>
               </td>
               <td width="210" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
+                <g:if test="${grailsApplication.config.clientProfile.originCity}">
+                  <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
+                </g:if>
               </td>
               <td colspan="2" valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
@@ -136,7 +144,7 @@
           <table>
 
             <tr class="prop">
-              <td valign="top" class="name"><g:message code="client.profile.familyStatus"/></td>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="client.profile.familyStatus"/></g:if></td>
               <td valign="top" class="name"><g:message code="client.profile.languages"/></td>
               <td valign="top" class="name"><g:message code="client.profile.school"/></td>
               <td valign="top" class="name"><g:message code="client.profile.schoolLevel"/></td>
@@ -144,11 +152,13 @@
 
             <tr>
               <td width="160px" valign="top" class="value">
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_es}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
-                </g:if>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_de}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
+                <g:if test="${grailsApplication.config.clientProfile.familyStatus}">
+                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                    <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_es}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
+                  </g:if>
+                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                    <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_de}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
+                  </g:if>
                 </g:if>
               </td>
               <td width="250" valign="top" class="value">
@@ -163,15 +173,21 @@
                 <g:select class="drop-down-200" name="school" id="allFacilities" from="${allFacilities}" optionKey="id" optionValue="profile"/>
               </td>
               <td width="210" valign="top" class="value">
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
+                <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                    <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
+                  </g:if>
+                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
+                    <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
+                  </g:if>
                 </g:if>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
+                <g:if test="${grailsApplication.config.project == 'noe'}">
+                  <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
                 </g:if>
               </td>
             </tr>
 
+            <g:if test="${grailsApplication.config.project == 'sueninos'}">
             <tr class="prop">
               <td></td>
               <td valign="top" class="name"><g:message code="client.profile.schoolDropoutDate"/></td>
@@ -190,7 +206,9 @@
                 <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
               </td>
             </tr>
+            </g:if>
 
+            <g:if test="${grailsApplication.config.project == 'sueninos'}">
             <tr class="prop">
               <td></td>
               <td valign="top" class="name"><g:message code="client.profile.schoolRestartDate"/></td>
@@ -213,7 +231,9 @@
             <tr>
               <td colspan="4">&nbsp;</td>
             </tr>
+            </g:if>
 
+            <g:if test="${grailsApplication.config.project == 'sueninos'}">
             <tr class="prop">
               <td></td>
               <td><g:message code="client.profile.jobType"/></td>
@@ -241,6 +261,7 @@
                 <g:textField size="28" maxlength="20" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>
+            </g:if>
 
             <tr class="prop">
               <td></td>

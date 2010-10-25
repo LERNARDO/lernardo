@@ -199,6 +199,10 @@ class HelperTagLib {
       out << grailsApplication.config.schoolLevels_es[attrs.level]
   }
 
+  def getSchoolLevelNoe = {attrs ->
+    out << grailsApplication.config.schoolLevels[attrs.level]
+  }
+
   /*
    * receives a maritalStatus ID and renders either the german or spanish word for it
    */
