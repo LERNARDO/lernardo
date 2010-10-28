@@ -38,6 +38,7 @@ class MetaDataService {
   static final String EST_PROJECT = "project"
   static final String EST_PROJECT_DAY = "projectDay"
   static final String EST_PROJECT_UNIT = "projectUnit"
+  static final String EST_PROJECT_UNIT_TEMPLATE = "projectUnitTemplate"
 
   static final String ET_USER = "User"                   // EntityType
   static final String ET_EDUCATOR = "Pädagoge"
@@ -64,6 +65,7 @@ class MetaDataService {
   static final String ET_PROJECT = "Projekt"
   static final String ET_PROJECT_DAY = "Projekttag"
   static final String ET_PROJECT_UNIT = "Projekteinheit"
+  static final String ET_PROJECT_UNIT_TEMPLATE = "Projekteinheitvorlage"
 
   static final String PRT_USER = "User"                // ProfileType
   static final String PRT_EDUCATOR = "Educator"
@@ -88,6 +90,7 @@ class MetaDataService {
   static final String PRT_PROJECT = "Project"
   static final String PRT_PROJECT_DAY = "ProjectDay"
   static final String PRT_PROJECT_UNIT = "ProjectUnit"
+  static final String PRT_PROJECT_UNIT_TEMPLATE = "ProjectUnitTemplate"
 
   static final String ROLE_USER = "ROLE_USER"
   static final String ROLE_MOD = "ROLE_MOD"
@@ -138,6 +141,7 @@ class MetaDataService {
   static final String LT_LEAD_EDUCATOR = "Leitender Pädagoge"
   static final String LT_THEME_OF_FACILITY = "Thema der Einrichtung"
   static final String LT_TEMPLATE = "Vorlage"
+  static final String LT_PROJECT_UNIT_TEMPLATE = "Projekteinheitvorlage"
 
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
@@ -176,6 +180,7 @@ class MetaDataService {
     getEstProject()
     getEstProjectDay()
     getEstProjectUnit()
+    getEstProjectUnitTemplate()
 
     getEtUser()
     getEtEducator()
@@ -200,6 +205,7 @@ class MetaDataService {
     getEtProject()
     getEtProjectDay()
     getEtProjectUnit()
+    getEtProjectUnitTemplate()
 
     getLstPersonal()
     getLstOther()
@@ -242,6 +248,7 @@ class MetaDataService {
     getLtLeadEducator()
     getLtThemeOfFacility()
     getLtTemplate()
+    getLtProjectUnitTemplate()
 
     getLtActEducator()
     getLtActClient()
@@ -285,6 +292,7 @@ class MetaDataService {
   EntitySuperType getEstProject()               {defaultObjectService.openEST (EST_PROJECT, PRT_PROJECT) }
   EntitySuperType getEstProjectDay()            {defaultObjectService.openEST (EST_PROJECT_DAY, PRT_PROJECT_DAY) }
   EntitySuperType getEstProjectUnit()           {defaultObjectService.openEST (EST_PROJECT_UNIT, PRT_PROJECT_UNIT) }
+  EntitySuperType getEstProjectUnitTemplate()   {defaultObjectService.openEST (EST_PROJECT_UNIT_TEMPLATE, PRT_PROJECT_UNIT_TEMPLATE) }
 
   EntityType getEtUser()            {defaultObjectService.openET (ET_USER, estUser) }
   EntityType getEtEducator()        {defaultObjectService.openET (ET_EDUCATOR, estEducator) }
@@ -309,6 +317,7 @@ class MetaDataService {
   EntityType getEtProject()         {defaultObjectService.openET (ET_PROJECT, estProject) }
   EntityType getEtProjectDay()      {defaultObjectService.openET (ET_PROJECT_DAY, estProjectDay) }
   EntityType getEtProjectUnit()     {defaultObjectService.openET (ET_PROJECT_UNIT, estProjectUnit) }
+  EntityType getEtProjectUnitTemplate() {defaultObjectService.openET (ET_PROJECT_UNIT_TEMPLATE, estProjectUnitTemplate) }
 
   LinkSuperType getLstPersonal() {defaultObjectService.openLST (LST_PERSONAL, "Personal Relationship") }
   LinkSuperType getLstOther()    {defaultObjectService.openLST (LST_OTHER, "Other Relationship") }
@@ -351,6 +360,7 @@ class MetaDataService {
   LinkType getLtLeadEducator()           {defaultObjectService.openLT (LT_LEAD_EDUCATOR, lstOther) }
   LinkType getLtThemeOfFacility()        {defaultObjectService.openLT (LT_THEME_OF_FACILITY, lstOther) }
   LinkType getLtTemplate()               {defaultObjectService.openLT (LT_TEMPLATE, lstOther) }
+  LinkType getLtProjectUnitTemplate()    {defaultObjectService.openLT (LT_PROJECT_UNIT_TEMPLATE, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }

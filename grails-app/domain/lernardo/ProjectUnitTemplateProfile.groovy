@@ -2,7 +2,7 @@ package lernardo
 
 import at.openfactory.ep.Profile
 
-class ProjectUnitProfile extends Profile {
+class ProjectUnitTemplateProfile extends Profile {
 
     Integer duration = 0
 

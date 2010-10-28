@@ -174,6 +174,7 @@ class ProfileController {
         ne("type", metaDataService.etUser)
         ne("type", metaDataService.etProjectDay)
         ne("type", metaDataService.etProjectUnit)
+        ne("type", metaDataService.etProjectUnitTemplate)
         profile {
           order("lastName", "asc")
         }
@@ -199,6 +200,7 @@ class ProfileController {
         ne("type", metaDataService.etUser)
         ne("type", metaDataService.etProjectDay)
         ne("type", metaDataService.etProjectUnit)
+        ne("type", metaDataService.etProjectUnitTemplate)
         profile {
           ilike("fullName", params.glossary + "%")
           order("fullName", "asc")

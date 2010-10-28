@@ -54,7 +54,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Projekteinheiten <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false"><g:remoteLink action="addProjectUnit" update="projectunits2" id="${projectTemplate.id}" before="showspinner('#projectunits2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="Projekteinheit hinzufügen"/></g:remoteLink>
+      <h5>Projekteinheitenvorlagen <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="Projekteinheitvorlage hinzufügen"/></g:remoteLink>
       %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:accessCheck></h5>
       %{--<div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
@@ -64,8 +64,8 @@
           <div class="spacer"></div>
         </g:formRemote>
       </div>--}%
-      <div class="zusatz-show" id="projectunits2">
-        <g:render template="projectUnits" model="[projectUnits: projectUnits, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates, entity: currentEntity]"/>
+      <div class="zusatz-show" id="projectunittemplates2">
+        <g:render template="projectUnitTemplates" model="[projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates, entity: currentEntity]"/>
       </div>
     </div>
 
