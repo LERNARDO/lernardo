@@ -340,7 +340,7 @@ class HelperTagLib {
    * finds the number of units linked to a project template
    */
   def getProjectTemplateUnitsCount = {attrs, body ->
-    def units = Link.countByTargetAndType(attrs.template, metaDataService.ltProjectUnit)
+    def units = Link.countByTargetAndType(attrs.template, metaDataService.ltProjectUnitTemplate)
     out << units
   }
 
@@ -360,7 +360,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(units: it.source)}
     else
-      out << '<span class="italic">Keine Projekteinheiten zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic red">Bitte die Projekteinheiten auswählen, die an diesem Projekttag stattfinden sollen!</span></span>'
   }
 
   /*
@@ -371,7 +371,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(educators: it.source)}
     else
-      out << '<span class="italic">Keine Pädagogen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic red">Bitte die Pädagogen auswählen, die an diesem Projekttag teilnehmen!</span></span>'
   }
 
   /*
@@ -404,7 +404,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(parents: it.source)}
     else
-      out << '<span class="italic">Keine Erziehungsberechtigten zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic red">Bitte die Erziehungsberechtigten auswählen, die an dieser Projekteinheit teilnehmen!</span></span>'
   }
 
   /*
@@ -415,7 +415,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(partners: it.source)}
     else
-      out << '<span class="italic">Keine Partner zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic red">Bitte die Partner auswählen, die an dieser Projekteinheit teilnehmen!</span></span>'
   }
 
   /*
@@ -426,7 +426,7 @@ class HelperTagLib {
     if (link)
       link.each {out << body(groupActivityTemplates: it.source)}
     else
-      out << '<span class="italic">Keine Aktivitätsblockvorlagen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic red" style="margin-left: 15px">Keine Aktivitätsblockvorlagen zugewiesen!</span></span>'
   }
 
   /*

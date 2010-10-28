@@ -25,7 +25,7 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'projectTemplate.profile.name')}"/>
         <g:sortableColumn property="status" title="${message(code:'projectTemplate.profile.status')}"/>
-        <th>Projekteinheiten</th>
+        <th>Projekteinheitenvorlagen</th>
       </tr>
       </thead>
       <tbody>

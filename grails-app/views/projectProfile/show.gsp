@@ -32,7 +32,7 @@
         </tr>
 
         <tr>
-          <td class="name-show"><g:message code="projectTemplate.profile.description"/></td>
+          <td class="name-show"><g:message code="projectTemplate.profile.description"/> (aus Vorlage)</td>
         </tr>
         <tr>
           <td colspan="3" class="value-show">${template?.profile?.description?.decodeHTML()}</td>
@@ -43,7 +43,7 @@
     </div>
     <div class="buttons">
       <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
-        <g:if test="${new Date() < project.profile.startDate}"><g:link class="buttonGreen" action="edit" id="${project?.id}"><g:message code="edit"/></g:link></g:if>
+        %{--<g:if test="${new Date() < project.profile.startDate}">--}%<g:link class="buttonGreen" action="edit" id="${project?.id}"><g:message code="edit"/></g:link>%{--</g:if>--}%
       </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
@@ -53,10 +53,12 @@
       <h5>Einrichtung <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><span id="facilitybutton"><g:render template="facilitybutton" model="[facilities: facilities]"/></span></app:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addFacility', id: project.id]" update="facilities2" before="showspinner('#facilities2'); toggle('#facilities');" after="${remoteFunction(action:'updateFacilityButton',update:'facilitybutton',id:project.id)}">
-          <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <table>
+            <tr>
+              <td style="padding: 5px 10px 0 0;"><g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="facilities2">
@@ -68,10 +70,12 @@
       <h5>Betreute <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClientGroup', id:project.id]" update="clients2" before="showspinner('#clients2')">
-          <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <table>
+            <tr>
+              <td style="padding: 5px 10px 0 0;"><g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="clients2">
@@ -89,16 +93,16 @@
         <div class="spacer"></div>
         </div>
 
-        <div id="projectDay">
+        <div class="zusatz-show" id="projectDay">
           <g:render template="projectday" model="[projectDay: projectDays[0], allResources: allResources, allEducators: allEducators, allParents: allParents, units: units, entity: currentEntity]"/>
         </div>
 
       </g:if>
     </div>
 
-    <g:remoteLink update="execute-result" class="buttonGray" action="execute" id="${project.id}" before="showspinner('#execute-result')">Projekt einplanen/aktualisieren</g:remoteLink>
+    %{--<g:remoteLink update="execute-result" class="buttonGray" action="execute" id="${project.id}" before="showspinner('#execute-result')">Projekt einplanen/aktualisieren</g:remoteLink>
     <div class="clear"></div>
-    <div id="execute-result"></div>
+    <div id="execute-result"></div>--}%
 
   </div>
 </div>

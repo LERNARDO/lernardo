@@ -2,7 +2,6 @@ import org.joda.time.DateTime
 
 import grails.converters.JSON
 import at.openfactory.ep.Entity
-import at.openfactory.ep.Link
 import at.openfactory.ep.EntityHelperService
 import standard.MetaDataService
 import standard.FunctionService
@@ -23,8 +22,20 @@ class CalendarController {
     Entity entity = Entity.get(params.id)
     if (entity.type.supertype.name == 'activity')
       redirect controller: entity.type.supertype.name, action: 'show', id: params.id
-    else
-      redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+    else {
+      if (entity.type.supertype.name == 'projectUnit') {
+        // get projectDay the projectUnit belongs to
+        Entity projectDay = functionService.findByLink(entity, null, metaDataService.ltProjectDayUnit)
+
+        // get project the projectDay belongs to
+        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+        // redirect to project show view
+        redirect controller: 'projectProfile', action: show, id: project.id
+      }
+      else
+        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+    }
   }
 
   /*
@@ -102,18 +113,17 @@ class CalendarController {
     }
 
     // get project units
-    /*  List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
+    List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
 
     projectUnits.each {
-      def dtStart = new DateTime (it.profile.startDate)
+      def dtStart = new DateTime (it.profile.date)
       //dtStart = dtStart.plusHours(1)
       def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
       //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-      eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), className: 'projectunit']
-    }  */
-
+      eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: 'projectunit']
+    }
 
     def json = eventList as JSON;
-    render json // IntelliJ gives a false warning here
+    render json
   }
 }

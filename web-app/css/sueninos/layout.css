@@ -212,10 +212,13 @@ ul {
 /* ----- PRIVATE ----- */
 
 .element-box {
-  border: 1px solid #999;
+    border-top: 1px solid #999;
+    margin-top: 5px;
+    padding-top: 5px;
+  /*border: 1px solid #999;
   background: #eee;
   padding: 5px;
-  margin: 5px;
+  margin: 5px;*/
 }
 
 .cal_navigation ul li {
@@ -1552,10 +1555,11 @@ h4 {
     padding: 6px 0 6px 6px;
 }
 .zusatz-show {
-    background-color: #fff;
+    margin: 5px;
+    /*background-color: #fff;
     margin: 6px;
     padding: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc;*/
 }
 .zusatz-show ul {
    padding: 0;

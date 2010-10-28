@@ -4,19 +4,20 @@
   <span id="updateduration"><g:render template="updateduration" model="[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]"/></span>
 
   <g:each in="${projectUnitTemplates}" var="projectUnitTemplate" status="i">
-    <div class="element-box">${i+1}. Projekteinheitvorlage: <span id="projectName${i}">${projectUnitTemplate.profile.fullName}</span> <app:isMeOrAdmin entity="${entity}">
+    <div class="element-box"><span class="bold">${i+1}. Projekteinheitvorlage:</span> <span id="projectName${i}">${projectUnitTemplate.profile.fullName}</span> <app:isMeOrAdmin entity="${entity}">
       <g:remoteLink action="editProjectUnitTemplate" update="projectName${i}" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="Projekteinheitvorlage bearbeiten" align="top"/></g:remoteLink>
       <g:remoteLink action="removeProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Projekteinheitvorlage entfernen" align="top"/></g:remoteLink>
     </app:isMeOrAdmin>
 
       <p class="bold" style="margin-left: 15px">Aktivitätsblockvorlagen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#groups${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsblockvorlage hinzufügen" /></a></app:isMeOrAdmin></p>
-      <div id="groups${i}" style="display:none; margin: 0 0 5px 15px; background: #ccc; padding: 5px">
+      <div id="groups${i}" style="display:none; margin: 0 0 5px 15px;">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id:projectUnitTemplate.id, params:[i: i, projectTemplate: projectTemplate.id]]" update="groups2-${i}" before="showspinner('#groups2${i}')" after="${remoteFunction(action:'updateduration',update:'updateduration', id: projectTemplate.id)}">
-          Aktivitätsblockvorlagen: <g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/>
-          %{--<g:select name="parent" from="${allParents}" optionKey="id" optionValue="profile"/>--}%
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <table>
+            <tr>
+              <td style="padding: 5px 10px 0 0;"><g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
         </g:formRemote>
       </div>     
 
@@ -31,5 +32,5 @@
   
 </g:if>
 <g:else>
-  <span class="italic">Keine Projekteinheitenvorlagen hinzugefügt <img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/></span>
+  <span class="italic red">Keine Projekteinheitenvorlagen hinzugefügt! %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
 </g:else>

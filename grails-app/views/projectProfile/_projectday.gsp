@@ -1,13 +1,16 @@
 <div class="element-box">
-  <p><span class="bold">Datum:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyy, HH:mm"/></p>
+  <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyyy"/><br/>
+     <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm"/> Uhr</p>
 
   <span class="bold">Einheiten <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></app:accessCheck></span>
   <div id="units" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id]" update="units2" before="showspinner('#units2')">
-      <g:select name="unit" from="${units}" optionKey="id" optionValue="profile"/>
-      <div class="spacer"></div>
-      <g:submitButton name="button" value="${message(code:'add')}"/>
-      <div class="spacer"></div>
+      <table>
+        <tr>
+          <td style="padding: 5px 10px 0 0;"><g:select name="unit" from="${units}" optionKey="id" optionValue="profile"/></td>
+          <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+        </tr>
+      </table>
     </g:formRemote>
   </div>
 
@@ -20,10 +23,12 @@
   <span class="bold">Pädagogen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:accessCheck></span>
   <div id="educators" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addEducator', id:projectDay.id]" update="educators2" before="showspinner('#educators2')">
-      <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
-      <div class="spacer"></div>
-      <g:submitButton name="button" value="${message(code:'add')}"/>
-      <div class="spacer"></div>
+      <table>
+        <tr>
+          <td style="padding: 5px 10px 0 0;"><g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
+          <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+        </tr>
+      </table>
     </g:formRemote>
   </div>
 

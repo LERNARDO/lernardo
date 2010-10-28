@@ -64,7 +64,7 @@ class ProjectProfileController {
       Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
       // find all units linked to the template
-      List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnit)
+      List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
 
       def allFacilities = Entity.findAllByType(metaDataService.etFacility)
       // find all facilities linked to this project
@@ -311,37 +311,65 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
     Entity projectUnitTemplate = Entity.get(params.unit)
 
+    // set the correct time for the new unit
+        // find all units linked to this projectDay
+        List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+
+        // find all groups linked to all units
+        List groups = []
+        units.each {
+          List result = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnit)
+          result.each {groups << it}
+        }
+
+        // calculate total duration of all these groups
+        Integer duration = 0
+        groups.each {
+          duration += it.profile.realDuration
+        }
+
+        // finally update unit time
+        Calendar calendar = new GregorianCalendar()
+
+    // find all activity template groups linked to the project unit template
+    groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+
+    // and link each group to the project unit
+    Integer duration2 = 0
+    groups.each {
+      // set duration of unit
+      duration2 += it.profile.realDuration
+    }
+
     // create a new unit and copy the properties from the unit template
     EntityType etProjectUnit = metaDataService.etProjectUnit
     Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = projectUnitTemplate.profile.fullName
+
+      calendar.setTime(projectDay.profile.date)
+      calendar.add(Calendar.MINUTE, duration)
+      ent.profile.date = calendar.getTime()
+      ent.profile.duration = duration2
     }
 
-    //projectUnit.properties = projectUnitTemplate.properties
-
-    // link the new unit to the project
+    // link the new unit to the project day
     new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
 
-    // create activity instances that are linked to the projectUnit that are created from activitytemplates
-    // linked to the projectUnitTemplates
-
-    // first find all activity template groups linked to the project unit template
-    List groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
-
-    // link each group to the project unit
+    // and link each group to the project unit
     groups.each {
       new Link(source: it as Entity, target: projectUnit, type: metaDataService.ltProjectUnit).save()
     }
 
-    // find all units linked to this projectDay
-    List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    // return values for the template
+        // find all units linked to this projectDay
+        units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
-    // get all parents
-    def allParents = Entity.findAllByType(metaDataService.etParent)
+        // get all parents
+        def allParents = Entity.findAllByType(metaDataService.etParent)
 
-    // get all partners
-    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+        // get all partners
+        def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
     render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, allParents: allParents, allPartners: allPartners]
 
@@ -717,7 +745,7 @@ class ProjectProfileController {
     Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
     // find all units linked to the template
-    List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnit)
+    List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
 
     // get all resources
     def allResources = Entity.findAllByType(metaDataService.etResource)

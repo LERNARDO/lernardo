@@ -281,6 +281,14 @@ table.fc-header {
     color: #fff;
     }
 
+.projectunit,
+.fc-agenda .projectunit .fc-event-time,
+.projectunit a {
+    background-color: #bb5;
+    border-color: #bb5;
+    color: #fff;
+    }
+
 .fc-event {
 	text-align: left;
 	}

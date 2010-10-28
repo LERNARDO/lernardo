@@ -53,6 +53,10 @@
       <div class="spacer"></div>
     </div>
 
+    <g:if test="${projectTemplate.profile.status != 'fertig'}">
+      <div class="italic red">Diese Vorlage kann erst als Projekt geplant werden, sobald der Status auf "fertig" gesetzt wurde!</div>
+    </g:if>
+
     <div class="zusatz">
       <h5>Projekteinheitenvorlagen <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="Projekteinheitvorlage hinzufügen"/></g:remoteLink>
       %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</app:accessCheck></h5>
