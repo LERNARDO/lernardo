@@ -6,5 +6,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic">Keine Betreuten eingetragen</span>
+  <span class="italic red">Keine Betreuten eingetragen!</span>
 </g:else>

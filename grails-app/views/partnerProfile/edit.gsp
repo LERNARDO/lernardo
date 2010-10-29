@@ -94,7 +94,7 @@
 
         </table>
 
-        <div class="email2">
+        <div class="email">
           <table>
 
             <tr class="prop">

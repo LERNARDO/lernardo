@@ -1361,21 +1361,8 @@ table#msg-composer td {
     }
 
 .email {
-	border: solid 1px #009900;
-	padding: 8px 0 4px 10px ;
-	background: #8c8; /*ccc*/
-	margin-top: 6px;
-	margin-bottom: 6px;
-	height: 20px;
-}
-
-.email2 {
-	border: solid 1px #009900;
-	padding: 8px 0 4px 10px ;
-	background: #8c8; /*ccc*/
-	margin-top: 6px;
-	margin-bottom: 6px;
-	height: 47px;
+    background: #9c9;
+    padding: 4px;
 }
 
 .name {
@@ -1450,15 +1437,18 @@ h4 {
 	font-size: 12px;
 	font-weight:bold;
 	margin: 4px 0;
-	}
+    border-bottom: 1px solid #aaa;
+    padding: 0 0 3px 0;
+}
 
 .contact {
-	border: 1px solid #aaa; /* fff */
-    /*background: #cdcdcd;*/
+	/*border: 1px solid #aaa; *//* fff *//*
+    *//*background: #cdcdcd;*//*
 	padding-left: 6px;
 	padding-right: 6px;
 	padding-top: 3px;
-	margin-bottom: 6px;}
+	margin-bottom: 6px;*/
+}
 	
 .drop-down-280 {
 	width: 280px;

@@ -6,5 +6,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic"><g:message code="client.profile.healthNotes.empty"/></span>
+  <span class="italic red"><g:message code="client.profile.healthNotes.empty"/></span>
 </g:else>

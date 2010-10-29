@@ -337,7 +337,7 @@
           </table>
         </div>
 
-        <div class="email2">
+        <div class="email">
           <table>
             <tr>
               <app:isOperator entity="${currentEntity}">

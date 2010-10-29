@@ -8,5 +8,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic"><g:message code="educator.profile.inOut.empty"/></span>
+  <span class="italic red"><g:message code="educator.profile.inOut.empty"/></span>
 </g:else>

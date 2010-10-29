@@ -2,7 +2,7 @@
     <g:render template="glossary" model="[glossary: glossary]"/>
 
     <g:if test="${entities.size() == 0}">
-      <span class="italic"><g:message code="profile.overview.search.empty"/></span>
+      <span class="italic red"><g:message code="profile.overview.search.empty"/></span>
     </g:if>
     <g:each in="${entities}" var="entity">
       <div class="member">

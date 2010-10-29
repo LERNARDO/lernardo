@@ -5,5 +5,5 @@
   <div class="spacer"></div>
 </g:if>
 <g:else>
-  <span class="italic"><g:message code="groupClient.clients.notFound"/>!</span>
+  <span class="italic red"><g:message code="groupClient.clients.notFound"/>!</span>
 </g:else>

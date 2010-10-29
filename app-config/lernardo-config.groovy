@@ -61,9 +61,9 @@ grails.mail.default.from="lernardomailer@gmail.com"
 // "Pesos"
 // "Euro"
 
-project = "noe"
-projectName = "Lernardo" // full project name
-currency = "Euro"
+project = "sueninos"
+projectName = "Sueninos" // full project name
+currency = "Pesos"
 
 // ---------------------------------------------------------------------------------------------
 // google analytics tracker
@@ -85,8 +85,10 @@ google.analytics.webPropertyID = "UA-17725364-2"
 
 // controls the visibility of attributes for each project
 
+// Lernardo Config:
+
 // ClientProfile
-clientProfile.citizenship = true // true for Lernardo, false for Sueninos
+/*clientProfile.citizenship = true // true for Lernardo, false for Sueninos
 clientProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos
 clientProfile.contact = true // true for Lernardo, false for Sueninos
 clientProfile.size = false // false for Lernardo, true for Sueninos
@@ -115,7 +117,41 @@ parentProfile.citizenship = true // true for Lernardo, false for Sueninos
 educatorProfile.enlisted = false // false for Lernardo, true for Sueninos
 educatorProfile.origin = false // false for Lernardo, true for Sueninos
 educatorProfile.contact = false // false for Lernardo, true for Sueninos
-educatorProfile.phone = true // true for Lernardo, false for Sueninos
+educatorProfile.phone = true // true for Lernardo, false for Sueninos*/
+
+//Sueninos Config:
+
+// ClientProfile
+clientProfile.citizenship = false // true for Lernardo, false for Sueninos
+clientProfile.socialSecurityNumber = false // true for Lernardo, false for Sueninos
+clientProfile.contact = false // true for Lernardo, false for Sueninos
+clientProfile.size = true // false for Lernardo, true for Sueninos
+clientProfile.weight = true // false for Lernardo, true for Sueninos
+clientProfile.job = true // false for Lernardo, true for Sueninos
+clientProfile.originZip = true // false for Lernardo, true for Sueninos
+clientProfile.originCity = true // false for Lernardo, true for Sueninos
+clientProfile.familyStatus = true // false for Lernardo, true for Sueninos
+
+// GroupFamilyProfile
+groupFamilyProfile.familyIncome = true // false for Lernardo, true for Sueninos
+groupFamilyProfile.familyProblems = true // false for Lernardo, true for Sueninos
+groupFamilyProfile.amountHousehold = true // false for Lernardo, true for Sueninos
+groupFamilyProfile.city = false // true for Lernardo, false for Sueninos
+
+// ParentProfile
+parentProfile.socialSecurityNumber = false // true for Lernardo, false for Sueninos
+parentProfile.phone = false // true for Lernardo, false for Sueninos
+parentProfile.jobIncome = true // false for Lernardo, true for Sueninos
+parentProfile.jobFrequency = true // false for Lernardo, true for Sueninos
+parentProfile.education = true // false for Lernardo, true for Sueninos
+parentProfile.currentCountry = true // false for Lernardo, true for Sueninos
+parentProfile.citizenship = false // true for Lernardo, false for Sueninos
+
+// EducatorProfile
+educatorProfile.enlisted = true // false for Lernardo, true for Sueninos
+educatorProfile.origin = true // false for Lernardo, true for Sueninos
+educatorProfile.contact = true // false for Lernardo, true for Sueninos
+educatorProfile.phone = false // true for Lernardo, false for Sueninos
 
 // jobs for Lernardo
 jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständig','5':'karenziert','6':'Hausfrau/Hausmann']
