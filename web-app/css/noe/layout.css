@@ -21,7 +21,7 @@ body {
 
 #hd {
     height: 87px;
-    background: url(../../images/lernardo-logo.png) #fff no-repeat 15px 15px;
+    background: url(../../images/noe/logo.png) #fff no-repeat 15px 15px;
     position: relative;
     /*-moz-box-shadow: #888 0px -4px 8px;
     border-right: 1px solid #aaa;
@@ -114,7 +114,6 @@ body {
         float: left;
         margin: 0; }
         #nav li a {
-            /*background: #FFF url(../images/menu-li.jpg) no-repeat scroll 0 0;*/
             color: #535353;
             font-size: 16px;
             display: block;
@@ -254,14 +253,6 @@ ul {
     .imgbox .current h3 {
         display: block;
         font-weight: bold; }
-
-#private {
-    /*background:url(../images/background_private.jpg) repeat-x;*/ }
-/*
-#private a {
-    color: #3b59bb;
-}
-*/
 
 #banner {
     height: 115px;
@@ -578,11 +569,11 @@ ul {
 /* ----- PUBLIC ----- */
 
 #public {
-    /*background: url(../images/background_public.jpg) repeat-x;*/ }
+    }
     #public #banner {
         height: 149px;
         /*width: 974px;*/
-        background: #fff url(../../images/lernardo-banner.png) 15px 0 no-repeat;}
+        background: #fff url(../../images/noe/banner.png) 15px 0 no-repeat;}
     #public #sidebar {
         margin: 0 0; }
     #public #main {
@@ -628,10 +619,7 @@ ul {
         text-decoration: none; }
 
 .innersidebox {
-    /*background: url(../images/gradient_1.png) repeat-x bottom;*/
     background: #f0f0f0;
-    /*border: 1px solid #708dc2;*/
-    /*-moz-border-radius: 5px;*/
     padding: 5px 10px 10px 10px; }
 
 .sideboxheader {
