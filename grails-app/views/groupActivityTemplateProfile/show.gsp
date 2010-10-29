@@ -51,12 +51,16 @@
 
         %{-- and only when it is done --}%
           <g:if test="${group.profile.status == 'fertig'}">
-            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock instanzieren</g:link>
+            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock planen</g:link>
           </g:if>
       </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
+
+    <g:if test="${group.profile.status != 'fertig'}">
+      <div class="italic red">Diese Vorlage kann erst eingeplant werden, sobald der Status auf "fertig" gesetzt wurde!</div>
+    </g:if>
 
     <div class="zusatz">
       <h5>Aktivitätsvorlagen <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></app:accessCheck></h5>
