@@ -186,7 +186,7 @@ class GroupClientProfileController {
       profile {
         if (params.city)
           ilike('currentCity', "%" + params.city + "%")
-        if (params.byte('gender') > 0)
+        if (params.gender != "all")
           eq('gender', params.byte('gender'))
         if (params.job && params.job.toInteger() > 0) {
           if (params.job.toInteger() == 1)
