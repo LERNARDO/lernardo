@@ -3,11 +3,11 @@
   <g:each in="${clients}" var="client" status="i">
     <li>
       <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeClient" update="clients2" id="${group.id}" params="[client: client.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Betreuten entfernen" align="top"/></g:remoteLink></app:accessCheck>
-      <span id="tagclient${i}">
+      %{--<span id="tagclient${i}">
         <app:getTags entity="${client}">
           <g:render template="/app/tags" model="[entity: client, tags: tags, update: 'tagclient'+ i]"/>
         </app:getTags>
-      </span>
+      </span>--}%
     </li>
   </g:each>
   </ul>
