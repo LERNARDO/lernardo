@@ -38,6 +38,24 @@
     </app:getProjectDayEducators>
   </div>
 
+  <span class="bold">Supplierungen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></app:accessCheck></span>
+  <div id="substitutes" style="display:none">
+    <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addSubstitute', id:projectDay.id]" update="substitutes2" before="showspinner('#substitutes2')">
+      <table>
+        <tr>
+          <td style="padding: 5px 10px 0 0;"><g:select name="substitute" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
+          <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+        </tr>
+      </table>
+    </g:formRemote>
+  </div>
+
+  <div id="substitutes2">
+    <app:getProjectDaySubstitutes projectDay="${projectDay}">
+      <g:render template="substitutes" model="[substitutes: substitutes, projectDay: projectDay, entity: entity]"/>
+    </app:getProjectDaySubstitutes>
+  </div>
+
   %{--<span class="bold">Resourcen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></app:accessCheck></span>
   <div id="resources" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addResource', id:projectDay.id]" update="resources2" before="showspinner('#resources2')">

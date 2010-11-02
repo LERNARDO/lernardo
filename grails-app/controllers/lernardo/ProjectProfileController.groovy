@@ -546,6 +546,18 @@ class ProjectProfileController {
     render template: 'educators', model: [educators: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
+  def addSubstitute = {
+    def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'substitutes', model: [substitutes: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeSubstitute = {
+    def breaking = functionService.breakEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
+    render template: 'substitutes', model: [substitutes: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)

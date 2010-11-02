@@ -375,6 +375,17 @@ class HelperTagLib {
   }
 
   /*
+   * finds all supplemental educators linked to a project day
+   */
+  def getProjectDaySubstitutes = {attrs, body ->
+    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDaySubstitute)
+    if (link)
+      link.each {out << body(educators: it.source)}
+    else
+      out << '<span class="italic red">Bitte die Ersatzpädagogen auswählen, die an diesem Projekttag teilnehmen!</span></span>'
+  }
+
+  /*
    * finds all resources linked to a project day
    */
   def getProjectDayResources = {attrs, body ->

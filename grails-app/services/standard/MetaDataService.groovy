@@ -133,6 +133,7 @@ class MetaDataService {
   static final String LT_PROJECT_UNIT_PARTNER = "Projekteinheitmitglied Partner"
   static final String LT_PROJECT_DAY_UNIT = "Projekttag Einheit"
   static final String LT_PROJECT_DAY_EDUCATOR = "Projekttag Pädagoge"
+  static final String LT_PROJECT_DAY_SUBSTITUTE = "Projekttag Ersatzpädagoge"
   static final String LT_PROJECT_DAY_RESOURCE = "Projekttag Resource"
   static final String LT_PROJECT_TEMPLATE = "Projektvorlage"
   static final String LT_COLONIA = "Kolonie"
@@ -240,6 +241,7 @@ class MetaDataService {
     getLtProjectUnitPartner()
     getLtProjectDayUnit()
     getLtProjectDayEducator()
+    getLtProjectDaySubstitute()
     getLtProjectDayResource()
     getLtProjectTemplate()
     getLtColonia()
@@ -352,6 +354,7 @@ class MetaDataService {
   LinkType getLtProjectUnitPartner()     {defaultObjectService.openLT (LT_PROJECT_UNIT_PARTNER, lstOther) }
   LinkType getLtProjectDayUnit()         {defaultObjectService.openLT (LT_PROJECT_DAY_UNIT, lstOther) }
   LinkType getLtProjectDayEducator()     {defaultObjectService.openLT (LT_PROJECT_DAY_EDUCATOR, lstOther) }
+  LinkType getLtProjectDaySubstitute()   {defaultObjectService.openLT (LT_PROJECT_DAY_SUBSTITUTE, lstOther) }
   LinkType getLtProjectDayResource()     {defaultObjectService.openLT (LT_PROJECT_DAY_RESOURCE, lstOther) }
   LinkType getLtProjectTemplate()        {defaultObjectService.openLT (LT_PROJECT_TEMPLATE, lstOther) }
   LinkType getLtColonia()                {defaultObjectService.openLT (LT_COLONIA, lstOther) }
