@@ -134,6 +134,34 @@ class GroupActivityTemplateProfileController {
     }
   }
 
+  def copy = {
+    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+
+    Entity original = Entity.get(params.id)
+
+    Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.description = original.profile.description
+      ent.profile.status = original.profile.status
+      ent.profile.realDuration = original.profile.realDuration
+      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+    }
+
+    // create link to creator
+    new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+
+    // find all activity templates linked to the original and link them to the copy
+    List templates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)
+
+    templates.each {
+      new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+    }
+
+    flash.message = message(code: "group.copied", args: [entity.profile.fullName])
+    redirect action: 'show', id: entity.id
+
+  }
+
   def create = {
     Entity group = Entity.get(params.id)
        

@@ -71,7 +71,7 @@
       %{--<g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>--}%
-        <g:link class="buttonGreen" action="create" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
+        <g:link class="buttonGreen" action="copy" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
       </app:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>

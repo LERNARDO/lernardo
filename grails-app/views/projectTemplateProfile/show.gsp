@@ -48,7 +48,7 @@
           <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
         </g:if>
       </app:accessCheck>
-      <g:link class="buttonGreen" action="create" id="${projectTemplate.id}">Vorlage duplizieren</g:link>
+      <g:link class="buttonGreen" action="copy" id="${projectTemplate.id}">Vorlage duplizieren</g:link>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>

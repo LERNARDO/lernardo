@@ -77,6 +77,60 @@ class TemplateProfileController {
     return ['resources': Entity.findAllByType(metaDataService.etResource)]
   }
 
+  def copy = {
+    EntityType etTemplate = metaDataService.etTemplate
+
+    Entity original = Entity.get(params.id)
+
+    Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.description = original.profile.description
+      ent.profile.chosenMaterials = original.profile.chosenMaterials
+      ent.profile.socialForm = original.profile.socialForm
+      ent.profile.amountEducators = original.profile.amountEducators
+      ent.profile.status = original.profile.status
+      ent.profile.duration = original.profile.duration
+      ent.profile.type = original.profile.type
+      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+    }
+
+    // find all resources created in the original and create them in the copy
+    List resources = functionService.findAllByLink(null, original, metaDataService.ltResource)
+
+    EntityType etResource = metaDataService.etResource
+    resources.each {
+
+      Entity resource = entityHelperService.createEntity("resource", etResource) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.type = it.profile.type
+        ent.profile.classification = it.profile.classification
+        ent.profile.description = it.profile.description
+        ent.profile.fullName = it.profile.fullName
+      }
+
+      new Link(source: resource, target: entity, type: metaDataService.ltResource).save()
+    }
+
+    // loop through all methods of the original and create them in the copy
+    original.profile.methods.each { me ->
+      Method method = new Method()
+
+      method.name = me.name
+      method.description = me.description
+      method.type = "instance"
+
+      me.elements.each { el ->
+        method.addToElements(new Element(name: el.name, voting: el.voting))
+      }
+
+      method.save(flush:true)
+      entity.profile.addToMethods(method)
+    }
+
+    flash.message = message(code: "template.copied", args: [entity.profile.fullName])
+    redirect action: 'show', id: entity.id
+  }
+
   def save = {
     EntityType etTemplate = metaDataService.etTemplate
 

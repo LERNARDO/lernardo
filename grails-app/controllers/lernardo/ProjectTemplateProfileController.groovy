@@ -125,6 +125,46 @@ class ProjectTemplateProfileController {
     }
   }
 
+  def copy = {
+    EntityType etProjectTemplate = metaDataService.etProjectTemplate
+
+    Entity original = Entity.get(params.id)
+
+    Entity entity = entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.description = original.profile.description
+      ent.profile.status = original.profile.status
+      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+    }
+
+    // find project unit templates linked to the original
+    List projectUnitTemplates = functionService.findAllByLink(null, original, metaDataService.ltProjectUnitTemplate)
+
+    projectUnitTemplates.each {
+      // create project unit templates for the copy
+      EntityType etProjectUnitTemplate = metaDataService.etProjectUnitTemplate
+      Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.duration = it.profile.duration
+        ent.profile.fullName = it.profile.fullName
+      }
+
+      // link projectUnitTemplate and projectTemplate
+      new Link(source: projectUnitTemplate, target: entity, type: metaDataService.ltProjectUnitTemplate).save()
+
+      // find group activity templates linked to the original project unit
+      List groupActivityTemplates = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+
+      // link group activity templates to the project unit templates of the copy
+      groupActivityTemplates.each {
+        new Link(source: it as Entity, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
+      }
+    }
+
+    flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
+    redirect action: 'show', id: entity.id
+  }
+
   def create = {
     Entity projectTemplate = Entity.get(params.id)
     return [projectTemplate: projectTemplate]
