@@ -55,9 +55,7 @@ class GroupActivityTemplateProfileController {
       return
     }
 
-    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
-
-    // get all templates that are set to completed
+    // get all activity templates that are set to completed
     def c = Entity.createCriteria()
     def allTemplates = c.list {
       eq("type", metaDataService.etTemplate)
@@ -66,7 +64,7 @@ class GroupActivityTemplateProfileController {
       }
     }
 
-    // find all templates linked to this group
+    // find all activity templates linked to this group
     List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
 
     def calculatedDuration = 0
@@ -74,12 +72,16 @@ class GroupActivityTemplateProfileController {
       calculatedDuration += it.profile.duration
     }
 
+    // find all instances of this template
+    List instances = functionService.findAllByLink(group, null, metaDataService.ltTemplate)
+
     return [group: group,
             entity: entity,
             allTemplates: allTemplates,
             templates: templates,
             calculatedDuration: calculatedDuration,
-            methods: Method.findAllByType('template')]
+            methods: Method.findAllByType('template'),
+            instances: instances]
 
   }
 
