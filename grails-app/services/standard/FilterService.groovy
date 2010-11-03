@@ -13,11 +13,11 @@ class FilterService {
   /*
    * returns the number of new inbox messages of a given entity
    */
-  int getNewInboxMessages(String id, def params = []) {
+  int getNewInboxMessages(Integer id) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      ne('sender', Entity.get(id))  // loggedIn
+      ne('sender', Entity.get(id))
       eq('read', false)
     }
     return results.size()
@@ -26,11 +26,11 @@ class FilterService {
   /*
    * returns all inbox messages of a given entity
    */
-  def getInbox(String id, def params = []) {
+  def getInbox(Integer id, def params = []) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      ne('sender', Entity.get(id)) // loggedIn
+      ne('sender', Entity.get(id))
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
@@ -41,11 +41,11 @@ class FilterService {
   /*
    * returns the number of all inbox messages of a given entity
    */
-  def getInboxCount(String id) {
+  def getInboxCount(Integer id) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      ne('sender', Entity.get(id)) // loggedIn
+      ne('sender', Entity.get(id))
     }
     return results.size()
   }
@@ -53,11 +53,11 @@ class FilterService {
   /*
    * returns all outbox messages of a given entity
    */
-  def getOutbox(String id, def params = []) {
+  def getOutbox(Integer id, def params = []) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))
-      eq('sender', Entity.get(id)) // loggedIn
+      eq('sender', Entity.get(id))
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
@@ -68,7 +68,7 @@ class FilterService {
   /*
    * returns the number of all outbox messages of a given entity
    */
-  def getOutboxCount(String id) {
+  def getOutboxCount(Integer id) {
     def c = Msg.createCriteria()
     def results = c.list {
       eq('entity', Entity.get(id))

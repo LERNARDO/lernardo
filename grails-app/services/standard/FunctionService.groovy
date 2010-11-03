@@ -62,8 +62,8 @@ class FunctionService {
    * links two entities and returns all entities linked to the target
    */
   def linkEntities(String s, String t, LinkType linktype) {
-    Entity source = Entity.get(s)
-    Entity target = Entity.get(t)
+    Entity source = Entity.get(s.toInteger())
+    Entity target = Entity.get(t.toInteger())
     Boolean duplicate = false
 
     // check if the source isn't already linked to the target
@@ -87,8 +87,8 @@ class FunctionService {
    * breaks two entities and returns all entities linked to the target
    */
   def breakEntities(String s, String t, LinkType linktype) {
-    Entity source = Entity.get(s)
-    Entity target = Entity.get(t)
+    Entity source = Entity.get(s.toInteger())
+    Entity target = Entity.get(t.toInteger())
 
     def c = Link.createCriteria()
     def link = c.get {

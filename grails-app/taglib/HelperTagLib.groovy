@@ -699,7 +699,7 @@ class HelperTagLib {
    * returns the number of new private messages through a service
    */
   def getNewInboxMessages = {attrs ->
-    int m = filterService.getNewInboxMessages(attrs.entity.id.toString())
+    int m = filterService.getNewInboxMessages(attrs.entity.id.toInteger())
     if (m > 0)
       out << "(" + m + ")"
   }
@@ -715,7 +715,7 @@ class HelperTagLib {
       List activitytemplates = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
 
       activitytemplates.each {
-        m += Publication.countByEntity(it)
+        m += Publication.countByEntity(it as Entity)
       }
     }
 
@@ -728,7 +728,7 @@ class HelperTagLib {
       List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
 
       activitytemplates.each {
-        m += Publication.countByEntity(it)  
+        m += Publication.countByEntity(it as Entity)
       }
     }
 

@@ -458,7 +458,7 @@ class ProjectProfileController {
     List groupActivityTemplates = []
 
     projectUnits.each {
-      def links = Link.findAllByTargetAndType(it, metaDataService.ltProjectUnitMember)
+      def links = Link.findAllByTargetAndType(it as Entity, metaDataService.ltProjectUnitMember)
       if (links.size > 0)
         groupActivityTemplates << links.collect { bla -> bla.source}
     }
@@ -607,7 +607,7 @@ class ProjectProfileController {
     List projectUnits = []
     boolean exit = false
     projectDays.each {
-      def links = Link.findAllByTargetAndType(it, metaDataService.ltProjectDayUnit)
+      def links = Link.findAllByTargetAndType(it as Entity, metaDataService.ltProjectDayUnit)
       if (links.size() == 0) {
         render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + it.profile.date.format('dd. MM. yyyy') + '!</p>'
         exit = true
@@ -635,7 +635,7 @@ class ProjectProfileController {
       render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
       activities.each {
         if (new Date() < it.profile.date) {
-          def links = Link.findAllBySourceOrTarget(it, it)
+          def links = Link.findAllBySourceOrTarget(it as Entity, it as Entity)
           links.each {it.delete()}
           it.delete()
         }
