@@ -81,63 +81,29 @@
                 <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
             </tr>
             <tr>
-              <td style="vertical-align: top">Methode:</td>
+              <td style="vertical-align: top">Bewertungsmethode 1:</td>
               <td>
-                <g:select name="method" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements', params:'\'id=\' + this.value')}"/>
-
-                <div id="elements"></div>
-
+                <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
+                <div id="elements1"></div>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">Bewertungsmethode 2:</td>
+              <td>
+                <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
+                <div id="elements2"></div>
+              </td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top">Bewertungsmethode 3:</td>
+              <td>
+                <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
+                <div id="elements3"></div>
               </td>
             </tr>
           </table>
 
-          <script type="text/javascript">
-
-            function kontrolle2() {
-
-              var selector1 = document.getElementById("selector1");
-              if (selector1)
-                document.getElementById("hidden").removeChild(selector1);
-              var selector2 = document.getElementById("selector2");
-              if (selector2)
-                document.getElementById("hidden").removeChild(selector2);
-
-              var wme1 = document.createElement("select");
-              wme1.id = "selector1";
-              wme1.name = "star1";
-              wme1.multiple = true;
-
-              var wme2 = document.createElement("select");
-              wme2.id = "selector2";
-              wme2.name = "star2";
-              wme2.multiple = true;
-
-              //var checked = new Array();
-              for (var zaehler = 0; zaehler < (document.getElementsByName("star1").length); zaehler++) {
-
-                var optn1 = document.createElement("OPTION");
-                optn1.text = document.getElementsByName("star1")[zaehler].value;
-                optn1.value = document.getElementsByName("star1")[zaehler].key;
-                optn1.selected = true;
-                wme1.options.add(optn1);
-
-                var optn2 = document.createElement("OPTION");
-                optn2.text = document.getElementsByName("star2")[zaehler].value;
-                optn2.value = document.getElementsByName("star2")[zaehler].key;
-                optn2.selected = true;
-                wme2.options.add(optn2);
-
-              }
-
-              document.getElementById("hidden").appendChild(wme1);
-              document.getElementById("hidden").appendChild(wme2);
-            }
-
-          </script>
-
-          <div id="hidden" style="display: none"></div>
-
-          <g:submitButton onclick="kontrolle2();" name="button" value="Eingrenzen"/>
+          <g:submitButton name="button" value="Eingrenzen"/>
           <div class="spacer"></div>
         </g:formRemote>
 
