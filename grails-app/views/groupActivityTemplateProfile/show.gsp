@@ -46,7 +46,9 @@
 
     <div class="buttons">
       <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
-        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        <app:isCreator entity="${group}">
+          <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        </app:isCreator>
         <g:link class="buttonGreen" action="create" id="${group.id}">Vorlage duplizieren</g:link>
 
         %{-- and only when it is done --}%

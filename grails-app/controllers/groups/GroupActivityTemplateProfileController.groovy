@@ -149,6 +149,9 @@ class GroupActivityTemplateProfileController {
         ent.profile.properties = params
       }
 
+      // create link to creator
+      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+
       functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {
