@@ -1798,3 +1798,20 @@ h5 {
 .ui-timepicker-div dl{ text-align: left; }
 .ui-timepicker-div dl dt{ height: 25px; }
 .ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+
+.linkstabs {
+    margin: 5px;
+}
+
+.linkstabs a {
+    text-decoration: none;
+}
+
+.linktab {
+    padding: 3px 5px;
+    background: #8b8;
+}
+
+.linktab:hover {
+    background: #ada;
+}

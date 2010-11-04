@@ -372,6 +372,8 @@
       </div>
     </div>
 
+    <g:render template="/templates/links" model="[entity: client]"/>
+
   </div>
 </div>
 </body>

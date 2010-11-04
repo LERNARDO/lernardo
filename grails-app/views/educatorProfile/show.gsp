@@ -325,6 +325,8 @@
       </div>
     </div>
 
+    <g:render template="/templates/links" model="[entity: educator]"/>
+
   </div>
 </div>
 </body>

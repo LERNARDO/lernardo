@@ -193,6 +193,8 @@
       <div class="spacer"></div>
     </div>
 
+    <g:render template="/templates/links" model="[entity: parent]"/>
+
   </div>
 </div>
 </body>
