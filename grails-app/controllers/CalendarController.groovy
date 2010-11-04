@@ -120,7 +120,14 @@ class CalendarController {
       //dtStart = dtStart.plusHours(1)
       def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
       //def className = Link.findByTargetAndType(it, metaDataService.ltCreator).source.name
-      eventList << [id: it.id, title: it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: 'projectunit']
+
+      // get project day of project unit
+      Entity projectDay = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
+
+      // get project of project day
+      Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+      eventList << [id: it.id, title: "(" + project.profile.fullName + ") " + it.profile.fullName, start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: 'projectunit']
     }
 
     def json = eventList as JSON;
