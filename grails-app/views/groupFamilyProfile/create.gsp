@@ -23,7 +23,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupFamily.profile.name"/></td>
             <td valign="top" class="name"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}"><g:message code="groupFamily.profile.familyIncome"/></g:if></td>
-            <td valign="top" class="name"><g:message code="groupFamily.profile.amountHousehold"/></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}"><g:message code="groupFamily.profile.amountHousehold"/></g:if></td>
           </tr>
 
           <tr>

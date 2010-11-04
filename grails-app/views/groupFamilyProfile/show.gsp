@@ -101,6 +101,7 @@
       </div>
     </div>
 
+    <g:if test="${grailsApplication.config.project == 'sueninos'}">
     <div class="zusatz">
       <h5><g:message code="groupFamily.profile.childs"/> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></app:accessCheck></h5>
@@ -121,6 +122,7 @@
         <g:render template="childs" model="[childs: childs, group: group]"/>
       </div>
     </div>
+    </g:if>
 
   </div>
 </div>
