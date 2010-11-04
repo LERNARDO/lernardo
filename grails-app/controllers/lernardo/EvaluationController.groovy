@@ -38,11 +38,14 @@ class EvaluationController {
 
   def del = {
     Evaluation evaluationInstance = Evaluation.get(params.id)
+
+    Entity entity = evaluationInstance.owner
+
     if (evaluationInstance) {
       try {
         evaluationInstance.delete(flush: true)
         flash.message = message(code: "evaluation.deleted")
-        redirect(action: "list", params: [name: params.name])
+        redirect(action: "list", id: entity.id)
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = "Evaluation ${params.id} could not be deleted"
@@ -85,7 +88,7 @@ class EvaluationController {
       evaluationInstance.properties = params
       if (!evaluationInstance.hasErrors() && evaluationInstance.save()) {
         flash.message = message(code: "evaluation.updated")
-        redirect action: 'list', params: [name: params.name]
+        redirect action: 'list', id:  evaluationInstance.owner.id
       }
       else {
         render view: 'edit', model: [evaluationInstance: evaluationInstance]
@@ -112,7 +115,7 @@ class EvaluationController {
     evaluationInstance.writer = entityHelperService.loggedIn
     if (evaluationInstance.save(flush: true)) {
       flash.message = message(code: "evaluation.created")
-      redirect action: "list", params: [name: params.name]
+      redirect action: "list", id:  evaluationInstance.owner.id
     }
     else {
       render view: 'create', model: [evaluationInstance: evaluationInstance]

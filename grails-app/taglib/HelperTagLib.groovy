@@ -67,21 +67,27 @@ class HelperTagLib {
   def accessCheck = {attrs, body ->
     Entity entity = attrs.entity
 
+    //log.info "----------"
+
     boolean hasRoles = false
     if (attrs.roles)
       hasRoles = accessHasRoles(entity, attrs.roles)
+    //log.info "${entity.profile} has roles: ${hasRoles}"
 
     boolean hasTypes = false
     if (attrs.types)
       hasTypes = accessHasTypes(entity, attrs.types)
+    //log.info "${entity.profile} has types: ${hasTypes}"
 
     boolean isMe = false
     if (attrs.me)
       isMe = accessIsMe(entity)
+    //log.info "${entity.profile} is me: ${isMe}"
 
     boolean isLeadEducator = false
     if (attrs.facility)
       isLeadEducator = accessIsLeadEducator(entity, attrs.facility)
+    //log.info "${entity.profile} is lead educator: ${isLeadEducator}"
 
     if (hasRoles || hasTypes || isMe || isLeadEducator)
       out << body()

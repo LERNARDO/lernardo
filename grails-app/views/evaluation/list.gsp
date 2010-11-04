@@ -1,21 +1,22 @@
 <head>
-  <title>Beurteilungen</title>
+  <title>Tagebucheinträge</title>
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerBlue">
+<div class="headerGreen">
   <div class="second">
-    <h1>Leistungsbeurteilung für ${entity.profile.fullName}</h1>
+    <h1>Tagebucheinträge für ${entity.profile.fullName}</h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
 
-    <div id="newHelper">
-      <g:link class="buttonBlue" action="create" id="${entity.id}">Neue Beurteilung erstellen</g:link>
-    </div>
+    <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge für ${entity.profile.fullName}.</p>
 
-    <p>Es gibt insgesamt ${evaluationInstanceList.size()} Beurteilungen für ${entity.profile.fullName}.</p>
+    <div id="newHelper">
+      <g:link class="buttonGreen" action="create" id="${entity.id}">Neuen Tagebucheintrag erstellen</g:link>
+      <div class="spacer"></div>
+    </div>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluationInstance">
