@@ -68,11 +68,15 @@ class ProjectTemplateProfileController {
       // calculate realDuration
       Integer calculatedDuration = calculateDuration(projectUnitTemplates)
 
+      // find all instances of this template
+      List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
+
       [projectTemplate: projectTemplate,
               entity: entity,
               projectUnitTemplates: projectUnitTemplates,
               allGroupActivityTemplates: allGroupActivityTemplates,
-              calculatedDuration: calculatedDuration]
+              calculatedDuration: calculatedDuration,
+              instances: instances]
     }
   }
 

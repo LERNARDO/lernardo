@@ -88,6 +88,21 @@
       </div>
     </g:if>--}%
 
+    <div class="zusatz">
+      <h5>Geplante Projekte aus dieser Vorlage (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Instanzen"/></a></h5>
+      <div class="zusatz-add" id="instances" style="display:none">
+        <g:if test="${instances.size() > 0}">
+          <ul>
+          <g:each in="${instances}" var="instance">
+            <li style="list-style-type: disc"><g:link controller="projectProfile" action="show" id="${instance.id}">${instance.profile.fullName}</g:link></li>
+          </g:each>
+        </g:if>
+        <g:else>
+          Diese Vorlage wurde noch nicht geplant.
+        </g:else>
+      </div>
+    </div>
+
   </div>
 </div>
 
