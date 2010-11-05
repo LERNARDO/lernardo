@@ -114,7 +114,9 @@ class ProjectProfileController {
               allEducators: allEducators,
               units: units,
               allParents: allParents,
-              allPartners: allPartners]
+              allPartners: allPartners,
+              active: projectDays[0].id,
+              day: projectDays[0]]
     }
   }
 
@@ -753,11 +755,17 @@ class ProjectProfileController {
     Entity project = Entity.get(params.project)
     Entity projectDay = Entity.get(params.id)
 
+    // find all project days linked to this project
+    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
     // find projectTemplate of this project
     Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
     // find all units linked to the template
     List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+
+    // get all parents
+    def allParents = Entity.findAllByType(metaDataService.etParent)
 
     // get all resources
     def allResources = Entity.findAllByType(metaDataService.etResource)
@@ -765,11 +773,15 @@ class ProjectProfileController {
     // get all educators
     def allEducators = Entity.findAllByType(metaDataService.etEducator)
 
-    render template:'projectday', model:[projectDay: projectDay,
+    render template:'projectdaynav', model:[day: projectDay,
                                          entity: entityHelperService.loggedIn,
                                          allResources: allResources,
                                          allEducators: allEducators,
-                                         units: units]
+                                         allParents: allParents,
+                                         units: units,
+                                         projectDays: projectDays,
+                                         active: projectDay.id,
+                                         project: project]
   }
 }
 

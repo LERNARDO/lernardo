@@ -1774,6 +1774,10 @@ h5 {
     color: #fff;
     text-decoration: none;
 }
+.activebox {
+    background: #373;
+    border: 1px solid #151;
+}
 
 .remoteresults {
     width: 794px;
