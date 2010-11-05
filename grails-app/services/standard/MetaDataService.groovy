@@ -144,6 +144,9 @@ class MetaDataService {
   static final String LT_TEMPLATE = "Vorlage"
   static final String LT_PROJECT_UNIT_TEMPLATE = "Projekteinheitvorlage"
 
+  static final String LT_ABSENT = "Abwesend"
+  static final String LT_ILL = "Krank"
+
   // activity links
   static final String LT_ACT_EDUCATOR = "Pädagoge"
   static final String LT_ACT_CLIENT = "Betreuter"
@@ -260,6 +263,9 @@ class MetaDataService {
     getLtActPartner()
     getLtActParent()
 
+    getLtAbsent()
+    getLtIll()
+
     getUserRole()
     getModRole()
     getAdminRole()
@@ -373,6 +379,9 @@ class MetaDataService {
   LinkType getLtActProject()  {defaultObjectService.openLT (LT_ACT_PROJECT, lstOther) }
   LinkType getLtActPartner()  {defaultObjectService.openLT (LT_ACT_PARTNER, lstOther) }
   LinkType getLtActParent()   {defaultObjectService.openLT (LT_ACT_PARENT, lstOther) }
+
+  LinkType getLtAbsent() {defaultObjectService.openLT (LT_ABSENT, lstOther) }
+  LinkType getLtIll()    {defaultObjectService.openLT (LT_ILL, lstOther) }
 
   Role getUserRole()         {defaultObjectService.openRole (ROLE_USER, "regular user") }
   Role getModRole()          {defaultObjectService.openRole (ROLE_MOD, "moderator") }
