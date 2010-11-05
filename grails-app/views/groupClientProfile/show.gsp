@@ -39,7 +39,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isOperator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:message code="clients"/><br/>
-        <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect">
+        <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect" before="showspinner('#clientselect')">
 
           <table>
             <tr>
@@ -70,10 +70,10 @@
               <td><g:message code="client.profile.currentCity"/>:</td>
               <td><g:textField name="city"/></td>
             </tr>
-            %{--<tr>
+            <tr>
               <td><g:message code="groupColony"/>:</td>
               <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
-            </tr>--}%
+            </tr>
             <tr>
               <td><g:message code="client.profile.schoolLevel"/>:</td>
               <td>
