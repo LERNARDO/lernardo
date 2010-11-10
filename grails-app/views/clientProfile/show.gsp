@@ -372,6 +372,22 @@
       </div>
     </div>
 
+    <div class="zusatz">
+      <h5>Paten</h5>
+      <div class="zusatz-show">
+        <g:if test="${pates}">
+          <ul>
+            <g:each in="${pates}" var="pate">
+              <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}" params="[entity: pate.id]">${pate.profile.fullName}</g:link></li>
+            </g:each>
+          </ul>
+        </g:if>
+        <g:else>
+          <span class="italic">Dieser Betreute hat bisher keinen Paten!</span>
+        </g:else>
+      </div>
+    </div>
+
     %{--<g:render template="/templates/links" model="[entity: client]"/>--}%
 
   </div>
