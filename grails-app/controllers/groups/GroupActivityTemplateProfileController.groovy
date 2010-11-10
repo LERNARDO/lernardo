@@ -261,10 +261,14 @@ class GroupActivityTemplateProfileController {
     }
 
     List finalList = allTemplates
+    List list1 = []
+    List list2 = []
+    List list3 = []
 
-    // if at least one method is used reset the final list
-    if (params.method1 != 'none' || params.method2 != 'none' || params.method3 != 'none')
+    // if at least one method is used reset the lists
+    if (params.method1 != 'none' || params.method2 != 'none' || params.method3 != 'none') {
       finalList = []
+    }
 
     if (params.method1 != 'none') {
       // now check each template for their correct element values
@@ -296,8 +300,8 @@ class GroupActivityTemplateProfileController {
                 }
                 //println '#correct ' + correct + ' of ' + method1lower.size()
                 if (correct == method1lower.size())
-                  if (!finalList.contains(a))
-                    finalList << a
+                  if (!list1.contains(a))
+                    list1 << a
                 counter++
               }
             }
@@ -324,8 +328,8 @@ class GroupActivityTemplateProfileController {
                   correct++
                 }
                 if (correct == method2lower.size())
-                  if (!finalList.contains(a))
-                    finalList << a
+                  if (!list2.contains(a))
+                    list2 << a
                 counter++
               }
             }
@@ -351,14 +355,20 @@ class GroupActivityTemplateProfileController {
                   correct++
                 }
                 if (correct == method3lower.size())
-                  if (!finalList.contains(a))
-                    finalList << a
+                  if (!list3.contains(a))
+                    list3 << a
                 counter++
               }
             }
           }
         }
       }
+    }
+
+    // if the template is in all lists which means it passed all 3 method validations then add it to the final list
+    allTemplates.each { a ->
+      if (list1.contains(a) && list2.contains(a) && list3.contains(a))
+        finalList << a
     }
 
     render(template: 'searchresults', model: [allTemplates: finalList])

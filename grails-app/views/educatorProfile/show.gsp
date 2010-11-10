@@ -325,7 +325,7 @@
       </div>
     </div>
 
-    <g:render template="/templates/links" model="[entity: educator]"/>
+    %{--<g:render template="/templates/links" model="[entity: educator]"/>--}%
 
   </div>
 </div>
