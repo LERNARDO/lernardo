@@ -112,6 +112,7 @@ class ResourceProfileController {
       Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        ent.profile.type = "planbar"
       }
 
       functionService.createEvent(currentEntity, 'Du hast die Resource <a href="' + createLink(controller: 'resourceProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')

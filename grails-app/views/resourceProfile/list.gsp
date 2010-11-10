@@ -17,7 +17,7 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'resource.profile.name')}"/>
-        <th>Typ</th>
+        %{--<th>Typ</th>--}%
         <th>Klasse</th>
       </tr>
       </thead>
@@ -25,7 +25,7 @@
       <g:each in="${resourceList}" status="i" var="resource">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td>${fieldValue(bean: resource, field: 'profile.type')}</td>
+          %{--<td>${fieldValue(bean: resource, field: 'profile.type')}</td>--}%
           <td>${fieldValue(bean: resource, field: 'profile.classification')}</td>
         </tr>
       </g:each>
