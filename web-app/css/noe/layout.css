@@ -19,6 +19,19 @@ body {
     background: #fff;
 }
 
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+li {
+    list-style-type: disc;
+    margin-left: 15px;
+}
+
 #hd {
     height: 87px;
     background: url(../../images/noe/logo.png) #fff no-repeat 15px 15px;
@@ -559,7 +572,9 @@ ul {
       .imgmenu li {
           float: left;
           padding: 0 0 0 0;
-          width: 120px}
+          width: 120px;
+          list-style-type: none;
+          margin-left: 0;}
           .imgmenu li a {
               color: #222;
               text-decoration: none; }

@@ -19,6 +19,19 @@ body {
     background: #fff;
 }
 
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+li {
+    list-style-type: disc;
+    margin-left: 15px;
+}
+
 #hd {
     height: 70px;
     background: url(../../images/sueninos/logo.png) #fff no-repeat 15px 15px;
@@ -545,7 +558,6 @@ ul {
     height: 115px;
     float: left;
     margin-right: 0;
-    list-style-type: none;
    }
     .imgmenu ol {
       margin: 0;
@@ -553,7 +565,9 @@ ul {
       .imgmenu li {
           float: left;
           padding: 0 0 0 0;
-          width: 120px}
+          width: 120px;
+          list-style-type: none;
+          margin-left: 0;}
           .imgmenu li a {
               color: #222;
               text-decoration: none; }
