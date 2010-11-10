@@ -8,6 +8,7 @@ import standard.MetaDataService
 import lernardo.Method
 import lernardo.Element
 import at.openfactory.ep.Profile
+import lernardo.Publication
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -163,15 +164,16 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     if (template) {
       // first delete any comments posted on this template
-      def links = Link.findAllBySourceOrTarget(template, template)
-      if (links) {
+      Link.findAllBySourceOrTarget(template, template).each {it.delete()}
+      Publication.findAllByEntity(template).each {it.delete()}
+      /*if (links) {
         List commentsToDelete = []
         links.each {
           commentsToDelete << it.source
           it.delete()
         }
         commentsToDelete.each {it.delete()}
-      }
+      }*/
       try {
         flash.message = message(code: "template.deleted", args: [template.profile.fullName])
         template.delete(flush: true)
