@@ -44,7 +44,7 @@ class ParentProfile extends Profile {
       currentStreet (size: 2..50, maxSize: 50)
       //jobType (nullable: true)
       jobIncome (nullable: true)
-      jobFrequency (nullable: true, blank: true, maxSize: 20)
+      jobFrequency (nullable: true, blank: true, maxSize: 50)
       education (nullable: true, blank: true)
       comment (blank: true, maxSize: 2000)
 
