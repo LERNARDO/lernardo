@@ -79,7 +79,7 @@
       <div class="spacer"></div>
     </div>
 
-    %{--<g:render template="/templates/links" model="[entity: child]"/>--}%
+    <g:render template="/templates/links" model="[entity: child]"/>
 
   </div>
 </div>

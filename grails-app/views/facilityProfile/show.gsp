@@ -221,7 +221,7 @@
       </div>
     </div>
 
-    %{--<g:render template="/templates/links" model="[entity: facility]"/>--}%
+    <g:render template="/templates/links" model="[entity: facility]"/>
 
   </div>
 </div>
