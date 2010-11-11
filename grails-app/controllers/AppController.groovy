@@ -9,6 +9,7 @@ import at.openfactory.ep.TagLinkType
 import at.openfactory.ep.EntityTagLink
 import at.openfactory.ep.Asset
 import standard.MetaDataService
+import at.openfactory.ep.Link
 
 class AppController {
   SecHelperService secHelperService
@@ -245,6 +246,61 @@ class AppController {
   }
 
   /*
+   * adds a local tag to an entity
+   */
+  def addLocalTag = {
+    Entity entity = Entity.get(params.entity)
+    Entity target = Entity.get(params.target)
+
+    def c = Link.createCriteria()
+
+    if (params.tag == 'absent') {
+      def result = c.get {
+        eq('source', entity)
+        eq('target', target)
+        eq('type', metaDataService.ltAbsent)
+      }
+      if (!result)
+        new Link(source: entity, target: target, type: metaDataService.ltAbsent).save()
+    }
+    if (params.tag == 'ill') {
+      def result = c.get {
+        eq('source', entity)
+        eq('target', target)
+        eq('type', metaDataService.ltIll)
+      }
+      if (!result)
+        new Link(source: entity, target: target, type: metaDataService.ltIll).save()
+    }
+
+    List tags = []
+
+    def a = Link.createCriteria()
+    def resulta = a.get {
+      eq('source', entity)
+      eq('target', target)
+      eq('type', metaDataService.ltAbsent)
+    }
+    if (resulta)
+      tags.add(true)
+    else
+      tags.add(false)
+
+    def b = Link.createCriteria()
+    def resultb = b.get {
+      eq('source', entity)
+      eq('target', target)
+      eq('type', metaDataService.ltIll)
+    }
+    if (resultb)
+      tags.add(true)
+    else
+      tags.add(false)
+
+    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update]
+  }
+
+  /*
    * removes a tag from an entity
    */
   def removeTag = {
@@ -261,6 +317,59 @@ class AppController {
     List tags = entity.tagslinks.collect {it.tag}
 
     render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
+  }
+
+  /*
+   * removes a tag from an entity
+   */
+  def removeLocalTag = {
+    Entity entity = Entity.get(params.entity)
+    Entity target = Entity.get(params.target)
+
+    def c = Link.createCriteria()
+
+    if (params.tag == 'absent') {
+      def result = c.get {
+        eq('source', entity)
+        eq('target', target)
+        eq('type', metaDataService.ltAbsent)
+      }
+      result.delete(flush:true)
+    }
+    if (params.tag == 'ill') {
+      def result = c.get {
+        eq('source', entity)
+        eq('target', target)
+        eq('type', metaDataService.ltIll)
+      }
+      result.delete(flush:true)
+    }
+
+    List tags = []
+
+    def a = Link.createCriteria()
+    def resulta = a.get {
+      eq('source', entity)
+      eq('target', target)
+      eq('type', metaDataService.ltAbsent)
+    }
+    if (resulta)
+      tags.add(true)
+    else
+      tags.add(false)
+
+    def b = Link.createCriteria()
+    def resultb = b.get {
+      eq('source', entity)
+      eq('target', target)
+      eq('type', metaDataService.ltIll)
+    }
+    if (resultb)
+      tags.add(true)
+    else
+      tags.add(false)
+
+    render template: '/app/localtags', model: [tags: tags, entity: entity, target: target, update: params.update]
   }
 
   /*

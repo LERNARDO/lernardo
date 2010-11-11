@@ -291,6 +291,8 @@ class GroupActivityProfileController {
   }
 
   def removeClient = {
+    functionService.breakEntities(params.client, params.id, metaDataService.ltAbsent)
+    functionService.breakEntities(params.client, params.id, metaDataService.ltIll)
     def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
     render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }

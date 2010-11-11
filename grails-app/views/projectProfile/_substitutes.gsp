@@ -1,7 +1,14 @@
 <g:if test="${substitutes}">
   <ul>
-    <g:each in="${substitutes}" var="substitute">
-      <li><g:link controller="${substitute.type.supertype.name +'Profile'}" action="show" id="${substitute.id}" params="[entity:substitute.id]">${substitute.profile.fullName}</g:link> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeSubstitute" update="substitutes2" id="${projectDay.id}" params="[substitute: substitute.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Supplierung entfernen" align="top"/></g:remoteLink></app:accessCheck></li>
+    <g:each in="${substitutes}" var="substitute" status="i">
+      <li>
+        <g:link controller="${substitute.type.supertype.name +'Profile'}" action="show" id="${substitute.id}" params="[entity:substitute.id]">${substitute.profile.fullName}</g:link> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeSubstitute" update="substitutes2" id="${projectDay.id}" params="[substitute: substitute.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Supplierung entfernen" align="top"/></g:remoteLink></app:accessCheck>
+        <span id="tagsubstitute${i}">
+          <app:getLocalTags entity="${substitute}" target="${projectDay}">
+            <g:render template="/app/localtags" model="[entity: substitute, target: projectDay, tags: tags, update: 'tagsubstitute' + i]"/>
+          </app:getLocalTags>
+        </span>
+      </li>
     </g:each>
   </ul>
 </g:if>

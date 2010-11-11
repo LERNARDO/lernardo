@@ -96,7 +96,7 @@ class FunctionService {
       eq('target', target)
       eq('type', linktype)
     }
-    link.delete(flush:true)
+    link?.delete(flush:true)
 
     List results = Link.findAllByTargetAndType(target, linktype).collect {it.source}
 

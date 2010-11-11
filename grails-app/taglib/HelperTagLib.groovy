@@ -20,6 +20,40 @@ class HelperTagLib {
   static namespace = "app"
 
   /*
+   * get the local tags of a given entity
+   */
+  def getLocalTags = {attrs, body ->
+    Entity entity = attrs.entity
+    Entity target = attrs.target
+
+    List tags = []
+
+    def a = Link.createCriteria()
+    def resulta = a.get {
+      eq('source', entity)
+      eq('target', target)
+      eq('type', metaDataService.ltAbsent)
+    }
+    if (resulta)
+      tags.add(true)
+    else
+      tags.add(false)
+
+    def b = Link.createCriteria()
+    def resultb = b.get {
+      eq('source', entity)
+      eq('target', target)
+      eq('type', metaDataService.ltIll)
+    }
+    if (resultb)
+      tags.add(true)
+    else
+      tags.add(false)
+
+    out << body(tags: tags)
+  }
+
+  /*
    * get the tags of a given entity
    */
   def getTags = {attrs, body ->

@@ -3,11 +3,11 @@
   <g:each in="${parents}" var="parent" status="i">
     <li>
       <g:link controller="${parent.type.supertype.name +'Profile'}" action="show" id="${parent.id}" params="[parent:parent.id]">${parent.profile.fullName}</g:link> <app:isCreator entity="${group}"><g:remoteLink action="removeParent" update="parents2" id="${group.id}" params="[parent: parent.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Erziehungsberechtigten entfernen" align="top"/></g:remoteLink></app:isCreator>
-      %{--<span id="tagparent${i}">
-        <app:getTags entity="${parent}">
-          <g:render template="/app/tags" model="[entity: parent, tags: tags, update: 'tagparent'+ i]"/>
-        </app:getTags>
-      </span>--}%
+      <span id="tagparent${i}">
+        <app:getLocalTags entity="${parent}" target="${group}">
+          <g:render template="/app/localtags" model="[entity: parent, target: group, tags: tags, update: 'tagparent' + i]"/>
+        </app:getLocalTags>
+      </span>
     </li>
   </g:each>
   </ul>

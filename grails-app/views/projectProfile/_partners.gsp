@@ -1,7 +1,14 @@
 <g:if test="${partners}">
   <ul>
-    <g:each in="${partners}" var="partner">
-      <li><g:link controller="${partner.type.supertype.name +'Profile'}" action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removePartner" update="partners2${i}" id="${unit.id}" params="[partner: partner.id, i:i]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Partner entfernen" align="top"/></g:remoteLink></app:accessCheck></li>
+    <g:each in="${partners}" var="partner" status="j">
+      <li>
+        <g:link controller="${partner.type.supertype.name +'Profile'}" action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link> <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removePartner" update="partners2${i}" id="${unit.id}" params="[partner: partner.id, i:i]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Partner entfernen" align="top"/></g:remoteLink></app:accessCheck>
+        <span id="tagpartner${i}_${j}">
+          <app:getLocalTags entity="${partner}" target="${unit}">
+            <g:render template="/app/localtags" model="[entity: partner, target: unit, tags: tags, update: 'tagpartner' + i + '_' + j]"/>
+          </app:getLocalTags>
+        </span>
+      </li>
     </g:each>
   </ul>
 </g:if>
