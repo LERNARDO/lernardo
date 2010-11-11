@@ -27,9 +27,14 @@ em {
     font-style: italic;
 }
 
-li {
+ul li {
     list-style-type: disc;
     margin-left: 15px;
+}
+
+ol li {
+    list-style: decimal;
+    margin-left: 20px;
 }
 
 #hd {
