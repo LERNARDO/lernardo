@@ -1838,3 +1838,38 @@ h5 {
 .linktab:hover {
     background: #ada;
 }
+
+#routinedays {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #aaa;
+    height: 24px;
+}
+
+#routinedays ul li {
+    list-style-type: none;
+    float: left;
+    border: 1px solid #aaa;
+    padding: 2px 4px;
+    background: #ccc;
+    margin: 0 10px 0 0;
+}
+
+#routinedays ul li.active {
+    border: 1px solid #888;
+    background: #aaa;
+}
+
+#routinedays ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#newroutine {
+    border: 1px solid #aaa;
+    padding: 5px;
+}
+
+#newroutine table {
+    width: 100%;
+}

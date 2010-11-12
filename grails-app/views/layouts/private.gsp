@@ -171,6 +171,10 @@ future HTML5 doctype
                         </app:accessCheck>
                       </app:accessCheck>
 
+                      <app:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">
+                        <li class="icon-admin"><g:link controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
+                      </app:accessCheck>
+
                     </ul>
                   </td>
 
