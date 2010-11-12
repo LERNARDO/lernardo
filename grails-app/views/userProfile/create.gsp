@@ -15,25 +15,17 @@
 
     <g:form action="save" method="post">
 
-      <div class="dialog">
-        <table>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="user.profile.firstName"/></td>
-            <td valign="top" class="name"><g:message code="user.profile.lastName"/></td>
-          </tr>
-
-          <tr class="prop">
-            <td width="440" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
-            </td>
-            <td width="440" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
-            </td>
-          </tr>
-
-        </table>
+      <div class="property">
+        <g:message code="user.profile.firstName"/> <br/>
+        <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
       </div>
+
+      <div class="property">
+        <g:message code="user.profile.lastName"/> <br/>
+        <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+      </div>
+
+      <div class="clear"></div>
 
       <div class="email">
         <table>

@@ -18,8 +18,8 @@
         <tbody>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="user.profile.firstName"/>:</td>
-          <td valign="top" class="name-show"><g:message code="user.profile.lastName"/>:</td>
+          <td valign="top" class="name-show"><g:message code="user.profile.firstName"/></td>
+          <td valign="top" class="name-show"><g:message code="user.profile.lastName"/></td>
         </tr>
 
         <tr class="prop">
