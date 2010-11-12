@@ -20,7 +20,7 @@ return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_a
       <tr>
         <td>
           Name: <g:textField name="title" size="25"/><br/>
-          von <g:select name="dateFromHour" from="${0..23}"/><g:select name="dateFromMinute" from="${0..59}"/> bis <g:select name="dateToHour" from="${0..23}"/><g:select name="dateToMinute" from="${0..59}"/></td>
+          von <g:select name="dateFromHour" from="${0..23}"/>:<g:select name="dateFromMinute" from="${0..59}"/> Uhr bis <g:select name="dateToHour" from="${0..23}"/>:<g:select name="dateToMinute" from="${0..59}"/> Uhr</td>
         <td>
           <g:textArea name="description" rows="4" cols="50"/>
         </td>

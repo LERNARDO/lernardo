@@ -1878,3 +1878,8 @@ h5 {
 #newroutine table {
     width: 100%;
 }
+
+.routinebox {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+}

@@ -56,8 +56,32 @@ class DayroutineController {
     render template: "routines", model: [routines: routines]
   }
 
-  def update = {}
+  def editroutine = {
+    Dayroutine routine = Dayroutine.get(params.id)
 
-  def delete = {}
+    render template: "editroutine", model:[routine: routine, i: params.i]
+  }
+
+  def updateroutine = {
+    Dayroutine routine = Dayroutine.get(params.id)
+    routine.properties = params
+
+    routine.dateFrom.setHours(params.int('dateFromHour'))
+    routine.dateFrom.setMinutes(params.int('dateFromMinute'))
+
+    routine.dateTo.setHours(params.int('dateToHour'))
+    routine.dateTo.setMinutes(params.int('dateToMinute'))
+
+    routine.save(flush:true)
+    render template: "routine", model:[routine: routine, i: params.i]
+  }
+
+  def deleteroutine = {
+    Dayroutine routine = Dayroutine.get(params.id)
+
+    routine.delete()
+
+    render ""
+  }
 
 }

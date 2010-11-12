@@ -3,20 +3,11 @@
 </g:if>
 
 <g:else>
-  <g:each in="${routines}" var="routine">
-    <div class="routinebox">
+  <g:each in="${routines}" var="routine" status="i">
+    <div class="routinebox" id="routinebox${i}">
 
-      <table>
-        <tr>
-          <td>
-            ${routine.title} [b] [x]<br/>
-            von <g:formatDate date="${routine.dateFrom}" format="HH:mm"/> bis <g:formatDate date="${routine.dateTo}" format="HH:mm"/>
-          </td>
-          <td>
-            ${routine.description}
-          </td>
-        </tr>
-      </table>
+      <g:render template="routine" model="[routine: routine, i: i]"/>
+
     </div>
   </g:each>
 </g:else>
