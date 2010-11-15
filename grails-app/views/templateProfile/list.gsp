@@ -25,32 +25,48 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${templateCount} <g:message code="activityTemplate.c_total"/></p>
+    <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
+    <g:formRemote name="formRemote0" url="[controller:'templateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
 
-    <table class="default-table">
-      <thead>
-      <tr>
-        <g:sortableColumn property="fullName" title="Name"/>
-        <g:sortableColumn property="duration" title="Dauer (min)"/>
-        <g:sortableColumn property="socialForm" title="Sozialform"/>
-        <th>Kommentare</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <g:each status="i" in="${templateList}" var="templateInstance">
-        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-          <td><g:link action="show" id="${templateInstance.id}" params="[entity: templateInstance.id]">${templateInstance.profile.fullName.decodeHTML()}</g:link></td>
-          <td>${templateInstance.profile.duration}</td>
-          <td>${templateInstance.profile.socialForm}</td>
-          <td>${templateInstance.profile.comments.size()}</td>
+      <table>
+        <tr>
+          <td>Name:</td>
+          <td><g:textField name="name" size="30"/></td>
         </tr>
-      </g:each>
-      </tbody>
-    </table>
+        <tr>
+          <td>Dauer:</td>
+          <td><g:select from="${1..239}" name="duration1" noSelection="['all':'Beliebig']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
+            <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top">Bewertungsmethode 1:</td>
+          <td>
+            <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
+            <div id="elements1"></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top">Bewertungsmethode 2:</td>
+          <td>
+            <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
+            <div id="elements2"></div>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top">Bewertungsmethode 3:</td>
+          <td>
+            <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
+            <div id="elements3"></div>
+          </td>
+        </tr>
+      </table>
 
-    <div class="paginateButtons">
-      <g:paginate action="list" total="${templateCount}"/>
+      <g:submitButton name="button" value="Eingrenzen"/>
+      <div class="spacer"></div>
+    </g:formRemote>
+
+    <div id="templateselect">
+      <g:render template="searchresults" model="[allTemplates: allTemplates]"/>
     </div>
 
     <div class="buttons">

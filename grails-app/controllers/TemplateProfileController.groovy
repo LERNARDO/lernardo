@@ -36,8 +36,8 @@ class TemplateProfileController {
       firstResult(params.offset)
     }
 
-    return ['templateList': templates,
-            'templateCount': Entity.countByType(metaDataService.etTemplate)]
+    return [allTemplates: templates,
+            methods: Method.findAllByType('template')]
   }
 
   def edit = {
@@ -277,4 +277,148 @@ class TemplateProfileController {
 
     render app.starBox(element: element.id)
   }
+
+  def updateselect = {
+    //println params
+    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+    def method1lower = functionService.getParamAsList(params.method1lower)
+    def method1upper = functionService.getParamAsList(params.method1upper)
+
+    def method2lower = functionService.getParamAsList(params.method2lower)
+    def method2upper = functionService.getParamAsList(params.method2upper)
+
+    def method3lower = functionService.getParamAsList(params.method3lower)
+    def method3upper = functionService.getParamAsList(params.method3upper)
+
+    def c = Entity.createCriteria()
+    def allTemplates = c.list {
+      eq('type', metaDataService.etTemplate)
+      if (params.name)
+        or {
+          ilike('name', "%" + params.name + "%")
+          profile {
+            ilike('fullName', "%" + params.name + "%")
+          }
+        }
+      profile {
+        if (params.duration1 != 'all')
+          between('duration', params.duration1.toInteger(), params.duration2.toInteger())
+      }
+      maxResults(30)
+    }
+
+    List finalList = allTemplates
+    List list1 = []
+    List list2 = []
+    List list3 = []
+
+    // if at least one method is used reset the lists
+    if (params.method1 != 'none' || params.method2 != 'none' || params.method3 != 'none') {
+      finalList = []
+    }
+
+    if (params.method1 != 'none') {
+      // now check each template for their correct element values
+      allTemplates.each { a ->
+        //println '----------'
+        //println a
+        a.profile.each { b ->
+          //println 'Profile: ' + b
+          b.methods.each { d ->
+            //println 'Method: ' + d
+            if (d.name == Method.get(params.method1).name) {
+              def counter = 0
+              def correct = 0
+              d.elements.each { e ->
+                //println e.name + ' - ' + method1lower[counter] + ' to ' + method1upper[counter]
+                if (method1lower[counter] != 'all' && method1upper[counter] != 'all') {
+
+                  if (e.voting >= method1lower[counter].toInteger() && e.voting <= method1upper[counter].toInteger()) {
+                    //println counter + '# element OK, is ' + e.voting
+                    correct++
+                  }
+                  //else {
+                  //  println counter + '# element not OK, is ' + e.voting
+                  //}
+                }
+                else {
+                  //println counter + '# element OK'
+                  correct++
+                }
+                //println '#correct ' + correct + ' of ' + method1lower.size()
+                if (correct == method1lower.size())
+                  if (!list1.contains(a))
+                    list1 << a
+                counter++
+              }
+            }
+          }
+        }
+      }
+      //println finalList
+    }
+
+    if (params.method2 != 'none') {
+      allTemplates.each { a ->
+        a.profile.each { b ->
+          b.methods.each { d ->
+            if (d.name == Method.get(params.method2).name) {
+              def counter = 0
+              def correct = 0
+              d.elements.each { e ->
+                if (method2lower[counter] != 'all' && method2upper[counter] != 'all') {
+                  if (e.voting >= method2lower[counter].toInteger() && e.voting <= method2upper[counter].toInteger()) {
+                    correct++
+                  }
+                }
+                else {
+                  correct++
+                }
+                if (correct == method2lower.size())
+                  if (!list2.contains(a))
+                    list2 << a
+                counter++
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (params.method3 != 'none') {
+      allTemplates.each { a ->
+        a.profile.each { b ->
+          b.methods.each { d ->
+            if (d.name == Method.get(params.method3).name) {
+              def counter = 0
+              def correct = 0
+              d.elements.each { e ->
+                if (method3lower[counter] != 'all' && method3upper[counter] != 'all') {
+                  if (e.voting >= method3lower[counter].toInteger() && e.voting <= method3upper[counter].toInteger()) {
+                    correct++
+                  }
+                }
+                else {
+                  correct++
+                }
+                if (correct == method3lower.size())
+                  if (!list3.contains(a))
+                    list3 << a
+                counter++
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // if the template is in all lists which means it passed all 3 method validations then add it to the final list
+    allTemplates.each { a ->
+      if (list1.contains(a) && list2.contains(a) && list3.contains(a))
+        finalList << a
+    }
+
+    render(template: 'searchresults', model: [allTemplates: finalList])
+  }
+
 }
