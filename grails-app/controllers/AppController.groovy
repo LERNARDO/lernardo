@@ -30,14 +30,30 @@ class AppController {
       List groupActivities = []
       if (entity.type.id == metaDataService.etEducator.id)
         groupActivities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberEducator)
-      else if (entity.type.id == metaDataService.etParent.id)
-        groupActivities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberParent)
-      else if (entity.type.id == metaDataService.etPartner.id)
-        groupActivities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberPartner)
-      else if (entity.type.id == metaDataService.etFacility.id)
-        groupActivities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
-      else if (entity.type.id == metaDataService.etClient.id)
-        groupActivities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+      else if (entity.type.id == metaDataService.etParent.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberParent)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
+        }
+      }
+      else if (entity.type.id == metaDataService.etPartner.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberPartner)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
+        }
+      }
+      else if (entity.type.id == metaDataService.etFacility.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
+        }
+      }
+      else if (entity.type.id == metaDataService.etClient.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
+        }
+      }
       render template: "/templates/linkscontent", model: [list: groupActivities]
     }
 
@@ -49,10 +65,18 @@ class AppController {
           projects << functionService.findByLink(it as Entity, null, metaDataService.ltProjectMember)
         }
       }
-      else if (entity.type.id == metaDataService.etFacility.id)
-        projects = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
-      else if (entity.type.id == metaDataService.etClient.id)
-        projects = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+      else if (entity.type.id == metaDataService.etFacility.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
+        temp.each {
+          if (it.type.id == metaDataService.etProject.id) projects << it
+        }
+      }
+      else if (entity.type.id == metaDataService.etClient.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+        temp.each {
+          if (it.type.id == metaDataService.etProject.id) projects << it
+        }
+      }
       else if (entity.type.id == metaDataService.etParent.id) {
         // find all project units the entity is linked to
         List projectUnits = functionService.findAllByLink(entity, null, metaDataService.ltProjectUnitParent)
@@ -100,8 +124,12 @@ class AppController {
 
     if (params.type == 'families') {
       List families = []
-      if (entity.type.id == metaDataService.etParent.id)
-        families = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberParent)
+      if (entity.type.id == metaDataService.etParent.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberParent)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupFamily.id) families << it
+        }
+      }
       else if (entity.type.id == metaDataService.etClient.id)
         families = functionService.findAllByLink(entity, null, metaDataService.ltGroupFamily)
       else if (entity.type.id == metaDataService.etChild.id)
@@ -111,10 +139,18 @@ class AppController {
 
     if (params.type == 'colonies') {
       List colonies = []
-      if (entity.type.id == metaDataService.etFacility.id)
-        colonies = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
-      else if (entity.type.id == metaDataService.etPartner.id)
-        colonies = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberPartner)
+      if (entity.type.id == metaDataService.etFacility.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupColony.id) colonies << it
+        }
+      }
+      else if (entity.type.id == metaDataService.etPartner.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberPartner)
+        temp.each {
+          if (it.type.id == metaDataService.etGroupColony.id) colonies << it
+        }
+      }
       render template: "/templates/linkscontent", model: [list: colonies]
     }
 
@@ -122,13 +158,21 @@ class AppController {
       List facilities = []
       if (entity.type.id == metaDataService.etEducator.id)
         facilities = functionService.findAllByLink(entity, null, metaDataService.ltWorking)
-      else if (entity.type.id == metaDataService.etClient.id)
-        facilities = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+      else if (entity.type.id == metaDataService.etClient.id) {
+        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+        temp.each {
+          if (it.type.id == metaDataService.etFacility.id) facilities << it
+        }
+      }
       render template: "/templates/linkscontent", model: [list: facilities]
     }
 
     if (params.type == 'clientgroups') {
-      List clientgroups = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+      List clientgroups = []
+      List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
+      temp.each {
+          if (it.type.id == metaDataService.etGroupClient.id) clientgroups << it
+        }
       render template: "/templates/linkscontent", model: [list: clientgroups]
     }
 
