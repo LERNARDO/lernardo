@@ -16,6 +16,8 @@ import lernardo.Msg
 import lernardo.Event
 import lernardo.Post
 import lernardo.Publication
+import lernardo.Collector
+import lernardo.Contact
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -238,5 +240,38 @@ class ClientProfileController {
     Entity client = Entity.get(params.id)
     client.profile.removeFromDates(CDate.get(params.date))
     render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
+  }
+
+  def addCollector = {
+    println "hallo"
+    Collector collector = new Collector(params)
+    Entity client = Entity.get(params.id)
+    client.profile.addToCollectors(collector)
+    render template: 'collectors', model: [client: client, currentEntity: entityHelperService.loggedIn]
+  }
+
+  def removeCollector = {
+    Entity client = Entity.get(params.id)
+    client.profile.removeFromCollectors(Collector.get(params.collector))
+    render template: 'collectors', model: [client: client, currentEntity: entityHelperService.loggedIn]
+  }
+
+  def addContact = {ContactCommand cc ->
+    Entity client = Entity.get(params.id)
+    if (cc.hasErrors()) {
+      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
+      return
+    }
+    Contact contact = new Contact(params)
+    client.profile.addToContacts(contact)
+    render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
+  }
+
+  def removeContact = {
+    Entity client = Entity.get(params.id)
+    client.profile.removeFromContacts(Contact.get(params.contact))
+    Contact.get(params.contact).delete()
+    render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
   }
 }

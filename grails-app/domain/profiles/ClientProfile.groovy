@@ -5,6 +5,8 @@ import lernardo.CDate
 import lernardo.Performances
 import lernardo.Materials
 import lernardo.Healths
+import lernardo.Collector
+import lernardo.Contact
 
 class ClientProfile extends Profile {
 
@@ -14,7 +16,9 @@ class ClientProfile extends Profile {
                       materials: Materials,
                       performances: Performances,
                       healths: Healths,
-                      jobtypes: String]
+                      jobtypes: String,
+                      collectors: Collector,
+                      contacts: Contact]
 
     String firstName
     String lastName
@@ -59,13 +63,13 @@ class ClientProfile extends Profile {
     String citizenship
     Integer socialSecurityNumber
 
-    String contactName // added on 27.09.2010
-    String contactCountry // added on 27.09.2010
-    String contactZip // added on 27.09.2010
-    String contactCity // added on 27.09.2010
-    String contactStreet // added on 27.09.2010
-    String contactPhone // added on 27.09.2010
-    String contactMail // added on 27.09.2010
+    //String contactName // added on 27.09.2010 - removed on 15.11.2010
+    //String contactCountry // added on 27.09.2010 - removed on 15.11.2010
+    //String contactZip // added on 27.09.2010 - removed on 15.11.2010
+    //String contactCity // added on 27.09.2010 - removed on 15.11.2010
+    //String contactStreet // added on 27.09.2010 - removed on 15.11.2010
+    //String contactPhone // added on 27.09.2010 - removed on 15.11.2010
+    //String contactMail // added on 27.09.2010 - removed on 15.11.2010
 
     static constraints = {
       fullName (blank: true)
@@ -90,13 +94,13 @@ class ClientProfile extends Profile {
 
       citizenship (nullable: true)
       socialSecurityNumber (nullable: true, size: 10..10)
-      contactName (nullable: true, size: 2..50, maxSize: 50)
-      contactCountry (nullable: true, size: 2..50, maxSize: 50)
-      contactZip (nullable: true, size: 4..10)
-      contactCity (nullable: true, size: 2..50, maxSize: 50)
-      contactStreet (nullable: true, size: 2..50, maxSize: 50)
-      contactPhone (nullable: true, size: 2..50, maxSize: 50)
-      contactMail (nullable: true, size: 2..50, maxSize: 50)
+      //contactName (nullable: true, size: 2..50, maxSize: 50)
+      //contactCountry (nullable: true, size: 2..50, maxSize: 50)
+      //contactZip (nullable: true, size: 4..10)
+      //contactCity (nullable: true, size: 2..50, maxSize: 50)
+      //contactStreet (nullable: true, size: 2..50, maxSize: 50)
+      //contactPhone (nullable: true, size: 2..50, maxSize: 50)
+      //contactMail (nullable: true, size: 2..50, maxSize: 50)
 
       size (nullable: true)
       weight (nullable: true)

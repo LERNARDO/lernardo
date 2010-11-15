@@ -218,7 +218,7 @@
             <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
           </tr>
 
-          <g:if test="${grailsApplication.config.clientProfile.contact}">
+          %{--<g:if test="${grailsApplication.config.clientProfile.contact}">
 
           <tr>
             <td colspan="4">Kontakt im Notfall</td>
@@ -250,7 +250,7 @@
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactMail') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           </tr>
 
-          </g:if>
+          </g:if>--}%
 
         </table>
       </div>
@@ -371,6 +371,85 @@
         <g:render template="dates" model="[client: client, entity: currentEntity]"/>
       </div>
     </div>
+
+    <div class="zusatz">
+      <h5><g:message code="client.profile.collectors"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#collectors');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Abholberechtigten hinzufügen"/></a></app:accessCheck></h5>
+      <div class="zusatz-add" id="collectors" style="display:none">
+        <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2')">
+          <table>
+            <tr>
+              <td valign="top">Name: </td>
+              <td><g:textField size="30" name="text" value=""/></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+            </tr>
+          </table>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="collectors2">
+        <g:render template="collectors" model="[client: client, entity: currentEntity]"/>
+      </div>
+    </div>
+
+    <g:if test="${grailsApplication.config.clientProfile.contact}">
+      <div class="zusatz">
+        <h5>Kontakt im Notfall <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#contacts');
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></app:accessCheck></h5>
+        <div class="zusatz-add" id="contacts" style="display:none">
+          <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addContact', id:client.id]" update="contacts2" before="showspinner('#contacts2')">
+
+            <table>
+              <tr>
+                <td><g:message code="contact.firstName"/>:</td>
+                <td><g:textField name="firstName" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.lastName"/>:</td>
+                <td><g:textField name="lastName" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.country"/>:</td>
+                <td><g:textField name="country" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.zip"/>:</td>
+                <td><g:textField name="zip" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.city"/>:</td>
+                <td><g:textField name="city" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.street"/>:</td>
+                <td><g:textField name="street" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.phone"/>:</td>
+                <td><g:textField name="phone" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.email"/>:</td>
+                <td><g:textField name="email" size="30"/></td>
+              </tr>
+              <tr>
+                <td><g:message code="contact.function"/>:</td>
+                <td><g:textField name="function" size="30"/></td>
+              </tr>
+            </table>
+
+            <div class="spacer"></div>
+            <g:submitButton name="button" value="${message(code:'add')}"/>
+            <div class="spacer"></div>
+          </g:formRemote>
+        </div>
+        <div class="zusatz-show" id="contacts2">
+          <g:render template="contacts" model="[client: client, entity: currentEntity]"/>
+        </div>
+      </div>
+    </g:if>
 
     <div class="zusatz">
       <h5>Paten</h5>
