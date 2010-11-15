@@ -414,8 +414,18 @@ class TemplateProfileController {
 
     // if the template is in all lists which means it passed all 3 method validations then add it to the final list
     allTemplates.each { a ->
+      if (params.method1 != 'none' && params.method2 == 'none' && params.method3 == 'none') {
+      if (list1.contains(a))
+        finalList << a
+      }
+      else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 == 'none') {
+      if (list1.contains(a) && list2.contains(a))
+        finalList << a
+      }
+      else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 != 'none') {
       if (list1.contains(a) && list2.contains(a) && list3.contains(a))
         finalList << a
+      }
     }
 
     render(template: 'searchresults', model: [allTemplates: finalList])
