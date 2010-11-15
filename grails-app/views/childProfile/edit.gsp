@@ -66,7 +66,7 @@
               <g:textField size="35" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>
             </td>
             <td class="value ${hasErrors(bean: child, field: 'profile.jobFrequency', 'errors')}">
-              <g:textField size="30" maxlength="20" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
+              <g:textField size="30" name="jobFrequency" value="${fieldValue(bean: child, field: 'profile.jobFrequency')}"/>
             </td>
           </tr>
 
