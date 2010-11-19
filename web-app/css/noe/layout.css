@@ -517,6 +517,42 @@ ul {
     #profile-navigation .icon-document {
         background: url(../../images/icons/icon_document.png) 0 50% no-repeat;
         padding-left: 20px; }
+    #profile-navigation .icon-group {
+        background: url(../../images/icons/icon_group.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-facility {
+        background: url(../../images/icons/icon_facility.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-partner {
+        background: url(../../images/icons/icon_partner.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-pate {
+        background: url(../../images/icons/icon_pate.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-colony {
+        background: url(../../images/icons/icon_colony.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-child {
+        background: url(../../images/icons/icon_child.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-grouppartner {
+        background: url(../../images/icons/icon_grouppartner.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-all {
+        background: url(../../images/icons/icon_all.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-parents {
+        background: url(../../images/icons/icon_parents.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-educators {
+        background: url(../../images/icons/icon_educators.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-methods {
+        background: url(../../images/icons/icon_methods.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-operator {
+        background: url(../../images/icons/icon_operator.png) 0 50% no-repeat;
+        padding-left: 20px; }
 /* ----- ADMIN ----- */
 
 #adminArea {

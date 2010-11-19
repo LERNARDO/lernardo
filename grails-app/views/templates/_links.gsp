@@ -29,6 +29,6 @@
     </app:accessCheck>
 
   </div>
-  <div id="linkscontent">
+  <div id="linkscontent" style="padding: 5px;">
   </div>
 </div>

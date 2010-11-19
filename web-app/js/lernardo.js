@@ -15,7 +15,7 @@ cleartext = function(){
 
 // shows the spinner
 showspinner = function(id) {
-  $(id).html('<img id="spinner" src="http://sueninos.lernardo.net/images/spinner.gif" alt="Spinner"/>');
+  $(id).html('<img id="spinner" src="../../images/spinner.gif" alt="Spinner"/>');
 };
 
 // toggle element
