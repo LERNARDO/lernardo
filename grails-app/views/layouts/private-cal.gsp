@@ -26,8 +26,10 @@
       </div>
     </div>
 
-    <div id="banner-private">
-      <g:render template="/templates/imagenav"/>
+    <div style="background: #fff; padding-bottom: 10px">
+      <div id="banner-private">
+        <g:render template="/templates/imagenav"/>
+      </div>
     </div>
 
     <div id="bd">

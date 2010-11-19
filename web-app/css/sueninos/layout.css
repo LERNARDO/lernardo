@@ -6,12 +6,15 @@
 body {
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
-    background: #ece9d8; }
+    background: #ece9d8;
+    padding: 10px;
+}
 
 /* used for private layout */
 #doc4 {
     width: 1145px;
-    background: #fff;}
+    /*background: #fff;*/
+}
 
 /* used for public layout */
 #doc5 {
@@ -37,13 +40,24 @@ ol li {
     margin-left: 20px;
 }
 
+.one {
+    vertical-align: top;
+    color: #444;
+    padding: 0 10px 10px 0;
+}
+
+.two {
+    vertical-align: top;
+    color: #000;
+}
+
 #hd {
     height: 70px;
     background: url(../../images/sueninos/logo.png) #fff no-repeat 15px 15px;
     position: relative;
-    /*-moz-box-shadow: #888 0px -4px 8px;
-    border-right: 1px solid #aaa;
-    border-left: 1px solid #aaa;*/ }
+    /*-moz-box-shadow: #888 0px -4px 8px;*/
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px }
     #hd #info {
         text-align: right;
         float: right;
@@ -57,14 +71,13 @@ ol li {
 
 #bd {
     background: #fff;
-    /*-moz-box-shadow: #888 0px 4px 8px;
-    border-bottom: 1px solid #aaa;
-    border-right: 1px solid #aaa;
-    border-left: 1px solid #aaa;*/ }
+    /*-moz-box-shadow: #888 0px 4px 8px;*/
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;}
 
 #ft {
-    font-size: 10px;
-    background: #e2dbc8;
+    font-size: 11px;
+    /*background: #e2dbc8;*/
     clear: both;
     text-align: center;
     padding: 10px; }
@@ -97,16 +110,14 @@ ol li {
     color: #f44; }
 
 .toolTip {
-    /*border: 1px solid #4d4;*/
-    /*-moz-border-radius: 4px;*/
-    background: #5e5;
-    /*-padding: 5px;*/
-    margin: 0 0 15px 0;
-    /*-moz-box-shadow: #aaa 2px 2px 4px;*/ }
+    background: #fc6; /*#fff;*/
+    border: 1px solid #fa4;
+    border-radius: 5px;
+    color: #333;
+    font-size: 13px;
+    margin: 0 0 15px 0;}
     .toolTip .second {
         padding: 5px;
-        /*border: 1px solid #bfb;*/
-        /*-moz-border-radius: 4px;*/
     }
 
 .spacer {
@@ -129,7 +140,9 @@ ol li {
         margin: 0;
         background: #F9BA12;
         border-bottom: 1px solid #fff;
-        border-left: 1px solid #fff;}
+        border-left: 1px solid #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;}
         #nav li a {
             color: #333; /*#535353;*/
             font-size: 15px;
@@ -145,8 +158,8 @@ ol li {
             color: #fff;
             background: #EDA600;
             text-decoration: none !important;
-            -moz-border-radius-topleft: 5px;
-            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px
             /*-moz-box-shadow: #000 0px 0 4px;*/ }
 
 /* ----- FONTS ----- */
@@ -275,6 +288,10 @@ ul {
     background: -moz-linear-gradient(90deg,#f9ba12,#ff9200);
     background: -webkit-gradient(linear, left top, left bottom, from(#f9ba12), to(#ff9200));
     margin: 0 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #ff9200;
 }
 
 #profile-pic {
@@ -347,10 +364,10 @@ ul {
 
 .profile-box {
     color: #7b7b7b;
-    /*-moz-border-radius: 5px;*/
+    border-radius: 5px;
     /*background-color: #dfdfdf;*/
     background: #dfdfdf;
-    /*border: 1px solid #999;*/
+    border: 1px solid #ccc;
     /*-moz-box-shadow: #aaa 2px 2px 4px;*/
     margin-bottom: 15px; }
     .profile-box .second {
@@ -374,7 +391,7 @@ ul {
             text-decoration: none; }
 
 #private-content {
-    padding: 0 15px 10px 15px }
+    padding: 0 15px 0 15px }
 
 .headerBlue {
     background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
@@ -399,12 +416,12 @@ ul {
     }
 
 .boxGray {
-    /*-moz-border-radius-bottomleft: 5px;
-    -moz-border-radius-bottomright: 5px;*/
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     background: #dfdfdf;
     /*-padding: 5px;*/
     margin-bottom: 10px;
-    /*border: 1px solid #888;*/
+    border: 1px solid #ccc;
     color: #333;
     /*-moz-box-shadow: #aaa 2px 2px 4px;*/
     border-top: none}
@@ -799,7 +816,7 @@ ul {
     .default-table td {
         padding: 5px;
         border-bottom: 1px solid #9A9A9A;
-        /*border-top: 1px solid #eee;*/}
+        border-top: 1px solid #eee;}
         .default-table td a {
             color: #141;
             text-decoration: none;
@@ -836,11 +853,11 @@ ul {
         font-size: 11px;
         /*border: 1px solid #999;*/}
     .default-table tr.odd {
-        background: #eee; }
+        /*background: #eee;*/ }
     .default-table tr.even {
         /*background: #fef;*/ }
     .default-table tr:hover {
-        background: #fff; }
+        background: #eee; }
 
 table .label {
     height: 25px;
@@ -914,13 +931,12 @@ table #profile-list tr {
 /* PAGINATION */
 
 .paginateButtons {
-    /*background: #ccd *//*url(../../images/skin/shadow.jpg) bottom repeat-x*//*;*/
-    /*border-top: 1px solid #EEEEEE;*/
+    /*background: #ccd *//*url(../../images/skin/shadow.jpg) bottom repeat-x;*/
+    border-top: 1px solid #eee;
     color: #666;
     font-size: 11px;
     overflow: hidden;
-    padding: 10px 3px;
-    margin-bottom: 5px; }
+    padding: 10px 3px; }
     .paginateButtons a {
         background: #fff;
         border: 1px solid #999;
@@ -1446,9 +1462,11 @@ table#msg-composer td {
         padding: 3px; }
 
 .headerGreen {
-    background: -moz-linear-gradient(-90deg,#009900,#005500);
-    background: -webkit-gradient(linear, left top, left bottom, from(#009900), to(#005500));
-     }
+    background: -moz-linear-gradient(-90deg,#009900,#006600);
+    background: -webkit-gradient(linear, left top, left bottom, from(#339933), to(#116611));
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #060;}
     .headerGreen h1 {
         color: #fff;
         margin: auto 0;
@@ -1690,16 +1708,6 @@ h5 {
     color: #333;
     text-align: left;
 }
-
-.toolTip {
-    background: #fff;
-    border: 1px dotted #ff9933;
-    color: #333;
-    font-size: 13px;
-    margin: 0 0 15px 0;}
-    .toolTip .second {
-        padding: 5px;
-    }
 
 /**************************************************************************************/
 

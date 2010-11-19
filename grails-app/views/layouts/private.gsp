@@ -95,8 +95,10 @@ future HTML5 doctype
       </div>
     </div>
 
-    <div id="banner-private">
-      <g:render template="/templates/imagenav"/>
+    <div style="background: #fff;">
+      <div id="banner-private">
+        <g:render template="/templates/imagenav"/>
+      </div>
     </div>
 
     <div id="bd">
@@ -122,7 +124,7 @@ future HTML5 doctype
           </div>
         </div>
 
-        <div class="profile-box">
+        <div class="profile-box" style="border-top-left-radius: 0; border-top-right-radius: 0">
           <div class="second">
             <div id="kommunikation-toggled">
 

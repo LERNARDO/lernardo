@@ -162,13 +162,13 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyEducator" + i)) {
-        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@domain.org", "dummyEducator" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@domain.org", "DummyEducatorFirstName DummyEducatorLastName" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           EducatorProfile prf = (EducatorProfile)ent.profile
           prf.gender = generator.nextInt(2) + 1
           prf.title = "DummyTitle"
-          prf.firstName = "DummyFirstname"
-          prf.lastName = "DummyLastName"
+          prf.firstName = "DummyEducatorFirstName"
+          prf.lastName = "DummyEducatorLastName"
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.currentCountry = "DummyCountry"
           prf.currentZip = "1234"
@@ -203,11 +203,11 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyParent" + i)) {
-        entityHelperService.createEntityWithUserAndProfile("dummyParent" + i, etParent, "dummyParent" + i + "@domain.org", "dummyParent" + i) {Entity ent ->
+        entityHelperService.createEntityWithUserAndProfile("dummyParent" + i, etParent, "dummyParent" + i + "@domain.org", "DummyParentFirstName DummyParentLastName" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ParentProfile prf = (ParentProfile)ent.profile
-          prf.firstName = "DummyFirstname"
-          prf.lastName = "DummyLastName"
+          prf.firstName = "DummyParentFirstName"
+          prf.lastName = "DummyParentLastName"
           prf.gender = generator.nextInt(2) + 1
           prf.currentCountry = (generator.nextInt(8) + 1).toString()
           prf.currentZip = "1234"
@@ -239,11 +239,11 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyClient" + i)) {
-        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyClient" + i, etClient, "dummyClient" + i + "@domain.org", "dummyClient" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyClient" + i, etClient, "dummyClient" + i + "@domain.org", "DummyClientFirstName DummyClientLastName" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ClientProfile prf = (ClientProfile)ent.profile
-          prf.firstName = "DummyFirstname"
-          prf.lastName = "DummyLastName"
+          prf.firstName = "DummyClientFirstName"
+          prf.lastName = "DummyClientLastName"
           prf.gender = generator.nextInt(2) + 1
           prf.interests = "DummyInterests"
           prf.currentCountry = "DummyCountry"
@@ -284,11 +284,11 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyChild" + i)) {
-        entityHelperService.createEntityWithUserAndProfile("dummyChild" + i, etChild, "dummyChild" + i + "@domain.org", "dummyChild" + i) {Entity ent ->
+        entityHelperService.createEntityWithUserAndProfile("dummyChild" + i, etChild, "dummyChild" + i + "@domain.org", "DummyChildFirstName DummyChildLastName" + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ChildProfile prf = (ChildProfile)ent.profile
-          prf.firstName = "DummyFirstname"
-          prf.lastName = "DummyLastName"
+          prf.firstName = "DummyChildFirstName"
+          prf.lastName = "DummyChildLastName"
           prf.gender = generator.nextInt(2) + 1
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.job = generator.nextBoolean()
@@ -354,11 +354,11 @@ class BootStrap {
     
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyPate" + i)) {
-        entityHelperService.createEntityWithUserAndProfile ("dummyPate" + i, etPate, "dummyPate" + i + "@domain.org", "dummyPate" + i) {Entity ent->
+        entityHelperService.createEntityWithUserAndProfile ("dummyPate" + i, etPate, "dummyPate" + i + "@domain.org", "dummyPateFirstName dummyPateLastName" + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PateProfile prf = (PateProfile)ent.profile
-          prf.firstName = "dummyFirstname"
-          prf.lastName = "dummyLastname"
+          prf.firstName = "dummyPateFirstName"
+          prf.lastName = "dummyPateLastName"
           prf.zip = "12345"
           prf.city = "DummyCity"
           prf.street = "DummyStreet"
