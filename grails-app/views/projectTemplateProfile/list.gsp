@@ -18,7 +18,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${projectTemplateTotal} Projektvorlagen(n) insgesamt vorhanden</p>
+    ${projectTemplateTotal} Projektvorlagen(n) insgesamt vorhanden
+
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create">Neue Projektvorlage anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -42,13 +49,6 @@
     <div class="paginateButtons">
       <g:paginate total="${projectTemplateTotal}"/>
     </div>
-
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Projektvorlage anlegen</g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:accessCheck>
 
   </div>
 </div>

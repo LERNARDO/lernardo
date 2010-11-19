@@ -11,7 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${methodInstanceTotal} Bewertungsmethoden insgesamt vorhanden</p>
+    ${methodInstanceTotal} Bewertungsmethoden insgesamt vorhanden
+
+     <app:isAdmin>
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create">Neue Bewertungsmethode anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isAdmin>
 
     <table class="default-table">
       <thead>
@@ -33,13 +40,6 @@
     <div class="paginateButtons">
       <g:paginate total="${methodInstanceTotal}"/>
     </div>
-
-    <app:isAdmin>
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Bewertungsmethode anlegen</g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isAdmin>
 
   </div>
 </div>

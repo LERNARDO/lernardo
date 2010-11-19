@@ -57,7 +57,6 @@ ol li {
 
 #bd {
     background: #fff;
-    padding: 10px 5px;
     /*-moz-box-shadow: #888 0px 4px 8px;
     border-bottom: 1px solid #aaa;
     border-right: 1px solid #aaa;
@@ -65,16 +64,13 @@ ol li {
 
 #ft {
     font-size: 10px;
-    background: #e2dbc8; /*#d9d9d9;*/
+    background: #e2dbc8;
     clear: both;
     text-align: center;
-    padding: 10px;
-    /*border-top: 1px solid #fff;
-    border-right: 1px solid #aaa;
-    border-left: 1px solid #aaa;
-    -moz-box-shadow: #888 0px 4px 8px;*/}
+    padding: 10px; }
     #ft a {
-        color: #29957d; }
+        color: #29957d;
+        margin-left: 20px; }
 
 .strong {
     font-weight: bold; }
@@ -130,14 +126,16 @@ ol li {
     #nav li {
         display: inline;
         float: left;
-        margin: 0; }
+        margin: 0;
+        background: #ABF713;
+        border-bottom: 1px solid #fff;
+        border-left: 1px solid #fff; }
         #nav li a {
-            color: #535353;
+            color: #333;
             font-size: 16px;
             display: block;
             float: left;
-            height: 25px;
-            line-height: 25px;
+            padding: 4px;
             text-align: center;
             text-decoration: none;
             text-transform: none;
@@ -274,7 +272,7 @@ ul {
 
 #banner {
     height: 115px;
-}
+    padding-bottom: 10px; }
 
 #banner-private {
     height: 100px;
@@ -382,7 +380,7 @@ ul {
             text-decoration: none; }
 
 #private-content {
-    padding: 10px; }
+    padding: 0 15px 10px 15px }
 
 .headerBlue {
     background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
@@ -465,7 +463,7 @@ ul {
 }
 
 #profile-navigation {
-    padding: 10px 10px 0 10px; }
+    padding: 0 5px 0 15px; }
     #profile-navigation a {
         text-decoration: none; }
         #profile-navigation a:hover {
@@ -721,34 +719,37 @@ ul {
 /* ----- LIST and TABLE overrides ----- */
 
 .default-table {
-    border: 1px solid #bbb;
+    /*border: 1px solid #bbb;*/
+    border-collapse: separate;
     width: 100%; }
     .default-table td {
-        padding: 5px; }
+        padding: 5px;
+        border-bottom: 1px solid #9A9A9A;
+        /*border-top: 1px solid #eee;*/}
         .default-table td a {
             color: #141;
             text-decoration: none;
         }
         .default-table td a:hover {
-            color: #272;
             text-decoration: underline;
         }
     .default-table th {
-        background: #ccd;
-        color: #333;
+        background: #9A9A9A;
+        border-bottom: 1px solid #787878;
+        color: #fff;
         font-size: 11px;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         font-weight: bold;
         line-height: 17px;
         padding: 2px 6px; }
         .default-table th a {
-            color: #333;
+            color: #fff;
             display: block;
             font-size: 11px;
             text-decoration: none;
             width: 100%; }
         .default-table th:hover {
-            background: #bbc;
+            background: #bbb;
         }
         .default-table th.asc a, th.desc a {
             background-position: right;
@@ -759,11 +760,13 @@ ul {
             background-image: url(../../images/skin/sorted_desc.gif); }
     .default-table tr {
         font-size: 11px;
-        border: 1px solid #999;}
+        /*border: 1px solid #999;*/}
     .default-table tr.odd {
-        background: #eef; }
+        background: #eee; }
     .default-table tr.even {
-        background: #fef; }
+        /*background: #fef;*/ }
+    .default-table tr:hover {
+        background: #fff; }
 
 table .label {
     height: 25px;
@@ -837,9 +840,9 @@ table #profile-list tr {
 /* PAGINATION */
 
 .paginateButtons {
-    background: #ccd /*url(../../images/skin/shadow.jpg) bottom repeat-x*/;
+    /*background: #ccd *//*url(../../images/skin/shadow.jpg) bottom repeat-x*//*;
     border: 1px solid #aaa;
-    border-top: none;
+    border-top: none;*/
     color: #666;
     font-size: 11px;
     overflow: hidden;
@@ -1585,11 +1588,6 @@ h5 {
     padding-bottom: 6px;
 }
 
-.buttons {
-    /*padding-bottom: 6px;*/
-    /*border-bottom: 2px solid #fff;*/
-    margin-bottom: 20px;
-}
 #flash-msg {
     background-color: #eee;
     border: 1px dotted #ff9933;
@@ -1891,4 +1889,9 @@ h5 {
 .routinebox {
     border-bottom: 1px solid #ccc;
     padding: 5px 0;
+}
+
+.helperbox {
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
 }

@@ -57,7 +57,6 @@ ol li {
 
 #bd {
     background: #fff;
-    padding: 10px 5px;
     /*-moz-box-shadow: #888 0px 4px 8px;
     border-bottom: 1px solid #aaa;
     border-right: 1px solid #aaa;
@@ -65,16 +64,13 @@ ol li {
 
 #ft {
     font-size: 10px;
-    background: #e2dbc8; /*#d9d9d9;*/
+    background: #e2dbc8;
     clear: both;
     text-align: center;
-    padding: 10px;
-    /*border-top: 1px solid #fff;
-    border-right: 1px solid #aaa;
-    border-left: 1px solid #aaa;
-    -moz-box-shadow: #888 0px 4px 8px;*/}
+    padding: 10px; }
     #ft a {
-        color: #e83d06; }
+        color: #e83d06;
+        margin-left: 20px; }
 
 .strong {
     font-weight: bold; }
@@ -130,22 +126,24 @@ ol li {
     #nav li {
         display: inline;
         float: left;
-        margin: 0; }
+        margin: 0;
+        background: #F9BA12;
+        border-bottom: 1px solid #fff;
+        border-left: 1px solid #fff;}
         #nav li a {
-            color: #535353;
-            font-size: 16px;
+            color: #333; /*#535353;*/
+            font-size: 15px;
             display: block;
             float: left;
-            height: 25px;
-            line-height: 25px;
+            padding: 4px;
             text-align: center;
             text-decoration: none;
             text-transform: none;
             font-weight: bold;
             width: 131px; }
         #nav li a:hover {
-            color: #FFF;
-            background: #FF9400;
+            color: #fff;
+            background: #EDA600;
             text-decoration: none !important;
             -moz-border-radius-topleft: 5px;
             -moz-border-radius-topright: 5px;
@@ -270,7 +268,7 @@ ul {
 
 #banner {
     height: 115px;
-}
+    padding-bottom: 10px; }
 
 #banner-private {
     height: 100px;
@@ -376,7 +374,7 @@ ul {
             text-decoration: none; }
 
 #private-content {
-    padding: 10px; }
+    padding: 0 15px 10px 15px }
 
 .headerBlue {
     background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
@@ -459,7 +457,7 @@ ul {
 }
 
 #profile-navigation {
-    padding: 10px 10px 0 10px; }
+    padding: 0 5px 0 15px; }
     #profile-navigation a {
         text-decoration: none; }
         #profile-navigation a:hover {
@@ -512,6 +510,42 @@ ul {
         padding-left: 20px; }
     #profile-navigation .icon-document {
         background: url(../../images/icons/icon_document.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-group {
+        background: url(../../images/icons/icon_group.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-facility {
+        background: url(../../images/icons/icon_facility.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-partner {
+        background: url(../../images/icons/icon_partner.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-pate {
+        background: url(../../images/icons/icon_pate.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-colony {
+        background: url(../../images/icons/icon_colony.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-child {
+        background: url(../../images/icons/icon_child.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-grouppartner {
+        background: url(../../images/icons/icon_grouppartner.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-all {
+        background: url(../../images/icons/icon_all.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-parents {
+        background: url(../../images/icons/icon_parents.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-educators {
+        background: url(../../images/icons/icon_educators.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-methods {
+        background: url(../../images/icons/icon_methods.png) 0 50% no-repeat;
+        padding-left: 20px; }
+    #profile-navigation .icon-operator {
+        background: url(../../images/icons/icon_operator.png) 0 50% no-repeat;
         padding-left: 20px; }
 /* ----- ADMIN ----- */
 
@@ -705,15 +739,15 @@ ul {
 .row-partner {
     background: #cb89c9; }
 
-.odd {
+/*.odd {
     background: #f4f4f4; }
 
 .even {
-    background: #fff; }
+    background: #fff; }*/
 
 /* ----- LIST and TABLE overrides ----- */
 
-.default-table {
+/*.default-table {
     border: 1px solid #bbb;
     width: 100%; }
     .default-table td {
@@ -756,7 +790,57 @@ ul {
     .default-table tr.odd {
         background: #eef; }
     .default-table tr.even {
-        background: #fef; }
+        background: #fef; }*/
+
+.default-table {
+    /*border: 1px solid #bbb;*/
+    border-collapse: separate;
+    width: 100%; }
+    .default-table td {
+        padding: 5px;
+        border-bottom: 1px solid #9A9A9A;
+        /*border-top: 1px solid #eee;*/}
+        .default-table td a {
+            color: #141;
+            text-decoration: none;
+        }
+        .default-table td a:hover {
+            text-decoration: underline;
+        }
+    .default-table th {
+        background: #9A9A9A;
+        border-bottom: 1px solid #787878;
+        color: #fff;
+        font-size: 11px;
+        /*text-transform: uppercase;*/
+        font-weight: bold;
+        line-height: 17px;
+        padding: 2px 6px; }
+        .default-table th a {
+            color: #fff;
+            display: block;
+            font-size: 11px;
+            text-decoration: none;
+            width: 100%; }
+        .default-table th:hover {
+            background: #bbb;
+        }
+        .default-table th.asc a, th.desc a {
+            background-position: right;
+            background-repeat: no-repeat; }
+        .default-table th.asc a {
+            background-image: url(../../images/skin/sorted_asc.gif); }
+        .default-table th.desc a {
+            background-image: url(../../images/skin/sorted_desc.gif); }
+    .default-table tr {
+        font-size: 11px;
+        /*border: 1px solid #999;*/}
+    .default-table tr.odd {
+        background: #eee; }
+    .default-table tr.even {
+        /*background: #fef;*/ }
+    .default-table tr:hover {
+        background: #fff; }
 
 table .label {
     height: 25px;
@@ -830,7 +914,29 @@ table #profile-list tr {
 /* PAGINATION */
 
 .paginateButtons {
-    background: #ccd /*url(../../images/skin/shadow.jpg) bottom repeat-x*/;
+    /*background: #ccd *//*url(../../images/skin/shadow.jpg) bottom repeat-x*//*;*/
+    /*border-top: 1px solid #EEEEEE;*/
+    color: #666;
+    font-size: 11px;
+    overflow: hidden;
+    padding: 10px 3px;
+    margin-bottom: 5px; }
+    .paginateButtons a {
+        background: #fff;
+        border: 1px solid #999;
+        color: #666;
+        margin: 0 3px;
+        padding: 2px 6px; }
+    .paginateButtons a:hover {
+        text-decoration: none;
+        background: #393;
+        color: #fff;
+        border: 1px solid #060; }
+    .paginateButtons span {
+        padding: 2px 3px; }
+
+/*.paginateButtons {
+    background: #ccd *//*url(../../images/skin/shadow.jpg) bottom repeat-x*//*;
     border: 1px solid #aaa;
     border-top: none;
     color: #666;
@@ -850,7 +956,7 @@ table #profile-list tr {
         color: #fff;
         border: 1px solid #060; }
     .paginateButtons span {
-        padding: 2px 3px; }
+        padding: 2px 3px; }*/
 
 .paginateButtonsPublic {
     color: #666;
@@ -1248,6 +1354,7 @@ table#msg-composer td {
 .buttons {
     margin: 0;
     padding: 0;
+    padding-bottom: 5px;
 }
 
 .clear {
@@ -1577,11 +1684,6 @@ h5 {
     padding-bottom: 6px;
 }
 
-.buttons {
-    /*padding-bottom: 6px;*/
-    /*border-bottom: 2px solid #fff;*/
-    margin-bottom: 20px;
-}
 #flash-msg {
     background-color: #eee;
     border: 1px dotted #ff9933;

@@ -18,7 +18,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${groupTotal} Aktivitätsblockvorlagen insgesamt vorhanden</p>
+    ${groupTotal} Aktivitätsblockvorlagen insgesamt vorhanden
+
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create">Neue Aktivitätsblockvorlage anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -44,13 +51,6 @@
     <div class="paginateButtons">
       <g:paginate total="${groupTotal}"/>
     </div>
-
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Aktivitätsblockvorlage anlegen</g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:accessCheck>
 
   </div>
 </div>

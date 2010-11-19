@@ -428,7 +428,7 @@ class TemplateProfileController {
       }
     }
 
-    render(template: 'searchresults', model: [allTemplates: finalList])
+    render(template: 'searchresults', model: [allTemplates: finalList, currentEntity: entityHelperService.loggedIn])
   }
 
 }

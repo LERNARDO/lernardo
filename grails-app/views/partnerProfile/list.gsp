@@ -11,7 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${partnerTotal} <g:message code="partner.profile.c_total"/></p>
+    ${partnerTotal} <g:message code="partner.profile.c_total"/>
+
+    <app:isOperator entity="${currentEntity}">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create"><g:message code="partner.profile.create"/></g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isOperator>
 
     <table class="default-table">
       <thead>
@@ -25,9 +32,14 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${partner.id}" params="[entity: partner.id]">${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>
-            <g:each in="${partner.profile.services}" var="service">
-              <app:getPartnerService service="${service}"/>,
-            </g:each>
+            <g:if test="${partner.profile.services}">
+              <g:each in="${partner.profile.services}" var="service">
+                <app:getPartnerService service="${service}"/>,
+              </g:each>
+            </g:if>
+            <g:else>
+              <g:message code="noData"/>
+            </g:else>
           </td>
         </tr>
       </g:each>
@@ -37,13 +49,6 @@
     <div class="paginateButtons">
       <g:paginate total="${partnerTotal}"/>
     </div>
-
-    <app:isOperator entity="${currentEntity}">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="partner.profile.create"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isOperator>
 
   </div>
 </div>

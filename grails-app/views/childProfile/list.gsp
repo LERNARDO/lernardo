@@ -11,7 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${childTotal} <g:message code="child.profile.c_total"/></p>
+    ${childTotal} <g:message code="child.profile.c_total"/>
+
+    <app:isOperator entity="${currentEntity}">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create"><g:message code="child.profile.create"/></g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isOperator>
 
     <table class="default-table">
       <thead>
@@ -33,13 +40,6 @@
     <div class="paginateButtons">
       <g:paginate total="${childTotal}"/>
     </div>
-
-    <app:isOperator entity="${currentEntity}">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="child.profile.create"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isOperator>
 
   </div>
 </div>

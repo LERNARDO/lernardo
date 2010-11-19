@@ -11,7 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${groupTotal} <g:message code="groupPartner.profile.c_total"/></p>
+    ${groupTotal} <g:message code="groupPartner.profile.c_total"/>
+
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create"><g:message code="groupPartner.profile.create"/></g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -33,13 +40,6 @@
     <div class="paginateButtons">
       <g:paginate total="${groupTotal}"/>
     </div>
-
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="groupPartner.profile.create"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:accessCheck>
 
   </div>
 </div>

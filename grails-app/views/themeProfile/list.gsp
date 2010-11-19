@@ -12,7 +12,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${themeTotal} Themen insgesamt vorhanden</p>
+    ${themeTotal} Themen insgesamt vorhanden
+
+    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create">Neues Thema anlegen</g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -38,13 +45,6 @@
     <div class="paginateButtons">
       <g:paginate total="${themeTotal}"/>
     </div>
-
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neues Thema anlegen</g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:accessCheck>
 
   </div>
 </div>

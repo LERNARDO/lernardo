@@ -1,4 +1,11 @@
-<p>${allTemplates.size()} <g:message code="activityTemplate.c_total"/></p>
+${allTemplates.size()} <g:message code="activityTemplate.c_total"/>
+
+<div class="buttons">
+  <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+    <g:link class="buttonGreen" controller="templateProfile" action="create"><g:message code="activityTemplate.create"/></g:link>
+    <div class="spacer" style="margin-bottom: 5px"></div>
+  </app:accessCheck>
+</div>
 
 <table class="default-table">
   <thead>

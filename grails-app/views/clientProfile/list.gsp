@@ -11,7 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${clientTotal} <g:message code="client.profile.c_total"/></p>
+    ${clientTotal} <g:message code="client.profile.c_total"/>
+
+    <app:isOperator entity="${currentEntity}">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create"><g:message code="client.profile.create"/></g:link>
+        <div class="spacer"></div>
+      </div>
+    </app:isOperator>
 
     <table class="default-table">
       <thead>
@@ -35,13 +42,6 @@
     <div class="paginateButtons">
       <g:paginate total="${clientTotal}"/>
     </div>
-
-    <app:isOperator entity="${currentEntity}">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="client.profile.create"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </app:isOperator>
 
   </div>
 </div>

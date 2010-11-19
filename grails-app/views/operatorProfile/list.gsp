@@ -11,7 +11,12 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${operatorTotal} <g:message code="operator.profile.c_total"/></p>
+    ${operatorTotal} <g:message code="operator.profile.c_total"/>
+
+    <div class="buttons">
+      <g:link class="buttonGreen" action="create"><g:message code="operator.profile.create"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
     <table class="default-table">
       <thead>
@@ -30,11 +35,6 @@
 
     <div class="paginateButtons">
       <g:paginate total="${operatorTotal}"/>
-    </div>
-
-    <div class="buttons">
-      <g:link class="buttonGreen" action="create"><g:message code="operator.profile.create"/></g:link>
-      <div class="spacer"></div>
     </div>
 
   </div>
