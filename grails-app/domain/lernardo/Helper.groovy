@@ -2,9 +2,10 @@ package lernardo
 
 class Helper {
 
+    static hasMany = [types: String]
+
     String title
     String content
-    String type
 
     Date dateCreated
     Date lastUpdated
@@ -12,6 +13,5 @@ class Helper {
     static constraints = {
       title(blank: false, maxSize: 50)
       content(blank: false, maxSize: 2000)
-      type(blank: false)
     }
 }

@@ -3,6 +3,7 @@ package lernardo
 import at.openfactory.ep.Entity
 import standard.FunctionService
 import standard.MetaDataService
+import at.openfactory.ep.EntityType
 
 class HelperController {
   FunctionService functionService
@@ -18,11 +19,15 @@ class HelperController {
   def list = {
     Entity entity = Entity.get(params.id)
 
-    List helpers
+    List helpers = []
     if (entity.type.id == metaDataService.etUser.id)
       helpers = Helper.list()
-    else
-      helpers = Helper.findAllByType(entity.type.name)
+    else {
+      Helper.list().each {
+        if (it.types.contains(entity.type.name))
+          helpers << it
+      }
+    }
 
     return [helperInstanceList: helpers,
             helperInstanceTotal: helpers.size(),
@@ -81,6 +86,18 @@ class HelperController {
     Entity entity = Entity.get(params.name)
     if (helperInstance) {
       helperInstance.properties = params
+
+      List types = functionService.getParamAsList(params.types)
+
+      List temp = helperInstance.types.toList()
+      temp.each {
+        helperInstance.removeFromTypes (it)
+      }
+
+      types.each {
+        helperInstance.addToTypes(it)
+      }
+
       if (!helperInstance.hasErrors() && helperInstance.save()) {
         flash.message = message(code: "helper.updated")
         redirect action: 'list', id: entity.id
@@ -108,18 +125,19 @@ class HelperController {
     Helper helperInstance = new Helper(params)
     Entity entity = Entity.get(params.name)
 
-    // set a default type
-    def type = metaDataService.etEducator
+    List types = functionService.getParamAsList(params.types)
 
-    if (helperInstance.type == 'Educator')
-      type = metaDataService.etEducator
-    if (helperInstance.type == 'User')
-      type = metaDataService.etUser
-    if (helperInstance.type == 'Facility')
-      type = metaDataService.etFacility
+    types.each {
+      helperInstance.addToTypes(it)
+    }
 
-    List receiver = Entity.findAllByType(type)
-    receiver.each {
+    List receivers = []
+    types.each { type ->
+      List bla = Entity.findAllByType(EntityType.findByName(type))
+      bla.each {receivers << it}
+    }
+
+    receivers.each {
       functionService.createEvent(it as Entity, 'Es wurde das Hilfethema <a href="' + createLink(controller: 'helper', action: 'list') + '">' + helperInstance.title + '</a> angelegt.')
     }
 

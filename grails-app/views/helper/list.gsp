@@ -33,8 +33,12 @@
     </ul>
 
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
-      <p><a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link></app:isAdmin><br/>
-        ${helperInstance.content.decodeHTML()}</p>
+      <div class="helperbox">
+        <p>
+          <a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
+          Hilfethema für: <g:join in="${helperInstance.types}"/></p></app:isAdmin>
+          ${helperInstance.content.decodeHTML()}</p>
+      </div>
     </g:each>
     </g:if>
 

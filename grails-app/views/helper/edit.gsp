@@ -24,7 +24,7 @@
         <tbody>
 
         <tr>
-          <td class="label"><g:message code="helper.topic.title"/>:</td>
+          <td valign="top" class="label"><g:message code="helper.topic.title"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable${helperInstance.constraints.title.maxSize}" name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title').decodeHTML()}"/></td>
         </tr>
 
@@ -32,7 +32,7 @@
           <td class="label"><g:message code="text"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
             <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-            <fckeditor:editor name="content" id="content" width="680" height="300" toolbar="Post" fileBrowser="default">
+            <fckeditor:editor name="content" id="content" width="680" height="300" toolbar="Basic" fileBrowser="default">
               ${helperInstance.content}
             </fckeditor:editor>
           </td>
@@ -40,14 +40,14 @@
 
         <tr>
           <td class="label">Für: </td>
-          <td class="value ${hasErrors(bean: helperInstance, field: 'type', 'errors')}">
+          <td class="value ${hasErrors(bean: helperInstance, field: 'types', 'errors')}">
             %{-- <g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
             --}%
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-              <g:select id="type" name="type" from="${grailsApplication.config.helpProfileType_es}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
+              <g:select id="type" name="types" multiple="true" from="${grailsApplication.config.helpProfileType_es}" value="${fieldValue(bean:helperInstance, field:'types')}" optionKey="key" optionValue="value"/>
             </g:if>
             <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-              <g:select id="type" name="type" from="${grailsApplication.config.helpProfileType_de}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/>
+              <g:select id="type" name="types" multiple="true" from="${grailsApplication.config.helpProfileType_de}" value="${fieldValue(bean:helperInstance, field:'types')}" optionKey="key" optionValue="value"/>
             </g:if>
           </td>
         </tr>

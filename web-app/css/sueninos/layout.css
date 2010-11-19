@@ -1883,3 +1883,8 @@ h5 {
     border-bottom: 1px solid #ccc;
     padding: 5px 0;
 }
+
+.helperbox {
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+}
