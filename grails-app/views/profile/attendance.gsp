@@ -29,9 +29,10 @@
 <body>
 
 <g:if test="${currentEntity.profile.showTips}">
-  <div class="toolTip">
+  <div class="toolTip" id="tooltip">
     <div class="second">
       <b><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></b> Der tägliche Essenbeitrag bezieht sich auf die Mittagsmahlzeit und fällt für jeden Betreuten an. Der Betrag kann über die Profildaten der Einrichtung geändert werden.
+      <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
     </div>
   </div>
 </g:if>

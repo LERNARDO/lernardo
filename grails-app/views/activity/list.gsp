@@ -6,9 +6,10 @@
 <body>
 
 <g:if test="${currentEntity.profile.showTips}">
-  <div class="toolTip">
+  <div class="toolTip" id="tooltip">
     <div class="second">
       <img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><span class="strong"><g:message code="hint"/></span> Diese Seite bietet einen Überblick über alle geplanten Aktivitäten in deinen Einrichtungen.
+      <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
     </div>
   </div>
 </g:if>

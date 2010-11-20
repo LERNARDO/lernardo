@@ -25,32 +25,31 @@ class InterfaceMaintenanceService {
     // Basic stuff each entity will use
     EntityType etChild = metaDataService.etChild
 
-    def children = new XmlSlurper().parse(source)
-    log.info("reading ${children.child.size()} children from xml");
+    def childProfiles = new XmlSlurper().parse(source)
+    log.info("reading ${childProfiles.childProfile.size()} children from xml");
 
     // def isDevEnv = Environment.current == Environment.DEVELOPMENT
 
-    children.child.eachWithIndex {child, n ->
+    childProfiles.childProfile.eachWithIndex {child, n ->
 
       // load only 300 children for development environment
       //if (fullLoad || Environment.current != Environment.DEVELOPMENT || n < 300) {
 
-      def ent = new Entity(name: functionService.createNick("${child.firstname.text()}", "${child.lastname.text()}"), type: etChild)
-      ent.user = new Account(email: "${child.email.text()}", password: securityManager.encodePassword(grailsApplication.config.defaultpass), enabled: child.status.toBoolean())
+      def ent = new Entity(name: functionService.createNick("${child.firstName.text()}", "${child.lastName.text()}"), type: etChild)
+      ent.user = new Account(email: "bla${n}@bla.com"/*"${child.email.text()}"*/, password: securityManager.encodePassword(grailsApplication.config.defaultpass), enabled: true)
       ent.user.addToAuthorities(metaDataService.userRole)
       ent.profile = new ChildProfile()
-      ent.profile.fullName = "${child.firstname.text()} ${child.lastname.text()}"
+      ent.profile.fullName = "${child.firstname.text()} ${child.lastName.text()}"
 
       ChildProfile prf = (ChildProfile) ent.profile
-      prf.firstName = child.firstname.text()
-      prf.lastName = child.lastname.text()
-      SimpleDateFormat sdfToDate = new SimpleDateFormat("yyyy-MM-dd");
-      prf.birthDate = sdfToDate.parse(child.birthdate.text());
+      prf.firstName = child.firstName.text()
+      prf.lastName = child.lastName.text()
+      SimpleDateFormat sdfToDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+      prf.birthDate = sdfToDate.parse(child.birthDate.text());
       prf.gender = child.gender.toInteger()
       prf.job = child.job.toBoolean()
-      prf.jobType = child.jobtype.toInteger()
-      prf.jobIncome = child.jobincome.toInteger()
-      prf.jobFrequency = child.jobfrequency.text()
+      //prf.jobIncome = child?.jobincome?.toInteger()
+      //prf.jobFrequency = child?.jobfrequency?.text()
       //prf.sportarten = []
       //athlet.sportarten.sportart.each {sportartid ->
       //  prf.sportarten.add(sportartid.text())

@@ -4,7 +4,7 @@ targetNamespace="http://www.w3schools.com"
 xmlns="http://www.w3schools.com"
 elementFormDefault="qualified">
 
-<xs:element name="child">
+<xs:element name="childProfile">
   <xs:complexType>
 	<xs:sequence>
 	  <xs:element name="firstname" type="xs:string"/>
@@ -12,7 +12,6 @@ elementFormDefault="qualified">
 	  <xs:element name="birthdate" type="xs:date"/>
 	  <xs:element name="gender" type="xs:integer"/>
 	  <xs:element name="job" type="xs:boolean"/>
-	  <xs:element name="jobtype" type="xs:integer"/>
 	  <xs:element name="jobincome" type="xs:integer"/>
 	  <xs:element name="jobfrequency" type="xs:string"/>
 	  <xs:element name="email" type="xs:string"/>

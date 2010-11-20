@@ -571,6 +571,9 @@ ul {
     #profile-navigation .icon-operator {
         background: url(../../images/icons/icon_operator.png) 0 50% no-repeat;
         padding-left: 20px; }
+    #profile-navigation .icon-export {
+        background: url(../../images/icons/icon_export.png) 0 50% no-repeat;
+        padding-left: 20px; }
 /* ----- ADMIN ----- */
 
 #adminArea {
@@ -1031,6 +1034,7 @@ div.actionlinks div.userlinks a {
     background: -moz-linear-gradient(-90deg,#009,#006);
     background: -webkit-gradient(linear, left top, left bottom, from(#009), to(#006));
     border: 1px solid #006;
+    border-radius: 5px;
     padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
@@ -1048,6 +1052,7 @@ div.actionlinks div.userlinks a {
     background: -moz-linear-gradient(-90deg,#090,#060);
     background: -webkit-gradient(linear, left top, left bottom, from(#090), to(#060));
     border: 1px solid #060;
+    border-radius: 5px;
     padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
@@ -1065,6 +1070,7 @@ div.actionlinks div.userlinks a {
     background: -moz-linear-gradient(-90deg,#999,#666);
     background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666));
     border: 1px solid #666;
+    border-radius: 5px;
     padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
@@ -1082,6 +1088,7 @@ div.actionlinks div.userlinks a {
     background: -moz-linear-gradient(-90deg,#900,#600);
     background: -webkit-gradient(linear, left top, left bottom, from(#900), to(#600));
     border: 1px solid #600;
+    border-radius: 5px;
     padding: 4px 5px;
     margin: 5px 5px 0 0;
     text-align: center;
@@ -1715,7 +1722,10 @@ h5 {
 .tabGreen {
     background: -moz-linear-gradient(-90deg,#CD0041,#AB0020);
     background: -webkit-gradient(linear, left top, left bottom, from(#CD0041), to(#AB0020));
-     }
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #bc1131;
+    margin-right: 1px; }
     .tabGreen h1 {
         color: #fff;
         margin: 0;
@@ -1729,7 +1739,10 @@ h5 {
 .tabGrey {
     background: -moz-linear-gradient(-90deg,#eee,#999);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
-     }
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 1px; }
     .tabGrey h1 {
         color: #000;
         margin: 0;
@@ -1738,7 +1751,7 @@ h5 {
         font-weight: normal;
         font-size: 14px; }
     .tabGrey .second {
-        padding: 4px 5px;
+        /*padding: 4px 5px;*/
     }
 
 .tabGrey, .tabGreen {
@@ -1747,18 +1760,23 @@ h5 {
    float: left;
 }
 
-.tabGrey a,  .tabGrey a:hover{
+.tabGrey a {
     color: #000;
     text-decoration: none;
+    display: block;
+    padding: 4px 5px;}
+}
 
-}
 .tabGrey:hover{
-    background: -moz-linear-gradient(90deg,#8adc2e,#9ede20);
-    background: -webkit-gradient(linear, left top, left bottom, from(#8adc2e), to(#9ede20));
+    background: -moz-linear-gradient(90deg,#9ede20,#8adc2e);
+    background: -webkit-gradient(linear, left top, left bottom, from(#9ede20), to(#8adc2e));
+    border: 1px solid #8adc2e;
+    color: #fff;
 }
+
 .tabGrey a:hover{
     color: #fff;
-    text-decoration: none;
+    display: block;
 }
 
 .clearFloat{

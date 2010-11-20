@@ -1,27 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<children>
-  <child>
+<childProfiles>
+  <childProfile>
     <firstname>vorname</firstname>
     <lastname>nachname</lastname>
-    <birthdate>1982-02-22</birthdate>
+    <birthDate>1982-02-22 00:00:00.0</birthDate>
     <gender>1</gender>
     <job>false</job>
-    <jobtype>1</jobtype>
     <jobincome>1000</jobincome>
     <jobfrequency>häufigkeit</jobfrequency>
     <email>testxml@xml.com</email>
     <status>false</status>
-  </child>
-  <child>
+  </childProfile>
+  <childProfile>
     <firstname>vorname2</firstname>
     <lastname>nachname2</lastname>
-    <birthdate>1982-02-22</birthdate>
+    <birthDate>1982-02-22 00:00:00.0</birthDate>
     <gender>2</gender>
     <job>true</job>
-    <jobtype>2</jobtype>
     <jobincome>500</jobincome>
     <jobfrequency>häufigkeit</jobfrequency>
     <email>testxml2@xml.com</email>
     <status>true</status>
-  </child>
-</children>
+  </childProfile>
+</childProfiles>
