@@ -1,10 +1,21 @@
 import at.openfactory.ep.EntityType
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
+import at.openfactory.ep.LinkHelperService
+import at.openfactory.ep.Tag
+import at.openfactory.ep.Profile
+import at.openfactory.ep.DefaultObjectService
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.ProfileHelperService
+//import at.openfactory.ep.attr.DynAttrSet
+//import at.openfactory.ep.attr.DynAttr
 
 import lernardo.Helper
 import lernardo.Evaluation
 import lernardo.Attendance
+import lernardo.Method
+import lernardo.Element
+import lernardo.Comment
 
 import posts.ArticlePost
 
@@ -12,30 +23,20 @@ import profiles.ClientProfile
 import profiles.FacilityProfile
 import profiles.OperatorProfile
 import profiles.EducatorProfile
-
 import profiles.UserProfile
-
-import grails.util.GrailsUtil
-import at.openfactory.ep.DefaultObjectService
-import at.openfactory.ep.EntityHelperService
-import at.openfactory.ep.ProfileHelperService
-import standard.FunctionService
-import standard.MetaDataService
 import profiles.ChildProfile
 import profiles.ParentProfile
 import profiles.PartnerProfile
-import lernardo.Method
-import lernardo.Element
-import at.openfactory.ep.Profile
-import lernardo.Comment
-import org.springframework.core.io.Resource
-import org.codehaus.groovy.grails.commons.ApplicationHolder
-import standard.InterfaceMaintenanceService
-import at.openfactory.ep.attr.DynAttrSet
-import at.openfactory.ep.attr.DynAttr
-import at.openfactory.ep.LinkHelperService
-import at.openfactory.ep.Tag
 import profiles.PateProfile
+
+import grails.util.GrailsUtil
+
+import standard.FunctionService
+import standard.MetaDataService
+import standard.InterfaceMaintenanceService
+
+//import org.springframework.core.io.Resource
+//import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -90,9 +91,9 @@ class BootStrap {
   }
 
   /*
-   * loads children into the database by importing an XML file
+   * loads children into the database by importing an XML file - NOT USED ATM
    */
-  void importChildren() {
+  /*void importChildren() {
     Resource children_xml = ApplicationHolder.application.parentContext.getResource("assets/import/children.xml")
     if (children_xml.exists()) {
       log.info "$children_xml.description found. bootstrapping children"
@@ -101,7 +102,7 @@ class BootStrap {
     else {
       log.warn("children input xml at $children_xml.description not found. no children are bootstrapped")
     }
-  }
+  }*/
 
   void createDefaultUsers() {
     log.info ("==> creating default users")
@@ -141,7 +142,7 @@ class BootStrap {
     }
 
     if (!Entity.findByName('danielszabo')) {
-      entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@lkult.at", "Daniel Szabo") {Entity ent ->
+      entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@uenterprise.de", "Daniel Szabo") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
         UserProfile prf = (UserProfile)ent.profile
