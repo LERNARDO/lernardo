@@ -3,43 +3,35 @@
 /* used for private layout */
 #doc4 {
     width: 1145px;
-    /*background: #fff;*/
-}
+    /*background: #fff;*/ }
 
 /* used for public layout */
 #doc5 {
     width: 1024px;
-    background: #fff;
-}
+    background: #fff; }
 
 strong {
-    font-weight: bold;
-}
+    font-weight: bold; }
 
 em {
-    font-style: italic;
-}
+    font-style: italic; }
 
 ul li {
     list-style-type: disc;
-    margin-left: 15px;
-}
+    margin-left: 15px; }
 
 ol li {
     list-style: decimal;
-    margin-left: 20px;
-}
+    margin-left: 20px; }
 
 .one {
     vertical-align: top;
     color: #444;
-    padding: 0 10px 10px 0;
-}
+    padding: 0 10px 10px 0; }
 
 .two {
     vertical-align: top;
-    color: #000;
-}
+    color: #000; }
 
 #bd {
     background: #fff;
@@ -59,7 +51,6 @@ ol li {
 
 .red {
     color: #d00; }
-}
 
 .green {
     color: #0d0; }
@@ -82,7 +73,7 @@ ol li {
 
 .bold {
     font-weight: bold;
-    padding-bottom: 3px;}
+    padding-bottom: 3px; }
 
 .titles {
     width: 140px; }
@@ -114,8 +105,7 @@ h1 {
 
 h1 .subheader {
     font-size: 12px;
-    margin-bottom: 15px;
-}
+    margin-bottom: 15px; }
 
 h2 {
     padding-bottom: 10px;
@@ -136,8 +126,7 @@ h4 {
 	font-weight:bold;
 	margin: 4px 0;
     border-bottom: 1px solid #aaa;
-    padding: 0 0 3px 0;
-}
+    padding: 0 0 3px 0; }
 
 h5 {
     margin: 0;
@@ -146,8 +135,7 @@ h5 {
 	font-weight:bold;
     border-bottom: 1px solid #aaa; /* #fff */
     padding: 4px;
-    background: #ccc;
-}
+    background: #ccc; }
 
 p {
     padding-bottom: 10px;
@@ -164,10 +152,8 @@ ul {
     border-top: 1px solid #999;
     margin-top: 5px;
     padding-top: 5px; }
-
-.element-box ul li {
-    list-style-type: disc;
-}
+    .element-box ul li {
+        list-style-type: disc; }
 
 .cal_navigation ul li {
     float: left;
@@ -331,7 +317,6 @@ ul {
         text-decoration: none; }
         #profile-navigation a:hover {
             color: #000; /*#46597B; */ }
-
     #profile-navigation .profile-profil {
         background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
         padding-left: 20px; }
@@ -575,8 +560,7 @@ table .label {
     padding-right: 10px; }
 
 label {
-    padding-right: 5px;
-}
+    padding-right: 5px; }
 
 #body-list {
     padding: 0; /*px 10px 10px 10px;*/
@@ -699,11 +683,10 @@ div.actionlinks div.userlinks a {
     color: green;
     font-size: 1em; }
     div.actionlinks div.userlinks a:hover {
-        text-decoration: underline }
+        text-decoration: underline; }
 
 .actionlink {
-    margin-bottom: 10px;
-}
+    margin-bottom: 10px; }
 
 #private-content input[type=submit], input[type=submit] {
     background: -moz-linear-gradient(-90deg,#090,#060);
@@ -797,8 +780,7 @@ div.actionlinks div.userlinks a {
         text-decoration: none; }
 
 .activity-list-head {
-    padding-top: 6px;
-}
+    padding-top: 6px; }
 
 #newTemplate {
     border: 1px solid #333;
@@ -816,154 +798,126 @@ div.actionlinks div.userlinks a {
 /* ----- MESSAGING -----  */
 
 table#msg-composer td {
-    padding: 3px 5px;
-}
+    padding: 3px 5px; }
 
 #inbox-message-overview.message-rows {
   border-collapse: collapse;
-  width: 100%;
-}
+  width: 100%; }
 
 .show-msg td.msg-title {
   font-weight: bold;
   font-size: 16px;
-  padding-top: 5px;
-}
+  padding-top: 5px; }
 
 .show-msg td.msg-name {
-  padding: 5px 0;
-}
+  padding: 5px 0; }
 
 .show-msg td.msg-content {
   border-top: 1px solid #999999;
   width: 645px;
   height: 100px;
   margin-top: 10px;
-  padding-top: 10px;
-}
+  padding-top: 10px; }
 
 #inbox-message-overview.message-rows tr td {
   border-bottom: 1px solid #eeeeee;
-  padding: 5px 5px;
-}
+  padding: 5px 5px; }
 
 .message-rows .checkbox-toggle {
-  width: 35px;
-}
+  width: 35px; }
 
 .message-rows .checkbox-toggle input{
-  margin-left: 8px;
-}
+  margin-left: 8px; }
 
 .message-rows .profile-pic {
   line-height: 1px;
-  width: 50px;
-}
+  width: 50px; }
 
 .message-rows td.name-date {
-  width: 150px;
-}
+  width: 150px; }
 
 .message-rows .name-date .name {
   width: 170px;
   display: block;
   white-space: nowrap;
   overflow: hidden;
-  margin-right: 20px;
-}
+  margin-right: 20px; }
 
 .message-rows .name-date .date {
   color: #777777;
   display: block;
   font-size: 11px;
-  padding: 1px 0 0;
-}
+  padding: 1px 0 0; }
 
 .message-rows .name-date .state {
   color: #AA0000;
   font-size: 11px;
   padding: 1px 0 4px;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .message-rows .msg-unread {
   background-color: #d5dce0;
-  /*width: 630px;*/
-}
+  /*width: 630px;*/ }
 
 .message-rows .msg-unread .subject{
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .message-rows .subject {
-  margin-right: 10px;
-}
+  margin-right: 10px; }
 
 .message-rows .subject .subject-text {
-  padding-left: 22px;
-}
+  padding-left: 22px; }
 
 .message-rows .delete-msg {
   width: 80px;
   font-size: 11px;
-  text-align: right;
-}
+  text-align: right; }
 
 .message-rows .delete-msg a {
-  margin-right: 8px;
-}
+  margin-right: 8px; }
 
 .info-msg-postbox {
   padding:5px;
   color: #606060;
-  text-align: left;
-}
+  text-align: left; }
 
 #inbox-footer {
   /*background: #eeeeee;*/
   margin-top: -1px;
   padding: 3px 0 2px;
-  height: 15px;
-}
+  height: 15px; }
 
 .pager-container {
   float: right;
   margin: 0 0;
   text-align: right;
   width: 200px;
-  padding-right: 15px;
-}
+  padding-right: 15px; }
 
 .pager-container .page-list li {
-  display: inline;
-}
+  display: inline; }
 
 #inbox-footer .pager-container .page-list a.current,
 #inbox-footer .pager-container .page-list a.current:hover {
   border-bottom:2px solid #89b7da;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 /* ----- MEMBERS ----- */
 
 .search-field {
-    margin-bottom: 15px;
-}
+    margin-bottom: 15px; }
 
 .member {
     padding: 5px 0;
     width: 270px;
     height: 50px;
-    float: left;
-}
+    float: left; }
 
 .member img {
-    margin-right: 10px;
-}
+    margin-right: 10px; }
 
 .member .member-info .member-name {
-    font-weight: bold;
-}
+    font-weight: bold; }
 
 /* ----- BUTTONS ----- */
 
@@ -1099,12 +1053,10 @@ table#msg-composer td {
 
 .email {
     background: #9c9;
-    padding: 4px;
-}
+    padding: 4px; }
 
 .name {
-	margin-bottom: 3px;
-}
+	margin-bottom: 3px; }
 
 #jobType {
 	width: 175px; }
@@ -1116,26 +1068,22 @@ table#msg-composer td {
 
 #body-list th {
         background: #ccc;
-        color: #333;
-	}
+        color: #333; }
 
 #body-list .odd {
         background: #fff; }
 
 .profile-group {
-    margin-top: 0;
-}
+    margin-top: 0; }
 
 /* overview screen */
 
 .overview {
-  padding: 0 10px;
-}
+  padding: 0 10px; }
 
 .overview .box:hover {
   border: 1px solid #bdbd9b;
-  background: #fff;
-}
+  background: #fff; }
 
 .drop-down-280 {
 	width: 280px; }
@@ -1178,15 +1126,15 @@ table#msg-composer td {
 #drop-down-220 {
 	width: 220px; }
 
-.detail{
+.detail {
 	float:left;
-	width:100px}
+	width:100px; }
 
-.gruppierung{
+.gruppierung {
 	width: 800px;
-	clear:both;}
+	clear:both; }
 
-.hinweis  {
+.hinweis {
     background: #ccc;
     padding: 4px 5px;
     color: #ccc;
@@ -1204,29 +1152,28 @@ table#msg-composer td {
 .prop li { list-style: none; }
 
 .max-textbox {
-	width: 790px;
-	}
+	width: 790px; }
+
 .zusatz {
     border: 1px solid #aaa; /*#fff;*/
     background-color: #eee;
-    margin-top: 12px;}
+    margin-top: 12px; }
 
 .zusatz-add {
-    padding: 6px 0 6px 6px;
-}
+    padding: 6px 0 6px 6px; }
+
 .zusatz-show {
     margin: 5px;
     /*background-color: #fff;
     margin: 6px;
     padding: 6px;
-    border: 1px solid #ccc;*/
-}
+    border: 1px solid #ccc;*/ }
+
 .zusatz-show ul {
-   padding: 0;
-}
+   padding: 0; }
+
 .zusatz-show li {
-    margin-left: 0;
-}
+    margin-left: 0; }
 
 .zusatz li { list-style: none; }
 .zusatz a { color:#333; }
@@ -1248,29 +1195,26 @@ table#msg-composer td {
       font-weight: bold;
       padding-bottom: 3px;
       margin-bottom: 6px;
-      text-align: left;
-    }
+      text-align: left; }
+
 .profile-box .second ul li{
       color: #000;
-      margin-bottom: 3px;}
+      margin-bottom: 3px; }
 
-.profile-box .second ul li a{
-      color: #000;
-     }
+.profile-box .second ul li a {
+      color: #000; }
 
 #body-list a {
-    color: #000;
-}
+    color: #000; }
+
 #body-list a:hover {
     color: #fff;
-    text-decoration: none !important;
-}
+    text-decoration: none !important; }
 
 .activityInstance-top{
     border: solid 1px #bbb;
     padding-left: 6px;
-    padding-top: 6px;
-}
+    padding-top: 6px; }
 
 .tabGrey {
     background: -moz-linear-gradient(-90deg,#eee,#999);
@@ -1287,14 +1231,12 @@ table#msg-composer td {
         font-weight: normal;
         font-size: 14px; }
     .tabGrey .second {
-        /*padding: 4px 5px;*/
-    }
+        /*padding: 4px 5px;*/ }
 
 .tabGrey, .tabGreen {
    width: 200px;
    /*position: absolute;*/
-   float: left;
-}
+   float: left; }
 
 .tabGrey a {
     color: #000;
@@ -1304,17 +1246,14 @@ table#msg-composer td {
 
 .tabGrey a:hover{
     color: #fff;
-    display: block;
-}
+    display: block; }
 
 .clearFloat{
-    clear:both;
-}
+    clear:both; }
 
 .long-field{
     width: 330px;
-    height: 80px;
-}
+    height: 80px; }
 
 /* TAGS */
 
@@ -1329,8 +1268,7 @@ table#msg-composer td {
         position: relative; }
 
 .tagbuttons {
-    font-size: 10px;
-}
+    font-size: 10px; }
 
 .aktiv_tab {
    color: #005500; }
@@ -1340,12 +1278,10 @@ table#msg-composer td {
 
 .passiv_tab {
    color: #555;
-   cursor: pointer;
-}
+   cursor: pointer; }
 
 .passiv_inhalt {
-    display: none;
-}
+    display: none; }
 
 .daybox {
     padding: 2px;
@@ -1363,15 +1299,13 @@ table#msg-composer td {
 
 .activebox {
     background: #373;
-    border: 1px solid #151;
-}
+    border: 1px solid #151; }
 
 .remoteresults {
     width: 794px;
     border: 1px solid #ccc;
     height: 208px;
-    overflow-y: scroll;
-}
+    overflow-y: scroll; }
 
 .remoteresult {
     border-bottom: 1px solid #9c9;
@@ -1389,8 +1323,7 @@ table#msg-composer td {
     margin: 10px 0 0 0;
     padding: 5px;
     background: #fff;
-    border: 1px solid #ccc;
-}
+    border: 1px solid #ccc; }
 
 .ui-timepicker-div dl{ text-align: left; }
 .ui-timepicker-div dl dt{ height: 25px; }
@@ -1409,8 +1342,7 @@ table#msg-composer td {
 
 .property {
     width: 400px;
-    float: left;
-}
+    float: left; }
 
 #routinedays {
     margin: 0;
@@ -1439,10 +1371,8 @@ table#msg-composer td {
 
 .routinebox {
     border-bottom: 1px solid #ccc;
-    padding: 5px 0;
-}
+    padding: 5px 0; }
 
 .helperbox {
     border-top: 1px solid #ccc;
-    padding-top: 5px;
-}
+    padding-top: 5px; }
