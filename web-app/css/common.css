@@ -104,14 +104,6 @@ a:hover {
     text-decoration:underline; }
 
 /* used for ajax element headers */
-h5 {
-    color: #444;
-    font-size: 18px;
-    font-weight: normal;
-    margin: 0.8em 0 0.3em;
-    padding: 5px;
-    background: #ccc; }
-
 h1 {
     color: #444;
     font-size: 20px;
@@ -119,6 +111,11 @@ h1 {
     margin: 0.8em 0 0.3em;
     padding-bottom: 10px;
     border-bottom: 1px dashed #ccc; }
+
+h1 .subheader {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
 
 h2 {
     padding-bottom: 10px;
@@ -133,9 +130,22 @@ h3 {
     padding-bottom: 10px;
     border-bottom: 1px dashed #ccc; }
 
-h1 .subheader {
-    font-size: 12px;
-    margin-bottom: 15px;
+h4 {
+	color: #003300;
+	font-size: 12px;
+	font-weight:bold;
+	margin: 4px 0;
+    border-bottom: 1px solid #aaa;
+    padding: 0 0 3px 0;
+}
+
+h5 {
+    margin-top: 0;
+    color: #003300;
+	font-size: 12px;
+	font-weight:bold;
+    border-bottom: 1px solid #aaa; /* #fff */
+    padding-bottom: 6px;
 }
 
 p {
@@ -409,51 +419,6 @@ ul {
         background: url(../images/icons/icon_export.png) 0 50% no-repeat;
         padding-left: 20px; }
 
-/* ----- ADMIN ----- */
-
-#adminArea {
-    text-align: left; }
-
-#adminArea h1 {
-    background: #f92;
-    border-bottom: 1px solid #000;
-    padding: 10px;
-    margin: 0;
-    color: #333; }
-
-#adminArea h3 {
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    background: #ee0;
-    font-weight: bold;
-    margin: 0;
-    padding: 5px 10px;
-    font-size: 13px; }
-
-#adminArea h2, #adminArea ul, #adminArea p {
-    padding: 10px; }
-
-#adminArea .table {
-    margin: 10px; }
-    #adminArea .table td {
-        padding: 4px;
-    }
-
-#adminArea .adminButton {
-    color: #f70; }
-
-#admin-content {
-    padding: 5px 10px 10px 10px;
-    margin: 10px;
-    color: #333; }
-    #admin-content h1 {
-        margin: 0;
-        padding: 0 0 15px 0;
-        color: #555; }
-
-#admin-navigation {
-    padding: 10px; }
-
 .imgmenu {
     background-position: right;
     height: 115px;
@@ -513,18 +478,15 @@ ul {
 /* ----- TABLES ----- */
 
 .listing {
-    width: 100%;
-}
-.listing tr {
-    border-bottom: 1px dotted #999;
-}
-.listing td {
-    padding: 4px;
-}
-.listing td.name {
-    width: 125px;
-    font-weight: bold;
-}
+    width: 100%; }
+    .listing tr {
+        border-bottom: 1px dotted #999; }
+    .listing td {
+        padding: 4px; }
+    .listing td.name {
+        width: 125px;
+        font-weight: bold; }
+
 .row-educator {
     background: #ececff; }
 
@@ -1010,42 +972,30 @@ table#msg-composer td {
     font-size:12px;
     margin:0 0 5px;
     padding:3px 5px;
-    background-color: #f0f0f0;
-}
-
-.nav-button:hover {
-    border:1px solid #666666;
-}
-
-.nav-button a {
-    text-decoration: none;
-    color: #666666;
-}
-
-.nav-button a:hover {
-    text-decoration: none;
-}
-
-.buttons .button a {
-  color: #000000 !important;
-  text-decoration: none;
-  font-size:12px;
-  border:1px solid #999999;
-  background-color: #f0f0f0;
-  padding:3px 5px;
-  cursor: pointer;
-}
-
-.buttons .button a:hover {
-  color: #000000 !important;
-  border:1px solid #000000;
-}
+    background-color: #f0f0f0; }
+    .nav-button:hover {
+        border:1px solid #666666; }
+    .nav-button a {
+        text-decoration: none;
+        color: #666666; }
+        .nav-button a:hover {
+            text-decoration: none; }
 
 .buttons {
     margin: 0;
     padding: 0;
-    padding-bottom: 5px;
-}
+    padding-bottom: 5px; }
+    .buttons .button a {
+      color: #000000 !important;
+      text-decoration: none;
+      font-size:12px;
+      border:1px solid #999999;
+      background-color: #f0f0f0;
+      padding:3px 5px;
+      cursor: pointer; }
+      .buttons .button a:hover {
+        color: #000000 !important;
+        border:1px solid #000000; }
 
 .clear {
     clear: both;
@@ -1064,8 +1014,7 @@ table#msg-composer td {
     padding: 5px;
     margin-bottom: 10px; }
     .comment .userpic {
-        margin-right: 5px;
-    }
+        margin-right: 5px; }
     .comment .infobar {
         border-bottom: 1px solid #ccc;
         padding-bottom: 4px; }
@@ -1081,23 +1030,21 @@ table#msg-composer td {
     text-align: center; }
 
 /* ----- ERRORS AND FLASH MSGS ----- */
-.error {
+/*.error {
   font-size: 150%;
   font-weight: bold;
-}
+}*/
 
 .errors {
-    color: #f00;
-}
+    color: #f00; }
+    .errors input, .errors textarea {
+        border:1px solid #ff6b22; }
 
 #errors {
     color: #f44;
     margin-bottom: 15px; }
     #errors ul li {
         list-style-type: disc; }
-
-.errors input, .errors textarea {
-    border:1px solid #ff6b22; }
 
 #flash-msg {
     padding: 5px 5px 8px 5px;
@@ -1187,15 +1134,6 @@ table#msg-composer td {
 .overview .box:hover {
   border: 1px solid #bdbd9b;
   background: #fff;
-}
-
-h4 {
-	color: #003300;
-	font-size: 12px;
-	font-weight:bold;
-	margin: 4px 0;
-    border-bottom: 1px solid #aaa;
-    padding: 0 0 3px 0;
 }
 
 .drop-down-280 {
@@ -1292,28 +1230,16 @@ h4 {
 .zusatz li { list-style: none; }
 .zusatz a { color:#333; }
 
-h5 {
-    margin-top: 0;
-    color: #003300;
-	font-size: 12px;
-	font-weight:bold;
-    border-bottom: 1px solid #aaa; /* #fff */
-    padding-bottom: 6px;
-}
-
 #profile-pic .name {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
-    }
+    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
 #profile-pic .type {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
-    }
+    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
 
 .profile-group {
-     background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
-        }
+     background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
     .profile-group:hover {
-        background: -moz-linear-gradient(-90deg,#009900,#005500) #009900;
-        }
+        background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
+
 .profile-box .second .header {
       border-bottom: 1px solid #7b7b7b;
       color: #005500;
@@ -1396,13 +1322,10 @@ h5 {
     background: #eee;
     margin-right: 1px;
     color: rgb(99,129,71);
-    text-decoration: none;
-}
-
-.atag img {
-    top: 2px;
-    position: relative;
-}
+    text-decoration: none; }
+    .atag img {
+        top: 2px;
+        position: relative; }
 
 .tagbuttons {
     font-size: 10px;
@@ -1429,16 +1352,14 @@ h5 {
     background: #8c8;
     float: left;
     text-align: center;
-    margin-right: 2px;
-}
-.daybox:hover {
-    background: #6a6;
-    border: 1px solid #484;
-}
-.daybox a {
-    color: #fff;
-    text-decoration: none;
-}
+    margin-right: 2px; }
+    .daybox:hover {
+        background: #6a6;
+        border: 1px solid #484; }
+    .daybox a {
+        color: #fff;
+        text-decoration: none; }
+
 .activebox {
     background: #373;
     border: 1px solid #151;
@@ -1449,21 +1370,19 @@ h5 {
     border: 1px solid #ccc;
     height: 208px;
     overflow-y: scroll;
-
 }
+
 .remoteresult {
     border-bottom: 1px solid #9c9;
     border-right: 1px solid #9c9;
     background: #beb;
     padding: 2px 4px;
     float: left;
-    width: 250px;
-}
-.remoteresult:hover {
-    background: #9c9;
-    border-bottom: 1px solid #7a7;
-    border-right: 1px solid #7a7;
-}
+    width: 250px; }
+    .remoteresult:hover {
+        background: #9c9;
+        border-bottom: 1px solid #7a7;
+        border-right: 1px solid #7a7; }
 
 #execute-result {
     margin: 10px 0 0 0;
@@ -1477,21 +1396,15 @@ h5 {
 .ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
 
 .linkstabs {
-    margin: 5px;
-}
-
-.linkstabs a {
-    text-decoration: none;
-}
+    margin: 5px; }
+    .linkstabs a {
+        text-decoration: none; }
 
 .linktab {
     padding: 3px 5px;
-    background: #8b8;
-}
-
-.linktab:hover {
-    background: #ada;
-}
+    background: #8b8; }
+    .linktab:hover {
+        background: #ada; }
 
 .property {
     width: 400px;
@@ -1502,36 +1415,26 @@ h5 {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #aaa;
-    height: 24px;
-}
-
-#routinedays ul li {
-    list-style-type: none;
-    float: left;
-    border: 1px solid #aaa;
-    padding: 2px 4px;
-    background: #ccc;
-    margin: 0 10px 0 0;
-}
-
-#routinedays ul li.active {
-    border: 1px solid #888;
-    background: #aaa;
-}
-
-#routinedays ul li a {
-    text-decoration: none;
-    color: #fff;
-}
+    height: 24px; }
+    #routinedays ul li {
+        list-style-type: none;
+        float: left;
+        border: 1px solid #aaa;
+        padding: 2px 4px;
+        background: #ccc;
+        margin: 0 10px 0 0; }
+    #routinedays ul li.active {
+        border: 1px solid #888;
+        background: #aaa; }
+    #routinedays ul li a {
+        text-decoration: none;
+        color: #fff; }
 
 #newroutine {
     border: 1px solid #aaa;
-    padding: 5px;
-}
-
-#newroutine table {
-    width: 100%;
-}
+    padding: 5px; }
+    #newroutine table {
+        width: 100%; }
 
 .routinebox {
     border-bottom: 1px solid #ccc;
