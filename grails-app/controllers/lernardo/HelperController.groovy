@@ -133,8 +133,7 @@ class HelperController {
 
     List receivers = []
     types.each { type ->
-      List bla = Entity.findAllByType(EntityType.findByName(type))
-      bla.each {receivers << it}
+      receivers.addAll(Entity.findAllByType(EntityType.findByName(type)))
     }
 
     receivers.each {

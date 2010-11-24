@@ -48,19 +48,13 @@ class EvaluationController {
     // for each facility get the clients in that facility
     List clients = []
     facilities.each { facility ->
-        def temp = functionService.findAllByLink(null, facility as Entity, metaDataService.ltGroupMemberClient)
-        temp.each {
-          clients << it
-        }
-     }
+      clients.addAll(functionService.findAllByLink(null, facility as Entity, metaDataService.ltGroupMemberClient))
+    }
 
     // get all evaluations for all clients
     List evaluations = []
     clients.each {
-      def temp = Evaluation.findAllByOwner(it)
-      temp.each {
-        evaluations << it
-      }
+      evaluations.addAll(Evaluation.findAllByOwner(it))
     }
 
     return [evaluationInstanceList: evaluations,

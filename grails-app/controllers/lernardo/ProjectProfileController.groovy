@@ -320,8 +320,7 @@ class ProjectProfileController {
         // find all groups linked to all units
         List groups = []
         units.each {
-          List result = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnit)
-          result.each {groups << it}
+          groups.addAll(functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnit))
         }
 
         // calculate total duration of all these groups
