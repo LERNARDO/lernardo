@@ -9,12 +9,17 @@ import lernardo.Method
 import lernardo.Element
 import at.openfactory.ep.Profile
 import lernardo.Publication
+import org.springframework.web.multipart.MultipartFile
+import at.openfactory.ep.AssetService
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import org.springframework.core.io.Resource
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
   FunctionService functionService
   MetaDataService metaDataService
   ProfileHelperService profileHelperService
+  AssetService assetService
 
   def index = {
     redirect action: 'list', params: params
@@ -142,6 +147,9 @@ class TemplateProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
+      // TODO: find out why this doesn't work properly
+      //File file = ApplicationHolder.application.parentContext.getResource("images/sueninos/static/entities/Chrysanthemum.jpg").getFile()
+      //assetService.storeAsset(entity, "profile", "image/jpeg", file.getBytes())
 
       functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)

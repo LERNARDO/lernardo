@@ -63,8 +63,7 @@ secmgr {
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
+    // Example of changing the log pattern for the default console appender:
     //
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
@@ -75,7 +74,22 @@ log4j = {
      console(
              name: 'stdout',
              threshold: org.apache.log4j.Level.DEBUG,
-             layout: pattern(conversionPattern: "${appName}%d{HH:mm:ss} [%5p] %c %m%n"))
+             layout: pattern(conversionPattern: "${appName} - %d{HH:mm:ss} - [%p] - %c -> %m%n"))
+
+      // REFERENCE: http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html
+
+      // each conversion pattern starts with a percent sign (%)
+      // and is followed by optional format modifiers and a conversion character
+
+      // used format modifiers:
+      // none
+
+      // used conversion characters:
+      // %d - used to output the date of the logging event
+      // %p - used to output the priority of the logging event
+      // %c - outputs the category of the logging event
+      // %m - outputs the application supplied message
+      // %n - line separator
    }
 
    root {
@@ -96,8 +110,8 @@ log4j = {
 
     warn   'org.mortbay.log'*/
 
-  info   'grails.app'
-  info   'grails.app.tagLib'
+  info  'grails.app'
+  info  'grails.app.tagLib'
   info  'grails.app.bootstrap'
   info  'grails.app.dataSource'
   info  'grails.app.controller'

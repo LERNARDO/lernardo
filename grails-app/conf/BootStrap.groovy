@@ -105,7 +105,7 @@ class BootStrap {
   }*/
 
   void createDefaultUsers() {
-    log.info ("==> creating default users")
+    log.info ("creating default users")
     EntityType etUser = metaDataService.etUser
 
     // system admin users
@@ -154,7 +154,7 @@ class BootStrap {
   }
 
   void createDefaultEducators() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy educators")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy educators")
     EntityType etEducator = metaDataService.etEducator
 
     Random generator = new Random()
@@ -197,7 +197,7 @@ class BootStrap {
   }
 
   void createDefaultParents() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy parents")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy parents")
     EntityType etParent = metaDataService.etParent
 
     Random generator = new Random()
@@ -233,7 +233,7 @@ class BootStrap {
   }
 
   void createDefaultClients() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy clients")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy clients")
     EntityType etClient = metaDataService.etClient
 
     Random generator = new Random()
@@ -278,7 +278,7 @@ class BootStrap {
   }
 
   void createDefaultChildren() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy children")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy children")
     EntityType etChild = metaDataService.etChild
 
     Random generator = new Random()
@@ -306,7 +306,7 @@ class BootStrap {
   }
 
   void createDefaultOperator() {
-    log.info ("==> creating default operator")
+    log.info ("creating default operator")
     EntityType etOperator = metaDataService.etOperator
 
     if (!Entity.findByName('dummyOperator')) {
@@ -324,7 +324,7 @@ class BootStrap {
   }
 
   void createDefaultPartner() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy partners")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy partners")
     EntityType etPartner = metaDataService.etPartner
 
     Random generator = new Random()
@@ -348,7 +348,7 @@ class BootStrap {
   }
 
   void createDefaultPates() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy pates")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy pates")
     EntityType etPate = metaDataService.etPate
 
     Random generator = new Random()
@@ -372,7 +372,7 @@ class BootStrap {
   }
 
   void createDefaultFacilities () {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy facilities")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy facilities")
     EntityType etFacility = metaDataService.etFacility
 
     for ( i in 1..grailsApplication.config.dummies ) {
@@ -392,7 +392,7 @@ class BootStrap {
   }
 
   void createDefaultLinks () {
-    log.info ("==> creating default links")
+    log.info ("creating default links")
 
     def admin = Entity.findByName ('lernardoadmin')
     def alex = Entity.findByName ('alexanderzeillinger')
@@ -422,7 +422,7 @@ class BootStrap {
   }
 
   void createDefaultActivityTemplates() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy templates")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy templates")
     EntityType etTemplate = metaDataService.etTemplate
 
     Random generator = new Random()
@@ -452,7 +452,7 @@ class BootStrap {
   }
 
   void createDefaultComments() {
-    log.info ("==> creating default comments")
+    log.info ("creating default comments")
 
     Comment comment = new Comment(content: 'DummyComment', creator: Entity.findByName('alexanderzeillinger').id).save()
     Entity entity = Entity.findByName("dummyTemplate1")
@@ -461,7 +461,7 @@ class BootStrap {
   }
 
   void createDefaultResources() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy resources")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy resources")
     EntityType etResource = metaDataService.etResource
 
     Random generator = new Random()
@@ -486,7 +486,7 @@ class BootStrap {
   }
 
   void createDefaultActivities() {
-    log.info ("==> creating default activities")
+    log.info ("creating default activities")
 
     EntityType etActivity = metaDataService.etActivity
 
@@ -508,7 +508,7 @@ class BootStrap {
   }
 
   void createDefaultPosts() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy posts")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy posts")
 
     for ( i in 1..grailsApplication.config.dummies ) {
       new ArticlePost(title: 'DummyTitle' + i,
@@ -520,13 +520,13 @@ class BootStrap {
   }
 
   void createDefaultEvents() {
-    log.info ("==> creating default events")
+    log.info ("creating default events")
 
     functionService.createEvent(Entity.findByName('lernardoadmin'), 'Elternsprechtag').save()
   }
 
   void createDefaultHelpers() {
-    log.info ("==> creating default helper")
+    log.info ("creating default helper")
 
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
                content: '''Um eine Aktivitätsvorlage zu erstellen klicke zuerst auf "Aktivätsvorlagen" in der orangenen
@@ -577,7 +577,7 @@ class BootStrap {
   }
 
   void createDefaultEvaluations() {
-    log.info ("==> creating default evaluations")
+    log.info ("creating default evaluations")
 
     new Evaluation(owner: Entity.findByName('keanozeillinger'),
                    description: 'Keano zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
@@ -590,7 +590,7 @@ class BootStrap {
   }
 
   void createDefaultAttendances() {
-    log.info ("==> creating default attendances")
+    log.info ("creating default attendances")
 
     new Attendance(client: Entity.findByName('kirazeillinger'),
                    didAttend: true,
@@ -603,7 +603,7 @@ class BootStrap {
   }
 
   void createDefaultFamilies() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy families")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy families")
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
     Random generator = new Random()
@@ -630,7 +630,7 @@ class BootStrap {
   }
 
   void createDefaultColonias() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy colonias")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy colonias")
     EntityType etGroupColony = metaDataService.etGroupColony
 
     for ( i in 1..grailsApplication.config.dummies ) {
@@ -651,7 +651,7 @@ class BootStrap {
   }
 
   void createDefaultMethods() {
-    log.info ("==> creating 2 dummy methods")
+    log.info ("creating 2 dummy methods")
 
     for ( i in 1..2 ) {
       if (!Method.findByName("dummyMethod" + i)) {
@@ -668,7 +668,7 @@ class BootStrap {
   }
 
   void createDefaultClientGroups() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy client groups")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy client groups")
     EntityType etGroupClient = metaDataService.etGroupClient
 
     Random generator = new Random()
@@ -703,7 +703,7 @@ class BootStrap {
   }
 
   void createDefaultActivityTemplateGroups() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy activity template groups")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy activity template groups")
     EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
 
     Random generator = new Random()
@@ -743,7 +743,7 @@ class BootStrap {
   }
 
   void createDefaultThemes() {
-    log.info ("==> creating default themes")
+    log.info ("creating default themes")
 
     EntityType etTheme = metaDataService.etTheme
 
@@ -797,7 +797,7 @@ class BootStrap {
   }
 
   void createDefaultTags () {
-    log.info ("==> creating default tags")
+    log.info ("creating default tags")
 
     if (!Tag.findByName('abwesend'))
       new Tag(name: 'abwesend').save()
