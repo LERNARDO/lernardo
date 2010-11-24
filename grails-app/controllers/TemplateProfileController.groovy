@@ -49,7 +49,7 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     template.profile.properties = params
 
-    if (!template.hasErrors() && template.save()) {
+    if (!template.hasErrors() && !template.profile.hasErrors() && template.save() && template.profile.save()) {
       flash.message = message(code: "template.updated", args: [template.profile.fullName])
       redirect action: 'show', id: template.id
     }
