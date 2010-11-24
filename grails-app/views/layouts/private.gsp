@@ -107,7 +107,7 @@ future HTML5 doctype
         <div id="main" class="yui-b">
           <g:if test="${flash.message}">
             <div id="flash-msg">
-              ${flash.message}
+              <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
             </div>
           </g:if>
           <div id="private-content">

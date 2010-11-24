@@ -1100,18 +1100,19 @@ table#msg-composer td {
     border:1px solid #ff6b22; }
 
 #flash-msg {
-    padding: 10px;
+    padding: 5px 5px 8px 5px;
+    position: absolute;
+    top: 15px;
     text-align: center;
-    color: #606060;
-    margin: 10px 10px;
-    border: 1px solid #ff9933;
-    background-color:#fff4f3; }
+    color: #fff;
+    /*margin: 0 auto;*/
+    border: 1px solid #4a4;
+    background-color: #6c6;
+    border-radius: 5px; }
 
 .info-msg {
     background-color:#efefef;
-    border-color:#cccccc;
-    border-style:solid;
-    border-width:1px;
+    border: 1px solid #ccc;
     padding: 5px 6px;
     color: #606060;
     margin-top: 10px; }
@@ -1298,13 +1299,6 @@ h5 {
 	font-weight:bold;
     border-bottom: 1px solid #aaa; /* #fff */
     padding-bottom: 6px;
-}
-
-#flash-msg {
-    background-color: #eee;
-    border: 1px dotted #ff9933;
-    color: #333;
-    text-align: left;
 }
 
 #profile-pic .name {
