@@ -172,6 +172,9 @@ future HTML5 doctype
                         <app:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
                           <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                         </app:accessCheck>
+                        <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
+                          <li class="icon-admin"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+                        </app:accessCheck>
                       </app:accessCheck>
 
                       <app:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">

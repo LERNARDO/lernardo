@@ -2,9 +2,13 @@ package lernardo
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
+import standard.FunctionService
+import standard.MetaDataService
 
 class EvaluationController {
   EntityHelperService entityHelperService
+  FunctionService functionService
+  MetaDataService metaDataService
 
   def index = {
     redirect action: "list", params: params
@@ -13,6 +17,7 @@ class EvaluationController {
   // the delete, save and update actions only accept POST requests
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
+  // shows all evaluations of a given client
   def list = {
     params.max = Math.min(params.max ? params.int('max') : 10, 100)
     Entity entity = Entity.get(params.id)
@@ -21,6 +26,47 @@ class EvaluationController {
     return [evaluationInstanceList: evaluations,
             evaluationInstanceTotal: evaluations.size(),
             entity: entity]
+  }
+
+  // shows all evaluations made by a given educator
+  def myevaluations = {
+    Entity entity = Entity.get(params.id)
+    List evaluations = Evaluation.findAllByWriter(entity)
+
+    return [evaluationInstanceList: evaluations,
+            evaluationInstanceTotal: evaluations.size(),
+            entity: entity]
+  }
+
+  // show all evaluations of clients linked to a given educator
+  def interestingevaluations = {
+    Entity entity = Entity.get(params.id)
+
+    // first get all facilities the educator is linked with
+    List facilities = functionService.findAllByLink(entity, null, metaDataService.ltWorking)
+
+    // for each facility get the clients in that facility
+    List clients = []
+    facilities.each { facility ->
+        def temp = functionService.findAllByLink(null, facility as Entity, metaDataService.ltGroupMemberClient)
+        temp.each {
+          clients << it
+        }
+     }
+
+    // get all evaluations for all clients
+    List evaluations = []
+    clients.each {
+      def temp = Evaluation.findAllByOwner(it)
+      temp.each {
+        evaluations << it
+      }
+    }
+
+    return [evaluationInstanceList: evaluations,
+        evaluationInstanceTotal: evaluations.size(),
+        entity: entity]
+
   }
 
   def show = {
