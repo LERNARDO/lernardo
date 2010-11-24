@@ -140,12 +140,13 @@ h4 {
 }
 
 h5 {
-    margin-top: 0;
+    margin: 0;
     color: #003300;
 	font-size: 12px;
 	font-weight:bold;
     border-bottom: 1px solid #aaa; /* #fff */
-    padding-bottom: 6px;
+    padding: 4px;
+    background: #ccc;
 }
 
 p {
