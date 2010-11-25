@@ -751,7 +751,6 @@ class BootStrap {
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Thema 1"
       ent.profile.description = ""
-      ent.profile.type = "Thema"
       ent.profile.startDate = new Date(2010-1900,01,01)
       ent.profile.endDate = new Date(2010-1900,11,01)
     }
@@ -763,7 +762,6 @@ class BootStrap {
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Subthema 1"
       ent.profile.description = ""
-      ent.profile.type = "Subthema"
       ent.profile.startDate = new Date(2010-1900,05,01)
       ent.profile.endDate = new Date(2010-1900,07,01)
     }

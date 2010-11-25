@@ -37,16 +37,16 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="theme.profile.type"/></td>
+            <td valign="top" class="name">Übergeordnetes Thema</td>
             <td colspan="2" valign="top" class="name"><g:message code="facility"/></td>
           </tr>
 
           <tr class="prop">
             <td valign="top" class="value">
-              <g:select class="${hasErrors(bean: theme, field: 'profile.type', 'errors')} drop-down-280" from="${['Übergeordnetes Thema','Subthema']}" name="type" value="${fieldValue(bean: theme, field: 'profile.type')}"/>
+              <g:select class="drop-down-280" from="${allThemes}" name="parenttheme" optionKey="id" optionValue="profile" noSelection="[null:'Keines']"/>
             </td>
             <td colspan="2" valign="top" class="value">
-              <g:select from="${allFacilities}" class="drop-down-220" name="facility" optionKey="id" optionValue="profile" value=""/>
+              <g:select class="drop-down-220" from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
             </td>
           </tr>
 

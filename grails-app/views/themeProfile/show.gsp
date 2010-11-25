@@ -34,13 +34,18 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="theme.profile.type"/></td>
+          <td valign="top" class="name-show">Übergeordnetes Thema</td>
           <td colspan="2" valign="top" class="name-show"><g:message code="facility"/></td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="value-show">
-            ${fieldValue(bean: theme, field: 'profile.type')}
+            <g:if test="${parenttheme}">
+              <g:link controller="themeProfile" action="show" id="${parenttheme.id}" params="[entity: parenttheme.id]">${parenttheme.profile.fullName}</g:link>
+            </g:if>
+            <g:else>
+              <span class="italic">Keinem übergeordneten Thema zugeordnet!</span>
+            </g:else>
           </td>
           <td colspan="2" valign="top" class="value-show">
             <g:link controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link>
@@ -69,7 +74,7 @@
       <div class="spacer"></div>
     </div>
 
-    <g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
+    %{--<g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
       <div class="zusatz">
         <h5>Subthemen <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a onclick="toggle('#subthemes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Subthema hinzufügen"/></a></app:accessCheck></h5>
         <div class="zusatz-add" id="subthemes" style="display:none">
@@ -84,25 +89,23 @@
           <g:render template="subthemes" model="[subthemes: subthemes, theme: theme]"/>
         </div>
       </div>
-    </g:if>
+    </g:if>--}%
 
-    <g:if test="${theme.profile.type == 'Subthema'}">
-      <div class="zusatz">
-        <h5>Projekte <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte hinzufügen"/></a></app:isMeOrAdmin></h5>
-        <div class="zusatz-add" id="projects" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2')">
-            <g:select name="project" from="${allProjects}" optionKey="id" optionValue="profile"/>
-            <div class="spacer"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
-          </g:formRemote>
-        </div>
-        <div class="zusatz-show" id="projects2">
-          <g:render template="projects" model="[projects: projects, theme: theme]"/>
-        </div>
+    <div class="zusatz">
+      <h5>Projekte <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="projects" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2')">
+          <g:select name="project" from="${allProjects}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
       </div>
-    </g:if>
+      <div class="zusatz-show" id="projects2">
+        <g:render template="projects" model="[projects: projects, theme: theme]"/>
+      </div>
+    </div>
 
   </div>
 </div>

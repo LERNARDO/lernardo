@@ -57,30 +57,34 @@ class ThemeProfileController {
       redirect(action: list)
     }
     else {
-      def c = Entity.createCriteria()
+      /*def c = Entity.createCriteria()
       def allSubthemes = c.list {
         eq("type", metaDataService.etTheme)
         profile {
           eq("type", "Subthema")
           //eq('type', metaDataService.ltSubTheme)  //hf ?
         }
-      }
+      }*/
       // find all subthemes of this theme
-      List subthemes = functionService.findAllByLink(null, theme, metaDataService.ltSubTheme)
+      //List subthemes = functionService.findAllByLink(null, theme, metaDataService.ltSubTheme)
 
-      def allProjects = Entity.findAllByType(metaDataService.etProject)
+      //def allProjects = Entity.findAllByType(metaDataService.etProject)
       // find all projects linked to this theme
-      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+      //List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 
       // find facility the theme is linked to
       Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
+      // find parent theme the theme is linked to if any
+      Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
+
       [theme: theme,
-              allSubthemes: allSubthemes,
+              /*allSubthemes: allSubthemes,
               subthemes: subthemes,
               allProjects: allProjects,
-              projects: projects,
-              facility: facility]
+              projects: projects,*/
+              facility: facility,
+              parenttheme: parenttheme]
     }
   }
 
@@ -113,7 +117,15 @@ class ThemeProfileController {
       redirect action: 'list'
     }
     else {
-      [theme: theme, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+
+      List allThemes = Entity.findAllByType(metaDataService.etTheme)
+      allThemes.remove(theme)
+
+      [theme: theme,
+       allFacilities: Entity.findAllByType(metaDataService.etFacility),
+       allThemes: allThemes,
+       parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme),
+       facility: functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)]
     }
   }
 
@@ -124,22 +136,30 @@ class ThemeProfileController {
 
     if (!theme.profile.hasErrors() && theme.profile.save()) {
 
-      // delete current link
+      // delete current link to facility
       Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)?.delete()
 
       // link theme to facility
-      new Link(source: theme, target: Entity.get(params.facility), type: metaDataService.ltThemeOfFacility).save()
+      functionService.linkEntities(theme.id.toString(), params.facility, metaDataService.ltThemeOfFacility)
+
+      // delete current link to parent theme if any
+      Link.findBySourceAndType(theme, metaDataService.ltSubTheme)?.delete()
+
+      // link theme to new parent if any
+      if (params.parenttheme != "null")
+        functionService.linkEntities(theme.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
       flash.message = message(code: "theme.updated", args: [theme.profile.fullName])
       redirect action: 'show', id: theme.id
     }
     else {
-      render view: 'edit', model: [theme: theme, allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+      render view: 'edit', model: [theme: theme, allFacilities: Entity.findAllByType(metaDataService.etFacility), parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme)]
     }
   }
 
   def create = {
-    return [allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+    return [allFacilities: Entity.findAllByType(metaDataService.etFacility),
+            allThemes: Entity.findAllByType(metaDataService.etTheme)]
   }
 
   def save = {
@@ -155,6 +175,10 @@ class ThemeProfileController {
 
       // link theme to facility
       new Link(source: entity, target: Entity.get(params.facility), type: metaDataService.ltThemeOfFacility).save()
+
+      // link theme to parent theme if one was selected
+      if (params.parenttheme)
+        functionService.linkEntities(entity.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
       functionService.createEvent(currentEntity, 'Du hast das Thema <a href="' + createLink(controller: 'themeProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
@@ -172,7 +196,7 @@ class ThemeProfileController {
 
   }
 
-  def addSubTheme = {
+  /*def addSubTheme = {
     def linking = functionService.linkEntities(params.subtheme, params.id, metaDataService.ltSubTheme)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
@@ -182,7 +206,7 @@ class ThemeProfileController {
   def removeSubTheme = {
     def breaking = functionService.breakEntities(params.subtheme, params.id, metaDataService.ltSubTheme)
     render template: 'subthemes', model: [subthemes: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
-  }
+  }*/
 
   def addProject = {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)

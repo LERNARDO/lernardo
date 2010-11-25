@@ -3,11 +3,10 @@ package lernardo
 import at.openfactory.ep.Profile
 
 class ThemeProfile extends Profile {
-   
+
     Date startDate
     Date endDate
     String description
-    String type
 
     Date dateCreated
 
