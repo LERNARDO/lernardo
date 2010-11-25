@@ -74,23 +74,6 @@
       <div class="spacer"></div>
     </div>
 
-    %{--<g:if test="${theme.profile.type == 'Übergeordnetes Thema'}">
-      <div class="zusatz">
-        <h5>Subthemen <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false"><a onclick="toggle('#subthemes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Subthema hinzufügen"/></a></app:accessCheck></h5>
-        <div class="zusatz-add" id="subthemes" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addSubTheme', id: theme.id]" update="subthemes2" before="showspinner('#subthemes2')">
-            <g:select name="subtheme" from="${allSubthemes}" optionKey="id" optionValue="profile"/>
-            <div class="spacer"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
-          </g:formRemote>
-        </div>
-        <div class="zusatz-show" id="subthemes2">
-          <g:render template="subthemes" model="[subthemes: subthemes, theme: theme]"/>
-        </div>
-      </div>
-    </g:if>--}%
-
     <div class="zusatz">
       <h5>Projekte <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></app:isMeOrAdmin></h5>
@@ -104,6 +87,22 @@
       </div>
       <div class="zusatz-show" id="projects2">
         <g:render template="projects" model="[projects: projects, theme: theme]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
+      <h5>Aktivitätsblöcke <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#activitygroups');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></app:isMeOrAdmin></h5>
+      <div class="zusatz-add" id="activitygroups" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addActivityGroup', id: theme.id]" update="activitygroups2" before="showspinner('#activitygroups2')">
+          <g:select name="activitygroup" from="${allActivityGroups}" optionKey="id" optionValue="profile"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="activitygroups2">
+        <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme]"/>
       </div>
     </div>
 

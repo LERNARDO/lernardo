@@ -22,4 +22,8 @@ class GroupActivityProfile extends Profile {
       educationalObjectiveText (blank: true, maxSize: 2000)
     }
 
+    String toString(){
+      return "${fullName}"
+    }
+
 }

@@ -116,6 +116,7 @@ class MetaDataService {
   static final String LT_GROUP_MEMBER_PARTNER = "Gruppenmitglied Partner"
   static final String LT_GROUP_MEMBER_FACILITY = "Gruppenmitglied Einrichtung"
   static final String LT_GROUP_MEMBER_CLIENT_GROUP = "Gruppenmitglied Betreutengruppe"
+  static final String LT_GROUP_MEMBER_ACTIVITY_GROUP = "Gruppenmitglied Aktivitätsblock"
   static final String LT_GROUP_MEMBER_SUBSTITUTE = "Gruppenmitglied Supplierung"
   static final String LT_CREATOR = "Ersteller"
   static final String LT_EDITOR = "Bearbeiter"
@@ -228,6 +229,7 @@ class MetaDataService {
     getLtGroupMemberPartner()
     getLtGroupMemberFacility()
     getLtGroupMemberClientGroup()
+    getLtGroupMemberActivityGroup()
     getLtGroupMemberSubstitute()
     getLtCreator()
     getLtEditor()
@@ -344,6 +346,7 @@ class MetaDataService {
   LinkType getLtGroupMemberPartner()     {defaultObjectService.openLT (LT_GROUP_MEMBER_PARTNER, lstOther) }
   LinkType getLtGroupMemberFacility()    {defaultObjectService.openLT (LT_GROUP_MEMBER_FACILITY, lstOther) }
   LinkType getLtGroupMemberClientGroup() {defaultObjectService.openLT (LT_GROUP_MEMBER_CLIENT_GROUP, lstOther) }
+  LinkType getLtGroupMemberActivityGroup() {defaultObjectService.openLT (LT_GROUP_MEMBER_ACTIVITY_GROUP, lstOther) }
   LinkType getLtGroupMemberSubstitute()  {defaultObjectService.openLT (LT_GROUP_MEMBER_SUBSTITUTE, lstOther) }
   LinkType getLtCreator()                {defaultObjectService.openLT (LT_CREATOR, lstOther) }
   LinkType getLtEditor()                 {defaultObjectService.openLT (LT_EDITOR, lstOther) }

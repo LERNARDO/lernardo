@@ -67,32 +67,27 @@ class ThemeProfileController {
       redirect(action: list)
     }
     else {
-      /*def c = Entity.createCriteria()
-      def allSubthemes = c.list {
-        eq("type", metaDataService.etTheme)
-        profile {
-          eq("type", "Subthema")
-          //eq('type', metaDataService.ltSubTheme)  //hf ?
-        }
-      }*/
-      // find all subthemes of this theme
-      //List subthemes = functionService.findAllByLink(null, theme, metaDataService.ltSubTheme)
-
-      //def allProjects = Entity.findAllByType(metaDataService.etProject)
+      def allProjects = Entity.findAllByType(metaDataService.etProject)
       // find all projects linked to this theme
-      //List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+
+      def allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity)
+      // find all activity groups linked to this theme
+      List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
 
       // find facility the theme is linked to
-      Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
+      Entity facility = functionService.findByLink(theme, null, metaDataService.ltGroupMember)
 
       // find parent theme the theme is linked to if any
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
       [theme: theme,
               /*allSubthemes: allSubthemes,
-              subthemes: subthemes,
+              subthemes: subthemes,*/
               allProjects: allProjects,
-              projects: projects,*/
+              projects: projects,
+              allActivityGroups: allActivityGroups,
+              activitygroups: activitygroups,
               facility: facility,
               parenttheme: parenttheme]
     }
@@ -206,18 +201,6 @@ class ThemeProfileController {
 
   }
 
-  /*def addSubTheme = {
-    def linking = functionService.linkEntities(params.subtheme, params.id, metaDataService.ltSubTheme)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'subthemes', model: [subthemes: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
-  }
-
-  def removeSubTheme = {
-    def breaking = functionService.breakEntities(params.subtheme, params.id, metaDataService.ltSubTheme)
-    render template: 'subthemes', model: [subthemes: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
-  }*/
-
   def addProject = {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
@@ -228,5 +211,17 @@ class ThemeProfileController {
   def removeProject = {
     def breaking = functionService.breakEntities(params.project, params.id, metaDataService.ltGroupMember)
     render template: 'projects', model: [projects: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def addActivityGroup = {
+    def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'activitygroups', model: [activitygroups: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeActivityGroup = {
+    def breaking = functionService.breakEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
+    render template: 'activitygroups', model: [activitygroups: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
   }
 }
