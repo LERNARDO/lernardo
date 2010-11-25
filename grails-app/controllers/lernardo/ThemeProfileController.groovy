@@ -163,7 +163,18 @@ class ThemeProfileController {
   }
 
   def create = {
-    return [allFacilities: Entity.findAllByType(metaDataService.etFacility),
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    List allFacilities
+
+    // if the current entity is an educator only return facilities he is linked to, else all facilities
+    if (currentEntity.type.id == metaDataService.etEducator.id)
+      allFacilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
+    else
+      allFacilities = Entity.findAllByType(metaDataService.etFacility)
+
+    return [allFacilities: allFacilities,
             allThemes: Entity.findAllByType(metaDataService.etTheme)]
   }
 
