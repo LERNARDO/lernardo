@@ -1376,3 +1376,12 @@ table#msg-composer td {
 .helperbox {
     border-top: 1px solid #ccc;
     padding-top: 5px; }
+
+#themelist {
+    margin-left: -10px;
+}
+
+#themelist ul {
+    margin-left: 15px;
+    padding: 0;
+}

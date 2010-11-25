@@ -12,7 +12,7 @@
 <div class="boxGray">
   <div class="second">
 
-    ${themeTotal} Themen insgesamt vorhanden
+    %{--${themeTotal} Themen insgesamt vorhanden--}%
 
     <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
       <div class="buttons">
@@ -21,11 +21,15 @@
       </div>
     </app:accessCheck>
 
-    <table class="default-table">
+    <div id="themelist">
+      <g:render template="themes" model="[themes:themes]"/>
+    </div>
+
+    %{--<table class="default-table">
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'theme.profile.name')}"/>
-        %{--<th>Typ</th>--}%
+        --}%%{--<th>Typ</th>--}%%{--
         <g:sortableColumn property="startDate" title="${message(code:'theme.profile.startDate')}"/>
         <g:sortableColumn property="endDate" title="${message(code:'theme.profile.endDate')}"/>
       </tr>
@@ -34,7 +38,7 @@
       <g:each in="${themeList}" status="i" var="theme">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${theme.id}">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          %{--<td>${theme.profile.type}</td>--}%
+          --}%%{--<td>${theme.profile.type}</td>--}%%{--
           <td><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy"/></td>
           <td><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy"/></td>
         </tr>
@@ -44,7 +48,7 @@
 
     <div class="paginateButtons">
       <g:paginate total="${themeTotal}"/>
-    </div>
+    </div>--}%
 
   </div>
 </div>

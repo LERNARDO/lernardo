@@ -616,6 +616,15 @@ class HelperTagLib {
   }
 
   /*
+   * returns all subthemes of a given activity
+   */
+  def getSubThemes = {attrs, body ->
+    def links = Link.findAllByTargetAndType(attrs.theme, metaDataService.ltSubTheme)
+    if (links)
+      links.each {out << body(subthemes: it.source)}
+  }
+
+  /*
    * returns the creator (entity) to a given ID
    */
   def getCreator = {attrs, body ->
