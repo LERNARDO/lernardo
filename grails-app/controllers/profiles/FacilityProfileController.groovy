@@ -191,7 +191,6 @@ class FacilityProfileController {
     Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.properties = params
-      ent.profile.type = "planbar"
     }
     new Link(source: entity, target: facility, type: metaDataService.ltResource).save()
 

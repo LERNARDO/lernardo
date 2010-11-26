@@ -5,7 +5,6 @@ import at.openfactory.ep.Profile
 class ResourceProfile extends Profile {
 
   String description
-  String type
   String classification
 
   static constraints = {

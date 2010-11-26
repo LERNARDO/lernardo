@@ -18,15 +18,20 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'resource.profile.name')}"/>
         %{--<th>Typ</th>--}%
-        <th>Klasse</th>
+        %{--<th>Klasse</th>--}%
+        <th>Erstellt in</th>
       </tr>
       </thead>
       <tbody>
       <g:each in="${resourceList}" status="i" var="resource">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          %{--<td>${fieldValue(bean: resource, field: 'profile.type')}</td>--}%
-          <td>${fieldValue(bean: resource, field: 'profile.classification')}</td>
+          %{--<td>${fieldValue(bean: resource, field: 'profile.classification')}</td>--}%
+          <td>
+            <app:resourceCreatedIn resource="${resource}">
+              <g:link controller="${source.type.supertype.name +'Profile'}" action="show" id="${source.id}" params="[entity: source.id]">${source.profile.fullName}</g:link>
+            </app:resourceCreatedIn>
+          </td>
         </tr>
       </g:each>
       </tbody>

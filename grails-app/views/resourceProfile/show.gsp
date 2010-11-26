@@ -16,16 +16,12 @@
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="resource.profile.name"/></td>
-          %{--<td valign="top" class="name-show"><g:message code="resource.profile.type"/></td>--}%
         </tr>
 
         <tr class="prop">
           <td width="540" valign="top" class="value-show">
             ${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}
           </td>
-          %{--<td width="340" valign="top" class="value-show">
-            ${fieldValue(bean: resource, field: 'profile.type').decodeHTML()}
-          </td>--}%
         </tr>
 
         <tr class="prop">

@@ -108,7 +108,6 @@ class TemplateProfileController {
 
       Entity resource = entityHelperService.createEntity("resource", etResource) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.type = it.profile.type
         ent.profile.classification = it.profile.classification
         ent.profile.description = it.profile.description
         ent.profile.fullName = it.profile.fullName
@@ -208,7 +207,6 @@ class TemplateProfileController {
     Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.properties = params
-      ent.profile.type = "planbar"
       ent.profile.classification = ""
     }
     new Link(source: entity, target: template, type: metaDataService.ltResource).save()

@@ -169,7 +169,6 @@ class GroupColonyProfileController {
     Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.properties = params
-      ent.profile.type = "planbar"
     }
     new Link(source: entity, target: group, type: metaDataService.ltResource).save()
 

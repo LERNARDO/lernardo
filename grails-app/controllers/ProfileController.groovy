@@ -44,6 +44,15 @@ class ProfileController {
     }
     def activities = count.size()
 
+    List temp = Entity.findAllByType(metaDataService.etResource)
+
+    def allResources = 0
+    temp.each { resource ->
+      def result = functionService.findByLink(resource, null, metaDataService.ltResource)
+      if (result.type.id != metaDataService.etTemplate.id)
+        allResources++
+    }
+
     [allOperators: Entity.countByType(metaDataService.etOperator),
     allUsers: Entity.countByType(metaDataService.etUser),
     allClients: Entity.countByType(metaDataService.etClient),
@@ -53,7 +62,7 @@ class ProfileController {
     allPates: Entity.countByType(metaDataService.etPate),
     allPartners: Entity.countByType(metaDataService.etPartner),
     allFacilities: Entity.countByType(metaDataService.etFacility),
-    allResources: Entity.countByType(metaDataService.etResource),
+    allResources: allResources,
     allMethods: Method.countByType("template"),
     allThemes: Entity.countByType(metaDataService.etTheme),
     allColonias: Entity.countByType(metaDataService.etGroupColony),

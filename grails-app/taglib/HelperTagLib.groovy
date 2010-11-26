@@ -550,6 +550,15 @@ class HelperTagLib {
   }
 
   /*
+   * returns the entity a resource is linked to - which is either a facility or colony
+   */
+  def resourceCreatedIn = {attrs, body ->
+    def result = functionService.findByLink(attrs.resource, null, metaDataService.ltResource)
+    if (result)
+      out << body(source: result)
+  }
+
+  /*
    * returns the template to a given activity
    */
   def getTemplate = {attrs, body ->

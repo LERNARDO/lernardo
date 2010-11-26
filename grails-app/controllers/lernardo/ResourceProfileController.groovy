@@ -28,18 +28,24 @@ class ResourceProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def resources = c.list {
-      eq("type", metaDataService.etResource)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
+    // only list those resources that are linked to a colony or facility but NOT to an activity template
+
+    List temp = Entity.findAllByType(metaDataService.etResource)
+
+    List resources = []
+    temp.each { resource ->
+      def result = functionService.findByLink(resource, null, metaDataService.ltResource)
+      if (result.type.id != metaDataService.etTemplate.id)
+        resources << resource
     }
 
+    // do pagination stuff
+    def resourceTotal = resources.size()
+    def upperBound = params.offset + params.max < resourceTotal ? params.offset + params.max : resourceTotal
+    resources = resources.subList(params.offset, upperBound)
+
     return [resourceList: resources,
-            resourceTotal: Entity.countByType(metaDataService.etResource)]
+            resourceTotal: resourceTotal]
   }
 
   def show = {
@@ -112,7 +118,6 @@ class ResourceProfileController {
       Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
-        ent.profile.type = "planbar"
       }
 
       functionService.createEvent(currentEntity, 'Du hast die Resource <a href="' + createLink(controller: 'resourceProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')

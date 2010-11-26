@@ -468,18 +468,13 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyResource" + i)) {
-        entityHelperService.createEntity("dummyResource" + i, etResource) {Entity ent ->
+        def resource = entityHelperService.createEntity("dummyResource" + i, etResource) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.fullName = "dummyResource" + i
           ent.profile.description = "dummyDescription"
-          if (generator.nextInt(2) == 0) {
-            ent.profile.type = "planbar"
-            ent.profile.classification = "dummyClassification"
-          }
-          else
-            ent.profile.type = "verbrauchbar"
-            ent.profile.classification = "dummyClassification"
+          ent.profile.classification = "dummyClassification"
         }
+        new Link(source: resource, target: Entity.findByName("dummyTemplate${i}"), type: metaDataService.ltResource).save()
       }
     }
 
