@@ -15,6 +15,29 @@
 
     <g:form action="save" method="post">
 
+      <table>
+
+        <tr class="prop">
+
+          <td valign="top" class="name"><g:message code="activityInstance.profile.name"/></td>
+          <td valign="top" class="name"><g:message code="activityInstance.profile.startDate"/></td>
+          <td valign="top" class="name"><g:message code="activityInstance.profile.endDate"/></td>
+        </tr>
+
+        <tr>
+          <td width="380" valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
+          </td>
+          <td width="200" valign="top" class="value">
+            <g:textField name="periodStart" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodStart', 'errors')}" value="${ac?.periodStart?.format('dd. MM. yyyy')}"/>
+          </td>
+          <td valign="top" class="value">
+            <g:textField name="periodEnd" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodEnd', 'errors')}" value="${ac?.periodEnd?.format('dd. MM. yyyy')}"/>
+          </td>
+        </tr>
+
+      </table>
+
       <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
         <g:message code="activityTemplate"/>
 
@@ -45,39 +68,15 @@
         </div>
       </div>
 
-      <table>
+      %{--<td class="label"><g:message code="resources"/>:</td>--}%
+      %{--<td class="value" valign="top"><g:select class="drop-down-220 ${hasErrors(bean: ac, field: 'facility', 'errors')}" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/></td>--}%
+      %{--<td class="value"><g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="resources"/></td>--}%
 
-        <tr class="prop">
+      <p><g:message code="educators"/>: (bitte eine Einrichtung auswählen um Pädagogen zuordnen zu können)</p>
+      <span id="educators">
+        <g:render template="educators" model="[educators: ac?.educators, currentEntity: currentEntity]"/>
+      </span>
 
-          <td valign="top" class="name"><g:message code="activityInstance.profile.name"/></td>
-          <td valign="top" class="name"><g:message code="activityInstance.profile.startDate"/></td>
-          <td valign="top" class="name"><g:message code="activityInstance.profile.endDate"/></td>
-        </tr>
-
-        <tr>
-          <td width="380" valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
-          </td>
-          <td width="200" valign="top" class="value">
-            <g:textField name="periodStart" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodStart', 'errors')}" value="${ac?.periodStart?.format('dd. MM. yyyy')}"/>
-          </td>
-          <td valign="top" class="value">
-            <g:textField name="periodEnd" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodEnd', 'errors')}" value="${ac?.periodEnd?.format('dd. MM. yyyy')}"/>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="2" class="label"><g:message code="educators"/>:</td>
-          <td class="label"><g:message code="resources"/>:</td>
-        </tr>
-
-        <tr>
-          %{--<td class="value" valign="top"><g:select class="drop-down-220 ${hasErrors(bean: ac, field: 'facility', 'errors')}" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/></td>--}%
-          <td colspan="2" class="value"><g:select class="${hasErrors(bean: ac, field: 'educators', 'errors')}" multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators" value="${currentEntity.id}"/></td>
-          <td class="value"><g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="resources"/></td>
-        </tr>
-
-      </table>
 
       <table class="${hasErrors(bean: ac, field: 'weekdays', 'errors')}">
         <tr>

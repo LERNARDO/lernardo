@@ -85,7 +85,13 @@
         <td class="name-show"><g:message code="activityTemplate.description"/>:</td>
       </tr>
       <tr>
-        <td colspan="3" class="value-show">${template?.profile?.description?.decodeHTML()}</td>
+        <td colspan="3" class="value-show">
+          <g:if test="${template?.profile?.description}">
+            ${template?.profile?.description?.decodeHTML()}
+          </g:if>
+          <g:else>
+            <div class="italic"><g:message code="noData"/></div>
+          </g:else> </td>
       </tr>
 
     </table>

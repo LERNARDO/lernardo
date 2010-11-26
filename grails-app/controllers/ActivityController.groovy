@@ -513,6 +513,15 @@ class ActivityController {
 
     render ("<b>Gew&aumlhlte Einrichtung:</b> ${facility.profile.fullName}")
   }
+
+  def updateEducators = {
+    Entity facility = Entity.get(params.id)
+
+    // find all educators linked to this facility
+    List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
+
+    render template: 'educators', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+  }
 }
 
 /*
