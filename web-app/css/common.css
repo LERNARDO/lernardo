@@ -1318,6 +1318,9 @@ table#msg-composer td {
         background: #9c9;
         border-bottom: 1px solid #7a7;
         border-right: 1px solid #7a7; }
+    .remoteresult:active {
+        background: #585;
+    }
 
 #execute-result {
     margin: 10px 0 0 0;

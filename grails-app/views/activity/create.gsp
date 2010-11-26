@@ -15,11 +15,24 @@
 
     <g:form action="save" method="post">
 
+      <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
+        <g:message code="activityTemplate"/>
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteTemplates" action="remoteTemplates" before="showspinner('#remoteTemplates')"/>
+        <div id="remoteTemplates"></div>
+
+        <div style="visibility: hidden">
+          <g:textField name="template" id="hiddentextfield" value="default"/>
+        </div>
+
+        <div id="templates2">
+        </div>
+      </div>
+
       <table>
 
         <tr class="prop">
-
-          Aktivitätsvorlage: <g:select name="template" from="${templates}" optionKey="id" optionValue="profile"/>
 
           <td valign="top" class="name"><g:message code="activityInstance.profile.name"/></td>
           <td valign="top" class="name"><g:message code="activityInstance.profile.startDate"/></td>

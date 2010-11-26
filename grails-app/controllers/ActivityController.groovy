@@ -441,6 +441,42 @@ class ActivityController {
     activity.profile.removeFromClientEvaluations(ClientEvaluation.get(params.clientEvaluation))
     render template: 'clients', model: [activity: activity, entity: entityHelperService.loggedIn]
   }
+
+  /*
+   * retrieves all templates matching the search parameter
+   */
+  def remoteTemplates = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etTemplate)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'templateresults', model: [results: results])
+    }
+  }
+
+  def addTemplate = {
+    Entity template = Entity.get(params.id)
+
+    render ("<b>Gew&aumlhlte Vorlage:</b> ${template.profile.fullName}")
+  }
 }
 
 /*
