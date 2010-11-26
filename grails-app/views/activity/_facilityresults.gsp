@@ -1,7 +1,7 @@
   <script type="text/javascript">
 
-  function kontrolle1(id) {
-    var textfield = document.getElementById("hiddentextfield1");
+  function kontrolle2(id) {
+    var textfield = document.getElementById("hiddentextfield2");
     textfield.value = id;
   }
 
@@ -10,7 +10,7 @@
 <g:if test="${results}">
   <div class="remoteresults">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller:'activity', action:'addTemplate', id: entity.id]" update="templates2" before="kontrolle1('${entity.id}');">
+      <g:remoteLink url="[controller:'activity', action:'addFacility', id: entity.id]" update="facilities2" before="kontrolle2('${entity.id}');">
       <div class="remoteresult">
         <table>
           <tr>

@@ -19,14 +19,29 @@
         <g:message code="activityTemplate"/>
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteTemplates" action="remoteTemplates" before="showspinner('#remoteTemplates')"/>
+        <g:remoteField size="40" name="remoteField1" update="remoteTemplates" action="remoteTemplates" before="showspinner('#remoteTemplates')"/>
         <div id="remoteTemplates"></div>
 
         <div style="visibility: hidden">
-          <g:textField name="template" id="hiddentextfield" value="default"/>
+          <g:textField name="template" id="hiddentextfield1" value="default"/>
         </div>
 
         <div id="templates2">
+        </div>
+      </div>
+
+      <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
+        <g:message code="facility"/>
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField2" update="remoteFacilities" action="remoteFacilities" before="showspinner('#remoteFacilities')"/>
+        <div id="remoteFacilities"></div>
+
+        <div style="visibility: hidden">
+          <g:textField name="facility" id="hiddentextfield2" value="default"/>
+        </div>
+
+        <div id="facilities2">
         </div>
       </div>
 
@@ -40,26 +55,25 @@
         </tr>
 
         <tr>
-          <td width="280" valign="top" class="value">
+          <td width="380" valign="top" class="value">
             <g:textField class="countable50 ${hasErrors(bean: ac, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: ac, field: 'fullName').decodeHTML()}"/>
           </td>
-          <td width="260" valign="top" class="value">
+          <td width="200" valign="top" class="value">
             <g:textField name="periodStart" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodStart', 'errors')}" value="${ac?.periodStart?.format('dd. MM. yyyy')}"/>
           </td>
-          <td width="220" valign="top" class="value">
+          <td valign="top" class="value">
             <g:textField name="periodEnd" size="10" class="datepicker ${hasErrors(bean: ac, field: 'periodEnd', 'errors')}" value="${ac?.periodEnd?.format('dd. MM. yyyy')}"/>
           </td>
         </tr>
 
         <tr>
-          <td class="label"><g:message code="facility"/>:</td>
-          <td class="label"><g:message code="educators"/>:</td>
+          <td colspan="2" class="label"><g:message code="educators"/>:</td>
           <td class="label"><g:message code="resources"/>:</td>
         </tr>
 
         <tr>
-          <td class="value" valign="top"><g:select class="drop-down-220 ${hasErrors(bean: ac, field: 'facility', 'errors')}" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/></td>
-          <td class="value"><g:select class="${hasErrors(bean: ac, field: 'educators', 'errors')}" multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators" value="${currentEntity.id}"/></td>
+          %{--<td class="value" valign="top"><g:select class="drop-down-220 ${hasErrors(bean: ac, field: 'facility', 'errors')}" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/></td>--}%
+          <td colspan="2" class="value"><g:select class="${hasErrors(bean: ac, field: 'educators', 'errors')}" multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators" value="${currentEntity.id}"/></td>
           <td class="value"><g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="resources"/></td>
         </tr>
 

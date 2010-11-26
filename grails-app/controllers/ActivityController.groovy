@@ -477,6 +477,42 @@ class ActivityController {
 
     render ("<b>Gew&aumlhlte Vorlage:</b> ${template.profile.fullName}")
   }
+
+  /*
+   * retrieves all templates matching the search parameter
+   */
+  def remoteFacilities = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etFacility)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'facilityresults', model: [results: results])
+    }
+  }
+
+  def addFacility = {
+    Entity facility = Entity.get(params.id)
+
+    render ("<b>Gew&aumlhlte Einrichtung:</b> ${facility.profile.fullName}")
+  }
 }
 
 /*
