@@ -19,6 +19,19 @@ class HelperTagLib {
   def securityManager
   static namespace = "app"
 
+  def remoteField = { attrs, body ->
+    def params = attrs['params']?:null
+    if(params){
+      String pString = "\'"
+      params.each { key, value ->
+        pString += "${key}=${value}&"
+      }
+      pString += "\'"
+      attrs['params'] = pString;
+    }
+    out << g.remoteField(attrs, body)
+  }
+
   /*
    * get the local tags of a given entity
    */

@@ -376,6 +376,51 @@ class ProjectTemplateProfileController {
 
     return calculatedDuration
   }
+
+  /*
+   * retrieves all clients matching the search parameter
+   */
+  def remoteGroupActivityTemplate = {
+    println params
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value == "*") {
+      def c = Entity.createCriteria()
+      def results = c.list {
+        eq("type", metaDataService.etGroupActivityTemplate)
+        profile {
+          eq("status", "fertig")
+        }
+      }
+      render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etGroupActivityTemplate)
+      profile {
+        eq('status', "fertig")
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+    }
+  }
 }
 
 
