@@ -82,7 +82,21 @@ class ProjectProfileController {
       def allEducators = Entity.findAllByType(metaDataService.etEducator)
 
       // get all parents
-      def allParents = Entity.findAllByType(metaDataService.etParent)
+      def families = []
+      clients.each { client ->
+        // get all families
+        families.addAll(functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupFamily))
+      }
+      def allParents = []
+      families.each { family ->
+        // get all parents
+        def temp = functionService.findAllByLink(null, family as Entity, metaDataService.ltGroupMemberParent)
+        temp.each {
+          if (!allParents.contains(it))
+            allParents << it
+        }
+      }
+      /*def allParents = Entity.findAllByType(metaDataService.etParent)*/
 
       // get all partners
       def allPartners = Entity.findAllByType(metaDataService.etPartner)
