@@ -318,6 +318,17 @@ class HelperTagLib {
   }
 
   /*
+   * receives a classification ID and renders either the german or spanish word for it
+   */
+  def getClassification = {attrs ->
+    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
+    if (locale.toString() == "de" || locale.toString() == "de_DE")
+      out << grailsApplication.config.resourceclasses_de[attrs.classification]
+    if (locale.toString() == "es" || locale.toString() == "es_ES")
+      out << grailsApplication.config.resourceclasses_es[attrs.classification]
+  }
+
+  /*
    * receives an employment ID and renders either the german or spanish word for it
    */
   def getEmployment = {attrs ->

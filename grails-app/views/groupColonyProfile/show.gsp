@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="groupColony"/> - ${group.profile.fullName}</title>
@@ -155,13 +156,12 @@
             <tr>
               <td><g:message code="resource.profile.classification"/>:</td>
               <td>
-                %{--<g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
+                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
                   <g:select name="classification" from="${grailsApplication.config.resourceclasses_es}" optionKey="key" optionValue="value" value=""/>
                 </g:if>
                 <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
                   <g:select name="classification" from="${grailsApplication.config.resourceclasses_de}" optionKey="key" optionValue="value" value=""/>
-                </g:if>--}%
-                <g:select name="classification" from="${[message(code:'resource.profile.sel1'), message(code:'resource.profile.sel2')]}" value=""/>
+                </g:if>
               </td>
             </tr>
           </table>
