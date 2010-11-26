@@ -19,6 +19,9 @@ class HelperTagLib {
   def securityManager
   static namespace = "app"
 
+  /*
+   * custom tag for as long as the official implementation is broken, see http://jira.codehaus.org/browse/GRAILS-2512--}%
+   */
   def remoteField = { attrs, body ->
     def params = attrs['params']?:null
     if(params){

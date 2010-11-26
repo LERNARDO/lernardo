@@ -782,6 +782,75 @@ class ProjectProfileController {
                                          active: projectDay.id,
                                          project: project]
   }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteEducators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value == "*") {
+      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator), projectDay: params.id])
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'educatorresults', model: [results: results, projectDay: params.id])
+    }
+  }
+
+  /*
+   * retrieves all substitute educators matching the search parameter
+   */
+  def remoteSubstitutes = {
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value == "*") {
+      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator), projectDay: params.id])
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'substituteresults', model: [results: results, projectDay: params.id])
+    }
+  }
+
 }
 
 /*

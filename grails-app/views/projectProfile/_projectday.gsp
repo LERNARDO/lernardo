@@ -22,14 +22,12 @@
 
   <span class="bold">Pädagogen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:accessCheck></span>
   <div id="educators" style="display:none">
-    <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addEducator', id:projectDay.id]" update="educators2" before="showspinner('#educators2')">
-      <table>
-        <tr>
-          <td style="padding: 5px 10px 0 0;"><g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
-          <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-        </tr>
-      </table>
-    </g:formRemote>
+
+    <g:message code="search"/>:<br/>
+    %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
+    <app:remoteField size="40" name="remoteField" update="educatorresults" action="remoteEducators" id="${projectDay.id}" before="showspinner('#educatorresults')"/>
+    <div id="educatorresults"></div>
+
   </div>
 
   <div id="educators2">
@@ -40,14 +38,12 @@
 
   <span class="bold">Supplierungen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></app:accessCheck></span>
   <div id="substitutes" style="display:none">
-    <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addSubstitute', id:projectDay.id]" update="substitutes2" before="showspinner('#substitutes2')">
-      <table>
-        <tr>
-          <td style="padding: 5px 10px 0 0;"><g:select name="substitute" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
-          <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-        </tr>
-      </table>
-    </g:formRemote>
+
+    <g:message code="search"/>:<br/>
+    %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
+    <app:remoteField size="40" name="remoteField" update="substituteresults" action="remoteSubstitutes" id="${projectDay.id}" before="showspinner('#substituteresults')"/>
+    <div id="substituteresults"></div>
+
   </div>
 
   <div id="substitutes2">

@@ -12,15 +12,6 @@
       <p class="bold" style="margin-left: 15px">Aktivitätsblockvorlagen <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#groups${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsblockvorlage hinzufügen" /></a></app:isMeOrAdmin></p>
       <div id="groups${i}" style="display:none; margin: 0 0 5px 15px;">
 
-        %{--<g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id:projectUnitTemplate.id, params:[i: i, projectTemplate: projectTemplate.id]]" update="groups2-${i}" before="showspinner('#groups2${i}')" after="${remoteFunction(action:'updateduration',update:'updateduration', id: projectTemplate.id)}">
-          <table>
-            <tr>
-              <td style="padding: 5px 10px 0 0;"><g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-            </tr>
-          </table>
-        </g:formRemote>--}%
-
         <g:message code="search"/>:<br/>
         %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
         <app:remoteField size="40" name="remoteField${i}" update="remoteGroupActivityTemplate${i}" action="remoteGroupActivityTemplate" id="${projectUnitTemplate.id}" params="[i: i, projectTemplate: projectTemplate.id]" before="showspinner('#remoteGroupActivityTemplate')"/>

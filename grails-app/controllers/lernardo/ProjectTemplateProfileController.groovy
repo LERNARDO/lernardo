@@ -381,7 +381,6 @@ class ProjectTemplateProfileController {
    * retrieves all clients matching the search parameter
    */
   def remoteGroupActivityTemplate = {
-    println params
     if (!params.value) {
       render ""
       return
