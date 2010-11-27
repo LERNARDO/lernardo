@@ -21,9 +21,24 @@ future HTML5 doctype
   <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.periodicalupdater.js')}" type="text/javascript"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
+
+      /*$.PeriodicalUpdater('/lernardo/app/liveticker', {
+        method: 'get',          // method; get or post
+        data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
+        minTimeout: 10000,      // starting value for the timeout in milliseconds
+        maxTimeout: 5000,       // maximum length of time between requests
+        multiplier: 1,          // if set to 2, timerInterval will double each time the response hasn't changed (up to maxTimeout)
+        type: 'text',           // response type - text, xml, json, etc.  See $.ajax config options
+        maxCalls: 0,            // maximum number of calls. 0 = no limit.
+        autoStop: 0             // automatically stop requests after this many returns of the same data. 0 = disabled.
+      },
+      function(data){
+        $('#livetickerbox').empty().append(data);
+      });*/
 
       $(".datepicker-birthday").datepicker({
         changeMonth: true,
@@ -86,6 +101,7 @@ future HTML5 doctype
 <g:if test="${!entity}">
   <g:set var="entity" value="${currentEntity}"/>
 </g:if>
+<div id="livetickerbox"></div>
 <div id="private">
   <div id="doc4" class="yui-t3">
 

@@ -1388,3 +1388,46 @@ table#msg-composer td {
     margin-left: 15px;
     padding: 0;
 }
+
+#liveticker {
+    position: absolute;
+    right: 0;
+    background: rgba(0,0,0,0.60);
+    width: 200px;
+    padding: 10px;
+    color: #fff;
+    z-index: 100;
+    border-left: 1px solid #444;
+    bottom: 10px;
+    top: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.livetickerevent {
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #444;
+    padding: 5px 0;
+    text-align: left;
+}
+
+.livetickerdate {
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+#livetickersmall {
+    position: absolute;
+    right: 0;
+    background: rgba(0,0,0,0.60);
+    height: 30px;
+    width: 25px;
+    padding-top: 10px;
+    color: #fff;
+    z-index: 100;
+    border-left: 1px solid #444;
+    /*bottom: 10px;*/
+    top: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

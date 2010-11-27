@@ -10,6 +10,8 @@ import at.openfactory.ep.EntityTagLink
 import at.openfactory.ep.Asset
 import standard.MetaDataService
 import at.openfactory.ep.Link
+import lernardo.Event
+import javax.servlet.http.Cookie
 
 class AppController {
   SecHelperService secHelperService
@@ -20,6 +22,44 @@ class AppController {
 
   def error404 = {
     render view: '/404'
+  }
+
+  def hideticker = {
+    def c = new Cookie("ticker", "hidden")
+    c.maxAge = 60*60 // 1 hour
+    response.addCookie(c)
+
+    render template: 'livetickersmall'
+  }
+
+  def showticker = {
+    def c = new Cookie("ticker", "visible")
+    c.maxAge = 60*60 // 1 hour
+    response.addCookie(c)
+
+    List events = Event.list(params)
+    render template: 'liveticker', model:[events: events]
+  }
+
+  def liveticker = {
+    params.max = 10
+    params.sort = "date"
+    params.order = "desc"
+
+    println "ticker: " + g.cookie(name: "ticker")
+
+    if (!g.cookie(name: "ticker")) {
+      def c = new Cookie("ticker", "visible")
+      c.maxAge = 60*60 // 1 hour
+      response.addCookie(c)
+    }
+
+    if (g.cookie(name: "ticker") == "hidden") {
+      forward action: 'hideticker'
+    }
+    else
+      forward action: 'showticker'
+
   }
 
   def updatelinks = {
