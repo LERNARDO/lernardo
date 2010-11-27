@@ -37,16 +37,16 @@ class AppController {
     c.maxAge = 60*60 // 1 hour
     response.addCookie(c)
 
+    params.max = 10
+    params.sort = "date"
+    params.order = "desc"
+
     List events = Event.list(params)
     render template: 'liveticker', model:[events: events]
   }
 
   def liveticker = {
-    params.max = 10
-    params.sort = "date"
-    params.order = "desc"
-
-    println "ticker: " + g.cookie(name: "ticker")
+    //println "ticker: " + g.cookie(name: "ticker")
 
     if (!g.cookie(name: "ticker")) {
       def c = new Cookie("ticker", "visible")

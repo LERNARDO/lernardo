@@ -26,7 +26,7 @@ future HTML5 doctype
   <script type="text/javascript">
     $(document).ready(function() {
 
-      /*$.PeriodicalUpdater('/lernardo/app/liveticker', {
+      $.PeriodicalUpdater('/lernardo/app/liveticker', {
         method: 'get',          // method; get or post
         data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
         minTimeout: 10000,      // starting value for the timeout in milliseconds
@@ -38,7 +38,7 @@ future HTML5 doctype
       },
       function(data){
         $('#livetickerbox').empty().append(data);
-      });*/
+      });
 
       $(".datepicker-birthday").datepicker({
         changeMonth: true,

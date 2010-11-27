@@ -1394,7 +1394,7 @@ table#msg-composer td {
     right: 0;
     background: rgba(0,0,0,0.60);
     width: 200px;
-    padding: 10px;
+    padding: 10px 0;
     color: #fff;
     z-index: 100;
     border-left: 1px solid #444;
@@ -1407,7 +1407,7 @@ table#msg-composer td {
 .livetickerevent {
     border-top: 1px solid #777;
     border-bottom: 1px solid #444;
-    padding: 5px 0;
+    padding: 5px;
     text-align: left;
 }
 
