@@ -26,10 +26,10 @@ future HTML5 doctype
   <script type="text/javascript">
     $(document).ready(function() {
 
-      $.PeriodicalUpdater('/lernardo/app/liveticker', {
+      $.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // local: /lernardo/app/liveticker
         method: 'get',          // method; get or post
         data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
-        minTimeout: 10000,      // starting value for the timeout in milliseconds
+        minTimeout: 60000,      // starting value for the timeout in milliseconds
         maxTimeout: 5000,       // maximum length of time between requests
         multiplier: 1,          // if set to 2, timerInterval will double each time the response hasn't changed (up to maxTimeout)
         type: 'text',           // response type - text, xml, json, etc.  See $.ajax config options

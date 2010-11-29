@@ -5,7 +5,7 @@
 dataSource {
 	pooled = false
 	driverClassName = "org.postgresql.Driver"
-  dialect = org.hibernate.dialect.PostgreSQLDialect
+    dialect = org.hibernate.dialect.PostgreSQLDialect
 	username = "sa_lernardo"
 	password = "pw_lernardo"
 }
@@ -14,26 +14,29 @@ environments {
 	development {
 		dataSource {
 			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-      url = "jdbc:postgresql://localhost:5432/lernardo"
-      loggingSql = false
-      hibernate.default_schema = 'dev'
+            url = "jdbc:postgresql://localhost:5432/lernardo"
+            loggingSql = false
+            hibernate.default_schema = 'dev'
+            grails.serverURL = "http://localhost:8080/lernardo"
 		}
 	}
 	test {
 		dataSource {
-      dbCreate = "update"
-      url = "jdbc:postgresql://localhost:5432/lernardo"
-      loggingSql = false
-      hibernate.default_schema = 'test'
-      grails.serverURL = "https://lernardo.customer.uenterprise.de/test"
+          dbCreate = "update"
+          url = "jdbc:postgresql://localhost:5432/lernardo"
+          loggingSql = false
+          hibernate.default_schema = 'test'
+          grails.serverURL = "https://lernardo.customer.uenterprise.de/test"
 		}
 	}
 	production {
 		dataSource {
-      dbCreate = "update"
-      url = "jdbc:postgresql://localhost:5432/lernardo"
-      loggingSql = false
-      hibernate.default_schema = 'prod'
+          dbCreate = "update"
+          url = "jdbc:postgresql://localhost:5432/lernardo"
+          loggingSql = false
+          hibernate.default_schema = 'prod'
+          //grails.serverURL = "http://sueninos.lernardo.net" // sueninos
+          grails.serverURL = "http://noe.lernardo.net" // lernardo
 		}
 	}
 }
