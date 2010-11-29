@@ -2,13 +2,15 @@ package profiles
 
 import at.openfactory.ep.Profile
 import lernardo.CDate
+import lernardo.WorkdayUnit
 
 class EducatorProfile extends Profile {
 
-    SortedSet dates
+    SortedSet dates, workdayunits
     static hasMany = [languages: String,
                       inChargeOf: String,
-                      dates: CDate]
+                      dates: CDate,
+                      workdayunits: WorkdayUnit]
 
     String title
     String firstName

@@ -35,8 +35,8 @@ environments {
           url = "jdbc:postgresql://localhost:5432/lernardo"
           loggingSql = false
           hibernate.default_schema = 'prod'
-          //grails.serverURL = "http://sueninos.lernardo.net" // sueninos
-          grails.serverURL = "http://noe.lernardo.net" // lernardo
+          grails.serverURL = "http://sueninos.lernardo.net" // sueninos
+          //grails.serverURL = "http://noe.lernardo.net" // lernardo
 		}
 	}
 }

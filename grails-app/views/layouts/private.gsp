@@ -26,7 +26,8 @@ future HTML5 doctype
   <script type="text/javascript">
     $(document).ready(function() {
 
-      $.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // local: /lernardo/app/liveticker
+      // disabled for next release
+      /*$.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment
         method: 'get',          // method; get or post
         data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
         minTimeout: 60000,      // starting value for the timeout in milliseconds
@@ -38,7 +39,7 @@ future HTML5 doctype
       },
       function(data){
         $('#livetickerbox').empty().append(data);
-      });
+      });*/
 
       $(".datepicker-birthday").datepicker({
         changeMonth: true,
@@ -190,6 +191,7 @@ future HTML5 doctype
                         </app:accessCheck>
                         <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
                           <li class="icon-admin"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+                          <li class="icon-admin"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
                         </app:accessCheck>
                       </app:accessCheck>
 
@@ -226,7 +228,7 @@ future HTML5 doctype
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                       <app:isAdmin>
                         <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
-                        <li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>
+                        %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
                       </app:isAdmin>
                     </ul>
                   </div>

@@ -34,6 +34,7 @@ import grails.util.GrailsUtil
 import standard.FunctionService
 import standard.MetaDataService
 import standard.InterfaceMaintenanceService
+import lernardo.WorkdayCategory
 
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
@@ -80,6 +81,7 @@ class BootStrap {
         createDefaultComments()
         createDefaultProjectTemplates()
         //createDefaultHelpers()
+        createDefaultWorkdayCategories()
       }
 
 
@@ -796,6 +798,17 @@ class BootStrap {
       new Tag(name: 'abwesend').save()
     if (!Tag.findByName('krank'))
       new Tag(name: 'krank').save()
+  }
+
+  void createDefaultWorkdayCategories () {
+    log.info ("creating default workday categories")
+
+    if (!WorkdayCategory.findByName('Category1'))
+      new WorkdayCategory(name: 'Category1').save()
+    if (!WorkdayCategory.findByName('Category2'))
+      new WorkdayCategory(name: 'Category2').save()
+    if (!WorkdayCategory.findByName('Category3'))
+      new WorkdayCategory(name: 'Category3').save()
   }
 
 }
