@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <td>Kategorie:</td>
-        <td><g:textField name="category" size="30"/></td>
+        <td><g:select from="${workdaycategories}" name="category" value=""/></td>
       </tr>
       <tr>
         <td>Beschreibung:</td>
@@ -32,11 +32,12 @@
 </div>
 
 <g:if test="${workdayunits}">
-  <g:each in="${workdayunits}" var="workday">
-    Von: <g:formatDate date="${workday.date1}" format="HH:mm"/><br/>
-    Bis: <g:formatDate date="${workday.date2}" format="HH:mm"/><br/>
-    Kategorie: ${workday.category}<br/>
-    Beschreibung: ${workday.description}<br/><br/>
+  <g:each in="${workdayunits}" var="workday" status="i">
+    <div id="unit-${i}">
+      <g:formatDate date="${workday.date1}" format="HH:mm"/> bis <g:formatDate date="${workday.date2}" format="HH:mm"/> <g:remoteLink action="removeUnit" update="unit-${i}" id="${workday.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink><br/>
+      Kategorie: ${workday.category}<br/>
+      Beschreibung: ${workday.description.decodeHTML()}<br/><br/>
+    </div>
   </g:each>
 </g:if>
 <g:else>

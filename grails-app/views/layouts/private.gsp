@@ -185,7 +185,7 @@ future HTML5 doctype
                       </app:accessCheck>
 
                       %{--TODO: find out why the check won't work here?!--}%
-                      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge']">
+                      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
                         <app:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
                           <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                         </app:accessCheck>

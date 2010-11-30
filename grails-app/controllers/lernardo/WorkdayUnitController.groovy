@@ -2,66 +2,100 @@ package lernardo
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
+import standard.MetaDataService
+import java.text.SimpleDateFormat
 
 class WorkdayUnitController {
 
     EntityHelperService entityHelperService
+    MetaDataService metaDataService
 
     def beforeInterceptor = [
             action:{
               params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null}, only:['showunits']
     ]
 
-    def index = { }
+    def index = {
+      List workdaycategories = WorkdayCategory.list()
+      return [workdaycategories: workdaycategories]
+    }
 
     def showunits = {
       Entity currentEntity = entityHelperService.loggedIn
 
       List workdayunits = []
-      currentEntity.profile.workdayunits.each { workday ->
-        if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
-          workdayunits << workday
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
+        currentEntity.profile.workdayunits.each { workday ->
+          if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+            workdayunits << workday
+          }
         }
       }
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date]
+      List workdaycategories = WorkdayCategory.list()
+
+      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories]
+    }
+
+    def removeUnit = {
+      Entity currentEntity = entityHelperService.loggedIn
+
+      WorkdayUnit workdayUnit = WorkdayUnit.get(params.id)
+
+      currentEntity.profile.removeFromWorkdayunits(workdayUnit)
+      workdayUnit.delete(flush: true)
+
+      render ""
     }
 
     def addWorkdayUnit = {
-      println params
       Entity currentEntity = entityHelperService.loggedIn
 
       WorkdayUnit workdayUnit = new WorkdayUnit(params)
-      workdayUnit.date1 = params.date
-      workdayUnit.date2 = params.date
 
-      // something is broken here, date saving behaves weird
+      Calendar calendar = Calendar.getInstance()
 
-      println "dateFrom: ${workdayUnit.date1}"
-      println "dateTo: ${workdayUnit.date2}"
+      // set start
+      calendar.setTime(params.date)
+      calendar.set (Calendar.HOUR_OF_DAY, params.int('fromHour'))
+      calendar.set (Calendar.MINUTE, params.int('fromMinute'))
+      workdayUnit.date1 = calendar.getTime()
 
-      workdayUnit.date1.setHours(params.int('fromHour'))
-      workdayUnit.date1.setMinutes(params.int('fromMinute'))
-
-      println "dateFrom: ${workdayUnit.date1}"
-      println "dateTo: ${workdayUnit.date2}"
-
-      workdayUnit.date2.setHours(params.int('toHour'))
-      workdayUnit.date2.setMinutes(params.int('toMinute'))
-
-      println "dateFrom: ${workdayUnit.date1}"
-      println "dateTo: ${workdayUnit.date2}"
+      // set end
+      calendar.set (Calendar.HOUR_OF_DAY, params.int('toHour'))
+      calendar.set (Calendar.MINUTE, params.int('toMinute'))
+      workdayUnit.date2 = calendar.getTime()
 
       workdayUnit.save(flush: true)
       currentEntity.profile.addToWorkdayunits(workdayUnit)
 
       List workdayunits = []
-      currentEntity.profile.workdayunits.each { workday ->
-        if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
-          workdayunits << workday
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
+        currentEntity.profile.workdayunits.each { workday ->
+          if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+            workdayunits << workday
+          }
         }
       }
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date]
+      List workdaycategories = WorkdayCategory.list()
+
+      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories]
+    }
+
+    def addCategory = {
+      WorkdayCategory workdayCategory = new WorkdayCategory(params)
+      workdayCategory.save(flush: true)
+
+      List workdaycategories = WorkdayCategory.list()
+      render template: 'workdaycategories', model:[workdaycategories: workdaycategories, currentEntity: entityHelperService.loggedIn]
+    }
+
+    def removeCategory = {
+      WorkdayCategory workdayCategory = WorkdayCategory.get(params.id)
+      workdayCategory.delete(flush: true)
+
+      List workdaycategories = WorkdayCategory.list()
+      render template: 'workdaycategories', model:[workdaycategories: workdaycategories, currentEntity: entityHelperService.loggedIn]
     }
 }

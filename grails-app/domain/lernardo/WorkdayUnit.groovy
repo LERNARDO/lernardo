@@ -1,5 +1,7 @@
 package lernardo
 
+import at.openfactory.ep.Entity
+
 class WorkdayUnit implements Comparable {
 
     Date date1
