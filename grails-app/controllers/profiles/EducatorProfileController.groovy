@@ -12,6 +12,7 @@ import lernardo.Msg
 import lernardo.Post
 import lernardo.Event
 import lernardo.Publication
+import lernardo.WorkdayCategory
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -196,5 +197,11 @@ class EducatorProfileController {
     Entity educator = Entity.get(params.id)
     educator.profile.removeFromDates(CDate.get(params.date))
     render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
+  }
+
+  def times = {
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    List workdaycategories = WorkdayCategory.list()
+    return [educators: educators, workdaycategories: workdaycategories]
   }
 }

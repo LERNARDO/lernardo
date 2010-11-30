@@ -9,6 +9,7 @@ import standard.FilterService
 import at.openfactory.ep.SecHelperService
 import standard.FunctionService
 import lernardo.Publication
+import lernardo.WorkdayCategory
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -18,6 +19,34 @@ class HelperTagLib {
   FunctionService functionService
   def securityManager
   static namespace = "app"
+
+  def getTotalHours = { attrs, body ->
+    Entity educator = attrs.educator
+
+    int hours = 0
+    educator.profile.workdayunits.each {
+      hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+    }
+
+    out << hours
+  }
+
+  /*
+   * used for time evaluation, returns the number of hours of an educator an a given category
+   */
+  def getHoursForCategory = { attrs, body ->
+    Entity educator = attrs.educator
+    WorkdayCategory workdayCategory = attrs.category
+
+    int hours = 0
+    educator.profile.workdayunits.each {
+      if (it.category == workdayCategory.name) {
+        hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+      }
+    }
+
+    out << hours
+  }
 
   /*
    * custom tag for as long as the official implementation is broken, see http://jira.codehaus.org/browse/GRAILS-2512--}%

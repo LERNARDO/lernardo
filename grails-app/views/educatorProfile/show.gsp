@@ -115,6 +115,26 @@
           </td>
         </tr>
 
+        <app:isOperator entity="${currentEntity}">
+          <tr class="prop">
+            <td valign="top" class="name-show"><g:message code="educator.profile.workHours"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.hourlyWage"/></td>
+            <td valign="top" class="name-show"><g:message code="educator.profile.overtimePay"/></td>
+          </tr>
+
+          <tr>
+            <td width="150" valign="top" class="value-show">
+              ${fieldValue(bean: educator, field: 'profile.workHours') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            </td>
+            <td width="150" valign="top" class="value-show">
+              ${fieldValue(bean: educator, field: 'profile.hourlyWage') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            </td>
+            <td width="150" valign="top" class="value-show">
+              ${fieldValue(bean: educator, field: 'profile.overtimePay') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            </td>
+          </tr>
+        </app:isOperator>
+
         %{--<tr>
         <td colspan="3" valign="top" class="name-show">
         <g:message code="educator.profile.colonia"/>:

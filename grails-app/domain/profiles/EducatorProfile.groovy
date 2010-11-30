@@ -46,6 +46,10 @@ class EducatorProfile extends Profile {
     String phone2
     String privEmail
 
+    Integer workHours
+    Integer hourlyWage
+    Integer overtimePay
+
     Boolean showTips = true
 
     static constraints = {
@@ -77,6 +81,10 @@ class EducatorProfile extends Profile {
       phone1 (nullable: true)
       phone2 (nullable: true)
       privEmail (email:true, nullable:true)
+
+      workHours nullable: true
+      hourlyWage nullable: true
+      overtimePay nullable: true
     }
 
     String toString(){

@@ -404,6 +404,9 @@ ul {
     #profile-navigation .icon-export {
         background: url(../images/icons/icon_export.png) 0 50% no-repeat;
         padding-left: 20px; }
+    #profile-navigation .icon-time {
+        background: url(../images/icons/icon_time.png) 0 50% no-repeat;
+        padding-left: 20px; }
 
 .imgmenu {
     background-position: right;
