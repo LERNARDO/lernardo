@@ -35,6 +35,7 @@ import standard.FunctionService
 import standard.MetaDataService
 import standard.InterfaceMaintenanceService
 import lernardo.WorkdayCategory
+import lernardo.WorkdayUnit
 
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
@@ -82,6 +83,7 @@ class BootStrap {
         createDefaultProjectTemplates()
         //createDefaultHelpers()
         createDefaultWorkdayCategories()
+        createDefaultWorkdayUnits()
       }
 
 
@@ -809,6 +811,23 @@ class BootStrap {
       new WorkdayCategory(name: 'Category2').save()
     if (!WorkdayCategory.findByName('Category3'))
       new WorkdayCategory(name: 'Category3').save()
+  }
+
+  void createDefaultWorkdayUnits () {
+    log.info ("creating default workday units")
+
+    // TODO: figure out why saving won't work here
+    /*WorkdayUnit wdu1 = new WorkdayUnit(category: WorkdayCategory.findByName('Category1'), description: "bla", date1: new Date(110, 11, 1, 10, 0), date2: new Date(110, 11, 1, 11, 0)).save()
+    WorkdayUnit wdu2 = new WorkdayUnit(category: WorkdayCategory.findByName('Category2'), description: "bla", date1: new Date(110, 11, 1, 12, 0), date2: new Date(110, 11, 1, 14, 0)).save()
+    WorkdayUnit wdu3 = new WorkdayUnit(category: WorkdayCategory.findByName('Category3'), description: "bla", date1: new Date(110, 11, 1, 15, 0), date2: new Date(110, 11, 1, 18, 0)).save()
+    if (wdu3.hasErrors())
+      log.info "error"
+
+    Entity educator = Entity.findByName("dummyEducator1")
+
+    educator.profile.addToWorkdayunits(wdu1)
+    educator.profile.addToWorkdayunits(wdu2)
+    educator.profile.addToWorkdayunits(wdu3)*/
   }
 
 }

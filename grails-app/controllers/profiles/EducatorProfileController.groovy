@@ -204,4 +204,10 @@ class EducatorProfileController {
     List workdaycategories = WorkdayCategory.list()
     return [educators: educators, workdaycategories: workdaycategories]
   }
+
+  def showresult = {
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    List workdaycategories = WorkdayCategory.list()
+    render template: 'results', model:[educators: educators, workdaycategories: workdaycategories, date1: params.date1, date2: params.date2, entity: entityHelperService.loggedIn]
+  }
 }

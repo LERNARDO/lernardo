@@ -21,11 +21,25 @@ class HelperTagLib {
   static namespace = "app"
 
   def getTotalHours = { attrs, body ->
+    if (attrs.date1 != null && attrs.date2 != null) {
+      Date date1 = Date.parse("dd. MM. yy", attrs.date1)
+      Date date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
     Entity educator = attrs.educator
 
     int hours = 0
     educator.profile.workdayunits.each {
-      hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+      // check if the date of the workdayunit is between date1 and date2
+      if (attrs.date1 != null & attrs.date2 != null) {
+        if (it.date1.getYear() >= date1.getYear() && it.date1.getYear() <= date2.getYear() &&
+            it.date1.getMonth() >= date1.getMonth() && it.date1.getMonth() <= date2.getMonth() &&
+            it.date1.getDate() >= date1.getDate() && it.date1.getDate() <= date2.getDate()) {
+              hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+        }
+      }
+      else
+        hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
     }
 
     out << hours
@@ -35,13 +49,32 @@ class HelperTagLib {
    * used for time evaluation, returns the number of hours of an educator an a given category
    */
   def getHoursForCategory = { attrs, body ->
+    println params
+    Date date1
+    Date date2
+    if (attrs.date1 != "" && attrs.date2 != "") {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
     Entity educator = attrs.educator
     WorkdayCategory workdayCategory = attrs.category
 
     int hours = 0
     educator.profile.workdayunits.each {
       if (it.category == workdayCategory.name) {
-        hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+
+        // check if the date of the workdayunit is between date1 and date2
+        if (attrs.date1 != "" & attrs.date2 != "") {
+
+          if (it.date1.getYear() >= date1.getYear() && it.date1.getYear() <= date2.getYear() &&
+              it.date1.getMonth() >= date1.getMonth() && it.date1.getMonth() <= date2.getMonth() &&
+              it.date1.getDate() >= date1.getDate() && it.date1.getDate() <= date2.getDate()) {
+                hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+          }
+        }
+        else
+          hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
       }
     }
 
