@@ -67,11 +67,22 @@ class ThemeProfileController {
       redirect(action: list)
     }
     else {
-      def allProjects = Entity.findAllByType(metaDataService.etProject)
+      def temp = Entity.findAllByType(metaDataService.etProject)
+      List allProjects = []
+      temp.each { project ->
+        if (project.profile.startDate >= theme.profile.startDate && project.profile.endDate <= theme.profile.endDate)
+          allProjects << project
+      }
+
       // find all projects linked to this theme
       List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 
-      def allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity)
+      def temp2 = Entity.findAllByType(metaDataService.etGroupActivity)
+      List allActivityGroups = []
+      temp2.each { group ->
+        if (group.profile.date >= theme.profile.startDate && group.profile.date <= theme.profile.endDate)
+          allActivityGroups << group
+      }
       // find all activity groups linked to this theme
       List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
 
