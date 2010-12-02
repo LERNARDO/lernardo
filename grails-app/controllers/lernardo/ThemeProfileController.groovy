@@ -193,7 +193,7 @@ class ThemeProfileController {
       new Link(source: entity, target: Entity.get(params.facility), type: metaDataService.ltThemeOfFacility).save()
 
       // link theme to parent theme if one was selected
-      if (params.parenttheme)
+      if (params.parenttheme != "null")
         functionService.linkEntities(entity.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
       functionService.createEvent(currentEntity, 'Du hast das Thema <a href="' + createLink(controller: 'themeProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
