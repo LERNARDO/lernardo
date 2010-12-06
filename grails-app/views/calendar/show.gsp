@@ -4,12 +4,12 @@
   <g:javascript library="jquery" />  
   <g:javascript src="jquery/fullcalendar.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
-  <g:render template="/templates/calendar" model="[id:id]"/>
+  <g:render template="/templates/calendar" model="[visibleEducators: visibleEducators]"/>
 </head>
 
 <body>
 
-  <div class="headerGreen">
+  %{--<div class="headerGreen">
     <div class="second">
       <h1><g:message code="cal.caption"/></h1>
     </div>
@@ -23,7 +23,7 @@
         <span style="background: #bb5; padding: 5px; color: #fff; -moz-border-radius: 2px; margin: 0 3px 0 0;"><g:message code="cal.projectUnit"/></span>
       </div>
     </div>
-  </div>
+  </div>--}%
 
   <div class="headerGreen">
     <div class="second">
@@ -32,8 +32,10 @@
   </div>
   <div class="boxGray">
     <div class="second">
-      <g:each in="${educators}" var="educator">
-        <div style="padding: 3px 4px; width: 350px; float: left"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> <g:link controller="calendar" action="show" id="${educator.id}">${educator.profile.fullName}</g:link></div>
+      <g:each in="${educators}" var="educator" status="i">
+        <app:getActiveEducator educators="${visibleEducators}" id="${educator.id}">
+          <div class="calendereducator" style="background: ${active ? grailsApplication.config.colors[i] : ''}"><g:link style="display: block; color: ${active ? '#fff' : '#000'}; text-decoration: none;" controller="calendar" action="show" id="${educator.id}" params="[visibleEducators: visibleEducators]"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> ${educator.profile.fullName}</g:link></div>
+        </app:getActiveEducator>
       </g:each>
       <div class="clear"></div>
     </div>
@@ -41,7 +43,7 @@
 
   <div class="headerGreen">
     <div class="second">
-      <h1><g:message code="cal.owned"/> ${active.profile.fullName}</h1>
+      <h1>Kalender</h1>
     </div>
   </div>
   <div class="boxGray">

@@ -1434,3 +1434,14 @@ table#msg-composer td {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+
+.calendereducator {
+    padding: 3px 4px;
+    width: 540px;
+    float: left;
+}
+
+.calendereducator:hover {
+    background: #aaa;
+    display: block;
+}

@@ -59,7 +59,7 @@
     allDaySlot:true,
     allDayText:'',
     weekends: true,
-    events: '${g.createLink (controller:"calendar", action:"events", id:id)}',
+    events: '${g.createLink (controller:"calendar", action:"events", params:[visibleEducators: visibleEducators])}',
   
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%

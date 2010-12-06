@@ -126,7 +126,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></app:isCreator></h5>
       <div class="zusatz-add" id="substitutes" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2')">
-          <g:select name="substitute" from="${allEducators}" optionKey="id" optionValue="profile"/>
+          <g:select name="substitute" from="${allSubstitutes}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
           <div class="spacer"></div>

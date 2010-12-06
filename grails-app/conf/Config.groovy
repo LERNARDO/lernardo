@@ -120,7 +120,7 @@ log4j = {
 }
 
 // change this value to control the amount of bootstrapped dummy entities
-dummies = 3
+dummies = 12
 
 // the default password used when creating new entity accounts
 defaultpass = "pass"
@@ -250,3 +250,6 @@ helpProfileType_es = ['all':'Todos','Betreiber':'Operador','Pädagoge':'Pedagogo
 
 dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittsdatum']
 dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']
+
+colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',
+          6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']

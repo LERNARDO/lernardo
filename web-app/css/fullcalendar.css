@@ -257,35 +257,109 @@ table.fc-header {
 	 *     }
 	 */
 
-.group,
-.fc-agenda .group .fc-event-time,
-.group a {
-    background-color: #55b;
-    border-color: #55b;
+.educator0,
+.fc-agenda .educator0 .fc-event-time,
+.educator0 a {
+    background-color: #f44;
+    border-color: #e33;
     color: #fff;
     }
 
-.theme,
-.fc-agenda .theme .fc-event-time,
-.theme a {
-    background-color: #5b5;
-    border-color: #5b5;
+.educator1,
+.fc-agenda .educator1 .fc-event-time,
+.educator1 a {
+    background-color: #4f4;
+    border-color: #3e3;
     color: #fff;
     }
 
-.activity,
-.fc-agenda .activity .fc-event-time,
-.activity a {
-    background-color: #b55;
-    border-color: #b55;
+.educator2,
+.fc-agenda .educator2 .fc-event-time,
+.educator2 a {
+    background-color: #44f;
+    border-color: #33e;
     color: #fff;
     }
 
-.projectunit,
-.fc-agenda .projectunit .fc-event-time,
-.projectunit a {
-    background-color: #bb5;
-    border-color: #bb5;
+.educator3,
+.fc-agenda .educator3 .fc-event-time,
+.educator3 a {
+    background-color: #ff4;
+    border-color: #ee3;
+    color: #fff;
+    }
+
+.educator4,
+.fc-agenda .educator4 .fc-event-time,
+.educator4 a {
+    background-color: #4ff;
+    border-color: #3ee;
+    color: #fff;
+    }
+
+.educator5,
+.fc-agenda .educator5 .fc-event-time,
+.educator5 a {
+    background-color: #f4f;
+    border-color: #e3e;
+    color: #fff;
+    }
+
+/* additional colors */
+
+.educator-6,
+.fc-agenda .educator-6 .fc-event-time,
+.educator-6 a {
+    background-color: #c21200;
+    border-color: #b10100;
+    color: #fff;
+    }
+
+.educator-7,
+.fc-agenda .educator-7 .fc-event-time,
+.educator-7 a {
+    background-color: #00660a;
+    border-color: #005509;
+    color: #fff;
+    }
+
+.educator-8,
+.fc-agenda .educator-8 .fc-event-time,
+.educator-8 a {
+    background-color: #00b8b1;
+    border-color: #00a7a0;
+    color: #fff;
+    }
+
+.educator-9,
+.fc-agenda .educator-9 .fc-event-time,
+.educator-9 a {
+    background-color: #c24900;
+    border-color: #b13800;
+    color: #fff;
+    }
+
+.educator-10,
+.fc-agenda .educator-10 .fc-event-time,
+.educator-10 a {
+    background-color: #722e00;
+    border-color: #611d00;
+    color: #fff;
+    }
+
+.educator-11,
+.fc-agenda .educator-11 .fc-event-time,
+.educator-11 a {
+    background-color: #ed00e5;
+    border-color: #dc00d4;
+    color: #fff;
+    }
+
+.educator-1,
+.fc-agenda .educator-1 .fc-event-time,
+.educator-1 a {
+    background-color: #111;
+    border-color: #000;
     color: #fff;
     }
 
