@@ -138,6 +138,38 @@ class MsgController {
             'entity': Entity.get(params.entity)]
   }
 
+  def createMany = {
+    def message = new Msg()
+    Entity entity = Entity.get(params.id)
+
+    return [msgInstance: message,
+            entity: entity]
+  }
+
+  def saveMany = {
+    println params
+    Entity currentEntity = entityHelperService.loggedIn
+
+    params.receivers = functionService.getParamAsList(params.receivers)
+
+    params.receivers.each { id ->
+      Entity entity = Entity.get(id)
+
+      // create first instance to be saved in outbox of sender
+      functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
+
+      // create second instance to be saved in inbox of receiver
+      functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
+
+      functionService.createEvent(currentEntity, 'Du hast <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a> eine Nachricht geschickt.')
+      functionService.createEvent(entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a>  hat dir eine Nachricht geschickt.')
+    }
+
+    flash.message = message(code:"msg.sent", args:[params.subject])
+
+    redirect controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id, params:[entity: currentEntity]
+  }
+
   def save = {
     Entity entity = Entity.get(params.entity)
     Entity currentEntity = entityHelperService.loggedIn
@@ -155,5 +187,47 @@ class MsgController {
 
     redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
     //redirect action:'inbox', id: currentEntity.id
+  }
+
+  def remoteReceivers = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        eq('type', metaDataService.etClient)
+        eq('type', metaDataService.etEducator)
+        eq('type', metaDataService.etChild)
+        eq('type', metaDataService.etParent)
+        eq('type', metaDataService.etPartner)
+        eq('type', metaDataService.etPate)
+        eq('type', metaDataService.etOperator)
+        eq('type', metaDataService.etUser)
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'receiverresults', model: [results: results])
+    }
+  }
+
+  def addReceiver = {
+    //Entity receiver = Entity.get(params.id)
+
+    render "abc"
   }
 }

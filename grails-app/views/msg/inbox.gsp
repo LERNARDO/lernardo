@@ -97,6 +97,7 @@
       <div class="buttons">
         %{--<g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>--}%
         <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
+        <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}">Neue Nachricht verfassen</g:link>
         <div class="spacer"></div>
       </div>
 

@@ -1,0 +1,34 @@
+  <script type="text/javascript">
+
+  function kontrolle2(id) {
+    var select = document.getElementById("hiddenselect");
+    var optn = document.createElement("OPTION");
+    optn.text = id;
+    optn.value = id;
+    optn.selected = true;
+    select.options.add(optn);
+  }
+
+  function addReceiver(name) {
+    var text = document.getElementById("receivers2");
+    //text.append(name);
+    $('#receivers2').append(name + "<br/>");
+  }
+  </script>
+
+<g:if test="${results}">
+  <div class="remoteresults" style="width: 535px">
+    <g:each in="${results}" var="entity">
+      %{--<g:remoteLink url="[controller:'msg', action:'addReceiver', id: entity.id]" update="receivers2" before="kontrolle2('${entity.id}');" after="addReceiver('${entity.profile.fullName}');">--}%
+      <div class="remoteresult" onclick="kontrolle2('${entity.id}'); addReceiver('${entity.profile.fullName}');">
+        <table>
+          <tr>
+            <td><ub:profileImage name="${entity.name}" width="65"/></td>
+            <td style="vertical-align: top; padding-left: 5px;"><span class="bold" style="color: #000">${entity.profile.fullName}</span></td>
+          </tr>
+        </table>
+      </div>
+      %{--</g:remoteLink>--}%
+    </g:each>
+  </div>
+</g:if>
