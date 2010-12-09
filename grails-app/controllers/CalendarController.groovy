@@ -108,7 +108,7 @@ class CalendarController {
     // get all themes the educator is part of
     List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-    themeList.each {
+    themeList?.each {
       def dtStart = new DateTime(it.profile.startDate)
       dtStart = dtStart.plusHours(2)
       def dtEnd = new DateTime(it.profile.endDate)
@@ -116,14 +116,14 @@ class CalendarController {
       eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1']
     }
 
-    params.visibleEducators.each { ed ->
+    params.visibleEducators?.each { ed ->
       Entity educator = Entity.get(ed)
       def className = "educator" + educatornumbers.indexOf(ed)
 
       // get all appointments
       List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
 
-      appointments.each {
+      appointments?.each {
         def dtStart = new DateTime(it.profile.beginDate)
         dtStart = dtStart.plusHours(2)
         def dtEnd = new DateTime(it.profile.endDate)
@@ -146,7 +146,7 @@ class CalendarController {
           activityList.add(group)
       }
 
-      activityList.each {
+      activityList?.each {
         def dtStart = new DateTime(it.profile.date)
         dtStart = dtStart.plusHours(2)
         def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
@@ -174,7 +174,7 @@ class CalendarController {
           themeRoomList.add(activity)
       }
 
-      themeRoomList.each {
+      themeRoomList?.each {
         def dtStart = new DateTime(it.profile.date)
         dtStart = dtStart.plusHours(2)
         def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
@@ -188,7 +188,7 @@ class CalendarController {
       List projectDays = functionService.findAllByLink(educator, null, metaDataService.ltProjectDayEducator)
 
       List unitsDone = []
-      projectDays.each { projectDay ->
+      projectDays?.each { projectDay ->
         // 2. for each project day find the project it belongs to
         Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
