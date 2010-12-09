@@ -9,6 +9,8 @@
 
 <body>
 
+<div id="caltip"></div>
+
   %{--<div class="headerGreen">
     <div class="second">
       <h1><g:message code="cal.caption"/></h1>

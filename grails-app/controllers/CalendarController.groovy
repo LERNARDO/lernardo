@@ -23,20 +23,8 @@ class CalendarController {
     Entity entity = Entity.get(params.id)
     if (entity.type.supertype.name == 'activity')
       redirect controller: entity.type.supertype.name, action: 'show', id: params.id
-    else {
-      if (entity.type.supertype.name == 'projectUnit') {
-        // get projectDay the projectUnit belongs to
-        Entity projectDay = functionService.findByLink(entity, null, metaDataService.ltProjectDayUnit)
-
-        // get project the projectDay belongs to
-        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-
-        // redirect to project show view
-        redirect controller: 'projectProfile', action: show, id: project.id
-      }
-      else
-        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
-    }
+    else
+      redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
   }
 
   /*
@@ -120,7 +108,7 @@ class CalendarController {
     // get all themes the educator is part of
     List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-    themeList.each {
+    themeList?.each {
       def dtStart = new DateTime(it.profile.startDate)
       dtStart = dtStart.plusHours(2)
       def dtEnd = new DateTime(it.profile.endDate)
@@ -128,9 +116,20 @@ class CalendarController {
       eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1']
     }
 
-    params.visibleEducators.each { ed ->
+    params.visibleEducators?.each { ed ->
       Entity educator = Entity.get(ed)
       def className = "educator" + educatornumbers.indexOf(ed)
+
+      // get all appointments
+      List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
+
+      appointments?.each {
+        def dtStart = new DateTime(it.profile.beginDate)
+        dtStart = dtStart.plusHours(2)
+        def dtEnd = new DateTime(it.profile.endDate)
+        def title = it.profile.isPrivate ? "Termin: Nicht verfügbar" : "Termin: ${it.profile.fullName}"
+        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), className: className, description: "<b>Beschreibung:</b> " + it.profile.description]
+      }
 
       // get all group activities the educator is part of
       List temp = Entity.findAllByType(metaDataService.etGroupActivity)
@@ -147,11 +146,11 @@ class CalendarController {
           activityList.add(group)
       }
 
-      activityList.each {
+      activityList?.each {
         def dtStart = new DateTime(it.profile.date)
         dtStart = dtStart.plusHours(2)
         def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
-        eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className]
+        eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Pädagogisches Ziel:</b> " + it.profile.educationalObjectiveText]
       }
 
       // get all themeroom activities the educator is part of
@@ -175,11 +174,11 @@ class CalendarController {
           themeRoomList.add(activity)
       }
 
-      themeRoomList.each {
+      themeRoomList?.each {
         def dtStart = new DateTime(it.profile.date)
         dtStart = dtStart.plusHours(2)
         def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-        eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className]
+        eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Dauer:</b> " + it.profile.duration + " min"]
 
       }
 
@@ -189,7 +188,7 @@ class CalendarController {
       List projectDays = functionService.findAllByLink(educator, null, metaDataService.ltProjectDayEducator)
 
       List unitsDone = []
-      projectDays.each { projectDay ->
+      projectDays?.each { projectDay ->
         // 2. for each project day find the project it belongs to
         Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
@@ -202,7 +201,7 @@ class CalendarController {
           def dtStart = new DateTime (projectUnit.profile.date)
           def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
 
-          eventList << [id: it.id, title: " Projekteinheit: (${project.profile.fullName}) ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className]
+          eventList << [id: project.id, title: " Projekteinheit: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: "<b>Projekt:</b> " + project.profile.fullName]
         }
       }
 

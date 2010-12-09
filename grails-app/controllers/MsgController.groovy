@@ -147,7 +147,6 @@ class MsgController {
   }
 
   def saveMany = {
-    println params
     Entity currentEntity = entityHelperService.loggedIn
 
     params.receivers = functionService.getParamAsList(params.receivers)
@@ -225,9 +224,4 @@ class MsgController {
     }
   }
 
-  def addReceiver = {
-    //Entity receiver = Entity.get(params.id)
-
-    render "abc"
-  }
 }

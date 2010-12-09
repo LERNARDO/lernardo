@@ -53,6 +53,7 @@
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
+
     </g:form>
   </div>
 </div>

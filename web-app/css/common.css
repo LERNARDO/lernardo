@@ -1445,3 +1445,13 @@ table#msg-composer td {
     background: #aaa;
     display: block;
 }
+
+#caltip {
+    position: absolute;
+    display: none;
+    background-color: #eee;
+    border:1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 50;
+}

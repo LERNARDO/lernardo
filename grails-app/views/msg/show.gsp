@@ -3,7 +3,7 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerGreene">
+<div class="headerGreen">
   <div class="second">
     <h1>Mein Postfach: Nachricht</h1>
   </div>

@@ -64,6 +64,11 @@ future HTML5 doctype
         dateFormat: 'dd. mm. yy'
       });
 
+      $('.datetimepicker2').datetimepicker({
+        dateFormat: 'dd. mm. yy,',
+        timeFormat: 'hh:mm'
+      });
+
       $('#flash-msg').delay(3000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
       $('.countable50').jqEasyCounter({
@@ -192,6 +197,7 @@ future HTML5 doctype
                         <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
                           <li class="icon-admin"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                           <li class="icon-admin"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
+                          <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
                         </app:accessCheck>
                       </app:accessCheck>
 
