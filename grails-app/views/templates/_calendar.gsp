@@ -68,6 +68,20 @@
       top.location.href = "${g.createLink (controller:"calendar",  action:"destination")}"+"/"+calEvent.id
     },
 
+    eventMouseover: function(e,m) {
+				//console.log(e);
+				var tPosX = m.pageX - 5 ;
+				var tPosY = m.pageY + 20 ;
+				$('#caltip').css({top: tPosY, left: tPosX, display: 'block'});
+				var tt = '';
+				tt += e.title+'<br /><br />';
+				tt += e.description+'<br />';
+				$('#caltip').html(tt);
+			},
+			eventMouseout: function() {
+				$('#caltip').css({display: 'none'});
+			},
+
     dayClick: function (dayDate, allDay, jsEvent, view) {
       %{--elem = jQuery(view.element).parent().parent();--}%
       elem = jQuery('#profile-content') ;
