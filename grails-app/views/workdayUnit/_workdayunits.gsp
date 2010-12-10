@@ -1,5 +1,15 @@
+<g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'confirmDays']" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
+
+    <span style="display: none">
+      <g:datePicker name="date" value="${date}"/>
+    </span>
+
+    <g:submitButton name="button" value="Bestätigen"/>
+    <div class="clear"></div>
+</g:formRemote>
+
 <div style="border: 1px solid #bbb; padding: 5px; margin: 10px 0">
-  <p><span class="bold">Eintrag erstellen:</span></p>
+  <p><span class="bold">Einträge erstellen:</span></p>
   <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit']" update="workdayunits" before="showspinner('#workdayunits')">
 
     <span style="display: none">
@@ -32,11 +42,9 @@
 </div>
 
 <g:if test="${workdayunits}">
-  <g:each in="${workdayunits}" var="workday" status="i">
+  <g:each in="${workdayunits}" var="unit" status="i">
     <div id="unit-${i}">
-      <g:formatDate date="${workday.date1}" format="HH:mm"/> bis <g:formatDate date="${workday.date2}" format="HH:mm"/> <g:remoteLink action="removeUnit" update="unit-${i}" id="${workday.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink><br/>
-      Kategorie: ${workday.category}<br/>
-      Beschreibung: ${workday.description.decodeHTML()}<br/><br/>
+      <g:render template="unit" model="[unit: unit, i: i]"/>
     </div>
   </g:each>
 </g:if>

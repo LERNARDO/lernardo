@@ -237,6 +237,7 @@ future HTML5 doctype
                         <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
                         %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
                         %{--<li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]">Zeitauswertung</g:link></li>--}%
+                        <li class="icon-admin"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
                       </app:isAdmin>
                     </ul>
                   </div>

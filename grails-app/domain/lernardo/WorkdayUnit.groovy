@@ -10,6 +10,8 @@ class WorkdayUnit implements Comparable {
     String category
     String description
 
+    Boolean confirmed = false
+
     static constraints = {
       description (size: 0..500, maxSize: 500)
     }

@@ -1,0 +1,29 @@
+<g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i]]" update="unit-${i}" before="showspinner('#unit-${i}')">
+
+    <span style="display: none">
+      <g:datePicker name="date" value="${date}"/>
+    </span>
+
+    <table>
+      <tr>
+        <td>Von:</td>
+        <td><g:select name="fromHour" from="${0..23}" value="${workdayUnit.date1.getHours()}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}" value="${workdayUnit.date1.getMinutes()}"/></td>
+      </tr>
+      <tr>
+        <td>Bis:</td>
+        <td><g:select name="toHour" from="${0..23}" value="${workdayUnit.date2.getHours()}"/>:<g:select name="toMinute" from="${['00','15','30','45']}" value="${workdayUnit.date2.getMinutes()}"/></td>
+      </tr>
+      <tr>
+        <td>Kategorie:</td>
+        <td><g:select from="${workdaycategories}" name="category" value="${workdayUnit.category}"/></td>
+      </tr>
+      <tr>
+        <td>Beschreibung:</td>
+        <td><g:textArea rows="3" cols="50" name="description" value="${workdayUnit.description.decodeHTML()}"/></td>
+      </tr>
+    </table>
+
+    <div class="spacer"></div>
+    <g:submitButton name="button" value="${message(code:'change')}"/>
+    <div class="spacer"></div>
+  </g:formRemote>

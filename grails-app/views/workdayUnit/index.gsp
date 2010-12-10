@@ -20,7 +20,7 @@
       <div class="spacer"></div>
     </g:formRemote>
 
-    <app:isOperator entity="${currentEntity}">
+    %{--<app:isOperator entity="${currentEntity}">
       <div class="zusatz">
         <h5>Kategorien <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#workdaycategories');
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Performance hinzufügen"/></a></app:accessCheck></h5>
@@ -41,7 +41,7 @@
           <g:render template="workdaycategories" model="[workdaycategories: workdaycategories, entity: currentEntity]"/>
         </div>
       </div>
-    </app:isOperator>
+    </app:isOperator>--}%
 
     <div id="workdayunits"></div>
 
