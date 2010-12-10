@@ -197,13 +197,14 @@ future HTML5 doctype
                         <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
                           <li class="icon-admin"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                           <li class="icon-admin"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
-                          <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
                         </app:accessCheck>
                       </app:accessCheck>
 
                       <app:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">
                         <li class="icon-admin"><g:link controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
                       </app:accessCheck>
+
+                      <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
 
                     </ul>
                   </td>
