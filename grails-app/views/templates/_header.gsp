@@ -10,6 +10,4 @@
   <app:isNotLoggedIn>
     <a href="?lang=de">Deutsch</a> | <a href="?lang=es">Español</a>
   </app:isNotLoggedIn>
-  %{-- TODO: find out why activeSessions is NULL on DEV and TEST instance --}%
-  %{--Aktive User: ${ApplicationService.activeSessions}--}%
 </div>
