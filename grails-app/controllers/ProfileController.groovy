@@ -18,6 +18,7 @@ import standard.FunctionService
 import standard.FilterService
 import lernardo.Method
 import at.openfactory.ep.SecHelperService
+import lernardo.ActivityProfile
 
 class ProfileController {
   GeoCoderService geoCoderService
@@ -310,33 +311,19 @@ class ProfileController {
 
     Calendar calendar = Calendar.getInstance()
     TimeZone timeZone = calendar.getTimeZone()
-    //println timeZone
 
     SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd")
 
     List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'desc'])
 
-    Calendar cal = Calendar.getInstance()
-    List eventsToday = []
-    allEvents.each {
-      if (tdf.format(it.date) == tdf.format(cal.getTime()))
-      eventsToday << it
-    }
+    List eventsToday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
 
-    cal.add(Calendar.DATE, -1)
-    List eventsYesterday = []
-    allEvents.each {
-      if (tdf.format(it.date) == tdf.format(cal.getTime()))
-      eventsYesterday << it
-    }
+    calendar.add(Calendar.DATE, -1)
+    List eventsYesterday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
 
-    cal.add(Calendar.DATE, 2)
-    List eventsTomorrow = []
-    allEvents.each {
-      if (tdf.format(it.date) == tdf.format(cal.getTime()))
-      eventsTomorrow << it
-    }
-    
+    calendar.add(Calendar.DATE, 2)
+    List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
+
     return ['entity': entity,
             'eventsToday': eventsToday,
             'eventsYesterday': eventsYesterday,
@@ -369,8 +356,8 @@ class ProfileController {
 
     // find all activities the entity is owner, or in the educator or client list
     // Unfortunately we loose control over sort and max, need to find a workaround
-    def activityList = Activity.findAllByOwner(entity)
-    Activity.list().each {
+    def activityList = ActivityProfile.findAllByOwner(entity)
+    ActivityProfile.list().each {
       for (a in it.educators) {
         if (a == entity)
           activityList << it
