@@ -131,19 +131,6 @@ class FunctionService {
   }
 
   /*
-   * the return type of a multiple select box is inconsistent (string when a single entry was selected, or a list when
-   * multiple entries were selected) so this helper method takes the parameter and returns it as a list either way
-   */
-  def getParamAsList(param) {
-    def paramList = []
-    if (param && param != 'null') {
-      (param?.class?.isArray()) ? paramList << (param as List) : paramList << (param)
-      paramList = paramList.flatten()
-    }
-    return paramList
-  }
-
-  /*
    * creates a private message
    */
   boolean createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {

@@ -772,7 +772,7 @@ class BootStrap {
   }
 
   void createDefaultProjectTemplates() {
-    log.info ("==> creating " + grailsApplication.config.dummies + " dummy project templates")
+    log.info ("creating " + grailsApplication.config.dummies + " dummy project templates")
     EntityType etProjectTemplate = metaDataService.etProjectTemplate
 
     Random generator = new Random()

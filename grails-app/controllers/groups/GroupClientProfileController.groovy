@@ -140,9 +140,9 @@ class GroupClientProfileController {
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">Bitte zumindest einen Betreuten ausw�hlen!</p>'
+      render '<p class="italic red">Bitte zumindest einen Betreuten auswählen!</p>'
     else {
-      def bla = functionService.getParamAsList(params.members)
+      def bla = params.list('members')
   
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)

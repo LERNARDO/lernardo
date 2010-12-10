@@ -39,7 +39,7 @@ class CalendarController {
     Entity entity = params.id ? Entity.get(params.id) : currentEntity
 
     if (params.visibleEducators) {
-      params.visibleEducators = functionService.getParamAsList(params.visibleEducators)
+      params.visibleEducators = params.list('visibleEducators')
       visibleEducators.addAll(params.visibleEducators)
     }
 
@@ -99,7 +99,7 @@ class CalendarController {
 
     List educatornumbers = educators.collect{it.id.toString()}
 
-    params.visibleEducators = functionService.getParamAsList(params.visibleEducators)
+    params.visibleEducators = params.list('visibleEducators')
 
     // get events
 

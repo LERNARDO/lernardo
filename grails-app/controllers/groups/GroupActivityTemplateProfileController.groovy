@@ -202,7 +202,7 @@ class GroupActivityTemplateProfileController {
     if (!params.templates)
       render '<p class="italic red">Bitte zumindest eine Vorlage auswählen!</p>'
     else { 
-      def bla = functionService.getParamAsList(params.templates)
+      def bla = params.list('templates')
 
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
@@ -234,14 +234,14 @@ class GroupActivityTemplateProfileController {
   def updateselect = {
     //println params
     //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
-    def method1lower = functionService.getParamAsList(params.method1lower)
-    def method1upper = functionService.getParamAsList(params.method1upper)
+    def method1lower = params.list('method1lower')
+    def method1upper = params.list('method1upper')
 
-    def method2lower = functionService.getParamAsList(params.method2lower)
-    def method2upper = functionService.getParamAsList(params.method2upper)
+    def method2lower = params.list('method2lower')
+    def method2upper = params.list('method2upper')
 
-    def method3lower = functionService.getParamAsList(params.method3lower)
-    def method3upper = functionService.getParamAsList(params.method3upper)
+    def method3lower = params.list('method3lower')
+    def method3upper = params.list('method3upper')
 
     def c = Entity.createCriteria()
     def allTemplates = c.list {

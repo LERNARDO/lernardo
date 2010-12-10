@@ -87,7 +87,7 @@ class HelperController {
     if (helperInstance) {
       helperInstance.properties = params
 
-      List types = functionService.getParamAsList(params.types)
+      List types = params.list('types')
 
       List temp = helperInstance.types.toList()
       temp.each {
@@ -125,7 +125,7 @@ class HelperController {
     Helper helperInstance = new Helper(params)
     Entity entity = Entity.get(params.name)
 
-    List types = functionService.getParamAsList(params.types)
+    List types = params.list('types')
 
     types.each {
       helperInstance.addToTypes(it)
