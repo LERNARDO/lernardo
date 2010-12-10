@@ -104,24 +104,23 @@ future HTML5 doctype
 
 </head>
 <body>
+
 <g:if test="${!entity}">
   <g:set var="entity" value="${currentEntity}"/>
 </g:if>
+
 <div id="livetickerbox"></div>
+
 <div id="private">
   <div id="doc4" class="yui-t3">
 
     <div id="hd">
       <g:render template="/templates/header"/>
-      <div id="nav">
-        <g:render template="/templates/navigation"/>
-      </div>
+      <g:render template="/templates/navigation"/>
     </div>
 
     <div style="background: #fff;">
-      <div id="banner-private">
-        <g:render template="/templates/imagenav"/>
-      </div>
+      <g:render template="/templates/imagenav"/>
     </div>
 
     <div id="bd">
@@ -318,5 +317,6 @@ future HTML5 doctype
 
   </div>
 </div>
+
 </body>
 </html>

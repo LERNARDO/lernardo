@@ -14,23 +14,21 @@
   <ga:trackPageviewAsynch /> 
 </head>
 <body>
+
 <g:if test="${!entity}">
   <g:set var="entity" value="${currentEntity}"/>
 </g:if>
+
 <div id="private">
   <div id="doc4" class="yui-t7">
 
     <div id="hd">
       <g:render template="/templates/header"/>
-      <div id="nav">
-        <g:render template="/templates/navigation"/>
-      </div>
+      <g:render template="/templates/navigation"/>
     </div>
 
     <div style="background: #fff; padding-bottom: 10px">
-      <div id="banner-private">
-        <g:render template="/templates/imagenav"/>
-      </div>
+      <g:render template="/templates/imagenav"/>
     </div>
 
     <div id="bd">
@@ -46,12 +44,14 @@
           </div>
         </div>
       </div>
-    </div><!--bd-->
+    </div>
 
     <div id="ft">
       <g:render template="/templates/footer"/>
     </div>
-  </div><!-- doc4 -->
-</div><!-- private -->
+
+  </div>
+</div>
+
 </body>
 </html>

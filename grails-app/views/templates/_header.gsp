@@ -2,12 +2,8 @@
 <a href="${g.resource(dir:'')}"><div id="logo"></div></a>
 <div id="info">
   <app:isLoggedIn>
-    <g:message code="header.logedonAs"/> <span class="bold">${currentEntity?.profile?.fullName}</span>
-    <g:link controller="security" action='logout'> [<g:message code="header.logoff"/>]</g:link><br/>
-    %{-- TODO: this is for testing purposes only, remove later --}%
-    <a href="?lang=de">Deutsch</a> | <a href="?lang=es">Español</a>
+    <g:message code="header.loggedInAs"/> <span class="bold">${currentEntity?.profile?.fullName}</span>
+    <g:link controller="security" action='logout'> [<g:message code="header.logOut"/>]</g:link><br/>
   </app:isLoggedIn>
-  <app:isNotLoggedIn>
-    <a href="?lang=de">Deutsch</a> | <a href="?lang=es">Español</a>
-  </app:isNotLoggedIn>
+  <a href="?lang=de">Deutsch</a> | <a href="?lang=es">Español</a>
 </div>

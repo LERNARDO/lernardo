@@ -28,9 +28,7 @@
 
         <div id="hd">
           <g:render template="/templates/header"/>
-          <div id="nav">
-            <g:render template="/templates/navigation" />
-          </div>
+          <g:render template="/templates/navigation" />
         </div>
 
         <div id="banner"></div>
