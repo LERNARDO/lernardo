@@ -296,7 +296,7 @@
               </td>
             </tr>
 
-            <g:if test="${grailsApplication.config.clientProfile.contact}">
+            %{--<g:if test="${grailsApplication.config.clientProfile.contact}">
 
               <tr>
                 <td colspan="4">Kontakt im Notfall</td>
@@ -341,7 +341,7 @@
                   <g:textField colspan="2" class="${hasErrors(bean: client, field: 'profile.contactMail', 'errors')}" size="20" name="contactMail" value="${fieldValue(bean: client, field: 'profile.contactMail')}"/>
                 </td>
               </tr>
-            </g:if>
+            </g:if>--}%
 
           </table>
         </div>

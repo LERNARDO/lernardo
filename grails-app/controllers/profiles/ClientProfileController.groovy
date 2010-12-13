@@ -133,16 +133,16 @@ class ClientProfileController {
     if (client.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
-    // check and (brute force) update link to colonia
+    // update link to colonia
     def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-    if (link?.source) {
-      link.delete()   // update else new link ?? hf
+    if (link) {
+      link.delete()
     }
     new Link(source: Entity.get(params.currentColonia), target: client, type: metaDataService.ltColonia).save()
 
-    // check and (brute force) update link to school
+    // update link to school
     link = Link.findByTargetAndType(client, metaDataService.ltFacility)
-    if (link?.source) {
+    if (link) {
       link.delete()
     }
     new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
