@@ -1,13 +1,30 @@
-<g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'confirmDays']" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
+<g:set var="confirmed" value="true"/>
 
-    <span style="display: none">
-      <g:datePicker name="date" value="${date}"/>
-    </span>
+<g:if test="${workdayunits}">
+  <g:if test="${!workdayunits[0].confirmed}">
+    <g:set var="confirmed" value="false"/>
+    <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'confirmDays']" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
 
-    <g:submitButton name="button" value="Bestätigen"/>
-    <div class="clear"></div>
-</g:formRemote>
+        <span style="display: none">
+          <g:datePicker name="date" value="${date}"/>
+        </span>
 
+        <g:submitButton name="button" value="Bestätigen"/>
+        <div class="clear"></div>
+    </g:formRemote>
+
+    <p>Wenn Sie auf Bestätigen klicken, wird die Zeitaufzeichnung für diesen Tag gespeichert und an den Betreiber abgeschickt. Sie können diesen Vorgang nicht rückgängig machen. Klicken Sie bitte erst auf Bestätigen, wenn der Tag vorbei ist und alle Stunden eingetragen wurden.</p>
+
+  </g:if>
+  <g:else>
+      <p class="italic red">Dieser Tag wurde bereits bestätigt!</p>
+  </g:else>
+</g:if>
+<g:else>
+  <g:set var="confirmed" value="false"/>
+</g:else>
+
+<g:if test="${confirmed == 'false'}">
 <div style="border: 1px solid #bbb; padding: 5px; margin: 10px 0">
   <p><span class="bold">Einträge erstellen:</span></p>
   <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit']" update="workdayunits" before="showspinner('#workdayunits')">
@@ -40,6 +57,7 @@
     <div class="spacer"></div>
   </g:formRemote>
 </div>
+</g:if>
 
 <g:if test="${workdayunits}">
   <g:each in="${workdayunits}" var="unit" status="i">
