@@ -40,11 +40,11 @@
       </g:each>
       </tbody>
     </table>
-  </div>
 
-  <div class="paginateButtons">
-    <g:paginate total="${appointmentProfileInstanceTotal}"/>
-  </div>
+    <div class="paginateButtons">
+      <g:paginate total="${appointmentProfileInstanceTotal}"/>
+    </div>
 
+  </div>
 </div>
 </body>

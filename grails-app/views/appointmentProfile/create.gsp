@@ -39,12 +39,12 @@
 
       <div class="property">
         <g:message code="appointment.profile.allDay"/> <br/>
-        <g:checkBox name="allDay" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.allDay')}"/>
+        <g:checkBox name="allDay" value="${appointmentProfileInstance?.profile?.allDay}"/>
       </div>
 
       <div class="property">
         <g:message code="appointment.profile.isPrivate"/> <br/>
-        <g:checkBox name="isPrivate" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.isPrivate')}"/>
+        <g:checkBox name="isPrivate" value="${appointmentProfileInstance?.profile?.isPrivate}"/>
       </div>
 
       <div class="clear"></div>

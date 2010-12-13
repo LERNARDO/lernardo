@@ -257,6 +257,14 @@ table.fc-header {
 	 *     }
 	 */
 
+.own-appointments,
+.fc-agenda .own-appointments .fc-event-time,
+.own-appointments a {
+    background-color: #9BCD9B;
+    border-color: #8ABC8A;
+    color: #fff;
+    }
+
 .educator0,
 .fc-agenda .educator0 .fc-event-time,
 .educator0 a {

@@ -105,6 +105,19 @@ class CalendarController {
 
     def eventList = []
 
+    if (currentEntity.type.id != metaDataService.etEducator.id) {
+      // get all own appointments
+      List ownappointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
+
+      ownappointments?.each {
+        def dtStart = new DateTime(it.profile.beginDate)
+        dtStart = dtStart.plusHours(2)
+        def dtEnd = new DateTime(it.profile.endDate)
+        def title = "Termin: ${it.profile.fullName}"
+        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: 'own-appointments', description: "<b>Beschreibung:</b> " + it.profile.description]
+      }
+    }
+
     // get all themes the educator is part of
     List themeList = Entity.findAllByType(metaDataService.etTheme)
 
@@ -127,8 +140,8 @@ class CalendarController {
         def dtStart = new DateTime(it.profile.beginDate)
         dtStart = dtStart.plusHours(2)
         def dtEnd = new DateTime(it.profile.endDate)
-        def title = it.profile.isPrivate ? "Termin: Nicht verfügbar" : "Termin: ${it.profile.fullName}"
-        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), className: className, description: "<b>Beschreibung:</b> " + it.profile.description]
+        def title = it.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${it.profile.fullName}"
+        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: className, description: "<b>Beschreibung:</b> " + it.profile.description]
       }
 
       // get all group activities the educator is part of

@@ -33,8 +33,16 @@ class AppointmentProfileController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-        params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ appointmentProfileInstanceList: Entity.findAllByType(metaDataService.etAppointment, params), appointmentProfileInstanceTotal: Entity.countByType(metaDataService.etAppointment)]
+      params.offset = params.offset ?: 0
+      Entity currentEntity = entityHelperService.loggedIn
+
+      List appointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
+      def resulttotal = appointments.size()
+
+      def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
+      appointments = appointments.subList(params.offset, upperBound)
+
+      [appointmentProfileInstanceList: appointments, appointmentProfileInstanceTotal: resulttotal]
     }
 
     def show = {
@@ -50,21 +58,25 @@ class AppointmentProfileController {
       return [appointmentProfileInstance : appointment]
     }
 
-    def delete = {
-        def appointmentProfileInstance = AppointmentProfile.get( params.id )
-        if(appointmentProfileInstance) {
+    def del = {
+        Entity appointment = Entity.get(params.id)
+
+      // delete all links to appointment
+      Link.findAllBySourceOrTarget(appointment, appointment).each {it.delete()}
+
+        if(appointment) {
             try {
-                appointmentProfileInstance.delete(flush:true)
-                flash.message = "AppointmentProfile ${params.id} deleted"
+                flash.message = message(code: "appointment.deleted", args: [appointment.profile.fullName])
+                appointment.delete(flush:true)
                 redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "AppointmentProfile ${params.id} could not be deleted"
+                flash.message = message(code: "appointment.notDeleted", args: [appointment.profile.fullName])
                 redirect(action:"show",id:params.id)
             }
         }
         else {
-            flash.message = "AppointmentProfile not found with id ${params.id}"
+            flash.message = "Appointment not found with id ${params.id}"
             redirect(action:"list")
         }
     }
@@ -101,6 +113,7 @@ class AppointmentProfileController {
     }
 
     def save = {
+      println params
       EntityType etAppointment = metaDataService.etAppointment
       Entity currentEntity = entityHelperService.loggedIn
 
@@ -116,7 +129,7 @@ class AppointmentProfileController {
         flash.message = message(code: "appointment.created", args: [entity.profile.fullName])
         redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
-        render(view: "create", model: [client: ee.entity])
+        render(view: "create", model: [appointmentProfileInstance: ee.entity])
         return
       }
 
