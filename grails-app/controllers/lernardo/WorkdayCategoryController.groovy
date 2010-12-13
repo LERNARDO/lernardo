@@ -33,11 +33,11 @@ class WorkdayCategoryController {
         if(workdayCategoryInstance) {
             try {
                 workdayCategoryInstance.delete(flush:true)
-                flash.message = "WorkdayCategory ${params.id} deleted"
+                flash.message = message(code:"workdaycategory.deleted", args:[workdayCategoryInstance.name])
                 redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "WorkdayCategory ${params.id} could not be deleted"
+                flash.message = message(code:"workdaycategory.notDeleted", args:[workdayCategoryInstance.name])
                 redirect(action:"show",id:params.id)
             }
         }
@@ -74,7 +74,7 @@ class WorkdayCategoryController {
             }
             workdayCategoryInstance.properties = params
             if(!workdayCategoryInstance.hasErrors() && workdayCategoryInstance.save()) {
-                flash.message = "WorkdayCategory ${params.id} updated"
+                flash.message = message(code:"workdaycategory.updated", args:[workdayCategoryInstance.name])
 
                 redirect action:'show', id:workdayCategoryInstance.id
             }
@@ -97,7 +97,7 @@ class WorkdayCategoryController {
     def save = {
         def workdayCategoryInstance = new WorkdayCategory(params)
         if(workdayCategoryInstance.save(flush:true)) {
-            flash.message = "WorkdayCategory ${workdayCategoryInstance.id} created"
+            flash.message = message(code:"workdaycategory.created", args:[workdayCategoryInstance.name])
 
             redirect action:"show", id:workdayCategoryInstance.id
         }

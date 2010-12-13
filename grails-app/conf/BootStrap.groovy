@@ -83,7 +83,7 @@ class BootStrap {
         createDefaultProjectTemplates()
         //createDefaultHelpers()
         createDefaultWorkdayCategories()
-        createDefaultWorkdayUnits()
+        //createDefaultWorkdayUnits()
       }
 
 

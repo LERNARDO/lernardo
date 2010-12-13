@@ -113,22 +113,6 @@ class WorkdayUnitController {
       render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories]
     }
 
-    def addCategory = {
-      WorkdayCategory workdayCategory = new WorkdayCategory(params)
-      workdayCategory.save(flush: true)
-
-      List workdaycategories = WorkdayCategory.list()
-      render template: 'workdaycategories', model:[workdaycategories: workdaycategories, currentEntity: entityHelperService.loggedIn]
-    }
-
-    def removeCategory = {
-      WorkdayCategory workdayCategory = WorkdayCategory.get(params.id)
-      workdayCategory.delete(flush: true)
-
-      List workdaycategories = WorkdayCategory.list()
-      render template: 'workdaycategories', model:[workdaycategories: workdaycategories, currentEntity: entityHelperService.loggedIn]
-    }
-
     def confirmDays = {
       Entity currentEntity = entityHelperService.loggedIn
 

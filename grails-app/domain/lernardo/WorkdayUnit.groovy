@@ -14,6 +14,7 @@ class WorkdayUnit implements Comparable {
 
     static constraints = {
       description (size: 0..500, maxSize: 500)
+      category nullable: false
     }
 
     int compareTo (obj) {
