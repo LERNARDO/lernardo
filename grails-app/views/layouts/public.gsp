@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css/' + project, file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
     <link rel="icon" href="${resource(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
     <g:javascript library="jquery" plugin="jquery"/>
+    <ckeditor:resources />
 
     <script type="text/javascript">
       $(document).ready(function() {

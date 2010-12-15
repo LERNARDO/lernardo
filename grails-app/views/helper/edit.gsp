@@ -31,10 +31,9 @@
         <tr>
           <td class="label"><g:message code="text"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
-            <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-            <fckeditor:editor name="content" id="content" width="680" height="300" toolbar="Basic" fileBrowser="default">
-              ${helperInstance.content}
-            </fckeditor:editor>
+            <ckeditor:editor name="content" height="200px" width="750px" toolbar="Basic">
+              ${fieldValue(bean:helperInstance,field:'content').decodeHTML()}
+            </ckeditor:editor>
           </td>
         </tr>
 

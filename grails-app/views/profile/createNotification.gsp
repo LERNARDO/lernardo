@@ -45,10 +45,9 @@
             <tr>
               <td><g:message code="notification.content"/>:</td>
               <td class="value ${hasErrors(bean:nc,field:'content','errors')}">
-                <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-                <fckeditor:editor name="content" id="content" width="700" height="300" toolbar="Basic" fileBrowser="default">
-                  ${nc?.content}
-                </fckeditor:editor>
+                <ckeditor:editor name="content" height="200px" width="700px" toolbar="Basic">
+                  ${fieldValue(bean:nc,field:'content').decodeHTML()}
+                </ckeditor:editor>
               </td>
             </tr>
 

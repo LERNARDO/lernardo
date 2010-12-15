@@ -2,10 +2,6 @@
   <div class="dialog">
 
     <div class="value">
-      %{--<fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-      <fckeditor:editor name="content" id="content" width="815" height="200" toolbar="Basic" fileBrowser="default">
-        ${comment.content}
-      </fckeditor:editor>--}%
       <g:textArea rows="5" cols="125" name="content" value="${comment.content}"/>
     </div>
 

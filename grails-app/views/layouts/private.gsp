@@ -18,6 +18,7 @@ future HTML5 doctype
   <g:layoutHead/>
   <g:javascript library="jquery" plugin="jquery"/>
   <jqui:resources/>
+  <ckeditor:resources />
   <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>

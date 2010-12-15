@@ -67,16 +67,14 @@
 
           <tr>
             <td colspan="2" valign="top" class="value ${hasErrors(bean: template, field: 'profile.description', 'errors')}">
-              <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-              <fckeditor:editor name="description" id="description" width="390" height="400" toolbar="Basic" fileBrowser="default">
-                ${template?.profile?.description}
-              </fckeditor:editor>
+              <ckeditor:editor name="description" height="300px" width="380px" toolbar="Basic">
+                ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
+              </ckeditor:editor>
             </td>
             <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.chosenMaterials', 'errors')}">
-              <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-              <fckeditor:editor name="chosenMaterials" id="chosenMaterials" width="390" height="400" toolbar="Basic" fileBrowser="default">
-                ${template?.profile?.chosenMaterials}
-              </fckeditor:editor>
+              <ckeditor:editor name="chosenMaterials" height="300px" width="380px" toolbar="Basic">
+                ${fieldValue(bean:template,field:'profile.chosenMaterials').decodeHTML()}
+              </ckeditor:editor>
             </td>
           </tr>
 

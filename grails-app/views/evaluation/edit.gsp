@@ -22,18 +22,16 @@
 
       <p class="strong">Beschreibung</p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
-        <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-        <fckeditor:editor name="description" height="200" toolbar="Basic" fileBrowser="default">
-          ${fieldValue(bean: evaluationInstance, field: 'description').decodeHTML()}
-        </fckeditor:editor>
+        <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+          ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
+        </ckeditor:editor>
       </span>
 
       <p class="strong">Maßnahme</p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
-        <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-        <fckeditor:editor name="method" height="200" toolbar="Basic" fileBrowser="default">
-          ${fieldValue(bean: evaluationInstance, field: 'method').decodeHTML()}
-        </fckeditor:editor>
+        <ckeditor:editor name="method" height="200px" width="800px" toolbar="Basic">
+          ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
+        </ckeditor:editor>
       </span>
 
       <div class="buttons">

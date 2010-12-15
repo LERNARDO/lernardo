@@ -32,11 +32,9 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="msg.content.label" default="Nachricht"/>:</td>
           <td valign="top" class="value">
-            <fckeditor:config CustomConfigurationsPath="${g.resource(dir:'js', file: 'fck-config.js').toString()}"/>
-            <fckeditor:editor name="content" height="200" width="700" toolbar="Basic" fileBrowser="default">
+            <ckeditor:editor name="content" height="200px" width="700px" toolbar="Basic">
               ${fieldValue(bean:msgInstance,field:'content').decodeHTML()}
-            </fckeditor:editor>
-            %{--<g:textArea class="countable2000 ${hasErrors(bean: msgInstance, field: 'content', 'errors')}" rows="10" cols="70" name="content" value="${fieldValue(bean: msgInstance, field: 'content')}"/>--}%
+            </ckeditor:editor>
           </td>
         </tr>
 
