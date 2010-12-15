@@ -1,6 +1,6 @@
 <div id="banner-private">
 
-  <ol class="imgmenu" id="bounce">
+  <ol class="imgmenu">
     <li>
       <div id="profile" class="imgbox">
         <g:link controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">
@@ -40,7 +40,7 @@
 
       <li>
         <div id="hactivities" class="imgbox">
-          <g:link controller="activity" action="list">
+          <g:link controller="activityProfile" action="list">
             <img src="${g.resource(dir: 'images/icons', file: 'kf_themenraum.png')}" alt="<g:message code="imgmenu.activity.name"/>"/>
             <h3><g:message code="imgmenu.activity.name"/></h3>
           </g:link>

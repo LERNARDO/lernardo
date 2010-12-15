@@ -31,7 +31,7 @@
 
       <tr>
         <td width="220" class="value-show">
-          <g:link controller="activity" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link>
+          <g:link controller="activityProfile" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link>
         </td>
         <td width="300" class="value-show">
           <g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/>
@@ -114,7 +114,7 @@
           <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients');
           return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h1>
           <div id="clients" style="display:none">
-            <g:formRemote name="formRemote" url="[controller:'activity', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
+            <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
               <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
               <g:select from="${['mitgearbeitet','nur anwesend']}" name="evaluation" value=""/>
               <div class="spacer"></div>

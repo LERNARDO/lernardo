@@ -679,13 +679,8 @@ class ProfileController {
 /*
 * command object to handle validation of a notification
 */
-class NotificationCommand { /**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 12:59
- * To change this template use File | Settings | File Templates.
- */
+class NotificationCommand {
+
   String subject
   String content
 

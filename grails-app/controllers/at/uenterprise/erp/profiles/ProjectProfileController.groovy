@@ -13,20 +13,8 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.Profile
 import at.openfactory.ep.EntityException
 
-/**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 13:53
- * To change this template use File | Settings | File Templates.
- */
-class ProjectProfileController { /**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 13:53
- * To change this template use File | Settings | File Templates.
- */
+class ProjectProfileController {
+
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService

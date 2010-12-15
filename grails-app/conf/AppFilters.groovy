@@ -16,7 +16,7 @@ class AppFilters {
       }
     }
 
-    loginCheck(controller: "(groupActivityProfile|groupActivityTemplateProfile|groupClientProfile|groupColonyProfile|groupFamilyProfile|groupPartnerProfile|projectProfile|projectTemplateProfile|resourceProfile|themeProfile|childProfile|clientProfile|educatorProfile|facilityProfile|operatorProfile|parentProfile|partnerProfile|pateProfile|userProfile|activity|msg|template)", action: "*") {
+    loginCheck(controller: "(groupActivityProfile|groupActivityTemplateProfile|groupClientProfile|groupColonyProfile|groupFamilyProfile|groupPartnerProfile|projectProfile|projectTemplateProfile|resourceProfile|themeProfile|childProfile|clientProfile|educatorProfile|facilityProfile|operatorProfile|parentProfile|partnerProfile|pateProfile|userProfile|activityProfile|msg|template)", action: "*") {
       before = {
         Entity e = entityHelperService.getLoggedIn()
         if (!e) {

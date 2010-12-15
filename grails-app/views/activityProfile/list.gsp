@@ -16,7 +16,7 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="activity" action="create">Themenraum anlegen</g:link></h1>
+    <h1><g:link controller="activityProfile" action="create">Themenraum anlegen</g:link></h1>
   </div>
 </div>
 

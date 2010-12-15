@@ -13,20 +13,8 @@ import at.openfactory.ep.EntityType
 
 import at.uenterprise.erp.Contact
 
-/**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 13:49
- * To change this template use File | Settings | File Templates.
- */
-class PartnerProfileController { /**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 13:49
- * To change this template use File | Settings | File Templates.
- */
+class PartnerProfileController {
+
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   def securityManager

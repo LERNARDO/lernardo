@@ -12,20 +12,8 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.ClientEvaluation
 
-/**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 13:54
- * To change this template use File | Settings | File Templates.
- */
-class ActivityController { /**
- * Created by IntelliJ IDEA.
- * User: Alexander Zeillinger
- * Date: 15.12.10
- * Time: 12:56
- * To change this template use File | Settings | File Templates.
- */
+class ActivityProfileController {
+
   EntityHelperService entityHelperService
   MetaDataService metaDataService
   FunctionService functionService

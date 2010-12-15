@@ -10,7 +10,7 @@
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:layoutHead/>
   <g:javascript library="jquery" plugin="jquery"/>
-  <script src="${g.resource(dir: 'js', file: 'lernardo.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>
   <ga:trackPageviewAsynch /> 
 </head>
 <body>
