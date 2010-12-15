@@ -1,0 +1,415 @@
+package at.uenterprise.erp.profiles
+
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
+import at.openfactory.ep.ProfileHelperService
+import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.MetaDataService
+import at.openfactory.ep.Profile
+import at.uenterprise.erp.FunctionService
+import at.openfactory.ep.EntityException
+import at.uenterprise.erp.Method
+import at.uenterprise.erp.Event
+
+class GroupActivityTemplateProfileController {
+  MetaDataService metaDataService
+  EntityHelperService entityHelperService
+  ProfileHelperService profileHelperService
+  FunctionService functionService
+
+  def index = {
+    redirect action: "list", params: params
+  }
+
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
+  def list = {
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def groupactivitytemplates = c.list {
+      eq("type", metaDataService.etGroupActivityTemplate)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [groups: groupactivitytemplates,
+            groupTotal: Entity.countByType(metaDataService.etGroupActivityTemplate)]
+  }
+
+  def show = {
+    def group = Entity.get(params.id)
+    Entity entity = params.entity ? group : entityHelperService.loggedIn
+
+    if (!group) {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect(action: list)
+      return
+    }
+
+    // get all activity templates that are set to completed
+    def c = Entity.createCriteria()
+    def allTemplates = c.list {
+      eq("type", metaDataService.etTemplate)
+      profile {
+        eq("status", "fertig")
+      }
+    }
+
+    // find all activity templates linked to this group
+    List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+
+    def calculatedDuration = 0
+    templates.each {
+      calculatedDuration += it.profile.duration
+    }
+
+    // find all instances of this template
+    List instances = functionService.findAllByLink(group, null, metaDataService.ltTemplate)
+
+    return [group: group,
+            entity: entity,
+            allTemplates: allTemplates,
+            templates: templates,
+            calculatedDuration: calculatedDuration,
+            methods: Method.findAllByType('template'),
+            instances: instances]
+
+  }
+
+  def del = {
+    Entity group = Entity.get(params.id)
+    if (group) {
+      // delete all links
+      Link.findAllBySourceOrTarget(group, group).each {it.delete()}
+      Event.findAllByEntity(group).each {it.delete()}
+
+      try {
+        flash.message = message(code: "group.deleted", args: [group.profile.fullName])
+        group.delete(flush: true)
+        redirect(action: "list")
+      }
+      catch (org.springframework.dao.DataIntegrityViolationException e) {
+        flash.message = message(code: "group.notDeleted", args: [group.profile.fullName])
+        redirect(action: "show", id: params.id)
+      }
+    }
+    else {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect(action: "list")
+    }
+  }
+
+  def edit = {
+    Entity group = Entity.get(params.id)
+
+    if (!group) {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect action: 'list'
+    }
+    else {
+      [group: group]
+    }
+  }
+
+  def update = {
+    Entity group = Entity.get(params.id)
+
+    group.profile.properties = params
+
+    if (!group.hasErrors() && group.save()) {
+      flash.message = message(code: "group.updated", args: [group.profile.fullName])
+      redirect action: 'show', id: group.id
+    }
+    else {
+      render view: 'edit', model: [group: group]
+    }
+  }
+
+  def copy = {
+    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+
+    Entity original = Entity.get(params.id)
+
+    Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
+      ent.profile = profileHelperService.createProfileFor(ent) as Profile
+      ent.profile.description = original.profile.description
+      ent.profile.status = original.profile.status
+      ent.profile.realDuration = original.profile.realDuration
+      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+    }
+
+    // create link to creator
+    new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+
+    // find all activity templates linked to the original and link them to the copy
+    List templates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)
+
+    templates.each {
+      new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+    }
+
+    flash.message = message(code: "group.copied", args: [entity.profile.fullName])
+    redirect action: 'show', id: entity.id
+
+  }
+
+  def create = {
+    Entity group = Entity.get(params.id)
+       
+    return [group: group]
+  }
+
+  def save = {
+    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    try {
+      Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.properties = params
+      }
+
+      // create link to creator
+      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+
+      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      List receiver = Entity.findAllByType(metaDataService.etEducator)
+      receiver.each {
+        if (it.id != currentEntity.id)
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      }
+
+      flash.message = message(code: "group.created", args: [entity.profile.fullName])
+      redirect action: 'show', id: entity.id
+    } catch (EntityException ee) {
+      render(view: "create", model: [group: ee.entity])
+      return
+    }
+
+  }
+
+  def addTemplate = {
+    if (!params.templates)
+      render '<p class="italic red">Bitte zumindest eine Vorlage auswählen!</p>'
+    else { 
+      def bla = params.list('templates')
+
+      bla.each {
+        def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
+        if (linking.duplicate)
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+      }
+    }
+
+    def calculatedDuration = 0
+    def templates = Link.findAllByTargetAndType(Entity.get(params.id), metaDataService.ltGroupMember).collect {it.source}
+    templates.each {
+      calculatedDuration += it.profile.duration
+    }
+
+    render template: 'templates', model: [templates: templates, group: Entity.get(params.id), entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+  }
+
+  def removeTemplate = {
+    def breaking = functionService.breakEntities(params.template, params.id, metaDataService.ltGroupMember)
+
+    def calculatedDuration = 0
+    breaking.results.each {
+      calculatedDuration += it.profile.duration
+    }
+
+    render template: 'templates', model: [templates: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+  }
+
+  def updateselect = {
+    //println params
+    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+    def method1lower = params.list('method1lower')
+    def method1upper = params.list('method1upper')
+
+    def method2lower = params.list('method2lower')
+    def method2upper = params.list('method2upper')
+
+    def method3lower = params.list('method3lower')
+    def method3upper = params.list('method3upper')
+
+    def c = Entity.createCriteria()
+    def allTemplates = c.list {
+      eq('type', metaDataService.etTemplate)
+      if (params.name)
+        or {
+          ilike('name', "%" + params.name + "%")
+          profile {
+            ilike('fullName', "%" + params.name + "%")
+          }
+        }
+      profile {
+        if (params.duration1 != 'all')
+          between('duration', params.duration1.toInteger(), params.duration2.toInteger())
+      }
+      maxResults(30)
+    }
+
+    List finalList = allTemplates
+    List list1 = []
+    List list2 = []
+    List list3 = []
+
+    // if at least one method is used reset the lists
+    if (params.method1 != 'none' || params.method2 != 'none' || params.method3 != 'none') {
+      finalList = []
+    }
+
+    if (params.method1 != 'none') {
+      // now check each template for their correct element values
+      allTemplates.each { a ->
+        //println '----------'
+        //println a
+        a.profile.each { b ->
+          //println 'Profile: ' + b
+          b.methods.each { d ->
+            //println 'Method: ' + d
+            if (d.name == Method.get(params.method1).name) {
+              def counter = 0
+              def correct = 0
+              d.elements.each { e ->
+                //println e.name + ' - ' + method1lower[counter] + ' to ' + method1upper[counter]
+                if (method1lower[counter] != 'all' && method1upper[counter] != 'all') {
+
+                  if (e.voting >= method1lower[counter].toInteger() && e.voting <= method1upper[counter].toInteger()) {
+                    //println counter + '# element OK, is ' + e.voting
+                    correct++
+                  }
+                  //else {
+                  //  println counter + '# element not OK, is ' + e.voting
+                  //}
+                }
+                else {
+                  //println counter + '# element OK'
+                  correct++
+                }
+                //println '#correct ' + correct + ' of ' + method1lower.size()
+                if (correct == method1lower.size())
+                  if (!list1.contains(a))
+                    list1 << a
+                counter++
+              }
+            }
+          }
+        }
+      }
+      //println finalList
+    }
+
+    if (params.method2 != 'none') {
+      allTemplates.each { a ->
+        a.profile.each { b ->
+          b.methods.each { d ->
+            if (d.name == Method.get(params.method2).name) {
+              def counter = 0
+              def correct = 0
+              d.elements.each { e ->
+                if (method2lower[counter] != 'all' && method2upper[counter] != 'all') {
+                  if (e.voting >= method2lower[counter].toInteger() && e.voting <= method2upper[counter].toInteger()) {
+                    correct++
+                  }
+                }
+                else {
+                  correct++
+                }
+                if (correct == method2lower.size())
+                  if (!list2.contains(a))
+                    list2 << a
+                counter++
+              }
+            }
+          }
+        }
+      }
+    }
+
+    if (params.method3 != 'none') {
+      allTemplates.each { a ->
+        a.profile.each { b ->
+          b.methods.each { d ->
+            if (d.name == Method.get(params.method3).name) {
+              def counter = 0
+              def correct = 0
+              d.elements.each { e ->
+                if (method3lower[counter] != 'all' && method3upper[counter] != 'all') {
+                  if (e.voting >= method3lower[counter].toInteger() && e.voting <= method3upper[counter].toInteger()) {
+                    correct++
+                  }
+                }
+                else {
+                  correct++
+                }
+                if (correct == method3lower.size())
+                  if (!list3.contains(a))
+                    list3 << a
+                counter++
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // if the template is in all lists which means it passed all 3 method validations then add it to the final list
+    allTemplates.each { a ->
+      if (params.method1 != 'none' && params.method2 == 'none' && params.method3 == 'none') {
+      if (list1.contains(a))
+        finalList << a
+      }
+      else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 == 'none') {
+      if (list1.contains(a) && list2.contains(a))
+        finalList << a
+      }
+      else if (params.method1 != 'none' && params.method2 != 'none' && params.method3 != 'none') {
+      if (list1.contains(a) && list2.contains(a) && list3.contains(a))
+        finalList << a
+      }
+    }
+
+    render(template: 'searchresults', model: [allTemplates: finalList])
+  }
+
+  def listMethods = {
+
+    if (params.id == 'none') {
+      render ''
+      return
+    }
+
+    Method method = Method.get(params.id)
+
+    render(template: 'methods', model: [method: method, dropdown: params.dropdown])
+  }
+
+  def secondselect = {
+    if (params.currentvalue == 'undefined')
+      params.currentvalue = 0
+
+    if (params.value == "all")
+      render '<span id="duration2" style="display: none">0</span>'
+    else {
+      int value = params.int('value')
+      int currentvalue = params.int('currentvalue')
+
+      if (currentvalue <= value)
+       currentvalue = value + 1
+      render template: 'secondselect', model:[value: value + 1, currentvalue: currentvalue]
+    }
+  }
+
+}

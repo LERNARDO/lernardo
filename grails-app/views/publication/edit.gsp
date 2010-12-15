@@ -1,4 +1,4 @@
-<%@ page import="lernardo.PublicationType" %>
+<%@ page import="at.uenterprise.erp.PublicationType" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="publication.profile.edit"/></title>

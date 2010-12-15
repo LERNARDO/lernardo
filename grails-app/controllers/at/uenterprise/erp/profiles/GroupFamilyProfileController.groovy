@@ -1,0 +1,300 @@
+package at.uenterprise.erp.profiles
+
+import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityType
+import at.openfactory.ep.Link
+import at.openfactory.ep.ProfileHelperService
+import at.openfactory.ep.EntityHelperService
+import at.uenterprise.erp.MetaDataService
+import at.openfactory.ep.Profile
+import at.uenterprise.erp.FunctionService
+import at.openfactory.ep.EntityException
+
+class GroupFamilyProfileController {
+  MetaDataService metaDataService
+  EntityHelperService entityHelperService
+  ProfileHelperService profileHelperService
+  FunctionService functionService
+
+  def index = {
+    redirect action: "list", params: params
+  }
+
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
+  def list = {
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def groupfamilies = c.list {
+      eq("type", metaDataService.etGroupFamily)
+      profile {
+        order(params.sort, params.order)
+      }
+      maxResults(params.max)
+      firstResult(params.offset)
+    }
+
+    return [groups: groupfamilies,
+            groupTotal: Entity.countByType(metaDataService.etGroupFamily)]
+  }
+
+  def show = {
+    def group = Entity.get(params.id)
+    Entity entity = params.entity ? group : entityHelperService.loggedIn
+
+    if (!group) {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect(action: list)
+      return
+    }
+
+    Integer totalLinks = 0
+
+    // find all parents linked to this group
+    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent)
+    totalLinks += parents.size()
+
+    def allClients = Entity.findAllByType(metaDataService.etClient)
+    // find all clients linked to this group
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupFamily)
+    totalLinks += clients.size()
+
+    def allChilds = Entity.findAllByType(metaDataService.etChild)
+    // find all childs linked to this group
+    List childs = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberChild)
+    totalLinks += childs.size()
+
+    return [group: group,
+            entity: entity,
+            parents: parents,
+            clients: clients,
+            allClients: allClients,
+            childs: childs,
+            allChilds: allChilds,
+            totalLinks: totalLinks]
+
+  }
+
+  def del = {
+    Entity group = Entity.get(params.id)
+    if (group) {
+      // delete all links
+      Link.findAllBySourceOrTarget(group, group).each {it.delete()}
+      try {
+        flash.message = message(code: "group.deleted", args: [group.profile.fullName])
+        group.delete(flush: true)
+        redirect(action: "list")
+      }
+      catch (org.springframework.dao.DataIntegrityViolationException e) {
+        flash.message = message(code: "group.notDeleted", args: [group.profile.fullName])
+        redirect(action: "show", id: params.id)
+      }
+    }
+    else {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect(action: "list")
+    }
+  }
+
+  def edit = {
+    Entity group = Entity.get(params.id)
+
+    if (!group) {
+      flash.message = "groupProfile not found with id ${params.id}"
+      redirect action: 'list'
+    }
+    else {
+      [group: group]
+    }
+  }
+
+  def update = {
+    Entity group = Entity.get(params.id)
+
+    group.profile.properties = params
+
+    if (!group.profile.hasErrors() && group.profile.save()) {
+      flash.message = message(code: "group.updated", args: [group.profile.fullName])
+      redirect action: 'show', id: group.id
+    }
+    else {
+      render view: 'edit', model: [group: group]
+    }
+  }
+
+  def create = {
+    return [templates: Entity.findAllByType(metaDataService.etTemplate)]
+  }
+
+  def save = {
+    EntityType etGroupFamily = metaDataService.etGroupFamily
+
+    try {
+      Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.properties = params
+      }
+
+      flash.message = message(code: "group.created", args: [entity.profile.fullName])
+      redirect action: 'show', id: entity.id
+    } catch (EntityException ee) {
+      render(view: "create", model: [group: ee.entity])
+      return
+    }
+
+  }
+
+  def addParent = {
+    def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeParent = {
+    def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
+    render template: 'parents', model: [parents: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def addClient = {
+    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeClient = {
+    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupFamily)
+    render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def addChild = {
+    def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'childs', model: [childs: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeChild = {
+    def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
+    render template: 'childs', model: [childs: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all parents matching the search parameter
+   */
+  def remoteParents = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etParent)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'parentresults', model: [results: results, group: params.id])
+    }
+  }
+
+  /*
+   * retrieves all clients matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, group: params.id])
+    }
+  }
+
+  /*
+   * retrieves all children matching the search parameter
+   */
+  def remoteChildren = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etChild)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      return
+    }
+    else {
+      render(template: 'childrenresults', model: [results: results, group: params.id])
+    }
+  }
+
+  def updateFamilyCount = {
+    def group = Entity.get(params.id)
+
+    def c = Link.createCriteria()
+    def results = c.list {
+      eq("target", group)
+      or {
+        eq("type", metaDataService.ltGroupMemberParent)
+        eq("type", metaDataService.ltGroupFamily)
+        eq("type", metaDataService.ltGroupMemberChild)
+      }
+    }
+
+    int totalLinks = results.size()
+
+    render template: 'familycount', model: [totalLinks: totalLinks]
+  }
+
+  def bla = {
+    render "two times?"
+  }
+
+}

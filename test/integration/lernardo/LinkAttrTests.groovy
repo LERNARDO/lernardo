@@ -1,7 +1,7 @@
 package lernardo
 
 import at.openfactory.ep.Link
-import standard.MetaDataService
+import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Entity
 import at.openfactory.ep.attr.DynAttr
 import at.openfactory.ep.attr.DynAttrSet

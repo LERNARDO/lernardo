@@ -10,32 +10,44 @@ import at.openfactory.ep.ProfileHelperService
 //import at.openfactory.ep.attr.DynAttrSet
 //import at.openfactory.ep.attr.DynAttr
 
-import lernardo.Helper
-import lernardo.Evaluation
-import lernardo.Attendance
-import lernardo.Method
-import lernardo.Element
-import lernardo.Comment
+import at.uenterprise.erp.Helper
+import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Attendance
+import at.uenterprise.erp.Method
+import at.uenterprise.erp.Element
+import at.uenterprise.erp.Comment
 
-import posts.ArticlePost
+import at.uenterprise.erp.ArticlePost
 
-import profiles.ClientProfile
-import profiles.FacilityProfile
-import profiles.OperatorProfile
-import profiles.EducatorProfile
-import profiles.UserProfile
-import profiles.ChildProfile
-import profiles.ParentProfile
-import profiles.PartnerProfile
-import profiles.PateProfile
+import at.uenterprise.erp.profiles.ClientProfile
+import at.uenterprise.erp.profiles.FacilityProfile
+import at.uenterprise.erp.profiles.OperatorProfile
+import at.uenterprise.erp.profiles.EducatorProfile
+import at.uenterprise.erp.profiles.UserProfile
+import at.uenterprise.erp.profiles.ChildProfile
+import at.uenterprise.erp.profiles.ParentProfile
+import at.uenterprise.erp.profiles.PartnerProfile
+import at.uenterprise.erp.profiles.PateProfile
 
 import grails.util.GrailsUtil
 
-import standard.FunctionService
-import standard.MetaDataService
-import standard.InterfaceMaintenanceService
-import lernardo.WorkdayCategory
-import lernardo.WorkdayUnit
+import at.uenterprise.erp.FunctionService
+import at.uenterprise.erp.MetaDataService
+import at.uenterprise.erp.InterfaceMaintenanceService
+import at.uenterprise.erp.WorkdayCategory
+import at.uenterprise.erp.WorkdayUnit
+import at.uenterprise.erp.ArticlePost
+import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Element
+import at.uenterprise.erp.Helper
+import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.profiles.EducatorProfile
+import at.uenterprise.erp.profiles.ParentProfile
+import at.uenterprise.erp.profiles.PartnerProfile
+import at.uenterprise.erp.profiles.PateProfile
+import at.uenterprise.erp.profiles.UserProfile
+import at.uenterprise.erp.FunctionService
+import at.uenterprise.erp.InterfaceMaintenanceService
 
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
