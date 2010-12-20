@@ -11,8 +11,8 @@
       <td style="width: 100%; vertical-align: top">
         <app:isMeOrAdminOrOperator entity="${currentEntity}">
           <div class="actions">
-            <g:remoteLink controller="comment" action="edit" update="comment${i}" id="${commented.id}" params="[comment: comment.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="Kommentar bearbeiten" align="top"/></g:remoteLink>
-            <g:remoteLink controller="comment" action="delete" update="comments" id="${commented.id}" params="[comment: comment.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Kommentar entfernen" align="top"/></g:remoteLink>
+            <g:remoteLink controller="comment" action="edit" update="comment${i}" id="${commented.id}" params="[comment: comment.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:remoteLink>
+            <g:remoteLink controller="comment" action="delete" update="comments" id="${commented.id}" params="[comment: comment.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code:'delete')}" align="top"/></g:remoteLink>
           </div>
         </app:isMeOrAdminOrOperator>
         <div class="infobar">

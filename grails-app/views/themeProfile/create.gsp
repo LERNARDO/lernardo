@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Thema anlegen</title>
+  <title><g:message code="theme.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Thema anlegen</h1>
+    <h1><g:message code="theme.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

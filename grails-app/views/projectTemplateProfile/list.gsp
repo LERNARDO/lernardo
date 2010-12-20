@@ -1,16 +1,16 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Projektvorlagen</title>
+  <title><g:message code="projectTemplates"/></title>
 </head>
 <body>
 <div class="tabGreen">
   <div class="second">
-    <h1>Projektvorlagen</h1>
+    <h1><g:message code="projectTemplates"/></h1>
   </div>
 </div>
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="projectProfile" action="list">Projekte</g:link></h1>
+    <h1><g:link controller="projectProfile" action="list"><g:message code="projects"/></g:link></h1>
   </div>
 </div>
 <div class="clearFloat"></div>
@@ -18,11 +18,11 @@
 <div class="boxGray">
   <div class="second">
 
-    ${projectTemplateTotal} Projektvorlagen(n) insgesamt vorhanden
+    ${projectTemplateTotal} <g:message code="projectTemplates.c_total"/>
 
     <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Projektvorlage anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="projectTemplate.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:accessCheck>

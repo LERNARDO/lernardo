@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsblock anlegen</title>
+  <title><g:message code="groupActivity.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsblock anlegen</h1>
+    <h1><g:message code="groupActivity.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

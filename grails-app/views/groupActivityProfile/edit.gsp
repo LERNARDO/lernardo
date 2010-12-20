@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsblock bearbeiten</title>
+  <title><g:message code="groupActivity.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Aktivitätsblock bearbeiten</h1>
+    <h1><g:message code="groupActivity.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">

@@ -1,12 +1,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Tagebucheintrag bearbeiten</title>
+  <title><g:message code="evaluation.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Tagebucheintrag bearbeiten</h1>
+    <h1><g:message code="evaluation.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">

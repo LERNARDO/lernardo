@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Bewertungsmethode bearbeiten</title>
+  <title><g:message code="method.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Bewertungsmethode bearbeiten</h1>
+    <h1><g:message code="method.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">

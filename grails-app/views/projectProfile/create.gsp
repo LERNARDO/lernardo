@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Projekt anlegen</title>
+  <title><g:message code="project.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Projekt anlegen</h1>
+    <h1><g:message code="project.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Profil - ${methodInstance.name}</title>
+  <title><g:message code="profile"/> - ${methodInstance.name}</title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Profil - ${methodInstance.name}</h1>
+    <h1><g:message code="profile"/> - ${methodInstance.name}</h1>
   </div>
 </div>
 <div class="boxGray">

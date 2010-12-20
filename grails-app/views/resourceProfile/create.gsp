@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Ressource anlegen</title>
+  <title><g:message code="resource.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Ressource anlegen</h1>
+    <h1><g:message code="resource.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

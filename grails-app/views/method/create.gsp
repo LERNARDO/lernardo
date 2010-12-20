@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Bewertungsmethode anlegen</title>
+  <title><g:message code="method.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Bewertungsmethode anlegen</h1>
+    <h1><g:message code="method.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
