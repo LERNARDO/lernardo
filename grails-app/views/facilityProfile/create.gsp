@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Einrichtung anlegen</title>
+  <title><g:message code="facility.profile.create"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Einrichtung anlegen</h1>
+    <h1><g:message code="facility.profile.create"/></h1>
   </div>
 </div>
 <div class="boxGray">

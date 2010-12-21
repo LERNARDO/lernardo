@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Thema bearbeiten</title>
+  <title><g:message code="theme.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Thema bearbeiten</h1>
+    <h1><g:message code="theme.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">

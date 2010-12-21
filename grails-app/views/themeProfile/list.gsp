@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Themen</title>
+  <title><g:message code="themes"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Themen</h1>
+    <h1><g:message code="themes"/></h1>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
 
     <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neues Thema anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="theme.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:accessCheck>

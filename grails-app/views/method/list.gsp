@@ -1,21 +1,21 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Bewertungsmethoden</title>
+  <title><g:message code="methods"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Bewertungsmethoden</h1>
+    <h1><g:message code="methods"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
 
-    ${methodInstanceTotal} Bewertungsmethoden insgesamt vorhanden
+    ${methodInstanceTotal} <g:message code="method.c_total"/>
 
      <app:isAdmin>
       <div class="buttons">
-        <g:link class="buttonGreen" action="create">Neue Bewertungsmethode anlegen</g:link>
+        <g:link class="buttonGreen" action="create"><g:message code="method.create"/></g:link>
         <div class="spacer"></div>
       </div>
     </app:isAdmin>
@@ -24,7 +24,7 @@
       <thead>
       <tr>
         <g:sortableColumn property="name" title="${message(code:'method.name')}"/>
-        <th>Elemente</th>
+        <th><g:message code="elements"/></th>
       </tr>
       </thead>
       <tbody>

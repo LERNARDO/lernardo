@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Projektvorlage bearbeiten</title>
+  <title><g:message code="projectTemplate.edit"/></title>
 </head>
 <body>
 <div class="headerGreen">
   <div class="second">
-    <h1>Projektvorlage bearbeiten</h1>
+    <h1><g:message code="projectTemplate.edit"/></h1>
   </div>
 </div>
 <div class="boxGray">
