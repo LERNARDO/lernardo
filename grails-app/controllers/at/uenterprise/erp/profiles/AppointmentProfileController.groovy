@@ -127,7 +127,6 @@ class AppointmentProfileController {
         redirect action: 'show', id: entity.id
       } catch (EntityException ee) {
         render(view: "create", model: [appointmentProfileInstance: ee.entity])
-        return
       }
 
     }

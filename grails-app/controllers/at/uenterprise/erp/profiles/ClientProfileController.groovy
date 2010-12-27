@@ -184,7 +184,6 @@ class ClientProfileController {
       render(view: "create", model: [client: ee.entity,
               allColonias: Entity.findAllByType(metaDataService.etGroupColony),
               allFacilities: Entity.findAllByType(metaDataService.etFacility)])
-      return
     }
 
   }

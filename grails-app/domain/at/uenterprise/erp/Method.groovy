@@ -1,7 +1,5 @@
 package at.uenterprise.erp
 
-import at.uenterprise.erp.Element
-
 class Method {
 
     SortedSet elements

@@ -319,9 +319,7 @@ class ProjectProfileController {
       redirect action: 'show', id: entity.id
 
     } catch (EntityException ee) {
-
       render(view: "create", model: [project: ee.entity])
-      return
     }
 
   }

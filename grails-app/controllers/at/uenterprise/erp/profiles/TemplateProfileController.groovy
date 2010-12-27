@@ -163,7 +163,6 @@ class TemplateProfileController {
 
     } catch (at.openfactory.ep.EntityException ee) {
       render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]
-      return
     }
 
   }

@@ -131,7 +131,6 @@ class ResourceProfileController {
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [resource: ee.entity, entity: entityHelperService.loggedIn])
-      return
     }
 
   }

@@ -193,7 +193,6 @@ class GroupActivityTemplateProfileController {
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])
-      return
     }
 
   }

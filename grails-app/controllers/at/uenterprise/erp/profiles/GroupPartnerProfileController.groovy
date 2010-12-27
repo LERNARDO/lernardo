@@ -127,7 +127,6 @@ class GroupPartnerProfileController {
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [group: ee.entity])
-      return
     }
 
   }

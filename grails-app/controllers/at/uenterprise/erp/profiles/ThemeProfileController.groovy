@@ -218,7 +218,6 @@ class ThemeProfileController {
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
-      return
     }
 
   }

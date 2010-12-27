@@ -210,7 +210,6 @@ class GroupActivityProfileController {
       }
 
       render(view: "create", model: [group: ee.entity, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
-      return
     }
 
   }

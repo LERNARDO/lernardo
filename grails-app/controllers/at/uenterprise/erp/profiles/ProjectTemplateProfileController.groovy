@@ -197,7 +197,6 @@ class ProjectTemplateProfileController {
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [projectTemplate: ee.entity])
-      return
     }
 
   }
@@ -245,7 +244,6 @@ class ProjectTemplateProfileController {
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
-
       render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
 
       // find all projectUnitTemplates of this projectTemplate
@@ -257,7 +255,6 @@ class ProjectTemplateProfileController {
       Integer calculatedDuration = calculateDuration(projectUnitTemplates)
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
-      return
     }
   }
 
