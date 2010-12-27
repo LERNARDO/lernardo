@@ -53,7 +53,7 @@ class AppointmentProfileController {
         return
       }
 
-      return [appointmentProfileInstance : appointment]
+      return [appointmentProfileInstance : appointment, entity: entity]
     }
 
     def del = {
