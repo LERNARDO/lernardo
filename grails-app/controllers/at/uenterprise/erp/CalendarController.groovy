@@ -1,12 +1,10 @@
 package at.uenterprise.erp
 
 import org.joda.time.DateTime
-
 import grails.converters.JSON
+
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
-import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.Link
 
 class CalendarController {

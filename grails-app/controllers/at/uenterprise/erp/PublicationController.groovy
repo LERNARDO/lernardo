@@ -2,13 +2,8 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import org.springframework.web.multipart.MultipartFile
-import at.uenterprise.erp.Publication
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.AssetService
-import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.FilterService
-import at.uenterprise.erp.PublicationHelperService
-import at.uenterprise.erp.FunctionService
 
 class PublicationController {
   FilterService filterService

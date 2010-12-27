@@ -1,6 +1,5 @@
 package at.uenterprise.erp
 
-import at.uenterprise.erp.PublicationType
 import at.openfactory.ep.DefaultObjectService
 import at.openfactory.ep.EntitySuperType
 import at.openfactory.ep.EntityType

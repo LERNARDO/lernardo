@@ -1,16 +1,16 @@
 package at.uenterprise.erp
 
 import grails.converters.JSON
+
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
 import at.openfactory.ep.EntityType
+import at.openfactory.ep.EntityHelperService
+import at.openfactory.ep.SecHelperService
 
 import java.text.SimpleDateFormat
-
-import at.openfactory.ep.EntityHelperService
 import org.hibernate.SessionFactory
 
-import at.openfactory.ep.SecHelperService
 import at.uenterprise.erp.profiles.ActivityProfile
 
 class ProfileController {

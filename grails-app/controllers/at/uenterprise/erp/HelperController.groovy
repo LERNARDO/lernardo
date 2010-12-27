@@ -1,10 +1,7 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
-import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.EntityType
-import at.uenterprise.erp.Helper
 
 class HelperController {
   FunctionService functionService

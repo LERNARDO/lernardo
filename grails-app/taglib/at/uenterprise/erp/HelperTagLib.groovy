@@ -18,9 +18,12 @@ class HelperTagLib {
   static namespace = "app"
 
   def getTotalHours = { attrs, body ->
+    Date date1
+    Date date2
+
     if (attrs.date1 != null && attrs.date2 != null) {
-      Date date1 = Date.parse("dd. MM. yy", attrs.date1)
-      Date date2 = Date.parse("dd. MM. yy", attrs.date2)
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
     }
 
     Entity educator = attrs.educator

@@ -1,7 +1,6 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
-import at.uenterprise.erp.Msg
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.EntityType
 

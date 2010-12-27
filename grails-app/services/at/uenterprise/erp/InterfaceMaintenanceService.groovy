@@ -5,8 +5,6 @@ import at.openfactory.ep.Entity
 import at.openfactory.ep.Account
 import at.uenterprise.erp.profiles.ChildProfile
 import java.text.SimpleDateFormat
-import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.MetaDataService
 
 class InterfaceMaintenanceService {
   MetaDataService metaDataService

@@ -1,6 +1,5 @@
 package at.uenterprise.erp
 
-import at.uenterprise.erp.InterfaceMaintenanceService
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import at.uenterprise.erp.profiles.ChildProfile
 

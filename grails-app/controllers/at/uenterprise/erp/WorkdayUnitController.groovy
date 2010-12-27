@@ -2,9 +2,6 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
-import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.WorkdayCategory
-import at.uenterprise.erp.WorkdayUnit
 
 class WorkdayUnitController {
 

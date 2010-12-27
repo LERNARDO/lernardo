@@ -51,7 +51,7 @@ class LinkAttrTests extends GroovyTestCase  {
 
     link1.save(flush:true)
 
-    def link2 = Link.get(mylink.id)
+    //def link2 = Link.get(mylink.id)
     def das2 = new DynAttrSet (link1.dynattrs)
     assert das2.test2 == "val2"
   }

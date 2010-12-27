@@ -2,9 +2,6 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
-import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.Evaluation
 
 class EvaluationController {
   EntityHelperService entityHelperService

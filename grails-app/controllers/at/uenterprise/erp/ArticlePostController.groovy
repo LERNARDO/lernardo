@@ -2,7 +2,6 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.Entity
-import at.uenterprise.erp.ArticlePost
 
 class ArticlePostController {
   EntityHelperService entityHelperService

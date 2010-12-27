@@ -3,9 +3,6 @@ package at.uenterprise.erp
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.ProfileHelperService
-import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.Comment
 
 class CommentController {
   EntityHelperService entityHelperService

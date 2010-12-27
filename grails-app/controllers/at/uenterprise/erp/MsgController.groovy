@@ -1,11 +1,7 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
-import at.uenterprise.erp.Msg
 import at.openfactory.ep.EntityHelperService
-import at.uenterprise.erp.FilterService
-import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.SecHelperService
 
 class MsgController {

@@ -1,8 +1,6 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
-import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.FunctionService
 
 class NetworkController {
   MetaDataService metaDataService

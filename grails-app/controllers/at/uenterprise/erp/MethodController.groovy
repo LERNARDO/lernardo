@@ -1,8 +1,5 @@
 package at.uenterprise.erp
 
-import at.uenterprise.erp.Element
-import at.uenterprise.erp.Method
-
 class MethodController {
   def entityHelperService
 

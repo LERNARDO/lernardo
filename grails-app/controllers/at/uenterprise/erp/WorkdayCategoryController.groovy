@@ -1,8 +1,4 @@
-
-
 package at.uenterprise.erp
-
-import at.uenterprise.erp.WorkdayCategory
 
 class WorkdayCategoryController {
     

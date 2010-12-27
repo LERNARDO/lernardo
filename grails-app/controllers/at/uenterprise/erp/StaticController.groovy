@@ -1,4 +1,5 @@
 package at.uenterprise.erp
+
 class StaticController {
 
     def index = {}

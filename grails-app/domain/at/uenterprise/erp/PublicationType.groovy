@@ -1,7 +1,5 @@
 package at.uenterprise.erp
 
-import at.uenterprise.erp.Publication
-
 class PublicationType {
     static hasMany = [ publications : Publication]
 

@@ -1,5 +1,3 @@
-
-
 package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.EntityType
