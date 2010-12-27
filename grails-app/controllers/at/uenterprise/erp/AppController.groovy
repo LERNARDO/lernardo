@@ -326,7 +326,7 @@ class AppController {
     //}
 
     // get all tags of the entity
-    List tags = entity.tagslinks.collect {it.tag}
+    List tags = entity.tagslinks*.tag
 
     render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
   }
@@ -400,7 +400,7 @@ class AppController {
 
     etl.delete()
 
-    List tags = entity.tagslinks.collect {it.tag}
+    List tags = entity.tagslinks*.tag
 
     render template: '/app/tags', model: [tags: tags, entity: entity, update: params.update]
   }

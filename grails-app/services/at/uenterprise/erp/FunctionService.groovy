@@ -77,7 +77,7 @@ class FunctionService {
     else
       new Link(source: source, target: target, type: linktype).save(flush:true)
 
-    List results = Link.findAllByTargetAndType(target, linktype).collect {it.source}
+    List results = findAllByLink(null, target, linktype)
 
     return [results: results, source: source, target: target, duplicate: duplicate]
   }
@@ -97,7 +97,7 @@ class FunctionService {
     }
     link?.delete(flush:true)
 
-    List results = Link.findAllByTargetAndType(target, linktype).collect {it.source}
+    List results = findAllByLink(null, target, linktype)
 
     return [results: results, source: source, target: target]
   }
@@ -152,12 +152,12 @@ class FunctionService {
   def findParents(Entity group) {
 
     // 1. find all clients linked to the group
-    List clients = Link.findAllByTargetAndType(group, metaDataService.ltGroupMemberClient)?.collect {it.source}
+    List clients = findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
     // 2. find all families of the clients
     List families = []
     clients.each {
-      List links = Link.findAllBySourceAndType(it as Entity, metaDataService.ltGroupFamily)?.collect {it.target}
+      List links = findAllByLink(it as Entity, null, metaDataService.ltGroupFamily)
       links.each {
         if (!families.contains(it))
           families << it
@@ -167,7 +167,7 @@ class FunctionService {
     // 3. find all parents of the families
     List allParents = []
     families.each {
-      List parents = Link.findAllByTargetAndType(it as Entity, metaDataService.ltGroupMemberParent)?.collect {it.source}
+      List parents = findAllByLink(null, it as Entity, metaDataService.ltGroupMemberParent)
       parents.each {
         allParents.add(it)
       }

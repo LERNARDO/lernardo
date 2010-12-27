@@ -476,9 +476,9 @@ class ProjectProfileController {
     List groupActivityTemplates = []
 
     projectUnits.each {
-      def links = Link.findAllByTargetAndType(it as Entity, metaDataService.ltProjectUnitMember)
-      if (links.size > 0)
-        groupActivityTemplates << links.collect { bla -> bla.source}
+      def links = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+      if (links.size() > 0)
+        groupActivityTemplates.addAll(links)
     }
 
     def calculatedDuration = 0

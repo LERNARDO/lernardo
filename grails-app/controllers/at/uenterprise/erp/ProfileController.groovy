@@ -411,16 +411,14 @@ class ProfileController {
     int month = date.getMonth() // 0 to 11
     int day = date.getDate()
 
-    List attend = at.uenterprise.erp.Attendance().findAllByDate(date)
-    List clients = attend.collect {it.client}
+    List clients = at.uenterprise.erp.Attendance().findAllByDate(date)*.client
 
     if (clients) {
       log.debug "attendances found!"
     }
     else {
       // find all clients of a facility
-      List links = Link.findAllByTargetAndType(Entity.get(params.id), metaDataService.ltClientship)
-      clients = links.collect {it.source}
+      clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltClientship)
     }
 
     return ['entityList': clients,

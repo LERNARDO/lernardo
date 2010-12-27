@@ -133,7 +133,7 @@ class HelperTagLib {
    */
   def getTags = {attrs, body ->
     Entity entity = attrs.entity
-    List tags = entity.tagslinks.collect {it.tag}
+    List tags = entity.tagslinks*.tag
     out << body(tags: tags)
   }
 
@@ -142,7 +142,7 @@ class HelperTagLib {
    */
   def showTagButton = {attrs, body ->
     List tags = attrs.tags
-    List tagnames = tags.collect {it.name}
+    List tagnames = tags*.name
     if (!tagnames.contains(attrs.button))
       out << body()
   }
@@ -155,10 +155,10 @@ class HelperTagLib {
     Entity entity = Entity.get(id)
 
     def linksTarget = Link.findAllByTarget(entity)
-    List sourceNames = linksTarget.collect {it.source.profile.fullName}
+    List sourceNames = linksTarget*.source.profile.fullName
 
     def linksSource = Link.findAllBySource(entity)
-    List targetNames = linksSource.collect {it.target.profile.fullName}
+    List targetNames = linksSource*.target.profile.fullName
 
     if (sourceNames.size() == 0 && targetNames.size() == 0)
       out << "return confirm('Es bestehen keine Beziehungen! Löschen bitte bestätigen!')"

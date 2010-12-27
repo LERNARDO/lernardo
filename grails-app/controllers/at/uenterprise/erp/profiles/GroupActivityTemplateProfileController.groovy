@@ -212,7 +212,7 @@ class GroupActivityTemplateProfileController {
     }
 
     def calculatedDuration = 0
-    def templates = Link.findAllByTargetAndType(Entity.get(params.id), metaDataService.ltGroupMember).collect {it.source}
+    def templates = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMember)
     templates.each {
       calculatedDuration += it.profile.duration
     }

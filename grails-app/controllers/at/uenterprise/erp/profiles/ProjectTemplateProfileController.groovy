@@ -218,8 +218,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     // find all existing project units of this project template so we can find the unit number
-    def linksc = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnitTemplate)
-    List units = linksc.collect {it.source}
+    List units = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
     int counter = 1
     if (units)
       counter = units.size() + 1
@@ -365,9 +364,9 @@ class ProjectTemplateProfileController {
     List groupActivityTemplates = []
 
     projectUnitTemplates.each {
-      def links = Link.findAllByTargetAndType(it as Entity, metaDataService.ltProjectUnitMember)
+      def links = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
       if (links.size() > 0)
-        groupActivityTemplates.addAll(links.collect {bla -> bla.source})
+        groupActivityTemplates.addAll(links)
     }
 
     def calculatedDuration = 0

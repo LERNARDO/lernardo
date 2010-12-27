@@ -153,7 +153,7 @@ class GroupClientProfileController {
     //def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
     //if (linking.duplicate)
     //  render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'clients', model: [clients: Link.findAllByTargetAndType(Entity.get(params.id), metaDataService.ltGroupMemberClient).collect {it.source}, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberClient), group: Entity.get(params.id), entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
