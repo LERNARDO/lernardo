@@ -6,6 +6,7 @@ test/reports
 *.launch
 *.tmproj
 *.launch
+*.html
 .classpath
 .project
 .settings/
