@@ -10,8 +10,11 @@ class AppFilters {
       after = {model ->
         if (model) {
           Entity e = entityHelperService.getLoggedIn()
-          if (e)
+          if (e) {
             model['currentEntity'] = e
+            e.user.lastAction = new Date()
+            e.user.save()
+          }
         }
       }
     }

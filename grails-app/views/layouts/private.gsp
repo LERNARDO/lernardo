@@ -309,6 +309,19 @@ future HTML5 doctype
           </div>
         </div>
 
+        <div class="profile-box">
+          <div class="second">
+            <div class="header">Online</div>
+            <ul id="onlineUsers">
+              <app:getOnlineUsers>
+                <g:each in="${onlineUsers}" var="entity">
+                  <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
+                </g:each>
+              </app:getOnlineUsers>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
 

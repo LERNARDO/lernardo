@@ -288,6 +288,14 @@ a {
 	padding: 3px;
 }
 
+.value-show:hover {
+    background: #ffd;
+}
+
+.value-show-block:hover {
+    background: #ffd;
+}
+
 .name-show {
 	border-right: 20px solid #efefef;
 	padding-top: 3px;

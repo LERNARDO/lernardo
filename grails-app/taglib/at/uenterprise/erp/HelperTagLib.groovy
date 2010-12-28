@@ -17,6 +17,35 @@ class HelperTagLib {
   def securityManager
   static namespace = "app"
 
+  /*
+   * retrieves all online users (activity within the last 5 minutes)
+   */
+  def getOnlineUsers = {attrs, body ->
+
+    def c = Entity.createCriteria()
+    def userList = c.list {
+      or {
+          eq("type", metaDataService.etUser)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etPate)
+          eq("type", metaDataService.etPartner)
+      }
+    }
+
+    List onlineUsers = []
+    userList.each { entity ->
+      if (entity.user.lastAction)
+        if ((new Date().getTime() - entity.user.lastAction.getTime()) / 1000 / 60 <= 5)
+          onlineUsers.add(entity)
+    }
+
+    onlineUsers.each {out << body(onlineUsers: it)}
+  }
+
   def getTotalHours = { attrs, body ->
     Date date1
     Date date2
