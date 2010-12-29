@@ -1,7 +1,7 @@
 <g:if test="${projects}">
   <ul>
   <g:each in="${projects}" var="project">
-    <li><g:link controller="${project.type.supertype.name +'Profile'}" action="show" id="${project.id}" params="[entity:project.id]">${project.profile.fullName}</g:link> <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeProject" update="projects2" id="${theme.id}" params="[project: project.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Projekt entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+    <li><g:link controller="${project.type.supertype.name +'Profile'}" action="show" id="${project.id}" params="[entity:project.id]">${project.profile.fullName}</g:link> <erp:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeProject" update="projects2" id="${theme.id}" params="[project: project.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Projekt entfernen" align="top"/></g:remoteLink></erp:isMeOrAdmin></li>
   </g:each>
   </ul>
 </g:if>

@@ -120,7 +120,7 @@
             </td>
           </tr>
 
-          <app:isOperator entity="${currentEntity}">
+          <erp:isOperator entity="${currentEntity}">
             <tr>
               <td valign="top" class="name"><g:message code="educator.profile.workHours"/></td>
               <td valign="top" class="name"><g:message code="educator.profile.hourlyWage"/></td>
@@ -138,7 +138,7 @@
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.overtimePay', 'errors')}" size="10" name="overtimePay" value="${fieldValue(bean: educator, field: 'profile.overtimePay')}"/>
               </td>
             </tr>
-          </app:isOperator>
+          </erp:isOperator>
 
           %{--<tr class="prop">
           <td colspan="3" valign="middle" class="name">
@@ -309,7 +309,7 @@
               </td>
               <td>
                 <g:message code="languageSelection"/>:
-                <app:localeSelect class="drop-down-200" name="locale" value="${educator?.user?.locale}"/>
+                <erp:localeSelect class="drop-down-200" name="locale" value="${educator?.user?.locale}"/>
               </td>
             </tr>
           </table>

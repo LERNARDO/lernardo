@@ -45,7 +45,7 @@
             <g:if test="${partner.profile.services}">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
-                <li><app:getPartnerService service="${service}"/></li>
+                <li><erp:getPartnerService service="${service}"/></li>
               </g:each>
             </ul>
             </g:if>
@@ -80,7 +80,7 @@
           <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td width="210" align="top" class="value-show"><app:getNationalities nationality="${partner.profile.country}"/></td>
+          <td width="210" align="top" class="value-show"><erp:getNationalities nationality="${partner.profile.country}"/></td>
         </tr>
 
       </table>
@@ -88,12 +88,12 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <app:isOperator entity="${currentEntity}">
+            <erp:isOperator entity="${currentEntity}">
               <td width="60" valign="top">
                 <span class="bold"><g:message code="active"/></span>
               </td>
               <td width="50" valign="top"><g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isOperator>
+            </erp:isOperator>
             <td width="60" valign="top">
               <span class="bold"><g:message code="facility.profile.email"/>:</span>
             </td>
@@ -105,15 +105,15 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdminOrOperator entity="${partner}">
+      <erp:isMeOrAdminOrOperator entity="${partner}">
         <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdminOrOperator>
+      </erp:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 
     %{--    <div>
-      <h1><g:message code="partner.profile.services"/> <app:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></app:isMeOrAdmin></h1>
+      <h1><g:message code="partner.profile.services"/> <erp:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></erp:isMeOrAdmin></h1>
       <div id="services" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
           <g:textField name="service" size="30"/>
@@ -128,8 +128,8 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#contacts');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></app:isOperator></h5>
+      <h5><g:message code="partner.profile.contacts"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#contacts');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:isOperator></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2')">
 

@@ -4,24 +4,24 @@
   </div>
   <div class="info">
     von <span class="bold">
-      <app:isNotLoggedIn>
+      <erp:isNotLoggedIn>
         ${article.author.profile.fullName}
-      </app:isNotLoggedIn>
-      <app:isLoggedIn>
-        <app:isEnabled entity="${article.author}">
+      </erp:isNotLoggedIn>
+      <erp:isLoggedIn>
+        <erp:isEnabled entity="${article.author}">
           <g:link controller="${article.author.type.supertype.name +'Profile'}" action="show" id="${article.author.id}">${article.author.profile.fullName}</g:link>
-        </app:isEnabled>
-        <app:notEnabled entity="${article.author}">
+        </erp:isEnabled>
+        <erp:notEnabled entity="${article.author}">
           <span class="notEnabled">${article.author.profile.fullName}</span>
-        </app:notEnabled>
-      </app:isLoggedIn></span>
+        </erp:notEnabled>
+      </erp:isLoggedIn></span>
     am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
     um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
-    <app:isLoggedIn>
-      <app:isEducator entity="${currentEntity}">
+    <erp:isLoggedIn>
+      <erp:isEducator entity="${currentEntity}">
         (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -
          <g:link class="adminlink" action="delete" onclick="return confirm('Artikel wirklich löschen?');" id="${article.id}">löschen</g:link>)
-      </app:isEducator>
-    </app:isLoggedIn>
+      </erp:isEducator>
+    </erp:isLoggedIn>
   </div>
 </div>

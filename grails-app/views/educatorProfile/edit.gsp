@@ -120,7 +120,7 @@
           </td>
         </tr>
 
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <tr>
             <td valign="top" class="name"><g:message code="educator.profile.workHours"/></td>
             <td valign="top" class="name"><g:message code="educator.profile.hourlyWage"/></td>
@@ -138,7 +138,7 @@
               <g:textField class="${hasErrors(bean: educator, field: 'profile.overtimePay', 'errors')}" size="10" name="overtimePay" value="${fieldValue(bean: educator, field: 'profile.overtimePay')}"/>
             </td>
           </tr>
-        </app:isOperator>
+        </erp:isOperator>
 
         %{--<tr class="prop">
         <td colspan="3" valign="middle" class="name">
@@ -291,11 +291,11 @@
       <div class="email">
         <table>
           <tr>
-            <app:isOperator entity="${currentEntity}">
+            <erp:isOperator entity="${currentEntity}">
               <td width="80" valign="middle"><g:message code="active"/>
                 <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
              </td>
-            </app:isOperator>
+            </erp:isOperator>
             <td width="150" valign="middle">
               <label>
                 <g:message code="password"/>:
@@ -312,7 +312,7 @@
               <label for="locale">
                 <g:message code="languageSelection"/>
               </label>:
-              <app:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>
+              <erp:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>
             </td>
           </tr>
         </table>
@@ -324,9 +324,9 @@
 
     <div class="buttons">
       <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-      <app:isOperator entity="${currentEntity}">
+      <erp:isOperator entity="${currentEntity}">
         <g:link class="buttonRed" action="del" id="${educator.id}" onclick="${app.getLinks(id: educator.id)}"><g:message code="delete"/></g:link>
-      </app:isOperator>
+      </erp:isOperator>
       <g:link class="buttonGray" action="show" id="${educator.id}"><g:message code="cancel"/></g:link>
       <div class="spacer"></div>
     </div>

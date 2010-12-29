@@ -41,7 +41,7 @@
             </td>
             <td>
               <g:message code="languageSelection"/>:
-              <app:localeSelect class="drop-down-200" name="locale" value="${user?.user?.locale}"/>
+              <erp:localeSelect class="drop-down-200" name="locale" value="${user?.user?.locale}"/>
             </td>
           </tr>
 

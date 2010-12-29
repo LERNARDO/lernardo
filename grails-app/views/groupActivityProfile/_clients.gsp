@@ -2,19 +2,19 @@
   <ul>
   <g:each in="${clients}" var="client" status="i">
     <li>
-      <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link> <app:isCreator entity="${group}"><g:remoteLink action="removeClient" update="clients2" id="${group.id}" params="[client: client.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Betreuten entfernen" align="top"/></g:remoteLink></app:isCreator>
+      <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}" params="[entity:client.id]">${client.profile.fullName}</g:link> <erp:isCreator entity="${group}"><g:remoteLink action="removeClient" update="clients2" id="${group.id}" params="[client: client.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Betreuten entfernen" align="top"/></g:remoteLink></erp:isCreator>
 
       <span id="tagclient${i}">
-        <app:getLocalTags entity="${client}" target="${group}">
+        <erp:getLocalTags entity="${client}" target="${group}">
           <g:render template="/app/localtags" model="[entity: client, target: group, tags: tags, update: 'tagclient' + i]"/>
-        </app:getLocalTags>
+        </erp:getLocalTags>
       </span>
 
       %{-- TODO: global tag example, unused currently but kept here for reference --}%
       %{--<span id="tagclient${i}">
-        <app:getTags entity="${client}">
+        <erp:getTags entity="${client}">
           <g:render template="/app/tags" model="[entity: client, tags: tags, update: 'tagclient'+ i]"/>
-        </app:getTags>
+        </erp:getTags>
       </span>--}%
     </li>
   </g:each>

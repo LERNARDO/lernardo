@@ -28,9 +28,9 @@
           <td><g:link action="show" id="${resource.id}">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link></td>
           %{--<td>${fieldValue(bean: resource, field: 'profile.classification')}</td>--}%
           <td>
-            <app:resourceCreatedIn resource="${resource}">
+            <erp:resourceCreatedIn resource="${resource}">
               <g:link controller="${source.type.supertype.name +'Profile'}" action="show" id="${source.id}" params="[entity: source.id]">${source.profile.fullName}</g:link>
-            </app:resourceCreatedIn>
+            </erp:resourceCreatedIn>
           </td>
         </tr>
       </g:each>
@@ -41,10 +41,10 @@
       <g:paginate total="${resourceTotal}"/>
     </div>
 
-    %{--<app:isOperator entity="${currentEntity}">
+    %{--<erp:isOperator entity="${currentEntity}">
       <g:link class="buttonGreen" action="create">Neue Ressource anlegen</g:link>
       <div class="spacer"></div>
-    </app:isOperator>--}%
+    </erp:isOperator>--}%
 
   </div>
 </div>

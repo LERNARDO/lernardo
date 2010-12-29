@@ -15,7 +15,7 @@
         
         <div class="member-info">
           <div class="member-name"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></div>
-          <div class="member-uni"><app:getProfileTypeName name="${entity.type.name}"/></div>
+          <div class="member-uni"><erp:getProfileTypeName name="${entity.type.name}"/></div>
         </div>
 
       </div>

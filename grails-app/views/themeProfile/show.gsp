@@ -66,17 +66,17 @@
     </div>
 
     <div class="buttons">
-      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
         <g:link class="buttonGreen" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: theme.id)}" id="${theme.id}">Löschen</g:link>
-      </app:accessCheck>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5>Projekte <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></app:isMeOrAdmin></h5>
+      <h5>Projekte <erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></erp:isMeOrAdmin></h5>
       <div class="zusatz-add" id="projects" style="display:none">
         <g:if test="${allProjects}">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2')">
@@ -96,8 +96,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Aktivitätsblöcke <app:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#activitygroups');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></app:isMeOrAdmin></h5>
+      <h5>Aktivitätsblöcke <erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#activitygroups');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:isMeOrAdmin></h5>
       <div class="zusatz-add" id="activitygroups" style="display:none">
         <g:if test="${allActivityGroups}">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addActivityGroup', id: theme.id]" update="activitygroups2" before="showspinner('#activitygroups2')">

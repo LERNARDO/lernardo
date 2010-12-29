@@ -2,7 +2,7 @@
   <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyyy"/><br/>
      <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm"/> Uhr</p>
 
-  <span class="bold">Einheiten <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></app:accessCheck></span>
+  <span class="bold">Einheiten <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></erp:accessCheck></span>
   <div id="units" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id]" update="units2" before="showspinner('#units2')">
       <table>
@@ -15,44 +15,44 @@
   </div>
 
   <div id="units2">
-    <app:getProjectDayUnits projectDay="${projectDay}">
+    <erp:getProjectDayUnits projectDay="${projectDay}">
       <g:render template="units" model="[units: units, projectDay: projectDay, allParents: allParents, entity: entity]"/>
-    </app:getProjectDayUnits>
+    </erp:getProjectDayUnits>
   </div>
 
-  <span class="bold">Pädagogen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:accessCheck></span>
+  <span class="bold">Pädagogen <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:accessCheck></span>
   <div id="educators" style="display:none">
 
     <g:message code="search"/>:<br/>
     %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
-    <app:remoteField size="40" name="remoteField" update="educatorresults" action="remoteEducators" id="${projectDay.id}" before="showspinner('#educatorresults')"/>
+    <erp:remoteField size="40" name="remoteField" update="educatorresults" action="remoteEducators" id="${projectDay.id}" before="showspinner('#educatorresults')"/>
     <div id="educatorresults"></div>
 
   </div>
 
   <div id="educators2">
-    <app:getProjectDayEducators projectDay="${projectDay}">
+    <erp:getProjectDayEducators projectDay="${projectDay}">
       <g:render template="educators" model="[educators: educators, projectDay: projectDay, entity: entity]"/>
-    </app:getProjectDayEducators>
+    </erp:getProjectDayEducators>
   </div>
 
-  <span class="bold">Supplierungen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></app:accessCheck></span>
+  <span class="bold">Supplierungen <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:accessCheck></span>
   <div id="substitutes" style="display:none">
 
     <g:message code="search"/>:<br/>
     %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
-    <app:remoteField size="40" name="remoteField" update="substituteresults" action="remoteSubstitutes" id="${projectDay.id}" before="showspinner('#substituteresults')"/>
+    <erp:remoteField size="40" name="remoteField" update="substituteresults" action="remoteSubstitutes" id="${projectDay.id}" before="showspinner('#substituteresults')"/>
     <div id="substituteresults"></div>
 
   </div>
 
   <div id="substitutes2">
-    <app:getProjectDaySubstitutes projectDay="${projectDay}">
+    <erp:getProjectDaySubstitutes projectDay="${projectDay}">
       <g:render template="substitutes" model="[substitutes: substitutes, projectDay: projectDay, entity: entity]"/>
-    </app:getProjectDaySubstitutes>
+    </erp:getProjectDaySubstitutes>
   </div>
 
-  %{--<span class="bold">Resourcen <app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></app:accessCheck></span>
+  %{--<span class="bold">Resourcen <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></erp:accessCheck></span>
   <div id="resources" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addResource', id:projectDay.id]" update="resources2" before="showspinner('#resources2')">
       <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
@@ -63,9 +63,9 @@
   </div>
 
   <div id="resources2">
-    <app:getProjectDayResources projectDay="${projectDay}">
+    <erp:getProjectDayResources projectDay="${projectDay}">
       <g:render template="resources" model="[resources: resources, projectDay: projectDay, entity: entity]"/>
-    </app:getProjectDayResources>
+    </erp:getProjectDayResources>
   </div>--}%
 
 </div>

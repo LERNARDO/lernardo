@@ -20,12 +20,12 @@
 
     ${groupTotal} <g:message code="groupActivityTemplate.c_total"/>
 
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="groupActivityTemplate.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:accessCheck>
+    </erp:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -39,7 +39,7 @@
       <g:each in="${groups}" status="i" var="group">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><app:getGroupSize entity="${group}"/></td>
+          <td><erp:getGroupSize entity="${group}"/></td>
           <td>${fieldValue(bean: group, field: 'profile.realDuration')}</td>
         </tr>
       </g:each>

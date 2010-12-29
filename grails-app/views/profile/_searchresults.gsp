@@ -9,7 +9,7 @@
 
     <div class="member-info">
       <div class="member-name"><g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">${searchInstance.profile.fullName}</g:link></div>
-      <div class="member-uni"><app:getProfileTypeName name="${searchInstance.type.name}"/></div>
+      <div class="member-uni"><erp:getProfileTypeName name="${searchInstance.type.name}"/></div>
     </div>
     
   </div>

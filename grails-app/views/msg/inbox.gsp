@@ -52,11 +52,11 @@
             %{--<input type="checkbox" onclick=""/>--}%
             %{--</td>--}%
             <td class="profile-pic">
-              <app:isEnabled entity="${msgInstance.sender}">
+              <erp:isEnabled entity="${msgInstance.sender}">
                 <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}"  params="[entity:msgInstance.sender.id]">
                   <ub:profileImage name="${msgInstance.sender.name}" width="50" height="50" align="left"/>
                 </g:link>
-              </app:isEnabled>
+              </erp:isEnabled>
             </td>
             <td class="name-date">
               <g:if test="${!msgInstance.read}">
@@ -70,12 +70,12 @@
                 </span>
               </g:if>
               <span class="name">von
-                <app:isEnabled entity="${msgInstance.sender}">
+                <erp:isEnabled entity="${msgInstance.sender}">
                   <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}" params="[entity:msgInstance.sender.id]">${msgInstance.sender.profile.fullName}</g:link>
-                </app:isEnabled>
-                <app:notEnabled entity="${msgInstance.sender}">
+                </erp:isEnabled>
+                <erp:notEnabled entity="${msgInstance.sender}">
                   <span class="notEnabled">${msgInstance.sender.profile.fullName}</span>
-                </app:notEnabled>
+                </erp:notEnabled>
               </span>
               <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
             </td>

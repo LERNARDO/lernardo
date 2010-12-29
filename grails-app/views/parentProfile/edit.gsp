@@ -179,12 +179,12 @@
         <div class="email">
           <table>
             <tr>
-              <app:isOperator entity="${currentEntity}">
+              <erp:isOperator entity="${currentEntity}">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
                   <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
                 </td>
-              </app:isOperator>
+              </erp:isOperator>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
                 <g:link controller="profile" action="changePassword" id="${parent.id}"><g:message code="change"/></g:link>
@@ -195,7 +195,7 @@
               </td>
               <td valign="middle">
                 <g:message code="languageSelection"/>
-                <app:localeSelect class="drop-down-150" name="locale" value="${parent?.user?.locale}"/>
+                <erp:localeSelect class="drop-down-150" name="locale" value="${parent?.user?.locale}"/>
               </td>
             </tr>
           </table>
@@ -204,9 +204,9 @@
       </div>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <g:link class="buttonRed" action="del" id="${parent.id}" onclick="${app.getLinks(id: parent.id)}"><g:message code="delete"/></g:link>
-        </app:isOperator>
+        </erp:isOperator>
         <g:link class="buttonGray" action="show" id="${parent.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

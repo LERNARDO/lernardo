@@ -189,7 +189,7 @@
               </td>
               <td valign="middle">
                 <g:message code="languageSelection"/>
-                <app:localeSelect class="drop-down-150" name="locale" value="${parent?.user?.locale}"/>
+                <erp:localeSelect class="drop-down-150" name="locale" value="${parent?.user?.locale}"/>
               </td>
             </tr>
           </table>

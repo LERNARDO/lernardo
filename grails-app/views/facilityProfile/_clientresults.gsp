@@ -7,7 +7,7 @@
           <tr>
             <td><ub:profileImage name="${entity.name}" width="65"/></td>
             <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><br/>
-            Anzahl Betreute: <app:getGroupClientsCount entity="${entity}"/></td>
+            Anzahl Betreute: <erp:getGroupClientsCount entity="${entity}"/></td>
           </tr>
         </table>
       </div>

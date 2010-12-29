@@ -1,7 +1,7 @@
 <g:if test="${partner.profile.services}">
   <ul>
   <g:each in="${partner.profile.services}" var="service">
-    <li>${service} <app:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeService" update="services2" id="${partner.id}" params="[service: service]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Service entfernen" align="top"/></g:remoteLink></app:isMeOrAdmin></li>
+    <li>${service} <erp:isMeOrAdmin entity="${entity}"><g:remoteLink action="removeService" update="services2" id="${partner.id}" params="[service: service]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Service entfernen" align="top"/></g:remoteLink></erp:isMeOrAdmin></li>
   </g:each>
   </ul>
 </g:if>

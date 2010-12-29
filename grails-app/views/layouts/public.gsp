@@ -37,7 +37,7 @@
         <div id="bd">
 
           <div id="sidebar" class="yui-b">
-            <app:isNotLoggedIn>
+            <erp:isNotLoggedIn>
               <div class="sidebox">
                 <div class="innersidebox">
                   <div class="sideboxheader">Login</div>
@@ -69,7 +69,7 @@
                   </div>
                 </div><!-- innersidebox -->
               </div><!-- sidebox -->
-            </app:isNotLoggedIn>
+            </erp:isNotLoggedIn>
 
             %{--<div class="sidebox">
               <div class="innersidebox">
@@ -95,7 +95,7 @@
               <div class="innersidebox">
                 <div class="sideboxheader"><g:message code="sideboxheader.quote"/></div>
                 <div class="sideboxcontent">
-                  <app:getQuoteOfTheDay />
+                  <erp:getQuoteOfTheDay />
                 </div>
               </div>
             </div>
@@ -104,10 +104,10 @@
               <div class="innersidebox">
                 <div class="sideboxheader"><g:message code="sideboxheader.picture"/></div>
                 <div class="sideboxcontent" style="text-align: center">
-                  <app:getPicOfTheDay>                    
+                  <erp:getPicOfTheDay>
                     <g:set var="day" value="${it}.png"/>
                     <img src='${resource(dir:"images/"+grailsApplication.config.project+"/static/daily_pic",file:day)}' width="235" height="180" alt="bild des tages" id="randomPicture"/>
-                  </app:getPicOfTheDay>
+                  </erp:getPicOfTheDay>
                 </div>
               </div>
             </div>

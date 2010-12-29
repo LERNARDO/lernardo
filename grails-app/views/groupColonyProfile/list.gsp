@@ -13,12 +13,12 @@
 
     ${groupTotal} <g:message code="groupColony.profile.c_total"/>
 
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="groupColony.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:accessCheck>
+    </erp:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -36,8 +36,8 @@
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>${group.profile.representatives.size()}</td>
           <td>${group.profile.buildings.size()}</td>
-          <td><app:getGroupFacilities entity="${group}"/></td>
-          <td><app:getGroupResources entity="${group}"/></td>
+          <td><erp:getGroupFacilities entity="${group}"/></td>
+          <td><erp:getGroupResources entity="${group}"/></td>
         </tr>
       </g:each>
       </tbody>

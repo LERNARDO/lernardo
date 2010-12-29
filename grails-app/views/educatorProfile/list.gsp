@@ -13,12 +13,12 @@
 
     ${educatorTotal} <g:message code="educator.profile.c_total"/>
 
-    <app:isOperator entity="${currentEntity}">
+    <erp:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="educator.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isOperator>
+    </erp:isOperator>
 
     <table class="default-table">
       <thead>
@@ -32,8 +32,8 @@
       <g:each in="${educatorList}" status="i" var="educator">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><app:getEducation education="${educator.profile.education}"/></td>
-          <td><app:getEmployment employment="${educator.profile.employment}"/></td>
+          <td><erp:getEducation education="${educator.profile.education}"/></td>
+          <td><erp:getEmployment employment="${educator.profile.employment}"/></td>
         </tr>
       </g:each>
       </tbody>

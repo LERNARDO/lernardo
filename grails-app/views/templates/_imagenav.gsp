@@ -10,7 +10,7 @@
       </div>
     </li>
 
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <li>
         <div id="htemplates" class="imgbox">
           <g:link controller="templateProfile" action="index">
@@ -46,7 +46,7 @@
           </g:link>
         </div>
       </li>
-    </app:accessCheck>
+    </erp:accessCheck>
 
     <li>
       <div id="calendar" class="imgbox">

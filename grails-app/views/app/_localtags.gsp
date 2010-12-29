@@ -14,9 +14,9 @@
     <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'absent', update: update]">abwesend markieren</g:remoteLink>
   </g:if>
 
-  <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']" me="false">
+  <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']" me="false">
     <g:if test="${!tags[1]}">
       | <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'ill', update: update]">krank markieren</g:remoteLink>
     </g:if>
-  </app:accessCheck>
+  </erp:accessCheck>
 </span>

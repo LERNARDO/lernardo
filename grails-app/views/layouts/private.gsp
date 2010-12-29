@@ -158,51 +158,51 @@ future HTML5 doctype
                   </td>
                   <td>
 
-                    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
                       <ul>
                         <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
                       </ul>
-                    </app:accessCheck>
+                    </erp:accessCheck>
 
                     <ul>
                       <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
-                      <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <app:getPublicationCount entity="${entity}"/></li>
+                      <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
 
-                      <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="true">
+                      <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="true">
                         <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
-                      </app:accessCheck>
+                      </erp:accessCheck>
 
-                      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
-                        <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
-                          <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <app:getNewInboxMessages entity="${entity}"/></li>
-                        </app:accessCheck>
-                        <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
+                      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
+                        <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
+                          <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
+                        </erp:accessCheck>
+                        <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
                           <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="privat.articleList"/></g:link></li>
-                        </app:accessCheck>
-                      </app:accessCheck>
+                        </erp:accessCheck>
+                      </erp:accessCheck>
 
-                      <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
-                        <app:notMe entity="${entity}">
+                      <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
+                        <erp:notMe entity="${entity}">
                           <g:if test="${entity.user.enabled}">
                             <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link></li>
                           </g:if>
-                        </app:notMe>
-                      </app:accessCheck>
+                        </erp:notMe>
+                      </erp:accessCheck>
 
                       %{--TODO: find out why the check won't work here?!--}%
-                      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
-                        <app:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
+                      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+                        <erp:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
                           <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
-                        </app:accessCheck>
-                        <app:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
+                        </erp:accessCheck>
+                        <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
                           <li class="icon-evaluation"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                           <li class="icon-admin"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
-                        </app:accessCheck>
-                      </app:accessCheck>
+                        </erp:accessCheck>
+                      </erp:accessCheck>
 
-                      <app:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">
+                      <erp:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">
                         <li class="icon-admin"><g:link controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
-                      </app:accessCheck>
+                      </erp:accessCheck>
 
                       <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
 
@@ -217,7 +217,7 @@ future HTML5 doctype
           </div>
         </div>
       %{--this concerns myself = currentEntity --}%
-        <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false">
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false">
 
           <div class="profile-box">
             <div class="second">
@@ -232,26 +232,26 @@ future HTML5 doctype
 
                   <div id="inhalt-admin" class="passiv_inhalt">
                     <ul>
-                      <app:isOperator entity="${currentEntity}">
+                      <erp:isOperator entity="${currentEntity}">
                         <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                         <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
                         %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
                         %{--<li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]">Zeitauswertung</g:link></li>--}%
                         <li class="icon-admin"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
-                      </app:isOperator>
+                      </erp:isOperator>
                     </ul>
                   </div>
 
                   <div id="inhalt-verwaltung" class="aktiv_inhalt">
                     <ul>
-                      <app:isOperator entity="${currentEntity}">
+                      <erp:isOperator entity="${currentEntity}">
                         <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
-                      </app:isOperator>
-                      <app:isAdmin>
+                      </erp:isOperator>
+                      <erp:isAdmin>
                         <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                         <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                         <hr/>
-                      </app:isAdmin>
+                      </erp:isAdmin>
                       <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/></g:link></li>
                       <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
                       <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
@@ -274,9 +274,9 @@ future HTML5 doctype
                 </div>
             </div>
           </div>
-        </app:accessCheck>
+        </erp:accessCheck>
 
-        %{--<app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+        %{--<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
           <div class="profile-box">
             <div class="second">
               --}%%{--Menue links Pädagogik--}%%{--
@@ -288,16 +288,16 @@ future HTML5 doctype
               <div id="paedag-toggled">
                 <div id="a1" class="ein">
                   <ul>
-                    <app:isOperator entity="${currentEntity}">
+                    <erp:isOperator entity="${currentEntity}">
                       <li class="icon-admin"><g:link controller="resourceProfile" action="index" params="[name:entity.name]"><g:message code="resources"/></g:link></li>
-                    </app:isOperator>
+                    </erp:isOperator>
                   </ul>
                 </div>
               </div>
               
             </div>
           </div>
-        </app:accessCheck>--}%
+        </erp:accessCheck>--}%
 
         <div class="profile-box">
           <div class="second">
@@ -313,11 +313,11 @@ future HTML5 doctype
           <div class="second">
             <div class="header">Online</div>
             <ul id="onlineUsers">
-              <app:getOnlineUsers>
+              <erp:getOnlineUsers>
                 <g:each in="${onlineUsers}" var="entity">
                   <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
                 </g:each>
-              </app:getOnlineUsers>
+              </erp:getOnlineUsers>
             </ul>
           </div>
         </div>

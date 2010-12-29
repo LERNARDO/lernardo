@@ -73,10 +73,10 @@
         </table>
 
         <div class="email">         
-          <app:isOperator entity="${currentEntity}">
+          <erp:isOperator entity="${currentEntity}">
             <g:message code="active"/>
             <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
-          </app:isOperator>
+          </erp:isOperator>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <g:message code="child.profile.email"/>
           : &nbsp;
@@ -90,9 +90,9 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <g:link class="buttonRed" action="del" id="${child.id}" onclick="${app.getLinks(id: child.id)}"><g:message code="delete"/></g:link>
-        </app:isOperator>
+        </erp:isOperator>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

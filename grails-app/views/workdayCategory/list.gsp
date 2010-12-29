@@ -13,12 +13,12 @@
 
     ${workdayCategoryInstanceTotal} <g:message code="workdayCategory.c_total"/>
 
-    <app:isOperator entity="${currentEntity}">
+    <erp:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="workdayCategory.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isOperator>
+    </erp:isOperator>
 
     <table class="default-table">
       <thead>

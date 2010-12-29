@@ -78,7 +78,7 @@
               </td>
               %{--<td width="130" valign="middle" class="name"><g:message code="languageSelection"/></td>
               <td valign="middle" class="value">
-                <app:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
+                <erp:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
               </td>--}%
             </tr>
           </table>

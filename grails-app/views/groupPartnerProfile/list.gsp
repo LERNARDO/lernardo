@@ -13,12 +13,12 @@
 
     ${groupTotal} <g:message code="groupPartner.profile.c_total"/>
 
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="groupPartner.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:accessCheck>
+    </erp:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -31,7 +31,7 @@
       <g:each in="${groups}" status="i" var="group">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><app:getPartnerService service="${group.profile.service}"/></td>
+          <td><erp:getPartnerService service="${group.profile.service}"/></td>
         </tr>
       </g:each>
       </tbody>

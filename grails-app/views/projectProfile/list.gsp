@@ -36,9 +36,9 @@
           <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
           <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/></td>
           <td>
-            <app:getFacilityOfProject entity="${project}">
+            <erp:getFacilityOfProject entity="${project}">
               <g:link controller="facilityProfile" action="show" id="${facility.id}" params="[entity: facility.id]">${facility.profile.fullName.decodeHTML()}</g:link>
-            </app:getFacilityOfProject>
+            </erp:getFacilityOfProject>
           </td>
         </tr>
       </g:each>

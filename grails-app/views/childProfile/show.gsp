@@ -23,7 +23,7 @@
         </tr>
 
         <tr>
-          <td valign="top" class="value-show"><app:showGender gender="${child.profile.gender}"/></td>
+          <td valign="top" class="value-show"><erp:showGender gender="${child.profile.gender}"/></td>
           <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.firstName')}</td>
           <td valign="top" class="value-show"><g:link action="show" id="${child.id}" params="[entity:child.id]">${child.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
           <td valign="top" class="value-show"><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy"/></td>
@@ -43,11 +43,11 @@
               <g:if test="${child.profile.jobtypes}">
                 <ul>
                   <g:each in="${child.profile.jobtypes}" var="jobtype">
-                    <li><app:getJobType job="${jobtype}"/></li>
+                    <li><erp:getJobType job="${jobtype}"/></li>
                   </g:each>
                 </ul>
               </g:if>
-              %{--<app:getJobType job="${child.profile.jobType}"/>--}%
+              %{--<erp:getJobType job="${child.profile.jobType}"/>--}%
             </td>
             <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobIncome')}</td>
             <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobFrequency')}</td>
@@ -58,10 +58,10 @@
       </table>
 
       <div class="email">
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <span class="bold"><g:message code="active"/></span>
           <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
-        </app:isOperator>
+        </erp:isOperator>
         <td width="60" valign="top">
           <span class="bold"><g:message code="child.profile.email"/>:</span>
         </td>
@@ -72,9 +72,9 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdminOrOperator entity="${child}">
+      <erp:isMeOrAdminOrOperator entity="${child}">
         <g:link class="buttonGreen" action="edit" id="${child?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdminOrOperator>
+      </erp:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

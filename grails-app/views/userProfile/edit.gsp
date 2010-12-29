@@ -43,17 +43,17 @@
       <div class="email">
         <table>
           <tr>
-            <app:isSysAdmin>
+            <erp:isSysAdmin>
               <td width="85" valign="middle">
                 <g:message code="active"/>
-                <app:isAdmin>
+                <erp:isAdmin>
                   <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
-                </app:isAdmin>
-                <app:notAdmin>
+                </erp:isAdmin>
+                <erp:notAdmin>
                   <g:checkBox name="enabled" value="${user?.user?.enabled}" disabled="true"/>
-                </app:notAdmin>
+                </erp:notAdmin>
               </td>
-            </app:isSysAdmin>
+            </erp:isSysAdmin>
 
             <td width="150" valign="middle">
               <g:message code="password"/>:
@@ -67,7 +67,7 @@
 
             <td valign="middle">
               <g:message code="languageSelection"/>:
-              <app:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
+              <erp:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
             </td>
           </tr>
         </table>

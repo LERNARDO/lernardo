@@ -27,16 +27,16 @@
       </table>
     </div>
 
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:accessCheck>
+    </erp:accessCheck>
 
     <div class="zusatz">
-      <h5><g:message code="groupClient.clients.info"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isOperator></h5>
+      <h5><g:message code="groupClient.clients.info"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isOperator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:message code="clients"/><br/>
         <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect" before="showspinner('#clientselect')">

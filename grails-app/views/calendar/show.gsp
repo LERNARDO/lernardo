@@ -35,9 +35,9 @@
   <div class="boxGray">
     <div class="second">
       <g:each in="${educators}" var="educator" status="i">
-        <app:getActiveEducator educators="${visibleEducators}" id="${educator.id}">
+        <erp:getActiveEducator educators="${visibleEducators}" id="${educator.id}">
           <div class="calendereducator" style="background: ${active ? grailsApplication.config.colors[i] : ''}"><g:link style="display: block; color: ${active ? '#fff' : '#000'}; text-decoration: none;" controller="calendar" action="show" id="${educator.id}" params="[visibleEducators: visibleEducators]"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> ${educator.profile.fullName}</g:link></div>
-        </app:getActiveEducator>
+        </erp:getActiveEducator>
       </g:each>
       <div class="clear"></div>
     </div>

@@ -6,7 +6,7 @@
 <div class="boxGray">
   <div class="second">
 
-    %{--<app:isEducator entity="${currentEntity}">--}%
+    %{--<erp:isEducator entity="${currentEntity}">--}%
       <div class="add-comment">
         <a onclick="toggle('#comment-div'); return false" href="#">Kommentar hinzufügen <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kommentar hinzufügen" /></a>
       </div>
@@ -25,7 +25,7 @@
           </div>
         </g:formRemote>
       </div>
-    %{--</app:isEducator>--}%
+    %{--</erp:isEducator>--}%
 
     <g:render template="/comment/comments" model="[currentEntity: currentEntity, commented: commented]"/>
 

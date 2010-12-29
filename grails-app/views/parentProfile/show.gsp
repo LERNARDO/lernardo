@@ -23,7 +23,7 @@
 
         <tr>
           <td valign="top" class="value-show">
-            <app:showGender gender="${parent.profile.gender}"/>
+            <erp:showGender gender="${parent.profile.gender}"/>
           </td>
           <td valign="top" class="value-show">
             ${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
@@ -45,13 +45,13 @@
 
         <tr>
           <td valign="top" class="value-show">
-            <app:getMaritalStatus level="${parent.profile.maritalStatus}"/>
+            <erp:getMaritalStatus level="${parent.profile.maritalStatus}"/>
           </td>
           <td valign="top" class="value-show-block">
             <g:if test="${parent.profile.languages}">
               <ul>
                 <g:each in="${parent.profile.languages}" var="language">
-                  <li><app:getLanguages language="${language}"/></li>
+                  <li><erp:getLanguages language="${language}"/></li>
                 </g:each>
               </ul>
             </g:if>
@@ -65,7 +65,7 @@
           <td valign="top" class="value-show">
             <g:if test="${grailsApplication.config.parentProfile.education}">
               <g:if test="${parent.profile.education}">
-                <app:getSchoolLevel level="${parent.profile.education}"/>
+                <erp:getSchoolLevel level="${parent.profile.education}"/>
               </g:if>
               <g:else>
                 <div class="italic"><g:message code="none"/></div>
@@ -91,14 +91,14 @@
                 <g:if test="${grailsApplication.config.project == 'sueninos'}">
                   <ul>
                     <g:each in="${parent.profile.jobtypes}" var="jobtype">
-                      <li><app:getJobType job="${jobtype}"/></li>
+                      <li><erp:getJobType job="${jobtype}"/></li>
                     </g:each>
                   </ul>
                 </g:if>
                 <g:if test="${grailsApplication.config.project == 'noe'}">
                   <ul>
                     <g:each in="${parent.profile.jobtypes}" var="jobtype">
-                      <li><app:getJobTypeNoe job="${jobtype}"/></li>
+                      <li><erp:getJobTypeNoe job="${jobtype}"/></li>
                     </g:each>
                   </ul>
                 </g:if>
@@ -119,7 +119,7 @@
         <tr>
           <td valign="middle" class="value-show">
             <g:if test="${grailsApplication.config.parentProfile.currentCountry}">
-              <app:getNationalities nationality="${parent.profile.currentCountry}"/>
+              <erp:getNationalities nationality="${parent.profile.currentCountry}"/>
             </g:if>
           </td>
           <td width="105" valign="middle" class="value-show">
@@ -163,12 +163,12 @@
         <table>
           <tr>
 
-            <app:isOperator entity="${currentEntity}">
+            <erp:isOperator entity="${currentEntity}">
               <td width="100" valign="middle">
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${parent.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
-            </app:isOperator>
+            </erp:isOperator>
 
             <td width="280" valign="middle">
               <span class="bold"><g:message code="educator.profile.email"/>:</span>
@@ -186,9 +186,9 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdminOrOperator entity="${parent}">
+      <erp:isMeOrAdminOrOperator entity="${parent}">
         <g:link class="buttonGreen" action="edit" id="${parent?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdminOrOperator>
+      </erp:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

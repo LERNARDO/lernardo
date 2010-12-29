@@ -15,7 +15,7 @@ class HelperTagLib {
   SecHelperService secHelperService
   FunctionService functionService
   def securityManager
-  static namespace = "app"
+  static namespace = "erp"
 
   /*
    * retrieves all online users (activity within the last 5 minutes)

@@ -22,13 +22,13 @@
       </tbody>
     </table>
 
-    <app:isOperator entity="${currentEntity}">
+    <erp:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${workdayCategoryInstance?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isOperator>
+    </erp:isOperator>
 
   </div>
 </div>

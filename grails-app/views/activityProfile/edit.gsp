@@ -15,9 +15,9 @@
 
     <g:form action="update" method="post" id="${activity.id}">
       Vorlage:
-      <app:getTemplate entity="${activity}">
+      <erp:getTemplate entity="${activity}">
         <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
-      </app:getTemplate>
+      </erp:getTemplate>
 
       <table>
         <tbody>

@@ -24,7 +24,7 @@
 
         <tr>
           <td width="90" height="25" valign="top" class="value-show">
-            <app:showGender gender="${educator.profile.gender}"/>
+            <erp:showGender gender="${educator.profile.gender}"/>
           </td>
           <td width="120" valign="top" class="value-show">
             ${fieldValue(bean: educator, field: 'profile.title') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
@@ -54,10 +54,10 @@
           <td width="280" height="25" valign="top" class="value-show">
             <g:if test="${educator.profile.education}">
               <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                <app:getEducation education="${educator.profile.education}"/>
+                <erp:getEducation education="${educator.profile.education}"/>
               </g:if>
               <g:if test="${grailsApplication.config.project == 'noe'}">
-                <app:getEducation educationNoe="${educator.profile.education}"/>
+                <erp:getEducation educationNoe="${educator.profile.education}"/>
               </g:if>
             </g:if>
             <g:else>
@@ -66,10 +66,10 @@
           </td>
           <td width="280" valign="top" class="value-show">
             <g:if test="${grailsApplication.config.project == 'sueninos'}">
-              <app:getEmployment employment="${educator.profile.employment}"/>
+              <erp:getEmployment employment="${educator.profile.employment}"/>
             </g:if>
             <g:if test="${grailsApplication.config.project == 'noe'}">
-              <app:getEmployment employmentNoe="${educator.profile.employment}"/>
+              <erp:getEmployment employmentNoe="${educator.profile.employment}"/>
             </g:if>
           </td>
           <td valign="top" class="value-show">
@@ -93,7 +93,7 @@
             <g:if test="${educator.profile.inChargeOf}">
             <ul>
               <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
-                <li><app:getInChargeOf inchargeof="${inchargeof}"/></li>
+                <li><erp:getInChargeOf inchargeof="${inchargeof}"/></li>
               </g:each>
             </ul>
             </g:if>
@@ -105,17 +105,17 @@
             <ul>
               <g:each in="${educator.profile.languages}" var="language">
                 <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                  <li><app:getLanguages language="${language}"/></li>
+                  <li><erp:getLanguages language="${language}"/></li>
                 </g:if>
                 <g:if test="${grailsApplication.config.project == 'noe'}">
-                  <li><app:getLanguagesNoe language="${language}"/></li>
+                  <li><erp:getLanguagesNoe language="${language}"/></li>
                 </g:if>
               </g:each>
             </ul>
           </td>
         </tr>
 
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="educator.profile.workHours"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.hourlyWage"/></td>
@@ -133,7 +133,7 @@
               ${fieldValue(bean: educator, field: 'profile.overtimePay') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
             </td>
           </tr>
-        </app:isOperator>
+        </erp:isOperator>
 
         %{--<tr>
         <td colspan="3" valign="top" class="name-show">
@@ -204,7 +204,7 @@
             </td>
             <td width="110" valign="top" class="value-show">
               <g:if test="${educator.profile.originCountry}">
-                <app:getNationalities nationality="${educator.profile.originCountry}"/>
+                <erp:getNationalities nationality="${educator.profile.originCountry}"/>
               </g:if>
               <g:else>
                  <div class="italic"><g:message code="unknown"/></div>
@@ -301,12 +301,12 @@
         <table>
 
           <tr>
-            <app:isOperator entity="${currentEntity}">
+            <erp:isOperator entity="${currentEntity}">
               <td width="100" valign="middle">
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
-            </app:isOperator>
+            </erp:isOperator>
 
             <td width="280" valign="middle">
               <span class="bold"><g:message code="educator.profile.email"/>:</span>
@@ -323,15 +323,15 @@
     </div>
 
     <div class="buttons">
-      <app:isMeOrAdminOrOperator entity="${educator}">
+      <erp:isMeOrAdminOrOperator entity="${educator}">
         <g:link class="buttonGreen" action="edit" id="${educator?.id}"><g:message code="edit"/></g:link>
-      </app:isMeOrAdminOrOperator>
+      </erp:isMeOrAdminOrOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.projectName]"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#dates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:accessCheck></h5>
+      <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.projectName]"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#dates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="showspinner('#dates2')">
           <g:datePicker name="date" value="" precision="day"/>

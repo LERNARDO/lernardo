@@ -70,7 +70,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="languageSelection"/></td>
             <td valign="top" class="value">
-              <app:localeSelect class="drop-down-280" name="locale" value="${operator?.user?.locale}"/>
+              <erp:localeSelect class="drop-down-280" name="locale" value="${operator?.user?.locale}"/>
             </td>
           </tr>
 

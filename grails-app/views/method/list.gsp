@@ -13,12 +13,12 @@
 
     ${methodInstanceTotal} <g:message code="method.c_total"/>
 
-     <app:isAdmin>
+     <erp:isAdmin>
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="method.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isAdmin>
+    </erp:isAdmin>
 
     <table class="default-table">
       <thead>

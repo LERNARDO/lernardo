@@ -13,12 +13,12 @@
 
     ${pateTotal} <g:message code="pate.profile.c_total"/>
 
-    <app:isOperator entity="${currentEntity}">
+    <erp:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="pate.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isOperator>
+    </erp:isOperator>
 
     <table class="default-table">
       <thead>
@@ -31,7 +31,7 @@
       <g:each in="${pateList}" status="i" var="pate">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${pate.id}" params="[entity: pate.id]">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><app:getNationalities nationality="${pate.profile.country}"/></td>
+          <td><erp:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
       </g:each>
       </tbody>

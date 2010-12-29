@@ -70,7 +70,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="languageSelection"/></td>
             <td valign="top" class="value">
-              <app:localeSelect class="drop-down-280" name="locale" value="${operator?.user?.locale}"/>
+              <erp:localeSelect class="drop-down-280" name="locale" value="${operator?.user?.locale}"/>
             </td>
           </tr>
 
@@ -81,19 +81,19 @@
             </td>
           </tr>
 
-          <app:isAdmin>
+          <erp:isAdmin>
             <tr class="prop">
               <td valign="top" class="name"><g:message code="active"/></td>
               <td valign="top" class="value">
-                <app:isAdmin>
+                <erp:isAdmin>
                   <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
-                </app:isAdmin>
-                <app:notAdmin>
+                </erp:isAdmin>
+                <erp:notAdmin>
                   <g:checkBox name="enabled" value="${operator?.user?.enabled}" disabled="true"/>
-                </app:notAdmin>
+                </erp:notAdmin>
               </td>
             </tr>
-          </app:isAdmin>
+          </erp:isAdmin>
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="password"/></td>
@@ -108,9 +108,9 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <app:isAdmin>
+        <erp:isAdmin>
           <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${app.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
-        </app:isAdmin>
+        </erp:isAdmin>
         <g:link class="buttonGray" action="show" id="${operator.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

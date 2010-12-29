@@ -8,9 +8,9 @@
   <div id="article-container">
  
     <g:if test="${currentEntity}">
-      <app:isEducator entity="${currentEntity}">
+      <erp:isEducator entity="${currentEntity}">
         <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel erstellen</g:link></p>
-      </app:isEducator>
+      </erp:isEducator>
     </g:if>
 
     <g:each in="${articleList}" var="article">

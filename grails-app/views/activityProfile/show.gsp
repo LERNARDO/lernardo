@@ -16,9 +16,9 @@
 <div class="boxGray">
   <div class="second">
     Vorlage:
-    <app:getTemplate entity="${activity}">
+    <erp:getTemplate entity="${activity}">
       <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
-    </app:getTemplate>
+    </erp:getTemplate>
     <br/><br/>
 
     <table>
@@ -46,38 +46,38 @@
       </tr>
 
       <tr>
-        <td valign="top" class="value-show"><app:getFacility entity="${activity}">
-          <app:isEnabled entity="${facility}">
+        <td valign="top" class="value-show"><erp:getFacility entity="${activity}">
+          <erp:isEnabled entity="${facility}">
             <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
-          </app:isEnabled>
-          <app:notEnabled entity="${facility}">
+          </erp:isEnabled>
+          <erp:notEnabled entity="${facility}">
             <span class="notEnabled">${facility.profile.fullName}</span>
-          </app:notEnabled>
-        </app:getFacility>
+          </erp:notEnabled>
+        </erp:getFacility>
         </td>
 
-        <td valign="top" class="value-show"><app:getClients entity="${activity}">
+        <td valign="top" class="value-show"><erp:getClients entity="${activity}">
           <g:each in="${clients}" var="client">
-            <app:isEnabled entity="${client}">
+            <erp:isEnabled entity="${client}">
               <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
-            </app:isEnabled>
-            <app:notEnabled entity="${client}">
+            </erp:isEnabled>
+            <erp:notEnabled entity="${client}">
               <span class="notEnabled">${client.profile.fullName}</span>
-            </app:notEnabled><br>
+            </erp:notEnabled><br>
           </g:each>
-        </app:getClients>
+        </erp:getClients>
         </td>
 
-        <td valign="top" class="value-show-block"><app:getEducators entity="${activity}">
+        <td valign="top" class="value-show-block"><erp:getEducators entity="${activity}">
           <g:each in="${educators}" var="educator">
-            <app:isEnabled entity="${educator}">
+            <erp:isEnabled entity="${educator}">
               <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}">${educator.profile.fullName}</g:link>
-            </app:isEnabled>
-            <app:notEnabled entity="${educator}">
+            </erp:isEnabled>
+            <erp:notEnabled entity="${educator}">
               <span class="notEnabled">${educator.profile.fullName}</span>
-            </app:notEnabled><br>
+            </erp:notEnabled><br>
           </g:each>
-        </app:getEducators>
+        </erp:getEducators>
         </td>
       </tr>
 
@@ -97,10 +97,10 @@
     </table>
 
     <div class="buttons">
-      <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
         <g:link class="buttonGreen" action="edit" id="${activity.id}">Bearbeiten</g:link>
         <g:link class="buttonRed" action="del" onclick="${app.getLinks(id: activity.id)}" id="${activity.id}">Löschen</g:link>
-      </app:accessCheck>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
@@ -111,8 +111,8 @@
     %{--clients and their status may only be added after the activity has started--}%
       <g:if test="${new Date() > activity.profile.date}">
         <div>
-          <h1>Betreute <app:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients');
-          return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isMeOrAdmin></h1>
+          <h1>Betreute <erp:isMeOrAdmin entity="${entity}"><a onclick="toggle('#clients');
+          return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isMeOrAdmin></h1>
           <div id="clients" style="display:none">
             <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
               <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
@@ -135,9 +135,9 @@
   </div>
 </div>
 
-<app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: activity]"/>
-</app:accessCheck>
+</erp:accessCheck>
 
 </body>
 </html>

@@ -18,12 +18,12 @@
       <g:message code="helper.topic.empty"/>.
     </g:else>
 
-    <app:isAdmin>
+    <erp:isAdmin>
       <div class="buttons">
         <g:link class="buttonGreen" action="create" params="[entity:entity.id]"><g:message code="helper.topic.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isAdmin>
+    </erp:isAdmin>
 
     <g:if test="${helperInstanceList.size() > 0}">
     <ul>
@@ -35,8 +35,8 @@
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
       <div class="helperbox">
         <p>
-          <a name="${i}">${helperInstance.title}</a><app:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
-          Hilfethema für: <g:join in="${helperInstance.types}"/></p></app:isAdmin>
+          <a name="${i}">${helperInstance.title}</a><erp:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
+          Hilfethema für: <g:join in="${helperInstance.types}"/></p></erp:isAdmin>
           ${helperInstance.content.decodeHTML()}</p>
       </div>
     </g:each>

@@ -22,14 +22,14 @@
         </tr>
 
         <tr class="prop">
-          <td width="130" valign="top" class="value-show"><app:showGender gender="${client.profile.gender}"/></td>
+          <td width="130" valign="top" class="value-show"><erp:showGender gender="${client.profile.gender}"/></td>
           <td width="200" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="270" valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
           <td width="35" valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
-          %{--<app:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge']">--}%
+          %{--<erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge']">--}%
           <td valign="top" class="name-show">
             <g:if test="${grailsApplication.config.clientProfile.size}">
               <g:message code="client.profile.size"/>
@@ -40,7 +40,7 @@
               <g:message code="client.profile.weight"/>
             </g:if>
           </td>
-          %{--</app:accessCheck>--}%
+          %{--</erp:accessCheck>--}%
           <td valign="top" class="name-show">
             <g:message code="client.profile.interests"/>
           </td>
@@ -111,12 +111,12 @@
           </tr>
 
           <tr class="prop">
-            <td width="160" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><app:getFamilyStatus status="${client.profile.familyStatus}"/></g:if></td>
+            <td width="160" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><erp:getFamilyStatus status="${client.profile.familyStatus}"/></g:if></td>
             <td width="250" valign="top" class="value-show-block">
               <g:if test="${client.profile.languages}">
               <ul>
                 <g:each in="${client.profile.languages}" var="language">
-                  <li><app:getLanguages language="${language}"/></li>
+                  <li><erp:getLanguages language="${language}"/></li>
                 </g:each>
               </ul>
               </g:if>
@@ -128,10 +128,10 @@
             <td width="210" valign="top" class="value-show">
               <g:if test="${client.profile.schoolLevel}">
                 <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                  <app:getSchoolLevel level="${client.profile.schoolLevel}"/>
+                  <erp:getSchoolLevel level="${client.profile.schoolLevel}"/>
                 </g:if>
                 <g:if test="${grailsApplication.config.project == 'noe'}">
-                  <app:getSchoolLevelNoe level="${client.profile.schoolLevel}"/>
+                  <erp:getSchoolLevelNoe level="${client.profile.schoolLevel}"/>
                 </g:if>
               </g:if>
               <g:else>
@@ -183,12 +183,12 @@
                 <g:if test="${client.profile.jobtypes}">
                   <ul>
                     <g:each in="${client.profile.jobtypes}" var="jobtype">
-                      <li><app:getJobType job="${jobtype}"/></li>
+                      <li><erp:getJobType job="${jobtype}"/></li>
                     </g:each>
                   </ul>
                 </g:if>
                 %{--<g:if test="${client.profile.jobType}">--}%
-                %{--<app:getJobType job="${client.profile.jobType}"/>--}%
+                %{--<erp:getJobType job="${client.profile.jobType}"/>--}%
                 %{--</g:if>--}%<g:else><div class="italic">keine Arbeit eingetragen</div></g:else></td>
               <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
               <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
@@ -258,26 +258,26 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <app:isOperator entity="${currentEntity}">
+            <erp:isOperator entity="${currentEntity}">
               <td width="60" valign="top" class="bold"><g:message code="active"/></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${client.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isOperator>
+            </erp:isOperator>
             <td width="60" valign="top" class="bold"><g:message code="client.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: client, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
         </table>
       </div>
     </div>
 
-    <app:isMeOrAdminOrOperator entity="${client}">
+    <erp:isMeOrAdminOrOperator entity="${client}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${client?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdminOrOperator>
+    </erp:isMeOrAdminOrOperator>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.schoolPerformance"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#performances');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Performance hinzufügen"/></a></app:accessCheck></h5>
+      <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#performances');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Performance hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="showspinner('#performances2')">
           <table>
@@ -302,8 +302,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.healthNotes"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#healths');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gesundheitseintrag hinzufügen"/></a></app:accessCheck></h5>
+      <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#healths');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gesundheitseintrag hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="showspinner('#healths2')">
           <table>
@@ -329,8 +329,8 @@
 
     <g:if test="${grailsApplication.config.project == 'sueninos'}">
     <div class="zusatz">
-      <h5><g:message code="client.profile.materials"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></app:accessCheck></h5>
+      <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#materials');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="materials" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2')">
           <table>
@@ -356,8 +356,8 @@
     </g:if>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.projectName]"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></app:accessCheck></h5>
+      <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.projectName]"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#dates');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2')">
           <g:textField name="date" size="12" class="datepicker" value=""/>
@@ -373,8 +373,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="client.profile.collectors"/> <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#collectors');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Abholberechtigten hinzufügen"/></a></app:accessCheck></h5>
+      <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#collectors');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Abholberechtigten hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="collectors" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2')">
           <table>
@@ -396,8 +396,8 @@
 
     <g:if test="${grailsApplication.config.clientProfile.contact}">
       <div class="zusatz">
-        <h5>Kontakt im Notfall <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#contacts');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></app:accessCheck></h5>
+        <h5>Kontakt im Notfall <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false"><a onclick="toggle('#contacts');
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="contacts" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addContact', id:client.id]" update="contacts2" before="showspinner('#contacts2')">
 

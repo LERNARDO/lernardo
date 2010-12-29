@@ -67,19 +67,19 @@
         <div class="email">
           <table>
             <tr class="prop">
-              %{--<app:isOperator entity="${currentEntity}">
+              %{--<erp:isOperator entity="${currentEntity}">
                 <td width="90" valign="top" class="name"><g:message code="active"/></td>
                 <td width="30" valign="top" class="value">
                   <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
                 </td>
-              </app:isOperator>--}%
+              </erp:isOperator>--}%
               <td width="70" valign="top" class="name"><g:message code="facility.profile.email"/></td>
               <td width="320" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
               </td>
               %{--<td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
               <td valign="top" class="value">
-                <app:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
+                <erp:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
               </td>--}%
             </tr>
             %{--<tr>
@@ -99,9 +99,9 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <g:link class="buttonRed" action="del" id="${facility.id}" onclick="${app.getLinks(id: facility.id)}"><g:message code="delete"/></g:link>
-        </app:isOperator>
+        </erp:isOperator>
         <g:link class="buttonGray" action="show" id="${facility.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

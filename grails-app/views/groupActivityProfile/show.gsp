@@ -64,9 +64,9 @@
 
 
     <div class="buttons">
-      <app:isCreator entity="${group}">
+      <erp:isCreator entity="${group}">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
-      </app:isCreator>
+      </erp:isCreator>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
@@ -88,8 +88,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Einrichtungen <app:isCreator entity="${group}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></app:isCreator></h5>
+      <h5>Einrichtungen <erp:isCreator entity="${group}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></erp:isCreator></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -104,8 +104,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Pädagogen <app:isCreator entity="${group}"><a onclick="toggle('#educators');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></app:isCreator></h5>
+      <h5>Pädagogen <erp:isCreator entity="${group}"><a onclick="toggle('#educators');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2')">
           <div id="educatorselect">
@@ -122,8 +122,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Supplierung <app:isCreator entity="${group}"><a onclick="toggle('#substitutes');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></app:isCreator></h5>
+      <h5>Supplierung <erp:isCreator entity="${group}"><a onclick="toggle('#substitutes');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="substitutes" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2')">
           <g:select name="substitute" from="${allSubstitutes}" optionKey="id" optionValue="profile"/>
@@ -138,8 +138,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Betreute <app:isCreator entity="${group}"><a onclick="toggle('#clients');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></app:isCreator></h5>
+      <h5>Betreute <erp:isCreator entity="${group}"><a onclick="toggle('#clients');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2')">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
@@ -154,8 +154,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Erziehungsberechtigte <app:isCreator entity="${group}"><a onclick="toggle('#parents');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isCreator></h5>
+      <h5>Erziehungsberechtigte <erp:isCreator entity="${group}"><a onclick="toggle('#parents');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="parents" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2')">
           <div id="parentselect">
@@ -172,8 +172,8 @@
     </div>
 
     <div class="zusatz">
-      <h5>Partner <app:isCreator entity="${group}"><a onclick="toggle('#partners');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></app:isCreator></h5>
+      <h5>Partner <erp:isCreator entity="${group}"><a onclick="toggle('#partners');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
@@ -190,8 +190,8 @@
   </div>
 </div>
 
-<app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: group]"/>
-</app:accessCheck>
+</erp:accessCheck>
 
 </body>

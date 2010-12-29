@@ -24,11 +24,11 @@
         <tr class="prop">
           <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
-          <td width="160" valign="top" class="value-show"><app:getLanguages language="${pate.profile.motherTongue}"/></td>
+          <td width="160" valign="top" class="value-show"><erp:getLanguages language="${pate.profile.motherTongue}"/></td>
           <td width="170" valign="top" class="value-show-block">
             <ul>
               <g:each in="${pate.profile.languages}" var="language">
-                <li><app:getLanguages language="${language}"/></li>
+                <li><erp:getLanguages language="${language}"/></li>
               </g:each>
             </ul>
           </td>
@@ -49,7 +49,7 @@
           <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
           <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="210" align="top" class="value-show"><app:getNationalities nationality="${pate.profile.country}"/></td>
+          <td width="210" align="top" class="value-show"><erp:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
 
         %{-- AAZ (01.09.2010): disabled until this feature is implemented --}%
@@ -65,10 +65,10 @@
         <table>
 
           <tr class="prop">
-            <app:isOperator entity="${currentEntity}">
+            <erp:isOperator entity="${currentEntity}">
               <td width="60" valign="top"><span class="bold"><g:message code="active"/></span></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </app:isOperator>
+            </erp:isOperator>
 
             <td width="60" valign="top"><span class="bold"><g:message code="pate.profile.email"/>:</span></td>
             <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
@@ -78,16 +78,16 @@
       </div>
 
       <div class="buttons">
-        <app:isMeOrAdminOrOperator entity="${pate}">
+        <erp:isMeOrAdminOrOperator entity="${pate}">
           <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
-        </app:isMeOrAdminOrOperator>
+        </erp:isMeOrAdminOrOperator>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="pate.profile.gcs"/> <app:isOperator entity="${currentEntity}"><a onclick="toggle('#godchildren');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></app:isOperator></h5>
+        <h5><g:message code="pate.profile.gcs"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#godchildren');
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></erp:isOperator></h5>
         <div class="zusatz-add" id="godchildren" style="display:none">
 
           <g:message code="search"/>:<br/>

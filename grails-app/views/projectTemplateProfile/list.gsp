@@ -20,12 +20,12 @@
 
     ${projectTemplateTotal} <g:message code="projectTemplates.c_total"/>
 
-    <app:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="projectTemplate.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:accessCheck>
+    </erp:accessCheck>
 
     <table class="default-table">
       <thead>
@@ -40,7 +40,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>${fieldValue(bean: project, field: 'profile.status')}</td>
-          <td><app:getProjectTemplateUnitsCount template="${project}"/></td>
+          <td><erp:getProjectTemplateUnitsCount template="${project}"/></td>
         </tr>
       </g:each>
       </tbody>

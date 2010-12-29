@@ -65,7 +65,7 @@
       <g:each status="i" in="${activityList}" var="activity">
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
           <td><g:link action="show" id="${activity.id}" params="[name:currentEntity.name]">${activity.profile.fullName}</g:link></td>
-          <td><app:getFacility entity="${activity}">${facility.profile.fullName}</app:getFacility></td>
+          <td><erp:getFacility entity="${activity}">${facility.profile.fullName}</erp:getFacility></td>
           <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
           %{--<td>${activity.profile.type}</td>--}%
           <td>${activity.profile.comments.size()}</td>

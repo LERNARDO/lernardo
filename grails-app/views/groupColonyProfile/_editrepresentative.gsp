@@ -3,7 +3,7 @@
     <tr class="prop">
       <td valign="top" class="italic" width="100"><g:message code="representantives.name"/>:</td>
       <td colspan="6" class="value"><g:textField size="20" name="firstName" value="${representative.firstName}"/> <g:textField size="20" name="lastName" value="${representative.lastName}"/></td>
-      <td><app:isOperator entity="${entity}"><g:submitButton name="button" value="${message(code:'change')}"/></app:isOperator></td></tr>
+      <td><erp:isOperator entity="${entity}"><g:submitButton name="button" value="${message(code:'change')}"/></erp:isOperator></td></tr>
     <tr class="prop">
       <td valign="top" class="italic"><g:message code="representantives.adr"/>:</td>
       <td colspan="6" class="value"><g:textField size="5" name="zip" value="${representative.zip}"/> <g:textField size="15" name="city" value="${representative.city}"/>, <g:textField size="20" name="street" value="${representative.street}"/>, <g:textField size="15" name="country" value="${representative.country}"/></td></tr>

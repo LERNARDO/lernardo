@@ -80,9 +80,9 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <g:link class="buttonRed" action="del" id="${template.id}" onclick="${app.getLinks(id: template.id)}"><g:message code="delete"/></g:link>
-        </app:isOperator>
+        </erp:isOperator>
         <g:link class="buttonGray" action="show" id="${template.id}" params="[name:currentEntity.name]"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

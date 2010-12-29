@@ -54,26 +54,26 @@
           <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.profile.showTips}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
-        <app:isOperator entity="${currentEntity}">
+        <erp:isOperator entity="${currentEntity}">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="active"/>:</td>
             <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
-        </app:isOperator>
+        </erp:isOperator>
 
         </tbody>
       </table>
     </div>
 
-    <app:isMeOrAdmin entity="${operator}">
+    <erp:isMeOrAdmin entity="${operator}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${operator?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isMeOrAdmin>
+    </erp:isMeOrAdmin>
 
     <div class="zusatz">
-      <h5><g:message code="facilities"/> <app:isMeOrAdmin entity="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></app:isMeOrAdmin></h5>
+      <h5><g:message code="facilities"/> <erp:isMeOrAdmin entity="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></erp:isMeOrAdmin></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote  name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>

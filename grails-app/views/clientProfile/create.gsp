@@ -359,7 +359,7 @@
               </td>
               <td>
                 <g:message code="languageSelection"/>:
-                <app:localeSelect class="drop-down-200" name="locale" value="${client?.user?.locale}"/>
+                <erp:localeSelect class="drop-down-200" name="locale" value="${client?.user?.locale}"/>
               </td>
             </tr>
           </table>

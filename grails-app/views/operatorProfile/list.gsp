@@ -13,12 +13,12 @@
 
     ${operatorTotal} <g:message code="operator.profile.c_total"/>
 
-    <app:isAdmin>
+    <erp:isAdmin>
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="operator.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </app:isAdmin>
+    </erp:isAdmin>
 
     <table class="default-table">
       <thead>
