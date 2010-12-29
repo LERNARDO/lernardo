@@ -6,5 +6,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic red">Keine Kategorien vorhanden!</span>
+  <span class="italic red"><g:message code="workdayCategories.none"/></span>
 </g:else>

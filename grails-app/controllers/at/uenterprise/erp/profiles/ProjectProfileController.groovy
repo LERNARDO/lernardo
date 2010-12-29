@@ -230,7 +230,7 @@ class ProjectProfileController {
       tcalendarStart.add(Calendar.DATE, 1)
     }
     if (checkdays == 0) {
-      flash.message = 'Es gibt keine Tage in dem gewählten Zeitraum!'
+      flash.message = message(code: "project.noDays")
       render(view: "create", model: [template: Entity.get(params.id)])
       return
     }
@@ -824,7 +824,7 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       return
     }
     else {
@@ -858,7 +858,7 @@ class ProjectProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       return
     }
     else {

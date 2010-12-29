@@ -7,6 +7,6 @@
     </ul>
   </g:if>
   <g:else>
-    Keine Verlinkungen gefunden!
+    <g:message code="links.notFound"/>
   </g:else>
 </div>

@@ -42,21 +42,21 @@
           <tr>
             <td style="vertical-align: top">Bewertungsmethode 1:</td>
             <td>
-              <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
+              <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
               <div id="elements1"></div>
             </td>
           </tr>
           <tr>
             <td style="vertical-align: top">Bewertungsmethode 2:</td>
             <td>
-              <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
+              <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
               <div id="elements2"></div>
             </td>
           </tr>
           <tr>
             <td style="vertical-align: top">Bewertungsmethode 3:</td>
             <td>
-              <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':'Keine']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
+              <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
               <div id="elements3"></div>
             </td>
           </tr>

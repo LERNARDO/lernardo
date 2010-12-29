@@ -206,7 +206,7 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       return
     }
     else {
@@ -236,7 +236,7 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       return
     }
     else {
@@ -266,7 +266,7 @@ class GroupFamilyProfileController {
     }
 
     if (results.size() == 0) {
-      render '<span class="italic">Keine Ergebnisse gefunden!</span>'
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       return
     }
     else {

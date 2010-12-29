@@ -30,5 +30,5 @@
   
 </g:if>
 <g:else>
-  <span class="italic red">Keine Projekteinheitenvorlagen hinzugefügt! %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="projectUnits.notAssigned"/> %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
 </g:else>
