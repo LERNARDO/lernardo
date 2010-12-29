@@ -1,7 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Artikel</title>
+  <title><g:message code="articles"/></title>
 </head>
 <body>
 <g:if test="${entity.profile.showTips}">
@@ -14,7 +14,7 @@
 </g:if>
 <div class="headerGreen">
   <div class="second">
-    <h1>Artikel</h1>
+    <h1><g:message code="articles"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -22,10 +22,10 @@
     <div id="body-list">
 
       <g:if test="${!articleList}">
-        Du hast bis jetzt keine Artikel verfasst.
+        <g:message code="articles.noneYet"/>
       </g:if>
       <g:else>
-        <p>Du hast insgesamt ${articleCount} Artikel verfasst.</p>
+        <p>${articleCount} <g:message code="articles.c_total"/></p>
         <table>
           <thead>
           <tr>

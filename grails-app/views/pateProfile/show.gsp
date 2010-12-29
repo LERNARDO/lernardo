@@ -22,7 +22,7 @@
         </tr>
 
         <tr class="prop">
-          <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
           <td width="160" valign="top" class="value-show"><erp:getLanguages language="${pate.profile.motherTongue}"/></td>
           <td width="170" valign="top" class="value-show-block">
@@ -47,8 +47,8 @@
 
         <tr class="prop">
           <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-          <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           <td width="210" align="top" class="value-show"><erp:getNationalities nationality="${pate.profile.country}"/></td>
         </tr>
 
@@ -71,7 +71,7 @@
             </erp:isOperator>
 
             <td width="60" valign="top"><span class="bold"><g:message code="pate.profile.email"/>:</span></td>
-            <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
 
           </tr>
         </table>

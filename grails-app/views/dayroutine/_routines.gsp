@@ -1,5 +1,5 @@
 <g:if test="${routines.size() == 0}">
-  <span class="italic">Es sind momentan keine Vorgänge an diesem Tag eingetragen!</span>
+  <span class="italic"><g:message code="dayroutine.noRoutines"/></span>
 </g:if>
 
 <g:else>

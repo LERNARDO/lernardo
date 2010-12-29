@@ -40,10 +40,10 @@
 
         <tr>
           <td valign="top" class="value-show">
-            ${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            ${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
           <td colspan="2" valign="top" class="value-show">
-            ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
         </tr>
 

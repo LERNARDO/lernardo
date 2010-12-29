@@ -57,7 +57,7 @@
         </tr>
         <tr>
           <td colspan="3" valign="top" class="value-show-block">
-            ${fieldValue(bean: theme, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            ${fieldValue(bean: theme, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
         </tr>
 

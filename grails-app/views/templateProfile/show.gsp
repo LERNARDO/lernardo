@@ -59,8 +59,8 @@
       </tr>
 
       <tr>
-        <td colspan="2" valign="top" class="value-show-block">${template.profile.description.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-        <td width="390" valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+        <td colspan="2" valign="top" class="value-show-block">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td width="390" valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
     </table>

@@ -29,7 +29,7 @@
         </tr>
         <tr>
           <td colspan="2" valign="top" class="value-show-block">
-            ${fieldValue(bean: resource, field: 'profile.description').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}
+            ${fieldValue(bean: resource, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
         </tr>
 

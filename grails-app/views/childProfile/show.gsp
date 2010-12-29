@@ -65,8 +65,7 @@
         <td width="60" valign="top">
           <span class="bold"><g:message code="child.profile.email"/>:</span>
         </td>
-        <td valign="top">${fieldValue(bean: child, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-
+        <td valign="top">${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </div>
 
     </div>

@@ -21,8 +21,8 @@
 
         <tr class="prop">
           <td width="242" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td width="242" valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
-          <td width="242" valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<div class="italic">keine Daten eingetragen</div>'}</g:if></td>
+          <td width="242" valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
+          <td width="242" valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
         </tr>
 
         <tr class="prop">
@@ -32,9 +32,9 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML() ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">

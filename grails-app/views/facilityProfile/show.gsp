@@ -59,7 +59,7 @@
               <td width="50" valign="top"><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </erp:isOperator>--}%
             <td width="60" valign="top"><g:message code="facility.profile.email"/>:</td>
-            <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<div class="italic">keine Daten eingetragen</div>'}</td>
+            <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
         </table>
       </div>

@@ -44,5 +44,5 @@
 
 </g:if>
 <g:else>
-  <span class="italic red">Keine Treffer!</span>
+  <span class="italic red"><g:message code="noResults"/></span>
 </g:else>

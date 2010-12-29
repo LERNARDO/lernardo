@@ -1,6 +1,6 @@
 <div id="comments">
 <g:if test="${!commented.profile.comments}">
-  Keine Kommentare vorhanden
+  <g:message code="comment.noComments"/>
 </g:if>
 <g:else>
   <g:each in="${commented.profile.comments}" var="comment" status="i">

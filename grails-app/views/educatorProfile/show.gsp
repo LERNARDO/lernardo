@@ -27,10 +27,10 @@
             <erp:showGender gender="${educator.profile.gender}"/>
           </td>
           <td width="120" valign="top" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.title') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            ${fieldValue(bean: educator, field: 'profile.title') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
           <td width="180" valign="top" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.firstName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            ${fieldValue(bean: educator, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
           <td width="210" valign="top" class="value-show">
             <g:link action="show" id="${educator.id}" params="[entity:educator.id]">${educator.profile.lastName}</g:link>
@@ -87,7 +87,7 @@
 
         <tr>
           <td height="60" valign="top" class="value-show">
-            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+            ${fieldValue(bean: educator, field: 'profile.interests') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
           <td valign="top" class="value-show-block">
             <g:if test="${educator.profile.inChargeOf}">
@@ -124,13 +124,13 @@
 
           <tr>
             <td width="150" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.workHours') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.workHours') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="150" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.hourlyWage') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.hourlyWage') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="150" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.overtimePay') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.overtimePay') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
           </tr>
         </erp:isOperator>
@@ -164,16 +164,16 @@
 
           <tr>
             <td width="280" height="25" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.currentStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.currentStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="105" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="210" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.currentCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="110" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.currentCountry') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
           </tr>
 
@@ -194,13 +194,13 @@
 
           <tr>
             <td width="280" height="25" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.originStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.originStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="105" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="210" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.originCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.originCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="110" valign="top" class="value-show">
               <g:if test="${educator.profile.originCountry}">
@@ -231,16 +231,16 @@
 
           <tr>
             <td width="280" height="25" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactName') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="280" height="25" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactStreet') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="105" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.contactZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="210" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactCity') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
 
           </tr>
@@ -260,10 +260,10 @@
               ${fieldValue(bean: educator, field: 'profile.contactCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td width="280" height="25" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactPhone') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="340" valign="top" class="value-show">
-              ${fieldValue(bean: educator, field: 'profile.contactMail') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+              ${fieldValue(bean: educator, field: 'profile.contactMail') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
           </tr>
 
@@ -283,10 +283,10 @@
 
             <tr>
               <td width="280" height="25" valign="top" class="value-show">
-                ${fieldValue(bean: educator, field: 'profile.phone1') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+                ${fieldValue(bean: educator, field: 'profile.phone1') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
               </td>
               <td width="280" height="25" valign="top" class="value-show">
-                ${fieldValue(bean: educator, field: 'profile.phone2') ?: '<div class="italic">'+message(code:'noData')+'</div>'}
+                ${fieldValue(bean: educator, field: 'profile.phone2') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
               </td>
               <td width="105" valign="top" class="value-show">
                 ${fieldValue(bean: educator, field: 'profile.privEmail') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
