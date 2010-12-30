@@ -13,5 +13,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic red">Bitte die Partner auswählen, die an dieser Projekteinheit teilnehmen!%{--Keine Partner zugewiesen--}% %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="partners.choose"/></span>
 </g:else>

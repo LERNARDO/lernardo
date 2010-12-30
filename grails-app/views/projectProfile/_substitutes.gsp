@@ -13,5 +13,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic red">Bitte die Ersatzpädagogen auswählen, die an diesem Projekttag teilnehmen!%{--Keine Pädagogen zugewiesen--}% %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="substitutes.choose"/></span>
 </g:else>

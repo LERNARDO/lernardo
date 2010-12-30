@@ -6,5 +6,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic red">Bitte eine Einrichtung auswählen, in der dieses Projekt stattfindet!%{--Keine Einrichtung zugewiesen--}% %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="facility.choose"/></span>
 </g:else>
