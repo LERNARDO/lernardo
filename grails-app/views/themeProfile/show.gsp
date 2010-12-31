@@ -75,7 +75,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Projekte <erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
+      <h5><g:message code="projects"/><erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></erp:isMeOrAdmin></h5>
       <div class="zusatz-add" id="projects" style="display:none">
         <g:if test="${allProjects}">
@@ -87,7 +87,7 @@
           </g:formRemote>
         </g:if>
         <g:else>
-          Es gibt keine Projekte die im Zeitraum dieses Themas liegen.
+          <g:message code="theme.noProjects"/>
         </g:else>
       </div>
       <div class="zusatz-show" id="projects2">
@@ -96,7 +96,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Aktivitätsblöcke <erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#activitygroups');
+      <h5><g:message code="groupActivities"/><erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#activitygroups');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:isMeOrAdmin></h5>
       <div class="zusatz-add" id="activitygroups" style="display:none">
         <g:if test="${allActivityGroups}">
@@ -108,7 +108,7 @@
           </g:formRemote>
         </g:if>
         <g:else>
-          Es gibt keine Aktivitätsblöcke die im Zeitraum dieses Themas liegen.
+          <g:message code="theme.noGroupActivities"/>
         </g:else>
       </div>
       <div class="zusatz-show" id="activitygroups2">

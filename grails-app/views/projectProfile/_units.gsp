@@ -56,5 +56,5 @@
   </div>
 </g:if>
 <g:else>
-  <span class="italic red">Bitte die Projekteinheiten auswählen, die an diesem Projekttag stattfinden sollen!%{--Keine Einheiten zugewiesen--}% %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="projectUnits.choose"/></span>
 </g:else>

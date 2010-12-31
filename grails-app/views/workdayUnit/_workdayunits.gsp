@@ -13,11 +13,11 @@
         <div class="clear"></div>
     </g:formRemote>
 
-    <p>Wenn Sie auf Bestätigen klicken, wird die Zeitaufzeichnung für diesen Tag gespeichert und an den Betreiber abgeschickt. Sie können diesen Vorgang nicht rückgängig machen. Klicken Sie bitte erst auf Bestätigen, wenn der Tag vorbei ist und alle Stunden eingetragen wurden.</p>
+    <p><g:message code="workdayUnit.confirmation"/></p>
 
   </g:if>
   <g:else>
-      <p class="italic red">Dieser Tag wurde bereits bestätigt!</p>
+      <p class="italic red"><g:message code="workdayUnit.dayConfirmed"/></p>
   </g:else>
 </g:if>
 <g:else>
@@ -27,7 +27,7 @@
 <g:if test="${confirmed == 'false'}">
   <g:if test="${workdaycategories}">
     <div style="border: 1px solid #bbb; padding: 5px; margin: 10px 0">
-      <p><span class="bold">Einträge erstellen:</span></p>
+      <p><span class="bold"><g:message code="workdayUnit.createEntries"/></span></p>
       <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit']" update="workdayunits" before="showspinner('#workdayunits')">
 
         <span style="display: none">
@@ -36,19 +36,19 @@
 
         <table>
           <tr>
-            <td>Von:</td>
+            <td><g:message code="from"/>:</td>
             <td><g:select name="fromHour" from="${0..23}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}"/></td>
           </tr>
           <tr>
-            <td>Bis:</td>
+            <td><g:message code="to"/>:</td>
             <td><g:select name="toHour" from="${0..23}"/>:<g:select name="toMinute" from="${['00','15','30','45']}"/></td>
           </tr>
           <tr>
-            <td>Kategorie:</td>
+            <td><g:message code="workdayCategory"/>:</td>
             <td><g:select from="${workdaycategories}" name="category" value=""/></td>
           </tr>
           <tr>
-            <td>Beschreibung:</td>
+            <td><g:message code="description"/>:</td>
             <td><g:textArea rows="3" cols="50" name="description"/></td>
           </tr>
         </table>
@@ -60,7 +60,7 @@
     </div>
   </g:if>
   <g:else>
-    <p class="italic red">Es wurden noch keine Arbeitskategorien vom Betreiber angelegt deswegen kann noch keine Zeitaufzeichnung angelegt werden!</p>
+    <p class="italic red"><g:message code="workdayUnit.noCategoriesYet"/></p>
   </g:else>
 </g:if>
 
@@ -72,5 +72,5 @@
   </g:each>
 </g:if>
 <g:else>
-  Keine Zeitaufzeichnungen an diesem Tag gefunden!
+  <g:message code="workdayUnit.noEntries"/>
 </g:else>
