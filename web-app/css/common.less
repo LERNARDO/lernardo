@@ -1,3 +1,5 @@
+// This is a .LESS file - see http://lesscss.org/ for more information
+
 /* these selectors are common for all projects */
 
 /* used for private layout */
@@ -191,43 +193,33 @@ ul {
 
 #profile-pic {
     text-align: center;
-    margin-bottom: 15px; }
-    #profile-pic #picture {
-        /*-moz-box-shadow: #aaa 2px 2px 4px;*/
-        /*border: 1px solid #888;*/
+    margin-bottom: 15px;
+    #picture {
         border-top: none;
         border-bottom: none;
         width: 180px;
         margin: 0 auto;
-        margin-top: 3px;}
-    #profile-pic .name {
-        /*-moz-border-radius-topleft: 5px;
-        -moz-border-radius-topright: 5px;*/
-        /*border: 1px solid #345CA4;*/
-        /*-moz-box-shadow: #aaa 2px 2px 4px;*/
+        margin-top: 3px;
+    }
+    .name {
         background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
         color: #fff;
         width: 180px;
-        margin: 0 auto; }
-        #profile-pic .name .second {
-            /*border: 1px solid #89aee9;*/
+        margin: 0 auto;
+        .second {
             padding: 3px 4px;
-            /*-moz-border-radius-topleft: 5px;
-            -moz-border-radius-topright: 5px;*/ }
-    #profile-pic .type {
-        /*-moz-border-radius-bottomleft: 5px;
-        -moz-border-radius-bottomright: 5px;*/
-        /*border: 1px solid #345CA4;*/
-        /*-moz-box-shadow: #aaa 2px 2px 4px;*/
+        }
+    }
+    .type {
         background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
         color: #fff;
         width: 180px;
-        margin: 0 auto; }
-        #profile-pic .type .second {
-            /*border: 1px solid #89aee9;*/
+        margin: 0 auto;
+        .second {
             padding: 3px 4px;
-            /*-moz-border-radius-bottomleft: 5px;
-            -moz-border-radius-bottomright: 5px;*/ }
+        }
+    }
+}
 
 .profile-group {
     -moz-border-radius-topleft: 5px;
@@ -240,47 +232,44 @@ ul {
     text-align: center;
     width: 120px;
     color: #333;
-    -moz-box-shadow: #aaa 2px 2px 4px;}
-    .profile-group:hover {
+    -moz-box-shadow: #aaa 2px 2px 4px;
+    :hover {
         background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6; /*#dfdfdf*/
         border: 1px solid #55e;
         border-bottom: none;
         cursor: pointer;
-        color: #fff; }
-    .profile-group .second {
+        color: #fff;
+    }
+    .second {
         padding: 2px;
         -moz-border-radius-topleft: 5px;
         -moz-border-radius-topright: 5px;
         border: 1px solid #efefef;
-        border-bottom: none; }
-    .profile-group .second:hover {
-        border: 1px solid #ccf;
-        border-bottom: none; }
+        border-bottom: none;
+        :hover {
+            border: 1px solid #ccf;
+            border-bottom: none;
+        }
+    }
+}
 
 #private-content {
     padding: 0 15px 0 15px }
 
 .headerBlue {
     background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
-    /*background: #567EC6;*/
-    /*-padding: 4px 5px;*/
-    /*-moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border: 1px solid #345CA4;
-    -moz-box-shadow: #aaa 2px 2px 4px;*/ }
-    .headerBlue h1 {
+    h1 {
         color: #fff;
         margin: 0;
         padding: 0;
         border: 0;
         font-weight: normal;
-        font-size: 14px; }
-    .headerBlue .second {
-        /*border: 1px solid #89aee9;*/
-        padding: 4px 5px;
-        /*-moz-border-radius-topleft: 5px;
-        -moz-border-radius-topright: 5px;*/
+        font-size: 14px;
     }
+    .second {
+        padding: 4px 5px;
+    }
+}
 
 #newHelper {
     float: right; }
@@ -312,125 +301,128 @@ ul {
 }
 
 #profile-navigation {
-    padding: 0 5px 0 15px; }
-    #profile-navigation a {
-        text-decoration: none; }
-        #profile-navigation a:hover {
-            color: #000; /*#46597B; */ }
-    #profile-navigation .profile-profil {
+    padding: 0 5px 0 15px;
+    a {
+        text-decoration: none;
+        :hover {
+            color: #000; /*#46597B; */
+        }
+    }
+    .profile-profil {
         background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-nachricht {
+    .profile-nachricht {
         background: url(../images/icons/icon_mail.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-telefon {
+    .profile-telefon {
         background: url(../images/icons/icon_handy.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-leistung {
+    .profile-leistung {
         background: url(../images/icons/icon_star.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-netzwerk {
+    .profile-netzwerk {
         background: url(../images/icons/icon_contact.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-galerie {
+    .profile-galerie {
         background: url(../images/icons/icon_galerie.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-activities {
+    .profile-activities {
         background: url(../images/icons/icon_activities.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-calendar {
+    .profile-calendar {
         background: url(../images/icons/icon_calendar.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-location {
+    .profile-location {
         background: url(../images/icons/icon_location.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .profile-template, .profile-template {
+    .profile-template {
         background: url(../images/icons/icon_template.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-person {
+    .icon-person {
         background: url(../images/icons/icon_person.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-edit {
+    .icon-edit {
         background: url(../images/icons/icon_edit.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-help {
+    .icon-help {
         background: url(../images/icons/icon_help.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-admin {
+    .icon-admin {
         background: url(../images/icons/icon_admin.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-news {
+    .icon-news {
         background: url(../images/icons/icon_news.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-document {
+    .icon-document {
         background: url(../images/icons/icon_document.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-group {
+    .icon-group {
         background: url(../images/icons/icon_group.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-facility {
+    .icon-facility {
         background: url(../images/icons/icon_facility.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-partner {
+    .icon-partner {
         background: url(../images/icons/icon_partner.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-pate {
+    .icon-pate {
         background: url(../images/icons/icon_pate.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-colony {
+    .icon-colony {
         background: url(../images/icons/icon_colony.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-child {
+    .icon-child {
         background: url(../images/icons/icon_child.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-grouppartner {
+    .icon-grouppartner {
         background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-all {
+    .icon-all {
         background: url(../images/icons/icon_all.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-parents {
+    .icon-parents {
         background: url(../images/icons/icon_parents.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-educators {
+    .icon-educators {
         background: url(../images/icons/icon_educators.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-methods {
+    .icon-methods {
         background: url(../images/icons/icon_methods.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-operator {
+    .icon-operator {
         background: url(../images/icons/icon_operator.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-export {
+    .icon-export {
         background: url(../images/icons/icon_export.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-time {
+    .icon-time {
         background: url(../images/icons/icon_time.png) 0 50% no-repeat;
         padding-left: 20px; }
-    #profile-navigation .icon-evaluation {
+    .icon-evaluation {
         background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat;
         padding-left: 20px; }
+}
 
-.imgmenu {
-    background-position: right;
-    height: 115px;
-    float: left;
-    margin-right: 0;
-    list-style-type: none; }
-    .imgmenu ol {
-      margin: 0;
-      padding: 0; }
-      .imgmenu li {
-          float: left;
-          padding: 0 0 0 0;
-          width: 120px;
-          list-style-type: none;
-          margin-left: 0;}
-          .imgmenu li a {
-              color: #222;
-              text-decoration: none; }
-              .imgmenu li a:hover {
-                  color: #aaa; }
+#imgmenu {
+    ol {
+        height: 115px;
+        float: left;
+        li {
+            float: left;
+            padding: 0;
+            width: 120px;
+            list-style-type: none;
+            margin-left: 0;
+            a {
+                color: #222;
+                text-decoration: none;
+                :hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
 
 .innersidebox {
     background: #f0f0f0;
@@ -444,12 +436,14 @@ ul {
 
 .sideboxcontent {
     padding-top: 10px;
-    /*border-top: 1px solid #5c77a6;*/ }
-    .sideboxcontent ul {
-        margin-left: 10px; }
-        .sideboxcontent ul li {
+    ul {
+        margin-left: 10px;
+        li {
             margin: 0 0 3px 5px;
-            list-style-type: disc; }
+            list-style-type: disc;
+        }
+    }
+}
 
 .quoter {
     margin: 7px 0 0 0;
