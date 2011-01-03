@@ -18,8 +18,8 @@ class AppointmentProfileController {
 
     def beforeInterceptor = [
           action:{
-            params.beginDate = params.beginDate ? Date.parse("dd. MM. yy, hh:mm", params.beginDate) : null
-            params.endDate = params.endDate ? Date.parse("dd. MM. yy, hh:mm", params.endDate) : null},
+            params.beginDate = params.beginDate ? Date.parse("dd. MM. yy, HH:mm", params.beginDate) : null
+            params.endDate = params.endDate ? Date.parse("dd. MM. yy, HH:mm", params.endDate) : null},
             only:['save','update']
     ]
 
