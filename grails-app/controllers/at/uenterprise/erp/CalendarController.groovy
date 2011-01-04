@@ -99,7 +99,8 @@ class CalendarController {
 
     List educatornumbers = educators.collect{it.id.toString()}
 
-    params.visibleEducators = params.list('visibleEducators')
+    if (params.visibleEducators)
+      params.visibleEducators = params.list('visibleEducators')
 
     // get events
 
@@ -118,7 +119,7 @@ class CalendarController {
       }
     }
 
-    // get all themes the educator is part of
+    // get all themes
     List themeList = Entity.findAllByType(metaDataService.etTheme)
 
     themeList?.each {
@@ -126,7 +127,7 @@ class CalendarController {
       dtStart = dtStart.plusHours(2)
       def dtEnd = new DateTime(it.profile.endDate)
       dtEnd = dtEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
-      eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1']
+      eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1', description: "<b>Beschreibung:</b> " + it.profile.description]
     }
 
     if (params.visibleEducators) {
