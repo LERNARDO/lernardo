@@ -109,7 +109,7 @@
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
         <erp:isAdmin>
-          <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${app.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
+          <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${erp.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
         </erp:isAdmin>
         <g:link class="buttonGray" action="show" id="${operator.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
