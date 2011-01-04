@@ -203,20 +203,24 @@ class CalendarController {
         List projectDays = functionService.findAllByLink(educator, null, metaDataService.ltProjectDayEducator)
 
         List unitsDone = []
-        projectDays?.each { projectDay ->
-          // 2. for each project day find the project it belongs to
-          Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+        if (projectDays) {
+          projectDays.each { projectDay ->
+            // 2. for each project day find the project it belongs to
+            Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
-          // 3. for each project day get the project unit it is linked to
-          Entity projectUnit = functionService.findByLink(null, projectDay, metaDataService.ltProjectDayUnit)
-          // make sure a unit is only displayed once
-          if (!unitsDone.contains(projectUnit)) {
-            unitsDone.add(projectUnit)
+            // 3. for each project day get the project unit it is linked to
+            Entity projectUnit = functionService.findByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+            // make sure a unit is only displayed once
+            if (projectUnit) {
+              if (!unitsDone.contains(projectUnit)) {
+                unitsDone.add(projectUnit)
 
-            def dtStart = new DateTime (projectUnit.profile.date)
-            def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
+                def dtStart = new DateTime (projectUnit.profile.date)
+                def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
 
-            eventList << [id: project.id, title: " Projekteinheit: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: "<b>Projekt:</b> " + project.profile.fullName]
+                eventList << [id: project.id, title: " Projekteinheit: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: "<b>Projekt:</b> " + project.profile.fullName]
+              }
+            }
           }
         }
 
