@@ -11,7 +11,10 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
-      <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
+
+      <g:if test="${template}">
+        <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
+      </g:if>
 
       <table>
         <tr class="prop">
