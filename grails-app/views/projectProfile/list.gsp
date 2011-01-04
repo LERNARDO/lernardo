@@ -32,7 +32,7 @@
       <tbody>
       <g:each in="${projectList}" status="i" var="project">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td><erp:isAdmin><g:link action="del" id="${project.id}" onclick="${erp.getLinks(id: project.id)}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code:'delete')}" valign="top"/></g:link></erp:isAdmin> <g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
           <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/></td>
           <td>
