@@ -105,7 +105,7 @@ class CalendarController {
 
     def eventList = []
 
-    //if (currentEntity.type.id != metaDataService.etEducator.id) {
+    if (currentEntity.type.id != metaDataService.etEducator.id) {
       // get all own appointments
       List ownappointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
 
@@ -116,7 +116,7 @@ class CalendarController {
         def title = "Termin: ${it.profile.fullName}"
         eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: 'own-appointments', description: "<b>Beschreibung:</b> " + it.profile.description]
       }
-    //}
+    }
 
     // get all themes the educator is part of
     List themeList = Entity.findAllByType(metaDataService.etTheme)
@@ -129,110 +129,112 @@ class CalendarController {
       eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1']
     }
 
-    params.visibleEducators?.each { ed ->
-      Entity educator = Entity.get(ed)
-      def className = "educator" + educatornumbers.indexOf(ed)
+    if (params.visibleEducators) {
+      params.visibleEducators.each { ed ->
+        Entity educator = Entity.get(ed)
+        def className = "educator" + educatornumbers.indexOf(ed)
 
-      // get all appointments
-      List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
+        // get all appointments
+        List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
 
-      appointments?.each {
-        def dtStart = new DateTime(it.profile.beginDate)
-        dtStart = dtStart.plusHours(2)
-        def dtEnd = new DateTime(it.profile.endDate)
-        def title = it.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${it.profile.fullName}"
-        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: className, description: "<b>Beschreibung:</b> " + it.profile.description]
-      }
-
-      // get all group activities the educator is part of
-      List temp = Entity.findAllByType(metaDataService.etGroupActivity)
-
-      List activityList = []
-      temp.each { group ->
-        def c = Link.createCriteria()
-        def result = c.get {
-          eq("source", educator)
-          eq("target", group)
-          eq("type", metaDataService.ltGroupMemberEducator)
+        appointments?.each {
+          def dtStart = new DateTime(it.profile.beginDate)
+          dtStart = dtStart.plusHours(2)
+          def dtEnd = new DateTime(it.profile.endDate)
+          def title = it.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${it.profile.fullName}"
+          eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: className, description: "<b>Beschreibung:</b> " + it.profile.description]
         }
-        if (result)
-          activityList.add(group)
-      }
 
-      activityList?.each {
-        def dtStart = new DateTime(it.profile.date)
-        dtStart = dtStart.plusHours(2)
-        def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
-        eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Pädagogisches Ziel:</b> " + it.profile.educationalObjectiveText]
-      }
+        // get all group activities the educator is part of
+        List temp = Entity.findAllByType(metaDataService.etGroupActivity)
 
-      // get all themeroom activities the educator is part of
-      def c = Entity.createCriteria()
-      temp = c.list {
-        eq("type", metaDataService.etActivity)
-        profile {
-          eq("type", "Themenraum")
+        List activityList = []
+        temp.each { group ->
+          def c = Link.createCriteria()
+          def result = c.get {
+            eq("source", educator)
+            eq("target", group)
+            eq("type", metaDataService.ltGroupMemberEducator)
+          }
+          if (result)
+            activityList.add(group)
         }
-      }
 
-      List themeRoomList = []
-      temp.each { activity ->
-        def d = Link.createCriteria()
-        def result = d.get {
-          eq("source", educator)
-          eq("target", activity)
-          eq("type", metaDataService.ltActEducator)
+        activityList?.each {
+          def dtStart = new DateTime(it.profile.date)
+          dtStart = dtStart.plusHours(2)
+          def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
+          eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Pädagogisches Ziel:</b> " + it.profile.educationalObjectiveText]
         }
-        if (result)
-          themeRoomList.add(activity)
-      }
 
-      themeRoomList?.each {
-        def dtStart = new DateTime(it.profile.date)
-        dtStart = dtStart.plusHours(2)
-        def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-        eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Dauer:</b> " + it.profile.duration + " min"]
-
-      }
-
-      // get all project units the educator is part of
-
-      // 1. find all project days the educator is linked to
-      List projectDays = functionService.findAllByLink(educator, null, metaDataService.ltProjectDayEducator)
-
-      List unitsDone = []
-      projectDays?.each { projectDay ->
-        // 2. for each project day find the project it belongs to
-        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-
-        // 3. for each project day get the project unit it is linked to
-        Entity projectUnit = functionService.findByLink(null, projectDay, metaDataService.ltProjectDayUnit)
-        // make sure a unit is only displayed once
-        if (!unitsDone.contains(projectUnit)) {
-          unitsDone.add(projectUnit)
-
-          def dtStart = new DateTime (projectUnit.profile.date)
-          def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
-
-          eventList << [id: project.id, title: " Projekteinheit: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: "<b>Projekt:</b> " + project.profile.fullName]
+        // get all themeroom activities the educator is part of
+        def c = Entity.createCriteria()
+        temp = c.list {
+          eq("type", metaDataService.etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
         }
+
+        List themeRoomList = []
+        temp.each { activity ->
+          def d = Link.createCriteria()
+          def result = d.get {
+            eq("source", educator)
+            eq("target", activity)
+            eq("type", metaDataService.ltActEducator)
+          }
+          if (result)
+            themeRoomList.add(activity)
+        }
+
+        themeRoomList?.each {
+          def dtStart = new DateTime(it.profile.date)
+          dtStart = dtStart.plusHours(2)
+          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+          eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Dauer:</b> " + it.profile.duration + " min"]
+
+        }
+
+        // get all project units the educator is part of
+
+        // 1. find all project days the educator is linked to
+        List projectDays = functionService.findAllByLink(educator, null, metaDataService.ltProjectDayEducator)
+
+        List unitsDone = []
+        projectDays?.each { projectDay ->
+          // 2. for each project day find the project it belongs to
+          Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+          // 3. for each project day get the project unit it is linked to
+          Entity projectUnit = functionService.findByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+          // make sure a unit is only displayed once
+          if (!unitsDone.contains(projectUnit)) {
+            unitsDone.add(projectUnit)
+
+            def dtStart = new DateTime (projectUnit.profile.date)
+            def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
+
+            eventList << [id: project.id, title: " Projekteinheit: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: "<b>Projekt:</b> " + project.profile.fullName]
+          }
+        }
+
+        /*List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
+
+        projectUnits.each {
+          def dtStart = new DateTime (it.profile.date)
+          //dtStart = dtStart.plusHours(1)
+          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
+
+          // get project day of project unit
+          Entity projectDay = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
+
+          // get project of project day
+          Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+          eventList << [id: it.id, title: " Projekteinheit: (${project.profile.fullName}) ${it.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className]
+        }*/
       }
-
-      /*List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
-
-      projectUnits.each {
-        def dtStart = new DateTime (it.profile.date)
-        //dtStart = dtStart.plusHours(1)
-        def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-
-        // get project day of project unit
-        Entity projectDay = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
-
-        // get project of project day
-        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-
-        eventList << [id: it.id, title: " Projekteinheit: (${project.profile.fullName}) ${it.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className]
-      }*/
     }
 
     def json = eventList as JSON;
