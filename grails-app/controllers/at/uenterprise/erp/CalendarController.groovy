@@ -105,7 +105,7 @@ class CalendarController {
 
     def eventList = []
 
-    if (currentEntity.type.id != metaDataService.etEducator.id) {
+    //if (currentEntity.type.id != metaDataService.etEducator.id) {
       // get all own appointments
       List ownappointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
 
@@ -116,7 +116,7 @@ class CalendarController {
         def title = "Termin: ${it.profile.fullName}"
         eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: 'own-appointments', description: "<b>Beschreibung:</b> " + it.profile.description]
       }
-    }
+    //}
 
     // get all themes the educator is part of
     List themeList = Entity.findAllByType(metaDataService.etTheme)
