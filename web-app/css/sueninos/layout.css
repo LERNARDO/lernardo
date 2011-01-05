@@ -96,7 +96,6 @@ a {
        border: 1px solid #b60;
        background: -moz-linear-gradient(-90deg,#d79800,#dd7000);
        background: -webkit-gradient(linear, left top, left bottom, from(#d79800), to(#dd7000));
-       color: #fff;
        -webkit-box-shadow: 0 0 5px #d82;
        box-shadow: 0 0 15px #d82;
    }
