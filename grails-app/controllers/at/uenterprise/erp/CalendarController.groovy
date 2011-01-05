@@ -204,14 +204,14 @@ class CalendarController {
 
         List unitsDone = []
         if (projectDays) {
-          projectDays.each { projectDay ->
+          projectDays.each { Entity projectDay ->
             // 2. for each project day find the project it belongs to
             Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
             // 3. for each project day get the project unit it is linked to
             Entity projectUnit = functionService.findByLink(null, projectDay, metaDataService.ltProjectDayUnit)
             // make sure a unit is only displayed once
-            if (projectUnit) {
+            if (projectUnit && project) {
               if (!unitsDone.contains(projectUnit)) {
                 unitsDone.add(projectUnit)
 
