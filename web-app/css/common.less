@@ -162,30 +162,21 @@ ul {
     list-style-type: none;
     margin-right: 10px; }
 
-.imgbox {
-   margin-top: 15px;
-    text-align: center; }
-    .imgbox img {
-        overflow: hidden;
-        border: none;
-        width: 48px;
-        height: 48px; }
-    .imgbox h3 {
-        text-align: center;
-        left: 0;
-        color: #000;
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        font-size: 100%;
-        border: 0; }
-        .imgbox h3 a {
-            color: #000; }
-        .imgbox h3:hover {
-            text-decoration: underline; }
-    .imgbox .current img {
-        -moz-opacity: 1.0; } /* "opacity" alone is a CSS3 keyword - not standardized yet */
-    .imgbox .current h3 {
-        display: block;
-        font-weight: bold; }
+#imgmenu {
+    ol {
+        height: 115px;
+        float: left;
+        li {
+            float: left;
+            padding: 0;
+            list-style-type: none;
+            margin-left: 0;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
 
 #banner {
     height: 115px;
@@ -401,27 +392,6 @@ ul {
     .icon-evaluation {
         background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat;
         padding-left: 20px; }
-}
-
-#imgmenu {
-    ol {
-        height: 115px;
-        float: left;
-        li {
-            float: left;
-            padding: 0;
-            width: 120px;
-            list-style-type: none;
-            margin-left: 0;
-            a {
-                color: #222;
-                text-decoration: none;
-                :hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
 }
 
 .innersidebox {
@@ -1220,7 +1190,7 @@ table#msg-composer td {
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #888;
     margin-right: 1px; }
     .tabGrey h1 {
         color: #000;
