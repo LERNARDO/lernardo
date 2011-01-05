@@ -98,7 +98,7 @@ a {
        background: -webkit-gradient(linear, left top, left bottom, from(#8B994A), to(#5D6D09));
        color: #fff;
        -webkit-box-shadow: 0 0 5px #5D6D09;
-       box-shadow: 0 0 15px #000;
+       box-shadow: 0 0 15px #5D6D09;
    }
    .imgbox img {
        overflow: hidden;

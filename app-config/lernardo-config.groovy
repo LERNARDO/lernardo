@@ -64,7 +64,7 @@ grails.mail.default.from="lernardomailer@gmail.com"
 // "Pesos"
 // "Euro"
 
-project = "noe"
+project = "sueninos"
 projectName = "Sueninos" // full project name
 currency = "Pesos"
 

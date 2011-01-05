@@ -1,16 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-  "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
-    <link rel="stylesheet" href="${g.resource (dir:'css', file:'yui-reset-fonts-grids.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource (dir:'css', file:'reset-fonts-grids.css')}" type="text/css">
     <g:set var="project" value="${grailsApplication.config.project}"/>
     %{--<link rel="stylesheet" href="${resource(dir: 'css', file:'common.css')}" type="text/css" media="screen" charset="utf-8">--}%
     <less:stylesheet name="common" />
     <less:scripts />
-    <link rel="stylesheet" href="${resource(dir: 'css/' + project, file:'layout.css')}" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="${resource(dir: 'css/' + project, file:'layout.css')}" type="text/css" media="screen">
     <link rel="icon" href="${resource(dir:'images',file:'favicon.jpg')}" type="image/jpg" />
     <g:javascript library="jquery" plugin="jquery"/>
     <ckeditor:resources />
