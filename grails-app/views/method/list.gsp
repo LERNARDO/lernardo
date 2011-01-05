@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${methodInstanceTotal} <g:message code="method.c_total"/>
+    <div class="info-msg">
+      ${methodInstanceTotal} <g:message code="method.c_total"/>
+    </div>
 
      <erp:isAdmin>
       <div class="buttons">

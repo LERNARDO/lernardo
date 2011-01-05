@@ -39,10 +39,10 @@ class AppController {
     response.addCookie(c)
 
     params.max = 10
-    params.sort = "date"
+    params.sort = "dateCreated"
     params.order = "desc"
 
-    List events = Event.list(params)
+    List events = Live.list(params)
     render template: 'liveticker', model:[events: events]
   }
 

@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${resourceTotal} Ressource(n) insgesamt vorhanden</p>
+    <div class="info-msg">
+      ${resourceTotal} Ressource(n) insgesamt vorhanden
+    </div>
 
     <table class="default-table">
       <thead>

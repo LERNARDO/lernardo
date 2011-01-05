@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat
 import at.openfactory.ep.EntityType
 import at.openfactory.ep.Profile
 import at.openfactory.ep.EntityException
+import at.uenterprise.erp.Live
 
 class ProjectProfileController {
 
@@ -194,6 +195,8 @@ class ProjectProfileController {
   }
 
   def save = {ProjectCommand pc->
+    Entity currentEntity = entityHelperService.loggedIn
+
     Entity projectTemplate = Entity.get(params.id)
 
     if (pc.hasErrors()) {
@@ -318,6 +321,7 @@ class ProjectProfileController {
         calendarStart.add(Calendar.DATE, 1)
       }
 
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat das Projekt <a href="' + createLink(controller: 'projectProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
       redirect action: 'show', id: entity.id
 
     } catch (EntityException ee) {

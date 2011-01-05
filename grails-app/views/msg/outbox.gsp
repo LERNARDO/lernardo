@@ -34,7 +34,7 @@
       <table id="inbox-message-overview" class="message-rows">
 
         <g:if test="${msgInstanceList.size() == 0}">
-          <div class="info-msg-postbox">
+          <div class="info-msg">
             <g:message code="msg.outbox.emptyMsg"/>
           </div>
         </g:if>

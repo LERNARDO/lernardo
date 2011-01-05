@@ -10,6 +10,7 @@ import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.Live
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -175,6 +176,8 @@ class GroupActivityProfileController {
     Entity groupActivityTemplate = Entity.get(params.template)
     EntityType etGroupActivity = metaDataService.etGroupActivity
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     try {
       Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -197,6 +200,7 @@ class GroupActivityProfileController {
       // link template to instance
       new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
 
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {

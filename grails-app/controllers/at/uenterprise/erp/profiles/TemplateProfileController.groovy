@@ -14,6 +14,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Publication
+import at.uenterprise.erp.Live
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -151,6 +152,7 @@ class TemplateProfileController {
       //File file = ApplicationHolder.application.parentContext.getResource("images/sueninos/static/entities/Chrysanthemum.jpg").getFile()
       //assetService.storeAsset(entity, "profile", "image/jpeg", file.getBytes())
 
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {

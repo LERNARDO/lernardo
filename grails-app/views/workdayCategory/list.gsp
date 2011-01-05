@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${workdayCategoryInstanceTotal} <g:message code="workdayCategory.c_total"/>
+    <div class="info-msg">
+      ${workdayCategoryInstanceTotal} <g:message code="workdayCategory.c_total"/>
+    </div>
 
     <erp:isOperator entity="${currentEntity}">
       <div class="buttons">

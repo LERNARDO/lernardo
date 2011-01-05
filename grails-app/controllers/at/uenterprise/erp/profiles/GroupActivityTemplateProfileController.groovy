@@ -11,6 +11,7 @@ import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.Live
 
 class GroupActivityTemplateProfileController {
   MetaDataService metaDataService
@@ -182,6 +183,7 @@ class GroupActivityTemplateProfileController {
       // create link to creator
       new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
 
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {

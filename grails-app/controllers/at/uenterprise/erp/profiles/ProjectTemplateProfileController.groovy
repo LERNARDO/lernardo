@@ -9,6 +9,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.Live
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
@@ -186,6 +187,7 @@ class ProjectTemplateProfileController {
         ent.profile.properties = params
       }
 
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(currentEntity, 'Du hast die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {

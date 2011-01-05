@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge für ${entity.profile.fullName}.</p>
+    <div class="info-msg">
+      Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge für ${entity.profile.fullName}
+    </div>
 
     <g:link class="buttonGreen" action="create" id="${entity.id}">Neuen Tagebucheintrag erstellen</g:link>
     <div class="spacer"></div>

@@ -30,7 +30,7 @@ future HTML5 doctype
     $(document).ready(function() {
 
       // disabled for next release
-      /*$.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment
+      $.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment
         method: 'get',          // method; get or post
         data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
         minTimeout: 60000,      // starting value for the timeout in milliseconds
@@ -42,7 +42,7 @@ future HTML5 doctype
       },
       function(data){
         $('#livetickerbox').empty().append(data);
-      });*/
+      });
 
       $(".datepicker-birthday").datepicker({
         changeMonth: true,

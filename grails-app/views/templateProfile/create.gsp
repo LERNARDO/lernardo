@@ -38,7 +38,7 @@
               <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="51" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="20" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (in Minuten)
+              <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="20" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (min)
             </td>
           </tr>
 
