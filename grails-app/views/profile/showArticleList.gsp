@@ -22,7 +22,9 @@
     <div id="body-list">
 
       <g:if test="${!articleList}">
-        <g:message code="articles.noneYet"/>
+        <div class="info-msg">
+          <g:message code="articles.noneYet"/>
+        </div>
       </g:if>
       <g:else>
         <p>${articleCount} <g:message code="articles.c_total"/></p>

@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${userTotal} <g:message code="user.profile.c_total"/>
+    <div class="info-msg">
+      ${userTotal} <g:message code="user.profile.c_total"/>
+    </div>
 
     <div class="buttons">
       <g:link class="buttonGreen" action="create"><g:message code="user.profile.create"/></g:link>

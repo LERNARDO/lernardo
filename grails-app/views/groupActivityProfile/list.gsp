@@ -18,28 +18,32 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${groupTotal} Aktivitätsblöcke insgesamt vorhanden</p>
-
-    <table class="default-table">
-      <thead>
-      <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>
-        <th>Datum</th>
-      </tr>
-      </thead>
-      <tbody>
-      <g:each in="${groups}" status="i" var="group">
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
-        </tr>
-      </g:each>
-      </tbody>
-    </table>
-
-    <div class="paginateButtons">
-      <g:paginate total="${groupTotal}"/>
+    <div class="info-msg">
+      ${groupTotal} Aktivitätsblöcke insgesamt vorhanden
     </div>
+
+    <g:if test="${groups}">
+      <table class="default-table">
+        <thead>
+        <tr>
+          <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>
+          <th>Datum</th>
+        </tr>
+        </thead>
+        <tbody>
+        <g:each in="${groups}" status="i" var="group">
+          <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+            <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+            <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
+          </tr>
+        </g:each>
+        </tbody>
+      </table>
+
+      <div class="paginateButtons">
+        <g:paginate total="${groupTotal}"/>
+      </div>
+    </g:if>
 
     %{--<div class="buttons">
       <g:link class="buttonBlue" action="create">Neue Aktivitätsvorlagengruppe anlegen</g:link>

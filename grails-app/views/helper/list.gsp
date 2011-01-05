@@ -11,12 +11,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:if test="${helperInstanceList.size() > 0}">
-      <p> ${helperInstanceList.size()} <g:message code="helper.topic.c_total"/> </p>
-    </g:if>
-    <g:else>
-      <g:message code="helper.topic.empty"/>.
-    </g:else>
+    <div class="info-msg">
+      <g:if test="${helperInstanceList.size() > 0}">
+        ${helperInstanceList.size()} <g:message code="helper.topic.c_total"/>
+      </g:if>
+      <g:else>
+        <g:message code="helper.topic.empty"/>
+      </g:else>
+    </div>
 
     <erp:isAdmin>
       <div class="buttons">

@@ -37,9 +37,12 @@
 <div class="boxGray">
   <div class="second">
     <div id="body-list">
-      <p>${entityCount} <g:message code="profile.list.c_total"/></p>
 
-      <div id="select-box">
+      <div class="info-msg">
+        ${entityCount} <g:message code="profile.list.c_total"/>
+      </div>
+
+      <div id="select-box" style="margin-top: 10px">
         <g:form name="form1" action="list">
           %{-- }Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Pädagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Pate',Erziehungsberechtigter:'Erziehungsberechtigte',Kind:'Kinder']}" value="${entityType}" optionKey="key" optionValue="value"/>
             --}%

@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${clientTotal} <g:message code="client.profile.c_total"/>
+    <div class="info-msg">
+      ${clientTotal} <g:message code="client.profile.c_total"/>
+    </div>
 
     <erp:isOperator entity="${currentEntity}">
       <div class="buttons">

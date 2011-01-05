@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${pateTotal} <g:message code="pate.profile.c_total"/>
+    <div class="info-msg">
+      ${pateTotal} <g:message code="pate.profile.c_total"/>
+    </div>
 
     <erp:isOperator entity="${currentEntity}">
       <div class="buttons">

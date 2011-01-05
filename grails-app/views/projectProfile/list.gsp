@@ -18,36 +18,40 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>${projectTotal} Projekt(e) insgesamt vorhanden</p>
-
-    <table class="default-table">
-      <thead>
-      <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'project.profile.name')}"/>
-        <g:sortableColumn property="startDate" title="${message(code:'project.profile.startDate')}"/>
-        <g:sortableColumn property="endDate" title="${message(code:'project.profile.endDate')}"/>
-        <th><g:message code="facility"/></th>
-      </tr>
-      </thead>
-      <tbody>
-      <g:each in="${projectList}" status="i" var="project">
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><erp:isAdmin><g:link action="del" id="${project.id}" onclick="${erp.getLinks(id: project.id)}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code:'delete')}" valign="top"/></g:link></erp:isAdmin> <g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
-          <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/></td>
-          <td>
-            <erp:getFacilityOfProject entity="${project}">
-              <g:link controller="facilityProfile" action="show" id="${facility.id}" params="[entity: facility.id]">${facility.profile.fullName.decodeHTML()}</g:link>
-            </erp:getFacilityOfProject>
-          </td>
-        </tr>
-      </g:each>
-      </tbody>
-    </table>
-
-    <div class="paginateButtons">
-      <g:paginate total="${projectTotal}"/>
+    <div class="info-msg">
+      ${projectTotal} Projekt(e) insgesamt vorhanden
     </div>
+
+    <g:if test="${projectList}">
+      <table class="default-table">
+        <thead>
+        <tr>
+          <g:sortableColumn property="fullName" title="${message(code:'project.profile.name')}"/>
+          <g:sortableColumn property="startDate" title="${message(code:'project.profile.startDate')}"/>
+          <g:sortableColumn property="endDate" title="${message(code:'project.profile.endDate')}"/>
+          <th><g:message code="facility"/></th>
+        </tr>
+        </thead>
+        <tbody>
+        <g:each in="${projectList}" status="i" var="project">
+          <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+            <td><erp:isAdmin><g:link action="del" id="${project.id}" onclick="${erp.getLinks(id: project.id)}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code:'delete')}" valign="top"/></g:link></erp:isAdmin> <g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
+            <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
+            <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/></td>
+            <td>
+              <erp:getFacilityOfProject entity="${project}">
+                <g:link controller="facilityProfile" action="show" id="${facility.id}" params="[entity: facility.id]">${facility.profile.fullName.decodeHTML()}</g:link>
+              </erp:getFacilityOfProject>
+            </td>
+          </tr>
+        </g:each>
+        </tbody>
+      </table>
+
+      <div class="paginateButtons">
+        <g:paginate total="${projectTotal}"/>
+      </div>
+    </g:if>
 
   </div>
 </div>

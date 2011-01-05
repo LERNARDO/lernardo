@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${operatorTotal} <g:message code="operator.profile.c_total"/>
+    <div class="info-msg">
+      ${operatorTotal} <g:message code="operator.profile.c_total"/>
+    </div>
 
     <erp:isAdmin>
       <div class="buttons">

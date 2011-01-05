@@ -11,7 +11,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${groupTotal} <g:message code="groupClient.profile.c_total"/>
+    <div class="info-msg">
+      ${groupTotal} <g:message code="groupClient.profile.c_total"/>
+    </div>
 
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
       <div class="buttons">

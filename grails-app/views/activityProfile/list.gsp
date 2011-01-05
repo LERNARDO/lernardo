@@ -33,11 +33,12 @@
 
     <div class="clear"></div>
 
-    <p>${activityCount} Themenräume
-    <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
-    <g:else>insgesamt</g:else>
-    gefunden.
-    </p>
+    <div class="info-msg">
+      ${activityCount} Themenräume
+      <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
+      <g:else>insgesamt</g:else>
+      gefunden.
+    </div>
 
     <div id="select-box">
       Filtern nach:

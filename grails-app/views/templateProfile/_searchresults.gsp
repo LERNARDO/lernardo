@@ -1,4 +1,6 @@
-${allTemplates.size()} <g:message code="activityTemplate.c_total"/>
+<div class="info-msg">
+  ${allTemplates.size()} <g:message code="activityTemplate.c_total"/>
+</div>
 
 <div class="buttons">
   <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">

@@ -18,7 +18,9 @@
 <div class="boxGray">
   <div class="second">
 
-    ${projectTemplateTotal} <g:message code="projectTemplates.c_total"/>
+    <div class="info-msg">
+      ${projectTemplateTotal} <g:message code="projectTemplates.c_total"/>
+    </div>
 
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
       <div class="buttons">
