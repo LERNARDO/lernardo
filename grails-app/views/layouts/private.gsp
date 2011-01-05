@@ -6,10 +6,11 @@
   <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'reset-fonts-grids.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
-  %{--<link rel="stylesheet" href="${resource(dir: 'css', file:'common.less')}" type="text/css" media="screen" charset="utf-8">--}%
+  %{--<link rel="stylesheet" href="${resource(dir: 'css', file:'common.css')}" type="text/css" media="screen" charset="utf-8">--}%
   <less:stylesheet name="common" />
+  <less:stylesheet name="${project}/layout" />
   <less:scripts />
-  <link rel="stylesheet" href="${resource(dir: 'css/' + project, file: 'layout.css')}" type="text/css" media="screen">
+  %{--<link rel="stylesheet" href="${resource(dir: 'css/' + project, file: 'layout.css')}" type="text/css" media="screen">--}%
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:layoutHead/>
   <g:javascript library="jquery" plugin="jquery"/>
