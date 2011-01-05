@@ -1,5 +1,8 @@
 // This is a .LESS file - see http://lesscss.org/ for more information
 
+// variables
+@example_var: #f00;
+
 /* these selectors are common for all projects */
 
 /* used for private layout */
@@ -93,9 +96,6 @@ ol li {
     border-bottom: 1px dashed #999;
     padding-bottom: 5px; }
 
-a:hover {
-    text-decoration:underline; }
-
 /* used for ajax element headers */
 h1 {
     color: #444;
@@ -137,7 +137,8 @@ h5 {
 	font-weight:bold;
     border-bottom: 1px solid #aaa; /* #fff */
     padding: 4px;
-    background: #ccc; }
+    //background: #ccc;
+     }
 
 p {
     padding-bottom: 10px;
@@ -483,13 +484,13 @@ ul {
         padding: 5px;
         border-bottom: 1px solid #9A9A9A;
         border-top: 1px solid #eee;}
-        .default-table td a {
+        /*.default-table td a {
             color: #141;
             text-decoration: none;
         }
         .default-table td a:hover {
             text-decoration: underline;
-        }
+        }*/
     .default-table th {
         background: #9A9A9A;
         border-bottom: 1px solid #787878;
@@ -688,12 +689,12 @@ div.actionlinks div.userlinks a {
     float: left;
     color: #fff !important;
     display: block;
-    height: 16px; }
+    height: 16px;
+    text-decoration: none; }
     .buttonBlue:hover {
         background: -moz-linear-gradient(-90deg,#007,#004);
         background: -webkit-gradient(linear, left top, left bottom, from(#007), to(#004));
-        border: 1px solid #004;
-        text-decoration: none; }
+        border: 1px solid #004; }
 
 .buttonGreen {
     background: -moz-linear-gradient(-90deg,#090,#060);
@@ -706,12 +707,12 @@ div.actionlinks div.userlinks a {
     float: left;
     color: #fff !important;
     display: block;
-    height: 16px; }
-    .buttonGreen:hover {
+    height: 16px;
+    text-decoration: none; }
+        .buttonGreen:hover {
         background: -moz-linear-gradient(-90deg,#070,#040);
         background: -webkit-gradient(linear, left top, left bottom, from(#070), to(#040));
-        border: 1px solid #040;
-        text-decoration: none; }
+        border: 1px solid #040; }
 
 .buttonGray {
     background: -moz-linear-gradient(-90deg,#999,#666);
@@ -724,12 +725,12 @@ div.actionlinks div.userlinks a {
     float: left;
     color: #fff !important;
     display: block;
-    height: 16px; }
+    height: 16px;
+    text-decoration: none; }
     .buttonGray:hover {
         background: -moz-linear-gradient(-90deg,#777,#444);
         background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#444));
-        border: 1px solid #444;
-        text-decoration: none; }
+        border: 1px solid #444; }
 
 .buttonRed {
     background: -moz-linear-gradient(-90deg,#900,#600);
@@ -742,12 +743,12 @@ div.actionlinks div.userlinks a {
     float: left;
     color: #fff !important;
     display: block;
-    height: 16px; }
+    height: 16px;
+    text-decoration: none; }
     .buttonRed:hover {
         background: -moz-linear-gradient(-90deg,#700,#400);
         background: -webkit-gradient(linear, left top, left bottom, from(#700), to(#400));
-        border: 1px solid #400;
-        text-decoration: none; }
+        border: 1px solid #400; }
 
 .activity-list-head {
     padding-top: 6px; }
@@ -1052,7 +1053,10 @@ table#msg-composer td {
 
 .overview .box:hover {
   border: 1px solid #bdbd9b;
-  background: #fff; }
+  background: #fff;
+  -webkit-box-shadow: 0 0 5px #acac8a;
+  box-shadow: 0 0 15px #acac8a;
+}
 
 .drop-down-280 {
 	width: 280px; }
@@ -1124,8 +1128,8 @@ table#msg-composer td {
 	width: 790px; }
 
 .zusatz {
-    border: 1px solid #aaa; /*#fff;*/
-    background-color: #eee;
+    //border: 1px solid #aaa; /*#fff;*/
+    //background-color: #eee;
     margin-top: 12px; }
 
 .zusatz-add {
@@ -1145,7 +1149,6 @@ table#msg-composer td {
     margin-left: 0; }
 
 .zusatz li { list-style: none; }
-.zusatz a { color:#333; }
 
 #profile-pic .name {
     background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
@@ -1307,10 +1310,11 @@ table#msg-composer td {
         text-decoration: none; }
 
 .linktab {
-    padding: 3px 5px;
-    background: #8b8; }
-    .linktab:hover {
-        background: #ada; }
+    padding: 3px 5px 3px 0;
+    //background: #8b8;
+     }
+    //.linktab:hover {
+    //    background: #ada; }
 
 .property {
     width: 400px;

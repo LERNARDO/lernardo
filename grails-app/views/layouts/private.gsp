@@ -186,7 +186,6 @@
                         </erp:notMe>
                       </erp:accessCheck>
 
-                      %{--TODO: find out why the check won't work here?!--}%
                       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
                         <erp:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
                           <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
