@@ -242,7 +242,6 @@ class ClientProfileController {
   }
 
   def addCollector = {
-    println "hallo"
     Collector collector = new Collector(params)
     Entity client = Entity.get(params.id)
     client.profile.addToCollectors(collector)

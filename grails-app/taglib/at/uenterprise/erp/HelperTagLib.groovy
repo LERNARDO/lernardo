@@ -37,7 +37,7 @@ class HelperTagLib {
     }
 
     List onlineUsers = []
-    userList.each { entity ->
+    userList.each { Entity entity ->
       if (entity.user.lastAction)
         if ((new Date().getTime() - entity.user.lastAction.getTime()) / 1000 / 60 <= 5)
           onlineUsers.add(entity)
@@ -58,17 +58,17 @@ class HelperTagLib {
     Entity educator = attrs.educator
 
     int hours = 0
-    educator.profile.workdayunits.each {
+    educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the date of the workdayunit is between date1 and date2
       if (attrs.date1 != null & attrs.date2 != null) {
-        if (it.date1.getYear() >= date1.getYear() && it.date1.getYear() <= date2.getYear() &&
-            it.date1.getMonth() >= date1.getMonth() && it.date1.getMonth() <= date2.getMonth() &&
-            it.date1.getDate() >= date1.getDate() && it.date1.getDate() <= date2.getDate()) {
-              hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+        if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+            workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+            workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+              hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
         }
       }
       else
-        hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+        hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
     }
 
     out << hours
@@ -78,7 +78,6 @@ class HelperTagLib {
    * used for time evaluation, returns the number of hours of an educator an a given category
    */
   def getHoursForCategory = { attrs, body ->
-    println params
     Date date1
     Date date2
     if (attrs.date1 != "" && attrs.date2 != "") {
@@ -90,20 +89,20 @@ class HelperTagLib {
     WorkdayCategory workdayCategory = attrs.category
 
     int hours = 0
-    educator.profile.workdayunits.each {
-      if (it.category == workdayCategory.name) {
+    educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+      if (workdayUnit.category == workdayCategory.name) {
 
         // check if the date of the workdayunit is between date1 and date2
         if (attrs.date1 != "" & attrs.date2 != "") {
 
-          if (it.date1.getYear() >= date1.getYear() && it.date1.getYear() <= date2.getYear() &&
-              it.date1.getMonth() >= date1.getMonth() && it.date1.getMonth() <= date2.getMonth() &&
-              it.date1.getDate() >= date1.getDate() && it.date1.getDate() <= date2.getDate()) {
-                hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+          if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+              workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+              workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
         }
         else
-          hours += (it.date2.getTime() - it.date1.getTime()) / 1000 / 60 / 60
+          hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
       }
     }
 
@@ -514,9 +513,9 @@ class HelperTagLib {
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDayUnit)
-    if (link)
-      link.each {out << body(units: it.source)}
+    List projectDayUnits = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayUnit)
+    if (projectDayUnits)
+      projectDayUnits.each {out << body(units: it)}
     else
       out << '<span class="italic red">Bitte die Projekteinheiten auswählen, die an diesem Projekttag stattfinden sollen!</span></span>'
   }
@@ -525,9 +524,9 @@ class HelperTagLib {
    * finds all educators linked to a project day
    */
   def getProjectDayEducators = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDayEducator)
-    if (link)
-      link.each {out << body(educators: it.source)}
+    List projectDayEducators = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayEducator)
+    if (projectDayEducators)
+      projectDayEducators.each {out << body(educators: it)}
     else
       out << '<span class="italic red">Bitte die Pädagogen auswählen, die an diesem Projekttag teilnehmen!</span></span>'
   }
@@ -536,9 +535,9 @@ class HelperTagLib {
    * finds all supplemental educators linked to a project day
    */
   def getProjectDaySubstitutes = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDaySubstitute)
-    if (link)
-      link.each {out << body(educators: it.source)}
+    List projectDaySubstitutes = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDaySubstitute)
+    if (projectDaySubstitutes)
+      projectDaySubstitutes.each {out << body(educators: it)}
     else
       out << '<span class="italic red">Bitte die Ersatzpädagogen auswählen, die an diesem Projekttag teilnehmen!</span></span>'
   }
@@ -547,9 +546,9 @@ class HelperTagLib {
    * finds all resources linked to a project day
    */
   def getProjectDayResources = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectDay, metaDataService.ltProjectDayResource)
-    if (link)
-      link.each {out << body(resources: it.source)}
+    List projectDayResources = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayResource)
+    if (projectDayResources)
+      projectDayResources.each {out << body(resources: it)}
     else
       out << '<span class="italic">Keine Resourcen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -558,9 +557,9 @@ class HelperTagLib {
    * finds all activity groups linked to a project unit
    */
   def getProjectUnitActivityGroups = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnit)
-    if (link)
-      link.each {out << body(activityGroups: it.source)}
+    List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnit)
+    if (projectUnitActivityGroups)
+      projectUnitActivityGroups.each {out << body(activityGroups: it)}
     else
       out << '<span class="italic">Keine Aktivitätsblockvorlagen gefunden</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -569,9 +568,9 @@ class HelperTagLib {
    * finds all parents linked to a project unit
    */
   def getProjectUnitParents = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitParent)
-    if (link)
-      link.each {out << body(parents: it.source)}
+    List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitParent)
+    if (projectUnitParents)
+      projectUnitParents.each {out << body(parents: it)}
     else
       out << '<span class="italic red">Bitte die Erziehungsberechtigten auswählen, die an dieser Projekteinheit teilnehmen!</span></span>'
   }
@@ -580,9 +579,9 @@ class HelperTagLib {
    * finds all partners linked to a project unit
    */
   def getProjectUnitPartners = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitPartner)
-    if (link)
-      link.each {out << body(partners: it.source)}
+    List projectUnitPartners = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitPartner)
+    if (projectUnitPartners)
+      projectUnitPartners.each {out << body(partners: it)}
     else
       out << '<span class="italic red">Bitte die Partner auswählen, die an dieser Projekteinheit teilnehmen!</span></span>'
   }
@@ -591,9 +590,9 @@ class HelperTagLib {
    * finds all group activity templates linked to a project unit
    */
   def getGroupActivityTemplates = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.projectUnit, metaDataService.ltProjectUnitMember)
-    if (link)
-      link.each {out << body(groupActivityTemplates: it.source)}
+    List groupActivityTemplates = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitMember)
+    if (groupActivityTemplates)
+      groupActivityTemplates.each {out << body(groupActivityTemplates: it)}
     else
       out << '<span class="italic red" style="margin-left: 15px">Keine Aktivitätsblockvorlagen zugewiesen!</span></span>'
   }
@@ -602,9 +601,9 @@ class HelperTagLib {
    * finds all resources linked to an entity
    */
   def getResources = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltResource)
-    if (link)
-      link.each {out << body(resources: it.source)}
+    List resources = functionService.findAllByLink(null, attrs.entity, metaDataService.ltResource)
+    if (resources)
+      resources.each {out << body(resources: it)}
     else
       out << '<span class="italic">Keine Ressourcen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -613,9 +612,9 @@ class HelperTagLib {
    * finds all group members of a given group
    */
   def getGroup = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
-    if (link)
-      link.each {out << body(members: it.source)}
+    List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
+    if (groups)
+      groups.each {out << body(members: it)}
     else
       out << '<span class="italic">Diese Gruppe ist leer</span>'
   }
@@ -625,7 +624,6 @@ class HelperTagLib {
    */
   def getGroupSize = {attrs, body ->
     def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
-
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
@@ -637,7 +635,6 @@ class HelperTagLib {
    */
   def getGroupFacilities = {attrs, body ->
     def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
-
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
@@ -649,7 +646,6 @@ class HelperTagLib {
    */
   def getGroupResources = {attrs, body ->
     def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltResource)
-
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
@@ -660,10 +656,10 @@ class HelperTagLib {
    * returns the total duration of the activities within a group
    */
   def getGroupDuration = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
+    List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
     def duration = 0
-    if (link)
-      link.each {duration += it.source.profile.duration}
+    if (groups)
+      groups.each {duration += it.profile.duration}
     out << duration
   }
 
@@ -680,9 +676,9 @@ class HelperTagLib {
    * returns the template to a given activity
    */
   def getTemplate = {attrs, body ->
-    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActTemplate)
-    if (link)
-      out << body(template: link.source)
+    Entity template = functionService.findByLink(null, attrs.entity, metaDataService.ltActTemplate)
+    if (template)
+      out << body(template: template)
     else
       out << '<span class="italic">keine Vorlage vorhanden</span>'
   }
@@ -691,9 +687,9 @@ class HelperTagLib {
    * returns all clients to a given activity
    */
   def getClients = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActClient)
-    if (link)
-      link.each {out << body(clients: it.source)}
+    List clients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActClient)
+    if (clients)
+      clients.each {out << body(clients: it)}
     else
       out << '<span class="italic">keine Betreuten zugewiesen <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -702,9 +698,9 @@ class HelperTagLib {
    * returns all clients linked to a given pate
    */
   def getPateClients = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltPate)
-    if (link)
-      link.each {out << body(clients: it.source)}
+    List pateClients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltPate)
+    if (pateClients)
+      pateClients.each {out << body(clients: it)}
     else
       out << '<span class="italic">keine Betreuten zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -713,9 +709,9 @@ class HelperTagLib {
    * returns all educators linked to a given activity
    */
   def getEducators = {attrs, body ->
-    def link = Link.findAllByTargetAndType(attrs.entity, metaDataService.ltActEducator)
-    if (link)
-      link.each {out << body(educators: it.source)}
+    List educators = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActEducator)
+    if (educators)
+      educators.each {out << body(educators: it)}
     else
       out << '<span class="italic">keine Pädagogen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
@@ -724,9 +720,9 @@ class HelperTagLib {
    * returns the facility linked to a given activity
    */
   def getFacility = {attrs, body ->
-    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltActFacility)
-    if (link)
-      out << body(facility: link.source)
+    Entity facility = functionService.findByLink(null, attrs.entity, metaDataService.ltActFacility)
+    if (facility)
+      out << body(facility: facility)
     else
       out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
   }
@@ -735,9 +731,9 @@ class HelperTagLib {
    * returns the facility linked to a given activity
    */
   def getFacilityOfProject = {attrs, body ->
-    def link = Link.findByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
-    if (link)
-      out << body(facility: link.source)
+    Entity facilityOfProject = functionService.findByLink(null, attrs.entity, metaDataService.ltGroupMemberFacility)
+    if (facilityOfProject)
+      out << body(facility: facilityOfProject)
     else
       out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
   }
@@ -746,9 +742,9 @@ class HelperTagLib {
    * returns all subthemes of a given activity
    */
   def getSubThemes = {attrs, body ->
-    def links = Link.findAllByTargetAndType(attrs.theme, metaDataService.ltSubTheme)
-    if (links)
-      links.each {out << body(subthemes: it.source)}
+    List subThemes = functionService.findAllByLink(null, attrs.theme, metaDataService.ltSubTheme)
+    if (subThemes)
+      subThemes.each {out << body(subthemes: it)}
   }
 
   /*
