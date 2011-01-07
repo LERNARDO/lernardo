@@ -409,14 +409,9 @@ class ProjectProfileController {
     }
     link.delete()
 
-    // find all activities linking to this unit
-    def links = Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit)
+    // find all activities linking to this unit and delete them
+    Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit).each {it.delete()}
     //List activities = links.collect {it.source}
-
-    // delete all links to the unit
-    links.each {
-      it.delete()
-    }
 
     // delete projectUnit
     Entity.get(params.unit).delete()
@@ -628,15 +623,15 @@ class ProjectProfileController {
 
     List projectUnits = []
     boolean exit = false
-    projectDays.each {
-      def links = Link.findAllByTargetAndType(it as Entity, metaDataService.ltProjectDayUnit)
-      if (links.size() == 0) {
-        render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + it.profile.date.format('dd. MM. yyyy') + '!</p>'
+    projectDays.each { Entity projectDay ->
+      def projectDayUnits = functionService.findAllByLink(null, it, metaDataService.ltProjectDayUnit)
+      if (projectDayUnits.size() == 0) {
+        render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + projectDay.profile.date.format('dd. MM. yyyy') + '!</p>'
         exit = true
       }
       else {
-        links.each {
-          projectUnits << it.source
+        projectDayUnits.each {
+          projectUnits << it
         }
       }
       if (exit)
@@ -655,11 +650,10 @@ class ProjectProfileController {
 
     if (activities) {
       render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
-      activities.each {
-        if (new Date() < it.profile.date) {
-          def links = Link.findAllBySourceOrTarget(it as Entity, it as Entity)
-          links.each {it.delete()}
-          it.delete()
+      activities.each { Entity activity ->
+        if (new Date() < activity.profile.date) {
+          Link.findAllBySourceOrTarget(it as Entity, it as Entity).each {it.delete()}
+          activity.delete()
         }
       }
     }
@@ -704,9 +698,8 @@ class ProjectProfileController {
             new Link(source: activity, target: project, type: metaDataService.ltActProject).save()
 
             // link facility to activity
-            def link = Link.findByTargetAndType(project, metaDataService.ltGroupMemberFacility)
-            if (link) {
-              Entity facility = link.source
+            Entity facility = functionService.findByLink(null, project, metaDataService.ltGroupMemberFacility)
+            if (facility) {
               new Link(source: facility, target: activity, type: metaDataService.ltActFacility).save()
               log.info "Facility linked to activity"
             }

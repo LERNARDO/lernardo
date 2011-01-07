@@ -9,6 +9,7 @@ import at.openfactory.ep.LinkType
 class FunctionService {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
+  FunctionService functionService
 
   boolean transactional = true
 
@@ -182,7 +183,7 @@ class FunctionService {
   def findEducators(Entity group) {
 
     // 1. find facility linked to the group
-    Entity facility = Link.findByTargetAndType(group, metaDataService.ltGroupMemberFacility)?.source
+    Entity facility = functionService.findByLink(null, group, metaDataService.ltGroupMemberFacility)
 
     // 2. find all educators linked to the facility
     def c = Link.createCriteria()

@@ -114,9 +114,8 @@ class ClientProfileController {
       return
     }
 
-    def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-    Entity colonia = link?.source ?: null
-    
+    Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+
     return [client: client,
             colonia: colonia,
             allColonias: Entity.findAllByType(metaDataService.etGroupColony),
@@ -134,17 +133,11 @@ class ClientProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
     // update link to colonia
-    def link = Link.findByTargetAndType(client, metaDataService.ltColonia)
-    if (link) {
-      link.delete()
-    }
+    Link.findByTargetAndType(client, metaDataService.ltColonia)?.delete()
     new Link(source: Entity.get(params.currentColonia), target: client, type: metaDataService.ltColonia).save()
 
     // update link to school
-    link = Link.findByTargetAndType(client, metaDataService.ltFacility)
-    if (link) {
-      link.delete()
-    }
+    Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
     new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
     if (!client.hasErrors() && client.save()) {
