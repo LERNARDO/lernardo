@@ -6,7 +6,6 @@ import at.openfactory.ep.SecHelperService
 
 class MsgController {
   EntityHelperService entityHelperService
-  FilterService filterService
   FunctionService functionService
   SecHelperService secHelperService
   MetaDataService metaDataService
@@ -24,11 +23,19 @@ class MsgController {
   def inbox = {
     params.max = Math.min( params.max ? params.int('max') : 10,  100)
     params.offset = params.offset ? params.int('offset') : 0
-    def messages = filterService.getInbox(params.id.toInteger(), params)
-    def messagesTotal = filterService.getInboxCount (params.id.toInteger())
-    return ['msgInstanceList': messages,
-            'msgInstanceTotal': messagesTotal,
-            'entity': Entity.get(params.id)]
+
+    Entity entity = Entity.get(params.id)
+
+    // get messages
+    def c = Msg.createCriteria()
+    def messages = c.list (max: params.max, offset: params.offset) {
+      eq('entity', entity)
+      ne('sender', entity)
+      order("dateCreated", "desc")
+    }
+
+    return ['messages': messages,
+            'entity': entity]
   }
 
   /*
@@ -37,11 +44,19 @@ class MsgController {
   def outbox = {
     params.max = Math.min( params.max ? params.int('max') : 10,  100)
     params.offset = params.offset ? params.int('offset') : 0
-    def messages = filterService.getOutbox(params.id.toInteger(), params)
-    def messagesTotal = filterService.getOutboxCount (params.id.toInteger())
-    return ['msgInstanceList': messages,
-            'msgInstanceTotal': messagesTotal,
-            'entity': Entity.get(params.id)]
+
+    Entity entity = Entity.get(params.id)
+
+    // get messages
+    def c = Msg.createCriteria()
+    def messages = c.list (max: params.max, offset: params.offset) {
+      eq('entity', entity)
+      eq('sender', entity)
+      order("dateCreated", "desc")
+    }
+
+    return ['messages': messages,
+            'entity': entity]
   }
 
   def show = {

@@ -11,7 +11,6 @@ import at.openfactory.ep.SecHelperService
 class HelperTagLib {
   EntityHelperService entityHelperService
   MetaDataService metaDataService
-  FilterService filterService
   SecHelperService secHelperService
   FunctionService functionService
   def securityManager
@@ -871,9 +870,15 @@ class HelperTagLib {
    * returns the number of new private messages through a service
    */
   def getNewInboxMessages = {attrs ->
-    int m = filterService.getNewInboxMessages(attrs.entity.id.toInteger())
-    if (m > 0)
-      out << "(" + m + ")"
+    def c = Msg.createCriteria()
+    def results = c.list {
+      eq('entity', attrs.entity)
+      ne('sender', attrs.entity)
+      eq('read', false)
+    }
+
+    if (results.size() > 0)
+      out << "(" + results.size() + ")"
   }
 
   /*

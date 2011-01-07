@@ -20,46 +20,27 @@
   <div class="second">
     <div id="inbox">
 
-      %{--<div id="inbox-actions">
-      <div id="inbox-action-form">
-      <form action="#" name="inbox-action-form">
-        Auswählen:
-        <select name="msg-select">
-          <option value="none">----</option>
-          <option value="read">Gelesen</option>
-          <option value="unread">Ungelesen</option>
-          <option value="all">Alle</option>
-        </select>
-        <select name="msg-actions">
-          <option value="markasread">Als gelesen markieren</option>
-          <option value="markasunread">Als ungelesen markieren</option>
-          <option value="delete">Löschen</option>
-        </select>
-      </form>
-      </div>
-      <div id="inbox-refresh"><a href="#">Aktualisieren</a></div>
-      </div>--}%
       <table id="inbox-message-overview" class="message-rows">
 
-        <g:if test="${msgInstanceList.size() == 0}">
+        <g:if test="${messages.size() == 0}">
           <div class="info-msg">
             <g:message code="msg.inbox.emptyMsg"/>
           </div>
         </g:if>
-        <g:each in="${msgInstanceList}" status="i" var="msgInstance">
-          <tr class="<g:if test="${!msgInstance.read}">msg-unread</g:if>">
+        <g:each in="${messages}" status="i" var="message">
+          <tr class="<g:if test="${!message.read}">msg-unread</g:if>">
             %{--<td class="checkbox-toggle">--}%
             %{--<input type="checkbox" onclick=""/>--}%
             %{--</td>--}%
             <td class="profile-pic">
-              <erp:isEnabled entity="${msgInstance.sender}">
-                <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}"  params="[entity:msgInstance.sender.id]">
-                  <ub:profileImage name="${msgInstance.sender.name}" width="50" height="50" align="left"/>
+              <erp:isEnabled entity="${message.sender}">
+                <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}"  params="[entity:message.sender.id]">
+                  <ub:profileImage name="${message.sender.name}" width="50" height="50" align="left"/>
                 </g:link>
               </erp:isEnabled>
             </td>
             <td class="name-date">
-              <g:if test="${!msgInstance.read}">
+              <g:if test="${!message.read}">
                 <span class="state">
                   <g:message code="msg.inbox.newMsg"/>
                   %{--
@@ -70,32 +51,31 @@
                 </span>
               </g:if>
               <span class="name">von
-                <erp:isEnabled entity="${msgInstance.sender}">
-                  <g:link controller="${msgInstance.sender.type.supertype.name +'Profile'}" action="show" id="${msgInstance.sender.id}" params="[entity:msgInstance.sender.id]">${msgInstance.sender.profile.fullName}</g:link>
+                <erp:isEnabled entity="${message.sender}">
+                  <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}" params="[entity:message.sender.id]">${message.sender.profile.fullName}</g:link>
                 </erp:isEnabled>
-                <erp:notEnabled entity="${msgInstance.sender}">
-                  <span class="notEnabled">${msgInstance.sender.profile.fullName}</span>
+                <erp:notEnabled entity="${message.sender}">
+                  <span class="notEnabled">${message.sender.profile.fullName}</span>
                 </erp:notEnabled>
               </span>
-              <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></span>
+              <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}"/></span>
             </td>
             <td class="subject">
-              <span class="subject-text"><g:link action="show" id="${msgInstance.id}" params="[entity:entity.id,box:'inbox']">${msgInstance.subject.decodeHTML()}</g:link></span>
+              <span class="subject-text"><g:link action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']">${message.subject.decodeHTML()}</g:link></span>
             </td>
-            <td class="delete-msg"><g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:'inbox']"><g:message code="delete"/></g:link></td>
+            <td class="delete-msg"><g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${message.id}" params="[entity:entity.id,box:'inbox']"><g:message code="delete"/></g:link></td>
           </tr>
         </g:each>
 
       </table>
 
-      <g:if test="${msgInstanceTotal > 0}">
+      <g:if test="${messages.totalCount > 0}">
         <div class="paginateButtons">
-          <g:paginate total="${msgInstanceTotal}"/>
+          <g:paginate total="${messages.totalCount}"/>
         </div>
       </g:if>
 
       <div class="buttons">
-        %{--<g:link class="buttonBlue" controller="msg" action="inbox" id="${entity.id}">Posteingang</g:link>--}%
         <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
         <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}">Neue Nachricht verfassen</g:link>
         <div class="spacer"></div>

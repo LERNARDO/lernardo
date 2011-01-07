@@ -14,10 +14,8 @@ import org.hibernate.SessionFactory
 import at.uenterprise.erp.profiles.ActivityProfile
 
 class ProfileController {
-  GeoCoderService geoCoderService
   EntityHelperService entityHelperService
   MetaDataService metaDataService
-  FilterService filterService
   SessionFactory sessionFactory
   FunctionService functionService
   def securityManager
@@ -115,15 +113,6 @@ class ProfileController {
     }
     flash.message = message(code: "admin.notificationSuccess")
     redirect controller: currentEntity.type.supertype.name + 'Profile', action: "show", id: currentEntity.id
-  }
-
-  /*
-   * uses the GeoCoderService to retrieve a location
-   * NOT USED ATM
-   */
-  def geocode = {
-    def result = geoCoderService.geocodeLocation(params.name)
-    render result as JSON // IntelliJ gives a false warning here
   }
 
   /*
@@ -285,14 +274,25 @@ class ProfileController {
       render ""
       return
     }
-    List searchList = filterService.findUsers(params.name)
-    if (searchList.size() == 0) {
+
+    def c = Entity.createCriteria()
+    def users = c.list {
+      or {
+        ilike('name', "%" + params.name + "%")
+        profile {
+          ilike('fullName', "%" + params.name + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (users.size() == 0) {
       // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
       render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
       return
     }
     else {
-      render(template: 'searchresults', model: [searchList: searchList])
+      render(template: 'searchresults', model: [searchList: users])
     }
   }
 

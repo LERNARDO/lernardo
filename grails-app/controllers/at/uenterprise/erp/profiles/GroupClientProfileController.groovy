@@ -8,7 +8,6 @@ import at.openfactory.ep.EntityHelperService
 import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.FilterService
 import at.openfactory.ep.EntityException
 
 class GroupClientProfileController {
@@ -16,7 +15,6 @@ class GroupClientProfileController {
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
   FunctionService functionService
-  FilterService filterService
 
   def index = {
     redirect action: "list", params: params

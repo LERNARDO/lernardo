@@ -9,7 +9,6 @@ import at.openfactory.ep.LinkType
 class FunctionService {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
-  FunctionService functionService
 
   boolean transactional = true
 
@@ -216,6 +215,10 @@ class FunctionService {
     }
 
     return clients
+  }
+
+  List findPublicationsOfEntity(Entity owner) {
+    return Publication.findAllByEntity(owner)
   }
 
 }
