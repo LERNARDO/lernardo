@@ -3,7 +3,7 @@
   <title>Projektvorlage</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>Projektvorlage</h1>
   </div>

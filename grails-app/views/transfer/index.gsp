@@ -5,7 +5,7 @@
 </head>
 
 <body>
-  <div class="headerGreen">
+  <div class="boxHeader">
     <div class="second">
       <h1>Import/Export</h1>
     </div>

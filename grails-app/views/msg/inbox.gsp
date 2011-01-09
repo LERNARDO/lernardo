@@ -11,7 +11,7 @@
     </div>
   </div>
 </g:if>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="msg.inbox"/></h1>
   </div>

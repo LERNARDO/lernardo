@@ -3,7 +3,7 @@
   <title><g:message code="groupFamily"/> - ${group.profile.fullName}</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="groupFamily"/> - ${group.profile.fullName}</h1>
   </div>

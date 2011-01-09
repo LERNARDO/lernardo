@@ -3,7 +3,7 @@
   <title>Aktivität bearbeiten</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>Aktivität bearbeiten</h1>
   </div>

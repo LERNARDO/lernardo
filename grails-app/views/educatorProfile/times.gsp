@@ -3,7 +3,7 @@
   <title>Zeitauswertung</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>Zeitauswertung</h1>
   </div>

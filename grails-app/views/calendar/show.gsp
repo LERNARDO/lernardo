@@ -11,7 +11,7 @@
 
 <div id="caltip"></div>
 
-  %{--<div class="headerGreen">
+  %{--<div class="boxHeader">
     <div class="second">
       <h1><g:message code="cal.caption"/></h1>
     </div>
@@ -27,7 +27,7 @@
     </div>
   </div>--}%
 
-  <div class="headerGreen">
+  <div class="boxHeader">
     <div class="second">
       <h1><g:message code="educators"/></h1>
     </div>
@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="headerGreen">
+  <div class="boxHeader">
     <div class="second">
       <h1>Kalender</h1>
     </div>

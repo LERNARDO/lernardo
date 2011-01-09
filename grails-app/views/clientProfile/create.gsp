@@ -5,7 +5,7 @@
   <title><g:message code="client.profile.create"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="client.profile.create"/></h1>
   </div>

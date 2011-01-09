@@ -4,7 +4,7 @@
   <title><g:message code="evaluation.edit"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="evaluation.edit"/></h1>
   </div>

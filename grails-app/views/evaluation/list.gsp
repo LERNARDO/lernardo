@@ -3,7 +3,7 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>Tagebucheinträge für ${entity.profile.fullName}</h1>
   </div>

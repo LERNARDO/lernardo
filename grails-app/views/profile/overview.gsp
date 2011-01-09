@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="profile.overview.glossary"/> <a onclick="toggle('#glossar-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
   </div>
@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="profile.overview.search"/> <a onclick="toggle('#suche-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
   </div>
@@ -51,7 +51,7 @@
   </div>
 </div>
 
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="profile.overview"/></h1>
   </div>

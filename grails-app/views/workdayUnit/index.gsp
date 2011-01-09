@@ -3,7 +3,7 @@
   <title><g:message code="privat.workday"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="privat.workday"/></h1>
   </div>

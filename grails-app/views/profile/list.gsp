@@ -29,7 +29,7 @@
     </script>--}%
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="profile.list"/></h1>
   </div>

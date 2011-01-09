@@ -3,7 +3,7 @@
   <title><g:message code="theme.create"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="theme.create"/></h1>
   </div>

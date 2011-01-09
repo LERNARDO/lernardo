@@ -3,7 +3,7 @@
   <title><g:message code="groupClients"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="groupClients"/></h1>
   </div>

@@ -3,7 +3,7 @@
   <title>Betreute</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>${message(code: 'client')}</h1>
   </div>

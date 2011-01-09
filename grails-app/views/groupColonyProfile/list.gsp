@@ -3,7 +3,7 @@
   <title><g:message code="groupColonies"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="groupColonies"/></h1>
   </div>

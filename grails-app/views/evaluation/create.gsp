@@ -4,7 +4,7 @@
   <title>Tagebucheintrag erstellen</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>Tagebucheintrag erstellen</h1>
   </div>

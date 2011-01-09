@@ -3,7 +3,7 @@
   <title><g:message code="user.profile.edit"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1 style="float: left"><g:message code="user.profile.edit"/></h1>
     <div class="icons" style="text-align: right;">

@@ -3,7 +3,7 @@
   <title><g:message code="groupColony.profile.edit"/></title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1><g:message code="groupColony.profile.edit"/></h1>
   </div>

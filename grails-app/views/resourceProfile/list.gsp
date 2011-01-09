@@ -3,7 +3,7 @@
   <title>Ressourcen</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1>Ressourcen</h1>
   </div>

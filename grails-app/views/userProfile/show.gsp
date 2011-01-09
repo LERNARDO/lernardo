@@ -3,7 +3,7 @@
   <title><g:message code="user"/> - ${user.profile.fullName}</title>
 </head>
 <body>
-<div class="headerGreen">
+<div class="boxHeader">
   <div class="second">
     <h1 style="float: left"><g:message code="user"/> - ${user.profile.fullName}</h1>
     <div class="icons" style="text-align: right;">

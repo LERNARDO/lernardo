@@ -136,7 +136,7 @@
       </div>
 
       <div id="profile-navigation" class="yui-b">
-        <div class="headerGreen">
+        <div class="boxHeader">
           <div class="second">
             <h1>${entity.profile.fullName} %{--<g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'bullet_green.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'bullet_red.png')}" alt="inaktiv"/></g:else></g:if>--}% %{--<a onclick="toggle('#kommunikation-toggled');
             return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}" style="top: 3px; position: relative"></a>--}%
