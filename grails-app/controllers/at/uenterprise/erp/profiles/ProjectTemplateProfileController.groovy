@@ -31,17 +31,14 @@ class ProjectTemplateProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def projecttemplates = c.list {
+    def projectTemplates = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etProjectTemplate)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
-    return [projectTemplateList: projecttemplates,
-            projectTemplateTotal: Entity.countByType(metaDataService.etProjectTemplate)]
+    return [projectTemplates: projectTemplates]
   }
 
   def show = {

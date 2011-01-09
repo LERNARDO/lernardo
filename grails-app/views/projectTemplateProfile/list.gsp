@@ -19,7 +19,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${projectTemplateTotal} <g:message code="projectTemplates.c_total"/>
+      ${projectTemplates.totalCount} <g:message code="projectTemplates.c_total"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
@@ -38,7 +38,7 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${projectTemplateList}" status="i" var="project">
+      <g:each in="${projectTemplates}" status="i" var="project">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>${fieldValue(bean: project, field: 'profile.status')}</td>
@@ -49,7 +49,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${projectTemplateTotal}"/>
+      <g:paginate total="${projectTemplates.totalCount}"/>
     </div>
 
   </div>

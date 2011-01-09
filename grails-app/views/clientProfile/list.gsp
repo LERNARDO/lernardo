@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${clientTotal} <g:message code="client.profile.c_total"/>
+      ${clients.totalCount} <g:message code="client.profile.c_total"/>
     </div>
 
     <erp:isOperator entity="${currentEntity}">
@@ -31,7 +31,7 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${clientList}" status="i" var="client">
+      <g:each in="${clients}" status="i" var="client">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}</g:link></td>
           <td>${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}</td>
@@ -42,7 +42,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${clientTotal}"/>
+      <g:paginate total="${clients.totalCount}"/>
     </div>
 
   </div>

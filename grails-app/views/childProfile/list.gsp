@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${childTotal} <g:message code="child.profile.c_total"/>
+      ${children.totalCount} <g:message code="child.profile.c_total"/>
     </div>
 
     <erp:isOperator entity="${currentEntity}">
@@ -30,7 +30,7 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${childList}" status="i" var="child">
+      <g:each in="${children}" status="i" var="child">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${child.id}" params="[entity: child.id]">${fieldValue(bean: child, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy"/></td>
@@ -40,7 +40,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${childTotal}"/>
+      <g:paginate total="${children.totalCount}"/>
     </div>
 
   </div>

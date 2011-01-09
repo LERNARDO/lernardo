@@ -13,7 +13,8 @@ class FunctionService {
   boolean transactional = true
 
   /* TIP
-   * def results = links*.target // spread operator doing the same as the collect method
+   * - Spread operator instead of collect method -
+   * def results = links*.target
    * def results = links.collect {it.target}
    */
 
@@ -182,7 +183,7 @@ class FunctionService {
   def findEducators(Entity group) {
 
     // 1. find facility linked to the group
-    Entity facility = functionService.findByLink(null, group, metaDataService.ltGroupMemberFacility)
+    Entity facility = findByLink(null, group, metaDataService.ltGroupMemberFacility)
 
     // 2. find all educators linked to the facility
     def c = Link.createCriteria()

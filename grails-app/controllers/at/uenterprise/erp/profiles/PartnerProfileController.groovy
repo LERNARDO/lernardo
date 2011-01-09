@@ -34,17 +34,14 @@ class PartnerProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def partners = c.list {
+    def partners = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etPartner)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
-    return [partnerList: partners,
-            partnerTotal: Entity.countByType(metaDataService.etPartner)]
+    return [partners: partners]
   }
 
   def show = {

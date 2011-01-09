@@ -38,17 +38,14 @@ class EducatorProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def educators = c.list {
+    def educators = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etEducator)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
-    return [educatorList: educators,
-            educatorTotal: Entity.countByType(metaDataService.etEducator)]
+    return [educators: educators]
   }
 
   def show = {

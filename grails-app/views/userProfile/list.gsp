@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${userTotal} <g:message code="user.profile.c_total"/>
+      ${users.totalCount} <g:message code="user.profile.c_total"/>
     </div>
 
     <div class="buttons">
@@ -27,7 +27,7 @@
       </tr>
       </thead>
       <tbody>
-      <g:each in="${userList}" status="i" var="user">
+      <g:each in="${users}" status="i" var="user">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${user.id}" params="[entity: user.id]">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()} ${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</g:link></td>
         </tr>
@@ -36,7 +36,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${userTotal}"/>
+      <g:paginate total="${users.totalCount}"/>
     </div>
 
   </div>
