@@ -69,26 +69,14 @@ class ActivityProfileController {
       else
       {
         def c = Entity.createCriteria()
-        activityList = c.list {
+        activityList = c.list (max: params.max, offset: params.offset) {
           eq("type", metaDataService.etActivity)
           profile {
             eq("type", "Themenraum")
             order("date","desc")
           }
-          maxResults(params.max)
-          firstResult(params.offset)
         }
-
-        def d = Entity.createCriteria()
-        def count = d.list {
-          eq("type", metaDataService.etActivity)
-          profile {
-            eq("type", "Themenraum")
-          }
-        }
-
-        activityCount = count.size()
-
+        activityCount = activityList.totalCount
       }
 
       return ['activityList': activityList,
@@ -123,27 +111,16 @@ class ActivityProfileController {
             activityList << bla*/
 
         def c = Entity.createCriteria()
-        activityList = c.list {
+        activityList = c.list (max: params.max, offset: params.offset) {
           eq("type", metaDataService.etActivity)
           profile {
             eq("type", "Themenraum")
             between("date", inputDate, inputDate + 1)
             order("date","desc")
           }
-          maxResults(params.max)
-          firstResult(params.offset)
         }
 
-        def d = Entity.createCriteria()
-        def count = d.list {
-          eq("type", metaDataService.etActivity)
-          profile {
-            eq("type", "Themenraum")
-            between("date", inputDate, inputDate + 1)
-          }
-        }
-
-         activityCount = count.size()
+         activityCount = activityList.totalCount
       }
 
       return ['activityList': activityList,

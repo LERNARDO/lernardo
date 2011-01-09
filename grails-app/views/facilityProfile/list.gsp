@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${facilityTotal} <g:message code="facility.profile.c_total"/>
+      ${facilities.totalCount} <g:message code="facility.profile.c_total"/>
     </div>
 
     <erp:isOperator entity="${currentEntity}">
@@ -40,7 +40,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${facilityTotal}"/>
+      <g:paginate total="${facilities.totalCount}"/>
     </div>
 
   </div>

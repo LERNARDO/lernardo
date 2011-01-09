@@ -35,17 +35,14 @@ class ParentProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def parents = c.list {
+    def parents = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etParent)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
-    return [parentList: parents,
-            parentTotal: Entity.countByType(metaDataService.etParent)]
+    return [parents: parents]
   }
 
   def show = {

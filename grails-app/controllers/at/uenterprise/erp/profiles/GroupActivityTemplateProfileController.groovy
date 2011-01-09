@@ -33,17 +33,14 @@ class GroupActivityTemplateProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def groupactivitytemplates = c.list {
+    def groupactivitytemplates = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etGroupActivityTemplate)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
-    return [groups: groupactivitytemplates,
-            groupTotal: Entity.countByType(metaDataService.etGroupActivityTemplate)]
+    return [groups: groupactivitytemplates]
   }
 
   def show = {

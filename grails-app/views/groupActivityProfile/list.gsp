@@ -19,7 +19,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${groupTotal} Aktivitätsblöcke insgesamt vorhanden
+      ${groups.totalCount} Aktivitätsblöcke insgesamt vorhanden
     </div>
 
     <g:if test="${groups}">
@@ -41,7 +41,7 @@
       </table>
 
       <div class="paginateButtons">
-        <g:paginate total="${groupTotal}"/>
+        <g:paginate total="${groups.totalCount}"/>
       </div>
     </g:if>
 

@@ -34,13 +34,11 @@ class TemplateProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def templates = c.list {
+    def templates = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etTemplate)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
     return [allTemplates: templates,

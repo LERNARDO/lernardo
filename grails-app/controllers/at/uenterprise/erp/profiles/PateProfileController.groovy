@@ -31,17 +31,14 @@ class PateProfileController {
     params.order = params.order ?: "asc"
 
     def c = Entity.createCriteria()
-    def pates = c.list {
+    def pates = c.list (max: params.max, offset: params.offset) {
       eq("type", metaDataService.etPate)
       profile {
         order(params.sort, params.order)
       }
-      maxResults(params.max)
-      firstResult(params.offset)
     }
 
-    return [pateList: pates,
-            pateTotal: Entity.countByType(metaDataService.etPate)]
+    return [pates: pates]
   }
 
   def show = {
