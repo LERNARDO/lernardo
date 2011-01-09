@@ -16,7 +16,7 @@
 
     <g:render template="/templates/errors" model="[bean: workdayCategoryInstance]"/>
 
-    <g:form action="update" method="post" id="${workdayCategoryInstance.id}">
+    <g:form action="update" id="${workdayCategoryInstance.id}">
 
             <div class="dialog">
         <table>

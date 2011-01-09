@@ -13,7 +13,7 @@
       die bereits registriert ist und deine Identität bestätigen kann.</p>
     <p>Du bekommst eine Bestätigung per Mail wenn deine Registrierung akzeptiert wurde.</p>
 
-    <g:form action="notYet" method="post">
+    <g:form action="notYet">
       <table>
         <tr>
           <td>Vorname:</td>

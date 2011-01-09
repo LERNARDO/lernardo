@@ -45,7 +45,7 @@
                   <div class="sideboxheader">Login</div>
                   <div class="sideboxcontent">
 
-                    <g:form controller="security" action="do_login" method="post">
+                    <g:form controller="security" action="do_login">
                       <table>
                         <tr>
                           <td style="width: 100px; height: 20px">E-Mail:</td>

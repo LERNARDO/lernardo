@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: theme]"/>
 
-    <g:form action="save" method="post">
+    <g:form action="save">
       <div class="dialog">
         <table>
           <tbody>

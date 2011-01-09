@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: user]"/>
 
-    <g:form action="save" method="post">
+    <g:form action="save">
 
       <div class="property">
         <g:message code="user.profile.firstName"/> <br/>

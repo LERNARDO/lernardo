@@ -14,7 +14,7 @@
 
   <g:render template="/templates/errors" model="[bean: educator]"/>
 
-  <g:form action="update" method="post" id="${educator.id}">
+  <g:form action="update" id="${educator.id}">
     <div class="dialog">
 
       <table>

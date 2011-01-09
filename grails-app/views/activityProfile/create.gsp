@@ -13,12 +13,11 @@
 
     <g:render template="/templates/errors" model="[bean: ac]"/>
 
-    <g:form action="save" method="post">
+    <g:form action="save">
 
       <table>
 
         <tr class="prop">
-
           <td valign="top" class="name"><g:message code="activityInstance.profile.name"/></td>
           <td valign="top" class="name"><g:message code="activityInstance.profile.startDate"/></td>
           <td valign="top" class="name"><g:message code="activityInstance.profile.endDate"/></td>

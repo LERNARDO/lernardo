@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
 
-    <g:form action="saveMany" method="post" id="${msgInstance.id}">
+    <g:form action="saveMany" id="${msgInstance.id}">
       <table id="msg-composer">
         <tbody>
 

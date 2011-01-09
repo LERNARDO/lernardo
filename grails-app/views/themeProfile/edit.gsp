@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: theme]"/>
 
-    <g:form action="update" method="post" id="${theme.id}">
+    <g:form action="update" id="${theme.id}">
       <div class="dialog">
 
         <table>

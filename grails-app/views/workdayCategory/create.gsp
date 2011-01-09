@@ -12,7 +12,7 @@
   <div class="second">
 
     <g:render template="/templates/errors" model="[bean: workdayCategoryInstance]"/>
-    <g:form action="save" method="post">
+    <g:form action="save">
 
       <div class="property">
         <g:message code="workdayCategory.name"/> <br/>

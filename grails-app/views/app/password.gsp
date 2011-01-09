@@ -7,7 +7,7 @@
   <h1>Passwort vergessen?</h1>
   <p>Bitte gib deine E-Mail Adresse ein, um dein Passwort zurückzusetzen.</p>
 
-  <g:form action="sendPassword" method="post">
+  <g:form action="sendPassword">
     <p><g:textField name="email" size="40" value="${params.email}"/></p>
 
     <div class="buttons">

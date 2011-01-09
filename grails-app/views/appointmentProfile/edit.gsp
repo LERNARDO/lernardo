@@ -16,7 +16,7 @@
 
     <g:render template="/templates/errors" model="[bean: appointmentProfileInstance]"/>
 
-    <g:form action="update" method="post" id="${appointmentProfileInstance.id}">
+    <g:form action="update" id="${appointmentProfileInstance.id}">
 
       <div class="property">
         <g:message code="appointment.profile.fullName"/> <br/>

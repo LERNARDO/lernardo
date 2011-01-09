@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: facility]"/>
 
-    <g:form action="update" method="post" id="${facility.id}">
+    <g:form action="update" id="${facility.id}">
       <div class="dialog">
         <table>
 

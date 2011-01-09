@@ -21,7 +21,7 @@
 
         <p><g:message code="notification.info"/>:</p>
 
-        <g:form action="saveNotification" method="post">
+        <g:form action="saveNotification">
 
           <p class="${hasErrors(bean:nc,field:'selection','errors')}">
             <g:checkBox name="user" value="${nc?.user}"/> <g:message code="user"/><br/>

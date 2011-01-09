@@ -14,7 +14,7 @@
 
     <g:render template="/templates/errors" model="[bean: parent]"/>
 
-    <g:form action="save" method="post">
+    <g:form action="save">
       <div class="dialog">
 
         <table width="100%" bgcolor="#dfdfdf" border="0" cellspacing="10">

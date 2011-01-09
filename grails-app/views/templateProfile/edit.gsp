@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: template]"/>
 
-    <g:form action="update" method="post" id="${template.id}">
+    <g:form action="update" id="${template.id}">
       <table>
 
         <tr class="prop">

@@ -15,7 +15,7 @@
     <div class="second">
 
       Kinder importieren:
-      <g:form controller="transfer" method="post" action="importChildren" enctype="multipart/form-data">
+      <g:form controller="transfer" action="importChildren" enctype="multipart/form-data">
           <input type="file" name="file" size="50"/>
           <div class="spacer"></div>
           <g:submitButton name="submitButton" value="Import"/>

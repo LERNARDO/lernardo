@@ -18,7 +18,7 @@
     </div>
   </g:hasErrors>
 
-  <g:form action="save" method="post" id="${postInstance.id}">
+  <g:form action="save" id="${postInstance.id}">
 
     <p><span class="strong">Titel</span><br/>
     <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" style="width: 100%" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>

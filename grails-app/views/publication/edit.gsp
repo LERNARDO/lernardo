@@ -23,7 +23,7 @@
         </div>
       </g:hasErrors>
 
-      <g:form method="post" action="update" id="${publication.id}">
+      <g:form action="update" id="${publication.id}">
 
         <div class="text-field ${hasErrors(bean: publication, field: 'name', 'errors')}">
           <label for="name">Titel:</label><br />

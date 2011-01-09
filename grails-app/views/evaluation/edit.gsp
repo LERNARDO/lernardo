@@ -18,7 +18,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="update" method="post" id="${evaluationInstance.id}" params="[name:entity.name]">
+    <g:form action="update" id="${evaluationInstance.id}" params="[name:entity.name]">
 
       <p class="strong">Beschreibung</p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">

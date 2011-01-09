@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: activity]"/>
 
-    <g:form action="update" method="post" id="${activity.id}">
+    <g:form action="update" id="${activity.id}">
       Vorlage:
       <erp:getTemplate entity="${activity}">
         <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>

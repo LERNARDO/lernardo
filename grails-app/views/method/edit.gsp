@@ -17,7 +17,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="update" method="post" id="${methodInstance.id}">
+    <g:form action="update" id="${methodInstance.id}">
       <div class="dialog">
         <table>
           <tbody>

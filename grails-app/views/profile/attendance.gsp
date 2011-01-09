@@ -48,7 +48,7 @@
     <div id="body-list">
       <p>${entityCount} Profile gefunden</p>
 
-      <g:form controller="profile" action="attendance" method="post" params="[name:currentEntity.name]">
+      <g:form controller="profile" action="attendance" params="[name:currentEntity.name]">
         Datum:<g:datePicker name="date" value="${date}" precision="day" years="${2009..2020}"/>
         <div class="buttons">
           <g:submitButton name="submitButton" value="Datum ändern" icon="true"/>
@@ -66,7 +66,7 @@
         </g:else></p>
       <p>Täglicher Essensbeitrag: €${entity.profile.foodCosts}.-</p>
 
-      <g:form action="saveAttendance" method="post" name="clients" id="clients" params="[name: currentEntity.name, year: year, month: month, day: day]">
+      <g:form action="saveAttendance" name="clients" id="clients" params="[name: currentEntity.name, year: year, month: month, day: day]">
 
         <table id="profile-list">
           <thead>
