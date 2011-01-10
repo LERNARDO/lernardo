@@ -125,6 +125,8 @@ dummies = 2
 // the default password used when creating new entity accounts
 defaultpass = "pass"
 
+nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy']
+
 // custom maps to store data
 resourceclasses_de = ['1':'Einrichtung','2':'Gemeinde','3':'Überall']
 resourceclasses_es = ['1':'Instalaciones','2':'Colonia','3':'e_Überall']
@@ -134,8 +136,6 @@ education_de = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (st
                 '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
 education_es = ['1':'e_Pädagoge','2':'e_Psychologe','3':'e_Soziologe','4':'e_Lehrer (staatl. Ausbildung)','5':'e_Erzieher','6':'e_Psychopädagoge','7':'e_Bildender Künstler',
                 '8':'e_Arzt','9':'e_Krankenschwester','10':'e_Wirtschafter','11':'e_Buchhalter/Steuerberater']
-nationalities_de = ['1':'Deutschland','2':'England','3':'Frankreich','4':'Spanien','5':'Portugal','6':'Österreich','7':'Mexiko','8':'Italien']
-nationalities_es = ['1':'Alemania','2':'Inglaterra','3':'Francia','4':'España','5':'Portugal','6':'Austria','7':'México','8':'Italia']
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 inchargeof_de = ['1':'Direktion','2':'Programmkoordination','3':'Programm','4':'Projekt','5':'Bereiche','6':'Tutor','7':'Köchin','8':'Freiwilliger']

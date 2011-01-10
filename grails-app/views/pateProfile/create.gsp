@@ -63,12 +63,7 @@
               <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
             <td width="210" height="35" valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_es}" optionKey="key" optionValue="value" value="${pate?.profile?.country}"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="country" from="${grailsApplication.config.nationalities_de}" optionKey="key" optionValue="value" value="${pate?.profile?.country}"/>
-              </g:if>
+              <g:select name="country" from="${grailsApplication.config.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="nationality"/>
             </td>
           </tr>
 

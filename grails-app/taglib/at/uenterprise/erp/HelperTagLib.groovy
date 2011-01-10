@@ -288,17 +288,6 @@ class HelperTagLib {
   }
 
   /*
-   *  receives a nationality ID and renders either the german or spanish word for it
-   */
-  def getNationalities = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.nationalities_de[attrs.nationality]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.nationalities_es[attrs.nationality]
-  }
-
-  /*
    * receives a inChargeOf ID and renders either the german or spanish word for it
    */
   def getInChargeOf = {attrs ->

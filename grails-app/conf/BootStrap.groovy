@@ -191,7 +191,7 @@ class BootStrap {
           prf.currentZip = "1234"
           prf.currentCity = "DummyCity"
           prf.currentStreet = "DummyStreet"
-          prf.originCountry = (generator.nextInt(8) + 1).toString()
+          prf.originCountry = "austria"
           prf.originZip = "1234"
           prf.originCity = "DummyCity"
           prf.originStreet = "DummyStreet"
@@ -226,7 +226,7 @@ class BootStrap {
           prf.firstName = "DummyParentFirstName"
           prf.lastName = "DummyParentLastName"
           prf.gender = generator.nextInt(2) + 1
-          prf.currentCountry = (generator.nextInt(8) + 1).toString()
+          prf.currentCountry = "austria"
           prf.currentZip = "1234"
           prf.currentCity = "DummyCity"
           prf.currentStreet = "DummyStreet"
@@ -355,7 +355,7 @@ class BootStrap {
           prf.street = "DummyStreet"
           prf.phone = "DummyPhone"
           prf.description = "dummyDescription"
-          prf.country = (generator.nextInt(8) + 1).toString()
+          prf.country = "austria"
           prf.website = "http://www.dummySite.com"
         }
       }
@@ -379,7 +379,7 @@ class BootStrap {
           prf.zip = "12345"
           prf.city = "DummyCity"
           prf.street = "DummyStreet"
-          prf.country = (generator.nextInt(8) + 1).toString()
+          prf.country = "austria"
           prf.motherTongue = "english"
         }
       }

@@ -119,7 +119,7 @@
         <tr>
           <td valign="middle" class="value-show">
             <g:if test="${grailsApplication.config.parentProfile.currentCountry}">
-              <erp:getNationalities nationality="${parent.profile.currentCountry}"/>
+              <g:message code="nationality.${parent.profile.currentCountry}"/>
             </g:if>
           </td>
           <td width="105" valign="middle" class="value-show">

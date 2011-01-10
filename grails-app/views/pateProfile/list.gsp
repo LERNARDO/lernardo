@@ -33,7 +33,7 @@
       <g:each in="${pates}" status="i" var="pate">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${pate.id}" params="[entity: pate.id]">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td><erp:getNationalities nationality="${pate.profile.country}"/></td>
+          <td><g:message code="nationality.${pate.profile.country}"/></td>
         </tr>
       </g:each>
       </tbody>
