@@ -90,12 +90,11 @@ log4j = {
       // %c - outputs the category of the logging event
       // %m - outputs the application supplied message
       // %n - line separator
-   }
+    }
 
-   root {
-     error "stdout"
-   }
-
+    root {
+      error "stdout"
+    }
 
     /*error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 	       'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -110,12 +109,13 @@ log4j = {
 
     warn   'org.mortbay.log'*/
 
-  info  'grails.app'
-  info  'grails.app.tagLib'
-  info  'grails.app.bootstrap'
-  info  'grails.app.dataSource'
-  info  'grails.app.controller'
-  info  'grails.app.service'
+    info  'com.linkedin.grails'
+    info  'grails.app'
+    info  'grails.app.tagLib'
+    info  'grails.app.bootstrap'
+    info  'grails.app.dataSource'
+    info  'grails.app.controller'
+    info  'grails.app.service'
 
 }
 

@@ -15,7 +15,7 @@
       ${operators.totalCount} <g:message code="operator.profile.c_total"/>
     </div>
 
-    <erp:isAdmin>
+    <erp:isAdmin entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="operator.profile.create"/></g:link>
         <div class="spacer"></div>

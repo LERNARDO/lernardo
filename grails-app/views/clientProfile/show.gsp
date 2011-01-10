@@ -268,7 +268,7 @@
       </div>
     </div>
 
-    <erp:isMeOrAdminOrOperator entity="${client}">
+    <erp:isMeOrAdminOrOperator entity="${client}" current="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${client?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>

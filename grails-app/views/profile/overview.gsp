@@ -60,7 +60,7 @@
   <div class="second">
 
       %{--the first panel should only be visible to admins--}%
-      <erp:isAdmin>
+      <erp:isAdmin entity="${currentEntity}">
         <h1><g:message code="profile.overview.admin"/> <a onclick="toggle('#admin-toggled'); return false" href="#"><img alt="ein-/ausblenden" src=${resource(dir: '/images/icons/', file:'icon_add.png')}></a></h1>
         <div class="overview" id="admin-toggled">
           <div class="box">
@@ -162,7 +162,7 @@
           <div class="bold"><g:message code="vMethods"/> (${allMethods})</div>
           <g:link controller="method" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_gewichtung.png')}" alt="Notiz" align="top"/></g:link>
           <div><g:link controller="method" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-          <erp:isAdmin>
+          <erp:isAdmin entity="${currentEntity}">
             <div><g:link controller="method" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
           </erp:isAdmin>
         </div>

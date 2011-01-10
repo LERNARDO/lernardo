@@ -88,10 +88,10 @@
               <erp:isOperator entity="${currentEntity}">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
-                  <erp:isAdmin>
+                  <erp:isAdmin entity="${currentEntity}">
                     <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
                   </erp:isAdmin>
-                  <erp:notAdmin>
+                  <erp:notAdmin entity="${currentEntity}">
                     <g:checkBox name="enabled" value="${pate?.user?.enabled}" disabled="true"/>
                   </erp:notAdmin>
                 </td>

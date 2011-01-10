@@ -21,7 +21,7 @@ class HelperTagLib {
    */
   def getOnlineUsers = {attrs, body ->
 
-    def c = Entity.createCriteria()
+    /*def c = Entity.createCriteria()
     def userList = c.list {
       or {
           eq("type", metaDataService.etUser)
@@ -33,11 +33,13 @@ class HelperTagLib {
           eq("type", metaDataService.etPate)
           eq("type", metaDataService.etPartner)
       }
-    }
+    }*/
+
+    List userList = Entity.list()
 
     List onlineUsers = []
     userList.each { Entity entity ->
-      if (entity.user.lastAction)
+      if (entity?.user?.lastAction)
         if ((new Date().getTime() - entity.user.lastAction.getTime()) / 1000 / 60 <= 5)
           onlineUsers.add(entity)
     }
@@ -757,7 +759,7 @@ class HelperTagLib {
    * checks whether the given entity is a parent (or has the admin role)
    */
   def isParent = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etParent.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etParent.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -765,7 +767,7 @@ class HelperTagLib {
    * checks whether the given entity is a pate (or has the admin role)
    */
   def isPate = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etPate.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etPate.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -773,7 +775,7 @@ class HelperTagLib {
    * checks whether the given entity is a partner (or has the admin role)
    */
   def isPartner = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etPartner.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etPartner.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -781,7 +783,7 @@ class HelperTagLib {
    * checks whether the given entity is a client (or has the admin role)
    */
   def isClient = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etClient.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etClient.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -789,7 +791,7 @@ class HelperTagLib {
    * checks whether the given entity is a facility (or has the admin role)
    */
   def isFacility = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etFacility.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etFacility.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -797,7 +799,7 @@ class HelperTagLib {
    * checks whether the given entity is an educator (or has the admin role)
    */
   def isEducator = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etEducator.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etEducator.name ||attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -805,7 +807,7 @@ class HelperTagLib {
    * checks whether the given entity is an operator (or has the admin role)
    */
   def isOperator = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etOperator.name || secHelperService.isAdmin())
+    if (attrs.entity.type.name == metaDataService.etOperator.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
@@ -897,7 +899,7 @@ class HelperTagLib {
     }
 
     // group activity
-    if (attrs.entity.type.id == metaDataService.etGroupActivity.id) {
+    else if (attrs.entity.type.id == metaDataService.etGroupActivity.id) {
       Entity groupactivitytemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltTemplate)
 
       m += Publication.countByEntity(groupactivitytemplate)
@@ -910,7 +912,7 @@ class HelperTagLib {
     }
 
     // project template
-    if (attrs.entity.type.id == metaDataService.etProjectTemplate.id) {
+    else if (attrs.entity.type.id == metaDataService.etProjectTemplate.id) {
       List projectUnits = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectUnit)
 
       List groupactivitytemplates = []
@@ -941,7 +943,7 @@ class HelperTagLib {
     }
 
     // project
-    if (attrs.entity.type.id == metaDataService.etProject.id) {
+    else if (attrs.entity.type.id == metaDataService.etProject.id) {
       Entity projectTemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltProjectTemplate)
 
       m += Publication.countByEntity(projectTemplate)
@@ -1020,37 +1022,36 @@ class HelperTagLib {
   }
 
   def isEnabled = {attrs, body ->
-    if (Entity.get(attrs.entity.id).user.enabled)
+    if (attrs.entity.user.enabled)
       out << body()
   }
 
   def notEnabled = {attrs, body ->
-    if (!Entity.get(attrs.entity.id).user.enabled)
+    if (!attrs.entity.user.enabled)
       out << body()
   }
 
   def isAdmin = {attrs, body ->
-    if (secHelperService.isAdmin())
+    if (attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
   def notAdmin = {attrs, body ->
-    if (!secHelperService.isAdmin())
+    if (!attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 
   def isMeOrAdmin = {attrs, body ->
-    if (secHelperService.isMeOrAdmin(attrs.entity))
+    if (attrs.entity.name == entityHelperService.loggedIn.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'} )
       out << body()
   }
 
   def isMeOrAdminOrOperator = {attrs, body ->
-    if (secHelperService.isMeOrAdmin(attrs.entity) || entityHelperService.loggedIn.type.id == metaDataService.etOperator.id)
+    if (attrs.entity.name == attrs.current.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} || attrs.current.type.id == metaDataService.etOperator.id)
       out << body()
   }
 
   def isSysAdmin = {attrs, body ->
-    // "secHelperService.hasRole" is broken so let's use this
     def entity = attrs.entity ?: entityHelperService.loggedIn
 
     entity.user.authorities.each {
@@ -1061,12 +1062,12 @@ class HelperTagLib {
   }
 
   def isMe = {attrs, body ->
-    if (entityHelperService.loggedIn?.id == attrs.entity.id)
+    if (entityHelperService.loggedIn.id == attrs.entity.id)
       out << body()
   }
 
   def notMe = {attrs, body ->
-    if (secHelperService.isNotMe(attrs.entity))
+    if (entityHelperService.loggedIn.id != attrs.entity.id)
       out << body()
   }
 

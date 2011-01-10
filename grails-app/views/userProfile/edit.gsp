@@ -46,10 +46,10 @@
             <erp:isSysAdmin>
               <td width="85" valign="middle">
                 <g:message code="active"/>
-                <erp:isAdmin>
+                <erp:isAdmin entity="${currentEntity}">
                   <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
                 </erp:isAdmin>
-                <erp:notAdmin>
+                <erp:notAdmin entity="${currentEntity}">
                   <g:checkBox name="enabled" value="${user?.user?.enabled}" disabled="true"/>
                 </erp:notAdmin>
               </td>

@@ -15,7 +15,7 @@
       ${methodInstanceTotal} <g:message code="method.c_total"/>
     </div>
 
-     <erp:isAdmin>
+     <erp:isAdmin entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="method.create"/></g:link>
         <div class="spacer"></div>

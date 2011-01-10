@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <td style="width: 135px">
+      <ub:profileImage name="${entity.name}" width="130"/>
+    </td>
+
+    <td>
+      <ul>
+        <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+          <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
+        </erp:isMeOrAdminOrOperator>
+
+        <li class="profile-profil"><g:link controller="parentProfile" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
+        <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
+        <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
+
+        <erp:isMeOrAdmin entity="${currentEntity}">
+          <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
+        </erp:isMeOrAdmin>
+
+        <erp:notMe entity="${entity}">
+          <g:if test="${entity.user.enabled}">
+            <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link></li>
+          </g:if>
+        </erp:notMe>
+
+        <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
+
+      </ul>
+    </td>
+  </tr>
+</table>

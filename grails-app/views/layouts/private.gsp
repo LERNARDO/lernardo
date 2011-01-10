@@ -138,81 +138,84 @@
       <div id="profile-navigation" class="yui-b">
         <div class="boxHeader">
           <div class="second">
-            <h1>${entity.profile.fullName} %{--<g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'bullet_green.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'bullet_red.png')}" alt="inaktiv"/></g:else></g:if>--}% %{--<a onclick="toggle('#kommunikation-toggled');
-            return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}" style="top: 3px; position: relative"></a>--}%
-            </h1>
+            <h1>${entity.profile.fullName} %{--<g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'bullet_green.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'bullet_red.png')}" alt="inaktiv"/></g:else></g:if>--}%</h1>
           </div>
         </div>
 
         <div class="profile-box" style="border-top-left-radius: 0; border-top-right-radius: 0">
           <div class="second">
-            <div id="kommunikation-toggled">
 
-              <table>
-                <tr>
-                  <td style="width: 135px">
-                    <ub:profileImage name="${entity.name}" width="130"/>
-                  </td>
-                  <td>
+            <g:if test="${entity.type.supertype.name == 'user' || entity.type.supertype.name == 'child' || entity.type.supertype.name == 'client' || entity.type.supertype.name == 'educator' || entity.type.supertype.name == 'parent' || entity.type.supertype.name == 'partner' || entity.type.supertype.name == 'pate' || entity.type.supertype.name == 'operator' || entity.type.supertype.name == 'facility'}">
+              <g:render template="/templates/${entity.type.supertype.name +'Navigation'}" model="[entity: entity]"/>
+            </g:if>
+            <g:else>
+              <g:render template="/templates/defaultNavigation" model="[entity: entity]"/>
+            </g:else>
 
+            %{-- OLD UNIVERSAL BUT SLOWER CODE --}%
+            %{--
+            <table>
+              <tr>
+                <td style="width: 135px">
+                  <ub:profileImage name="${entity.name}" width="130"/>
+                </td>
+
+                <td>
+                  <ul>
                     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
-                      <ul>
-                        <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
-                      </ul>
+                      <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
                     </erp:accessCheck>
 
-                    <ul>
-                      <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
-                      <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
+                    <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
+                    <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
 
-                      <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="true">
-                        <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
-                      </erp:accessCheck>
+                    <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="true">
+                      <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
+                    </erp:accessCheck>
 
-                      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
-                        <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
-                          <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
-                        </erp:accessCheck>
-                        <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
-                          <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="privat.articleList"/></g:link></li>
-                        </erp:accessCheck>
-                      </erp:accessCheck>
-
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
                       <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
-                        <erp:notMe entity="${entity}">
-                          <g:if test="${entity.user.enabled}">
-                            <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link></li>
-                          </g:if>
-                        </erp:notMe>
+                        <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
                       </erp:accessCheck>
-
-                      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
-                        <erp:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
-                          <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
-                        </erp:accessCheck>
-                        <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
-                          <li class="icon-evaluation"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
-                          <li class="icon-admin"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
-                        </erp:accessCheck>
+                      <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']" me="false">
+                        <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="privat.articleList"/></g:link></li>
                       </erp:accessCheck>
+                    </erp:accessCheck>
 
-                      <erp:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">
-                        <li class="icon-admin"><g:link controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
+                    <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
+                      <erp:notMe entity="${entity}">
+                        <g:if test="${entity.user.enabled}">
+                          <li class="profile-nachricht"><g:link controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link></li>
+                        </g:if>
+                      </erp:notMe>
+                    </erp:accessCheck>
+
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+                      <erp:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
+                        <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                       </erp:accessCheck>
+                      <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge']">
+                        <li class="icon-evaluation"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+                        <li class="icon-admin"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
+                      </erp:accessCheck>
+                    </erp:accessCheck>
 
-                      <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
+                    <erp:accessCheck entity="${entity}" roles="[]" types="['Einrichtung']">
+                      <li class="icon-admin"><g:link controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
+                    </erp:accessCheck>
 
-                    </ul>
-                  </td>
+                    <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
 
-                </tr>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+            --}%
 
-              </table>
-
-            </div>
           </div>
         </div>
-      %{--this concerns myself = currentEntity --}%
+
+        %{--this concerns myself = currentEntity --}%
         <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false">
 
           <div class="profile-box">
@@ -243,7 +246,7 @@
                       <erp:isOperator entity="${currentEntity}">
                         <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
                       </erp:isOperator>
-                      <erp:isAdmin>
+                      <erp:isAdmin entity="${currentEntity}">
                         <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                         <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                         <hr/>
@@ -272,32 +275,8 @@
           </div>
         </erp:accessCheck>
 
-        %{--<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
-          <div class="profile-box">
-            <div class="second">
-              --}%%{--Menue links Pädagogik--}%%{--
-              <div class="header">
-                <g:message code="privat.head.paedag"/> &nbsp;&nbsp;
-                <a onclick="toggle('#paedag-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a>
-              </div>
-
-              <div id="paedag-toggled">
-                <div id="a1" class="ein">
-                  <ul>
-                    <erp:isOperator entity="${currentEntity}">
-                      <li class="icon-admin"><g:link controller="resourceProfile" action="index" params="[name:entity.name]"><g:message code="resources"/></g:link></li>
-                    </erp:isOperator>
-                  </ul>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </erp:accessCheck>--}%
-
         <div class="profile-box">
           <div class="second">
-            %{--Menue links Hilfe--}%
             <div class="header"><g:message code="privat.head.help"/></div>
             <ul>
               <li class="icon-help"><g:link controller="helper" id="${entity.id}"><g:message code="privat.showHelp"/></g:link></li>

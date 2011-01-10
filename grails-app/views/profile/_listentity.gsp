@@ -22,7 +22,7 @@
                     <g:remoteLink update="listentity-${i}" controller="profile" action="enable" id="${entity.id}" params="[i:i]" before="showspinner('#entity-enabled-${i}')">%{--<img src="${resource (dir:'images/icons', file:'icon_disabled.png')}" alt="Aktivieren" align="top"/>--}%<g:message code="profile.list.activate"/></g:remoteLink>
                   </erp:notEnabled>
                 </g:if>
-                <erp:isAdmin>
+                <erp:isAdmin entity="${currentEntity}">
                   - <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${erp.getLinks(id: entity.id)}">%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%<g:message code="profile.list.delete"/></g:link>
                 </erp:isAdmin>
               </erp:notMe>

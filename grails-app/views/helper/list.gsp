@@ -20,7 +20,7 @@
       </g:else>
     </div>
 
-    <erp:isAdmin>
+    <erp:isAdmin entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="create" params="[entity:entity.id]"><g:message code="helper.topic.create"/></g:link>
         <div class="spacer"></div>
@@ -37,9 +37,13 @@
     <g:each in="${helperInstanceList}" status="i" var="helperInstance">
       <div class="helperbox">
         <p>
-          <a name="${i}">${helperInstance.title}</a><erp:isAdmin><g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
-          Hilfethema für: <g:join in="${helperInstance.types}"/></p></erp:isAdmin>
-          ${helperInstance.content.decodeHTML()}</p>
+          <a name="${i}">${helperInstance.title}</a>
+          <erp:isAdmin entity="${currentEntity}">
+            <g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
+          </erp:isAdmin>
+          Hilfethema für: <g:join in="${helperInstance.types}"/>
+          ${helperInstance.content.decodeHTML()}
+        </p>
       </div>
     </g:each>
     </g:if>

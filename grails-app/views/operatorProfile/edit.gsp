@@ -81,14 +81,14 @@
             </td>
           </tr>
 
-          <erp:isAdmin>
+          <erp:isAdmin entity="${currentEntity}">
             <tr class="prop">
               <td valign="top" class="name"><g:message code="active"/></td>
               <td valign="top" class="value">
-                <erp:isAdmin>
+                <erp:isAdmin entity="${currentEntity}">
                   <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
                 </erp:isAdmin>
-                <erp:notAdmin>
+                <erp:notAdmin entity="${currentEntity}">
                   <g:checkBox name="enabled" value="${operator?.user?.enabled}" disabled="true"/>
                 </erp:notAdmin>
               </td>
@@ -108,7 +108,7 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <erp:isAdmin>
+        <erp:isAdmin entity="${currentEntity}">
           <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${erp.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
         </erp:isAdmin>
         <g:link class="buttonGray" action="show" id="${operator.id}"><g:message code="cancel"/></g:link>

@@ -78,7 +78,7 @@
       </div>
 
       <div class="buttons">
-        <erp:isMeOrAdminOrOperator entity="${pate}">
+        <erp:isMeOrAdminOrOperator entity="${pate}" current="${currentEntity}">
           <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
         </erp:isMeOrAdminOrOperator>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
