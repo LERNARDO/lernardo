@@ -136,10 +136,6 @@ education_es = ['1':'e_Pädagoge','2':'e_Psychologe','3':'e_Soziologe','4':'e_Le
                 '8':'e_Arzt','9':'e_Krankenschwester','10':'e_Wirtschafter','11':'e_Buchhalter/Steuerberater']
 nationalities_de = ['1':'Deutschland','2':'England','3':'Frankreich','4':'Spanien','5':'Portugal','6':'Österreich','7':'Mexiko','8':'Italien']
 nationalities_es = ['1':'Alemania','2':'Inglaterra','3':'Francia','4':'España','5':'Portugal','6':'Austria','7':'México','8':'Italia']
-languages_de = ['1':'Spanisch','2':'Deutsch','3':'Englisch','4':'Französisch','5':'Mexikanisch','6':'Tsotsil','7':'Tseltal','8':'Zoque',
-                '9':'Tojolabal','10':'Kanjobal','11':'Lacandon','12':'Quiche','13':'Chol','14':'Cakchiquel']
-languages_es = ['1':'español','2':'alemán','3':'inglés','4':'francés','5':'mexicana','6':'Tsotsil','7':'Tseltal','8':'Zoque','9':'Tojolabal',
-                '10':'Kanjobal','11':'Lacandon','12':'Quiche','13':'Chol','14':'Cakchiquel']
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 inchargeof_de = ['1':'Direktion','2':'Programmkoordination','3':'Programm','4':'Projekt','5':'Bereiche','6':'Tutor','7':'Köchin','8':'Freiwilliger']

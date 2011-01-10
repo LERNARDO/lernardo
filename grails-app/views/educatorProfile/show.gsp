@@ -104,12 +104,7 @@
           <td valign="top" class="value-show-block">
             <ul>
               <g:each in="${educator.profile.languages}" var="language">
-                <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                  <li><erp:getLanguages language="${language}"/></li>
-                </g:if>
-                <g:if test="${grailsApplication.config.project == 'noe'}">
-                  <li><erp:getLanguagesNoe language="${language}"/></li>
-                </g:if>
+                <li><g:message code="language.${language}"/></li>
               </g:each>
             </ul>
           </td>

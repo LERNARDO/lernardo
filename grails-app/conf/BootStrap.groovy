@@ -204,7 +204,7 @@ class BootStrap {
           prf.education = (generator.nextInt(11) + 1).toString()
           prf.interests = "DummyInterests"
           prf.employment = (generator.nextInt(3) + 1).toString()
-          prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          //prf.addToLanguages((generator.nextInt(14) + 1).toString())
         }
         new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltWorking).save()
       }
@@ -230,7 +230,7 @@ class BootStrap {
           prf.currentZip = "1234"
           prf.currentCity = "DummyCity"
           prf.currentStreet = "DummyStreet"
-          prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.maritalStatus = (generator.nextInt(7) + 1).toString()
           prf.education = (generator.nextInt(13) + 1).toString()
@@ -270,7 +270,7 @@ class BootStrap {
           prf.originCountry = "DummyCountry"
           prf.originZip = "1234"
           prf.originCity = "DummyCity"
-          prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.schoolLevel = (generator.nextInt(16) + 1).toString()
           prf.size = generator.nextInt(130) + 50
@@ -380,7 +380,7 @@ class BootStrap {
           prf.city = "DummyCity"
           prf.street = "DummyStreet"
           prf.country = (generator.nextInt(8) + 1).toString()
-          prf.motherTongue = (generator.nextInt(14) + 1).toString()
+          prf.motherTongue = "english"
         }
       }
     }

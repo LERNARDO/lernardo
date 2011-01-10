@@ -116,7 +116,7 @@
               <g:if test="${client.profile.languages}">
               <ul>
                 <g:each in="${client.profile.languages}" var="language">
-                  <li><erp:getLanguages language="${language}"/></li>
+                  <li><g:message code="language.${language}"/></li>
                 </g:each>
               </ul>
               </g:if>

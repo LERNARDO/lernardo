@@ -299,21 +299,6 @@ class HelperTagLib {
   }
 
   /*
-   * receives a language ID and renders either the german or spanish word for it
-   */
-  def getLanguages = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.languages_de[attrs.language]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.languages_es[attrs.language]
-  }
-
-  def getLanguagesNoe = {attrs ->
-    out << grailsApplication.config.languages[attrs.language]
-  }
-
-  /*
    * receives a inChargeOf ID and renders either the german or spanish word for it
    */
   def getInChargeOf = {attrs ->
@@ -823,7 +808,7 @@ class HelperTagLib {
       eq('type', metaDataService.ltCreator)
     }
     // show also when the current user is an operator, admin or sysadmin
-    if (link || currentEntity.type.name == metaDataService.etOperator.name || secHelperService.isAdmin() || secHelperService.hasRole('ROLE_SYSTEMADMIN'))
+    if (link || currentEntity.type.name == metaDataService.etOperator.name || currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
   }
 

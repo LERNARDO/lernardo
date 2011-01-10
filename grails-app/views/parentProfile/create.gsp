@@ -59,12 +59,7 @@
               </g:if>
             </td>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_es}" optionKey="key" optionValue="value" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages_de}" optionKey="key" optionValue="value" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
-              </g:if>
+              <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
             </td>
             <td valign="top" class="value">
               <g:textArea class="countable2000" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>

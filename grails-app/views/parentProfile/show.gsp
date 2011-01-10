@@ -51,7 +51,7 @@
             <g:if test="${parent.profile.languages}">
               <ul>
                 <g:each in="${parent.profile.languages}" var="language">
-                  <li><erp:getLanguages language="${language}"/></li>
+                  <li><g:message code="language.${language}"/></li>
                 </g:each>
               </ul>
             </g:if>

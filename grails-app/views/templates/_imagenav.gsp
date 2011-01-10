@@ -4,7 +4,7 @@
     <ol>
       <li>
         <div class="imgbox">
-          <g:link controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[profiler: 'on']">
+          <g:link controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}">
             <img src="${g.resource(dir: 'images/icons', file: 'kf_profil.png')}" alt="<g:message code="imgmenu.profile.name"/>"/>
             <h3><g:message code="imgmenu.profile.name"/></h3>
           </g:link>

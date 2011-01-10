@@ -120,7 +120,24 @@ parentProfile.citizenship = true // true for Lernardo, false for Sueninos
 educatorProfile.enlisted = false // false for Lernardo, true for Sueninos
 educatorProfile.origin = false // false for Lernardo, true for Sueninos
 educatorProfile.contact = false // false for Lernardo, true for Sueninos
-educatorProfile.phone = true // true for Lernardo, false for Sueninos*/
+educatorProfile.phone = true // true for Lernardo, false for Sueninos
+
+// jobs for Lernardo
+jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständig','5':'karenziert','6':'Hausfrau/Hausmann']
+
+// languages
+languages = ['spanish','german','english','french','italian']
+
+// education for Lernardo (TODO: temp list, final list to come from PCR)
+education = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
+             '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
+
+// employment for Lernardo (TODO: temp list, final list to come from PCR)
+employment = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
+
+// school levels for Lernardo
+schoolLevels = ['1':'1. Schulstufe','2':'2. Schulstufe','3':'3. Schulstufe','4':'4. Schulstufe','5':'5. Schulstufe','6':'6. Schulstufe',
+                '7':'7. Schulstufe','8':'8. Schulstufe','9':'9. Schulstufe','10':'10. Schulstufe','11':'11. Schulstufe','12':'12. Schulstufe']*/
 
 //Sueninos Config:
 
@@ -156,19 +173,4 @@ educatorProfile.origin = true // false for Lernardo, true for Sueninos
 educatorProfile.contact = true // false for Lernardo, true for Sueninos
 educatorProfile.phone = false // true for Lernardo, false for Sueninos
 
-// jobs for Lernardo
-jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständig','5':'karenziert','6':'Hausfrau/Hausmann']
-
-// languages for Lernardo
-languages = ['1':'Deutsch','2':'Englisch','3':'Französisch','4':'Spanisch','5':'Italienisch']
-
-// education for Lernardo (TODO: temp list, final list to come from PCR)
-education = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
-             '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
-
-// employment for Lernardo (TODO: temp list, final list to come from PCR)
-employment = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
-
-// school levels for Lernardo
-schoolLevels = ['1':'1. Schulstufe','2':'2. Schulstufe','3':'3. Schulstufe','4':'4. Schulstufe','5':'5. Schulstufe','6':'6. Schulstufe',
-                '7':'7. Schulstufe','8':'8. Schulstufe','9':'9. Schulstufe','10':'10. Schulstufe','11':'11. Schulstufe','12':'12. Schulstufe']
+languages = ['spanish','german','english','french','mexican','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel']
