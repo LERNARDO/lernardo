@@ -53,12 +53,7 @@
         <tr>
           <td width="280" height="25" valign="top" class="value-show">
             <g:if test="${educator.profile.education}">
-              <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                <erp:getEducation education="${educator.profile.education}"/>
-              </g:if>
-              <g:if test="${grailsApplication.config.project == 'noe'}">
-                <erp:getEducation educationNoe="${educator.profile.education}"/>
-              </g:if>
+              <g:message code="education.${educator.profile.education}"/>
             </g:if>
             <g:else>
               <div class="italic"><g:message code="noData"/></div>  

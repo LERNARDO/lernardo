@@ -384,21 +384,6 @@ class HelperTagLib {
   }
 
   /*
-   * receives a education ID and renders either the german or spanish word for it
-   */
-  def getEducation = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.education_de[attrs.education]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.education_es[attrs.education]
-  }
-
-  def getEducationNoe = {attrs ->
-    out << grailsApplication.config.education[attrs.education]
-  }
-
-  /*
    * receives a classification ID and renders either the german or spanish word for it
    */
   def getClassification = {attrs ->

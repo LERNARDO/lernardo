@@ -132,10 +132,6 @@ resourceclasses_de = ['1':'Einrichtung','2':'Gemeinde','3':'Überall']
 resourceclasses_es = ['1':'Instalaciones','2':'Colonia','3':'e_Überall']
 employment_de = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
 employment_es = ['1':'e_Angestellt','2':'e_Freier Mitarbeiter','3':'e_Freiwilliger']
-education_de = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
-                '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
-education_es = ['1':'e_Pädagoge','2':'e_Psychologe','3':'e_Soziologe','4':'e_Lehrer (staatl. Ausbildung)','5':'e_Erzieher','6':'e_Psychopädagoge','7':'e_Bildender Künstler',
-                '8':'e_Arzt','9':'e_Krankenschwester','10':'e_Wirtschafter','11':'e_Buchhalter/Steuerberater']
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 inchargeof_de = ['1':'Direktion','2':'Programmkoordination','3':'Programm','4':'Projekt','5':'Bereiche','6':'Tutor','7':'Köchin','8':'Freiwilliger']

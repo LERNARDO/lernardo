@@ -129,8 +129,7 @@ jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständi
 languages = ['spanish','german','english','french','italian']
 
 // education for Lernardo (TODO: temp list, final list to come from PCR)
-education = ['1':'Pädagoge','2':'Psychologe','3':'Soziologe','4':'Lehrer (staatl. Ausbildung)','5':'Erzieher','6':'Psychopädagoge','7':'Bildender Künstler',
-             '8':'Arzt','9':'Krankenschwester','10':'Wirtschafter','11':'Buchhalter/Steuerberater']
+educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 
 // employment for Lernardo (TODO: temp list, final list to come from PCR)
 employment = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
@@ -174,3 +173,4 @@ educatorProfile.contact = true // false for Lernardo, true for Sueninos
 educatorProfile.phone = false // true for Lernardo, false for Sueninos
 
 languages = ['spanish','german','english','french','mexican','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel']
+educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
