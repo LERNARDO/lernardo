@@ -129,6 +129,8 @@ defaultpass = "pass"
 
 nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy']
 resourceclasses = ['facility','colony','everywhere']
+partners = ['projects','services','funding','personnel']
+
 
 // custom maps to store data
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
@@ -156,8 +158,6 @@ schoolLevels_es = ['1':'1. e_Kindergartenjahr','2':'2. e_Kindergartenjahr','3':'
                    '6':'3er grado primaria','7':'4to grado primaria','8':'5to grado primaria','9':'6to grado primaria','10':'1er grado secundaria',
                    '11':'2er grado secundaria','12':'3er grado secundaria','13':'1er grado preparatoria','14':'2er grado preparatoria','15':'3er grado preparatoria',
                    '16':'Estudios']
-partner_de = ['1':'Projekte, Arbeit','2':'Dienstleistungen','3':'Finanzierung','4':'Personal (Freiwillige)']
-partner_es = ['1':'en colaboración','2':'Prestadores de servicios','3':'Monetarios','4':'Personal (voluntarios)']
 familyRelation_de = ['1':'Eltern','2':'Vater','3':'Mutter','4':'Andere']
 familyRelation_es = ['1':'Padres','2':'Padre','3':'Madre','4':'Otros']
 maritalStatus_de = ['1':'unbekannt','2':'ledig','3':'verheiratet','4':'getrennt lebend','5':'geschieden','6':'verwitwet','7':'verpartnert']

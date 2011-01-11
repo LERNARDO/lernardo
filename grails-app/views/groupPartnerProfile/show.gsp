@@ -30,7 +30,7 @@
         
         <tr class="prop">
           <td valign="top" class="name-show">&nbsp;</td>
-          <td valign="top" class="value-show"><li><erp:getPartnerService service="${group.profile.service}"/></li></td>
+          <td valign="top" class="value-show"><g:message code="partner.${group.profile.service}"/></td>
         </tr>
 
       </table>

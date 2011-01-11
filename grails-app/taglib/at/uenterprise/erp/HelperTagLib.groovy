@@ -299,17 +299,6 @@ class HelperTagLib {
   }
 
   /*
-   * receives a partner service ID and renders either the german or spanish word for it
-   */
-  def getPartnerService = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.partner_de[attrs.service]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.partner_es[attrs.service]
-  }
-
-  /*
    * receives a school level ID and renders either the german or spanish word for it
    */
   def getSchoolLevel = {attrs ->

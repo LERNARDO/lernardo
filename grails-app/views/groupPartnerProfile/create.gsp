@@ -39,12 +39,7 @@
 
           <tr>
             <td colspan="2" valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_es}" optionKey="key" optionValue="value" value="${group?.profile?.service}"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select class="drop-down-280" name="service" id="service" from="${grailsApplication.config.partner_de}" optionKey="key" optionValue="value" value="${group?.profile?.service}"/>
-              </g:if>
+              <g:select class="drop-down-280" name="service" from="${grailsApplication.config.partners}" value="${group?.profile?.service}" valueMessagePrefix="partner"/>
             </td>
           </tr>
 

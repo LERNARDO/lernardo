@@ -36,7 +36,7 @@
           <td>
             <g:if test="${partner.profile.services}">
               <g:each in="${partner.profile.services}" var="service">
-                <erp:getPartnerService service="${service}"/>,
+                <g:message code="partner.${service}"/>,
               </g:each>
             </g:if>
             <g:else>
