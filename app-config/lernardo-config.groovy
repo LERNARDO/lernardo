@@ -122,19 +122,19 @@ educatorProfile.origin = false // false for Lernardo, true for Sueninos
 educatorProfile.contact = false // false for Lernardo, true for Sueninos
 educatorProfile.phone = true // true for Lernardo, false for Sueninos
 
-// jobs for Lernardo
-jobs = ['1':'unbekannt','2':'angestellt','3':'arbeitssuchend','4':'selbstständig','5':'karenziert','6':'Hausfrau/Hausmann']
+// jobs
+jobs = ['unknown','employed','seekingwork','selfemployed','maternity','house']
 
 // languages
 languages = ['spanish','german','english','french','italian']
 
-// education for Lernardo (TODO: temp list, final list to come from PCR)
+// education (TODO: temp list, final list to come from PCR)
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 
-// employment for Lernardo (TODO: temp list, final list to come from PCR)
+// employment (TODO: temp list, final list to come from PCR)
 employments = ['employed','freelancer','volunteer']
 
-// school levels for Lernardo
+// school levels
 schoolLevels = ['1':'1. Schulstufe','2':'2. Schulstufe','3':'3. Schulstufe','4':'4. Schulstufe','5':'5. Schulstufe','6':'6. Schulstufe',
                 '7':'7. Schulstufe','8':'8. Schulstufe','9':'9. Schulstufe','10':'10. Schulstufe','11':'11. Schulstufe','12':'12. Schulstufe']*/
 
@@ -175,3 +175,4 @@ educatorProfile.phone = false // true for Lernardo, false for Sueninos
 languages = ['spanish','german','english','french','mexican','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel']
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 employments = ['employed','freelancer','volunteer']
+jobs = ['shoeblack','bugglegumseller','handcraftseller','builderslabourer','homework','childoverseer','carwasher','dispenser','bearer','garagehelper','handcrafter','garbagecollector','squeegeeman','farecollector']

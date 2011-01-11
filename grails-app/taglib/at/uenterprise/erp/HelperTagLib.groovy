@@ -293,21 +293,6 @@ class HelperTagLib {
   }
 
   /*
-   * receives a jobType ID and renders either the german or spanish word for it
-   */
-  def getJobType = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.jobs_de[attrs.job]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.jobs_es[attrs.job]
-  }
-
-  def getJobTypeNoe = {attrs ->
-    out << grailsApplication.config.jobs[attrs.job]
-  }
-
-  /*
    * receives a profileType Name and renders either the german or spanish word for it     # hafo
    */
   def getProfileTypeName = {attrs ->

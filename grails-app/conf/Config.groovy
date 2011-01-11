@@ -142,13 +142,6 @@ colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 
-jobs_de = ['1':'Schuhputzer','2':'Kaugummiverkäufer','3':'Kunsthandwerkverkäufer','4':'Bauhilfsarbeiter','5':'Hausarbeit','6':'Kinderaufpassen',
-           '7':'Autowäscher','8':'Austeiler (Werbung)','9':'Träger, Verpacker im Supermarkt','10':'Hilfe in Werkstatt',
-           '11':'Kunsthandwerker (Textil, Schmuck)','12':'Müllsammler','13':'Autoscheibenputzer','14':'Fahrgeldeinsammler (öfftl. Kleinbusse)']
-jobs_es = ['1':'Boleros','2':'Chicleros','3':'Vendedores de artesanías','4':'Ayudantes de albañil (peón)','5':'Trabajo doméstico','6':'Niñeras-os',
-           '7':'Lavadores de coches','8':'Repartidores','9':'Cargadores (bolsas del mercado)','10':'Ayudantes de mecánica',
-           '11':'Artesanos (bordadores-pulseras-madera-collares)','12':'Pepenadores (recoger basura)','13':'Limpia parabrisas',
-           '14':'Cobradores (colectivos)']
 schoolLevels_de = ['1':'1. Kindergartenjahr','2':'2. Kindergartenjahr','3':'3. Kindergartenjahr','4':'1. Kl. Primarschule','5':'2. Kl. Primarschule',
                    '6':'3. Kl. Primarschule','7':'4. Kl. Primarschule','8':'5. Kl. Primarschule','9':'6. Kl. Primarschule','10':'1. Kl. Sekundarschule',
                    '11':'2. Kl. Sekundarschule','12':'3. Kl. Sekundarschule','13':'1. Kl. Preparatoria','14':'2. Kl. Preparatoria','15':'3. Kl. Preparatoria',

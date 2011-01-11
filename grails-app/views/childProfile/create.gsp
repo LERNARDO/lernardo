@@ -56,12 +56,7 @@
               <g:checkBox name="job" value="${child?.profile?.job}"/>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobType', 'errors')}">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${child?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${child?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
-              </g:if>
+              <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${child?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.jobIncome', 'errors')}">
               <g:textField size="35" name="jobIncome" value="${fieldValue(bean: child, field: 'profile.jobIncome')}"/>

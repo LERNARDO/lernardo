@@ -88,12 +88,7 @@
                 <g:select name="jobtypes" from="${grailsApplication.config.jobs}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}"/>
               </g:if>
               <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_es}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
-                </g:if>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs_de}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
-                </g:if>
+                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>
               </g:if>
             </td>
             <td valign="top" class="value">

@@ -43,11 +43,10 @@
               <g:if test="${child.profile.jobtypes}">
                 <ul>
                   <g:each in="${child.profile.jobtypes}" var="jobtype">
-                    <li><erp:getJobType job="${jobtype}"/></li>
+                    <li><g:message code="job.${jobtype}"/></li>
                   </g:each>
                 </ul>
               </g:if>
-              %{--<erp:getJobType job="${child.profile.jobType}"/>--}%
             </td>
             <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobIncome')}</td>
             <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.jobFrequency')}</td>

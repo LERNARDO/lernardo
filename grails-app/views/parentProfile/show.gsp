@@ -88,20 +88,11 @@
             </td>
             <td valign="top" class="value-show">
               <g:if test="${parent.profile.jobtypes}">
-                <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                  <ul>
-                    <g:each in="${parent.profile.jobtypes}" var="jobtype">
-                      <li><erp:getJobType job="${jobtype}"/></li>
-                    </g:each>
-                  </ul>
-                </g:if>
-                <g:if test="${grailsApplication.config.project == 'noe'}">
-                  <ul>
-                    <g:each in="${parent.profile.jobtypes}" var="jobtype">
-                      <li><erp:getJobTypeNoe job="${jobtype}"/></li>
-                    </g:each>
-                  </ul>
-                </g:if>
+                <ul>
+                  <g:each in="${parent.profile.jobtypes}" var="jobtype">
+                    <li><g:message code="job.${jobtype}"/></li>
+                  </g:each>
+                </ul>
               </g:if>
             </td>
             <td valign="top" class="value-show"><g:if test="${grailsApplication.config.parentProfile.jobIncome}">${fieldValue(bean: parent, field: 'profile.jobIncome')}</g:if></td>

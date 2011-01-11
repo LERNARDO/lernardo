@@ -183,13 +183,16 @@
                 <g:if test="${client.profile.jobtypes}">
                   <ul>
                     <g:each in="${client.profile.jobtypes}" var="jobtype">
-                      <li><erp:getJobType job="${jobtype}"/></li>
+                      <li><g:message code="job.${jobtype}"/></li>
                     </g:each>
                   </ul>
                 </g:if>
-                %{--<g:if test="${client.profile.jobType}">--}%
-                %{--<erp:getJobType job="${client.profile.jobType}"/>--}%
-                %{--</g:if>--}%<g:else><div class="italic"><g:message code="client.noWorkEntered"/></div></g:else></td>
+                <g:else>
+                  <div class="italic">
+                    <g:message code="client.noWorkEntered"/>
+                  </div>
+                </g:else>
+              </td>
               <td valign="top" class="value-show">${client?.profile?.jobIncome?.toInteger() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
               <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
             </tr>
