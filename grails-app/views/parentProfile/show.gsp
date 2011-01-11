@@ -45,7 +45,7 @@
 
         <tr>
           <td valign="top" class="value-show">
-            <erp:getMaritalStatus level="${parent.profile.maritalStatus}"/>
+            <g:message code="maritalstatus.${parent.profile.maritalStatus}"/>
           </td>
           <td valign="top" class="value-show-block">
             <g:if test="${parent.profile.languages}">

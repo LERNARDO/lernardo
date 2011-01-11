@@ -130,7 +130,7 @@ defaultpass = "pass"
 nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy']
 resourceclasses = ['facility','colony','everywhere']
 partners = ['projects','services','funding','personnel']
-
+maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
 
 // custom maps to store data
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
@@ -160,8 +160,7 @@ schoolLevels_es = ['1':'1. e_Kindergartenjahr','2':'2. e_Kindergartenjahr','3':'
                    '16':'Estudios']
 familyRelation_de = ['1':'Eltern','2':'Vater','3':'Mutter','4':'Andere']
 familyRelation_es = ['1':'Padres','2':'Padre','3':'Madre','4':'Otros']
-maritalStatus_de = ['1':'unbekannt','2':'ledig','3':'verheiratet','4':'getrennt lebend','5':'geschieden','6':'verwitwet','7':'verpartnert']
-maritalStatus_es = ['1':'desconocido','2':'soltero','3':'casado','4':'separado','5':'ser divorciado','6':'viudo','7':'e_verpartnert']
+
 
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              '01':'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',

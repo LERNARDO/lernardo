@@ -52,12 +52,7 @@
 
           <tr>
             <td valign="top" class="value">
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_es}" optionKey="key" optionValue="value" value="${parent.profile.maritalStatus}"/>
-              </g:if>
-              <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                <g:select id="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalStatus_de}" optionKey="key" optionValue="value" value="${parent.profile.maritalStatus}"/>
-              </g:if>
+              <g:select class="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalstatus}" value="${parent?.profile?.maritalStatus}" valueMessagePrefix="maritalstatus"/>
             </td>
             <td valign="top" class="value">
               <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
