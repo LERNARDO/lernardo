@@ -78,12 +78,7 @@
             <g:textArea rows="3" cols="39" class="countable${educator.profile.constraints.interests.maxSize} ${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" size="42" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
           </td>
           <td valign="top" class="value">
-            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_es}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
-            </g:if>
-            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof_de}" optionKey="key" optionValue="value" value="${educator?.profile?.inChargeOf}" noSelection="['':message(code: 'none')]"/>
-            </g:if>
+            <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof}" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]" valueMessagePrefix="inchargeof"/>
           </td>
           <td valign="top" class="value">
             <g:select class="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
