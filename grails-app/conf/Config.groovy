@@ -127,14 +127,19 @@ dummies = 2
 // the default password used when creating new entity accounts
 defaultpass = "pass"
 
+// custom lists used for selects within the application
 nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy']
 resourceclasses = ['facility','colony','everywhere']
 partners = ['projects','services','funding','personnel']
 maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
 familyrelations = ['parents','father','mother','other']
 inchargeof = ['directorate','programcoordination','program','project','areas','tutor','cook','volunteer']
+problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
 
 // custom maps to store data
+colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',
+          6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']
+
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 
 jobs_de = ['1':'Schuhputzer','2':'Kaugummiverkäufer','3':'Kunsthandwerkverkäufer','4':'Bauhilfsarbeiter','5':'Hausarbeit','6':'Kinderaufpassen',
@@ -144,13 +149,6 @@ jobs_es = ['1':'Boleros','2':'Chicleros','3':'Vendedores de artesanías','4':'Ay
            '7':'Lavadores de coches','8':'Repartidores','9':'Cargadores (bolsas del mercado)','10':'Ayudantes de mecánica',
            '11':'Artesanos (bordadores-pulseras-madera-collares)','12':'Pepenadores (recoger basura)','13':'Limpia parabrisas',
            '14':'Cobradores (colectivos)']
-problems_de = ['1':'Alkoholismus','2':'Drogen','3':'Vandalismus','4':'Trennung (Mutter-Vater)','5':'Abwesenheit des Vaters / der Mutter',
-               '6':'Gewalt (psychologisch, sexuell, symbolisch, physisch (Eltern gegen die Kinder, Partner untereinander)',
-               '7':'Arbeitslosigkeit','8':'Armut (Hunger, Krankheiten, Not)','9':'Behinderung/Krankheit eines Familienangehörigen',
-               '10':'Ablehnung der Kinder von Vater/Mutter','11':'Waisen']
-problems_es = ['1':'Alcoholismo','2':'Drogadicción','3':'Vandalismo','4':'Separación (mamá-papá)','5':'Ausencia del padre-madre',
-               '6':'Violencia: psicológica, sexual, simbólica, física (de madre-padre hacía los hij@s, de pareja a pareja)',
-               '7':'Desempleo','8':'Pobreza','9':'Discapacidad de un familiar','10':'Rechazo de padres-madres hacia los hijos','11':'Horfandad']
 schoolLevels_de = ['1':'1. Kindergartenjahr','2':'2. Kindergartenjahr','3':'3. Kindergartenjahr','4':'1. Kl. Primarschule','5':'2. Kl. Primarschule',
                    '6':'3. Kl. Primarschule','7':'4. Kl. Primarschule','8':'5. Kl. Primarschule','9':'6. Kl. Primarschule','10':'1. Kl. Sekundarschule',
                    '11':'2. Kl. Sekundarschule','12':'3. Kl. Sekundarschule','13':'1. Kl. Preparatoria','14':'2. Kl. Preparatoria','15':'3. Kl. Preparatoria',
@@ -159,6 +157,19 @@ schoolLevels_es = ['1':'1. e_Kindergartenjahr','2':'2. e_Kindergartenjahr','3':'
                    '6':'3er grado primaria','7':'4to grado primaria','8':'5to grado primaria','9':'6to grado primaria','10':'1er grado secundaria',
                    '11':'2er grado secundaria','12':'3er grado secundaria','13':'1er grado preparatoria','14':'2er grado preparatoria','15':'3er grado preparatoria',
                    '16':'Estudios']
+
+profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtungen','Pädagoge':'Pädagogen','Betreuter':'Betreute',
+          'User':'User','Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte','Kind':'Kinder']
+profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
+          'User':'Usuario','Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores','Kind':'Niños']
+
+helpProfileType_de = ['all':'Alle','Betreiber':'Betreiber','Pädagoge':'Pädagogen','Betreuter':'Betreute',
+          'Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte']
+helpProfileType_es = ['all':'Todos','Betreiber':'Operador','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
+          'Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores']
+
+dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittsdatum']
+dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']
 
 
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
@@ -225,19 +236,3 @@ quoterMap = ['00':'Maria Montessori',
              '29':'George Bernard Shaw',
              '30':'Albert Einstein',
              '31':'Heraklit']
-
-profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtungen','Pädagoge':'Pädagogen','Betreuter':'Betreute',
-          'User':'User','Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte','Kind':'Kinder']
-profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
-          'User':'Usuario','Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores','Kind':'Niños']
-
-helpProfileType_de = ['all':'Alle','Betreiber':'Betreiber','Pädagoge':'Pädagogen','Betreuter':'Betreute',
-          'Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte']
-helpProfileType_es = ['all':'Todos','Betreiber':'Operador','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
-          'Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores']
-
-dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittsdatum']
-dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']
-
-colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',
-          6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']
