@@ -63,15 +63,17 @@ secmgr {
 
 // log4j configuration
 log4j = {
+
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
-    appenders {
-     'null' name: 'stacktrace'  // turn off stacktrace.log
 
-     console(
+    appenders {
+      'null' name: 'stacktrace'  // turn off stacktrace.log
+
+      console(
              name: 'stdout',
              threshold: org.apache.log4j.Level.DEBUG,
              layout: pattern(conversionPattern: "${appName} - %d{HH:mm:ss} - [%p] - %c -> %m%n"))
@@ -129,9 +131,6 @@ nationalities = ['germany','england','france','spain','portugal','austria','mexi
 resourceclasses = ['facility','colony','everywhere']
 
 // custom maps to store data
-employment_de = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
-employment_es = ['1':'e_Angestellt','2':'e_Freier Mitarbeiter','3':'e_Freiwilliger']
-
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 inchargeof_de = ['1':'Direktion','2':'Programmkoordination','3':'Programm','4':'Projekt','5':'Bereiche','6':'Tutor','7':'Köchin','8':'Freiwilliger']
 inchargeof_es = ['1':'Direktion','2':'Programmkoordination','3':'Programm','4':'Projekt','5':'Bereiche','6':'Tutor','7':'Köchin','8':'Freiwilliger']

@@ -132,7 +132,7 @@ languages = ['spanish','german','english','french','italian']
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 
 // employment for Lernardo (TODO: temp list, final list to come from PCR)
-employment = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
+employments = ['employed','freelancer','volunteer']
 
 // school levels for Lernardo
 schoolLevels = ['1':'1. Schulstufe','2':'2. Schulstufe','3':'3. Schulstufe','4':'4. Schulstufe','5':'5. Schulstufe','6':'6. Schulstufe',
@@ -174,3 +174,4 @@ educatorProfile.phone = false // true for Lernardo, false for Sueninos
 
 languages = ['spanish','german','english','french','mexican','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel']
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
+employments = ['employed','freelancer','volunteer']

@@ -60,12 +60,7 @@
             </g:else>
           </td>
           <td width="280" valign="top" class="value-show">
-            <g:if test="${grailsApplication.config.project == 'sueninos'}">
-              <erp:getEmployment employment="${educator.profile.employment}"/>
-            </g:if>
-            <g:if test="${grailsApplication.config.project == 'noe'}">
-              <erp:getEmployment employmentNoe="${educator.profile.employment}"/>
-            </g:if>
+            <g:message code="employment.${educator.profile.employment}"/>
           </td>
           <td valign="top" class="value-show">
             <g:if test="${grailsApplication.config.educatorProfile.enlisted}">

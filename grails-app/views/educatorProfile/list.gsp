@@ -35,7 +35,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><g:message code="education.${educator.profile.education}"/></td>
-          <td><erp:getEmployment employment="${educator.profile.employment}"/></td>
+          <td><g:message code="employment.${educator.profile.employment}"/></td>
         </tr>
       </g:each>
       </tbody>
