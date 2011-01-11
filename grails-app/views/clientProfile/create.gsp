@@ -153,12 +153,7 @@
             <tr>
               <td width="160px" valign="top" class="value">
                 <g:if test="${grailsApplication.config.clientProfile.familyStatus}">
-                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                    <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_es}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
-                  </g:if>
-                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                    <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyRelation_de}" optionKey="key" optionValue="value" value="${client?.profile?.familyStatus}"/>
-                  </g:if>
+                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyrelations}" value="${client?.profile?.familyStatus}" valueMessagePrefix="familyrelation"/>
                 </g:if>
               </td>
               <td width="250" valign="top" class="value">

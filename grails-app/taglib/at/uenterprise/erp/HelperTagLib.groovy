@@ -276,16 +276,6 @@ class HelperTagLib {
 
     return result
   }
-  /*
-   * receives a family status ID and renders either the german or spanish word for it
-   */
-  def getFamilyStatus = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.familyRelation_de[attrs.status]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.familyRelation_es[attrs.status]
-  }
 
   /*
    * receives a inChargeOf ID and renders either the german or spanish word for it

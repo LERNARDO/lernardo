@@ -131,6 +131,7 @@ nationalities = ['germany','england','france','spain','portugal','austria','mexi
 resourceclasses = ['facility','colony','everywhere']
 partners = ['projects','services','funding','personnel']
 maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
+familyrelations = ['parents','father','mother','other']
 
 // custom maps to store data
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
@@ -158,8 +159,6 @@ schoolLevels_es = ['1':'1. e_Kindergartenjahr','2':'2. e_Kindergartenjahr','3':'
                    '6':'3er grado primaria','7':'4to grado primaria','8':'5to grado primaria','9':'6to grado primaria','10':'1er grado secundaria',
                    '11':'2er grado secundaria','12':'3er grado secundaria','13':'1er grado preparatoria','14':'2er grado preparatoria','15':'3er grado preparatoria',
                    '16':'Estudios']
-familyRelation_de = ['1':'Eltern','2':'Vater','3':'Mutter','4':'Andere']
-familyRelation_es = ['1':'Padres','2':'Padre','3':'Madre','4':'Otros']
 
 
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
