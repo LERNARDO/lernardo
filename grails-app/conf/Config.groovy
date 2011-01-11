@@ -126,10 +126,9 @@ dummies = 2
 defaultpass = "pass"
 
 nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy']
+resourceclasses = ['facility','colony','everywhere']
 
 // custom maps to store data
-resourceclasses_de = ['1':'Einrichtung','2':'Gemeinde','3':'Überall']
-resourceclasses_es = ['1':'Instalaciones','2':'Colonia','3':'e_Überall']
 employment_de = ['1':'Angestellt','2':'Freier Mitarbeiter','3':'Freiwilliger']
 employment_es = ['1':'e_Angestellt','2':'e_Freier Mitarbeiter','3':'e_Freiwilliger']
 

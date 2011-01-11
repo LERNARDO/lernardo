@@ -209,12 +209,7 @@
             <tr>
               <td><g:message code="resource.profile.classification"/>:</td>
               <td>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select name="classification" from="${grailsApplication.config.resourceclasses_es}" optionKey="key" optionValue="value" value=""/>
-                </g:if>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select name="classification" from="${grailsApplication.config.resourceclasses_de}" optionKey="key" optionValue="value" value=""/>
-                </g:if>
+                <g:select name="classification" from="${grailsApplication.config.resourceclasses}" value="" valueMessagePrefix="resourceclass"/>
               </td>
             </tr>
           </table>
