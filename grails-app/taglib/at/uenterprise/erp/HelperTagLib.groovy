@@ -278,21 +278,6 @@ class HelperTagLib {
   }
 
   /*
-   * receives a school level ID and renders either the german or spanish word for it
-   */
-  def getSchoolLevel = {attrs ->
-    Locale locale = RequestContextUtils.getLocale(request) ?: new Locale("de", "DE")
-    if (locale.toString() == "de" || locale.toString() == "de_DE")
-      out << grailsApplication.config.schoolLevels_de[attrs.level]
-    if (locale.toString() == "es" || locale.toString() == "es_ES")
-      out << grailsApplication.config.schoolLevels_es[attrs.level]
-  }
-
-  def getSchoolLevelNoe = {attrs ->
-    out << grailsApplication.config.schoolLevels[attrs.level]
-  }
-
-  /*
    * receives a profileType Name and renders either the german or spanish word for it     # hafo
    */
   def getProfileTypeName = {attrs ->

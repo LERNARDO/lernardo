@@ -77,12 +77,7 @@
             <tr>
               <td><g:message code="client.profile.schoolLevel"/>:</td>
               <td>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                  <g:select name="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" noSelection="['all':message(code:'all')]"/>
-                </g:if>
-                <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                  <g:select name="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" noSelection="['all':message(code:'all')]"/>
-                </g:if>
+                <g:select name="schoolLevel" from="${grailsApplication.config.schoollevels}" noSelection="['all': message(code: 'all')]" valueMessagePrefix="schoollevel"/>
               </td>
             </tr>
             <g:if test="${grailsApplication.config.clientProfile.job}">

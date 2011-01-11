@@ -142,15 +142,6 @@ colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 
-schoolLevels_de = ['1':'1. Kindergartenjahr','2':'2. Kindergartenjahr','3':'3. Kindergartenjahr','4':'1. Kl. Primarschule','5':'2. Kl. Primarschule',
-                   '6':'3. Kl. Primarschule','7':'4. Kl. Primarschule','8':'5. Kl. Primarschule','9':'6. Kl. Primarschule','10':'1. Kl. Sekundarschule',
-                   '11':'2. Kl. Sekundarschule','12':'3. Kl. Sekundarschule','13':'1. Kl. Preparatoria','14':'2. Kl. Preparatoria','15':'3. Kl. Preparatoria',
-                   '16':'Studium']
-schoolLevels_es = ['1':'1. e_Kindergartenjahr','2':'2. e_Kindergartenjahr','3':'3. e_Kindergartenjahr','4':'1er grado primaria','5':'2do grado primaria',
-                   '6':'3er grado primaria','7':'4to grado primaria','8':'5to grado primaria','9':'6to grado primaria','10':'1er grado secundaria',
-                   '11':'2er grado secundaria','12':'3er grado secundaria','13':'1er grado preparatoria','14':'2er grado preparatoria','15':'3er grado preparatoria',
-                   '16':'Estudios']
-
 profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtungen','Pädagoge':'Pädagogen','Betreuter':'Betreute',
           'User':'User','Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte','Kind':'Kinder']
 profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',

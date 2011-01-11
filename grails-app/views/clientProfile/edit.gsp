@@ -154,17 +154,7 @@
                 <g:select class="drop-down-200" name="school" id="name" from="${allFacilities}" optionKey="id" optionValue="profile"/>
               </td>
               <td width="210" valign="top" class="value">
-                <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-                    <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_es}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
-                  </g:if>
-                  <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-                    <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels_de}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
-                  </g:if>
-                </g:if>
-                <g:if test="${grailsApplication.config.project == 'noe'}">
-                  <g:select class="drop-down-205" name="schoolLevel" id="schoolLevel" from="${grailsApplication.config.schoolLevels}" optionKey="key" optionValue="value" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
-                </g:if>
+                <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoollevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>
               </td>
             </tr>
 

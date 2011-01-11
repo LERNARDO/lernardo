@@ -65,7 +65,7 @@
           <td valign="top" class="value-show">
             <g:if test="${grailsApplication.config.parentProfile.education}">
               <g:if test="${parent.profile.education}">
-                <erp:getSchoolLevel level="${parent.profile.education}"/>
+                <g:message code="schoollevel.${parent.profile.education}"/>
               </g:if>
               <g:else>
                 <div class="italic"><g:message code="none"/></div>
