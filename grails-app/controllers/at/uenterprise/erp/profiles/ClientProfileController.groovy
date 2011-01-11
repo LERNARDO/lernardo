@@ -220,7 +220,7 @@ class ClientProfileController {
   def addDate = {
     CDate date = new CDate(params)
     Entity client = Entity.get(params.id)
-    date.type = client.profile.dates.size() % 2 == 0 ? 'Eintritt' : 'Austritt'
+    date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
     client.profile.addToDates(date)
     render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
   }

@@ -1,4 +1,3 @@
-<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="profile.list"/></title>
@@ -44,17 +43,7 @@
 
       <div id="select-box" style="margin-top: 10px">
         <g:form name="form1" action="list">
-          %{-- }Typ: <g:select name="entityType" from="${[all:'Alle',Betreiber:'Betreiber',Einrichtung:'Einrichtungen',Pädagoge:'Pädagogen',Betreuter:'Betreute',User:'User',Partner:'Partner',Pate:'Pate',Erziehungsberechtigter:'Erziehungsberechtigte',Kind:'Kinder']}" value="${entityType}" optionKey="key" optionValue="value"/>
-            --}%
-
-          <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-            <g:select name="entityType" from="${grailsApplication.config.profileType_es}" value="${entityType}" optionKey="key" optionValue="value"/>
-          </g:if>
-          <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-            <g:select name="entityType" from="${grailsApplication.config.profileType_de}" value="${entityType}" optionKey="key" optionValue="value"/>
-          </g:if>
-
-
+          <g:select name="entityType" from="${grailsApplication.config.profiletypes}" value="${entityType}" valueMessagePrefix="profiletype"/>
         </g:form>
 
         <script type="text/javascript">

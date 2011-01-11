@@ -1,4 +1,3 @@
-<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
@@ -40,13 +39,7 @@
         <tr>
           <td class="label">Für:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'types', 'errors')}">
-            %{-- <g:select id="type" name="type" from="${[Educator:'Pädagogen',User:'Moderatoren']}" value="${fieldValue(bean:helperInstance, field:'type')}" optionKey="key" optionValue="value"/></td> --}%
-            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-              <g:select id="type" name="types" multiple="true" from="${grailsApplication.config.helpProfileType_es}" value="${fieldValue(bean:helperInstance, field:'types')}" optionKey="key" optionValue="value"/>
-            </g:if>
-            <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-              <g:select id="type" name="types" multiple="true" from="${grailsApplication.config.helpProfileType_de}" value="${fieldValue(bean:helperInstance, field:'types')}" optionKey="key" optionValue="value"/>
-            </g:if>
+            <g:select name="types" multiple="true" from="${grailsApplication.config.helpertypes}" value="${helperInstance?.types}" valueMessagePrefix="profiletype"/>
           </td>
         </tr>
 

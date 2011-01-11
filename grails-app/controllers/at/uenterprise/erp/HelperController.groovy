@@ -131,7 +131,20 @@ class HelperController {
 
     List receivers = []
     types.each { type ->
-      receivers.addAll(Entity.findAllByType(EntityType.findByName(type)))
+      EntityType entityType = null
+      if (type == 'operator')
+        entityType = metaDataService.etOperator
+      else if (type == 'educator')
+        entityType = metaDataService.etEducator
+      else if (type == 'client')
+        entityType = metaDataService.etClient
+      else if (type == 'partner')
+        entityType = metaDataService.etPartner
+      else if (type == 'pate')
+        entityType = metaDataService.etPate
+      else if (type == 'parent')
+        entityType = metaDataService.etParent
+      receivers.addAll(Entity.findAllByType(entityType))
     }
 
     receivers.each {

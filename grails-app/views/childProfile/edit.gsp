@@ -1,4 +1,3 @@
-<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="child.profile.edit"/></title>

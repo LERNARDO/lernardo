@@ -505,6 +505,26 @@ class ProfileController {
     params.offset = params.offset ? params.int('offset') : 0
     params.max = params.max ? params.int('max') : 10
 
+    EntityType entityType = null
+    if (params.entityType == 'operator')
+      entityType = metaDataService.etOperator
+    else if (params.entityType == 'facility')
+      entityType = metaDataService.etFacility
+    else if (params.entityType == 'educator')
+      entityType = metaDataService.etEducator
+    else if (params.entityType == 'client')
+      entityType = metaDataService.etClient
+    else if (params.entityType == 'user')
+      entityType = metaDataService.etUser
+    else if (params.entityType == 'partner')
+      entityType = metaDataService.etPartner
+    else if (params.entityType == 'pate')
+      entityType = metaDataService.etPate
+    else if (params.entityType == 'parent')
+      entityType = metaDataService.etParent
+    else if (params.entityType == 'child')
+      entityType = metaDataService.etChild
+
     List entities
     int count
     if (params.entityType == 'all') {
@@ -535,8 +555,8 @@ class ProfileController {
       entities = entities.subList(params.offset, upperBound)
     }
     else {
-      entities = Entity.findAllByType(EntityType.findByName(params.entityType), params)
-      count = Entity.countByType(EntityType.findByName(params.entityType))
+      entities = Entity.findAllByType(entityType, params)
+      count = Entity.countByType(entityType)
     }
 
     return ['entityType': params.entityType,

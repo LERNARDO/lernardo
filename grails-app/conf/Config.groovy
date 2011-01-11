@@ -135,26 +135,13 @@ maritalstatus = ['unknown','single','married','separated','divorced','widowed','
 familyrelations = ['parents','father','mother','other']
 inchargeof = ['directorate','programcoordination','program','project','areas','tutor','cook','volunteer']
 problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
+profiletypes = ['all','operator','facility','educator','client','user','partner','pate','parent','child']
+helpertypes = ['operator','educator','client','partner','pate','parent']
 
 // custom maps to store data
-colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',
-          6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']
+colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f', 6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']
 
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
-
-profileType_de = ['all':'Alle','Betreiber':'Betreiber','Einrichtung':'Einrichtungen','Pädagoge':'Pädagogen','Betreuter':'Betreute',
-          'User':'User','Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte','Kind':'Kinder']
-profileType_es = ['all':'Todos','Betreiber':'Operador','Einrichtung':'Instalaciones','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
-          'User':'Usuario','Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores','Kind':'Niños']
-
-helpProfileType_de = ['all':'Alle','Betreiber':'Betreiber','Pädagoge':'Pädagogen','Betreuter':'Betreute',
-          'Partner':'Partner','Pate':'Pate','Erziehungsberechtigter':'Erziehungsberechtigte']
-helpProfileType_es = ['all':'Todos','Betreiber':'Operador','Pädagoge':'Pedagogos','Betreuter':'Niños atendidos',
-          'Partner':'Socio','Pate':'Padrinos','Erziehungsberechtigter':'Tutores']
-
-dateType_de = ['Eintritt':'Eintrittsdatum','Austritt':'Austrittsdatum']
-dateType_es = ['Eintritt':'Comienzo','Austritt':'Fin']
-
 
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              '01':'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',

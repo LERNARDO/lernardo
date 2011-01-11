@@ -1,4 +1,3 @@
-<%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <%@ page import="at.openfactory.ep.Entity" %>
 <head>
   <meta name="layout" content="private"/>
