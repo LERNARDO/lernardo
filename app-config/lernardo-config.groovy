@@ -121,7 +121,7 @@ educatorProfile.contact = false // false for Lernardo, true for Sueninos
 educatorProfile.phone = true // true for Lernardo, false for Sueninos
 
 jobs = ['unknown','employed','seekingwork','selfemployed','maternity','house']
-languages = ['spanish','german','english','french','italian','turkish','serbocroatian','russian','polish']
+languages = ['spanish','german','english','french','italian','turkish','serbocroatian','russian','polish','bulgarian']
 // TODO: temp list, final list to come from PCR
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 // TODO: temp list, final list to come from PCR
