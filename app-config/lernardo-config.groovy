@@ -129,6 +129,7 @@ educations = ['pedagogue','psychologist','sociologist','teacher','educator','psy
 // TODO: temp list, final list to come from PCR
 employments = ['employed','freelancer','volunteer']
 schoollevels = ['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth']
+inchargeof = ['hoardlead','hoardhelper','support',comeducator','externaleducator']
 */
 
 //Sueninos Config:
@@ -170,4 +171,5 @@ educations = ['pedagogue','psychologist','sociologist','teacher','educator','psy
 employments = ['employed','freelancer','volunteer']
 jobs = ['shoeblack','bugglegumseller','handcraftseller','builderslabourer','homework','childoverseer','carwasher','dispenser','bearer','garagehelper','handcrafter','garbagecollector','squeegeeman','farecollector']
 schoollevels = ['firstnursery','secondnursery','thirdnursery','firstprimary','secondprimary','thirdprimary','fourthprimary','fifthprimary','sixthprimary','firstsecondary','secondsecondary','thirdsecondary','firstpreparatoria','secondpreparatoria','thirdpreparatoria','studies']
+inchargeof = ['directorate','programcoordination','program','project','areas','tutor','cook','volunteer']
 
