@@ -457,6 +457,7 @@ class BootStrap {
           else
             ent.profile.status = "in Bearbeitung"
           ent.profile.duration = generator.nextInt(50) + 10
+          ent.profile.type = "default"
         }
       }
     }
