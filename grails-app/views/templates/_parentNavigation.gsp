@@ -24,7 +24,7 @@
           </g:if>
         </erp:notMe>
 
-        <li class="icon-admin"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
+        <li class="icon-appointments"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
 
       </ul>
     </td>
