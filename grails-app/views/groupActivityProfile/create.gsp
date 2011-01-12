@@ -47,27 +47,15 @@
             </td>
           </tr>
 
-          %{--<tr class="prop">
-            <td valign="top" class="name">
-              <label for="educationalObjective">
-                <g:message code="groupActivity.profile.educationalObjective"/>
-              </label>
-            </td>
-            <td colspan="2" valign="top" class="name">
-              <label for="educationalObjectiveText">
-                <g:message code="groupActivity.profile.educationalObjectiveText"/>
-              </label>
-            </td>
-          </tr>--}%
-          %{--<tr class="prop">
-            <td valign="top" class="value">
-              <g:select from="${['a','b','c']}" class="drop-down-240" id="educationalObjective" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
-            </td>
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
+          </tr>
 
-            <td colspan="2" valign="top" class="value">
-              <g:textArea class="${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="1" cols="80" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>
             </td>
-          </tr>--}%
+          </tr>
 
           </tbody>
         </table>

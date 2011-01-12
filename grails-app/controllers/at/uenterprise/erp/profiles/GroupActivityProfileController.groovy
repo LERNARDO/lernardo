@@ -180,7 +180,6 @@ class GroupActivityProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
         ent.profile.educationalObjective = ""
-        ent.profile.educationalObjectiveText = ""
       }
 
       // create link to creator
