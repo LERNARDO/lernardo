@@ -149,67 +149,16 @@ class ActivityProfileController {
   /*
   * shows view to create a theme room activity
   */
-  def create = {
-    // get template the activity is created from
-    //Entity template = Entity.get(params.id)
-
-    Entity currentEntity = entityHelperService.loggedIn
-
-    // get a list of facilities the current entity is working in
-    def facilities = []
-    if (currentEntity.type.name == metaDataService.etEducator.name)
-      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
-    else
-      facilities = Entity.findAllByType(metaDataService.etFacility)
-    def educators = Entity.findAllByType(metaDataService.etEducator)
-    def clients = Entity.findAllByType(metaDataService.etClient)
-    def resources = Entity.findAllByType(metaDataService.etResource)
-
-    def c = Entity.createCriteria()
-    def templates = c.list {
-      profile {
-        eq("type", "Themenraumaktivitätsvorlage")
-      }
-    }
-
-    return [/*'template': template,*/
-            'facilities': facilities,
-            'educators': educators,
-            'clients': clients,
-            'resources': resources,
-            'templates': templates]
-  }
+  def create = {}
 
   /*
    * saves a batch of theme room activities between a certain time range
    */
-  def save = {ActivityCommand ac->
+  def save = {ActivityCommand ac ->
     Entity currentEntity = entityHelperService.loggedIn
 
     if (ac.hasErrors()) {
-
-      def facilities = []
-      if (currentEntity.type.name == metaDataService.etEducator.name)
-        facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
-      else
-        facilities = Entity.findAllByType(metaDataService.etFacility)
-      def educators = Entity.findAllByType(metaDataService.etEducator)
-      def clients = Entity.findAllByType(metaDataService.etClient)
-      def resources = Entity.findAllByType(metaDataService.etResource)
-
-      def c = Entity.createCriteria()
-      def templates = c.list {
-        profile {
-          eq("type", "Themenraumaktivitätsvorlage")
-        }
-      }
-
-      render view:'create', model:['ac':ac,
-                                   'facilities': facilities,
-                                   'educators': educators,
-                                   'clients': clients,
-                                   'resources': resources,
-                                   'templates': templates]
+      render view:'create', model:['ac':ac]
       return
     }
 

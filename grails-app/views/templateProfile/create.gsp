@@ -19,16 +19,6 @@
         <table>
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name">Typ:</td>
-          </tr>
-
-          <tr>
-            <td colspan="3" valign="top" class="name">
-              <g:select id="type" name="type" from="${['normale Aktivitätsvorlage','Themenraumaktivitätsvorlage']}" value="${template?.profile?.type}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
             <td colspan="2" valign="top" class="name"><g:message code="activityTemplate.name"/>:</td>
             <td valign="top" class="name"><g:message code="activityTemplate.duration"/>:</td>
           </tr>

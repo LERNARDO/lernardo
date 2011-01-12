@@ -457,10 +457,6 @@ class BootStrap {
           else
             ent.profile.status = "in Bearbeitung"
           ent.profile.duration = generator.nextInt(50) + 10
-          if (generator.nextInt(2) == 0)
-            ent.profile.type = "normale Aktivitätsvorlage"
-          else
-            ent.profile.type = "Themenraumaktivitätsvorlage"
         }
       }
     }

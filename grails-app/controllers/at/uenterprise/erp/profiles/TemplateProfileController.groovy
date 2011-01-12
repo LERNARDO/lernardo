@@ -145,6 +145,7 @@ class TemplateProfileController {
       Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        ent.profile.type = "default"
       }
       // TODO: find out why this doesn't work properly
       //File file = ApplicationHolder.application.parentContext.getResource("images/sueninos/static/entities/Chrysanthemum.jpg").getFile()
