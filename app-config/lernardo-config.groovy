@@ -52,31 +52,29 @@ grails.mail.default.from="lernardomailer@gmail.com"
 // layout configuration
 // ---------------------------------------------------------------------------------------------
 
-// one of the current projects:
-// "sueninos"
-// "noe"
+// Sueninos Config:
 
-// full project names:
-// "Sueninos"
-// "Lernardo"
-
-// currency:
-// "Pesos"
-// "Euro"
-
-project = "sueninos"
+/*project = "sueninos"
 projectName = "Sueninos" // full project name
-currency = "Pesos"
+currency = "Pesos"*/
+
+// Lernardo Config:
+
+project = "noe"
+projectName = "Lernardo"
+currency = "Euro"
 
 // ---------------------------------------------------------------------------------------------
 // google analytics tracker
 // ---------------------------------------------------------------------------------------------
 
-// one of the following IDs:
-// "UA-17725364-2" for http://sueninos.lernardo.net
-// "UA-17725364-3" for http://noe.lernardo.net
+// Sueninos Config:
 
-google.analytics.webPropertyID = "UA-17725364-2"
+//google.analytics.webPropertyID = "UA-17725364-2" // http://sueninos.lernardo.net
+
+// Lernardo Config:
+
+google.analytics.webPropertyID = "UA-17725364-3" // http://noe.lernardo.net
 
 // by default, tracking is enabled for the 'production' Env only, but that can be overwritten
 // both ways (i.e emergency disable tracking)
@@ -91,7 +89,7 @@ google.analytics.webPropertyID = "UA-17725364-2"
 // Lernardo Config:
 
 // ClientProfile
-/*clientProfile.citizenship = true // true for Lernardo, false for Sueninos
+clientProfile.citizenship = true // true for Lernardo, false for Sueninos
 clientProfile.socialSecurityNumber = true // true for Lernardo, false for Sueninos
 clientProfile.contact = true // true for Lernardo, false for Sueninos
 clientProfile.size = false // false for Lernardo, true for Sueninos
@@ -128,14 +126,14 @@ languages = ['spanish','german','english','french','italian','turkish','serbocro
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 // TODO: temp list, final list to come from PCR
 employments = ['employed','freelancer','volunteer']
-schoollevels = ['first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth']
-inchargeof = ['hoardlead','hoardhelper','support',comeducator','externaleducator']
-*/
+schoollevels = ['first','second','third','fourth','fifth','sixth','seventh','eigth','ninth','tenth','eleventh','twelfth']
+inchargeof = ['hoardlead','hoardhelper','support','comeducator','externaleducator']
+
 
 //Sueninos Config:
 
 // ClientProfile
-clientProfile.citizenship = false // true for Lernardo, false for Sueninos
+/*clientProfile.citizenship = false // true for Lernardo, false for Sueninos
 clientProfile.socialSecurityNumber = false // true for Lernardo, false for Sueninos
 clientProfile.contact = false // true for Lernardo, false for Sueninos
 clientProfile.size = true // false for Lernardo, true for Sueninos
@@ -171,5 +169,5 @@ educations = ['pedagogue','psychologist','sociologist','teacher','educator','psy
 employments = ['employed','freelancer','volunteer']
 jobs = ['shoeblack','bugglegumseller','handcraftseller','builderslabourer','homework','childoverseer','carwasher','dispenser','bearer','garagehelper','handcrafter','garbagecollector','squeegeeman','farecollector']
 schoollevels = ['firstnursery','secondnursery','thirdnursery','firstprimary','secondprimary','thirdprimary','fourthprimary','fifthprimary','sixthprimary','firstsecondary','secondsecondary','thirdsecondary','firstpreparatoria','secondpreparatoria','thirdpreparatoria','studies']
-inchargeof = ['directorate','programcoordination','program','project','areas','tutor','cook','volunteer']
+inchargeof = ['directorate','programcoordination','program','project','areas','tutor','cook','volunteer']*/
 
