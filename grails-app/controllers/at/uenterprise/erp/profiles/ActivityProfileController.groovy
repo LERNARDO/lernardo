@@ -55,14 +55,14 @@ class ActivityProfileController {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
           List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
+          activityCount = activities.size()
 
-          activities.each {bla ->
+          activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
-            if (bla.profile.type == "Themenraum")
-              activityList << bla
+            if (act.profile.type == "Themenraum")
+              activityList << act
           }
         }
-        activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
       }
