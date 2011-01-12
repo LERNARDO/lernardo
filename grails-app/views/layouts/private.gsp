@@ -253,7 +253,9 @@
                       </erp:isAdmin>
                       <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/></g:link></li>
                       <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
-                      <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
+                      <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                        <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
+                      </g:if>
                       <li class="icon-parents"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/></g:link></li>
                       <g:if test="${grailsApplication.config.project == 'sueninos'}">
                         <li class="icon-pate"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
