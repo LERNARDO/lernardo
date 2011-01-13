@@ -1,5 +1,5 @@
 <div class="info-msg">
-  ${allTemplates.size()} <g:message code="activityTemplate.c_total"/>
+  ${allTemplates.totalCount} <g:message code="activityTemplate.c_total"/>
 </div>
 
 <div class="buttons">
@@ -31,7 +31,6 @@
   </tbody>
 </table>
 
-
 <div class="paginateButtons">
-  <g:paginate action="list" total="${allTemplates.size()}"/>
+  <g:paginate action="list" total="${allTemplates.totalCount}"/>
 </div>

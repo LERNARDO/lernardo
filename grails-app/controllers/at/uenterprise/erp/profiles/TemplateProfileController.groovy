@@ -298,7 +298,7 @@ class TemplateProfileController {
     def method3upper = params.list('method3upper')
 
     def c = Entity.createCriteria()
-    def allTemplates = c.list {
+    def allTemplates = c.list (max: params.max) {
       eq('type', metaDataService.etTemplate)
       if (params.name)
         or {
@@ -311,7 +311,6 @@ class TemplateProfileController {
         if (params.duration1 != 'all')
           between('duration', params.duration1.toInteger(), params.duration2.toInteger())
       }
-      maxResults(30)
     }
 
     List finalList = allTemplates
