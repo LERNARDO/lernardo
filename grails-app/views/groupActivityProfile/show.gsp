@@ -80,7 +80,7 @@
           </p>
           <ul>
             <g:each in="${templates}" var="template">
-              <li><g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link> (${template.profile.duration} min)</li>
+              <li><g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
             </g:each>
           </ul>
         </g:if>
