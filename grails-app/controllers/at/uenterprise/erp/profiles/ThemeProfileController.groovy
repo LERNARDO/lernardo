@@ -45,6 +45,9 @@ class ThemeProfileController {
       firstResult(params.offset)
     }*/
 
+    Entity currentEntity = entityHelperService.loggedIn
+    Entity facility = functionService.findByLink(currentEntity, null, metaDataService.ltLeadEducator)
+
     List allThemes = Entity.findAllByType(metaDataService.etTheme)
     List themes = []
 
@@ -56,7 +59,8 @@ class ThemeProfileController {
     }
 
     return [themes: themes,
-            themeTotal: themes.size() /*Entity.countByType(metaDataService.etTheme)*/]
+            themeTotal: themes.size() /*Entity.countByType(metaDataService.etTheme)*/,
+            facility: facility]
   }
 
   def show = {
