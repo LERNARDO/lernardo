@@ -221,7 +221,7 @@ class HelperTagLib {
     //log.info "${entity.profile} has types: ${hasTypes}"
 
     boolean isMe = false
-    if (attrs.me)
+    if (attrs.me && attrs.me == "true")
       isMe = accessIsMe(entity)
     //log.info "${entity.profile} is me: ${isMe}"
 

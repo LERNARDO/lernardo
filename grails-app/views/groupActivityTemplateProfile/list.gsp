@@ -22,7 +22,7 @@
       ${groups.totalCount} <g:message code="groupActivityTemplate.c_total"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']" me="false">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="groupActivityTemplate.create"/></g:link>
         <div class="spacer"></div>

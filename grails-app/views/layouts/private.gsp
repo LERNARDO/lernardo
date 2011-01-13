@@ -216,7 +216,7 @@
         </div>
 
         %{--this concerns myself = currentEntity --}%
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="false">
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
 
           <div class="profile-box">
             <div class="second">

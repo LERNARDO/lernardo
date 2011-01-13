@@ -66,7 +66,7 @@
     </table>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']">
         <g:link class="buttonGreen" action="edit" id="${template.id}"><g:message code="edit"/></g:link>
       %{--<g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#resources');
+      <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
@@ -105,7 +105,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="vMethods"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']" me="false"><a onclick="toggle('#methods');
+      <h5><g:message code="vMethods"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#methods');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gewichtungsmethode hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="methods" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2')">
@@ -123,7 +123,7 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: template]"/>
 </erp:accessCheck>
 

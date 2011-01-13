@@ -100,7 +100,7 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']" me="false">
+<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: project]"/>
 </erp:accessCheck>
 

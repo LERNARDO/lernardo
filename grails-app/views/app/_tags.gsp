@@ -16,7 +16,7 @@
     <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'abwesend', update: update]">abwesend markieren</g:remoteLink>
   </erp:showTagButton>
 
-  <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']" me="false">
+  <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']">
     <erp:showTagButton tags="${tags}" button="krank">
       | <g:remoteLink update="${update}" controller="app" action="addTag" params="[entity: entity.id, tag: 'krank', update: update]">krank markieren</g:remoteLink>
     </erp:showTagButton>

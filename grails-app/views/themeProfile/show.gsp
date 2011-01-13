@@ -66,7 +66,7 @@
     </div>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']" me="false">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
         <g:link class="buttonGreen" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: theme.id)}" id="${theme.id}">Löschen</g:link>
       </erp:accessCheck>
