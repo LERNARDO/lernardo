@@ -223,7 +223,7 @@
 
               <label id="tab-verwaltung" class="aktiv_tab" onclick="changeTab('tab-verwaltung', 'inhalt-verwaltung', 'tab-admin', 'inhalt-admin')"><g:message code="privat.head.verw"/></label>
               <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
-                <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"> | <g:message code="privat.head.admin"/></label>
+                 <span class="gray">|</span> <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"><g:message code="privat.head.admin"/></label>
               </erp:accessCheck>
 
               &nbsp;%{--<a onclick="toggle('#administration-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a>--}%</div>

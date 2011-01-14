@@ -2,8 +2,8 @@
   <title><g:message code="cal.title"/></title>
   <meta name="layout" content="private-cal" />
   <g:javascript library="jquery" plugin="jquery"/>
-  <g:javascript src="jquery/fullcalendar.js"/>
-  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
+  <g:javascript src="jquery/fullcalendar-1.4.10.js"/>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}" />
   <g:render template="/templates/calendar" model="[visibleEducators: visibleEducators]"/>
 </head>
 
