@@ -4,7 +4,7 @@
       <ub:profileImage name="${entity.name}" width="130"/>
     </td>
 
-    <td>
+    <td valign="top">
       <ul>
         <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
           <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>

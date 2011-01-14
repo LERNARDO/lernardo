@@ -153,20 +153,16 @@ class ProfileController {
     if (params.glossary == "Alle") {
       def c = Entity.createCriteria()
       users = c.list {
-        ne("type", metaDataService.etActivity)
-        ne("type", metaDataService.etTemplate)
-        ne("type", metaDataService.etResource)
-        ne("type", metaDataService.etGroupColony)
-        ne("type", metaDataService.etGroupFamily)
-        ne("type", metaDataService.etGroupActivity)
-        ne("type", metaDataService.etGroupActivityTemplate)
-        ne("type", metaDataService.etTheme)
-        ne("type", metaDataService.etProject)
-        ne("type", metaDataService.etProjectTemplate)
-        ne("type", metaDataService.etUser)
-        ne("type", metaDataService.etProjectDay)
-        ne("type", metaDataService.etProjectUnit)
-        ne("type", metaDataService.etProjectUnitTemplate)
+        or {
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etFacility)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etPartner)
+          eq("type", metaDataService.etPate)
+        }
         profile {
           order("lastName", "asc")
         }
@@ -179,20 +175,16 @@ class ProfileController {
       //log.debug("start glossary for " + params.glossary)
       def c = Entity.createCriteria()
       users = c.list {
-        ne("type", metaDataService.etActivity)
-        ne("type", metaDataService.etTemplate)
-        ne("type", metaDataService.etResource)
-        ne("type", metaDataService.etGroupColony)
-        ne("type", metaDataService.etGroupFamily)
-        ne("type", metaDataService.etGroupActivity)
-        ne("type", metaDataService.etGroupActivityTemplate)
-        ne("type", metaDataService.etTheme)
-        ne("type", metaDataService.etProject)
-        ne("type", metaDataService.etProjectTemplate)
-        ne("type", metaDataService.etUser)
-        ne("type", metaDataService.etProjectDay)
-        ne("type", metaDataService.etProjectUnit)
-        ne("type", metaDataService.etProjectUnitTemplate)
+        or {
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etFacility)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etPartner)
+          eq("type", metaDataService.etPate)
+        }
         profile {
           ilike("fullName", params.glossary + "%")
           order("fullName", "asc")
@@ -281,6 +273,16 @@ class ProfileController {
 
     def c = Entity.createCriteria()
     def users = c.list {
+      or {
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etFacility)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etPartner)
+          eq("type", metaDataService.etPate)
+        }
       or {
         ilike('name', "%" + params.name + "%")
         profile {

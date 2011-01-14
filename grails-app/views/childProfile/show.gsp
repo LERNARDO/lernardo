@@ -12,7 +12,7 @@
   <div class="second">
     <div class="dialog">
 
-      <table width="100%" bgcolor="#dfdfdf" border="0" cellspacing="10">
+      <table width="100%" border="0" cellspacing="10">
         <tbody>
 
         <tr>

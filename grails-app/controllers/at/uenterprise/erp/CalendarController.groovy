@@ -21,8 +21,12 @@ class CalendarController {
    */
   def destination = {
     Entity entity = Entity.get(params.id)
-    if (entity.type.supertype.name == 'activity')
-      redirect controller: entity.type.supertype.name, action: 'show', id: params.id
+    if (entity.type.supertype.name == 'appointment') {
+      if (entity.profile.isPrivate)
+        redirect action: 'show'
+      else
+        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+    }
     else
       redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
   }
@@ -138,12 +142,13 @@ class CalendarController {
         // get all appointments
         List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
 
-        appointments?.each {
-          def dtStart = new DateTime(it.profile.beginDate)
+        appointments?.each { Entity appointment ->
+          def dtStart = new DateTime(appointment.profile.beginDate)
           dtStart = dtStart.plusHours(2)
-          def dtEnd = new DateTime(it.profile.endDate)
-          def title = it.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${it.profile.fullName}"
-          eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: className, description: "<b>Beschreibung:</b> " + it.profile.description]
+          def dtEnd = new DateTime(appointment.profile.endDate)
+          def title = appointment.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${appointment.profile.fullName}"
+          def description = appointment.profile.isPrivate && educator.id != currentEntity.id ? "<b>Beschreibung:</b> Nicht verfügbar" : "<b>Beschreibung:</b> ${appointment.profile.description}"
+          eventList << [id: appointment.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: appointment.profile.allDay, className: className, description: description]
         }
 
         // get all group activities the educator is part of
