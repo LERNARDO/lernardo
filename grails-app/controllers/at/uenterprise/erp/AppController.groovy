@@ -197,8 +197,10 @@ class AppController {
 
     if (params.type == 'facilities') {
       List facilities = []
-      if (entity.type.id == metaDataService.etEducator.id)
+      if (entity.type.id == metaDataService.etEducator.id) {
         facilities = functionService.findAllByLink(entity, null, metaDataService.ltWorking)
+        facilities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltLeadEducator))
+      }
       else if (entity.type.id == metaDataService.etClient.id) {
         List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberClient)
         temp.each {
