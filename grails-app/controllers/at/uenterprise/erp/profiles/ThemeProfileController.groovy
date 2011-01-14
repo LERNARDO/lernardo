@@ -46,7 +46,7 @@ class ThemeProfileController {
     }*/
 
     Entity currentEntity = entityHelperService.loggedIn
-    Entity facility = functionService.findByLink(currentEntity, null, metaDataService.ltLeadEducator)
+    List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
 
     List allThemes = Entity.findAllByType(metaDataService.etTheme)
     List themes = []
@@ -60,7 +60,7 @@ class ThemeProfileController {
 
     return [themes: themes,
             themeTotal: themes.size() /*Entity.countByType(metaDataService.etTheme)*/,
-            facility: facility]
+            facilities: facilities]
   }
 
   def show = {
@@ -91,7 +91,7 @@ class ThemeProfileController {
       List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
 
       // find facility the theme is linked to
-      Entity facility = functionService.findByLink(theme, null, metaDataService.ltGroupMember)
+      Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
       // find parent theme the theme is linked to if any
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)

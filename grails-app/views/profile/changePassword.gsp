@@ -12,6 +12,11 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <g:if test="${error}">
+      <p class="italic red">Bitte Passwort 2x identisch eingeben!</p>
+    </g:if>
+
     <div class="yui-g" id="settings">
       <div class="settings-block-content">
         <g:form controller="profile" action="checkPassword" id="${entity.id}">

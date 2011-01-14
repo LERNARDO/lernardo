@@ -226,8 +226,8 @@ class HelperTagLib {
     //log.info "${entity.profile} is me: ${isMe}"
 
     boolean isLeadEducator = false
-    if (attrs.facility)
-      isLeadEducator = accessIsLeadEducator(entity, attrs.facility)
+    if (attrs.facilities)
+      isLeadEducator = accessIsLeadEducator(entity, attrs.facilities)
     //log.info "${entity.profile} is lead educator: ${isLeadEducator}"
 
     if (hasRoles || hasTypes || isMe || isLeadEducator)
@@ -263,18 +263,18 @@ class HelperTagLib {
   }
 
   // checks if a given entity is lead educator of a given facility
-  boolean accessIsLeadEducator(Entity entity, Entity facility) {
+  boolean accessIsLeadEducator(Entity entity, List facilities) {
 
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', entity)
-      eq('target', facility)
-      eq('type', metaDataService.ltLeadEducator)
+    List allFacilities = functionService.findAllByLink(entity, null, metaDataService.ltLeadEducator)
+
+    def hits = false
+
+    allFacilities.each {
+      if (facilities.contains(it))
+        hits = true
     }
 
-    def result = link ? true : false
-
-    return result
+    return hits
   }
 
   /*

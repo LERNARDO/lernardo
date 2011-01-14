@@ -95,10 +95,10 @@ class ActivityProfileController {
         facilities.each {
           List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
 
-          activities.each {bla ->
+          activities.each {Entity act ->
             // there are 2 types of activities, we only want theme room activities here
-            if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1 && bla.profile.type == "Themenraum")
-              activityList << bla
+            if (act.profile.date > inputDate && act.profile.date < inputDate + 1 && act.profile.type == "Themenraum")
+              activityList << act
           }
         }
         activityCount = activityList.size()
@@ -120,7 +120,7 @@ class ActivityProfileController {
           }
         }
 
-         activityCount = activityList.totalCount
+        activityCount = activityList.totalCount
       }
 
       return ['activityList': activityList,

@@ -764,7 +764,7 @@ class BootStrap {
     }
 
     // link theme to facility
-    new Link(source: theme, target: Entity.findByName('dummyFacility0'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: theme, target: Entity.findByName('dummyFacility1'), type: metaDataService.ltThemeOfFacility).save()
 
     Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -777,7 +777,7 @@ class BootStrap {
     // link subtheme to theme
     new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
     // link subtheme to facility
-    new Link(source: subtheme, target: Entity.findByName('dummyFacility0'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: subtheme, target: Entity.findByName('dummyFacility1'), type: metaDataService.ltThemeOfFacility).save()
   }
 
   void createDefaultProjectTemplates() {

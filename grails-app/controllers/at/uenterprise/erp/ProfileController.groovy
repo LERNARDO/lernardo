@@ -253,6 +253,10 @@ class ProfileController {
    * check password and update it
    */
   def checkPassword = {
+    if (!params.password || !params.password2) {
+      render view: 'changePassword', model:[ entity: Entity.get(params.id), error: 'true']
+      return
+    }
     if (params.password == params.password2) {
       Entity entity = Entity.get(params.id)
       entity.user.password = securityManager.encodePassword(params.password)
