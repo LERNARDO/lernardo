@@ -17,7 +17,12 @@
 
         <tr class="prop">
           <td height="30" colspan="3" valign="top" class="name">
-            <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link>
+            <g:if test="${template}">
+              <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link>
+            </g:if>
+            <g:else>
+              <span class="italic">Vorlage wurde nicht gefunden!</span>
+            </g:else>
           </td>
         </tr>
 
@@ -30,7 +35,7 @@
         <tr>
           <td width="280" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
           <td width="150" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
-          <td width="300" valign="top" class="value-show"><g:formatDate date="${group.profile.date}" format="dd. MMMM yyyy, HH:mm"/></td>
+          <td width="300" valign="top" class="value-show"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm"/></td>
         </tr>
 
         <tr class="prop">
