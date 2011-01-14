@@ -215,67 +215,66 @@
           </div>
         </div>
 
-        %{--this concerns myself = currentEntity --}%
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
+        <div class="profile-box">
+          <div class="second">
 
-          <div class="profile-box">
-            <div class="second">
+            %{--Menue links Administration / Verwaltung--}%
+            <div class="header">
 
-              %{--Menue links Administration / Verwaltung--}%
-              <div class="header">
-                <label id="tab-verwaltung" class="aktiv_tab" onclick="changeTab('tab-verwaltung', 'inhalt-verwaltung', 'tab-admin', 'inhalt-admin')"><g:message code="privat.head.verw"/>&nbsp;&nbsp;|</label>
-                <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"><g:message code="privat.head.admin"/> &nbsp;</label>
+              <label id="tab-verwaltung" class="aktiv_tab" onclick="changeTab('tab-verwaltung', 'inhalt-verwaltung', 'tab-admin', 'inhalt-admin')"><g:message code="privat.head.verw"/></label>
+              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
+                <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"> | <g:message code="privat.head.admin"/></label>
+              </erp:accessCheck>
 
-                &nbsp;%{--<a onclick="toggle('#administration-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a>--}%</div>
-                <div id="administration-toggled">
+              &nbsp;%{--<a onclick="toggle('#administration-toggled'); return false" href="#"><img alt="ein-/ausblenden" src="${resource(dir: 'images/icons', file: 'icon_add.png')}"></a>--}%</div>
+              <div id="administration-toggled">
 
-                  <div id="inhalt-admin" class="passiv_inhalt">
-                    <ul>
-                      <erp:isOperator entity="${currentEntity}">
-                        <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
-                        <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
-                        %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
-                        %{--<li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]">Zeitauswertung</g:link></li>--}%
-                        <li class="icon-time"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
-                      </erp:isOperator>
-                    </ul>
-                  </div>
-
-                  <div id="inhalt-verwaltung" class="aktiv_inhalt">
-                    <ul>
-                      <erp:isOperator entity="${currentEntity}">
-                        <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
-                      </erp:isOperator>
-                      <erp:isAdmin entity="${currentEntity}">
-                        <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
-                        <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
-                        <hr/>
-                      </erp:isAdmin>
-                      <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/></g:link></li>
-                      <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
-                      <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                        <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
-                      </g:if>
-                      <li class="icon-parents"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/></g:link></li>
-                      <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                        <li class="icon-pate"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
-                      </g:if>
-                      <li class="icon-partner"><g:link controller="partnerProfile" action="index" params="[name:entity.name]"><g:message code="partners"/></g:link></li>
-                      <hr/>
-                      <li class="icon-group"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]"><g:message code="groupFamilies"/></g:link></li>
-                      <li class="icon-colony"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]"><g:message code="groupColonies"/></g:link></li>
-                      <li class="icon-facility"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facilities"/></g:link></li>
-                      <li class="icon-group"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]"><g:message code="groupClients"/></g:link></li>
-                      <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                        <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]"><g:message code="groupPartners"/></g:link></li>
-                      </g:if>
-                    </ul>
-                  </div>
-
+                <div id="inhalt-admin" class="passiv_inhalt">
+                  <ul>
+                    <erp:isOperator entity="${currentEntity}">
+                      <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
+                      <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
+                      %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
+                      %{--<li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]">Zeitauswertung</g:link></li>--}%
+                      <li class="icon-time"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
+                    </erp:isOperator>
+                  </ul>
                 </div>
-            </div>
+
+                <div id="inhalt-verwaltung" class="aktiv_inhalt">
+                  <ul>
+                    <erp:isOperator entity="${currentEntity}">
+                      <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
+                    </erp:isOperator>
+                    <erp:isAdmin entity="${currentEntity}">
+                      <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
+                      <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
+                      <hr/>
+                    </erp:isAdmin>
+                    <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/></g:link></li>
+                    <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
+                    <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                      <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]"><g:message code="children"/></g:link></li>
+                    </g:if>
+                    <li class="icon-parents"><g:link controller="parentProfile" action="index" params="[name:entity.name]"><g:message code="parents"/></g:link></li>
+                    <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                      <li class="icon-pate"><g:link controller="pateProfile" action="index" params="[name:entity.name]"><g:message code="paten"/></g:link></li>
+                    </g:if>
+                    <li class="icon-partner"><g:link controller="partnerProfile" action="index" params="[name:entity.name]"><g:message code="partners"/></g:link></li>
+                    <hr/>
+                    <li class="icon-group"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]"><g:message code="groupFamilies"/></g:link></li>
+                    <li class="icon-colony"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]"><g:message code="groupColonies"/></g:link></li>
+                    <li class="icon-facility"><g:link controller="facilityProfile" action="index" params="[name:entity.name]"><g:message code="facilities"/></g:link></li>
+                    <li class="icon-group"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]"><g:message code="groupClients"/></g:link></li>
+                    <g:if test="${grailsApplication.config.project == 'sueninos'}">
+                      <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]"><g:message code="groupPartners"/></g:link></li>
+                    </g:if>
+                  </ul>
+                </div>
+
+              </div>
           </div>
-        </erp:accessCheck>
+        </div>
 
         <div class="profile-box">
           <div class="second">
