@@ -43,7 +43,7 @@
     <div id="select-box">
       Filtern nach:
       <g:form name="form1" action="list">
-        <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..2010}"/>
+        <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..2011}"/>
         <div class="buttons">
           <g:submitButton name="list" value="OK"/>
           <g:submitButton name="list" value="Alle"/>
