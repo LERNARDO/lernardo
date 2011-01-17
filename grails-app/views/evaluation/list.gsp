@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge für ${entity.profile.fullName}
+      Es gibt insgesamt ${evaluationInstanceTotal} Tagebucheinträge für ${entity.profile.fullName}
     </div>
 
     <g:link class="buttonGreen" action="create" id="${entity.id}">Neuen Tagebucheintrag erstellen</g:link>
@@ -43,6 +43,10 @@
         </div>
       </g:each>
     </ul>
+
+    <div class="paginateButtons">
+      <g:paginate action="list" total="${evaluationInstanceTotal}" id="${entity.id}"/>
+    </div>
 
   </div>
 </div>

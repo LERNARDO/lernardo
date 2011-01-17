@@ -3,15 +3,27 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGreen">
   <div class="second">
     <h1>Meine Tagebucheinträge</h1>
   </div>
 </div>
+
+<erp:isOperator entity="${currentEntity}">
+  <div class="tabGrey">
+    <div class="second">
+      <h1><g:link controller="evaluation" action="listall" id="${entity.id}">Alle Tagebucheinträge</g:link></h1>
+    </div>
+  </div>
+</erp:isOperator>
+
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 
-    <p>Du hast insgesamt ${evaluationInstanceList.size()} Tagebucheinträge erstellt.</p>
+    <p>Du hast insgesamt ${evaluationInstanceTotal} Tagebucheinträge erstellt.</p>
 
     <g:link class="buttonGreen" action="interestingevaluations" id="${entity.id}">Interessante Tagebucheinträge</g:link>
     <div class="spacer"></div>
@@ -44,6 +56,10 @@
         </div>
       </g:each>
     </ul>
+
+    <div class="paginateButtons">
+      <g:paginate action="myevaluations" total="${evaluationInstanceTotal}" id="${entity.id}"/>
+    </div>
 
   </div>
 </div>

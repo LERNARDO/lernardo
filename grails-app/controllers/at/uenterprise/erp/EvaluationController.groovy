@@ -17,23 +17,105 @@ class EvaluationController {
 
   // shows all evaluations of a given client
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
+    params.max = Math.min(params.max ? params.int('max') : 5, 100)
+    params.offset = params.offset ?: 0
     Entity entity = Entity.get(params.id)
-    List evaluations = Evaluation.findAllByOwner(entity)
+    List evaluations = Evaluation.findAllByOwner(entity, params)
 
     return [evaluationInstanceList: evaluations,
-            evaluationInstanceTotal: evaluations.size(),
+            evaluationInstanceTotal: Evaluation.countByOwner(entity),
             entity: entity]
+  }
+
+  def listall = {
+    params.max = Math.min(params.max ? params.int('max') : 5, 100)
+    params.offset = params.offset ?: 0
+    List evaluations = Evaluation.list(params)
+    Entity entity = Entity.get(params.id)
+    return [evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity]
   }
 
   // shows all evaluations made by a given educator
   def myevaluations = {
+    params.max = Math.min(params.max ? params.int('max') : 5, 100)
+    params.offset = params.offset ?: 0
     Entity entity = Entity.get(params.id)
-    List evaluations = Evaluation.findAllByWriter(entity)
+    List evaluations = Evaluation.findAllByWriter(entity, params)
 
     return [evaluationInstanceList: evaluations,
-            evaluationInstanceTotal: evaluations.size(),
+            evaluationInstanceTotal: Evaluation.countByWriter(entity),
             entity: entity]
+  }
+
+  def showall = {
+    params.max = 5
+    params.offset = params.offset ? params.int('offset'): 0
+    List evaluations = Evaluation.list(params)
+    Entity entity = Entity.get(params.id)
+    render template: "evaluations", model:[evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity]
+  }
+
+  def showByEducator = {
+    println params
+    params.max = 5
+    params.offset = params.offset ? params.int('offset'): 0
+    Entity entity = Entity.get(params.id)
+
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    // find matching educators
+    def c = Entity.createCriteria()
+    def educators = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+    }
+
+    List evaluations = Evaluation.list().findAll {educators.contains(it.writer)}
+
+    def totalEvaluations = evaluations.size()
+    def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
+    evaluations = evaluations.subList(params.offset, upperBound)
+
+    render template: "eevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value]
+  }
+
+  def showByClient = {
+    params.max = 5
+    params.offset = params.offset ? params.int('offset'): 0
+    Entity entity = Entity.get(params.id)
+
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    // find matching clients
+    def c = Entity.createCriteria()
+    def educators = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+    }
+
+    List evaluations = Evaluation.list().findAll {educators.contains(it.owner)}
+
+    def totalEvaluations = evaluations.size()
+    def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
+    evaluations = evaluations.subList(params.offset, upperBound)
+
+    render template: "cevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value]
   }
 
   // show all evaluations of clients linked to a given educator
