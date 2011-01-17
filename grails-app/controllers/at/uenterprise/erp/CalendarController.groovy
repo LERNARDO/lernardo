@@ -22,8 +22,16 @@ class CalendarController {
   def destination = {
     Entity entity = Entity.get(params.id)
     if (entity.type.supertype.name == 'appointment') {
-      if (entity.profile.isPrivate)
-        redirect action: 'show'
+      if (entity.profile.isPrivate) {
+        Entity currentEntity = entityHelperService.loggedIn
+
+        // check if the appointment belongs to the current entity, if yes show it else do nothing
+        def result = functionService.findByLink(null, currentEntity, metaDataService.ltAppointment)
+        if (result)
+          redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
+        else
+          redirect action: 'show'
+      }
       else
         redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
     }
