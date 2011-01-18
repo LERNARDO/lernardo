@@ -128,7 +128,7 @@ dummies = 2
 defaultpass = "pass"
 
 // custom lists used for selects within the application
-nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy']
+nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy','canada']
 resourceclasses = ['facility','colony','everywhere']
 partners = ['projects','services','funding','personnel']
 maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']

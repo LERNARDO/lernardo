@@ -56,7 +56,6 @@ class EvaluationController {
   }
 
   def showByEducator = {
-    println params
     params.max = 5
     params.offset = params.offset ? params.int('offset'): 0
     Entity entity = Entity.get(params.id)
