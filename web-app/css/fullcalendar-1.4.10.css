@@ -317,51 +317,49 @@ table.fc-header {
     color: #fff;
     }
 
-/* additional colors */
-
-.educator-6,
-.fc-agenda .educator-6 .fc-event-time,
-.educator-6 a {
+.educator6,
+.fc-agenda .educator6 .fc-event-time,
+.educator6 a {
     background-color: #c21200;
     border-color: #b10100;
     color: #fff;
     }
 
-.educator-7,
-.fc-agenda .educator-7 .fc-event-time,
-.educator-7 a {
+.educator7,
+.fc-agenda .educator7 .fc-event-time,
+.educator7 a {
     background-color: #00660a;
     border-color: #005509;
     color: #fff;
     }
 
-.educator-8,
-.fc-agenda .educator-8 .fc-event-time,
+.educator8,
+.fc-agenda .educator8 .fc-event-time,
 .educator-8 a {
-    background-color: #00b8b1;
+    backgound-color: #00b8b1;
     border-color: #00a7a0;
     color: #fff;
     }
 
-.educator-9,
-.fc-agenda .educator-9 .fc-event-time,
-.educator-9 a {
+.educator9,
+.fc-agenda .educator9 .fc-event-time,
+.educator9 a {
     background-color: #c24900;
     border-color: #b13800;
     color: #fff;
     }
 
-.educator-10,
-.fc-agenda .educator-10 .fc-event-time,
-.educator-10 a {
+.educator10,
+.fc-agenda .educator10 .fc-event-time,
+.educator10 a {
     background-color: #722e00;
     border-color: #611d00;
     color: #fff;
     }
 
-.educator-11,
-.fc-agenda .educator-11 .fc-event-time,
-.educator-11 a {
+.educator11,
+.fc-agenda .educator11 .fc-event-time,
+.educator11 a {
     background-color: #ed00e5;
     border-color: #dc00d4;
     color: #fff;
