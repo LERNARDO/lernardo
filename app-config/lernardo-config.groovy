@@ -161,7 +161,7 @@ educatorProfile.origin = true // false for Lernardo, true for Sueninos
 educatorProfile.contact = true // false for Lernardo, true for Sueninos
 educatorProfile.phone = false // true for Lernardo, false for Sueninos
 
-languages = ['spanish','german','english','french','mexican','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel']
+languages = ['spanish','german','english','french','mexican','portuguese','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel','zapoteco']
 educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
 employments = ['employed','freelancer','volunteer']
 jobs = ['shoeblack','bugglegumseller','handcraftseller','builderslabourer','homework','childoverseer','carwasher','dispenser','bearer','garagehelper','handcrafter','garbagecollector','squeegeeman','farecollector']
