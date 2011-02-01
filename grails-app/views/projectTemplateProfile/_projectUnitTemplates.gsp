@@ -4,12 +4,12 @@
   <span id="updateduration"><g:render template="updateduration" model="[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]"/></span>
 
   <g:each in="${projectUnitTemplates}" var="projectUnitTemplate" status="i">
-    <div class="element-box"><span class="bold">${i+1}. Projekteinheitvorlage:</span> <span id="projectName${i}">${projectUnitTemplate.profile.fullName}</span> <erp:isMeOrAdmin entity="${entity}">
+    <div class="element-box"><span class="bold">${i+1}. Projekteinheitvorlage:</span> <span id="projectName${i}">${projectUnitTemplate.profile.fullName}</span> <erp:isOperator entity="${entity}">
       <g:remoteLink action="editProjectUnitTemplate" update="projectName${i}" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:remoteLink>
       <g:remoteLink action="removeProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code:'delete')}" align="top"/></g:remoteLink>
-    </erp:isMeOrAdmin>
+    </erp:isOperator>
 
-      <p class="bold" style="margin-left: 15px">Aktivitätsblockvorlagen <erp:isMeOrAdmin entity="${entity}"><a onclick="toggle('#groups${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsblockvorlage hinzufügen" /></a></erp:isMeOrAdmin></p>
+      <p class="bold" style="margin-left: 15px">Aktivitätsblockvorlagen <erp:isOperator entity="${entity}"><a onclick="toggle('#groups${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsblockvorlage hinzufügen" /></a></erp:isOperator></p>
       <div id="groups${i}" style="display:none; margin: 0 0 5px 15px;">
 
         <g:message code="search"/>:<br/>

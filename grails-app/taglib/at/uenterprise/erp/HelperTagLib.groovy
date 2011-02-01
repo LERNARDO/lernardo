@@ -869,7 +869,7 @@ class HelperTagLib {
   }
 
   def isMeOrAdmin = {attrs, body ->
-    if (attrs.entity.name == entityHelperService.loggedIn.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'} )
+    if (attrs.entity.name == entityHelperService.loggedIn.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} )
       out << body()
   }
 

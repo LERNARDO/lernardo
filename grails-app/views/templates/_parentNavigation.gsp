@@ -14,7 +14,7 @@
         <li class="icon-document"><g:link controller="publication" action="profile" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
         <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
 
-        <erp:isMeOrAdmin entity="${currentEntity}">
+        <erp:isMeOrAdmin entity="${entity}" current="${currentEntity}">
           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
         </erp:isMeOrAdmin>
 
