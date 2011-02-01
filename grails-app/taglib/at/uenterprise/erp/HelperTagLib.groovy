@@ -672,7 +672,7 @@ class HelperTagLib {
     SimpleDateFormat df = new SimpleDateFormat("dd")
     String day = df.format(myDate)
     out << '<span class="quote">"' + grailsApplication.config.quotesMap[day] + '"</span>'
-    out << '<p class="quoter">von ' + grailsApplication.config.quoterMap[day] + '</p>'
+    out << '<p class="quoter">' + message(code:"from") + " " + grailsApplication.config.quoterMap[day] + '</p>'
   }
 
   /*

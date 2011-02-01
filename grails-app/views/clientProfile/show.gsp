@@ -377,7 +377,7 @@
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2')">
           <table>
             <tr>
-              <td valign="top">Name: </td>
+              <td valign="top"><g:message code="name"/>: </td>
               <td><g:textField size="30" name="text" value=""/></td>
             </tr>
             <tr>

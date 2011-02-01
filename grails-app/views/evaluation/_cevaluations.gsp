@@ -3,23 +3,23 @@
     <div class="leistung-item">
       <table cellpadding="2">
         <tr>
-          <td class="bold vtop">Betreuter:</td>
+          <td class="bold vtop"><g:message code="client"/>:</td>
           <td><g:link controller="clientProfile" action="show" id="${evaluation.owner.id}" params="[entity:evaluation.owner.id]">${evaluation.owner.profile.fullName}</g:link></td>
         </tr>
         <tr>
-          <td class="bold vtop">Datum:</td>
+          <td class="bold vtop"><g:message code="date"/>:</td>
           <td><g:formatDate date="${evaluation.dateCreated}" format="dd. MM. yyyy"/></td>
         </tr>
         <tr>
-          <td class="bold vtop">Beschreibung:</td>
+          <td class="bold vtop"><g:message code="description"/>:</td>
           <td>${evaluation.description.decodeHTML()}</td>
         </tr>
         <tr>
-          <td class="bold vtop">Maßnahme:</td>
+          <td class="bold vtop"><g:message code="action"/>:</td>
           <td>${evaluation.method.decodeHTML()}</td>
         </tr>
         <tr>
-          <td class="strong vtop">Von:</td>
+          <td class="strong vtop"><g:message code="from"/>:</td>
           <td>${evaluation.writer.profile.fullName}</td>
         </tr>
       </table>

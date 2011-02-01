@@ -3,7 +3,7 @@
     <g:link action="show" id="${article.id}">${article.title}</g:link>
   </div>
   <div class="info">
-    von <span class="bold">
+    <g:message code="from"/> <span class="bold">
       <erp:isNotLoggedIn>
         ${article.author.profile.fullName}
       </erp:isNotLoggedIn>
@@ -15,8 +15,8 @@
           <span class="notEnabled">${article.author.profile.fullName}</span>
         </erp:notEnabled>
       </erp:isLoggedIn></span>
-    am <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
-    um <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
+    <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
+    <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
     <erp:isLoggedIn>
       <erp:isEducator entity="${currentEntity}">
         (<g:link class="adminlink" action="edit" id="${article.id}">bearbeiten</g:link> -

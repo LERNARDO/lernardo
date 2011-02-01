@@ -16,8 +16,8 @@
           </div>
         </erp:isMeOrAdminOrOperator>
         <div class="infobar">
-          <span class="gray">von <span class="name"><g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></span>
-          am <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.dateCreated}"/></span>
+          <span class="gray"><g:message code="from"/> <span class="name"><g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></span>
+          <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.dateCreated}"/></span>
         </div>
         <div class="content">${comment.content.decodeHTML()}</div>
       </td>

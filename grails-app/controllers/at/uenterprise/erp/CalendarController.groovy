@@ -127,7 +127,8 @@ class CalendarController {
         dtStart = dtStart.plusHours(2)
         def dtEnd = new DateTime(it.profile.endDate)
         def title = "Termin: ${it.profile.fullName}"
-        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: 'own-appointments', description: "<b>Beschreibung:</b> " + it.profile.description]
+        def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
+        eventList << [id: it.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: it.profile.allDay, className: 'own-appointments', description: description]
       }
     }
 
@@ -139,7 +140,8 @@ class CalendarController {
       dtStart = dtStart.plusHours(2)
       def dtEnd = new DateTime(it.profile.endDate)
       dtEnd = dtEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
-      eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1', description: "<b>Beschreibung:</b> " + it.profile.description]
+      def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
+      eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1', description: description]
     }
 
     if (params.visibleEducators) {
@@ -155,7 +157,7 @@ class CalendarController {
           dtStart = dtStart.plusHours(2)
           def dtEnd = new DateTime(appointment.profile.endDate)
           def title = appointment.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${appointment.profile.fullName}"
-          def description = appointment.profile.isPrivate && educator.id != currentEntity.id ? "<b>Beschreibung:</b> Nicht verfügbar" : "<b>Beschreibung:</b> ${appointment.profile.description}"
+          def description = appointment.profile.isPrivate && educator.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
           eventList << [id: appointment.id, title: title, start: dtStart.toDate(), end: dtEnd.toDate(), allDay: appointment.profile.allDay, className: className, description: description]
         }
 
@@ -206,7 +208,8 @@ class CalendarController {
           def dtStart = new DateTime(it.profile.date)
           dtStart = dtStart.plusHours(2)
           def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-          eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: "<b>Dauer:</b> " + it.profile.duration + " min"]
+          def description = "<b>${message(code: 'duration')}:</b> ${it.profile.duration} min"
+          eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), allDay: false, className: className, description: description]
 
         }
 
@@ -232,8 +235,9 @@ class CalendarController {
 
                   def dtStart = new DateTime (projectUnit.profile.date)
                   def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
+                  def description = "<b>${message(code: 'project')}:</b> ${project.profile.fullName}"
 
-                  eventList << [id: project.id, title: " Projekteinheit: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: "<b>Projekt:</b> " + project.profile.fullName]
+                  eventList << [id: project.id, title: "${message(code: 'cal.projectUnit')}: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: description]
                 }
               }
             }
