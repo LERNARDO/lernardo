@@ -108,6 +108,7 @@
 </g:if>
 
 <div id="livetickerbox"></div>
+%{--<div id="erp"><div class="title">ERP</div></div>--}%
 
 <div id="private">
   <div id="doc4" class="yui-t3">

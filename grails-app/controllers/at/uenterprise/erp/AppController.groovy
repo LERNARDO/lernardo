@@ -30,7 +30,14 @@ class AppController {
     c.maxAge = 60*60 // 1 hour
     response.addCookie(c)
 
-    render template: 'livetickersmall'
+    //render template: 'livetickersmall'
+
+    params.max = 10
+    params.sort = "dateCreated"
+    params.order = "desc"
+
+    List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
+    render template: 'livetickersmall', model:[events: events]
   }
 
   def showticker = {
@@ -42,7 +49,7 @@ class AppController {
     params.sort = "dateCreated"
     params.order = "desc"
 
-    List events = Live.list(params)
+    List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
     render template: 'liveticker', model:[events: events]
   }
 
