@@ -326,31 +326,31 @@
     </div>
 
     <g:if test="${grailsApplication.config.project == 'sueninos'}">
-    <div class="zusatz">
-      <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#materials');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></erp:accessCheck></h5>
-      <div class="zusatz-add" id="materials" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2')">
-          <table>
-            <tr>
-              <td valign="middle"><g:message code="date"/>:</td>
-              <td><g:datePicker name="date" value="" precision="day"/></td>
-            </tr>
-            <tr>
-              <td valign="top"><g:message code="text"/>:</td>
-              <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-            </tr>
-          </table>
-        </g:formRemote>
+      <div class="zusatz">
+        <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#materials');
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></erp:accessCheck></h5>
+        <div class="zusatz-add" id="materials" style="display:none">
+          <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2')">
+            <table>
+              <tr>
+                <td valign="middle"><g:message code="date"/>:</td>
+                <td><g:datePicker name="date" value="" precision="day"/></td>
+              </tr>
+              <tr>
+                <td valign="top"><g:message code="text"/>:</td>
+                <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+              </tr>
+            </table>
+          </g:formRemote>
+        </div>
+        <div class="zusatz-show" id="materials2">
+          <g:render template="materials" model="[client: client, entity: currentEntity]"/>
+        </div>
       </div>
-      <div class="zusatz-show" id="materials2">
-        <g:render template="materials" model="[client: client, entity: currentEntity]"/>
-      </div>
-    </div>
     </g:if>
 
     <div class="zusatz">
@@ -449,21 +449,23 @@
       </div>
     </g:if>
 
-    <div class="zusatz">
-      <h5>Paten</h5>
-      <div class="zusatz-show">
-        <g:if test="${pates}">
-          <ul>
-            <g:each in="${pates}" var="pate">
-              <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}" params="[entity: pate.id]">${pate.profile.fullName}</g:link></li>
-            </g:each>
-          </ul>
-        </g:if>
-        <g:else>
-          <span class="italic">Dieser Betreute hat bisher keinen Paten!</span>
-        </g:else>
+    <g:if test="${grailsApplication.config.project == 'sueninos'}">
+      <div class="zusatz">
+        <h5>Paten</h5>
+        <div class="zusatz-show">
+          <g:if test="${pates}">
+            <ul>
+              <g:each in="${pates}" var="pate">
+                <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}" params="[entity: pate.id]">${pate.profile.fullName}</g:link></li>
+              </g:each>
+            </ul>
+          </g:if>
+          <g:else>
+            <span class="italic">Dieser Betreute hat bisher keinen Paten!</span>
+          </g:else>
+        </div>
       </div>
-    </div>
+    </g:if>
 
     <g:render template="/templates/links" model="[entity: client]"/>
 
