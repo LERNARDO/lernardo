@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'reset-fonts-grids.css')}" type="text/css">
+  <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.qtip.min.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
   %{--<link rel="stylesheet" href="${resource(dir: 'css', file:'common.css')}" type="text/css" media="screen" charset="utf-8">--}%
   <less:stylesheet name="common" />
@@ -20,6 +21,7 @@
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.periodicalupdater.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.qtip.min.js')}" type="text/javascript"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -38,6 +40,22 @@
       function(data){
         $('#livetickerbox').empty().append(data);
       });
+
+      // should display the image of an entity when hovering link - not working
+      /*$('.hoverImage').qtip({
+         content: {
+            text: 'Loading...', // The text to use whilst the AJAX request is loading
+            ajax: {
+               url: '/lernardo/app/showImage',
+               type: 'GET', // POST or GET
+               data: {name: $(this).find('div').attr('id')},
+              once: false
+            }
+         }
+        style: {
+          classes: 'ui-tooltip-blue'
+        }
+      });*/
 
       $(".datepicker-birthday").datepicker({
         changeMonth: true,

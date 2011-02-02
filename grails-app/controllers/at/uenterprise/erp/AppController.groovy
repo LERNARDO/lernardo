@@ -479,4 +479,9 @@ class AppController {
     flash.message = "Profilbild wurde gel�scht!"
     redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
   }
+
+  //def showImage = {
+  //  def name = entityHelperService.loggedIn.name
+  //  render '<img src="' + g.createLink (controller:'asset', action:'get', params:[type: 'profile', entity:name]) + '" width="50" />'
+  //}
 }
