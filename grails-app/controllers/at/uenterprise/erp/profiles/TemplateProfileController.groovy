@@ -282,7 +282,7 @@ class TemplateProfileController {
     else
       element.voting = params.val as Integer
 
-    render app.starBox(element: element.id)
+    render erp.starBox(element: element.id)
   }
 
   def updateselect = {
