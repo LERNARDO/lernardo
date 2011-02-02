@@ -103,6 +103,9 @@ class ClientProfileController {
   }
 
   def edit = {
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
     Entity client = Entity.get(params.id)
 
     if (!client) {
@@ -113,10 +116,25 @@ class ClientProfileController {
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
 
+      def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    def allFacilities = c.list {
+      eq("type", metaDataService.etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
     return [client: client,
             colonia: colonia,
-            allColonias: Entity.findAllByType(metaDataService.etGroupColony),
-            allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+            allColonias: allColonies,
+            allFacilities: allFacilities]
   }
 
   def update = {
@@ -147,8 +165,26 @@ class ClientProfileController {
   }
 
   def create = {
-    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony),
-            allFacilities: Entity.findAllByType(metaDataService.etFacility)]
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    def allFacilities = c.list {
+      eq("type", metaDataService.etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    return [allColonias: allColonies,
+            allFacilities: allFacilities]
   }
 
   def save = {
