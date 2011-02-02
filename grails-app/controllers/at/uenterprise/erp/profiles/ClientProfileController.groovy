@@ -116,7 +116,7 @@ class ClientProfileController {
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
 
-      def c = Entity.createCriteria()
+    def c = Entity.createCriteria()
     def allColonies = c.list {
       eq("type", metaDataService.etGroupColony)
       profile {
@@ -124,7 +124,8 @@ class ClientProfileController {
       }
     }
 
-    def allFacilities = c.list {
+    def d = Entity.createCriteria()
+    def allFacilities = d.list {
       eq("type", metaDataService.etFacility)
       profile {
         order(params.sort, params.order)
@@ -176,7 +177,8 @@ class ClientProfileController {
       }
     }
 
-    def allFacilities = c.list {
+    def d = Entity.createCriteria()
+    def allFacilities = d.list {
       eq("type", metaDataService.etFacility)
       profile {
         order(params.sort, params.order)
