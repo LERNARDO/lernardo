@@ -370,27 +370,29 @@
       </div>
     </div>
 
-    <div class="zusatz">
-      <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#collectors');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Abholberechtigten hinzufügen"/></a></erp:accessCheck></h5>
-      <div class="zusatz-add" id="collectors" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2')">
-          <table>
-            <tr>
-              <td valign="top"><g:message code="name"/>: </td>
-              <td><g:textField size="30" name="text" value=""/></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-            </tr>
-          </table>
-        </g:formRemote>
+    <g:if test="${grailsApplication.config.project == 'noe'}">
+      <div class="zusatz">
+        <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#collectors');
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Abholberechtigten hinzufügen"/></a></erp:accessCheck></h5>
+        <div class="zusatz-add" id="collectors" style="display:none">
+          <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2')">
+            <table>
+              <tr>
+                <td valign="top"><g:message code="name"/>: </td>
+                <td><g:textField size="30" name="text" value=""/></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+              </tr>
+            </table>
+          </g:formRemote>
+        </div>
+        <div class="zusatz-show" id="collectors2">
+          <g:render template="collectors" model="[client: client, entity: currentEntity]"/>
+        </div>
       </div>
-      <div class="zusatz-show" id="collectors2">
-        <g:render template="collectors" model="[client: client, entity: currentEntity]"/>
-      </div>
-    </div>
+    </g:if>
 
     <g:if test="${grailsApplication.config.clientProfile.contact}">
       <div class="zusatz">
