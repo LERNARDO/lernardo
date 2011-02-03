@@ -57,7 +57,7 @@
               <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="countable${parent.profile.constraints.comment.maxSize}" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
+              <g:textArea class="countable${parent.profile.constraints.comment.maxSize}" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.parentProfile.education}">
