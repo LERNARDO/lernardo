@@ -43,7 +43,7 @@
     </div>
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
-        <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}" params="[entity: projectTemplate?.id]"><g:message code="edit"/></g:link>
         <g:if test="${projectTemplate.profile.status == 'fertig'}">
           <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
         </g:if>

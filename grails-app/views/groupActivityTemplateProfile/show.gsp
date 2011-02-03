@@ -47,7 +47,7 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
         <erp:isCreator entity="${group}">
-          <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+          <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
         </erp:isCreator>
         <g:link class="buttonGreen" action="copy" id="${group.id}">Vorlage duplizieren</g:link>
 

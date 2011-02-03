@@ -70,7 +70,7 @@
 
     <div class="buttons">
       <erp:isCreator entity="${group}">
-        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
       </erp:isCreator>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>

@@ -47,7 +47,8 @@ class TemplateProfileController {
 
   def edit = {
     Entity template = Entity.get(params.id)
-    return ['template': template]
+    Entity entity = params.entity ? template : entityHelperService.loggedIn
+    return ['template': template, entity: entity]
   }
 
   def update = {

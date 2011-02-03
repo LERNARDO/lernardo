@@ -104,13 +104,14 @@ class ProjectTemplateProfileController {
 
   def edit = {
     Entity projectTemplate = Entity.get(params.id)
+    Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
       flash.message = "projectTemplateProfile not found with id ${params.id}"
       redirect action: 'list'
     }
     else {
-      [projectTemplate: projectTemplate]
+      [projectTemplate: projectTemplate, entity: entity]
     }
   }
 

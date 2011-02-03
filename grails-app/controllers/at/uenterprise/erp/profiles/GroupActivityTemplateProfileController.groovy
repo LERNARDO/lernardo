@@ -108,13 +108,14 @@ class GroupActivityTemplateProfileController {
 
   def edit = {
     Entity group = Entity.get(params.id)
+    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect action: 'list'
     }
     else {
-      [group: group]
+      [group: group, entity: entity]
     }
   }
 
