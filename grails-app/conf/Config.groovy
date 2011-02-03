@@ -140,6 +140,7 @@ helpertypes = ['operator','educator','client','partner','pate','parent']
 // custom maps to store data
 colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f', 6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']
 
+// used locales
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
