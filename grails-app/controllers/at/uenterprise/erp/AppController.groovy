@@ -13,6 +13,7 @@ import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
+import org.springframework.web.multipart.MultipartFile
 
 class AppController {
   SecHelperService secHelperService
@@ -20,6 +21,7 @@ class AppController {
   def securityManager
   FunctionService functionService
   MetaDataService metaDataService
+  def assetService
 
   def error404 = {
     render view: '/404'

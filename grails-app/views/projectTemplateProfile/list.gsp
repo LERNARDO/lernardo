@@ -34,7 +34,7 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'projectTemplate.profile.name')}"/>
         <g:sortableColumn property="status" title="${message(code:'projectTemplate.profile.status')}"/>
-        <th>Projekteinheitenvorlagen</th>
+        <th><g:message code="projectUnitTemplates"/></th>
       </tr>
       </thead>
       <tbody>

@@ -33,8 +33,8 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'groupActivityTemplate.profile.name')}"/>
-        <th>Anzahl Aktivitätsvorlagen</th>
-        <th>Gesamtdauer</th>
+        <th><g:message code="numberOfActivityTemplates"/></th>
+        <th><g:message code="totalDuration"/></th>
       </tr>
       </thead>
       <tbody>

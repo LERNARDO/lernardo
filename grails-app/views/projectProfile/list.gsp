@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Projekte</title>
+  <title><g:message code="projects"/></title>
 </head>
 <body>
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="projectTemplateProfile" action="list">Projektvorlagen</g:link></h1>
+    <h1><g:link controller="projectTemplateProfile" action="list"><g:message code="projectTemplates"/></g:link></h1>
   </div>
 </div>
 
@@ -19,7 +19,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${projects.totalCount} Projekt(e) insgesamt vorhanden
+      ${projects.totalCount} <g:message code="projects.c_total"/>
     </div>
 
     <g:if test="${projects}">

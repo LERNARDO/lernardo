@@ -306,7 +306,7 @@
 
         <div class="profile-box">
           <div class="second">
-            <div class="header">Online</div>
+            <div class="header"><g:message code="privat.head.online"/></div>
             <ul id="onlineUsers">
               <erp:getOnlineUsers>
                 <g:each in="${onlineUsers}" var="entity">

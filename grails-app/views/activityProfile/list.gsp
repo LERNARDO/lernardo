@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta name="layout" content="private"/>
-  <title>Themenräume</title>
+  <title><g:message code="themeRooms"/></title>
 </head>
 <body>
 
@@ -16,13 +16,13 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="activityProfile" action="create">Themenraum anlegen</g:link></h1>
+    <h1><g:link controller="activityProfile" action="create"><g:message code="themeRoom.create"/></g:link></h1>
   </div>
 </div>
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Themenräume</h1>
+    <h1><g:message code="themeRooms"/></h1>
   </div>
 </div>
 
@@ -41,7 +41,7 @@
     </div>
 
     <div id="select-box">
-      Filtern nach:
+      <g:message code="filterBy"/>:
       <g:form name="form1" action="list">
         <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..2011}"/>
         <div class="buttons">
@@ -55,11 +55,11 @@
     <table class="default-table">
       <thead>
       <tr>
-        <th>Aktivität</th>
-        <th>Einrichtung</th>
-        <th>Datum</th>
+        <th><g:message code="activity"/></th>
+        <th><g:message code="facility"/></th>
+        <th><g:message code="date"/></th>
         %{--<th>Typ</th>--}%
-        <th>Kommentare</th>
+        <th><g:message code="comments"/></th>
       </tr>
       </thead>
       <tbody>

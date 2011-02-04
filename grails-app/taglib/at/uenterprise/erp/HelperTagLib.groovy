@@ -552,7 +552,7 @@ class HelperTagLib {
     if (facility)
       out << body(facility: facility)
     else
-      out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
+      out << '<span class="italic">' + message(code:'notAssignedToFacility') + '</span>'
   }
 
   /*
@@ -563,7 +563,7 @@ class HelperTagLib {
     if (facilityOfProject)
       out << body(facility: facilityOfProject)
     else
-      out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
+      out << '<span class="italic">' + message(code:'notAssignedToFacility') + '</span>'
   }
 
   /*
