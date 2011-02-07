@@ -79,7 +79,7 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.project == 'noe'}">
-                <g:select name="jobtypes" from="${grailsApplication.config.jobs}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}"/>
+                <g:select name="jobtypes" from="${grailsApplication.config.jobs}" value="${parent?.profile?.jobtypes}" valueMessagePrefix="job"/>
               </g:if>
               <g:if test="${grailsApplication.config.project == 'sueninos'}">
                 <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>
