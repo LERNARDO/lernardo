@@ -30,6 +30,7 @@
           <g:sortableColumn property="startDate" title="${message(code:'project.profile.startDate')}"/>
           <g:sortableColumn property="endDate" title="${message(code:'project.profile.endDate')}"/>
           <th><g:message code="facility"/></th>
+          <th><g:message code="creator"/></th>
         </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@
                 <g:link controller="facilityProfile" action="show" id="${facility.id}" params="[entity: facility.id]">${facility.profile.fullName.decodeHTML()}</g:link>
               </erp:getFacilityOfProject>
             </td>
+            <td><erp:createdBy entity="${project}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
           </tr>
         </g:each>
         </tbody>

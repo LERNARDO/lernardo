@@ -28,6 +28,7 @@
         <tr>
           <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>  #
           <g:sortableColumn property="date" title="${message(code:'groupActivity.profile.date')}"/>
+          <th><g:message code="creator"/></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
             <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
+            <td><erp:createdBy entity="${group}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
           </tr>
         </g:each>
         </tbody>

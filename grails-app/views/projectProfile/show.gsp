@@ -16,6 +16,8 @@
         <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
       </g:if>
 
+      <p><g:message code="creator"/>: <erp:createdBy entity="${project}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></p>
+
       <table>
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="project.profile.name"/></td>

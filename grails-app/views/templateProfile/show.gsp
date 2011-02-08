@@ -11,6 +11,9 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <p><g:message code="creator"/>: <erp:createdBy entity="${template}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></p>
+
     <table>
 
       <tr class="prop">

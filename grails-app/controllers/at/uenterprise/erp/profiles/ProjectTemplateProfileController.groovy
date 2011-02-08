@@ -193,6 +193,9 @@ class ProjectTemplateProfileController {
           functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
 
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+
       flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (at.openfactory.ep.EntityException ee) {

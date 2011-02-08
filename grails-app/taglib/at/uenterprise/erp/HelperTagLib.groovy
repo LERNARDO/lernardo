@@ -576,6 +576,15 @@ class HelperTagLib {
   }
 
   /*
+   * returns the creator of an entity
+   */
+  def createdBy = {attrs, body ->
+    def result = functionService.findByLink(null, attrs.entity, metaDataService.ltCreator)
+    if (result)
+      out << body(creator: result)
+  }
+
+  /*
    * returns the creator (entity) to a given ID
    */
   def getCreator = {attrs, body ->

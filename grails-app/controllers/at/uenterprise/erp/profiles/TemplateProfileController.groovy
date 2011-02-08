@@ -160,6 +160,9 @@ class TemplateProfileController {
           functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
 
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+
       flash.message = message(code: "template.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
 

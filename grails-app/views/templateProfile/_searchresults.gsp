@@ -15,7 +15,8 @@
     <g:sortableColumn property="fullName" title="Name"/>
     <g:sortableColumn property="duration" title="Dauer (min)"/>
     <g:sortableColumn property="socialForm" title="Sozialform"/>
-    <th>Kommentare</th>
+    <th><g:message code="comments"/></th>
+    <th><g:message code="creator"/></th>
   </tr>
   </thead>
 
@@ -26,6 +27,7 @@
       <td>${templateInstance.profile.duration}</td>
       <td>${templateInstance.profile.socialForm}</td>
       <td>${templateInstance.profile.comments.size()}</td>
+      <td><erp:createdBy entity="${templateInstance}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
     </tr>
   </g:each>
   </tbody>

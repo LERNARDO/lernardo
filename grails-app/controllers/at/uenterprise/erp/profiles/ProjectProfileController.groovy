@@ -247,6 +247,9 @@ class ProjectProfileController {
       }
       flash.message = message(code: "project.created", args: [entity.profile.fullName])
 
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+
       // create link to template
       new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
 

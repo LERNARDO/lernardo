@@ -12,6 +12,9 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
+
+      <p><g:message code="creator"/>: <erp:createdBy entity="${group}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></p>
+
       <table>
         <tbody>
 
