@@ -91,7 +91,7 @@
         </g:else>
       </div>
       <div class="zusatz-show" id="projects2">
-        <g:render template="projects" model="[projects: projects, theme: theme]"/>
+        <g:render template="projects" model="[projects: projects, theme: theme, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -112,7 +112,7 @@
         </g:else>
       </div>
       <div class="zusatz-show" id="activitygroups2">
-        <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme]"/>
+        <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme, entity: currentEntity]"/>
       </div>
     </div>
 
