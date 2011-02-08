@@ -31,6 +31,8 @@
   </tbody>
 </table>
 
-<div class="paginateButtons">
-  <g:paginate action="list" total="${allTemplates.totalCount}"/>
-</div>
+<g:if test="${paginate}">
+  <div class="paginateButtons">
+    <g:paginate action="list" total="${allTemplates.totalCount}"/>
+  </div>
+</g:if>

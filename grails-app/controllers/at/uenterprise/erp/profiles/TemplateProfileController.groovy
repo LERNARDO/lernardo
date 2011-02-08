@@ -42,7 +42,7 @@ class TemplateProfileController {
     }
 
     return [allTemplates: templates,
-            methods: Method.findAllByType('template')]
+            methods: Method.findAllByType('template'), paginate: true]
   }
 
   def edit = {
@@ -299,7 +299,7 @@ class TemplateProfileController {
     def method3upper = params.list('method3upper')
 
     def c = Entity.createCriteria()
-    def allTemplates = c.list (max: params.max) {
+    def allTemplates = c.list {
       eq('type', metaDataService.etTemplate)
       if (params.name)
         or {
@@ -435,7 +435,7 @@ class TemplateProfileController {
       }
     }
 
-    render(template: 'searchresults', model: [allTemplates: finalList, currentEntity: entityHelperService.loggedIn])
+    render(template: 'searchresults', model: [allTemplates: finalList, currentEntity: entityHelperService.loggedIn, paginate: false])
   }
 
 }

@@ -68,7 +68,7 @@
     </div>
 
     <div id="templateselect">
-      <g:render template="searchresults" model="[allTemplates: allTemplates, currentEntity: currentEntity]"/>
+      <g:render template="searchresults" model="[allTemplates: allTemplates, currentEntity: currentEntity, paginate: paginate]"/>
     </div>
 
   </div>
