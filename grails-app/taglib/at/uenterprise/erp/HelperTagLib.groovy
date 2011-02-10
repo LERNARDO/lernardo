@@ -230,7 +230,11 @@ class HelperTagLib {
       isLeadEducator = accessIsLeadEducator(entity, attrs.facilities)
     //log.info "${entity.profile} is lead educator: ${isLeadEducator}"
 
-    if (hasRoles || hasTypes || isMe || isLeadEducator)
+    boolean isCreatorOf = false
+    if (attrs.creatorof)
+      isCreatorOf = accessIsCreatorOf(entity, attrs.creatorof)
+
+    if (hasRoles || hasTypes || isMe || isLeadEducator || isCreatorOf)
       out << body()
   }
 
@@ -260,6 +264,22 @@ class HelperTagLib {
     def result = entity == entityHelperService.loggedIn
 
     return result
+  }
+
+  // checks if a given entity is creator of another given entity
+  boolean accessIsCreatorOf(Entity entity, Entity creatorof) {
+
+    def c = Link.createCriteria()
+    def result = c.get {
+      eq('source', entity)
+      eq('target', creatorof)
+      eq('type', metaDataService.ltCreator)
+    }
+
+    if (result)
+      return true
+    else
+      return false
   }
 
   // checks if a given entity is lead educator of a given facility

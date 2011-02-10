@@ -15,7 +15,7 @@
       ${groups.totalCount} <g:message code="groupFamily.profile.c_total"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="groupFamily.profile.create"/></g:link>
         <div class="spacer"></div>

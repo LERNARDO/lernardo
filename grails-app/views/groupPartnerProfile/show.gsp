@@ -36,7 +36,7 @@
       </table>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
@@ -44,7 +44,7 @@
     </erp:accessCheck>
 
     <div class="zusatz">
-      <h5><g:message code="partners"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></erp:accessCheck></h5>
+      <h5><g:message code="partners"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#partners'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupPartnerProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2')">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
