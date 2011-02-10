@@ -41,7 +41,7 @@ class ProfileController {
     def allResources = 0
     temp.each { resource ->
       def result = functionService.findByLink(resource, null, metaDataService.ltResource)
-      if (result.type.id != metaDataService.etTemplate.id)
+      if (result && result.type.id != metaDataService.etTemplate.id)
         allResources++
     }
 
