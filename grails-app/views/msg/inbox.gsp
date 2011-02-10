@@ -50,7 +50,7 @@
                   --}%
                 </span>
               </g:if>
-              <span class="name">von
+              <span class="name"><g:message code="from"/>
                 <erp:isEnabled entity="${message.sender}">
                   <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}" params="[entity:message.sender.id]">${message.sender.profile.fullName}</g:link>
                 </erp:isEnabled>

@@ -131,13 +131,14 @@ class GroupActivityProfileController {
 
   def edit = {
     Entity group = Entity.get(params.id)
+    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect action: 'list'
     }
     else {
-      [group: group]
+      [group: group, entity: entity]
     }
   }
 
@@ -182,8 +183,8 @@ class GroupActivityProfileController {
         ent.profile.educationalObjective = ""
       }
 
-      // create link to creator
-      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       // find all templates of this linked to the groupActivityTemplate
       List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)

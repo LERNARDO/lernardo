@@ -108,13 +108,14 @@ class GroupActivityTemplateProfileController {
 
   def edit = {
     Entity group = Entity.get(params.id)
+    Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
       flash.message = "groupProfile not found with id ${params.id}"
       redirect action: 'list'
     }
     else {
-      [group: group]
+      [group: group, entity: entity]
     }
   }
 
@@ -177,8 +178,8 @@ class GroupActivityTemplateProfileController {
         ent.profile.properties = params
       }
 
-      // create link to creator
-      new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')

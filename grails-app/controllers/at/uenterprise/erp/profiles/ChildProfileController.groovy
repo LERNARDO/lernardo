@@ -10,6 +10,8 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
+import java.util.regex.Pattern
+import java.text.SimpleDateFormat
 
 //import java.util.regex.Pattern
 
@@ -19,14 +21,14 @@ class ChildProfileController {
   FunctionService functionService
   def securityManager
 
-  def beforeInterceptor = [
+  /*def beforeInterceptor = [
           action:{
-            /*if (!Pattern.matches( "\d{2}\.\s\d{2}\.\s\d{4}", params.birthDate)) {
+            *//*if (!Pattern.matches( "\d{2}\.\s\d{2}\.\s\d{4}", params.birthDate)) {
               flash.message "ups"
               render view: 'list'
-            }*/
+            }*//*
             params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
-  ]
+  ]*/
 
   def index = {
     redirect action: "list", params: params
@@ -107,20 +109,33 @@ class ChildProfileController {
   }
 
   def update = {
+    println params
     Entity child = Entity.get(params.id)
 
     child.profile.properties = params
     child.profile.fullName = params.lastName + " " + params.firstName
 
     child.user.properties = params
+
+    // fix for child, parent, client and educator
+
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate)) {
+     SimpleDateFormat sdf = new SimpleDateFormat("dd. MM. yyyy")
+     Date bla = sdf.parse(params.birthDate) //Date.parse("dd. MM. yy", params.birthDate)
+      child.profile.birthDate = bla //Date.parse("dd. MM. yy", params.birthDate)
+    }
+    else
+      child.profile.birthDate = null
+
     if (child.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
 
-    if (!child.hasErrors() && child.save()) {
+    if (!child.hasErrors() && child.save() && !child.profile.hasErrors()) {
       flash.message = message(code: "child.updated", args: [child.profile.fullName])
       redirect action: 'show', id: child.id
     }
     else {
+            println child.profile.errors
       render view: 'edit', model: [child: child]
     }
   }
@@ -128,12 +143,15 @@ class ChildProfileController {
   def create = {}
 
   def save = {
+    println params
     EntityType etChild = metaDataService.etChild
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
+        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)

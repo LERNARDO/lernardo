@@ -20,14 +20,14 @@
 
     <g:form action="update" id="${evaluationInstance.id}" params="[name:entity.name]">
 
-      <p class="strong">Beschreibung</p>
+      <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
         <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
           ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
         </ckeditor:editor>
       </span>
 
-      <p class="strong">Maßnahme</p>
+      <p class="strong"><g:message code="action"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
         <ckeditor:editor name="method" height="200px" width="800px" toolbar="Basic">
           ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
@@ -36,8 +36,8 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonRed" action="del" id="${evaluationInstance.id}" params="[name:entity.name]" onclick="return confirm('${message(code:'delete.warn')}');">Löschen</g:link>
-        <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
+        <g:link class="buttonRed" action="del" id="${evaluationInstance.id}" params="[name:entity.name]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
+        <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

@@ -1,5 +1,5 @@
 <div id="liveticker">
-  <div class="livetickerdate"><g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_right.png')}" alt="Achtung" align="top"/></g:remoteLink> <g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm"/></div>
+  <div class="livetickerdate"><g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_up.png')}" alt="Achtung" align="top"/></g:remoteLink> <g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm"/> <g:if test="${events.size() == 1}">- <b>1 aktuelles Ereignis!</b></g:if><g:elseif test="${events.size() > 1}">- <b>${events.size()} aktuelle Ereignisse!</b></g:elseif></div>
 
   <g:each in="${events}" var="event">
     %{--Difference in ms: ${new Date().getTime() - event.date.getTime()}<br/>

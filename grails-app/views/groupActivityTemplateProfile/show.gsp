@@ -11,6 +11,9 @@
 <div class="boxGray">
   <div class="second">
     <div class="dialog">
+
+      <p><g:message code="creator"/>: <erp:createdBy entity="${group}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></p>
+
       <table>
 
         <tr class="prop">
@@ -47,7 +50,7 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
         <erp:isCreator entity="${group}">
-          <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+          <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
         </erp:isCreator>
         <g:link class="buttonGreen" action="copy" id="${group.id}">Vorlage duplizieren</g:link>
 
@@ -65,37 +68,37 @@
     </g:if>
 
     <div class="zusatz">
-      <h5>Aktivitätsvorlagen <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></erp:accessCheck></h5>
+      <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="templates" style="display:none">
         <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
 
           <table>
             <tr>
-              <td>Name:</td>
+              <td><g:message code="name"/>:</td>
               <td><g:textField name="name" size="30"/></td>
             </tr>
             <tr>
-              <td>Dauer:</td>
+              <td><g:message code="duration"/>:</td>
               <td><g:select from="${1..239}" name="duration1" noSelection="['all':'Beliebig']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
                 <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
             </tr>
             <tr>
-              <td style="vertical-align: top">Bewertungsmethode 1:</td>
+              <td style="vertical-align: top"><g:message code="vMethod"/> 1:</td>
               <td>
                 <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
                 <div id="elements1"></div>
               </td>
             </tr>
             <tr>
-              <td style="vertical-align: top">Bewertungsmethode 2:</td>
+              <td style="vertical-align: top"><g:message code="vMethod"/> 2:</td>
               <td>
                 <g:select name="method2" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements2', params:'\'id=\' + this.value+\'&dropdown=\'+2')}"/>
                 <div id="elements2"></div>
               </td>
             </tr>
             <tr>
-              <td style="vertical-align: top">Bewertungsmethode 3:</td>
+              <td style="vertical-align: top"><g:message code="vMethod"/> 3:</td>
               <td>
                 <g:select name="method3" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements3', params:'\'id=\' + this.value+\'&dropdown=\'+3')}"/>
                 <div id="elements3"></div>

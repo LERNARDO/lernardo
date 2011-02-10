@@ -66,7 +66,7 @@
     </div>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
         <g:link class="buttonGreen" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: theme.id)}" id="${theme.id}">Löschen</g:link>
       </erp:accessCheck>
@@ -75,8 +75,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="projects"/><erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#projects');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></erp:isMeOrAdmin></h5>
+      <h5><g:message code="projects"/><erp:isOperator entity="${currentEntity}"><a onclick="toggle('#projects');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></erp:isOperator></h5>
       <div class="zusatz-add" id="projects" style="display:none">
         <g:if test="${allProjects}">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addProject', id: theme.id]" update="projects2" before="showspinner('#projects2')">
@@ -91,13 +91,13 @@
         </g:else>
       </div>
       <div class="zusatz-show" id="projects2">
-        <g:render template="projects" model="[projects: projects, theme: theme]"/>
+        <g:render template="projects" model="[projects: projects, theme: theme, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupActivities"/><erp:isMeOrAdmin entity="${currentEntity}"><a onclick="toggle('#activitygroups');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:isMeOrAdmin></h5>
+      <h5><g:message code="groupActivities"/><erp:isOperator entity="${currentEntity}"><a onclick="toggle('#activitygroups');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:isOperator></h5>
       <div class="zusatz-add" id="activitygroups" style="display:none">
         <g:if test="${allActivityGroups}">
           <g:formRemote name="formRemote" url="[controller:'themeProfile', action:'addActivityGroup', id: theme.id]" update="activitygroups2" before="showspinner('#activitygroups2')">
@@ -112,7 +112,7 @@
         </g:else>
       </div>
       <div class="zusatz-show" id="activitygroups2">
-        <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme]"/>
+        <g:render template="activitygroups" model="[activitygroups: activitygroups, theme: theme, entity: currentEntity]"/>
       </div>
     </div>
 

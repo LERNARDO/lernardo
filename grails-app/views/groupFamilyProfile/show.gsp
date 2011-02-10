@@ -60,7 +60,7 @@
       </table>
     </div>
 
-    <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']">
+    <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <div class="spacer"></div>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.parents"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#parents');
+      <h5><g:message code="groupFamily.profile.parents"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#parents');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="parents" style="display:none">
 
@@ -82,12 +82,12 @@
 
       </div>
       <div class="zusatz-show" id="parents2">
-        <g:render template="parents" model="[parents: parents, group: group]"/>
+        <g:render template="parents" model="[parents: parents, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.clients"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#clients');
+      <h5><g:message code="groupFamily.profile.clients"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#clients');
       return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
@@ -97,13 +97,13 @@
 
       </div>
       <div class="zusatz-show" id="clients2">
-        <g:render template="clients" model="[clients: clients, group: group]"/>
+        <g:render template="clients" model="[clients: clients, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
     <g:if test="${grailsApplication.config.project == 'sueninos'}">
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.childs"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN','ROLE_LEAD_EDUCATOR']" types="['Betreiber']"><a onclick="toggle('#childs');
+      <h5><g:message code="groupFamily.profile.childs"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#childs');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="childs" style="display:none">
 
@@ -119,7 +119,7 @@
         </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="childs2">
-        <g:render template="childs" model="[childs: childs, group: group]"/>
+        <g:render template="childs" model="[childs: childs, group: group, entity: currentEntity]"/>
       </div>
     </div>
     </g:if>

@@ -42,12 +42,13 @@ class TemplateProfileController {
     }
 
     return [allTemplates: templates,
-            methods: Method.findAllByType('template')]
+            methods: Method.findAllByType('template'), paginate: true]
   }
 
   def edit = {
     Entity template = Entity.get(params.id)
-    return ['template': template]
+    Entity entity = params.entity ? template : entityHelperService.loggedIn
+    return ['template': template, entity: entity]
   }
 
   def update = {
@@ -158,6 +159,9 @@ class TemplateProfileController {
         if (it.id != currentEntity.id)
           functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
+
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "template.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
@@ -282,7 +286,7 @@ class TemplateProfileController {
     else
       element.voting = params.val as Integer
 
-    render app.starBox(element: element.id)
+    render erp.starBox(element: element.id)
   }
 
   def updateselect = {
@@ -298,7 +302,7 @@ class TemplateProfileController {
     def method3upper = params.list('method3upper')
 
     def c = Entity.createCriteria()
-    def allTemplates = c.list (max: params.max) {
+    def allTemplates = c.list {
       eq('type', metaDataService.etTemplate)
       if (params.name)
         or {
@@ -434,7 +438,7 @@ class TemplateProfileController {
       }
     }
 
-    render(template: 'searchresults', model: [allTemplates: finalList, currentEntity: entityHelperService.loggedIn])
+    render(template: 'searchresults', model: [allTemplates: finalList, currentEntity: entityHelperService.loggedIn, paginate: false])
   }
 
 }

@@ -13,6 +13,7 @@ import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
+import org.springframework.web.multipart.MultipartFile
 
 class AppController {
   SecHelperService secHelperService
@@ -20,6 +21,7 @@ class AppController {
   def securityManager
   FunctionService functionService
   MetaDataService metaDataService
+  def assetService
 
   def error404 = {
     render view: '/404'
@@ -30,7 +32,14 @@ class AppController {
     c.maxAge = 60*60 // 1 hour
     response.addCookie(c)
 
-    render template: 'livetickersmall'
+    //render template: 'livetickersmall'
+
+    params.max = 10
+    params.sort = "dateCreated"
+    params.order = "desc"
+
+    List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
+    render template: 'livetickersmall', model:[events: events]
   }
 
   def showticker = {
@@ -42,7 +51,7 @@ class AppController {
     params.sort = "dateCreated"
     params.order = "desc"
 
-    List events = Live.list(params)
+    List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
     render template: 'liveticker', model:[events: events]
   }
 
@@ -472,4 +481,9 @@ class AppController {
     flash.message = "Profilbild wurde gel�scht!"
     redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
   }
+
+  //def showImage = {
+  //  def name = entityHelperService.loggedIn.name
+  //  render '<img src="' + g.createLink (controller:'asset', action:'get', params:[type: 'profile', entity:name]) + '" width="50" />'
+  //}
 }

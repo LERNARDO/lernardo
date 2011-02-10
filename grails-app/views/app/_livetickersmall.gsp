@@ -1,3 +1,3 @@
 <div id="livetickersmall">
-  <g:remoteLink action="showticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_left.png')}" alt="Achtung" align="top"/></g:remoteLink>
+  <div class="livetickerdate"><g:remoteLink action="showticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_down.png')}" alt="Achtung" align="top"/></g:remoteLink> <g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm"/> <g:if test="${events.size() == 1}">- <b>1 aktuelles Ereignis!</b></g:if><g:elseif test="${events.size() > 1}">- <b>${events.size()} aktuelle Ereignisse!</b></g:elseif></div>
 </div>

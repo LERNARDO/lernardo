@@ -104,13 +104,14 @@ class ProjectTemplateProfileController {
 
   def edit = {
     Entity projectTemplate = Entity.get(params.id)
+    Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
       flash.message = "projectTemplateProfile not found with id ${params.id}"
       redirect action: 'list'
     }
     else {
-      [projectTemplate: projectTemplate]
+      [projectTemplate: projectTemplate, entity: entity]
     }
   }
 
@@ -191,6 +192,9 @@ class ProjectTemplateProfileController {
         if (it.id != currentEntity.id)
           functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
+
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id

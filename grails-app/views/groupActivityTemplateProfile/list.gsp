@@ -33,8 +33,9 @@
       <thead>
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'groupActivityTemplate.profile.name')}"/>
-        <th>Anzahl Aktivitätsvorlagen</th>
-        <th>Gesamtdauer</th>
+        <th><g:message code="numberOfActivityTemplates"/></th>
+        <th><g:message code="totalDuration"/></th>
+        <th><g:message code="creator"/></th>
       </tr>
       </thead>
       <tbody>
@@ -43,6 +44,7 @@
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><erp:getGroupSize entity="${group}"/></td>
           <td>${fieldValue(bean: group, field: 'profile.realDuration')}</td>
+          <td><erp:createdBy entity="${group}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
         </tr>
       </g:each>
       </tbody>

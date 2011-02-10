@@ -978,7 +978,8 @@ table#msg-composer td {
     /*margin: 0 auto;*/
     border: 1px solid #4a4;
     background-color: #6c6;
-    border-radius: 5px; }
+    border-radius: 5px;
+    z-index: 200; }
 
 .info-msg {
     background-color:#efefef;
@@ -1349,49 +1350,43 @@ table#msg-composer td {
 
 #liveticker {
     position: absolute;
-    right: 0;
-    background: rgba(255,255,255,0.8);
-    width: 200px;
-    padding: 10px 0;
+    top: 35px;
+    left: 50%;
+    margin-left: -270px;
+    background: rgba(200,200,255,0.95);
+    width: 500px;
     color: #000;
     z-index: 100;
-    border-left: 1px solid #bbb;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-    bottom: 10px;
-    top: 10px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border: 1px solid #aab;
+    border-radius: 5px;
+    //height: 500px;
+    overflow: hidden;
 }
 
 .livetickerevent {
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #bbb;
+    border-top: 1px solid #aab;
+    border-bottom: 1px solid #eef;
     padding: 5px;
     text-align: left;
 }
 
 .livetickerdate {
-    border-bottom: 1px solid #bbb;
-    padding-bottom: 10px;
+    border-bottom: 1px solid #eef;
+    padding: 10px 0;
 }
 
 #livetickersmall {
     position: absolute;
-    right: 0;
-    background: rgba(255,255,255,0.80);
-    height: 30px;
-    width: 25px;
-    padding-top: 10px;
-    color: #fff;
+    top: 35px;
+    left: 50%;
+    margin-left: -270px;
+    background: rgba(200,200,255,0.95);
+    width: 500px;
+    height: 35px;
     z-index: 100;
-    border-left: 1px solid #bbb;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-    /*bottom: 10px;*/
-    top: 10px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border: 1px solid #aab;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .calendereducator {
@@ -1418,4 +1413,22 @@ table#msg-composer td {
 #onlineUsers li {
     background: url(../images/icons/online.png)  0 50% no-repeat;
     padding-left: 20px;
+}
+
+#erp {
+    height: 30px;
+    border-bottom: 1px solid #007;
+    box-shadow: 0px 0px 5px #555;
+    position: fixed;
+    width: 100%;
+    background: -moz-linear-gradient(-90deg,#0D5BC5,#2B79E3);
+    background: -webkit-gradient(linear, left top, left bottom, from(#0D5BC5), to(#2B79E3));
+    z-index: 200;
+    .title {
+        color: #fff;
+        text-shadow: #fff 0 0 5px;
+        font-size: 18px;
+        text-align: left;
+        padding: 5px;
+    }
 }

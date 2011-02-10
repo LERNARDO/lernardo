@@ -13,6 +13,7 @@ import at.uenterprise.erp.Post
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.WorkdayCategory
+import java.util.regex.Pattern
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -20,9 +21,9 @@ class EducatorProfileController {
   def securityManager
   FunctionService functionService
 
-  def beforeInterceptor = [
+  /*def beforeInterceptor = [
           action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
-  ]
+  ]*/
   
   def index = {
     redirect action: "list", params: params
@@ -114,6 +115,11 @@ class EducatorProfileController {
     educator.profile.properties = params
     educator.profile.fullName = params.lastName + " " + params.firstName
 
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      educator.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      educator.profile.birthDate = null
+
     educator.user.properties = params
     if (educator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
@@ -159,6 +165,8 @@ class EducatorProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etEducator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
+        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)

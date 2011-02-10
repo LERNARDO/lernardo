@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Aktivitätsblöcke</title>
+  <title><g:message code="groupActivities"/></title>
 </head>
 <body>
 <div class="tabGrey">
@@ -11,7 +11,7 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Aktivitätsblöcke</h1>
+    <h1><g:message code="groupActivities"/></h1>
   </div>
 </div>
 <div class="clearFloat"></div>
@@ -19,7 +19,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${groups.totalCount} Aktivitätsblöcke insgesamt vorhanden
+      ${groups.totalCount} <g:message code="groupActivities.c_total"/>
     </div>
 
     <g:if test="${groups}">
@@ -27,7 +27,8 @@
         <thead>
         <tr>
           <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>
-          <th>Datum</th>
+          <g:sortableColumn property="date" title="${message(code:'groupActivity.profile.date')}"/>
+          <th><g:message code="creator"/></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
             <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
+            <td><erp:createdBy entity="${group}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
           </tr>
         </g:each>
         </tbody>

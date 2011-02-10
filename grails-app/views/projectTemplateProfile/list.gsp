@@ -34,15 +34,17 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'projectTemplate.profile.name')}"/>
         <g:sortableColumn property="status" title="${message(code:'projectTemplate.profile.status')}"/>
-        <th>Projekteinheitenvorlagen</th>
+        <th><g:message code="projectUnitTemplates"/></th>
+        <th><g:message code="creator"/></th>
       </tr>
       </thead>
       <tbody>
-      <g:each in="${projectTemplates}" status="i" var="project">
+      <g:each in="${projectTemplates}" status="i" var="projectTemplate">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td>${fieldValue(bean: project, field: 'profile.status')}</td>
-          <td><erp:getProjectTemplateUnitsCount template="${project}"/></td>
+          <td><g:link action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>${fieldValue(bean: projectTemplate, field: 'profile.status')}</td>
+          <td><erp:getProjectTemplateUnitsCount template="${projectTemplate}"/></td>
+          <td><erp:createdBy entity="${projectTemplate}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
         </tr>
       </g:each>
       </tbody>

@@ -57,7 +57,7 @@
               <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
             </td>
             <td valign="top" class="value">
-              <g:textArea class="countable${parent.profile.constraints.comment.maxSize}" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment')}"/>
+              <g:textArea class="countable${parent.profile.constraints.comment.maxSize}" name="comment" rows="3" cols="27" value="${fieldValue(bean: parent, field: 'profile.comment').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.parentProfile.education}">
@@ -79,7 +79,7 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.project == 'noe'}">
-                <g:select name="jobtypes" from="${grailsApplication.config.jobs}" optionKey="key" optionValue="value" value="${parent?.profile?.jobtypes}"/>
+                <g:select name="jobtypes" from="${grailsApplication.config.jobs}" value="${parent?.profile?.jobtypes}" valueMessagePrefix="job"/>
               </g:if>
               <g:if test="${grailsApplication.config.project == 'sueninos'}">
                 <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>

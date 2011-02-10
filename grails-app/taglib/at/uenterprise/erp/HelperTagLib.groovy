@@ -230,7 +230,11 @@ class HelperTagLib {
       isLeadEducator = accessIsLeadEducator(entity, attrs.facilities)
     //log.info "${entity.profile} is lead educator: ${isLeadEducator}"
 
-    if (hasRoles || hasTypes || isMe || isLeadEducator)
+    boolean isCreatorOf = false
+    if (attrs.creatorof)
+      isCreatorOf = accessIsCreatorOf(entity, attrs.creatorof)
+
+    if (hasRoles || hasTypes || isMe || isLeadEducator || isCreatorOf)
       out << body()
   }
 
@@ -260,6 +264,22 @@ class HelperTagLib {
     def result = entity == entityHelperService.loggedIn
 
     return result
+  }
+
+  // checks if a given entity is creator of another given entity
+  boolean accessIsCreatorOf(Entity entity, Entity creatorof) {
+
+    def c = Link.createCriteria()
+    def result = c.get {
+      eq('source', entity)
+      eq('target', creatorof)
+      eq('type', metaDataService.ltCreator)
+    }
+
+    if (result)
+      return true
+    else
+      return false
   }
 
   // checks if a given entity is lead educator of a given facility
@@ -552,7 +572,7 @@ class HelperTagLib {
     if (facility)
       out << body(facility: facility)
     else
-      out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
+      out << '<span class="italic">' + message(code:'notAssignedToFacility') + '</span>'
   }
 
   /*
@@ -563,7 +583,7 @@ class HelperTagLib {
     if (facilityOfProject)
       out << body(facility: facilityOfProject)
     else
-      out << '<span class="italic">keiner Einrichtung zugewiesen</span>'
+      out << '<span class="italic">' + message(code:'notAssignedToFacility') + '</span>'
   }
 
   /*
@@ -573,6 +593,15 @@ class HelperTagLib {
     List subThemes = functionService.findAllByLink(null, attrs.theme, metaDataService.ltSubTheme)
     if (subThemes)
       subThemes.each {out << body(subthemes: it)}
+  }
+
+  /*
+   * returns the creator of an entity
+   */
+  def createdBy = {attrs, body ->
+    def result = functionService.findByLink(null, attrs.entity, metaDataService.ltCreator)
+    if (result)
+      out << body(creator: result)
   }
 
   /*
@@ -672,7 +701,7 @@ class HelperTagLib {
     SimpleDateFormat df = new SimpleDateFormat("dd")
     String day = df.format(myDate)
     out << '<span class="quote">"' + grailsApplication.config.quotesMap[day] + '"</span>'
-    out << '<p class="quoter">von ' + grailsApplication.config.quoterMap[day] + '</p>'
+    out << '<p class="quoter">' + message(code:"from") + " " + grailsApplication.config.quoterMap[day] + '</p>'
   }
 
   /*
@@ -869,7 +898,7 @@ class HelperTagLib {
   }
 
   def isMeOrAdmin = {attrs, body ->
-    if (attrs.entity.name == entityHelperService.loggedIn.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'} )
+    if (attrs.entity.name == entityHelperService.loggedIn.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} )
       out << body()
   }
 

@@ -1,12 +1,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title>Tagebucheintrag erstellen</title>
+  <title><g:message code="evaluation.create"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Tagebucheintrag erstellen</h1>
+    <h1><g:message code="evaluation.create"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -20,14 +20,14 @@
 
     <g:form action="save" params="[entity:entity.id]">
 
-      <p class="strong">Beschreibung</p>
+      <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
         <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
           ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
         </ckeditor:editor>
       </span>
 
-      <p class="strong">Maßnahme</p>
+      <p class="strong"><g:message code="action"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
         <ckeditor:editor name="method" height="200px" width="800px" toolbar="Basic">
           ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
@@ -36,7 +36,7 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="Speichern"/>
-        <g:link class="buttonGray" action="list" id="${entity.id}">Abbrechen</g:link>
+        <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

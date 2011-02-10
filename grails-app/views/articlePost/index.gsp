@@ -9,7 +9,7 @@
  
     <g:if test="${currentEntity}">
       <erp:isEducator entity="${currentEntity}">
-        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker">Neuen Artikel erstellen</g:link></p>
+        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker"><g:message code="article.create"/></g:link></p>
       </erp:isEducator>
     </g:if>
 

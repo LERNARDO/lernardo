@@ -65,46 +65,55 @@ class ThemeProfileController {
 
   def show = {
     Entity theme = Entity.get(params.id)
+    Entity entity = params.entity ? theme : entityHelperService.loggedIn
 
     if (!theme) {
       flash.message = "themeProfile not found with id ${params.id}"
       redirect(action: list)
     }
     else {
-      def temp = Entity.findAllByType(metaDataService.etProject)
+      // find all projects which are within the theme duration
+      List allProjects = Entity.findAllByType(metaDataService.etProject).findAll {it.profile.startDate >= theme.profile.startDate && it.profile.endDate <= theme.profile.endDate}
+
+      /*def temp = Entity.findAllByType(metaDataService.etProject)
       List allProjects = []
       temp.each { project ->
         if (project.profile.startDate >= theme.profile.startDate && project.profile.endDate <= theme.profile.endDate)
           allProjects << project
-      }
+      }*/
 
-      // find all projects linked to this theme
+      // find all projects currently linked to this theme
       List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 
-      def temp2 = Entity.findAllByType(metaDataService.etGroupActivity)
+      // find all activity groups which are within the theme duration
+      List allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity).findAll {it.profile.date >= theme.profile.startDate && it.profile.date <= theme.profile.endDate}
+
+      /*def temp2 = Entity.findAllByType(metaDataService.etGroupActivity)
       List allActivityGroups = []
       temp2.each { group ->
         if (group.profile.date >= theme.profile.startDate && group.profile.date <= theme.profile.endDate)
           allActivityGroups << group
-      }
-      // find all activity groups linked to this theme
+      }*/
+
+      // find all activity groups currently linked to this theme
       List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
 
-      // find facility the theme is linked to
+      // find the facility linked to this theme
       Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
-      // find parent theme the theme is linked to if any
+      // find parent theme linked to this theme (if any)
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
       [theme: theme,
-              /*allSubthemes: allSubthemes,
-              subthemes: subthemes,*/
-              allProjects: allProjects,
-              projects: projects,
-              allActivityGroups: allActivityGroups,
-              activitygroups: activitygroups,
-              facility: facility,
-              parenttheme: parenttheme]
+       /*allSubthemes: allSubthemes,
+       subthemes: subthemes,*/
+       allProjects: allProjects,
+       projects: projects,
+       allActivityGroups: allActivityGroups,
+       activitygroups: activitygroups,
+       facility: facility,
+       parenttheme: parenttheme,
+       entity: entity]
     }
   }
 
