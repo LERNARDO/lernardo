@@ -10,6 +10,7 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
+import java.util.regex.Pattern
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -17,9 +18,9 @@ class ParentProfileController {
   def securityManager
   FunctionService functionService
 
-  def beforeInterceptor = [
+  /*def beforeInterceptor = [
           action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
-  ]
+  ]*/
   
   def index = {
     redirect action: "list", params: params
@@ -106,6 +107,11 @@ class ParentProfileController {
     parent.profile.fullName = params.lastName + " " + params.firstName
     parent.user.properties = params
 
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      parent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      parent.profile.birthDate = null
+
     if (parent.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
 
@@ -133,6 +139,8 @@ class ParentProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
+        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)

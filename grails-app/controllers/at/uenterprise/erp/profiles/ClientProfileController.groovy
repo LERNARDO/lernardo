@@ -18,6 +18,7 @@ import at.uenterprise.erp.Post
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
+import java.util.regex.Pattern
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -28,7 +29,7 @@ class ClientProfileController {
   def beforeInterceptor = [
           action:{
             params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null
-            params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null
+            //params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null
             params.schoolDropoutDate = params.schoolDropoutDate ? Date.parse("dd. MM. yy", params.schoolDropoutDate) : null
             params.schoolRestartDate = params.schoolRestartDate ? Date.parse("dd. MM. yy", params.schoolRestartDate) : null},
             only:['save','update','addDate']
@@ -144,6 +145,11 @@ class ClientProfileController {
     client.profile.properties = params
     client.profile.fullName = params.lastName + " " + params.firstName
 
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      client.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      client.profile.birthDate = null
+
     client.user.properties = params
     if (client.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
@@ -196,6 +202,8 @@ class ClientProfileController {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
         ent.profile.properties = params
         ent.user.properties = params
+        if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
