@@ -26,7 +26,7 @@
       <table class="default-table">
         <thead>
         <tr>
-          <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>  #
+          <g:sortableColumn property="fullName" title="${message(code:'groupActivity.profile.name')}"/>
           <g:sortableColumn property="date" title="${message(code:'groupActivity.profile.date')}"/>
           <th><g:message code="creator"/></th>
         </tr>
