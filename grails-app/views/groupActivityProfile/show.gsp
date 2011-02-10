@@ -80,7 +80,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Aktivitäten</h5>
+      <h5><g:message code="activities"/></h5>
       <div class="zusatz-show">
         <g:if test="${templates}">
           <p>
@@ -96,7 +96,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Einrichtungen <erp:isCreator entity="${group}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
+      <h5><g:message code="facilities"/> <erp:isCreator entity="${group}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></erp:isCreator></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
@@ -112,7 +112,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Pädagogen <erp:isCreator entity="${group}"><a onclick="toggle('#educators');
+      <h5><g:message code="educators"/> <erp:isCreator entity="${group}"><a onclick="toggle('#educators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="educators" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2')">
@@ -130,7 +130,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Supplierung <erp:isCreator entity="${group}"><a onclick="toggle('#substitutes');
+      <h5><g:message code="substitute"/> <erp:isCreator entity="${group}"><a onclick="toggle('#substitutes');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="substitutes" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2')">
@@ -146,7 +146,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Betreute <erp:isCreator entity="${group}"><a onclick="toggle('#clients');
+      <h5><g:message code="clients"/> <erp:isCreator entity="${group}"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2')">
@@ -162,7 +162,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Erziehungsberechtigte <erp:isCreator entity="${group}"><a onclick="toggle('#parents');
+      <h5><g:message code="parents"/> <erp:isCreator entity="${group}"><a onclick="toggle('#parents');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="parents" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2')">
@@ -180,7 +180,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Partner <erp:isCreator entity="${group}"><a onclick="toggle('#partners');
+      <h5><g:message code="partners"/> <erp:isCreator entity="${group}"><a onclick="toggle('#partners');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2')">

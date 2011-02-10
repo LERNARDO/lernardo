@@ -82,7 +82,7 @@
 
       </div>
       <div class="zusatz-show" id="parents2">
-        <g:render template="parents" model="[parents: parents, group: group]"/>
+        <g:render template="parents" model="[parents: parents, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -97,7 +97,7 @@
 
       </div>
       <div class="zusatz-show" id="clients2">
-        <g:render template="clients" model="[clients: clients, group: group]"/>
+        <g:render template="clients" model="[clients: clients, group: group, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -119,7 +119,7 @@
         </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="childs2">
-        <g:render template="childs" model="[childs: childs, group: group]"/>
+        <g:render template="childs" model="[childs: childs, group: group, entity: currentEntity]"/>
       </div>
     </div>
     </g:if>
