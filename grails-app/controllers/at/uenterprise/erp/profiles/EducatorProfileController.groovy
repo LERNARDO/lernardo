@@ -21,10 +21,6 @@ class EducatorProfileController {
   def securityManager
   FunctionService functionService
 
-  /*def beforeInterceptor = [
-          action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
-  ]*/
-  
   def index = {
     redirect action: "list", params: params
   }
@@ -110,21 +106,21 @@ class EducatorProfileController {
   }
 
   def update = {
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      params.birthDate = null
+
     Entity educator = Entity.get(params.id)
 
     educator.profile.properties = params
     educator.profile.fullName = params.lastName + " " + params.firstName
 
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      educator.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else
-      educator.profile.birthDate = null
-
     educator.user.properties = params
     if (educator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
-    if (!educator.hasErrors() && educator.save()) {
+    if (!educator.hasErrors() && educator.save() && !educator.profile.hasErrors()) {
 
       // create link to partner
       Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}

@@ -29,7 +29,6 @@ class ClientProfileController {
   def beforeInterceptor = [
           action:{
             params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null
-            //params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null
             params.schoolDropoutDate = params.schoolDropoutDate ? Date.parse("dd. MM. yy", params.schoolDropoutDate) : null
             params.schoolRestartDate = params.schoolRestartDate ? Date.parse("dd. MM. yy", params.schoolRestartDate) : null},
             only:['save','update','addDate']
@@ -140,15 +139,15 @@ class ClientProfileController {
   }
 
   def update = {
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      params.birthDate = null
+
     Entity client = Entity.get(params.id)
 
     client.profile.properties = params
     client.profile.fullName = params.lastName + " " + params.firstName
-
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      client.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else
-      client.profile.birthDate = null
 
     client.user.properties = params
     if (client.id == entityHelperService.loggedIn.id)
@@ -162,7 +161,7 @@ class ClientProfileController {
     Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
     new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
-    if (!client.hasErrors() && client.save()) {
+    if (!client.hasErrors() && client.save() && !client.profile.hasErrors()) {
       flash.message = message(code: "client.updated", args: [client.profile.fullName])
       redirect action: 'show', id: client.id
     }

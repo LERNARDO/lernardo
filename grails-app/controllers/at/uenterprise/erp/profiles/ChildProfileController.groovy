@@ -11,7 +11,6 @@ import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
-import java.text.SimpleDateFormat
 
 //import java.util.regex.Pattern
 
@@ -20,15 +19,6 @@ class ChildProfileController {
   EntityHelperService entityHelperService
   FunctionService functionService
   def securityManager
-
-  /*def beforeInterceptor = [
-          action:{
-            *//*if (!Pattern.matches( "\d{2}\.\s\d{2}\.\s\d{4}", params.birthDate)) {
-              flash.message "ups"
-              render view: 'list'
-            }*//*
-            params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
-  ]*/
 
   def index = {
     redirect action: "list", params: params
@@ -109,23 +99,17 @@ class ChildProfileController {
   }
 
   def update = {
-    println params
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      params.birthDate = null
+
     Entity child = Entity.get(params.id)
 
     child.profile.properties = params
     child.profile.fullName = params.lastName + " " + params.firstName
 
     child.user.properties = params
-
-    // fix for child, parent, client and educator
-
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate)) {
-     SimpleDateFormat sdf = new SimpleDateFormat("dd. MM. yyyy")
-     Date bla = sdf.parse(params.birthDate) //Date.parse("dd. MM. yy", params.birthDate)
-      child.profile.birthDate = bla //Date.parse("dd. MM. yy", params.birthDate)
-    }
-    else
-      child.profile.birthDate = null
 
     if (child.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
@@ -135,7 +119,6 @@ class ChildProfileController {
       redirect action: 'show', id: child.id
     }
     else {
-            println child.profile.errors
       render view: 'edit', model: [child: child]
     }
   }

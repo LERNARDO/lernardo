@@ -18,10 +18,6 @@ class ParentProfileController {
   def securityManager
   FunctionService functionService
 
-  /*def beforeInterceptor = [
-          action:{params.birthDate = params.birthDate ? Date.parse("dd. MM. yy", params.birthDate) : null}, only:['save','update']
-  ]*/
-  
   def index = {
     redirect action: "list", params: params
   }
@@ -101,16 +97,16 @@ class ParentProfileController {
   }
 
   def update = {
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
+      params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else
+      params.birthDate = null
+
     Entity parent = Entity.get(params.id)
 
     parent.profile.properties = params
     parent.profile.fullName = params.lastName + " " + params.firstName
     parent.user.properties = params
-
-    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
-      parent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
-    else
-      parent.profile.birthDate = null
 
     if (parent.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
@@ -121,7 +117,7 @@ class ParentProfileController {
     // when validating a parent object it should check validation of nested objects as well because right now nested
     // properties that failed validation are not saved and the "show" view is called as if everything worked fine
 
-    if (!parent.hasErrors() && parent.save()) {
+    if (!parent.hasErrors() && parent.save() && !parent.profile.hasErrors()) {
       flash.message = message(code: "parent.updated", args: [parent.profile.fullName])
       redirect action: 'show', id: parent.id
     }
