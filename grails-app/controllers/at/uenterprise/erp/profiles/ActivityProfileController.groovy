@@ -45,7 +45,7 @@ class ActivityProfileController {
 
     // create empty list for final results
     List activityList = []
-    def activityCount = 0
+    def activityCount
 
     // get all activities
     if (params.myDate_year == 'alle' || params.list == "Alle") {
