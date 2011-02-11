@@ -52,9 +52,9 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <erp:isOperator entity="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${group}">
           <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
-        </erp:isOperator>
+        </erp:accessCheck>
         <g:link class="buttonGray" action="show" id="${group.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
