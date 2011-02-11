@@ -45,7 +45,7 @@ class ActivityProfileController {
 
     // create empty list for final results
     List activityList = []
-    def activityCount
+    def activityCount = 0
 
     // get all activities
     if (params.myDate_year == 'alle' || params.list == "Alle") {
@@ -55,7 +55,6 @@ class ActivityProfileController {
         // get all activities of the facilities the current entity is linked to
         facilities.each {
           List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
-          activityCount = activities.size()
 
           activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
@@ -63,6 +62,7 @@ class ActivityProfileController {
               activityList << act
           }
         }
+        activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
       }
