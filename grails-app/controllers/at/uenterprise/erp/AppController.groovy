@@ -139,13 +139,15 @@ class AppController {
         List projectDays = []
         projectUnits.each {
           def result = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
-          if (!projectDays.contains(result))
+          if (result && !projectDays.contains(result))
             projectDays << result
         }
 
         // for each project day find all projects they are linked to
         projectDays.each {
-          projects << functionService.findByLink(it as Entity, null, metaDataService.ltProjectMember)
+          def result = functionService.findByLink(it as Entity, null, metaDataService.ltProjectMember)
+          if (result)
+            projects.add(result)
         }
       }
       else if (entity.type.id == metaDataService.etPartner.id) {
