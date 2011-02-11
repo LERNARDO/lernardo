@@ -273,6 +273,7 @@ class ProjectTemplateProfileController {
     }
     link.delete()
 
+    // delete links of groupActivityTemplates to projectUnitTemplate
     Link.findAllByTargetAndType(Entity.get(params.projectUnitTemplate), metaDataService.ltProjectUnitMember).each {it.delete()}
 
     // delete projectUnitTemplate
@@ -300,7 +301,7 @@ class ProjectTemplateProfileController {
       eq('type', metaDataService.ltProjectUnitMember)
     }
     if (!link)
-    // link groupActivityTemplate to projectUnit
+      // link groupActivityTemplate to projectUnit
       new Link(source: groupActivityTemplate, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
 
     // find all groupActivityTemplates linked to the unit
