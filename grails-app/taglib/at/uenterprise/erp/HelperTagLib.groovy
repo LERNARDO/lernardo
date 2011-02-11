@@ -758,12 +758,14 @@ class HelperTagLib {
     else if (attrs.entity.type.id == metaDataService.etGroupActivity.id) {
       Entity groupactivitytemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltTemplate)
 
-      m += Publication.countByEntity(groupactivitytemplate)
+      if (groupactivitytemplate) {
+          m += Publication.countByEntity(groupactivitytemplate)
 
-      List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
+          List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
 
-      activitytemplates.each {
-        m += Publication.countByEntity(it as Entity)
+          activitytemplates.each {
+            m += Publication.countByEntity(it as Entity)
+          }
       }
     }
 
@@ -802,34 +804,36 @@ class HelperTagLib {
     else if (attrs.entity.type.id == metaDataService.etProject.id) {
       Entity projectTemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltProjectTemplate)
 
-      m += Publication.countByEntity(projectTemplate)
+      if (projectTemplate) {
+          m += Publication.countByEntity(projectTemplate)
 
-      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
+          List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
 
-      List groupactivitytemplates = []
-      projectUnits.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
-        bla.each {
-          if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
-            groupactivitytemplates << it
-        }
-      }
+          List groupactivitytemplates = []
+          projectUnits.each {
+            def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+            bla.each {
+              if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
+                groupactivitytemplates << it
+            }
+          }
 
-      groupactivitytemplates.each {
-        m += Publication.countByEntity(it)
-      }
+          groupactivitytemplates.each {
+            m += Publication.countByEntity(it)
+          }
 
-      List activitytemplates = []
-      groupactivitytemplates.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
-        bla.each {
-          if (!activitytemplates.contains(it)) // filter duplicate activity templates
-            activitytemplates << it
-        }
-      }
+          List activitytemplates = []
+          groupactivitytemplates.each {
+            def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+            bla.each {
+              if (!activitytemplates.contains(it)) // filter duplicate activity templates
+                activitytemplates << it
+            }
+          }
 
-      activitytemplates.each {
-        m += Publication.countByEntity(it) 
+          activitytemplates.each {
+            m += Publication.countByEntity(it)
+          }
       }
     }
     

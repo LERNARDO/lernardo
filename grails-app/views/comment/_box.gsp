@@ -1,6 +1,6 @@
 <div class="boxHeader">
   <div class="second">
-    <h1>Kommentare</h1>
+    <h1><g:message code="comments"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -8,7 +8,7 @@
 
     %{--<erp:isEducator entity="${currentEntity}">--}%
       <div class="add-comment">
-        <a onclick="toggle('#comment-div'); return false" href="#">Kommentar hinzufügen <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kommentar hinzufügen" /></a>
+        <a onclick="toggle('#comment-div'); return false" href="#"><g:message code="comment.add"/> <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Kommentar hinzufügen" /></a>
       </div>
       <div id="comment-div" style="display:none; margin-bottom: 10px">
         <g:formRemote name="formRemote" url="[controller:'comment', action:'save', id: commented.id]" update="comments" before="hideform('#comment-div');">
