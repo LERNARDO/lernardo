@@ -57,12 +57,14 @@ grails.mail.default.from="lernardomailer@gmail.com"
 project = "sueninos"
 projectName = "Sueninos" // full project name
 currency = "Pesos"
+timeZone = "America/Guatemala" // UTC-6
 
 // Lernardo Config:
 
 /*project = "noe"
 projectName = "Lernardo"
-currency = "Euro"*/
+currency = "Euro"
+timeZone = "Europe/Vienna" // UTC+1*/
 
 // ---------------------------------------------------------------------------------------------
 // google analytics tracker

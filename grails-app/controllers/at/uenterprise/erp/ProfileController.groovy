@@ -309,7 +309,8 @@ class ProfileController {
     Entity entity = Entity.get(params.id)
 
     Calendar calendar = Calendar.getInstance()
-    TimeZone timeZone = calendar.getTimeZone()
+    //TimeZone timeZone = calendar.getTimeZone()
+    TimeZone timeZone = TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())
 
     SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd")
 
