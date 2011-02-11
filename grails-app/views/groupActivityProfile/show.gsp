@@ -56,10 +56,10 @@
         </tr>
 
         <tr>
-          <td class="name-show"><g:message code="groupActivityTemplate.profile.description"/>:</td>
+          <td class="name-show"><g:message code="groupActivity.profile.description"/>:</td>
         </tr>
         <tr>
-          <td colspan="3" class="value-show">${template?.profile?.description?.decodeHTML()}</td>
+          <td colspan="3" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop"></tr>

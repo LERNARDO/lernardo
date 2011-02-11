@@ -36,6 +36,18 @@
             </td>
           </tr>
 
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="project.profile.description"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
+              </ckeditor:editor>
+            </td>
+          </tr>
+
         </table>
 
         <table class="${hasErrors(bean: pc, field: 'weekdays', 'errors')}">

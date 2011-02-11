@@ -37,10 +37,11 @@
         </tr>
 
         <tr>
-          <td class="name-show"><g:message code="projectTemplate.profile.description"/> (aus Vorlage)</td>
+          <td class="name-show"><g:message code="project.profile.description"/></td>
         </tr>
+
         <tr>
-          <td colspan="3" class="value-show">${template?.profile?.description?.decodeHTML()}</td>
+          <td colspan="3" class="value-show">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
       </table>

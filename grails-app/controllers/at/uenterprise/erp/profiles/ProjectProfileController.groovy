@@ -176,13 +176,15 @@ class ProjectProfileController {
   def update = {
     Entity project = Entity.get(params.id)
 
-    project.profile.properties = params
+    project.profile.fullName = params.fullName
+    project.profile.description = params.description
 
-    if (!project.hasErrors() && project.save()) {
+    if (!project.hasErrors() && project.save() && project.profile.save()) {
       flash.message = message(code: "project.updated", args: [project.profile.fullName])
       redirect action: 'show', id: project.id
     }
     else {
+        println project.profile.errors
       render view: 'edit', model: [project: project]
     }
   }

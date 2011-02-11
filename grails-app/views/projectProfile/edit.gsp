@@ -18,11 +18,27 @@
         <table>
           <tbody>
 
-          <tr class="prop">
+        <tr class="prop">
             <td valign="top" class="name"><g:message code="project.profile.name"/></td>
+          </tr>
+
+          <tr class="prop">
             <td valign="top" class="value">
-              <g:textField class="countable${project.profile.constraints.fullName.maxSize} ${hasErrors(bean: project, field: 'profile.fullName', 'errors')}" maxlength="80" name="fullName" value="${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${project.profile.constraints.fullName.maxSize} ${hasErrors(bean: project, field: 'profile.fullName', 'errors')}" size="50" maxlength="80" name="fullName" value="${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}"/>
             </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="project.profile.description"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="value">
+              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:project,field:'profile.description').decodeHTML()}
+              </ckeditor:editor>
+              %{--<g:textArea class="countable${project.profile.constraints.description.maxSize} ${hasErrors(bean: project, field: 'profile.description', 'errors')}" rows="1" cols="75" name="description" value="${fieldValue(bean: project, field: 'profile.description').decodeHTML()}"/>
+            </td>--}%
           </tr>
 
           </tbody>

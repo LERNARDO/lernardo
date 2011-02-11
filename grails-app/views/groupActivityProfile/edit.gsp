@@ -38,16 +38,38 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="groupActivity.profile.educationalObjective"/></td>
-            <td colspan="2" valign="top" class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
+            <td colspan="3" valign="top" class="name"><g:message code="groupActivity.profile.educationalObjective"/></td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value">
+            <td colspans="3" valign="top" class="value">
               <g:select from="${['erreicht','nicht erreicht']}" class="drop-down-240" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
             </td>
-            <td colspan="2" valign="top" class="value">
-              <g:textArea class="countable${group.profile.constraints.educationalObjectiveText.maxSize} ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="1" cols="80" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="groupActivity.profile.educationalObjectiveText"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <ckeditor:editor name="educationalObjectiveText" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
+              </ckeditor:editor>
+              %{--<g:textArea class="countable${group.profile.constraints.educationalObjectiveText.maxSize} ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="1" cols="80" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="groupActivity.profile.description"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
+              </ckeditor:editor>
+              %{--<g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="75" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>--}%
             </td>
           </tr>
 

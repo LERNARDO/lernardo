@@ -53,7 +53,23 @@
 
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>
+              <ckeditor:editor name="educationalObjectiveText" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
+              </ckeditor:editor>
+              %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="groupActivity.profile.description"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
+              </ckeditor:editor>
+              %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="120" name="description" value="${fieldValue(bean: template, field: 'profile.description').decodeHTML()}"/>--}%
             </td>
           </tr>
 
