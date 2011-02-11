@@ -1,5 +1,5 @@
 <div id="liveticker">
-  <div class="livetickerdate"><g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_up.png')}" alt="Achtung" align="top"/></g:remoteLink> <g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm"/> <g:if test="${events.size() == 1}">- <b>1 aktuelles Ereignis!</b></g:if><g:elseif test="${events.size() > 1}">- <b>${events.size()} aktuelle Ereignisse!</b></g:elseif></div>
+  <div class="livetickerdate"><g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_up.png')}" alt="Achtung" align="top"/></g:remoteLink> <g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm" timeZone="${timeZone}"/> <g:if test="${events.size() == 1}">- <b>1 aktuelles Ereignis!</b></g:if><g:elseif test="${events.size() > 1}">- <b>${events.size()} aktuelle Ereignisse!</b></g:elseif></div>
 
   <g:each in="${events}" var="event">
     %{--Difference in ms: ${new Date().getTime() - event.date.getTime()}<br/>
@@ -12,7 +12,7 @@
       <g:set var="transparency" value="0"/>
     </g:else>
     <div class="livetickerevent" style="background: rgba(0,255,0,${transparency})">
-      <g:formatDate date="${event.dateCreated}" format="HH:mm"/><br/>${event.content}
+      <g:formatDate date="${event.dateCreated}" format="HH:mm" timeZone="${timeZone}"/><br/>${event.content}
     </div>
   </g:each>
 </div>

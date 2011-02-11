@@ -38,8 +38,10 @@ class AppController {
     params.sort = "dateCreated"
     params.order = "desc"
 
+    TimeZone timeZone = TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())
+
     List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
-    render template: 'livetickersmall', model:[events: events]
+    render template: 'livetickersmall', model:[events: events, timeZone: timeZone]
   }
 
   def showticker = {
@@ -51,8 +53,10 @@ class AppController {
     params.sort = "dateCreated"
     params.order = "desc"
 
+    TimeZone timeZone = TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())
+
     List events = Live.list().findAll {(new Date().getTime() - it.dateCreated.getTime()) / 1000 / 60 <= 5} //Live.list(params)
-    render template: 'liveticker', model:[events: events]
+    render template: 'liveticker', model:[events: events, timeZone: timeZone]
   }
 
   def liveticker = {
