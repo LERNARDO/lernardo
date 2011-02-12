@@ -1,5 +1,5 @@
 <head>
-  <title>Neuigkeiten</title>
+  <title><g:message code="nav.news"/></title>
   <meta name="layout" content="public" />
 </head>
 

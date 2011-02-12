@@ -71,7 +71,7 @@
       %{--<td class="value" valign="top"><g:select class="drop-down-220 ${hasErrors(bean: ac, field: 'facility', 'errors')}" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/></td>--}%
       %{--<td class="value"><g:select multiple="true" optionKey="id" optionValue="profile" from="${resources}" name="resources"/></td>--}%
 
-      <p><g:message code="educators"/>: (bitte eine Einrichtung auswählen um Pädagogen zuordnen zu können)</p>
+      <p><g:message code="educators"/>: (<g:message code="selectFacility"/>)</p>
       <span id="educators">
         <g:render template="educators" model="[educators: ac?.educators, currentEntity: currentEntity]"/>
       </span>
@@ -79,7 +79,7 @@
 
       <table class="${hasErrors(bean: ac, field: 'weekdays', 'errors')}">
         <tr>
-          <td colspan="7" width="80" class="label">%{--<g:message code="activityInstance.profile.days"/>--}%Bitte die Tage auswählen an denen diese Themenraumaktivität stattfindet sowie Anfang- und Endzeit auswählen!</td>
+          <td colspan="7" width="80" class="label">%{--<g:message code="activityInstance.profile.days"/>--}%<g:message code="chooseDay"/></td>
         </tr>
         <tr>
           <td class="activityInstance-top" width="105"><g:message code="wd.mon"/>:&nbsp;

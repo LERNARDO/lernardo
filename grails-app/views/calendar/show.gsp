@@ -45,7 +45,7 @@
 
   <div class="boxHeader">
     <div class="second">
-      <h1>Kalender</h1>
+      <h1><g:message code="imgmenu.calendar.name"/></h1>
     </div>
   </div>
   <div class="boxGray">

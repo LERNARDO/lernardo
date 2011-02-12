@@ -24,7 +24,7 @@
 
         <tr>
           <td valign="bottom" class="label">Titel:</td>
-          <td valign="bottom" class="label">Datum:</td>
+          <td valign="bottom" class="label"><g:message code="date"/>:</td>
           <td valign="bottom" class="label">Dauer in Minuten:</td>
         </tr>
 
@@ -41,9 +41,9 @@
         </tr>
 
         <tr>
-          <td valign="bottom" class="label">Einrichtung:</td>
-          <td valign="bottom" class="label">Betreute:</td>
-          <td valign="bottom" class="label">Pädagogen:</td>
+          <td valign="bottom" class="label"><g:message code="facility"/>:</td>
+          <td valign="bottom" class="label"><g:message code="clients"/>:</td>
+          <td valign="bottom" class="label"><g:message code="educators"/>:</td>
         </tr>
 
         <tr>

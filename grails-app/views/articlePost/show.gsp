@@ -1,5 +1,5 @@
 <head>
-  <title>Artikelansicht</title>
+  <title><g:message code="article"/></title>
   <meta name="layout" content="public" />
 </head>
 
@@ -10,7 +10,7 @@
       <g:render template="teaser"     model='[article:article]'/>
       <g:render template="content"    model='[article:article]'/>
       <div class="links">
-        <g:link action="index">&#187; zurück zur Übersicht</g:link>
+        <g:link action="index">&#187; <g:message code="backToList"/></g:link>
       </div>
     </div>
   </div>

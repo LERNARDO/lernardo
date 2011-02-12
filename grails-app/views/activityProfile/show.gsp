@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title>Aktivität</title>
+  <title><g:message code="activity"/></title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
 </head>
@@ -9,7 +9,7 @@
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Aktivität</h1>
+    <h1><g:message code="activity"/></h1>
   </div>
 </div>
 
@@ -26,7 +26,7 @@
       <tr>
         <td class="name-show">Name:</td>
         <td class="name-show">Beginn:</td>
-        <td class="name-show">Dauer:</td>
+        <td class="name-show"><g:message code="duration"/>:</td>
       </tr>
 
       <tr>
@@ -40,9 +40,9 @@
       </tr>
 
       <tr>
-        <td class="name-show">Einrichtung:</td>
-        <td valign="bottom" class="label">Betreute:</td>
-        <td class="name-show">Pädagogen:</td>
+        <td class="name-show"><g:message code="facility"/>:</td>
+        <td valign="bottom" class="label"><g:message code="clients"/>:</td>
+        <td class="name-show"><g:message code="educators"/>:</td>
       </tr>
 
       <tr>
@@ -111,7 +111,7 @@
     %{--clients and their status may only be added after the activity has started--}%
       <g:if test="${new Date() > activity.profile.date}">
         <div>
-          <h1>Betreute <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');
+          <h1><g:message code="clients"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');
           return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isOperator></h1>
           <div id="clients" style="display:none">
             <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
