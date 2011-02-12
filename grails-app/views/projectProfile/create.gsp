@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: pc]"/>
 
-    <p>Vorlage: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
+    <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
     <g:form action="save" id="${template.id}">
       <div class="dialog">
         <table>

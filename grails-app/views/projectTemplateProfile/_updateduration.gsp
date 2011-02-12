@@ -1,1 +1,1 @@
-<span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration ?: 0} min
+<span class="bold"><g:message code="calculatedTotalDuration"/>:</span> ${calculatedDuration ?: 0} min

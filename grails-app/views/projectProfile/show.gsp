@@ -56,7 +56,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="facility"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><span id="facilitybutton"><g:render template="facilitybutton" model="[facilities: facilities]"/></span></erp:accessCheck></h5>
+      <h5><g:message code="facility"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><span id="facilitybutton"><g:render template="facilitybutton" model="[facilities: facilities]"/></span></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addFacility', id: project.id]" update="facilities2" before="showspinner('#facilities2'); toggle('#facilities');" after="${remoteFunction(action:'updateFacilityButton',update:'facilitybutton',id:project.id)}">
           <table>
@@ -73,7 +73,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClientGroup', id:project.id]" update="clients2" before="showspinner('#clients2')">
           <table>
@@ -92,7 +92,7 @@
     <div class="zusatz">
       <h5><g:message code="projectDays"/> (${projectDays.size()})</h5>
       <div id="projectDay">
-        <g:render template="projectdaynav" model="[projectDays: projectDays, projectDay: day, allResources: allResources, allEducators: allEducators, allParents: allParents, units: units, entity: currentEntity]"/>
+        <g:render template="projectdaynav" model="[project: project, projectDays: projectDays, projectDay: day, allResources: allResources, allEducators: allEducators, allParents: allParents, units: units, entity: currentEntity]"/>
       </div>
     </div>
 

@@ -32,17 +32,17 @@
 
     %{--render other documents--}%
     <g:if test="${activitytemplatesdocuments}">
-      <h1>Aus Aktivitätsvorlagen</h1>
+      <h1><g:message code="fromActivityTemplates"/></h1>
       <g:render template="other" model="[entity: entity, publist: activitytemplatesdocuments]"/>
     </g:if>
 
     <g:if test="${groupactivitytemplatesdocuments}">
-      <h1>Aus Aktivitätsblockvorlagen</h1>
+      <h1><g:message code="fromGroupActivityTemplates"/></h1>
       <g:render template="other" model="[entity: entity, publist: groupactivitytemplatesdocuments]"/>
     </g:if>
 
     <g:if test="${projecttemplatedocuments}">
-      <h1>Aus Projektvorlage</h1>
+      <h1><g:message code="fromProjectTemplate"/></h1>
       <g:render template="other" model="[entity: entity, publist: projecttemplatedocuments]"/>
     </g:if>
     

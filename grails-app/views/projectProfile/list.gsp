@@ -11,7 +11,7 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Projekte</h1>
+    <h1><g:message code="projects"/></h1>
   </div>
 </div>
 <div class="clearFloat"></div>

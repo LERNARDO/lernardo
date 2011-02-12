@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Projektvorlage</title>
+  <title><g:message code="projectTemplate"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Projektvorlage</h1>
+    <h1><g:message code="projectTemplate"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -48,10 +48,10 @@
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${projectTemplate}">
         <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}" params="[entity: projectTemplate?.id]"><g:message code="edit"/></g:link>
         <g:if test="${projectTemplate.profile.status == 'fertig'}">
-          <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}">Projekt planen</g:link>
+          <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}"><g:message code="project.plan"/></g:link>
         </g:if>
       </erp:accessCheck>
-      <g:link class="buttonGreen" action="copy" id="${projectTemplate.id}">Vorlage duplizieren</g:link>
+      <g:link class="buttonGreen" action="copy" id="${projectTemplate.id}"><g:message code="projectTemplate.duplicate"/></g:link>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>

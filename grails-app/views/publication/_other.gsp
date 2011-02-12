@@ -5,7 +5,7 @@
   %{-- TODO: uncomment when implemented --}%
   %{--<ub:meOrAdmin entityName="${entity}"><th class="title"><g:message code="publication.type.visibility"/></th></ub:meOrAdmin>--}%
   %{--<th><g:message code="publication.type"/></th>--}%
-  <th>Gehört zu</th>
+  <th><g:message code="belongsTo"/></th>
   <th class="date"><g:message code="publication.type.date"/></th>
 </tr>
 
