@@ -77,7 +77,7 @@
       <div class="zusatz-add" id="parents" style="display:none">
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteParents" action="remoteParents" id="${group.id}" before="showspinner('#remoteParents')"/>
+        <g:remoteField size="40" name="remoteField" update="remoteParents" action="remoteParents" id="${group.id}" before="showspinner('#remoteParents');" after="toggle('#parents');"/>
         <div id="remoteParents"></div>
 
       </div>
@@ -92,7 +92,7 @@
       <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${group.id}" before="showspinner('#remoteClients')"/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${group.id}" before="showspinner('#remoteClients');" after="toggle('#clients');"/>
         <div id="remoteClients"></div>
 
       </div>
@@ -108,7 +108,7 @@
       <div class="zusatz-add" id="childs" style="display:none">
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteChildren" action="remoteChildren" id="${group.id}" before="showspinner('#remoteChildren')"/>
+        <g:remoteField size="40" name="remoteField" update="remoteChildren" action="remoteChildren" id="${group.id}" before="showspinner('#remoteChildren');" after="toggle('#childs');"/>
         <div id="remoteChildren"></div>
 
         %{--<g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="showspinner('#childs2')">

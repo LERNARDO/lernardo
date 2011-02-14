@@ -131,7 +131,7 @@
       <h5><g:message code="partner.profile.contacts"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:isOperator></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2')">
+        <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 
           <table>
             <tr>

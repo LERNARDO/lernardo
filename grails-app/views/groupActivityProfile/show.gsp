@@ -99,7 +99,7 @@
       <h5><g:message code="facilities"/> <erp:isCreator entity="${group}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></erp:isCreator></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2')">
+        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="toggle('#facilities');">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -115,7 +115,7 @@
       <h5><g:message code="educators"/> <erp:isCreator entity="${group}"><a onclick="toggle('#educators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="educators" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2')">
+        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2');" after="toggle('#educators');">
           <div id="educatorselect">
             <g:render template="educatorselect" model="[allEducators: allEducators, group: group]"/>
           </div>
@@ -133,7 +133,7 @@
       <h5><g:message code="substitute"/> <erp:isCreator entity="${group}"><a onclick="toggle('#substitutes');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="substitutes" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2')">
+        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2');" after="toggle('#substitutes');">
           <g:select name="substitute" from="${allSubstitutes}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -149,7 +149,7 @@
       <h5><g:message code="clients"/> <erp:isCreator entity="${group}"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2')">
+        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2');" after="toggle('#clients');">
           <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
@@ -165,7 +165,7 @@
       <h5><g:message code="parents"/> <erp:isCreator entity="${group}"><a onclick="toggle('#parents');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="parents" style="display:none">
-        <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2')">
+        <g:formRemote name="formRemote4" url="[controller:'groupActivityProfile', action:'addParent', id: group.id]" update="parents2" before="showspinner('#parents2');" after="toggle('#parents');">
           <div id="parentselect">
             <g:render template="parentselect" model="[allParents: allParents, group: group]"/>
           </div>
@@ -183,7 +183,7 @@
       <h5><g:message code="partners"/> <erp:isCreator entity="${group}"><a onclick="toggle('#partners');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:isCreator></h5>
       <div class="zusatz-add" id="partners" style="display:none">
-        <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2')">
+        <g:formRemote name="formRemote5" url="[controller:'groupActivityProfile', action:'addPartner', id: group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
