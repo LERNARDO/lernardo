@@ -136,6 +136,8 @@ class GroupActivityTemplateProfileController {
   def copy = {
     EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     Entity original = Entity.get(params.id)
 
     Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
@@ -146,8 +148,8 @@ class GroupActivityTemplateProfileController {
       ent.profile.fullName = original.profile.fullName + '[Duplikat]'
     }
 
-    // create link to creator
-    new Link(source: entityHelperService.loggedIn, target: entity, type: metaDataService.ltCreator).save()
+    // save creator
+    new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
     // find all activity templates linked to the original and link them to the copy
     List templates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)

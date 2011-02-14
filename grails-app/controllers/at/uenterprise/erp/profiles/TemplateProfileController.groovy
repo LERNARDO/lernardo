@@ -87,6 +87,8 @@ class TemplateProfileController {
   def copy = {
     EntityType etTemplate = metaDataService.etTemplate
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     Entity original = Entity.get(params.id)
 
     Entity entity = entityHelperService.createEntity('template', etTemplate) {Entity ent ->
@@ -100,6 +102,9 @@ class TemplateProfileController {
       ent.profile.type = original.profile.type
       ent.profile.fullName = original.profile.fullName + '[Duplikat]'
     }
+
+    // save creator
+    new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
     // find all resources created in the original and create them in the copy
     List resources = functionService.findAllByLink(null, original, metaDataService.ltResource)

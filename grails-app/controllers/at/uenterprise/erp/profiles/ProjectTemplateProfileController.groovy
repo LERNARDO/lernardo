@@ -132,6 +132,8 @@ class ProjectTemplateProfileController {
   def copy = {
     EntityType etProjectTemplate = metaDataService.etProjectTemplate
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     Entity original = Entity.get(params.id)
 
     Entity entity = entityHelperService.createEntity("projectTemplate", etProjectTemplate) {Entity ent ->
@@ -140,6 +142,9 @@ class ProjectTemplateProfileController {
       ent.profile.status = original.profile.status
       ent.profile.fullName = original.profile.fullName + '[Duplikat]'
     }
+
+    // save creator
+    new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
     // find project unit templates linked to the original
     List projectUnitTemplates = functionService.findAllByLink(null, original, metaDataService.ltProjectUnitTemplate)
