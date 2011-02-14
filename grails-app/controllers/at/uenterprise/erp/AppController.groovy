@@ -14,6 +14,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
 import org.springframework.web.multipart.MultipartFile
+import at.openfactory.ep.AssetStorage
 
 class AppController {
   SecHelperService secHelperService
@@ -22,6 +23,28 @@ class AppController {
   FunctionService functionService
   MetaDataService metaDataService
   def assetService
+
+  def get = {
+    Entity ent = Entity.get (params.entity)
+    if (!ent) {
+      response.sendError(404, "no such entity: '$params.entity")
+      return
+    }
+
+    AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
+    if (!store) {
+//      response.sendError(404, 'no matching asset')
+        def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
+        if (res) {
+          response.contentType = "image/jpg"
+          response.outputStream << res.inputStream
+          response.outputStream.flush ()
+        }
+      return
+    }
+
+    assetService.renderStorage (store, response)
+  }
 
   def error404 = {
     render view: '/404'

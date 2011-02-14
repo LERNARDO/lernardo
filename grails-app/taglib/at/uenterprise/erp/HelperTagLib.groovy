@@ -16,6 +16,14 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def profileImage = {attrs->
+    def imgattrs = [:]
+    imgattrs['src'] = g.createLink (controller:'app', action:'get', params:[type:'profile', entity:attrs.entity.id])
+    attrs.each {key, val-> imgattrs[key]=val ;}
+    def mkp = new groovy.xml.MarkupBuilder(out)
+    mkp { img (imgattrs) }
+  }
+
   /*
    * retrieves all online users (activity within the last 5 minutes)
    */
