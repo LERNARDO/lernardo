@@ -17,6 +17,7 @@ class HelperTagLib {
   static namespace = "erp"
 
   def profileImage = {attrs->
+    attrs.name = attrs.entity.name
     def imgattrs = [:]
     imgattrs['src'] = g.createLink (controller:'app', action:'get', params:[type:'profile', entity:attrs.entity.id])
     attrs.each {key, val-> imgattrs[key]=val ;}
