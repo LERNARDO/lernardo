@@ -66,9 +66,10 @@
     </div>
 
     <div class="buttons">
-      <erp:isMeOrAdminOrOperator entity="${facility}" current="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]">
+      %{--<erp:isMeOrAdminOrOperator entity="${facility}" current="${currentEntity}">--}%
         <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdminOrOperator>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
@@ -95,7 +96,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="educators"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#educators');
+      <h5><g:message code="educators"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#educators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagogen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="educators" style="display:none">
 
@@ -116,7 +117,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#clients');
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
@@ -137,7 +138,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="contacts"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#contacts');
+      <h5><g:message code="contacts"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
@@ -192,7 +193,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#resources');
+      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
