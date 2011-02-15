@@ -134,7 +134,7 @@ class ClientProfileController {
 
     return [client: client,
             colonia: colonia,
-            allColonias: allColonies,
+            allColonies: allColonies,
             allFacilities: allFacilities]
   }
 
@@ -190,7 +190,7 @@ class ClientProfileController {
       }
     }
 
-    return [allColonias: allColonies,
+    return [allColonies: allColonies,
             allFacilities: allFacilities]
   }
 
