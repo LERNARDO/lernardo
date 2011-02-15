@@ -42,6 +42,7 @@ class TemplateProfileController {
     }
 
     return [allTemplates: templates,
+            totalTemplates: templates.totalCount,
             methods: Method.findAllByType('template'), paginate: true]
   }
 
@@ -443,7 +444,7 @@ class TemplateProfileController {
       }
     }
 
-    render(template: 'searchresults', model: [allTemplates: finalList, currentEntity: entityHelperService.loggedIn, paginate: false])
+    render(template: 'searchresults', model: [allTemplates: finalList, totalTemplates: finalList.size(), currentEntity: entityHelperService.loggedIn, paginate: false])
   }
 
 }
