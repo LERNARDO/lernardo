@@ -138,7 +138,8 @@ profiletypes = ['all','operator','facility','educator','client','user','partner'
 helpertypes = ['operator','educator','client','partner','pate','parent']
 
 // custom maps to store data
-colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5']
+colors = [0:'#f44',1:'#4f4',2:'#44f',3:'#ff4',4:'#4ff',5:'#f4f',6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5',12:'#408080',13:'#808000',14:'#461B7E',15:'#307D7E',
+          16:'#348017',17:'#AF7817',18:'#7E2217',19:'#C36241',20:'#C11B17',21:'#817339']
 
 // used locales
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
