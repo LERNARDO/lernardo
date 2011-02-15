@@ -48,6 +48,48 @@ class CalendarController {
       redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
   }
 
+  def updatecalendar = {
+      //println params
+    Entity currentEntity = entityHelperService.loggedIn
+
+    if (currentEntity.profile.calendareds.contains(params.id))
+        currentEntity.profile.removeFromCalendareds(params.id)
+    else
+        currentEntity.profile.addToCalendareds(params.id)
+
+    List visibleEducators = currentEntity.profile.calendareds
+
+   /* List visibleEducators = []
+
+    Entity entity = params.id ? Entity.get(params.id) : currentEntity
+
+    if (params.visibleEducators != '[]') {
+      params.visibleEducators = params.list('visibleEducators')
+      params.visibleEducators.each {println it}
+      visibleEducators.addAll(params.visibleEducators)
+    }
+
+      println visibleEducators
+
+    //println "educator to add: ${entity.id}"
+    //println "current list: ${visibleEducators}"
+    //println "already in list: ${visibleEducators.contains(entity.id.toString())}"
+
+    if (visibleEducators.contains(entity.id.toString())) {
+      //println "removing ${entity.id}"
+      visibleEducators.remove(entity.id.toString())
+    }
+    else
+      if(entity.type.id == metaDataService.etEducator.id) {
+        //println "adding ${entity.id}"
+        visibleEducators.add(entity.id)
+      }
+
+      println visibleEducators*/
+
+    render template:"calendar", model: [visibleEducators: visibleEducators]
+  }
+
   /*
    * shows the calendar
    */
@@ -55,11 +97,13 @@ class CalendarController {
     //println "params of show view: ${params}"
     Entity currentEntity = entityHelperService.loggedIn
 
-    List visibleEducators = []
+    List visibleEducators = currentEntity.profile.calendareds
 
-    Entity entity = params.id ? Entity.get(params.id) : currentEntity
+    //List visibleEducators = []
 
-    if (params.visibleEducators) {
+    //Entity entity = params.id ? Entity.get(params.id) : currentEntity
+
+    /*if (params.visibleEducators) {
       params.visibleEducators = params.list('visibleEducators')
       visibleEducators.addAll(params.visibleEducators)
     }
@@ -76,7 +120,7 @@ class CalendarController {
       if(entity.type.id == metaDataService.etEducator.id) {
         //println "adding ${entity.id}"
         visibleEducators.add(entity.id)
-      }
+      }*/
 
     //println "new list: ${visibleEducators}"
 
@@ -84,7 +128,7 @@ class CalendarController {
 
     if (currentEntity.type.name == metaDataService.etEducator) {
       // find facility the educator is working for
-      def facility = functionService.findByLink(entity, null, metaDataService.ltWorking)
+      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
 
       if (facility) {
         // find all educators working in that facility

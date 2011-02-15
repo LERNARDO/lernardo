@@ -1,10 +1,9 @@
 <head>
   <title><g:message code="cal.title"/></title>
   <meta name="layout" content="private-cal" />
-  <g:javascript library="jquery" plugin="jquery"/>
+  %{--<g:javascript library="jquery" plugin="jquery"/>
   <g:javascript src="jquery/fullcalendar-1.4.10.js"/>
-  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}" />
-  <g:render template="/templates/calendar" model="[visibleEducators: visibleEducators]"/>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}" />--}%
 </head>
 
 <body>
@@ -35,8 +34,8 @@
   <div class="boxGray">
     <div class="second">
       <g:each in="${educators}" var="educator" status="i">
-        <erp:getActiveEducator educators="${visibleEducators}" id="${educator.id}">
-          <div class="calendereducator" style="background: ${active ? grailsApplication.config.colors[i] : ''}"><g:link style="display: block; color: ${active ? '#fff' : '#000'}; text-decoration: none;" controller="calendar" action="show" id="${educator.id}" params="[visibleEducators: visibleEducators]"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> ${educator.profile.fullName}</g:link></div>
+        <erp:getActiveEducator id="${educator.id}">
+          <div class="calendereducator"><g:remoteLink update="calendar" style="display: block; color: #000; text-decoration: none;" controller="calendar" action="updatecalendar" id="${educator.id}" before="ftoggle('#educatorcolor${i}')"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="toolTip" align="top"/> ${educator.profile.fullName}</g:remoteLink><div id="educatorcolor${i}" style="background: ${grailsApplication.config.colors[i]}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></div>
         </erp:getActiveEducator>
       </g:each>
       <div class="clear"></div>
@@ -49,7 +48,9 @@
     </div>
   </div>
   <div class="boxGray">
-    <div class="second cal"></div>
+    <div class="second cal" id="calendar">
+        <g:render template="calendar" model="[visibleEducators: visibleEducators]"/>
+    </div>
   </div>
 </body>
 

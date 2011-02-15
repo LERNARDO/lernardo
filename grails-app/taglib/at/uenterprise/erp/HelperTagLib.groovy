@@ -1017,7 +1017,12 @@ class HelperTagLib {
 
     // For some weird reason all but the last element in the list are of type String and the last element is not of type String so both types
     // need to be checked... WTF Groovy?!?
-    def result = attrs.educators.contains(attrs.id.toString()) || attrs.educators.contains(attrs.id)
+
+      Entity currentEntity = entityHelperService.loggedIn
+
+    def result = currentEntity.profile.calendareds.contains(attrs.id.toString())
+
+    //def result = attrs.educators.contains(attrs.id.toString()) || attrs.educators.contains(attrs.id)
 
     out << body(active: result)
   }

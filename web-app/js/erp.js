@@ -22,3 +22,8 @@ showspinner = function(id) {
 toggle = function(id) {
   $(id).toggle(400);
 };
+
+// fadetoggle element
+ftoggle = function(id) {
+  $(id).fadeToggle(400);
+};
