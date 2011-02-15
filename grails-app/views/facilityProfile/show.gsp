@@ -80,7 +80,7 @@
       <div class="zusatz-add" id="leadeducators" style="display:none">
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteLeadEducators" action="remoteLeadEducators" id="${facility.id}" before="showspinner('#remoteLeadEducators');" after="toggle('#leadeducators');"/>
+        <g:remoteField size="40" name="remoteField" update="remoteLeadEducators" action="remoteLeadEducators" id="${facility.id}" before="showspinner('#remoteLeadEducators');"/>
         <div id="remoteLeadEducators"></div>
 
         %{--<g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addLeadEducator', id: facility.id]" update="leadeducators2" before="showspinner('#leadeducators2')">
@@ -101,7 +101,7 @@
       <div class="zusatz-add" id="educators" style="display:none">
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteEducators" action="remoteEducators" id="${facility.id}" before="showspinner('#remoteEducators');" after="toggle('#educators');"/>
+        <g:remoteField size="40" name="remoteField" update="remoteEducators" action="remoteEducators" id="${facility.id}" before="showspinner('#remoteEducators');"/>
         <div id="remoteEducators"></div>
 
         %{--<g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addEducator', id: facility.id]" update="educators2" before="showspinner('#educators2')">
@@ -122,7 +122,7 @@
       <div class="zusatz-add" id="clients" style="display:none">
 
         <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${facility.id}" before="showspinner('#remoteClients');" after="toggle('#clients');"/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${facility.id}" before="showspinner('#remoteClients');"/>
         <div id="remoteClients"></div>
 
         %{--<g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addClients', id: facility.id]" update="clients2" before="showspinner('#clients2')">
