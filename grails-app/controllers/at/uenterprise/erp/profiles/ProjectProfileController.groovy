@@ -132,8 +132,8 @@ class ProjectProfileController {
               units: units,
               allParents: allParents,
               allPartners: allPartners,
-              active: projectDays[0].id,
-              day: projectDays[0]]
+              active: params.one ?: projectDays[0].id,
+              day: params.one ? projectDays.find {it.id == params.int('one')} : projectDays[0]]
     }
   }
 

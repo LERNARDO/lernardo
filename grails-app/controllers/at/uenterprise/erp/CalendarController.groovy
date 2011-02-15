@@ -35,6 +35,15 @@ class CalendarController {
       else
         redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
     }
+    else if (entity.type.supertype.name == 'projectUnit') {
+        // find projectDay of projectUnit
+        Entity projectDay = functionService.findByLink(entity, null, metaDataService.ltProjectDayUnit)
+
+        // find project of projectDay
+        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+        redirect controller: 'projectProfile', action: 'show', id: project.id, params: [one: projectDay.id]
+    }
     else
       redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
   }
@@ -241,7 +250,7 @@ class CalendarController {
                   def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
                   def description = "<b>${message(code: 'project')}:</b> ${project.profile.fullName}"
 
-                  eventList << [id: project.id, title: "${message(code: 'cal.projectUnit')}: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: description]
+                  eventList << [id: projectUnit.id, title: "${message(code: 'cal.projectUnit')}: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: description, one: projectDay.id]
                 }
               }
             }

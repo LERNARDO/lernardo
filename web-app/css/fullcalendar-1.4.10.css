@@ -241,6 +241,11 @@ table.fc-header {
 /* Global Event Styles
 ------------------------------------------------------------------------*/
 
+.fc-event:hover {
+    -moz-box-shadow: 0 0 10px #000;
+    -webkit-box-shadow: 0 0 10px #000;
+}
+
 .fc-event,
 .fc-agenda .fc-event-time,
 .fc-event a {
@@ -463,7 +468,7 @@ table.fc-header {
 	text-decoration: none;
 	cursor: pointer;
 	}
-	
+
 .fc-event-editable {
 	cursor: pointer;
 	}
@@ -481,7 +486,7 @@ table.fc-header {
 	width: 100%;
 	height: 100%;
 	}
-	
+
 /* right-to-left */
 
 .fc-rtl .fc-event a {

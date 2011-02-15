@@ -2,7 +2,7 @@
 
   <div style="margin-left: 5px">
     <g:each in="${projectDays}" var="projectDay">
-      <div class="daybox ${projectDay.id == active ? 'activebox' : ''}"><g:remoteLink update="projectDay" action="updateprojectday" id="${projectDay.id}" params="[project: project.id]" before="showspinner('#projectDay')"><g:formatDate date="${projectDay.profile.date}" format="EEEE"/><br/><g:formatDate date="${projectDay.profile.date}" format="dd. MMMM yyyy"/></g:remoteLink></div>
+      <div class="daybox ${projectDay.id.toString() == active.toString() ? 'activebox' : ''}"><g:remoteLink update="projectDay" action="updateprojectday" id="${projectDay.id}" params="[project: project.id]" before="showspinner('#projectDay')"><g:formatDate date="${projectDay.profile.date}" format="EEEE"/><br/><g:formatDate date="${projectDay.profile.date}" format="dd. MMMM yyyy"/></g:remoteLink></div>
     </g:each>
     <div class="spacer"></div>
   </div>

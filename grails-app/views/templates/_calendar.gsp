@@ -59,13 +59,13 @@
     allDaySlot:true,
     allDayText:'',
     weekends: true,
-    events: '${g.createLink (controller:"calendar", action:"events", params:[visibleEducators: visibleEducators])}',
+    events: '${createLink (controller:"calendar", action:"events", params:[visibleEducators: visibleEducators])}',
   
     eventClick: function (calEvent, jsEvent, view) {
       %{--console.info ("got a calEvent");--}%
       %{--console.dir (calEvent);--}%
 
-      top.location.href = "${g.createLink (controller:"calendar",  action:"destination")}"+"/"+calEvent.id
+      top.location.href = "${createLink (controller:"calendar", action:"destination")}"+"/"+calEvent.id
     },
 
     eventMouseover: function(e,m) {
