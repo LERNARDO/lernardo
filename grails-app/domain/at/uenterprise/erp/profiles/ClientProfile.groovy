@@ -20,7 +20,9 @@ class ClientProfile extends Profile {
                       healths: Healths,
                       jobtypes: String,
                       collectors: Collector,
-                      contacts: Contact]
+                      contacts: Contact,
+                      calendareds: String]
+    List calendareds
 
     String firstName
     String lastName

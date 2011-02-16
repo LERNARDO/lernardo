@@ -10,7 +10,9 @@ class EducatorProfile extends Profile {
     static hasMany = [languages: String,
                       inChargeOf: String,
                       dates: CDate,
-                      workdayunits: WorkdayUnit]
+                      workdayunits: WorkdayUnit,
+                      calendareds: String]
+    List calendareds
 
     String title
     String firstName

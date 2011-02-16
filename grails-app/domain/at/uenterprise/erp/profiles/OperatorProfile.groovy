@@ -4,6 +4,9 @@ import at.openfactory.ep.Profile
 
 class OperatorProfile extends Profile {
 
+    static hasMany = [calendareds: String]
+    List calendareds
+
     String zip
     String city
     String street

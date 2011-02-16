@@ -6,9 +6,9 @@ import at.openfactory.ep.Profile
 
 class UserProfile extends Profile {
 
-
     static hasMany = [calendareds: String]
     List calendareds
+
     String firstName
     String lastName
     Boolean showTips = true

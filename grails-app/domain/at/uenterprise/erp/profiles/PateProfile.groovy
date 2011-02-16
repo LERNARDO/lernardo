@@ -4,7 +4,9 @@ import at.openfactory.ep.Profile
 
 class PateProfile extends Profile {
 
-  static hasMany = [languages: String]
+  static hasMany = [languages: String,
+                    calendareds: String]
+  List calendareds
 
   String firstName
   String lastName

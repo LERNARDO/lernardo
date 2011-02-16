@@ -5,7 +5,9 @@ import at.openfactory.ep.Profile
 class ParentProfile extends Profile {
 
     static hasMany = [languages: String,
-                      jobtypes: String]
+                      jobtypes: String,
+                      calendareds: String]
+    List calendareds
 
     String firstName
     String lastName

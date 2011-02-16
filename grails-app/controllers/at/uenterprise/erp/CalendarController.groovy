@@ -49,7 +49,6 @@ class CalendarController {
   }
 
   def updatecalendar = {
-      //println params
     Entity currentEntity = entityHelperService.loggedIn
 
     if (currentEntity.profile.calendareds.contains(params.id))
@@ -59,34 +58,6 @@ class CalendarController {
 
     List visibleEducators = currentEntity.profile.calendareds
 
-   /* List visibleEducators = []
-
-    Entity entity = params.id ? Entity.get(params.id) : currentEntity
-
-    if (params.visibleEducators != '[]') {
-      params.visibleEducators = params.list('visibleEducators')
-      params.visibleEducators.each {println it}
-      visibleEducators.addAll(params.visibleEducators)
-    }
-
-      println visibleEducators
-
-    //println "educator to add: ${entity.id}"
-    //println "current list: ${visibleEducators}"
-    //println "already in list: ${visibleEducators.contains(entity.id.toString())}"
-
-    if (visibleEducators.contains(entity.id.toString())) {
-      //println "removing ${entity.id}"
-      visibleEducators.remove(entity.id.toString())
-    }
-    else
-      if(entity.type.id == metaDataService.etEducator.id) {
-        //println "adding ${entity.id}"
-        visibleEducators.add(entity.id)
-      }
-
-      println visibleEducators*/
-
     render template:"calendar", model: [visibleEducators: visibleEducators]
   }
 
@@ -94,35 +65,9 @@ class CalendarController {
    * shows the calendar
    */
   def show = {
-    //println "params of show view: ${params}"
     Entity currentEntity = entityHelperService.loggedIn
 
     List visibleEducators = currentEntity.profile.calendareds
-
-    //List visibleEducators = []
-
-    //Entity entity = params.id ? Entity.get(params.id) : currentEntity
-
-    /*if (params.visibleEducators) {
-      params.visibleEducators = params.list('visibleEducators')
-      visibleEducators.addAll(params.visibleEducators)
-    }
-
-    //println "educator to add: ${entity.id}"
-    //println "current list: ${visibleEducators}"
-    //println "already in list: ${visibleEducators.contains(entity.id.toString())}"
-
-    if (visibleEducators.contains(entity.id.toString())) {
-      //println "removing ${entity.id}"
-      visibleEducators.remove(entity.id.toString())
-    }
-    else
-      if(entity.type.id == metaDataService.etEducator.id) {
-        //println "adding ${entity.id}"
-        visibleEducators.add(entity.id)
-      }*/
-
-    //println "new list: ${visibleEducators}"
 
     List educators = []
 
@@ -146,6 +91,12 @@ class CalendarController {
    * retrieves the entries to display in the calendar like activities or themes
    */
   def events = {
+    def start = new Date()
+    start.setTime(params.long('start') * 1000)
+
+    def end = new Date()
+    end.setTime(params.long('end') * 1000)
+
     Entity currentEntity = entityHelperService.loggedIn
 
     List educators = []
@@ -175,7 +126,7 @@ class CalendarController {
       // get all own appointments
       List ownappointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
 
-      ownappointments?.each {
+      ownappointments?.findAll{(it.profile.beginDate.compareTo(start) >= 0 && it.profile.beginDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
         def dtStart = new DateTime(it.profile.beginDate)
         dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
         def dtEnd = new DateTime(it.profile.endDate)
@@ -189,7 +140,7 @@ class CalendarController {
     // get all themes
     List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-    themeList?.each {
+    themeList?.findAll{(it.profile.startDate.compareTo(start) >= 0 && it.profile.startDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
       def dtStart = new DateTime(it.profile.startDate)
       dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
       def dtEnd = new DateTime(it.profile.endDate)
@@ -207,7 +158,7 @@ class CalendarController {
         // get all appointments
         List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
 
-        appointments?.each { Entity appointment ->
+        appointments?.findAll{(it.profile.beginDate.compareTo(start) >= 0 && it.profile.beginDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each { Entity appointment ->
           def dtStart = new DateTime(appointment.profile.beginDate)
           dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
           def dtEnd = new DateTime(appointment.profile.endDate)
@@ -232,7 +183,7 @@ class CalendarController {
             activityList.add(group)
         }
 
-        activityList?.each {
+        activityList.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each {
           def dtStart = new DateTime(it.profile.date)
           dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
           def dtEnd = dtStart.plusMinutes("$it.profile.realDuration".toInteger())
@@ -260,7 +211,7 @@ class CalendarController {
             themeRoomList.add(activity)
         }
 
-        themeRoomList?.each {
+        themeRoomList.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each {
           def dtStart = new DateTime(it.profile.date)
           dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
           def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
@@ -276,7 +227,7 @@ class CalendarController {
 
         List unitsDone = []
         if (projectDays) {
-          projectDays.each { Entity projectDay ->
+          projectDays.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each { Entity projectDay ->
             // 2. for each project day find the project it belongs to
             Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 

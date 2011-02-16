@@ -6,7 +6,9 @@ import at.uenterprise.erp.Contact
 class PartnerProfile extends Profile {
 
     static hasMany = [contacts: Contact,
-                      services: String]
+                      services: String,
+                      calendareds: String]
+    List calendareds
 
     String description
     String country
