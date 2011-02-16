@@ -3,6 +3,7 @@ package at.uenterprise.erp.profiles
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.CDate
 import at.uenterprise.erp.WorkdayUnit
+import at.uenterprise.erp.ECalendar
 
 class EducatorProfile extends Profile {
 
@@ -10,10 +11,9 @@ class EducatorProfile extends Profile {
     static hasMany = [languages: String,
                       inChargeOf: String,
                       dates: CDate,
-                      workdayunits: WorkdayUnit,
-                      calendareds: String]
-    List calendareds
+                      workdayunits: WorkdayUnit]
 
+    ECalendar calendar
     String title
     String firstName
     String lastName

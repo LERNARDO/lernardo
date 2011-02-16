@@ -1,14 +1,14 @@
 package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
+import at.uenterprise.erp.ECalendar
 
 class ParentProfile extends Profile {
 
     static hasMany = [languages: String,
-                      jobtypes: String,
-                      calendareds: String]
-    List calendareds
+                      jobtypes: String]
 
+    ECalendar calendar
     String firstName
     String lastName
     Date birthDate

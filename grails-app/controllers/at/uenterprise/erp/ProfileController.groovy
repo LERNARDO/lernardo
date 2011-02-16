@@ -1,7 +1,5 @@
 package at.uenterprise.erp
 
-import grails.converters.JSON
-
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
 import at.openfactory.ep.EntityType

@@ -2,14 +2,14 @@ package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.Contact
+import at.uenterprise.erp.ECalendar
 
 class PartnerProfile extends Profile {
 
     static hasMany = [contacts: Contact,
-                      services: String,
-                      calendareds: String]
-    List calendareds
+                      services: String]
 
+    ECalendar calendar
     String description
     String country
     String zip

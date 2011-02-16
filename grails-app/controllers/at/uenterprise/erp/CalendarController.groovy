@@ -51,12 +51,17 @@ class CalendarController {
   def updatecalendar = {
     Entity currentEntity = entityHelperService.loggedIn
 
-    if (currentEntity.profile.calendareds.contains(params.id))
-        currentEntity.profile.removeFromCalendareds(params.id)
-    else
-        currentEntity.profile.addToCalendareds(params.id)
+    if (params.showThemes)
+        currentEntity.profile.calendar.showThemes = !currentEntity.profile.calendar.showThemes
 
-    List visibleEducators = currentEntity.profile.calendareds
+    if (params.id) {
+        if (currentEntity.profile.calendar.calendareds.contains(params.id))
+            currentEntity.profile.calendar.removeFromCalendareds(params.id)
+        else
+            currentEntity.profile.calendar.addToCalendareds(params.id)
+    }
+
+    List visibleEducators = currentEntity.profile.calendar.calendareds
 
     render template:"calendar", model: [visibleEducators: visibleEducators]
   }
@@ -67,7 +72,7 @@ class CalendarController {
   def show = {
     Entity currentEntity = entityHelperService.loggedIn
 
-    List visibleEducators = currentEntity.profile.calendareds
+    List visibleEducators = currentEntity.profile.calendar.calendareds
 
     List educators = []
 
@@ -138,16 +143,18 @@ class CalendarController {
     }
 
     // get all themes
-    List themeList = Entity.findAllByType(metaDataService.etTheme)
+    if (currentEntity.profile.calendar.showThemes) {
+        List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-    themeList?.findAll{(it.profile.startDate.compareTo(start) >= 0 && it.profile.startDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
-      def dtStart = new DateTime(it.profile.startDate)
-      dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
-      def dtEnd = new DateTime(it.profile.endDate)
-      dtEnd = grailsApplication.config.project == "sueninos" ? dtEnd.minusHours(6) : dtEnd.plusHours(1)
-      dtEnd = dtEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
-      def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
-      eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1', description: description]
+        themeList?.findAll{(it.profile.startDate.compareTo(start) >= 0 && it.profile.startDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
+          def dtStart = new DateTime(it.profile.startDate)
+          dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
+          def dtEnd = new DateTime(it.profile.endDate)
+          dtEnd = grailsApplication.config.project == "sueninos" ? dtEnd.minusHours(6) : dtEnd.plusHours(1)
+          dtEnd = dtEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
+          def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
+          eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: dtStart.toDate(), end: dtEnd.toDate(), className: 'educator-1', description: description]
+        }
     }
 
     if (params.visibleEducators) {
@@ -243,9 +250,9 @@ class CalendarController {
                   def dtStart = new DateTime (projectUnit.profile.date)
                   dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
                   def dtEnd = dtStart.plusMinutes("$projectUnit.profile.duration".toInteger())
-                  def description = "<b>${message(code: 'project')}:</b> ${project.profile.fullName}"
+                  def description = "<b>${message(code: 'cal.projectUnit')}:</b> ${projectUnit.profile.fullName}"
 
-                  eventList << [id: projectUnit.id, title: "${message(code: 'cal.projectUnit')}: ${projectUnit.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: description, one: projectDay.id]
+                  eventList << [id: projectUnit.id, title: "${message(code: 'project')}: ${project.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className, description: description, one: projectDay.id]
                 }
               }
             }

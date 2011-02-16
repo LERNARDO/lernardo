@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityType
 
 import at.uenterprise.erp.Contact
+import at.uenterprise.erp.ECalendar
 
 class PartnerProfileController {
 
@@ -143,6 +144,7 @@ class PartnerProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.calendar = new ECalendar().save()
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

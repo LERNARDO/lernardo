@@ -10,6 +10,7 @@ import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
+import at.uenterprise.erp.ECalendar
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -123,6 +124,7 @@ class OperatorProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.calendar = new ECalendar().save()
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

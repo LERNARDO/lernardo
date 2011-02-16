@@ -11,6 +11,7 @@ import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
+import at.uenterprise.erp.ECalendar
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -138,6 +139,7 @@ class ParentProfileController {
         if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
+        ent.profile.calendar = new ECalendar().save()
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

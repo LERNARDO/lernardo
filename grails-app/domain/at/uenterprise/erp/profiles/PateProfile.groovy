@@ -1,13 +1,13 @@
 package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
+import at.uenterprise.erp.ECalendar
 
 class PateProfile extends Profile {
 
-  static hasMany = [languages: String,
-                    calendareds: String]
-  List calendareds
+  static hasMany = [languages: String]
 
+  ECalendar calendar
   String firstName
   String lastName
 

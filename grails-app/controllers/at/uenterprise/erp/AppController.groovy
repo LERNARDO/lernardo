@@ -293,6 +293,10 @@ class AppController {
       Locale locale = currentEntity.user?.locale ?: new Locale("de", "DE");
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
 
+      // create a calendar object for user if it doesn't exist already (added on 16.02.2011)
+      if (!currentEntity.profile.calendar)
+        currentEntity.profile.calendar = new ECalendar().save()
+
       redirect controller: 'profile', action: 'showNews', id: currentEntity.id
     }
     else

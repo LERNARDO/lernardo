@@ -9,6 +9,7 @@ import at.uenterprise.erp.Contact
 
 import at.uenterprise.erp.Materials
 import at.uenterprise.erp.Performances
+import at.uenterprise.erp.ECalendar
 
 class ClientProfile extends Profile {
 
@@ -20,10 +21,9 @@ class ClientProfile extends Profile {
                       healths: Healths,
                       jobtypes: String,
                       collectors: Collector,
-                      contacts: Contact,
-                      calendareds: String]
-    List calendareds
+                      contacts: Contact]
 
+    ECalendar calendar
     String firstName
     String lastName
     String interests

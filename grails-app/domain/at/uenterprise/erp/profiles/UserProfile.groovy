@@ -3,12 +3,11 @@
 package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
+import at.uenterprise.erp.ECalendar
 
 class UserProfile extends Profile {
 
-    static hasMany = [calendareds: String]
-    List calendareds
-
+    ECalendar calendar
     String firstName
     String lastName
     Boolean showTips = true

@@ -42,6 +42,10 @@
     </div>
   </div>
 
+  <p>
+    <g:checkBox name="showThemes" value="${currentEntity.profile.calendar.showThemes}" onclick="${remoteFunction(update:'calendar', controller:'calendar', action:'updatecalendar', params:'\'showThemes=\' + this.value')}"/> Zeige Themen
+  </p>
+
   <div class="boxHeader">
     <div class="second">
       <h1><g:message code="imgmenu.calendar.name"/></h1>

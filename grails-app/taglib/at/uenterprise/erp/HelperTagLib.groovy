@@ -1020,7 +1020,7 @@ class HelperTagLib {
 
       Entity currentEntity = entityHelperService.loggedIn
 
-    def result = currentEntity.profile.calendareds.contains(attrs.id.toString())
+    def result = currentEntity.profile.calendar.calendareds.contains(attrs.id.toString())
 
     //def result = attrs.educators.contains(attrs.id.toString()) || attrs.educators.contains(attrs.id)
 
