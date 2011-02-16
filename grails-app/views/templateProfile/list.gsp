@@ -26,7 +26,7 @@
   <div class="second">
 
     <div class="frame" style="border: 1px solid #aaa; padding: 5px; margin-bottom: 5px;">
-      <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
+      <p><g:message code="activityTemplate.list.hint2"/></p>
       <g:formRemote name="formRemote0" url="[controller:'templateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
 
         <table>
@@ -36,7 +36,7 @@
           </tr>
           <tr>
             <td><g:message code="duration"/>:</td>
-            <td><g:select from="${1..239}" name="duration1" noSelection="['all':'Beliebig']" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
+            <td><g:select from="${1..239}" name="duration1" noSelection="['all':message(code:'any')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
               <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
           </tr>
           <tr>
