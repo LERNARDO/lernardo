@@ -1,5 +1,5 @@
 <div class="info-msg">
-  ${totalTemplates} <g:message code="activityTemplate.c_total"/>
+  <g:message code="activityTemplate.c_total" args="[totalTemplates, numberOfAllTemplates ?: totalTemplates]"/>
 </div>
 
 <div class="buttons">

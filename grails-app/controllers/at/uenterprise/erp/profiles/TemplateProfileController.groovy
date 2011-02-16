@@ -307,6 +307,8 @@ class TemplateProfileController {
     def method3lower = params.list('method3lower')
     def method3upper = params.list('method3upper')
 
+    def numberOfAllTemplates = Entity.countByType(metaDataService.etTemplate)
+
     def c = Entity.createCriteria()
     def allTemplates = c.list (max: 10000) {
       eq('type', metaDataService.etTemplate)
@@ -444,7 +446,7 @@ class TemplateProfileController {
       }
     }
 
-    render(template: 'searchresults', model: [allTemplates: finalList, totalTemplates: finalList.size(), currentEntity: entityHelperService.loggedIn, paginate: false])
+    render(template: 'searchresults', model: [allTemplates: finalList, totalTemplates: finalList.size(), numberOfAllTemplates: numberOfAllTemplates, currentEntity: entityHelperService.loggedIn, paginate: false])
   }
 
 }
