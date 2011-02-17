@@ -176,9 +176,9 @@
               <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.job}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
               <td valign="top" class="value-show">
                 <g:if test="${client.profile.jobtypes}">
-                  <ul>
+                  <ul style="margin-left: 5px;">
                     <g:each in="${client.profile.jobtypes}" var="jobtype">
-                      <li><g:message code="job.${jobtype}"/></li>
+                      <li style="list-style-type: disc;"><g:message code="job.${jobtype}"/></li>
                     </g:each>
                   </ul>
                 </g:if>
