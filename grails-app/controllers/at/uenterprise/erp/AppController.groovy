@@ -511,7 +511,7 @@ class AppController {
     entity.removeFromAssets(asset)
     asset.delete()
 
-    flash.message = "Profilbild wurde gel�scht!"
+    flash.message = "Profilbild wurde gelöscht!"
     redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
   }
 
@@ -519,4 +519,13 @@ class AppController {
   //  def name = entityHelperService.loggedIn.name
   //  render '<img src="' + g.createLink (controller:'asset', action:'get', params:[type: 'profile', entity:name]) + '" width="50" />'
   //}
+
+  def changeCreator = {
+      Entity target = Entity.get(params.id)
+      Link.findByTargetAndType(target, metaDataService.ltCreator)?.delete()
+
+      new Link(source: Entity.get(params.creator), target: target, type: metaDataService.ltCreator).save(flush: true)
+
+      render template: "/templates/creator", model: [entity: target]
+  }
 }

@@ -337,6 +337,8 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
     Entity projectUnitTemplate = Entity.get(params.unit)
 
+    def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
     // set the correct time for the new unit
         // find all units linked to this projectDay
         List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
@@ -396,7 +398,7 @@ class ProjectProfileController {
         // get all partners
         def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
-    render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn, allParents: allParents, allPartners: allPartners]
+    render template: 'units', model: [units: units, project: project, projectDay: projectDay, entity: entityHelperService.loggedIn, allParents: allParents, allPartners: allPartners]
 
   }
 
@@ -558,48 +560,60 @@ class ProjectProfileController {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'educators', model: [educators: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn]
+    def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
+    render template: 'educators', model: [educators: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
-    render template: 'educators', model: [educators: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
+    def project = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectMember)
+    render template: 'educators', model: [educators: breaking.results, project: project, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'substitutes', model: [substitutes: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn]
+    def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
+    render template: 'substitutes', model: [substitutes: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeSubstitute = {
     def breaking = functionService.breakEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
-    render template: 'substitutes', model: [substitutes: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
+    def project = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectMember)
+    render template: 'substitutes', model: [substitutes: breaking.results, project: project, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'parents', model: [parents: linking.results, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
+    Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    render template: 'parents', model: [parents: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
-    render template: 'parents', model: [parents: breaking.results, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
+    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    render template: 'parents', model: [parents: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'partners', model: [partners: linking.results, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
+    Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    render template: 'partners', model: [partners: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
-    render template: 'partners', model: [partners: breaking.results, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
+    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    render template: 'partners', model: [partners: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   // this action takes a project and creates all activities

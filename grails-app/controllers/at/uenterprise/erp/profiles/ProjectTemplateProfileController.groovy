@@ -64,6 +64,8 @@ class ProjectTemplateProfileController {
         }
       }
 
+      def allEducators = Entity.findAllByType(metaDataService.etEducator)
+
       // calculate realDuration
       Integer calculatedDuration = calculateDuration(projectUnitTemplates)
 
@@ -75,7 +77,8 @@ class ProjectTemplateProfileController {
               projectUnitTemplates: projectUnitTemplates,
               allGroupActivityTemplates: allGroupActivityTemplates,
               calculatedDuration: calculatedDuration,
-              instances: instances]
+              instances: instances,
+              allEducators: allEducators]
     }
   }
 

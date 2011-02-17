@@ -2,7 +2,7 @@
   <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyyy"/><br/>
      <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm"/> Uhr</p>
 
-  <span class="bold"><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></erp:accessCheck></span>
+  <span class="bold"><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></erp:accessCheck></span>
   <div id="units" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id]" update="units2" before="showspinner('#units2')">
       <table>
@@ -16,11 +16,11 @@
 
   <div id="units2">
     <erp:getProjectDayUnits projectDay="${projectDay}">
-      <g:render template="units" model="[units: units, projectDay: projectDay, allParents: allParents, entity: entity]"/>
+      <g:render template="units" model="[units: units, project: project, projectDay: projectDay, allParents: allParents, entity: entity]"/>
     </erp:getProjectDayUnits>
   </div>
 
-  <span class="bold"><g:message code="educators"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:accessCheck></span>
+  <span class="bold"><g:message code="educators"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:accessCheck></span>
   <div id="educators" style="display:none">
 
     <g:message code="search"/>:<br/>
@@ -32,11 +32,11 @@
 
   <div id="educators2">
     <erp:getProjectDayEducators projectDay="${projectDay}">
-      <g:render template="educators" model="[educators: educators, projectDay: projectDay, entity: entity]"/>
+      <g:render template="educators" model="[educators: educators, project: project, projectDay: projectDay, entity: entity]"/>
     </erp:getProjectDayEducators>
   </div>
 
-  <span class="bold"><g:message code="substitutes"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:accessCheck></span>
+  <span class="bold"><g:message code="substitutes"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:accessCheck></span>
   <div id="substitutes" style="display:none">
 
     <g:message code="search"/>:<br/>
@@ -48,7 +48,7 @@
 
   <div id="substitutes2">
     <erp:getProjectDaySubstitutes projectDay="${projectDay}">
-      <g:render template="substitutes" model="[substitutes: substitutes, projectDay: projectDay, entity: entity]"/>
+      <g:render template="substitutes" model="[substitutes: substitutes, project: project, projectDay: projectDay, entity: entity]"/>
     </erp:getProjectDaySubstitutes>
   </div>
 

@@ -12,7 +12,17 @@
 <div class="boxGray">
   <div class="second">
 
-    <p><g:message code="creator"/>: <erp:createdBy entity="${template}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></p>
+    <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: template]"/></span> <erp:isAdmin entity="${currentEntity}"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:isAdmin></p>
+      <div class="zusatz-add" id="setcreator" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'app', action:'changeCreator', id:template.id]" update="creator" before="showspinner('#creator');" after="toggle('#setcreator');">
+          <table>
+            <tr>
+              <td style="padding: 5px 10px 0 0;"><g:select name="creator" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
+              <td><g:submitButton name="button" value="${message(code:'change')}"/></td>
+            </tr>
+          </table>
+        </g:formRemote>
+      </div>
 
     <table>
 

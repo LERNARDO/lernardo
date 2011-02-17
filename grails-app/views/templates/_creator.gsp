@@ -1,0 +1,1 @@
+<erp:createdBy entity="${entity}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy>

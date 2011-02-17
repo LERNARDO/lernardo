@@ -14,7 +14,7 @@
           </ul>
         </erp:getProjectUnitActivityGroups>
 
-        <p class="bold"><g:message code="parents"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></erp:accessCheck></p>
+        <p class="bold"><g:message code="parents"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen" /></a></erp:accessCheck></p>
         <div id="parents${i}" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addParent', id:unit.id, params:[i: i]]" update="parents2${i}" before="showspinner('#parents2${i}')">
             <table>
@@ -28,11 +28,11 @@
 
         <div id="parents2${i}">
           <erp:getProjectUnitParents projectUnit="${unit}">
-            <g:render template="parents" model="[parents: parents, unit: unit, i: i, entity: entity]"/>
+            <g:render template="parents" model="[parents: parents, project: project, unit: unit, i: i, entity: entity]"/>
           </erp:getProjectUnitParents>
         </div>
 
-        <p class="bold"><g:message code="partners"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#partners${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></erp:accessCheck></p>
+        <p class="bold"><g:message code="partners"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#partners${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Partner hinzufügen" /></a></erp:accessCheck></p>
         <div id="partners${i}" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addPartner', id:unit.id, params:[i: i]]" update="partners2${i}" before="showspinner('#partners2${i}')">
             <table>
@@ -46,7 +46,7 @@
 
         <div id="partners2${i}">
           <erp:getProjectUnitPartners projectUnit="${unit}">
-            <g:render template="partners" model="[partners: partners, unit: unit, i: i, entity: entity]"/>
+            <g:render template="partners" model="[partners: partners, project: project, unit: unit, i: i, entity: entity]"/>
           </erp:getProjectUnitPartners>
         </div>
 
