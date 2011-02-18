@@ -66,6 +66,27 @@
     </div>
 
     <div class="zusatz">
+      <h5><g:message code="themes"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#themes');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Zu Thema zuordnen"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="themes" style="display:none">
+        <g:if test="${allThemes}">
+          <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addTheme', id: project.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
+            <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
+            <div class="spacer"></div>
+            <g:submitButton name="button" value="${message(code:'add')}"/>
+            <div class="spacer"></div>
+          </g:formRemote>
+        </g:if>
+        <g:else>
+          <g:message code="project.noThemes"/>
+        </g:else>
+      </div>
+      <div class="zusatz-show" id="themes2">
+        <g:render template="themes" model="[themes: themes, project: project, entity: currentEntity]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
       <h5><g:message code="facility"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><span id="facilitybutton"><g:render template="facilitybutton" model="[facilities: facilities]"/></span></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addFacility', id: project.id]" update="facilities2" before="showspinner('#facilities2'); toggle('#facilities');" after="${remoteFunction(action:'updateFacilityButton',update:'facilitybutton',id:project.id)}">

@@ -115,6 +115,11 @@ class ProjectProfileController {
       // calculate realDuration
       Integer calculatedDuration = calculateDuration(projectUnits)
 
+      // find all themes which are at the project time
+      List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
+
+      List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
+
       [project: project,
               entity: entity,
               projectUnits: projectUnits,
@@ -133,7 +138,9 @@ class ProjectProfileController {
               allParents: allParents,
               allPartners: allPartners,
               active: params.one ?: projectDays[0].id,
-              day: params.one ? projectDays.find {it.id == params.int('one')} : projectDays[0]]
+              day: params.one ? projectDays.find {it.id == params.int('one')} : projectDays[0],
+              allThemes: allThemes,
+              themes: themes]
     }
   }
 
@@ -614,6 +621,18 @@ class ProjectProfileController {
     Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
+  }
+
+  def addTheme = {
+    def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'themes', model: [themes: linking.results2, project: linking.source, entity: entityHelperService.loggedIn]
+  }
+
+  def removeTheme = {
+    def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMember)
+    render template: 'themes', model: [themes: breaking.results2, project: breaking.source, entity: entityHelperService.loggedIn]
   }
 
   // this action takes a project and creates all activities

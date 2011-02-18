@@ -107,6 +107,27 @@
     </div>
 
     <div class="zusatz">
+      <h5><g:message code="themes"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#themes');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Zu Thema zuordnen"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="themes" style="display:none">
+        <g:if test="${allThemes}">
+          <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addTheme', id: group.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
+            <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
+            <div class="spacer"></div>
+            <g:submitButton name="button" value="${message(code:'add')}"/>
+            <div class="spacer"></div>
+          </g:formRemote>
+        </g:if>
+        <g:else>
+          <g:message code="project.noThemes"/>
+        </g:else>
+      </div>
+      <div class="zusatz-show" id="themes2">
+        <g:render template="themes" model="[themes: themes, group: group, entity: currentEntity]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
       <h5><g:message code="facilities"/> <erp:isCreator entity="${group}"><g:if test="${facilities.size() == 0}"><a onclick="toggle('#facilities');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if></erp:isCreator></h5>
       <div class="zusatz-add" id="facilities" style="display:none">

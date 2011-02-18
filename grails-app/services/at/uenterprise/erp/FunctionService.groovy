@@ -79,8 +79,9 @@ class FunctionService {
       new Link(source: source, target: target, type: linktype).save(flush:true)
 
     List results = findAllByLink(null, target, linktype)
+    List results2 = findAllByLink(source, null, linktype)
 
-    return [results: results, source: source, target: target, duplicate: duplicate]
+    return [results: results, results2: results2, source: source, target: target, duplicate: duplicate]
   }
 
   /*
@@ -99,8 +100,9 @@ class FunctionService {
     link?.delete(flush:true)
 
     List results = findAllByLink(null, target, linktype)
+    List results2 = findAllByLink(source, null, linktype)
 
-    return [results: results, source: source, target: target]
+    return [results: results, results2: results2, source: source, target: target]
   }
 
   /*

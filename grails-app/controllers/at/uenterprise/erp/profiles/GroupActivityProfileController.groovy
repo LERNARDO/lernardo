@@ -85,6 +85,11 @@ class GroupActivityProfileController {
       calculatedDuration += it.profile.duration
     }
 
+    // find all themes which are at the project time
+    List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= group.profile.date && it.profile.endDate >= group.profile.date}
+
+    List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
+
     return [group: group,
             entity: entity,
             templates: groupTemplates,
@@ -101,7 +106,9 @@ class GroupActivityProfileController {
             facilities: facilities,
             allClientGroups: allClientgroups,
             clients: clients,
-            template: template]
+            template: template,
+            allThemes: allThemes,
+            themes: themes]
 
   }
 
@@ -312,5 +319,17 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
     def allEducators = functionService.findEducators(group)
     render template: 'educatorselect', model: [allEducators: allEducators, group: group]
+  }
+
+  def addTheme = {
+    def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'themes', model: [themes: linking.results2, group: linking.source, entity: entityHelperService.loggedIn]
+  }
+
+  def removeTheme = {
+    def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
+    render template: 'themes', model: [themes: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
 }
