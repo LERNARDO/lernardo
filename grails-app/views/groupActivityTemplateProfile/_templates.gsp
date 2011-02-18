@@ -6,7 +6,7 @@
   
   <ul>
   <g:each in="${templates}" var="template" status="i">
-    <li>${i+1}) <g:link controller="${template.type.supertype.name +'Profile'}" action="show" id="${template.id}" params="[entity:entity.id]">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeTemplate" update="templates2" id="${group.id}" params="[template: template.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Aktivitätsvorlage entfernen" align="top"/></g:remoteLink></erp:accessCheck></li>
+    <li>${i+1}) <g:link controller="${template.type.supertype.name +'Profile'}" action="show" id="${template.id}" params="[entity:entity.id]">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${group}"><g:remoteLink action="removeTemplate" update="templates2" id="${group.id}" params="[template: template.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Aktivitätsvorlage entfernen" align="top"/></g:remoteLink></erp:accessCheck></li>
   </g:each>
   </ul>
 
