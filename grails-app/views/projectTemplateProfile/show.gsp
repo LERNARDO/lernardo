@@ -57,11 +57,13 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${projectTemplate}">
         <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}" params="[entity: projectTemplate?.id]"><g:message code="edit"/></g:link>
+      </erp:accessCheck>
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
         <g:if test="${projectTemplate.profile.status == 'fertig'}">
           <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}"><g:message code="project.plan"/></g:link>
         </g:if>
+        <g:link class="buttonGreen" action="copy" id="${projectTemplate.id}"><g:message code="projectTemplate.duplicate"/></g:link>
       </erp:accessCheck>
-      <g:link class="buttonGreen" action="copy" id="${projectTemplate.id}"><g:message code="projectTemplate.duplicate"/></g:link>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
