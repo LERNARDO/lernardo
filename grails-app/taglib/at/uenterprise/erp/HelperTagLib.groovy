@@ -56,6 +56,133 @@ class HelperTagLib {
     onlineUsers.each {out << body(onlineUsers: it)}
   }
 
+  def getHoursConfirmed = { attrs, body ->
+    Date date1
+    Date date2
+
+    if (attrs.date1 != null && attrs.date2 != null) {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
+    Entity educator = attrs.educator
+
+    def notConfirmed = false
+    educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+      // check if the date of the workdayunit is between date1 and date2
+      if (attrs.date1 != null & attrs.date2 != null) {
+        if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+            workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+            workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+              if (!workdayUnit.confirmed) {
+                notConfirmed = true
+              }
+        }
+      }
+    }
+
+    if (notConfirmed)
+        out << "${message(code: 'yes')}"
+    else
+        out << "${message(code: 'no')}"
+  }
+
+  def getSalary = { attrs, body ->
+    Date date1
+    Date date2
+
+    if (attrs.date1 != null && attrs.date2 != null) {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
+    Entity educator = attrs.educator
+
+    // calculate expected hours
+    int expectedHours = 0
+    Calendar tcalendarStart = new GregorianCalendar();
+    tcalendarStart.setTime(date1);
+
+    Calendar tcalendarEnd = new GregorianCalendar();
+    tcalendarEnd.setTime(date2);
+
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
+
+    while (tcalendarStart <= tcalendarEnd) {
+       Date currentDate = tcalendarStart.getTime();
+
+       if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
+           (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday') ||
+           (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday') ||
+           (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday') ||
+           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {
+            expectedHours += educator?.profile?.workHours ?: 0
+         }
+      tcalendarStart.add(Calendar.DATE, 1)
+    }
+
+    // calculate real hours
+    int hours = 0
+    educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+      // check if the date of the workdayunit is between date1 and date2
+      if (attrs.date1 != null & attrs.date2 != null) {
+        if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+            workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+            workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+              hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+        }
+      }
+      else
+        hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+    }
+
+    // calculate salary
+    def result = 0
+    if (hours <= expectedHours)
+        result = hours * educator.profile.hourlyWage
+    else
+        result = expectedHours * educator.profile.hourlyWage + ((hours - expectedHours) * educator.profile.overtimePay)
+
+    out << result
+
+  }
+
+  def getExpectedHours = { attrs, body ->
+    Date date1
+    Date date2
+
+    if (attrs.date1 != null && attrs.date2 != null) {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
+    Entity educator = attrs.educator
+
+    int expectedHours = 0
+    Calendar tcalendarStart = new GregorianCalendar();
+    tcalendarStart.setTime(date1);
+
+    Calendar tcalendarEnd = new GregorianCalendar();
+    tcalendarEnd.setTime(date2);
+
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
+
+    while (tcalendarStart <= tcalendarEnd) {
+       Date currentDate = tcalendarStart.getTime();
+
+       if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
+           (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday') ||
+           (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday') ||
+           (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday') ||
+           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {
+            expectedHours += educator?.profile?.workHours ?: 0
+         }
+      tcalendarStart.add(Calendar.DATE, 1)
+    }
+
+    out << expectedHours
+  }
+
   def getTotalHours = { attrs, body ->
     Date date1
     Date date2
@@ -85,7 +212,7 @@ class HelperTagLib {
   }
 
   /*
-   * used for time evaluation, returns the number of hours of an educator an a given category
+   * used for time evaluation, returns the number of hours of an educator and a given category
    */
   def getHoursForCategory = { attrs, body ->
     Date date1

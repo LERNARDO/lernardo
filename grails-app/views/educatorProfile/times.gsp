@@ -22,7 +22,7 @@
     </g:formRemote>
 
     <div id="results" style="margin-top: 10px">
-      <g:render template="results" model="[workdaycategories: workdaycategories, educators: educators]"/>
+      %{--<g:render template="results" model="[workdaycategories: workdaycategories, educators: educators]"/>--}%
     </div>
 
   </div>

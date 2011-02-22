@@ -18,10 +18,10 @@
       <g:each in="${workdaycategories}" var="category">
         <td><erp:getHoursForCategory category="${category}" educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
       </g:each>
-      <td>TODO</td>
-      <td>%{--<erp:getTotalHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>--}%</td>
-      <td>TODO</td>
-      <td>TODO</td>
+      <td><erp:getHoursConfirmed educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+      <td><erp:getTotalHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+      <td><erp:getExpectedHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+      <td><erp:getSalary educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
     </tr>
   </g:each>
   </tbody>
