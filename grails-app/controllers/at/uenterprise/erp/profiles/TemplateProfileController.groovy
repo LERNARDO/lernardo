@@ -257,20 +257,28 @@ class TemplateProfileController {
    * adds a method to the template by creating a new method instance and copying the properties from the given "method template"
    */
   def addMethod = {
-    // TODO: make sure a method can only be added once
-    Method methodTemplate = Method.get(params.method)
-    Method method = new Method()
-
-    method.name = methodTemplate.name
-    method.description = methodTemplate.description
-    method.type = "instance"
-
-    methodTemplate.elements.each {
-      method.addToElements(new Element(name: it.name))
-    }
-
     Entity template = Entity.get(params.id)
-    template.profile.addToMethods(method)
+    Method methodTemplate = Method.get(params.method)
+
+    // make sure a method can only be added once
+    Boolean canBeAdded = true
+    template.profile.methods.each {
+        if (it.name == methodTemplate.name)
+            canBeAdded = false
+    }
+    if (canBeAdded) {
+        Method method = new Method()
+
+        method.name = methodTemplate.name
+        method.description = methodTemplate.description
+        method.type = "instance"
+
+        methodTemplate.elements.each {
+          method.addToElements(new Element(name: it.name))
+        }
+
+        template.profile.addToMethods(method)
+    }
     render template: 'methods', model: [template: template, entity: entityHelperService.loggedIn]
   }
 
