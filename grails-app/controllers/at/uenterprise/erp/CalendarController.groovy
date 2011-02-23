@@ -146,7 +146,8 @@ class CalendarController {
     if (currentEntity.profile.calendar.showThemes) {
         List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-        themeList?.findAll{(it.profile.startDate.compareTo(start) >= 0 && it.profile.startDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
+        //themeList?.findAll{(it.profile.startDate.compareTo(start) >= 0 && it.profile.startDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
+        themeList?.each {
           def dtStart = new DateTime(it.profile.startDate)
           dtStart = grailsApplication.config.project == "sueninos" ? dtStart.minusHours(6) : dtStart.plusHours(1)
           def dtEnd = new DateTime(it.profile.endDate)
