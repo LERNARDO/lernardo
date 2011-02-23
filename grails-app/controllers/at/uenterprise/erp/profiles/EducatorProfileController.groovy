@@ -102,7 +102,10 @@ class EducatorProfileController {
       return
     }
 
-    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner)]
+    // find if this educator was enlisted
+    Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
+
+    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner), enlistedBy: enlistedBy]
 
   }
 

@@ -85,22 +85,27 @@
           </td>
           <td width="260" valign="top" class="value-show-block">
             <g:if test="${educator.profile.inChargeOf}">
-            <ul>
-              <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
-                <li><g:message code="inchargeof.${inchargeof}"/></li>
-              </g:each>
-            </ul>
+              <ul>
+                <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
+                  <li><g:message code="inchargeof.${inchargeof}"/></li>
+                </g:each>
+              </ul>
             </g:if>
             <g:else>
               <div class="italic">${message(code:'noData')}</div>
             </g:else>
           </td>
           <td width="220" valign="top" class="value-show-block">
-            <ul>
-              <g:each in="${educator.profile.languages}" var="language">
-                <li><g:message code="language.${language}"/></li>
-              </g:each>
-            </ul>
+            <g:if test="${educator.profile.languages}">
+              <ul>
+                <g:each in="${educator.profile.languages}" var="language">
+                  <li><g:message code="language.${language}"/></li>
+                </g:each>
+              </ul>
+            </g:if>
+            <g:else>
+              <div class="italic">${message(code:'noData')}</div>
+            </g:else>
           </td>
         </tr>
 
