@@ -8,7 +8,7 @@
     <th>Bestätigt</th>
     <th>Habenstunden</th>
     <th>Sollstunden</th>
-    <th>Auszahlung</th>
+    <th>Auszahlung (${grailsApplication.config.currency})</th>
   </tr>
   </thead>
   <tbody>
@@ -28,4 +28,7 @@
 </table>
 
 <br/>
-[PDF erzeugen]
+<div class="buttons">
+    <g:link class="buttonGreen" controller="educatorProfile" action="createpdf" params="[date1: date1, date2: date2]">PDF erzeugen</g:link>
+    <div class="spacer"></div>
+</div>

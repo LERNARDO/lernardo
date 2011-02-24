@@ -214,4 +214,13 @@ class EducatorProfileController {
     List workdaycategories = WorkdayCategory.list()
     render template: 'results', model:[educators: educators, workdaycategories: workdaycategories, date1: params.date1, date2: params.date2, entity: entityHelperService.loggedIn]
   }
+
+  def createpdf = {
+    Date date1 = Date.parse("dd. MM. yy", params.date1)
+    Date date2 = Date.parse("dd. MM. yy", params.date2)
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    List workdaycategories = WorkdayCategory.list()
+    Entity currentEntity = entityHelperService.loggedIn
+    renderPdf template: 'createpdf', model: [educators: educators, workdaycategories: workdaycategories, entity: currentEntity, date1: params.date1, date2: params.date2], filename: 'Zeitauswertung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy")
+  }
 }

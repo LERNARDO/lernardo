@@ -56,6 +56,24 @@ class HelperTagLib {
     onlineUsers.each {out << body(onlineUsers: it)}
   }
 
+  def getWorkdayUnits = { attrs, body ->
+    Date date1 = Date.parse("dd. MM. yy", attrs.date1)
+    Date date2 = Date.parse("dd. MM. yy", attrs.date2)
+
+    Entity educator = attrs.educator
+
+    List units = []
+    educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+      // check if the date of the workdayunit is between date1 and date2
+      if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+          workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+          workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+            units.add(workdayUnit)
+      }
+    }
+    out << body(units: units)
+  }
+
   def getHoursConfirmed = { attrs, body ->
     Date date1
     Date date2
