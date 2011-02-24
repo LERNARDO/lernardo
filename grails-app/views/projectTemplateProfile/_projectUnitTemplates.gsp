@@ -21,7 +21,7 @@
 
       <div id="groups2-${i}">
         <erp:getGroupActivityTemplates projectUnit="${projectUnitTemplate}">
-          <g:render template="groupActivityTemplates" model="[groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, i: i, projectTemplate: projectTemplate]"/>
+          <g:render template="groupActivityTemplates" model="[groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, i: i, projectTemplate: projectTemplate, entity: entity]"/>
         </erp:getGroupActivityTemplates>
       </div>
 
