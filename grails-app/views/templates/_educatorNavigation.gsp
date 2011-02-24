@@ -26,10 +26,10 @@
           </g:if>
         </erp:notMe>
 
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+        <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
           <li class="icon-evaluation"><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
           <li class="icon-time"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
-        </erp:accessCheck>
+        </erp:isMeOrAdminOrOperator>
 
         <li class="icon-appointments"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
 
