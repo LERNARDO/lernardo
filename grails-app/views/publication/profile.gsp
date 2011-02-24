@@ -17,12 +17,12 @@
       </div>
     </g:if>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+    <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
       <div class="action-buttons">
         <g:link class="buttonGreen" controller="publication" id="${entity.id}" action="create"><img src="${g.resource (dir:'images/icons', file:'icon_document.png')}" alt="icon" align="top"/> <g:message code="publication.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </erp:accessCheck>
+    </erp:isMeOrAdminOrOperator>
 
     %{--render own documents--}%
 
