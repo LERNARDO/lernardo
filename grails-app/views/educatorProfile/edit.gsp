@@ -62,7 +62,7 @@
           </td>
           <td valign="top" class="value">
             <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
-              <g:select class="drop-down-240" name="enlisted" from="${partner}" value="${enlistedBy.id}" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
+              <g:select class="drop-down-240" name="enlisted" from="${partner}" value="${enlistedBy}" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
             </g:if>
           </td>
         </tr>
