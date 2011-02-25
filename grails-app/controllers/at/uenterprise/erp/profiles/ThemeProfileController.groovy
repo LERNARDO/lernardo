@@ -90,6 +90,8 @@ class ThemeProfileController {
       // find parent theme linked to this theme (if any)
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
+      def allEducators = Entity.findAllByType(metaDataService.etEducator)
+
       [theme: theme,
        /*allSubthemes: allSubthemes,
        subthemes: subthemes,*/
@@ -99,7 +101,8 @@ class ThemeProfileController {
        activitygroups: activitygroups,
        facility: facility,
        parenttheme: parenttheme,
-       entity: entity]
+       entity: entity,
+       allEducators: allEducators]
     }
   }
 
@@ -212,6 +215,9 @@ class ThemeProfileController {
         if (it.id != currentEntity.id)
           functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat das Thema <a href="' + createLink(controller: 'themeProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
+
+      // save creator
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "theme.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id

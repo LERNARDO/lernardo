@@ -12,6 +12,18 @@
   <div class="second">
     <div class="dialog">
 
+      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:isAdmin entity="${currentEntity}"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:isAdmin></p>
+      <div class="zusatz-add" id="setcreator" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'app', action:'changeCreator', id:theme.id]" update="creator" before="showspinner('#creator');" after="toggle('#setcreator');">
+          <table>
+            <tr>
+              <td style="padding: 5px 10px 0 0;"><g:select name="creator" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
+              <td><g:submitButton name="button" value="${message(code:'change')}"/></td>
+            </tr>
+          </table>
+        </g:formRemote>
+      </div>
+
       <table>
         <tbody>
 
@@ -66,7 +78,7 @@
     </div>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${theme}">
         <g:link class="buttonGreen" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: theme.id)}" id="${theme.id}">Löschen</g:link>
       </erp:accessCheck>
