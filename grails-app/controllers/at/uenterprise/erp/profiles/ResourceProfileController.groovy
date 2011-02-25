@@ -29,13 +29,12 @@ class ResourceProfileController {
     params.order = params.order ?: "asc"
 
     // only list those resources that are linked to a colony or facility but NOT to an activity template
-
     List temp = Entity.findAllByType(metaDataService.etResource)
 
     List resources = []
     temp.each { resource ->
       def result = functionService.findByLink(resource, null, metaDataService.ltResource)
-      if (result.type.id != metaDataService.etTemplate.id)
+      if (result?.type?.id != metaDataService.etTemplate.id)
         resources << resource
     }
 
