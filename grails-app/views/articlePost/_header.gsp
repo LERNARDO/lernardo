@@ -18,10 +18,10 @@
     <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
     <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
     <erp:isLoggedIn>
-      <erp:isEducator entity="${currentEntity}">
+      <erp:isMeOrAdminOrOperator entity="${article.author}" current="${currentEntity}">
         (<g:link class="adminlink" action="edit" id="${article.id}"><g:message code="edit"/></g:link> -
          <g:link class="adminlink" action="delete" onclick="return confirm('Artikel wirklich löschen?');" id="${article.id}"><g:message code="delete"/></g:link>)
-      </erp:isEducator>
+      </erp:isMeOrAdminOrOperator>
     </erp:isLoggedIn>
   </div>
 </div>
