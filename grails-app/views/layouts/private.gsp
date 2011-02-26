@@ -250,6 +250,9 @@
 
                 <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
+                    <erp:isSysAdmin>
+                        <li class="icon-admin"><g:link controller="app" action="adminlinks"><g:message code="Link Check"/></g:link></li>
+                    </erp:isSysAdmin>
                     <erp:isOperator entity="${currentEntity}">
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                       <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>

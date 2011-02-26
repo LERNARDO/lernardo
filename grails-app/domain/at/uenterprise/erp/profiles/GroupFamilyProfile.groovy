@@ -24,4 +24,8 @@ class GroupFamilyProfile extends Profile {
       amountHousehold (nullable: true)
       familyIncome (nullable: true)
     }
+
+    String toString(){
+      return "${fullName}"
+    }
 }

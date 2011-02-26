@@ -528,4 +528,37 @@ class AppController {
 
       render template: "/templates/creator", model: [entity: target]
   }
+
+  def adminlinks = {
+      List entities = Entity.list()
+      return [entities: entities]
+  }
+
+  def adminlinksresults = {
+      if (params.id != 'null') {
+          Entity entity = Entity.get(params.id)
+
+          render "<div>Entitäten auf die <span class='bold'>${entity.profile.fullName}</span> verlinkt (source):</div>"
+          List targets = Link.findAllBySource(entity)
+          if (targets) {
+            render "<ul>"
+            targets.each {render "<li>" + it.target.profile.fullName + "</li>"}//collect{it.target}
+            render "</ul>"
+          }
+          else
+            render "<p class='red'>Keine Verlinkungen gefunden</p>"
+
+          render "<div>Entitäten die auf <span class='bold'>${entity.profile.fullName}</span> verlinken (target):</div>"
+          List sources = Link.findAllByTarget(entity)
+          if (sources) {
+            render "<ul>"
+            sources.each {render "<li>" + it.source.profile.fullName + "</li>"}//collect{it.target}
+            render "</ul>"
+          }
+          else
+            render "<p class='red'>Keine Verlinkungen gefunden</p>"
+      }
+      else
+        render ""
+  }
 }

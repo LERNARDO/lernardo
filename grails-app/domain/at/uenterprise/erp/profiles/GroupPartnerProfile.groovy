@@ -15,5 +15,9 @@ class GroupPartnerProfile extends Profile {
       fullName (blank: false, size: 2..50, maxSize: 50)
       description (blank: true, maxSize: 5000)
     }
+
+    String toString(){
+      return "${fullName}"
+    }
   
 }
