@@ -157,9 +157,9 @@ class HelperTagLib {
     // calculate salary
     def result = 0
     if (hours <= expectedHours)
-        result = hours * educator?.profile?.hourlyWage ?: 0
+        result = hours * (educator?.profile?.hourlyWage ?: 0)
     else
-        result = expectedHours * (educator?.profile?.hourlyWage ?: 0) + ((hours - expectedHours) * educator?.profile?.overtimePay ?: 0)
+        result = expectedHours * (educator?.profile?.hourlyWage ?: 0) + ((hours - expectedHours) * (educator?.profile?.overtimePay ?: 0))
 
     out << result
 
