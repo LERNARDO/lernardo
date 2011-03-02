@@ -150,7 +150,7 @@
                 <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
               </td>
               <td width="230" valign="top" class="value">
-                <g:select class="drop-down-200" name="school" id="name" from="${allFacilities}" optionKey="id" optionValue="profile"/>
+                <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school}" optionKey="id" optionValue="profile"/>
               </td>
               <td width="210" valign="top" class="value">
                 <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoollevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>

@@ -116,6 +116,7 @@ class ClientProfileController {
     }
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+    Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
@@ -136,7 +137,8 @@ class ClientProfileController {
     return [client: client,
             colonia: colonia,
             allColonies: allColonies,
-            allFacilities: allFacilities]
+            allFacilities: allFacilities,
+            school: school]
   }
 
   def update = {
@@ -167,9 +169,13 @@ class ClientProfileController {
       redirect action: 'show', id: client.id
     }
     else {
+      client.errors.each {log.info it}
+      client.profile.errors.each {log.info it}
+      client.user.errors.each {log.info it}
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
       Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
+      Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
       def c = Entity.createCriteria()
       def allColonies = c.list {
@@ -186,7 +192,7 @@ class ClientProfileController {
           order(params.sort, params.order)
         }
       }
-      render view: 'edit', model: [client: client, colonia: colonia, allColonies: allColonies, allFacilities: allFacilities]
+      render view: 'edit', model: [client: client, colonia: colonia, allColonies: allColonies, allFacilities: allFacilities, school: school]
     }
   }
 
