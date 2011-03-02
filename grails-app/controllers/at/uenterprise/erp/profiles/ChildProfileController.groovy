@@ -109,6 +109,7 @@ class ChildProfileController {
 
     child.profile.properties = params
     child.profile.fullName = params.lastName + " " + params.firstName
+    if (!child.profile.calendar) child.profile.calendar = new ECalendar().save()
 
     child.user.properties = params
 

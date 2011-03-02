@@ -105,6 +105,9 @@ class PartnerProfileController {
 
     partner.profile.properties = params
     partner.user.properties = params
+
+    if (!partner.profile.calendar) partner.profile.calendar = new ECalendar().save()
+
     if (partner.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 

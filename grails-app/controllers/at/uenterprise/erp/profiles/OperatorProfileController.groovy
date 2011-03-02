@@ -102,6 +102,9 @@ class OperatorProfileController {
 
     operator.profile.properties = params
     operator.user.properties = params
+
+    if (!operator.profile.calendar) operator.profile.calendar = new ECalendar().save()
+
     if (operator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 

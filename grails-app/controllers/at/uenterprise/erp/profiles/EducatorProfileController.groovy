@@ -119,6 +119,7 @@ class EducatorProfileController {
 
     educator.profile.properties = params
     educator.profile.fullName = params.lastName + " " + params.firstName
+    if (!educator.profile.calendar) educator.profile.calendar = new ECalendar().save()
 
     educator.user.properties = params
     if (educator.id == entityHelperService.loggedIn.id)

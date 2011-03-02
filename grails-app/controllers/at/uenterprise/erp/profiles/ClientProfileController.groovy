@@ -151,6 +151,7 @@ class ClientProfileController {
 
     client.profile.properties = params
     client.profile.fullName = params.lastName + " " + params.firstName
+    if (!client.profile.calendar) client.profile.calendar = new ECalendar().save()
 
     client.user.properties = params
     if (client.id == entityHelperService.loggedIn.id)
@@ -169,9 +170,6 @@ class ClientProfileController {
       redirect action: 'show', id: client.id
     }
     else {
-      client.errors.each {log.info it}
-      client.profile.errors.each {log.info it}
-      client.user.errors.each {log.info it}
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
       Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)

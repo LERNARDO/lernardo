@@ -107,6 +107,8 @@ class ParentProfileController {
 
     parent.profile.properties = params
     parent.profile.fullName = params.lastName + " " + params.firstName
+    if (!parent.profile.calendar) parent.profile.calendar = new ECalendar().save()
+
     parent.user.properties = params
 
     if (parent.id == entityHelperService.loggedIn.id)

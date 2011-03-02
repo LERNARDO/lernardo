@@ -100,6 +100,7 @@ class PateProfileController {
 
     pate.profile.properties = params
     pate.profile.fullName = params.lastName + " " + params.firstName
+    if (!pate.profile.calendar) pate.profile.calendar = new ECalendar().save()
 
     pate.user.properties = params
     if (pate.id == entityHelperService.loggedIn.id)

@@ -98,6 +98,7 @@ class UserProfileController {
 
     user.profile.properties = params
     user.profile.fullName = params.lastName + " " + params.firstName
+    if (!user.profile.calendar) user.profile.calendar = new ECalendar().save()
 
     user.user.properties = params
     if (user.id == entityHelperService.loggedIn.id)
