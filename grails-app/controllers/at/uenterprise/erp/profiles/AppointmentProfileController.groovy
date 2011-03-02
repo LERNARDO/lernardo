@@ -53,7 +53,10 @@ class AppointmentProfileController {
         return
       }
 
-      return [appointmentProfileInstance : appointment, entity: entity]
+      // find owner of appointment
+      Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
+
+      return [appointmentProfileInstance: appointment, entity: entity, bla: owner]
     }
 
     def del = {
