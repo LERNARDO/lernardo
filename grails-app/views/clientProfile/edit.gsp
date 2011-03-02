@@ -73,7 +73,7 @@
 
             <tr>
               <td colspan="4" valign="top" class="value">
-                <g:select name="currentColonia" from="${allColonies}" id="currentColonia" optionKey="id" optionValue="profile"/>
+                <g:select name="currentColonia" from="${allColonies}" value="${colonia.id}" optionKey="id" optionValue="profile"/>
               </td>
             </tr>
 
