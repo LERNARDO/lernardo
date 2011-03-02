@@ -117,8 +117,21 @@ class ClientProfileController {
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
 
-    List allColonies = Entity.findAllByType(metaDataService.etGroupColony, params)
-    List allFacilities = Entity.findAllByType(metaDataService.etFacility, params)
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    def d = Entity.createCriteria()
+    def allFacilities = d.list {
+      eq("type", metaDataService.etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
 
     return [client: client,
             colonia: colonia,
@@ -157,8 +170,22 @@ class ClientProfileController {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
       Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-      List allColonies = Entity.findAllByType(metaDataService.etGroupColony, params)
-      List allFacilities = Entity.findAllByType(metaDataService.etFacility, params)
+
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+
+      def d = Entity.createCriteria()
+      def allFacilities = d.list {
+        eq("type", metaDataService.etFacility)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
       render view: 'edit', model: [client: client, colonia: colonia, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
