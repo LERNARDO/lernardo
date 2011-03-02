@@ -108,7 +108,7 @@ class PartnerProfileController {
     if (partner.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
-    if (!partner.hasErrors() && partner.save()) {
+    if (partner.profile.save() && partner.user.save() && partner.save()) {
 
       // AAZ (01.09.2010): not required anymore by customer
       /*// delete current link

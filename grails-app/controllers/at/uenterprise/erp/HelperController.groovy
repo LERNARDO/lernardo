@@ -96,7 +96,7 @@ class HelperController {
         helperInstance.addToTypes(it)
       }
 
-      if (!helperInstance.hasErrors() && helperInstance.save()) {
+      if (helperInstance.save()) {
         flash.message = message(code: "helper.updated")
         redirect action: 'list', id: entity.id
       }

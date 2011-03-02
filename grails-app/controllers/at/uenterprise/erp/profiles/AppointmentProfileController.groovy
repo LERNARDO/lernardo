@@ -97,7 +97,7 @@ class AppointmentProfileController {
 
       appointment.profile.properties = params
 
-      if (!appointment.hasErrors() && appointment.save()) {
+      if (appointment.profile.save() && appointment.save()) {
         flash.message = message(code: "appointment.updated", args: [appointment.profile.fullName])
         redirect action: 'show', id: appointment.id
       }

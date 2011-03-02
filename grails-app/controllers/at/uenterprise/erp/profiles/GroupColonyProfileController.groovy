@@ -126,7 +126,7 @@ class GroupColonyProfileController {
 
     group.profile.properties = params
 
-    if (!group.hasErrors() && group.save()) {
+    if (group.profile.save() && group.save()) {
       flash.message = message(code: "group.updated", args: [group.profile.fullName])
       redirect action: 'show', id: group.id
     }

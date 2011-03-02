@@ -105,7 +105,7 @@ class OperatorProfileController {
     if (operator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 
-    if (!operator.hasErrors() && operator.save()) {
+    if (operator.profile.save() && operator.user.save() && operator.save()) {
       flash.message = message(code: "operator.updated", args: [operator.profile.fullName])
       redirect action: 'show', id: operator.id
     }

@@ -152,7 +152,7 @@ class ThemeProfileController {
 
     theme.profile.properties = params
 
-    if (!theme.profile.hasErrors() && theme.profile.save()) {
+    if (theme.profile.save() && theme.save()) {
 
       // delete current link to facility
       Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)?.delete()

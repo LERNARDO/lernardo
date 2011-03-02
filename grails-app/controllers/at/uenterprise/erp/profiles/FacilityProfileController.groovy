@@ -135,7 +135,7 @@ class FacilityProfileController {
     if (facility.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
 
-    if (!facility.hasErrors() && facility.save()) {
+    if (facility.profile.save() && facility.user.save() && facility.save()) {
 
       // delete previously linked colonia
       Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)?.delete()

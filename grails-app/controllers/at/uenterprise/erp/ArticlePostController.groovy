@@ -58,7 +58,7 @@ class ArticlePostController {
     Entity currentEntity = entityHelperService.loggedIn
 
     article.author = currentEntity
-    if (!article.hasErrors() && article.save()) {
+    if (article.save()) {
       flash.message = message(code: "article.created", args: [article.title])
       redirect action: "index", params: [name: currentEntity.name]
     }
@@ -71,7 +71,7 @@ class ArticlePostController {
     ArticlePost article = ArticlePost.get(params.id)
     if (article) {
       article.properties = params
-      if (!article.hasErrors() && article.save()) {
+      if (article.save()) {
         flash.message = message(code: "article.updated", args: [article.title])
         redirect action: 'index'
       }

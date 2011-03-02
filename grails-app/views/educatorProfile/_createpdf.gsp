@@ -86,7 +86,7 @@
 
     <h2>Detaillierte Informationen</h2>
     <g:each in="${educators}" status="i" var="educator">
-      <h3>${educator.profile.fullName}</h3>
+      <h3 style="page-break-before: always">${educator.profile.fullName}</h3>
       <erp:getWorkdayUnits educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
         <g:each in="${units}" var="unit">
           <div class="unit">

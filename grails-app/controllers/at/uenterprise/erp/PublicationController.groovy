@@ -236,7 +236,7 @@ class PublicationController {
     }
 
     //log.debug "attempt to save publication: $params"
-    if(pub.save(flush:true) && !pub.hasErrors()) {
+    if(pub.save(flush:true)) {
       flash.message = message(code:"publication.created", args:[pub.name])
       redirect (action:"profile", id:pub.entity.id)
     }
@@ -286,7 +286,7 @@ class PublicationController {
       Publication publication = Publication.get(params.id)
       if(publication) {
           publication.name = params.name
-          if(!publication.hasErrors() && publication.save()) {
+          if(publication.save()) {
               flash.message = message(code:"publication.updated", args:[publication.name])
               redirect (action:'profile', params:[name:params.entity])
           }

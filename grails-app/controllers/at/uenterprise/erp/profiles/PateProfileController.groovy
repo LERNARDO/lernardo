@@ -105,7 +105,7 @@ class PateProfileController {
     if (pate.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
-    if (!pate.hasErrors() && pate.save()) {
+    if (pate.profile.save() && pate.user.save() && pate.save()) {
 
       flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
       redirect action: 'show', id: pate.id

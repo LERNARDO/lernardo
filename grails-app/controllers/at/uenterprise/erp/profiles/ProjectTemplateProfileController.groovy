@@ -123,7 +123,7 @@ class ProjectTemplateProfileController {
 
     projectTemplate.profile.properties = params
 
-    if (!projectTemplate.hasErrors() && projectTemplate.save()) {
+    if (projectTemplate.profile.save() && projectTemplate.save()) {
       flash.message = message(code: "projectTemplate.updated", args: [projectTemplate.profile.fullName])
       redirect action: 'show', id: projectTemplate.id
     }

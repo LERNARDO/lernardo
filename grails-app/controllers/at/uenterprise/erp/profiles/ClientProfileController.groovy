@@ -162,7 +162,7 @@ class ClientProfileController {
     Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
     new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
-    if (!client.hasErrors() && client.save() && !client.profile.hasErrors()) {
+    if (client.profile.save() && client.user.save() && client.save()) {
       flash.message = message(code: "client.updated", args: [client.profile.fullName])
       redirect action: 'show', id: client.id
     }

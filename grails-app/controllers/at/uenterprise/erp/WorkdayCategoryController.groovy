@@ -71,7 +71,7 @@ class WorkdayCategoryController {
                 }
             }
             workdayCategoryInstance.properties = params
-            if(!workdayCategoryInstance.hasErrors() && workdayCategoryInstance.save()) {
+            if(workdayCategoryInstance.save()) {
                 flash.message = message(code:"workdaycategory.updated", args:[workdayCategoryInstance.name])
 
                 redirect action:'show', id:workdayCategoryInstance.id

@@ -115,7 +115,7 @@ class GroupFamilyProfileController {
 
     group.profile.properties = params
 
-    if (!group.profile.hasErrors() && group.profile.save()) {
+    if (group.profile.save() && group.save()) {
       flash.message = message(code: "group.updated", args: [group.profile.fullName])
       redirect action: 'show', id: group.id
     }

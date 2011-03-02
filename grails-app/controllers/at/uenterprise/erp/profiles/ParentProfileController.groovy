@@ -118,7 +118,13 @@ class ParentProfileController {
     // when validating a parent object it should check validation of nested objects as well because right now nested
     // properties that failed validation are not saved and the "show" view is called as if everything worked fine
 
-    if (!parent.hasErrors() && parent.save() && !parent.profile.hasErrors()) {
+    //if (!parent.hasErrors() && parent.save() && !parent.profile.hasErrors()) {
+    //println "parent object has errors? " + parent.hasErrors()
+    //println parent.errors.each {println it}
+    //println "child object has errors? " + parent.profile.hasErrors()
+    //println parent.profile.errors.each {println it}
+
+    if (parent.profile.save() && parent.user.save() && parent.save()) {
       flash.message = message(code: "parent.updated", args: [parent.profile.fullName])
       redirect action: 'show', id: parent.id
     }

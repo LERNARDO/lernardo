@@ -317,7 +317,7 @@ class ActivityProfileController {
       }
     }
 
-    if (!activity.hasErrors() && activity.save()) {
+    if (activity.profile.save() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
       functionService.createEvent(currentEntity, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
       redirect action: 'show', id: activity.id

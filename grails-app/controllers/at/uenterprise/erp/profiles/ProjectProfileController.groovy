@@ -186,7 +186,7 @@ class ProjectProfileController {
     project.profile.fullName = params.fullName
     project.profile.description = params.description
 
-    if (!project.hasErrors() && project.save() && project.profile.save()) {
+    if (project.profile.save() && project.save()) {
       flash.message = message(code: "project.updated", args: [project.profile.fullName])
       redirect action: 'show', id: project.id
     }

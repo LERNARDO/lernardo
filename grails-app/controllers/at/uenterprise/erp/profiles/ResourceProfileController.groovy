@@ -97,7 +97,7 @@ class ResourceProfileController {
 
     resource.profile.properties = params
 
-    if (!resource.profile.hasErrors() && resource.profile.save()) {
+    if (resource.profile.save() && resource.save()) {
       flash.message = message(code: "resource.updated", args: [resource.profile.fullName])
       redirect action: 'show', id: resource.id
     }

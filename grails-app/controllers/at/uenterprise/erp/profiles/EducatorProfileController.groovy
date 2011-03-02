@@ -124,7 +124,7 @@ class EducatorProfileController {
     if (educator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
-    if (!educator.hasErrors() && educator.save() && !educator.profile.hasErrors()) {
+    if (educator.profile.save() && educator.user.save() && educator.save()) {
 
       // create link to partner
       Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}

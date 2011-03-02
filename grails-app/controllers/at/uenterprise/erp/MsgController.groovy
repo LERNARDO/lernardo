@@ -124,7 +124,7 @@ class MsgController {
     def message = Msg.get( params.id )
     if(message) {
       message.properties = params
-      if(!message.hasErrors() && message.save()) {
+      if(message.save()) {
         flash.message = "Msg ${params.id} updated"
         redirect action:'show', id:message.id
       }

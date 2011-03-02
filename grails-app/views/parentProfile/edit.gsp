@@ -22,7 +22,7 @@
           <tr>
             <td width="90" valign="middle" class="name"><g:message code="parent.profile.gender"/>:</td>
             <td width="120" valign="middle" class="name"><g:message code="parent.profile.firstName"/>:</td>
-            <td width="180" valign="middle" class="name"><g:message code="parent.profile.lastName"/>:</td>
+            <td width="160" valign="middle" class="name"><g:message code="parent.profile.lastName"/>:</td>
             <td width="210" valign="middle" class="name"><g:message code="parent.profile.birthDate"/>:</td>
           </tr>
 
@@ -51,7 +51,7 @@
 
           <tr>
             <td valign="top" class="value">
-              <g:select class="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalstatus}" value="${parent?.profile?.maritalStatus}" valueMessagePrefix="maritalstatus"/>
+              <g:select name="maritalStatus" from="${grailsApplication.config.maritalstatus}" value="${parent?.profile?.maritalStatus}" valueMessagePrefix="maritalstatus"/>
             </td>
             <td valign="top" class="value">
               <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
