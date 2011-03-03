@@ -12,7 +12,7 @@
       </div>
       <div id="comment-div" style="display:none; margin-bottom: 10px">
         <g:formRemote name="formRemote" url="[controller:'comment', action:'save', id: commented.id]" update="comments" before="hideform('#comment-div');">
-          <div class="dialog">
+          <div>
 
             <div class="value">
               <g:textArea rows="5" cols="125" name="content" value=""/>

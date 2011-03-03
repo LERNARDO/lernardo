@@ -10,7 +10,7 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div class="dialog">
+    <div>
 
       <g:if test="${template}">
         <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>

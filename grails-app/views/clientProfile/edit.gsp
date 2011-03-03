@@ -14,7 +14,7 @@
     <g:render template="/templates/errors" model="[bean: client]"/>
 
     <g:form action="update" id="${client.id}">
-      <div class="dialog">
+      <div>
 
         <table>
           <tr class="prop">
@@ -64,7 +64,7 @@
         </table>
 
         <h4><g:message code="client.profile.curAddress"/></h4>
-        <div class="contact">
+        <div>
           <table>
 
             <tr>
@@ -92,7 +92,7 @@
         </div>
 
         <h4><g:message code="client.profile.origin"/></h4>
-        <div class="contact">
+        <div>
           <table>
 
             <tr>
@@ -120,7 +120,7 @@
         </div>
 
         <h4><g:message code="client.profile.more"/></h4>
-        <div class="contact">
+        <div>
           <table>
 
             <tr class="prop">

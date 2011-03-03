@@ -14,7 +14,7 @@
     <g:render template="/templates/errors" model="[bean: operator]"/>
 
     <g:form action="save">
-      <div class="dialog">
+      <div>
         <table>
           <tbody>
 

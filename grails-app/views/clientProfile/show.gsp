@@ -10,7 +10,7 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div class="dialog">
+    <div>
       <table>
         <tbody>
 
@@ -54,7 +54,7 @@
 
       </table>
       <h4><g:message code="client.profile.curAddress"/></h4>
-      <div class="contact">
+      <div>
         <table>
 
           <tr class="prop">
@@ -74,7 +74,7 @@
         </table>
       </div>
       <h4><g:message code="client.profile.origin"/></h4>
-      <div class="contact">
+      <div>
         <table>
 
           <tr class="prop">
@@ -92,7 +92,7 @@
         </table>
       </div>
       <h4><g:message code="client.profile.more"/></h4>
-      <div class="contact">
+      <div>
         <table>
 
           <tr class="prop">

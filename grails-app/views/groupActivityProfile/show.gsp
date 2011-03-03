@@ -11,7 +11,7 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div class="dialog">
+    <div>
 
       <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:isAdmin entity="${currentEntity}"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:isAdmin></p>
       <div class="zusatz-add" id="setcreator" style="display:none">

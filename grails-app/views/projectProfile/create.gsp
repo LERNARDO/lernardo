@@ -15,7 +15,7 @@
 
     <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
     <g:form action="save" id="${template.id}">
-      <div class="dialog">
+      <div>
         <table>
 
           <tr class="prop">

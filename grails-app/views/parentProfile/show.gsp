@@ -10,7 +10,7 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div class="dialog">
+    <div>
       <table width="100%" border="0" cellspacing="10">
         <tbody>
 

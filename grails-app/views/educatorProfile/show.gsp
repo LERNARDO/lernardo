@@ -10,7 +10,7 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div class="dialog">
+    <div>
 
       <table>
         
@@ -146,7 +146,7 @@
       </table>
 
       <h4><g:message code="educator.profile.curAddress"/></h4>
-      <div class="contact">
+      <div>
         <table>
 
           <tr>
@@ -176,7 +176,7 @@
 
       <g:if test="${grailsApplication.config.educatorProfile.origin}">
       <h4><g:message code="educator.profile.origin"/></h4>
-      <div class="contact">
+      <div>
         <table>
 
           <tr>
@@ -213,7 +213,7 @@
 
       <g:if test="${grailsApplication.config.educatorProfile.contact}">
       <h4><g:message code="educator.profile.emContact"/></h4>
-      <div class="contact">
+      <div>
         <table>
 
           <tr>
@@ -266,7 +266,7 @@
       </g:if>
 
       <g:if test="${grailsApplication.config.educatorProfile.phone}">
-        <div class="contact">
+        <div>
           <table>
 
             <tr>

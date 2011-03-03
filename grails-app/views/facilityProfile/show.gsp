@@ -10,7 +10,7 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div class="dialog">
+    <div>
       <table>
 
         <tr class="prop">

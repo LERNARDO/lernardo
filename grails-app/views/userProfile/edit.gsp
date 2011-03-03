@@ -18,7 +18,7 @@
 
     <g:form action="update" id="${user.id}">
 
-      <div class="dialog">
+      <div>
         <table>
           <tbody>
 

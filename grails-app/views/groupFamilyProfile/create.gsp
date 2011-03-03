@@ -15,7 +15,7 @@
     <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form action="save">
-      <div class="dialog">
+      <div>
 
         <table>
 

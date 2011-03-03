@@ -14,7 +14,7 @@
     <g:render template="/templates/errors" model="[bean: educator]"/>
 
     <g:form action="save">
-      <div class="dialog">
+      <div>
         <table>
 
           <tr class="prop">
@@ -117,7 +117,7 @@
         </table>
 
         <h4><g:message code="educator.profile.curAddress"/></h4>
-        <div class="contact">
+        <div>
           <table>
 
             <tr>
@@ -147,7 +147,7 @@
 
         <g:if test="${grailsApplication.config.educatorProfile.origin}">
         <h4><g:message code="educator.profile.origin"/></h4>
-        <div class="contact">
+        <div>
           <table>
 
             <tr>
@@ -178,7 +178,7 @@
 
         <g:if test="${grailsApplication.config.educatorProfile.contact}">
         <h4><g:message code="educator.profile.emContact"/></h4>
-        <div class="contact">
+        <div>
           <table>
 
             <tr>
@@ -230,7 +230,7 @@
         </g:if>
 
         <g:if test="${grailsApplication.config.educatorProfile.phone}">
-        <div class="contact">
+        <div>
           <table>
 
             <tr>

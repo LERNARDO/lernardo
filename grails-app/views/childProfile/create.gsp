@@ -16,7 +16,7 @@
 
     <g:form action="save">
 
-      <div class="dialog">
+      <div>
         <table>
           <tbody>
 
