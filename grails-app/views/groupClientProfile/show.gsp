@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <td><g:message code="client.profile.birthDate"/>:</td>
-              <td><g:message code="between"/> <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="[null:message(code:'all')]"/> - <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="[null:message(code:'all')]"/></td>
+              <td><g:message code="between"/> <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="[null:message(code:'all')]" value="none"/> - <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="[null:message(code:'all')]" value="none"/></td>
             </tr>
             <tr>
               <td><g:message code="client.profile.gender"/>:</td>
@@ -82,7 +82,7 @@
             <g:if test="${grailsApplication.config.clientProfile.job}">
             <tr>
               <td><g:message code="client.profile.job"/>:</td>
-              <td><g:select name="job" from="${['0':message(code:'all'),'1':'Ja','2':'Nein']}" optionKey="key" optionValue="value"/></td>
+              <td><g:select name="job" from="${['0':message(code:'all'),'1':message(code:'yes'),'2':message(code:'no')]}" optionKey="key" optionValue="value"/></td>
             </tr>
             </g:if>
           </table>
