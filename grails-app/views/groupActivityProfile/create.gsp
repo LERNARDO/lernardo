@@ -36,13 +36,13 @@
 
           <tr>
             <td width="280px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName') ? fieldValue(bean: group, field: 'profile.fullName').decodeHTML() : fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="180px" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
+              <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration') ?: calculatedDuration}"/> (min)
             </td>
             <td valign="top" class="value">
-              <g:textField name="date" class="datetimepicker" value=""/>
+              <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy hh:mm')}"/>
               %{--<g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>--}%
             </td>
           </tr>
@@ -67,7 +67,7 @@
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
               <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
-                ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
+                ${fieldValue(bean:group,field:'profile.description') ? fieldValue(bean:group,field:'profile.description').decodeHTML() : fieldValue(bean:template,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
               %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="120" name="description" value="${fieldValue(bean: template, field: 'profile.description').decodeHTML()}"/>--}%
             </td>

@@ -193,7 +193,7 @@ class GroupActivityProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      // find all templates of this linked to the groupActivityTemplate
+      // find all templates linked to the groupActivityTemplate
       List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       // and link them to the new groupActivity
@@ -209,7 +209,7 @@ class GroupActivityProfileController {
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
 
-      // find all templates linked to this group
+      // find all templates linked to the groupActivityTemplate
       List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       def calculatedDuration = 0
