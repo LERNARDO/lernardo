@@ -12,9 +12,12 @@
 <table class="default-table">
   <thead>
   <tr>
-    <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
+    %{--<g:sortableColumn property="fullName" title="${message(code:'name')}"/>
     <g:sortableColumn property="duration" title="${message(code:'duration')} (min)"/>
-    <g:sortableColumn property="socialForm" title="${message(code:'activityTemplate.socialForm')}"/>
+    <g:sortableColumn property="socialForm" title="${message(code:'activityTemplate.socialForm')}"/>--}%
+    <th><g:message code="name"/></th>
+    <th><g:message code="duration"/> (min)</th>
+    <th><g:message code="activityTemplate.socialForm"/></th>
     <th><g:message code="comments"/></th>
     <th><g:message code="creator"/></th>
   </tr>
