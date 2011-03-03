@@ -56,26 +56,18 @@
       <h4><g:message code="client.profile.curAddress"/></h4>
       <div class="contact">
         <table>
-          <g:if test="${colonia}">
-            <tr class="prop">
-              <td valign="top" class="name-show"><g:message code="client.profile.currentColonia"/></td>
-            </tr>
-            <tr class="prop">
-              <td valign="top" class="value-show"><g:link controller="${colonia.type.supertype.name +'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></td>
-            </tr>
-          </g:if>
 
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="client.profile.currentStreet"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.currentZip"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.currentCity"/></td>
+            <td valign="top" class="name-show"><g:message code="client.profile.currentColonia"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.currentCountry"/></td>
           </tr>
 
           <tr class="prop">
             <td width="270" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
             <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-            <td width="205" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td width="205" valign="top" class="value-show"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name +'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if></td>
             <td width="165" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           </tr>
 

@@ -245,6 +245,19 @@
         </div>
       </g:if>
 
+        <div>
+          <table>
+            <tr>
+              <td valign="top" class="name"><g:message code="bloodType"/></td>
+            </tr>
+            <tr>
+              <td valign="top" class="value">
+                <g:select name="bloodType" from="${['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-']}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+
       <div class="email">
         <table>
           <tr>

@@ -52,6 +52,8 @@ class EducatorProfile extends Profile {
     Integer hourlyWage
     Integer overtimePay
 
+    String bloodType    // added on 03.03.2011
+
     Boolean showTips = true
 
     static constraints = {
@@ -87,6 +89,8 @@ class EducatorProfile extends Profile {
       workHours nullable: true
       hourlyWage nullable: true
       overtimePay nullable: true
+
+      bloodType nullable: true
     }
 
     String toString(){

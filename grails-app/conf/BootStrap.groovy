@@ -282,7 +282,7 @@ class BootStrap {
           prf.interests = "DummyInterests"
           prf.currentCountry = "DummyCountry"
           prf.currentZip = "1234"
-          prf.currentCity = "DummyCity"
+          //prf.currentCity = "DummyCity"
           prf.currentStreet = "DummyStreet"
           prf.originCountry = "DummyCountry"
           prf.originZip = "1234"

@@ -291,6 +291,19 @@
         </div>
       </g:if>
 
+      <div>
+        <table>
+          <tr>
+            <td valign="top" class="name-show"><g:message code="bloodType"/></td>
+          </tr>
+          <tr>
+            <td valign="top" class="value-show">
+              ${fieldValue(bean: educator, field: 'profile.bloodType') ?: '<div class="italic">'+message(code:'none')+'</div>'}
+            </td>
+          </tr>
+        </table>
+      </div>
+
       <div class="email">
         <table>
 

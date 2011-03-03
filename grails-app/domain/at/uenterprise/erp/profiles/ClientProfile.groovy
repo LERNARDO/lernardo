@@ -34,7 +34,7 @@ class ClientProfile extends Profile {
 
     String currentCountry
     String currentZip
-    String currentCity
+    String currentCity // not used anymore since 03.03.2011
     String currentStreet
 
     String originCountry
@@ -81,7 +81,7 @@ class ClientProfile extends Profile {
       lastName (blank: false, size: 2..50, maxSize: 50)
       currentCountry (size: 2..50, maxSize: 50)
       currentZip (size: 4..10)
-      currentCity (size: 2..50, maxSize: 50)
+      currentCity (nullable: true, size: 2..50, maxSize: 50)
       currentStreet (size: 2..50, maxSize: 50)
       originCountry (size: 2..50, maxSize: 50)
       originZip (size: 4..10, nullable: true)

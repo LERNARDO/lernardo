@@ -75,19 +75,9 @@
           <table>
 
             <tr>
-              <td colspan="4" valign="top" class="name"><g:message code="client.profile.currentColonia"/></td>
-            </tr>
-
-            <tr>
-              <td valign="top" class="value">
-                <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile"/>
-              </td>
-            </tr>
-
-            <tr>
               <td valign="top" class="name"><g:message code="client.profile.currentStreet"/></td>
               <td valign="top" class="name"><g:message code="client.profile.currentZip"/></td>
-              <td valign="top" class="name"><g:message code="client.profile.currentCity"/></td>
+              <td valign="top" class="name"><g:message code="client.profile.currentColonia"/></td>
               <td valign="top" class="name"><g:message code="client.profile.currentCountry"/></td>
             </tr>
 
@@ -99,7 +89,7 @@
                 <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
               <td width="210" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCity', 'errors')}" size="28" name="currentCity" value="${fieldValue(bean: client, field: 'profile.currentCity').decodeHTML()}"/>
+                <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile"/>
               </td>
               <td valign="top" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
