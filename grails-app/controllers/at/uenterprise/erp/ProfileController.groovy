@@ -372,35 +372,6 @@ class ProfileController {
   }
 
   /*
-   * creates a PDF with client statistics
-   * NOT USED ATM
-   */
-  def print = {
-    // find out if this works without this workaround now
-    //params.date = new Date(params.year.toInteger()-1900,params.month.toInteger()-1,params.day.toInteger())
-    def image = "hort_" + entityHelperService.loggedIn.name + ".jpg"
-
-    int sumAttend = 0
-    int sumEat = 0
-
-    List clients = []
-    List attend = at.uenterprise.erp.Attendance().findAllByDate(params.date)
-    attend.each {
-      clients << it.client
-      if (it.didAttend) sumAttend++
-      if (it.didEat) sumEat++
-    }
-
-    return ['image': image,
-            'pdf': params,
-            'entityList': clients,
-            'date': params.date,
-            'attend': attend,
-            'sumAttend': sumAttend,
-            'sumEat': sumEat]
-  }
-
-  /*
    * finds all attendances of a given date
    */
   def attendance = {

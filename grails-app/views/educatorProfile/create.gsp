@@ -84,7 +84,7 @@
             </td>
           </tr>
 
-          <erp:isOperator entity="${currentEntity}">
+%{--          <erp:isOperator entity="${currentEntity}">
             <tr>
               <td valign="top" class="name"><g:message code="educator.profile.workHours"/></td>
               <td valign="top" class="name"><g:message code="educator.profile.hourlyWage"/></td>
@@ -102,7 +102,7 @@
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.overtimePay', 'errors')}" size="10" name="overtimePay" value="${fieldValue(bean: educator, field: 'profile.overtimePay')}"/>
               </td>
             </tr>
-          </erp:isOperator>
+          </erp:isOperator>--}%
 
           %{--<tr class="prop">
           <td colspan="3" valign="middle" class="name">

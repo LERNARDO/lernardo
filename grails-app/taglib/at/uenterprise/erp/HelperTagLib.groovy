@@ -129,13 +129,16 @@ class HelperTagLib {
     while (tcalendarStart <= tcalendarEnd) {
        Date currentDate = tcalendarStart.getTime();
 
-       if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
+       /*if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
            (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday') ||
            (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday') ||
            (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday') ||
-           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {
-            expectedHours += educator?.profile?.workHours ?: 0
-         }
+           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {*/
+            if (educator.profile.workDays && educator.profile.workHours)
+              expectedHours += educator?.profile?.workHours / educator?.profile?.workDays
+            else
+              expectedHours += 0
+         //}
       tcalendarStart.add(Calendar.DATE, 1)
     }
 
@@ -188,13 +191,17 @@ class HelperTagLib {
     while (tcalendarStart <= tcalendarEnd) {
        Date currentDate = tcalendarStart.getTime();
 
-       if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
+       /*if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
            (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday') ||
            (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday') ||
            (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday') ||
-           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {
-            expectedHours += educator?.profile?.workHours ?: 0
-         }
+           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {*/
+            if (educator.profile.workDays && educator.profile.workHours) {
+              expectedHours += educator.profile.workHours / educator.profile.workDays
+            }
+            else
+              expectedHours += 0
+         //}
       tcalendarStart.add(Calendar.DATE, 1)
     }
 

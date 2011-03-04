@@ -1,0 +1,3 @@
+<g:formRemote name="editWorkDays" update="${i}b" url="[action:'updateWorkDays', id: educator.id, params:[i: i]]">
+  <g:select name="workDays" from="${1..7}" value="${fieldValue(bean: educator, field: 'profile.workDays')}"/> <g:actionSubmitImage value="confirm" src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="${message(code: 'confirm')}" align="top" style="border: 0"/>
+</g:formRemote>

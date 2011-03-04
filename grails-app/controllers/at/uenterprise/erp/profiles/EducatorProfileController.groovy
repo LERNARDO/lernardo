@@ -224,4 +224,57 @@ class EducatorProfileController {
     Entity currentEntity = entityHelperService.loggedIn
     renderPdf template: 'createpdf', model: [educators: educators, workdaycategories: workdaycategories, entity: currentEntity, date1: params.date1, date2: params.date2], filename: 'Zeitauswertung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy")
   }
+
+  def workhours = {
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    return [educators: educators]
+  }
+
+  def changeWorkHours = {
+    Entity educator = Entity.get(params.id)
+    render template: 'editworkhours', model:[educator: educator, i: params.i]
+  }
+
+  def updateWorkHours = {
+    Entity educator = Entity.get(params.id)
+    educator.profile.workHours = params.int('workHours')
+    educator.profile.save()
+    render template: 'showworkhours', model:[educator: educator, i: params.i]
+  }
+
+  def changeWorkDays = {
+    Entity educator = Entity.get(params.id)
+    render template: 'editworkdays', model:[educator: educator, i: params.i]
+  }
+
+  def updateWorkDays = {
+    Entity educator = Entity.get(params.id)
+    educator.profile.workDays = params.int('workDays')
+    educator.profile.save()
+    render template: 'showworkdays', model:[educator: educator, i: params.i]
+  }
+
+  def changeHourlyWage = {
+    Entity educator = Entity.get(params.id)
+    render template: 'edithourlywage', model:[educator: educator, i: params.i]
+  }
+
+  def updateHourlyWage = {
+    Entity educator = Entity.get(params.id)
+    educator.profile.hourlyWage = params.int('hourlyWage')
+    educator.profile.save()
+    render template: 'showhourlywage', model:[educator: educator, i: params.i]
+  }
+
+  def changeOvertimePay = {
+    Entity educator = Entity.get(params.id)
+    render template: 'editovertimepay', model:[educator: educator, i: params.i]
+  }
+
+  def updateOvertimePay = {
+    Entity educator = Entity.get(params.id)
+    educator.profile.overtimePay = params.int('overtimePay')
+    educator.profile.save()
+    render template: 'showovertimepay', model:[educator: educator, i: params.i]
+  }
 }
