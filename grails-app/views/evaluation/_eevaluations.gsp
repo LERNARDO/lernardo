@@ -23,6 +23,9 @@
           <td>${evaluation.writer.profile.fullName}</td>
         </tr>
       </table>
+      <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}">
+        <g:link class="helperButton" action="edit" id="${evaluation.id}" params="[entity:entity.id]">${message(code:'edit')}</g:link>
+      </erp:isMeOrAdminOrOperator>
     </div>
   </g:each>
 </ul>

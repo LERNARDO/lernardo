@@ -52,7 +52,7 @@ class EvaluationController {
     params.offset = params.offset ? params.int('offset'): 0
     List evaluations = Evaluation.list(params)
     Entity entity = Entity.get(params.id)
-    render template: "evaluations", model:[evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity]
+    render template: "evaluations", model:[evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity, currentEntity: entityHelperService.loggedIn]
   }
 
   def showByEducator = {
@@ -83,7 +83,7 @@ class EvaluationController {
     def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
     evaluations = evaluations.subList(params.offset, upperBound)
 
-    render template: "eevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value]
+    render template: "eevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
   }
 
   def showByClient = {
@@ -114,7 +114,7 @@ class EvaluationController {
     def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
     evaluations = evaluations.subList(params.offset, upperBound)
 
-    render template: "cevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value]
+    render template: "cevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
   }
 
   // show all evaluations of clients linked to a given educator

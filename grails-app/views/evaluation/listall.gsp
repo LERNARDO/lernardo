@@ -24,13 +24,13 @@
     <p>Es wurden insgesamt <g:remoteLink controller="evaluation" action="showall" update="remoteEvaluations" id="${entity.id}">${totalEvaluations} Einträge</g:remoteLink> gefunden. Du kannst nach PädagogInnen oder nach Betreuten filtern:</p>
 
     <g:message code="educator"/>:<br/>
-    <g:remoteField size="40" name="remoteField1" update="remoteEvaluations" action="showByEducator"  id="${entity.id}" before="showspinner('#remoteEvaluations')"/><br/>
+    <g:remoteField size="40" name="remoteField1" update="remoteEvaluations" action="showByEducator" id="${entity.id}" before="showspinner('#remoteEvaluations')"/><br/>
 
     <g:message code="client"/>:<br/>
-    <g:remoteField size="40" name="remoteField1" update="remoteEvaluations" action="showByClient"  id="${entity.id}" before="showspinner('#remoteEvaluations')"/>
+    <g:remoteField size="40" name="remoteField2" update="remoteEvaluations" action="showByClient" id="${entity.id}" before="showspinner('#remoteEvaluations')"/>
 
     <div id="remoteEvaluations">
-      <g:render template="evaluations" model="[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity]"/>
+      <g:render template="evaluations" model="[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, currentEntity: currentEntity]"/>
     </div>
 
   </div>
