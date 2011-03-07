@@ -59,15 +59,13 @@
 
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${group}">
-        <erp:isCreator entity="${group}">
-          <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
-        </erp:isCreator>
+        <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
+      </erp:accessCheck>
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+        <g:if test="${group.profile.status == 'fertig'}">
+          <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock planen</g:link>
+        </g:if>
         <g:link class="buttonGreen" action="copy" id="${group.id}">Vorlage duplizieren</g:link>
-
-        %{-- and only when it is done --}%
-          <g:if test="${group.profile.status == 'fertig'}">
-            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock planen</g:link>
-          </g:if>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
