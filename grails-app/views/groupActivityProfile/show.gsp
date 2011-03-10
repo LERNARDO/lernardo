@@ -59,7 +59,12 @@
 
         <tr>
           <td valign="top" class="value-show">
-            ${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+            <g:if test="${group.profile.educationalObjective}">
+              <g:message code="goal.${group.profile.educationalObjective}"/>
+            </g:if>
+            <g:else>
+              <span class="italic"><g:message code="none"/></span>
+            </g:else>
           </td>
           <td colspan="2" valign="top" class="value-show">
             ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}

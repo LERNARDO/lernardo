@@ -42,8 +42,8 @@
           </tr>
 
           <tr class="prop">
-            <td colspans="3" valign="top" class="value">
-              <g:select from="${['erreicht','nicht erreicht']}" class="drop-down-240" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
+            <td colspan="3" valign="top" class="value">
+              <g:select class="drop-down-240" from="['succeeded','notSucceeded']" name="educationalObjective" value="${group.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
             </td>
           </tr>
 
