@@ -65,7 +65,7 @@ class OperatorProfileController {
     if (operator) {
       // delete all links
       Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(operator).each {it.delete()}
+      Msg.findAllBySenderOrReceiver(operator, operator).each {it.delete()}
       Event.findAllByEntity(operator).each {it.delete()}
       Publication.findAllByEntity(operator).each {it.delete()}
       try {

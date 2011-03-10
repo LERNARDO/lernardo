@@ -73,7 +73,7 @@ class EducatorProfileController {
     if (educator) {
       // delete all links
       Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(educator).each {it.delete()}
+      Msg.findAllBySenderOrReceiver(educator, educator).each {it.delete()}
       Post.findByAuthor(educator).each {it.delete()}
       Event.findAllByEntity(educator).each {it.delete()}
       Publication.findAllByEntity(educator).each {it.delete()}

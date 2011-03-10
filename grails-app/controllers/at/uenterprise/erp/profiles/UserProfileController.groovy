@@ -61,7 +61,7 @@ class UserProfileController {
     if (user) {
       // delete all links
       Link.findAllBySourceOrTarget(user, user).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(user).each {it.delete()}
+      Msg.findAllBySenderOrReceiver(user, user).each {it.delete()}
       Event.findAllByEntity(user).each {it.delete()}
       Publication.findAllByEntity(user).each {it.delete()}
       try {
