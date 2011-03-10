@@ -567,6 +567,7 @@ class AppController {
     def deleted = 0
     comments.each { comment ->
       if (!Entity.get(comment.creator)) {
+        log.info "no entity found with id: ${comment.creator}"
         comment.delete()
         deleted++
       }
