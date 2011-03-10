@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title><g:message code="activity"/></title>
+  <title><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
 </head>
@@ -9,13 +9,13 @@
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="activity"/></h1>
+    <h1><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()}</h1>
   </div>
 </div>
 
 <div class="boxGray">
   <div class="second">
-    Vorlage:
+    <g:message code="template"/>:
     <erp:getTemplate entity="${activity}">
       <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
     </erp:getTemplate>
@@ -24,8 +24,8 @@
     <table>
 
       <tr>
-        <td class="name-show">Name:</td>
-        <td class="name-show">Beginn:</td>
+        <td class="name-show"><g:message code="name"/>:</td>
+        <td class="name-show"><g:message code="activityInstance.profile.startDate"/>:</td>
         <td class="name-show"><g:message code="duration"/>:</td>
       </tr>
 

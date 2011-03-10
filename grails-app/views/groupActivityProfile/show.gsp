@@ -1,12 +1,12 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="profile"/> - ${group.profile.fullName}</title>
+  <title><g:message code="groupActivity"/> - ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="profile"/> - ${group.profile.fullName}</h1>
+    <h1><g:message code="groupActivity"/> - ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</h1>
   </div>
 </div>
 <div class="boxGray">

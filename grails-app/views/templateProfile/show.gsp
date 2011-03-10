@@ -1,12 +1,12 @@
 <head>
-  <title><g:message code="activityTemplate"/></title>
+  <title><g:message code="activityTemplate"/> - ${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}</title>
   <meta name="layout" content="private"/>
 </head>
 
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="activityTemplate"/></h1>
+    <h1><g:message code="activityTemplate"/> - ${fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}</h1>
   </div>
 </div>
 <div class="boxGray">

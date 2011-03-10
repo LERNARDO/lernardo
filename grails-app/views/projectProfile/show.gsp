@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="project"/></title>
+  <title><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="project"/></h1>
+    <h1><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</h1>
   </div>
 </div>
 <div class="boxGray">
