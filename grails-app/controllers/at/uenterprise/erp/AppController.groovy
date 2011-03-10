@@ -538,27 +538,26 @@ class AppController {
       if (params.id != 'null') {
           Entity entity = Entity.get(params.id)
 
-          render "<div>Entitäten auf die <span class='bold'>${entity.profile.fullName}</span> verlinkt (source):</div>"
-          List targets = Link.findAllBySource(entity)
-          if (targets) {
-            render "<ul>"
-            targets.each {render "<li>" + it.target.profile.fullName + "</li>"}//collect{it.target}
-            render "</ul>"
-          }
-          else
-            render "<p class='red'>Keine Verlinkungen gefunden</p>"
+          List targets = Link.findAllBySource(entity)?.collect {it.target}
+          List sources = Link.findAllByTarget(entity)?.collect {it.source}
 
-          render "<div>Entitäten die auf <span class='bold'>${entity.profile.fullName}</span> verlinken (target):</div>"
-          List sources = Link.findAllByTarget(entity)
-          if (sources) {
-            render "<ul>"
-            sources.each {render "<li>" + it.source.profile.fullName + "</li>"}//collect{it.target}
-            render "</ul>"
-          }
-          else
-            render "<p class='red'>Keine Verlinkungen gefunden</p>"
+          render template: 'adminlinksresults', model:[entity: entity, targets: targets, sources: sources]
       }
       else
         render ""
+  }
+
+  def removetarget = {
+    Entity entity = Entity.get(params.entity)
+    Entity target = Entity.get(params.id)
+    Link.findBySourceAndTarget(entity, target)?.delete()
+    render "<span style='text-decoration: line-through'>" + target.profile.fullName + "</span>"
+  }
+
+  def removesource = {
+    Entity entity = Entity.get(params.entity)
+    Entity source = Entity.get(params.id)
+    Link.findBySourceAndTarget(source, entity)?.delete()
+    render "<span style='text-decoration: line-through'>" + source.profile.fullName + "</span>"
   }
 }
