@@ -13,6 +13,7 @@ import at.openfactory.ep.EntityType
 
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class PartnerProfileController {
 
@@ -71,6 +72,7 @@ class PartnerProfileController {
       Msg.findAllBySenderOrReceiver(partner, partner).each {it.delete()}
       Event.findAllByEntity(partner).each {it.delete()}
       Publication.findAllByEntity(partner).each {it.delete()}
+      Comment.findAllByCreator(partner.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "partner.deleted", args: [partner.profile.fullName])
         partner.delete(flush: true)

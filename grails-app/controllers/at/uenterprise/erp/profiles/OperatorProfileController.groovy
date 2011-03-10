@@ -11,6 +11,7 @@ import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -68,6 +69,7 @@ class OperatorProfileController {
       Msg.findAllBySenderOrReceiver(operator, operator).each {it.delete()}
       Event.findAllByEntity(operator).each {it.delete()}
       Publication.findAllByEntity(operator).each {it.delete()}
+      Comment.findAllByCreator(operator.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
         operator.delete(flush: true)

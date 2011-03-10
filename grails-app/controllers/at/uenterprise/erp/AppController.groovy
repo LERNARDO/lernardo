@@ -560,4 +560,17 @@ class AppController {
     Link.findBySourceAndTarget(source, entity)?.delete()
     render "<span style='text-decoration: line-through'>" + source.profile.fullName + "</span>"
   }
+
+  def removeroguecomments = {
+    List comments = Comment.list()
+    def total = comments.size()
+    def deleted = 0
+    comments.each { comment ->
+      if (!Entity.get(comment.creator)) {
+        comment.delete()
+        deleted++
+      }
+    }
+    render "<span class='green'>${deleted} von insgesamt ${total} Kommentaren gelöscht!</span>"
+  }
 }

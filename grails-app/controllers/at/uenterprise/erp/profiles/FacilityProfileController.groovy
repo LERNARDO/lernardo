@@ -13,6 +13,7 @@ import at.openfactory.ep.Profile
 import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
+import at.uenterprise.erp.Comment
 
 class FacilityProfileController {
   MetaDataService metaDataService
@@ -98,6 +99,7 @@ class FacilityProfileController {
       Msg.findAllBySenderOrReceiver(facility, facility).each {it.delete()}
       Event.findAllByEntity(facility).each {it.delete()}
       Publication.findAllByEntity(facility).each {it.delete()}
+      Comment.findAllByCreator(facility.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "facility.deleted", args: [facility.profile.fullName])
         facility.delete(flush: true)

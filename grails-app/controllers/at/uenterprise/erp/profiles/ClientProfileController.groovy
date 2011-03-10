@@ -20,6 +20,7 @@ import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -87,6 +88,7 @@ class ClientProfileController {
       Event.findAllByEntity(client).each {it.delete()}
       Post.findAllByAuthor(client).each {it.delete()}
       Publication.findAllByEntity(client).each {it.delete()}
+      Comment.findAllByCreator(client.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "client.deleted", args: [client.profile.fullName])
         client.delete(flush: true)

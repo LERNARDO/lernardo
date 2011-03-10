@@ -11,6 +11,7 @@ import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -66,6 +67,7 @@ class PateProfileController {
       Msg.findAllBySenderOrReceiver(pate, pate).each {it.delete()}
       Event.findAllByEntity(pate).each {it.delete()}
       Publication.findAllByEntity(pate).each {it.delete()}
+      Comment.findAllByCreator(pate.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
         pate.delete(flush: true)

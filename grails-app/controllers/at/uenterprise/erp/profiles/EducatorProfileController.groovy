@@ -15,6 +15,7 @@ import at.uenterprise.erp.Publication
 import at.uenterprise.erp.WorkdayCategory
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -77,6 +78,7 @@ class EducatorProfileController {
       Post.findByAuthor(educator).each {it.delete()}
       Event.findAllByEntity(educator).each {it.delete()}
       Publication.findAllByEntity(educator).each {it.delete()}
+      Comment.findAllByCreator(educator.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "educator.deleted", args: [educator.profile.fullName])
         educator.delete(flush: true)

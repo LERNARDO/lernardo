@@ -12,6 +12,7 @@ import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 //import java.util.regex.Pattern
 
@@ -70,6 +71,7 @@ class ChildProfileController {
       Msg.findAllBySenderOrReceiver(child, child).each {it.delete()}
       Event.findAllByEntity(child).each {it.delete()}
       Publication.findAllByEntity(child).each {it.delete()}
+      Comment.findAllByCreator(child.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "child.deleted", args: [child.profile.fullName])
         child.delete(flush: true)

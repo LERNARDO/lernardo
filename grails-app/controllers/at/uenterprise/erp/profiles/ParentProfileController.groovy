@@ -12,6 +12,7 @@ import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -68,6 +69,7 @@ class ParentProfileController {
       Msg.findAllBySenderOrReceiver(parent, parent).each {it.delete()}
       Event.findAllByEntity(parent).each {it.delete()}
       Publication.findAllByEntity(parent).each {it.delete()}
+      Comment.findAllByCreator(parent.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "parent.deleted", args: [parent.profile.fullName])
         parent.delete(flush: true)

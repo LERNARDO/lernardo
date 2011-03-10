@@ -11,6 +11,7 @@ import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Comment
 
 class UserProfileController {
   MetaDataService metaDataService
@@ -64,6 +65,7 @@ class UserProfileController {
       Msg.findAllBySenderOrReceiver(user, user).each {it.delete()}
       Event.findAllByEntity(user).each {it.delete()}
       Publication.findAllByEntity(user).each {it.delete()}
+      Comment.findAllByCreator(user.id.toInteger()).each {it.delete()}
       try {
         flash.message = message(code: "user.deleted", args: [user.profile.fullName])
         user.delete(flush: true)
