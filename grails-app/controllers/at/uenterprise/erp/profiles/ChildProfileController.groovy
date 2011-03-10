@@ -67,7 +67,7 @@ class ChildProfileController {
     if (child) {
       // delete all links to and from this child
       Link.findAllBySourceOrTarget(child, child).each {it.delete()}
-      Msg.findAllByEntity(child).each {it.delete()}
+      Msg.findAllBySenderOrReceiver(child).each {it.delete()}
       Event.findAllByEntity(child).each {it.delete()}
       Publication.findAllByEntity(child).each {it.delete()}
       try {

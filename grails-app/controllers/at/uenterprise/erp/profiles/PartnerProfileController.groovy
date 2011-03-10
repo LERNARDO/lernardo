@@ -68,7 +68,7 @@ class PartnerProfileController {
     if (partner) {
       // delete all links
       Link.findAllBySourceOrTarget(partner, partner).each {it.delete()}
-      Msg.findAllByEntity(partner).each {it.delete()}
+      Msg.findAllBySenderOrReceiver(partner).each {it.delete()}
       Event.findAllByEntity(partner).each {it.delete()}
       Publication.findAllByEntity(partner).each {it.delete()}
       try {
