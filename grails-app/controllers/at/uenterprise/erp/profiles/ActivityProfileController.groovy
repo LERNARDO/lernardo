@@ -402,7 +402,7 @@ class ActivityProfileController {
   def addTemplate = {
     Entity template = Entity.get(params.id)
 
-    render ("<b>Gew&aumlhlte Vorlage:</b> ${template.profile.fullName}")
+    render ("<b>Gewählte Vorlage:</b> ${template.profile.fullName}")
   }
 
   /*
@@ -438,7 +438,7 @@ class ActivityProfileController {
   def addFacility = {
     Entity facility = Entity.get(params.id)
 
-    render ("<b>Gew&aumlhlte Einrichtung:</b> ${facility.profile.fullName}")
+    render ("<b>Gewählte Einrichtung:</b> ${facility.profile.fullName}")
   }
 
   def updateEducators = {
