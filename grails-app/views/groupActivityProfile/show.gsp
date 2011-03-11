@@ -32,7 +32,7 @@
         <tr class="prop">
           <td height="30" colspan="3" valign="top" class="name">
             <g:if test="${template}">
-              <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link>
+              <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
             </g:if>
             <g:else>
               <span class="italic">Vorlage wurde nicht gefunden!</span>

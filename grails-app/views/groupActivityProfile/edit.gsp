@@ -26,7 +26,7 @@
 
           <tr>
             <td width="280px" valign="top" class="value">
-              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="180px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
@@ -42,8 +42,8 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="value">
-              <g:select class="drop-down-240" from="['succeeded','notSucceeded']" name="educationalObjective" value="${group.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
+            <td colspans="3" valign="top" class="value">
+              <g:select from="${['erreicht','nicht erreicht']}" class="drop-down-240" name="educationalObjective" value="${fieldValue(bean: group, field: 'profile.educationalObjective').decodeHTML()}"/>
             </td>
           </tr>
 
