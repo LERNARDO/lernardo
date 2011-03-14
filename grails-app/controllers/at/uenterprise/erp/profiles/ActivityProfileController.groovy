@@ -445,8 +445,17 @@ class ActivityProfileController {
     Entity facility = Entity.get(params.id)
 
     // find all educators linked to this facility
-    List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
-
+    def c = Link.createCriteria()
+    List educators = c.list {
+      eq('target', facility)
+      or {
+        eq('type', metaDataService.ltWorking)
+        eq('type', metaDataService.ltLeadEducator)
+      }
+      projections {
+        distinct('source')
+      }
+    }
     render template: 'educators', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
   }
 }
