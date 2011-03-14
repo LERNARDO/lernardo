@@ -271,10 +271,24 @@ class GroupActivityProfileController {
   }
 
   def addFacility = {
-    def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    Entity group = Entity.get(params.id)
+    def c = Link.createCriteria()
+    def result = c.get {
+      eq('target', Entity.get(params.id))
+      eq('type', metaDataService.ltGroupMemberFacility)
+    }
+    if (!result) {
+      def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    }
+    else {
+      List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
+      render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
+      render template: 'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
+    }
+
   }
 
   def removeFacility = {
@@ -332,4 +346,5 @@ class GroupActivityProfileController {
     def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     render template: 'themes', model: [themes: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
+
 }
