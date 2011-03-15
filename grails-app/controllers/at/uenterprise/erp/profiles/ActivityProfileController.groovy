@@ -53,8 +53,8 @@ class ActivityProfileController {
       // show educator only his own activities
       if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
-        facilities.each {
-          List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
+        facilities.each { Entity facility ->
+          List activities = functionService.findAllByLink(facility, null, metaDataService.ltActFacility)
 
           activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
