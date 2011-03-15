@@ -42,7 +42,6 @@ class ActivityProfileController {
 
     // get a list of facilities the current entity is linked to
     List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
-    log.info facilities
 
     // create empty list for final results
     List activityList = []
@@ -56,12 +55,11 @@ class ActivityProfileController {
         // get all activities of the facilities the current entity is linked to
         facilities.each { Entity facility ->
           List activities = functionService.findAllByLink(facility, null, metaDataService.ltActFacility)
-          log.info activities
-          activities.each {log.info it.type}
+          // TODO: find out why the above method returns clients instead of activities on the TEST environment
 
           activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
-            if (act.profile.type == "Themenraum")
+            if (act?.profile?.type == "Themenraum")
               activityList << act
           }
         }
@@ -95,12 +93,12 @@ class ActivityProfileController {
       // get all activities of the facilities within the timeframe
       if (currentEntity.type.id == metaDataService.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
-        facilities.each {
-          List activities = functionService.findAllByLink(it as Entity, null, metaDataService.ltActFacility)
+        facilities.each { Entity facility ->
+          List activities = functionService.findAllByLink(facility, null, metaDataService.ltActFacility)
 
           activities.each {Entity act ->
             // there are 2 types of activities, we only want theme room activities here
-            if (act.profile.date > inputDate && act.profile.date < inputDate + 1 && act.profile.type == "Themenraum")
+            if (act.profile.date > inputDate && act.profile.date < inputDate + 1 && act?.profile?.type == "Themenraum")
               activityList << act
           }
         }
