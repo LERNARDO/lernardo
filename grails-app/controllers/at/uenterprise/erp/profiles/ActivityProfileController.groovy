@@ -42,6 +42,7 @@ class ActivityProfileController {
 
     // get a list of facilities the current entity is linked to
     List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+    log.info facilities
 
     // create empty list for final results
     List activityList = []
@@ -55,6 +56,8 @@ class ActivityProfileController {
         // get all activities of the facilities the current entity is linked to
         facilities.each { Entity facility ->
           List activities = functionService.findAllByLink(facility, null, metaDataService.ltActFacility)
+          log.info activities
+          activities.each {log.info it.type}
 
           activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
