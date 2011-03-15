@@ -60,7 +60,7 @@ class ProjectTemplateProfileController {
       def allGroupActivityTemplates = c.list {
         eq("type", metaDataService.etGroupActivityTemplate)
         profile {
-          eq("status", "fertig")
+          eq("status", "done")
         }
       }
 
@@ -397,7 +397,7 @@ class ProjectTemplateProfileController {
       def results = c.list {
         eq("type", metaDataService.etGroupActivityTemplate)
         profile {
-          eq("status", "fertig")
+          eq("status", "done")
         }
       }
       render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
@@ -408,7 +408,7 @@ class ProjectTemplateProfileController {
     def results = c.list {
       eq('type', metaDataService.etGroupActivityTemplate)
       profile {
-        eq('status', "fertig")
+        eq('status', "done")
       }
       or {
         ilike('name', "%" + params.value + "%")

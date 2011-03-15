@@ -27,7 +27,7 @@
               <g:textField class="countable50 ${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="100" maxlength="80" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:select from="${['fertig','in Bearbeitung']}" name="status" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}"/>
+              <g:select name="status" from="['done','notDone']" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}" valueMessagePrefix="status"/>
             </td>
           </tr>
 

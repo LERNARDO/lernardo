@@ -59,7 +59,7 @@
           ${template.profile.socialForm}
         </td>
         <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
-          ${template.profile.status}
+          <g:message code="status.${template.profile.status}"/>
         </td>
         <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
           ${template.profile.amountEducators}

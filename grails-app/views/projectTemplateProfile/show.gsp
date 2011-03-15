@@ -37,7 +37,7 @@
             <g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
           <td width="120px" valign="top" class="value-show">
-            ${fieldValue(bean: projectTemplate, field: 'profile.status')}
+            <g:message code="status.${projectTemplate.profile.status}"/>
           </td>
         </tr>
 
@@ -59,7 +59,7 @@
         <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}" params="[entity: projectTemplate?.id]"><g:message code="edit"/></g:link>
       </erp:accessCheck>
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
-        <g:if test="${projectTemplate.profile.status == 'fertig'}">
+        <g:if test="${projectTemplate.profile.status == 'done'}">
           <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate?.id}"><g:message code="project.plan"/></g:link>
         </g:if>
         <g:link class="buttonGreen" action="copy" id="${projectTemplate.id}"><g:message code="projectTemplate.duplicate"/></g:link>
@@ -68,7 +68,7 @@
       <div class="spacer"></div>
     </div>
 
-    <g:if test="${projectTemplate.profile.status != 'fertig'}">
+    <g:if test="${projectTemplate.profile.status != 'done'}">
       <div class="italic red">Diese Vorlage kann erst als Projekt geplant werden, sobald der Status auf "fertig" gesetzt wurde!</div>
     </g:if>
 

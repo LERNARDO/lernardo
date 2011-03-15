@@ -58,7 +58,7 @@ class GroupActivityTemplateProfileController {
     def allTemplates = c.list {
       eq("type", metaDataService.etTemplate)
       profile {
-        eq("status", "fertig")
+        eq("status", "done")
       }
     }
 

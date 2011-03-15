@@ -40,7 +40,7 @@
             ${fieldValue(bean: group, field: 'profile.realDuration')} min
           </td>
           <td valign="top" class="value-show">
-            ${fieldValue(bean: group, field: 'profile.status').decodeHTML()}
+            <g:message code="status.${group.profile.status}"/>
           </td>
         </tr>
 
@@ -62,7 +62,7 @@
         <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
       </erp:accessCheck>
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
-        <g:if test="${group.profile.status == 'fertig'}">
+        <g:if test="${group.profile.status == 'done'}">
           <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock planen</g:link>
         </g:if>
         <g:link class="buttonGreen" action="copy" id="${group.id}">Vorlage duplizieren</g:link>
@@ -71,7 +71,7 @@
       <div class="spacer"></div>
     </div>
 
-    <g:if test="${group.profile.status != 'fertig'}">
+    <g:if test="${group.profile.status != 'done'}">
       <div class="italic red">Diese Vorlage kann erst eingeplant werden, sobald der Status auf "fertig" gesetzt wurde!</div>
     </g:if>
 

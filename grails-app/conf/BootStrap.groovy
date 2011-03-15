@@ -479,9 +479,9 @@ class BootStrap {
           ent.profile.socialForm = "DummySocialForm"
           ent.profile.amountEducators = generator.nextInt(3) + 1
           if (generator.nextInt(2) == 0)
-            ent.profile.status = "fertig"
+            ent.profile.status = "done"
           else
-            ent.profile.status = "in Bearbeitung"
+            ent.profile.status = "notDone"
           ent.profile.duration = generator.nextInt(50) + 10
           ent.profile.type = "default"
         }
@@ -750,9 +750,9 @@ class BootStrap {
           ent.profile.description = "dummyDescription"
           ent.profile.realDuration = generator.nextInt(60) + 30
           if (generator.nextInt(2) == 0)
-            ent.profile.status = "fertig"
+            ent.profile.status = "done"
           else
-            ent.profile.status = "in Bearbeitung"
+            ent.profile.status = "notDone"
         }
 
         // create some links to that group
@@ -819,9 +819,9 @@ class BootStrap {
           ent.profile.fullName = "dummyProjectTemplate" + i
           ent.profile.description = "dummyDescription"
           if (generator.nextInt(2) == 0)
-            ent.profile.status = "fertig"
+            ent.profile.status = "done"
           else
-            ent.profile.status = "in Bearbeitung"
+            ent.profile.status = "notDone"
         }
       }
     }
