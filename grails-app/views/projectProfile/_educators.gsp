@@ -5,7 +5,7 @@
         <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}" params="[entity:educator.id]">${educator.profile.fullName}</g:link> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeEducator" update="educators2" id="${projectDay.id}" params="[educator: educator.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Pädagoge entfernen" align="top"/></g:remoteLink></erp:accessCheck>
         <span id="tageducator${i}">
           <erp:getLocalTags entity="${educator}" target="${projectDay}">
-            <g:render template="/app/localtags" model="[entity: educator, target: projectDay, tags: tags, update: 'tageducator' + i]"/>
+            <g:render template="/app/localtags" model="[entity: educator, target: projectDay, tags: tags, update: 'tageducator' + i, currentEntity: entity]"/>
           </erp:getLocalTags>
         </span>
       </li>

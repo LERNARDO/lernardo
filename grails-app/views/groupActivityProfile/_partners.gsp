@@ -5,7 +5,7 @@
       <g:link controller="${partner.type.supertype.name +'Profile'}" action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link> <erp:isCreator entity="${group}"><g:remoteLink action="removePartner" update="partners2" id="${group.id}" params="[partner: partner.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Partner entfernen" align="top"/></g:remoteLink></erp:isCreator>
       <span id="tagpartner${i}">
         <erp:getLocalTags entity="${partner}" target="${group}">
-          <g:render template="/app/localtags" model="[entity: partner, target: group, tags: tags, update: 'tagpartner' + i]"/>
+          <g:render template="/app/localtags" model="[entity: partner, target: group, tags: tags, update: 'tagpartner' + i, currentEntity: entity]"/>
         </erp:getLocalTags>
       </span>
     </li>

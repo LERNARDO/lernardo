@@ -10,11 +10,10 @@
 </g:if>
 
 <span class="tagbuttons">
-  <g:if test="${!tags[0]}">
+  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${target}">
+    <g:if test="${!tags[0]}">
     <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'absent', update: update]">abwesend markieren</g:remoteLink>
-  </g:if>
-
-  <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter']">
+    </g:if>
     <g:if test="${!tags[1]}">
       | <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'ill', update: update]">krank markieren</g:remoteLink>
     </g:if>

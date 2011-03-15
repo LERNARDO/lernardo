@@ -6,7 +6,7 @@
 
       <span id="tagclient${i}">
         <erp:getLocalTags entity="${client}" target="${group}">
-          <g:render template="/app/localtags" model="[entity: client, target: group, tags: tags, update: 'tagclient' + i]"/>
+          <g:render template="/app/localtags" model="[entity: client, target: group, tags: tags, update: 'tagclient' + i, currentEntity: entity]"/>
         </erp:getLocalTags>
       </span>
 
