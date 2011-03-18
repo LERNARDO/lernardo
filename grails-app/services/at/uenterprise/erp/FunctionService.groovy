@@ -169,7 +169,7 @@ class FunctionService {
    * @return the message
    */
   Msg createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {
-    new Msg(read: read, sender: sender, receiver: receiver, entity: entity, subject: subject, content: content, read: read).save()
+    new Msg(read: read, sender: sender, receiver: receiver, entity: entity, subject: subject, content: content).save()
   }
 
   /**
