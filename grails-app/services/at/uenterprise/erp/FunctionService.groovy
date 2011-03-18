@@ -12,147 +12,174 @@ class FunctionService {
 
   boolean transactional = true
 
-  /* TIP
-   * - Spread operator instead of collect method -
-   * def results = links*.target
-   * def results = links.collect {it.target}
-   */
-
-  /*
-   * returns a single entity
+  /**
+   * Returns an entity of a link
+   *
+   * @author Alexander Zeillinger
+   * @param source an entity
+   * @param target an entity
+   * @param type a link type
+   * @return an entity
    */
   Entity findByLink(Entity source, Entity target, LinkType type) {
-
-    def c = Link.createCriteria()
-    Entity result = c.get {
-      if (source) eq("source", source)
-      if (target) eq("target", target)
-      eq("type", type)
-      // the link property that is not supplied (i.e. NULL) is the one we are probably looking for so use it as projection value
+    Link.createCriteria().get {
+      if (source) eq('source', source)
+      if (target) eq('target', target)
+      eq('type', type)
+      // the link property that is not supplied (i.e. NULL) is the one we are looking for so use it as projection value
       projections {
-        if (!source) distinct("source")
-        if (!target) distinct("target")
+        if (!source) distinct('source')
+        if (!target) distinct('target')
       }
-    }
-    return result
-
+    } as Entity
   }
 
-  /*
-   * returns multiple entities as list
+  /**
+   * Returns entities of a link
+   *
+   * @author Alexander Zeillinger
+   * @param source an entity
+   * @param target an entity
+   * @param type a link type
+   * @return a list of entities
    */
   List findAllByLink(Entity source, Entity target, LinkType type) {
-
-    def c = Link.createCriteria()
-    List results = c.list {
-      if (source) eq("source", source)
-      if (target) eq("target", target)
-      eq("type", type)
-      // the link property that is not supplied (i.e. NULL) is the one we are probably looking for so use it as projection value
+    Link.createCriteria().list {
+      if (source) eq('source', source)
+      if (target) eq('target', target)
+      eq('type', type)
+      // the link property that is not supplied (i.e. NULL) is the one we are looking for so use it as projection value
       projections {
-        if (!source) distinct("source")
-        if (!target) distinct("target")
+        if (!source) distinct('source')
+        if (!target) distinct('target')
       }
     }
-    return results
-
   }
   
-  /*
-   * links two entities and returns all entities linked to the target
+  /**
+   * Links two entities and returns a map with all entities linked to the target, all entities linked to the source,
+   * the source, the target and whether or not the link already existed
+   *
+   * @author Alexander Zeillinger
+   * @param s the ID of an entity
+   * @param t the ID of an entity
+   * @param type a link type
+   * @return a map
    */
-  def linkEntities(String s, String t, LinkType linktype) {
+  def linkEntities(String s, String t, LinkType type) {
     Entity source = Entity.get(s.toInteger())
     Entity target = Entity.get(t.toInteger())
     Boolean duplicate = false
 
-    // check if the source isn't already linked to the target
-    def c = Link.createCriteria()
-    def link = c.get {
+    // check if the entities aren't already linked together with the given type
+    def link = Link.createCriteria().get {
       eq('source', source)
       eq('target', target)
-      eq('type', linktype)
+      eq('type', type)
     }
     if (link)
       duplicate = true
     else
-      new Link(source: source, target: target, type: linktype).save(flush:true)
+      new Link(source: source, target: target, type: type).save(flush: true)
 
-    List results = findAllByLink(null, target, linktype)
-    List results2 = findAllByLink(source, null, linktype)
+    List results = findAllByLink(null, target, type)
+    List results2 = findAllByLink(source, null, type)
 
     return [results: results, results2: results2, source: source, target: target, duplicate: duplicate]
   }
 
-  /*
-   * breaks two entities and returns all entities linked to the target
+  /**
+   * Breaks two entities and returns a map with all entities linked to the target, all entities linked to the source,
+   * the source and the target
+   *
+   * @author Alexander Zeillinger
+   * @param s the ID of an entity
+   * @param t the ID of an entity
+   * @param type a link type
+   * @return a map
    */
-  def breakEntities(String s, String t, LinkType linktype) {
+  def breakEntities(String s, String t, LinkType type) {
     Entity source = Entity.get(s.toInteger())
     Entity target = Entity.get(t.toInteger())
 
-    def c = Link.createCriteria()
-    def link = c.get {
+    Link.createCriteria().get {
       eq('source', source)
       eq('target', target)
-      eq('type', linktype)
-    }
-    link?.delete(flush:true)
+      eq('type', type)
+    }?.delete(flush: true)
 
-    List results = findAllByLink(null, target, linktype)
-    List results2 = findAllByLink(source, null, linktype)
+    List results = findAllByLink(null, target, type)
+    List results2 = findAllByLink(source, null, type)
 
     return [results: results, results2: results2, source: source, target: target]
   }
 
-  /*
-   * creates a new event on the dashboard
+  /**
+   * Creates an event on the dashboard
+   *
+   * @author Alexander Zeillinger
+   * @param entity the entity the event belongs to
+   * @param content
+   * @param date
+   * @return the event
    */
-  def createEvent(Entity entity, String content, Date date = new Date()) {
+  Event createEvent(Entity entity, String content, Date date = new Date()) {
     new Event(entity: entity, content: content, date: date).save()
   }
 
-  /*
-   * constructs a nickname from a first name and a last name
+  /**
+   * Constructs a nickname from a first name and a last name
+   *
+   * @author Alexander Zeillinger
+   * @param firstName
+   * @param lastName
+   * @return the constructed nickname
    */
-  def createNick(String firstName, String fullName) {
-    def nickname = (firstName + fullName).toLowerCase()
-    def matcher = (nickname =~ /[^a-z0-9]+/)
-    def newname = matcher.replaceAll("-")
-    return newname
+  String createNick(String firstName, String lastName) {
+    def temp = (firstName + lastName).toLowerCase()
+    def matcher = (temp =~ /[^a-z0-9]+/)
+    def nickName = matcher.replaceAll("-")
+    return nickName
   }
 
-  /*
-   * constructs a nickname from a full name
+  /**
+   * Constructs a nickname from a full name
+   *
+   * @author Alexander Zeillinger
+   * @param fullName
+   * @return the constructed nickname
    */
-  def createNick(String fullName) {
-    def nickname = fullName.toLowerCase()
-    def matcher = (nickname =~ /[^a-z0-9]+/)
-    def newname = matcher.replaceAll("-")
-    return newname
+  String createNick(String fullName) {
+    def temp = fullName.toLowerCase()
+    def matcher = (temp =~ /[^a-z0-9]+/)
+    def nickName = matcher.replaceAll("-")
+    return nickName
   }
 
-  /*
-   * creates a private message
+  /**
+   * Creates a private message
+   *
+   * @author Alexander Zeillinger
+   * @param sender
+   * @param receiver
+   * @param entity the entity the message belongs to
+   * @param subject
+   * @param content
+   * @param read
+   * @return the message
    */
-  boolean createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {
-    Msg msg = new Msg()
-    msg.read = read
-    msg.sender = sender
-    msg.receiver = receiver
-    msg.entity = entity
-    msg.subject = subject
-    msg.content = content
-    if (msg.save(flush: true))
-      return true
-    else
-      return false
+  Msg createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {
+    new Msg(read: read, sender: sender, receiver: receiver, entity: entity, subject: subject, content: content, read: read).save()
   }
 
-  /*
-   * receives an activity group, finds all clients linked to it, finds all families linked to the client and returns all parents linked to the families
+  /**
+   * Receives an activity group, finds all clients linked to it, finds all families linked to the clients and returns all parents linked to the families
+   *
+   * @author Alexander Zeillinger
+   * @param group an entity
+   * @return a list of parents
    */
-  def findParents(Entity group) {
+  List findParents(Entity group) {
 
     // 1. find all clients linked to the group
     List clients = findAllByLink(null, group, metaDataService.ltGroupMemberClient)
@@ -179,17 +206,20 @@ class FunctionService {
     return allParents
   }
 
-  /*
-   * receives an activity group, find the facility linked to it and returns all educators linked to the facility
+  /**
+   * Receives an activity group, finds the facility linked to it and returns all educators linked to the facility
+   *
+   * @author Alexander Zeillinger
+   * @param group an entity
+   * @return a list of educators
    */
-  def findEducators(Entity group) {
+  List findEducators(Entity group) {
 
     // 1. find facility linked to the group
     Entity facility = findByLink(null, group, metaDataService.ltGroupMemberFacility)
 
     // 2. find all educators linked to the facility
-    def c = Link.createCriteria()
-    def allEducators = c.list {
+    def allEducators = Link.createCriteria().list {
       eq('target', facility)
       or {
         eq('type', metaDataService.ltWorking)
@@ -203,10 +233,14 @@ class FunctionService {
     return allEducators
   }
 
-  /*
-   * returns all clients of a given entity (facility)
+  /**
+   * Returns all clients of a facility
+   *
+   * @author Alexander Zeillinger
+   * @param entity the facility
+   * @return a list of clients
    */
-  def findClientsOf(Entity entity, def params = []) {
+  List findClientsOf(Entity entity, def params = []) {
 
     // 1. find facility the entity is working in
     def facility = findByLink(entity, null, metaDataService.ltWorking)
@@ -220,6 +254,13 @@ class FunctionService {
     return clients
   }
 
+  /**
+   * Returns all publications of an entity
+   *
+   * @author Alexander Zeillinger
+   * @param entity
+   * @return a list of publications
+   */
   List findPublicationsOfEntity(Entity owner) {
     return Publication.findAllByEntity(owner)
   }
