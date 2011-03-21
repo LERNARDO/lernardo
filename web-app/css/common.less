@@ -130,9 +130,7 @@ h5 {
 	font-size: 12px;
 	font-weight:bold;
     border-bottom: 1px solid #aaa; /* #fff */
-    padding: 4px;
-    //background: #ccc;
-     }
+    padding: 4px; }
 
 p {
     padding-bottom: 10px;
@@ -1166,13 +1164,6 @@ table#msg-composer td {
 .profile-box .second ul li a {
       color: #000; }
 
-/*#body-list a {
-    color: #000; }
-
-#body-list a:hover {
-    color: #fff;
-    text-decoration: none !important; }         */
-
 .activityInstance-top{
     border: solid 1px #bbb;
     padding-left: 6px;
@@ -1184,27 +1175,24 @@ table#msg-composer td {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border: 1px solid #888;
-    margin-right: 1px; }
-    .tabGrey h1 {
+    margin-right: 1px;
+    h1 {
         color: #000;
         margin: 0;
         padding: 0;
         border: 0;
         font-weight: normal;
         font-size: 14px; }
-    .tabGrey .second {
-        /*padding: 4px 5px;*/ }
+    a {
+        color: #000;
+        text-decoration: none;
+        display: block;
+        padding: 4px 5px; }
+}
 
 .tabGrey, .tabGreen {
    width: 200px;
-   /*position: absolute;*/
    float: left; }
-
-.tabGrey a {
-    color: #000;
-    text-decoration: none;
-    display: block;
-    padding: 4px 5px; }
 
 .tabGrey a:hover{
     color: #fff;
@@ -1311,26 +1299,29 @@ table#msg-composer td {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #aaa;
-    height: 24px; }
-    #routinedays ul li {
+    height: 24px;
+    ul li {
         list-style-type: none;
         float: left;
         border: 1px solid #aaa;
         padding: 2px 4px;
         background: #ccc;
-        margin: 0 10px 0 0; }
-    #routinedays ul li.active {
-        border: 1px solid #888;
-        background: #aaa; }
-    #routinedays ul li a {
-        text-decoration: none;
-        color: #fff; }
+        margin: 0 10px 0 0;
+        .active {
+            border: 1px solid #888;
+            background: #aaa; }
+        a {
+            text-decoration: none;
+            color: #fff; }
+    }
+}
 
 #newroutine {
     border: 1px solid #aaa;
-    padding: 5px; }
-    #newroutine table {
+    padding: 5px;
+    table {
         width: 100%; }
+}
 
 .routinebox {
     border-bottom: 1px solid #ccc;

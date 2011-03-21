@@ -49,11 +49,11 @@
                       <table>
                         <tr>
                           <td style="width: 100px; height: 20px">E-Mail:</td>
-                          <td><g:textField name="userid" tabindex="1" /></td>
+                          <td><g:textField name="userid" tabindex="1"/></td>
                         </tr>
                         <tr>
                           <td style="width: 100px; height: 20px">Passwort:</td>
-                          <td><g:passwordField name="password" tabindex="2" /></td>
+                          <td><g:passwordField name="password" tabindex="2"/></td>
                         </tr>
                         <tr>
                           <td colspan="2" style="height: 25px"><g:checkBox name="remember_me" /> Angemeldet bleiben</td>
