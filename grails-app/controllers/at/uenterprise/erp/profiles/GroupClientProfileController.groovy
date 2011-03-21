@@ -179,7 +179,7 @@ class GroupClientProfileController {
         }
       profile {
         if (params.gender != "0")
-          eq('gender', params.int('gender'))
+          eq('gender', params.gender.toInteger())
         if (params.job && params.job != "0") {
           if (params.job == "1")
             eq('job', true)
