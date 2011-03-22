@@ -197,7 +197,7 @@ class ClientProfileController {
   }
 
   def create = {
-    params.sort = params.sort ?: "fullName"
+    params.sort = params.sort ?: "name"
     params.order = params.order ?: "asc"
 
     List allColonies = Entity.findAllByType(metaDataService.etGroupColony, params)
