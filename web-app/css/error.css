@@ -1,0 +1,27 @@
+body {
+    background: #ddd;
+}
+
+#container {
+    font-family: verdana,arial,helvetica,sans-serif;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 220px;
+    margin-top: -110px;
+    width: 300px;
+    margin-left: -150px;
+    border: 3px solid #ee8100;
+    border-radius: 5px;
+    padding: 10px;
+    background: -moz-linear-gradient(-90deg,#f9b911,#f93);
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9b911), to(#f93));
+    text-align: center;
+    box-shadow: 0 0 3px #000;
+    text-shadow: #ddd 1px 1px;
+}
+#container h1 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}

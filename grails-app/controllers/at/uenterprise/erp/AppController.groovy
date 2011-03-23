@@ -265,21 +265,20 @@ class AppController {
   }
 
   /*
-   * this should forward the exception to the developer then render the 500 view
-   * TODO: complete the mail part
+   * this custom exception handler forward the exception to the developer then renders the 500 view
    */
   def error500 = {
-    println params
 
-    /*try {
+    try {
       sendMail {
-        to      "aaz@uenterprise.de"
-        subject "Lernardo - Fehler 500"
-        html    g.render(template:'/errortemplate', model:[request:params.request, exception: params.exception])
+        to      "error@uenterprise.de"
+        subject "ERP - Error 500"
+        html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
       }
+      log.info "Notification email sent to developers!"
     } catch(Exception ex) {
       log.error "Problem sending email $ex.message", ex
-    }*/
+    }
 
     render view: '/500'
   }

@@ -1,9 +1,15 @@
+<!DOCTYPE html>
+
 <html>
   <head>
-    <meta name="layout" content="public"/>
-	<title>Fehler 500</title>
+	<title>ERP - Error 500</title>
+     <link rel="stylesheet" href="${resource (dir:'css', file:'error.css')}" type="text/css">
   </head>
   <body>
-    <p>Es ist ein interner Server-Fehler aufgetreten. (Fehler 500)</p>
+    <div id="container">
+        <img src="${resource(dir: 'images/icons', file: 'icon_alert.png')}" alt="${message(code: 'alert')}"/>
+        <h1>We are sorry but something went wrong!</h1>
+        <p>A mail has been sent to the developers which will try to fix the problem immediately.</p>
+    </div>
   </body>
 </html>
