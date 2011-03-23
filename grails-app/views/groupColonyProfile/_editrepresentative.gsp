@@ -1,19 +1,13 @@
 <g:formRemote name="myForm" url="[action:'updateRepresentative', id:group.id, params:[representative: representative.id]]" update="representatives2">
-  <table>
-    <tr class="prop">
-      <td valign="top" class="italic" width="100"><g:message code="representantives.name"/>:</td>
-      <td colspan="6" class="value"><g:textField size="20" name="firstName" value="${representative.firstName}"/> <g:textField size="20" name="lastName" value="${representative.lastName}"/></td>
-      <td><erp:isOperator entity="${entity}"><g:submitButton name="button" value="${message(code:'change')}"/></erp:isOperator></td></tr>
-    <tr class="prop">
-      <td valign="top" class="italic"><g:message code="representantives.adr"/>:</td>
-      <td colspan="6" class="value"><g:textField size="5" name="zip" value="${representative.zip}"/> <g:textField size="15" name="city" value="${representative.city}"/>, <g:textField size="20" name="street" value="${representative.street}"/>, <g:textField size="15" name="country" value="${representative.country}"/></td></tr>
-    <tr class="prop">
-      <td valign="top" class="italic"><g:message code="representantives.phone"/>:</td>
-      <td class="value" width="150"><g:textField size="10" name="phone" value="${representative.phone}"/></td>
-      <td valign="top" class="italic" width="60"><g:message code="representantives.email"/>:</td>
-      <td class="value" width="160"><g:textField size="15" name="email" value="${representative.email}"/></td>
-      <td valign="top" class="italic" width="100"><g:message code="representantives.function"/>:</td>
-      <td class="value"><g:textField size="30" name="function" value="${representative.function}"/></td>
-    </tr>
-  </table>
+  <div><g:textField size="30" name="firstName" value="${representative.firstName}" placeholder="${message(code: 'contact.firstName')}"/></div>
+  <div><g:textField size="30" name="lastName" value="${representative.lastName}" placeholder="${message(code: 'contact.lastName')}"/></div>
+  <div><g:textField size="5" name="zip" value="${representative.zip}" placeholder="${message(code: 'contact.zip')}"/></div>
+  <div><g:textField size="30" name="city" value="${representative.city}" placeholder="${message(code: 'contact.city')}"/></div>
+  <div><g:textField size="30" name="street" value="${representative.street}" placeholder="${message(code: 'contact.street')}"/></div>
+  <div><g:textField size="30" name="country" value="${representative.country}" placeholder="${message(code: 'contact.country')}"/></div>
+  <div><g:textField size="30" name="phone" value="${representative.phone}" placeholder="${message(code: 'contact.phone')}"/></div>
+  <div><g:textField size="30" name="email" value="${representative.email}" placeholder="${message(code: 'contact.email')}"/></div>
+  <div><g:textField size="30" name="function" value="${representative.function}" placeholder="${message(code: 'contact.function')}"/></div>
+  <erp:isOperator entity="${entity}"><g:submitButton name="button" value="${message(code:'change')}"/></erp:isOperator>
+  <div class="clear"></div>
 </g:formRemote>
