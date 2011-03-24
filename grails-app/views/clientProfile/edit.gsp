@@ -82,7 +82,7 @@
                 <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
               <td width="210" valign="top" class="value">
-                <g:select name="currentColonia" from="${allColonies}" value="${colonia.id}" optionKey="id" optionValue="profile"/>
+                <g:select name="currentColonia" from="${allColonies}" value="${colonia?.id}" optionKey="id" optionValue="profile"/>
               </td>
               <td valign="top" class="value">
                 <g:textField class="countable${client.profile.constraints.currentCountry.maxSize} ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
@@ -140,7 +140,7 @@
                 <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
               </td>
               <td width="230" valign="top" class="value">
-                <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school.id}" optionKey="id" optionValue="profile"/>
+                <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school?.id}" optionKey="id" optionValue="profile"/>
               </td>
               <td width="210" valign="top" class="value">
                 <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoollevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>
