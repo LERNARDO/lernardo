@@ -47,8 +47,8 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.size}">${fieldValue(bean: client, field: 'profile.size') + ' cm' ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
-          <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.weight}">${fieldValue(bean: client, field: 'profile.weight') + ' kg' ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
+          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.size') ? fieldValue(bean: client, field: 'profile.size') + ' cm' : '<span class="italic">'+message(code:'unknown')+'</span>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.weight') ? fieldValue(bean: client, field: 'profile.weight') + ' kg' : '<span class="italic">'+message(code:'unknown')+'</span>'}</td>
           <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 

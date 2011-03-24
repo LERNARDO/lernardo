@@ -54,12 +54,12 @@
           <tr>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.clientProfile.size}">
-                <g:select from="${100..250}" name="size" value="${fieldValue(bean: client, field: 'profile.size')}"/> (cm)
+                <g:select from="${100..250}" name="size" value="${fieldValue(bean: client, field: 'profile.size')}" noSelection="['': message(code: 'unknown')]"/> (cm)
               </g:if>
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.clientProfile.weight}">
-                <g:select from="${10..150}" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}"/> (kg)
+                <g:select from="${10..150}" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}" noSelection="['': message(code: 'unknown')]"/> (kg)
               </g:if>
             </td>
             <td colspan="2" valign="top" class="value">
