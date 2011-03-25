@@ -18,7 +18,7 @@
     </g:if>
 
     <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
-      <div class="action-buttons">
+      <div class="buttons">
         <g:link class="buttonGreen" controller="publication" id="${entity.id}" action="create"><img src="${g.resource (dir:'images/icons', file:'icon_document.png')}" alt="icon" align="top"/> <g:message code="publication.profile.create"/></g:link>
         <div class="spacer"></div>
       </div>
@@ -27,7 +27,7 @@
     %{--render own documents--}%
 
     <g:if test="${publications}">
-      <g:render template="pubtype" model="[entity: entity, publist: publications]"/>
+      <g:render template="pubtype" model="[entity: entity, publist: publications, currentEntity: currentEntity]"/>
     </g:if>
 
     %{--render other documents--}%

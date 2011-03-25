@@ -271,14 +271,14 @@ class PublicationController {
   }
 
   def edit = {
-      Publication pub = Publication.get(params.id)
+      Publication publication = Publication.get(params.id)
 
-      if(!pub) {
+      if(!publication) {
           flash.message = message(code:"publication.notFound", args:[params.id])
           redirect action:'list'
       }
       else {
-          [entity: entityHelperService.loggedIn, publication: pub]
+          [entity: publication.entity, publication: publication]
       }
   }
 
@@ -288,7 +288,7 @@ class PublicationController {
           publication.name = params.name
           if(publication.save()) {
               flash.message = message(code:"publication.updated", args:[publication.name])
-              redirect (action:'profile', params:[name:params.entity])
+              redirect (action:'profile', id:publication.entity.id)
           }
           else {
               render view:'edit', model:[entity: entityHelperService.loggedIn, publication:publication]
@@ -296,7 +296,7 @@ class PublicationController {
       }
       else {
           flash.message = message(code:"publication.notFound", args:[params.id])
-          redirect action:"profile"
+          redirect action:"profile", id:publication.entity.id
       }
   }
 

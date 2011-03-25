@@ -1,5 +1,5 @@
-<div id="body-list" style="margin-top: 10px">
-<table>
+<div style="margin-top: 10px">
+<table class="default-table">
 <tr>
   <th class="title"><g:message code="publication.profile.name"/>%{--${type.name}--}%</th>
   %{-- TODO: uncomment when implemented --}%
