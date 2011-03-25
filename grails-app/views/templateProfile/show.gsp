@@ -55,13 +55,13 @@
       </tr>
 
       <tr>
-        <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
-          ${template.profile.socialForm}
+        <td valign="top" class="value-show">
+          <g:message code="socialForm.${template.profile.socialForm}"/>
         </td>
-        <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
+        <td valign="top" class="value-show">
           <g:message code="status.${template.profile.status}"/>
         </td>
-        <td valign="top" class="value-show  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
+        <td valign="top" class="value-show">
           ${template.profile.amountEducators}
         </td>
       </tr>

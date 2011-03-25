@@ -38,7 +38,7 @@
 
         <tr>
           <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
-            <g:select name="socialForm" from="${['offen','Einzelarbeit','Partnerarbeit','Kleingruppe (bis 5 Kinder)','Kleingruppe (4-8 Kinder)','Kleingruppe (bis 8 Kinder)','Großgruppe (bis 15 Kinder)','Großgruppe (bis 25 Kinder)']}" value="${fieldValue(bean:template,field:'profile.socialForm')}"/>
+            <g:select name="socialForm" from="['open','single','partner','smallgroup1','smallgroup2','smallgroup3','largegroup1','largegroup2']" value="${template?.profile?.socialForm}" valueMessagePrefix="socialForm"/>
           </td>
           <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
             <g:select name="status" from="['done','notDone']" value="${template?.profile?.status}" valueMessagePrefix="status"/>
