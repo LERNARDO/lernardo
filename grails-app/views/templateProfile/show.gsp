@@ -93,7 +93,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources');
+      <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
@@ -101,11 +101,11 @@
           <table>
             <tr>
               <td><g:message code="resource.profile.name"/>:</td>
-              <td><g:textField size="30" name="fullName" value=""/></td>
+              <td><g:textField id="resourceName" size="30" name="fullName" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="resource.profile.description"/>:</td>
-              <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
+              <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
           </table>
           <div class="spacer"></div>

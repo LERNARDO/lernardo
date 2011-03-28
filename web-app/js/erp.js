@@ -27,3 +27,8 @@ toggle = function(id) {
 ftoggle = function(id) {
   $(id).fadeToggle(400);
 };
+
+clearElements = function(elements) {
+    for each(element in elements)
+        document.getElementById(element).value = "";
+};

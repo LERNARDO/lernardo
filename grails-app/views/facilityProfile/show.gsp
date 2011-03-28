@@ -193,18 +193,18 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#resources');
+      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
             <tr>
               <td><g:message code="resource.profile.name"/>:</td>
-              <td><g:textField size="30" name="fullName" value=""/></td>
+              <td><g:textField id="resourceName" size="30" name="fullName" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="resource.profile.description"/>:</td>
-              <td><g:textArea rows="5" cols="50" name="description" value=""/></td>
+              <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="resource.profile.classification"/>:</td>
