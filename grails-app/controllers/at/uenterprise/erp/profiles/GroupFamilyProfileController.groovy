@@ -146,10 +146,20 @@ class GroupFamilyProfileController {
   }
 
   def addParent = {
-    def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    // check if the parent hasn't been already added to another family
+    def result = Link.findBySourceAndType(Entity.get(params.parent), metaDataService.ltGroupMemberParent)
+    if (!result) {
+      def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+      }
+    else {
+      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      List parents = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberParent)
+      render template: 'parents', model: [parents: parents, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+    }
+
   }
 
   def removeParent = {
@@ -158,10 +168,19 @@ class GroupFamilyProfileController {
   }
 
   def addClient = {
-    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    // check if the client hasn't been already added to another family
+    def result = Link.findBySourceAndType(Entity.get(params.client), metaDataService.ltGroupFamily)
+    if (!result) {
+      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    }
+    else {
+      render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
+      render template: 'clients', model: [clients: clients, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+    }
   }
 
   def removeClient = {
@@ -170,10 +189,19 @@ class GroupFamilyProfileController {
   }
 
   def addChild = {
-    def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'childs', model: [childs: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    // check if the child hasn't been already added to another family
+    def result = Link.findBySourceAndType(Entity.get(params.child), metaDataService.ltGroupMemberChild)
+    if (!result) {
+      def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'childs', model: [childs: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    }
+    else {
+      render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
+      render template: 'childs', model: [childs: childs, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+    }
   }
 
   def removeChild = {
