@@ -28,6 +28,7 @@ ftoggle = function(id) {
   $(id).fadeToggle(400);
 };
 
+// clears the value of multiple elements
 clearElements = function(elements) {
     for each(element in elements)
         document.getElementById(element).value = "";

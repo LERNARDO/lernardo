@@ -36,7 +36,7 @@
     </erp:isOperator>
 
     <div class="zusatz">
-      <h5><g:message code="representantives"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#representatives');
+      <h5><g:message code="representantives"/> <erp:isOperator entity="${currentEntity}"><a onclick="clearElements(['cFirstName','cLastName','cCountry','cZip','cCity','cStreet','cPhone','cEmail','cFunction']); toggle('#representatives');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Repräsentant hinzufügen"/>
       </a></erp:isOperator></h5>
       <div class="zusatz-add" id="representatives" style="display:none">
@@ -45,39 +45,39 @@
           <table>
             <tr>
               <td><g:message code="contact.firstName"/>:</td>
-              <td><g:textField size="30" name="firstName" value=""/></td>
+              <td><g:textField id="cFirstName" size="30" name="firstName" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.lastName"/>:</td>
-              <td><g:textField size="30" name="lastName" value=""/></td>
+              <td><g:textField id="cLastName" size="30" name="lastName" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.country"/>:</td>
-              <td><g:textField size="30" name="country" value=""/></td>
+              <td><g:textField id="cCountry" size="30" name="country" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.zip"/>:</td>
-              <td><g:textField size="30" name="zip" value=""/></td>
+              <td><g:textField id="cZip" size="30" name="zip" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.city"/>:</td>
-              <td><g:textField size="30" name="city" value=""/></td>
+              <td><g:textField id="cCity" size="30" name="city" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.street"/>:</td>
-              <td><g:textField size="30" name="street" value=""/></td>
+              <td><g:textField id="cStreet" size="30" name="street" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.phone"/>:</td>
-              <td><g:textField size="30" name="phone" value=""/></td>
+              <td><g:textField id="cPhone" size="30" name="phone" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.email"/>:</td>
-              <td><g:textField size="30" name="email" value=""/></td>
+              <td><g:textField id="cEmail" size="30" name="email" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="contact.function"/>:</td>
-              <td><g:textField size="30" name="function" value=""/></td>
+              <td><g:textField id="cFunction" size="30" name="function" value=""/></td>
             </tr>
           </table>
           <div class="spacer"></div>

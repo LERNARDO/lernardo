@@ -138,7 +138,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="contacts"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="toggle('#contacts');
+      <h5><g:message code="contacts"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['cFirstName','cLastName','cCountry','cZip','cCity','cStreet','cPhone','cEmail','cFunction']); toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
@@ -146,39 +146,39 @@
           <table>
             <tr>
               <td><g:message code="contact.firstName"/>:</td>
-              <td><g:textField name="firstName" size="30"/></td>
+              <td><g:textField id="cFirstName" name="firstName" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.lastName"/>:</td>
-              <td><g:textField name="lastName" size="30"/></td>
+              <td><g:textField id="cLastName" name="lastName" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.country"/>:</td>
-              <td><g:textField name="country" size="30"/></td>
+              <td><g:textField id="cCountry" name="country" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.zip"/>:</td>
-              <td><g:textField name="zip" size="30"/></td>
+              <td><g:textField id="cZip" name="zip" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.city"/>:</td>
-              <td><g:textField name="city" size="30"/></td>
+              <td><g:textField id="cCity" name="city" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.street"/>:</td>
-              <td><g:textField name="street" size="30"/></td>
+              <td><g:textField id="cStreet" name="street" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.phone"/>:</td>
-              <td><g:textField name="phone" size="30"/></td>
+              <td><g:textField id="cPhone" name="phone" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.email"/>:</td>
-              <td><g:textField name="email" size="30"/></td>
+              <td><g:textField id="cEmail" name="email" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="contact.function"/>:</td>
-              <td><g:textField name="function" size="30"/></td>
+              <td><g:textField id="cFunction" name="function" size="30"/></td>
             </tr>
           </table>
 
