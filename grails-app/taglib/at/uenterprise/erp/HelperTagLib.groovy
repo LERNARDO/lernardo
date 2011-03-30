@@ -421,10 +421,7 @@ class HelperTagLib {
 
   // checks if a given entity is the currently logged in entity
   boolean accessIsMe(Entity entity) {
-
-    def result = entity == entityHelperService.loggedIn
-
-    return result
+    return entity == entityHelperService.loggedIn
   }
 
   // checks if a given entity is creator of another given entity
