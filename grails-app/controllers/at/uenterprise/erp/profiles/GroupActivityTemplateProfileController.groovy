@@ -258,6 +258,7 @@ class GroupActivityTemplateProfileController {
           }
         }
       profile {
+        eq('status',"done")
         if (params.duration1 != 'all')
           between('duration', params.duration1.toInteger(), params.duration2.toInteger())
       }
