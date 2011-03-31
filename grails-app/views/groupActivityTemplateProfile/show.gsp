@@ -63,22 +63,22 @@
       </erp:accessCheck>
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
         <g:if test="${group.profile.status == 'done'}">
-          <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}">Aktivitätsblock planen</g:link>
+          <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}"><g:message code="groupActivity.plan"/></g:link>
         </g:if>
-        <g:link class="buttonGreen" action="copy" id="${group.id}">Vorlage duplizieren</g:link>
+        <g:link class="buttonGreen" action="copy" id="${group.id}"><g:message code="groupActivityTemplate.duplicate"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>
     </div>
 
     <g:if test="${group.profile.status != 'done'}">
-      <div class="italic red">Diese Vorlage kann erst eingeplant werden, sobald der Status auf "fertig" gesetzt wurde!</div>
+      <div class="italic red"><g:message code="template.statusNotDone"/></div>
     </g:if>
 
     <div class="zusatz">
       <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="templates" style="display:none">
-        <p>Die Aktivitätsvorlagen können nach folgenden Merkmalen eingegrenzt werden: (max. 30 Treffer werden angezeigt!)</p>
+        <p><g:message code="activityTemplate.list.hint2"/></p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect');">
 
           <table>
@@ -114,7 +114,7 @@
             </tr>
           </table>
 
-          <g:submitButton name="button" value="Eingrenzen"/>
+          <g:submitButton name="button" value="${message(code:'define')}"/>
           <div class="spacer"></div>
         </g:formRemote>
 
@@ -131,7 +131,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Geplante Blöcke aus dieser Vorlage (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Instanzen"/></a></h5>
+      <h5><g:message code="template.plannedBlocks"/> (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Instanzen"/></a></h5>
       <div class="zusatz-add" id="instances" style="display:none">
         <g:if test="${instances.size() > 0}">
           <ul>
@@ -140,7 +140,7 @@
           </g:each>
         </g:if>
         <g:else>
-          Diese Vorlage wurde noch nicht geplant.
+          <g:message code="template.notPlannedYet"/>
         </g:else>
       </div>
     </div>

@@ -69,7 +69,7 @@
     </div>
 
     <g:if test="${projectTemplate.profile.status != 'done'}">
-      <div class="italic red">Diese Vorlage kann erst als Projekt geplant werden, sobald der Status auf "fertig" gesetzt wurde!</div>
+      <div class="italic red"><g:message code="template.statusNotDone"/></div>
     </g:if>
 
     <div class="zusatz">
@@ -104,7 +104,7 @@
     </g:if>--}%
 
     <div class="zusatz">
-      <h5>Geplante Projekte aus dieser Vorlage (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Instanzen"/></a></h5>
+      <h5><g:message code="template.plannedProjects"/> (${instances.size}) <a onclick="toggle('#instances'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Instanzen"/></a></h5>
       <div class="zusatz-add" id="instances" style="display:none">
         <g:if test="${instances.size() > 0}">
           <ul>
@@ -113,7 +113,7 @@
           </g:each>
         </g:if>
         <g:else>
-          Diese Vorlage wurde noch nicht geplant.
+          <g:message code="template.notPlannedYet"/>
         </g:else>
       </div>
     </div>
