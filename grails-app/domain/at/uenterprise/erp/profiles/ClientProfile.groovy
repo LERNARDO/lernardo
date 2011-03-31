@@ -29,8 +29,6 @@ class ClientProfile extends Profile {
     String interests
     Date birthDate
     Integer gender
-    Integer size
-    Integer weight
 
     String currentCountry
     String currentZip
@@ -105,9 +103,6 @@ class ClientProfile extends Profile {
       //contactStreet (nullable: true, size: 2..50, maxSize: 50)
       //contactPhone (nullable: true, size: 2..50, maxSize: 50)
       //contactMail (nullable: true, size: 2..50, maxSize: 50)
-
-      size (nullable: true)
-      weight (nullable: true)
 
       familyStatus (nullable: true)
 

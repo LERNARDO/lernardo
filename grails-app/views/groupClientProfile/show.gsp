@@ -53,18 +53,6 @@
               <td><g:message code="client.profile.gender"/>:</td>
               <td><g:select name="gender" from="${['0':message(code:'all'),'1':message(code:'male'),'2':message(code:'female')]}" optionKey="key" optionValue="value"/></td>
             </tr>
-            <g:if test="${grailsApplication.config.clientProfile.size}">
-            <tr>
-              <td><g:message code="client.profile.size"/>:</td>
-              <td><g:message code="from"/> <g:select from="${100..250}" name="size1" noSelection="['all':message(code:'all')]"/> <g:message code="to"/> <g:select from="${100..250}" name="size2" noSelection="['all':message(code:'all')]"/> (cm)</td>
-            </tr>
-            </g:if>
-            <g:if test="${grailsApplication.config.clientProfile.weight}">
-            <tr>
-              <td><g:message code="client.profile.weight"/>:</td>
-              <td><g:message code="from"/> <g:select from="${10..150}" name="weight1" noSelection="['all':message(code:'all')]"/> <g:message code="to"/> <g:select from="${10..150}" name="weight2" noSelection="['all':message(code:'all')]"/> (kg)</td>
-            </tr>
-            </g:if>
             <tr>
               <td><g:message code="groupColony"/>:</td>
               <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>

@@ -29,27 +29,13 @@
         </tr>
 
         <tr class="prop">
-          %{--<erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge']">--}%
-          <td valign="top" class="name-show">
-            <g:if test="${grailsApplication.config.clientProfile.size}">
-              <g:message code="client.profile.size"/>
-            </g:if>
-          </td>
-          <td valign="top" class="name-show">
-            <g:if test="${grailsApplication.config.clientProfile.weight}">
-              <g:message code="client.profile.weight"/>
-            </g:if>
-          </td>
-          %{--</erp:accessCheck>--}%
-          <td valign="top" class="name-show">
+          <td colspan="4" valign="top" class="name-show">
             <g:message code="client.profile.interests"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.size') ? fieldValue(bean: client, field: 'profile.size') + ' cm' : '<span class="italic">'+message(code:'unknown')+'</span>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.weight') ? fieldValue(bean: client, field: 'profile.weight') + ' kg' : '<span class="italic">'+message(code:'unknown')+'</span>'}</td>
-          <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td colspan="4" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
       </table>

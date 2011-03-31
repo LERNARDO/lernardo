@@ -188,10 +188,6 @@ class GroupClientProfileController {
         }
         if (params.schoolLevel != "all")
           eq('schoolLevel', params.schoolLevel)
-        if (params.size1 && params.size1 != "all")
-          between('size', params.size1.toInteger(), params.size2.toInteger())
-        if (params.weight1 && params.weight1 != "all")
-          between('weight', params.weight1.toInteger(), params.weight2.toInteger())
         if (params.birthDate1)
           between('birthDate', params.birthDate1, params.birthDate2)
       }

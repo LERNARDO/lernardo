@@ -46,23 +46,11 @@
           </tr>
 
           <tr>
-            <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.size}"><g:message code="client.profile.size"/></g:if></td>
-            <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.weight}"><g:message code="client.profile.weight"/></g:if></td>
-            <td colspan="2" valign="top" class="name"><g:message code="client.profile.interests"/></td>
+            <td colspan="4" valign="top" class="name"><g:message code="client.profile.interests"/></td>
           </tr>
 
           <tr>
-            <td valign="top" class="value">
-              <g:if test="${grailsApplication.config.clientProfile.size}">
-                <g:select from="${100..250}" name="size" value="${fieldValue(bean: client, field: 'profile.size')}" noSelection="['': message(code: 'unknown')]"/> (cm)
-              </g:if>
-            </td>
-            <td valign="top" class="value">
-              <g:if test="${grailsApplication.config.clientProfile.weight}">
-                <g:select from="${10..150}" name="weight" value="${fieldValue(bean: client, field: 'profile.weight')}" noSelection="['': message(code: 'unknown')]"/> (kg)
-              </g:if>
-            </td>
-            <td colspan="2" valign="top" class="value">
+            <td colspan="4" valign="top" class="value">
               <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
             </td>
           </tr>
