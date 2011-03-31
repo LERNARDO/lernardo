@@ -59,7 +59,7 @@ class ActivityProfileController {
 
           activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
-            if (act?.profile?.type == "Themenraum")
+            if (act?.profile?.type && act?.profile?.type == "Themenraum")
               activityList << act
           }
         }
