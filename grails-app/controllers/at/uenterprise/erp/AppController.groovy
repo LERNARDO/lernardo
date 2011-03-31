@@ -537,8 +537,8 @@ class AppController {
       if (params.id != 'null') {
           Entity entity = Entity.get(params.id)
 
-          List targets = Link.findAllBySource(entity)?.collect {it.target}
-          List sources = Link.findAllByTarget(entity)?.collect {it.source}
+          List targets = Link.findAllBySource(entity) //?.collect {it.target}
+          List sources = Link.findAllByTarget(entity) //?.collect {it.source}
 
           render template: 'adminlinksresults', model:[entity: entity, targets: targets, sources: sources]
       }
