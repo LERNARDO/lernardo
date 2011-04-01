@@ -6,9 +6,9 @@
   %{--<ub:meOrAdmin entityName="${entity}"><th class="title"><g:message code="publication.type.visibility"/></th></ub:meOrAdmin>--}%
   %{--<th><g:message code="publication.type"/></th>--}%
   <th class="date"><g:message code="publication.type.date"/></th>
-  <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${entity}">
     <th class="action"><g:message code="publication.type.function"/></th>
-  </erp:isMeOrAdminOrOperator>
+  </erp:accessCheck>
 </tr>
 
 <g:each var="pub" in="${publist}" status="i">
@@ -18,9 +18,9 @@
     %{--<ub:meOrAdmin entityName="${entity}"><td><erp:showAccessLevel accesslevel="${pub.accesslevel}"/></td></ub:meOrAdmin>--}%
     %{--<td><erp:getFileType type="${pub.asset.storage.contentType}"/></td>--}%
     <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy"/></td>
-    <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${entity}">
       <td class="action"><g:link action="edit" id="${pub.id}"><g:message code="edit"/></g:link> | <g:link action="delete" id="${pub.id}" onclick="return confirm('Sind Sie sicher?');"><g:message code="delete"/></g:link> </td>
-    </erp:isMeOrAdminOrOperator>
+    </erp:accessCheck>
   </tr>
 </g:each>
 </table>
