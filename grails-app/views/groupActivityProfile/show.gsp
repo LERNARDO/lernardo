@@ -35,7 +35,7 @@
               <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
             </g:if>
             <g:else>
-              <span class="italic">Vorlage wurde nicht gefunden!</span>
+              <span class="italic"><g:message code="template.notAvailable"/></span>
             </g:else>
           </td>
         </tr>
@@ -100,7 +100,7 @@
       <div class="zusatz-show">
         <g:if test="${templates}">
           <p>
-            <span class="bold">Errechnete Gesamtdauer:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}">- %{--<img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/>--}%<span class="red">Die Errechnete Gesamtdauer übersteigt die geplante Dauer dieses Aktivitätsblocks!</span></g:if>
+            <span class="bold"><g:message code="calculatedTotalDuration"/>:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}">- %{--<img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/>--}%<span class="red">Die Errechnete Gesamtdauer übersteigt die geplante Dauer dieses Aktivitätsblocks!</span></g:if>
           </p>
           <ul>
             <g:each in="${templates}" var="template">

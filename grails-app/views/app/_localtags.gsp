@@ -12,10 +12,10 @@
 <span class="tagbuttons">
   <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${target}">
     <g:if test="${!tags[0]}">
-    <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'absent', update: update]">abwesend markieren</g:remoteLink>
+    <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'absent', update: update]"><g:message code="tag.asAbsent"/></g:remoteLink>
     </g:if>
     <g:if test="${!tags[1]}">
-      | <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'ill', update: update]">krank markieren</g:remoteLink>
+      | <g:remoteLink update="${update}" controller="app" action="addLocalTag" params="[entity: entity.id, target: target.id, tag: 'ill', update: update]"><g:message code="tag.asIll"/></g:remoteLink>
     </g:if>
   </erp:accessCheck>
 </span>
