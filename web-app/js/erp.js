@@ -33,3 +33,5 @@ clearElements = function(elements) {
     for each(element in elements)
         document.getElementById(element).value = "";
 };
+
+// $('#groups${i}').toggle(400);

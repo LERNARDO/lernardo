@@ -17,13 +17,50 @@
   <g:javascript library="jquery" plugin="jquery"/>
   <jqui:resources/>
   <ckeditor:resources />
-  <script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>
+  %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.periodicalupdater.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.qtip.min.js')}" type="text/javascript"></script>
 
   <script type="text/javascript">
+    // TODO: the following custom JavaScript functions have to be defined here else Chrome 10 and IE 9 are not able to find them, find out why..
+    // hides an element
+    hideform = function(id) {
+      $(id).hide('slow');
+    };
+
+    // shows an element
+    showform = function(id) {
+      $(id).show('slow');
+    };
+
+    // clears the text of an element
+    cleartext = function(){
+      document.getElementById('hide').value='';
+    };
+
+    // shows the spinner
+    showspinner = function(id) {
+      $(id).html('<img id="spinner" src="../images/spinner.gif" alt="Lade.."/>');
+    };
+
+    // toggle element
+    toggle = function(id) {
+      $(id).toggle(400);
+    };
+
+    // fadetoggle element
+    ftoggle = function(id) {
+      $(id).fadeToggle(400);
+    };
+
+    // clears the value of multiple elements
+    clearElements = function(elements) {
+        for(elem in elements)
+            document.getElementById(elem).value = "";
+    };
+
     $(document).ready(function() {
 
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday').focus();

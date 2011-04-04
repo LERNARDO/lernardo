@@ -9,7 +9,7 @@
       <g:remoteLink action="removeProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" params="[projectUnitTemplate: projectUnitTemplate.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code:'delete')}" align="top"/></g:remoteLink>
     </erp:accessCheck>
 
-      <p class="bold" style="margin-left: 15px"><g:message code="groupActivityTemplates"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${projectTemplate}"><a onclick="toggle('#groups${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsblockvorlage hinzufügen" /></a></erp:accessCheck></p>
+      <p class="bold" style="margin-left: 15px"><g:message code="groupActivityTemplates"/> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${projectTemplate}"><a onclick="toggle('#groups${i}'); return false;" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsblockvorlage hinzufügen" /></a></erp:accessCheck></p>
       <div id="groups${i}" style="display:none; margin: 0 0 5px 15px;">
 
         <g:message code="search"/>:<br/>
