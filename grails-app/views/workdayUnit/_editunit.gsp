@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.WorkdayCategory" %>
 <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i]]" update="unit-${i}" before="showspinner('#unit-${i}')">
 
     <span style="display: none">
@@ -15,7 +16,7 @@
       </tr>
       <tr>
         <td><g:message code="category"/>:</td>
-        <td><g:select from="${workdaycategories}" name="category" value="${workdayUnit.category}"/></td>
+        <td><g:select from="${workdaycategories}" name="category" value="${WorkdayCategory.findByName(workdayUnit.category)}"/></td>
       </tr>
       <tr>
         <td><g:message code="description"/>:</td>
