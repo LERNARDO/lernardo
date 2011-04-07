@@ -7,7 +7,7 @@
 <g:if test="${entity.profile.showTips}">
   <div class="toolTip" id="tooltip">
     <div class="second">
-      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> Diese Seite bietet einen Überblick über alle Aktivitäten an denen du teilnimmst.
+      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> <g:message code="tooltip.myActivities"/>
       <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
     </div>
   </div>
