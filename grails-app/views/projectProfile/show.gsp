@@ -60,6 +60,7 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="${facilities}" creatorof="${project}">
         %{--<g:if test="${new Date() < project.profile.startDate}">--}%<g:link class="buttonGreen" action="edit" id="${project?.id}" params="[entity: project?.id]"><g:message code="edit"/></g:link>%{--</g:if>--}%
+        <g:link class="buttonRed" action="del" id="${project.id}" onclick="${erp.getLinks(id: project.id)}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>

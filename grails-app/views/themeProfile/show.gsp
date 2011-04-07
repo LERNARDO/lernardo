@@ -80,7 +80,7 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${theme}">
         <g:link class="buttonGreen" action="edit" id="${theme?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: theme.id)}" id="${theme.id}">Löschen</g:link>
+        <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: theme.id)}" id="${theme.id}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
       <div class="spacer"></div>

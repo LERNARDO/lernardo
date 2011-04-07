@@ -81,6 +81,9 @@
         <erp:isMeOrAdminOrOperator entity="${pate}" current="${currentEntity}">
           <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
         </erp:isMeOrAdminOrOperator>
+        <erp:isOperator entity="${currentEntity}">
+          <g:link class="buttonRed" action="del" id="${pate.id}" onclick="${erp.getLinks(id: pate.id)}"><g:message code="delete"/></g:link>
+        </erp:isOperator>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>

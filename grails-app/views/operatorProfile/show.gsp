@@ -65,12 +65,15 @@
       </table>
     </div>
 
-    <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}">
-      <div class="buttons">
+    <div class="buttons">
+      <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${operator?.id}"><g:message code="edit"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </erp:isMeOrAdmin>
+      </erp:isMeOrAdmin>
+      <erp:isAdmin entity="${currentEntity}">
+        <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${erp.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
+      </erp:isAdmin>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="facilities"/> <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Einrichtung hinzufügen" /></a></erp:isMeOrAdmin></h5>

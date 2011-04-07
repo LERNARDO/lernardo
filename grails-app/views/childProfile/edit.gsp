@@ -84,9 +84,6 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <erp:isOperator entity="${currentEntity}">
-          <g:link class="buttonRed" action="del" id="${child.id}" onclick="${erp.getLinks(id: child.id)}"><g:message code="delete"/></g:link>
-        </erp:isOperator>
         <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

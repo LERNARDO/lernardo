@@ -40,12 +40,13 @@
           </tbody>
         </table>
       </div>
+
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonRed" action="del" id="${methodInstance.id}">><g:message code="delete"/></g:link>
         <g:link class="buttonGray" action="show" id="${methodInstance.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
+
     </g:form>
   </div>
 </div>

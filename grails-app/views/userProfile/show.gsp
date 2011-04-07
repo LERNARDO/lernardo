@@ -42,13 +42,16 @@
       </tbody>
     </table>
 
-    <erp:isMeOrAdmin entity="${user}" current="${currentEntity}">
-      <div class="buttons">
+    <div class="buttons">
+      <erp:isMeOrAdmin entity="${user}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${user?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </erp:isMeOrAdmin>
+      </erp:isMeOrAdmin>
+      <erp:isSysAdmin entity="${currentEntity}">
+        <g:link class="buttonRed" action="del" id="${user.id}" onclick="${erp.getLinks(id: user.id)}"><g:message code="delete"/></g:link>
+      </erp:isSysAdmin>
+      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
   </div>
 </div>

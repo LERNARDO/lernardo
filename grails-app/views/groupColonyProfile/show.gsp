@@ -31,6 +31,7 @@
     <erp:isOperator entity="${currentEntity}">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
         <div class="spacer"></div>
       </div>
     </erp:isOperator>

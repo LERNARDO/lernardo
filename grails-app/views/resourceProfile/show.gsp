@@ -37,14 +37,16 @@
       </table>
 
     </div>
+
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
         <g:link class="buttonGreen" action="edit" id="${resource?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: resource.id)}" id="${resource.id}">Löschen</g:link>
+        <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: resource.id)}" id="${resource.id}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
+
   </div>
 </div>
 </body>

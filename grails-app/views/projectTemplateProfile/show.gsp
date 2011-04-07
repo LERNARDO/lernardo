@@ -57,6 +57,7 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${projectTemplate}">
         <g:link class="buttonGreen" action="edit" id="${projectTemplate?.id}" params="[entity: projectTemplate?.id]"><g:message code="edit"/></g:link>
+        <g:link class="buttonRed" action="del" id="${projectTemplate.id}" onclick="${erp.getLinks(id: projectTemplate.id)}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
         <g:if test="${projectTemplate.profile.status == 'done'}">

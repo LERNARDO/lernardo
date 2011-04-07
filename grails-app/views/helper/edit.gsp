@@ -48,7 +48,6 @@
 
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonRed" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
         <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

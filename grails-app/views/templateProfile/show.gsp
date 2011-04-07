@@ -81,6 +81,7 @@
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${template}">
         <g:link class="buttonGreen" action="edit" id="${template.id}" params="[entity: template?.id]"><g:message code="edit"/></g:link>
+        <g:link class="buttonRed" action="del" id="${template.id}" onclick="${erp.getLinks(id: template.id)}"><g:message code="delete"/></g:link>
       %{--<g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>--}%

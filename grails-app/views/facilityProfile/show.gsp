@@ -67,9 +67,11 @@
 
     <div class="buttons">
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]">
-      %{--<erp:isMeOrAdminOrOperator entity="${facility}" current="${currentEntity}">--}%
         <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
       </erp:accessCheck>
+      <erp:isOperator entity="${currentEntity}">
+        <g:link class="buttonRed" action="del" id="${facility.id}" onclick="${erp.getLinks(id: facility.id)}"><g:message code="delete"/></g:link>
+      </erp:isOperator>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

@@ -53,6 +53,7 @@
     <div class="buttons">
       <g:if test="${currentEntity.id == bla.id}">
         <g:link class="buttonGreen" action="edit" id="${appointmentProfileInstance?.id}"><g:message code="edit"/></g:link>
+        <g:link class="buttonRed" action="del" id="${appointmentProfileInstance.id}"><g:message code="delete"/></g:link>
       </g:if>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>

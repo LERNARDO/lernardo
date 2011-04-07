@@ -244,12 +244,15 @@
       </div>
     </div>
 
-    <erp:isMeOrAdminOrOperator entity="${client}" current="${currentEntity}">
-      <div class="buttons">
+    <div class="buttons">
+      <erp:isMeOrAdminOrOperator entity="${client}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${client?.id}"><g:message code="edit"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </erp:isMeOrAdminOrOperator>
+      </erp:isMeOrAdminOrOperator>
+      <erp:isOperator entity="${currentEntity}">
+        <g:link class="buttonRed" action="del" id="${client.id}" onclick="${erp.getLinks(id: client.id)}"><g:message code="delete"/></g:link>
+      </erp:isOperator>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']"><a onclick="toggle('#performances');
