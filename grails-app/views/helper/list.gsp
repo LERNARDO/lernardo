@@ -40,6 +40,7 @@
           <a name="${i}">${helperInstance.title}</a>
           <erp:isAdmin entity="${currentEntity}">
             <g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
+            <g:link class="helperButton" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
           </erp:isAdmin>
           Hilfethema für: <g:join in="${helperInstance.types}"/>
           ${helperInstance.content.decodeHTML()}
