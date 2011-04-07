@@ -52,8 +52,6 @@ class MetaDataService {
   static final String ET_GROUP_FAMILY = "Familie"
   static final String ET_GROUP_CLIENT = "Betreutengruppe"
   static final String ET_GROUP_COLONY = "Siedlung"
-  static final String ET_GROUP_NETWORK = "Gruppe Netzwerk"
-  static final String ET_GROUP_LEVEL = "Gruppe Schulstufe"
   static final String ET_GROUP_ACTIVITY_TEMPLATE = "Aktivitätsvorlagenblock"
   static final String ET_GROUP_ACTIVITY = "Aktivitätsblock"
   static final String ET_PATE = "Pate"
