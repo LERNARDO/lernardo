@@ -338,14 +338,14 @@
           </div>
         </div>
 
-        <div class="profile-box">
+        %{--<div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="privat.head.help"/></div>
             <ul>
               <li class="icon-help"><g:link controller="helper" id="${entity.id}"><g:message code="privat.showHelp"/></g:link></li>
             </ul>
           </div>
-        </div>
+        </div>--}%
 
         <div class="profile-box">
           <div class="second">

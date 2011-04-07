@@ -78,6 +78,15 @@
         </div>
       </li>
 
+      <li>
+        <div class="imgbox">
+          <g:link controller="helper" id="${currentEntity.id}">
+            <img src="${g.resource(dir: 'images/icons', file: 'help.png')}" alt="<g:message code="privat.head.help"/>"/>
+            <h3><g:message code="privat.head.help"/></h3>
+          </g:link>
+        </div>
+      </li>
+
     </ol>
   </div>
 </div>
