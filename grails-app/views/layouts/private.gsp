@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'reset-fonts-grids.css')}" type="text/css">
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.qtip.min.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
-  <less:stylesheet name="${project}/layout" />
+  <less:stylesheet name="${project}" />
   <less:scripts />
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:javascript library="jquery" plugin="jquery"/>
