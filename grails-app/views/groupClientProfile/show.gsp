@@ -35,8 +35,8 @@
     </erp:accessCheck>
 
     <div class="zusatz">
-      <h5><g:message code="groupClient.clients.info"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#clients');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:isOperator></h5>
+      <h5><g:message code="groupClient.clients.info"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#clients');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:message code="clients"/><br/>
         <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect" before="showspinner('#clientselect')">

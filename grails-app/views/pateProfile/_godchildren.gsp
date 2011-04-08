@@ -1,7 +1,7 @@
 <g:if test="${godchildren}">
   <ul>
   <g:each in="${godchildren}" var="child">
-    <li><g:link controller="${child.type.supertype.name +'Profile'}" action="show" id="${child.id}" params="[entity:child.id]">${child.profile.fullName}</g:link> <erp:isOperator entity="${entity}"><g:remoteLink action="removeGodchildren" update="godchildren2" id="${pate.id}" params="[child: child.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Patenkind entfernen" align="top"/></g:remoteLink></erp:isOperator></li>
+    <li><g:link controller="${child.type.supertype.name +'Profile'}" action="show" id="${child.id}" params="[entity:child.id]">${child.profile.fullName}</g:link> <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><g:remoteLink action="removeGodchildren" update="godchildren2" id="${pate.id}" params="[child: child.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Patenkind entfernen" align="top"/></g:remoteLink></erp:accessCheck></li>
   </g:each>
   </ul>
 </g:if>

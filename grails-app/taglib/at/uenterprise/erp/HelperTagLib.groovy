@@ -770,62 +770,6 @@ class HelperTagLib {
   }
 
   /*
-   * checks whether the given entity is a parent (or has the admin role)
-   */
-  def isParent = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etParent.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
-   * checks whether the given entity is a pate (or has the admin role)
-   */
-  def isPate = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etPate.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
-   * checks whether the given entity is a partner (or has the admin role)
-   */
-  def isPartner = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etPartner.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
-   * checks whether the given entity is a client (or has the admin role)
-   */
-  def isClient = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etClient.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
-   * checks whether the given entity is a facility (or has the admin role)
-   */
-  def isFacility = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etFacility.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
-   * checks whether the given entity is an educator (or has the admin role)
-   */
-  def isEducator = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etEducator.name ||attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
-   * checks whether the given entity is an operator (or has the admin role)
-   */
-  def isOperator = {attrs, body ->
-    if (attrs.entity.type.name == metaDataService.etOperator.name || attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
-  /*
    * sets the active state of each letter of the glossary
    */
   def active = {attrs ->
@@ -1033,11 +977,6 @@ class HelperTagLib {
       out << body()
   }
 
-  def isAdmin = {attrs, body ->
-    if (attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
-      out << body()
-  }
-
   def notAdmin = {attrs, body ->
     if (!attrs.entity.user.authorities.find {it.authority == 'ROLE_ADMIN'})
       out << body()
@@ -1053,21 +992,6 @@ class HelperTagLib {
       out << body()
   }
 
-  def isSysAdmin = {attrs, body ->
-    def entity = attrs.entity ?: entityHelperService.loggedIn
-
-    entity.user.authorities.each {
-      if (it.authority == "ROLE_SYSTEMADMIN")
-        out << body()
-        return
-    }
-  }
-
-  def isMe = {attrs, body ->
-    if (entityHelperService.loggedIn.id == attrs.entity.id)
-      out << body()
-  }
-
   def notMe = {attrs, body ->
     if (entityHelperService.loggedIn.id != attrs.entity.id)
       out << body()
@@ -1079,14 +1003,6 @@ class HelperTagLib {
     def res = !attrs.roles.find { entity.user.authorities*.authority.contains(it) }
     if (res)
       out << body()
-  }
-
-  def hasRoles = {attrs, body ->
-    def entity = attrs.entity ?: entityHelperService.loggedIn
-
-    def res = attrs.roles.findAll { entity.user.authorities*.authority.contains(it) }
-    if (res)
-      out << body()    
   }
 
   private boolean friend(attrs) {

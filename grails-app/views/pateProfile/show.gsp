@@ -65,10 +65,10 @@
         <table>
 
           <tr class="prop">
-            <erp:isOperator entity="${currentEntity}">
+            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
               <td width="60" valign="top"><span class="bold"><g:message code="active"/></span></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </erp:isOperator>
+            </erp:accessCheck>
 
             <td width="60" valign="top"><span class="bold"><g:message code="pate.profile.email"/>:</span></td>
             <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
@@ -81,16 +81,16 @@
         <erp:isMeOrAdminOrOperator entity="${pate}" current="${currentEntity}">
           <g:link class="buttonGreen" action="edit" id="${pate?.id}"><g:message code="edit"/></g:link>
         </erp:isMeOrAdminOrOperator>
-        <erp:isOperator entity="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
           <g:link class="buttonRed" action="del" id="${pate.id}" onclick="${erp.getLinks(id: pate.id)}"><g:message code="delete"/></g:link>
-        </erp:isOperator>
+        </erp:accessCheck>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
 
       <div class="zusatz">
-        <h5><g:message code="pate.profile.gcs"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#godchildren');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></erp:isOperator></h5>
+        <h5><g:message code="pate.profile.gcs"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#godchildren');
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Patenkind hinzufügen"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="godchildren" style="display:none">
 
           <g:message code="search"/>:<br/>

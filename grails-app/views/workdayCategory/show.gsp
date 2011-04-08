@@ -22,13 +22,13 @@
       </tbody>
     </table>
 
-    <erp:isOperator entity="${currentEntity}">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${workdayCategoryInstance?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
-    </erp:isOperator>
+    </erp:accessCheck>
 
   </div>
 </div>

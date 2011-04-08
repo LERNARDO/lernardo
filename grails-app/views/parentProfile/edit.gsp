@@ -153,12 +153,12 @@
         <div class="email">
           <table>
             <tr>
-              <erp:isOperator entity="${currentEntity}">
+              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
                   <g:checkBox name="enabled" value="${parent?.user?.enabled}"/>
                 </td>
-              </erp:isOperator>
+              </erp:accessCheck>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
                 <g:link controller="profile" action="changePassword" id="${parent.id}"><g:message code="change"/></g:link>

@@ -43,11 +43,6 @@
       <g:paginate total="${resourceTotal}"/>
     </div>
 
-    %{--<erp:isOperator entity="${currentEntity}">
-      <g:link class="buttonGreen" action="create">Neue Ressource anlegen</g:link>
-      <div class="spacer"></div>
-    </erp:isOperator>--}%
-
   </div>
 </div>
 </body>

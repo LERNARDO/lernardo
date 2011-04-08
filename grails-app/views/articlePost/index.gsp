@@ -8,9 +8,9 @@
   <div id="article-container">
  
     <g:if test="${currentEntity}">
-      <erp:isEducator entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
         <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker"><g:message code="article.create"/></g:link></p>
-      </erp:isEducator>
+      </erp:accessCheck>
     </g:if>
 
     <g:each in="${articleList}" var="article">

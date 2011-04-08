@@ -67,10 +67,10 @@
         </table>
 
         <div class="email">         
-          <erp:isOperator entity="${currentEntity}">
+          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
             <g:message code="active"/>
             <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
-          </erp:isOperator>
+          </erp:accessCheck>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <g:message code="child.profile.email"/>
           : &nbsp;

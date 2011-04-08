@@ -84,26 +84,6 @@
             </td>
           </tr>
 
-%{--          <erp:isOperator entity="${currentEntity}">
-            <tr>
-              <td valign="top" class="name"><g:message code="educator.profile.workHours"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.hourlyWage"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.overtimePay"/></td>
-            </tr>
-
-            <tr>
-              <td width="120" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.workHours', 'errors')}" size="10" name="workHours" value="${fieldValue(bean: educator, field: 'profile.workHours')}"/>
-              </td>
-              <td width="180" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.hourlyWage', 'errors')}" size="10" name="hourlyWage" value="${fieldValue(bean: educator, field: 'profile.hourlyWage')}"/>
-              </td>
-              <td width="200" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.overtimePay', 'errors')}" size="10" name="overtimePay" value="${fieldValue(bean: educator, field: 'profile.overtimePay')}"/>
-              </td>
-            </tr>
-          </erp:isOperator>--}%
-
           %{--<tr class="prop">
           <td colspan="3" valign="middle" class="name">
           <g:message code="educator.profile.colonia"/>:

@@ -154,12 +154,12 @@
         <table>
           <tr>
 
-            <erp:isOperator entity="${currentEntity}">
+            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
               <td width="100" valign="middle">
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${parent.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
-            </erp:isOperator>
+            </erp:accessCheck>
 
             <td width="280" valign="middle">
               <span class="bold"><g:message code="educator.profile.email"/>:</span>
@@ -180,9 +180,9 @@
       <erp:isMeOrAdminOrOperator entity="${parent}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${parent?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdminOrOperator>
-      <erp:isOperator entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${parent.id}" onclick="${erp.getLinks(id: parent.id)}"><g:message code="delete"/></g:link>
-      </erp:isOperator>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

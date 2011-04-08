@@ -276,30 +276,30 @@
 
                 <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
-                    <erp:isSysAdmin>
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_SYSTEMADMIN']">
                         <li class="icon-admin"><g:link controller="app" action="adminlinks"><g:message code="Link Check"/></g:link></li>
-                    </erp:isSysAdmin>
-                    <erp:isOperator entity="${currentEntity}">
+                    </erp:accessCheck>
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                       <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
                       %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
                       <li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]">Zeitauswertung</g:link></li>
                       <li class="icon-time"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
                       <li class="icon-time"><g:link controller="educatorProfile" action="workhours" id="${entity.id}" params="[entity:entity.id]">Arbeitsstunden</g:link></li>
-                    </erp:isOperator>
+                    </erp:accessCheck>
                   </ul>
                 </div>
 
                 <div id="inhalt-verwaltung" class="aktiv_inhalt">
                   <ul>
-                    <erp:isOperator entity="${currentEntity}">
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
                       <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
-                    </erp:isOperator>
-                    <erp:isAdmin entity="${currentEntity}">
+                    </erp:accessCheck>
+                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                       <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                       <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                       <hr/>
-                    </erp:isAdmin>
+                    </erp:accessCheck>
                     <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]"><g:message code="educators"/></g:link></li>
                     <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]"><g:message code="clients"/></g:link></li>
                     <g:if test="${grailsApplication.config.project == 'sueninos'}">

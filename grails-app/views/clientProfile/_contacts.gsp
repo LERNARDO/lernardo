@@ -3,10 +3,10 @@
     <g:each in="${client.profile.contacts}" var="representative">
       <tr class="prop">
         <td valign="top" class="italic" width="100"><g:message code="representantives.name"/>:</td><td colspan="6" class="value">${representative.firstName}  ${representative.lastName}</td>
-        <td><erp:isOperator entity="${entity}">
+        <td><erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
           <g:remoteLink action="editContact" update="contacts2" id="${client.id}" params="[contact: representative.id]" before="showspinner('#contacts2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:remoteLink>
           <g:remoteLink action="removeContact" update="contacts2" id="${client.id}" params="[contact: representative.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="${message(code:'delete')}" align="top"/></g:remoteLink>
-        </erp:isOperator></td></tr>
+        </erp:accessCheck></td></tr>
       <tr class="prop">
         <td valign="top" class="italic"><g:message code="representantives.adr"/>:</td><td colspan="6" class="value">${representative.zip} ${representative.city}, ${representative.street}</td></tr>
       <tr class="prop">

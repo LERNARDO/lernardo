@@ -109,7 +109,7 @@
           </td>
         </tr>
 
-        <erp:isOperator entity="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="educator.profile.workHours"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.hourlyWage"/></td>
@@ -127,7 +127,7 @@
               ${fieldValue(bean: educator, field: 'profile.overtimePay') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
           </tr>
-        </erp:isOperator>
+        </erp:accessCheck>
 
         %{--<tr>
         <td colspan="3" valign="top" class="name-show">
@@ -308,12 +308,12 @@
         <table>
 
           <tr>
-            <erp:isOperator entity="${currentEntity}">
+            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
               <td width="100" valign="middle">
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
               </td>
-            </erp:isOperator>
+            </erp:accessCheck>
 
             <td width="280" valign="middle">
               <span class="bold"><g:message code="educator.profile.email"/>:</span>
@@ -333,9 +333,9 @@
       <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${educator?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdminOrOperator>
-      <erp:isOperator entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${educator.id}" onclick="${erp.getLinks(id: educator.id)}"><g:message code="delete"/></g:link>
-      </erp:isOperator>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

@@ -292,14 +292,14 @@
         <div class="email">
           <table>
             <tr>
-              <erp:isOperator entity="${currentEntity}">
+              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
                 <td width="90" valign="top">
                   <g:message code="active"/>
                 </td>
                 <td width="30">
                   <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
                 </td>
-              </erp:isOperator>
+              </erp:accessCheck>
               <td width="85" valign="top">
                 <g:message code="client.profile.email"/>:
               </td>

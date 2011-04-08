@@ -53,10 +53,6 @@
       <div class="email">
         <table>
           <tr class="prop">
-            %{--<erp:isOperator entity="${currentEntity}">
-              <td width="60" valign="top"><g:message code="active"/>:</td>
-              <td width="50" valign="top"><g:formatBoolean boolean="${facility.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </erp:isOperator>--}%
             <td width="60" valign="top"><g:message code="facility.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
@@ -69,9 +65,9 @@
       <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="[facility]">
         <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
       </erp:accessCheck>
-      <erp:isOperator entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${facility.id}" onclick="${erp.getLinks(id: facility.id)}"><g:message code="delete"/></g:link>
-      </erp:isOperator>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

@@ -54,12 +54,12 @@
           <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.profile.showTips}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
-        <erp:isOperator entity="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="active"/>:</td>
             <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
           </tr>
-        </erp:isOperator>
+        </erp:accessCheck>
 
         </tbody>
       </table>
@@ -69,9 +69,9 @@
       <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${operator?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdmin>
-      <erp:isAdmin entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
         <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${erp.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
-      </erp:isAdmin>
+      </erp:accessCheck>
       <div class="spacer"></div>
     </div>
 

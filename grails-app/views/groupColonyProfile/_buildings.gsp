@@ -3,7 +3,7 @@
     <g:each in="${group.profile.buildings}" var="building">
       <tr class="prop">
         <td valign="top" class="italic" width="100"><g:message code="building.name"/>:</td><td colspan="6" class="value">${building.name}</td>
-        <td><erp:isOperator entity="${entity}"><g:remoteLink action="removeBuilding" update="buildings2" id="${group.id}" params="[building: building.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="Gebäude entfernen" align="top"/></g:remoteLink></erp:isOperator></td></tr>
+        <td><erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><g:remoteLink action="removeBuilding" update="buildings2" id="${group.id}" params="[building: building.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="Gebäude entfernen" align="top"/></g:remoteLink></erp:accessCheck></td></tr>
       <tr class="prop">
         <td valign="top" class="italic"><g:message code="building.adr"/>:</td><td colspan="6" class="value">${building.zip} ${building.city}, ${building.street}</td></tr>
       <tr class="prop">

@@ -15,12 +15,12 @@
       ${methodInstanceTotal} <g:message code="method.c_total"/>
     </div>
 
-     <erp:isAdmin entity="${currentEntity}">
+     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="method.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </erp:isAdmin>
+    </erp:accessCheck>
 
     <table class="default-table">
       <thead>

@@ -10,13 +10,13 @@
   </div>
 </div>
 
-<erp:isOperator entity="${currentEntity}">
+<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="evaluation" action="listall" id="${entity.id}">Alle Tagebucheinträge</g:link></h1>
     </div>
   </div>
-</erp:isOperator>
+</erp:accessCheck>
 
 <div class="clearFloat"></div>
 

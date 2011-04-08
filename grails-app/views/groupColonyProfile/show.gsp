@@ -28,18 +28,18 @@
       </table>
     </div>
 
-    <erp:isOperator entity="${currentEntity}">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
         <div class="spacer"></div>
       </div>
-    </erp:isOperator>
+    </erp:accessCheck>
 
     <div class="zusatz">
-      <h5><g:message code="representantives"/> <erp:isOperator entity="${currentEntity}"><a onclick="clearElements(['cFirstName','cLastName','cCountry','cZip','cCity','cStreet','cPhone','cEmail','cFunction']); toggle('#representatives');
+      <h5><g:message code="representantives"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="clearElements(['cFirstName','cLastName','cCountry','cZip','cCity','cStreet','cPhone','cEmail','cFunction']); toggle('#representatives');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Repräsentant hinzufügen"/>
-      </a></erp:isOperator></h5>
+      </a></erp:accessCheck></h5>
       <div class="zusatz-add" id="representatives" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="showspinner('#representatives2');" after="toggle('#representatives');">
 
@@ -91,57 +91,9 @@
       </div>
     </div>
 
-    %{-- AAZ (01.09.2010): disabled since customer doesn't need it ---}%
-    %{--<div class="zusatz">
-      <h5><g:message code="building"/> (<g:message code="building.info"/>) <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#buildings');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gebäude hinzufügen"/></a></erp:isOperator></h5>
-      <div class="zusatz-add" id="buildings" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupColonyProfile', action:'addBuilding', id:group.id]" update="buildings2" before="showspinner('#buildings2')">
-
-          <table>
-            <tr>
-              <td><g:message code="building.name"/>:</td>
-              <td><g:textField size="30" name="name" value=""/></td>
-            </tr>
-            <tr>
-              <td><g:message code="building.zip"/>:</td>
-              <td><g:textField size="30" name="zip" value=""/></td>
-            </tr>
-            <tr>
-              <td><g:message code="building.city"/>:</td>
-              <td><g:textField size="30" name="city" value=""/></td>
-            </tr>
-            <tr>
-              <td><g:message code="building.street"/>:</td>
-              <td><g:textField size="30" name="street" value=""/></td>
-            </tr>
-            <tr>
-              <td><g:message code="building.phone"/>:</td>
-              <td><g:textField size="30" name="phone" value=""/></td>
-            </tr>
-            <tr>
-              <td><g:message code="building.email"/>:</td>
-              <td><g:textField size="30" name="email" value=""/></td>
-            </tr>
-            <tr>
-              <td><g:message code="building.authority"/>:</td>
-              <td><g:textField size="30" name="authority" value=""/></td>
-            </tr>
-          </table>
-
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
-      </div>
-      <div class="zusatz-show" id="buildings2">
-        <g:render template="buildings" model="[group: group, entity: currentEntity]"/>
-      </div>
-    </div>--}%
-
     <div class="zusatz">
-      <h5><g:message code="resource.profile"/> <erp:isOperator entity="${currentEntity}"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:isOperator></h5>
+      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
@@ -172,8 +124,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="facilities"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#facilities');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></erp:isOperator></h5>
+      <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#facilities');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="toggle('#facilities');">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -188,8 +140,8 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="partners"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#partners');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></erp:isOperator></h5>
+      <h5><g:message code="partners"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#partners');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
@@ -202,22 +154,6 @@
         <g:render template="partners" model="[partners: partners, group: group, entity: currentEntity]"/>
       </div>
     </div>
-
-    %{--<div class="zusatz">
-      <h5><g:message code="educators"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#educators');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagogen hinzufügen"/></a></erp:isOperator></h5>
-      <div class="zusatz-add" id="educators" style="display:none">
-        <g:formRemote name="formRemote6" url="[controller:'groupColonyProfile', action:'addEducator', id:group.id]" update="educators2" before="showspinner('#educators2')">
-          <g:select name="educator" from="${allEducators}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
-      </div>
-      <div class="zusatz-show" id="educators2">
-        <g:render template="educators" model="[educators: educators, group: group, entity: currentEntity]"/>
-      </div>
-    </div>--}%
 
   </div>
 </div>

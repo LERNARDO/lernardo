@@ -20,12 +20,12 @@
       </g:else>
     </div>
 
-    <erp:isAdmin entity="${currentEntity}">
+    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create" params="[entity:entity.id]"><g:message code="helper.topic.create"/></g:link>
         <div class="spacer"></div>
       </div>
-    </erp:isAdmin>
+    </erp:accessCheck>
 
     <g:if test="${helperInstanceList.size() > 0}">
     <ul>
@@ -38,10 +38,10 @@
       <div class="helperbox">
         <p>
           <a name="${i}">${helperInstance.title}</a>
-          <erp:isAdmin entity="${currentEntity}">
+          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
             <g:link class="helperButton" action="edit" id="${helperInstance.id}" params="[entity:entity.id]"><g:message code="edit"/></g:link>
             <g:link class="helperButton" action="del" id="${helperInstance.id}" params="[entity:entity.id]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
-          </erp:isAdmin>
+          </erp:accessCheck>
           Hilfethema für: <g:join in="${helperInstance.types}"/>
           ${helperInstance.content.decodeHTML()}
         </p>

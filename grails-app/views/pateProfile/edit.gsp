@@ -69,17 +69,17 @@
         <div class="email">
           <table>
             <tr>
-              <erp:isOperator entity="${currentEntity}">
+              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
-                  <erp:isAdmin entity="${currentEntity}">
+                  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                     <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
-                  </erp:isAdmin>
+                  </erp:accessCheck>
                   <erp:notAdmin entity="${currentEntity}">
                     <g:checkBox name="enabled" value="${pate?.user?.enabled}" disabled="true"/>
                   </erp:notAdmin>
                 </td>
-              </erp:isOperator>
+              </erp:accessCheck>
               <td width="150" valign="middle">
                 <g:message code="password"/>:
                 <g:link controller="profile" action="changePassword" id="${pate.id}"><g:message code="change"/></g:link>

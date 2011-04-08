@@ -70,9 +70,9 @@
 <div class="boxGray">
   <div class="second">
 
-      <erp:isAdmin entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
         <div class="overview" id="admin"></div>
-      </erp:isAdmin>
+      </erp:accessCheck>
       <div class="overview" id="persons"></div>
       <div class="overview" id="other"></div>
       <div class="overview" id="groups"></div>

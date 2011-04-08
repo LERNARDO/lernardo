@@ -88,12 +88,12 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <erp:isOperator entity="${currentEntity}">
+            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
               <td width="60" valign="top">
                 <span class="bold"><g:message code="active"/></span>
               </td>
               <td width="50" valign="top"><g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            </erp:isOperator>
+            </erp:accessCheck>
             <td width="60" valign="top">
               <span class="bold"><g:message code="facility.profile.email"/>:</span>
             </td>
@@ -108,9 +108,9 @@
       <erp:isMeOrAdminOrOperator entity="${partner}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdminOrOperator>
-      <erp:isOperator entity="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${partner.id}" onclick="${erp.getLinks(id: partner.id)}"><g:message code="delete"/></g:link>
-      </erp:isOperator>
+      </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>
@@ -131,8 +131,8 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <erp:isOperator entity="${currentEntity}"><a onclick="toggle('#contacts');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:isOperator></h5>
+      <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#contacts');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 

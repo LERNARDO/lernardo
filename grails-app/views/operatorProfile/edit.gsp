@@ -81,19 +81,19 @@
             </td>
           </tr>
 
-          <erp:isAdmin entity="${currentEntity}">
+          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
             <tr class="prop">
               <td valign="top" class="name"><g:message code="active"/></td>
               <td valign="top" class="value">
-                <erp:isAdmin entity="${currentEntity}">
+                <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                   <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
-                </erp:isAdmin>
+                </erp:accessCheck>
                 <erp:notAdmin entity="${currentEntity}">
                   <g:checkBox name="enabled" value="${operator?.user?.enabled}" disabled="true"/>
                 </erp:notAdmin>
               </td>
             </tr>
-          </erp:isAdmin>
+          </erp:accessCheck>
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="password"/></td>
