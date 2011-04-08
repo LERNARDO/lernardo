@@ -22,52 +22,6 @@ class ProfileController {
   def index = { }
 
   /*
-  * retrieves the total number of each entity
-  */
-  def overview = {
-    def c = Entity.createCriteria()
-    def count = c.list {
-      eq("type", metaDataService.etActivity)
-      profile {
-        eq("type", "Themenraum")
-      }
-    }
-    def activities = count.size()
-
-    List temp = Entity.findAllByType(metaDataService.etResource)
-
-    def allResources = 0
-    temp.each { resource ->
-      def result = functionService.findByLink(resource, null, metaDataService.ltResource)
-      if (result && result.type.id != metaDataService.etTemplate.id)
-        allResources++
-    }
-
-    [allOperators: Entity.countByType(metaDataService.etOperator),
-    allUsers: Entity.countByType(metaDataService.etUser),
-    allClients: Entity.countByType(metaDataService.etClient),
-    allEducators: Entity.countByType(metaDataService.etEducator),
-    allParents: Entity.countByType(metaDataService.etParent),
-    allChilds: Entity.countByType(metaDataService.etChild),
-    allPates: Entity.countByType(metaDataService.etPate),
-    allPartners: Entity.countByType(metaDataService.etPartner),
-    allFacilities: Entity.countByType(metaDataService.etFacility),
-    allResources: allResources,
-    allMethods: Method.countByType("template"),
-    allThemes: Entity.countByType(metaDataService.etTheme),
-    allColonias: Entity.countByType(metaDataService.etGroupColony),
-    allFamilies: Entity.countByType(metaDataService.etGroupFamily),
-    allPartnerGroups: Entity.countByType(metaDataService.etGroupPartner),
-    allClientGroups: Entity.countByType(metaDataService.etGroupClient),
-    allActivityTemplates: Entity.countByType(metaDataService.etTemplate),
-    allActivities: activities,
-    allActivityTemplateGroups: Entity.countByType(metaDataService.etGroupActivityTemplate),
-    allActivityGroups: Entity.countByType(metaDataService.etGroupActivity),
-    allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate),
-    allProjects: Entity.countByType(metaDataService.etProject)]
-  }
-
-  /*
    * create an admin notification (private message)
    */
   def createNotification = {
@@ -137,67 +91,6 @@ class ProfileController {
   }
 
   /*
-   * used by the glossary in the overview
-   * either retrieves all users or those matching the given glossary letter
-   */
-  def showUsers = {
-    params.glossary = params.glossary ?: 'Alle'
-    params.max = Math.min(params.max ? params.int('max') : 16, 100)
-    params.offset = params.offset ? params.int('offset') : 0
-
-    List users
-    def numUsers
-
-    if (params.glossary == "Alle") {
-      def c = Entity.createCriteria()
-      users = c.list {
-        or {
-          eq("type", metaDataService.etChild)
-          eq("type", metaDataService.etClient)
-          eq("type", metaDataService.etEducator)
-          eq("type", metaDataService.etFacility)
-          eq("type", metaDataService.etOperator)
-          eq("type", metaDataService.etParent)
-          eq("type", metaDataService.etPartner)
-          eq("type", metaDataService.etPate)
-        }
-        profile {
-          order("lastName", "asc")
-        }
-      }
-      numUsers = users.size()
-      def upperBound = params.offset + 16 < users.size() ? params.offset + 16 : users.size()
-      users = users.subList(params.offset, upperBound)
-    }
-    else {
-      //log.debug("start glossary for " + params.glossary)
-      def c = Entity.createCriteria()
-      users = c.list {
-        or {
-          eq("type", metaDataService.etChild)
-          eq("type", metaDataService.etClient)
-          eq("type", metaDataService.etEducator)
-          eq("type", metaDataService.etFacility)
-          eq("type", metaDataService.etOperator)
-          eq("type", metaDataService.etParent)
-          eq("type", metaDataService.etPartner)
-          eq("type", metaDataService.etPate)
-        }
-        profile {
-          ilike("fullName", params.glossary + "%")
-          order("fullName", "asc")
-        }
-        cacheable(true)
-      }
-      numUsers = users.size()
-      def upperBound = params.offset + 16 < users.size() ? params.offset + 16 : users.size()
-      users = users.subList(params.offset, upperBound)
-    }
-
-    render(template: 'allusers', model: [entities: users, numEntities: numUsers, glossary: params.glossary])
-  }
-
-  /*
    * deactivates a user so he is not able to login anymore
    */
   def disable = {
@@ -257,46 +150,6 @@ class ProfileController {
     else {
       flash.message = message(code: "pass.notChanged")
       redirect action: changePassword, params: [name: params.name]
-    }
-  }
-
-  /*
-   * retrieves users matching the search parameter of the instant search
-   */
-  def searchMe = {
-    if (!params.name) {
-      render ""
-      return
-    }
-
-    def c = Entity.createCriteria()
-    def users = c.list {
-      or {
-          eq("type", metaDataService.etChild)
-          eq("type", metaDataService.etClient)
-          eq("type", metaDataService.etEducator)
-          eq("type", metaDataService.etFacility)
-          eq("type", metaDataService.etOperator)
-          eq("type", metaDataService.etParent)
-          eq("type", metaDataService.etPartner)
-          eq("type", metaDataService.etPate)
-        }
-      or {
-        ilike('name', "%" + params.name + "%")
-        profile {
-          ilike('fullName', "%" + params.name + "%")
-        }
-      }
-      maxResults(15)
-    }
-
-    if (users.size() == 0) {
-      // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
-      return
-    }
-    else {
-      render(template: 'searchresults', model: [searchList: users])
     }
   }
 

@@ -71,7 +71,7 @@
 
       <li>
         <div class="imgbox">
-          <g:link controller="profile" action="overview" id="${currentEntity.id}">
+          <g:link controller="overview" action="index" id="${currentEntity.id}">
             <img src="${g.resource(dir: 'images/icons', file: 'kf_ueberblick.png')}" alt="<g:message code="imgmenu.overview.name"/>"/>
             <h3><g:message code="imgmenu.overview.name"/></h3>
           </g:link>

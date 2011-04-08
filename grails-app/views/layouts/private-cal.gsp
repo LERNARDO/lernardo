@@ -6,13 +6,9 @@
   <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'reset-fonts-grids.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
-  %{--<link rel="stylesheet" href="${resource(dir: 'css', file:'common.css')}" type="text/css" media="screen" charset="utf-8">--}%
-  <less:stylesheet name="common" />
   <less:stylesheet name="${project}/layout" />
   <less:scripts />
-  %{--<link rel="stylesheet" href="${resource(dir: 'css/' + project, file:'layout.less')}" type="text/css" media="screen">--}%
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
-  <g:layoutHead/>
   <g:javascript library="jquery" plugin="jquery"/>
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <g:javascript src="jquery/fullcalendar-1.4.10.js"/>
@@ -36,7 +32,7 @@
 
     // shows the spinner
     showspinner = function(id) {
-      $(id).html('<img id="spinner" src="../images/spinner.gif" alt="Lade.."/>');
+      $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
     };
 
     // toggle element
@@ -56,7 +52,9 @@
     };
   </script>
 
-  <ga:trackPageviewAsynch /> 
+  <ga:trackPageviewAsynch />
+  <g:layoutHead/>
+
 </head>
 <body>
 

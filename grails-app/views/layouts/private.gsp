@@ -10,7 +10,6 @@
   <less:stylesheet name="${project}/layout" />
   <less:scripts />
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
-  <g:layoutHead/>
   <g:javascript library="jquery" plugin="jquery"/>
   <jqui:resources/>
   <ckeditor:resources />
@@ -39,7 +38,7 @@
 
     // shows the spinner
     showspinner = function(id) {
-      $(id).html('<img id="spinner" src="../images/spinner.gif" alt="Lade.."/>');
+      $(id).html('<img id="spinner" src="${resource(dir: 'images', file: 'spinner.gif')}" alt="Lade.."/>');
     };
 
     // toggle element
@@ -153,6 +152,7 @@
   </script>
 
   <ga:trackPageviewAsynch/>
+  <g:layoutHead/>
 
 </head>
 <body>

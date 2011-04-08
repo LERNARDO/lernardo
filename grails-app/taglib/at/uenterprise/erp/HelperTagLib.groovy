@@ -1176,4 +1176,8 @@ class HelperTagLib {
     out << body(active: result)
   }
 
+  def getCurrentEntity = {attrs, body ->
+    out << body(currentEntity: entityHelperService.loggedIn)
+  }
+
 }
