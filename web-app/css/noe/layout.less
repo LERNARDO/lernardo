@@ -1,5 +1,15 @@
 @import "../common";
 
+// variables
+
+@box-header-active-border: #793838;
+@box-header-gradient-top: #CC6D89;
+@box-header-gradient-bottom: #9B5A6D;
+
+@imagemenu-border: #578A7B;
+@imagemenu-gradient-top: #6BBBA5;
+@imagemenu-gradient-bottom: #5B9484;
+
 /* ----- GLOBAL ----- */
 
 html {
@@ -70,7 +80,7 @@ body {
         display: inline;
         float: left;
         margin: 0;
-        background: #35B28F;
+        background: @imagemenu-gradient-top;
         border-bottom: 1px solid #fff;
         border-left: 1px solid #fff;
         border-top-left-radius: 5px;
@@ -87,7 +97,7 @@ body {
             font-weight: bold;
             width: 131px; }
         #nav li a:hover {
-            background: #3DCCA3;
+            background: darken(@imagemenu-gradient-top, 10%);
             text-decoration: none !important;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -101,20 +111,18 @@ a {
 
 .imgbox {
    margin: 10px 0 10px 10px;
-   border: 1px solid #1E6650;
-   background: -moz-linear-gradient(-90deg,#31A582,#22725A);
-   background: -webkit-gradient(linear, left top, left bottom, from(#31A582), to(#22725A));
+   border: 1px solid darken(@imagemenu-border, 15%);
+   background: -moz-linear-gradient(-90deg, darken(@imagemenu-gradient-top, 10%), darken(@imagemenu-gradient-bottom, 10%));
+   background: -webkit-gradient(linear, left top, left bottom, from(darken(@imagemenu-gradient-top, 10%)), to(darken(@imagemenu-gradient-bottom, 10%)));
    border-radius: 3px;
+   box-shadow: 0 0 5px @imagemenu-border;
    display: block;
    text-align: center;
    width: 100px;
    height: 80px;}
    .imgbox:hover {
-       border: 1px solid #1A5946;
-       background: -moz-linear-gradient(-90deg,#2D997A,#1E6651);
-       background: -webkit-gradient(linear, left top, left bottom, from(#2D997A), to(#1E6651));
-       -webkit-box-shadow: 0 0 5px #1E6650;
-       box-shadow: 0 0 15px #1E6650;
+       border: 1px solid darken(@imagemenu-border, 20%);
+       box-shadow: 0 0 15px darken(@imagemenu-border, 10%);
    }
    .imgbox img {
        overflow: hidden;
@@ -122,23 +130,24 @@ a {
        width: 48px;
        height: 48px;
        display: block;
-       margin: 0 auto }
+       margin: 5px auto 0 auto }
    .imgbox h3 {
        text-align: center;
        left: 0;
        color: #fff;
        font-size: 12px;
-       border: 0; }
+       border: 0;
+       margin-top: 5px; }
 
 #banner-private {
     height: 100px;
-    background: -moz-linear-gradient(90deg,#35B28F,#267F66);
-    background: -webkit-gradient(linear, left top, left bottom, from(#35B28F), to(#267F66));
+    background: -moz-linear-gradient(90deg, @imagemenu-gradient-top, @imagemenu-gradient-bottom);
+    background: -webkit-gradient(linear, left top, left bottom, from(@imagemenu-gradient-top), to(@imagemenu-gradient-bottom));
     margin: 0 15px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
-    border: 1px solid #22725B;
+    border: 1px solid @imagemenu-border;
 }
 
 .profile-box {
@@ -305,11 +314,11 @@ a {
                 line-height: 19px; }
 
 .boxHeader {
-    background: -moz-linear-gradient(-90deg,#D33F6B,#8E2A47);
-    background: -webkit-gradient(linear, left top, left bottom, from(#D33F6B), to(#8E2A47));
+    background: -moz-linear-gradient(-90deg, @box-header-gradient-top, @box-header-gradient-bottom);
+    background: -webkit-gradient(linear, left top, left bottom, from(@box-header-gradient-top), to(@box-header-gradient-bottom));
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border: 1px solid #600; }
+    border: 1px solid @box-header-active-border; }
     .boxHeader h1 {
         color: #fff;
         margin: auto 0;
@@ -377,11 +386,11 @@ a {
 }
 
 .tabGreen {
-    background: -moz-linear-gradient(-90deg,#35B28F,#267F66);
-    background: -webkit-gradient(linear, left top, left bottom, from(#35B28F), to(#267F66));
+    background: -moz-linear-gradient(-90deg, @box-header-gradient-top, @box-header-gradient-bottom);
+    background: -webkit-gradient(linear, left top, left bottom, from(@box-header-gradient-top), to(@box-header-gradient-bottom));
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border: 1px solid #22725B;
+    border: 1px solid @box-header-active-border;
     margin-right: 1px; }
     .tabGreen h1 {
         color: #fff;
@@ -395,9 +404,9 @@ a {
     }
 
 .tabGrey:hover{
-    background: -moz-linear-gradient(-90deg,#35B28F,#267F66);
-    background: -webkit-gradient(linear, left top, left bottom, from(#35B28F), to(#267F66));
-    border: 1px solid #22725B;
+    background: -moz-linear-gradient(-90deg, @imagemenu-gradient-top, @imagemenu-gradient-bottom);
+    background: -webkit-gradient(linear, left top, left bottom, from(@imagemenu-gradient-top), to(@imagemenu-gradient-bottom));
+    border: 1px solid @imagemenu-border;
     color: #fff;
 }
 

@@ -116,17 +116,14 @@ a {
    background: -moz-linear-gradient(-90deg, darken(@imagemenu-gradient-top, 10%), darken(@imagemenu-gradient-bottom, 10%));
    background: -webkit-gradient(linear, left top, left bottom, from(darken(@imagemenu-gradient-top, 10%)), to(darken(@imagemenu-gradient-bottom, 10%)));
    border-radius: 3px;
-   -webkit-box-shadow: 0 0 5px @imagemenu-border;
+   box-shadow: 0 0 5px @imagemenu-border;
    display: block;
    text-align: center;
    width: 100px;
    height: 80px;}
    .imgbox:hover {
        border: 1px solid darken(@imagemenu-border, 20%);
-       //background: -moz-linear-gradient(-90deg, darken(@imagemenu-gradient-top, 20%), darken(@imagemenu-gradient-bottom, 20%));
-       //background: -webkit-gradient(linear, left top, left bottom, from(darken(@imagemenu-gradient-top, 20%)), to(darken(@imagemenu-gradient-bottom, 20%)));
-       -webkit-box-shadow: 0 0 5px darken(@imagemenu-border, 10%);
-       box-shadow: 0 0 15px #d82;
+       box-shadow: 0 0 15px darken(@imagemenu-border, 10%);
    }
    .imgbox img {
        overflow: hidden;
@@ -141,7 +138,7 @@ a {
        color: #222;
        font-size: 12px;
        border: 0;
-       margin-top: 5px }
+       margin-top: 5px; }
 
 #banner-private {
     height: 100px;
