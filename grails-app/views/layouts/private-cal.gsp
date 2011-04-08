@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
-  <link rel="stylesheet" href="${resource(dir: 'css', file: 'reset-fonts-grids.css')}" type="text/css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset.css" type="text/css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssfonts/fonts.css" type="text/css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
   <less:stylesheet name="common" />
   <less:stylesheet name="${project}" />
@@ -64,7 +66,6 @@
 </g:if>
 
 <div id="private">
-  <div id="doc4" class="yui-t7">
 
     <div id="hd">
       <g:render template="/templates/header"/>
@@ -75,9 +76,15 @@
       <g:render template="/templates/imagenav"/>
     </div>
 
-    <div id="bd">
-      <div id="yui-main">
-        <div class="yui-b">
+    %{--<div id="doc4" class="yui-t7">--}%
+
+    %{--<div id="bd">--}%
+
+    <div class="yui3-g" id="grid-single">
+
+      <div class="yui3-u-1">
+      %{--<div id="yui-main">
+        <div class="yui-b">--}%
           <g:if test="${flash.message}">
             <div id="flash-msg">
               ${flash.message}
@@ -86,15 +93,17 @@
           <div id="private-content">
             <g:layoutBody/>
           </div>
-        </div>
-      </div>
+        %{--</div>
+      </div>--}%
+    </div>
+
     </div>
 
     <div id="ft">
       <g:render template="/templates/footer"/>
     </div>
 
-  </div>
+  %{--</div>--}%
 </div>
 
 </body>

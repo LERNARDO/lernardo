@@ -14,6 +14,36 @@
 @button-gray-gradient-top: #BFBFBF;
 @button-gray-gradient-bottom: #939393;
 
+@live-header-active-border: #3D5E7E;
+@live-header-gradient-top: #4171A1;
+@live-header-gradient-bottom: #3D5F81;
+
+#grid-single {
+    padding: 0 15px 5px 15px;
+    background: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#grid {
+    padding-left: 330px;
+    padding-right: 330px;
+    background: #fff;
+    padding-top: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#main {
+    width: 100%;
+}
+
+#extra {
+    width: 300px;
+    margin-right: -330px;
+    padding: 0 15px 0 15px;
+}
+
 /* these selectors are common for all projects */
 
 #info a {
@@ -169,7 +199,7 @@ ul {
 #imgmenu {
     ol {
         height: 115px;
-        float: left;
+        //float: left;
         li {
             float: left;
             padding: 0;
@@ -249,7 +279,8 @@ ul {
 }
 
 #private-content {
-    padding: 0 15px 0 15px }
+    //padding: 0 15px 0 15px;
+     }
 
 .headerBlue {
     background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
@@ -296,7 +327,9 @@ ul {
 }
 
 #profile-navigation {
-    padding: 0 5px 0 15px;
+    margin-left: -330px;
+    width: 300px;
+    padding: 0 15px 0 15px;
     a {
         text-decoration: none;
         :hover {
@@ -1345,42 +1378,34 @@ table#msg-composer td {
     padding: 0;
 }
 
+#livetickerbox {
+    margin-bottom: 15px;
+}
+
 #liveticker {
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    margin-left: -270px;
     background: #D4E6FC;
-    width: 500px;
     color: #000;
-    z-index: 100;
     border: 1px solid #C5D7EF;
     border-radius: 5px;
-    //height: 500px;
     overflow: hidden;
 }
 
 .livetickerevent {
-    border-top: 1px solid #aab;
-    border-bottom: 1px solid #eef;
+    //border-top: 1px solid #aab;
+    //border-bottom: 1px solid #eef;
     padding: 5px;
     text-align: left;
 }
 
 .livetickerdate {
-    border-bottom: 1px solid #eef;
-    padding: 10px 0;
+    font-size: 10px;
+    color: #ccc;
+    margin-left: 100px;
 }
 
 #livetickersmall {
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    margin-left: -270px;
     background: #D4E6FC;
-    width: 500px;
     height: 35px;
-    z-index: 100;
     border: 1px solid #C5D7EF;
     border-radius: 5px;
     overflow: hidden;
@@ -1431,5 +1456,24 @@ table#msg-composer td {
         font-size: 18px;
         text-align: left;
         padding: 5px;
+    }
+}
+
+.liveHeader {
+    background: -moz-linear-gradient(-90deg, @live-header-gradient-top, @live-header-gradient-bottom);
+    background: -webkit-gradient(linear, left top, left bottom, from(@live-header-gradient-top), to(@live-header-gradient-bottom));
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid @live-header-active-border;
+    h1 {
+        color: #fff;
+        margin: auto 0;
+        padding: 0;
+        border: 0;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    .second {
+        padding: 4px 5px;
     }
 }

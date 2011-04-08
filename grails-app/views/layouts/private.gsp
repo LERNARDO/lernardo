@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <title>${grailsApplication.config.projectName} - <g:layoutTitle/></title>
-  <link rel="stylesheet" href="${resource(dir: 'css', file: 'reset-fonts-grids.css')}" type="text/css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset.css" type="text/css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssfonts/fonts.css" type="text/css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" type="text/css">
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.qtip.min.css')}" type="text/css">
   <g:set var="project" value="${grailsApplication.config.project}"/>
   <less:stylesheet name="common" />
@@ -162,11 +164,9 @@
   <g:set var="entity" value="${currentEntity}"/>
 </g:if>
 
-<div id="livetickerbox"></div>
 %{--<div id="erp"><div class="title">ERP</div></div>--}%
 
 <div id="private">
-  <div id="doc4" class="yui-t3">
 
     <div id="hd">
       <g:render template="/templates/header"/>
@@ -177,21 +177,10 @@
       <g:render template="/templates/imagenav"/>
     </div>
 
-    <div id="bd">
-      <div id="yui-main">
-        <div id="main" class="yui-b">
-          <g:if test="${flash.message}">
-            <div id="flash-msg">
-              <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
-            </div>
-          </g:if>
-          <div id="private-content">
-            <g:layoutBody/>
-          </div>
-        </div>
-      </div>
+    %{--<div id="bd">--}%
+    <div class="yui3-g" id="grid">
 
-      <div id="profile-navigation" class="yui-b">
+      <div class="yui3-u" id="profile-navigation">
         <div class="boxHeader">
           <div class="second">
             <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'icon_enabled.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'icon_disabled.png')}" alt="inaktiv"/></g:else></g:if></h1>
@@ -345,6 +334,35 @@
           </div>
         </div>--}%
 
+        %{--<div class="profile-box">
+          <div class="second">
+            <div class="header"><g:message code="privat.head.online"/></div>
+            <ul id="onlineUsers">
+              <erp:getOnlineUsers>
+                <g:each in="${onlineUsers}" var="entity">
+                  <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
+                </g:each>
+              </erp:getOnlineUsers>
+            </ul>
+          </div>
+        </div>--}%
+
+      </div>
+
+      <div class="yui3-u" id="main">
+        <g:if test="${flash.message}">
+          <div id="flash-msg">
+            <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
+          </div>
+        </g:if>
+        <div id="private-content">
+          <g:layoutBody/>
+        </div>
+      </div>
+
+      <div class="yui3-u" id="extra">
+        <div id="livetickerbox"></div>
+
         <div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="privat.head.online"/></div>
@@ -365,7 +383,6 @@
       <g:render template="/templates/footer"/>
     </div>
 
-  </div>
 </div>
 
 </body>
