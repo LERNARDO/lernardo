@@ -13,7 +13,6 @@
 /* ----- GLOBAL ----- */
 
 html {
-    height: 100%;
     background: #eee;
 }
 
@@ -21,14 +20,8 @@ body {
     font-family: verdana,arial,helvetica,sans-serif;
     font-size: 12px;
     background: #eee;
-    height: 100%;
+    padding: 10px;
 }
-
-/* used for private layout */
-#doc4 {
-    width: 1145px;
-    border-top: 10px solid #eee;
-    border-bottom: 10px solid #eee; }
 
 /* used for public layout */
 #doc5 {
@@ -141,7 +134,7 @@ a {
 
 #banner-private {
     height: 100px;
-    background: -moz-linear-gradient(90deg, @imagemenu-gradient-top, @imagemenu-gradient-bottom);
+    background: -moz-linear-gradient(-90deg, @imagemenu-gradient-top, @imagemenu-gradient-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@imagemenu-gradient-top), to(@imagemenu-gradient-bottom));
     margin: 0 15px;
     border-bottom-left-radius: 5px;
