@@ -32,7 +32,7 @@
   <div class="bold"><g:message code="groupClients"/> (${allClientGroups})</div>
   <g:link controller="groupClientProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_betreutengruppe.png')}" alt="Notiz" align="top"/></g:link>
   <div><g:link controller="groupClientProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]">
+  <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
     <div><g:link controller="groupClientProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>
   </erp:accessCheck>
 </div>

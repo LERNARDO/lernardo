@@ -67,7 +67,7 @@
         </table>
 
         <div class="email">         
-          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
             <g:message code="active"/>
             <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
           </erp:accessCheck>

@@ -87,7 +87,7 @@
           <table>
 
             <tr class="prop">
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                 <td width="90" valign="top" class="name">
                   <g:message code="active"/>
                 </td>

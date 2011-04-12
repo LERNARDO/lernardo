@@ -88,7 +88,7 @@
       <div class="email">
         <table>
           <tr class="prop">
-            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
               <td width="60" valign="top">
                 <span class="bold"><g:message code="active"/></span>
               </td>
@@ -108,7 +108,7 @@
       <erp:isMeOrAdminOrOperator entity="${partner}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdminOrOperator>
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${partner.id}" onclick="${erp.getLinks(id: partner.id)}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
@@ -131,7 +131,7 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#contacts');
+      <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">

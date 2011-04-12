@@ -1,7 +1,7 @@
 <g:if test="${methodInstance.elements}">
   <ul>
   <g:each in="${methodInstance.elements}" var="element">
-    <li>${element.name} <erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><g:remoteLink action="removeElement" update="elements2" id="${methodInstance.id}" params="[element: element.id]" before="if(!confirm('${message(code:'delete.warn')}') return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Element entfernen" align="top"/></g:remoteLink></erp:accessCheck></li>
+    <li>${element.name} <erp:accessCheck entity="${entity}" types="['Betreiber']"><g:remoteLink action="removeElement" update="elements2" id="${methodInstance.id}" params="[element: element.id]" before="if(!confirm('${message(code:'delete.warn')}') return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Element entfernen" align="top"/></g:remoteLink></erp:accessCheck></li>
   </g:each>
   </ul>
 </g:if>

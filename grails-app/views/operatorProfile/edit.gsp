@@ -85,12 +85,7 @@
             <tr class="prop">
               <td valign="top" class="name"><g:message code="active"/></td>
               <td valign="top" class="value">
-                <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-                  <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
-                </erp:accessCheck>
-                <erp:notAdmin entity="${currentEntity}">
-                  <g:checkBox name="enabled" value="${operator?.user?.enabled}" disabled="true"/>
-                </erp:notAdmin>
+                <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
               </td>
             </tr>
           </erp:accessCheck>

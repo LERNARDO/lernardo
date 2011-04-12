@@ -54,7 +54,7 @@
           <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.profile.showTips}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
         </tr>
 
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="active"/>:</td>
             <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>

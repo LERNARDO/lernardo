@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="evaluation" action="listall" id="${entity.id}">Alle Tagebucheinträge</g:link></h1>

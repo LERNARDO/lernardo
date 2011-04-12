@@ -3,7 +3,7 @@
     <g:each in="${group.profile.representatives}" var="representative">
       <tr class="prop">
         <td valign="top" class="italic" width="100"><g:message code="representantives.name"/>:</td><td colspan="6" class="value">${representative.firstName}  ${representative.lastName}</td>
-        <td><erp:accessCheck entity="${entity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+        <td><erp:accessCheck entity="${entity}" types="['Betreiber']">
           <g:remoteLink action="editRepresentative" update="representatives2" id="${group.id}" params="[representative: representative.id]" before="showspinner('#representatives2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code:'edit')}" align="top"/></g:remoteLink>
           <g:remoteLink action="removeRepresentative" update="representatives2" id="${group.id}" params="[representative: representative.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir: 'images/icons', file: 'icon_remove.png')}" alt="${message(code:'delete')}" align="top"/></g:remoteLink>
         </erp:accessCheck></td></tr>

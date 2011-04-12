@@ -42,7 +42,7 @@
     %{--</erp:isMeOrAdmin>--}%
 
     <div class="zusatz">
-      <h5>Elemente <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#elements'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></erp:accessCheck></h5>
+      <h5>Elemente <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#elements'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Element hinzufügen" /></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="elements" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'method', action:'addElement', id:methodInstance.id]" update="elements2" before="showspinner('#elements2')" after="cleartext()">
           Bezeichnung: <g:textField id="hide" name="name" size="40"/>

@@ -154,7 +154,7 @@
         <table>
           <tr>
 
-            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
               <td width="100" valign="middle">
                 <span class="bold"><g:message code="active"/></span>
                 <g:formatBoolean boolean="${parent.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
@@ -180,7 +180,7 @@
       <erp:isMeOrAdminOrOperator entity="${parent}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${parent?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdminOrOperator>
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${parent.id}" onclick="${erp.getLinks(id: parent.id)}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>

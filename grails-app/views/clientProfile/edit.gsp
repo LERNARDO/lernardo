@@ -292,7 +292,7 @@
         <div class="email">
           <table>
             <tr>
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                 <td width="90" valign="top">
                   <g:message code="active"/>
                 </td>

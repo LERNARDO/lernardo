@@ -15,7 +15,7 @@
       ${methodInstanceTotal} <g:message code="method.c_total"/>
     </div>
 
-     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="method.create"/></g:link>
         <div class="spacer"></div>

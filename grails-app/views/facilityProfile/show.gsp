@@ -65,7 +65,7 @@
       <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]">
         <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
       </erp:accessCheck>
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
         <g:link class="buttonRed" action="del" id="${facility.id}" onclick="${erp.getLinks(id: facility.id)}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>

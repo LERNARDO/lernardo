@@ -279,7 +279,7 @@
                     <erp:isSystemAdmin>
                       <li class="icon-admin"><g:link controller="app" action="adminlinks"><g:message code="Link Check"/></g:link></li>
                     </erp:isSystemAdmin>
-                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+                    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                       <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
                       %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
@@ -292,7 +292,7 @@
 
                 <div id="inhalt-verwaltung" class="aktiv_inhalt">
                   <ul>
-                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+                    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                       <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
                     </erp:accessCheck>
                     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">

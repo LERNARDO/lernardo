@@ -87,7 +87,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="projects"/><erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#projects');
+      <h5><g:message code="projects"/><erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#projects');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Projekte zuordnen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="projects" style="display:none">
         <g:if test="${allProjects}">
@@ -108,7 +108,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupActivities"/><erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']"><a onclick="toggle('#activitygroups');
+      <h5><g:message code="groupActivities"/><erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#activitygroups');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsblöcke zuordnen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="activitygroups" style="display:none">
         <g:if test="${allActivityGroups}">

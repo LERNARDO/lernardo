@@ -15,7 +15,7 @@
       ${parents.totalCount} <g:message code="parent.profile.c_total"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="parent.profile.create"/></g:link>
         <div class="spacer"></div>

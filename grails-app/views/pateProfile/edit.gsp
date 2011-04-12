@@ -69,15 +69,10 @@
         <div class="email">
           <table>
             <tr>
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
+              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                 <td width="80" valign="middle">
                   <g:message code="active"/>
-                  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                     <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
-                  </erp:accessCheck>
-                  <erp:notAdmin entity="${currentEntity}">
-                    <g:checkBox name="enabled" value="${pate?.user?.enabled}" disabled="true"/>
-                  </erp:notAdmin>
                 </td>
               </erp:accessCheck>
               <td width="150" valign="middle">
