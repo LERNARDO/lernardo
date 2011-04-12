@@ -25,7 +25,7 @@
           </g:if>
         </erp:notMe>
 
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
           <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
         </erp:accessCheck>
 

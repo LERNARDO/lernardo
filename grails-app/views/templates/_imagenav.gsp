@@ -11,7 +11,7 @@
         </div>
       </li>
 
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
         <li>
           <div class="imgbox">
             <g:link controller="templateProfile" action="index">

@@ -17,7 +17,7 @@
       </div>
     </g:if>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${entity}">
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
       <div class="buttons">
         <g:link class="buttonGreen" controller="publication" id="${entity.id}" action="create"><img src="${g.resource (dir:'images/icons', file:'icon_document.png')}" alt="icon" align="top"/> <g:message code="publication.profile.create"/></g:link>
         <div class="spacer"></div>

@@ -14,7 +14,7 @@
 
     %{--${themeTotal} Themen insgesamt vorhanden--}%
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" facilities="${facilities ?: null}" >
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities ?: null}" >
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="theme.create"/></g:link>
         <div class="spacer"></div>

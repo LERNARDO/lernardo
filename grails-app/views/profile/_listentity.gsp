@@ -26,7 +26,7 @@
                   - <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${erp.getLinks(id: entity.id)}">%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%<g:message code="profile.list.delete"/></g:link>
                 </erp:accessCheck>
               </erp:notMe>
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_SYSTEMADMIN']">
+              <erp:isSystemAdmin>
               <g:if test="${entity.user}">
                 <erp:hasNotRoles entity="${entity}" roles="['ROLE_ADMIN']">
                   - <g:remoteLink update="listentity-${i}" controller="profile" action="giveAdminRole" id="${entity.id}" params="[i:i]" before="showspinner('#entity-roles-${i}')">%{--<img src="${resource (dir:'images/icons', file:'icon_noadmin.png')}" alt="Admin geben" align="top"/>--}%<g:message code="profile.list.giveAdmin"/></g:remoteLink>
@@ -36,5 +36,5 @@
                   - <g:remoteLink update="listentity-${i}" controller="profile" action="takeAdminRole" id="${entity.id}" params="[i:i]" before="showspinner('#entity-roles-${i}')">%{--<img src="${resource (dir:'images/icons', file:'icon_anadmin.png')}" alt="Admin nehmen" align="top"/>--}%<g:message code="profile.list.takeAdmin"/></g:remoteLink>
                 </erp:accessCheck>
               </g:if>
-              </erp:accessCheck>
+              </erp:isSystemAdmin>
             </td>

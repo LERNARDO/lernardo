@@ -8,7 +8,7 @@
   <div id="article-container">
  
     <g:if test="${currentEntity}">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
         <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker"><g:message code="article.create"/></g:link></p>
       </erp:accessCheck>
     </g:if>

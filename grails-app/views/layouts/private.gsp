@@ -207,7 +207,7 @@
 
                 <td>
                   <ul>
-                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" me="true">
+                    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="true">
                       <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
                     </erp:accessCheck>
 
@@ -218,7 +218,7 @@
                       <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
                     </erp:accessCheck>
 
-                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="[]" me="true">
+                    <erp:accessCheck entity="${currentEntity}" types="[]" me="true">
                       <erp:accessCheck entity="${entity}" roles="[]" types="['Pädagoge','Betreuter','Kind','Betreiber','Pate','Partner','Erziehungsberechtigter','User']" me="false">
                         <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
                       </erp:accessCheck>
@@ -235,7 +235,7 @@
                       </erp:notMe>
                     </erp:accessCheck>
 
-                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+                    <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
                       <erp:accessCheck entity="${entity}" roles="[]" types="['Betreuter']">
                         <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
                       </erp:accessCheck>
@@ -267,7 +267,7 @@
             <div class="header">
 
               <label id="tab-verwaltung" class="aktiv_tab" onclick="changeTab('tab-verwaltung', 'inhalt-verwaltung', 'tab-admin', 'inhalt-admin')"><g:message code="privat.head.verw"/></label>
-              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
+              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                  <span class="gray">|</span> <label id="tab-admin" class="passiv_tab" onclick="changeTab('tab-admin', 'inhalt-admin', 'tab-verwaltung', 'inhalt-verwaltung')"><g:message code="privat.head.admin"/></label>
               </erp:accessCheck>
 
@@ -276,9 +276,9 @@
 
                 <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
-                    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_SYSTEMADMIN']">
-                        <li class="icon-admin"><g:link controller="app" action="adminlinks"><g:message code="Link Check"/></g:link></li>
-                    </erp:accessCheck>
+                    <erp:isSystemAdmin>
+                      <li class="icon-admin"><g:link controller="app" action="adminlinks"><g:message code="Link Check"/></g:link></li>
+                    </erp:isSystemAdmin>
                     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']" types="['Betreiber']">
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                       <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>

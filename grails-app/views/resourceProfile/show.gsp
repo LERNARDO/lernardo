@@ -39,7 +39,7 @@
     </div>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
         <g:link class="buttonGreen" action="edit" id="${resource?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: resource.id)}" id="${resource.id}"><g:message code="delete"/></g:link>
       </erp:accessCheck>

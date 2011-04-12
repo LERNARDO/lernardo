@@ -43,17 +43,12 @@
       <div class="email">
         <table>
           <tr>
-            <erp:accessCheck entity="${currentEntity}" roles="['ROLE_SYSTEMADMIN']">
+            <erp:isSystemAdmin>
               <td width="85" valign="middle">
                 <g:message code="active"/>
-                <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-                  <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
-                </erp:accessCheck>
-                <erp:notAdmin entity="${currentEntity}">
-                  <g:checkBox name="enabled" value="${user?.user?.enabled}" disabled="true"/>
-                </erp:notAdmin>
+                <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
               </td>
-            </erp:accessCheck>
+            </erp:isSystemAdmin>
 
             <td width="150" valign="middle">
               <g:message code="password"/>:

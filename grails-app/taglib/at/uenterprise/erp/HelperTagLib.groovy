@@ -371,14 +371,14 @@ class HelperTagLib {
 
     //log.info "----------"
 
-    boolean hasRoles = false
-    if (attrs.roles)
-      hasRoles = accessHasRoles(entity, attrs.roles)
+    //boolean hasRoles = false
+    //if (attrs.roles)
+      //hasRoles = accessHasRoles(entity, attrs.roles)
     //log.info "${entity.profile} has roles: ${hasRoles}"
 
-    boolean hasTypes = false
-    if (attrs.types)
-      hasTypes = accessHasTypes(entity, attrs.types)
+    //boolean hasTypes = false
+    //if (attrs.types)
+      //hasTypes = accessHasTypes(entity, attrs.types)
     //log.info "${entity.profile} has types: ${hasTypes}"
 
     boolean isMe = false
@@ -395,12 +395,14 @@ class HelperTagLib {
     if (attrs.creatorof)
       isCreatorOf = accessIsCreatorOf(entity, attrs.creatorof)
 
-    if (hasRoles || hasTypes || isMe || isLeadEducator || isCreatorOf)
+    boolean isAdmin = entity.user.authorities.find {it.authority == 'ROLE_ADMIN'} ? true : false
+
+    if (isAdmin || accessHasTypes(entity, attrs.types) || accessHasRoles(entity, attrs.roles) || isMe || isLeadEducator || isCreatorOf)
       out << body()
   }
 
   // checks if a given entity has at least one of the given roles
-  boolean accessHasRoles(Entity entity, List roles) {
+  boolean accessHasRoles(Entity entity, List roles = []) {
 
     def result = false
 
@@ -412,7 +414,7 @@ class HelperTagLib {
   }
 
   // checks if a given entity is of one of the given types
-  boolean accessHasTypes(Entity entity, List types) {
+  boolean accessHasTypes(Entity entity, List types = []) {
 
     def result = types.findAll { entity.type?.name == it }
 
@@ -982,6 +984,11 @@ class HelperTagLib {
       out << body()
   }
 
+  def isSystemAdmin = {attrs, body ->
+    if (entityHelperService.loggedIn.user.authorities.find {it.authority == 'ROLE_SYSTEMADMIN'} )
+      out << body()
+  }
+
   def isMeOrAdmin = {attrs, body ->
     if (attrs.entity.name == entityHelperService.loggedIn.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} )
       out << body()
@@ -1056,8 +1063,8 @@ class HelperTagLib {
 
 
     out << '<div>'
-    // if the current entity is admin, sysadmin, operator or the creator display this
-    if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.user.authorities.find {it.authority == 'ROLE_SYSTEMADMIN'} || currentEntity.type.id == metaDataService.etOperator.id || accessIsCreatorOf(currentEntity,attrs.template)) {
+    // if the current entity is admin, operator or the creator display this
+    if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.type.id == metaDataService.etOperator.id || accessIsCreatorOf(currentEntity,attrs.template)) {
       out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
       out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
       out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }

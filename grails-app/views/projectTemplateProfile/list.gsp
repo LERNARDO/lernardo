@@ -22,7 +22,7 @@
       ${projectTemplates.totalCount} <g:message code="projectTemplates.c_total"/>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="create"><g:message code="projectTemplate.create"/></g:link>
         <div class="spacer"></div>

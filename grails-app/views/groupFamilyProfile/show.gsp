@@ -60,7 +60,7 @@
       </table>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
@@ -73,7 +73,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.parents"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#parents');
+      <h5><g:message code="groupFamily.profile.parents"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#parents');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Erziehungsberechtigten hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="parents" style="display:none">
 
@@ -88,7 +88,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.clients"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#clients');
+      <h5><g:message code="groupFamily.profile.clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
       return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
@@ -104,7 +104,7 @@
 
     <g:if test="${grailsApplication.config.project == 'sueninos'}">
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.childs"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']"><a onclick="toggle('#childs');
+      <h5><g:message code="groupFamily.profile.childs"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#childs');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Kinder hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="childs" style="display:none">
 

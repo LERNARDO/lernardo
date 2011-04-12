@@ -32,12 +32,12 @@
         <td class="two"><a href="mailto:${fieldValue(bean: user, field: 'user.email').decodeHTML()}">${fieldValue(bean: user, field: 'user.email').decodeHTML()}</a></td>
       </tr>
 
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_SYSTEMADMIN']">
+      <erp:isSystemAdmin>
         <tr class="prop">
           <td class="one"><g:message code="active"/>:</td>
           <td class="two"><span style="color: ${user.user.enabled ? '#090' : '#900'}"><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></span></td>
         </tr>
-      </erp:accessCheck>
+      </erp:isSystemAdmin>
 
       </tbody>
     </table>
@@ -46,9 +46,9 @@
       <erp:isMeOrAdmin entity="${user}" current="${currentEntity}">
         <g:link class="buttonGreen" action="edit" id="${user?.id}"><g:message code="edit"/></g:link>
       </erp:isMeOrAdmin>
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_SYSTEMADMIN']">
+      <erp:isSystemAdmin>
         <g:link class="buttonRed" action="del" id="${user.id}" onclick="${erp.getLinks(id: user.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
+      </erp:isSystemAdmin>
       <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
       <div class="spacer"></div>
     </div>

@@ -3,7 +3,7 @@
 </div>
 
 <div class="buttons">
-  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Pädagoge','Betreiber']">
+  <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
     <g:link class="buttonGreen" controller="templateProfile" action="create"><g:message code="activityTemplate.create"/></g:link>
     <div class="spacer" style="margin-bottom: 5px"></div>
   </erp:accessCheck>

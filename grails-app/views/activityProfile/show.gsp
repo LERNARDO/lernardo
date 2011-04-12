@@ -97,7 +97,7 @@
     </table>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
         <g:link class="buttonGreen" action="edit" id="${activity.id}"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" onclick="${erp.getLinks(id: activity.id)}" id="${activity.id}"><g:message code="delete"/></g:link>
       </erp:accessCheck>
@@ -135,7 +135,7 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+<erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: activity]"/>
 </erp:accessCheck>
 

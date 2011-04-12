@@ -79,14 +79,14 @@
     </table>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${template}">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
         <g:link class="buttonGreen" action="edit" id="${template.id}" params="[entity: template?.id]"><g:message code="edit"/></g:link>
         <g:link class="buttonRed" action="del" id="${template.id}" onclick="${erp.getLinks(id: template.id)}"><g:message code="delete"/></g:link>
       %{--<g:if test="${template.profile.status == 'fertig'}">
         <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
       </g:if>--}%
       </erp:accessCheck>
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
         <g:link class="buttonGreen" action="copy" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
       </erp:accessCheck>
       <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
@@ -94,7 +94,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${template}"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
+      <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
         <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
@@ -120,7 +120,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="vMethods"/> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${template}"><a onclick="toggle('#methods');
+      <h5><g:message code="vMethods"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}"><a onclick="toggle('#methods');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gewichtungsmethode hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="methods" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'templateProfile', action:'addMethod', id:template.id]" update="methods2" before="showspinner('#methods2');" after="toggle('#methods');">
@@ -138,7 +138,7 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber','Pädagoge']">
+<erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
   <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: template]"/>
 </erp:accessCheck>
 

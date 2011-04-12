@@ -7,7 +7,7 @@
 
     <td valign="top">
       <ul>
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN','ROLE_SYSTEMADMIN']" types="['Betreiber']" creatorof="${entity}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
           <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
         </erp:accessCheck>
 
