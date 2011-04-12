@@ -283,7 +283,9 @@ ul {
      }
 
 .headerBlue {
-    background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
+    background: #789fe8;
+    background: -moz-linear-gradient(-90deg,#789fe8,#567ec6);
+    background: -webkit-gradient(linear, left top, left bottom, from(#789fe8), to(#567ec6));
     h1 {
         color: #fff;
         margin: 0;
@@ -699,6 +701,7 @@ div.actionlinks div.userlinks a {
     margin-bottom: 10px; }
 
 #private-content input[type=submit], input[type=submit] {
+    background: @button-green-gradient-top;
     background: -moz-linear-gradient(-90deg, @button-green-gradient-top, @button-green-gradient-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@button-green-gradient-top), to(@button-green-gradient-bottom));
     border: 1px solid @button-green-border;
@@ -711,6 +714,7 @@ div.actionlinks div.userlinks a {
     display: block;
     font: 12px verdana; }
     #private-content input[type=submit]:hover, input[type=submit]:hover {
+        background: @button-green-gradient-bottom;
         background: -moz-linear-gradient(-90deg, darken(@button-green-gradient-top, 10%), darken(@button-green-gradient-bottom, 10%));
         background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green-gradient-top, 10%)), to(darken(@button-green-gradient-bottom, 10%)));
         border: 1px solid darken(@button-green-border, 10%);
@@ -718,7 +722,8 @@ div.actionlinks div.userlinks a {
         cursor: pointer; }
 
 .buttonGreen {
-    //background: linear-gradient(@button-green-gradient-top, @button-green-gradient-bottom); TODO: use when supported (official W3C draft)
+    background: @button-green-gradient-top;
+    //background: linear-gradient(@button-green-gradient-top, @button-green-gradient-bottom); // TODO: use when supported (official W3C draft)
     background: -moz-linear-gradient(-90deg, @button-green-gradient-top, @button-green-gradient-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@button-green-gradient-top), to(@button-green-gradient-bottom));
     border: 1px solid @button-green-border;
@@ -731,7 +736,8 @@ div.actionlinks div.userlinks a {
     display: block;
     height: 16px;
     text-decoration: none;
-        &:hover {
+    &:hover {
+        background: @button-green-gradient-bottom;
         background: -moz-linear-gradient(-90deg, darken(@button-green-gradient-top, 10%), darken(@button-green-gradient-bottom, 10%));
         background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green-gradient-top, 10%)), to(darken(@button-green-gradient-bottom, 10%)));
         border: 1px solid darken(@button-green-border, 10%);
@@ -739,8 +745,9 @@ div.actionlinks div.userlinks a {
 }
 
 .buttonGray {
+    background: @button-gray-gradient-top;
     background: -moz-linear-gradient(-90deg, @button-gray-gradient-top, @button-gray-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@button-gray-gradient-bottom), to(@button-gray-gradient-bottom));
+    background: -webkit-gradient(linear, left top, left bottom, from(@button-gray-gradient-top), to(@button-gray-gradient-bottom));
     border: 1px solid @button-gray-border;
     border-radius: 5px;
     padding: 4px 5px;
@@ -751,7 +758,8 @@ div.actionlinks div.userlinks a {
     display: block;
     height: 16px;
     text-decoration: none;
-        &:hover {
+    &:hover {
+        background: @button-gray-gradient-bottom;
         background: -moz-linear-gradient(-90deg, darken(@button-gray-gradient-top, 10%), darken(@button-gray-gradient-bottom, 10%));
         background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-gray-gradient-top, 10%)), to(darken(@button-gray-gradient-bottom, 10%)));
         border: 1px solid darken(@button-gray-border, 10%);
@@ -759,6 +767,7 @@ div.actionlinks div.userlinks a {
 }
 
 .buttonRed {
+    background: @button-red-gradient-top;
     background: -moz-linear-gradient(-90deg, @button-red-gradient-top, @button-red-gradient-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@button-red-gradient-top), to(@button-red-gradient-bottom));
     border: 1px solid @button-red-border;
@@ -771,7 +780,8 @@ div.actionlinks div.userlinks a {
     display: block;
     height: 16px;
     text-decoration: none;
-        &:hover {
+    &:hover {
+        background: @button-red-gradient-bottom;
         background: -moz-linear-gradient(-90deg, darken(@button-red-gradient-top, 10%), darken(@button-red-gradient-bottom, 10%));
         background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-red-gradient-top, 10%)), to(darken(@button-red-gradient-bottom, 10%)));
         border: 1px solid darken(@button-red-border, 10%);
@@ -1037,6 +1047,7 @@ table#msg-composer td {
         padding: 3px; }
 
 .headerGrey {
+    background: #eee;
     background: -moz-linear-gradient(-90deg,#eee,#999);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
      }
@@ -1208,6 +1219,7 @@ table#msg-composer td {
     padding-top: 6px; }
 
 .tabGrey {
+    background: @button-gray-gradient-top;
     background: -moz-linear-gradient(-90deg, @button-gray-gradient-top, @button-gray-gradient-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@button-gray-gradient-top), to(@button-gray-gradient-bottom));
     border-top-left-radius: 5px;
@@ -1460,6 +1472,7 @@ table#msg-composer td {
 }
 
 .liveHeader {
+    background: @live-header-gradient-top;
     background: -moz-linear-gradient(-90deg, @live-header-gradient-top, @live-header-gradient-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@live-header-gradient-top), to(@live-header-gradient-bottom));
     border-top-left-radius: 5px;
