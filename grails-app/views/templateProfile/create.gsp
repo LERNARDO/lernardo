@@ -16,7 +16,7 @@
     <g:form action="save">
 
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td colspan="2" valign="top" class="name"><g:message code="activityTemplate.name"/>:</td>
@@ -25,7 +25,7 @@
 
           <tr>
             <td colspan="2" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="51" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable50 ${hasErrors(bean:template,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:template,field:'profile.fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean:template,field:'profile.duration','errors')}" size="20" name="duration" value="${fieldValue(bean:template,field:'profile.duration')}"/> (min)
@@ -57,12 +57,12 @@
 
           <tr>
             <td colspan="2" valign="top" class="value ${hasErrors(bean: template, field: 'profile.description', 'errors')}">
-              <ckeditor:editor name="description" height="300px" width="380px" toolbar="Basic">
+              <ckeditor:editor name="description" height="300px" width="350px" toolbar="Basic">
                 ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
             </td>
             <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.chosenMaterials', 'errors')}">
-              <ckeditor:editor name="chosenMaterials" height="300px" width="380px" toolbar="Basic">
+              <ckeditor:editor name="chosenMaterials" height="300px" toolbar="Basic">
                 ${fieldValue(bean:template,field:'profile.chosenMaterials').decodeHTML()}
               </ckeditor:editor>
             </td>

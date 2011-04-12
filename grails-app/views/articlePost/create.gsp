@@ -21,7 +21,7 @@
   <g:form action="save" id="${postInstance.id}">
 
     <p><span class="strong"><g:message code="article.title"/></span><br/>
-    <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" style="width: 100%" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
+    <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="50" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
 
     <p><span class="strong"><g:message code="article.teaser"/></span><br/>
     <span class="${hasErrors(bean: postInstance, field: 'teaser', 'errors')}"><g:textArea class="countable500" name="teaser" rows="4" cols="10" style="width: 100%" value="${fieldValue(bean:postInstance,field:'teaser').decodeHTML()}"/></span>
@@ -29,7 +29,7 @@
     
     <span class="strong"><g:message code="article.content"/></span>
     <span class="${hasErrors(bean: postInstance, field: 'content', 'errors')}">
-      <ckeditor:editor name="content" height="400px" width="700px" toolbar="Basic">
+      <ckeditor:editor name="content" height="400px" toolbar="Basic">
         ${fieldValue(bean:postInstance,field:'content').decodeHTML()}
       </ckeditor:editor>
     </span>

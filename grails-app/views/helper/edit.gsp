@@ -19,8 +19,7 @@
     </g:hasErrors>
 
     <g:form action="update" id="${helperInstance?.id}" params="[name:entity.id]">
-      <table>
-        <tbody>
+      <table width="100%">
 
         <tr>
           <td valign="top" class="label"><g:message code="helper.topic.title"/>:</td>
@@ -30,7 +29,7 @@
         <tr>
           <td class="label"><g:message code="text"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
-            <ckeditor:editor name="content" height="200px" width="750px" toolbar="Basic">
+            <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:helperInstance,field:'content').decodeHTML()}
             </ckeditor:editor>
           </td>
@@ -43,7 +42,6 @@
           </td>
         </tr>
                                                                                                                                                                          "
-        </tbody>
       </table>
 
       <div class="buttons">

@@ -15,7 +15,7 @@
 
     <g:form action="save">
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.name"/></td>
@@ -24,10 +24,10 @@
           </tr>
 
           <tr>
-            <td width="500px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="75" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
-            <td width="170px" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/> (min)
             </td>
             <td valign="top" class="value">
@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+              <ckeditor:editor name="description" height="200px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
             </td>

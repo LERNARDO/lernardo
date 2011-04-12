@@ -14,9 +14,7 @@
     <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form action="save" params="[template: template.id]">
-      <div>
-        <table>
-          <tbody>
+        <table width="100%">
 
           %{--<tr class="prop">
             <td height="30" colspan="3" valign="top" class="name">
@@ -35,10 +33,10 @@
           </tr>
 
           <tr>
-            <td width="280px" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName') ? fieldValue(bean: group, field: 'profile.fullName').decodeHTML() : fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}"/>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName') ? fieldValue(bean: group, field: 'profile.fullName').decodeHTML() : fieldValue(bean: template, field: 'profile.fullName').decodeHTML()}"/>
             </td>
-            <td width="180px" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration') ?: calculatedDuration}"/> (min)
             </td>
             <td valign="top" class="value">
@@ -53,7 +51,7 @@
 
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="educationalObjectiveText" height="200px" width="800px" toolbar="Basic">
+              <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
               %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
@@ -66,16 +64,15 @@
 
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+              <ckeditor:editor name="description" height="200px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.description') ? fieldValue(bean:group,field:'profile.description').decodeHTML() : fieldValue(bean:template,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
               %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="120" name="description" value="${fieldValue(bean: template, field: 'profile.description').decodeHTML()}"/>--}%
             </td>
           </tr>
 
-          </tbody>
         </table>
-      </div>
+
       <p>Errechnete Gesamtdauer: ${calculatedDuration} Minuten</p>
       <div class="buttons">
         <g:submitButton name="submitButton" value="${message(code:'save')}"/>

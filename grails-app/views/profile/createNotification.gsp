@@ -34,7 +34,7 @@
             <g:checkBox name="partner" value="${nc?.partner}"/> <g:message code="partners"/><br/>
           </p>
 
-          <table class="form">
+          <table width="100%">
             <tbody>
 
             <tr>
@@ -45,7 +45,7 @@
             <tr>
               <td><g:message code="notification.content"/>:</td>
               <td class="value ${hasErrors(bean:nc,field:'content','errors')}">
-                <ckeditor:editor name="content" height="200px" width="700px" toolbar="Basic">
+                <ckeditor:editor name="content" height="200px" toolbar="Basic">
                   ${fieldValue(bean:nc,field:'content').decodeHTML()}
                 </ckeditor:editor>
               </td>

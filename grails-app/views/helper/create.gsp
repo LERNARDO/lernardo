@@ -19,18 +19,18 @@
     </g:hasErrors>
 
     <g:form action="save" params="[name:entity.id]">
-      <table>
+      <table width="100%">
         <tbody>
 
         <tr>
           <td valign="top" class="label"><g:message code="helper.topic.title"/>:</td>
-          <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
+          <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="50" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
         </tr>
 
         <tr>
           <td class="label"><g:message code="text"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'content', 'errors')}">
-            <ckeditor:editor name="content" height="200px" width="750px" toolbar="Basic">
+            <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:helperInstance,field:'content').decodeHTML()}
             </ckeditor:editor>
           </td>

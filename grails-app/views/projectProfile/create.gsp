@@ -16,7 +16,7 @@
     <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
     <g:form action="save" id="${template.id}">
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="project.profile.name"/></td>
@@ -25,13 +25,13 @@
           </tr>
 
           <tr>
-            <td width="300" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
             </td>
-            <td width="230" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${pc?.startDate?.format('dd. MM. yyyy')}"/>
             </td>
-            <td width="230" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${pc?.endDate?.format('dd. MM. yyyy')}"/>
             </td>
           </tr>
@@ -42,7 +42,7 @@
 
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+              <ckeditor:editor name="description" height="200px" toolbar="Basic">
                 ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
             </td>

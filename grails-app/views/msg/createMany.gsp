@@ -14,8 +14,7 @@
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
 
     <g:form action="saveMany" id="${msgInstance.id}">
-      <table id="msg-composer">
-        <tbody>
+      <table width="100%">
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="msg.entity.label" default="An"/>:</td>
@@ -39,20 +38,19 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="msg.subject.label" default="Betreff"/>:</td>
           <td valign="top" class="value">
-            <g:textField class="countable50 ${hasErrors(bean: msgInstance, field: 'subject', 'errors')}" size="70" name="subject" value="${fieldValue(bean: msgInstance, field: 'subject').decodeHTML()}"/>
+            <g:textField class="countable50 ${hasErrors(bean: msgInstance, field: 'subject', 'errors')}" size="50" name="subject" value="${fieldValue(bean: msgInstance, field: 'subject').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="msg.content.label" default="Nachricht"/>:</td>
           <td valign="top" class="value">
-            <ckeditor:editor name="content" height="200px" width="700px" toolbar="Basic">
+            <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:msgInstance,field:'content').decodeHTML()}
             </ckeditor:editor>
           </td>
         </tr>
 
-        </tbody>
       </table>
 
       <div class="buttons">

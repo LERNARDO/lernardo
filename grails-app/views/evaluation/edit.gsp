@@ -22,14 +22,14 @@
 
       <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
-        <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
+        <ckeditor:editor name="description" height="200px" toolbar="Basic">
           ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
         </ckeditor:editor>
       </span>
 
       <p class="strong"><g:message code="action"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
-        <ckeditor:editor name="method" height="200px" width="800px" toolbar="Basic">
+        <ckeditor:editor name="method" height="200px" toolbar="Basic">
           ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
         </ckeditor:editor>
       </span>
