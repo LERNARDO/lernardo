@@ -11,8 +11,7 @@
 <div class="boxGray">
   <div class="second">
     <div>
-      <table>
-        <tbody>
+      <table width="100%">
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="client.profile.gender"/></td>
@@ -22,10 +21,10 @@
         </tr>
 
         <tr class="prop">
-          <td width="130" valign="top" class="value-show"><erp:showGender gender="${client.profile.gender}"/></td>
-          <td width="200" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          <td width="270" valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
-          <td width="35" valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
+          <td valign="top" class="value-show"><erp:showGender gender="${client.profile.gender}"/></td>
+          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+          <td valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
         <tr class="prop">
@@ -41,7 +40,7 @@
       </table>
       <h4><g:message code="client.profile.curAddress"/></h4>
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="client.profile.currentStreet"/></td>
@@ -51,17 +50,17 @@
           </tr>
 
           <tr class="prop">
-            <td width="270" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td width="60" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-            <td width="205" valign="top" class="value-show"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name +'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if></td>
-            <td width="165" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td valign="top" class="value-show"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name +'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if></td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           </tr>
 
         </table>
       </div>
       <h4><g:message code="client.profile.origin"/></h4>
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="client.profile.originCity"/></g:if></td>
@@ -70,16 +69,16 @@
           </tr>
 
           <tr class="prop">
-            <td width="205" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originCity}">${fieldValue(bean: client, field: 'profile.originCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
-            <td width="60" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originZip}">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</g:if></td>
-            <td width="170" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originCity}">${fieldValue(bean: client, field: 'profile.originCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originZip}">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</g:if></td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
 
         </table>
       </div>
       <h4><g:message code="client.profile.more"/></h4>
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="client.profile.familyStatus"/></g:if></td>
@@ -89,8 +88,8 @@
           </tr>
 
           <tr class="prop">
-            <td width="160" valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="familyrelation.${client.profile.familyStatus}"/></g:if></td>
-            <td width="250" valign="top" class="value-show-block">
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="familyrelation.${client.profile.familyStatus}"/></g:if></td>
+            <td valign="top" class="value-show-block">
               <g:if test="${client.profile.languages}">
               <ul>
                 <g:each in="${client.profile.languages}" var="language">
@@ -102,8 +101,8 @@
                 <div class="italic"><g:message code="none"/></div>
               </g:else>
             </td>
-            <td width="230" valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message code="client.noSchoolEntered"/></div></g:else></td>
-            <td width="210" valign="top" class="value-show">
+            <td valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message code="client.noSchoolEntered"/></div></g:else></td>
+            <td valign="top" class="value-show">
               <g:if test="${client.profile.schoolLevel}">
                 <g:message code="schoollevel.${client.profile.schoolLevel}"/>
               </g:if>
