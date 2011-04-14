@@ -7,6 +7,7 @@ class WorkdayCategory {
 
     static constraints = {
       name: blank:false
+      nullable: false
     }
 
     String toString(){
