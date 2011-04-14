@@ -65,7 +65,7 @@
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday').focus();
 
       // disabled for next release
-      $.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment
+      /*$.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment
         method: 'get',          // method; get or post
         data: '',               // array of values to be passed to the page - e.g. {name: "John", greeting: "hello"}
         minTimeout: 60000,      // starting value for the timeout in milliseconds
@@ -77,7 +77,7 @@
       },
       function(data){
         $('#livetickerbox').empty().append(data);
-      });
+      });*/
 
       // should display the image of an entity when hovering link - not working
       /*$('.hoverImage').qtip({
@@ -325,7 +325,7 @@
           </div>
         </div>
 
-        <div id="livetickerbox"></div>
+        %{--<div id="livetickerbox"></div>--}%
 
         <div class="profile-box">
           <div class="second">
