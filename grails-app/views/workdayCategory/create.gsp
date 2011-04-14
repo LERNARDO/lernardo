@@ -19,6 +19,11 @@
         <g:textField class="countable50 ${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
       </div>
 
+      <div class="property">
+        <g:message code="workdayCategory.count"/> <br/>
+        <g:checkBox name="count" value="${fieldValue(bean:workdayCategoryInstance,field:'count')}"/>
+      </div>
+
       <div class="clear"></div>
 
       <div class="buttons">

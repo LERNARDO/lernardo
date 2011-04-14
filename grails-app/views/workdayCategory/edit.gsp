@@ -18,7 +18,7 @@
 
     <g:form action="update" id="${workdayCategoryInstance.id}">
 
-            <div>
+      <div>
         <table>
           <tbody>
 
@@ -29,6 +29,16 @@
           <tr class="prop">
             <td width="440" valign="top" class="value">
               <g:textField class="${hasErrors(bean:workdayCategoryInstance,field:'name','errors')}" size="50" name="name" value="${fieldValue(bean:workdayCategoryInstance,field:'name').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="workdayCategory.count"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td width="440" valign="top" class="value">
+              <g:checkBox name="count" value="${fieldValue(bean:workdayCategoryInstance,field:'count')}"/>
             </td>
           </tr>
 

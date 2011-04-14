@@ -117,7 +117,7 @@ class HelperTagLib {
     Entity educator = attrs.educator
 
     // calculate expected hours
-    int expectedHours = 0
+    BigDecimal expectedHours = 0
     Calendar tcalendarStart = new GregorianCalendar();
     tcalendarStart.setTime(date1);
 
@@ -127,34 +127,43 @@ class HelperTagLib {
     SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
 
     while (tcalendarStart <= tcalendarEnd) {
-       Date currentDate = tcalendarStart.getTime();
+      Date currentDate = tcalendarStart.getTime();
 
-       /*if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
-           (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday') ||
-           (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday') ||
-           (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday') ||
-           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {*/
-            if (educator.profile.workDays && educator.profile.workHours)
-              expectedHours += educator?.profile?.workHours / educator?.profile?.workDays
-            else
-              expectedHours += 0
-         //}
+      if (tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday')
+        expectedHours += educator.profile.workHoursMonday
+      else if (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday')
+        expectedHours += educator.profile.workHoursTuesday
+      else if (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday')
+        expectedHours += educator.profile.workHoursWednesday
+      else if (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday')
+        expectedHours += educator.profile.workHoursThursday
+      else if (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')
+        expectedHours += educator.profile.workHoursFriday
+      else if (tdf.format(currentDate) == 'Samstag' || tdf.format(currentDate) == 'Saturday')
+        expectedHours += educator.profile.workHoursSaturday
+      else if (tdf.format(currentDate) == 'Sonntag' || tdf.format(currentDate) == 'Sunday')
+        expectedHours += educator.profile.workHoursSunday
+
       tcalendarStart.add(Calendar.DATE, 1)
     }
 
     // calculate real hours
     int hours = 0
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
-      // check if the date of the workdayunit is between date1 and date2
-      if (attrs.date1 != null & attrs.date2 != null) {
-        if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
-            workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
-            workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
-              hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+      // check if the workdayunit should be counted
+      WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
+      if (category.count) {
+        // check if the date of the workdayunit is between date1 and date2
+        if (attrs.date1 != null & attrs.date2 != null) {
+          if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+              workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+              workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+          }
         }
+        else
+          hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
       }
-      else
-        hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
     }
 
     // calculate salary
@@ -179,7 +188,7 @@ class HelperTagLib {
 
     Entity educator = attrs.educator
 
-    int expectedHours = 0
+    BigDecimal expectedHours = 0
     Calendar tcalendarStart = new GregorianCalendar();
     tcalendarStart.setTime(date1);
 
@@ -189,19 +198,23 @@ class HelperTagLib {
     SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
 
     while (tcalendarStart <= tcalendarEnd) {
-       Date currentDate = tcalendarStart.getTime();
+      Date currentDate = tcalendarStart.getTime();
 
-       /*if ((tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday') ||
-           (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday') ||
-           (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday') ||
-           (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday') ||
-           (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) {*/
-            if (educator.profile.workDays && educator.profile.workHours) {
-              expectedHours += educator.profile.workHours / educator.profile.workDays
-            }
-            else
-              expectedHours += 0
-         //}
+      if (tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday')
+        expectedHours += educator.profile.workHoursMonday
+      else if (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday')
+        expectedHours += educator.profile.workHoursTuesday
+      else if (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday')
+        expectedHours += educator.profile.workHoursWednesday
+      else if (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday')
+        expectedHours += educator.profile.workHoursThursday
+      else if (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')
+        expectedHours += educator.profile.workHoursFriday
+      else if (tdf.format(currentDate) == 'Samstag' || tdf.format(currentDate) == 'Saturday')
+        expectedHours += educator.profile.workHoursSaturday
+      else if (tdf.format(currentDate) == 'Sonntag' || tdf.format(currentDate) == 'Sunday')
+        expectedHours += educator.profile.workHoursSunday
+
       tcalendarStart.add(Calendar.DATE, 1)
     }
 
@@ -219,18 +232,22 @@ class HelperTagLib {
 
     Entity educator = attrs.educator
 
-    int hours = 0
+    BigDecimal hours = 0
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
-      // check if the date of the workdayunit is between date1 and date2
-      if (attrs.date1 != null & attrs.date2 != null) {
-        if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
-            workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
-            workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
-              hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+      // check if the workdayunit should be counted
+      WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
+      if (category.count) {
+        // check if the date of the workdayunit is between date1 and date2
+        if (attrs.date1 != null & attrs.date2 != null) {
+          if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
+              workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
+              workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
+                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+          }
         }
+        else
+          hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
       }
-      else
-        hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
     }
 
     out << hours
@@ -250,7 +267,7 @@ class HelperTagLib {
     Entity educator = attrs.educator
     WorkdayCategory workdayCategory = attrs.category
 
-    int hours = 0
+    BigDecimal hours = 0
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       if (workdayUnit.category == workdayCategory.name) {
 

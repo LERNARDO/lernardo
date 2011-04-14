@@ -48,8 +48,14 @@ class EducatorProfile extends Profile {
     String phone2
     String privEmail
 
-    Integer workHours = 0
-    Integer workDays = 0// added on 04.03.2011
+    BigDecimal workHoursMonday = 0
+    BigDecimal workHoursTuesday = 0
+    BigDecimal workHoursWednesday = 0
+    BigDecimal workHoursThursday = 0
+    BigDecimal workHoursFriday = 0
+    BigDecimal workHoursSaturday = 0
+    BigDecimal workHoursSunday = 0
+
     Integer hourlyWage = 0
     Integer overtimePay = 0
 
@@ -87,8 +93,6 @@ class EducatorProfile extends Profile {
       phone2 (nullable: true)
       privEmail (email:true, nullable:true)
 
-      workHours nullable: true
-      workDays nullable: true
       hourlyWage nullable: true
       overtimePay nullable: true
 

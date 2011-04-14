@@ -19,6 +19,11 @@
         <td class="two">${fieldValue(bean: workdayCategoryInstance, field: 'name').decodeHTML()}</td>
       </tr>
 
+      <tr class="prop">
+        <td class="one"><g:message code="workdayCategory.count"/>:</td>
+        <td class="two"><g:formatBoolean boolean="${workdayCategoryInstance.count}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+      </tr>
+
       </tbody>
     </table>
 

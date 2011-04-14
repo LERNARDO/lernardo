@@ -216,7 +216,11 @@ class BootStrap {
           prf.employment = grailsApplication.config.employments[generator.nextInt(grailsApplication.config.employments.size())]
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.calendar = calendar
-          prf.workHours = 8
+          prf.workHoursMonday = 8
+          prf.workHoursTuesday = 8
+          prf.workHoursWednesday = 8
+          prf.workHoursThursday = 8
+          prf.workHoursFriday = 6.5
           prf.hourlyWage = 10
           prf.overtimePay = 15
         }

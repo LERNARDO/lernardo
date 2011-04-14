@@ -239,7 +239,7 @@ class EducatorProfileController {
 
   def updateWorkHours = {
     Entity educator = Entity.get(params.id)
-    educator.profile.workHours = params.int('workHours')
+    educator.profile.properties = params
     educator.profile.save()
     render template: 'showworkhours', model:[educator: educator, i: params.i]
   }
