@@ -834,7 +834,7 @@ class HelperTagLib {
     int m = Publication.countByEntity(attrs.entity)
 
     // group activity template
-    if (attrs.entity.type.id == metaDataService.etGroupActivityTemplate.id) {
+    if (attrs.entity.type.name == "Aktivitätsvorlagenblock") {
       List activitytemplates = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
 
       activitytemplates.each {
@@ -843,7 +843,7 @@ class HelperTagLib {
     }
 
     // group activity
-    else if (attrs.entity.type.id == metaDataService.etGroupActivity.id) {
+    else if (attrs.entity.type.name == "Aktivitätsblock") {
       Entity groupactivitytemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltTemplate)
 
       if (groupactivitytemplate) {
@@ -858,7 +858,7 @@ class HelperTagLib {
     }
 
     // project template
-    else if (attrs.entity.type.id == metaDataService.etProjectTemplate.id) {
+    else if (attrs.entity.type.name == "Projektvorlage") {
       List projectUnits = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectUnit)
 
       List groupactivitytemplates = []
@@ -889,7 +889,7 @@ class HelperTagLib {
     }
 
     // project
-    else if (attrs.entity.type.id == metaDataService.etProject.id) {
+    else if (attrs.entity.type.name == "Projekt") {
       Entity projectTemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltProjectTemplate)
 
       if (projectTemplate) {
@@ -985,7 +985,7 @@ class HelperTagLib {
   }
 
   def isSystemAdmin = {attrs, body ->
-    if (entityHelperService.loggedIn.user.authorities.find {it.authority == 'ROLE_SYSTEMADMIN'} )
+    if (attrs.entity.user.authorities.find {it.authority == 'ROLE_SYSTEMADMIN'} )
       out << body()
   }
 

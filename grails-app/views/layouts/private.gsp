@@ -276,7 +276,7 @@
 
                 <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
-                    <erp:isSystemAdmin>
+                    <erp:isSystemAdmin entity="${currentEntity}">
                       <li class="icon-admin"><g:link controller="app" action="adminlinks"><g:message code="Link Check"/></g:link></li>
                     </erp:isSystemAdmin>
                     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
@@ -361,6 +361,7 @@
       </div>
 
       <div class="yui3-u" id="extra">
+
         <div id="livetickerbox"></div>
 
         <div class="profile-box">

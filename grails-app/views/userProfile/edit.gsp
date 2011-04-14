@@ -43,7 +43,7 @@
       <div class="email">
         <table>
           <tr>
-            <erp:isSystemAdmin>
+            <erp:isSystemAdmin entity="${currentEntity}">
               <td width="85" valign="middle">
                 <g:message code="active"/>
                 <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
