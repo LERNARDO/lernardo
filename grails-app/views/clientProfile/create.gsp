@@ -17,8 +17,7 @@
     <g:form action="save">
       <div>
 
-        <table>
-          <tbody>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="client.profile.gender"/></td>
@@ -28,19 +27,19 @@
           </tr>
 
           <tr>
-            <td width="120" valign="top" class="value">
+            <td class="value">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:client,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
 
-            <td width="200" valign="top" class="value">
+            <td class="value">
               <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}"/>
             </td>
 
-            <td width="270" valign="top" class="value">
+            <td class="value">
               <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.lastName', 'errors')}" size="38" name="lastName" value="${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}"/>
             </td>
 
-            <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
+            <td class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
               <g:textField name="birthDate" size="30" class="datepicker-birthday  ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" value="${client?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
             </td>
           </tr>
@@ -50,17 +49,16 @@
           </tr>
 
           <tr>
-            <td colspan="4" valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" rows="1" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
+            <td colspan="4" class="value">
+              <g:textArea class="countable2000 ${hasErrors(bean: client, field: 'profile.interests', 'errors')}" rows="3" cols="75" name="interests" value="${fieldValue(bean: client, field: 'profile.interests').decodeHTML()}"/>
             </td>
           </tr>
 
-          </tbody>
         </table>
 
         <h4><g:message code="client.profile.curAddress"/></h4>
         <div>
-          <table>
+          <table width="100%">
 
             <tr>
               <td valign="top" class="name"><g:message code="client.profile.currentStreet"/></td>
@@ -70,16 +68,16 @@
             </tr>
 
             <tr>
-              <td width="280" height="35" valign="top" class="value">
+              <td class="value">
                 <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentStreet', 'errors')}" size="41" name="currentStreet" value="${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="top" class="value">
+              <td class="value">
                 <g:textField class="${hasErrors(bean: client, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: client, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
-              <td width="210" valign="top" class="value">
+              <td class="value">
                 <g:select name="currentColonia" from="${allColonies}" optionKey="id" optionValue="profile"/>
               </td>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML()}"/>
               </td>
             </tr>
@@ -89,7 +87,7 @@
 
         <h4><g:message code="client.profile.origin"/></h4>
         <div>
-          <table>
+          <table width="100%">
 
             <tr>
               <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="client.profile.originZip"/></g:if></td>
@@ -98,17 +96,17 @@
             </tr>
 
             <tr>
-              <td width="105" valign="top" class="value">
+              <td class="value">
                 <g:if test="${grailsApplication.config.clientProfile.originZip}">
                   <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
                 </g:if>
               </td>
-              <td width="210" valign="top" class="value">
+              <td class="value">
                 <g:if test="${grailsApplication.config.clientProfile.originCity}">
                   <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
                 </g:if>
               </td>
-              <td colspan="2" valign="top" class="value">
+              <td colspan="2" class="value">
                 <g:textField class="countable50 ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
               </td>
             </tr>
@@ -118,7 +116,7 @@
 
         <h4><g:message code="client.profile.more"/></h4>
         <div>
-          <table>
+          <table width="100%">
 
             <tr class="prop">
               <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="client.profile.familyStatus"/></g:if></td>
@@ -128,18 +126,18 @@
             </tr>
 
             <tr>
-              <td width="160px" valign="top" class="value">
+              <td class="value">
                 <g:if test="${grailsApplication.config.clientProfile.familyStatus}">
                   <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyrelations}" value="${client?.profile?.familyStatus}" valueMessagePrefix="familyrelation"/>
                 </g:if>
               </td>
-              <td width="250" valign="top" class="value">
+              <td class="value">
                 <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
               </td>
-              <td width="230" valign="top" class="value">
+              <td class="value">
                 <g:select class="drop-down-200" name="school" id="allFacilities" from="${allFacilities}" optionKey="id" optionValue="profile"/>
               </td>
-              <td width="210" valign="top" class="value">
+              <td class="value">
                 <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoollevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>
               </td>
             </tr>
@@ -152,14 +150,14 @@
             </tr>
 
             <tr>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:message code="client.profile.schoolDropout"/>
                 <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
               </td>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:textField name="schoolDropoutDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolDropoutDate?.format('dd. MM. yyyy')}"/>
               </td>
-              <td colspan="2" valign="top" class="value">
+              <td colspan="2" class="value">
                 <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
               </td>
             </tr>
@@ -173,14 +171,14 @@
             </tr>
             
             <tr>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:message code="client.profile.schoolRestart"/>
                 <g:checkBox name="schoolRestart" value="${client?.profile?.schoolDropout}"/>
               </td>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:textField name="schoolRestartDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolRestartDate?.format('dd. MM. yyyy')}"/>
               </td>
-              <td colspan="2" valign="top" class="value">
+              <td colspan="2" class="value">
                 <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="64" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
               </td>
             </tr>
@@ -199,17 +197,17 @@
             </tr>
 
             <tr>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:message code="client.profile.job"/>
                 <g:checkBox name="job" value="${client?.profile?.job}"/>
               </td>
-              <td height="35" valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
+              <td class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
                 <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${client?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>
               </td>
-              <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
+              <td class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
                 <g:textField size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>
               </td>
-              <td valign="top" class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
+              <td class="value ${hasErrors(bean: client, field: 'profile.jobFrequency', 'errors')}">
                 <g:textField size="28" maxlength="20" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>
@@ -221,11 +219,11 @@
             </tr>
 
             <tr>
-              <td valign="top" class="value">
+              <td class="value">
                 <g:message code="client.profile.support"/>
                 <g:checkBox name="support" value="${client?.profile?.support}"/>
               </td>
-              <td colspan="3" valign="top" class="value">
+              <td colspan="3" class="value">
                 <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription?.toInteger()}"/>
               </td>
             </tr>
@@ -236,12 +234,12 @@
             <tr>
 
             <tr>
-              <td width="210" valign="top" class="value">
+              <td class="value">
                 <g:if test="${grailsApplication.config.clientProfile.citizenship}">
                   <g:textField class="${hasErrors(bean: client, field: 'profile.citizenship', 'errors')}" size="10" name="citizenship" value="${fieldValue(bean: client, field: 'profile.citizenship')}"/>
                 </g:if>
               </td>
-              <td  colspan="3" valign="top" class="value">
+              <td colspan="3" class="value">
                 <g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">
                   <g:textField class="${hasErrors(bean: client, field: 'profile.socialSecurityNumber', 'errors')}" size="30" name="socialSecurityNumber" value="${fieldValue(bean: client, field: 'profile.socialSecurityNumber')}"/>
                 </g:if>
@@ -299,13 +297,13 @@
         </div>
 
         <div class="email">
-          <table>
+          <table width="100%">
             <tr>
-              <td width="90" valign="top">
+              <td valign="top">
                 <g:message code="active"/>
                 <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
               </td>
-              <td width="350" valign="top">
+              <td valign="top">
                 <g:message code="client.profile.email"/>:
                 <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
               </td>

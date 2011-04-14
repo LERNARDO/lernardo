@@ -325,6 +325,21 @@
           </div>
         </div>
 
+        <div id="livetickerbox"></div>
+
+        <div class="profile-box">
+          <div class="second">
+            <div class="header"><g:message code="privat.head.online"/></div>
+            <ul id="onlineUsers">
+              <erp:getOnlineUsers>
+                <g:each in="${onlineUsers}" var="entity">
+                  <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
+                </g:each>
+              </erp:getOnlineUsers>
+            </ul>
+          </div>
+        </div>
+
         %{--<div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="privat.head.help"/></div>
@@ -360,24 +375,9 @@
         </div>
       </div>
 
-      <div class="yui3-u" id="extra">
+      %{--<div class="yui3-u" id="extra">
+      </div>--}%
 
-        <div id="livetickerbox"></div>
-
-        <div class="profile-box">
-          <div class="second">
-            <div class="header"><g:message code="privat.head.online"/></div>
-            <ul id="onlineUsers">
-              <erp:getOnlineUsers>
-                <g:each in="${onlineUsers}" var="entity">
-                  <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
-                </g:each>
-              </erp:getOnlineUsers>
-            </ul>
-          </div>
-        </div>
-
-      </div>
     </div>
 
     <div id="ft">
