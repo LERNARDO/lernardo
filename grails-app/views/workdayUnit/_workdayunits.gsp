@@ -9,7 +9,7 @@
           <g:datePicker name="date" value="${date}"/>
         </span>
 
-        <g:submitButton name="button" value="Bestätigen"/>
+        <g:submitButton name="button" value="Tag bestätigen"/>
         <div class="clear"></div>
     </g:formRemote>
 
@@ -26,8 +26,8 @@
 
 <g:if test="${confirmed == 'false'}">
   <g:if test="${workdaycategories}">
-    <div style="border: 1px solid #bbb; padding: 5px; margin: 10px 0">
-      <p><span class="bold"><g:message code="workdayUnit.createEntries"/></span></p>
+    <div style="border: 1px solid #bbb; border-radius: 5px; padding: 5px; margin: 10px 0">
+      <p><span class="bold"><g:message code="workdayUnit.createEntry"/></span></p>
       <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit']" update="workdayunits" before="showspinner('#workdayunits')">
 
         <span style="display: none">
@@ -64,13 +64,15 @@
   </g:else>
 </g:if>
 
+<p class="bold">Bereits eingetragene Zeitaufzeichnungen</p>
 <g:if test="${workdayunits}">
   <g:each in="${workdayunits}" var="unit" status="i">
-    <div id="unit-${i}">
+    %{--TODO: find out why this styling won't work when used in common.less--}%
+    <div id="unit-${i}" style="background-color: #dfdfdf; border: 1px solid #ccc; padding: 5px 6px; border-radius: 5px; margin: 5px 0 0 0;">
       <g:render template="unit" model="[unit: unit, i: i]"/>
     </div>
   </g:each>
 </g:if>
 <g:else>
-  <g:message code="workdayUnit.noEntries"/>
+  <span class="italic red"><g:message code="workdayUnit.noEntries"/></span>
 </g:else>

@@ -4,7 +4,7 @@
 // "sueninos"
 // "noe"
 
-project = "noe"
+project = "sueninos"
 
 // nothing needs to be changed below this line
 
