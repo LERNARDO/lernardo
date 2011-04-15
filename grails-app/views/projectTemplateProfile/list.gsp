@@ -42,7 +42,7 @@
       <g:each in="${projectTemplates}" status="i" var="projectTemplate">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td>${fieldValue(bean: projectTemplate, field: 'profile.status')}</td>
+          <td><g:message code="status.${projectTemplate.profile.status}"/></td>
           <td><erp:getProjectTemplateUnitsCount template="${projectTemplate}"/></td>
           <td><erp:createdBy entity="${projectTemplate}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
         </tr>
