@@ -18,70 +18,57 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div id="inbox">
 
-      <table id="inbox-message-overview" class="message-rows">
+    <div class="buttons">
+      <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
+      <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}">Neue Nachricht verfassen</g:link>
+      <div class="spacer"></div>
+    </div>
 
-        <g:if test="${messages.size() == 0}">
-          <div class="info-msg">
-            <g:message code="msg.inbox.emptyMsg"/>
-          </div>
-        </g:if>
-        <g:each in="${messages}" status="i" var="message">
-          <tr class="<g:if test="${!message.read}">msg-unread</g:if>">
-            %{--<td class="checkbox-toggle">--}%
-            %{--<input type="checkbox" onclick=""/>--}%
-            %{--</td>--}%
-            <td class="profile-pic">
+    <g:if test="${messages.size() == 0}">
+      <div class="info-msg">
+        <g:message code="msg.inbox.emptyMsg"/>
+      </div>
+    </g:if>
+    <g:each in="${messages}" status="i" var="message">
+      <div class="messagebox" style="${!message.read ? 'background: #fdd; border: 1px solid #dbb' : ''}">
+        <table>
+          <tr>
+            <td style="padding-right: 10px;">
               <erp:isEnabled entity="${message.sender}">
                 <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}"  params="[entity:message.sender.id]">
                   <ub:profileImage name="${message.sender.name}" width="50" height="50" align="left"/>
                 </g:link>
               </erp:isEnabled>
             </td>
-            <td class="name-date">
-              <g:if test="${!message.read}">
-                <span class="state">
-                  <g:message code="msg.inbox.newMsg"/>
-                  %{--
-                    <g:else>
-                      (GELESEN)
-                    </g:else>
-                  --}%
-                </span>
-              </g:if>
-              <span class="name"><g:message code="from"/>
+            <td style="padding-right: 10px;">
+              <g:if test="${!message.read}"><div class="new"><g:message code="msg.inbox.newMsg"/></div></g:if>
+              <div class="name">
+                <span class="bold"><g:message code="msg.from"/>:</span>
                 <erp:isEnabled entity="${message.sender}">
                   <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}" params="[entity:message.sender.id]">${message.sender.profile.fullName}</g:link>
                 </erp:isEnabled>
                 <erp:notEnabled entity="${message.sender}">
                   <span class="notEnabled">${message.sender.profile.fullName}</span>
                 </erp:notEnabled>
-              </span>
-              <span class="date"><g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}"/></span>
+              </div>
+              <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}"/></div>
             </td>
-            <td class="subject">
-              <span class="subject-text"><g:link action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']">${message.subject.decodeHTML()}</g:link></span>
-            </td>
-            <td class="delete-msg"><g:link class="buttonGreen" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${message.id}" params="[entity:entity.id,box:'inbox']"><g:message code="delete"/></g:link></td>
+            <td>
+              <div class="subject-text"><span class="bold"><g:message code="msg.subject"/>:</span> ${message.subject.decodeHTML()}</div>
+              <g:link class="buttonGreen" action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']"><g:message code="msg.show"/></g:link>
+              <g:link class="buttonRed" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${message.id}" params="[entity:entity.id,box:'outbox']"><g:message code="delete"/></g:link></td>
           </tr>
-        </g:each>
-
-      </table>
-
-      <g:if test="${messages.totalCount > 0}">
-        <div class="paginateButtons">
-          <g:paginate total="${messages.totalCount}"/>
-        </div>
-      </g:if>
-
-      <div class="buttons">
-        <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
-        <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}">Neue Nachricht verfassen</g:link>
-        <div class="spacer"></div>
+        </table>
       </div>
+    </g:each>
 
-    </div>
+    <g:if test="${messages.totalCount > 0}">
+      <div class="paginateButtons">
+        <g:paginate total="${messages.totalCount}"/>
+      </div>
+    </g:if>
+
   </div>
 </div>
 </body>
