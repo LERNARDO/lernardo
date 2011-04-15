@@ -136,7 +136,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['cFirstName','cLastName','cCountry','cZip','cCity','cStreet','cPhone','cEmail','cFunction']); toggle('#contacts');
+      <h5><g:message code="contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'facilityProfile', action:'addContact', id:facility.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
@@ -191,7 +191,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['resourceName','resourceDescription']); toggle('#resources');
+      <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
