@@ -152,7 +152,7 @@ class HelperTagLib {
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the workdayunit should be counted
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
-      if (category.count) {
+      if (category?.count) {
         // check if the date of the workdayunit is between date1 and date2
         if (attrs.date1 != null & attrs.date2 != null) {
           if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
@@ -236,7 +236,7 @@ class HelperTagLib {
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the workdayunit should be counted
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
-      if (category.count) {
+      if (category?.count) {
         // check if the date of the workdayunit is between date1 and date2
         if (attrs.date1 != null & attrs.date2 != null) {
           if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
