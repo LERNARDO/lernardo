@@ -56,8 +56,8 @@
 
     // clears the value of multiple elements
     clearElements = function(elements) {
-        for(elem in elements)
-            document.getElementById(elem).value = "";
+      for (x = 0; x <= elements.length; x++)
+        $(elements[x]).val('');
     };
 
     $(document).ready(function() {

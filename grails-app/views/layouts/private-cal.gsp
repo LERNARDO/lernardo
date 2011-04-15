@@ -15,7 +15,7 @@
   <g:javascript library="jquery" plugin="jquery"/>
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <g:javascript src="jquery/fullcalendar-1.4.10.js"/>
-  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}"/>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}">
 
   <script type="text/javascript">
     // hides an element
@@ -48,11 +48,11 @@
       $(id).fadeToggle(400);
     };
 
-    // clears the value of multiple elements
     clearElements = function(elements) {
-        for(elem in elements)
-            document.getElementById(elem).value = "";
+      for (x = 0; x <= elements.length; x++)
+        $(elements[x]).val('');
     };
+
   </script>
 
   <ga:trackPageviewAsynch />
