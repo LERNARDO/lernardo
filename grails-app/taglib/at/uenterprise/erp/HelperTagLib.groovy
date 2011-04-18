@@ -85,7 +85,7 @@ class HelperTagLib {
 
     Entity educator = attrs.educator
 
-    def notConfirmed = false
+    def allConfirmed = true
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the date of the workdayunit is between date1 and date2
       if (attrs.date1 != null & attrs.date2 != null) {
@@ -93,13 +93,13 @@ class HelperTagLib {
             workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
             workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
               if (!workdayUnit.confirmed) {
-                notConfirmed = true
+                allConfirmed = false
               }
         }
       }
     }
 
-    if (notConfirmed)
+    if (allConfirmed)
         out << "${message(code: 'yes')}"
     else
         out << "${message(code: 'no')}"
