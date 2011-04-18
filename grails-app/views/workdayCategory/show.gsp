@@ -30,7 +30,9 @@
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${workdayCategoryInstance?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${workdayCategoryInstance?.id}"><g:message code="delete"/></g:link>
+        <erp:accessCheck entity="${currentEntity}">
+          <g:link class="buttonRed" action="del" id="${workdayCategoryInstance?.id}"><g:message code="delete"/></g:link>
+        </erp:accessCheck>
         <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
         <div class="spacer"></div>
       </div>
