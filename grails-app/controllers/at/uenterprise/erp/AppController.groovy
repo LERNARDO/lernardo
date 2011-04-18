@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import javax.servlet.http.Cookie
 import org.springframework.web.multipart.MultipartFile
 import at.openfactory.ep.AssetStorage
+import grails.util.GrailsUtil
 
 class AppController {
   SecHelperService secHelperService
@@ -271,15 +272,17 @@ class AppController {
    */
   def error500 = {
 
-    try {
-      sendMail {
-        to      "error@uenterprise.de"
-        subject "ERP - Error 500"
-        html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
+    if (GrailsUtil.environment != "development") {
+      try {
+        sendMail {
+          to      "error@uenterprise.de"
+          subject "ERP - Error 500"
+          html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
+        }
+        log.info "Notification email sent to developers!"
+      } catch(Exception ex) {
+        log.error "Problem sending email $ex.message", ex
       }
-      log.info "Notification email sent to developers!"
-    } catch(Exception ex) {
-      log.error "Problem sending email $ex.message", ex
     }
 
     render view: '/500'
