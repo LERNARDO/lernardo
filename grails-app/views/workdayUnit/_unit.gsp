@@ -4,4 +4,4 @@
 </g:if>
 <br/>
 <g:message code="category"/>: ${unit.category}<br/>
-<g:message code="description"/>: ${unit.description.decodeHTML()}<br/>
+<g:message code="description"/>: ${unit.description ? unit.description.decodeHTML() : '<span class="italic">' + message(code:'noData') + '</span>'}<br/>
