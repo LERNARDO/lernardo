@@ -237,7 +237,7 @@ class EvaluationController {
       redirect action: "list", id:  evaluationInstance.owner.id
     }
     else {
-      render view: 'create', model: [evaluationInstance: evaluationInstance]
+      render view: 'create', model: [evaluationInstance: evaluationInstance, entity: Entity.get(params.entity)]
     }
   }
 }
