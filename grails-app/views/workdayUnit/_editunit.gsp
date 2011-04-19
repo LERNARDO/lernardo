@@ -1,10 +1,6 @@
 <%@ page import="at.uenterprise.erp.WorkdayCategory" %>
 <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i]]" update="unit-${i}" before="showspinner('#unit-${i}')">
 
-    <span style="display: none">
-      <g:datePicker name="date" value="${date}"/>
-    </span>
-
     <table>
       <tr>
         <td><g:message code="from"/>:</td>

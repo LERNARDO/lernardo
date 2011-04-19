@@ -62,7 +62,7 @@ class WorkdayUnitController {
       Calendar calendar = Calendar.getInstance()
 
       // set start
-      calendar.setTime(params.date)
+      calendar.setTime(workdayUnit.date1)
       calendar.set (Calendar.HOUR_OF_DAY, params.int('fromHour'))
       calendar.set (Calendar.MINUTE, params.int('fromMinute'))
       workdayUnit.date1 = calendar.getTime()
