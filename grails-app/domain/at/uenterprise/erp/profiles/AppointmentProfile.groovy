@@ -14,7 +14,7 @@ class AppointmentProfile extends Profile {
 
     static constraints = {
       fullName blank: false, size: 1..50, maxSize: 50
-      description blank: false
+      description (blank: true, maxSize: 5000)
     }
 
     String toString(){
