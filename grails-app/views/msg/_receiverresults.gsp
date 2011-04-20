@@ -1,26 +1,36 @@
   <script type="text/javascript">
 
-  function kontrolle2(id) {
+  function checkIt(id, name) {
     var select = document.getElementById("hiddenselect");
-    var optn = document.createElement("OPTION");
-    optn.text = id;
-    optn.value = id;
-    optn.selected = true;
-    select.options.add(optn);
+
+    var clean = true;
+    for (var i = 0; i < select.options.length; i++) {
+        if (select.options[i].value == id) {
+            clean = false;
+            break
+        }
+    }
+
+    if (clean) {
+        var optn = document.createElement("OPTION");
+        optn.text = id;
+        optn.value = id;
+        optn.selected = true;
+        select.options.add(optn);
+
+        var text = document.getElementById("receivers2");
+        //text.append(name);
+        $('#receivers2').append('<div>' + name + '</div>');
+    }
   }
 
-  function addReceiver(name) {
-    var text = document.getElementById("receivers2");
-    //text.append(name);
-    $('#receivers2').append(name + "<br/>");
-  }
   </script>
 
 <g:if test="${results}">
   <div class="remoteresults" style="width: 535px">
     <g:each in="${results}" var="entity">
       %{--<g:remoteLink url="[controller:'msg', action:'addReceiver', id: entity.id]" update="receivers2" before="kontrolle2('${entity.id}');" after="addReceiver('${entity.profile.fullName}');">--}%
-      <div class="remoteresult" onclick="kontrolle2('${entity.id}'); addReceiver('${entity.profile.fullName}');">
+      <div class="remoteresult" onclick="checkIt('${entity.id}','${entity.profile.fullName}');">
         <table>
           <tr>
             <td><ub:profileImage name="${entity.name}" width="65"/></td>

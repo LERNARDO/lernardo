@@ -111,16 +111,16 @@
 
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
           <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="educator.profile.workHours"/></td>
-            <td valign="top" class="name-show"><g:message code="educator.profile.hourlyWage"/></td>
+            %{--<td valign="top" class="name-show"><g:message code="educator.profile.workHours"/></td>--}%
+            <td colspan="2" valign="top" class="name-show"><g:message code="educator.profile.hourlyWage"/></td>
             <td valign="top" class="name-show"><g:message code="educator.profile.overtimePay"/></td>
           </tr>
 
           <tr>
-            <td width="150" valign="top" class="value-show">
+%{--            <td width="150" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.workHours') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-            </td>
-            <td width="150" valign="top" class="value-show">
+            </td>--}%
+            <td colspan="2" width="150" valign="top" class="value-show">
               ${fieldValue(bean: educator, field: 'profile.hourlyWage') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
             <td width="150" valign="top" class="value-show">
