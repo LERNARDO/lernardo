@@ -137,8 +137,8 @@ class ProjectProfileController {
               units: units,
               allParents: allParents,
               allPartners: allPartners,
-              active: params.one ?: projectDays[0].id,
-              day: params.one ? projectDays.find {it.id == params.int('one')} : projectDays[0],
+              active: params.one ?: projectDays[0]?.id,
+              day: params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null),
               allThemes: allThemes,
               themes: themes]
     }
