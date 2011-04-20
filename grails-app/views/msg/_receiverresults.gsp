@@ -19,7 +19,6 @@
         select.options.add(optn);
 
         var text = document.getElementById("receivers2");
-        //text.append(name);
         $('#receivers2').append('<div>' + name + '</div>');
     }
   }
