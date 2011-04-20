@@ -95,8 +95,29 @@ class WorkdayUnitController {
       calendar.set (Calendar.MINUTE, params.int('toMinute'))
       workdayUnit.date2 = calendar.getTime()
 
-      workdayUnit.save(flush: true)
-      currentEntity.profile.addToWorkdayunits(workdayUnit)
+      // check if the to be created workday unit does intersect with an already existing workday unit
+      List existingWorkdayunits = []
+      if (currentEntity.type.id == metaDataService.etEducator.id) {
+        currentEntity.profile.workdayunits.each { workday ->
+          if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+            existingWorkdayunits << workday
+          }
+        }
+      }
+
+      boolean intersection = false
+      existingWorkdayunits.each { checked ->
+          if (!(workdayUnit.date1 >= checked.date2 || workdayUnit.date2 <= checked.date1)) {
+            // intersection, don't create
+            intersection = true
+          }
+      }
+
+      if (!intersection) {
+            // create it
+            workdayUnit.save(flush: true)
+            currentEntity.profile.addToWorkdayunits(workdayUnit)
+      }
 
       List workdayunits = []
       if (currentEntity.type.id == metaDataService.etEducator.id) {
@@ -109,7 +130,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories]
+      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, intersection: intersection]
     }
 
     def confirmDays = {

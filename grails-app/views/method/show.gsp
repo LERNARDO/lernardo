@@ -36,7 +36,7 @@
     %{--<erp:isMeOrAdmin entity="${operator}">--}%
       <div class="buttons">
         <g:link class="buttonGreen" action="edit" id="${methodInstance?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${methodInstance.id}">><g:message code="delete"/></g:link>
+        <g:link class="buttonRed" action="del" id="${methodInstance.id}"><g:message code="delete"/></g:link>
         <div class="spacer"></div>
       </div>
     %{--</erp:isMeOrAdmin>--}%

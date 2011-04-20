@@ -64,6 +64,10 @@
   </g:else>
 </g:if>
 
+<g:if test="${intersection}">
+    <div class="red italic">Der Eintrag überschneidet sich mit einem anderen Eintrag!</div>
+</g:if>
+
 <p class="bold">Bereits eingetragene Zeitaufzeichnungen</p>
 <g:if test="${workdayunits}">
   <g:each in="${workdayunits}" var="unit" status="i">
