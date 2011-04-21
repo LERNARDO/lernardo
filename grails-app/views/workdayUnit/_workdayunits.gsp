@@ -64,6 +64,10 @@
   </g:else>
 </g:if>
 
+<g:if test="${!datesOrdered}">
+    <div class="red italic">Die Endzeit liegt vor der Beginnzeit!</div>
+</g:if>
+
 <g:if test="${intersection}">
     <div class="red italic">Der Eintrag überschneidet sich mit einem anderen Eintrag!</div>
 </g:if>
