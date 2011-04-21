@@ -34,7 +34,8 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'groupActivityTemplate.profile.name')}"/>
         <th><g:message code="numberOfActivityTemplates"/></th>
-        <th><g:message code="totalDuration"/></th>
+        %{--<th><g:message code="totalDuration"/></th>--}%
+        <g:sortableColumn property="realDuration" title="${message(code:'totalDuration')}"/>
         <th><g:message code="creator"/></th>
       </tr>
       </thead>
