@@ -32,15 +32,15 @@ class AppointmentProfileController {
 
     def list = {
       params.offset = params.offset ?: 0
-      Entity currentEntity = entityHelperService.loggedIn
+      Entity entity = Entity.get(params.id)
 
-      List appointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
+      List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
       def resulttotal = appointments.size()
 
       def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
       appointments = appointments.subList(params.offset, upperBound)
 
-      [appointmentProfileInstanceList: appointments, appointmentProfileInstanceTotal: resulttotal]
+      [appointmentProfileInstanceList: appointments, appointmentProfileInstanceTotal: resulttotal, entity: entity]
     }
 
     def show = {
@@ -56,7 +56,7 @@ class AppointmentProfileController {
       // find owner of appointment
       Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
 
-      return [appointmentProfileInstance: appointment, entity: entity, bla: owner]
+      return [appointment: appointment, entity: entity, bla: owner.id]
     }
 
     def del = {

@@ -1,11 +1,12 @@
+<%@ page import="at.uenterprise.erp.MetaDataService" %>
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="appointment"/></title>
+  <title><g:message code="appointments"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="appointment"/></h1>
+    <h1><g:message code="appointments"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -15,10 +16,12 @@
       ${appointmentProfileInstanceTotal} <g:message code="appointment.profile.c_total"/>
     </div>
 
-    <div class="buttons">
-      <g:link class="buttonGreen" action="create"><g:message code="appointment.profile.create"/></g:link>
-      <div class="spacer"></div>
-    </div>
+    <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+      <div class="buttons">
+        <g:link class="buttonGreen" action="create"><g:message code="appointment.profile.create"/></g:link>
+        <div class="spacer"></div>
+      </div>
+    </erp:isMeOrAdminOrOperator>
 
     <g:if test="${appointmentProfileInstanceList}">
       <table class="default-table">
@@ -34,7 +37,20 @@
         <tbody>
         <g:each in="${appointmentProfileInstanceList}" status="i" var="appointmentProfileInstance">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-            <td><g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link></td>
+            <td>
+              <g:if test="${appointmentProfileInstance.profile.isPrivate}">
+                <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+                  <g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
+                  <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
+                </erp:isMeOrAdminOrOperator>
+                %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
+                <g:if test="${!negation}">
+                  ${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}
+                </g:if>
+              </g:if>
+              <g:else>
+                <g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
+              </g:else></td>
             <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm"/></td>
             <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm"/></td>
             <td><g:formatBoolean boolean="${appointmentProfileInstance.profile.allDay}" true="Ja" false="Nein"/></td>
