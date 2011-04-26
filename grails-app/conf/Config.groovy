@@ -176,7 +176,9 @@ quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sonder
              '28':'Stets gab es hohe Ideale und erhabene Gefühle, und stets wurden diese durch den Unterricht weitervermittelt, aber die Kriege hörten nicht auf.',
              '29':'Freiheit heißt Verantwortung. Deshalb wird sie von den meisten Menschen gefürchtet.',
              '30':'Phantasie ist wichtiger als Wissen, denn Wissen ist begrenzt.',
-             '31':'Bildung ist nicht das Befüllen von Fässern, sondern das Entzünden von Flammen.']
+             '31':'Bildung ist nicht das Befüllen von Fässern, sondern das Entzünden von Flammen.',
+             '32':'Wenn der Respekt zu unserer zweiten Natur wird, kommt es uns schließlich absurd vor, unsere Kinder einer Bildung auszusetzen, in der ihre eigene Interaktion mit der Umwelt eingeschränkt, viele Stunden lang sogar verboten ist.',
+             '33':'Die harmonische Entfaltung von Kindern ist ein natürlicher und darum langsamer Prozess. Unsere Aufgabe ist es die rechten Bedingungen dafür zu schaffen, aber nicht, den Prozess zu beschleunigen. Bringen wir es als Erwachsene fertig, diese inneren Prozesse nicht durch unsere Ungeduld zu stören, sondern ihnen den nötigen Nährstoff zu liefern, so lernt Ihr Kind auf eigenen Füßen zu stehen und nicht sein Leben lang von äußerer Führung abhängig zu sein.']
 quoterMap = ['00':'Maria Montessori',
              '01':'Neil Postman',
              '02':'-unbekannt-',
@@ -208,4 +210,6 @@ quoterMap = ['00':'Maria Montessori',
              '28':'Maria Montessori',
              '29':'George Bernard Shaw',
              '30':'Albert Einstein',
-             '31':'Heraklit']
+             '31':'Heraklit',
+             '32':'Rebeca Wild',
+             '33':'Rebeca Wild']
