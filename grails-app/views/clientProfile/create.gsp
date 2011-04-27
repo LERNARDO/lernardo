@@ -224,7 +224,7 @@
                 <g:checkBox name="support" value="${client?.profile?.support}"/>
               </td>
               <td colspan="3" class="value">
-                <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription?.toInteger()}"/>
+                <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription}"/>
               </td>
             </tr>
 
