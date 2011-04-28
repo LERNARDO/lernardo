@@ -412,7 +412,7 @@ class HelperTagLib {
     if (attrs.creatorof)
       isCreatorOf = accessIsCreatorOf(entity, attrs.creatorof)
 
-    boolean isAdmin = entity.user.authorities.find {it.authority == 'ROLE_ADMIN'} ? true : false
+    boolean isAdmin = entity?.user?.authorities?.find {it.authority == 'ROLE_ADMIN'} ? true : false
 
     if (isAdmin || accessHasTypes(entity, attrs.types) || accessHasRoles(entity, attrs.roles) || isMe || isLeadEducator || isCreatorOf)
       out << body()
