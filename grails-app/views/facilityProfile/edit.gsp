@@ -64,19 +64,20 @@
           </tr>
 
         </table>
-        <div class="email">
+
+        %{--<div class="email">
           <table>
             <tr class="prop">
               <td width="70" valign="top" class="name"><g:message code="facility.profile.email"/></td>
               <td width="320" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
               </td>
-              %{--<td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
+              --}%%{--<td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
               <td valign="top" class="value">
                 <erp:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
-              </td>--}%
+              </td>--}%%{--
             </tr>
-            %{--<tr>
+            --}%%{--<tr>
               <td valign="top" class="name"><g:message code="showTips"/></td>
               <td valign="top" class="value">
                 <g:checkBox name="showTips" value="${facility.profile.showTips}"/>
@@ -85,9 +86,9 @@
               <td valign="top" class="value">
                 <g:link controller="profile" action="changePassword" id="${facility.id}"><g:message code="change"/></g:link>
               </td>
-            </tr>--}%
+            </tr>--}%%{--
           </table>
-        </div>
+        </div>--}%
 
       </div>
 

@@ -45,7 +45,7 @@
                 </erp:isMeOrAdminOrOperator>
                 %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
                 <g:if test="${!negation}">
-                  ${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}
+                  <g:message code="notAvailable"/> %{--${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')} --}%
                 </g:if>
               </g:if>
               <g:else>

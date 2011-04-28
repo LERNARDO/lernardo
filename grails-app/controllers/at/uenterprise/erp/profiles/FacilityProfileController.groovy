@@ -161,14 +161,10 @@ class FacilityProfileController {
     EntityType etFacility = metaDataService.etFacility
 
     try {
-      Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etFacility, params.email, params.fullName) {Entity ent ->
+      Entity entity = entityHelperService.createEntity(functionService.createNick(params.fullName), etFacility) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
-        ent.user.properties = params
-        // override - facilities are always disabled for login
-        ent.user.enabled = false
-        ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // link facility to colonia
       new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()

@@ -42,7 +42,7 @@
         </tr>
 
         <tr class="prop">
-          <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">leeer</div>'}</td>
+          <td width="290" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           <td width="101" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           <td width="210" align="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
@@ -50,14 +50,14 @@
 
       </table>
 
-      <div class="email">
+      %{--<div class="email">
         <table>
           <tr class="prop">
             <td width="60" valign="top"><g:message code="facility.profile.email"/>:</td>
             <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
         </table>
-      </div>
+      </div>--}%
 
     </div>
 
