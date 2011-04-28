@@ -5,12 +5,28 @@ import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.LinkType
+import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class FunctionService {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
+  GrailsApplication grailsApplication
 
   boolean transactional = true
+
+  Date convertFromUTC(Date date) {
+    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
+    calendar.setTime(date)
+    calendar.add(Calendar.MINUTE, ((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
+    return calendar.getTime()
+  }
+
+  Date convertToUTC(Date date) {
+    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
+    calendar.setTime(date)
+    calendar.add(Calendar.MINUTE, -((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
+    return calendar.getTime()
+  }
 
   /**
    * Returns an entity of a link

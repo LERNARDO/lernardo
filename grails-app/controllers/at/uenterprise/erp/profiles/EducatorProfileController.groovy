@@ -120,6 +120,7 @@ class EducatorProfileController {
     Entity educator = Entity.get(params.id)
 
     educator.profile.properties = params
+    educator.profile.birthDate = functionService.convertToUTC(educator.profile.birthDate)
     educator.profile.fullName = params.lastName + " " + params.firstName
     if (!educator.profile.calendar) educator.profile.calendar = new ECalendar().save()
 
@@ -172,6 +173,7 @@ class EducatorProfileController {
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
+        ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

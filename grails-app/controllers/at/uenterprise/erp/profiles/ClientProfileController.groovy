@@ -152,6 +152,9 @@ class ClientProfileController {
     Entity client = Entity.get(params.id)
 
     client.profile.properties = params
+    client.profile.birthDate = functionService.convertToUTC(client.profile.birthDate)
+    client.profile.schoolDropoutDate = functionService.convertToUTC(client.profile.schoolDropoutDate)
+    client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
     client.profile.fullName = params.lastName + " " + params.firstName
     if (!client.profile.calendar) client.profile.calendar = new ECalendar().save()
 
@@ -218,6 +221,9 @@ class ClientProfileController {
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
+        ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
+        ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
+        ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

@@ -3,6 +3,7 @@ package at.uenterprise.erp
 import at.openfactory.ep.Entity
 
 class DayroutineController {
+  FunctionService functionService
 
   def index = {
     redirect action: "list", params: params
@@ -48,6 +49,9 @@ class DayroutineController {
     routine.dateTo.setHours(params.int('dateToHour'))
     routine.dateTo.setMinutes(params.int('dateToMinute'))
 
+    routine.dateFrom = functionService.convertToUTC(routine.dateFrom)
+    routine.dateTo = functionService.convertToUTC(routine.dateTo)
+
     routine.save(flush: true)
 
     // find all routines of that day and facility
@@ -71,6 +75,9 @@ class DayroutineController {
 
     routine.dateTo.setHours(params.int('dateToHour'))
     routine.dateTo.setMinutes(params.int('dateToMinute'))
+
+    routine.dateFrom = functionService.convertToUTC(routine.dateFrom)
+    routine.dateTo = functionService.convertToUTC(routine.dateTo)
 
     routine.save(flush:true)
     render template: "routine", model:[routine: routine, i: params.i]

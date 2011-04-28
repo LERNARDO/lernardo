@@ -38,10 +38,10 @@
             ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}
           </td>
           <td width="230" valign="top" class="value-show">
-            <g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy"/>
+            <g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
           </td>
           <td width="230" valign="top" class="value-show">
-            <g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy"/>
+            <g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
           </td>
         </tr>
 

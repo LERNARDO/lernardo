@@ -99,6 +99,8 @@ class AppointmentProfileController {
       Entity appointment = Entity.get(params.id)
 
       appointment.profile.properties = params
+      appointment.profile.beginDate = functionService.convertToUTC(appointment.profile.beginDate)
+      appointment.profile.endDate = functionService.convertToUTC(appointment.profile.endDate)
 
       if (appointment.profile.save() && appointment.save()) {
         flash.message = message(code: "appointment.updated", args: [appointment.profile.fullName])
@@ -121,6 +123,8 @@ class AppointmentProfileController {
         Entity entity = entityHelperService.createEntity('appointment', etAppointment) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
+          ent.profile.beginDate = functionService.convertToUTC(ent.profile.beginDate)
+          ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
         }
 
         // create link to owner

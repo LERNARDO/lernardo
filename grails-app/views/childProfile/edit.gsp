@@ -37,7 +37,7 @@
               <g:textField class="countable${child.profile.constraints.lastName.maxSize}" size="35" name="lastName" value="${fieldValue(bean: child, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value ${hasErrors(bean: child, field: 'profile.birthDate', 'errors')}">
-              <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${child?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${formatDate(date: child?.profile?.birthDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
             </td>
           </tr>
 

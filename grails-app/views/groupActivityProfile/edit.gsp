@@ -32,7 +32,7 @@
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
             </td>
             <td valign="top" class="value">
-              <g:textField name="date" class="datetimepicker" value="${group?.profile?.date?.format('dd. MM. yyyy hh:mm')}"/>
+              <g:textField name="date" class="datetimepicker" value="${formatDate(date: group?.profile?.date, format: 'dd. MM. yyyy hh:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
               %{--<g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>--}%
             </td>
           </tr>

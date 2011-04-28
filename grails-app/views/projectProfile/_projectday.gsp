@@ -1,6 +1,6 @@
 <div class="element-box">
-  <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyyy"/><br/>
-     <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm"/> Uhr</p>
+  <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
+     <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> Uhr</p>
 
   <span class="bold"><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></erp:accessCheck></span>
   <div id="units" style="display:none">

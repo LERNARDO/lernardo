@@ -213,3 +213,5 @@ quoterMap = ['00':'Maria Montessori',
              '31':'Heraklit',
              '32':'Rebeca Wild',
              '33':'Rebeca Wild']
+
+TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
