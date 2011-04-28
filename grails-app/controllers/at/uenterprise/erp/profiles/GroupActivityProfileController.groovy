@@ -174,7 +174,7 @@ class GroupActivityProfileController {
       calculatedDuration += it.profile.duration
     }
 
-    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration]
+    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration, workAroundName: groupActivityTemplate.profile.fullName]
   }
 
   def save = {
@@ -217,7 +217,7 @@ class GroupActivityProfileController {
         calculatedDuration += it.profile.duration
       }
 
-      render(view: "create", model: [group: ee.entity, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
+      render(view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
     }
 
   }
