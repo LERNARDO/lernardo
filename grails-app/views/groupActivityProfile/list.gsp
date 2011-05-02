@@ -35,7 +35,7 @@
         <g:each in="${groups}" status="i" var="group">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-            <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy"/></td>
+            <td><g:formatDate date="${group.profile.date}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             <td><erp:createdBy entity="${group}">${creator?.profile?.fullName?.decodeHTML()}</erp:createdBy></td>
           </tr>
         </g:each>

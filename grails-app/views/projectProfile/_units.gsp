@@ -3,7 +3,7 @@
   <ul>
     <g:each in="${units}" var="unit" status="i">
       <li style="border-bottom: 1px solid #ccc; margin-bottom: 5px">
-        ${unit.profile.fullName}, Beginn: <g:formatDate date="${unit.profile.date}" format="HH:mm"/> Uhr, <g:message code="duration"/>: ${unit.profile.duration} Minuten <erp:accessCheck entity="${entity}" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></erp:accessCheck><br/>
+        ${unit.profile.fullName}, Beginn: <g:formatDate date="${unit.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> Uhr, <g:message code="duration"/>: ${unit.profile.duration} Minuten <erp:accessCheck entity="${entity}" types="['Betreiber','Pädagoge']"><g:remoteLink action="removeUnit" update="units2" id="${projectDay.id}" params="[unit: unit.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Einheit entfernen" align="top"/></g:remoteLink></erp:accessCheck><br/>
 
         <p class="bold"><g:message code="groupActivityTemplates"/></p>
         <erp:getProjectUnitActivityGroups projectUnit="${unit}">

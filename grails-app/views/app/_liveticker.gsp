@@ -1,6 +1,6 @@
 <div class="liveHeader">
   <div class="second">
-    <h1>Liveticker <span class="livetickerdate">%{--<g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_up.png')}" alt="Achtung" align="top"/></g:remoteLink>--}%<g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm" timeZone="${timeZone}"/> <g:if test="${events.size() == 1}"><b>1 aktuelles Ereignis!</b></g:if><g:elseif test="${events.size() > 1}"><b>${events.size()} aktuelle Ereignisse!</b></g:elseif></span></h1>
+    <h1>Liveticker <span class="livetickerdate">%{--<g:remoteLink action="hideticker" update="livetickerbox"><img src="${g.resource(dir:'images/icons', file:'icon_up.png')}" alt="Achtung" align="top"/></g:remoteLink>--}%<g:formatDate date="${new Date()}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:if test="${events.size() == 1}"><b>1 aktuelles Ereignis!</b></g:if><g:elseif test="${events.size() > 1}"><b>${events.size()} aktuelle Ereignisse!</b></g:elseif></span></h1>
 
   </div>
 </div>
@@ -19,7 +19,7 @@
       <g:set var="transparency" value="0"/>
     </g:else>--}%
     <div class="livetickerevent" %{--style="background: rgba(0,0,200,${transparency}); color: rgba(${(transparency * 255).toInteger()},${(transparency * 255).toInteger()},${(transparency * 255).toInteger()},1);"--}%>
-      <g:formatDate date="${event.dateCreated}" format="HH:mm" timeZone="${timeZone}"/><br/>${event.content}
+      <g:formatDate date="${event.dateCreated}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>${event.content}
     </div>
   </g:each>
   </g:if>

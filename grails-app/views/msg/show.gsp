@@ -21,7 +21,7 @@
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="value msg-name">An <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName.decodeHTML()}</g:link> am <g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}"/></td>
+        <td valign="top" class="value msg-name">An <g:link controller="${msgInstance.receiver.type.supertype.name +'Profile'}" action="show" id="${msgInstance.receiver.id}">${msgInstance.receiver.profile.fullName.decodeHTML()}</g:link> am <g:formatDate format="dd.MM.yyyy, HH:mm" date="${msgInstance.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
       </tr>
 
       <tr class="prop">

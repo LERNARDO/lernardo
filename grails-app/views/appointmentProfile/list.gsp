@@ -45,14 +45,14 @@
                 </erp:isMeOrAdminOrOperator>
                 %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
                 <g:if test="${!negation}">
-                  ${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}
+                  <g:message code="notAvailable"/> %{--${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')} --}%
                 </g:if>
               </g:if>
               <g:else>
                 <g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
               </g:else></td>
-            <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm"/></td>
-            <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm"/></td>
+            <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+            <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             <td><g:formatBoolean boolean="${appointmentProfileInstance.profile.allDay}" true="Ja" false="Nein"/></td>
             <td><g:formatBoolean boolean="${appointmentProfileInstance.profile.isPrivate}" true="Ja" false="Nein"/></td>
           </tr>

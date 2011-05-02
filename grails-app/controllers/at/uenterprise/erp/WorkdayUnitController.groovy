@@ -4,6 +4,7 @@ import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
 
 class WorkdayUnitController {
+    FunctionService functionService
 
     EntityHelperService entityHelperService
     MetaDataService metaDataService
@@ -66,11 +67,13 @@ class WorkdayUnitController {
       calendar.set (Calendar.HOUR_OF_DAY, params.int('fromHour'))
       calendar.set (Calendar.MINUTE, params.int('fromMinute'))
       workdayUnit.date1 = calendar.getTime()
+      workdayUnit.date1 = functionService.convertToUTC(workdayUnit.date1)
 
       // set end
       calendar.set (Calendar.HOUR_OF_DAY, params.int('toHour'))
       calendar.set (Calendar.MINUTE, params.int('toMinute'))
       workdayUnit.date2 = calendar.getTime()
+      workdayUnit.date2 = functionService.convertToUTC(workdayUnit.date2)
 
       workdayUnit.save(flush: true)
 
@@ -89,11 +92,13 @@ class WorkdayUnitController {
       calendar.set (Calendar.HOUR_OF_DAY, params.int('fromHour'))
       calendar.set (Calendar.MINUTE, params.int('fromMinute'))
       workdayUnit.date1 = calendar.getTime()
+      workdayUnit.date1 = functionService.convertToUTC(workdayUnit.date1)
 
       // set end
       calendar.set (Calendar.HOUR_OF_DAY, params.int('toHour'))
       calendar.set (Calendar.MINUTE, params.int('toMinute'))
       workdayUnit.date2 = calendar.getTime()
+      workdayUnit.date2 = functionService.convertToUTC(workdayUnit.date2)
 
       // check if the end date is after the begin date
       boolean datesOrdered = true

@@ -30,10 +30,10 @@
               <g:textField class="countable${theme.profile.constraints.fullName.maxSize} ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="42" id="fullName" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="230" valign="top" class="value">
-              <g:textField name="startDate" size="30" class="datepicker" value="${theme?.profile?.startDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="startDate" size="30" class="datepicker" value="${formatDate(date: theme?.profile?.startDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
             </td>
             <td width="230" valign="top" class="value">
-              <g:textField name="endDate" size="30" class="datepicker" value="${theme?.profile?.endDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="endDate" size="30" class="datepicker" value="${formatDate(date: theme?.profile?.endDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
             </td>
           </tr>
 

@@ -22,7 +22,8 @@ class ActivityProfileController {
   def beforeInterceptor = [
           action:{
             params.periodStart = params.periodStart ? Date.parse("dd. MM. yy", params.periodStart) : null
-            params.periodEnd = params.periodEnd ? Date.parse("dd. MM. yy", params.periodEnd) : null},
+            params.periodEnd = params.periodEnd ? Date.parse("dd. MM. yy", params.periodEnd) : null
+            params.date = params.date ? Date.parse("dd. MM. yy, HH:mm", params.date) : null},
             only:['save','update']
   ]
 
@@ -234,6 +235,7 @@ class ActivityProfileController {
             ent.profile.duration = (params.int('sundayEndHour') - params.int('sundayStartHour')) * 60 + (params.int('sundayEndMinute') - params.int('sundayStartMinute'))
           }
           ent.profile.fullName = params.fullName
+          ent.profile.date = functionService.convertToUTC(ent.profile.date)
         }
 
         // create links to educators
@@ -295,6 +297,7 @@ class ActivityProfileController {
     Entity currentEntity = entityHelperService.loggedIn
 
     activity.profile.properties = params
+    activity.profile.date = functionService.convertToUTC(activity.profile.date)
 
     // delete old links of educators and clients
     Link.findAllByTargetAndType(activity, metaDataService.ltActEducator).each {it.delete()}

@@ -40,7 +40,7 @@
           <g:each status="i" in="${articleList}" var="article">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
               <td><g:link controller="articlePost" action="show" id="${article.id}">${article.title}</g:link></td>
-              <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${article.dateCreated}"/></td>
+              <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${article.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             </tr>
           </g:each>
 

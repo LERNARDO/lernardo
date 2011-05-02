@@ -153,6 +153,7 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
 
     group.profile.properties = params
+    group.profile.date = functionService.convertToUTC(group.profile.date)
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "group.updated", args: [group.profile.fullName])
@@ -174,7 +175,7 @@ class GroupActivityProfileController {
       calculatedDuration += it.profile.duration
     }
 
-    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration]
+    return [template: groupActivityTemplate, calculatedDuration: calculatedDuration, workAroundName: groupActivityTemplate.profile.fullName]
   }
 
   def save = {
@@ -188,6 +189,7 @@ class GroupActivityProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
         ent.profile.educationalObjective = ""
+        ent.profile.date = functionService.convertToUTC(ent.profile.date)
       }
 
       // save creator
@@ -217,7 +219,7 @@ class GroupActivityProfileController {
         calculatedDuration += it.profile.duration
       }
 
-      render(view: "create", model: [group: ee.entity, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
+      render(view: "create", model: [group: ee.entity, workAroundName: ee.entity.profile.fullName, template: groupActivityTemplate, calculatedDuration: calculatedDuration])
     }
 
   }

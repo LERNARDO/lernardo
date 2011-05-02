@@ -35,7 +35,7 @@
 
     <div class="info-msg">
       ${activityCount} Themenräume
-      <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
+      <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if>
       <g:else>insgesamt</g:else>
       gefunden.
     </div>
@@ -67,7 +67,7 @@
         <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
           <td><g:link action="show" id="${activity.id}" params="[name:currentEntity.name]">${activity.profile.fullName}</g:link></td>
           <td><erp:getFacility entity="${activity}">${facility.profile.fullName}</erp:getFacility></td>
-          <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}"/></td>
+          <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
           %{--<td>${activity.profile.type}</td>--}%
           <td>${activity.profile.comments.size()}</td>
         </tr>

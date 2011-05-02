@@ -253,6 +253,8 @@ class ProjectProfileController {
       Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
+        ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
       }
       flash.message = message(code: "project.created", args: [entity.profile.fullName])
 
@@ -321,6 +323,7 @@ class ProjectProfileController {
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
             ent.profile.date = calendarStart.getTime();
             ent.profile.fullName = params.fullName
+            ent.profile.date = functionService.convertToUTC(ent.profile.date)
           }
 
           new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
@@ -384,6 +387,7 @@ class ProjectProfileController {
       calendar.setTime(projectDay.profile.date)
       calendar.add(Calendar.MINUTE, duration)
       ent.profile.date = calendar.getTime()
+      ent.profile.date = functionService.convertToUTC(ent.profile.date)
       ent.profile.duration = duration2
     }
 

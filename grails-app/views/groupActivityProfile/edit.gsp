@@ -26,13 +26,13 @@
 
           <tr>
             <td width="280px" valign="top" class="value">
-              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName')?.decodeHTML()}"/>
             </td>
             <td width="180px" valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="15" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration')}"/> (min)
             </td>
             <td valign="top" class="value">
-              <g:textField name="date" class="datetimepicker" value="${group?.profile?.date?.format('dd. MM. yyyy hh:mm')}"/>
+              <g:textField name="date" class="datetimepicker" value="${formatDate(date: group?.profile?.date, format: 'dd. MM. yyyy hh:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
               %{--<g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>--}%
             </td>
           </tr>

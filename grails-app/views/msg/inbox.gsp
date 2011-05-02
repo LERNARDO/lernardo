@@ -52,7 +52,7 @@
                   <span class="notEnabled">${message.sender.profile.fullName}</span>
                 </erp:notEnabled>
               </div>
-              <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}"/></div>
+              <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></div>
             </td>
             <td>
               <div class="subject-text"><span class="bold"><g:message code="msg.subject"/>:</span> ${message.subject.decodeHTML()}</div>

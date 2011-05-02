@@ -57,7 +57,7 @@
       </g:form>
 
       <hr/>
-      <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy"/>
+      <p>Anwesenheiten für <g:formatDate date="${date}" format="EEEE, dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
         <g:if test="${attend}">
           <span class="strong">- Tag bereits gespeichert!</span>
         </g:if>
@@ -107,10 +107,10 @@
       </g:form>
 
       <g:if test="${attend}">
-        <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy'}.pdf">
-          <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd'}"/>
-          <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM'}"/>
-          <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy'}"/>
+        <g:pdfForm controller="profile" action="print" method="post" filename="Anwesenheitsliste_${g.formatDate date:date, format:'dd-MM-yyyy', timeZone:TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}.pdf">
+          <g:hiddenField name="day" value=" ${g.formatDate date:date, format:'dd', timeZone:TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+          <g:hiddenField name="month" value=" ${g.formatDate date:date, format:'MM', timeZone:TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+          <g:hiddenField name="year" value=" ${g.formatDate date:date, format:'yyyy', timeZone:TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
           <div class="buttons">
             <g:submitButton name="printPdf" value="PDF erzeugen" icon="true"/>
             <div class="spacer"></div>

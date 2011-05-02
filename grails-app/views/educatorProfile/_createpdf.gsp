@@ -38,7 +38,7 @@
   </head>
   <body>
     <h1>Export der Zeitaufzeichnungen vom ${date1} bis ${date2}</h1>
-    <p class="gray">Erstellt von ${entity.profile.fullName} am <g:formatDate date="${new Date()}" format="dd. MM. yyyy"/> um <g:formatDate date="${new Date()}" format="HH:mm"/> Uhr.</p>
+    <p class="gray">Erstellt von ${entity.profile.fullName} am <g:formatDate date="${new Date()}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> um <g:formatDate date="${new Date()}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> Uhr.</p>
     <h2>Übersicht</h2>
     <table class="default-table">
       <thead>
@@ -76,8 +76,8 @@
           <erp:getWorkdayUnits educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
             <td>Units: ${units}</td>
             <g:each in="${units}" var="unit">
-              <td><g:formatDate date="${unit.date1}" format="dd.MM.yyyy"/></td>
-              <td><g:formatDate date="${unit.date1}" format="HH:mm"/> <g:formatDate date="${unit.date2}" format="HH:mm"/> ${unit.category} <br/> ${unit.description.decodeHTML()}</td>
+              <td><g:formatDate date="${unit.date1}" format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+              <td><g:formatDate date="${unit.date1}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:formatDate date="${unit.date2}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> ${unit.category} <br/> ${unit.description.decodeHTML()}</td>
             </g:each>
           </erp:getWorkdayUnits>
         </tr>
@@ -91,9 +91,9 @@
         <g:each in="${units}" var="unit">
           <div class="unit">
             <div style="float: left; width: 200px;">
-            <span class="bold">Datum:</span> <g:formatDate date="${unit.date1}" format="dd.MM.yyyy"/><br/>
-            <span class="bold">Von:</span> <g:formatDate date="${unit.date1}" format="HH:mm"/><br/>
-            <span class="bold">Bis:</span> <g:formatDate date="${unit.date2}" format="HH:mm"/>
+            <span class="bold">Datum:</span> <g:formatDate date="${unit.date1}" format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
+            <span class="bold">Von:</span> <g:formatDate date="${unit.date1}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
+            <span class="bold">Bis:</span> <g:formatDate date="${unit.date2}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
             </div>
             <div>
             <span class="bold">Kategorie:</span> ${unit.category}<br/>

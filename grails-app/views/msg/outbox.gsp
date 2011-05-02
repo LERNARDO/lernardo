@@ -32,7 +32,7 @@
               </td>
               <td style="padding-right: 10px;">
                 <div class="name"><span class="bold"><g:message code="msg.to"/>:</span> <g:link controller="${message.receiver.type.supertype.name +'Profile'}" action="show" id="${message.receiver.id}" params="[entity:message.receiver.id]">${message.receiver.profile.fullName}</g:link></div>
-                <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}"/></div>
+                <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></div>
               </td>
               <td>
                 <div class="subject-text"><span class="bold"><g:message code="msg.subject"/>:</span> ${message.subject.decodeHTML()}</div>
