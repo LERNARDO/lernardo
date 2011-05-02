@@ -69,7 +69,25 @@ class OperatorProfileController {
       Msg.findAllBySenderOrReceiver(operator, operator).each {it.delete()}
       Event.findAllByEntity(operator).each {it.delete()}
       Publication.findAllByEntity(operator).each {it.delete()}
-      Comment.findAllByCreator(operator.id.toInteger()).each {it.delete()}
+      Comment.findAllByCreator(operator.id.toInteger()).each { Comment comment ->
+          // find the profile the comment belongs to and delete it from there
+          def c = Entity.createCriteria()
+          List entities = c.list {
+              or {
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
+              }
+          }
+          entities.each { Entity entity ->
+              Comment profileComment = entity?.profile?.comments?.find {it.id == comment.id} as Comment
+              if (profileComment)
+                entity.profile.removeFromComments(profileComment)
+          }
+      }
       try {
         flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
         operator.delete(flush: true)

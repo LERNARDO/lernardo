@@ -16,6 +16,7 @@ import at.uenterprise.erp.WorkdayCategory
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.openfactory.ep.Profile
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -78,7 +79,25 @@ class EducatorProfileController {
       Post.findByAuthor(educator).each {it.delete()}
       Event.findAllByEntity(educator).each {it.delete()}
       Publication.findAllByEntity(educator).each {it.delete()}
-      Comment.findAllByCreator(educator.id.toInteger()).each {it.delete()}
+      Comment.findAllByCreator(educator.id.toInteger()).each { Comment comment ->
+          // find the profile the comment belongs to and delete it from there
+          def c = Entity.createCriteria()
+          List entities = c.list {
+              or {
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
+              }
+          }
+          entities.each { Entity entity ->
+              Comment profileComment = entity?.profile?.comments?.find {it.id == comment.id} as Comment
+              if (profileComment)
+                entity.profile.removeFromComments(profileComment)
+          }
+      }
       try {
         flash.message = message(code: "educator.deleted", args: [educator.profile.fullName])
         educator.delete(flush: true)
