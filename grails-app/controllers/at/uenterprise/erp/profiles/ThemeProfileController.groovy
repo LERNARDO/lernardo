@@ -177,6 +177,8 @@ class ThemeProfileController {
     Entity theme = Entity.get(params.id)
 
     theme.profile.properties = params
+    theme.profile.startDate = functionService.convertToUTC(theme.profile.startDate)
+    theme.profile.endDate = functionService.convertToUTC(theme.profile.endDate)
 
     if (theme.profile.save() && theme.save()) {
 
@@ -226,6 +228,8 @@ class ThemeProfileController {
       Entity entity = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
+        ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
+        ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
       }
 
       // link theme to facility

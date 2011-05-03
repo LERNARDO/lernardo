@@ -39,8 +39,8 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${theme.id}">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</g:link></td>
           --}%%{--<td>${theme.profile.type}</td>--}%%{--
-          <td><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy"/></td>
-          <td><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy"/></td>
+          <td><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+          <td><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
         </tr>
       </g:each>
       </tbody>

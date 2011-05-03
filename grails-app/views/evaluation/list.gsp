@@ -24,7 +24,7 @@
           <table cellpadding="2">
             <tr>
               <td class="bold vtop"><g:message code="date"/>:</td>
-              <td><g:formatDate date="${evaluation.dateCreated}" format="dd. MM. yyyy"/></td>
+              <td><g:formatDate date="${evaluation.dateCreated}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             </tr>
             <tr>
               <td class="bold vtop"><g:message code="description"/>:</td>

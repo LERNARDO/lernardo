@@ -40,7 +40,7 @@
             </td>
 
             <td class="value ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}">
-              <g:textField name="birthDate" size="30" class="datepicker-birthday  ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" value="${client?.profile?.birthDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="birthDate" size="30" class="datepicker-birthday  ${hasErrors(bean: client, field: 'profile.birthDate', 'errors')}" value="${formatDate(date: client?.profile?.birthDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
             </td>
           </tr>
 
@@ -155,7 +155,7 @@
                 <g:checkBox name="schoolDropout" value="${client?.profile?.schoolDropout}"/>
               </td>
               <td class="value">
-                <g:textField name="schoolDropoutDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolDropoutDate?.format('dd. MM. yyyy')}"/>
+                <g:textField name="schoolDropoutDate" size="30" class="datepicker-birthday" value="${formatDate(date: client?.profile?.schoolDropoutDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
               </td>
               <td colspan="2" class="value">
                 <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
@@ -176,7 +176,7 @@
                 <g:checkBox name="schoolRestart" value="${client?.profile?.schoolDropout}"/>
               </td>
               <td class="value">
-                <g:textField name="schoolRestartDate" size="30" class="datepicker-birthday" value="${client?.profile?.schoolRestartDate?.format('dd. MM. yyyy')}"/>
+                <g:textField name="schoolRestartDate" size="30" class="datepicker-birthday" value="${formatDate(date: client?.profile?.schoolRestartDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
               </td>
               <td colspan="2" class="value">
                 <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.schoolRestartReason', 'errors')}" size="64" name="schoolRestartReason" value="${fieldValue(bean: client, field: 'profile.schoolRestartReason').decodeHTML()}"/>
@@ -224,7 +224,7 @@
                 <g:checkBox name="support" value="${client?.profile?.support}"/>
               </td>
               <td colspan="3" class="value">
-                <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription?.toInteger()}"/>
+                <g:textField class="countable500 ${hasErrors(bean: client, field: 'profile.supportDescription', 'errors')}" size="30" name="supportDescription" value="${client?.profile?.supportDescription}"/>
               </td>
             </tr>
 

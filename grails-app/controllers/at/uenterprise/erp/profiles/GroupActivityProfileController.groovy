@@ -156,6 +156,7 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
 
     group.profile.properties = params
+    group.profile.date = functionService.convertToUTC(group.profile.date)
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "group.updated", args: [group.profile.fullName])
@@ -191,6 +192,7 @@ class GroupActivityProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
         ent.profile.educationalObjective = ""
+        ent.profile.date = functionService.convertToUTC(ent.profile.date)
       }
 
       // save creator

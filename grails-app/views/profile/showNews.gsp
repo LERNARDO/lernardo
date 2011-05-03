@@ -25,7 +25,7 @@
     <p>
       <g:if test="${eventsTomorrow}">
         <g:each in="${eventsTomorrow}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${timeZone}"/> - ${event.content.decodeHTML()}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - ${event.content.decodeHTML()}<br/>
         </g:each>
       </g:if>
       <g:else>
@@ -34,11 +34,11 @@
     </p>
     <div class="cleartop"></div>
 
-    <p><span class="strong"><g:message code="today"/> (<g:formatDate date="${Calendar.getInstance().time}" format="dd.MM.yyyy"/>)</span></p>
+    <p><span class="strong"><g:message code="today"/> (<g:formatDate date="${Calendar.getInstance().time}" format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>)</span></p>
     <p>
       <g:if test="${eventsToday}">
         <g:each in="${eventsToday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${timeZone}"/> - ${event.content.decodeHTML()}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - ${event.content.decodeHTML()}<br/>
         </g:each>
       </g:if>
       <g:else>
@@ -51,7 +51,7 @@
     <p>
       <g:if test="${eventsYesterday}">
         <g:each in="${eventsYesterday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${timeZone}"/> - ${event.content.decodeHTML()}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - ${event.content.decodeHTML()}<br/>
         </g:each>
       </g:if>
       <g:else>

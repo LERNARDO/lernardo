@@ -51,8 +51,8 @@
               <g:else>
                 <g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
               </g:else></td>
-            <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm"/></td>
-            <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm"/></td>
+            <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+            <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             <td><g:formatBoolean boolean="${appointmentProfileInstance.profile.allDay}" true="Ja" false="Nein"/></td>
             <td><g:formatBoolean boolean="${appointmentProfileInstance.profile.isPrivate}" true="Ja" false="Nein"/></td>
           </tr>

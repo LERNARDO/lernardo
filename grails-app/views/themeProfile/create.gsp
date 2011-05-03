@@ -29,10 +29,10 @@
               <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="42" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="230" valign="top" class="value">
-              <g:textField name="startDate" size="30" class="datepicker ${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" value="${theme?.profile?.startDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="startDate" size="30" class="datepicker ${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" value="${formatDate(date: theme?.profile?.startDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
             </td>
             <td width="230" valign="top" class="value">
-              <g:textField name="endDate" size="30" class="datepicker ${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" value="${theme?.profile?.endDate?.format('dd. MM. yyyy')}"/>
+              <g:textField name="endDate" size="30" class="datepicker ${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" value="${formatDate(date: theme?.profile?.endDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
             </td>
           </tr>
 

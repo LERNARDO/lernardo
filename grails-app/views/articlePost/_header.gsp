@@ -15,8 +15,8 @@
           <span class="notEnabled">${article.author.profile.fullName}</span>
         </erp:notEnabled>
       </erp:isLoggedIn></span>
-    <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}"/>
-    <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${article.dateCreated}"/>
+    <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+    <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${article.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
     <erp:isLoggedIn>
       <erp:isMeOrAdminOrOperator entity="${article.author}" current="${currentEntity}">
         (<g:link class="adminlink" action="edit" id="${article.id}"><g:message code="edit"/></g:link> -

@@ -72,7 +72,25 @@ class ChildProfileController {
       Msg.findAllBySenderOrReceiver(child, child).each {it.delete()}
       Event.findAllByEntity(child).each {it.delete()}
       Publication.findAllByEntity(child).each {it.delete()}
-      Comment.findAllByCreator(child.id.toInteger()).each {it.delete()}
+      Comment.findAllByCreator(child.id.toInteger()).each { Comment comment ->
+          // find the profile the comment belongs to and delete it from there
+          def c = Entity.createCriteria()
+          List entities = c.list {
+              or {
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
+              }
+          }
+          entities.each { Entity entity ->
+              Comment profileComment = entity?.profile?.comments?.find {it.id == comment.id} as Comment
+              if (profileComment)
+                entity.profile.removeFromComments(profileComment)
+          }
+      }
       try {
         flash.message = message(code: "child.deleted", args: [child.profile.fullName])
         child.delete(flush: true)
@@ -113,6 +131,7 @@ class ChildProfileController {
     Entity child = Entity.get(params.id)
 
     child.profile.properties = params
+    child.profile.birthDate = functionService.convertToUTC(child.profile.birthDate)
     child.profile.fullName = params.lastName + " " + params.firstName
     if (!child.profile.calendar) child.profile.calendar = new ECalendar().save()
 
@@ -144,6 +163,7 @@ class ChildProfileController {
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
+        ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
