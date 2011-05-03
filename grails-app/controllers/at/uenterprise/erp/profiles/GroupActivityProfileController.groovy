@@ -53,7 +53,8 @@ class GroupActivityProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -131,7 +132,8 @@ class GroupActivityProfileController {
       }
     }
     else {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -141,7 +143,8 @@ class GroupActivityProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -225,7 +228,8 @@ class GroupActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+//       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'educators', model: [educators: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -237,7 +241,8 @@ class GroupActivityProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'substitutes', model: [substitutes: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -249,7 +254,8 @@ class GroupActivityProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -261,7 +267,8 @@ class GroupActivityProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -280,12 +287,14 @@ class GroupActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       render template: 'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
     }
     else {
       List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
-      render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
+      // render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
+      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
       render template: 'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
     }
 
@@ -306,7 +315,8 @@ class GroupActivityProfileController {
     clients.each {
       def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     }
 
     Entity activitygroup = Entity.get(params.id)
@@ -338,7 +348,8 @@ class GroupActivityProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'themes', model: [themes: linking.results2, group: linking.source, entity: entityHelperService.loggedIn]
   }
 

@@ -52,7 +52,8 @@ class EducatorProfileController {
     Entity entity = params.entity ? educator : entityHelperService.loggedIn
 
     if (!educator) {
-      flash.message = "EducatorProfile not found with id ${params.id}"
+      // flash.message = "EducatorProfile not found with id ${params.id}"
+      flash.message = message(code: "educator.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -90,7 +91,8 @@ class EducatorProfileController {
       }
     }
     else {
-      flash.message = "EducatorProfile not found with id ${params.id}"
+      // flash.message = "EducatorProfile not found with id ${params.id}"
+      flash.message = message(code: "educator.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -99,7 +101,8 @@ class EducatorProfileController {
     Entity educator = Entity.get(params.id)
 
     if (!educator) {
-      flash.message = "EducatorProfile not found with id ${params.id}"
+      //flash.message = "EducatorProfile not found with id ${params.id}"
+      flash.message = message(code: "educator.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }

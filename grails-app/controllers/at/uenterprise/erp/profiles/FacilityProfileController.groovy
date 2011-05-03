@@ -51,7 +51,8 @@ class FacilityProfileController {
     Entity entity = params.entity ? facility : entityHelperService.loggedIn
 
     if (!facility) {
-      flash.message = "FacilityProfile not found with id ${params.id}"
+      // flash.message = "FacilityProfile not found with id ${params.id}"
+      flash.message = message(code: "facility.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -111,7 +112,8 @@ class FacilityProfileController {
       }
     }
     else {
-      flash.message = "FacilityProfile not found with id ${params.id}"
+      // flash.message = "FacilityProfile not found with id ${params.id}"
+      flash.message = message(code: "facility.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -120,7 +122,8 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
 
     if (!facility) {
-      flash.message = "FacilityProfile not found with id ${params.id}"
+      // flash.message = "FacilityProfile not found with id ${params.id}"
+      flash.message = message(code: "facility.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -217,7 +220,8 @@ class FacilityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'educators', model: [educators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -229,7 +233,8 @@ class FacilityProfileController {
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'leadeducators', model: [leadeducators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -283,7 +288,8 @@ class FacilityProfileController {
   def addContact = {ContactCommand cc ->
     Entity facility = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      // render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render '<p class="italic red">'+message(code: "facility.profile.name.insert")+'</p>'
       render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
       return
     }

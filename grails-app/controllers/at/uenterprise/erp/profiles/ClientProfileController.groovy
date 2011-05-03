@@ -65,7 +65,8 @@ class ClientProfileController {
     Entity entity = params.entity ? client : entityHelperService.loggedIn
 
     if (!client) {
-      flash.message = "ClientProfile not found with id ${params.id}"
+      //flash.message = "ClientProfile not found with id ${params.id}"
+      flash.message = message(code: "client.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -100,7 +101,8 @@ class ClientProfileController {
       }
     }
     else {
-      flash.message = "ClientProfile not found with id ${params.id}"
+      // flash.message = "ClientProfile not found with id ${params.id}"
+      flash.message = message(code: "client.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -112,7 +114,8 @@ class ClientProfileController {
     Entity client = Entity.get(params.id)
 
     if (!client) {
-      flash.message = "ClientProfile not found with id ${params.id}"
+      // flash.message = "ClientProfile not found with id ${params.id}"
+      flash.message = message(code: "client.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -306,7 +309,8 @@ class ClientProfileController {
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      // render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render '<p class="italic red">'+message(code: "client.profile.name.insert")+'</p>'
       render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
       return
     }

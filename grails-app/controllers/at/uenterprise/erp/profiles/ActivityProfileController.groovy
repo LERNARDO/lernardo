@@ -260,7 +260,8 @@ class ActivityProfileController {
       currentDate += 1
     }
 
-    flash.message = "Themenraumaktivitäten wurden geplant!"
+    // flash.message = "Themenraumaktivitäten wurden geplant!"
+    flash.message = message(code: "activityInstances.scheduled")
     redirect action: 'list'
   }
 
@@ -319,7 +320,8 @@ class ActivityProfileController {
 
     if (activity.profile.save() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
-      functionService.createEvent(currentEntity, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
+      // functionService.createEvent(currentEntity, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
+      functionService.createEvent(currentEntity, message(code: "activity.updated", args: [activity.profile.fullName]) )
       redirect action: 'show', id: activity.id
     }
     else {
@@ -402,7 +404,9 @@ class ActivityProfileController {
   def addTemplate = {
     Entity template = Entity.get(params.id)
 
-    render ("<b>Gewählte Vorlage:</b> ${template.profile.fullName}")
+    // render ("<b>Gewählte Vorlage:</b> ${template.profile.fullName}")
+    def msg = message(code: "activityTemplate.selected")
+    render ("<b>${msg}</b> ${template.profile.fullName}")
   }
 
   /*
@@ -438,7 +442,9 @@ class ActivityProfileController {
   def addFacility = {
     Entity facility = Entity.get(params.id)
 
-    render ("<b>Gewählte Einrichtung:</b> ${facility.profile.fullName}")
+    // render ("<b>Gewählte Einrichtung:</b> ${facility.profile.fullName}")
+    def msg = message(code: "facility.profile.selected")
+    render ("<b>${msg}</b> ${facility.profile.fullName}")
   }
 
   def updateEducators = {

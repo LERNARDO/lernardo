@@ -48,7 +48,8 @@ class AppointmentProfileController {
       Entity entity = params.entity ? appointment : entityHelperService.loggedIn
 
       if (!appointment) {
-        flash.message = "Appointment not found with id ${params.id}"
+        // flash.message = "Appointment not found with id ${params.id}"
+        flash.message = message(code: "appointment.idNotFound", args: [params.id])
         redirect(action: list)
         return
       }
@@ -77,7 +78,8 @@ class AppointmentProfileController {
             }
         }
         else {
-            flash.message = "Appointment not found with id ${params.id}"
+            //flash.message = "Appointment not found with id ${params.id}"
+            flash.message = message(code: "appointment.idNotFound", args: [params.id])
             redirect(action:"list")
         }
     }
@@ -86,7 +88,8 @@ class AppointmentProfileController {
       Entity appointment = Entity.get(params.id)
 
     if (!appointment) {
-      flash.message = "Appointment not found with id ${params.id}"
+      //flash.message = "Appointment not found with id ${params.id}"
+      flash.message = message(code: "appointment.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
