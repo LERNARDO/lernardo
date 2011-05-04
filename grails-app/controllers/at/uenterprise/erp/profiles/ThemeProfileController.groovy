@@ -90,19 +90,14 @@ class ThemeProfileController {
       // find parent theme linked to this theme (if any)
       Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
-
       [theme: theme,
-       /*allSubthemes: allSubthemes,
-       subthemes: subthemes,*/
        allProjects: allProjects,
        projects: projects,
        allActivityGroups: allActivityGroups,
        activitygroups: activitygroups,
        facility: facility,
        parenttheme: parenttheme,
-       entity: entity,
-       allEducators: allEducators]
+       entity: entity]
     }
   }
 

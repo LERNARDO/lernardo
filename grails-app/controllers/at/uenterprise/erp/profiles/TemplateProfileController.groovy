@@ -73,14 +73,12 @@ class TemplateProfileController {
     def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
     def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
     def allMethods = Method.findAllByType('template')
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
 
     return [template: template,
             commentList: commentList,
             entity: entity,
             resources: resources,
-            allMethods: allMethods,
-            allEducators: allEducators]
+            allMethods: allMethods]
   }
 
   def create = {

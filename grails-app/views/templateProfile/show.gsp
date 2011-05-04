@@ -14,15 +14,11 @@
 
     <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: template]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
       <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'app', action:'changeCreator', id:template.id]" update="creator" before="showspinner('#creator');" after="toggle('#setcreator');">
-          <table>
-            <tr>
-              <td style="padding: 5px 10px 0 0;"><g:select name="creator" from="${allEducators}" optionKey="id" optionValue="profile"/></td>
-              <td><g:submitButton name="button" value="${message(code:'change')}"/></td>
-            </tr>
-          </table>
-        </g:formRemote>
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${template.id}" before="showspinner('#remoteCreators');"/>
+        <div id="remoteCreators"></div>
       </div>
+
 
     <table>
 

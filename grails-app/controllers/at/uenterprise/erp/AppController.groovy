@@ -576,4 +576,39 @@ class AppController {
     }
     render "<span class='green'>${deleted} von insgesamt ${total} Kommentaren gelöscht!</span>"
   }
+
+/*
+   * retrieves all educators, users and operators matching the search parameter
+   */
+  def remoteCreators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        eq("type", metaDataService.etUser)
+        eq("type", metaDataService.etEducator)
+        eq("type", metaDataService.etOperator)
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'creatorresults', model: [results: results, changed: params.id])
+    }
+  }
+
 }

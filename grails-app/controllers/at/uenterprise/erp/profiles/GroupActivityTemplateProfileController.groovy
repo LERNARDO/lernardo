@@ -66,8 +66,6 @@ class GroupActivityTemplateProfileController {
     // find all activity templates linked to this group
     List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
 
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
-
     def calculatedDuration = 0
     templates.each {
       calculatedDuration += it.profile.duration
@@ -82,8 +80,7 @@ class GroupActivityTemplateProfileController {
             templates: templates,
             calculatedDuration: calculatedDuration,
             methods: Method.findAllByType('template'),
-            instances: instances,
-            allEducators: allEducators]
+            instances: instances]
 
   }
 
