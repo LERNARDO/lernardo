@@ -131,7 +131,7 @@
     </div>--}%
 
     <div class="zusatz">
-      <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
+      <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
@@ -139,39 +139,39 @@
           <table>
             <tr>
               <td><g:message code="partner.profile.contactFirstName"/>:</td>
-              <td><g:textField name="firstName" size="30"/></td>
+              <td><g:textField id="cFirstName" name="firstName" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactLastName"/>:</td>
-              <td><g:textField name="lastName" size="30"/></td>
+              <td><g:textField id="cLastName" name="lastName" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactCountry"/>:</td>
-              <td><g:textField name="country" size="30"/></td>
+              <td><g:textField id="cCountry" name="country" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactZip"/>:</td>
-              <td><g:textField name="zip" size="30"/></td>
+              <td><g:textField id="cZip" name="zip" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactCity"/>:</td>
-              <td><g:textField name="city" size="30"/></td>
+              <td><g:textField id="cCity" name="city" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactStreet"/>:</td>
-              <td><g:textField name="street" size="30"/></td>
+              <td><g:textField id="cStreet" name="street" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactPhone"/>:</td>
-              <td><g:textField name="phone" size="30"/></td>
+              <td><g:textField id="cPhone" name="phone" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactEmail"/>:</td>
-              <td><g:textField name="email" size="30"/></td>
+              <td><g:textField id="cEmail" name="email" size="30"/></td>
             </tr>
             <tr>
               <td><g:message code="partner.profile.contactFunction"/>:</td>
-              <td><g:textField name="function" size="30"/></td>
+              <td><g:textField id="cFunction" name="function" size="30"/></td>
             </tr>
           </table>
 
