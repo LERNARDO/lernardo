@@ -45,7 +45,8 @@ class GroupClientProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -80,7 +81,8 @@ class GroupClientProfileController {
       }
     }
     else {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -89,7 +91,8 @@ class GroupClientProfileController {
     Entity group = Entity.get(params.id)
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -134,14 +137,16 @@ class GroupClientProfileController {
 
   def addClient = {
     if (!params.members)
-      render '<p class="italic red">Bitte zumindest einen Betreuten auswählen!</p>'
+      //render '<p class="italic red">Bitte zumindest einen Betreuten auswählen!</p>'
+      render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+'</p>'
     else {
       def bla = params.list('members')
   
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+          //render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
       }
     }
     //def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)

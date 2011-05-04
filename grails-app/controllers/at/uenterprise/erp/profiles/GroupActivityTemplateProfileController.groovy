@@ -48,7 +48,8 @@ class GroupActivityTemplateProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -104,7 +105,8 @@ class GroupActivityTemplateProfileController {
       }
     }
     else {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -114,7 +116,8 @@ class GroupActivityTemplateProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -186,12 +189,17 @@ class GroupActivityTemplateProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
-      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+      new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">'
+              + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
+              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
+      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="'
+              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       List receiver = Entity.findAllByType(metaDataService.etEducator)
       receiver.each {
         if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="' + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
+          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">'
+              + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
+              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
       }
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
@@ -204,14 +212,16 @@ class GroupActivityTemplateProfileController {
 
   def addTemplate = {
     if (!params.templates)
-      render '<p class="italic red">Bitte zumindest eine Vorlage auswählen!</p>'
-    else { 
+      //render '<p class="italic red">Bitte zumindest eine Vorlage auswählen!</p>'
+      render '<p class="italic red">'+message(code: "groupActivityTemplate.select.least")+'</p>'
+    else {
       def bla = params.list('templates')
 
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
         if (linking.duplicate)
-          render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+          //render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
+          render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
       }
     }
 

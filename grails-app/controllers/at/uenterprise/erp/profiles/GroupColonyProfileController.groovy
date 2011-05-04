@@ -47,7 +47,8 @@ class GroupColonyProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -104,7 +105,8 @@ class GroupColonyProfileController {
       }
     }
     else {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -113,7 +115,8 @@ class GroupColonyProfileController {
     Entity group = Entity.get(params.id)
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      // flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -196,7 +199,8 @@ class GroupColonyProfileController {
   def addRepresentative = {ContactCommand cc ->
     Entity group = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      //render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render '<p class="italic red">'+message(code: "groupColony.profile.name.insert")+'</p>'
       render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
       return
     }
@@ -252,7 +256,8 @@ class GroupColonyProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -264,7 +269,8 @@ class GroupColonyProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'educators', model: [educators: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
