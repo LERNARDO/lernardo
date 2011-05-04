@@ -174,8 +174,10 @@ class ClientProfileController {
 
     client.profile.properties = params
     client.profile.birthDate = functionService.convertToUTC(client.profile.birthDate)
-    client.profile.schoolDropoutDate = functionService.convertToUTC(client.profile.schoolDropoutDate)
-    client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
+    if (client.profile.schoolDropoutDate)
+        client.profile.schoolDropoutDate = functionService.convertToUTC(client.profile.schoolDropoutDate)
+    if (client.profile.schoolRestartDate)
+        client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
     client.profile.fullName = params.lastName + " " + params.firstName
     if (!client.profile.calendar) client.profile.calendar = new ECalendar().save()
 
@@ -243,8 +245,10 @@ class ClientProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
-        ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
-        ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
+        if (ent.profile.schoolDropoutDate)
+            ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
+        if (ent.profile.schoolRestartDate)
+            ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
@@ -266,6 +270,7 @@ class ClientProfileController {
 
   def addPerformance = {
     Performances performance = new Performances(params)
+    performance.date = functionService.convertToUTC(performance.date)
     Entity client = Entity.get(params.id)
     client.profile.addToPerformances(performance)
     render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -279,6 +284,7 @@ class ClientProfileController {
 
   def addHealth = {
     Healths health = new Healths(params)
+    health.date = functionService.convertToUTC(health.date)
     Entity client = Entity.get(params.id)
     client.profile.addToHealths(health)
     render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -292,6 +298,7 @@ class ClientProfileController {
 
   def addMaterial = {
     Materials material = new Materials(params)
+    material.date = functionService.convertToUTC(material.date)
     Entity client = Entity.get(params.id)
     client.profile.addToMaterials(material)
     render template: 'materials', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -305,6 +312,7 @@ class ClientProfileController {
 
   def addDate = {
     CDate date = new CDate(params)
+    date.date = functionService.convertToUTC(date.date)
     Entity client = Entity.get(params.id)
     date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
     client.profile.addToDates(date)

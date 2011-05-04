@@ -218,6 +218,7 @@ class EducatorProfileController {
 
   def addDate = {
     CDate date = new CDate(params)
+    date.date = functionService.convertToUTC(date.date)
     Entity educator = Entity.get(params.id)
     date.type = educator.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
     educator.profile.addToDates(date)

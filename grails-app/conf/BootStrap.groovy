@@ -140,18 +140,6 @@ class BootStrap {
     }
 
     // admin users
-    if (!Entity.findByName('alexanderzeillinger')) {
-      ECalendar calendar = new ECalendar().save()
-      entityHelperService.createEntityWithUserAndProfile("alexanderzeillinger", etUser, "aaz@uenterprise.de", "Alexander Zeillinger") {Entity ent ->
-        ent.user.addToAuthorities(metaDataService.adminRole)
-        ent.user.locale = new Locale ("de", "DE")
-        UserProfile prf = (UserProfile)ent.profile
-        prf.firstName = "Alexander"
-        prf.lastName = "Zeillinger"
-        prf.calendar = calendar
-      }
-    }
-
     if (!Entity.findByName('patriziarosenkranz')) {
       ECalendar calendar = new ECalendar().save()
       entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
