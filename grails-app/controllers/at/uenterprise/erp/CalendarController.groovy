@@ -185,16 +185,7 @@ class CalendarController {
             activityList.add(group)
         }
 
-        activityList.each {
-            log.info it.profile.fullName
-            log.info it.profile.date
-        }
-
-        log.info start
-        log.info end
-
         activityList.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each {
-          log.info it.profile.fullName + " was added to events"
           def dateStart = new DateTime(functionService.convertFromUTC(it.profile.date))
           def dateEnd = dateStart.plusMinutes("$it.profile.realDuration".toInteger())
           eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, className: className, description: "<b>Pädagogisches Ziel:</b> " + it.profile.educationalObjectiveText]
