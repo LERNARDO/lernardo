@@ -427,7 +427,7 @@ class BootStrap {
     log.info ("creating default links")
 
     def admin = Entity.findByName ('lernardoadmin')
-    def alex = Entity.findByName ('alexanderzeillinger')
+    def alex = Entity.findByName ('danielszabo')
     def patrizia = Entity.findByName ('patriziarosenkranz')
 
     // make admin a friend of everyone
@@ -483,7 +483,7 @@ class BootStrap {
   void createDefaultComments() {
     log.info ("creating default comments")
 
-    Comment comment = new Comment(content: 'DummyComment', creator: Entity.findByName('alexanderzeillinger').id).save()
+    Comment comment = new Comment(content: 'DummyComment', creator: Entity.findByName('patriziarosenkranz').id).save()
     Entity entity = Entity.findByName("dummyTemplate1")
     entity.profile.addToComments(comment)
 
