@@ -10,7 +10,7 @@
   </div>
   <div class="boxGray">
     <div class="second">
-      <g:uploadForm controller="asset" action="putprf" params="[entity: entity.name]">
+      <g:uploadForm controller="profile" action="putprf" id="${entity.id}">
         <p><g:message code="profile.picture.select"/>:<br/>
         <input size="40" type="file" name="asset"></p>
 

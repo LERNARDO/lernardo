@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat
 import org.hibernate.SessionFactory
 
 import at.uenterprise.erp.profiles.ActivityProfile
+import org.springframework.web.multipart.MultipartFile
+import at.openfactory.ep.AssetService
 
 class ProfileController {
   EntityHelperService entityHelperService
@@ -18,6 +20,7 @@ class ProfileController {
   FunctionService functionService
   def securityManager
   SecHelperService secHelperService
+  AssetService assetService
 
   def index = { }
 
@@ -515,8 +518,22 @@ class ProfileController {
   def uploadprf = {
     Entity entity = Entity.get(params.id)
 
-    render view:'/asset/uploadprf', model:[entity: entity]
+    return [entity: entity]
     }
+
+  def put = {
+    Entity entity = Entity.get(params.id)
+
+    MultipartFile asset = request.getFile ('asset')
+    if (asset && !asset.empty) {
+      def result = assetService.storeAsset(entity, params.type, asset)
+      [asset: result, entity: entity]
+    }
+  }
+
+  def putprf = {
+    forward(action:"put", params:[type:"profile"])
+  }
 
 }
 
