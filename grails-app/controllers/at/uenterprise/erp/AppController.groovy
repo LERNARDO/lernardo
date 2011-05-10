@@ -13,7 +13,6 @@ import at.openfactory.ep.Link
 import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
-import org.springframework.web.multipart.MultipartFile
 import at.openfactory.ep.AssetStorage
 import grails.util.GrailsUtil
 
@@ -271,16 +270,12 @@ class AppController {
   def error500 = {
 
     if (GrailsUtil.environment != "development") {
-      try {
-        sendMail {
-          to      "error@uenterprise.de"
-          subject "ERP - Error 500"
-          html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
-        }
-        log.info "Notification email sent to developers!"
-      } catch(Exception ex) {
-        log.error "Problem sending email $ex.message", ex
+      sendMail {
+        to      "error@uenterprise.de"
+        subject "ERP - Error 500"
+        html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
       }
+      log.info "Notification email sent to developers!"
     }
 
     render view: '/500'
@@ -332,15 +327,13 @@ class AppController {
       def random = randomGenerator.nextInt(300) + 100
       String pass = 'pass' + random.toString()
       user.password = securityManager.encodePassword(pass)
-      try {
-        sendMail {
-          to "${user.email}"
-          subject "Lernardo - Dein Passwort"
-          html g.render(template: 'passwordemail', model: [entity: e, password: pass])
-        }
-      } catch (Exception ex) {
-        log.error "Problem sending email $ex.message", ex
+
+      sendMail {
+        to "${user.email}"
+        subject "Lernardo - Dein Passwort"
+        html g.render(template: 'passwordemail', model: [entity: e, password: pass])
       }
+
       flash.message = message(code: "account.message", args: [params.email])
       redirect controller: 'articlePost', action: 'index'
     }

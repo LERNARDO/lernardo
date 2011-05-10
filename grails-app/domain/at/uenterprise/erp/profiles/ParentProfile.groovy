@@ -56,7 +56,7 @@ class ParentProfile extends Profile {
     }
 
     String toString(){
-      return "${lastName}" + " " + "${firstName}"
+      return "${lastName} ${firstName}"
     }
   
 }

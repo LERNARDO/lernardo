@@ -124,24 +124,24 @@ class HelperTagLib {
     Calendar tcalendarEnd = new GregorianCalendar();
     tcalendarEnd.setTime(date2);
 
-    SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
 
     while (tcalendarStart <= tcalendarEnd) {
       Date currentDate = tcalendarStart.getTime();
 
-      if (tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday')
+      if (tdf.format(currentDate) == 'Monday')
         expectedHours += educator.profile.workHoursMonday
-      else if (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday')
+      else if (tdf.format(currentDate) == 'Tuesday')
         expectedHours += educator.profile.workHoursTuesday
-      else if (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday')
+      else if (tdf.format(currentDate) == 'Wednesday')
         expectedHours += educator.profile.workHoursWednesday
-      else if (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday')
+      else if (tdf.format(currentDate) == 'Thursday')
         expectedHours += educator.profile.workHoursThursday
-      else if (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')
+      else if (tdf.format(currentDate) == 'Friday')
         expectedHours += educator.profile.workHoursFriday
-      else if (tdf.format(currentDate) == 'Samstag' || tdf.format(currentDate) == 'Saturday')
+      else if (tdf.format(currentDate) == 'Saturday')
         expectedHours += educator.profile.workHoursSaturday
-      else if (tdf.format(currentDate) == 'Sonntag' || tdf.format(currentDate) == 'Sunday')
+      else if (tdf.format(currentDate) == 'Sunday')
         expectedHours += educator.profile.workHoursSunday
 
       tcalendarStart.add(Calendar.DATE, 1)
@@ -195,24 +195,24 @@ class HelperTagLib {
     Calendar tcalendarEnd = new GregorianCalendar();
     tcalendarEnd.setTime(date2);
 
-    SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
 
     while (tcalendarStart <= tcalendarEnd) {
       Date currentDate = tcalendarStart.getTime();
 
-      if (tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday')
+      if (tdf.format(currentDate) == 'Monday')
         expectedHours += educator.profile.workHoursMonday
-      else if (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday')
+      else if (tdf.format(currentDate) == 'Tuesday')
         expectedHours += educator.profile.workHoursTuesday
-      else if (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday')
+      else if (tdf.format(currentDate) == 'Wednesday')
         expectedHours += educator.profile.workHoursWednesday
-      else if (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday')
+      else if (tdf.format(currentDate) == 'Thursday')
         expectedHours += educator.profile.workHoursThursday
-      else if (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')
+      else if (tdf.format(currentDate) == 'Friday')
         expectedHours += educator.profile.workHoursFriday
-      else if (tdf.format(currentDate) == 'Samstag' || tdf.format(currentDate) == 'Saturday')
+      else if (tdf.format(currentDate) == 'Saturday')
         expectedHours += educator.profile.workHoursSaturday
-      else if (tdf.format(currentDate) == 'Sonntag' || tdf.format(currentDate) == 'Sunday')
+      else if (tdf.format(currentDate) == 'Sunday')
         expectedHours += educator.profile.workHoursSunday
 
       tcalendarStart.add(Calendar.DATE, 1)
@@ -803,7 +803,7 @@ class HelperTagLib {
    */
   def getQuoteOfTheDay = {
     Date myDate = new Date()
-    SimpleDateFormat df = new SimpleDateFormat("dd")
+    SimpleDateFormat df = new SimpleDateFormat("dd", new Locale("en"))
     String day = df.format(myDate)
     out << '<span class="quote">"' + grailsApplication.config.quotesMap[day] + '"</span>'
     out << '<p class="quoter">' + message(code:"from") + " " + grailsApplication.config.quoterMap[day] + '</p>'
@@ -814,7 +814,7 @@ class HelperTagLib {
    */
   def getPicOfTheDay = { attrs, body ->
     Date myDate = new Date()
-    SimpleDateFormat df = new SimpleDateFormat("dd")
+    SimpleDateFormat df = new SimpleDateFormat("dd", new Locale("en"))
     String day = df.format(myDate)
     out << body(day)
   }

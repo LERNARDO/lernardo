@@ -88,7 +88,7 @@ class ActivityProfileController {
     if (params.myDate_year && params.myDate_month && params.myDate_day) {
       Date inputDate = new Date()
       String input = "${params.myDate_year}/${params.myDate_month}/${params.myDate_day}"
-      inputDate = new SimpleDateFormat("yyyy/MM/dd").parse(input)
+      inputDate = new SimpleDateFormat("yyyy/MM/dd", new Locale("en")).parse(input)
 
       // get all activities of the facilities within the timeframe
       if (currentEntity.type.id == metaDataService.etEducator.id) {
@@ -182,54 +182,54 @@ class ActivityProfileController {
     periodEnd.setHours(23)
     periodEnd.setMinutes(59)
 
-    SimpleDateFormat df = new SimpleDateFormat("EEEE", Locale.GERMAN)
+    SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
     Date currentDate = periodStart
-    while (currentDate.compareTo(periodEnd) <= 0) {
+    while (currentDate <= periodEnd) {
 
-      if ((params.monday && df.format(currentDate) == 'Montag') ||
-              (params.tuesday && df.format(currentDate) == 'Dienstag') ||
-              (params.wednesday && df.format(currentDate) == 'Mittwoch') ||
-              (params.thursday && df.format(currentDate) == 'Donnerstag') ||
-              (params.friday && df.format(currentDate) == 'Freitag') ||
-              (params.saturday && df.format(currentDate) == 'Samstag') ||
-              (params.sunday && df.format(currentDate) == 'Sonntag')) {
+      if ((params.monday && df.format(currentDate) == 'Monday') ||
+              (params.tuesday && df.format(currentDate) == 'Tuesday') ||
+              (params.wednesday && df.format(currentDate) == 'Wednesday') ||
+              (params.thursday && df.format(currentDate) == 'Thursday') ||
+              (params.friday && df.format(currentDate) == 'Friday') ||
+              (params.saturday && df.format(currentDate) == 'Saturday') ||
+              (params.sunday && df.format(currentDate) == 'Sunday')) {
 
         Entity entity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.type = "Themenraum"
           ent.profile.date = currentDate
-          if (df.format(currentDate) == 'Montag') {
+          if (df.format(currentDate) == 'Monday') {
             ent.profile.date.setHours(params.int('mondayStartHour'))
             ent.profile.date.setMinutes(params.int('mondayStartMinute'))
             ent.profile.duration = (params.int('mondayEndHour') - params.int('mondayStartHour')) * 60 + (params.int('mondayEndMinute') - params.int('mondayStartMinute'))
           }
-          if (df.format(currentDate) == 'Dienstag') {
+          else if (df.format(currentDate) == 'Tuesday') {
             ent.profile.date.setHours(params.int('tuesdayStartHour'))
             ent.profile.date.setMinutes(params.int('tuesdayStartMinute'))
             ent.profile.duration = (params.int('tuesdayEndHour') - params.int('tuesdayStartHour')) * 60 + (params.int('tuesdayEndMinute') - params.int('tuesdayStartMinute'))
           }
-          if (df.format(currentDate) == 'Mittwoch') {
+          else if (df.format(currentDate) == 'Wednesday') {
             ent.profile.date.setHours(params.int('wednesdayStartHour'))
             ent.profile.date.setMinutes(params.int('wednesdayStartMinute'))
             ent.profile.duration = (params.int('wednesdayEndHour') - params.int('wednesdayStartHour')) * 60 + (params.int('wednesdayEndMinute') - params.int('wednesdayStartMinute'))
           }
-          if (df.format(currentDate) == 'Donnerstag') {
+          else if (df.format(currentDate) == 'Thursday') {
             ent.profile.date.setHours(params.int('thursdayStartHour'))
             ent.profile.date.setMinutes(params.int('thursdayStartMinute'))
             ent.profile.duration = (params.int('thursdayEndHour') - params.int('thursdayStartHour')) * 60 + (params.int('thursdayEndMinute') - params.int('thursdayStartMinute'))
           }
-          if (df.format(currentDate) == 'Freitag') {
+          else if (df.format(currentDate) == 'Friday') {
             ent.profile.date.setHours(params.int('fridayStartHour'))
             ent.profile.date.setMinutes(params.int('fridayStartMinute'))
             ent.profile.duration = (params.int('fridayEndHour') - params.int('fridayStartHour')) * 60 + (params.int('fridayEndMinute') - params.int('fridayStartMinute'))
           }
-          if (df.format(currentDate) == 'Samstag') {
+          else if (df.format(currentDate) == 'Saturday') {
             ent.profile.date.setHours(params.int('saturdayStartHour'))
             ent.profile.date.setMinutes(params.int('saturdayStartMinute'))
             ent.profile.duration = (params.int('saturdayEndHour') - params.int('saturdayStartHour')) * 60 + (params.int('saturdayEndMinute') - params.int('saturdayStartMinute'))
           }
-          if (df.format(currentDate) == 'Sonntag') {
+          else if (df.format(currentDate) == 'Sunday') {
             ent.profile.date.setHours(params.int('sundayStartHour'))
             ent.profile.date.setMinutes(params.int('sundayStartMinute'))
             ent.profile.duration = (params.int('sundayEndHour') - params.int('sundayStartHour')) * 60 + (params.int('sundayEndMinute') - params.int('sundayStartMinute'))

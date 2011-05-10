@@ -225,18 +225,18 @@ class ProjectProfileController {
     Calendar tcalendarEnd = new GregorianCalendar();
     tcalendarEnd.setTime(tperiodEnd);
 
-    SimpleDateFormat tdf = new SimpleDateFormat("EEEE")
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
 
     while (tcalendarStart <= tcalendarEnd) {
        Date currentDate = tcalendarStart.getTime();
 
-       if ((params.monday && (tdf.format(currentDate) == 'Montag' || tdf.format(currentDate) == 'Monday')) ||
-           (params.tuesday && (tdf.format(currentDate) == 'Dienstag' || tdf.format(currentDate) == 'Tuesday')) ||
-           (params.wednesday && (tdf.format(currentDate) == 'Mittwoch' || tdf.format(currentDate) == 'Wednesday')) ||
-           (params.thursday && (tdf.format(currentDate) == 'Donnerstag' || tdf.format(currentDate) == 'Thursday')) ||
-           (params.friday && (tdf.format(currentDate) == 'Freitag' || tdf.format(currentDate) == 'Friday')) ||
-           (params.saturday && (tdf.format(currentDate) == 'Samstag' || tdf.format(currentDate) == 'Saturday')) ||
-           (params.sunday && (tdf.format(currentDate) == 'Sonntag' || tdf.format(currentDate) == 'Sunday'))) {
+       if ((params.monday && (tdf.format(currentDate) == 'Monday')) ||
+           (params.tuesday && (tdf.format(currentDate) == 'Tuesday')) ||
+           (params.wednesday && (tdf.format(currentDate) == 'Wednesday')) ||
+           (params.thursday && (tdf.format(currentDate) == 'Thursday')) ||
+           (params.friday && (tdf.format(currentDate) == 'Friday')) ||
+           (params.saturday && (tdf.format(currentDate) == 'Saturday')) ||
+           (params.sunday && (tdf.format(currentDate) == 'Sunday'))) {
             checkdays++
          }
       tcalendarStart.add(Calendar.DATE, 1)
@@ -274,45 +274,45 @@ class ProjectProfileController {
       Calendar calendarEnd = new GregorianCalendar();
       calendarEnd.setTime(periodEnd);
 
-      SimpleDateFormat df = new SimpleDateFormat("EEEE")
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
       // loop through the date range and compare the dates day with the params
       while (calendarStart <= calendarEnd) {
         Date currentDate = calendarStart.getTime();
 
-        if ((params.monday && (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday')) ||
-                (params.tuesday && (df.format(currentDate) == 'Dienstag' || df.format(currentDate) == 'Tuesday')) ||
-                (params.wednesday && (df.format(currentDate) == 'Mittwoch' || df.format(currentDate) == 'Wednesday')) ||
-                (params.thursday && (df.format(currentDate) == 'Donnerstag' || df.format(currentDate) == 'Thursday')) ||
-                (params.friday && (df.format(currentDate) == 'Freitag' || df.format(currentDate) == 'Friday')) ||
-                (params.saturday && (df.format(currentDate) == 'Samstag' || df.format(currentDate) == 'Saturday')) ||
-                (params.sunday && (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday'))) {
+        if ((params.monday && (df.format(currentDate) == 'Monday')) ||
+                (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
+                (params.wednesday && (df.format(currentDate) == 'Wednesday')) ||
+                (params.thursday && (df.format(currentDate) == 'Thursday')) ||
+                (params.friday && (df.format(currentDate) == 'Friday')) ||
+                (params.saturday && (df.format(currentDate) == 'Saturday')) ||
+                (params.sunday && (df.format(currentDate) == 'Sunday'))) {
 
-          if (df.format(currentDate) == 'Montag' || df.format(currentDate) == 'Monday') {
+          if (df.format(currentDate) == 'Monday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('mondayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('mondayStartMinute'))
           }
-          else if (df.format(currentDate) == 'Dienstag' || df.format(currentDate) == 'Tuesday') {
+          else if (df.format(currentDate) == 'Tuesday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('tuesdayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('tuesdayStartMinute'))
           }
-          else if (df.format(currentDate) == 'Mittwoch' || df.format(currentDate) == 'Wednesday') {
+          else if (df.format(currentDate) == 'Wednesday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('wednesdayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('wednesdayStartMinute'))
           }
-          else if (df.format(currentDate) == 'Donnerstag' || df.format(currentDate) == 'Thursday') {
+          else if (df.format(currentDate) == 'Thursday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('thursdayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('thursdayStartMinute'))
           }
-          else if (df.format(currentDate) == 'Freitag' || df.format(currentDate) == 'Friday') {
+          else if (df.format(currentDate) == 'Friday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('fridayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('fridayStartMinute'))
           }
-          else if (df.format(currentDate) == 'Samstag' || df.format(currentDate) == 'Saturday') {
+          else if (df.format(currentDate) == 'Saturday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('saturdayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
           }
-          else if (df.format(currentDate) == 'Sonntag' || df.format(currentDate) == 'Sunday') {
+          else if (df.format(currentDate) == 'Sunday') {
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
           }
@@ -704,7 +704,7 @@ class ProjectProfileController {
     // then do the big loop
     log.info "Starting big loop"
 
-    SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy 'um' hh:mm")
+    SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy 'um' hh:mm", new Locale("en"))
 
     projectDays.each { pd ->
       projectUnits = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayUnit)

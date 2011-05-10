@@ -16,6 +16,6 @@ class WorkdayUnit implements Comparable {
     }
 
     int compareTo (obj) {
-      date1.compareTo(obj.date1)
+      date1 <=> obj.date1
     }
 }

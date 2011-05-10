@@ -164,7 +164,7 @@ class ProfileController {
 
     Calendar calendar = Calendar.getInstance()
 
-    SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd")
+    SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"))
 
     List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'desc'])
 
@@ -231,7 +231,7 @@ class ProfileController {
     //params.date = params.date ? new Date(Integer.parseInt(params.date_year)-1900,Integer.parseInt(params.date_month)-1,Integer.parseInt(params.date_day),00,00): new Date()
     params.date = params.date ?: new Date()
 
-    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"))
     String dateString = sd.format(params.date)
     log.debug "param date: " + dateString
     Date date = sd.parse(dateString)
@@ -313,7 +313,7 @@ class ProfileController {
       counter++
     }
 
-    SimpleDateFormat sd = new SimpleDateFormat("dd.MM.yyyy")
+    SimpleDateFormat sd = new SimpleDateFormat("dd.MM.yyyy", new Locale("en"))
     String dateString = sd.format(new Date(Integer.parseInt(params.year), Integer.parseInt(params.month), Integer.parseInt(params.day)))
     flash.message = message(code: "attendance.saved", args: [dateString])
 

@@ -10,7 +10,7 @@ class Materials implements Comparable {
     }
 
     int compareTo (obj) {
-      date.compareTo(obj.date)
+      date <=> obj.date
     }
 
 }

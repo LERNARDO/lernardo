@@ -100,7 +100,7 @@ class EducatorProfile extends Profile {
     }
 
     String toString(){
-      return "${lastName}" + " " + "${firstName}"
+      return "${lastName} ${firstName}"
     }
 
 }

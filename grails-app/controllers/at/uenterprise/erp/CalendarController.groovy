@@ -136,7 +136,7 @@ class CalendarController {
       // get all own appointments
       List ownappointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
 
-      ownappointments?.findAll{(it.profile.beginDate.compareTo(start) >= 0 && it.profile.beginDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
+      ownappointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each {
         def title = "Termin: ${it.profile.fullName}"
         def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
         eventList << [id: it.id, title: title, start: functionService.convertFromUTC(it.profile.beginDate), end: functionService.convertFromUTC(it.profile.endDate), allDay: it.profile.allDay, className: 'own-appointments', description: description]
@@ -147,7 +147,7 @@ class CalendarController {
     if (currentEntity.profile.calendar.showThemes) {
         List themeList = Entity.findAllByType(metaDataService.etTheme)
 
-        //themeList?.findAll{(it.profile.startDate.compareTo(start) >= 0 && it.profile.startDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each {
+        //themeList?.findAll{(it.profile.startDate >= start && it.profile.startDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each {
         themeList?.each {
           def dateEnd = new DateTime(functionService.convertFromUTC(it.profile.endDate))
           dateEnd = dateEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
@@ -164,7 +164,7 @@ class CalendarController {
         // get all appointments
         List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
 
-        appointments?.findAll{(it.profile.beginDate.compareTo(start) >= 0 && it.profile.beginDate.compareTo(end) <= 0) || (it.profile.endDate.compareTo(start) >= 0 && it.profile.endDate.compareTo(end) <= 0)}?.each { Entity appointment ->
+        appointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each { Entity appointment ->
           def title = appointment.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${appointment.profile.fullName}"
           def description = appointment.profile.isPrivate && educator.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
           eventList << [id: appointment.id, title: title, start: functionService.convertFromUTC(it.profile.beginDate), end: functionService.convertFromUTC(it.profile.endDate), allDay: appointment.profile.allDay, className: className, description: description]
@@ -185,7 +185,7 @@ class CalendarController {
             activityList.add(group)
         }
 
-        activityList.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each {
+        activityList.findAll{it.profile.date >= start && it.profile.date <= end}?.each {
           def dateStart = new DateTime(functionService.convertFromUTC(it.profile.date))
           def dateEnd = dateStart.plusMinutes("$it.profile.realDuration".toInteger())
           eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, className: className, description: "<b>Pädagogisches Ziel:</b> " + it.profile.educationalObjectiveText]
@@ -212,7 +212,7 @@ class CalendarController {
             themeRoomList.add(activity)
         }
 
-        themeRoomList.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each {
+        themeRoomList.findAll{it.profile.date >= start && it.profile.date <= end}?.each {
           def dateStart = new DateTime(functionService.convertFromUTC(it.profile.date))
           def dateEnd = dateStart.plusMinutes("$it.profile.duration".toInteger())
           def description = "<b>${message(code: 'duration')}:</b> ${it.profile.duration} min"
@@ -227,7 +227,7 @@ class CalendarController {
 
         List unitsDone = []
         if (projectDays) {
-          projectDays.findAll{it.profile.date.compareTo(start) >= 0 && it.profile.date.compareTo(end) <= 0}?.each { Entity projectDay ->
+          projectDays.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity projectDay ->
             // 2. for each project day find the project it belongs to
             Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 

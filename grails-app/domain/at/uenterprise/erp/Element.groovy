@@ -9,6 +9,6 @@ class Element implements Comparable {
     }
 
     int compareTo (obj) {
-      name.compareTo(obj.name)
+      name <=> obj.name
     }
 }
