@@ -512,63 +512,57 @@ ul {
 .row-partner {
     background: #cb89c9; }
 
-/*.odd {
-    background: #f4f4f4; }
-
-.even {
-    background: #fff; }*/
-
-/* ----- LIST and TABLE overrides ----- */
-
 .default-table {
-    /*border: 1px solid #bbb;*/
     border-collapse: separate;
-    width: 100%; }
-    .default-table td {
+    width: 100%;
+    td {
         padding: 5px;
         border-bottom: 1px solid #9A9A9A;
-        border-top: 1px solid #eee;}
-        .default-table td a {
-            //color: #141;
+        border-top: 1px solid #eee;
+        a {
             text-decoration: none;
         }
-        //.default-table td a:hover {
-            //text-decoration: none;
-        //}
-    .default-table th {
+    }
+    th {
         background: #9A9A9A;
         border-bottom: 1px solid #787878;
         color: #fff;
         font-size: 11px;
-        /*text-transform: uppercase;*/
         font-weight: bold;
         line-height: 17px;
-        padding: 2px 6px; }
-        .default-table th a {
+        padding: 2px 6px;
+        a {
             color: #fff;
             display: block;
             font-size: 11px;
             text-decoration: none;
-            width: 100%; }
-        .default-table th:hover {
+            width: 100%;
+        }
+        &:hover {
             background: #bbb;
         }
-        .default-table th.asc a, th.desc a {
-            background-position: right;
-            background-repeat: no-repeat; }
-        .default-table th.asc a {
-            background-image: url(../images/icons/bullet_arrow_up.png); }
-        .default-table th.desc a {
-            background-image: url(../images/icons/bullet_arrow_down.png); }
-    .default-table tr {
+        &.asc {
+            a {
+                background-position: right;
+                background-repeat: no-repeat;
+                background-image: url(../images/icons/bullet_arrow_up.png);
+            }
+        }
+        &.desc {
+            a {
+                background-position: right;
+                background-repeat: no-repeat;
+                background-image: url(../images/icons/bullet_arrow_down.png);
+            }
+        }
+    }
+    tr {
         font-size: 11px;
-        /*border: 1px solid #999;*/}
-    .default-table tr.odd {
-        /*background: #eee;*/ }
-    .default-table tr.even {
-        /*background: #fef;*/ }
-    .default-table tr:hover {
-        background: #eee; }
+        &:hover {
+            background: #eee;
+        }
+    }
+}
 
 table .label {
     height: 25px;
@@ -578,107 +572,120 @@ label {
     padding-right: 5px; }
 
 #body-list {
-    padding: 0; /*px 10px 10px 10px;*/
-    /*background: #f0f0f0;*/ }
-    #body-list table {
+    padding: 0;
+    table {
         border: 1px solid #bbb;
-        width: 100%; }
-        #body-list table tr a {
-            /*color: #333;*/
-            text-decoration: none; }
-            #body-list table tr a:hover {
-                /*color: #333;*/
-                text-decoration: underline; }
-        #body-list table tbody a {
-            /*color: #03f;*/ }
-    #body-list td {
-        padding: 5px; }
-        #body-list td .col {
-            /*width: 200px;*/ }
-        #body-list td .col2 {
-            /*width: 150px;*/ }
-        #body-list td .col4 {
-            width: 150px; }
-    #body-list .list th, .list td {
-        border-left: 1px solid #ddd; }
-    #body-list th {
-        background: #fd4;
-        color: #333;
-        font-size: 11px;
-        text-transform: uppercase;
-        font-weight: bold;
-        line-height: 17px;
-        padding: 2px 6px; }
-        #body-list th a:link, #body-list th a:visited {
-            color: #333;
-            display: block;
+        width: 100%;
+        tr {
             font-size: 11px;
-            text-decoration: none;
-            width: 100%; }
-        #body-list th:hover {
-            background: #bbb;
-            color: #fff;
+            border: 1px solid #999;
+            a {
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            .odd {
+                background: #eef;
+            }
+            .even {
+                background: #fef;
+            }
         }
-        #body-list th.asc a, th.desc a {
-            background-position: right;
-            background-repeat: no-repeat; }
-        #body-list th.asc a {
-            background-image: url(../images/icons/bullet_arrow_up.png); }
-        #body-list th.desc a {
-            background-image: url(../images/icons/bullet_arrow_down.png); }
-    #body-list tr {
-        font-size: 11px;
-        border: 1px solid #999;}
-    #body-list tr.odd {
-        background: #eef; }
-    #body-list tr.even {
-        background: #fef; }
-    #body-list #select-box {
-        margin-bottom: 10px; }
+        td {
+            padding: 5px;
+            .col4 {
+                width: 150px;
+            }
+        }
+        .list th, .list td {
+            border-left: 1px solid #ddd;
+        }
+        th {
+            background: #fd4;
+            color: #333;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            line-height: 17px;
+            padding: 2px 6px;
+            a:link, a:visited {
+                color: #333;
+                display: block;
+                font-size: 11px;
+                text-decoration: none;
+                width: 100%;
+            }
+            &:hover {
+                background: #bbb;
+                color: #fff;
+            }
+            &.asc {
+                a {
+                    background-position: right;
+                    background-repeat: no-repeat;
+                    background-image: url(../images/icons/bullet_arrow_up.png);
+                }
+            }
+            &.desc {
+                a {
+                    background-position: right;
+                    background-repeat: no-repeat;
+                    background-image: url(../images/icons/bullet_arrow_down.png);
+                }
+            }
+        }
+        #select-box {
+            margin-bottom: 10px;
+        }
+    }
+}
 
 table #profile-list tr {
     border: 1px solid #ccc; }
 
-/* PAGINATION */
-
 .paginateButtons {
-    /*background: #ccd *//*url(../../images/skin/shadow.jpg) bottom repeat-x;*/
     border-top: 1px solid #eee;
     color: #666;
     font-size: 11px;
     overflow: hidden;
-    padding: 10px 3px; }
-    .paginateButtons a {
+    padding: 10px 3px;
+    a {
         background: #fff;
         border: 1px solid #999;
         color: #666;
         margin: 0 3px;
-        padding: 2px 6px; }
-    .paginateButtons a:hover {
-        text-decoration: none;
-        background: #393;
-        color: #fff;
-        border: 1px solid #060; }
-    .paginateButtons span {
-        padding: 2px 3px; }
+        padding: 2px 6px;
+        &:hover {
+            text-decoration: none;
+            background: #393;
+            color: #fff;
+            border: 1px solid #060;
+        }
+    }
+    span {
+        padding: 2px 3px;
+    }
+}
 
 .paginateButtonsPublic {
     color: #666;
     font-size: 11px;
     overflow: hidden;
     padding: 10px 3px;
-    margin-bottom: 5px; }
-    .paginateButtonsPublic a {
-        /*color: #666;*/
+    margin-bottom: 5px;
+    a {
         margin: 0 3px;
-        padding: 2px 6px; }
-    .paginateButtonsPublic span {
-        padding: 2px 3px; }
+        padding: 2px 6px;
+    }
+    span {
+        padding: 2px 3px;
+    }
+}
 
 #createArticle {
-    margin: 10px 0; }
-
-/* ----- GLOBAL ACTION LINKS ----- */
+    margin: 10px 0;
+}
 
 .adminlink {
     font-weight: bold;
