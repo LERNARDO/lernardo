@@ -100,7 +100,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h5>
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClientGroup', id:project.id]" update="clients2" before="showspinner('#clients2');" after="toggle('#clients');">
           <table>

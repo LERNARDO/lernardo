@@ -69,8 +69,8 @@
     </g:if>
 
     <div class="zusatz">
-      <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="Projekteinheitvorlage hinzufügen"/></g:remoteLink>
-      %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Projekteinheit hinzufügen" /></a>--}%</erp:accessCheck></h5>
+      <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="${message(code: 'add')}"/></g:remoteLink>
+      %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a>--}%</erp:accessCheck></h5>
       %{--<div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">
           Name: <g:textField name="fullName" size="40" value=""/>
@@ -86,7 +86,7 @@
 
     %{--<g:if test="${projectUnits}">
       <div>
-        <h5>Aktivitätsvorlagengruppen <erp:isMeOrAdmin entity="${entity}"><a onclick="toggle('#groupActivityTemplates'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Aktivitätsvorlagengruppe hinzufügen" /></a></erp:isMeOrAdmin></h5>
+        <h5>Aktivitätsvorlagengruppen <erp:isMeOrAdmin entity="${entity}"><a onclick="toggle('#groupActivityTemplates'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:isMeOrAdmin></h5>
         <div id="groupActivityTemplates" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addGroupActivityTemplate', id: projectTemplate.id]" update="projectunits2" before="showspinner('#groupActivityTemplates')">
             Aktivitätsvorlagengruppe: <g:select name="groupActivityTemplate" from="${allGroupActivityTemplates}" optionKey="id" optionValue="profile"/><br/>

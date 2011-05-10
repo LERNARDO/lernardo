@@ -49,7 +49,7 @@
           %{--      <tr class="prop">
             <td valign="top" class="name">
               <label for="templates">
-                <g:message code="groupActivityTemplateProfile.description.label" default="Aktivitätsvorlagen"/>
+                <g:message code="groupActivityTemplateProfile.description.label" />
               </label>
             </td>
             <td valign="top" class="value">

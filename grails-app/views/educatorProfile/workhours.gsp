@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Arbeitsstunden</title>
+  <title><g:message code="educator.profile.workHours"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Arbeitsstunden</h1>
+    <h1><g:message code="educator.profile.workHours"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -14,11 +14,11 @@
     <table class="default-table">
       <thead>
       <tr>
-        <th>Name</th>
+        <th><g:message code="name"/></th>
         <th>Stunden</th>
         %{--<th>Arbeitstage pro Woche</th>--}%
-        <th>Normalstundenlohn (${grailsApplication.config.currency})</th>
-        <th>Überstundenlohn (${grailsApplication.config.currency})</th>
+        <th><g:message code="educator.profile.hourlyWage"/> (${grailsApplication.config.currency})</th>
+        <th><g:message code="educator.profile.overtimePay"/> (${grailsApplication.config.currency})</th>
       </tr>
       </thead>
       <tbody>

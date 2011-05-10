@@ -38,7 +38,7 @@
 
     <div class="zusatz">
       <h5><g:message code="representantives"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Repräsentant hinzufügen"/>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/>
       </a></erp:accessCheck></h5>
       <div class="zusatz-add" id="representatives" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupColonyProfile', action:'addRepresentative', id:group.id]" update="representatives2" before="showspinner('#representatives2');" after="toggle('#representatives');">
@@ -93,7 +93,7 @@
 
     <div class="zusatz">
       <h5><g:message code="resource.profile"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressourcen hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
@@ -125,7 +125,7 @@
 
     <div class="zusatz">
       <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#facilities');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="toggle('#facilities');">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
@@ -141,7 +141,7 @@
 
     <div class="zusatz">
       <h5><g:message code="partners"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#partners');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Partner hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>

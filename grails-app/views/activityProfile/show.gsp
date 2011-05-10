@@ -112,7 +112,7 @@
       <g:if test="${new Date() > activity.profile.date}">
         <div>
           <h1><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
-          return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Betreute hinzufügen"/></a></erp:accessCheck></h1>
+          return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h1>
           <div id="clients" style="display:none">
             <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addClient', id:activity.id]" update="clients2" before="showspinner('#clients2')">
               <g:select from="${clients}" name="client" optionKey="id" optionValue="profile"/>
@@ -128,7 +128,7 @@
         </div>
       </g:if>
       <g:else>
-        <p>Betreute können ab Beginn der Aktivität zugeordnet und beurteilt werden!</p>
+        <p><g:message code="activity.clients"/></p>
       </g:else>
     </g:if>
 

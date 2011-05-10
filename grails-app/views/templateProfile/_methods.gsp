@@ -1,7 +1,7 @@
 <g:if test="${template.profile.methods}">
   <g:each in="${template.profile.methods}" var="method">
     <ul style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc">
-      <li><span class="bold">${method.name}</span> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${template}"><g:remoteLink action="removeMethod" update="methods2" id="${template.id}" params="[method: method.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="Bewertungsmethode entfernen" align="top"/></g:remoteLink></erp:accessCheck></li>
+      <li><span class="bold">${method.name}</span> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${template}"><g:remoteLink action="removeMethod" update="methods2" id="${template.id}" params="[method: method.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
       %{--<li>${method.description}</li>--}%
       <g:each in="${method.elements}" var="element">
         <li>${element.name} <div id="starBox${element.id}" class="starbox"><erp:starBox element="${element.id}" template="${template}"/></div></li>

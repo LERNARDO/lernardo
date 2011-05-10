@@ -2,7 +2,7 @@
   <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
      <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> Uhr</p>
 
-  <span class="bold"><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einheit hinzufügen"/></a></erp:accessCheck></span>
+  <span class="bold"><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
   <div id="units" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addUnit', id:projectDay.id]" update="units2" before="showspinner('#units2')">
       <table>
@@ -20,7 +20,7 @@
     </erp:getProjectDayUnits>
   </div>
 
-  <span class="bold"><g:message code="educators"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Pädagoge hinzufügen"/></a></erp:accessCheck></span>
+  <span class="bold"><g:message code="educators"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#educators'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
   <div id="educators" style="display:none">
 
     <g:message code="search"/>:<br/>
@@ -36,7 +36,7 @@
     </erp:getProjectDayEducators>
   </div>
 
-  <span class="bold"><g:message code="substitutes"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Supplierung hinzufügen"/></a></erp:accessCheck></span>
+  <span class="bold"><g:message code="substitutes"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#substitutes'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
   <div id="substitutes" style="display:none">
 
     <g:message code="search"/>:<br/>
@@ -52,7 +52,7 @@
     </erp:getProjectDaySubstitutes>
   </div>
 
-  %{--<span class="bold">Resourcen <erp:accessCheck entity="${entity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ressource hinzufügen"/></a></erp:accessCheck></span>
+  %{--<span class="bold">Resourcen <erp:accessCheck entity="${entity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
   <div id="resources" style="display:none">
     <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addResource', id:projectDay.id]" update="resources2" before="showspinner('#resources2')">
       <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>

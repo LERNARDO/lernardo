@@ -25,8 +25,8 @@
     <table class="default-table">
       <thead>
       <tr>
-        <g:sortableColumn property="name" title="${message(code:'workdayCategory.name', default:'Bezeichnung')}"/>
-        <g:sortableColumn property="count" title="${message(code:'workdayCategory.count', default:'Bezeichnung')}"/>
+        <g:sortableColumn property="name" title="${message(code:'workdayCategory.name')}"/>
+        <g:sortableColumn property="count" title="${message(code:'workdayCategory.count')}"/>
       </tr>
       </thead>
       <tbody>

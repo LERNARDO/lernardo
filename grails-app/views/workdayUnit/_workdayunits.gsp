@@ -9,7 +9,7 @@
           <g:datePicker name="date" value="${date}"/>
         </span>
 
-        <g:submitButton name="button" value="Tag bestätigen"/>
+        <g:submitButton name="button" value="${message(code: 'day.confirm')}"/>
         <div class="clear"></div>
     </g:formRemote>
 

@@ -17,7 +17,7 @@
       <table width="100%">
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.to" default="An"/>:</td>
+          <td valign="top" class="name"><g:message code="msg.to"/>:</td>
           <td valign="top" class="value">
             <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
 
@@ -36,14 +36,14 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.subject" default="Betreff"/>:</td>
+          <td valign="top" class="name"><g:message code="msg.subject"/>:</td>
           <td valign="top" class="value">
             <g:textField class="countable50 ${hasErrors(bean: msgInstance, field: 'subject', 'errors')}" size="50" name="subject" value="${fieldValue(bean: msgInstance, field: 'subject').decodeHTML()}"/>
           </td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.content" default="Nachricht"/>:</td>
+          <td valign="top" class="name"><g:message code="msg.content"/>:</td>
           <td valign="top" class="value">
             <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:msgInstance,field:'content').decodeHTML()}

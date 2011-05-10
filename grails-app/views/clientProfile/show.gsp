@@ -255,7 +255,7 @@
 
     <div class="zusatz">
       <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#performances');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Performance hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="performances" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addPerformance', id:client.id]" update="performances2" before="showspinner('#performances2');" after="toggle('#performances');">
           <table>
@@ -281,7 +281,7 @@
 
     <div class="zusatz">
       <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#healths');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Gesundheitseintrag hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="healths" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addHealth', id:client.id]" update="healths2" before="showspinner('#healths2');" after="toggle('#healths');">
           <table>
@@ -308,7 +308,7 @@
     <g:if test="${grailsApplication.config.project == 'sueninos'}">
       <div class="zusatz">
         <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#materials');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Material hinzufügen"/></a></erp:accessCheck></h5>
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="materials" style="display:none">
           <g:formRemote name="formRemote3" url="[controller:'clientProfile', action:'addMaterial', id:client.id]" update="materials2" before="showspinner('#materials2');" after="toggle('#materials');">
             <table>
@@ -335,7 +335,7 @@
 
     <div class="zusatz">
       <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.projectName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#dates');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Datum hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
           <g:textField name="date" size="12" class="datepicker" value=""/>
@@ -353,7 +353,7 @@
     <g:if test="${grailsApplication.config.project == 'noe'}">
       <div class="zusatz">
         <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#collectors');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Abholberechtigten hinzufügen"/></a></erp:accessCheck></h5>
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="collectors" style="display:none">
           <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2');" after="toggle('#collectors');">
             <table>
@@ -377,7 +377,7 @@
     <g:if test="${grailsApplication.config.clientProfile.contact}">
       <div class="zusatz">
         <h5>Kontakt im Notfall <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
+        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="contacts" style="display:none">
           <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addContact', id:client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 

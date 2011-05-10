@@ -27,11 +27,11 @@
       <table class="default-table">
         <thead>
         <tr>
-          <g:sortableColumn property="fullName" title="${message(code:'appointmentProfile.fullName.label', default:'Titel')}"/>
-          <g:sortableColumn property="beginDate" title="${message(code:'appointmentProfile.beginDate.label', default:'Beginn')}"/>
-          <g:sortableColumn property="endDate" title="${message(code:'appointmentProfile.endDate.label', default:'Ende')}"/>
-          <g:sortableColumn property="allDay" title="${message(code:'appointmentProfile.allDay.label', default:'Ganztägig')}"/>
-          <g:sortableColumn property="isPrivate" title="${message(code:'appointmentProfile.isPrivate.label', default:'Privat')}"/>
+          <g:sortableColumn property="fullName" title="${message(code:'appointmentProfile.fullName.label')}"/>
+          <g:sortableColumn property="beginDate" title="${message(code:'appointmentProfile.beginDate.label')}"/>
+          <g:sortableColumn property="endDate" title="${message(code:'appointmentProfile.endDate.label')}"/>
+          <g:sortableColumn property="allDay" title="${message(code:'appointmentProfile.allDay.label')}"/>
+          <g:sortableColumn property="isPrivate" title="${message(code:'appointmentProfile.isPrivate.label')}"/>
         </tr>
         </thead>
         <tbody>

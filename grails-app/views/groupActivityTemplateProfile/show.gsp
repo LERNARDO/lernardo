@@ -72,7 +72,7 @@
     </g:if>
 
     <div class="zusatz">
-      <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Aktivitätsvorlage hinzufügen"/></a></erp:accessCheck></h5>
+      <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="templates" style="display:none">
         <p><g:message code="activityTemplate.list.hint2"/></p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect');">

@@ -1,1 +1,1 @@
-<g:if test="${facilities?.size() == 0}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Einrichtung hinzufügen"/></a></g:if>
+<g:if test="${facilities?.size() == 0}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></g:if>

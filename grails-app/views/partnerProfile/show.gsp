@@ -116,7 +116,7 @@
     </div>
 
     %{--    <div>
-      <h1><g:message code="partner.profile.services"/> <erp:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="Service hinzufügen" /></a></erp:isMeOrAdmin></h1>
+      <h1><g:message code="partner.profile.services"/> <erp:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:isMeOrAdmin></h1>
       <div id="services" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
           <g:textField name="service" size="30"/>
@@ -132,7 +132,7 @@
 
     <div class="zusatz">
       <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');
-      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ansprechperson hinzufügen"/></a></erp:accessCheck></h5>
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="contacts" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'partnerProfile', action:'addContact', id:partner.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 
