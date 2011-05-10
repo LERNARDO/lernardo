@@ -138,11 +138,12 @@ h1 {
     font-weight: normal;
     margin: 0.8em 0 0.3em;
     padding-bottom: 10px;
-    border-bottom: 1px dashed #ccc; }
-
-h1 .subheader {
-    font-size: 12px;
-    margin-bottom: 15px; }
+    border-bottom: 1px dashed #ccc;
+    .subheader {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+}
 
 h2 {
     padding-bottom: 10px;
@@ -258,7 +259,7 @@ ul {
     width: 120px;
     color: #333;
     -moz-box-shadow: #aaa 2px 2px 4px;
-    :hover {
+    &:hover {
         background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6; /*#dfdfdf*/
         border: 1px solid #55e;
         border-bottom: none;
@@ -271,7 +272,7 @@ ul {
         -moz-border-radius-topright: 5px;
         border: 1px solid #efefef;
         border-bottom: none;
-        :hover {
+        &:hover {
             border: 1px solid #ccf;
             border-bottom: none;
         }
@@ -308,11 +309,13 @@ ul {
     font-size: 10px;
     padding: 1px;
     margin-left: 5px;
-    color: #fff; }
-    .helperButton:hover {
+    color: #fff;
+    &:hover {
         border: 1px solid #f11;
         background: #f44;
-        text-decoration: none; }
+        text-decoration: none;
+    }
+}
 
 #private-content input, #private-content select, #private-content textarea {
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -334,7 +337,7 @@ ul {
     padding: 0 15px 0 15px;
     a {
         text-decoration: none;
-        :hover {
+        &:hover {
             color: #000; /*#46597B; */
         }
     }
@@ -804,8 +807,6 @@ div.actionlinks div.userlinks a {
 .label {
     width: 125px; }
 
-/* ----- MESSAGING -----  */
-
 table#msg-composer td {
     padding: 3px 5px; }
 
@@ -891,7 +892,6 @@ table#msg-composer td {
   text-align: left; }
 
 #inbox-footer {
-  /*background: #eeeeee;*/
   margin-top: -1px;
   padding: 3px 0 2px;
   height: 15px; }
@@ -928,38 +928,43 @@ table#msg-composer td {
 .member .member-info .member-name {
     font-weight: bold; }
 
-/* ----- BUTTONS ----- */
-
 .nav-button {
     border:1px solid #999999;
     font-family:Verdana,Arial,Helvetica,sans-serif;
     font-size:12px;
     margin:0 0 5px;
     padding:3px 5px;
-    background-color: #f0f0f0; }
-    .nav-button:hover {
-        border:1px solid #666666; }
-    .nav-button a {
+    background-color: #f0f0f0;
+    &:hover {
+        border:1px solid #666666;
+    }
+    a {
         text-decoration: none;
-        color: #666666; }
-        .nav-button a:hover {
-            text-decoration: none; }
+        color: #666666;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
 
 .buttons {
     margin: 0;
     padding: 0;
-    padding-bottom: 5px; }
-    .buttons .button a {
-      color: #000000 !important;
-      text-decoration: none;
-      font-size:12px;
-      border:1px solid #999999;
-      background-color: #f0f0f0;
-      padding:3px 5px;
-      cursor: pointer; }
-      .buttons .button a:hover {
+    padding-bottom: 5px;
+    .button a {
         color: #000000 !important;
-        border:1px solid #000000; }
+        text-decoration: none;
+        font-size:12px;
+        border:1px solid #999999;
+        background-color: #f0f0f0;
+        padding:3px 5px;
+        cursor: pointer;
+        &:hover {
+            color: #000000 !important;
+            border:1px solid #000000;
+        }
+    }
+}
 
 .clear {
     clear: both;
@@ -970,34 +975,31 @@ table#msg-composer td {
     margin: 2px 0 10px 0;
     border-top: 1px solid #ccc; }
 
-/* ----- COMMENTS -----  */
-
 .comment {
     border: 1px solid #ccc;
     background-color: #fdfdfd;
     padding: 5px;
-    margin-bottom: 10px; }
-    .comment .userpic {
-        margin-right: 5px; }
-    .comment .infobar {
+    margin-bottom: 10px;
+    .userpic {
+        margin-right: 5px;
+    }
+    .infobar {
         border-bottom: 1px solid #ccc;
-        padding-bottom: 4px; }
-        .comment .infobar .name {
+        padding-bottom: 4px;
+        .name {
             font-size: 100%;
-            font-weight: bold; }
-        .comment .actions {
-            float: right; }
+            font-weight: bold;
+        }
+    }
+    .actions {
+        float: right;
+    }
+}
 
 .add-comment {
     margin: 10px;
     font-weight: bold;
     text-align: center; }
-
-/* ----- ERRORS AND FLASH MSGS ----- */
-/*.error {
-  font-size: 150%;
-  font-weight: bold;
-}*/
 
 .errors {
     color: #f00; }
@@ -1006,9 +1008,13 @@ table#msg-composer td {
 
 #errors {
     color: #f44;
-    margin-bottom: 15px; }
-    #errors ul li {
-        list-style-type: disc; }
+    margin-bottom: 15px;
+    ul {
+        li {
+            list-style-type: disc;
+        }
+    }
+}
 
 #flash-msg {
     padding: 5px 5px 8px 5px;
@@ -1016,7 +1022,6 @@ table#msg-composer td {
     top: 15px;
     text-align: center;
     color: #fff;
-    /*margin: 0 auto;*/
     border: 1px solid #4a4;
     background-color: #6c6;
     border-radius: 5px;
@@ -1029,38 +1034,34 @@ table#msg-composer td {
     border-radius: 5px;
     color: #606060; }
 
-.myfriends .head, .myemployers .head, .mymemberships .head {
-    font-weight: bold;
-    font-size: 13px;
-    border-bottom: 1px solid #bbb;
-    padding-bottom: 2px;
-    margin-bottom: 3px; }
-
 .vtop {
     vertical-align: top; }
 
 .leistung-item {
     padding: 5px;
     margin-top: 10px;
-    border-top: 1px solid #ccc; }
-    .leistung-item td {
-        padding: 3px; }
+    border-top: 1px solid #ccc;
+    td {
+        padding: 3px;
+    }
+}
 
 .headerGrey {
     background: #eee;
     background: -moz-linear-gradient(-90deg,#eee,#999);
     background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
-     }
-    .headerGrey h1 {
+    h1 {
         color: #000;
         margin: 0;
         padding: 0;
         border: 0;
         font-weight: normal;
-        font-size: 14px; }
-    .headerGrey .second {
+        font-size: 14px;
+    }
+    .second {
         padding: 4px 5px;
     }
+}
 
 .email {
     background: #9c9;
@@ -1087,20 +1088,20 @@ table#msg-composer td {
 .profile-group {
     margin-top: 0; }
 
-/* overview screen */
-
 .overview {
-  background: #dfdfdf;
-  padding: 10px 10px 0 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  float: left;
-  margin: 0 10px 10px 0; }
-
-.overview .box:hover {
-  border: 1px solid #777;
-  background: #fff;
-  box-shadow: 0 0 15px @button-red-border;
+    background: #dfdfdf;
+    padding: 10px 10px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    float: left;
+    margin: 0 10px 10px 0;
+    .box {
+        &:hover {
+            border: 1px solid #777;
+            background: #fff;
+            box-shadow: 0 0 15px @button-red-border;
+        }
+    }
 }
 
 .drop-down-280 {
@@ -1157,11 +1158,12 @@ table#msg-composer td {
     padding: 4px 5px;
     color: #ccc;
 	font-size: 12px;
- }
-.hinweis:hover {
+    &:hover {
         background: #666;
 		color: #fff;
-        text-decoration: none; }
+        text-decoration: none;
+    }
+}
 
 .value {
 	padding-top:1px;
@@ -1169,28 +1171,23 @@ table#msg-composer td {
     vertical-align: top;
 }
 
-.prop li { list-style: none; }
+.prop li {
+    list-style: none; }
 
 .max-textbox {
 	width: 790px; }
 
 .zusatz {
-    //border: 1px solid #aaa; /*#fff;*/
-    //background-color: #eee;
     margin-top: 12px; }
 
 .zusatz-add {
     padding: 6px 0 6px 6px; }
 
 .zusatz-show {
-    margin: 5px;
-    /*background-color: #fff;
-    margin: 6px;
-    padding: 6px;
-    border: 1px solid #ccc;*/ }
+    margin: 5px; }
 
 .zusatz-show ul {
-   padding: 0; }
+    padding: 0; }
 
 .zusatz-show li {
     margin-left: 0; }
@@ -1207,12 +1204,12 @@ table#msg-composer td {
     .profile-group:hover {
         background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
 
-.profile-box .second ul li{
-      color: #000;
-      margin-bottom: 3px; }
+.profile-box .second ul li {
+    color: #000;
+    margin-bottom: 3px; }
 
 .profile-box .second ul li a {
-      color: #000; }
+    color: #000; }
 
 .activityInstance-top{
     border: solid 1px #bbb;
@@ -1233,40 +1230,42 @@ table#msg-composer td {
         padding: 0;
         border: 0;
         font-weight: normal;
-        font-size: 14px; }
+        font-size: 14px;
+    }
     a {
         color: #000;
         text-decoration: none;
         display: block;
-        padding: 4px 5px; }
+        padding: 4px 5px;
+        &:hover {
+            color: #fff;
+            display: block;
+        }
+    }
 }
 
 .tabGrey, .tabGreen {
    width: 200px;
    float: left; }
 
-.tabGrey a:hover{
-    color: #fff;
-    display: block; }
+.clearFloat {
+    clear: both; }
 
-.clearFloat{
-    clear:both; }
-
-.long-field{
+.long-field {
     width: 330px;
     height: 80px; }
-
-/* TAGS */
 
 .atag {
     border: 1px solid #ccc;
     background: #eee;
     margin-right: 1px;
     color: rgb(99,129,71);
-    text-decoration: none; }
-    .atag img {
+    text-decoration: none;
+    img {
         top: 2px;
-        position: relative; }
+        position: relative;
+    }
+}
 
 .tagbuttons {
     font-size: 10px; }
@@ -1287,13 +1286,16 @@ table#msg-composer td {
     background: #8c8;
     float: left;
     text-align: center;
-    margin-right: 2px; }
-    .daybox:hover {
+    margin-right: 2px;
+    &:hover {
         background: #6a6;
-        border: 1px solid #484; }
-    .daybox a {
+        border: 1px solid #484;
+    }
+    a {
         color: #fff;
-        text-decoration: none; }
+        text-decoration: none;
+    }
+}
 
 .activebox {
     background: #373;
@@ -1311,14 +1313,16 @@ table#msg-composer td {
     background: #beb;
     padding: 2px 4px;
     float: left;
-    width: 250px; }
-    .remoteresult:hover {
+    width: 250px;
+    &:hover {
         background: #9c9;
         border-bottom: 1px solid #7a7;
-        border-right: 1px solid #7a7; }
-    .remoteresult:active {
+        border-right: 1px solid #7a7;
+    }
+    &:active {
         background: #585;
     }
+}
 
 #execute-result {
     margin: 10px 0 0 0;
@@ -1331,16 +1335,15 @@ table#msg-composer td {
 .ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
 
 .linkstabs {
-    margin: 5px; }
-    .linkstabs a {
-        text-decoration: none; }
+    margin: 5px;
+    a {
+        text-decoration: none;
+    }
+}
 
 .linktab {
     padding: 3px 5px 3px 0;
-    //background: #8b8;
-     }
-    //.linktab:hover {
-    //    background: #ada; }
+}
 
 .property {
     width: 400px;
@@ -1384,12 +1387,13 @@ table#msg-composer td {
 
 #themelist {
     margin-left: -10px;
+    ul {
+        margin-left: 15px;
+        padding: 0;
+    }
 }
 
-#themelist ul {
-    margin-left: 15px;
-    padding: 0;
-}
+
 
 #livetickerbox {
     margin-bottom: 15px;
@@ -1425,18 +1429,15 @@ table#msg-composer td {
 }
 
 .calendereducator {
-    //padding: 3px 4px;
     width: 540px;
     float: left;
-}
-
-.calendereducator:hover {
-    background: #aaa;
-    display: block;
-}
-
-.calendereducator a {
-    padding: 3px 4px;
+    a {
+        padding: 3px 4px;
+    }
+    &:hover {
+        background: #aaa;
+        display: block;
+    }
 }
 
 #caltip {
