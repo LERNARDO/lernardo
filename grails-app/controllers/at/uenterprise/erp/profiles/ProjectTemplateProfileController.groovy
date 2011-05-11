@@ -430,6 +430,14 @@ class ProjectTemplateProfileController {
       render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
     }
   }
+
+  def templateHover = {
+    Entity entity = Entity.get(params.id)
+
+    def resources = functionService.findAllByLink(null, entity, metaDataService.ltResource)
+
+    render template: "hover", model: [entity: entity, resources: resources]
+  }
 }
 
 

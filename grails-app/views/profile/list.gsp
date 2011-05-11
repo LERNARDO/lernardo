@@ -1,31 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="profile.list"/></title>
-  %{--  <g:javascript src="jquery/jquery.qtip-1.0.0-rc3.min.js" />
-    <script type="text/javascript">
-      $(document).ready(function()
-      {
-        // TODO: figure out why qtip refuses to work although it definitely should
-        $('img[src][alt]').qtip({
-          content: {
-             text: false // Use each elements title attribute
-          },
-          position: {
-             corner: {
-                target: 'topMiddle',
-                tooltip: 'bottomMiddle'
-             }
-          },
-          style: {
-             border: {
-                width: 1,
-                color: '#89B7DA'
-             },
-             background: '#EEEEEE'
-          }
-        });
-      });
-    </script>--}%
 </head>
 <body>
 <div class="boxHeader">

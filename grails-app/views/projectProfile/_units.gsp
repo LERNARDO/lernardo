@@ -7,9 +7,27 @@
 
         <p class="bold"><g:message code="groupActivityTemplates"/></p>
         <erp:getProjectUnitActivityGroups projectUnit="${unit}">
+
+          <script type="text/javascript">
+            $(document).ready(function() {
+              $('.hover').each(function() {
+                $(this).qtip({
+                  content: {
+                    text: 'Loading...',
+                    ajax: {
+                      url: '${grailsApplication.config.grails.serverURL}/projectTemplateProfile/templateHover',
+                      type: 'GET',
+                      data: {id : $(this).attr('data-idd')}
+                    }
+                  }
+                });
+              });
+            });
+          </script>
+
           <ul style="margin-left: 15px">
             <g:each in="${activityGroups}" var="activityGroup">
-              <li><g:link controller="groupActivityTemplateProfile" action="show" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile.fullName}</g:link></li>
+              <li><g:link class="hover" controller="groupActivityTemplateProfile" action="show" data-idd="${activityGroup.id}" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile.fullName}</g:link> <span class="gray">(${activityGroup.profile.realDuration} min)</span></li>
             </g:each>
           </ul>
         </erp:getProjectUnitActivityGroups>

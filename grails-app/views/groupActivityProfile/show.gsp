@@ -90,6 +90,23 @@
       <div class="spacer"></div>
     </div>
 
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.hover').each(function() {
+          $(this).qtip({
+            content: {
+              text: 'Loading...',
+              ajax: {
+                url: '${grailsApplication.config.grails.serverURL}/groupActivityTemplateProfile/templateHover',
+                type: 'GET',
+                data: {id : $(this).attr('data-idd')}
+              }
+            }
+          });
+        });
+      });
+    </script>
+
     <div class="zusatz">
       <h5><g:message code="activities"/></h5>
       <div class="zusatz-show">
@@ -99,7 +116,7 @@
           </p>
           <ul>
             <g:each in="${templates}" var="template">
-              <li><g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
+              <li><g:link class="hover" controller="templateProfile" action="show" data-idd="${template.id}" id="${template.id}">${template.profile.fullName}</g:link> <span class="gray">(${template.profile.duration} min)</span></li>
             </g:each>
           </ul>
         </g:if>
