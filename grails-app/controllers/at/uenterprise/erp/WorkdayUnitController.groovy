@@ -156,6 +156,6 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories]
+      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, datesOrdered: true]
     }
 }
