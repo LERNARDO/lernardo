@@ -11,6 +11,7 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.ClientEvaluation
+import at.openfactory.ep.Asset
 
 class ActivityProfileController {
 
@@ -236,6 +237,12 @@ class ActivityProfileController {
           }
           ent.profile.fullName = params.fullName
           ent.profile.date = functionService.convertToUTC(ent.profile.date)
+        }
+        // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
+        template.assets.each { Asset asset ->
+          if (asset.type == "profile") {
+            new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+          }
         }
 
         // create links to educators

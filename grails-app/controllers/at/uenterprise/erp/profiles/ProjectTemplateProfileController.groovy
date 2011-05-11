@@ -10,12 +10,15 @@ import at.openfactory.ep.Link
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Live
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import at.openfactory.ep.AssetService
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
   FunctionService functionService
+  AssetService assetService
 
   def index = {
     redirect action: "list", params: params
@@ -189,6 +192,9 @@ class ProjectTemplateProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
+      // add default profile image
+      File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
+      def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(currentEntity, 'Du hast die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')

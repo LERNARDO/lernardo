@@ -12,12 +12,15 @@ import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Live
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import at.openfactory.ep.AssetService
 
 class GroupActivityTemplateProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
   FunctionService functionService
+  AssetService assetService
 
   def index = {
     redirect action: "list", params: params
@@ -182,6 +185,9 @@ class GroupActivityTemplateProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
       }
+      // add default profile image
+      File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
+      def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

@@ -13,6 +13,7 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.Profile
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Live
+import at.openfactory.ep.Asset
 
 class ProjectProfileController {
 
@@ -256,6 +257,13 @@ class ProjectProfileController {
         ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
         ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
       }
+      // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
+      projectTemplate.assets.each { Asset asset ->
+        if (asset.type == "profile") {
+          new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+        }
+      }
+
       flash.message = message(code: "project.created", args: [entity.profile.fullName])
 
       // save creator

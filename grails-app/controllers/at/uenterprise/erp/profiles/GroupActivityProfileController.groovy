@@ -11,6 +11,7 @@ import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Live
+import at.openfactory.ep.Asset
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -193,6 +194,12 @@ class GroupActivityProfileController {
         ent.profile.properties = params
         ent.profile.educationalObjective = ""
         ent.profile.date = functionService.convertToUTC(ent.profile.date)
+      }
+      // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
+      groupActivityTemplate.assets.each { Asset asset ->
+        if (asset.type == "profile") {
+          new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+        }
       }
 
       // save creator

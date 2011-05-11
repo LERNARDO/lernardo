@@ -15,6 +15,7 @@ import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Live
+import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -154,9 +155,9 @@ class TemplateProfileController {
         ent.profile.properties = params
         ent.profile.type = "default"
       }
-      // TODO: find out why this doesn't work properly
-      //File file = ApplicationHolder.application.parentContext.getResource("images/sueninos/static/entities/Chrysanthemum.jpg").getFile()
-      //assetService.storeAsset(entity, "profile", "image/jpeg", file.getBytes())
+      // add default profile image
+      File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
+      def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
       functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
