@@ -296,13 +296,15 @@
     </div>
 
     <div class="buttons">
-      <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${educator?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdminOrOperator>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-        <g:link class="buttonRed" action="del" id="${educator.id}" onclick="${erp.getLinks(id: educator.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:form id="${educator.id}">
+        <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:isMeOrAdminOrOperator>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: educator.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 
@@ -311,9 +313,7 @@
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
           <g:datePicker name="date" value="" precision="day"/>
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="dates2">

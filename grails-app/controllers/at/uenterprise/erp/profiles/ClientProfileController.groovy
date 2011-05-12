@@ -80,7 +80,7 @@ class ClientProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity client = Entity.get(params.id)
     if (client) {
       // delete all links

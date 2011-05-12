@@ -71,7 +71,7 @@ class EducatorProfileController {
             enlistedBy: enlistedBy]
   }
 
-  def del = {
+  def delete = {
     Entity educator = Entity.get(params.id)
     if (educator) {
       // delete all links

@@ -56,11 +56,12 @@
                         </tr>
                       </table>
     
-                      <div class="login-form-button">
-                        <g:submitButton name="submitButton" value="Anmelden" />
+                      <div class="buttons">
+                        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Anmelden" /></div>
+                        <div id="forgot-pwd"><g:link controller="app" action="password">Passwort vergessen?</g:link></div>
                       </div>
 
-                      <div id="forgot-pwd"><g:link controller="app" action="password">Passwort vergessen?</g:link></div>
+
 
                     </g:form>
                     

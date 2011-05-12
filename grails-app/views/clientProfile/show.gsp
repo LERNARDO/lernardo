@@ -244,12 +244,14 @@
     </div>
 
     <div class="buttons">
-      <erp:isMeOrAdminOrOperator entity="${client}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${client?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdminOrOperator>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-        <g:link class="buttonRed" action="del" id="${client.id}" onclick="${erp.getLinks(id: client.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
+      <g:form id="${client?.id}">
+        <erp:isMeOrAdminOrOperator entity="${client}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:isMeOrAdminOrOperator>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: client.id)}" /></div>
+        </erp:accessCheck>
+      </g:form>
       <div class="spacer"></div>
     </div>
 
@@ -339,10 +341,7 @@
       <div class="zusatz-add" id="dates" style="display:none">
         <g:formRemote name="formRemote4" url="[controller:'clientProfile', action:'addDate', id:client.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
           <g:textField name="date" size="12" class="datepicker" value=""/>
-          %{--<g:datePicker name="date" value="" precision="day"/>--}%
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="dates2">

@@ -317,7 +317,12 @@ ul {
     }
 }
 
-#private-content input, #private-content select, #private-content textarea {
+input {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+#private-content input[type=text], #private-content select, #private-content textarea {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin: 0 0 4px 0;
@@ -327,7 +332,7 @@ ul {
 #private-content input.errors, #private-content textarea.errors, #private-content select.errors {
     border: 1px solid #f00;
 }
-#private-content input:hover, #private-content select:hover, #private-content textarea:hover {
+#private-content input[type=text]:hover, #private-content select:hover, #private-content textarea:hover {
      border: 1px solid #666;
 }
 
@@ -710,91 +715,62 @@ div.actionlinks div.userlinks a {
 .actionlink {
     margin-bottom: 10px; }
 
-#private-content input[type=submit], input[type=submit] {
-    background: @button-green-gradient-top;
-    background: -moz-linear-gradient(-90deg, @button-green-gradient-top, @button-green-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@button-green-gradient-top), to(@button-green-gradient-bottom));
-    border: 1px solid @button-green-border;
-    border-radius: 5px;
-    padding: 4px 5px !important;
-    margin: 5px 5px 0 0 !important;
-    text-align: center;
-    float: left;
-    color: #fff !important;
-    display: block;
-    font: 12px verdana; }
-    #private-content input[type=submit]:hover, input[type=submit]:hover {
-        background: @button-green-gradient-bottom;
-        background: -moz-linear-gradient(-90deg, darken(@button-green-gradient-top, 10%), darken(@button-green-gradient-bottom, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green-gradient-top, 10%)), to(darken(@button-green-gradient-bottom, 10%)));
-        border: 1px solid darken(@button-green-border, 10%);
+.buttons {
+    margin: 5px 0;
+    padding: 0;
+    .button {
+        margin: 0 5px 0 0;
+        float: left;
+    }
+    input {
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        padding: 3px;
+        border-radius: 5px;
+        text-align: center;
+        color: #fff !important;
+        display: block;
         text-decoration: none;
-        cursor: pointer; }
-
-.buttonGreen {
-    background: @button-green-gradient-top;
-    //background: linear-gradient(@button-green-gradient-top, @button-green-gradient-bottom); // TODO: use when supported (official W3C draft)
-    background: -moz-linear-gradient(-90deg, @button-green-gradient-top, @button-green-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@button-green-gradient-top), to(@button-green-gradient-bottom));
-    border: 1px solid @button-green-border;
-    border-radius: 5px;
-    padding: 4px 5px;
-    margin: 5px 5px 0 0;
-    text-align: center;
-    float: left;
-    color: #fff !important;
-    display: block;
-    height: 16px;
-    text-decoration: none;
-    &:hover {
-        background: @button-green-gradient-bottom;
-        background: -moz-linear-gradient(-90deg, darken(@button-green-gradient-top, 10%), darken(@button-green-gradient-bottom, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green-gradient-top, 10%)), to(darken(@button-green-gradient-bottom, 10%)));
-        border: 1px solid darken(@button-green-border, 10%);
-    }
-}
-
-.buttonGray {
-    background: @button-gray-gradient-top;
-    background: -moz-linear-gradient(-90deg, @button-gray-gradient-top, @button-gray-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@button-gray-gradient-top), to(@button-gray-gradient-bottom));
-    border: 1px solid @button-gray-border;
-    border-radius: 5px;
-    padding: 4px 5px;
-    margin: 5px 5px 0 0;
-    text-align: center;
-    float: left;
-    color: #fff !important;
-    display: block;
-    height: 16px;
-    text-decoration: none;
-    &:hover {
-        background: @button-gray-gradient-bottom;
-        background: -moz-linear-gradient(-90deg, darken(@button-gray-gradient-top, 10%), darken(@button-gray-gradient-bottom, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-gray-gradient-top, 10%)), to(darken(@button-gray-gradient-bottom, 10%)));
-        border: 1px solid darken(@button-gray-border, 10%);
-    }
-}
-
-.buttonRed {
-    background: @button-red-gradient-top;
-    background: -moz-linear-gradient(-90deg, @button-red-gradient-top, @button-red-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@button-red-gradient-top), to(@button-red-gradient-bottom));
-    border: 1px solid @button-red-border;
-    border-radius: 5px;
-    padding: 4px 5px;
-    margin: 5px 5px 0 0;
-    text-align: center;
-    float: left;
-    color: #fff !important;
-    display: block;
-    height: 16px;
-    text-decoration: none;
-    &:hover {
-        background: @button-red-gradient-bottom;
-        background: -moz-linear-gradient(-90deg, darken(@button-red-gradient-top, 10%), darken(@button-red-gradient-bottom, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-red-gradient-top, 10%)), to(darken(@button-red-gradient-bottom, 10%)));
-        border: 1px solid darken(@button-red-border, 10%);
+        &:hover {
+            cursor: pointer;
+        }
+        &.buttonGreen {
+            background: @button-green-gradient-top;
+            //background: linear-gradient(@button-green-gradient-top, @button-green-gradient-bottom); // TODO: use when supported (official W3C draft)
+            background: -moz-linear-gradient(-90deg, @button-green-gradient-top, @button-green-gradient-bottom);
+            background: -webkit-gradient(linear, left top, left bottom, from(@button-green-gradient-top), to(@button-green-gradient-bottom));
+            border: 1px solid @button-green-border;
+            &:hover {
+                background: @button-green-gradient-bottom;
+                background: -moz-linear-gradient(-90deg, darken(@button-green-gradient-top, 10%), darken(@button-green-gradient-bottom, 10%));
+                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green-gradient-top, 10%)), to(darken(@button-green-gradient-bottom, 10%)));
+                border: 1px solid darken(@button-green-border, 10%);
+            }
+        }
+        &.buttonRed {
+            background: @button-red-gradient-top;
+            background: -moz-linear-gradient(-90deg, @button-red-gradient-top, @button-red-gradient-bottom);
+            background: -webkit-gradient(linear, left top, left bottom, from(@button-red-gradient-top), to(@button-red-gradient-bottom));
+            border: 1px solid @button-red-border;
+            &:hover {
+                background: @button-red-gradient-bottom;
+                background: -moz-linear-gradient(-90deg, darken(@button-red-gradient-top, 10%), darken(@button-red-gradient-bottom, 10%));
+                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-red-gradient-top, 10%)), to(darken(@button-red-gradient-bottom, 10%)));
+                border: 1px solid darken(@button-red-border, 10%);
+            }
+        }
+        &.buttonGray {
+            background: @button-gray-gradient-top;
+            background: -moz-linear-gradient(-90deg, @button-gray-gradient-top, @button-gray-gradient-bottom);
+            background: -webkit-gradient(linear, left top, left bottom, from(@button-gray-gradient-top), to(@button-gray-gradient-bottom));
+            border: 1px solid @button-gray-border;
+            &:hover {
+                background: @button-gray-gradient-bottom;
+                background: -moz-linear-gradient(-90deg, darken(@button-gray-gradient-top, 10%), darken(@button-gray-gradient-bottom, 10%));
+                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-gray-gradient-top, 10%)), to(darken(@button-gray-gradient-bottom, 10%)));
+                border: 1px solid darken(@button-gray-border, 10%);
+            }
+        }
     }
 }
 
@@ -950,25 +926,6 @@ table#msg-composer td {
         color: #666666;
         &:hover {
             text-decoration: none;
-        }
-    }
-}
-
-.buttons {
-    margin: 0;
-    padding: 0;
-    padding-bottom: 5px;
-    .button a {
-        color: #000000 !important;
-        text-decoration: none;
-        font-size:12px;
-        border:1px solid #999999;
-        background-color: #f0f0f0;
-        padding:3px 5px;
-        cursor: pointer;
-        &:hover {
-            color: #000000 !important;
-            border:1px solid #000000;
         }
     }
 }
