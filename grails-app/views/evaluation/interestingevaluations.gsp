@@ -11,7 +11,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten in deinem Umfeld.</p>
+    <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten und Erziehungsberechtigten in deinem Umfeld.</p>
 
     <g:link class="buttonGreen" action="myevaluations" id="${entity.id}">Meine Tagebucheinträge</g:link>
     <div class="spacer"></div>
@@ -21,8 +21,8 @@
         <div class="leistung-item">
           <table cellpadding="2">
             <tr>
-              <td class="bold vtop"><g:message code="client"/>:</td>
-              <td><g:link controller="clientProfile" action="show" id="${evaluation.owner.id}" params="[entity:evaluation.owner.id]">${evaluation.owner.profile.fullName}</g:link></td>
+              <td class="bold vtop"><g:message code="name"/>:</td>
+              <td><g:link controller="${evaluation.owner.type.supertype.name +'Profile'}" action="show" id="${evaluation.owner.id}" params="[entity:evaluation.owner.id]">${evaluation.owner.profile.fullName}</g:link></td>
             </tr>
             <tr>
               <td class="bold vtop"><g:message code="date"/>:</td>

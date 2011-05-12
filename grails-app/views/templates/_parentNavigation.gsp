@@ -28,7 +28,11 @@
           </g:if>
         </erp:notMe>
 
-        <li class="icon-appointments"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]">Termine</g:link></li>
+        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+          <li class="icon-admin"><g:link controller="evaluation" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+        </erp:accessCheck>
+
+        <li class="icon-appointments"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
 
       </ul>
     </td>

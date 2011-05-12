@@ -117,7 +117,7 @@ class EvaluationController {
     render template: "cevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
   }
 
-  // show all evaluations of clients linked to a given educator
+  // show all evaluations of clients and parents linked to a given educator
   def interestingevaluations = {
     Entity entity = Entity.get(params.id)
 
@@ -133,6 +133,25 @@ class EvaluationController {
     // get all evaluations for all clients
     List evaluations = []
     clients.each {
+      evaluations.addAll(Evaluation.findAllByOwner(it))
+    }
+
+    // for each client get the parents
+    List parents = []
+    clients.each { Entity client ->
+      // find family of client
+      Entity groupFamily =  functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+      // find parents of groupFamily
+      List localParents = functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
+      // add each one to the list if not already in there
+      localParents.each {
+        if (!parents.contains(it))
+          parents.add(it)
+      }
+    }
+
+    // get all evaluations for all parents
+    parents.each {
       evaluations.addAll(Evaluation.findAllByOwner(it))
     }
 
