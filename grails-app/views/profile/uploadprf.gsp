@@ -18,12 +18,10 @@
 
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="putprf" value="${message(code: 'save')}" /></div>
-          %{--<g:submitButton name="submit" value="${message(code:'save')}"/>--}%
           <g:if test="${entity.assets}">
-            <div class="button"><g:actionSubmit class="buttonRed" controller="app" action="deleteProfilePic" value="${message(code: 'delete')}" /></div>
-            %{--<g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>--}%
+            <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>
           </g:if>
-          %{--<g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>--}%
+          <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>
           <div class="spacer"></div>
         </div>
         
