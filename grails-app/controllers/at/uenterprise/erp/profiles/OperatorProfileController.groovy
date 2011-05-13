@@ -61,7 +61,7 @@ class OperatorProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity operator = Entity.get(params.id)
     if (operator) {
       // delete all links

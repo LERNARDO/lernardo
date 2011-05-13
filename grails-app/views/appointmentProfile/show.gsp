@@ -52,11 +52,13 @@
     </table>
 
     <div class="buttons">
-      <erp:isMeOrAdminOrOperator entity="${Entity.get(bla)}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${appointment?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${appointment.id}"><g:message code="delete"/></g:link>
-      </erp:isMeOrAdminOrOperator>
-      <g:link class="buttonGray" action="list" id="${bla}"><g:message code="back"/></g:link>
+      <g:form id="${appointment.id}">
+        <erp:isMeOrAdminOrOperator entity="${Entity.get(bla)}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
+        </erp:isMeOrAdminOrOperator>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

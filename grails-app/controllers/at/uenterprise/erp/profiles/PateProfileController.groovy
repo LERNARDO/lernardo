@@ -59,7 +59,7 @@ class PateProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity pate = Entity.get(params.id)
     if (pate) {
       // delete all links to this entity

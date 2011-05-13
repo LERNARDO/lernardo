@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: projectTemplate]"/>
 
-    <g:form action="update" id="${projectTemplate?.id}">
+    <g:form id="${projectTemplate?.id}">
         <table width="100%">
 
           <tr class="prop">
@@ -45,10 +45,11 @@
         </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="show" id="${projectTemplate?.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
+
     </g:form>
   </div>
 </div>

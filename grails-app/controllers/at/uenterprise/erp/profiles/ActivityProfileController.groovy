@@ -28,6 +28,9 @@ class ActivityProfileController {
             only:['save','update']
   ]
 
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
   def index = {
     redirect action: list
   }
@@ -356,7 +359,7 @@ class ActivityProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity activity = Entity.get(params.id)
 
     // delete all links to activity

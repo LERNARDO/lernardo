@@ -12,7 +12,7 @@
             <td class="col"><g:message code="profiletype.${entity.type.supertype.name}"/></td>
             <td class="col" id="entity-enabled-${i}"><g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource (dir:'images/icons', file:'icon_tick.png')}" alt="Active" align="top"/></g:if><g:else><img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Inactive" align="top"/></g:else></g:if></td>
             <td class="col" id="entity-roles-${i}"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
-            <td class="col" style="width: 100px">
+            <td class="col">
               <erp:notMe entity="${entity}">
                 <g:if test="${entity.user}">
                   <erp:isEnabled entity="${entity}">

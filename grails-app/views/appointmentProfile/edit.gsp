@@ -16,7 +16,7 @@
 
     <g:render template="/templates/errors" model="[bean: appointmentProfileInstance]"/>
 
-    <g:form action="update" id="${appointmentProfileInstance.id}">
+    <g:form id="${appointmentProfileInstance.id}">
 
       <div class="property">
         <g:message code="appointment.profile.fullName"/> <br/>
@@ -51,8 +51,8 @@
       <div class="clear"></div>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="show" id="${appointmentProfileInstance.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
     </g:form>

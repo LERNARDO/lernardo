@@ -43,13 +43,15 @@
     </table>
 
     <div class="buttons">
-      <erp:isMeOrAdmin entity="${user}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${user?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdmin>
-      <erp:isSystemAdmin entity="${currentEntity}">
-        <g:link class="buttonRed" action="del" id="${user.id}" onclick="${erp.getLinks(id: user.id)}"><g:message code="delete"/></g:link>
-      </erp:isSystemAdmin>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:form id="${user.id}">
+        <erp:isMeOrAdmin entity="${user}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:isMeOrAdmin>
+        <erp:isSystemAdmin entity="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: user.id)}" /></div>
+        </erp:isSystemAdmin>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

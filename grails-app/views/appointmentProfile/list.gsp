@@ -18,8 +18,10 @@
 
     <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="appointment.profile.create"/></g:link>
-        <div class="spacer"></div>
+        <g:form>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'appointment.profile.create')}"/></div>
+          <div class="spacer"></div>
+        </g:form>
       </div>
     </erp:isMeOrAdminOrOperator>
 

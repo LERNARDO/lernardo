@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: facility]"/>
 
-    <g:form action="save">
+    <g:form>
       <div>
         <table>
 
@@ -65,30 +65,11 @@
 
         </table>
 
-        %{--<div class="email">
-          <table>
-            <tr class="prop">
-              --}%%{--<td width="60" valign="middle" class="name"><g:message code="active"/></td>
-              <td width="40" valign="middle" class="value">
-                <g:checkBox name="enabled" value="${facility?.user?.enabled}"/>
-              </td>--}%%{--
-              <td width="70" valign="middle" class="name"><g:message code="facility.profile.email"/></td>
-              <td width="320" valign="middle" class="value">
-                <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
-              </td>
-              --}%%{--<td width="130" valign="middle" class="name"><g:message code="languageSelection"/></td>
-              <td valign="middle" class="value">
-                <erp:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
-              </td>--}%%{--
-            </tr>
-          </table>
-        </div>--}%
-
       </div>
 
       <div class="green">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
       

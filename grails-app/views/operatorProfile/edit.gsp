@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: operator]"/>
 
-    <g:form action="update" id="${operator.id}">
+    <g:form id="${operator.id}">
       <div>
         <table>
           <tbody>
@@ -102,8 +102,8 @@
       </div>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="show" id="${operator.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
 

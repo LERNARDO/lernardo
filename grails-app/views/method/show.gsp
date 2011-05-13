@@ -33,13 +33,13 @@
       </table>
     </div>
 
-    %{--<erp:isMeOrAdmin entity="${operator}">--}%
-      <div class="buttons">
-        <g:link class="buttonGreen" action="edit" id="${methodInstance?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${methodInstance.id}"><g:message code="delete"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    %{--</erp:isMeOrAdmin>--}%
+    <div class="buttons">
+      <g:form id="${methodInstance.id}">
+        <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: methodInstance.id)}" /></div>
+      </g:form>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5>Elemente <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#elements'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></h5>

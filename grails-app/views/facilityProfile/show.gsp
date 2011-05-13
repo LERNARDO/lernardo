@@ -50,25 +50,18 @@
 
       </table>
 
-      %{--<div class="email">
-        <table>
-          <tr class="prop">
-            <td width="60" valign="top"><g:message code="facility.profile.email"/>:</td>
-            <td valign="top">${fieldValue(bean: facility, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          </tr>
-        </table>
-      </div>--}%
-
     </div>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]">
-        <g:link class="buttonGreen" action="edit" id="${facility?.id}"><g:message code="edit"/></g:link>
-      </erp:accessCheck>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-        <g:link class="buttonRed" action="del" id="${facility.id}" onclick="${erp.getLinks(id: facility.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:form id="${facility.id}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:accessCheck>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: facility.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

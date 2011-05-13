@@ -14,7 +14,7 @@
     <g:render template="/templates/errors" model="[bean: pc]"/>
 
     <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
-    <g:form action="save" id="${template.id}">
+    <g:form id="${template.id}">
       <div>
         <table width="100%">
 
@@ -96,8 +96,8 @@
       </div>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" controller="projectTemplateProfile" action="show" id="${template.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" controller="projectTemplateProfile" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
       

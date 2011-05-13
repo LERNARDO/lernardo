@@ -92,7 +92,7 @@ class FacilityProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity facility = Entity.get(params.id)
     if (facility) {
       // delete all links

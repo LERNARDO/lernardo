@@ -16,7 +16,7 @@
 
     <g:render template="/templates/errors" model="[bean: user]"/>
 
-    <g:form action="update" id="${user.id}">
+    <g:form id="${user.id}">
 
       <div>
         <table>
@@ -69,10 +69,11 @@
       </div>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="show" id="${user.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
+
     </g:form>
   </div>
 </div>

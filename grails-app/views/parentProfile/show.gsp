@@ -177,13 +177,15 @@
     </div>
 
     <div class="buttons">
-      <erp:isMeOrAdminOrOperator entity="${parent}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${parent?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdminOrOperator>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-        <g:link class="buttonRed" action="del" id="${parent.id}" onclick="${erp.getLinks(id: parent.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:form id="${parent.id}">
+        <erp:isMeOrAdminOrOperator entity="${parent}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:isMeOrAdminOrOperator>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: parent.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

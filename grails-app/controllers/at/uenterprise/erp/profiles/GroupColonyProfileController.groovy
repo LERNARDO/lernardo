@@ -89,7 +89,7 @@ class GroupColonyProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity group = Entity.get(params.id)
     if (group) {
       // delete all links

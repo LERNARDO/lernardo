@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: activity]"/>
 
-    <g:form action="update" id="${activity.id}">
+    <g:form id="${activity.id}" params="[name:currentEntity.name]">
       Vorlage:
       <erp:getTemplate entity="${activity}">
         <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
@@ -62,8 +62,8 @@
       </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="show" id="${activity.id}" params="[name:currentEntity.name]"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
 

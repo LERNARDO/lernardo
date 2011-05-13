@@ -29,11 +29,13 @@
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="edit" id="${workdayCategoryInstance?.id}"><g:message code="edit"/></g:link>
-        <erp:accessCheck entity="${currentEntity}">
-          <g:link class="buttonRed" action="del" id="${workdayCategoryInstance?.id}"><g:message code="delete"/></g:link>
-        </erp:accessCheck>
-        <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+        <g:form id="${workdayCategoryInstance?.id}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <erp:accessCheck entity="${currentEntity}">
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: workdayCategoryInstance?.id)}" /></div>
+          </erp:accessCheck>
+          <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+        </g:form>
         <div class="spacer"></div>
       </div>
     </erp:accessCheck>

@@ -28,7 +28,7 @@ class MethodController {
     }
   }
 
-  def del = {
+  def delete = {
     def methodInstance = Method.get(params.id)
     if (methodInstance) {
       try {

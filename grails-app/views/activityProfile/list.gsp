@@ -42,11 +42,11 @@
 
     <div id="select-box">
       <g:message code="filterBy"/>:
-      <g:form name="form1" action="list">
+      <g:form>
         <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..2011}"/>
         <div class="buttons">
-          <g:submitButton name="list" value="OK"/>
-          <g:submitButton name="list" value="Alle"/>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="Alle"/></div>
           <div class="spacer"></div>
         </div>
       </g:form>

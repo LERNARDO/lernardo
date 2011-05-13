@@ -145,7 +145,7 @@ class ProjectProfileController {
     }
   }
 
-  def del = {
+  def delete = {
     Entity project = Entity.get(params.id)
     if (project) {
       // delete all links

@@ -60,13 +60,16 @@
       </table>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </erp:accessCheck>
+    <div class="buttons">
+      <g:form id="${group.id}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
+      <div class="spacer"></div>
+    </div>
 
     <div id="familyCount">
       <g:render template="familycount" model="[totalLinks: totalLinks]"/>

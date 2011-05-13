@@ -28,13 +28,16 @@
       </table>
     </div>
 
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-      <div class="buttons">
-        <g:link class="buttonGreen" action="edit" id="${group?.id}"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
-        <div class="spacer"></div>
-      </div>
-    </erp:accessCheck>
+    <div class="buttons">
+      <g:form id="${group.id}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
+      <div class="spacer"></div>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="representantives"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
@@ -129,9 +132,7 @@
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="toggle('#facilities');">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="facilities2">
@@ -145,9 +146,7 @@
       <div class="zusatz-add" id="partners" style="display:none">
         <g:formRemote name="formRemote5" url="[controller:'groupColonyProfile', action:'addPartner', id:group.id]" update="partners2" before="showspinner('#partners2');" after="toggle('#partners');">
           <g:select name="partner" from="${allPartners}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="partners2">
