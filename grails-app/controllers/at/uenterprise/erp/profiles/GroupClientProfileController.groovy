@@ -196,7 +196,7 @@ class GroupClientProfileController {
         if (params.birthDate1)
           between('birthDate', params.birthDate1, params.birthDate2)
       }
-      maxResults(30)
+      //maxResults(30)
     }
 
     // perform colony check
