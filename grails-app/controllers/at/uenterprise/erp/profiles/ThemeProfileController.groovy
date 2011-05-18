@@ -194,7 +194,41 @@ class ThemeProfileController {
       redirect action: 'show', id: theme.id
     }
     else {
-      render view: 'edit', model: [theme: theme, allFacilities: Entity.findAllByType(metaDataService.etFacility), parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme)]
+
+      // find all themes that are not the current theme itself and are not subthemes (recursively)
+      List excludedThemes = []
+      excludedThemes.add(theme)
+      List temp = []
+      temp.addAll(excludedThemes)
+      List toCheck
+
+      while (temp.size() > 0) {
+        toCheck = []
+        toCheck.addAll(temp)
+        temp = []
+        toCheck.each { current ->
+          List subthemes = functionService.findAllByLink(null, current, metaDataService.ltSubTheme)
+          if (subthemes) {
+            excludedThemes.addAll(subthemes)
+            temp.addAll(subthemes)
+          }
+        }
+      }
+
+      // get all themes
+      List allThemes = Entity.findAllByType(metaDataService.etTheme)
+
+      // remove all themes that are excluded
+      excludedThemes.each {
+        if (allThemes.contains(it))
+          allThemes.remove(it)
+      }
+
+      render view: 'edit', model: [theme: theme,
+                                   allFacilities: Entity.findAllByType(metaDataService.etFacility),
+                                   allThemes: allThemes,
+                                   parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme),
+                                   facility: functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)]
     }
   }
 
