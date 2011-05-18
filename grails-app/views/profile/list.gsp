@@ -37,8 +37,8 @@
       <table id="profile-list">
         <thead>
         <tr>
-          <g:sortableColumn property="name" title="${message(code:'profile.list.name')}"/>
-          <g:sortableColumn property="type" title="${message(code:'profile.list.type')}"/>
+          <g:sortableColumn property="name" title="${message(code:'profile.list.name')}" params="[entityType: entityType]"/>
+          <g:sortableColumn property="type" title="${message(code:'profile.list.type')}" params="[entityType: entityType]"/>
           <th><g:message code="profile.list.isActiv"/></th>
           <th><g:message code="profile.list.rights"/></th>
           <th><g:message code="profile.list.options"/></th>
