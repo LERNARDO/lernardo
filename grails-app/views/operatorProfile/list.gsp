@@ -17,8 +17,10 @@
 
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="operator.profile.create"/></g:link>
-        <div class="spacer"></div>
+        <g:form>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'operator.profile.create')}"/></div>
+          <div class="spacer"></div>
+        </g:form>
       </div>
     </erp:accessCheck>
 

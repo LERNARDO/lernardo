@@ -101,7 +101,7 @@ class ThemeProfileController {
     }
   }
 
-  def del = {
+  def delete = {
     Entity theme = Entity.get(params.id)
     if (theme) {
       // delete all links

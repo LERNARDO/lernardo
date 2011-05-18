@@ -64,7 +64,7 @@ class PartnerProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity partner = Entity.get(params.id)
     if (partner) {
       // delete all links

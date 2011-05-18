@@ -24,6 +24,9 @@ class TemplateProfileController {
   ProfileHelperService profileHelperService
   AssetService assetService
 
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
   def index = {
     redirect action: 'list', params: params
   }
@@ -179,7 +182,7 @@ class TemplateProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity template = Entity.get(params.id)
     if (template) {
       // first delete any comments posted on this template

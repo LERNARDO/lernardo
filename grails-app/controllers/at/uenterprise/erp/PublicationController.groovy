@@ -11,9 +11,12 @@ class PublicationController {
   AssetService assetService
   FunctionService functionService
 
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
   def index = { }
 
-  def profile = {
+  def list = {
     params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
     Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
     if (!entity) {
@@ -238,7 +241,7 @@ class PublicationController {
     //log.debug "attempt to save publication: $params"
     if(pub.save(flush:true)) {
       flash.message = message(code:"publication.created", args:[pub.name])
-      redirect (action:"profile", id:pub.entity.id)
+      redirect (action:"list", id:pub.entity.id)
     }
     else {
        render view:'create', model:[entity: entity, publication:pub]
@@ -249,7 +252,7 @@ class PublicationController {
     Publication pub = Publication.get(params.id)
     if (!pub?.asset) {
       flash.message = message(code:"publication.notFound", args:[params.id])
-      redirect (action:"profile", params:[name:params.name])
+      redirect (action:"list", params:[name:params.name])
     }
     else {
       assetService.renderStorage (pub.asset?.storage, response)
@@ -267,7 +270,7 @@ class PublicationController {
       pub.delete(flush:true)
     }
 
-    redirect (action:"profile", id: entity.id)
+    redirect (action:"list", id: entity.id)
   }
 
   def edit = {
@@ -288,7 +291,7 @@ class PublicationController {
           publication.name = params.name
           if(publication.save()) {
               flash.message = message(code:"publication.updated", args:[publication.name])
-              redirect (action:'profile', id:publication.entity.id)
+              redirect (action:'list', id:publication.entity.id)
           }
           else {
               render view:'edit', model:[entity: entityHelperService.loggedIn, publication:publication]
@@ -296,7 +299,7 @@ class PublicationController {
       }
       else {
           flash.message = message(code:"publication.notFound", args:[params.id])
-          redirect action:"profile", id:publication.entity.id
+          redirect action:"list", id:publication.entity.id
       }
   }
 

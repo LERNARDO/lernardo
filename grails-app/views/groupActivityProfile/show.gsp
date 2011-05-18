@@ -82,11 +82,13 @@
     </div>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}">
-        <g:link class="buttonGreen" action="edit" id="${group?.id}" params="[entity: group?.id]"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${group.id}" onclick="${erp.getLinks(id: group.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
+      <g:form id="${group.id}" params="[entity: group?.id]">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

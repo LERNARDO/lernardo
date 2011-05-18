@@ -17,8 +17,10 @@
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="parent.profile.create"/></g:link>
-        <div class="spacer"></div>
+        <g:form>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'parent.profile.create')}"/></div>
+          <div class="spacer"></div>
+        </g:form>
       </div>
     </erp:accessCheck>
 

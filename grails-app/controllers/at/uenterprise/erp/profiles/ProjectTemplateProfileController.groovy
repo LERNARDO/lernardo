@@ -82,7 +82,7 @@ class ProjectTemplateProfileController {
     }
   }
 
-  def del = {
+  def delete = {
     Entity projectTemplate = Entity.get(params.id)
     if (projectTemplate) {
       // delete all links

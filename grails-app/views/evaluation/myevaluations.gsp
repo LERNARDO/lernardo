@@ -25,8 +25,12 @@
 
     <p>Du hast insgesamt ${evaluationInstanceTotal} Tagebucheinträge erstellt.</p>
 
-    <g:link class="buttonGreen" action="interestingevaluations" id="${entity.id}">Interessante Tagebucheinträge</g:link>
-    <div class="spacer"></div>
+    <div class="buttons">
+      <g:form id="${entity.id}">
+        <div class="button"><g:actionSubmit class="buttonGreen" action="interestingevaluations" value="Interessante Tagebucheinträge"/></div>
+        <div class="spacer"></div>
+      </g:form>
+    </div>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluation">

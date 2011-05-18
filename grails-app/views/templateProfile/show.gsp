@@ -19,7 +19,6 @@
         <div id="remoteCreators"></div>
       </div>
 
-
     <table>
 
       <tr class="prop">
@@ -75,17 +74,16 @@
     </table>
 
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
-        <g:link class="buttonGreen" action="edit" id="${template.id}" params="[entity: template?.id]"><g:message code="edit"/></g:link>
-        <g:link class="buttonRed" action="del" id="${template.id}" onclick="${erp.getLinks(id: template.id)}"><g:message code="delete"/></g:link>
-      %{--<g:if test="${template.profile.status == 'fertig'}">
-        <g:link class="buttonGreen" controller="activity" action="create" id="${template.id}">Themenraumaktivitäten planen</g:link>
-      </g:if>--}%
-      </erp:accessCheck>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-        <g:link class="buttonGreen" action="copy" id="${template.id}"><g:message code="activityTemplate.copy"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
+      <g:form id="${template.id}" params="[entity: template?.id]">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: template.id)}" /></div>
+        </erp:accessCheck>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'activityTemplate.copy')}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

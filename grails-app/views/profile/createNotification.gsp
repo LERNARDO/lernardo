@@ -21,7 +21,7 @@
 
         <p><g:message code="notification.info"/>:</p>
 
-        <g:form action="saveNotification">
+        <g:form id="${currentEntity.id}">
 
           <p class="${hasErrors(bean:nc,field:'selection','errors')}">
             <g:checkBox name="user" value="${nc?.user}"/> <g:message code="user"/><br/>
@@ -54,8 +54,8 @@
             </tbody>
           </table>
           <div class="buttons">
-            <g:submitButton name="saveNotification" value="${message(code:'notification.send')}"/>
-            <g:link class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}"><g:message code="cancel"/></g:link>
+            <div class="button"><g:actionSubmit class="buttonGreen" action="saveNotification" value="${message(code: 'notification.send')}" /></div>
+            <div class="button"><g:actionSubmit class="buttonGray" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" value="${message(code: 'cancel')}" /></div>
             <div class="spacer"></div>
           </div>
         </g:form>

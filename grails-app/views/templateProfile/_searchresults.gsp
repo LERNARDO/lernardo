@@ -3,10 +3,12 @@
 </div>
 
 <div class="buttons">
-  <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
-    <g:link class="buttonGreen" controller="templateProfile" action="create"><g:message code="activityTemplate.create"/></g:link>
-    <div class="spacer" style="margin-bottom: 5px"></div>
-  </erp:accessCheck>
+  <g:form>
+    <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+      <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'activityTemplate.create')}"/></div>
+      <div class="spacer"></div>
+    </erp:accessCheck>
+  </g:form>
 </div>
 
 <table class="default-table">

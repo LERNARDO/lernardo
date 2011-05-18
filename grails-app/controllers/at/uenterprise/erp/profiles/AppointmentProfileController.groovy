@@ -60,7 +60,7 @@ class AppointmentProfileController {
       return [appointment: appointment, entity: entity, bla: owner.id]
     }
 
-    def del = {
+    def delete = {
         Entity appointment = Entity.get(params.id)
 
       // delete all links to appointment

@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: facility]"/>
 
-    <g:form action="update" id="${facility.id}">
+    <g:form id="${facility.id}">
       <div>
         <table>
 
@@ -65,36 +65,11 @@
 
         </table>
 
-        %{--<div class="email">
-          <table>
-            <tr class="prop">
-              <td width="70" valign="top" class="name"><g:message code="facility.profile.email"/></td>
-              <td width="320" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: facility, field: 'user.email', 'errors')}" size="47" maxlength="80" name="email" value="${fieldValue(bean: facility, field: 'user.email')}"/>
-              </td>
-              --}%%{--<td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
-              <td valign="top" class="value">
-                <erp:localeSelect class="drop-down-150" name="locale" value="${facility?.user?.locale}"/>
-              </td>--}%%{--
-            </tr>
-            --}%%{--<tr>
-              <td valign="top" class="name"><g:message code="showTips"/></td>
-              <td valign="top" class="value">
-                <g:checkBox name="showTips" value="${facility.profile.showTips}"/>
-              </td>
-              <td valign="top" class="name"><g:message code="password"/></td>
-              <td valign="top" class="value">
-                <g:link controller="profile" action="changePassword" id="${facility.id}"><g:message code="change"/></g:link>
-              </td>
-            </tr>--}%%{--
-          </table>
-        </div>--}%
-
       </div>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="show" id="${facility.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="show" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
       

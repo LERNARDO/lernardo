@@ -105,30 +105,17 @@
     </div>
 
     <div class="buttons">
-      <erp:isMeOrAdminOrOperator entity="${partner}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${partner?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdminOrOperator>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-        <g:link class="buttonRed" action="del" id="${partner.id}" onclick="${erp.getLinks(id: partner.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="back"/></g:link>
+      <g:form id="${partner.id}">
+        <erp:isMeOrAdminOrOperator entity="${partner}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:isMeOrAdminOrOperator>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: partner.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
-
-    %{--    <div>
-      <h1><g:message code="partner.profile.services"/> <erp:isMeOrAdmin entity="${partner}"><a onclick="toggle('#services'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:isMeOrAdmin></h1>
-      <div id="services" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'partnerProfile', action:'addService', id:partner.id]" update="services2" before="showspinner('#services2')">
-          <g:textField name="service" size="30"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
-      </div>
-      <div id="services2">
-        <g:render template="services" model="${partner}"/>
-      </div>
-    </div>--}%
 
     <div class="zusatz">
       <h5><g:message code="partner.profile.contacts"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#contacts');

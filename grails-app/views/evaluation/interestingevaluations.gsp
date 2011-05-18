@@ -13,8 +13,12 @@
 
     <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten und Erziehungsberechtigten in deinem Umfeld.</p>
 
-    <g:link class="buttonGreen" action="myevaluations" id="${entity.id}">Meine Tagebucheinträge</g:link>
-    <div class="spacer"></div>
+    <div class="buttons">
+      <g:form id="${entity.id}">
+        <div class="button"><g:actionSubmit class="buttonGreen" action="myevaluations" value="Meine Tagebucheinträge"/></div>
+        <div class="spacer"></div>
+      </g:form>
+    </div>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluation">

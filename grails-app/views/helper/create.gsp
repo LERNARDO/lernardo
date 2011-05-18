@@ -18,7 +18,7 @@
       </div>
     </g:hasErrors>
 
-    <g:form action="save" params="[name:entity.id]">
+    <g:form id="${entity.id}" params="[name:entity.id]">
       <table width="100%">
         <tbody>
 
@@ -47,8 +47,8 @@
       </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-        <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
         <div class="spacer"></div>
       </div>
 

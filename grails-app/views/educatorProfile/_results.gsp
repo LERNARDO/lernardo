@@ -29,6 +29,8 @@
 
 <br/>
 <div class="buttons">
-    <g:link class="buttonGreen" controller="educatorProfile" action="createpdf" params="[date1: date1, date2: date2]">PDF erzeugen</g:link>
+  <g:form params="[date1: date1, date2: date2]">
+    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="PDF erzeugen" /></div>
     <div class="spacer"></div>
+  </g:form>
 </div>

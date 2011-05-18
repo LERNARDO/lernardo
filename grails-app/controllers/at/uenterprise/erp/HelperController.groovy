@@ -45,7 +45,7 @@ class HelperController {
 
   }
 
-  def del = {
+  def delete = {
     Helper helperInstance = Helper.get(params.id)
     if (helperInstance) {
       try {

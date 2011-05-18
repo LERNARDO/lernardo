@@ -64,7 +64,7 @@ class ChildProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity child = Entity.get(params.id)
     if (child) {
       // delete all links to and from this child

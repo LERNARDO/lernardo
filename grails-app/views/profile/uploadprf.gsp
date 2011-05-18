@@ -10,14 +10,14 @@
   </div>
   <div class="boxGray">
     <div class="second">
-      <g:uploadForm controller="profile" action="putprf" id="${entity.id}">
+      <g:uploadForm id="${entity.id}">
         <p><g:message code="profile.picture.select"/>:<br/>
         <input size="40" type="file" name="asset"></p>
 
         <p><g:message code="profile.picture.selectInfo"/></p>
 
         <div class="buttons">
-          <g:submitButton name="submit" value="${message(code:'save')}"/>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="putprf" value="${message(code: 'save')}" /></div>
           <g:if test="${entity.assets}">
             <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>
           </g:if>

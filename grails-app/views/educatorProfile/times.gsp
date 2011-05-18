@@ -16,9 +16,7 @@
     <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'showresult']" update="results" before="showspinner('#results')">
       <g:textField name="date1" size="30" class="datepicker-birthday"/>
       <g:textField name="date2" size="30" class="datepicker-birthday"/>
-      <div class="spacer"></div>
       <g:submitButton name="submitButton" value="OK"/>
-      <div class="spacer"></div>
     </g:formRemote>
 
     <div id="results" style="margin-top: 10px">

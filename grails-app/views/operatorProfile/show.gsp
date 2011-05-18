@@ -66,12 +66,15 @@
     </div>
 
     <div class="buttons">
-      <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}">
-        <g:link class="buttonGreen" action="edit" id="${operator?.id}"><g:message code="edit"/></g:link>
-      </erp:isMeOrAdmin>
-      <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-        <g:link class="buttonRed" action="del" id="${operator.id}" onclick="${erp.getLinks(id: operator.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
+      <g:form id="${operator.id}">
+        <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+        </erp:isMeOrAdmin>
+        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: operator.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 
@@ -80,9 +83,7 @@
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote  name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="facilities2">

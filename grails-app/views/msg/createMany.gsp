@@ -54,7 +54,7 @@
       </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Senden"/>
+        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Senden"/></div>
         <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">Abbrechen</g:link>
         <div class="spacer"></div>
       </div>

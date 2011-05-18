@@ -52,12 +52,15 @@
       </table>
 
     </div>
+
     <div class="buttons">
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}" creatorof="${project}">
-        %{--<g:if test="${new Date() < project.profile.startDate}">--}%<g:link class="buttonGreen" action="edit" id="${project?.id}" params="[entity: project?.id]"><g:message code="edit"/></g:link>%{--</g:if>--}%
-        <g:link class="buttonRed" action="del" id="${project.id}" onclick="${erp.getLinks(id: project.id)}"><g:message code="delete"/></g:link>
-      </erp:accessCheck>
-      <g:link class="buttonGray" action="list"><g:message code="backToList"/></g:link>
+      <g:form id="${project.id}" params="[entity: project?.id]">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}" creatorof="${project}">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: project.id)}" /></div>
+        </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
+      </g:form>
       <div class="spacer"></div>
     </div>
 

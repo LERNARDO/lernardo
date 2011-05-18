@@ -57,7 +57,7 @@ class UserProfileController {
 
   }
 
-  def del = {
+  def delete = {
     Entity user = Entity.get(params.id)
     if (user) {
       // delete all links

@@ -24,8 +24,10 @@
 
     <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
       <div class="buttons">
-        <g:link class="buttonGreen" action="create"><g:message code="projectTemplate.create"/></g:link>
-        <div class="spacer"></div>
+        <g:form>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'projectTemplate.create')}"/></div>
+          <div class="spacer"></div>
+        </g:form>
       </div>
     </erp:accessCheck>
 
