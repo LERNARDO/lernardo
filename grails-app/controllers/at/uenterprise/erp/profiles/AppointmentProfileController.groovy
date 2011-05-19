@@ -32,7 +32,7 @@ class AppointmentProfileController {
 
     def list = {
       params.offset = params.offset ?: 0
-      Entity entity = Entity.get(params.id)
+      Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
 
       List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
       def resulttotal = appointments.size()
@@ -61,7 +61,7 @@ class AppointmentProfileController {
     }
 
     def delete = {
-        Entity appointment = Entity.get(params.id)
+      Entity appointment = Entity.get(params.id)
 
       // delete all links to appointment
       Link.findAllBySourceOrTarget(appointment, appointment).each {it.delete()}
@@ -132,6 +132,11 @@ class AppointmentProfileController {
 
         // create link to owner
         new Link(source: entity, target: currentEntity, type: metaDataService.ltAppointment).save()
+
+        if (entity.profile.beginDate > entity.profile.endDate) {
+          render (view: "create", model: [appointmentProfileInstance: entity])
+          return
+        }
 
         flash.message = message(code: "appointment.created", args: [entity.profile.fullName])
         redirect action: 'show', id: entity.id
