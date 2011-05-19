@@ -296,7 +296,7 @@
     </div>
 
     <div class="buttons">
-      <g:form id="${educator.id}">
+      <g:form id="${educator.id}" params="[entity: educator?.id]">
         <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         </erp:isMeOrAdminOrOperator>

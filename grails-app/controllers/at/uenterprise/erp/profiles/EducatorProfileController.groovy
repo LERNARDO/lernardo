@@ -118,6 +118,7 @@ class EducatorProfileController {
 
   def edit = {
     Entity educator = Entity.get(params.id)
+    Entity entity = params.entity ? educator : entityHelperService.loggedIn
 
     if (!educator) {
       //flash.message = "EducatorProfile not found with id ${params.id}"
@@ -129,7 +130,7 @@ class EducatorProfileController {
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner), enlistedBy: enlistedBy]
+    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner), enlistedBy: enlistedBy, entity: entity]
 
   }
 
@@ -175,7 +176,7 @@ class EducatorProfileController {
       redirect action: 'show', id: educator.id
     }
     else {
-      render view: 'edit', model: [educator: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      render view: 'edit', model: [educator: educator, entity: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
