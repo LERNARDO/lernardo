@@ -18,7 +18,7 @@
         </div>
       </g:hasErrors>
 
-      <g:uploadForm action="save" id="${entity.id}">
+      <g:uploadForm id="${entity.id}">
 
         <div class="text-field">
           <label for="name"><g:message code="publication.profile.name"/>:</label><br />
@@ -53,9 +53,9 @@
           <input size="50" id="file" type="file" name="file"/>
         </div>
 
-        <div class="bottom-buttons">
-          <g:submitButton name="update" value="${message(code:'save')}"/>
-          <g:link class="buttonGray" controller="publication" action="profile" id="${entity.id}"><g:message code="cancel"/></g:link>
+        <div class="buttons">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'cancel')}" /></div>
           <div class="spacer"></div>
         </div>
 

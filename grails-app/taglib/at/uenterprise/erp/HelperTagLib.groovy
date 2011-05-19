@@ -444,13 +444,19 @@ class HelperTagLib {
   }
 
   // checks if a given entity is creator of another given entity
-  boolean accessIsCreatorOf(Entity entity, Entity creatorof) {
+  boolean accessIsCreatorOf(Entity entity, def creatorof) {
 
-    def c = Link.createCriteria()
-    def result = c.get {
-      eq('source', entity)
-      eq('target', creatorof)
-      eq('type', metaDataService.ltCreator)
+    def result = null;
+    if (creatorof instanceof Entity) {
+      def c = Link.createCriteria()
+      result = c.get {
+        eq('source', entity)
+        eq('target', creatorof)
+        eq('type', metaDataService.ltCreator)
+      }
+    }
+    else if (creatorof instanceof Publication) {
+      return (creatorof.entity.id == entity.id)
     }
 
     if (result)
