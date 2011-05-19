@@ -105,6 +105,11 @@ class AppointmentProfileController {
       appointment.profile.beginDate = functionService.convertToUTC(appointment.profile.beginDate)
       appointment.profile.endDate = functionService.convertToUTC(appointment.profile.endDate)
 
+      if (entity.profile.beginDate > entity.profile.endDate) {
+        render (view: "edit", model: [appointmentProfileInstance: appointment])
+        return
+      }
+
       if (appointment.profile.save() && appointment.save()) {
         flash.message = message(code: "appointment.updated", args: [appointment.profile.fullName])
         redirect action: 'show', id: appointment.id
