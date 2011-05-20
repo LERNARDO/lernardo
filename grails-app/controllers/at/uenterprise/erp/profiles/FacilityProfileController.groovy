@@ -136,9 +136,6 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
 
     facility.profile.properties = params
-    facility.user.properties = params
-    if (facility.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
 
     if (facility.profile.save() && facility.save()) {
 

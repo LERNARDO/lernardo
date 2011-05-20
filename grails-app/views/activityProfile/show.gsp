@@ -46,14 +46,10 @@
       </tr>
 
       <tr>
-        <td valign="top" class="value-show"><erp:getFacility entity="${activity}">
-          <erp:isEnabled entity="${facility}">
+        <td valign="top" class="value-show">
+          <erp:getFacility entity="${activity}">
             <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
-          </erp:isEnabled>
-          <erp:notEnabled entity="${facility}">
-            <span class="notEnabled">${facility.profile.fullName}</span>
-          </erp:notEnabled>
-        </erp:getFacility>
+          </erp:getFacility>
         </td>
 
         <td valign="top" class="value-show"><erp:getClients entity="${activity}">

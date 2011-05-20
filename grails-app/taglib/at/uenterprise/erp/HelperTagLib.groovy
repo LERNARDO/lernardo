@@ -987,12 +987,12 @@ class HelperTagLib {
   }
 
   def isEnabled = {attrs, body ->
-    if (attrs.entity.user.enabled)
+    if (attrs?.entity?.user?.enabled)
       out << body()
   }
 
   def notEnabled = {attrs, body ->
-    if (!attrs.entity.user.enabled)
+    if (!attrs?.entity?.user?.enabled)
       out << body()
   }
 
