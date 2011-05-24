@@ -60,7 +60,7 @@
         </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
           <g:if test="${group.profile.status == 'done'}">
-            <div class="button"><g:actionSubmit class="buttonGreen" controller="groupActivityProfile" action="create" value="${message(code: 'groupActivity.plan')}" /></div>
+            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}"><g:message code="groupActivity.plan"/></g:link>
           </g:if>
           <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'groupActivityTemplate.duplicate')}" /></div>
         </erp:accessCheck>
