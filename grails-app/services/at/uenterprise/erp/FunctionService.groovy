@@ -15,6 +15,7 @@ class FunctionService {
   boolean transactional = true
 
   Date convertFromUTC(Date date) {
+    if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
     calendar.setTime(date)
     calendar.add(Calendar.MINUTE, ((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
@@ -22,6 +23,7 @@ class FunctionService {
   }
 
   Date convertToUTC(Date date) {
+    if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
     calendar.setTime(date)
     calendar.add(Calendar.MINUTE, -((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
