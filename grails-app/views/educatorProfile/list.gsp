@@ -38,7 +38,7 @@
           <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td>
             <g:if test="${educator.profile.education}">
-              <g:message code="education.${educator.profile.education}"/>
+              ${educator.profile.education}
             </g:if>
             <g:else>
               <div class="italic"><g:message code="noData"/></div>

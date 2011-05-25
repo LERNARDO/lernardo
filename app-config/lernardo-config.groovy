@@ -114,7 +114,7 @@ if (project == "sueninos") {
     educatorProfile.phone = false
 
     //languages = ['spanish','german','english','french','mexican','portuguese','tsotsil','tseltal','zoque','tojolabal','kanjobal','lacandon','quiche','chol','cakchiquel','zapoteco']
-    educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
+    //educations = ['pedagogue','psychologist','sociologist','teacher','educator','psychopedagogue','artist','doctor','nurse','housekeeper','accountant']
     employments = ['employed','freelancer','volunteer']
     //jobs = ['shoeblack','bugglegumseller','handcraftseller','builderslabourer','homework','childoverseer','carwasher','dispenser','bearer','garagehelper','handcrafter','garbagecollector','squeegeeman','farecollector']
     //schoollevels = ['firstnursery','secondnursery','thirdnursery','firstprimary','secondprimary','thirdprimary','fourthprimary','fifthprimary','sixthprimary','firstsecondary','secondsecondary','thirdsecondary','firstpreparatoria','secondpreparatoria','thirdpreparatoria','studies']
@@ -229,7 +229,7 @@ if (project == "noe") {
 
     //jobs = ['unknown','employed','seekingwork','selfemployed','maternity','house']
     //languages = ['spanish','german','english','french','italian','turkish','serbocroatian','russian','polish','bulgarian']
-    educations = ['elementarypedagogue','universitypedagogue','specialpedagogue','nurserypedagogue','socialpedagogue','instrumentalpedagogue','secondarypedagogue','daynanny','childcare','hoardeducator','sociologist','psychologist','other']
+    //educations = ['elementarypedagogue','universitypedagogue','specialpedagogue','nurserypedagogue','socialpedagogue','instrumentalpedagogue','secondarypedagogue','daynanny','childcare','hoardeducator','sociologist','psychologist','other']
     employments = ['employed','autonomous','trainee']
     //schoollevels = ['first','second','third','fourth','fifth','sixth','seventh','eigth','ninth','tenth','eleventh','twelfth']
     inchargeof = ['hoardlead','hoardhelper','support','comeducator','externaleducator']

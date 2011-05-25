@@ -27,6 +27,8 @@ class SetupController {
       setupInstance.addToSchoolLevels(params.elementName)
     else if (params.type == "workDescriptions")
       setupInstance.addToWorkDescriptions(params.elementName)
+    else if (params.type == "educations")
+      setupInstance.addToEducations(params.elementName)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
@@ -42,6 +44,8 @@ class SetupController {
       setupInstance.removeFromSchoolLevels(params.id)
     else if (params.type == "workDescriptions")
       setupInstance.removeFromWorkDescriptions(params.id)
+    else if (params.type == "educations")
+      setupInstance.removeFromEducations(params.id)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
