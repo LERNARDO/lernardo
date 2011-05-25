@@ -55,6 +55,20 @@
       </div>
     </div>
 
+    <div class="zusatz">
+      <h5><g:message code="schoolLevels"/> <a onclick="clearElements(['#schoolLevelName']); toggle('#schoolLevels');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
+      <div class="zusatz-add" id="schoolLevels" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'schoolLevels']]" update="schoolLevels2" before="showspinner('#schoolLevels2');" after="toggle('#schoolLevels');">
+          <g:textField id="schoolLevelName" size="30" name="elementName" value=""/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="schoolLevels2">
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'schoolLevels']"/>
+      </div>
+    </div>
+
   </div>
 </div>
 </body>

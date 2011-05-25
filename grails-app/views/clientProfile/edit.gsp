@@ -132,7 +132,7 @@
                 <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school?.id}" optionKey="id" optionValue="profile"/>
               </td>
               <td class="value">
-                <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoollevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>
+                <g:select class="drop-down-205" name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
               </td>
             </tr>
 

@@ -104,7 +104,7 @@
             <td valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message code="client.noSchoolEntered"/></div></g:else></td>
             <td valign="top" class="value-show">
               <g:if test="${client.profile.schoolLevel}">
-                <g:message code="schoollevel.${client.profile.schoolLevel}"/>
+                ${client.profile.schoolLevel}
               </g:if>
               <g:else>
                 <div class="italic"><g:message code="none"/></div>

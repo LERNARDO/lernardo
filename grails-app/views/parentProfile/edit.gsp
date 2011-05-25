@@ -62,7 +62,7 @@
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.parentProfile.education}">
-                <g:select class="drop-down-205" name="education" from="${grailsApplication.config.schoollevels}" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>
+                <g:select class="drop-down-205" name="education" from="${Setup.list()[0]?.schoolLevels}" value="${parent?.profile?.education}" noSelection="['': message(code: 'none')]"/>
               </g:if>
             </td>
           </tr>

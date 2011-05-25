@@ -281,7 +281,7 @@ class BootStrap {
           prf.originCity = "DummyCity"
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.schoolLevel = grailsApplication.config.schoollevels[generator.nextInt(grailsApplication.config.schoollevels.size())]
+          prf.schoolLevel = "dummy"
           prf.familyStatus = grailsApplication.config.familyrelations[generator.nextInt(grailsApplication.config.familyrelations.size())]
           prf.job = generator.nextBoolean()
           if (prf.job) {
