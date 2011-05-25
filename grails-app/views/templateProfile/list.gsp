@@ -54,7 +54,7 @@
           </tr>
         </table>
 
-        <g:submitButton name="button" value="Eingrenzen"/>
+        <g:submitButton name="button" value="${message(code:'define')}"/>
         <div class="spacer"></div>
       </g:formRemote>
     </div>
