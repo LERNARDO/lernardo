@@ -69,6 +69,20 @@
       </div>
     </div>
 
+    <div class="zusatz">
+      <h5><g:message code="workDescriptions"/> <a onclick="clearElements(['#workDescriptionName']); toggle('#workDescriptions');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
+      <div class="zusatz-add" id="workDescriptions" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'workDescriptions']]" update="workDescriptions2" before="showspinner('#workDescriptions2');" after="toggle('#workDescriptions');">
+          <g:textField id="workDescriptionName" size="30" name="elementName" value=""/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="workDescriptions2">
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'workDescriptions']"/>
+      </div>
+    </div>
+
   </div>
 </div>
 </body>

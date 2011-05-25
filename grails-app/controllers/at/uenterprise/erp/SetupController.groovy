@@ -25,6 +25,8 @@ class SetupController {
       setupInstance.addToLanguages(params.elementName)
     else if (params.type == "schoolLevels")
       setupInstance.addToSchoolLevels(params.elementName)
+    else if (params.type == "workDescriptions")
+      setupInstance.addToWorkDescriptions(params.elementName)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
@@ -38,6 +40,8 @@ class SetupController {
       setupInstance.removeFromLanguages(params.id)
     else if (params.type == "schoolLevels")
       setupInstance.removeFromSchoolLevels(params.id)
+    else if (params.type == "workDescriptions")
+      setupInstance.removeFromWorkDescriptions(params.id)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 

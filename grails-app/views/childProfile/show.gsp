@@ -43,7 +43,7 @@
               <g:if test="${child.profile.jobtypes}">
                 <ul>
                   <g:each in="${child.profile.jobtypes}" var="jobtype">
-                    <li><g:message code="job.${jobtype}"/></li>
+                    <li>${jobtype}</li>
                   </g:each>
                 </ul>
               </g:if>

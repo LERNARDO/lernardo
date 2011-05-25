@@ -245,7 +245,7 @@ class BootStrap {
           prf.job = generator.nextBoolean()
           if (prf.job) {
             //prf.jobType = (generator.nextInt(14) + 1).toString()
-            prf.addToJobtypes(grailsApplication.config.jobs[generator.nextInt(grailsApplication.config.jobs.size())])
+            prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }
@@ -286,7 +286,7 @@ class BootStrap {
           prf.job = generator.nextBoolean()
           if (prf.job) {
             //prf.jobType = (generator.nextInt(14) + 1).toString()
-            prf.addToJobtypes(grailsApplication.config.jobs[generator.nextInt(grailsApplication.config.jobs.size())])
+            prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }
@@ -320,7 +320,7 @@ class BootStrap {
           prf.job = generator.nextBoolean()
           if (prf.job) {
             //prf.jobType = (generator.nextInt(14) + 1).toString()
-            prf.addToJobtypes(grailsApplication.config.jobs[generator.nextInt(grailsApplication.config.jobs.size())])
+            prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }

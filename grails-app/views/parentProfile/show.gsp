@@ -90,7 +90,7 @@
               <g:if test="${parent.profile.jobtypes}">
                 <ul>
                   <g:each in="${parent.profile.jobtypes}" var="jobtype">
-                    <li><g:message code="job.${jobtype}"/></li>
+                    <li>${jobtype}</li>
                   </g:each>
                 </ul>
               </g:if>

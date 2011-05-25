@@ -202,7 +202,7 @@
                 <g:checkBox name="job" value="${client?.profile?.job}"/>
               </td>
               <td class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
-                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${client?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>
+                <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${client?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
               </td>
               <td class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
                 <g:textField size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>

@@ -155,7 +155,7 @@
                 <g:if test="${client.profile.jobtypes}">
                   <ul style="margin-left: 5px;">
                     <g:each in="${client.profile.jobtypes}" var="jobtype">
-                      <li style="list-style-type: disc;"><g:message code="job.${jobtype}"/></li>
+                      <li style="list-style-type: disc;">${jobtype}</li>
                     </g:each>
                   </ul>
                 </g:if>
