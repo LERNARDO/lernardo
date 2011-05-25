@@ -41,7 +41,7 @@ grails.views.javascript.library="jquery"
 
 jquery {
     sources = 'jquery' // Holds the value where to store jQuery-js files /web-app/js/
-    version = '1.6' // The jQuery version in use
+    version = '1.6.1' // The jQuery version in use
 }
 
 grails {
