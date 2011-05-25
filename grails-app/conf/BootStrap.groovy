@@ -201,7 +201,7 @@ class BootStrap {
           prf.contactMail = "dummy@dummy.com"
           prf.education = "dummyEducation"
           prf.interests = "dummyInterests"
-          prf.employment = grailsApplication.config.employments[generator.nextInt(grailsApplication.config.employments.size())]
+          prf.employment = "dummyEmployment"
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.calendar = calendar
           prf.workHoursMonday = 8

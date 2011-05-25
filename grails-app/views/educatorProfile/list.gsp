@@ -44,7 +44,7 @@
               <div class="italic"><g:message code="noData"/></div>
             </g:else>
           </td>
-          <td><g:message code="employment.${educator.profile.employment}"/></td>
+          <td>${educator.profile.employment}</td>
         </tr>
       </g:each>
       </tbody>

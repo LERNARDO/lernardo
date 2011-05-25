@@ -29,6 +29,8 @@ class SetupController {
       setupInstance.addToWorkDescriptions(params.elementName)
     else if (params.type == "educations")
       setupInstance.addToEducations(params.elementName)
+    else if (params.type == "employmentStatus")
+      setupInstance.addToEmploymentStatus(params.elementName)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
@@ -46,6 +48,8 @@ class SetupController {
       setupInstance.removeFromWorkDescriptions(params.id)
     else if (params.type == "educations")
       setupInstance.removeFromEducations(params.id)
+    else if (params.type == "employmentStatus")
+      setupInstance.removeFromEmploymentStatus(params.id)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 

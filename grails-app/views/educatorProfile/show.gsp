@@ -60,7 +60,7 @@
             </g:else>
           </td>
           <td width="260" valign="top" class="value-show">
-            <g:message code="employment.${educator.profile.employment}"/>
+            ${educator.profile.employment}
           </td>
           <td width="220" valign="top" class="value-show">
             <g:if test="${grailsApplication.config.educatorProfile.enlisted}">

@@ -59,7 +59,7 @@
               <g:select class="drop-down-280" name="education" from="${Setup.list()[0]?.educations}" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]"/>
             </td>
             <td width="290" valign="top" class="value">
-              <g:select class="drop-down-280" name="employment" from="${grailsApplication.config.employments}" value="${educator?.profile?.employment}" valueMessagePrefix="employment"/>
+              <g:select class="drop-down-280" name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}"/>
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
