@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="parent.profile.edit"/></title>
@@ -107,7 +108,7 @@
           <tr>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.parentProfile.currentCountry}">
-                <g:select name="currentCountry" from="${grailsApplication.config.nationalities}" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="nationality"/>
+                <g:select name="currentCountry" from="${Setup.list()[0]?.nationalities}" value="${parent?.profile?.currentCountry}" noSelection="['': message(code: 'unknown')]"/>
               </g:if>
             </td>
             <td width="105" valign="top" class="value">

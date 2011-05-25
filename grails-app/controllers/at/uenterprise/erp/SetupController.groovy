@@ -15,46 +15,52 @@ class SetupController {
     }
   }
 
-  def addBloodType = {
+  def addElement = {
     def setupInstance = Setup.get(params.id)
-    setupInstance.addToBloodTypes(params.bloodType)
-    render template: 'bloodTypes', model: [setupInstance: setupInstance]
+    if (params.type == "bloodTypes")
+      setupInstance.addToBloodTypes(params.elementName)
+    if (params.type == "nationalities")
+      setupInstance.addToNationalities(params.elementName)
+    render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
-  def removeBloodType = {
+  def removeElement = {
     def setupInstance = Setup.get(params.setupInstance)
-    setupInstance.removeFromBloodTypes(params.id)
-    render template: 'bloodTypes', model: [setupInstance: setupInstance]
+    if (params.type == "bloodTypes")
+      setupInstance.removeFromBloodTypes(params.id)
+    if (params.type == "nationalities")
+      setupInstance.removeFromNationalities(params.id)
+    render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
-  def editBloodType = {
+  def editElement = {
     def setupInstance = Setup.get(params.setupInstance)
-    def bloodType = params.id
-    render template: 'editBloodType', model: [setupInstance: setupInstance, bloodType: params.id, i: params.i]
+    render template: 'editElement', model: [setupInstance: setupInstance, element: params.id, type: params.type, i: params.i]
   }
 
-  def updateBloodType = {
+  def updateElement = {
     def setupInstance = Setup.get(params.id)
-    int i = setupInstance.bloodTypes.indexOf(params.bloodTypeOld)
-    setupInstance.bloodTypes.set(i, params.bloodType)
-    render template: 'bloodType', model: [setupInstance: setupInstance, bloodType: params.bloodType, i: params.i]
+    int i = setupInstance[params.type].indexOf(params.elementOld)
+    setupInstance[params.type].set(i, params.element)
+    render template: 'element', model: [setupInstance: setupInstance, element: params.element, type: params.type, i: params.i]
   }
 
   def moveUp = {
     def setupInstance = Setup.get(params.setupInstance)
-    if (setupInstance.bloodTypes.indexOf(params.id) > 0) {
-      int i = setupInstance.bloodTypes.indexOf(params.id)
-      use(Collections){ setupInstance.bloodTypes.swap(i, i - 1) }
-      render template: 'bloodTypes', model: [setupInstance: setupInstance]
+    if (setupInstance[params.type].indexOf(params.id) > 0) {
+      int i = setupInstance[params.type].indexOf(params.id)
+      use(Collections){ setupInstance[params.type].swap(i, i - 1) }
     }
+    render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
   def moveDown = {
     def setupInstance = Setup.get(params.setupInstance)
-    if (setupInstance.bloodTypes.indexOf(params.id) < setupInstance.bloodTypes.size() - 1) {
-      int i = setupInstance.bloodTypes.indexOf(params.id)
-      use(Collections){ setupInstance.bloodTypes.swap(i, i + 1) }
-      render template: 'bloodTypes', model: [setupInstance: setupInstance]
+    if (setupInstance[params.type].indexOf(params.id) < setupInstance[params.type].size() - 1) {
+      int i = setupInstance[params.type].indexOf(params.id)
+      use(Collections){ setupInstance[params.type].swap(i, i + 1) }
     }
+    render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
+
 }

@@ -164,7 +164,7 @@
             </td>
             <td width="110" valign="top" class="value-show">
               <g:if test="${educator.profile.originCountry}">
-                <g:message code="nationality.${educator.profile.originCountry}"/>
+                ${educator.profile.originCountry}
               </g:if>
               <g:else>
                  <div class="italic"><g:message code="unknown"/></div>

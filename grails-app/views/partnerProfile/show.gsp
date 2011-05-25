@@ -80,7 +80,7 @@
           <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td width="210" align="top" class="value-show"><g:message code="nationality.${partner.profile.country}"/></td>
+          <td width="210" align="top" class="value-show">${partner.profile.country}</td>
         </tr>
 
       </table>

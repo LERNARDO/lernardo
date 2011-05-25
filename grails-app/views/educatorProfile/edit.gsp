@@ -145,7 +145,7 @@
                 <g:textField class="countable${educator.profile.constraints.originCity.maxSize} ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
-                <g:select name="originCountry" from="${grailsApplication.config.nationalities}" value="${educator?.profile?.originCountry}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="nationality"/>
+                <g:select name="originCountry" from="${Setup.list()[0]?.nationalities}" value="${educator?.profile?.originCountry}" noSelection="['': message(code: 'unknown')]"/>
               </td>
             </tr>
 

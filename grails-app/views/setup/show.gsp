@@ -17,16 +17,31 @@
       <h5><g:message code="bloodTypes"/> <a onclick="clearElements(['#bloodTypeName']); toggle('#bloodTypes');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
       <div class="zusatz-add" id="bloodTypes" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'setup', action:'addBloodType', id: setupInstance.id]" update="bloodTypes2" before="showspinner('#bloodTypes2');" after="toggle('#bloodTypes');">
-          <td><g:textField id="bloodTypeName" size="30" name="bloodType" value=""/></td>
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'bloodTypes']]" update="bloodTypes2" before="showspinner('#bloodTypes2');" after="toggle('#bloodTypes');">
+          <g:textField id="bloodTypeName" size="30" name="elementName" value=""/>
           <g:submitButton name="button" value="${message(code:'add')}"/>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="bloodTypes2">
-        <g:render template="bloodTypes" model="[setupInstance: setupInstance]"/>
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'bloodTypes']"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
+      <h5><g:message code="nationalities"/> <a onclick="clearElements(['#nationalityName']); toggle('#nationalities');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
+      <div class="zusatz-add" id="nationalities" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'nationalities']]" update="nationalities2" before="showspinner('#nationalities2');" after="toggle('#nationalities');">
+          <g:textField id="nationalityName" size="30" name="elementName" value=""/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="nationalities2">
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'nationalities']"/>
       </div>
     </div>
 
   </div>
 </div>
+</body>
 

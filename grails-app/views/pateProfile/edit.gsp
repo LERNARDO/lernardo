@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="pate.profile.edit"/></title>
@@ -61,7 +62,7 @@
               <g:textField class="countable${pate.profile.constraints.street.maxSize} ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
             <td width="210" height="35" valign="top" class="value">
-              <g:select name="country" from="${grailsApplication.config.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="nationality"/>
+              <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
             </td>
           </tr>
         </table>

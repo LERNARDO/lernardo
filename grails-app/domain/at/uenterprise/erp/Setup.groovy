@@ -2,8 +2,8 @@ package at.uenterprise.erp
 
 class Setup {
 
-  List bloodTypes
-  static hasMany = [countries: String,
+  List bloodTypes, nationalities
+  static hasMany = [nationalities: String,
                     languages: String,
                     //methods: Method,
                     schoolLevels: String,
