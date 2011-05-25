@@ -243,7 +243,7 @@
             </tr>
             <tr>
               <td valign="top" class="value">
-                <g:select name="bloodType" from="${Setup.list()[0].bloodTypes}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
+                <g:select name="bloodType" from="${Setup.list()[0]?.bloodTypes}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
               </td>
             </tr>
           </table>
