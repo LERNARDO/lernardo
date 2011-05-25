@@ -58,7 +58,8 @@
         </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
           <g:if test="${projectTemplate.profile.status == 'done'}">
-            <div class="button"><g:actionSubmit class="buttonGreen" controller="projectProfile" action="create" value="${message(code: 'project.plan')}" /></div>
+            <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate.id}" params="[entity: projectTemplate?.id]"><g:message code="project.plan"/></g:link>
+            %{--<div class="button"><g:actionSubmit class="buttonGreen" controller="projectProfile" action="create" value="${message(code: 'project.plan')}" /></div>--}%
           </g:if>
           <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'projectTemplate.duplicate')}" /></div>
         </erp:accessCheck>

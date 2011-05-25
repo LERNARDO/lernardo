@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="educator.profile.edit"/></title>
@@ -232,7 +233,7 @@
               </tr>
               <tr>
                 <td valign="top" class="value">
-                  <g:select name="bloodType" from="${['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-']}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
+                  <g:select name="bloodType" from="${Setup.list()[0]?.bloodTypes}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
                 </td>
               </tr>
             </table>

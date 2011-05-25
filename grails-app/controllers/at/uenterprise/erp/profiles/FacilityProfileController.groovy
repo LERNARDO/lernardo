@@ -128,7 +128,16 @@ class FacilityProfileController {
       return
     }
 
-    return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    // find colonia of this facility
+    List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
+    Entity colony
+    entities.each {
+      if (it.type.id == metaDataService.etGroupColony.id) {
+        colony = it as Entity
+      }
+    }
+
+    return [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     
   }
 
@@ -149,7 +158,16 @@ class FacilityProfileController {
       redirect action: 'show', id: facility.id
     }
     else {
-      render view: 'edit', model: [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      // find colonia of this facility
+      List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony
+      entities.each {
+        if (it.type.id == metaDataService.etGroupColony.id) {
+          colony = it as Entity
+        }
+      }
+
+      render view: 'edit', model: [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 

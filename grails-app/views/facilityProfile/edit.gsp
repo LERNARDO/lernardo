@@ -37,7 +37,7 @@
 
           <tr class="prop">
             <td colspan="4" valign="top" class="value">
-              <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
+              <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile" value="${colony.id}"/>
             </td>
           </tr>
 

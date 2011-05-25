@@ -22,14 +22,6 @@
     <table>
 
       <tr class="prop">
-        <td colspan="3" valign="top" class="name-show">Typ:</td>
-      </tr>
-
-      <tr class="prop">
-        <td colspan="3" valign="top" class="value-show">${template.profile.type}</td>
-      </tr>
-
-      <tr class="prop">
         <td colspan="2" valign="top" class="name-show"><g:message code="activityTemplate.name"/>:</td>
         <td valign="top" class="name-show"><g:message code="activityTemplate.duration"/>:</td>
       </tr>
