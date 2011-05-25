@@ -19,8 +19,10 @@ class SetupController {
     def setupInstance = Setup.get(params.id)
     if (params.type == "bloodTypes")
       setupInstance.addToBloodTypes(params.elementName)
-    if (params.type == "nationalities")
+    else if (params.type == "nationalities")
       setupInstance.addToNationalities(params.elementName)
+    else if (params.type == "languages")
+      setupInstance.addToLanguages(params.elementName)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
@@ -28,8 +30,10 @@ class SetupController {
     def setupInstance = Setup.get(params.setupInstance)
     if (params.type == "bloodTypes")
       setupInstance.removeFromBloodTypes(params.id)
-    if (params.type == "nationalities")
+    else if (params.type == "nationalities")
       setupInstance.removeFromNationalities(params.id)
+    else if (params.type == "languages")
+      setupInstance.removeFromLanguages(params.id)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 

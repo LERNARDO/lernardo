@@ -81,7 +81,7 @@
               <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof}" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]" valueMessagePrefix="inchargeof"/>
             </td>
             <td valign="top" class="value">
-              <g:select class="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
+              <g:select class="liste-240" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
 

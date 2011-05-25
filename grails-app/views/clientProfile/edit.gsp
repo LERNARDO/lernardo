@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="client.profile.edit"/></title>
@@ -125,7 +126,7 @@
                 </g:if>
               </td>
               <td class="value">
-                <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
+                <g:select class="liste-210" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
               </td>
               <td class="value">
                 <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school?.id}" optionKey="id" optionValue="profile"/>

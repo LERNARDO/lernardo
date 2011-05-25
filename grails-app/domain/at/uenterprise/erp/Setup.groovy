@@ -2,7 +2,7 @@ package at.uenterprise.erp
 
 class Setup {
 
-  List bloodTypes, nationalities
+  List bloodTypes, nationalities, languages, schoolLevels, workDescriptions, educations, employmentStatus, responsibilities, familyStatus, maritalStatus, services, familyProblems
   static hasMany = [nationalities: String,
                     languages: String,
                     //methods: Method,

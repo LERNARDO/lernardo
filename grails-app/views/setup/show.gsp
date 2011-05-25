@@ -41,6 +41,20 @@
       </div>
     </div>
 
+    <div class="zusatz">
+      <h5><g:message code="languages"/> <a onclick="clearElements(['#languageName']); toggle('#languages');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
+      <div class="zusatz-add" id="languages" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'languages']]" update="languages2" before="showspinner('#languages2');" after="toggle('#languages');">
+          <g:textField id="languageName" size="30" name="elementName" value=""/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="languages2">
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'languages']"/>
+      </div>
+    </div>
+
   </div>
 </div>
 </body>
