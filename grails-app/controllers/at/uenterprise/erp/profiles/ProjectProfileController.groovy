@@ -395,7 +395,6 @@ class ProjectProfileController {
       calendar.setTime(projectDay.profile.date)
       calendar.add(Calendar.MINUTE, duration)
       ent.profile.date = calendar.getTime()
-      ent.profile.date = functionService.convertToUTC(ent.profile.date)
       ent.profile.duration = duration2
     }
 
