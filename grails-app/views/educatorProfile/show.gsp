@@ -87,7 +87,7 @@
             <g:if test="${educator.profile.inChargeOf}">
               <ul>
                 <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
-                  <li><g:message code="inchargeof.${inchargeof}"/></li>
+                  <li>${inchargeof}</li>
                 </g:each>
               </ul>
             </g:if>
