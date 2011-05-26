@@ -14,7 +14,7 @@ class OperatorProfile extends Profile {
     Boolean showTips = true
 
     static constraints = {
-      fullName (blank: false, maxSize: 50)
+      fullName (blank: false, size: 1..100, maxSize: 100)
       description (maxSize: 5000)
       city (size: 2..50, maxSize: 50)
       street (size: 2..50, maxSize: 50)

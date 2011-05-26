@@ -20,7 +20,7 @@ class GroupActivityTemplateProfile extends Profile {
     Date lastUpdated
 
     static constraints = {
-      fullName (blank: false, size: 2..50, maxSize: 50)
+      fullName (blank: false, size: 1..100, maxSize: 100)
       description (blank: true, maxSize: 5000)
     }
 
