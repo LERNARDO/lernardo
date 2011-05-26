@@ -49,6 +49,25 @@
           <td colspan="3" class="value-show">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name-show"><g:message code="project.profile.educationalObjective"/>:</td>
+          <td colspan="2" valign="top" class="name-show"><g:message code="project.profile.educationalObjectiveText"/>:</td>
+        </tr>
+
+        <tr>
+          <td valign="top" class="value-show">
+            <g:if test="${project.profile.educationalObjective}">
+              <g:message code="goal.${project.profile.educationalObjective}"/>
+            </g:if>
+            <g:else>
+              <span class="italic"><g:message code="none"/></span>
+            </g:else>
+          </td>
+          <td colspan="2" valign="top" class="value-show">
+            ${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          </td>
+        </tr>
+
       </table>
 
     </div>

@@ -41,6 +41,28 @@
             </td>--}%
           </tr>
 
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="project.profile.educationalObjective"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <g:select class="drop-down-240" from="['succeeded','notSucceeded']" name="educationalObjective" value="${project.profile.educationalObjective}" noSelection="['': message(code: 'none')]" valueMessagePrefix="goal"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <ckeditor:editor name="educationalObjectiveText" height="200px" width="800px" toolbar="Basic">
+                ${fieldValue(bean:project,field:'profile.educationalObjectiveText').decodeHTML()}
+              </ckeditor:editor>
+            </td>
+          </tr>
+
           </tbody>
         </table>
       </div>
