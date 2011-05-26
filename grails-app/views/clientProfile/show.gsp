@@ -88,7 +88,7 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="familyrelation.${client.profile.familyStatus}"/></g:if></td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}">${client.profile.familyStatus}</g:if></td>
             <td valign="top" class="value-show-block">
               <g:if test="${client.profile.languages}">
               <ul>

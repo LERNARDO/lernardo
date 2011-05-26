@@ -33,6 +33,8 @@ class SetupController {
       setupInstance.addToEmploymentStatus(params.elementName)
     else if (params.type == "responsibilities")
       setupInstance.addToResponsibilities(params.elementName)
+    else if (params.type == "familyStatus")
+      setupInstance.addToFamilyStatus(params.elementName)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
@@ -54,6 +56,8 @@ class SetupController {
       setupInstance.removeFromEmploymentStatus(params.id)
     else if (params.type == "responsibilities")
       setupInstance.removeFromResponsibilities(params.id)
+    else if (params.type == "familyStatus")
+      setupInstance.removeFromFamilyStatus(params.id)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 

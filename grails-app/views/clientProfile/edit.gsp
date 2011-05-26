@@ -122,7 +122,7 @@
             <tr>
               <td class="value">
                 <g:if test="${grailsApplication.config.clientProfile.familyStatus}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyrelations}" value="${client?.profile?.familyStatus}" valueMessagePrefix="familyrelation"/>
+                  <g:select class="drop-down-150" name="familyStatus" from="${Setup.list()[0]?.familyStatus}" value="${client?.profile?.familyStatus}"/>
                 </g:if>
               </td>
               <td class="value">
