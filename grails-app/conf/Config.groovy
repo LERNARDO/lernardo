@@ -131,10 +131,10 @@ defaultpass = "pass"
 // custom lists used for selects within the application
 //nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy','canada']
 resourceclasses = ['facility','colony','everywhere']
-partners = ['projects','services','funding','personnel']
+//partners = ['projects','services','funding','personnel']
 //maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
 //familyrelations = ['parents','father','mother','other']
-problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
+//problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
 profiletypes = ['all','operator','facility','educator','client','user','partner','pate','parent','child']
 helpertypes = ['operator','educator','client','partner','pate','parent']
 

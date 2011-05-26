@@ -37,6 +37,10 @@ class SetupController {
       setupInstance.addToFamilyStatus(params.elementName)
     else if (params.type == "maritalStatus")
       setupInstance.addToMaritalStatus(params.elementName)
+    else if (params.type == "partnerServices")
+      setupInstance.addToPartnerServices(params.elementName)
+    else if (params.type == "familyProblems")
+      setupInstance.addToFamilyProblems(params.elementName)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
@@ -62,6 +66,10 @@ class SetupController {
       setupInstance.removeFromFamilyStatus(params.id)
     else if (params.type == "maritalStatus")
       setupInstance.removeFromMaritalStatus(params.id)
+    else if (params.type == "partnerServices")
+      setupInstance.removeFromPartnerServices(params.id)
+    else if (params.type == "familyProblems")
+      setupInstance.removeFromFamilyProblems(params.id)
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 

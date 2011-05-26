@@ -13,6 +13,8 @@
 <div class="boxGray">
   <div class="second">
 
+    <h6>Allgemeines</h6>
+
     <div class="zusatz">
       <h5><g:message code="bloodTypes"/> <a onclick="clearElements(['#bloodTypeName']); toggle('#bloodTypes');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
@@ -83,6 +85,8 @@
       </div>
     </div>
 
+    <h6>Pädagogen</h6>
+
     <div class="zusatz">
       <h5><g:message code="educations"/> <a onclick="clearElements(['#educationName']); toggle('#educations');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
@@ -125,6 +129,8 @@
       </div>
     </div>
 
+    <h6>Betreute</h6>
+
     <div class="zusatz">
       <h5><g:message code="familyStatus"/> <a onclick="clearElements(['#familyStatusName']); toggle('#familyStatus');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
@@ -139,6 +145,8 @@
       </div>
     </div>
 
+    <h6>Erziehungsberechtigte</h6>
+
     <div class="zusatz">
       <h5><g:message code="maritalStatus"/> <a onclick="clearElements(['#maritalStatusName']); toggle('#maritalStatus');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
@@ -150,6 +158,38 @@
       </div>
       <div class="zusatz-show" id="maritalStatus2">
         <g:render template="allElements" model="[setupInstance: setupInstance, type: 'maritalStatus']"/>
+      </div>
+    </div>
+
+    <h6>Partner</h6>
+
+    <div class="zusatz">
+      <h5><g:message code="partnerServices"/> <a onclick="clearElements(['#partnerServiceName']); toggle('#partnerServices');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
+      <div class="zusatz-add" id="partnerServices" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'partnerServices']]" update="partnerServices2" before="showspinner('#partnerServices2');" after="toggle('#partnerServices');">
+          <g:textField id="partnerServiceName" size="30" name="elementName" value=""/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="partnerServices2">
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'partnerServices']"/>
+      </div>
+    </div>
+
+    <h6>Familien</h6>
+
+    <div class="zusatz">
+      <h5><g:message code="familyProblems"/> <a onclick="clearElements(['#familyProblemName']); toggle('#familyProblems');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></h5>
+      <div class="zusatz-add" id="familyProblems" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'setup', action:'addElement', id: setupInstance.id, params: [type: 'familyProblems']]" update="familyProblems2" before="showspinner('#familyProblems2');" after="toggle('#familyProblems');">
+          <g:textField id="familyProblemName" size="30" name="elementName" value=""/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="familyProblems2">
+        <g:render template="allElements" model="[setupInstance: setupInstance, type: 'familyProblems']"/>
       </div>
     </div>
 

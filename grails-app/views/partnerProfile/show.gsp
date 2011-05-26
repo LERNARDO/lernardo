@@ -45,7 +45,7 @@
             <g:if test="${partner.profile.services}">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
-                <li><g:message code="partner.${service}"/></li>
+                <li>${service}</li>
               </g:each>
             </ul>
             </g:if>

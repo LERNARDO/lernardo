@@ -47,7 +47,7 @@
             <td valign="top" width="200" class="value">
               <g:textField class="${hasErrors(bean: partner, field: 'profile.phone', 'errors')}" size="42" name="phone" value="${fieldValue(bean: partner, field: 'profile.phone').decodeHTML()}"/>
             <td width="421" colspan="3" class="value">
-              <g:select name="services" multiple="true" from="${grailsApplication.config.partners}" value="${partner?.profile?.services}" noSelection="['': message(code: 'none')]" valueMessagePrefix="partner"/>
+              <g:select name="services" multiple="true" from="${Setup.list()[0]?.partnerServices}" value="${partner?.profile?.services}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
 

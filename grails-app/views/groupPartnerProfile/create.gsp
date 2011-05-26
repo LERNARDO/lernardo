@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="groupPartner.profile.create"/></title>
@@ -38,7 +39,7 @@
 
           <tr>
             <td colspan="2" valign="top" class="value">
-              <g:select class="drop-down-280" name="service" from="${grailsApplication.config.partners}" value="${group?.profile?.service}" valueMessagePrefix="partner"/>
+              <g:select class="drop-down-280" name="service" from="${Setup.list()[0]?.partnerServices}" value="${group?.profile?.service}"/>
             </td>
           </tr>
 

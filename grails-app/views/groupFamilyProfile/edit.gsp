@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="groupFamily.profile.edit"/></title>
@@ -64,7 +65,7 @@
           <tr>
             <td colspan="3" valign="top" class="value">
               <g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}">
-                <g:select class="max-textbox" name="familyProblems"  from="${grailsApplication.config.problems}" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]" valueMessagePrefix="problem"/>
+                <g:select class="max-textbox" name="familyProblems"  from="${Setup.list()[0]?.familyProblems}" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
               </g:if>
             </td>
           </tr>
