@@ -200,12 +200,11 @@
       <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote3" url="[controller:'groupActivityProfile', action:'addClientGroup', id: group.id]" update="clients2" before="showspinner('#clients2');" after="toggle('#clients');">
-          <g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${group.id}" before="showspinner('#remoteClients');"/>
+        <div id="remoteClients"></div>
+
       </div>
       <div class="zusatz-show" id="clients2">
         <g:render template="clients" model="[clients: clients, entity: currentEntity]"/>

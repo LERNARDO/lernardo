@@ -314,27 +314,6 @@ class GroupActivityProfileController {
     render template: 'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
-  def addClientGroup = {
-    // get client group
-    Entity clientgroup = Entity.get(params.clientgroup)
-    // get all clients linked to this group
-    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
-
-    // link them to the activity group
-    clients.each {
-      def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
-      if (linking.duplicate)
-        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-        render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-    }
-
-    Entity activitygroup = Entity.get(params.id)
-
-    List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
-
-    render template: 'clients', model: [clients: clients2, group: activitygroup, entity: entityHelperService.loggedIn]
-  }
-
   def removeClient = {
     functionService.breakEntities(params.client, params.id, metaDataService.ltAbsent)
     functionService.breakEntities(params.client, params.id, metaDataService.ltIll)
@@ -365,6 +344,68 @@ class GroupActivityProfileController {
   def removeTheme = {
     def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
     render template: 'themes', model: [themes: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all clients and client groups matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        eq('type', metaDataService.etClient)
+        eq('type', metaDataService.etGroupClient)
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, group: params.id])
+    }
+  }
+
+  // adds a client or clients of a client group
+  def addClient = {
+    def entity = Entity.get(params.client)
+
+    // if the entity is a client add it
+    if (entity.type.id == metaDataService.etClient.id) {
+      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+    }
+    // if the entity is a client group get all clients and add them
+    else if (entity.type.id == metaDataService.etGroupClient.id) {
+      // find all clients of the group
+      List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
+
+      clients.each {
+        def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
+        if (linking.duplicate)
+          render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      }
+
+      Entity activitygroup = Entity.get(params.id)
+      List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
+      render template: 'clients', model: [clients: clients2, group: activitygroup, entity: entityHelperService.loggedIn]
+    }
+
   }
 
 }

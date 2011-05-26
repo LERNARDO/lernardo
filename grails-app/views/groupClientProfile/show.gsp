@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="groupClient"/> - ${group.profile.fullName}</title>
