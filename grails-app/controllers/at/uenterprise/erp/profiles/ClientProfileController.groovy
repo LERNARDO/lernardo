@@ -294,9 +294,12 @@ class ClientProfileController {
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
+      params.sort = params.sort ?: "name"
+      params.order = params.order ?: "asc"
+
       render(view: "create", model: [client: ee.entity,
-              allColonias: Entity.findAllByType(metaDataService.etGroupColony),
-              allFacilities: Entity.findAllByType(metaDataService.etFacility)])
+              allColonies: Entity.findAllByType(metaDataService.etGroupColony, params),
+              allFacilities: Entity.findAllByType(metaDataService.etFacility, params)])
     }
 
   }

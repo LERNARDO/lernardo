@@ -157,6 +157,7 @@ class FunctionService {
     def temp = (firstName + lastName).toLowerCase()
     def matcher = (temp =~ /[^a-z0-9]+/)
     def nickName = matcher.replaceAll("-")
+    nickName = nickName.substring(0, nickName.length() > 49 ? 49 : nickName.length())
     return nickName
   }
 
@@ -171,6 +172,7 @@ class FunctionService {
     def temp = fullName.toLowerCase()
     def matcher = (temp =~ /[^a-z0-9]+/)
     def nickName = matcher.replaceAll("-")
+    nickName = nickName.substring(0, nickName.length() > 49 ? 49 : nickName.length())
     return nickName
   }
 
