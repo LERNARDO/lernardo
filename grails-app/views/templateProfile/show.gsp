@@ -63,6 +63,18 @@
         <td width="390" valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
+      <tr class="prop">
+        <td valign="top" class="name-show"><g:message code="activityTemplate.ageFrom"/>:</td>
+        <td valign="top" class="name-show"><g:message code="activityTemplate.ageTo"/>:</td>
+        <td valign="top" class="name-show"><g:message code="activityTemplate.goal"/>:</td>
+      </tr>
+
+      <tr>
+        <td valign="top" class="value-show">${template.profile.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td valign="top" class="value-show">${template.profile.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td width="390" valign="top" class="value-show-block">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
     </table>
 
     <div class="buttons">

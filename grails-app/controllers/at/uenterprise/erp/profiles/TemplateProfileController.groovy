@@ -334,6 +334,10 @@ class TemplateProfileController {
       profile {
         if (params.duration1 != 'all')
           between('duration', params.duration1.toInteger(), params.duration2.toInteger())
+        if (params.ageFrom)
+          le('ageFrom', params.ageFrom.toInteger())
+        if (params.ageTo)
+          ge('ageTo', params.ageTo.toInteger())
       }
     }
 

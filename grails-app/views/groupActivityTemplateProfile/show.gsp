@@ -90,6 +90,10 @@
                 <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
             </tr>
             <tr>
+            <td><g:message code="age"/>:</td>
+            <td><g:message code="from"/>: <g:textField name="ageFrom" size="5"/> <g:message code="to"/>: <g:textField name="ageTo" size="5"/></td>
+          </tr>
+            <tr>
               <td style="vertical-align: top"><g:message code="vMethod"/> 1:</td>
               <td>
                 <g:select name="method1" from="${methods}" optionKey="id" optionValue="name" noSelection="['none':message(code:'non')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'listMethods', update:'elements1', params:'\'id=\' + this.value+\'&dropdown=\'+1')}"/>
