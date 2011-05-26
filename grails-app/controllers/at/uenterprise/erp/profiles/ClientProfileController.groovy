@@ -240,11 +240,24 @@ class ClientProfileController {
   }
 
   def create = {
-    params.sort = params.sort ?: "name"
+    params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    List allColonies = Entity.findAllByType(metaDataService.etGroupColony, params)
-    List allFacilities = Entity.findAllByType(metaDataService.etFacility, params)
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    def d = Entity.createCriteria()
+    def allFacilities = d.list {
+      eq("type", metaDataService.etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
 
     return [allColonies: allColonies,
             allFacilities: allFacilities]
@@ -294,14 +307,27 @@ class ClientProfileController {
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      params.sort = params.sort ?: "name"
+      params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
 
-      render(view: "create", model: [client: ee.entity,
-              allColonies: Entity.findAllByType(metaDataService.etGroupColony, params),
-              allFacilities: Entity.findAllByType(metaDataService.etFacility, params)])
-    }
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
 
+      def d = Entity.createCriteria()
+      def allFacilities = d.list {
+        eq("type", metaDataService.etFacility)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+
+      render(view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities])
+    }
   }
 
   def addPerformance = {
