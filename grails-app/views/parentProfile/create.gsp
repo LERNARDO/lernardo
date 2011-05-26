@@ -51,7 +51,7 @@
 
           <tr>
             <td valign="top" class="value">
-              <g:select class="drop-down-200" name="maritalStatus" from="${grailsApplication.config.maritalstatus}" value="${parent?.profile?.maritalStatus}" valueMessagePrefix="maritalstatus"/>
+              <g:select class="drop-down-200" name="maritalStatus" from="${Setup.list()[0]?.maritalStatus}" value="${parent?.profile?.maritalStatus}"/>
             </td>
             <td valign="top" class="value">
               <g:select class="liste-200" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${parent?.profile?.languages}" noSelection="['': message(code: 'none')]"/>

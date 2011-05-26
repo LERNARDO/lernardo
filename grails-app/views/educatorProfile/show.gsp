@@ -99,7 +99,7 @@
             <g:if test="${educator.profile.languages}">
               <ul>
                 <g:each in="${educator.profile.languages}" var="language">
-                  <li><g:message code="language.${language}"/></li>
+                  <li>${language}</li>
                 </g:each>
               </ul>
             </g:if>

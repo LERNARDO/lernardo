@@ -45,13 +45,13 @@
 
         <tr>
           <td valign="top" class="value-show">
-            <g:message code="maritalstatus.${parent.profile.maritalStatus}"/>
+            ${parent.profile.maritalStatus}
           </td>
           <td valign="top" class="value-show-block">
             <g:if test="${parent.profile.languages}">
               <ul>
                 <g:each in="${parent.profile.languages}" var="language">
-                  <li><g:message code="language.${language}"/></li>
+                  <li>${language}</li>
                 </g:each>
               </ul>
             </g:if>

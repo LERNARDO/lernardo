@@ -239,7 +239,7 @@ class BootStrap {
           prf.currentStreet = "DummyStreet"
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.maritalStatus = grailsApplication.config.maritalstatus[generator.nextInt(grailsApplication.config.maritalstatus.size())]
+          prf.maritalStatus = "dummyStatus"
           prf.education = "dummyEducation"
           prf.comment = "DummyComment"
           prf.job = generator.nextBoolean()
