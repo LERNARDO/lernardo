@@ -67,7 +67,7 @@
 
   <div id="hidden" style="display: none"></div>
 
-  <g:submitButton onclick="kontrolle();" name="button" value="${message(code:'add')}"/>
+  <g:submitButton style="margin-top: 5px" onclick="kontrolle();" name="button" value="${message(code:'add')}"/>
   <div class="spacer"></div>
 
 </g:if>

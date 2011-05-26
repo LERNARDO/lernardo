@@ -1,11 +1,25 @@
 <g:if test="${allTemplates}">
 
+  <p style="margin-top: 10px"><a href="" onclick="selectall(); return false"><g:message code="select.all"/></a> - <a href="" onclick="deselectall(); return false"><g:message code="select.none"/></a></p>
+
   <g:each in="${allTemplates}" var="searchInstance">
     <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" /> <g:link controller="templateProfile" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link> <span class="gray">(${searchInstance.profile.duration} min)</span><br/>
   </g:each>
   <div class="spacer"></div>
 
   <script type="text/javascript">
+
+  function selectall() {
+    for (var zaehler = 0; zaehler < (document.getElementsByName("memberchecked").length); zaehler++) {
+      document.getElementsByName("memberchecked")[zaehler].checked = true;
+    }
+  }
+
+  function deselectall() {
+    for (var zaehler = 0; zaehler < (document.getElementsByName("memberchecked").length); zaehler++) {
+      document.getElementsByName("memberchecked")[zaehler].checked = false;
+    }
+  }
 
   function kontrolle() {
 
@@ -39,7 +53,7 @@
 
   <div id="hidden2" style="display: none"></div>
 
-  <g:submitButton onclick="kontrolle();" name="button" value="${message(code:'add')}"/>
+  <g:submitButton style="margin-top: 5px" onclick="kontrolle();" name="button" value="${message(code:'add')}"/>
   <div class="spacer"></div>
 
 </g:if>
