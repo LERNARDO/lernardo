@@ -49,6 +49,7 @@ import at.uenterprise.erp.profiles.UserProfile
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.InterfaceMaintenanceService
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Setup
 
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
@@ -70,6 +71,7 @@ class BootStrap {
 
       if (GrailsUtil.environment == "development" || GrailsUtil.environment == "test") {
         //importChildren()
+        createSetup()
         createDefaultOperator()
         createDefaultFacilities()
         createDefaultEducators()
@@ -120,6 +122,26 @@ class BootStrap {
       log.warn("children input xml at $children_xml.description not found. no children are bootstrapped")
     }
   }*/
+
+  void createSetup() {
+    // get or create the setup instance and populate it with dummy data
+    def setup = Setup.list()[0]
+    if (!setup) {
+      setup = new Setup().save()
+      setup.addToBloodTypes("dummyBloodType")
+      setup.addToEducations("dummyEducation")
+      setup.addToEmploymentStatus("dummyEmploymentStatus")
+      setup.addToFamilyProblems("dummyFamilyProblem")
+      setup.addToFamilyStatus("dummyFamilyStatus")
+      setup.addToLanguages("dummyLanguage")
+      setup.addToMaritalStatus("dummyMaritalStatus")
+      setup.addToNationalities("dummyNationality")
+      setup.addToPartnerServices("dummyPartnerService")
+      setup.addToResponsibilities("dummyResponsibility")
+      setup.addToSchoolLevels("dummySchoolLevel")
+      setup.addToWorkDescriptions("dummyWorkDescription")
+    }
+  }
 
   void createDefaultUsers() {
     log.info ("creating default users")

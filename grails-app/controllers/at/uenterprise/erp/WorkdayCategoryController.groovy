@@ -26,7 +26,7 @@ class WorkdayCategoryController {
         }
     }
 
-    def del = {
+    def delete = {
         def workdayCategoryInstance = WorkdayCategory.get( params.id )
         if(workdayCategoryInstance) {
             try {
