@@ -14,12 +14,30 @@
 <table class="default-table">
   <thead>
   <tr>
-    %{--<g:sortableColumn property="fullName" title="${message(code:'name')}"/>
-    <g:sortableColumn property="duration" title="${message(code:'duration')} (min)"/>
-    <g:sortableColumn property="socialForm" title="${message(code:'activityTemplate.socialForm')}"/>--}%
-    <th><g:message code="name"/></th>
+    <util:remoteSortableColumn property="fullName" title="${message(code:'name')}" action="updateselect" update="templateselect" params="[method1: method1,
+                                              method2: method2, method3: method3, method1lower: method1lower,
+                                              method1upper: method1upper, method2lower: method2lower,
+                                              method2upper: method2upper, method3lower: method3lower,
+                                              method3upper: method3upper, name: name,
+                                              duration1: duration1, duration2: duration2,
+                                              ageFrom: ageFrom, ageTo: ageTo]"/>
+    <util:remoteSortableColumn property="duration" title="${message(code:'duration')} (min)" action="updateselect" update="templateselect" params="[method1: method1,
+                                              method2: method2, method3: method3, method1lower: method1lower,
+                                              method1upper: method1upper, method2lower: method2lower,
+                                              method2upper: method2upper, method3lower: method3lower,
+                                              method3upper: method3upper, name: name,
+                                              duration1: duration1, duration2: duration2,
+                                              ageFrom: ageFrom, ageTo: ageTo]"/>
+    <util:remoteSortableColumn property="socialForm" title="${message(code:'activityTemplate.socialForm')}" action="updateselect" update="templateselect" params="[method1: method1,
+                                              method2: method2, method3: method3, method1lower: method1lower,
+                                              method1upper: method1upper, method2lower: method2lower,
+                                              method2upper: method2upper, method3lower: method3lower,
+                                              method3upper: method3upper, name: name,
+                                              duration1: duration1, duration2: duration2,
+                                              ageFrom: ageFrom, ageTo: ageTo]"/>
+    %{--<th><g:message code="name"/></th>
     <th><g:message code="duration"/> (min)</th>
-    <th><g:message code="activityTemplate.socialForm"/></th>
+    <th><g:message code="activityTemplate.socialForm"/></th>--}%
     <th><g:message code="comments"/></th>
     <th><g:message code="creator"/></th>
   </tr>
