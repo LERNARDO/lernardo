@@ -37,7 +37,10 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}</g:link></td>
           <td>${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}</td>
+          %{--
           <td><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+          --}%
+          <td><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
         </tr>
       </g:each>
       </tbody>

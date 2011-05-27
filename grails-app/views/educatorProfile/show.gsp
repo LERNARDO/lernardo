@@ -36,7 +36,10 @@
             <g:link action="show" id="${educator.id}" params="[entity:educator.id]">${educator.profile.lastName}</g:link>
           </td>
           <td valign="top" class="value-show">
+            %{--
             <g:formatDate date="${educator.profile.birthDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+            --}%
+            <g:formatDate date="${educator.profile.birthDate}" format="dd. MM. yyyy" />
           </td>
         </tr>
 

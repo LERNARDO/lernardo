@@ -190,11 +190,11 @@ class ClientProfileController {
     Entity client = Entity.get(params.id)
 
     client.profile.properties = params
-    client.profile.birthDate = functionService.convertToUTC(client.profile.birthDate)
-    if (client.profile.schoolDropoutDate)
-        client.profile.schoolDropoutDate = functionService.convertToUTC(client.profile.schoolDropoutDate)
-    if (client.profile.schoolRestartDate)
-        client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
+//    client.profile.birthDate = functionService.convertToUTC(client.profile.birthDate)
+//    if (client.profile.schoolDropoutDate)
+//        client.profile.schoolDropoutDate = functionService.convertToUTC(client.profile.schoolDropoutDate)
+//    if (client.profile.schoolRestartDate)
+//        client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
     client.profile.fullName = params.lastName + " " + params.firstName
     if (!client.profile.calendar) client.profile.calendar = new ECalendar().save()
 
@@ -277,15 +277,15 @@ class ClientProfileController {
           ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
-        ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
+        // ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
         if ( params.schoolDropoutDate ) {
           if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolDropoutDate))
             ent.profile.schoolDropoutDate = Date.parse("dd. MM. yy", params.schoolDropoutDate)
           else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolDropoutDate))
             ent.profile.schoolDropoutDate = Date.parse("dd.MM.yy", params.schoolDropoutDate)
         }
-        if (ent.profile.schoolDropoutDate)
-            ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
+//        if (ent.profile.schoolDropoutDate)
+//            ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
 
         if ( params.schoolRestartDate ) {
           if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolRestartDate))
@@ -293,8 +293,8 @@ class ClientProfileController {
           else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolRestartDate))
             ent.profile.schoolRestartDate = Date.parse("dd.MM.yy", params.schoolRestartDate)
         }
-        if (ent.profile.schoolRestartDate)
-            ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
+        //if (ent.profile.schoolRestartDate)
+        //    ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
@@ -332,7 +332,7 @@ class ClientProfileController {
 
   def addPerformance = {
     Performances performance = new Performances(params)
-    performance.date = functionService.convertToUTC(performance.date)
+    //performance.date = functionService.convertToUTC(performance.date)
     Entity client = Entity.get(params.id)
     client.profile.addToPerformances(performance)
     render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -346,7 +346,7 @@ class ClientProfileController {
 
   def addHealth = {
     Healths health = new Healths(params)
-    health.date = functionService.convertToUTC(health.date)
+    // health.date = functionService.convertToUTC(health.date)
     Entity client = Entity.get(params.id)
     client.profile.addToHealths(health)
     render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -360,7 +360,7 @@ class ClientProfileController {
 
   def addMaterial = {
     Materials material = new Materials(params)
-    material.date = functionService.convertToUTC(material.date)
+    // material.date = functionService.convertToUTC(material.date)
     Entity client = Entity.get(params.id)
     client.profile.addToMaterials(material)
     render template: 'materials', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -384,7 +384,7 @@ class ClientProfileController {
 
     if ( params.date ) {
       CDate date = new CDate(params)
-      date.date = functionService.convertToUTC(date.date)
+      // date.date = functionService.convertToUTC(date.date)
       date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
       client.profile.addToDates(date)
     }
