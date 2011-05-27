@@ -308,8 +308,7 @@ class TemplateProfileController {
   }
 
   def updateselect = {
-    //println params
-    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+
     def method1lower = params.list('method1lower')
     def method1upper = params.list('method1upper')
 
@@ -338,6 +337,8 @@ class TemplateProfileController {
           le('ageFrom', params.ageFrom.toInteger())
         if (params.ageTo)
           ge('ageTo', params.ageTo.toInteger())
+        if (params.sort)
+          order(params.sort, params.order)
       }
     }
 
@@ -462,7 +463,25 @@ class TemplateProfileController {
       }
     }
 
-    render(template: 'searchresults', model: [allTemplates: finalList, totalTemplates: finalList.size(), numberOfAllTemplates: numberOfAllTemplates, currentEntity: entityHelperService.loggedIn, paginate: false])
+    render(template: 'searchresults', model: [allTemplates: finalList,
+                                              totalTemplates: finalList.size(),
+                                              numberOfAllTemplates: numberOfAllTemplates,
+                                              currentEntity: entityHelperService.loggedIn,
+                                              paginate: false,
+                                              method1: params.method1,
+                                              method2: params.method2,
+                                              method3: params.method3,
+                                              method1lower: params.method1lower,
+                                              method1upper: params.method1upper,
+                                              method2lower: params.method2lower,
+                                              method2upper: params.method2upper,
+                                              method3lower: params.method3lower,
+                                              method3upper: params.method3upper,
+                                              name: params.name,
+                                              duration1: params.duration1,
+                                              duration2: params.duration2,
+                                              ageFrom: params.ageFrom,
+                                              ageTo: params.ageTo])
   }
 
 }
