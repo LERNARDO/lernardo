@@ -17,6 +17,15 @@
 <div class="boxGray">
   <div class="second">
 
+    <div class="buttons">
+      <g:form>
+        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'activityTemplate.create')}"/></div>
+          <div class="spacer"></div>
+        </erp:accessCheck>
+      </g:form>
+    </div>
+
     <div class="frame" style="border: 1px solid #aaa; padding: 5px; margin-bottom: 5px;">
       <p><g:message code="activityTemplate.list.hint2"/></p>
       <g:formRemote name="formRemote0" url="[controller:'templateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
