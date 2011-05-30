@@ -135,7 +135,7 @@ class GroupActivityTemplateProfileController {
       redirect action: 'show', id: group.id
     }
     else {
-      render view: 'edit', model: [group: group]
+      render view: 'edit', model: [group: group, entity: group]
     }
   }
 

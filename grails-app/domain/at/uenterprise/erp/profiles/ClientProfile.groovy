@@ -65,6 +65,8 @@ class ClientProfile extends Profile {
     String citizenship
     Integer socialSecurityNumber
 
+    String school // added on 30.05.2011
+
     //String contactName // added on 27.09.2010 - removed on 15.11.2010
     //String contactCountry // added on 27.09.2010 - removed on 15.11.2010
     //String contactZip // added on 27.09.2010 - removed on 15.11.2010
@@ -107,6 +109,7 @@ class ClientProfile extends Profile {
       familyStatus (nullable: true)
 
       job (nullable: true)
+      school nullable: true
     }
 
     String toString(){

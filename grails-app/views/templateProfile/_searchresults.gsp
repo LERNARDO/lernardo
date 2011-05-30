@@ -2,15 +2,6 @@
   <g:message code="activityTemplate.c_total" args="[totalTemplates, numberOfAllTemplates ?: totalTemplates]"/>
 </div>
 
-<div class="buttons">
-  <g:form>
-    <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
-      <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'activityTemplate.create')}"/></div>
-      <div class="spacer"></div>
-    </erp:accessCheck>
-  </g:form>
-</div>
-
 <table class="default-table">
   <thead>
   <tr>

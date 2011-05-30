@@ -57,7 +57,7 @@
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
         </erp:isMeOrAdminOrOperator>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+        <g:link class="buttonGray" action="list" id="${currentEntity.id}"><g:message code="back"/></g:link>
       </g:form>
       <div class="spacer"></div>
     </div>

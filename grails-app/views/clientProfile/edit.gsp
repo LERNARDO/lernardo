@@ -132,7 +132,8 @@
                 <g:select class="liste-210" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
               </td>
               <td class="value">
-                <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school?.id}" optionKey="id" optionValue="profile"/>
+                <g:textField class="${hasErrors(bean: client, field: 'profile.school', 'errors')}" size="20" name="school" value="${fieldValue(bean: client, field: 'profile.school').decodeHTML()}"/>
+                %{--<g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school?.id}" optionKey="id" optionValue="profile"/>--}%
               </td>
               <td class="value">
                 <g:select class="drop-down-205" name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>

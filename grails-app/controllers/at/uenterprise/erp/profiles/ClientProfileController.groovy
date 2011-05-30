@@ -207,8 +207,8 @@ class ClientProfileController {
     new Link(source: Entity.get(params.currentColonia), target: client, type: metaDataService.ltColonia).save()
 
     // update link to school
-    Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
-    new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
+    //Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
+    //new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
     if (client.profile.save() && client.user.save() && client.save()) {
       flash.message = message(code: "client.updated", args: [client.profile.fullName])
@@ -302,7 +302,7 @@ class ClientProfileController {
       new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
 
       // create link to school
-      new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
+      //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id

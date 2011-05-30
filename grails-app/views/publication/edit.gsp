@@ -23,7 +23,7 @@
         </div>
       </g:hasErrors>
 
-      <g:form action="update" id="${publication.id}">
+      <g:form id="${publication.id}">
 
         <div class="text-field ${hasErrors(bean: publication, field: 'name', 'errors')}">
           <label for="name">Titel:</label><br />
@@ -40,9 +40,9 @@
           </g:select>
         </div>--}%
 
-        <div class="bottom-buttons">
-          <g:submitButton name="update" value="${message(code:'change')}"/>
-          <g:link class="buttonGray" action="profile"><g:message code="cancel"/></g:link>
+        <div class="buttons">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'change')}" /></div>
+          <g:link class="buttonGray" action="list"><g:message code="cancel"/></g:link>
           <div class="spacer"></div>
         </div>
 

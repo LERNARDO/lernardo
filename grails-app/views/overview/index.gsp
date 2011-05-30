@@ -36,7 +36,7 @@
   <div class="second">
 
     <div id="body-list">
-      <g:message code="profile.overview.searchLabel"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe']" before="showspinner('#membersearch-results')" />
+      <g:message code="profile.overview.searchLabel"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes']]" before="showspinner('#membersearch-results')" />
 
       %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
       
