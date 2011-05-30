@@ -29,10 +29,16 @@
               <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
+              %{--
               <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
+              --}%
+              <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy')}"/>
             </td>
             <td valign="top" class="value">
+              %{--
               <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
+              --}%
+              <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
             </td>
           </tr>
 

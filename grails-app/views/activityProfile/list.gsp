@@ -35,7 +35,10 @@
 
     <div class="info-msg">
       ${activityCount} Themenräume
+      %{--
       <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if>
+      --}%
+      <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
       <g:else>insgesamt</g:else>
       gefunden.
     </div>

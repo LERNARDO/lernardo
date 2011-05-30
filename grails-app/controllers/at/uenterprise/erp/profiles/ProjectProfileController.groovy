@@ -254,8 +254,8 @@ class ProjectProfileController {
       Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
-        ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
-        ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
+        // ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
+        // ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
       }
       // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
       projectTemplate.assets.each { Asset asset ->

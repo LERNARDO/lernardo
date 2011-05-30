@@ -34,10 +34,16 @@
             ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}
           </td>
           <td width="230" valign="top" class="value-show">
+            %{--
             <g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+            --}%
+            <g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" />
           </td>
           <td width="230" valign="top" class="value-show">
+            %{--
             <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+            --}%
+            <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" />
           </td>
         </tr>
 
