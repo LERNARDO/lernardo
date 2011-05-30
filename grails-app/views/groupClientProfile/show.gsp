@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="groupClient"/> - ${group.profile.fullName}</title>
@@ -64,7 +65,7 @@
             <tr>
               <td><g:message code="client.profile.schoolLevel"/>:</td>
               <td>
-                <g:select name="schoolLevel" from="${grailsApplication.config.schoollevels}" noSelection="['all': message(code: 'all')]" valueMessagePrefix="schoollevel"/>
+                <g:select name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" noSelection="['all': message(code: 'all')]"/>
               </td>
             </tr>
             <g:if test="${grailsApplication.config.clientProfile.job}">

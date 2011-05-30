@@ -15,6 +15,7 @@ class FunctionService {
   boolean transactional = true
 
   Date convertFromUTC(Date date) {
+    if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
     calendar.setTime(date)
     calendar.add(Calendar.MINUTE, ((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
@@ -22,6 +23,7 @@ class FunctionService {
   }
 
   Date convertToUTC(Date date) {
+    if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
     calendar.setTime(date)
     calendar.add(Calendar.MINUTE, -((calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)) / (60 * 1000)).toInteger())
@@ -155,6 +157,7 @@ class FunctionService {
     def temp = (firstName + lastName).toLowerCase()
     def matcher = (temp =~ /[^a-z0-9]+/)
     def nickName = matcher.replaceAll("-")
+    nickName = nickName.substring(0, nickName.length() > 49 ? 49 : nickName.length())
     return nickName
   }
 
@@ -169,6 +172,7 @@ class FunctionService {
     def temp = fullName.toLowerCase()
     def matcher = (temp =~ /[^a-z0-9]+/)
     def nickName = matcher.replaceAll("-")
+    nickName = nickName.substring(0, nickName.length() > 49 ? 49 : nickName.length())
     return nickName
   }
 

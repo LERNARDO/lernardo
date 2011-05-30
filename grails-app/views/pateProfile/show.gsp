@@ -24,11 +24,11 @@
         <tr class="prop">
           <td width="180" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           <td width="200" valign="top" class="value-show"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
-          <td width="160" valign="top" class="value-show"><g:message code="language.${pate.profile.motherTongue}"/></td>
+          <td width="160" valign="top" class="value-show">${pate.profile.motherTongue}</td>
           <td width="170" valign="top" class="value-show-block">
             <ul>
               <g:each in="${pate.profile.languages}" var="language">
-                <li><g:message code="language.${language}"/></li>
+                <li>${language}</li>
               </g:each>
             </ul>
           </td>
@@ -49,7 +49,7 @@
           <td width="101" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           <td width="220" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           <td width="290" valign="top" class="value-show">${fieldValue(bean: pate, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          <td width="210" align="top" class="value-show"><g:message code="nationality.${pate.profile.country}"/></td>
+          <td width="210" align="top" class="value-show">${pate.profile.country}</td>
         </tr>
 
         %{-- AAZ (01.09.2010): disabled until this feature is implemented --}%

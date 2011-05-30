@@ -49,6 +49,25 @@
           <td colspan="3" class="value-show">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
+        <tr class="prop">
+          <td valign="top" class="name-show"><g:message code="project.profile.educationalObjective"/>:</td>
+          <td colspan="2" valign="top" class="name-show"><g:message code="project.profile.educationalObjectiveText"/>:</td>
+        </tr>
+
+        <tr>
+          <td valign="top" class="value-show">
+            <g:if test="${project.profile.educationalObjective}">
+              <g:message code="goal.${project.profile.educationalObjective}"/>
+            </g:if>
+            <g:else>
+              <span class="italic"><g:message code="none"/></span>
+            </g:else>
+          </td>
+          <td colspan="2" valign="top" class="value-show">
+            ${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          </td>
+        </tr>
+
       </table>
 
     </div>
@@ -103,19 +122,17 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#clients');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addClientGroup', id:project.id]" update="clients2" before="showspinner('#clients2');" after="toggle('#clients');">
-          <table>
-            <tr>
-              <td style="padding: 5px 10px 0 0;"><g:select name="clientgroup" from="${allClientGroups}" optionKey="id" optionValue="profile"/></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-            </tr>
-          </table>
-        </g:formRemote>
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${project.id}" before="showspinner('#remoteClients');"/>
+        <div id="remoteClients"></div>
+
       </div>
       <div class="zusatz-show" id="clients2">
-        <g:render template="clients" model="[clients: clients, project: project, entity: currentEntity]"/>
+        <g:render template="clients" model="[clients: clients, entity: currentEntity]"/>
       </div>
     </div>
        

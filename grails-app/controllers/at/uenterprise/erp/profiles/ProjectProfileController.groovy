@@ -395,7 +395,6 @@ class ProjectProfileController {
       calendar.setTime(projectDay.profile.date)
       calendar.add(Calendar.MINUTE, duration)
       ent.profile.date = calendar.getTime()
-      ent.profile.date = functionService.convertToUTC(ent.profile.date)
       ent.profile.duration = duration2
     }
 
@@ -510,33 +509,6 @@ class ProjectProfileController {
     }
 
     return calculatedDuration
-  }
-
-/*  def addClient = {
-    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'clients', model: [clients: linking.results, project: linking.target, entity: entityHelperService.loggedIn]
-  }*/
-
-  def addClientGroup = {
-    // get client group
-    Entity clientgroup = Entity.get(params.clientgroup)
-    // get all clients linked to this group
-    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
-
-    // link them to the activity group
-    clients.each {
-      def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
-      if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    }
-
-    Entity project = Entity.get(params.id)
-
-    List clients2 = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
-
-    render template: 'clients', model: [clients: clients2, project: project, entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
@@ -911,6 +883,68 @@ class ProjectProfileController {
     else {
       render(template: 'substituteresults', model: [results: results, projectDay: params.id])
     }
+  }
+
+  /*
+   * retrieves all clients and client groups matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        eq('type', metaDataService.etClient)
+        eq('type', metaDataService.etGroupClient)
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, group: params.id])
+    }
+  }
+
+  // adds a client or clients of a client group
+  def addClient = {
+    def entity = Entity.get(params.client)
+
+    // if the entity is a client add it
+    if (entity.type.id == metaDataService.etClient.id) {
+      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'clients', model: [clients: linking.results, project: linking.target, entity: entityHelperService.loggedIn]
+    }
+    // if the entity is a client group get all clients and add them
+    else if (entity.type.id == metaDataService.etGroupClient.id) {
+      // find all clients of the group
+      List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
+
+      clients.each {
+        def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
+        if (linking.duplicate)
+          render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      }
+
+      Entity project = Entity.get(params.id)
+      List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
+      render template: 'clients', model: [clients: clients2, project: project, entity: entityHelperService.loggedIn]
+    }
+
   }
 
 }

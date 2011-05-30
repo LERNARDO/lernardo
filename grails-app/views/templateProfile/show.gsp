@@ -22,14 +22,6 @@
     <table>
 
       <tr class="prop">
-        <td colspan="3" valign="top" class="name-show">Typ:</td>
-      </tr>
-
-      <tr class="prop">
-        <td colspan="3" valign="top" class="value-show">${template.profile.type}</td>
-      </tr>
-
-      <tr class="prop">
         <td colspan="2" valign="top" class="name-show"><g:message code="activityTemplate.name"/>:</td>
         <td valign="top" class="name-show"><g:message code="activityTemplate.duration"/>:</td>
       </tr>
@@ -69,6 +61,18 @@
       <tr>
         <td colspan="2" valign="top" class="value-show-block">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         <td width="390" valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td valign="top" class="name-show"><g:message code="activityTemplate.ageFrom"/>:</td>
+        <td valign="top" class="name-show"><g:message code="activityTemplate.ageTo"/>:</td>
+        <td valign="top" class="name-show"><g:message code="activityTemplate.goal"/>:</td>
+      </tr>
+
+      <tr>
+        <td valign="top" class="value-show">${template.profile.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td valign="top" class="value-show">${template.profile.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td width="390" valign="top" class="value-show-block">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
     </table>

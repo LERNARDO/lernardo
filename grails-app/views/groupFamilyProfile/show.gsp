@@ -47,7 +47,7 @@
               <g:if test="${group.profile.familyProblems}">
                 <ul>
                   <g:each in="${group.profile.familyProblems}" var="problem">
-                    <li><g:message code="problem.${problem}"/></li>
+                    <li>${problem}</li>
                   </g:each>
                 </ul>
               </g:if>

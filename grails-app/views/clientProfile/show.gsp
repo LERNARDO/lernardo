@@ -88,12 +88,12 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="familyrelation.${client.profile.familyStatus}"/></g:if></td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}">${client.profile.familyStatus}</g:if></td>
             <td valign="top" class="value-show-block">
               <g:if test="${client.profile.languages}">
               <ul>
                 <g:each in="${client.profile.languages}" var="language">
-                  <li><g:message code="language.${language}"/></li>
+                  <li>${language}</li>
                 </g:each>
               </ul>
               </g:if>
@@ -104,7 +104,7 @@
             <td valign="top" class="value-show"><g:if test="${school}"><g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message code="client.noSchoolEntered"/></div></g:else></td>
             <td valign="top" class="value-show">
               <g:if test="${client.profile.schoolLevel}">
-                <g:message code="schoollevel.${client.profile.schoolLevel}"/>
+                ${client.profile.schoolLevel}
               </g:if>
               <g:else>
                 <div class="italic"><g:message code="none"/></div>
@@ -155,7 +155,7 @@
                 <g:if test="${client.profile.jobtypes}">
                   <ul style="margin-left: 5px;">
                     <g:each in="${client.profile.jobtypes}" var="jobtype">
-                      <li style="list-style-type: disc;"><g:message code="job.${jobtype}"/></li>
+                      <li style="list-style-type: disc;">${jobtype}</li>
                     </g:each>
                   </ul>
                 </g:if>

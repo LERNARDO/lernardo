@@ -60,7 +60,7 @@
         </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
           <g:if test="${group.profile.status == 'done'}">
-            <div class="button"><g:actionSubmit class="buttonGreen" controller="groupActivityProfile" action="create" value="${message(code: 'groupActivity.plan')}" /></div>
+            <g:link class="buttonGreen" controller="groupActivityProfile" action="create" id="${group.id}"><g:message code="groupActivity.plan"/></g:link>
           </g:if>
           <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'groupActivityTemplate.duplicate')}" /></div>
         </erp:accessCheck>
@@ -89,6 +89,10 @@
               <td><g:select from="${1..239}" name="duration1" noSelection="['all':message(code:'any')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
                 <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
             </tr>
+            <tr>
+            <td><g:message code="age"/>:</td>
+            <td><g:message code="from"/>: <g:textField name="ageFrom" size="5"/> <g:message code="to"/>: <g:textField name="ageTo" size="5"/></td>
+          </tr>
             <tr>
               <td style="vertical-align: top"><g:message code="vMethod"/> 1:</td>
               <td>

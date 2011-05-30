@@ -53,14 +53,14 @@
         <tr>
           <td width="260" valign="top" class="value-show">
             <g:if test="${educator.profile.education}">
-              <g:message code="education.${educator.profile.education}"/>
+              ${educator.profile.education}
             </g:if>
             <g:else>
               <div class="italic"><g:message code="noData"/></div>  
             </g:else>
           </td>
           <td width="260" valign="top" class="value-show">
-            <g:message code="employment.${educator.profile.employment}"/>
+            ${educator.profile.employment}
           </td>
           <td width="220" valign="top" class="value-show">
             <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
@@ -87,7 +87,7 @@
             <g:if test="${educator.profile.inChargeOf}">
               <ul>
                 <g:each in="${educator.profile.inChargeOf}" var="inchargeof">
-                  <li><g:message code="inchargeof.${inchargeof}"/></li>
+                  <li>${inchargeof}</li>
                 </g:each>
               </ul>
             </g:if>
@@ -99,7 +99,7 @@
             <g:if test="${educator.profile.languages}">
               <ul>
                 <g:each in="${educator.profile.languages}" var="language">
-                  <li><g:message code="language.${language}"/></li>
+                  <li>${language}</li>
                 </g:each>
               </ul>
             </g:if>
@@ -164,7 +164,7 @@
             </td>
             <td width="110" valign="top" class="value-show">
               <g:if test="${educator.profile.originCountry}">
-                <g:message code="nationality.${educator.profile.originCountry}"/>
+                ${educator.profile.originCountry}
               </g:if>
               <g:else>
                  <div class="italic"><g:message code="unknown"/></div>

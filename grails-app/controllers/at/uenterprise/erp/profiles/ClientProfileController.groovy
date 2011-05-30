@@ -28,13 +28,16 @@ class ClientProfileController {
   def securityManager
   FunctionService functionService
 
+  /*
   def beforeInterceptor = [
           action:{
             params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null
             params.schoolDropoutDate = params.schoolDropoutDate ? Date.parse("dd. MM. yy", params.schoolDropoutDate) : null
-            params.schoolRestartDate = params.schoolRestartDate ? Date.parse("dd. MM. yy", params.schoolRestartDate) : null},
+            params.schoolRestartDate = params.schoolRestartDate ? Date.parse("dd. MM. yy", params.schoolRestartDate) : null
+            },
             only:['save','update','addDate']
   ]
+   */
 
   def index = {
     redirect action: "list", params: params
@@ -170,6 +173,20 @@ class ClientProfileController {
     else
       params.birthDate = null
 
+    if ( params.schoolDropoutDate ) {
+      if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolDropoutDate))
+        params.schoolDropoutDate = Date.parse("dd. MM. yy", params.schoolDropoutDate)
+      else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolDropoutDate))
+        params.schoolDropoutDate = Date.parse("dd.MM.yy", params.schoolDropoutDate)
+    }
+
+    if ( params.schoolRestartDate ) {
+      if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolRestartDate))
+        params.schoolRestartDate = Date.parse("dd. MM. yy", params.schoolRestartDate)
+      else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolRestartDate))
+        params.schoolRestartDate = Date.parse("dd.MM.yy", params.schoolRestartDate)
+    }
+
     Entity client = Entity.get(params.id)
 
     client.profile.properties = params
@@ -223,11 +240,24 @@ class ClientProfileController {
   }
 
   def create = {
-    params.sort = params.sort ?: "name"
+    params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    List allColonies = Entity.findAllByType(metaDataService.etGroupColony, params)
-    List allFacilities = Entity.findAllByType(metaDataService.etFacility, params)
+    def c = Entity.createCriteria()
+    def allColonies = c.list {
+      eq("type", metaDataService.etGroupColony)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
+    def d = Entity.createCriteria()
+    def allFacilities = d.list {
+      eq("type", metaDataService.etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
 
     return [allColonies: allColonies,
             allFacilities: allFacilities]
@@ -238,15 +268,31 @@ class ClientProfileController {
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
+
         ent.profile.properties = params
         ent.user.properties = params
         if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
+        if ( params.schoolDropoutDate ) {
+          if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolDropoutDate))
+            ent.profile.schoolDropoutDate = Date.parse("dd. MM. yy", params.schoolDropoutDate)
+          else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolDropoutDate))
+            ent.profile.schoolDropoutDate = Date.parse("dd.MM.yy", params.schoolDropoutDate)
+        }
         if (ent.profile.schoolDropoutDate)
             ent.profile.schoolDropoutDate = functionService.convertToUTC(ent.profile.schoolDropoutDate)
+
+        if ( params.schoolRestartDate ) {
+          if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolRestartDate))
+            ent.profile.schoolRestartDate = Date.parse("dd. MM. yy", params.schoolRestartDate)
+          else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.schoolRestartDate))
+            ent.profile.schoolRestartDate = Date.parse("dd.MM.yy", params.schoolRestartDate)
+        }
         if (ent.profile.schoolRestartDate)
             ent.profile.schoolRestartDate = functionService.convertToUTC(ent.profile.schoolRestartDate)
       }
@@ -261,11 +307,27 @@ class ClientProfileController {
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id
     } catch (EntityException ee) {
-      render(view: "create", model: [client: ee.entity,
-              allColonias: Entity.findAllByType(metaDataService.etGroupColony),
-              allFacilities: Entity.findAllByType(metaDataService.etFacility)])
-    }
+      params.sort = params.sort ?: "fullName"
+      params.order = params.order ?: "asc"
 
+      def c = Entity.createCriteria()
+      def allColonies = c.list {
+        eq("type", metaDataService.etGroupColony)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+
+      def d = Entity.createCriteria()
+      def allFacilities = d.list {
+        eq("type", metaDataService.etFacility)
+        profile {
+          order(params.sort, params.order)
+        }
+      }
+
+      render(view: "create", model: [client: ee.entity, allColonies: allColonies, allFacilities: allFacilities])
+    }
   }
 
   def addPerformance = {
@@ -311,11 +373,21 @@ class ClientProfileController {
   }
 
   def addDate = {
-    CDate date = new CDate(params)
-    date.date = functionService.convertToUTC(date.date)
     Entity client = Entity.get(params.id)
-    date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
-    client.profile.addToDates(date)
+
+    if (params.date && Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.date))
+      params.date = Date.parse("dd. MM. yy", params.date)
+    else if (params.date && Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.date))
+      params.date = Date.parse("dd.MM.yy", params.date)
+    else
+      params.date = null
+
+    if ( params.date ) {
+      CDate date = new CDate(params)
+      date.date = functionService.convertToUTC(date.date)
+      date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
+      client.profile.addToDates(date)
+    }
     render template: 'dates', model: [client: client, entity: entityHelperService.loggedIn]
   }
 

@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="client.profile.edit"/></title>
@@ -121,17 +122,17 @@
             <tr>
               <td class="value">
                 <g:if test="${grailsApplication.config.clientProfile.familyStatus}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${grailsApplication.config.familyrelations}" value="${client?.profile?.familyStatus}" valueMessagePrefix="familyrelation"/>
+                  <g:select class="drop-down-150" name="familyStatus" from="${Setup.list()[0]?.familyStatus}" value="${client?.profile?.familyStatus}"/>
                 </g:if>
               </td>
               <td class="value">
-                <g:select class="liste-210" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
+                <g:select class="liste-210" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
               </td>
               <td class="value">
                 <g:select class="drop-down-200" name="school" from="${allFacilities}" value="${school?.id}" optionKey="id" optionValue="profile"/>
               </td>
               <td class="value">
-                <g:select class="drop-down-205" name="schoolLevel" from="${grailsApplication.config.schoollevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]" valueMessagePrefix="schoollevel"/>
+                <g:select class="drop-down-205" name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" value="${client?.profile?.schoolLevel}" noSelection="['': message(code: 'none')]"/>
               </td>
             </tr>
 
@@ -195,7 +196,7 @@
                 <g:checkBox name="job" value="${client?.profile?.job}"/>
               </td>
               <td class="value ${hasErrors(bean: client, field: 'profile.jobType', 'errors')}">
-                <g:select name="jobtypes" multiple="true" from="${grailsApplication.config.jobs}" value="${client?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="job"/>
+                <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${client?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
               </td>
               <td class="value ${hasErrors(bean: client, field: 'profile.jobIncome', 'errors')}">
                 <g:textField size="30" name="jobIncome" value="${fieldValue(bean: client, field: 'profile.jobIncome')}"/>

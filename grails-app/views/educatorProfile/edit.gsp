@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="educator.profile.edit"/></title>
@@ -55,10 +56,10 @@
           </tr>
           <tr>
             <td width="290" height="35" valign="top" class="value">
-              <g:select class="drop-down-280" name="education" from="${grailsApplication.config.educations}" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]" valueMessagePrefix="education"/>
+              <g:select class="drop-down-280" name="education" from="${Setup.list()[0]?.educations}" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]"/>
             </td>
             <td width="290" valign="top" class="value">
-              <g:select class="drop-down-280" name="employment" from="${grailsApplication.config.employments}" value="${educator?.profile?.employment}" valueMessagePrefix="employment"/>
+              <g:select class="drop-down-280" name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}"/>
             </td>
             <td valign="top" class="value">
               <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
@@ -77,10 +78,10 @@
               <g:textArea rows="3" cols="39" class="countable${educator.profile.constraints.interests.maxSize} ${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" size="42" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${grailsApplication.config.inchargeof}" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]" valueMessagePrefix="inchargeof"/>
+              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${Setup.list()[0]?.responsibilities}" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
             </td>
             <td valign="top" class="value">
-              <g:select class="liste-240" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
+              <g:select class="liste-240" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
 
@@ -144,7 +145,7 @@
                 <g:textField class="countable${educator.profile.constraints.originCity.maxSize} ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
-                <g:select name="originCountry" from="${grailsApplication.config.nationalities}" value="${educator?.profile?.originCountry}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="nationality"/>
+                <g:select name="originCountry" from="${Setup.list()[0]?.nationalities}" value="${educator?.profile?.originCountry}" noSelection="['': message(code: 'unknown')]"/>
               </td>
             </tr>
 
@@ -232,7 +233,7 @@
               </tr>
               <tr>
                 <td valign="top" class="value">
-                  <g:select name="bloodType" from="${['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', '0+', '0-']}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
+                  <g:select name="bloodType" from="${Setup.list()[0]?.bloodTypes}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
                 </td>
               </tr>
             </table>

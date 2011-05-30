@@ -41,7 +41,7 @@ grails.views.javascript.library="jquery"
 
 jquery {
     sources = 'jquery' // Holds the value where to store jQuery-js files /web-app/js/
-    version = '1.6' // The jQuery version in use
+    version = '1.6.1' // The jQuery version in use
 }
 
 grails {
@@ -129,12 +129,12 @@ dummies = 2
 defaultpass = "pass"
 
 // custom lists used for selects within the application
-nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy','canada']
+//nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy','canada']
 resourceclasses = ['facility','colony','everywhere']
-partners = ['projects','services','funding','personnel']
-maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
-familyrelations = ['parents','father','mother','other']
-problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
+//partners = ['projects','services','funding','personnel']
+//maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
+//familyrelations = ['parents','father','mother','other']
+//problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
 profiletypes = ['all','operator','facility','educator','client','user','partner','pate','parent','child']
 helpertypes = ['operator','educator','client','partner','pate','parent']
 

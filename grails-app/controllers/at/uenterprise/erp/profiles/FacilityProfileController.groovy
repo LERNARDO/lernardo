@@ -128,7 +128,16 @@ class FacilityProfileController {
       return
     }
 
-    return [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    // find colonia of this facility
+    List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
+    Entity colony
+    entities.each {
+      if (it.type.id == metaDataService.etGroupColony.id) {
+        colony = it as Entity
+      }
+    }
+
+    return [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     
   }
 
@@ -136,9 +145,6 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
 
     facility.profile.properties = params
-    facility.user.properties = params
-    if (facility.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, facility.user.locale)
 
     if (facility.profile.save() && facility.save()) {
 
@@ -152,7 +158,16 @@ class FacilityProfileController {
       redirect action: 'show', id: facility.id
     }
     else {
-      render view: 'edit', model: [facility: facility, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+      // find colonia of this facility
+      List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      Entity colony
+      entities.each {
+        if (it.type.id == metaDataService.etGroupColony.id) {
+          colony = it as Entity
+        }
+      }
+
+      render view: 'edit', model: [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 

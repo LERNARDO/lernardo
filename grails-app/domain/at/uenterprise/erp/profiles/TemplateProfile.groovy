@@ -21,11 +21,18 @@ class TemplateProfile extends Profile {
   Date dateCreated
   Date lastUpdated
 
+  String goal     // added on 26.05.2011
+  Integer ageFrom // added on 26.05.2011
+  Integer ageTo   // added on 26.05.2011
+
   static constraints = {
-    fullName (blank: false, size: 2..50, maxSize: 50)
+    fullName (blank: false, size: 1..100, maxSize: 100)
     description (blank: true, maxSize: 5000)
     chosenMaterials (size: 2..5000, maxSize: 5000)
     duration (max: 500)
+    goal nullable: true, maxSize: 5000
+    ageFrom nullable: true
+    ageTo nullable: true
   }
 
   String toString(){

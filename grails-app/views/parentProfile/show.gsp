@@ -45,13 +45,13 @@
 
         <tr>
           <td valign="top" class="value-show">
-            <g:message code="maritalstatus.${parent.profile.maritalStatus}"/>
+            ${parent.profile.maritalStatus}
           </td>
           <td valign="top" class="value-show-block">
             <g:if test="${parent.profile.languages}">
               <ul>
                 <g:each in="${parent.profile.languages}" var="language">
-                  <li><g:message code="language.${language}"/></li>
+                  <li>${language}</li>
                 </g:each>
               </ul>
             </g:if>
@@ -65,7 +65,7 @@
           <td valign="top" class="value-show">
             <g:if test="${grailsApplication.config.parentProfile.education}">
               <g:if test="${parent.profile.education}">
-                <g:message code="schoollevel.${parent.profile.education}"/>
+                ${parent.profile.education}
               </g:if>
               <g:else>
                 <div class="italic"><g:message code="none"/></div>
@@ -90,7 +90,7 @@
               <g:if test="${parent.profile.jobtypes}">
                 <ul>
                   <g:each in="${parent.profile.jobtypes}" var="jobtype">
-                    <li><g:message code="job.${jobtype}"/></li>
+                    <li>${jobtype}</li>
                   </g:each>
                 </ul>
               </g:if>
@@ -110,7 +110,7 @@
         <tr>
           <td valign="middle" class="value-show">
             <g:if test="${grailsApplication.config.parentProfile.currentCountry}">
-              <g:message code="nationality.${parent.profile.currentCountry}"/>
+              ${parent.profile.currentCountry}
             </g:if>
           </td>
           <td width="105" valign="middle" class="value-show">

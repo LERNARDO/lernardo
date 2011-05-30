@@ -13,7 +13,7 @@ class UserProfile extends Profile {
     Boolean showTips = true
 
     static constraints = {
-      fullName (blank: true)
+      fullName (blank: true, size: 1..100, maxSize: 100)
       firstName (blank: false, maxSize: 50)
       lastName (blank: false, maxSize: 50)
     }

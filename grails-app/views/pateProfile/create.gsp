@@ -1,3 +1,4 @@
+<%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
   <title><g:message code="pate.profile.create"/></title>
@@ -33,10 +34,10 @@
               <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td width="210" valign="top" class="value">
-              <g:select class="drop-down-205" name="motherTongue" from="${grailsApplication.config.languages}" value="${pate?.profile?.motherTongue}" valueMessagePrefix="language"/>
+              <g:select class="drop-down-205" name="motherTongue" from="${Setup.list()[0]?.languages}" value="${pate?.profile?.motherTongue}"/>
             </td>
             <td width="210" valign="top" class="value">
-              <g:select class="liste-200" name="languages" multiple="true" from="${grailsApplication.config.languages}" value="${pate?.profile?.languages}" noSelection="['': message(code: 'none')]" valueMessagePrefix="language"/>
+              <g:select class="liste-200" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${pate?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
 
@@ -62,7 +63,7 @@
               <g:textField class="countable50 ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
             </td>
             <td width="210" height="35" valign="top" class="value">
-              <g:select name="country" from="${grailsApplication.config.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]" valueMessagePrefix="nationality"/>
+              <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
             </td>
           </tr>
 

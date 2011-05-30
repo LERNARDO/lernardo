@@ -49,6 +49,7 @@ import at.uenterprise.erp.profiles.UserProfile
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.InterfaceMaintenanceService
 import at.uenterprise.erp.ECalendar
+import at.uenterprise.erp.Setup
 
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
@@ -70,6 +71,7 @@ class BootStrap {
 
       if (GrailsUtil.environment == "development" || GrailsUtil.environment == "test") {
         //importChildren()
+        createSetup()
         createDefaultOperator()
         createDefaultFacilities()
         createDefaultEducators()
@@ -120,6 +122,26 @@ class BootStrap {
       log.warn("children input xml at $children_xml.description not found. no children are bootstrapped")
     }
   }*/
+
+  void createSetup() {
+    // get or create the setup instance and populate it with dummy data
+    def setup = Setup.list()[0]
+    if (!setup) {
+      setup = new Setup().save()
+      setup.addToBloodTypes("dummyBloodType")
+      setup.addToEducations("dummyEducation")
+      setup.addToEmploymentStatus("dummyEmploymentStatus")
+      setup.addToFamilyProblems("dummyFamilyProblem")
+      setup.addToFamilyStatus("dummyFamilyStatus")
+      setup.addToLanguages("dummyLanguage")
+      setup.addToMaritalStatus("dummyMaritalStatus")
+      setup.addToNationalities("dummyNationality")
+      setup.addToPartnerServices("dummyPartnerService")
+      setup.addToResponsibilities("dummyResponsibility")
+      setup.addToSchoolLevels("dummySchoolLevel")
+      setup.addToWorkDescriptions("dummyWorkDescription")
+    }
+  }
 
   void createDefaultUsers() {
     log.info ("creating default users")
@@ -199,9 +221,9 @@ class BootStrap {
           prf.contactStreet = "DummyStreet"
           prf.contactZip = "1345"
           prf.contactMail = "dummy@dummy.com"
-          prf.education = grailsApplication.config.educations[generator.nextInt(grailsApplication.config.educations.size())]
-          prf.interests = "DummyInterests"
-          prf.employment = grailsApplication.config.employments[generator.nextInt(grailsApplication.config.employments.size())]
+          prf.education = "dummyEducation"
+          prf.interests = "dummyInterests"
+          prf.employment = "dummyEmployment"
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.calendar = calendar
           prf.workHoursMonday = 8
@@ -239,13 +261,13 @@ class BootStrap {
           prf.currentStreet = "DummyStreet"
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.maritalStatus = grailsApplication.config.maritalstatus[generator.nextInt(grailsApplication.config.maritalstatus.size())]
-          prf.education = grailsApplication.config.educations[generator.nextInt(grailsApplication.config.educations.size())]
+          prf.maritalStatus = "dummyStatus"
+          prf.education = "dummyEducation"
           prf.comment = "DummyComment"
           prf.job = generator.nextBoolean()
           if (prf.job) {
             //prf.jobType = (generator.nextInt(14) + 1).toString()
-            prf.addToJobtypes(grailsApplication.config.jobs[generator.nextInt(grailsApplication.config.jobs.size())])
+            prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }
@@ -281,12 +303,12 @@ class BootStrap {
           prf.originCity = "DummyCity"
           //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.schoolLevel = grailsApplication.config.schoollevels[generator.nextInt(grailsApplication.config.schoollevels.size())]
-          prf.familyStatus = grailsApplication.config.familyrelations[generator.nextInt(grailsApplication.config.familyrelations.size())]
+          prf.schoolLevel = "dummy"
+          prf.familyStatus = "dummyStatus"
           prf.job = generator.nextBoolean()
           if (prf.job) {
             //prf.jobType = (generator.nextInt(14) + 1).toString()
-            prf.addToJobtypes(grailsApplication.config.jobs[generator.nextInt(grailsApplication.config.jobs.size())])
+            prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }
@@ -320,7 +342,7 @@ class BootStrap {
           prf.job = generator.nextBoolean()
           if (prf.job) {
             //prf.jobType = (generator.nextInt(14) + 1).toString()
-            prf.addToJobtypes(grailsApplication.config.jobs[generator.nextInt(grailsApplication.config.jobs.size())])
+            prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "DummyFrequency"
           }

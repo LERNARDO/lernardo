@@ -74,7 +74,7 @@ class ClientProfile extends Profile {
     //String contactMail // added on 27.09.2010 - removed on 15.11.2010
 
     static constraints = {
-      fullName (blank: true)
+      fullName (blank: true, size: 1..100, maxSize: 100)
       firstName (blank: false, size: 2..50, maxSize: 50)
       lastName (blank: false, size: 2..50, maxSize: 50)
       currentCountry (size: 2..50, maxSize: 50)

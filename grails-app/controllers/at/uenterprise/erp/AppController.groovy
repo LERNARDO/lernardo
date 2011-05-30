@@ -269,6 +269,8 @@ class AppController {
    */
   def error500 = {
 
+    // AAZ: deactivated since it caused a exception loop, TODO: fix when there is time
+    /*
     if (GrailsUtil.environment != "development") {
       sendMail {
         to      "error@uenterprise.de"
@@ -276,7 +278,7 @@ class AppController {
         html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
       }
       log.info "Notification email sent to developers!"
-    }
+    }*/
 
     render view: '/500'
   }

@@ -55,16 +55,37 @@
 
         <tr>
           <td colspan="2" valign="top" class="value ${hasErrors(bean: template, field: 'profile.description', 'errors')}">
-            <ckeditor:editor name="description" height="300px" width="380px" toolbar="Basic">
+            <ckeditor:editor name="description" height="200px" width="380px" toolbar="Basic">
               ${fieldValue(bean:template,field:'profile.description').decodeHTML()}
             </ckeditor:editor>
           </td>
           <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.chosenMaterials', 'errors')}">
-            <ckeditor:editor name="chosenMaterials" height="300px" width="380px" toolbar="Basic">
+            <ckeditor:editor name="chosenMaterials" height="200px" width="380px" toolbar="Basic">
               ${fieldValue(bean:template,field:'profile.chosenMaterials').decodeHTML()}
             </ckeditor:editor>
           </td>
         </tr>
+
+        <tr class="prop">
+            <td valign="top" class="name"><g:message code="activityTemplate.ageFrom"/>:</td>
+            <td valign="top" class="name"><g:message code="activityTemplate.ageTo"/>:</td>
+            <td valign="top" class="name"><g:message code="activityTemplate.goal"/>:</td>
+          </tr>
+
+          <tr>
+            <td valign="top">
+              <g:textField class="${hasErrors(bean:template,field:'profile.ageFrom','errors')}" size="5" name="ageFrom" value="${fieldValue(bean:template,field:'profile.ageFrom').decodeHTML()}"/>
+            </td>
+            <td valign="top">
+              <g:textField class="${hasErrors(bean:template,field:'profile.ageTo','errors')}" size="5" name="ageTo" value="${fieldValue(bean:template,field:'profile.ageTo').decodeHTML()}"/>
+            </td>
+            <td valign="top" class="value ${hasErrors(bean: template, field: 'profile.goal', 'errors')}">
+              <ckeditor:editor name="goal" height="200px" toolbar="Basic">
+                ${fieldValue(bean:template,field:'profile.goal').decodeHTML()}
+              </ckeditor:editor>
+            </td>
+          </tr>
+
 
       </table>
 
