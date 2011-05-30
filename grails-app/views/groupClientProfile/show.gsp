@@ -63,6 +63,10 @@
               <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
             </tr>
             <tr>
+              <td><g:message code="client.profile.school"/>:</td>
+              <td><g:textField name="school"/></td>
+            </tr>
+            <tr>
               <td><g:message code="client.profile.schoolLevel"/>:</td>
               <td>
                 <g:select name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" noSelection="['all': message(code: 'all')]"/>

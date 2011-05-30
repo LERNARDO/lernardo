@@ -191,6 +191,8 @@ class GroupClientProfileController {
           if (params.job == "2")
             eq('job', false)
         }
+        if (params.school)
+          ilike('school', "%" + params.school + "%")
         if (params.schoolLevel != "all")
           eq('schoolLevel', params.schoolLevel)
         if (params.birthDate1)

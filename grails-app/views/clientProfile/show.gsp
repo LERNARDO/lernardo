@@ -102,7 +102,7 @@
               </g:else>
             </td>
             <td valign="top" class="value-show">
-              ${fieldValue(bean: client, field: 'profile.school' ?: '<span class="italic">'+message(code:'client.noSchoolEntered')+'</span>').decodeHTML()}
+              ${fieldValue(bean: client, field: 'profile.school').decodeHTML() ?: '<span class="italic">'+message(code:'client.noSchoolEntered')+'</span>'}
               %{--<g:if test="${school}">
                 <g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link>
               </g:if>
