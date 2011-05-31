@@ -107,6 +107,7 @@ class ProjectProfileController {
 
       // find all projectdays linked to this project
       List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+      projectDays.sort {it.profile.date}
 
       // find all projectUnits linked to this project
       List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
@@ -184,15 +185,131 @@ class ProjectProfileController {
   def update = {
     Entity project = Entity.get(params.id)
 
-    project.profile.fullName = params.fullName
-    project.profile.description = params.description
+    //project.profile.fullName = params.fullName
+    //project.profile.description = params.description
+
+    // update project days based on the new begin and end date
+    def currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    //log.info "current project days: " + currentPDs.size()
+
+    Date tperiodStart = params.startDate
+    Date tperiodEnd = params.endDate
+    params.endDate.setHours(23);
+    params.endDate.setMinutes(59);
+
+    Calendar tcalendarStart = new GregorianCalendar();
+    tcalendarStart.setTime(tperiodStart);
+
+    Calendar tcalendarEnd = new GregorianCalendar();
+    tcalendarEnd.setTime(tperiodEnd);
+
+    SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
+
+    // 1. check if every current project day is within the new date range of the project, if not delete those which aren't
+    //log.info "removing days outside the new date range"
+    List toDelete = []
+    currentPDs.each { pd ->
+      if (pd.profile.date < tcalendarStart.getTime() || pd.profile.date > tcalendarEnd.getTime()) {
+        //log.info "found a projectday that is outside the new daterange"
+        toDelete.add(pd)
+      }
+    }
+    toDelete.each { pd ->
+      Link.findBySourceAndType(pd, metaDataService.ltProjectMember)?.delete()
+      Link.findAllBySourceOrTarget(pd, pd).each {it.delete()}
+      pd.delete()
+    }
+
+    // get a new list of project days
+    currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    //log.info "current project days: " + currentPDs.size()
+
+    // 2. create new project days if any
+    //log.info "creating new project days"
+    // loop through the date range and compare the dates day with the params
+    while (tcalendarStart <= tcalendarEnd) {
+      Date currentDate = tcalendarStart.getTime();
+
+      // check if no project day exists on the current date
+      boolean dayExists = false
+      currentPDs.each {
+        if (it.profile.date.date == currentDate.date && it.profile.date.month == currentDate.month) {
+          //log.info it.profile.date.date
+          //log.info it.profile.date.month
+          //log.info "skipping day"
+          dayExists = true
+        }
+      }
+
+      if (!dayExists) {
+        //log.info params.wednesday
+        //log.info tdf.format(currentDate)
+        if ((params.monday && (tdf.format(currentDate) == 'Monday')) ||
+                (params.tuesday && (tdf.format(currentDate) == 'Tuesday')) ||
+                (params.wednesday && (tdf.format(currentDate) == 'Wednesday')) ||
+                (params.thursday && (tdf.format(currentDate) == 'Thursday')) ||
+                (params.friday && (tdf.format(currentDate) == 'Friday')) ||
+                (params.saturday && (tdf.format(currentDate) == 'Saturday')) ||
+                (params.sunday && (tdf.format(currentDate) == 'Sunday'))) {
+          //log.info "found matching day"
+
+          if (tdf.format(currentDate) == 'Monday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('mondayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('mondayStartMinute'))
+          }
+          else if (tdf.format(currentDate) == 'Tuesday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('tuesdayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('tuesdayStartMinute'))
+          }
+          else if (tdf.format(currentDate) == 'Wednesday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('wednesdayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('wednesdayStartMinute'))
+          }
+          else if (tdf.format(currentDate) == 'Thursday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('thursdayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('thursdayStartMinute'))
+          }
+          else if (tdf.format(currentDate) == 'Friday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('fridayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('fridayStartMinute'))
+          }
+          else if (tdf.format(currentDate) == 'Saturday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('saturdayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
+          }
+          else if (tdf.format(currentDate) == 'Sunday') {
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
+            tcalendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
+          }
+
+          // create project day
+          EntityType etProjectDay = metaDataService.etProjectDay
+          Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
+            ent.profile = profileHelperService.createProfileFor(ent) as Profile
+            ent.profile.date = tcalendarStart.getTime();
+            ent.profile.fullName = params.fullName
+            ent.profile.date = functionService.convertToUTC(ent.profile.date)
+          }
+
+          new Link(source: projectDay, target: project, type: metaDataService.ltProjectMember).save()
+
+        }
+      }
+
+      // increment calendar
+      tcalendarStart.add(Calendar.DATE, 1)
+    }
+
+    currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    //log.info "current project days: " + currentPDs.size()
+
+    project.profile.properties = params
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "project.updated", args: [project.profile.fullName])
       redirect action: 'show', id: project.id
     }
     else {
-        println project.profile.errors
       render view: 'edit', model: [project: project]
     }
   }
@@ -254,8 +371,8 @@ class ProjectProfileController {
       Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
-        ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
-        ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
+        //ent.profile.startDate = functionService.convertToUTC(ent.profile.startDate)
+        //ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
       }
       // inherit profile picture: go through each asset of the template, find the asset of type "profile" and assign it to the new entity
       projectTemplate.assets.each { Asset asset ->
