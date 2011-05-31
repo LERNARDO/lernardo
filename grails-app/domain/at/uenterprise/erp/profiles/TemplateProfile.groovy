@@ -27,10 +27,10 @@ class TemplateProfile extends Profile {
 
   static constraints = {
     fullName (blank: false, size: 1..100, maxSize: 100)
-    description (blank: true, maxSize: 5000)
-    chosenMaterials (size: 2..5000, maxSize: 5000)
+    description (blank: true, maxSize: 20000)
+    chosenMaterials (size: 2..20000, maxSize: 20000)
     duration (max: 500)
-    goal nullable: true, maxSize: 5000
+    goal nullable: true, maxSize: 20000
     ageFrom nullable: true
     ageTo nullable: true
   }
