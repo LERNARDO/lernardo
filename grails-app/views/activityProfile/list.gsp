@@ -35,7 +35,7 @@
 
     <div class="info-msg">
       ${activityCount} Themenräume
-      <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if>
+      <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
       <g:else>insgesamt</g:else>
       gefunden.
     </div>
@@ -43,10 +43,10 @@
     <div id="select-box">
       <g:message code="filterBy"/>:
       <g:form>
-        <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..2011}"/>
+        <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..new Date().getYear() + 1900}"/>
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
-          <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="Alle"/></div>
+          <div class="button"><g:link class="buttonGreen" action="list" params="[all: 'true']">Alle</g:link></div>
           <div class="spacer"></div>
         </div>
       </g:form>
