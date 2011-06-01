@@ -3,7 +3,7 @@
 <g:if test="${workdayunits}">
   <g:if test="${!workdayunits[0].confirmed}">
     <g:set var="confirmed" value="false"/>
-    <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'confirmDays']" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
+    <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'confirmDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
 
         <span style="display: none">
           <g:datePicker name="date" value="${date}"/>
@@ -28,7 +28,7 @@
   <g:if test="${workdaycategories}">
     <div style="border: 1px solid #bbb; border-radius: 5px; padding: 5px; margin: 10px 0">
       <p><span class="bold"><g:message code="workdayUnit.createEntry"/></span></p>
-      <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit']" update="workdayunits" before="showspinner('#workdayunits')">
+      <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
 
         <span style="display: none">
           <g:datePicker name="date" value="${date}"/>
@@ -77,7 +77,7 @@
   <g:each in="${workdayunits}" var="unit" status="i">
     %{--TODO: find out why this styling won't work when used in common.less--}%
     <div id="unit-${i}" style="background-color: #dfdfdf; border: 1px solid #ccc; padding: 5px 6px; border-radius: 5px; margin: 5px 0 0 0;">
-      <g:render template="unit" model="[unit: unit, i: i]"/>
+      <g:render template="unit" model="[unit: unit, i: i, entity: entity]"/>
     </div>
   </g:each>
 </g:if>
