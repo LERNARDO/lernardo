@@ -132,9 +132,7 @@
         <g:if test="${allThemes}">
           <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addTheme', id: group.id]" update="themes2" before="showspinner('#themes2');"  after="toggle('#themes');">
             <g:select name="theme" from="${allThemes}" optionKey="id" optionValue="profile"/>
-            <div class="spacer"></div>
             <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
           </g:formRemote>
         </g:if>
         <g:else>
@@ -152,9 +150,7 @@
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="facilities2">
@@ -170,9 +166,9 @@
           <div id="educatorselect">
             <g:render template="educatorselect" model="[allEducators: allEducators, group: group]"/>
           </div>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          <g:if test="${allEducators}">
+            <g:submitButton name="button" value="${message(code:'add')}"/>
+          </g:if>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="educators2">
@@ -186,9 +182,7 @@
       <div class="zusatz-add" id="substitutes" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2');" after="toggle('#substitutes');">
           <g:select name="substitute" from="${allSubstitutes}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="substitutes2">
