@@ -17,6 +17,7 @@ import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.openfactory.ep.Profile
+import at.uenterprise.erp.Evaluation
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -80,6 +81,7 @@ class EducatorProfileController {
       Post.findByAuthor(educator).each {it.delete()}
       Event.findAllByEntity(educator).each {it.delete()}
       Publication.findAllByEntity(educator).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(educator, educator).each {it.delete()}
       Comment.findAllByCreator(educator.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()
