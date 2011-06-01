@@ -34,7 +34,12 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, datesOrdered: true, entity: entity]
+      render template: 'workdayunits', model:[workdayunits: workdayunits,
+                                              date: params.date,
+                                              workdaycategories: workdaycategories,
+                                              datesOrdered: true,
+                                              entity: entity,
+                                              currentEntity: entityHelperService.loggedIn]
     }
 
     def removeUnit = {
