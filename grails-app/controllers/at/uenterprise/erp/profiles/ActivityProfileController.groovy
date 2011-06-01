@@ -53,7 +53,7 @@ class ActivityProfileController {
     def activityCount
 
     // get all activities
-    if (params.myDate_year == 'alle' || params.list == "Alle") {
+    if (params.myDate_year == 'alle') {
 
       // show educator only his own activities
       if (currentEntity.type.id == metaDataService.etEducator.id) {

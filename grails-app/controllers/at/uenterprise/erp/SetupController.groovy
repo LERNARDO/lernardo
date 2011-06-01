@@ -80,6 +80,10 @@ class SetupController {
 
   def updateElement = {
     def setupInstance = Setup.get(params.id)
+
+    log.info 'element to update: "' + params.elementOld + '"'
+    log.info 'element index in list: ' + setupInstance[params.type].indexOf(params.elementOld)
+
     int i = setupInstance[params.type].indexOf(params.elementOld)
     setupInstance[params.type].set(i, params.element)
     render template: 'element', model: [setupInstance: setupInstance, element: params.element, type: params.type, i: params.i]

@@ -22,7 +22,7 @@ class GroupActivityProfile extends Profile {
     static constraints = {
       fullName (blank: false, size: 1..100, maxSize: 100)
       educationalObjectiveText (blank: true, maxSize: 2000)
-      description (blank: true, maxSize: 5000)
+      description (blank: true, maxSize: 20000)
     }
 
     String toString(){

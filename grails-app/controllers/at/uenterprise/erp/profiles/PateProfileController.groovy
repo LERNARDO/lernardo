@@ -12,6 +12,7 @@ import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -67,6 +68,7 @@ class PateProfileController {
       Msg.findAllBySenderOrReceiver(pate, pate).each {it.delete()}
       Event.findAllByEntity(pate).each {it.delete()}
       Publication.findAllByEntity(pate).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(pate, pate).each {it.delete()}
       Comment.findAllByCreator(pate.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()

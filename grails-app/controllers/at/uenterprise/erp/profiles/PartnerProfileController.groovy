@@ -14,6 +14,7 @@ import at.openfactory.ep.EntityType
 import at.uenterprise.erp.Contact
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 class PartnerProfileController {
 
@@ -72,6 +73,7 @@ class PartnerProfileController {
       Msg.findAllBySenderOrReceiver(partner, partner).each {it.delete()}
       Event.findAllByEntity(partner).each {it.delete()}
       Publication.findAllByEntity(partner).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(partner, partner).each {it.delete()}
       Comment.findAllByCreator(partner.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()

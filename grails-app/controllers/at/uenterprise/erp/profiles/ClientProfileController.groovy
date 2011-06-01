@@ -21,6 +21,7 @@ import at.uenterprise.erp.Contact
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 class ClientProfileController {
   MetaDataService metaDataService
@@ -92,6 +93,7 @@ class ClientProfileController {
       Event.findAllByEntity(client).each {it.delete()}
       Post.findAllByAuthor(client).each {it.delete()}
       Publication.findAllByEntity(client).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(client, client).each {it.delete()}
       Comment.findAllByCreator(client.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()

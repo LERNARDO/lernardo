@@ -13,6 +13,7 @@ import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 //import java.util.regex.Pattern
 
@@ -72,6 +73,7 @@ class ChildProfileController {
       Msg.findAllBySenderOrReceiver(child, child).each {it.delete()}
       Event.findAllByEntity(child).each {it.delete()}
       Publication.findAllByEntity(child).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(child, child).each {it.delete()}
       Comment.findAllByCreator(child.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()

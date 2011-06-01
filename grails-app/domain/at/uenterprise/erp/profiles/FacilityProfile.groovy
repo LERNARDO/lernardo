@@ -17,7 +17,7 @@ class FacilityProfile extends Profile {
 
     static constraints = {
       fullName (blank: false, size: 1..100, maxSize: 100)
-      description (blank: true, maxSize: 5000)
+      description (blank: true, maxSize: 20000)
       country (size: 2..50)
       zip (size: 4..10)
       city (size: 2..50, maxSize: 50)

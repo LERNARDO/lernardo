@@ -16,15 +16,16 @@ class WorkdayUnitController {
 
     def index = {
       List workdaycategories = WorkdayCategory.list()
-      return [workdaycategories: workdaycategories]
+      Entity entity = Entity.get(params.id)
+      return [entity: entity, workdaycategories: workdaycategories]
     }
 
     def showunits = {
-      Entity currentEntity = entityHelperService.loggedIn
+      Entity entity = Entity.get(params.id)
 
       List workdayunits = []
-      if (currentEntity.type.id == metaDataService.etEducator.id) {
-        currentEntity.profile.workdayunits.each { workday ->
+      if (entity.type.id == metaDataService.etEducator.id) {
+        entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             workdayunits << workday
           }
@@ -33,15 +34,20 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, datesOrdered: true]
+      render template: 'workdayunits', model:[workdayunits: workdayunits,
+                                              date: params.date,
+                                              workdaycategories: workdaycategories,
+                                              datesOrdered: true,
+                                              entity: entity,
+                                              currentEntity: entityHelperService.loggedIn]
     }
 
     def removeUnit = {
-      Entity currentEntity = entityHelperService.loggedIn
+      Entity entity = Entity.get(params.entity)
 
       WorkdayUnit workdayUnit = WorkdayUnit.get(params.id)
 
-      currentEntity.profile.removeFromWorkdayunits(workdayUnit)
+      entity.profile.removeFromWorkdayunits(workdayUnit)
       workdayUnit.delete(flush: true)
 
       render ""
@@ -81,7 +87,7 @@ class WorkdayUnitController {
     }
 
     def addWorkdayUnit = {
-      Entity currentEntity = entityHelperService.loggedIn
+      Entity entity = Entity.get(params.id)
 
       WorkdayUnit workdayUnit = new WorkdayUnit(params)
 
@@ -107,8 +113,8 @@ class WorkdayUnitController {
 
       // check if the to be created workday unit does intersect with an already existing workday unit
       List existingWorkdayunits = []
-      if (currentEntity.type.id == metaDataService.etEducator.id) {
-        currentEntity.profile.workdayunits.each { workday ->
+      if (entity.type.id == metaDataService.etEducator.id) {
+        entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             existingWorkdayunits << workday
           }
@@ -126,12 +132,12 @@ class WorkdayUnitController {
       if (!intersection && datesOrdered) {
             // create it
             workdayUnit.save(flush: true)
-            currentEntity.profile.addToWorkdayunits(workdayUnit)
+            entity.profile.addToWorkdayunits(workdayUnit)
       }
 
       List workdayunits = []
-      if (currentEntity.type.id == metaDataService.etEducator.id) {
-        currentEntity.profile.workdayunits.each { workday ->
+      if (entity.type.id == metaDataService.etEducator.id) {
+        entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             workdayunits << workday
           }
@@ -140,14 +146,14 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, intersection: intersection, datesOrdered: datesOrdered]
+      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, intersection: intersection, datesOrdered: datesOrdered, entity: entity]
     }
 
     def confirmDays = {
-      Entity currentEntity = entityHelperService.loggedIn
+      Entity entity = Entity.get(params.id)
 
       List workdayunits = []
-      currentEntity.profile.workdayunits.each { workday ->
+      entity.profile.workdayunits.each { workday ->
         if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
           workday.confirmed = true
           workdayunits.add(workday)
@@ -156,6 +162,6 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, datesOrdered: true]
+      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, datesOrdered: true, entity: entity]
     }
 }
