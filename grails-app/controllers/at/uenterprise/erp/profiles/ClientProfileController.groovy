@@ -75,7 +75,7 @@ class ClientProfileController {
     }
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-    Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+    //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
 
@@ -142,7 +142,7 @@ class ClientProfileController {
     }
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-    Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+    //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
@@ -164,7 +164,8 @@ class ClientProfileController {
             colonia: colonia,
             allColonies: allColonies,
             allFacilities: allFacilities,
-            school: school]
+            //school: school
+            ]
   }
 
   def update = {
@@ -218,7 +219,7 @@ class ClientProfileController {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
       Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-      Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+      //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
       def c = Entity.createCriteria()
       def allColonies = c.list {
