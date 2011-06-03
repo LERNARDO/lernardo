@@ -38,7 +38,10 @@
               <g:textField class="countable${parent.profile.constraints.lastName.maxSize} ${hasErrors(bean: parent, field: 'profile.lastName', 'errors')}" size="30" id="lastName" name="lastName" value="${fieldValue(bean: parent, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
+              %{--
               <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${formatDate(date: parent?.profile?.birthDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
+              --}%
+              <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${formatDate(date: parent?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
               %{--<g:datePicker name="birthDate" value="${parent?.profile?.birthDate}" precision="day" years="${new Date().getYear()+1800..new Date().getYear()+1900}"/>--}%
             </td>
           </tr>

@@ -13,6 +13,7 @@ import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -69,6 +70,7 @@ class ParentProfileController {
       Msg.findAllBySenderOrReceiver(parent, parent).each {it.delete()}
       Event.findAllByEntity(parent).each {it.delete()}
       Publication.findAllByEntity(parent).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(parent, parent).each {it.delete()}
       Comment.findAllByCreator(parent.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()
@@ -120,13 +122,15 @@ class ParentProfileController {
   def update = {
     if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
       params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
+      params.birthDate = Date.parse("dd.MM.yy", params.birthDate)
     else
       params.birthDate = null
 
     Entity parent = Entity.get(params.id)
 
     parent.profile.properties = params
-    parent.profile.birthDate = functionService.convertToUTC(parent.profile.birthDate)
+    // parent.profile.birthDate = functionService.convertToUTC(parent.profile.birthDate)
     parent.profile.fullName = params.lastName + " " + params.firstName
     if (!parent.profile.calendar) parent.profile.calendar = new ECalendar().save()
 
@@ -167,9 +171,11 @@ class ParentProfileController {
         ent.user.properties = params
         if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
-        ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
+        //ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

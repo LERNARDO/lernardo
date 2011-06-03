@@ -13,6 +13,7 @@ import at.uenterprise.erp.Publication
 import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 //import java.util.regex.Pattern
 
@@ -72,6 +73,7 @@ class ChildProfileController {
       Msg.findAllBySenderOrReceiver(child, child).each {it.delete()}
       Event.findAllByEntity(child).each {it.delete()}
       Publication.findAllByEntity(child).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(child, child).each {it.delete()}
       Comment.findAllByCreator(child.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()
@@ -125,13 +127,15 @@ class ChildProfileController {
   def update = {
     if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
       params.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+    else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
+      params.birthDate = Date.parse("dd.MM.yy", params.birthDate)
     else
       params.birthDate = null
 
     Entity child = Entity.get(params.id)
 
     child.profile.properties = params
-    child.profile.birthDate = functionService.convertToUTC(child.profile.birthDate)
+    // child.profile.birthDate = functionService.convertToUTC(child.profile.birthDate)
     child.profile.fullName = params.lastName + " " + params.firstName
     if (!child.profile.calendar) child.profile.calendar = new ECalendar().save()
 
@@ -161,6 +165,8 @@ class ChildProfileController {
         ent.user.properties = params
         if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd. MM. yy", params.birthDate)
+        else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
+          ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)

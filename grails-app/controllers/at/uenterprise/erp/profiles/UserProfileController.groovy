@@ -12,6 +12,7 @@ import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Evaluation
 
 class UserProfileController {
   MetaDataService metaDataService
@@ -65,6 +66,7 @@ class UserProfileController {
       Msg.findAllBySenderOrReceiver(user, user).each {it.delete()}
       Event.findAllByEntity(user).each {it.delete()}
       Publication.findAllByEntity(user).each {it.delete()}
+      Evaluation.findByOwnerOrWriter(user, user).each {it.delete()}
       Comment.findAllByCreator(user.id.toInteger()).each { Comment comment ->
           // find the profile the comment belongs to and delete it from there
           def c = Entity.createCriteria()

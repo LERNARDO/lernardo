@@ -34,10 +34,13 @@
             ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}
           </td>
           <td width="230" valign="top" class="value-show">
-            <g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/>
+            <g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" />
           </td>
           <td width="230" valign="top" class="value-show">
-            <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy"/>
+            %{--
+            <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
+            --}%
+            <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" />
           </td>
         </tr>
 
@@ -122,7 +125,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#clients');
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="clients" style="display:none">
 
