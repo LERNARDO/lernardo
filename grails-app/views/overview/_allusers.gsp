@@ -9,7 +9,7 @@
 
         <div class="member-pic">
           <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">
-            <ub:profileImage name="${entity.name}" width="50" height="50" align="left"/>
+            <erp:profileImage entity="${entity}" width="50" height="50" align="left"/>
           </g:link>
         </div>
         

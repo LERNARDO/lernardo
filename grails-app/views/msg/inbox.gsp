@@ -37,7 +37,7 @@
             <td style="padding-right: 10px;">
               <erp:isEnabled entity="${message.sender}">
                 <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}"  params="[entity:message.sender.id]">
-                  <ub:profileImage name="${message.sender.name}" width="50" height="50" align="left"/>
+                  <erp:profileImage entity="${message.sender}" width="50" height="50" align="left"/>
                 </g:link>
               </erp:isEnabled>
             </td>

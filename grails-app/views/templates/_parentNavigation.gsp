@@ -1,7 +1,6 @@
 <table>
   <tr>
     <td style="width: 135px">
-      %{--<ub:profileImage name="${entity.name}" width="130"/>--}%
       <erp:profileImage entity="${entity}" width="130"/>
     </td>
 

@@ -3,7 +3,7 @@
 
     <div class="member-pic">
       <g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">
-        <ub:profileImage name="${searchInstance.name}" width="50" height="50" align="left"/>
+        <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
       </g:link>
     </div>
 

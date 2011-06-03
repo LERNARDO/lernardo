@@ -32,7 +32,7 @@
       <div class="remoteresult" onclick="checkIt('${entity.id}','${entity.profile.fullName}');">
         <table>
           <tr>
-            <td><ub:profileImage name="${entity.name}" width="65"/></td>
+            <td><erp:profileImage entity="${entity}" width="65"/></td>
             <td style="vertical-align: top; padding-left: 5px;"><span class="bold" style="color: #000">${entity.profile.fullName}</span></td>
           </tr>
         </table>

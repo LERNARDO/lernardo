@@ -27,7 +27,7 @@
             <tr>
               <td style="padding-right: 10px;">
                 <g:link controller="${message.receiver.type.supertype.name +'Profile'}" action="show" id="${message.receiver.id}" params="[entity:message.receiver.id]">
-                  <ub:profileImage name="${message.receiver.name}" width="50" height="50" align="left"/>
+                  <erp:profileImage entity="${message.receiver}" width="50" height="50" align="left"/>
                 </g:link>
               </td>
               <td style="padding-right: 10px;">

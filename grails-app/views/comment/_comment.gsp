@@ -5,7 +5,7 @@
           <td style="vertical-align: top">
             <div class="userpic">
               <g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">
-                <ub:profileImage name="${creator.name}" width="50" height="65" align="left"/>
+                <erp:profileImage entity="${creator}" width="50" height="65" align="left"/>
               </g:link>
             </div>
           </td>
