@@ -485,7 +485,7 @@ class HelperTagLib {
    */
   def localeSelect = {attrs ->
     attrs['from'] = grailsApplication.config.locales
-    attrs['value'] = (attrs['value'] ? attrs['value'] : RequestContextUtils.getLocale(request))
+    attrs['value'] = (attrs['value'] ?: RequestContextUtils.getLocale(request))?.toString()
     // set the key as a closure that formats the locale
     attrs['optionKey'] = {"${it.language}_${it.country}"}
     // set the option value as a closure that formats the locale for display
