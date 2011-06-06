@@ -7,6 +7,10 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 
 import at.openfactory.ep.SecHelperService
+import org.springframework.beans.SimpleTypeConverter
+import org.springframework.context.MessageSourceResolvable
+import org.codehaus.groovy.grails.web.util.StreamCharBuffer
+import org.codehaus.groovy.grails.commons.DomainClassArtefactHandler
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -492,7 +496,7 @@ class HelperTagLib {
     attrs['optionValue'] = {"${it.displayLanguage}"}
 
     // use generic select
-    out << select(attrs)
+    out << eselect(attrs)
   }
 
   /*
@@ -1125,5 +1129,166 @@ class HelperTagLib {
   def getCurrentEntity = {attrs, body ->
     out << body(currentEntity: entityHelperService.loggedIn)
   }
+
+
+  // modified select used by localeSelect as a temporary workaround until it's fixed
+  def eselect = { attrs ->
+        def messageSource = grailsAttributes.getApplicationContext().getBean("messageSource")
+        def locale = RequestContextUtils.getLocale(request)
+        def writer = out
+        attrs.id = attrs.id ?: attrs.name
+        def from = attrs.remove('from')
+        def keys = attrs.remove('keys')
+        def optionKey = attrs.remove('optionKey')
+        def optionValue = attrs.remove('optionValue')
+        def value = attrs.remove('value')
+        if (value instanceof Collection && attrs.multiple == null) {
+            attrs.multiple = 'multiple'
+        }
+        if (value instanceof StreamCharBuffer) {
+            value = value.toString()
+        }
+        def valueMessagePrefix = attrs.remove('valueMessagePrefix')
+        def noSelection = attrs.remove('noSelection')
+        if (noSelection != null) {
+            noSelection = noSelection.entrySet().iterator().next()
+        }
+        def disabled = attrs.remove('disabled')
+        if (disabled && Boolean.valueOf(disabled)) {
+            attrs.disabled = 'disabled'
+        }
+
+        writer << "<select name=\"${attrs.remove('name')?.encodeAsHTML()}\" "
+        // process remaining attributes
+        outputAttributes(attrs)
+
+        writer << '>'
+        writer.println()
+
+        if (noSelection) {
+            renderNoSelectionOptionImpl(writer, noSelection.key, noSelection.value, value)
+            writer.println()
+        }
+
+        // create options from list
+        if (from) {
+            from.eachWithIndex {el, i ->
+                def keyValue = null
+                writer << '<option '
+                if (keys) {
+                    keyValue = keys[i]
+                    ewriteValueAndCheckIfSelected(keyValue, value, writer)
+                }
+                else if (optionKey) {
+                    def keyValueObject = null
+                    if (optionKey instanceof Closure) {
+                        keyValue = optionKey(el)
+                        //log.info "optionKey: " + optionKey(el) + ", is locale? " + (optionKey(el) instanceof Locale)
+                        //log.info "from element: " + el + ", is locale? " + (el instanceof Locale)
+                    }
+                    else if (el != null && optionKey == 'id' && grailsApplication.getArtefact(DomainClassArtefactHandler.TYPE, el.getClass().name)) {
+                        keyValue = el.ident()
+                        keyValueObject = el
+                    }
+                    else {
+                        keyValue = el[optionKey]
+                        keyValueObject = el
+                    }
+                    ewriteValueAndCheckIfSelected(keyValue, value, writer, keyValueObject)
+                }
+                else {
+                    keyValue = el
+                    ewriteValueAndCheckIfSelected(keyValue, value, writer)
+                }
+                writer << '>'
+                if (optionValue) {
+                    if (optionValue instanceof Closure) {
+                        writer << optionValue(el).toString().encodeAsHTML()
+                    }
+                    else {
+                        writer << el[optionValue].toString().encodeAsHTML()
+                    }
+                }
+                else if (el instanceof MessageSourceResolvable) {
+                    writer << messageSource.getMessage(el, locale)
+                }
+                else if (valueMessagePrefix) {
+                    def message = messageSource.getMessage("${valueMessagePrefix}.${keyValue}", null, null, locale)
+                    if (message != null) {
+                        writer << message.encodeAsHTML()
+                    }
+                    else if (keyValue && keys) {
+                        def s = el.toString()
+                        if (s) writer << s.encodeAsHTML()
+                    }
+                    else if (keyValue) {
+                        writer << keyValue.encodeAsHTML()
+                    }
+                    else {
+                        def s = el.toString()
+                        if (s) writer << s.encodeAsHTML()
+                    }
+                }
+                else {
+                    def s = el.toString()
+                    if (s) writer << s.encodeAsHTML()
+                }
+                writer << '</option>'
+                writer.println()
+            }
+        }
+        // close tag
+        writer << '</select>'
+    }
+
+    def typeConverter = new SimpleTypeConverter()
+    private ewriteValueAndCheckIfSelected(keyValue, value, writer) {
+        ewriteValueAndCheckIfSelected(keyValue, value, writer, null)
+    }
+
+    private ewriteValueAndCheckIfSelected(keyValue, value, writer, el) {
+
+        boolean selected = false
+        def keyClass = keyValue?.getClass()
+        //log.info keyValue
+        //log.info keyClass
+        if (keyClass.isInstance(value)) {
+            selected = (keyValue == value)
+        }
+        else if (value instanceof Collection) {
+            // first try keyValue
+            selected = value.contains(keyValue)
+            if (! selected && el != null) {
+                selected = value.contains(el)
+            }
+        }
+        else if (keyClass && value) {
+            try {
+                //value = typeConverter.convertIfNecessary(value, keyClass)
+                selected = (keyValue == value)
+            }
+            catch (e) {
+                // ignore
+            }
+        }
+        writer << "value=\"${keyValue}\" "
+        if (selected) {
+            writer << 'selected="selected" '
+        }
+    }
+
+    void outputAttributes(attrs) {
+        attrs.remove('tagName') // Just in case one is left
+        def writer = getOut()
+        attrs.each { k, v ->
+            writer << "$k=\"${v.encodeAsHTML()}\" "
+        }
+    }
+
+    def renderNoSelectionOptionImpl(out, noSelectionKey, noSelectionValue, value) {
+        // If a label for the '--Please choose--' first item is supplied, write it out
+        out << "<option value=\"${(noSelectionKey == null ? '' : noSelectionKey)}\"${noSelectionKey == value ? ' selected="selected"' : ''}>${noSelectionValue.encodeAsHTML()}</option>"
+    }
+
 
 }
