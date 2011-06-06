@@ -14,8 +14,8 @@
   <link rel="icon" href="${resource(dir: 'images', file: 'favicon.jpg')}" type="image/jpg"/>
   <g:javascript library="jquery" plugin="jquery"/>
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
-  <g:javascript src="jquery/fullcalendar-1.4.10.js"/>
-  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}">
+  <g:javascript src="jquery/fullcalendar.min.js"/>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
 
   <script type="text/javascript">
     // hides an element

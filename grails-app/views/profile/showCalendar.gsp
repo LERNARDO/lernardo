@@ -1,8 +1,8 @@
 <head>
   <title>Kalender</title>
   <meta name="layout" content="private"/>
-  <g:javascript src="jquery/fullcalendar-1.4.10.js"/>
-  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar-1.4.10.css')}" />
+  <g:javascript src="jquery/fullcalendar.min.js"/>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}" />
   <g:render template="/calendar/calendar" model="[name:name]"/>
 </head>
 

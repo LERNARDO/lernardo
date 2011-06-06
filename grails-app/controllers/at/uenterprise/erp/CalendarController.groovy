@@ -53,24 +53,6 @@ class CalendarController {
       redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
   }
 
-  def updatecalendar = {
-    Entity currentEntity = entityHelperService.loggedIn
-
-    if (params.showThemes)
-        currentEntity.profile.calendar.showThemes = !currentEntity.profile.calendar.showThemes
-
-    if (params.id) {
-        if (currentEntity.profile.calendar.calendareds.contains(params.id))
-            currentEntity.profile.calendar.removeFromCalendareds(params.id)
-        else
-            currentEntity.profile.calendar.addToCalendareds(params.id)
-    }
-
-    List visibleEducators = currentEntity.profile.calendar.calendareds
-
-    render template:"calendar", model: [visibleEducators: visibleEducators]
-  }
-
   /*
    * shows the calendar
    */
@@ -97,8 +79,94 @@ class CalendarController {
             'educators': educators]
   }
 
+  def addOrRemove = {
+    //log.info params
+    //log.info "toggling"
+
+    def result
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    // find out whether to toggle the events of the given entity on or off
+    List visibleEducators = currentEntity.profile.calendar.calendareds
+
+    if (visibleEducators.contains(params.id)) {
+      currentEntity.profile.calendar.removeFromCalendareds(params.id)
+      result = "false"
+    }
+    else {
+      currentEntity.profile.calendar.addToCalendareds(params.id)
+      result = "true"
+    }
+
+    render result
+  }
+
+  def toggleT = {
+    def result
+
+    Entity currentEntity = entityHelperService.loggedIn
+    currentEntity.profile.calendar.showThemes = !currentEntity.profile.calendar.showThemes
+
+    if (currentEntity.profile.calendar.showThemes)
+      result = "true"
+    else
+      result = "false"
+
+    render result
+  }
+
+  def toggleThemes = {
+    def start = new Date()
+    start.setTime(params.long('start') * 1000)
+
+    def end = new Date()
+    end.setTime(params.long('end') * 1000)
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    def eventList = []
+
+    // get all themes
+    eventList.addAll(getThemes(start, end, currentEntity, currentEntity, '#000000'))
+
+    def json = eventList as JSON
+    render json
+  }
+
+  def togglePerson = {
+    //log.info "toggling person"
+
+    def start = new Date()
+    start.setTime(params.long('start') * 1000)
+
+    def end = new Date()
+    end.setTime(params.long('end') * 1000)
+
+    Entity currentEntity = entityHelperService.loggedIn
+    Entity entity = Entity.get(params.id)
+    def eventList = []
+
+    def color = grailsApplication.config.colors[params.int('i')]
+
+    // get all appointments
+    eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
+
+    // get all group activities the educator is part of
+    eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
+
+    // get all themeroom activities the educator is part of
+    eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
+
+    // get all project units the educator is part of
+    eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
+
+    def json = eventList as JSON
+    render json
+  }
+
   /*
-   * retrieves the entries to display in the calendar like activities or themes
+   * retrieves the entries to display in the calendar
    */
   def events = {
     def start = new Date()
@@ -113,7 +181,7 @@ class CalendarController {
 
     if (currentEntity.type.name == metaDataService.etEducator) {
       // find facility the educator is working for
-      def facility = functionService.findByLink(entity, null, metaDataService.ltWorking)
+      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
 
       if (facility) {
         // find all educators working in that facility
@@ -132,144 +200,162 @@ class CalendarController {
 
     def eventList = []
 
+    // get all own appointments
     if (currentEntity.type.id != metaDataService.etEducator.id) {
-      // get all own appointments
-      List ownappointments = functionService.findAllByLink(null, currentEntity, metaDataService.ltAppointment)
-
-      ownappointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each {
-        def title = "Termin: ${it.profile.fullName}"
-        def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
-        eventList << [id: it.id, title: title, start: functionService.convertFromUTC(it.profile.beginDate), end: functionService.convertFromUTC(it.profile.endDate), allDay: it.profile.allDay, className: 'own-appointments', description: description]
-      }
+      eventList.addAll(getAppointments(start, end, currentEntity, currentEntity, '#0000ff'))
     }
 
     // get all themes
     if (currentEntity.profile.calendar.showThemes) {
-        List themeList = Entity.findAllByType(metaDataService.etTheme)
-
-        //themeList?.findAll{(it.profile.startDate >= start && it.profile.startDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each {
-        themeList?.each {
-          def dateEnd = new DateTime(functionService.convertFromUTC(it.profile.endDate))
-          dateEnd = dateEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
-          def description = "<b>${message(code: 'description')}:</b> ${it.profile.description}"
-          eventList << [id: it.id, title: "Thema: ${it.profile.fullName}", start: functionService.convertFromUTC(it.profile.startDate), end: dateEnd.toDate(), className: 'educator-1', description: description]
-        }
+        eventList.addAll(getThemes(start, end, currentEntity, currentEntity, '#000000'))
     }
 
     if (params.visibleEducators) {
-      params.visibleEducators.each { ed ->
-        Entity educator = Entity.get(ed)
-        def className = "educator" + educatornumbers.indexOf(ed)
+      params.visibleEducators.eachWithIndex { ed, i ->
+        Entity entity = Entity.get(ed)
+        def color = grailsApplication.config.colors[i]
 
         // get all appointments
-        List appointments = functionService.findAllByLink(null, educator, metaDataService.ltAppointment)
-
-        appointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each { Entity appointment ->
-          def title = appointment.profile.isPrivate && educator.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${appointment.profile.fullName}"
-          def description = appointment.profile.isPrivate && educator.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
-          eventList << [id: appointment.id, title: title, start: functionService.convertFromUTC(it.profile.beginDate), end: functionService.convertFromUTC(it.profile.endDate), allDay: appointment.profile.allDay, className: className, description: description]
-        }
+        eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
 
         // get all group activities the educator is part of
-        List temp = Entity.findAllByType(metaDataService.etGroupActivity)
-
-        List activityList = []
-        temp.each { group ->
-          def c = Link.createCriteria()
-          def result = c.get {
-            eq("source", educator)
-            eq("target", group)
-            eq("type", metaDataService.ltGroupMemberEducator)
-          }
-          if (result)
-            activityList.add(group)
-        }
-
-        activityList.findAll{it.profile.date >= start && it.profile.date <= end}?.each {
-          def dateStart = new DateTime(functionService.convertFromUTC(it.profile.date))
-          def dateEnd = dateStart.plusMinutes("$it.profile.realDuration".toInteger())
-          eventList << [id: it.id, title: "Aktivitätsblock: ${it.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, className: className, description: "<b>Pädagogisches Ziel:</b> " + it.profile.educationalObjectiveText]
-        }
+        eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
 
         // get all themeroom activities the educator is part of
-        def c = Entity.createCriteria()
-        temp = c.list {
-          eq("type", metaDataService.etActivity)
-          profile {
-            eq("type", "Themenraum")
-          }
-        }
-
-        List themeRoomList = []
-        temp.each { activity ->
-          def d = Link.createCriteria()
-          def result = d.get {
-            eq("source", educator)
-            eq("target", activity)
-            eq("type", metaDataService.ltActEducator)
-          }
-          if (result)
-            themeRoomList.add(activity)
-        }
-
-        themeRoomList.findAll{it.profile.date >= start && it.profile.date <= end}?.each {
-          def dateStart = new DateTime(functionService.convertFromUTC(it.profile.date))
-          def dateEnd = dateStart.plusMinutes("$it.profile.duration".toInteger())
-          def description = "<b>${message(code: 'duration')}:</b> ${it.profile.duration} min"
-          eventList << [id: it.id, title: "Themenraumaktivität: ${it.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, className: className, description: description]
-
-        }
+        eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
 
         // get all project units the educator is part of
+        eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
 
-        // 1. find all project days the educator is linked to
-        List projectDays = functionService.findAllByLink(educator, null, metaDataService.ltProjectDayEducator)
-
-        List unitsDone = []
-        if (projectDays) {
-          projectDays.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity projectDay ->
-            // 2. for each project day find the project it belongs to
-            Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-
-            // 3. for each project day get the project unit it is linked to
-            List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
-
-            if (projectUnits && project) {
-              projectUnits.each { projectUnit ->
-                // make sure a unit is only displayed once
-                if (!unitsDone.contains(projectUnit)) {
-                  unitsDone.add(projectUnit)
-
-                  def dateStart = new DateTime(functionService.convertFromUTC(projectUnit.profile.date))
-                  def dateEnd = dateStart.plusMinutes("$projectUnit.profile.duration".toInteger())
-                  def description = "<b>${message(code: 'cal.projectUnit')}:</b> ${projectUnit.profile.fullName}"
-
-                  eventList << [id: projectUnit.id, title: "${message(code: 'project')}: ${project.profile.fullName}", start:dateStart.toDate(), end:dateEnd.toDate(), allDay: false, className: className, description: description, one: projectDay.id]
-                }
-              }
-            }
-          }
-        }
-
-        /*List projectUnits = Entity.findAllByType(metaDataService.etProjectUnit)
-
-        projectUnits.each {
-          def dtStart = new DateTime (it.profile.date)
-          //dtStart = dtStart.plusHours(1)
-          def dtEnd = dtStart.plusMinutes("$it.profile.duration".toInteger())
-
-          // get project day of project unit
-          Entity projectDay = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
-
-          // get project of project day
-          Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-
-          eventList << [id: it.id, title: " Projekteinheit: (${project.profile.fullName}) ${it.profile.fullName}", start:dtStart.toDate(), end:dtEnd.toDate(), allDay: false, className: className]
-        }*/
       }
     }
 
     def json = eventList as JSON
     render json
+  }
+
+  List getAppointments(start, end, entity, currentEntity, color) {
+    List list = []
+
+    // get all appointments
+    List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
+
+    appointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each { Entity appointment ->
+      def title = appointment.profile.isPrivate && entity.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${appointment.profile.fullName}"
+      def description = appointment.profile.isPrivate && entity.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
+      list << [id: appointment.id, title: title, start: functionService.convertFromUTC(appointment.profile.beginDate), end: functionService.convertFromUTC(appointment.profile.endDate), allDay: appointment.profile.allDay, color: color, description: description]
+    }
+
+    return list
+  }
+
+  List getGroupActivities(start, end, entity, currentEntity, color) {
+    List list = []
+
+    // get all group activities the educator is part of
+    List temp = Entity.findAllByType(metaDataService.etGroupActivity)
+
+    List groupActivities = []
+    temp.each { group ->
+      def c = Link.createCriteria()
+      def result = c.get {
+        eq("source", entity)
+        eq("target", group)
+        eq("type", metaDataService.ltGroupMemberEducator)
+      }
+      if (result)
+        groupActivities.add(group)
+    }
+
+    groupActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity groupActivity ->
+      def dateStart = new DateTime(functionService.convertFromUTC(groupActivity.profile.date))
+      def dateEnd = dateStart.plusMinutes("$groupActivity.profile.realDuration".toInteger())
+      list << [id: groupActivity.id, title: "Aktivitätsblock: ${groupActivity.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: "<b>Pädagogisches Ziel:</b> " + groupActivity.profile.educationalObjectiveText]
+    }
+
+    return list
+  }
+
+  List getThemeRoomActivities(start, end, entity, currentEntity, color) {
+    List list = []
+
+    def c = Entity.createCriteria()
+    def temp = c.list {
+      eq("type", metaDataService.etActivity)
+      profile {
+        eq("type", "Themenraum")
+      }
+    }
+
+    List themeRoomActivities = []
+    temp.each { activity ->
+      def d = Link.createCriteria()
+      def result = d.get {
+        eq("source", entity)
+        eq("target", activity)
+        eq("type", metaDataService.ltActEducator)
+      }
+      if (result)
+        themeRoomActivities.add(activity)
+    }
+
+    themeRoomActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity themeRoomActivity ->
+      def dateStart = new DateTime(functionService.convertFromUTC(themeRoomActivity.profile.date))
+      def dateEnd = dateStart.plusMinutes("$themeRoomActivity.profile.duration".toInteger())
+      def description = "<b>${message(code: 'duration')}:</b> ${themeRoomActivity.profile.duration} min"
+      list << [id: themeRoomActivity.id, title: "Themenraumaktivität: ${themeRoomActivity.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: description]
+    }
+
+    return list
+  }
+
+  List getProjectUnits(start, end, entity, currentEntity, color) {
+    List list = []
+
+    // 1. find all project days the educator is linked to
+    List projectDays = functionService.findAllByLink(entity, null, metaDataService.ltProjectDayEducator)
+
+    List unitsDone = []
+    if (projectDays) {
+      projectDays.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity projectDay ->
+        // 2. for each project day find the project it belongs to
+        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+        // 3. for each project day get the project unit it is linked to
+        List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+
+        if (projectUnits && project) {
+          projectUnits.each { Entity projectUnit ->
+            // make sure a unit is only displayed once
+            if (!unitsDone.contains(projectUnit)) {
+              unitsDone.add(projectUnit)
+
+              def dateStart = new DateTime(functionService.convertFromUTC(projectUnit.profile.date))
+              def dateEnd = dateStart.plusMinutes("$projectUnit.profile.duration".toInteger())
+              def description = "<b>${message(code: 'cal.projectUnit')}:</b> ${projectUnit.profile.fullName}"
+
+              list << [id: projectUnit.id, title: "${message(code: 'project')}: ${project.profile.fullName}", start:dateStart.toDate(), end:dateEnd.toDate(), allDay: false, color: color, description: description, one: projectDay.id]
+            }
+          }
+        }
+      }
+    }
+
+    return list
+  }
+
+  List getThemes(start, end, entity, currentEntity, color) {
+    List list = []
+
+    List themes = Entity.findAllByType(metaDataService.etTheme)
+
+    themes?.each { Entity theme ->
+      def dateEnd = new DateTime(functionService.convertFromUTC(theme.profile.endDate))
+      dateEnd = dateEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
+      def description = "<b>${message(code: 'description')}:</b> ${theme.profile.description}"
+      list << [id: theme.id, title: "Thema: ${theme.profile.fullName}", start: functionService.convertFromUTC(theme.profile.startDate), end: dateEnd.toDate(), color: color, description: description]
+    }
+
+    return list
   }
 }
