@@ -63,6 +63,8 @@ class EducatorProfile extends Profile {
 
     Boolean showTips = true
 
+    String color
+
     static constraints = {
       fullName (blank: true, size: 1..100, maxSize: 100)
       title (blank: true, maxSize: 50)
@@ -97,6 +99,8 @@ class EducatorProfile extends Profile {
       overtimePay nullable: true
 
       bloodType nullable: true
+
+      color nullable: true
     }
 
     String toString(){

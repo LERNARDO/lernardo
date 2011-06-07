@@ -29,6 +29,10 @@ class HelperTagLib {
     mkp { img (imgattrs) }
   }
 
+  def truncate = {attrs ->
+    out << (attrs.string.size() > 20 ? attrs.string.substring(0, 20) + "..." : attrs.string)
+  }
+
   /*
    * retrieves all online users (activity within the last 5 minutes)
    */
@@ -1289,6 +1293,5 @@ class HelperTagLib {
         // If a label for the '--Please choose--' first item is supplied, write it out
         out << "<option value=\"${(noSelectionKey == null ? '' : noSelectionKey)}\"${noSelectionKey == value ? ' selected="selected"' : ''}>${noSelectionValue.encodeAsHTML()}</option>"
     }
-
 
 }

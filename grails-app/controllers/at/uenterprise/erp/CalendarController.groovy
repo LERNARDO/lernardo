@@ -75,8 +75,48 @@ class CalendarController {
     else
       educators = Entity.findAllByType(metaDataService.etEducator)
 
-    return ['visibleEducators': visibleEducators,
-            'educators': educators]
+    return ['educators': educators]
+  }
+
+  def getsources = {
+  Entity currentEntity = entityHelperService.loggedIn
+
+  def start = new Date()
+  start.setTime(params.long('start') * 1000)
+
+  def end = new Date()
+  end.setTime(params.long('end') * 1000)
+
+  List visibleEducators = currentEntity.profile.calendar.calendareds
+  List eventList = []
+
+   /* if (visibleEducators) {
+      visibleEducators.each { ed ->
+
+        Entity entity = Entity.get(ed.toInteger())
+        println "ENTITY: " + entity
+
+        List educators = Entity.findAllByType(metaDataService.etEducator)
+        Integer index = educators.indexOf(ed.toInteger())
+        def color = grailsApplication.config.colors[index]
+
+        // get all appointments
+        eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
+
+        // get all group activities the educator is part of
+        eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
+
+        // get all themeroom activities the educator is part of
+        eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
+
+        // get all project units the educator is part of
+        eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
+
+      }
+    }*/
+
+    def json = eventList as JSON
+    render json
   }
 
   def addOrRemove = {
@@ -147,7 +187,9 @@ class CalendarController {
     Entity entity = Entity.get(params.id)
     def eventList = []
 
-    def color = grailsApplication.config.colors[params.int('i')]
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    Integer index = educators.indexOf(entity)
+    def color = grailsApplication.config.colors[index]
 
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
@@ -191,8 +233,6 @@ class CalendarController {
     else
       educators = Entity.findAllByType(metaDataService.etEducator)
 
-    List educatornumbers = educators.collect{it.id.toString()}
-
     if (params.visibleEducators)
       params.visibleEducators = params.list('visibleEducators')
 
@@ -211,9 +251,12 @@ class CalendarController {
     }
 
     if (params.visibleEducators) {
-      params.visibleEducators.eachWithIndex { ed, i ->
+      params.visibleEducators.each { ed ->
         Entity entity = Entity.get(ed)
-        def color = grailsApplication.config.colors[i]
+
+        educators = Entity.findAllByType(metaDataService.etEducator)
+        Integer index = educators.indexOf(entity)
+        def color = grailsApplication.config.colors[index]
 
         // get all appointments
         eventList.addAll(getAppointments(start, end, entity, currentEntity, color))

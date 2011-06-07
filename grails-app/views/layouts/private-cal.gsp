@@ -16,8 +16,20 @@
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <g:javascript src="jquery/fullcalendar.min.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
+  %{--<g:javascript src="jquery/jquery.miniColors.min.js"/>
+  <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.miniColors.css')}"/>--}%
 
   <script type="text/javascript">
+    /*$(document).ready( function() {
+      $(".colors").miniColors({
+
+            change: function(hex, rgb) {
+              $("#console").prepend('HEX: ' + hex + ' (RGB: ' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')<br />');
+            }
+
+          });
+    });*/
+
     // hides an element
     hideform = function(id) {
       $(id).hide('slow');
@@ -72,30 +84,51 @@
       <g:render template="/templates/navigation"/>
     </div>
 
-    <div style="background: #fff; padding-bottom: 10px">
+    <div style="background: #fff;">
       <g:render template="/templates/imagenav"/>
     </div>
 
-    %{--<div id="doc4" class="yui-t7">--}%
+    <div class="yui3-g" id="grid-cal">
 
-    %{--<div id="bd">--}%
+      <g:if test="${flash.message}">
+        <div id="flash-msg">
+          ${flash.message}
+        </div>
+      </g:if>
 
-    <div class="yui3-g" id="grid-single">
-
-      <div class="yui3-u-1">
-      %{--<div id="yui-main">
-        <div class="yui-b">--}%
-          <g:if test="${flash.message}">
-            <div id="flash-msg">
-              ${flash.message}
-            </div>
-          </g:if>
-          <div id="private-content">
-            <g:layoutBody/>
+      <div class="yui3-u" id="cal-left">
+        <div class="boxHeader">
+          <div class="second">
+            <h1><g:message code="educators"/></h1>
           </div>
-        %{--</div>
-      </div>--}%
-    </div>
+        </div>
+        <div class="boxGray">
+          <div class="second">
+            <g:each in="${educators}" var="educator" status="i">
+              <erp:getActiveEducator id="${educator.id}">
+                <div class="calendereducator">
+                  <table style="width: 100%;">
+                    <tr>
+                      <td style="height: 21px"><a style="display: block; color: #000; text-decoration: none;" href="#" onclick="togglePerson('${educator.id}','${i}'); return false"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" align="top"/> <erp:truncate string="${educator.profile.fullName}"/></a><div id="educatorcolor${i}" style="background: ${grailsApplication.config.colors[i]}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></td>
+                      %{--<td><g:hiddenField name="color" class="colors" size="7" value="${educator?.profile?.color}"/></td>--}%
+                    </tr>
+                  </table>
+                </div>
+              </erp:getActiveEducator>
+            </g:each>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <p>
+          <g:checkBox name="showThemes" value="${currentEntity.profile.calendar.showThemes}" onclick="toggleThemes()"/> Zeige Themen
+        </p>
+        <div id="console" style="width: 200px; background: #000; color: #fff;"></div>
+      </div>
+      <div class="yui3-u" id="main">
+        <div id="private-content">
+          <g:layoutBody/>
+        </div>
+      </div>
 
     </div>
 
@@ -103,8 +136,45 @@
       <g:render template="/templates/footer"/>
     </div>
 
-  %{--</div>--}%
 </div>
 
 </body>
+
+<script type="text/javascript">
+  togglePerson = function(id, i){
+    ftoggle('#educatorcolor' + i);
+
+    $.ajax({
+      url: '/lernardo/calendar/addOrRemove',
+      dataType: 'text',
+      data: "id="+id,
+      success: function(result) {
+        if (result == "true") {
+          $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+        }
+        else if (result == "false") {
+          $('.cal').fullCalendar('removeEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+        }
+      }
+    });
+
+  };
+
+  toggleThemes = function(){
+
+    $.ajax({
+      url: '/lernardo/calendar/toggleT',
+      dataType: 'text',
+      success: function(result) {
+        if (result == "true") {
+          $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"toggleThemes")}');
+        }
+        else if (result == "false") {
+          $('.cal').fullCalendar('removeEventSource', '${createLink (controller:"calendar", action:"toggleThemes")}');
+        }
+      }
+    });
+
+  };
+</script>
 </html>

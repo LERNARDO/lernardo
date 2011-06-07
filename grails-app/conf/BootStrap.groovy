@@ -51,6 +51,8 @@ import at.uenterprise.erp.InterfaceMaintenanceService
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Setup
 
+import groovy.time.*
+
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
 
@@ -69,7 +71,7 @@ class BootStrap {
       metaDataService.initialize()
       createDefaultUsers()
 
-      if (GrailsUtil.environment == "development" || GrailsUtil.environment == "test") {
+      if (GrailsUtil.environment == "development") {
         //importChildren()
         createSetup()
         createDefaultOperator()
@@ -99,6 +101,9 @@ class BootStrap {
         //createDefaultHelpers()
         createDefaultWorkdayCategories()
         //createDefaultWorkdayUnits()
+
+        // TODO: add group activities, add appointments, add projects
+        createDefaultAppointments()
       }
 
 
@@ -797,8 +802,8 @@ class BootStrap {
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Thema 1"
       ent.profile.description = ""
-      ent.profile.startDate = new Date(2010-1900,01,01)
-      ent.profile.endDate = new Date(2010-1900,11,01)
+      ent.profile.startDate = new Date(2011-1900,04,01)
+      ent.profile.endDate = new Date(2011-1900,07,01)
     }
 
     // link theme to facility
@@ -808,8 +813,8 @@ class BootStrap {
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = "Subthema 1"
       ent.profile.description = ""
-      ent.profile.startDate = new Date(2010-1900,05,01)
-      ent.profile.endDate = new Date(2010-1900,07,01)
+      ent.profile.startDate = new Date(2011-1900,05,01)
+      ent.profile.endDate = new Date(2011-1900,06,01)
     }
 
     // link subtheme to theme
@@ -876,5 +881,33 @@ class BootStrap {
     educator.profile.addToWorkdayunits(wdu2)
     educator.profile.addToWorkdayunits(wdu3)*/
   }
+
+void createDefaultAppointments() {
+    log.info ("creating " + (grailsApplication.config.dummies * 10) + " dummy appointments")
+    EntityType etAppointment = metaDataService.etAppointment
+
+    Random generator = new Random()
+
+    for ( i in 1..(grailsApplication.config.dummies * 10) ) {
+      Entity entity = entityHelperService.createEntity("appointment" + i, etAppointment) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "dummyAppointment" + i
+        use( [groovy.time.TimeCategory] ){
+          ent.profile.beginDate = new Date(new Date().getYear(), new Date().getMonth(), generator.nextInt(28) + 1, generator.nextInt(15) + 5, generator.nextInt(59))
+          ent.profile.endDate = ent.profile.beginDate.plus((generator.nextInt(5) + 1).hours).plus(generator.nextInt(59).minutes)
+        }
+        ent.profile.beginDate = functionService.convertToUTC(ent.profile.beginDate)
+        ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
+        ent.profile.description = "dummyDescription"
+        ent.profile.allDay = false
+        ent.profile.isPrivate = false
+      }
+
+      // create link to owner
+      new Link(source: entity, target: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltAppointment).save()
+    }
+
+  }
+
 
 }

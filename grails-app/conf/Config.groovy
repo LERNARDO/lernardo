@@ -123,7 +123,7 @@ log4j = {
 }
 
 // change this value to control the amount of bootstrapped dummy entities
-dummies = 2
+dummies = 5
 
 // the default password used when creating new entity accounts
 defaultpass = "pass"
@@ -139,7 +139,7 @@ profiletypes = ['all','operator','facility','educator','client','user','partner'
 helpertypes = ['operator','educator','client','partner','pate','parent']
 
 // custom maps to store data
-colors = [0:'#ff4444',1:'#44ff44',2:'#4444ff',3:'#ffff44',4:'#44ffff',5:'#ff44ff',6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5',12:'#408080',13:'#808000',14:'#461B7E',15:'#307D7E',
+colors = [0:'#cc4444',1:'#44cc44',2:'#4444cc',3:'#cccc44',4:'#44cccc',5:'#cc44cc',6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5',12:'#408080',13:'#808000',14:'#461B7E',15:'#307D7E',
           16:'#348017',17:'#AF7817',18:'#7E2217',19:'#C36241',20:'#C11B17',21:'#817339',22:'#218868',23:'#4A7023',24:'#4B0082',25:'#616161',26:'#9D8851',27:'#B13E0F',28:'#C77826',29:'#CD2626']
 
 // used locales
