@@ -234,10 +234,24 @@ class PartnerProfileController {
 class ContactCommand {
   String firstName
   String lastName
+  String country
+  String zip
+  String city
+  String street
+  String phone
+  String email
+  String function
 
   static constraints = {
-    firstName(blank: false, maxSize: 50)
-    lastName(blank: false, maxSize: 50)
+    firstName (blank: false, size: 2..50)
+    lastName (blank: false, size: 2..50)
+    country (size: 2..50)
+    zip (size: 4..10)
+    city (size: 2..50)
+    street (size: 2..50)
+    phone (size: 2..20)
+    email (size: 2..20)
+    function (size: 2..50)
   }
 
 }

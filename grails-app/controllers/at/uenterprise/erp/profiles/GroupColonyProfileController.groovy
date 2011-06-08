@@ -199,14 +199,15 @@ class GroupColonyProfileController {
   def addRepresentative = {ContactCommand cc ->
     Entity group = Entity.get(params.id)
     if (cc.hasErrors()) {
-      //render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
       render '<p class="italic red">'+message(code: "groupColony.profile.name.insert")+'</p>'
       render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
       return
     }
-    Contact contact = new Contact(params)    
-    group.profile.addToRepresentatives(contact)
-    render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+    else {
+      Contact contact = new Contact(params)
+      group.profile.addToRepresentatives(contact)
+      render template: 'representatives', model: [group: group, entity: entityHelperService.loggedIn]
+    }
   }
 
   def removeRepresentative = {

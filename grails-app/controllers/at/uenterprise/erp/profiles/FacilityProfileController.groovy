@@ -3,7 +3,6 @@ package at.uenterprise.erp.profiles
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityType
 import at.openfactory.ep.Link
-import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.ProfileHelperService
 import at.uenterprise.erp.Contact
@@ -303,14 +302,15 @@ class FacilityProfileController {
   def addContact = {ContactCommand cc ->
     Entity facility = Entity.get(params.id)
     if (cc.hasErrors()) {
-      // render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
       render '<p class="italic red">'+message(code: "facility.profile.name.insert")+'</p>'
       render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
       return
     }
-    Contact contact = new Contact(params)
-    facility.profile.addToContacts(contact)
-    render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+    else {
+      Contact contact = new Contact(params)
+      facility.profile.addToContacts(contact)
+      render template: 'contacts', model: [facility: facility, entity: entityHelperService.loggedIn]
+    }
   }
 
   def removeContact = {
@@ -394,7 +394,7 @@ class FacilityProfileController {
   }
 
   /*
-   * retrieves all educators matching the search parameter
+   * retrieves all clients matching the search parameter
    */
   def remoteClients = {
     if (!params.value) {
