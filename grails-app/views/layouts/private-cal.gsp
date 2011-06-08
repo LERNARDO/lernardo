@@ -145,7 +145,7 @@
     ftoggle('#educatorcolor' + i);
 
     $.ajax({
-      url: '/lernardo/calendar/addOrRemove',
+      url: '${createLink (controller:"calendar", action:"addOrRemove")}',
       dataType: 'text',
       data: "id="+id,
       success: function(result) {
@@ -163,7 +163,7 @@
   toggleThemes = function(){
 
     $.ajax({
-      url: '/lernardo/calendar/toggleT',
+      url: '${createLink (controller:"calendar", action:"toggleT")}',
       dataType: 'text',
       success: function(result) {
         if (result == "true") {
