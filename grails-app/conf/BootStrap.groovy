@@ -51,8 +51,6 @@ import at.uenterprise.erp.InterfaceMaintenanceService
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Setup
 
-import groovy.time.*
-
 //import org.springframework.core.io.Resource
 //import org.codehaus.groovy.grails.commons.ApplicationHolder
 
@@ -102,8 +100,9 @@ class BootStrap {
         createDefaultWorkdayCategories()
         //createDefaultWorkdayUnits()
 
-        // TODO: add group activities, add appointments, add projects
+        // TODO: add projects, theme room activities
         createDefaultAppointments()
+        createDefaultGroupActivities()
       }
 
 
@@ -788,6 +787,9 @@ class BootStrap {
         activitytemplates.each {
           new Link(source: Entity.findByName("dummyTemplate" + it), target: entity, type: metaDataService.ltGroupMember).save()
         }
+
+        // save creator
+        new Link(source: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
       }
     }
 
@@ -882,13 +884,13 @@ class BootStrap {
     educator.profile.addToWorkdayunits(wdu3)*/
   }
 
-void createDefaultAppointments() {
-    log.info ("creating " + (grailsApplication.config.dummies * 10) + " dummy appointments")
+  void createDefaultAppointments() {
+    log.info ("creating " + (grailsApplication.config.dummies * 5) + " dummy appointments")
     EntityType etAppointment = metaDataService.etAppointment
 
     Random generator = new Random()
 
-    for ( i in 1..(grailsApplication.config.dummies * 10) ) {
+    for ( i in 1..(grailsApplication.config.dummies * 5) ) {
       Entity entity = entityHelperService.createEntity("appointment" + i, etAppointment) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.fullName = "dummyAppointment" + i
@@ -905,6 +907,48 @@ void createDefaultAppointments() {
 
       // create link to owner
       new Link(source: entity, target: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltAppointment).save()
+    }
+
+  }
+
+  void createDefaultGroupActivities() {
+    log.info ("creating " + (grailsApplication.config.dummies * 5) + " dummy group activities")
+    EntityType etGroupActivity = metaDataService.etGroupActivity
+
+    Random generator = new Random()
+
+    for ( i in 1..(grailsApplication.config.dummies * 5) ) {
+      Entity groupActivityTemplate = Entity.findByName("dummyActivityTemplateGroup${generator.nextInt(grailsApplication.config.dummies) + 1}")
+      Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
+        ent.profile = profileHelperService.createProfileFor(ent) as Profile
+        ent.profile.fullName = "dummyGroupActivity" + i
+        ent.profile.realDuration = 60
+        ent.profile.date = new Date(new Date().getYear(), new Date().getMonth(), generator.nextInt(28) + 1, generator.nextInt(15) + 5, generator.nextInt(59))
+        ent.profile.educationalObjective = ""
+        ent.profile.educationalObjectiveText = "dummyObjectiveText"
+        ent.profile.date = functionService.convertToUTC(ent.profile.date)
+        ent.profile.description = "dummyDescription"
+      }
+
+      // save creator
+      new Link(source: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
+
+      // find all templates linked to the groupActivityTemplate
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+
+      // and link them to the new groupActivity
+      templates.each {
+        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+      }
+
+      // link template to instance
+      new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
+
+      // link to facility
+      new Link(source: Entity.findByName("dummyFacility${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
+
+      // link to educator
+      new Link(source: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()
     }
 
   }
