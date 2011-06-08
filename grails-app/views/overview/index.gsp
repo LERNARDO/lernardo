@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private-cal"/>
+  <meta name="layout" content="private-ov"/>
   <title><g:message code="profile.overview"/></title>
 
   <script type="text/javascript">
