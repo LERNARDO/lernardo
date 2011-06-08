@@ -80,7 +80,7 @@ class ClientProfileController {
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
 
-    return [client: client, entity: entity, colonia: colonia, school: school, family: family, pates: pates]
+    return [client: client, entity: entity, colonia: colonia, family: family, pates: pates]
 
   }
 
