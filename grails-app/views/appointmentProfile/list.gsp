@@ -18,7 +18,7 @@
 
     <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
       <div class="buttons">
-        <g:form>
+        <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'appointment.profile.create')}"/></div>
           <div class="spacer"></div>
         </g:form>
@@ -42,7 +42,7 @@
             <td>
               <g:if test="${appointmentProfileInstance.profile.isPrivate}">
                 <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
-                  <g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
+                  <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
                   <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
                 </erp:isMeOrAdminOrOperator>
                 %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
@@ -51,7 +51,7 @@
                 </g:if>
               </g:if>
               <g:else>
-                <g:link action="show" id="${appointmentProfileInstance.id}">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
+                <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
               </g:else></td>
             <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>

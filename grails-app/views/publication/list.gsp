@@ -19,7 +19,7 @@
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}" me="true">
       <div class="buttons">
-        <g:form id="${currentEntity.id}">
+        <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'publication.profile.create')}"/></div>
           <div class="spacer"></div>
         </g:form>

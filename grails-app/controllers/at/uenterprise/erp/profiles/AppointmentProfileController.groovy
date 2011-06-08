@@ -120,12 +120,13 @@ class AppointmentProfileController {
     }
 
     def create = {
-
+      Entity entity = Entity.get(params.id)
+      return [entity:entity]
     }
 
     def save = {
       EntityType etAppointment = metaDataService.etAppointment
-      Entity currentEntity = entityHelperService.loggedIn
+      Entity owner = Entity.get(params.id)
 
       try {
         Entity entity = entityHelperService.createEntity('appointment', etAppointment) {Entity ent ->
@@ -136,7 +137,7 @@ class AppointmentProfileController {
         }
 
         // create link to owner
-        new Link(source: entity, target: currentEntity, type: metaDataService.ltAppointment).save()
+        new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save()
 
         if (entity.profile.beginDate > entity.profile.endDate) {
           render (view: "create", model: [appointmentProfileInstance: entity])
@@ -144,7 +145,7 @@ class AppointmentProfileController {
         }
 
         flash.message = message(code: "appointment.created", args: [entity.profile.fullName])
-        redirect action: 'show', id: entity.id
+        redirect action: 'show', id: entity.id, params: [entity: owner]
       } catch (EntityException ee) {
         render(view: "create", model: [appointmentProfileInstance: ee.entity])
       }
