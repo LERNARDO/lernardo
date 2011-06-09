@@ -146,7 +146,13 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'workdayunits', model:[workdayunits: workdayunits, date: params.date, workdaycategories: workdaycategories, intersection: intersection, datesOrdered: datesOrdered, entity: entity]
+      render template: 'workdayunits', model:[workdayunits: workdayunits,
+                                              date: params.date,
+                                              workdaycategories: workdaycategories,
+                                              intersection: intersection,
+                                              datesOrdered: datesOrdered,
+                                              entity: entity,
+                                              currentEntity: entityHelperService.loggedIn]
     }
 
     def confirmDays = {
