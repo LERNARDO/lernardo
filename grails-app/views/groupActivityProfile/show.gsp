@@ -166,9 +166,6 @@
           <div id="educatorselect">
             <g:render template="educatorselect" model="[allEducators: allEducators, group: group]"/>
           </div>
-          <g:if test="${allEducators}">
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-          </g:if>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="educators2">
