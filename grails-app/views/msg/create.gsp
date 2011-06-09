@@ -1,11 +1,11 @@
 <head>
-  <title>Nachricht senden</title>
+  <title><g:message code="privat.msgCreate"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Nachricht senden</h1>
+    <h1><g:message code="privat.msgCreate"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -42,8 +42,8 @@
       </table>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Senden"/>
-        <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">Abbrechen</g:link>
+        <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="Senden"/></div>
+        <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 
