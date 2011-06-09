@@ -175,42 +175,42 @@ class CalendarController {
   }
 
   def togglePerson = {
-    log.info "toggling person"
+    //log.info "toggling person"
 
     def start = new Date()
     start.setTime(params.long('start') * 1000)
-    log.info start
+    //log.info start
 
     def end = new Date()
     end.setTime(params.long('end') * 1000)
-    log.info end
+    //log.info end
 
     Entity currentEntity = entityHelperService.loggedIn
     Entity entity = Entity.get(params.id)
     def eventList = []
-    log.info currentEntity
-    log.info entity
+    //log.info currentEntity
+    //log.info entity
 
     List educators = Entity.findAllByType(metaDataService.etEducator)
     Integer index = educators.indexOf(entity)
     def color = grailsApplication.config.colors[index] ?: '#000000'
-    log.info color
+    //log.info color
 
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
-    log.info eventList
+    //log.info eventList
 
     // get all group activities the educator is part of
     eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
-    log.info eventList
+    //log.info eventList
 
     // get all themeroom activities the educator is part of
     eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
-    log.info eventList
+    //log.info eventList
 
     // get all project units the educator is part of
     eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
-    log.info eventList
+    //log.info eventList
 
     def json = eventList as JSON
     render json
