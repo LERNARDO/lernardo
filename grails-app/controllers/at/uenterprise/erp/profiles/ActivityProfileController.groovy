@@ -170,14 +170,6 @@ class ActivityProfileController {
     EntityType etActivity = metaDataService.etActivity
 
     Entity template = Entity.get(params.template)
-    // params.fullName
-    // params.periodStart
-    // params.periodEnd
-    // params.monday ... params.sunday
-    // params.mondayStartHour / EndHour / StartMinute / EndMinute ...
-    // params.facility
-    // params.educators
-    // params.resources
 
     Date periodStart = params.periodStart
     Date periodEnd = params.periodEnd

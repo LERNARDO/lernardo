@@ -62,6 +62,8 @@ secmgr {
   publicurl    = "/"
 }
 
+grails.profiler.disable = true
+
 // log4j configuration
 log4j = {
 
