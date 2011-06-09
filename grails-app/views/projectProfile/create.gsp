@@ -69,40 +69,40 @@
 
         <table class="${hasErrors(bean: pc, field: 'weekdays', 'errors')}">
           <tr>
-            <td colspan="7" width="80" class="label">Beginn:</td>
+            <td colspan="7" width="80" class="label"><g:message code="project.profile.startDate"/>:</td>
           </tr>
           <tr>
-            <td class="project-top" width="105">MO:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.mon.short"/>:&nbsp;
               <g:checkBox name="monday" value="${pc?.monday}"/><br/>
               <g:select name="mondayStartHour" from="${0..23}" value="${pc?.mondayStartHour}"/>:<g:select name="mondayStartMinute" from="${0..59}" value="${pc?.mondayStartMinute}"/><br/>
               %{--<g:select name="mondayEndHour" from="${0..23}" value="${project?.mondayEndHour}"/>:<g:select name="mondayEndMinute" from="${0..59}" value="${project?.mondayEndMinute}"/>--}%
             </td>
-            <td class="project-top" width="105">DI:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.tue.short"/>:&nbsp;
               <g:checkBox name="tuesday" value="${pc?.tuesday}"/><br/>
               <g:select name="tuesdayStartHour" from="${0..23}" value="${pc?.tuesdayStartHour}"/>:<g:select name="tuesdayStartMinute" from="${0..59}" value="${pc?.tuesdayStartMinute}"/><br/>
               %{--<g:select name="tuesdayEndHour" from="${0..23}" value="${project?.tuesdayEndHour}"/>:<g:select name="tuesdayEndMinute" from="${0..59}" value="${project?.tuesdayEndMinute}"/>--}%
             </td>
-            <td class="project-top" width="105">MI:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.wed.short"/>:&nbsp;
               <g:checkBox name="wednesday" value="${pc?.wednesday}"/><br/>
               <g:select name="wednesdayStartHour" from="${0..23}" value="${pc?.wednesdayStartHour}"/>:<g:select name="wednesdayStartMinute" from="${0..59}" value="${pc?.wednesdayStartMinute}"/><br/>
               %{--<g:select name="wednesdayEndHour" from="${0..23}" value="${project?.wednesdayEndHour}"/>:<g:select name="wednesdayEndMinute" from="${0..59}" value="${project?.wednesdayEndMinute}"/>--}%
             </td>
-            <td class="project-top" width="105">DO:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.thu.short"/>:&nbsp;
               <g:checkBox name="thursday" value="${pc?.thursday}"/><br/>
               <g:select name="thursdayStartHour" from="${0..23}" value="${pc?.thursdayStartHour}"/>:<g:select name="thursdayStartMinute" from="${0..59}" value="${pc?.thursdayStartMinute}"/><br/>
               %{--<g:select name="thursdayEndHour" from="${0..23}" value="${project?.thursdayEndHour}"/>:<g:select name="thursdayEndMinute" from="${0..59}" value="${project?.thursdayEndMinute}"/>--}%
             </td>
-            <td class="project-top" width="105">FR:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.fri.short"/>:&nbsp;
               <g:checkBox name="friday" value="${pc?.friday}"/><br/>
               <g:select name="fridayStartHour" from="${0..23}" value="${pc?.fridayStartHour}"/>:<g:select name="fridayStartMinute" from="${0..59}" value="${pc?.fridayStartMinute}"/><br/>
               %{--<g:select name="fridayEndHour" from="${0..23}" value="${project?.fridayEndHour}"/>:<g:select name="fridayEndMinute" from="${0..59}" value="${project?.fridayEndMinute}"/>--}%
             </td>
-            <td class="project-top" width="105">SA:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.sat.short"/>:&nbsp;
               <g:checkBox name="saturday" value="${pc?.saturday}"/><br/>
               <g:select name="saturdayStartHour" from="${0..23}" value="${pc?.saturdayStartHour}"/>:<g:select name="saturdayStartMinute" from="${0..59}" value="${pc?.saturdayStartMinute}"/><br/>
               %{--<g:select name="saturdayEndHour" from="${0..23}" value="${project?.saturdayEndHour}"/>:<g:select name="saturdayEndMinute" from="${0..59}" value="${project?.saturdayEndMinute}"/>--}%
             </td>
-            <td class="project-top" width="105">SO:&nbsp;
+            <td class="project-top" width="105"><g:message code="wd.sun.short"/>:&nbsp;
               <g:checkBox name="sunday" value="${pc?.sunday}"/><br/>
               <g:select name="sundayStartHour" from="${0..23}" value="${pc?.sundayStartHour}"/>:<g:select name="sundayStartMinute" from="${0..59}" value="${pc?.sundayStartMinute}"/><br/>
               %{--<g:select name="sundayEndHour" from="${0..23}" value="${project?.sundayEndHour}"/>:<g:select name="sundayEndMinute" from="${0..59}" value="${project?.sundayEndMinute}"/>--}%
