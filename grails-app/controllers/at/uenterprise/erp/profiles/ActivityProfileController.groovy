@@ -47,6 +47,7 @@ class ActivityProfileController {
 
     // get a list of facilities the current entity is linked to
     List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+    facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
 
     // create empty list for final results
     List activityList = []
