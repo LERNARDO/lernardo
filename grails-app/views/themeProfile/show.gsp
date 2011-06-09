@@ -47,7 +47,7 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show">Übergeordnetes Thema</td>
+          <td valign="top" class="name-show"><g:message code="themes.superior"/></td>
           <td colspan="2" valign="top" class="name-show"><g:message code="facility"/></td>
         </tr>
 

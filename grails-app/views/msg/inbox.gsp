@@ -21,7 +21,7 @@
 
     <div class="buttons">
       <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
-      <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}">Neue Nachricht verfassen</g:link>
+      <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}"><g:message code="msg.create"/></g:link>
       <div class="spacer"></div>
     </div>
 

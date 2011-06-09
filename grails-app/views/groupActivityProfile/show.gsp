@@ -114,7 +114,7 @@
       <div class="zusatz-show">
         <g:if test="${templates}">
           <p>
-            <span class="bold"><g:message code="calculatedTotalDuration"/>:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}">- %{--<img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/>--}%<span class="red">Die Errechnete Gesamtdauer übersteigt die geplante Dauer dieses Aktivitätsblocks!</span></g:if>
+            <span class="bold"><g:message code="calculatedTotalDuration"/>:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}">- %{--<img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/>--}%<span class="red"><g:message code="groupActivityTemplate.profile.durationerror"/></span></g:if>
           </p>
           <ul>
             <g:each in="${templates}" var="template">
