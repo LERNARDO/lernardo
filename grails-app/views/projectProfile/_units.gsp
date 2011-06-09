@@ -25,11 +25,11 @@
             });
           </script>
 
-          <ul style="margin-left: 15px">
+          <ol>
             <g:each in="${activityGroups}" var="activityGroup">
-              <li><g:link class="hover" controller="groupActivityTemplateProfile" action="show" data-idd="${activityGroup.id}" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile.fullName}</g:link> <span class="gray">(${activityGroup.profile.realDuration} min)</span></li>
+              <li style="list-style: decimal; margin-left: 20px;"><g:link class="hover" controller="groupActivityTemplateProfile" action="show" data-idd="${activityGroup.id}" id="${activityGroup.id}" params="[entity:activityGroup.id]">${activityGroup.profile.fullName}</g:link> <span class="gray">(${activityGroup.profile.realDuration} min)</span></li>
             </g:each>
-          </ul>
+          </ol>
         </erp:getProjectUnitActivityGroups>
 
         <p class="bold"><g:message code="parents"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#parents${i}'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a></erp:accessCheck></p>
