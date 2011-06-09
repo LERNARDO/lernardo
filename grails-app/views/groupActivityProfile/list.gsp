@@ -5,7 +5,10 @@
 <body>
 <div class="tabGrey">
   <div class="second">
+    %{--
     <h1><g:link controller="groupActivityTemplateProfile" action="index">Aktivitätsblockvorlagen</g:link></h1>
+    --}%
+    <h1><g:link controller="groupActivityTemplateProfile" action="index"><g:message code="groupActivityTemplates"/></g:link></h1>
   </div>
 </div>
 

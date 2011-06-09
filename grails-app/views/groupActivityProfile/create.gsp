@@ -73,7 +73,7 @@
 
         </table>
 
-      <p>Errechnete Gesamtdauer: ${calculatedDuration} Minuten</p>
+      <p><g:message code="calculatedTotalDuration"/>: ${calculatedDuration} <g:message code="minutes"/></p>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>
