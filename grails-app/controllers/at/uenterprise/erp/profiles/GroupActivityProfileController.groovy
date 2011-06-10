@@ -12,6 +12,7 @@ import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Event
 import at.uenterprise.erp.Live
 import at.openfactory.ep.Asset
+import at.uenterprise.erp.Evaluation
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -406,6 +407,12 @@ class GroupActivityProfileController {
       render template: 'clients', model: [clients: clients2, group: activitygroup, entity: entityHelperService.loggedIn]
     }
 
+  }
+
+  def listevaluations = {
+    Entity groupActivity = Entity.get(params.id)
+    List evaluations = Evaluation.findAllByLinkedTo(groupActivity)
+    return [evaluations: evaluations, entity: groupActivity]
   }
 
 }

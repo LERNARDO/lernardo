@@ -14,6 +14,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Live
 import at.openfactory.ep.Asset
+import at.uenterprise.erp.Evaluation
 
 class ProjectProfileController {
 
@@ -1062,6 +1063,27 @@ class ProjectProfileController {
       render template: 'clients', model: [clients: clients2, project: project, entity: entityHelperService.loggedIn]
     }
 
+  }
+
+  def listevaluations = {
+    Entity project = Entity.get(params.id)
+
+    // find all project days of the project
+    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+    // find all project units of all project days
+    List projectUnits = []
+    projectDays.each { pd ->
+      projectUnits.addAll(functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayUnit))
+    }
+
+    // find all evaluations linked to the project units
+    List evaluations = []
+    projectUnits.each { pu ->
+      evaluations.addAll(Evaluation.findAllByLinkedTo(pu))
+    }
+
+    return [evaluations: evaluations, entity: project]
   }
 
 }

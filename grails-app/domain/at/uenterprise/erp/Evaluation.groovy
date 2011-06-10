@@ -9,6 +9,7 @@ class Evaluation {
     String description
     String method
     Entity writer
+    Entity linkedTo
 
     Date  dateCreated
     Date  lastUpdated
@@ -17,5 +18,6 @@ class Evaluation {
       description(blank: false)
       method(blank: true, maxSize: 2000)
       writer(nullable: false)
+      linkedTo nullable: true
     }
 }

@@ -15,8 +15,10 @@
       Es gibt insgesamt ${evaluationInstanceTotal} Tagebucheinträge für ${entity.profile.fullName}
     </div>
 
-    <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
-    <div class="spacer"></div>
+    <div class="buttons">
+      <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
+      <div class="spacer"></div>
+    </div>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluation">
@@ -37,6 +39,10 @@
             <tr>
               <td class="bold vtop"><g:message code="from"/>:</td>
               <td>${evaluation.writer.profile.fullName}</td>
+            </tr>
+            <tr>
+              <td class="bold vtop"><g:message code="linkedTo"/>:</td>
+              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}">${evaluation.linkedTo.profile.fullName} <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:isMeOrAdminOrOperator></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
             </tr>
           </table>
           <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}">

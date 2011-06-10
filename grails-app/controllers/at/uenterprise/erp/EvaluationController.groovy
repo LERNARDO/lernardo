@@ -224,6 +224,9 @@ class EvaluationController {
         }
       }
       evaluationInstance.properties = params
+      Entity linkedEntity = Entity.get(params.int('linkedentity'))
+      if (linkedEntity)
+        evaluationInstance.linkedTo = linkedEntity
       if (!evaluationInstance.hasErrors() && evaluationInstance.save()) {
         flash.message = message(code: "evaluation.updated")
         redirect action: 'list', id:  evaluationInstance.owner.id
@@ -251,6 +254,9 @@ class EvaluationController {
     Evaluation evaluationInstance = new Evaluation(params)
     evaluationInstance.owner = Entity.get(params.entity)
     evaluationInstance.writer = entityHelperService.loggedIn
+    Entity linkedEntity = Entity.get(params.int('linkedentity'))
+    if (linkedEntity)
+      evaluationInstance.linkedTo = linkedEntity
     if (evaluationInstance.save(flush: true)) {
       flash.message = message(code: "evaluation.created")
       redirect action: "list", id:  evaluationInstance.owner.id
@@ -258,5 +264,45 @@ class EvaluationController {
     else {
       render view: 'create', model: [evaluationInstance: evaluationInstance, entity: Entity.get(params.entity)]
     }
+  }
+
+   /*
+   * retrieves users matching the search parameter of the instant search
+   */
+  def searchMe = {
+    Date date = params.myDate
+
+    def c = Entity.createCriteria()
+    List entities = c.list {
+      or {
+          eq("type", metaDataService.etGroupActivity)
+          eq("type", metaDataService.etProjectUnit)
+        }
+    }
+    List results = []
+    results.addAll(entities.findAll {it.profile.date.getDay() == date.getDay() && it.profile.date.getDate() == date.getDate() && it.profile.date.getYear() == date.getYear()})
+
+    if (results.size() == 0) {
+      // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
+      return
+    }
+    else {
+      render(template: 'searchresults', model: [results: results])
+    }
+  }
+
+  def addResult = {
+    Entity entity = Entity.get(params.id)
+
+    def msg = "Auswahl:"
+    render ("<b>${msg}</b> ${entity.profile.fullName}")
+  }
+
+  def removeLinkedTo = {
+    Evaluation evaluation = Evaluation.get(params.id)
+    evaluation.linkedTo = null
+    evaluation.save()
+    render '<span class="italic">Nicht verlinkt</span>'
   }
 }

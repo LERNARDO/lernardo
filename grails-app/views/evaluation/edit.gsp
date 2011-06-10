@@ -18,7 +18,26 @@
       </div>
     </g:hasErrors>
 
+    <div style="background: #fefefe; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+      <div id="select-box">
+        <p>Mit Aktivitätsblock oder Projekteinheit verlinken:</p>
+        <g:formRemote name="formRemote" update="results" url="[controller:'evaluation', action:'searchMe']" before="showspinner('#results')">
+          <g:datePicker name="myDate" value="" precision="day" years="${2009..new Date().getYear() + 1900}"/>
+          <g:submitButton name="submit" value="OK"/>
+        </g:formRemote>
+      </div>
+
+      <div id="results"></div>
+      <div id="selected" style="padding-top: 5px;"></div>
+    </div>
+
     <g:form action="update" id="${evaluationInstance.id}" params="[name:entity.name]">
+
+      <div style="visibility: hidden">
+        <g:textField name="linkedentity" id="hiddentextfield1" value="0"/>
+      </div>
+
+      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}">${evaluationInstance.linkedTo.profile.fullName}</g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></p>
 
       <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
@@ -35,7 +54,7 @@
       </span>
 
       <div class="buttons">
-        <g:submitButton name="submitButton" value="Speichern"/>
+        <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="Speichern"/></div>
         <g:link class="buttonRed" action="del" id="${evaluationInstance.id}" params="[name:entity.name]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
         <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
