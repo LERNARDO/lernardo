@@ -43,7 +43,7 @@
               <g:select name="socialForm" from="['open','single','partner','smallgroup1','smallgroup2','smallgroup3','largegroup1','largegroup2']" value="${template?.profile?.socialForm}" valueMessagePrefix="socialForm"/>
             </td>
             <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
-              <g:select name="status" from="['done','notDone']" value="${template?.profile?.status}" valueMessagePrefix="status"/>
+              <g:select name="status" from="['done','notDone','notDoneOpen']" value="${template?.profile?.status}" valueMessagePrefix="status"/>
             </td>
             <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
               <g:select name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> (Vorschlag)

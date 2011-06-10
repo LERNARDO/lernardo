@@ -406,6 +406,11 @@ class HelperTagLib {
       //hasTypes = accessHasTypes(entity, attrs.types)
     //log.info "${entity.profile} has types: ${hasTypes}"
 
+    boolean isOpen = true
+    if (attrs.checkstatus) {
+      isOpen = accessIsOpen(attrs.checkstatus)
+    }
+
     boolean isMe = false
     if (attrs.me && attrs.me == "true")
       isMe = accessIsMe(entity)
@@ -422,7 +427,8 @@ class HelperTagLib {
 
     boolean isAdmin = entity?.user?.authorities?.find {it.authority == 'ROLE_ADMIN'} ? true : false
 
-    if (isAdmin || accessHasTypes(entity, attrs.types) || accessHasRoles(entity, attrs.roles) || isMe || isLeadEducator || isCreatorOf)
+    if ((isAdmin || isCreatorOf || isMe) ||
+        ((accessHasTypes(entity, attrs.types) || accessHasRoles(entity, attrs.roles) || isLeadEducator) && isOpen))
       out << body()
   }
 
@@ -449,6 +455,18 @@ class HelperTagLib {
   // checks if a given entity is the currently logged in entity
   boolean accessIsMe(Entity entity) {
     return entity == entityHelperService.loggedIn
+  }
+
+  // checks if a given entity has an open status
+  boolean accessIsOpen(def checkstatus) {
+
+    def result = false;
+    if (checkstatus instanceof Entity) {
+      if (checkstatus.profile.status == 'notDoneOpen')
+        result = true
+    }
+
+    return result
   }
 
   // checks if a given entity is creator of another given entity

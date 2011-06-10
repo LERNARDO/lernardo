@@ -31,7 +31,7 @@
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              <g:select name="status" from="['done','notDone']" value="${group?.profile?.status}" valueMessagePrefix="status"/>
+              <g:select name="status" from="['done','notDone','notDoneOpen']" value="${group?.profile?.status}" valueMessagePrefix="status"/>
             </td>
           </tr>
 

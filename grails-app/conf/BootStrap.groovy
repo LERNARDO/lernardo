@@ -494,10 +494,13 @@ class BootStrap {
           ent.profile.chosenMaterials = "dummyMaterials"
           ent.profile.socialForm = "DummySocialForm"
           ent.profile.amountEducators = generator.nextInt(3) + 1
-          if (generator.nextInt(2) == 0)
+          int random = generator.nextInt(3)
+          if (random == 0)
             ent.profile.status = "done"
-          else
+          else if (random == 1)
             ent.profile.status = "notDone"
+          else
+            ent.profile.status = "notDoneOpen"
           ent.profile.duration = generator.nextInt(50) + 10
           ent.profile.type = "default"
         }
@@ -765,10 +768,13 @@ class BootStrap {
           ent.profile.fullName = "dummyActivityTemplateGroup" + i
           ent.profile.description = "dummyDescription"
           ent.profile.realDuration = generator.nextInt(60) + 30
-          if (generator.nextInt(2) == 0)
+          int random = generator.nextInt(3)
+          if (random == 0)
             ent.profile.status = "done"
-          else
+          else if (random == 1)
             ent.profile.status = "notDone"
+          else
+            ent.profile.status = "notDoneOpen"
         }
 
         // create some links to that group
