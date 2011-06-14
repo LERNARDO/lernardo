@@ -116,7 +116,7 @@ class ProjectProfileController {
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
-      Integer calculatedDuration = calculateDuration(projectUnits)
+      int calculatedDuration = calculateDuration(projectUnits)
 
       // find all themes which are at the project time
       List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
@@ -486,7 +486,7 @@ class ProjectProfileController {
         }
 
         // calculate total duration of all these groups
-        Integer duration = 0
+        int duration = 0
         groups.each {
           duration += it.profile.realDuration
         }
@@ -498,7 +498,7 @@ class ProjectProfileController {
     groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
 
     // and link each group to the project unit
-    Integer duration2 = 0
+    int duration2 = 0
     groups.each {
       // set duration of unit
       duration2 += it.profile.realDuration
@@ -583,7 +583,7 @@ class ProjectProfileController {
     List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
     // calculate realDuration
-    Integer calculatedDuration = calculateDuration(projectUnits)
+    int calculatedDuration = calculateDuration(projectUnits)
 
     render template: 'projectUnits', model: [projectUnits: projectUnits, project: project, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
   }
@@ -606,12 +606,12 @@ class ProjectProfileController {
     List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
 
     // calculate realDuration
-    Integer calculatedDuration = calculateDuration(projectUnits)
+    int calculatedDuration = calculateDuration(projectUnits)
 
     render template: 'projectUnits', model: [projectUnits: projectUnits, project: project, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
   }
 
-  Integer calculateDuration(List projectUnits) {
+  int calculateDuration(List projectUnits) {
     // find all groupActivityTemplates linked to all projectUnits of this project
     List groupActivityTemplates = []
 

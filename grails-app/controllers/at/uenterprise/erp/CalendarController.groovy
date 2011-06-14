@@ -97,7 +97,7 @@ class CalendarController {
         println "ENTITY: " + entity
 
         List educators = Entity.findAllByType(metaDataService.etEducator)
-        Integer index = educators.indexOf(ed.toInteger())
+        int index = educators.indexOf(ed.toInteger())
         def color = grailsApplication.config.colors[index]
 
         // get all appointments
@@ -192,7 +192,7 @@ class CalendarController {
     //log.info entity
 
     List educators = Entity.findAllByType(metaDataService.etEducator)
-    Integer index = educators.indexOf(entity)
+    int index = educators.indexOf(entity)
     def color = grailsApplication.config.colors[index] ?: '#000000'
     //log.info color
 
@@ -264,7 +264,7 @@ class CalendarController {
         Entity entity = Entity.get(ed)
 
         educators = Entity.findAllByType(metaDataService.etEducator)
-        Integer index = educators.indexOf(entity)
+        int index = educators.indexOf(entity)
         def color = grailsApplication.config.colors[index] ?: '#000000'
 
         // get all appointments

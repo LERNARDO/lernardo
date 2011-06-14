@@ -50,7 +50,7 @@ class GroupFamilyProfileController {
       return
     }
 
-    Integer totalLinks = 0
+    int totalLinks = 0
 
     // find all parents linked to this group
     List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent)

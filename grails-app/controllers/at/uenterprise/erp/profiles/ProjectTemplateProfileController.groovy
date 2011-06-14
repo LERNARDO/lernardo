@@ -69,7 +69,7 @@ class ProjectTemplateProfileController {
       }
 
       // calculate realDuration
-      Integer calculatedDuration = calculateDuration(projectUnitTemplates)
+      int calculatedDuration = calculateDuration(projectUnitTemplates)
 
       // find all instances of this template
       List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
@@ -256,7 +256,7 @@ class ProjectTemplateProfileController {
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
-      Integer calculatedDuration = calculateDuration(projectUnitTemplates)
+      int calculatedDuration = calculateDuration(projectUnitTemplates)
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
@@ -268,7 +268,7 @@ class ProjectTemplateProfileController {
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
-      Integer calculatedDuration = calculateDuration(projectUnitTemplates)
+      int calculatedDuration = calculateDuration(projectUnitTemplates)
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     }
@@ -296,7 +296,7 @@ class ProjectTemplateProfileController {
     List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
 
     // calculate realDuration
-    Integer calculatedDuration = calculateDuration(projectUnitTemplates)
+    int calculatedDuration = calculateDuration(projectUnitTemplates)
 
     render template: 'projectUnitTemplates', model: [projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
   }
@@ -325,7 +325,7 @@ class ProjectTemplateProfileController {
     // List projectUnits = links.collect {it.source}
 
     // calculate realDuration
-    //Integer calculatedDuration = calculateDuration(projectUnits)
+    //int calculatedDuration = calculateDuration(projectUnits)
 
     //render '<span style="color: #0b0; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde hinzugefügt</span>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, entity: entityHelperService.loggedIn, i: params.i, projectTemplate: projectTemplate]
@@ -353,7 +353,7 @@ class ProjectTemplateProfileController {
     //List projectUnits = links.collect {it.source}
 
     // calculate realDuration
-    //Integer calculatedDuration = calculateDuration(projectUnits)
+    //int calculatedDuration = calculateDuration(projectUnits)
 
     //render '<span style="color: #b00; padding: 0 0 5px 15px; font-size: 11px">' + groupActivityTemplate.profile.fullName + ' wurde entfernt</span><br/>'
     render template: 'groupActivityTemplates', model: [groupActivityTemplates: groupActivityTemplates, unit: projectUnitTemplate, entity: entityHelperService.loggedIn, i: params.i, projectTemplate: projectTemplate]
@@ -366,12 +366,12 @@ class ProjectTemplateProfileController {
     List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
 
     // calculate realDuration
-    Integer calculatedDuration = calculateDuration(projectUnitTemplates)
+    int calculatedDuration = calculateDuration(projectUnitTemplates)
 
     render template:'updateduration', model:[calculatedDuration: calculatedDuration, projectTemplate: projectTemplate]   
   }
 
-  Integer calculateDuration(List projectUnitTemplates) {
+  int calculateDuration(List projectUnitTemplates) {
     // find all groupActivityTemplates linked to all projectUnitTemplates of this projectTemplate
     List groupActivityTemplates = []
 
