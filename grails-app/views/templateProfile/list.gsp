@@ -41,6 +41,10 @@
               <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
           </tr>
           <tr>
+            <td><g:message code="labels"/>:</td>
+            <td><g:select from="${allLabels}" multiple="true" name="labels" value=""/></td>
+          </tr>
+          <tr>
             <td><g:message code="age"/>:</td>
             <td><g:message code="from"/>: <g:textField name="ageFrom" size="5"/> <g:message code="to"/>: <g:textField name="ageTo" size="5"/></td>
           </tr>

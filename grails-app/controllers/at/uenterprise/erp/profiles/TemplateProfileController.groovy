@@ -16,6 +16,7 @@ import at.uenterprise.erp.Method
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
+import at.uenterprise.erp.Label
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -47,7 +48,9 @@ class TemplateProfileController {
 
     return [allTemplates: templates,
             totalTemplates: templates.totalCount,
-            methods: Method.findAllByType('template'), paginate: true]
+            methods: Method.findAllByType('template'),
+            allLabels: Label.findAllByType('template'),
+            paginate: true]
   }
 
   def edit = {
@@ -77,12 +80,14 @@ class TemplateProfileController {
     def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
     def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
     def allMethods = Method.findAllByType('template')
+    def allLabels = Label.findAllByType('template')
 
     return [template: template,
             commentList: commentList,
             entity: entity,
             resources: resources,
-            allMethods: allMethods]
+            allMethods: allMethods,
+            allLabels: allLabels]
   }
 
   def create = {
@@ -308,7 +313,6 @@ class TemplateProfileController {
   }
 
   def updateselect = {
-
     def method1lower = params.list('method1lower')
     def method1upper = params.list('method1upper')
 
@@ -342,7 +346,20 @@ class TemplateProfileController {
       }
     }
 
-    List finalList = allTemplates
+    List finalList = []
+
+    if (params.labels) {
+      List labels = params.list('labels')
+      allTemplates.each { Entity template ->
+        template.profile.labels.each { Label label ->
+          if (labels.contains(label.name))
+            finalList.add(template)
+        }
+      }
+    }
+    else
+      finalList = allTemplates
+
     List list1 = []
     List list2 = []
     List list3 = []
@@ -482,6 +499,41 @@ class TemplateProfileController {
                                               duration2: params.duration2,
                                               ageFrom: params.ageFrom,
                                               ageTo: params.ageTo])
+  }
+
+   /*
+   * adds a label to the template by creating a new label instance and copying the properties from the given "label template"
+   */
+  def addLabel = {
+    Entity template = Entity.get(params.id)
+    Label labelTemplate = Label.get(params.label)
+
+    // make sure a label can only be added once
+    Boolean canBeAdded = true
+    template.profile.labels.each {
+        if (it.name == labelTemplate.name)
+            canBeAdded = false
+    }
+    if (canBeAdded) {
+        Label label = new Label()
+
+        label.name = labelTemplate.name
+        label.description = labelTemplate.description
+        label.type = "instance"
+
+        template.profile.addToLabels(label)
+    }
+    render template: 'labels', model: [template: template, entity: entityHelperService.loggedIn]
+  }
+
+    /*
+   * removes a label from a template
+   */
+  def removeLabel = {
+    Entity template = Entity.get(params.id)
+    template.profile.removeFromLabels(Label.get(params.label))
+    Label.get(params.label).delete()
+    render template: 'labels', model: [template: template, entity: entityHelperService.loggedIn]
   }
 
 }

@@ -76,6 +76,22 @@
     </g:if>
 
     <div class="zusatz">
+      <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}"><a onclick="toggle('#labels');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="labels" style="display:none">
+        <g:formRemote name="formRemote2" url="[controller:'groupActivityTemplateProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
+          <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="labels2">
+        <g:render template="labels" model="[group: group, entity: currentEntity]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
       <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="templates" style="display:none">
         <p><g:message code="activityTemplate.list.hint2"/></p>
@@ -92,9 +108,13 @@
                 <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
             </tr>
             <tr>
-            <td><g:message code="age"/>:</td>
-            <td><g:message code="from"/>: <g:textField name="ageFrom" size="5"/> <g:message code="to"/>: <g:textField name="ageTo" size="5"/></td>
-          </tr>
+              <td><g:message code="labels"/>:</td>
+              <td><g:select from="${allLabels}" multiple="true" name="labels" value=""/></td>
+            </tr>
+            <tr>
+              <td><g:message code="age"/>:</td>
+              <td><g:message code="from"/>: <g:textField name="ageFrom" size="5"/> <g:message code="to"/>: <g:textField name="ageTo" size="5"/></td>
+            </tr>
             <tr>
               <td style="vertical-align: top"><g:message code="vMethod"/> 1:</td>
               <td>

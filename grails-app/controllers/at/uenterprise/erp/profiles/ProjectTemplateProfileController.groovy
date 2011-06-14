@@ -12,6 +12,7 @@ import at.uenterprise.erp.Event
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
+import at.uenterprise.erp.Label
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
@@ -78,7 +79,8 @@ class ProjectTemplateProfileController {
               projectUnitTemplates: projectUnitTemplates,
               allGroupActivityTemplates: allGroupActivityTemplates,
               calculatedDuration: calculatedDuration,
-              instances: instances]
+              instances: instances,
+              allLabels: Label.findAllByType('template')]
     }
   }
 
@@ -437,6 +439,41 @@ class ProjectTemplateProfileController {
     def resources = functionService.findAllByLink(null, entity, metaDataService.ltResource)
 
     render template: "hover", model: [entity: entity, resources: resources]
+  }
+
+/*
+   * adds a label to the group by creating a new label instance and copying the properties from the given "label template"
+   */
+  def addLabel = {
+    Entity group = Entity.get(params.id)
+    Label labelTemplate = Label.get(params.label)
+
+    // make sure a label can only be added once
+    Boolean canBeAdded = true
+    group.profile.labels.each {
+        if (it.name == labelTemplate.name)
+            canBeAdded = false
+    }
+    if (canBeAdded) {
+        Label label = new Label()
+
+        label.name = labelTemplate.name
+        label.description = labelTemplate.description
+        label.type = "instance"
+
+        group.profile.addToLabels(label)
+    }
+    render template: 'labels', model: [projectTemplate: group, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * removes a label from a group
+   */
+  def removeLabel = {
+    Entity group = Entity.get(params.id)
+    group.profile.removeFromLabels(Label.get(params.label))
+    Label.get(params.label).delete()
+    render template: 'labels', model: [projectTemplate: group, entity: entityHelperService.loggedIn]
   }
 }
 

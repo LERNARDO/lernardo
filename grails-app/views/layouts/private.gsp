@@ -140,6 +140,11 @@
         'maxCharsWarning': 2000
       });
 
+      $('.countable5000').jqEasyCounter({
+        'maxChars': 5000,
+        'maxCharsWarning': 5000
+      });
+
     });
   </script>
 
@@ -222,8 +227,9 @@
                     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                       <li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
+                      <li class="icon-methods"><g:link controller="label" action="index" params="[name:entity.name]"><g:message code="labels"/></g:link></li>
                       %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
-                      <li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]">Zeitauswertung</g:link></li>
+                      <li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]"><g:message code="timeEvaluation"/></g:link></li>
                       <li class="icon-time"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
                       <li class="icon-time"><g:link controller="educatorProfile" action="workhours" id="${entity.id}" params="[entity:entity.id]"><g:message code="educator.profile.workHours"/></g:link></li>
                       <li class="icon-admin"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]">ERP Setup</g:link></li>
