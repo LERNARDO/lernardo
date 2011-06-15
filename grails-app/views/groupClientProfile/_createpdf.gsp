@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title><g:message code="timeEvaluation"/></title>
+    <title><g:message code="groupClient"/></title>
     <style>
       body {
           font-size: 12px;

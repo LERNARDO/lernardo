@@ -415,4 +415,31 @@ class GroupActivityProfileController {
     return [evaluations: evaluations, entity: groupActivity]
   }
 
+  def createpdf = {
+    Entity group = Entity.get(params.id)
+    Entity currentEntity = entityHelperService.loggedIn
+
+    List activities = params.withTemplates == "" ? functionService.findAllByLink(null, group, metaDataService.ltGroupMember) : null
+    List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup) // find all activities linked to this group
+    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
+    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
+    List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
+    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
+    Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
+
+    renderPdf template: 'createpdf', model: [entity: currentEntity,
+                                             group: group,
+                                             activities: activities,
+                                             themes: themes,
+                                             facilities: facilities,
+                                             educators: educators,
+                                             substitutes: substitutes,
+                                             clients: clients,
+                                             parents: parents,
+                                             partners: partners,
+                                             template: template], filename: message(code: 'groupActivity') + '_' + group.profile.fullName
+  }
+
 }

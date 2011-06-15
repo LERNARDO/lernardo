@@ -31,9 +31,9 @@
       <g:form id="${group.id}">
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="PDF erzeugen" /></div>
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
         </erp:accessCheck>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
       </g:form>
       <div class="spacer"></div>
