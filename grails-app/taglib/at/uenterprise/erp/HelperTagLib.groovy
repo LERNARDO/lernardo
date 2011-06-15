@@ -831,6 +831,13 @@ class HelperTagLib {
   }
 
   /*
+   * finds the colony linked to a given entity
+   */
+  def getColony = {attrs, body ->
+    out << body(colony: functionService.findByLink(null, attrs.entity, metaDataService.ltColonia))
+  }
+
+  /*
    * returns the quote of the day
    */
   def getQuoteOfTheDay = {
