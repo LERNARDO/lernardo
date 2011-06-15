@@ -244,7 +244,8 @@ class ProjectTemplateProfileController {
       Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
-        ent.profile.fullName = "Einheit " + counter
+        //ent.profile.fullName = "Einheit " + counter
+        ent.profile.fullName = message(code: "unit")+ " " + counter
       }
 
       // link projectUnitTemplate and projectTemplate
@@ -260,7 +261,8 @@ class ProjectTemplateProfileController {
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
-      render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
+      //render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
+      render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+'</span><br/>'
 
       // find all projectUnitTemplates of this projectTemplate
       List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
