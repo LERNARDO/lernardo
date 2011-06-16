@@ -4,11 +4,11 @@
     <table>
       <tr>
         <td><g:message code="from"/>:</td>
-        <td><g:select name="fromHour" from="${0..23}" value="${workdayUnit.date1.getHours()}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}" value="${workdayUnit.date1.getMinutes()}"/></td>
+        <td><g:select name="fromHour" from="${0..23}" value="${formatDate(date: workdayUnit.date1, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}" value="${workdayUnit.date1.getMinutes()}"/></td>
       </tr>
       <tr>
         <td><g:message code="to"/>:</td>
-        <td><g:select name="toHour" from="${0..23}" value="${workdayUnit.date2.getHours()}"/>:<g:select name="toMinute" from="${['00','15','30','45']}" value="${workdayUnit.date2.getMinutes()}"/></td>
+        <td><g:select name="toHour" from="${0..23}" value="${formatDate(date: workdayUnit.date2, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="toMinute" from="${['00','15','30','45']}" value="${workdayUnit.date2.getMinutes()}"/></td>
       </tr>
       <tr>
         <td><g:message code="category"/>:</td>
