@@ -30,7 +30,7 @@
 <g:if test="${currentEntity.id == entity.id}">
   <g:if test="${confirmed == 'false'}">
     <g:if test="${workdaycategories}">
-      <div style="border: 1px solid #bbb; border-radius: 5px; padding: 5px; margin: 10px 0">
+      <div style="border: 1px solid #ccc; border-radius: 5px; padding: 5px; margin: 10px 0; background: #fefefe;">
         <p><span class="bold"><g:message code="workdayUnit.createEntry"/></span></p>
         <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
 
