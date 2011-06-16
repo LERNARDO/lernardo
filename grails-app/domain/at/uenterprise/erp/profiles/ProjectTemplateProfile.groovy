@@ -7,8 +7,10 @@ import at.uenterprise.erp.Label
 class ProjectTemplateProfile extends Profile {
 
     SortedSet comments
+    List templates
     static hasMany = [comments: Comment,
-                      labels: Label]
+                      labels: Label,
+                      templates: Integer]
 
     String description
     String status

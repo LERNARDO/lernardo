@@ -259,6 +259,8 @@ class ProjectTemplateProfileController {
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnitTemplates)
 
+      projectTemplate.profile.addToTemplates(projectUnitTemplate.id.toInteger())
+
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
       //render '<span class="red">Projekteinheitvorlage konnte nicht gespeichert werden!</span><br/>'
@@ -278,27 +280,32 @@ class ProjectTemplateProfileController {
 
   def removeProjectUnitTemplate = {
     Entity projectTemplate = Entity.get(params.id)
+    Entity projectUnitTemplate = Entity.get(params.projectUnitTemplate)
 
     // delete link
     def c = Link.createCriteria()
     def link = c.get {
-      eq('source', Entity.get(params.projectUnitTemplate))
+      eq('source', projectUnitTemplate)
       eq('target', projectTemplate)
       eq('type', metaDataService.ltProjectUnitTemplate)
     }
     link.delete()
 
     // delete links of groupActivityTemplates to projectUnitTemplate
-    Link.findAllByTargetAndType(Entity.get(params.projectUnitTemplate), metaDataService.ltProjectUnitMember).each {it.delete()}
+    Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember).each {it.delete()}
+
+    projectTemplate.profile.removeFromTemplates(projectUnitTemplate.id)
 
     // delete projectUnitTemplate
-    Entity.get(params.projectUnitTemplate).delete()
+    projectUnitTemplate.delete()
 
     // find all projectUnitTemplates of this projectTemplate
     List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
 
     // calculate realDuration
     int calculatedDuration = calculateDuration(projectUnitTemplates)
+
+
 
     render template: 'projectUnitTemplates', model: [projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
   }
@@ -476,6 +483,48 @@ class ProjectTemplateProfileController {
     group.profile.removeFromLabels(Label.get(params.label))
     Label.get(params.label).delete()
     render template: 'labels', model: [projectTemplate: group, entity: entityHelperService.loggedIn]
+  }
+
+  def moveUp = {
+    Entity group = Entity.get(params.projectTemplate)
+    if (group.profile.templates.indexOf(params.int('id')) > 0) {
+      int i = group.profile.templates.indexOf(params.int('id'))
+      use(Collections){ group.profile.templates.swap(i, i - 1) }
+    }
+    List templates = []
+    group.profile.templates.each {
+      templates.add(Entity.get(it))
+    }
+    // get all groupactivitytemplates that are set to completed
+    def c = Entity.createCriteria()
+    def allGroupActivityTemplates = c.list {
+      eq("type", metaDataService.etGroupActivityTemplate)
+      profile {
+        eq("status", "done")
+      }
+    }
+    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, entity: entityHelperService.loggedIn, allGroupActivityTemplates: allGroupActivityTemplates]
+  }
+
+  def moveDown = {
+    Entity group = Entity.get(params.projectTemplate)
+    if (group.profile.templates.indexOf(params.int('id')) < group.profile.templates.size() - 1) {
+      int i = group.profile.templates.indexOf(params.int('id'))
+      use(Collections){ group.profile.templates.swap(i, i + 1) }
+    }
+    List templates = []
+    group.profile.templates.each {
+      templates.add(Entity.get(it))
+    }
+    // get all groupactivitytemplates that are set to completed
+    def c = Entity.createCriteria()
+    def allGroupActivityTemplates = c.list {
+      eq("type", metaDataService.etGroupActivityTemplate)
+      profile {
+        eq("status", "done")
+      }
+    }
+    render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, entity: entityHelperService.loggedIn, allGroupActivityTemplates: allGroupActivityTemplates]
   }
 }
 
