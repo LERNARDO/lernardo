@@ -220,14 +220,13 @@ class GroupActivityTemplateProfileController {
   }
 
   def addTemplate = {
-    println params
+    Entity groupActivityTemplate = Entity.get(params.id)
+
     if (!params.templates)
       //render '<p class="italic red">Bitte zumindest eine Vorlage auswählen!</p>'
       render '<p class="italic red">'+message(code: "groupActivityTemplate.select.least")+'</p>'
     else {
       def bla = params.list('templates')
-
-      Entity groupActivityTemplate = Entity.get(params.id)
 
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
@@ -241,7 +240,12 @@ class GroupActivityTemplateProfileController {
     }
 
     def calculatedDuration = 0
-    def templates = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMember)
+
+    List templates = []
+    groupActivityTemplate.profile.templates.each {
+      templates.add(Entity.get(it))
+    }
+
     templates.each {
       calculatedDuration += it.profile.duration
     }
@@ -250,14 +254,21 @@ class GroupActivityTemplateProfileController {
   }
 
   def removeTemplate = {
+    Entity groupActivityTemplate = Entity.get(params.id)
     def breaking = functionService.breakEntities(params.template, params.id, metaDataService.ltGroupMember)
+    groupActivityTemplate.profile.removeFromTemplates(params.template.toInteger())
+
+    List templates = []
+    groupActivityTemplate.profile.templates.each {
+      templates.add(Entity.get(it))
+    }
 
     def calculatedDuration = 0
-    breaking.results.each {
+    templates.each {
       calculatedDuration += it.profile.duration
     }
 
-    render template: 'templates', model: [templates: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
+    render template: 'templates', model: [templates: templates, group: breaking.target, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
   }
 
   def updateselect = {
