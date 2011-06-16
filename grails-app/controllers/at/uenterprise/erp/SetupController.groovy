@@ -93,8 +93,8 @@ class SetupController {
 
   def moveUp = {
     def setupInstance = Setup.get(params.setupInstance)
-    if (setupInstance[params.type].indexOf(params.id.decodeHTML()) > 0) {
-      int i = setupInstance[params.type].indexOf(params.id.decodeHTML())
+    if (setupInstance[params.type].indexOf("${params.id.decodeHTML()}") > 0) {
+      int i = setupInstance[params.type].indexOf("${params.id.decodeHTML()}")
       use(Collections){ setupInstance[params.type].swap(i, i - 1) }
     }
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
@@ -102,8 +102,8 @@ class SetupController {
 
   def moveDown = {
     def setupInstance = Setup.get(params.setupInstance)
-    if (setupInstance[params.type].indexOf(params.id.decodeHTML()) < setupInstance[params.type].size() - 1) {
-      int i = setupInstance[params.type].indexOf(params.id.decodeHTML())
+    if (setupInstance[params.type].indexOf("${params.id.decodeHTML()}") < setupInstance[params.type].size() - 1) {
+      int i = setupInstance[params.type].indexOf("${params.id.decodeHTML()}")
       use(Collections){ setupInstance[params.type].swap(i, i + 1) }
     }
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
