@@ -55,9 +55,9 @@
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td>${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</td>
             <td><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
-            <td>${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td>${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
             <td><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</erp:getColony></td>
-            <td>${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td>${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
           </tr>
         </g:each>
         </tbody>
