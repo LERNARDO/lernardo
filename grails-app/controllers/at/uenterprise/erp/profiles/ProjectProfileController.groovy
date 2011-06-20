@@ -516,7 +516,7 @@ class ProjectProfileController {
       ent.profile.duration = duration2
     }
 
-    projectDay.profile.addToUnits(projectUnit.id.toInteger())
+    projectDay.profile.addToUnits(projectUnit.id.toString())
 
     // link the new unit to the project day
     new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
@@ -556,7 +556,7 @@ class ProjectProfileController {
     Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit).each {it.delete()}
     //List activities = links.collect {it.source}
 
-    projectDay.profile.removeFromUnits(params.unit.toInteger())
+    projectDay.profile.removeFromUnits(params.unit)
 
     // delete projectUnit
     Entity.get(params.unit).delete()
@@ -1092,8 +1092,8 @@ class ProjectProfileController {
 
    def moveUp = {
     Entity projectDay = Entity.get(params.projectDay)
-    if (projectDay.profile.units.indexOf(params.int('id')) > 0) {
-      int i = projectDay.profile.units.indexOf(params.int('id'))
+    if (projectDay.profile.units.indexOf(params.id) > 0) {
+      int i = projectDay.profile.units.indexOf(params.id)
 
       // get both units
       Entity unit = Entity.get(projectDay.profile.units[i])
@@ -1110,7 +1110,7 @@ class ProjectProfileController {
     }
     List units = []
     projectDay.profile.units.each {
-      units.add(Entity.get(it))
+      units.add(Entity.get(it.toInteger()))
     }
 
     // find project
@@ -1143,8 +1143,8 @@ class ProjectProfileController {
 
   def moveDown = {
     Entity projectDay = Entity.get(params.projectDay)
-    if (projectDay.profile.units.indexOf(params.int('id')) < projectDay.profile.units.size() - 1) {
-      int i = projectDay.profile.units.indexOf(params.int('id'))
+    if (projectDay.profile.units.indexOf(params.id) < projectDay.profile.units.size() - 1) {
+      int i = projectDay.profile.units.indexOf(params.id)
 
       // get both units
       Entity unit = Entity.get(projectDay.profile.units[i+1])
@@ -1161,7 +1161,7 @@ class ProjectProfileController {
     }
     List units = []
     projectDay.profile.units.each {
-      units.add(Entity.get(it))
+      units.add(Entity.get(it.toInteger()))
     }
 
     // find project

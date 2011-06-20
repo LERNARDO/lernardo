@@ -783,7 +783,7 @@ class BootStrap {
         for ( j in 1..links ) {
           def done = false
           while (!done) {
-            def activitytemplate = generator.nextInt(20) + 1
+            def activitytemplate = generator.nextInt(grailsApplication.config.dummies) + 1
             if (!activitytemplates.contains(activitytemplate)) {
               activitytemplates << activitytemplate
               done = true
@@ -792,6 +792,7 @@ class BootStrap {
         }
         activitytemplates.each {
           new Link(source: Entity.findByName("dummyTemplate" + it), target: entity, type: metaDataService.ltGroupMember).save()
+          entity.profile.addToTemplates(Entity.findByName("dummyTemplate" + it).id.toString())
         }
 
         // save creator

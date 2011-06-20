@@ -232,7 +232,7 @@ class GroupActivityTemplateProfileController {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
 
         if (!linking.duplicate)
-          groupActivityTemplate.profile.addToTemplates(it.toInteger())
+          groupActivityTemplate.profile.addToTemplates(it)
         if (linking.duplicate)
           //render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
           render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -256,12 +256,13 @@ class GroupActivityTemplateProfileController {
   def removeTemplate = {
     Entity groupActivityTemplate = Entity.get(params.id)
     def breaking = functionService.breakEntities(params.template, params.id, metaDataService.ltGroupMember)
-    groupActivityTemplate.profile.removeFromTemplates(params.template.toInteger())
+    groupActivityTemplate.profile.removeFromTemplates(params.template)
 
     List templates = []
     groupActivityTemplate.profile.templates.each {
-      templates.add(Entity.get(it))
+      templates.add(Entity.get(it.toInteger()))
     }
+    println groupActivityTemplate.profile.templates
 
     def calculatedDuration = 0
     templates.each {
@@ -514,26 +515,26 @@ class GroupActivityTemplateProfileController {
 
    def moveUp = {
     Entity group = Entity.get(params.group)
-    if (group.profile.templates.indexOf(params.int('id')) > 0) {
-      int i = group.profile.templates.indexOf(params.int('id'))
+    if (group.profile.templates.indexOf(params.id) > 0) {
+      int i = group.profile.templates.indexOf(params.id)
       use(Collections){ group.profile.templates.swap(i, i - 1) }
     }
     List templates = []
     group.profile.templates.each {
-      templates.add(Entity.get(it))
+      templates.add(Entity.get(it.toInteger()))
     }
     render template: 'templates2', model: [group: group, templates: templates, entity: entityHelperService.loggedIn]
   }
 
   def moveDown = {
     Entity group = Entity.get(params.group)
-    if (group.profile.templates.indexOf(params.int('id')) < group.profile.templates.size() - 1) {
-      int i = group.profile.templates.indexOf(params.int('id'))
+    if (group.profile.templates.indexOf(params.id) < group.profile.templates.size() - 1) {
+      int i = group.profile.templates.indexOf(params.id)
       use(Collections){ group.profile.templates.swap(i, i + 1) }
     }
     List templates = []
     group.profile.templates.each {
-      templates.add(Entity.get(it))
+      templates.add(Entity.get(it.toInteger()))
     }
     render template: 'templates2', model: [group: group, templates: templates, entity: entityHelperService.loggedIn]
   }

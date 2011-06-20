@@ -5,7 +5,7 @@ import at.openfactory.ep.Profile
 class ProjectDayProfile extends Profile {
 
     List units
-    static hasMany = [units: Integer]
+    static hasMany = [units: String]
 
     Date date
 

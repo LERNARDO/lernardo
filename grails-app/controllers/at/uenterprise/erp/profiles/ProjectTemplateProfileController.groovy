@@ -256,18 +256,14 @@ class ProjectTemplateProfileController {
       new Link(source: projectUnitTemplate, target: projectTemplate, type: metaDataService.ltProjectUnitTemplate).save()
 
       // find all projectUnitTemplates of this projectTemplate
-      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
-      List projectUnitTemplates = []
-      projectTemplate.profile.templates.each {
-        projectUnitTemplates.add(Entity.get(it))
-      }
+      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnitTemplates)
 
-      projectTemplate.profile.addToTemplates(projectUnitTemplate.id.toInteger())
+      projectTemplate.profile.addToTemplates(projectUnitTemplate.id.toString())
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
@@ -275,7 +271,11 @@ class ProjectTemplateProfileController {
       render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+'</span><br/>'
 
       // find all projectUnitTemplates of this projectTemplate
-      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      List projectUnitTemplates = []
+      projectTemplate.profile.templates.each {
+        projectUnitTemplates.add(Entity.get(it.toInteger()))
+      }
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -302,7 +302,7 @@ class ProjectTemplateProfileController {
     // delete links of groupActivityTemplates to projectUnitTemplate
     Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember).each {it.delete()}
 
-    projectTemplate.profile.removeFromTemplates(params.projectUnitTemplate.toInteger())
+    projectTemplate.profile.removeFromTemplates(params.projectUnitTemplate)
 
     // delete projectUnitTemplate
     projectUnitTemplate.delete()
@@ -311,7 +311,7 @@ class ProjectTemplateProfileController {
     //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
     List projectUnitTemplates = []
     projectTemplate.profile.templates.each {
-      projectUnitTemplates.add(Entity.get(it))
+      projectUnitTemplates.add(Entity.get(it.toInteger()))
     }
 
     // calculate realDuration
@@ -499,13 +499,13 @@ class ProjectTemplateProfileController {
 
   def moveUp = {
     Entity group = Entity.get(params.projectTemplate)
-    if (group.profile.templates.indexOf(params.int('id')) > 0) {
-      int i = group.profile.templates.indexOf(params.int('id'))
+    if (group.profile.templates.indexOf(params.id) > 0) {
+      int i = group.profile.templates.indexOf(params.id)
       use(Collections){ group.profile.templates.swap(i, i - 1) }
     }
     List templates = []
     group.profile.templates.each {
-      templates.add(Entity.get(it))
+      templates.add(Entity.get(it.toInteger()))
     }
     // get all groupactivitytemplates that are set to completed
     def c = Entity.createCriteria()
@@ -520,13 +520,13 @@ class ProjectTemplateProfileController {
 
   def moveDown = {
     Entity group = Entity.get(params.projectTemplate)
-    if (group.profile.templates.indexOf(params.int('id')) < group.profile.templates.size() - 1) {
-      int i = group.profile.templates.indexOf(params.int('id'))
+    if (group.profile.templates.indexOf(params.id) < group.profile.templates.size() - 1) {
+      int i = group.profile.templates.indexOf(params.id)
       use(Collections){ group.profile.templates.swap(i, i + 1) }
     }
     List templates = []
     group.profile.templates.each {
-      templates.add(Entity.get(it))
+      templates.add(Entity.get(it.toInteger()))
     }
     // get all groupactivitytemplates that are set to completed
     def c = Entity.createCriteria()

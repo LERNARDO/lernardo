@@ -10,7 +10,7 @@ class ProjectTemplateProfile extends Profile {
     List templates
     static hasMany = [comments: Comment,
                       labels: Label,
-                      templates: Integer]
+                      templates: String]
 
     String description
     String status
