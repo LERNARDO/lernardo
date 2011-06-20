@@ -516,6 +516,8 @@ class ProjectProfileController {
       ent.profile.duration = duration2
     }
 
+    projectDay.profile.addToUnits(projectUnit.id.toInteger())
+
     // link the new unit to the project day
     new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
 
@@ -553,6 +555,8 @@ class ProjectProfileController {
     // find all activities linking to this unit and delete them
     Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit).each {it.delete()}
     //List activities = links.collect {it.source}
+
+    projectDay.profile.removeFromUnits(params.unit.toInteger())
 
     // delete projectUnit
     Entity.get(params.unit).delete()
@@ -1084,6 +1088,108 @@ class ProjectProfileController {
     }
 
     return [evaluations: evaluations, entity: project]
+  }
+
+   def moveUp = {
+    Entity projectDay = Entity.get(params.projectDay)
+    if (projectDay.profile.units.indexOf(params.int('id')) > 0) {
+      int i = projectDay.profile.units.indexOf(params.int('id'))
+
+      // get both units
+      Entity unit = Entity.get(projectDay.profile.units[i])
+      Entity unit2 = Entity.get(projectDay.profile.units[i-1])
+
+      unit.profile.date = unit2.profile.date
+
+      Calendar calendar = new GregorianCalendar()
+      calendar.setTime(unit2.profile.date)
+      calendar.add(Calendar.MINUTE, unit.profile.duration)
+      unit2.profile.date = calendar.getTime()
+
+      use(Collections){ projectDay.profile.units.swap(i, i - 1) }
+    }
+    List units = []
+    projectDay.profile.units.each {
+      units.add(Entity.get(it))
+    }
+
+    // find project
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+     // find all clients linked to this project
+    List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+
+    // get all parents
+    def families = []
+    clients.each { client ->
+      // get all families
+      families.addAll(functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupFamily))
+    }
+    def allParents = []
+    families.each { family ->
+      // get all parents
+      def temp = functionService.findAllByLink(null, family as Entity, metaDataService.ltGroupMemberParent)
+      temp.each {
+        if (!allParents.contains(it))
+          allParents << it
+      }
+    }
+
+    // get all partners
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+
+    render template: 'units', model: [projectDay: projectDay, units: units, entity: entityHelperService.loggedIn, project: project, allParents: allParents, allPartners: allPartners]
+  }
+
+  def moveDown = {
+    Entity projectDay = Entity.get(params.projectDay)
+    if (projectDay.profile.units.indexOf(params.int('id')) < projectDay.profile.units.size() - 1) {
+      int i = projectDay.profile.units.indexOf(params.int('id'))
+
+      // get both units
+      Entity unit = Entity.get(projectDay.profile.units[i+1])
+      Entity unit2 = Entity.get(projectDay.profile.units[i])
+
+      unit.profile.date = unit2.profile.date
+
+      Calendar calendar = new GregorianCalendar()
+      calendar.setTime(unit2.profile.date)
+      calendar.add(Calendar.MINUTE, unit.profile.duration)
+      unit2.profile.date = calendar.getTime()
+
+      use(Collections){ projectDay.profile.units.swap(i, i + 1) }
+    }
+    List units = []
+    projectDay.profile.units.each {
+      units.add(Entity.get(it))
+    }
+
+    // find project
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+     // find all clients linked to this project
+    List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+
+    // get all parents
+    def families = []
+    clients.each { client ->
+      // get all families
+      families.addAll(functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupFamily))
+    }
+    def allParents = []
+    families.each { family ->
+      // get all parents
+      def temp = functionService.findAllByLink(null, family as Entity, metaDataService.ltGroupMemberParent)
+      temp.each {
+        if (!allParents.contains(it))
+          allParents << it
+      }
+    }
+
+    // get all partners
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+
+    render template: 'units', model: [projectDay: projectDay, units: units, entity: entityHelperService.loggedIn, project: project, allParents: allParents, allPartners: allPartners]
   }
 
 }

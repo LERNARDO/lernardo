@@ -16,7 +16,7 @@
 
   <div id="units2">
     <erp:getProjectDayUnits projectDay="${projectDay}">
-      <g:render template="units" model="[units: units, project: project, projectDay: projectDay, allParents: allParents, entity: entity]"/>
+      <g:render template="units" model="[units: units, project: project, projectDay: projectDay, allParents: allParents, allPartners: allPartners, entity: entity]"/>
     </erp:getProjectDayUnits>
   </div>
 

@@ -4,6 +4,9 @@ import at.openfactory.ep.Profile
 
 class ProjectDayProfile extends Profile {
 
+    List units
+    static hasMany = [units: Integer]
+
     Date date
 
     static constraints = {

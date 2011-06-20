@@ -570,7 +570,13 @@ class HelperTagLib {
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->
-    List projectDayUnits = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayUnit)
+    //List projectDayUnits = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayUnit)
+
+    List projectDayUnits = []
+    attrs.projectDay.profile.units.each {
+      projectDayUnits.add(Entity.get(it))
+    }
+
     if (projectDayUnits)
       projectDayUnits.each {out << body(units: it)}
     else

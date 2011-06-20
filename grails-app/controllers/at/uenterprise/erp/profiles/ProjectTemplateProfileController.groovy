@@ -55,7 +55,11 @@ class ProjectTemplateProfileController {
     }
     else {
       // find all projectUnitTemplates linked to this projectTemplate
-      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      List projectUnitTemplates = []
+      projectTemplate.profile.templates.each {
+        projectUnitTemplates.add(Entity.get(it))
+      }
 
       //List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -252,7 +256,11 @@ class ProjectTemplateProfileController {
       new Link(source: projectUnitTemplate, target: projectTemplate, type: metaDataService.ltProjectUnitTemplate).save()
 
       // find all projectUnitTemplates of this projectTemplate
-      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      List projectUnitTemplates = []
+      projectTemplate.profile.templates.each {
+        projectUnitTemplates.add(Entity.get(it))
+      }
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -294,13 +302,17 @@ class ProjectTemplateProfileController {
     // delete links of groupActivityTemplates to projectUnitTemplate
     Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember).each {it.delete()}
 
-    projectTemplate.profile.removeFromTemplates(projectUnitTemplate.id)
+    projectTemplate.profile.removeFromTemplates(params.projectUnitTemplate.toInteger())
 
     // delete projectUnitTemplate
     projectUnitTemplate.delete()
 
     // find all projectUnitTemplates of this projectTemplate
-    List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+    //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+    List projectUnitTemplates = []
+    projectTemplate.profile.templates.each {
+      projectUnitTemplates.add(Entity.get(it))
+    }
 
     // calculate realDuration
     int calculatedDuration = calculateDuration(projectUnitTemplates)
