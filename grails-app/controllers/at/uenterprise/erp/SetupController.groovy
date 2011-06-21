@@ -76,7 +76,7 @@ class SetupController {
   def editElement = {
     log.info 'params for edit:'+ params
     def setupInstance = Setup.get(params.setupInstance)
-    render template: 'editElement', model: [setupInstance: setupInstance, element: params.id, type: params.type, i: params.i]
+    render template: 'editElement', model: [setupInstance: setupInstance, element: params.element, type: params.type, i: params.i]
   }
 
   def updateElement = {
