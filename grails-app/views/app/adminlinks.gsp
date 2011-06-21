@@ -14,8 +14,16 @@
     <g:select from="${entities}" name="entity" optionKey="id" optionValue="profile" noSelection="[null:message(code:'non')]" onchange="${remoteFunction(controller:'app', action:'adminlinksresults', update:'results', params:'\'id=\' + this.value')}"/>
     <div id="results"></div>
 
-    <g:remoteLink update="roguecomments" action="removeroguecomments" before="showspinner('#roguecomments');">Lösche Kommentare ohne Zugehörigkeit</g:remoteLink>
-    <div id="roguecomments"></div>
+    <p>
+      <g:remoteLink update="roguecomments" action="removeroguecomments" before="showspinner('#roguecomments');">Lösche Kommentare ohne Zugehörigkeit</g:remoteLink>
+      <div id="roguecomments"></div>
+    </p>
+
+    <p>
+      Tabellen für Aktivitätsblockvorlagen, Projektvorlagen und Projekttage erstellen<br/>
+      <g:remoteLink update="tables" action="createtables" before="showspinner('#tables');">Erstellen</g:remoteLink>
+      <div id="tables"></div>
+    </p>
 
   </div>
 </div>
