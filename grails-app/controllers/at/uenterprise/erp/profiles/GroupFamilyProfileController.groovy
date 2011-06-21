@@ -138,7 +138,7 @@ class GroupFamilyProfileController {
       }
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])
     }

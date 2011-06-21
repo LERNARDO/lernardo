@@ -179,7 +179,7 @@ class TemplateProfileController {
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "template.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
 
     } catch (at.openfactory.ep.EntityException ee) {
       render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]

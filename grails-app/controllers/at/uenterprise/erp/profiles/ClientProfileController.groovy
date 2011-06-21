@@ -308,7 +308,7 @@ class ClientProfileController {
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"

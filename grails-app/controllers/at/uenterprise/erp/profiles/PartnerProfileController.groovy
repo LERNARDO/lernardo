@@ -178,7 +178,7 @@ class PartnerProfileController {
       //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()
 
       flash.message = message(code: "partner.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [partner: ee.entity/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/])
     }
