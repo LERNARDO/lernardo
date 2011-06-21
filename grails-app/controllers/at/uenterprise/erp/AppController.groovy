@@ -606,4 +606,48 @@ class AppController {
     }
   }
 
+  def createtables = {
+    // group activity templates
+    List groups = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+    int number = 0
+    groups.each { group ->
+      List activityTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+      activityTemplates.each { activityTemplate ->
+        if (!group.profile.templates.contains(activityTemplate.id.toString())) {
+          group.profile.addToTemplates(activityTemplate.id.toString())
+          number++
+        }
+      }
+    }
+    render "Created ${number} table entries in ${groups.size()} group activity templates<br/>"
+
+    // project templates
+    groups = Entity.findAllByType(metaDataService.etProjectTemplate)
+    number = 0
+    groups.each { group ->
+      List projectUnitTemplates = functionService.findAllByLink(null, group, metaDataService.ltProjectUnitTemplate)
+      projectUnitTemplates.each { projectUnitTemplate ->
+        if (!group.profile.templates.contains(projectUnitTemplate.id.toString())) {
+          group.profile.addToTemplates(projectUnitTemplate.id.toString())
+          number++
+        }
+      }
+    }
+    render "Created ${number} table entries in ${groups.size()} project templates<br/>"
+
+    // project days
+    groups = Entity.findAllByType(metaDataService.etProjectDay)
+    number = 0
+    groups.each { group ->
+      List units = functionService.findAllByLink(null, group, metaDataService.ltProjectDayUnit)
+      units.each { unit ->
+        if (!group.profile.units.contains(unit.id.toString())) {
+          group.profile.addToUnits(unit.id.toString())
+          number++
+        }
+      }
+    }
+    render "Created ${number} table entries in ${groups.size()} project days<br/>"
+  }
+
 }

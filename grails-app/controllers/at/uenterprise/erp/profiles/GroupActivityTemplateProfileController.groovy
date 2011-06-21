@@ -262,7 +262,6 @@ class GroupActivityTemplateProfileController {
     groupActivityTemplate.profile.templates.each {
       templates.add(Entity.get(it.toInteger()))
     }
-    println groupActivityTemplate.profile.templates
 
     def calculatedDuration = 0
     templates.each {
