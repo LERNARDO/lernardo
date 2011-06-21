@@ -131,7 +131,7 @@ class ProjectTemplateProfileController {
 
     if (projectTemplate.profile.save() && projectTemplate.save()) {
       flash.message = message(code: "projectTemplate.updated", args: [projectTemplate.profile.fullName])
-      redirect action: 'show', id: projectTemplate.id
+      redirect action: 'show', id: projectTemplate.id, params: [entity: projectTemplate.id]
     }
     else {
       render view: 'edit', model: [projectTemplate: projectTemplate]
@@ -214,7 +214,7 @@ class ProjectTemplateProfileController {
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [projectTemplate: ee.entity])
     }

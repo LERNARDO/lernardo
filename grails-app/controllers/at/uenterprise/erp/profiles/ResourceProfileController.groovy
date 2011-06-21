@@ -127,7 +127,7 @@ class ResourceProfileController {
       }
 
       flash.message = message(code: "resource.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [resource: ee.entity, entity: entityHelperService.loggedIn])
     }

@@ -328,7 +328,7 @@ class ActivityProfileController {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
       // functionService.createEvent(currentEntity, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
       functionService.createEvent(currentEntity, message(code: "activity.updated", args: [activity.profile.fullName]) )
-      redirect action: 'show', id: activity.id
+      redirect action: 'show', id: activity.id, params: [entity: activity.id]
     }
     else {
       // get a list of facilities the current entity is working in

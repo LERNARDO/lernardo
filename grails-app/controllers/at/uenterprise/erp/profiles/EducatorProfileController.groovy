@@ -177,7 +177,7 @@ class EducatorProfileController {
       new Link(source: educator, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()*/
 
       flash.message = message(code: "educator.updated", args: [educator.profile.fullName])
-      redirect action: 'show', id: educator.id
+      redirect action: 'show', id: educator.id, params: [entity: educator.id]
     }
     else {
       render view: 'edit', model: [educator: educator, entity: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
@@ -216,7 +216,7 @@ class EducatorProfileController {
       //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
       flash.message = message(code: "educator.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
     }

@@ -132,7 +132,7 @@ class OperatorProfileController {
 
     if (operator.profile.save() && operator.user.save() && operator.save()) {
       flash.message = message(code: "operator.updated", args: [operator.profile.fullName])
-      redirect action: 'show', id: operator.id
+      redirect action: 'show', id: operator.id, params: [entity: operator.id]
     }
     else {
       render view: 'edit', model: [operator: operator]
@@ -154,7 +154,7 @@ class OperatorProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "operator.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [operator: ee.entity])
     }

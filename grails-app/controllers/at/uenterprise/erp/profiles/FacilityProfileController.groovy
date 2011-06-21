@@ -154,7 +154,7 @@ class FacilityProfileController {
       new Link(source: facility, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.updated", args: [facility.profile.fullName])
-      redirect action: 'show', id: facility.id
+      redirect action: 'show', id: facility.id, params: [entity: facility.id]
     }
     else {
       // find colonia of this facility
@@ -187,7 +187,7 @@ class FacilityProfileController {
       new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [facility: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
     }

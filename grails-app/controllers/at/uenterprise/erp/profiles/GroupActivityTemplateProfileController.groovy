@@ -138,7 +138,7 @@ class GroupActivityTemplateProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "group.updated", args: [group.profile.fullName])
-      redirect action: 'show', id: group.id
+      redirect action: 'show', id: group.id, params: [entity: group.id]
     }
     else {
       render view: 'edit', model: [group: group, entity: group]
@@ -212,7 +212,7 @@ class GroupActivityTemplateProfileController {
       }
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])
     }

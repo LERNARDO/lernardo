@@ -1,5 +1,5 @@
 <%@ page import="at.uenterprise.erp.WorkdayCategory" %>
-<g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i]]" update="unit-${i}" before="showspinner('#unit-${i}')">
+<g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i, entity: entity.id]]" update="unit-${i}" before="showspinner('#unit-${i}')">
 
     <table>
       <tr>

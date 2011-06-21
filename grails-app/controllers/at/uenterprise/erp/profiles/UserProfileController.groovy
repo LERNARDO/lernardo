@@ -128,7 +128,7 @@ class UserProfileController {
 
     if (user.profile.save() && user.user.save() && user.save()) {
       flash.message = message(code: "user.updated", args: [user.profile.fullName])
-      redirect action: 'show', id: user.id
+      redirect action: 'show', id: user.id, params: [entity: user.id]
     }
     else {
       render view: 'edit', model: [user: user]
@@ -150,7 +150,7 @@ class UserProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       flash.message = message(code: "user.created", args: [entity.profile.fullName])
-      redirect action: 'show', id: entity.id
+      redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [user: ee.entity])
     }
