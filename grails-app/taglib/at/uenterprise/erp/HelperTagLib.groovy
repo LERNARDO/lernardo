@@ -412,18 +412,22 @@ class HelperTagLib {
     }
 
     boolean isMe = false
-    if (attrs.me && attrs.me == "true")
-      isMe = accessIsMe(entity)
-    //log.info "${entity.profile} is me: ${isMe}"
+    if (attrs.me)
+      isMe = accessIsMe(attrs.me)
+    if (attrs.log)
+      log.info "${attrs.me.profile} is ${entity.profile}: ${isMe}"
 
     boolean isLeadEducator = false
     if (attrs.facilities)
       isLeadEducator = accessIsLeadEducator(entity, attrs.facilities)
-    //log.info "${entity.profile} is lead educator: ${isLeadEducator}"
+    if (attrs.log)
+      log.info "${entity.profile} is lead educator: ${isLeadEducator}"
 
     boolean isCreatorOf = false
     if (attrs.creatorof)
       isCreatorOf = accessIsCreatorOf(entity, attrs.creatorof)
+    if (attrs.log)
+      log.info "${entity.profile} is creator: " + isCreatorOf
 
     boolean isAdmin = entity?.user?.authorities?.find {it.authority == 'ROLE_ADMIN'} ? true : false
 
