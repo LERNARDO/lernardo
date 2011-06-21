@@ -47,44 +47,46 @@ class SetupController {
   def removeElement = {
     def setupInstance = Setup.get(params.setupInstance)
     if (params.type == "bloodTypes")
-      setupInstance.removeFromBloodTypes(params.id)
+      setupInstance.removeFromBloodTypes(params.id.decodeHTML())
     else if (params.type == "nationalities")
-      setupInstance.removeFromNationalities(params.id)
+      setupInstance.removeFromNationalities(params.id.decodeHTML())
     else if (params.type == "languages")
-      setupInstance.removeFromLanguages(params.id)
+      setupInstance.removeFromLanguages(params.id.decodeHTML())
     else if (params.type == "schoolLevels")
-      setupInstance.removeFromSchoolLevels(params.id)
+      setupInstance.removeFromSchoolLevels(params.id.decodeHTML())
     else if (params.type == "workDescriptions")
-      setupInstance.removeFromWorkDescriptions(params.id)
+      setupInstance.removeFromWorkDescriptions(params.id.decodeHTML())
     else if (params.type == "educations")
-      setupInstance.removeFromEducations(params.id)
+      setupInstance.removeFromEducations(params.id.decodeHTML())
     else if (params.type == "employmentStatus")
-      setupInstance.removeFromEmploymentStatus(params.id)
+      setupInstance.removeFromEmploymentStatus(params.id.decodeHTML())
     else if (params.type == "responsibilities")
-      setupInstance.removeFromResponsibilities(params.id)
+      setupInstance.removeFromResponsibilities(params.id.decodeHTML())
     else if (params.type == "familyStatus")
-      setupInstance.removeFromFamilyStatus(params.id)
+      setupInstance.removeFromFamilyStatus(params.id.decodeHTML())
     else if (params.type == "maritalStatus")
-      setupInstance.removeFromMaritalStatus(params.id)
+      setupInstance.removeFromMaritalStatus(params.id.decodeHTML())
     else if (params.type == "partnerServices")
-      setupInstance.removeFromPartnerServices(params.id)
+      setupInstance.removeFromPartnerServices(params.id.decodeHTML())
     else if (params.type == "familyProblems")
-      setupInstance.removeFromFamilyProblems(params.id)
+      setupInstance.removeFromFamilyProblems(params.id.decodeHTML())
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
   def editElement = {
+    log.info 'params for edit:'+ params
     def setupInstance = Setup.get(params.setupInstance)
     render template: 'editElement', model: [setupInstance: setupInstance, element: params.id, type: params.type, i: params.i]
   }
 
   def updateElement = {
+    log.info 'params for update:'+params
     def setupInstance = Setup.get(params.id)
 
     params.elementOld = params.elementOld.decodeHTML()
 
-    //log.info 'element to update: "' + params.elementOld + '"'
-    //log.info 'element index in list: ' + setupInstance[params.type].indexOf(params.elementOld)
+    log.info 'element to update: "' + params.elementOld + '"'
+    log.info 'element index in list: ' + setupInstance[params.type].indexOf(params.elementOld)
 
     int i = setupInstance[params.type].indexOf(params.elementOld)
     setupInstance[params.type].set(i, params.element)
@@ -92,18 +94,20 @@ class SetupController {
   }
 
   def moveUp = {
+    log.info 'params for moveUp:' + params
     def setupInstance = Setup.get(params.setupInstance)
-    if (setupInstance[params.type].indexOf(params.id) > 0) {
-      int i = setupInstance[params.type].indexOf(params.id)
+    if (setupInstance[params.type].indexOf(params.id.decodeHTML()) > 0) {
+      int i = setupInstance[params.type].indexOf(params.id.decodeHTML())
       use(Collections){ setupInstance[params.type].swap(i, i - 1) }
     }
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
   }
 
   def moveDown = {
+    log.info 'params for moveDown:' + params
     def setupInstance = Setup.get(params.setupInstance)
-    if (setupInstance[params.type].indexOf(params.id) < setupInstance[params.type].size() - 1) {
-      int i = setupInstance[params.type].indexOf(params.id)
+    if (setupInstance[params.type].indexOf(params.id.decodeHTML()) < setupInstance[params.type].size() - 1) {
+      int i = setupInstance[params.type].indexOf(params.id.decodeHTML())
       use(Collections){ setupInstance[params.type].swap(i, i + 1) }
     }
     render template: 'allElements', model: [setupInstance: setupInstance, type: params.type]
