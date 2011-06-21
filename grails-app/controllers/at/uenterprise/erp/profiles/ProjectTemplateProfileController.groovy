@@ -131,7 +131,7 @@ class ProjectTemplateProfileController {
 
     if (projectTemplate.profile.save() && projectTemplate.save()) {
       flash.message = message(code: "projectTemplate.updated", args: [projectTemplate.profile.fullName])
-      redirect action: 'show', id: projectTemplate.id
+      redirect action: 'show', id: projectTemplate.id, params: [entity: projectTemplate.id]
     }
     else {
       render view: 'edit', model: [projectTemplate: projectTemplate]

@@ -154,7 +154,7 @@ class FacilityProfileController {
       new Link(source: facility, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.updated", args: [facility.profile.fullName])
-      redirect action: 'show', id: facility.id
+      redirect action: 'show', id: facility.id, params: [entity: facility.id]
     }
     else {
       // find colonia of this facility

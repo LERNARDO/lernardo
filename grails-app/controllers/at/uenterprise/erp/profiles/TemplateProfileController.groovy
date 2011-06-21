@@ -65,7 +65,7 @@ class TemplateProfileController {
 
     if (template.profile.save() && template.save()) {
       flash.message = message(code: "template.updated", args: [template.profile.fullName])
-      redirect action: 'show', id: template.id
+      redirect action: 'show', id: template.id, params: [entity: template.id]
     }
     else {
       render view: 'edit', model: [template: template]

@@ -128,7 +128,7 @@ class UserProfileController {
 
     if (user.profile.save() && user.user.save() && user.save()) {
       flash.message = message(code: "user.updated", args: [user.profile.fullName])
-      redirect action: 'show', id: user.id
+      redirect action: 'show', id: user.id, params: [entity: user.id]
     }
     else {
       render view: 'edit', model: [user: user]

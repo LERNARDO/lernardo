@@ -131,7 +131,7 @@ class PateProfileController {
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
       flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
-      redirect action: 'show', id: pate.id
+      redirect action: 'show', id: pate.id, params: [entity: pate.id]
     }
     else {
       render view: 'edit', model: [pate: pate]

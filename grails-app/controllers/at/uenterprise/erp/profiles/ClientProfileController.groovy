@@ -215,7 +215,7 @@ class ClientProfileController {
 
     if (client.profile.save() && client.user.save() && client.save()) {
       flash.message = message(code: "client.updated", args: [client.profile.fullName])
-      redirect action: 'show', id: client.id
+      redirect action: 'show', id: client.id, params: [entity: client.id]
     }
     else {
       params.sort = params.sort ?: "fullName"

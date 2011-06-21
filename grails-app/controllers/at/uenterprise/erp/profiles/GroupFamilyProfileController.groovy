@@ -117,7 +117,7 @@ class GroupFamilyProfileController {
 
     if (group.profile.save() && group.save()) {
       flash.message = message(code: "group.updated", args: [group.profile.fullName])
-      redirect action: 'show', id: group.id
+      redirect action: 'show', id: group.id, params: [entity: group.id]
     }
     else {
       render view: 'edit', model: [group: group]

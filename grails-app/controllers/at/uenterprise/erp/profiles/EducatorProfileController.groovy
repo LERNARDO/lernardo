@@ -177,7 +177,7 @@ class EducatorProfileController {
       new Link(source: educator, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()*/
 
       flash.message = message(code: "educator.updated", args: [educator.profile.fullName])
-      redirect action: 'show', id: educator.id
+      redirect action: 'show', id: educator.id, params: [entity: educator.id]
     }
     else {
       render view: 'edit', model: [educator: educator, entity: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]

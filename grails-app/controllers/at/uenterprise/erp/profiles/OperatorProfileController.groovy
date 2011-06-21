@@ -132,7 +132,7 @@ class OperatorProfileController {
 
     if (operator.profile.save() && operator.user.save() && operator.save()) {
       flash.message = message(code: "operator.updated", args: [operator.profile.fullName])
-      redirect action: 'show', id: operator.id
+      redirect action: 'show', id: operator.id, params: [entity: operator.id]
     }
     else {
       render view: 'edit', model: [operator: operator]

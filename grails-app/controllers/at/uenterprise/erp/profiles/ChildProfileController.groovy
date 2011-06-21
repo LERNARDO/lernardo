@@ -146,7 +146,7 @@ class ChildProfileController {
 
     if (child.profile.save() && child.user.save() && child.save()) {
       flash.message = message(code: "child.updated", args: [child.profile.fullName])
-      redirect action: 'show', id: child.id
+      redirect action: 'show', id: child.id, params: [entity: child.id]
     }
     else {
       render view: 'edit', model: [child: child]

@@ -150,7 +150,7 @@ class PartnerProfileController {
       new Link(source: partner, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()*/
 
       flash.message = message(code: "partner.updated", args: [partner.profile.fullName])
-      redirect action: 'show', id: partner.id
+      redirect action: 'show', id: partner.id, params: [entity: partner.id]
     }
     else {
       render view: 'edit', model: [partner: partner/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]

@@ -308,7 +308,7 @@ class ProjectProfileController {
 
     if (project.profile.save() && project.save()) {
       flash.message = message(code: "project.updated", args: [project.profile.fullName])
-      redirect action: 'show', id: project.id
+      redirect action: 'show', id: project.id, params: [entity: project.id]
     }
     else {
       render view: 'edit', model: [project: project]
