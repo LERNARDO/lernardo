@@ -52,7 +52,7 @@
 
     <div class="buttons">
       <g:form id="${projectTemplate.id}" params="[entity: projectTemplate?.id]">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
@@ -75,7 +75,7 @@
     </g:if>
 
     <div class="zusatz">
-      <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}"><a onclick="toggle('#labels');
+      <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><a onclick="toggle('#labels');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="labels" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'projectTemplateProfile', action:'addLabel', id:projectTemplate.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
@@ -91,7 +91,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="${message(code: 'add')}"/></g:remoteLink>
+      <h5><g:message code="projectUnitTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true"><g:remoteLink action="addProjectUnitTemplate" update="projectunittemplates2" id="${projectTemplate.id}" before="showspinner('#projectunittemplates2')"><img src="${g.resource(dir: 'images/icons', file: 'icon_add-plus.png')}" alt="${message(code: 'add')}"/></g:remoteLink>
       %{--<a onclick="toggle('#projectunits'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a>--}%</erp:accessCheck></h5>
       %{--<div class="zusatz-add" id="projectunits" style="display:none">
         <g:formRemote name="formRemote" url="[controller:'projectTemplateProfile', action:'addProjectUnit', id: projectTemplate.id]" update="projectunits2" before="showspinner('#projectunits2')">

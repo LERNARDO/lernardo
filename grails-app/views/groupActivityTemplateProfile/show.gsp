@@ -54,7 +54,7 @@
 
     <div class="buttons">
       <g:form id="${group.id}" params="[entity: group?.id]">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}">
@@ -76,7 +76,7 @@
     </g:if>
 
     <div class="zusatz">
-      <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}"><a onclick="toggle('#labels');
+      <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#labels');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="labels" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityTemplateProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
@@ -92,7 +92,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <h5><g:message code="activityTemplates"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="toggle('#templates'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="templates" style="display:none">
         <p><g:message code="activityTemplate.list.hint2"/></p>
         <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect');">

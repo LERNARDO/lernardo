@@ -412,10 +412,11 @@ class HelperTagLib {
     }
 
     boolean isMe = false
-    if (attrs.me)
+    if (attrs.me) {
       isMe = accessIsMe(attrs.me)
-    if (attrs.log)
-      log.info "${attrs.me.profile} is ${entity.profile}: ${isMe}"
+      if (attrs.log)
+        log.info "${attrs.me.profile} is ${entity.profile}: ${isMe}"
+    }
 
     boolean isLeadEducator = false
     if (attrs.facilities)
@@ -431,7 +432,14 @@ class HelperTagLib {
 
     boolean isAdmin = entity?.user?.authorities?.find {it.authority == 'ROLE_ADMIN'} ? true : false
 
-    if ((isAdmin || isCreatorOf || isMe) ||
+    boolean isOperator = false
+    if (attrs.checkoperator) {
+      isOperator = entity.type == metaDataService.etOperator
+      if (attrs.log)
+        log.info "${entity.profile} is operator: " + isOperator
+    }
+
+    if ((isAdmin || isCreatorOf || isMe || isOperator) ||
         ((accessHasTypes(entity, attrs.types) || accessHasRoles(entity, attrs.roles) || isLeadEducator) && isOpen))
       out << body()
   }
