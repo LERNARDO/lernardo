@@ -58,7 +58,7 @@ class WorkdayUnitController {
 
       List workdaycategories = WorkdayCategory.list()
 
-      render template: 'editunit', model: [workdayUnit: workdayUnit, workdaycategories: workdaycategories, i: params.i]
+      render template: 'editunit', model: [workdayUnit: workdayUnit, workdaycategories: workdaycategories, i: params.i, entity: Entity.get(params.entity)]
     }
 
     def updateUnit = {
@@ -83,7 +83,7 @@ class WorkdayUnitController {
 
       workdayUnit.save(flush: true)
 
-      render template: 'unit', model: [unit: workdayUnit, i: params.i]
+      render template: 'unit', model: [unit: workdayUnit, i: params.i, currentEntity: entityHelperService.loggedIn, entity: Entity.get(params.entity)]
     }
 
     def addWorkdayUnit = {
