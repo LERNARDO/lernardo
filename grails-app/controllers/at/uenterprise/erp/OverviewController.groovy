@@ -105,6 +105,8 @@ class OverviewController {
             eq("type", metaDataService.etProjectTemplate)
           if (params.project)
             eq("type", metaDataService.etProject)
+          if (params.groupActivity)
+            eq("type", metaDataService.etGroupActivity)
         }
       or {
         ilike('name', "%" + params.name + "%")

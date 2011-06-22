@@ -47,7 +47,27 @@ class GroupActivityProfileController {
       }
     }
 
-    return [groups: groupactivities]
+    Entity currentEntity = entityHelperService.loggedIn
+
+    // get themes
+    List themes = []
+    if (currentEntity.type == metaDataService.etEducator) {
+      // find all facilities the current entity is linked to as educator or lead educator
+      List facilities = []
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+
+      // find all themes that are linked to those facilities
+
+      facilities.each { facility ->
+        themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
+      }
+    }
+    else
+      themes = Entity.findAllByType(metaDataService.etTheme)
+
+
+    return [groups: groupactivities, themes: themes]
   }
 
   def show = {
@@ -440,6 +460,53 @@ class GroupActivityProfileController {
                                              parents: parents,
                                              partners: partners,
                                              template: template], filename: message(code: 'groupActivity') + '_' + group.profile.fullName
+  }
+
+    def searchbydate = {
+    def beginDate = null
+    def endDate = null
+    if (params.beginDate)
+      beginDate = Date.parse("dd. MM. yy", params.beginDate)
+    if (params.endDate)
+        endDate = Date.parse("dd. MM. yy", params.endDate)
+    if (!beginDate || !endDate)
+      render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
+    else {
+      List groupActivities = Entity.createCriteria().list {
+        eq("type", metaDataService.etGroupActivity)
+        profile {
+          ge("date", beginDate)
+          le("date", endDate)
+        }
+      maxResults(15)
+      }
+
+      if (groupActivities.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        return
+      }
+      else {
+        render(template: '/overview/searchresults', model: [searchList: groupActivities])
+      }
+    }
+  }
+
+  def searchbytheme = {
+    Entity theme = Entity.get(params.theme)
+
+    if (theme) {
+      // find all group activities that are linked to this theme
+      List groupActivities = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
+      if (groupActivities.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        return
+      }
+      else {
+        render(template: '/overview/searchresults', model: [searchList: groupActivities])
+      }
+    }
+    else
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
   }
 
 }
