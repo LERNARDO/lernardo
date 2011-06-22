@@ -51,7 +51,26 @@ class ProjectProfileController {
       }
     }
 
-    return [projects: projects]
+    Entity currentEntity = entityHelperService.loggedIn
+
+    // get themes
+    List themes = []
+    if (currentEntity.type == metaDataService.etEducator) {
+      // find all facilities the current entity is linked to as educator or lead educator
+      List facilities = []
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+
+      // find all themes that are linked to those facilities
+
+      facilities.each { facility ->
+        themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
+      }
+    }
+    else
+      themes = Entity.findAllByType(metaDataService.etTheme)
+
+    return [projects: projects, themes: themes]
   }
 
   def show = {
@@ -1190,6 +1209,53 @@ class ProjectProfileController {
     def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
     render template: 'units', model: [projectDay: projectDay, units: units, entity: entityHelperService.loggedIn, project: project, allParents: allParents, allPartners: allPartners]
+  }
+
+  def searchbydate = {
+    def beginDate = null
+    def endDate = null
+    if (params.beginDate)
+      beginDate = Date.parse("dd. MM. yy", params.beginDate)
+    if (params.endDate)
+        endDate = Date.parse("dd. MM. yy", params.endDate)
+    if (!beginDate || !endDate)
+      render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
+    else {
+      List projects = Entity.createCriteria().list {
+        eq("type", metaDataService.etProject)
+        profile {
+          ge("startDate", beginDate)
+          le("endDate", endDate)
+        }
+      maxResults(15)
+      }
+
+      if (projects.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        return
+      }
+      else {
+        render(template: '/overview/searchresults', model: [searchList: projects])
+      }
+    }
+  }
+
+  def searchbytheme = {
+    Entity theme = Entity.get(params.theme)
+
+    if (theme) {
+      // find all projects that are linked to this theme
+      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+      if (projects.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        return
+      }
+      else {
+        render(template: '/overview/searchresults', model: [searchList: projects])
+      }
+    }
+    else
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
   }
 
 }
