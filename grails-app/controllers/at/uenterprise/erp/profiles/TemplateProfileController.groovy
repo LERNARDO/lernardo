@@ -17,6 +17,7 @@ import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
+import at.openfactory.ep.Asset
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -147,6 +148,30 @@ class TemplateProfileController {
       method.save(flush:true)
       entity.profile.addToMethods(method)
     }
+
+    // loop through all labels of the original and create them in the copy
+    original.profile.labels.each { la->
+      Label label = new Label()
+
+      label.name = la.name
+      label.description = la.description
+      label.type = "instance"
+
+      label.save(flush:true)
+
+      entity.profile.addToLabels(label)
+    }
+
+    // copy publications
+    List publications = Publication.findAllByEntity(original)
+    publications.each { pu ->
+      new Publication(entity: entity, type: metaDataService.ptDoc1, asset: pu.asset, name: pu.name).save()
+    }
+
+    // copy profile pic
+    //Asset asset = Asset.findByEntity(original)
+    //new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+    // TODO: figure out why the above won't work - the new asset is created but it shows a wrong asset on the profile
 
     flash.message = message(code: "template.copied", args: [entity.profile.fullName])
     redirect action: 'show', id: entity.id, params: [entity: entity.id]

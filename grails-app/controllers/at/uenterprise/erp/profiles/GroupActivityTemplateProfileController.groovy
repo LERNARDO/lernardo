@@ -15,6 +15,7 @@ import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Publication
 
 class GroupActivityTemplateProfileController {
   MetaDataService metaDataService
@@ -168,6 +169,25 @@ class GroupActivityTemplateProfileController {
 
     templates.each {
       new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+    }
+
+    // loop through all labels of the original and create them in the copy
+    original.profile.labels.each { la->
+      Label label = new Label()
+
+      label.name = la.name
+      label.description = la.description
+      label.type = "instance"
+
+      label.save(flush:true)
+
+      entity.profile.addToLabels(label)
+    }
+
+    // copy publications
+    List publications = Publication.findAllByEntity(original)
+    publications.each { pu ->
+      new Publication(entity: entity, type: metaDataService.ptDoc1, asset: pu.asset, name: pu.name).save()
     }
 
     flash.message = message(code: "group.copied", args: [entity.profile.fullName])

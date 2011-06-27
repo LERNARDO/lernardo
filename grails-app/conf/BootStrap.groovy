@@ -52,7 +52,8 @@ import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Setup
 
 //import org.springframework.core.io.Resource
-//import org.codehaus.groovy.grails.commons.ApplicationHolder
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import at.openfactory.ep.AssetService
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -62,6 +63,7 @@ class BootStrap {
   ProfileHelperService profileHelperService
   InterfaceMaintenanceService interfaceMaintenanceService
   LinkHelperService linkHelperService
+  AssetService assetService
   def GrailsApplication
 
   def init = {servletContext ->
@@ -487,7 +489,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("dummyTemplate" + i)) {
-        entityHelperService.createEntity("dummyTemplate" + i, etTemplate) {Entity ent ->
+        def entity = entityHelperService.createEntity("dummyTemplate" + i, etTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.fullName = "dummyTemplate" + i
           ent.profile.description = "dummyDescription"
@@ -504,6 +506,9 @@ class BootStrap {
           ent.profile.duration = generator.nextInt(50) + 10
           ent.profile.type = "default"
         }
+        // add default profile image
+        File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
+        def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
       }
     }
 
