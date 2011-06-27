@@ -149,7 +149,7 @@ class TemplateProfileController {
     }
 
     flash.message = message(code: "template.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id
+    redirect action: 'show', id: entity.id, params: [entity: entity.id]
   }
 
   def save = {

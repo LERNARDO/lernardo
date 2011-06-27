@@ -180,7 +180,7 @@ class ProjectTemplateProfileController {
     }
 
     flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id
+    redirect action: 'show', id: entity.id, params: [entity: entity.id]
   }
 
   def create = {

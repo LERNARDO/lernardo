@@ -171,7 +171,7 @@ class GroupActivityTemplateProfileController {
     }
 
     flash.message = message(code: "group.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id
+    redirect action: 'show', id: entity.id, params: [entity: entity.id]
 
   }
 
