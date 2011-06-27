@@ -59,7 +59,7 @@ class CalendarController {
   def show = {
     Entity currentEntity = entityHelperService.loggedIn
 
-    List visibleEducators = currentEntity.profile.calendar.calendareds
+    //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
 
     List educators = []
 
@@ -87,7 +87,7 @@ class CalendarController {
   def end = new Date()
   end.setTime(params.long('end') * 1000)
 
-  List visibleEducators = currentEntity.profile.calendar.calendareds
+  //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
   List eventList = []
 
    /* if (visibleEducators) {
@@ -128,7 +128,7 @@ class CalendarController {
     Entity currentEntity = entityHelperService.loggedIn
 
     // find out whether to toggle the events of the given entity on or off
-    List visibleEducators = currentEntity.profile.calendar.calendareds
+    List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
 
     if (visibleEducators.contains(params.id)) {
       currentEntity.profile.calendar.removeFromCalendareds(params.id)
