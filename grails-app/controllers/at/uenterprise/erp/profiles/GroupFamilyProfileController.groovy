@@ -151,11 +151,14 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+
       render template: 'parents', model: [parents: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
       }
     else {
-      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      //render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List parents = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberParent)
       render template: 'parents', model: [parents: parents, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
@@ -173,11 +176,14 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+
       render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
     }
     else {
-      render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      //render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
       render template: 'clients', model: [clients: clients, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
@@ -194,11 +200,14 @@ class GroupFamilyProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+
       render template: 'childs', model: [childs: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
     }
     else {
-      render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      //render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
+      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
       render template: 'childs', model: [childs: childs, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
