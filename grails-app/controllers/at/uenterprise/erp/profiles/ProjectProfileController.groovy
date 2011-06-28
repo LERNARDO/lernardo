@@ -492,6 +492,8 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
     Entity projectUnitTemplate = Entity.get(params.unit)
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
     // set the correct time for the new unit
@@ -535,6 +537,9 @@ class ProjectProfileController {
       ent.profile.duration = duration2
     }
 
+    // save creator
+    new Link(source: currentEntity, target: projectUnit, type: metaDataService.ltCreator).save()
+
     projectDay.profile.addToUnits(projectUnit.id.toString())
 
     // link the new unit to the project day
@@ -555,30 +560,34 @@ class ProjectProfileController {
         // get all partners
         def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
-    render template: 'units', model: [units: units, project: project, projectDay: projectDay, entity: entityHelperService.loggedIn, allParents: allParents, allPartners: allPartners]
+    render template: 'units', model: [units: units, project: project, projectDay: projectDay, entity: currentEntity, allParents: allParents, allPartners: allPartners]
 
   }
 
   def removeUnit = {
     Entity projectDay = Entity.get(params.id)
+    Entity projectUnit = Entity.get(params.unit)
 
     // delete link
     def c = Link.createCriteria()
     def link = c.get {
-      eq('source', Entity.get(params.unit))
+      eq('source', projectUnit)
       eq('target', projectDay)
       eq('type', metaDataService.ltProjectDayUnit)
     }
     link.delete()
 
     // find all activities linking to this unit and delete them
-    Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit).each {it.delete()}
+    Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnit).each {it.delete()}
     //List activities = links.collect {it.source}
+
+    // delete link to creator
+    Link.findByTargetAndType(projectUnit, metaDataService.ltCreator)?.delete()
 
     projectDay.profile.removeFromUnits(params.unit)
 
     // delete projectUnit
-    Entity.get(params.unit).delete()
+    projectUnit.delete()
 
     // find all project units of this project
     List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
