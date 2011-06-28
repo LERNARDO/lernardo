@@ -51,7 +51,26 @@ class ProjectProfileController {
       }
     }
 
-    return [projects: projects]
+    Entity currentEntity = entityHelperService.loggedIn
+
+    // get themes
+    List themes = []
+    if (currentEntity.type == metaDataService.etEducator) {
+      // find all facilities the current entity is linked to as educator or lead educator
+      List facilities = []
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+
+      // find all themes that are linked to those facilities
+
+      facilities.each { facility ->
+        themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
+      }
+    }
+    else
+      themes = Entity.findAllByType(metaDataService.etTheme)
+
+    return [projects: projects, themes: themes]
   }
 
   def show = {
@@ -473,6 +492,8 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
     Entity projectUnitTemplate = Entity.get(params.unit)
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
     // set the correct time for the new unit
@@ -516,6 +537,9 @@ class ProjectProfileController {
       ent.profile.duration = duration2
     }
 
+    // save creator
+    new Link(source: currentEntity, target: projectUnit, type: metaDataService.ltCreator).save()
+
     projectDay.profile.addToUnits(projectUnit.id.toString())
 
     // link the new unit to the project day
@@ -536,30 +560,34 @@ class ProjectProfileController {
         // get all partners
         def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
-    render template: 'units', model: [units: units, project: project, projectDay: projectDay, entity: entityHelperService.loggedIn, allParents: allParents, allPartners: allPartners]
+    render template: 'units', model: [units: units, project: project, projectDay: projectDay, entity: currentEntity, allParents: allParents, allPartners: allPartners]
 
   }
 
   def removeUnit = {
     Entity projectDay = Entity.get(params.id)
+    Entity projectUnit = Entity.get(params.unit)
 
     // delete link
     def c = Link.createCriteria()
     def link = c.get {
-      eq('source', Entity.get(params.unit))
+      eq('source', projectUnit)
       eq('target', projectDay)
       eq('type', metaDataService.ltProjectDayUnit)
     }
     link.delete()
 
     // find all activities linking to this unit and delete them
-    Link.findAllByTargetAndType(Entity.get(params.unit), metaDataService.ltProjectUnit).each {it.delete()}
+    Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnit).each {it.delete()}
     //List activities = links.collect {it.source}
+
+    // delete link to creator
+    Link.findByTargetAndType(projectUnit, metaDataService.ltCreator)?.delete()
 
     projectDay.profile.removeFromUnits(params.unit)
 
     // delete projectUnit
-    Entity.get(params.unit).delete()
+    projectUnit.delete()
 
     // find all project units of this project
     List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
@@ -1190,6 +1218,53 @@ class ProjectProfileController {
     def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
     render template: 'units', model: [projectDay: projectDay, units: units, entity: entityHelperService.loggedIn, project: project, allParents: allParents, allPartners: allPartners]
+  }
+
+  def searchbydate = {
+    def beginDate = null
+    def endDate = null
+    if (params.beginDate)
+      beginDate = Date.parse("dd. MM. yy", params.beginDate)
+    if (params.endDate)
+        endDate = Date.parse("dd. MM. yy", params.endDate)
+    if (!beginDate || !endDate)
+      render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
+    else {
+      List projects = Entity.createCriteria().list {
+        eq("type", metaDataService.etProject)
+        profile {
+          ge("startDate", beginDate)
+          le("endDate", endDate)
+        }
+      maxResults(15)
+      }
+
+      if (projects.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        return
+      }
+      else {
+        render(template: '/overview/searchresults', model: [searchList: projects])
+      }
+    }
+  }
+
+  def searchbytheme = {
+    Entity theme = Entity.get(params.theme)
+
+    if (theme) {
+      // find all projects that are linked to this theme
+      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+      if (projects.size() == 0) {
+        render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+        return
+      }
+      else {
+        render(template: '/overview/searchresults', model: [searchList: projects])
+      }
+    }
+    else
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
   }
 
 }

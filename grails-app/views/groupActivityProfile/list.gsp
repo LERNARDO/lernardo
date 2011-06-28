@@ -21,9 +21,26 @@
 <div class="boxGray">
   <div class="second">
 
-    <div class="info-msg">
+    <div class="info-msg" style="margin-bottom: 5px;">
       ${groups.totalCount} <g:message code="groupActivities.c_total"/>
     </div>
+
+    <g:formRemote name="formRemote" url="[action: 'searchbydate']" update="membersearch-results">
+      Suche nach Datum:
+      <g:message code="from"/>: <g:textField class="datepicker" name="beginDate" size="10" value=""/>
+      <g:message code="to"/>: <g:textField class="datepicker" name="endDate" size="10" value=""/>
+      <g:submitButton name="submit" value="OK"/>
+    </g:formRemote>
+
+    <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[groupActivity: 'yes']]" before="showspinner('#membersearch-results')" />
+
+    <g:formRemote name="formRemote2" url="[action: 'searchbytheme']" update="membersearch-results">
+      Suche nach Thema:
+      <g:select name="theme" from="${themes}" optionKey="id" optionValue="profile"/>
+      <g:submitButton name="submit" value="OK"/>
+    </g:formRemote>
+
+    <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
     <g:if test="${groups}">
       <table class="default-table">

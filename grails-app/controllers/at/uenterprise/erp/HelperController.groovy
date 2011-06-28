@@ -2,10 +2,12 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityType
+import at.openfactory.ep.EntityHelperService
 
 class HelperController {
   FunctionService functionService
   MetaDataService metaDataService
+  EntityHelperService entityHelperService
 
   def index = {
     redirect action: "list", params: params
@@ -15,7 +17,7 @@ class HelperController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    Entity entity = Entity.get(params.id)
+    Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
 
     List helpers = []
     if (entity.type.id == metaDataService.etUser.id)
@@ -121,7 +123,7 @@ class HelperController {
 
   def save = {
     Helper helperInstance = new Helper(params)
-    Entity entity = Entity.get(params.name)
+    Entity entity = Entity.get(params.id)
 
     List types = params.list('types')
 
@@ -129,29 +131,9 @@ class HelperController {
       helperInstance.addToTypes(it)
     }
 
-    List receivers = []
-    types.each { type ->
-      EntityType entityType = null
-      if (type == 'operator')
-        entityType = metaDataService.etOperator
-      else if (type == 'educator')
-        entityType = metaDataService.etEducator
-      else if (type == 'client')
-        entityType = metaDataService.etClient
-      else if (type == 'partner')
-        entityType = metaDataService.etPartner
-      else if (type == 'pate')
-        entityType = metaDataService.etPate
-      else if (type == 'parent')
-        entityType = metaDataService.etParent
-      receivers.addAll(Entity.findAllByType(entityType))
-    }
-
-    receivers.each {
-      functionService.createEvent(it as Entity, 'Es wurde das Hilfethema <a href="' + createLink(controller: 'helper', action: 'list') + '">' + helperInstance.title + '</a> angelegt.')
-    }
-
     if (helperInstance.save(flush: true)) {
+      functionService.createEvent("HELPER_CREATED", entity.id.toInteger(), helperInstance.id.toInteger())
+
       flash.message = message(code: "helper.created")
       redirect action: "list", id: entity.id
     }

@@ -17,6 +17,8 @@ import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
+import at.openfactory.ep.Asset
+import at.uenterprise.erp.Event
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -148,8 +150,32 @@ class TemplateProfileController {
       entity.profile.addToMethods(method)
     }
 
+    // loop through all labels of the original and create them in the copy
+    original.profile.labels.each { la->
+      Label label = new Label()
+
+      label.name = la.name
+      label.description = la.description
+      label.type = "instance"
+
+      label.save(flush:true)
+
+      entity.profile.addToLabels(label)
+    }
+
+    // copy publications
+    List publications = Publication.findAllByEntity(original)
+    publications.each { pu ->
+      new Publication(entity: entity, type: metaDataService.ptDoc1, asset: pu.asset, name: pu.name).save()
+    }
+
+    // copy profile pic
+    //Asset asset = Asset.findByEntity(original)
+    //new Asset(entity: entity, storage: asset.storage, type: "profile").save()
+    // TODO: figure out why the above won't work - the new asset is created but it shows a wrong asset on the profile
+
     flash.message = message(code: "template.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id
+    redirect action: 'show', id: entity.id, params: [entity: entity.id]
   }
 
   def save = {
@@ -168,12 +194,7 @@ class TemplateProfileController {
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
-      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etEducator)
-      receiver.each {
-        if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      }
+      functionService.createEvent("ACTIVITY_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

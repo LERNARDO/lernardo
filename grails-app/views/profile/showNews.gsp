@@ -25,7 +25,7 @@
     <p>
       <g:if test="${eventsTomorrow}">
         <g:each in="${eventsTomorrow}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - ${event.content.decodeHTML()}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/><br/>
         </g:each>
       </g:if>
       <g:else>
@@ -38,7 +38,7 @@
     <p>
       <g:if test="${eventsToday}">
         <g:each in="${eventsToday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - ${event.content.decodeHTML()}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/><br/>
         </g:each>
       </g:if>
       <g:else>
@@ -51,7 +51,7 @@
     <p>
       <g:if test="${eventsYesterday}">
         <g:each in="${eventsYesterday}" var="event" status="i">
-          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - ${event.content.decodeHTML()}<br/>
+          <g:formatDate date="${event.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/><br/>
         </g:each>
       </g:if>
       <g:else>

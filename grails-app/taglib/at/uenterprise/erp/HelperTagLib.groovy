@@ -20,7 +20,20 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
-  def profileImage = {attrs->
+  def getEvent = {attrs ->
+    Entity who = Entity.get(attrs.event.who)
+    def what = Entity.get(attrs.event.what)
+    if (!what) {
+     what = Helper.get(attrs.event.what)
+     if (who && what)
+       out << message(code: attrs.event.name, args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '">' + who.profile.fullName + '</a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '">' + what.title + '</a>']).decodeHTML()
+    }
+    else
+      if (who && what)
+        out << message(code: attrs.event.name, args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '">' + who.profile.fullName + '</a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id) + '">' + what.profile.fullName + '</a>']).decodeHTML()
+  }
+
+  def profileImage = {attrs ->
     attrs.name = attrs.entity.name
     def imgattrs = [:]
     imgattrs['src'] = g.createLink (controller:'app', action:'get', params:[type:'profile', entity:attrs.entity.id])
@@ -114,8 +127,8 @@ class HelperTagLib {
   }
 
   def getSalary = { attrs, body ->
-    Date date1
-    Date date2
+    Date date1 = null
+    Date date2 = null
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
@@ -177,17 +190,17 @@ class HelperTagLib {
     // calculate salary
     def result = 0
     if (hours <= expectedHours)
-        result = hours * (educator?.profile?.hourlyWage ?: 0)
+        result += hours * (educator?.profile?.hourlyWage ?: 0)
     else
-        result = expectedHours * (educator?.profile?.hourlyWage ?: 0) + ((hours - expectedHours) * (educator?.profile?.overtimePay ?: 0))
+        result += expectedHours * (educator?.profile?.hourlyWage ?: 0) + ((hours - expectedHours) * (educator?.profile?.overtimePay ?: 0))
 
     out << result
 
   }
 
   def getExpectedHours = { attrs, body ->
-    Date date1
-    Date date2
+    Date date1 = null
+    Date date2 = null
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
@@ -379,13 +392,13 @@ class HelperTagLib {
     List targetNames = linksSource*.target.profile.fullName
 
     if (sourceNames.size() == 0 && targetNames.size() == 0)
-      out << "return confirm('Es bestehen keine Beziehungen! Löschen bitte bestätigen!')"
+      out << "return confirm('${message(code: 'connectionsNone')}')"
     else if (sourceNames.size() > 0 && targetNames.size() == 0)
-      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + "! Löschen bitte bestätigen!')"
+      out << "return confirm('${message(code: 'connectionsTo', args: [sourceNames])}')"
     else if (sourceNames.size() == 0 && targetNames.size() > 0)
-      out << "return confirm('Es bestehen Beziehungen von " + targetNames + "! Löschen bitte bestätigen!')"
+      out << "return confirm('${message(code: 'connectionsFrom', args: [targetNames])}')"
     else
-      out << "return confirm('Es bestehen Beziehungen zu " + sourceNames + " und von " + targetNames + "! Löschen bitte bestätigen!')"
+      out << "return confirm('${message(code: 'connectionsToAndFrom', args: [sourceNames, targetNames])}')"
   }
 
   /*
@@ -592,7 +605,7 @@ class HelperTagLib {
     if (projectDayUnits)
       projectDayUnits.each {out << body(units: it)}
     else
-      out << '<span class="italic red">Bitte die Projekteinheiten auswählen, die an diesem Projekttag stattfinden sollen!</span></span>'
+      out << '<span class="italic red">' + message(code: 'projectUnits.choose') + '</span></span>'
   }
 
   /*
@@ -603,7 +616,7 @@ class HelperTagLib {
     if (projectDayEducators)
       projectDayEducators.each {out << body(educators: it)}
     else
-      out << '<span class="italic red">Bitte die Pädagogen auswählen, die an diesem Projekttag teilnehmen!</span></span>'
+      out << '<span class="italic red">' + message(code: 'educators.choose') + '</span></span>'
   }
 
   /*
@@ -614,7 +627,7 @@ class HelperTagLib {
     if (projectDaySubstitutes)
       projectDaySubstitutes.each {out << body(educators: it)}
     else
-      out << '<span class="italic red">Bitte die Ersatzpädagogen auswählen, die an diesem Projekttag teilnehmen!</span></span>'
+      out << '<span class="italic red">' + message(code: 'substitutes.choose') + '</span></span>'
   }
 
   /*
@@ -625,7 +638,7 @@ class HelperTagLib {
     if (projectDayResources)
       projectDayResources.each {out << body(resources: it)}
     else
-      out << '<span class="italic">Keine Resourcen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   /*
@@ -647,7 +660,7 @@ class HelperTagLib {
     if (projectUnitParents)
       projectUnitParents.each {out << body(parents: it)}
     else
-      out << '<span class="italic red">Bitte die Erziehungsberechtigten auswählen, die an dieser Projekteinheit teilnehmen!</span></span>'
+      out << '<span class="italic red">' + message(code: 'parents.choose') + '</span></span>'
   }
 
   /*
@@ -658,7 +671,7 @@ class HelperTagLib {
     if (projectUnitPartners)
       projectUnitPartners.each {out << body(partners: it)}
     else
-      out << '<span class="italic red">Bitte die Partner auswählen, die an dieser Projekteinheit teilnehmen!</span></span>'
+      out << '<span class="italic red">' + message(code: 'partners.choose') + '</span></span>'
   }
 
   /*
@@ -669,7 +682,7 @@ class HelperTagLib {
     if (groupActivityTemplates)
       groupActivityTemplates.each {out << body(groupActivityTemplates: it)}
     else
-      out << '<span class="italic red" style="margin-left: 15px">Keine Aktivitätsblockvorlagen zugewiesen!</span></span>'
+      out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'groupActivityTemplates.notAssigned') + '</span></span>'
   }
 
   /*
@@ -680,7 +693,7 @@ class HelperTagLib {
     if (resources)
       resources.each {out << body(resources: it)}
     else
-      out << '<span class="italic">Keine Ressourcen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
   /*
@@ -766,7 +779,7 @@ class HelperTagLib {
     if (clients)
       clients.each {out << body(clients: it)}
     else
-      out << '<span class="italic">keine Betreuten zugewiesen <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">' + message(code: 'clients.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
 
   /*
@@ -777,7 +790,7 @@ class HelperTagLib {
     if (pateClients)
       pateClients.each {out << body(clients: it)}
     else
-      out << '<span class="italic">keine Betreuten zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">' + message(code: 'clients.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
 
   /*
@@ -788,7 +801,7 @@ class HelperTagLib {
     if (educators)
       educators.each {out << body(educators: it)}
     else
-      out << '<span class="italic">keine Pädagogen zugewiesen</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
+      out << '<span class="italic">' + message(code: 'educators.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
 
   /*

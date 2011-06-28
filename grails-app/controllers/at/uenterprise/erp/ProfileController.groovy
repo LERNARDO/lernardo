@@ -63,7 +63,6 @@ class ProfileController {
 
     Entity currentEntity = entityHelperService.loggedIn
     userList.each {
-      functionService.createEvent(it, 'Du hast eine Notifikation erhalten.')
       functionService.createMessage(currentEntity, it as Entity, it as Entity, params.subject, params.content)
     }
     flash.message = message(code: "admin.notificationSuccess")
@@ -166,7 +165,7 @@ class ProfileController {
 
     SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"))
 
-    List allEvents = Event.findAllByEntity(entity, [sort: 'dateCreated', order: 'desc'])
+    List allEvents = Event.list([sort: 'dateCreated', order: 'desc'])
 
     List eventsToday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
 
@@ -415,9 +414,6 @@ class ProfileController {
       def name = linkInstance.target.profile.fullName ?: linkInstance.target.profile.lastName + " " + linkInstance.target.profile.firstName
       flash.message = message(code: "user.addFriend", args: [name])
 
-      functionService.createEvent(currentEntity, 'Du hast ' + name + ' als Freund hinzugefügt.')
-      functionService.createEvent(entity, currentEntity.profile.id + ' hat dich als Freund hinzugefügt.')
-
       redirect controller: entity.type.supertype.name + 'Profile', action: 'show', params: [id: entity.id, entity: entity.id]
     }
     else {
@@ -451,9 +447,6 @@ class ProfileController {
         linkInstanceBack.delete(flush: true)
         def name = entity.profile.fullName ?: entity.profile.lastName + " " + entity.profile.firstName
         flash.message = message(code: "user.removeFriend", args: [name])
-
-        functionService.createEvent(currentEntity, 'Du hast ' + name + ' als Freund entfernt.')
-        functionService.createEvent(entity, currentEntity.profile.id + ' hat dich als Freund entfernt.')
 
         redirect controller: entity.type.supertype.name + 'Profile', action: 'show', params: [id: entity.id, entity: entity.id]
       }

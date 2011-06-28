@@ -119,13 +119,6 @@ class ResourceProfileController {
         ent.profile.properties = params
       }
 
-      functionService.createEvent(currentEntity, 'Du hast die Resource <a href="' + createLink(controller: 'resourceProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etEducator)
-      receiver.each {
-        if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Resource <a href="' + createLink(controller: 'resourceProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      }
-
       flash.message = message(code: "resource.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {

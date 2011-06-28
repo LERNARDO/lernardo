@@ -103,6 +103,10 @@ class OverviewController {
             eq("type", metaDataService.etGroupPartner)
           if (params.projectTemplate)
             eq("type", metaDataService.etProjectTemplate)
+          if (params.project)
+            eq("type", metaDataService.etProject)
+          if (params.groupActivity)
+            eq("type", metaDataService.etGroupActivity)
         }
       or {
         ilike('name', "%" + params.name + "%")
@@ -114,8 +118,7 @@ class OverviewController {
     }
 
     if (users.size() == 0) {
-      // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
       return
     }
     else {

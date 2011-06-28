@@ -13,6 +13,7 @@ import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Publication
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
@@ -179,8 +180,27 @@ class ProjectTemplateProfileController {
       }
     }
 
+    // loop through all labels of the original and create them in the copy
+    original.profile.labels.each { la->
+      Label label = new Label()
+
+      label.name = la.name
+      label.description = la.description
+      label.type = "instance"
+
+      label.save(flush:true)
+
+      entity.profile.addToLabels(label)
+    }
+
+    // copy publications
+    List publications = Publication.findAllByEntity(original)
+    publications.each { pu ->
+      new Publication(entity: entity, type: metaDataService.ptDoc1, asset: pu.asset, name: pu.name).save()
+    }
+
     flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
-    redirect action: 'show', id: entity.id
+    redirect action: 'show', id: entity.id, params: [entity: entity.id]
   }
 
   def create = {
@@ -203,12 +223,7 @@ class ProjectTemplateProfileController {
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
-      functionService.createEvent(currentEntity, 'Du hast die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etEducator)
-      receiver.each {
-        if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      }
+      functionService.createEvent("PROJECT_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

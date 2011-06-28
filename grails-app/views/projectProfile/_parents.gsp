@@ -1,5 +1,5 @@
 <g:if test="${parents}">
-  <ul>
+  <ul style="margin-left: 15px">
     <g:each in="${parents}" var="parent" status="j">
       <li>
         <g:link controller="${parent.type.supertype.name +'Profile'}" action="show" id="${parent.id}" params="[entity:parent.id]">${parent.profile.fullName}</g:link> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><g:remoteLink action="removeParent" update="parents2${i}" id="${unit.id}" params="[parent: parent.id, i:i]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck>
