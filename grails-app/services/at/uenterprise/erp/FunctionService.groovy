@@ -141,8 +141,8 @@ class FunctionService {
    * @param date
    * @return the event
    */
-  Event createEvent(Entity entity, String content, Date date = new Date()) {
-    new Event(entity: entity, content: content, date: date).save()
+  Event createEvent(String name, Integer who, Integer what, Date date = new Date()) {
+    new Event(name: name, who: who, what: what, date: date).save()
   }
 
   /**

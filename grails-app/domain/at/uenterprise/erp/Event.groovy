@@ -1,12 +1,10 @@
 package at.uenterprise.erp
 
-import at.openfactory.ep.Entity
-
 class Event {
 
-    static belongsTo = [entity:Entity]
-
-    String content
+    String name
+    Integer who
+    Integer what
     Date date
 
     Date dateCreated

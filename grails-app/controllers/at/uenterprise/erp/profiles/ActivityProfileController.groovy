@@ -245,9 +245,6 @@ class ActivityProfileController {
         params.list('educators').each {
           Entity educator = Entity.get(it)
           new Link(source: educator, target: entity, type: metaDataService.ltActEducator).save()
-          if (educator.id != currentEntity.id) {
-            functionService.createEvent(educator, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> mit dir als TeilnehmerIn angelegt.')
-          }
         }
 
         // create links to resources
@@ -311,23 +308,15 @@ class ActivityProfileController {
     params.list('educators').each {
       Entity educator = Entity.get(it)
       new Link(source: educator, target: activity, type: metaDataService.ltActEducator).save()
-      if (educator.id != currentEntity.id) {
-        functionService.createEvent(educator, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> aktualisiert.')
-      }
     }
 
     params.list('clients').each {
       Entity client = Entity.get(it)
       new Link(source: client, target: activity, type: metaDataService.ltActClient).save()
-      if (client.id != currentEntity.id) {
-        functionService.createEvent(client, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivität <a href="' + createLink(controller: 'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> aktualisiert.')
-      }
     }
 
     if (activity.profile.save() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
-      // functionService.createEvent(currentEntity, 'Du hast die Aktivität "' + activity.profile.fullName + '" aktualisiert.')
-      functionService.createEvent(currentEntity, message(code: "activity.updated", args: [activity.profile.fullName]) )
       redirect action: 'show', id: activity.id, params: [entity: activity.id]
     }
     else {

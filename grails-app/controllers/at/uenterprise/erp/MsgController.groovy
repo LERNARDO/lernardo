@@ -172,10 +172,7 @@ class MsgController {
 
       // create second instance to be saved in inbox of receiver
       functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
-
-      functionService.createEvent(currentEntity, 'Du hast <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a> eine Nachricht geschickt.')
-      functionService.createEvent(entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a>  hat dir eine Nachricht geschickt.')
-    }
+   }
 
     flash.message = message(code:"msg.sent", args:[params.subject])
 
@@ -193,9 +190,6 @@ class MsgController {
     functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
      
     flash.message = message(code:"msg.sent", args:[params.subject])
-
-    functionService.createEvent(currentEntity, 'Du hast <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a> eine Nachricht geschickt.')
-    functionService.createEvent(entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a>  hat dir eine Nachricht geschickt.')
 
     redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
     //redirect action:'inbox', id: currentEntity.id

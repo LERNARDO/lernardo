@@ -38,6 +38,7 @@ import at.uenterprise.erp.Setup
 //import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
+import at.uenterprise.erp.Event
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -76,7 +77,6 @@ class BootStrap {
         createDefaultPosts()
         createDefaultPartner()
         createDefaultPates()
-        //createDefaultEvents()
         //createDefaultAttendances()
         createDefaultFamilies()
         createDefaultResources()
@@ -548,12 +548,6 @@ class BootStrap {
               author: Entity.findByName('educator1')).save()
     }
 
-  }
-
-  void createDefaultEvents() {
-    log.info ("creating events")
-
-    functionService.createEvent(Entity.findByName('admin'), 'Elternsprechtag').save()
   }
 
   void createDefaultHelpers() {

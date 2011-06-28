@@ -221,15 +221,8 @@ class GroupActivityTemplateProfileController {
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">'
               + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
               + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
-      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsblockvorlage <a href="'
-              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etEducator)
-      receiver.each {
-        if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">'
-              + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
-              + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      }
+
+      functionService.createEvent("GROUP_ACTIVITY_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]

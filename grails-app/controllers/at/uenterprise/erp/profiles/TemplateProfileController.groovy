@@ -18,6 +18,7 @@ import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
 import at.openfactory.ep.Asset
+import at.uenterprise.erp.Event
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -193,12 +194,7 @@ class TemplateProfileController {
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
-      functionService.createEvent(currentEntity, 'Du hast die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etEducator)
-      receiver.each {
-        if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Aktivitätsvorlage <a href="' + createLink(controller: 'templateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      }
+      functionService.createEvent("ACTIVITY_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

@@ -223,12 +223,7 @@ class ProjectTemplateProfileController {
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
-      functionService.createEvent(currentEntity, 'Du hast die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      List receiver = Entity.findAllByType(metaDataService.etEducator)
-      receiver.each {
-        if (it.id != currentEntity.id)
-          functionService.createEvent(it as Entity, '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat die Projektvorlage <a href="' + createLink(controller: 'projectTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.')
-      }
+      functionService.createEvent("PROJECT_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
