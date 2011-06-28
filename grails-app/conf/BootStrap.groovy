@@ -7,35 +7,19 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.DefaultObjectService
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.ProfileHelperService
-//import at.openfactory.ep.attr.DynAttrSet
-//import at.openfactory.ep.attr.DynAttr
 
-import at.uenterprise.erp.Helper
-import at.uenterprise.erp.Evaluation
 import at.uenterprise.erp.Attendance
 import at.uenterprise.erp.Method
-import at.uenterprise.erp.Element
-import at.uenterprise.erp.Comment
-
-import at.uenterprise.erp.ArticlePost
 
 import at.uenterprise.erp.profiles.ClientProfile
 import at.uenterprise.erp.profiles.FacilityProfile
 import at.uenterprise.erp.profiles.OperatorProfile
-import at.uenterprise.erp.profiles.EducatorProfile
-import at.uenterprise.erp.profiles.UserProfile
 import at.uenterprise.erp.profiles.ChildProfile
-import at.uenterprise.erp.profiles.ParentProfile
-import at.uenterprise.erp.profiles.PartnerProfile
-import at.uenterprise.erp.profiles.PateProfile
 
 import grails.util.GrailsUtil
 
-import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
-import at.uenterprise.erp.InterfaceMaintenanceService
 import at.uenterprise.erp.WorkdayCategory
-import at.uenterprise.erp.WorkdayUnit
 import at.uenterprise.erp.ArticlePost
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Element
@@ -69,6 +53,10 @@ class BootStrap {
   def init = {servletContext ->
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
+
+      log.info "====="
+      Date begin = new Date()
+
       createDefaultUsers()
 
       if (GrailsUtil.environment == "development") {
@@ -102,13 +90,13 @@ class BootStrap {
         createDefaultWorkdayCategories()
         //createDefaultWorkdayUnits()
 
-        // TODO: add projects, theme room activities
         createDefaultAppointments()
         createDefaultGroupActivities()
       }
 
-
       //createDefaultEvaluations()
+      log.info "====="
+      log.info "created bootstrap data in ${(new Date().getTime() - begin.getTime()) / 1000} seconds"
     }
   }
 
@@ -150,7 +138,7 @@ class BootStrap {
   }
 
   void createDefaultUsers() {
-    log.info ("creating default users")
+    log.info ("creating users")
     EntityType etUser = metaDataService.etUser
 
     // system admin users
@@ -195,42 +183,39 @@ class BootStrap {
   }
 
   void createDefaultEducators() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy educators")
+    log.info ("creating " + grailsApplication.config.dummies + " educators")
     EntityType etEducator = metaDataService.etEducator
 
     Random generator = new Random()
 
-    // ent.user.addToAuthorities(metaDataService.leadEducatorRole)
-
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyEducator" + i)) {
+      if (!Entity.findByName("educator" + i)) {
         ECalendar calendar = new ECalendar().save()
-        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyEducator" + i, etEducator, "dummyEducator" + i + "@domain.org", "DummyEducatorFirstName DummyEducatorLastName" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("educator" + i, etEducator, "educator" + i + "@domain.org", "educatorFirstName educatorLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           EducatorProfile prf = (EducatorProfile)ent.profile
           prf.gender = generator.nextInt(2) + 1
-          prf.title = "DummyTitle"
-          prf.firstName = "DummyEducatorFirstName"
-          prf.lastName = "DummyEducatorLastName"
+          prf.title = "dummyTitle"
+          prf.firstName = "educatorFirstName"
+          prf.lastName = "educatorLastName"
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.currentCountry = "DummyCountry"
+          prf.currentCountry = "dummyCountry"
           prf.currentZip = "1234"
-          prf.currentCity = "DummyCity"
-          prf.currentStreet = "DummyStreet"
-          prf.originCountry = "austria"
+          prf.currentCity = "dummyCity"
+          prf.currentStreet = "dummyStreet"
+          prf.originCountry = "dummyCountry"
           prf.originZip = "1234"
-          prf.originCity = "DummyCity"
-          prf.originStreet = "DummyStreet"
+          prf.originCity = "dummyCity"
+          prf.originStreet = "dummyStreet"
           prf.contactPhone = "1234"
-          prf.contactCountry = "DummyCountry"
-          prf.contactCity = "DummyCity"
-          prf.contactStreet = "DummyStreet"
+          prf.contactCountry = "dummyCountry"
+          prf.contactCity = "dummyCity"
+          prf.contactStreet = "dummyStreet"
           prf.contactZip = "1345"
           prf.contactMail = "dummy@dummy.com"
           prf.education = "dummyEducation"
           prf.interests = "dummyInterests"
           prf.employment = "dummyEmployment"
-          //prf.addToLanguages((generator.nextInt(14) + 1).toString())
           prf.calendar = calendar
           prf.workHoursMonday = 8
           prf.workHoursTuesday = 8
@@ -240,42 +225,40 @@ class BootStrap {
           prf.hourlyWage = 10
           prf.overtimePay = 15
         }
-        new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltWorking).save()
+        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltWorking).save()
       }
     }
 
   }
 
   void createDefaultParents() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy parents")
+    log.info ("creating " + grailsApplication.config.dummies + " parents")
     EntityType etParent = metaDataService.etParent
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyParent" + i)) {
+      if (!Entity.findByName("parent" + i)) {
         ECalendar calendar = new ECalendar().save()
-        entityHelperService.createEntityWithUserAndProfile("dummyParent" + i, etParent, "dummyParent" + i + "@domain.org", "DummyParentFirstName DummyParentLastName" + i) {Entity ent ->
+        entityHelperService.createEntityWithUserAndProfile("parent" + i, etParent, "parent" + i + "@domain.org", "parentFirstName parentLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ParentProfile prf = (ParentProfile)ent.profile
-          prf.firstName = "DummyParentFirstName"
-          prf.lastName = "DummyParentLastName"
+          prf.firstName = "parentFirstName"
+          prf.lastName = "parentLastName"
           prf.gender = generator.nextInt(2) + 1
-          prf.currentCountry = "austria"
+          prf.currentCountry = "dummyCountry"
           prf.currentZip = "1234"
-          prf.currentCity = "DummyCity"
-          prf.currentStreet = "DummyStreet"
-          //prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          prf.currentCity = "dummyCity"
+          prf.currentStreet = "dummyStreet"
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.maritalStatus = "dummyStatus"
           prf.education = "dummyEducation"
-          prf.comment = "DummyComment"
+          prf.comment = "dummyComment"
           prf.job = generator.nextBoolean()
           if (prf.job) {
-            //prf.jobType = (generator.nextInt(14) + 1).toString()
             prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
-            prf.jobFrequency = "DummyFrequency"
+            prf.jobFrequency = "dummyFrequency"
           }
           prf.calendar = calendar
         }
@@ -285,72 +268,68 @@ class BootStrap {
   }
 
   void createDefaultClients() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy clients")
+    log.info ("creating " + grailsApplication.config.dummies + " clients")
     EntityType etClient = metaDataService.etClient
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyClient" + i)) {
+      if (!Entity.findByName("client" + i)) {
         ECalendar calendar = new ECalendar().save()
-        Entity entity = entityHelperService.createEntityWithUserAndProfile("dummyClient" + i, etClient, "dummyClient" + i + "@domain.org", "DummyClientFirstName DummyClientLastName" + i) {Entity ent ->
+        Entity entity = entityHelperService.createEntityWithUserAndProfile("client" + i, etClient, "client" + i + "@domain.org", "clientFirstName clientLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ClientProfile prf = (ClientProfile)ent.profile
-          prf.firstName = "DummyClientFirstName"
-          prf.lastName = "DummyClientLastName"
+          prf.firstName = "clientFirstName"
+          prf.lastName = "clientLastName"
           prf.gender = generator.nextInt(2) + 1
-          prf.interests = "DummyInterests"
-          prf.currentCountry = "DummyCountry"
+          prf.interests = "dummyInterests"
+          prf.currentCountry = "dummyCountry"
           prf.currentZip = "1234"
-          //prf.currentCity = "DummyCity"
-          prf.currentStreet = "DummyStreet"
-          prf.originCountry = "DummyCountry"
+          prf.currentStreet = "dummyStreet"
+          prf.originCountry = "dummyCountry"
           prf.originZip = "1234"
-          prf.originCity = "DummyCity"
-          //prf.addToLanguages((generator.nextInt(14) + 1).toString())
+          prf.originCity = "dummyCity"
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
-          prf.schoolLevel = "dummy"
+          prf.schoolLevel = "dummySchoolLevel"
           prf.familyStatus = "dummyStatus"
           prf.job = generator.nextBoolean()
           if (prf.job) {
-            //prf.jobType = (generator.nextInt(14) + 1).toString()
             prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
-            prf.jobFrequency = "DummyFrequency"
+            prf.jobFrequency = "dummyFrequency"
           }
           prf.support = generator.nextBoolean()
           if (prf.support)
-            prf.supportDescription = "DummyDescription"
+            prf.supportDescription = "dummyDescription"
           prf.calendar = calendar
         }
-        new Link(source: entity, target: Entity.findByName("dummyFacility" + i), type: metaDataService.ltGroupMemberClient).save()
+        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltGroupMemberClient).save()
       }
     }
 
   }
 
   void createDefaultChildren() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy children")
+    log.info ("creating " + grailsApplication.config.dummies + " children")
     EntityType etChild = metaDataService.etChild
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyChild" + i)) {
+      if (!Entity.findByName("child" + i)) {
         ECalendar calendar = new ECalendar().save()
-        entityHelperService.createEntityWithUserAndProfile("dummyChild" + i, etChild, "dummyChild" + i + "@domain.org", "DummyChildFirstName DummyChildLastName" + i) {Entity ent ->
+        entityHelperService.createEntityWithUserAndProfile("child" + i, etChild, "child" + i + "@domain.org", "childFirstName childLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ChildProfile prf = (ChildProfile)ent.profile
-          prf.firstName = "DummyChildFirstName"
-          prf.lastName = "DummyChildLastName"
+          prf.firstName = "childFirstName"
+          prf.lastName = "childLastName"
           prf.gender = generator.nextInt(2) + 1
           prf.birthDate = new Date(generator.nextInt(20) + 90, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.job = generator.nextBoolean()
           if (prf.job) {
-            //prf.jobType = (generator.nextInt(14) + 1).toString()
             prf.addToJobtypes("dummyJob")
             prf.jobIncome = generator.nextInt(150) + 50
-            prf.jobFrequency = "DummyFrequency"
+            prf.jobFrequency = "dummyFrequency"
           }
           prf.calendar = calendar
         }
@@ -360,19 +339,19 @@ class BootStrap {
   }
 
   void createDefaultOperator() {
-    log.info ("creating default operator")
+    log.info ("creating operator")
     EntityType etOperator = metaDataService.etOperator
 
-    if (!Entity.findByName('dummyOperator')) {
+    if (!Entity.findByName('operator')) {
       ECalendar calendar = new ECalendar().save()
-      entityHelperService.createEntityWithUserAndProfile ("dummyOperator", etOperator, "dummyOperator@domain.org", "dummyOperator") {Entity ent->
+      entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "operator@domain.org", "operator") {Entity ent->
         ent.user.locale = new Locale ("de", "DE")
         OperatorProfile prf = (OperatorProfile)ent.profile
-        prf.zip = ""
-        prf.city = ""
-        prf.street = ""
-        prf.phone = ""
-        prf.description = ""
+        prf.zip = "12345"
+        prf.city = "dummyCity"
+        prf.street = "dummyStreet"
+        prf.phone = "dummyPhone"
+        prf.description = "dummyDescription"
         prf.calendar = calendar
       }
     }
@@ -380,23 +359,21 @@ class BootStrap {
   }
 
   void createDefaultPartner() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy partners")
+    log.info ("creating " + grailsApplication.config.dummies + " partners")
     EntityType etPartner = metaDataService.etPartner
 
-    Random generator = new Random()
-
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyPartner" + i)) {
+      if (!Entity.findByName("partner" + i)) {
         ECalendar calendar = new ECalendar().save()
-        entityHelperService.createEntityWithUserAndProfile ("dummyPartner" + i, etPartner, "dummyPartner" + i + "@domain.org", "dummyPartner" + i) {Entity ent->
+        entityHelperService.createEntityWithUserAndProfile ("partner" + i, etPartner, "partner" + i + "@domain.org", "partner " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PartnerProfile prf = (PartnerProfile)ent.profile
           prf.zip = "12345"
-          prf.city = "DummyCity"
-          prf.street = "DummyStreet"
-          prf.phone = "DummyPhone"
+          prf.city = "dummyCity"
+          prf.street = "dummyStreet"
+          prf.phone = "dummyPhone"
           prf.description = "dummyDescription"
-          prf.country = "austria"
+          prf.country = "dummyCountry"
           prf.website = "http://www.dummySite.com"
           prf.calendar = calendar
         }
@@ -406,24 +383,22 @@ class BootStrap {
   }
 
   void createDefaultPates() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy pates")
+    log.info ("creating " + grailsApplication.config.dummies + " pates")
     EntityType etPate = metaDataService.etPate
 
-    Random generator = new Random()
-    
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyPate" + i)) {
+      if (!Entity.findByName("pate" + i)) {
         ECalendar calendar = new ECalendar().save()
-        entityHelperService.createEntityWithUserAndProfile ("dummyPate" + i, etPate, "dummyPate" + i + "@domain.org", "dummyPateFirstName dummyPateLastName" + i) {Entity ent->
+        entityHelperService.createEntityWithUserAndProfile ("pate" + i, etPate, "pate" + i + "@domain.org", "pateFirstName pateLastName " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PateProfile prf = (PateProfile)ent.profile
-          prf.firstName = "dummyPateFirstName"
-          prf.lastName = "dummyPateLastName"
+          prf.firstName = "pateFirstName"
+          prf.lastName = "pateLastName"
           prf.zip = "12345"
-          prf.city = "DummyCity"
-          prf.street = "DummyStreet"
-          prf.country = "austria"
-          prf.motherTongue = "english"
+          prf.city = "dummyCity"
+          prf.street = "dummyStreet"
+          prf.country = "dummyCountry"
+          prf.motherTongue = "dummyMotherTongue"
           prf.calendar = calendar
         }
       }
@@ -432,19 +407,19 @@ class BootStrap {
   }
 
   void createDefaultFacilities () {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy facilities")
+    log.info ("creating " + grailsApplication.config.dummies + " facilities")
     EntityType etFacility = metaDataService.etFacility
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyFacility" + i)) {
-        entityHelperService.createEntityWithUserAndProfile ("dummyFacility" + i, etFacility, "dummyFacility" + i + "@domain.org", "DummyFacility" + i) {Entity ent->
+      if (!Entity.findByName("facility" + i)) {
+        entityHelperService.createEntityWithUserAndProfile ("facility" + i, etFacility, "facility" + i + "@domain.org", "facility " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           FacilityProfile prf = (FacilityProfile)ent.profile
-          prf.country = "Mexiko"
           prf.zip = "12345"
-          prf.city = "DummyCity"
-          prf.street = "DummyStreet"
-          prf.description = "DummyDescription"
+          prf.city = "dummyCity"
+          prf.street = "dummyStreet"
+          prf.country = "dummyCountry"
+          prf.description = "dummyDescription"
         }
       }
     }
@@ -454,25 +429,25 @@ class BootStrap {
   void createDefaultLinks () {
     log.info ("creating default links")
 
-    def admin = Entity.findByName ('lernardoadmin')
-    def alex = Entity.findByName ('danielszabo')
+    def admin = Entity.findByName ('admin')
+    def daniel = Entity.findByName ('danielszabo')
     def patrizia = Entity.findByName ('patriziarosenkranz')
 
     // make admin a friend of everyone
     List users = Entity.list()
     users.each {
-      if (it.name != 'lernardoadmin') {
+      if (it.name != 'admin') {
         new Link(source: it as Entity, target: admin, type: metaDataService.ltFriendship).save()
         new Link(source: admin, target: it as Entity, type: metaDataService.ltFriendship).save()
       }
     }
 
     // friend links - make alex the initiator via dynamic link attribute
-    Link liap = linkHelperService.createLink(alex, patrizia, metaDataService.ltFriendship) {link, dad->
+    Link liap = linkHelperService.createLink(daniel, patrizia, metaDataService.ltFriendship) {link, dad->
       dad.initiator = "true"
     }
     // back link does not (necessarily) has a dynattr
-    new Link(source:patrizia, target:alex, type:metaDataService.ltFriendship).save()
+    new Link(source:patrizia, target:daniel, type:metaDataService.ltFriendship).save()
 
     // here's how we would ask for the a dynattr (given the link)
     if (liap.das.initiator) {
@@ -482,19 +457,19 @@ class BootStrap {
   }
 
   void createDefaultActivityTemplates() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy templates")
+    log.info ("creating " + grailsApplication.config.dummies + " templates")
     EntityType etTemplate = metaDataService.etTemplate
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyTemplate" + i)) {
-        def entity = entityHelperService.createEntity("dummyTemplate" + i, etTemplate) {Entity ent ->
+      if (!Entity.findByName("template" + i)) {
+        def entity = entityHelperService.createEntity("template" + i, etTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyTemplate" + i
+          ent.profile.fullName = "template " + i
           ent.profile.description = "dummyDescription"
           ent.profile.chosenMaterials = "dummyMaterials"
-          ent.profile.socialForm = "DummySocialForm"
+          ent.profile.socialForm = "dummySocialForm"
           ent.profile.amountEducators = generator.nextInt(3) + 1
           int random = generator.nextInt(3)
           if (random == 0)
@@ -508,43 +483,42 @@ class BootStrap {
         }
         // add default profile image
         File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
-        def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+        assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+        // save creator
+        new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save()
       }
     }
 
   }
 
   void createDefaultComments() {
-    log.info ("creating default comments")
+    log.info ("creating comments")
 
-    Comment comment = new Comment(content: 'DummyComment', creator: Entity.findByName('patriziarosenkranz').id).save()
-    Entity entity = Entity.findByName("dummyTemplate1")
+    Comment comment = new Comment(content: 'dummyComment', creator: Entity.findByName('patriziarosenkranz').id).save()
+    Entity entity = Entity.findByName("template1")
     entity.profile.addToComments(comment)
 
   }
 
   void createDefaultResources() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy resources")
-    EntityType etResource = metaDataService.etResource
-
-    Random generator = new Random()
+    log.info ("creating " + grailsApplication.config.dummies + " resources")
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyResource" + i)) {
-        def resource = entityHelperService.createEntity("dummyResource" + i, etResource) {Entity ent ->
+      if (!Entity.findByName("resource" + i)) {
+        def resource = entityHelperService.createEntity("resource" + i, metaDataService.etResource) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyResource" + i
+          ent.profile.fullName = "resource " + i
           ent.profile.description = "dummyDescription"
           ent.profile.classification = "dummyClassification"
         }
-        new Link(source: resource, target: Entity.findByName("dummyTemplate${i}"), type: metaDataService.ltResource).save()
+        new Link(source: resource, target: Entity.findByName("template${i}"), type: metaDataService.ltResource).save()
       }
     }
 
   }
 
   void createDefaultActivities() {
-    log.info ("creating default activities")
+    log.info ("creating activities")
 
     EntityType etActivity = metaDataService.etActivity
 
@@ -556,35 +530,34 @@ class BootStrap {
         ent.profile.duration = 60
       }
 
-      new Link(source: Entity.findByName('dummyEducator1'), target: entity, type: metaDataService.ltActEducator).save()
-      new Link(source: Entity.findByName('dummyClient1'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('dummyFacility1'), target: entity, type: metaDataService.ltActFacility).save()
-      new Link(source: Entity.findByName('dummyTemplate1'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('dummyEducator1'), target: entity, type: metaDataService.ltCreator).save()
-      //new Link(source: Entity.findByName('martin'), target: entity, type: metaDataService.ltActResource).save()
+      new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltActEducator).save()
+      new Link(source: Entity.findByName('client1'), target: entity, type: metaDataService.ltActClient).save()
+      new Link(source: Entity.findByName('facility1'), target: entity, type: metaDataService.ltActFacility).save()
+      new Link(source: Entity.findByName('template1'), target: entity, type: metaDataService.ltActTemplate).save()
+      new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltCreator).save()
     }
   }
 
   void createDefaultPosts() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy posts")
+    log.info ("creating " + grailsApplication.config.dummies + " posts")
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      new ArticlePost(title: 'DummyTitle' + i,
-              teaser: 'DummyTeaser' + i,
-              content: 'DummyContent' + i,
-              author: Entity.findByName('dummyEducator1')).save()
+      new ArticlePost(title: 'dummyTitle ' + i,
+              teaser: 'dummyTeaser ' + i,
+              content: 'dummyContent ' + i,
+              author: Entity.findByName('educator1')).save()
     }
 
   }
 
   void createDefaultEvents() {
-    log.info ("creating default events")
+    log.info ("creating events")
 
-    functionService.createEvent(Entity.findByName('lernardoadmin'), 'Elternsprechtag').save()
+    functionService.createEvent(Entity.findByName('admin'), 'Elternsprechtag').save()
   }
 
   void createDefaultHelpers() {
-    log.info ("creating default helper")
+    log.info ("creating helper")
 
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
                content: '''Um eine Aktivitätsvorlage zu erstellen klicke zuerst auf "Aktivätsvorlagen" in der orangenen
@@ -635,42 +608,42 @@ class BootStrap {
   }
 
   void createDefaultEvaluations() {
-    log.info ("creating default evaluations")
+    log.info ("creating evaluations")
 
-    new Evaluation(owner: Entity.findByName('keanozeillinger'),
-                   description: 'Keano zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
+    new Evaluation(owner: Entity.findByName('client1'),
+                   description: 'Er zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
                    method: 'Als Maßnahme habe ich ihm mehrere Kinderbücher gegeben, damit tut er sich offensichtlich leichter.',
-                   writer: Entity.findByName('christianszinicz')).save()
-    new Evaluation(owner: Entity.findByName('kirazeillinger'),
-                   description: 'Kira ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
+                   writer: Entity.findByName('educator1')).save()
+    new Evaluation(owner: Entity.findByName('client2'),
+                   description: 'Sie ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
                    method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
-                   writer: Entity.findByName('christianszinicz')).save()
+                   writer: Entity.findByName('educator2')).save()
   }
 
   void createDefaultAttendances() {
-    log.info ("creating default attendances")
+    log.info ("creating attendances")
 
-    new Attendance(client: Entity.findByName('kirazeillinger'),
+    new Attendance(client: Entity.findByName('client1'),
                    didAttend: true,
                    didEat: true,
                    date: new Date(2010-1900,01,07)).save()
-    new Attendance(client: Entity.findByName('keanozeillinger'),
+    new Attendance(client: Entity.findByName('client2'),
                    didAttend: true,
                    didEat: false,
                    date: new Date(2010-1900,01,07)).save()
   }
 
   void createDefaultFamilies() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy families")
+    log.info ("creating " + grailsApplication.config.dummies + " families")
     EntityType etGroupFamily = metaDataService.etGroupFamily
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyFamily" + i)) {
-        Entity entity = entityHelperService.createEntity("dummyFamily" + i, etGroupFamily) {Entity ent ->
+      if (!Entity.findByName("family" + i)) {
+        Entity entity = entityHelperService.createEntity("family" + i, etGroupFamily) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyFamily" + i
+          ent.profile.fullName = "family " + i
           ent.profile.livingConditions = "dummyLivingConditions"
           ent.profile.socioeconomicData = "dummySocioeconomicData"
           ent.profile.otherInfo = "dummyOtherInfo"
@@ -679,63 +652,62 @@ class BootStrap {
         }
 
         // create some links to that group
-        new Link(source: Entity.findByName("dummyParent${i}"), target: entity, type: metaDataService.ltGroupMemberParent).save()
-        new Link(source: Entity.findByName("dummyClient${i}"), target: entity, type: metaDataService.ltGroupFamily).save()
-        new Link(source: Entity.findByName("dummyChild${i}"), target: entity, type: metaDataService.ltGroupMemberChild).save()
+        new Link(source: Entity.findByName("parent${i}"), target: entity, type: metaDataService.ltGroupMemberParent).save()
+        new Link(source: Entity.findByName("client${i}"), target: entity, type: metaDataService.ltGroupFamily).save()
+        new Link(source: Entity.findByName("child${i}"), target: entity, type: metaDataService.ltGroupMemberChild).save()
       }
     }
     
   }
 
   void createDefaultColonias() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy colonias")
+    log.info ("creating " + grailsApplication.config.dummies + " colonies")
     EntityType etGroupColony = metaDataService.etGroupColony
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyColonia" + i)) {
-        Entity entity = entityHelperService.createEntity("dummyColonia" + i, etGroupColony) {Entity ent ->
+      if (!Entity.findByName("colony" + i)) {
+        Entity entity = entityHelperService.createEntity("colony" + i, etGroupColony) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyColonia" + i
+          ent.profile.fullName = "colony " + i
           ent.profile.description = "dummyDescription"
         }
 
         // create some links to that group
-        new Link(source: Entity.findByName("dummyFacility${i}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
-        //new Link(source: Entity.findByName("dummyEducator${i}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()
-        new Link(source: Entity.findByName("dummyPartner${i}"), target: entity, type: metaDataService.ltGroupMemberPartner).save()
+        new Link(source: Entity.findByName("facility${i}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
+        new Link(source: Entity.findByName("partner${i}"), target: entity, type: metaDataService.ltGroupMemberPartner).save()
       }
     }
 
   }
 
   void createDefaultMethods() {
-    log.info ("creating 2 dummy methods")
+    log.info ("creating methods")
 
     for ( i in 1..2 ) {
-      if (!Method.findByName("dummyMethod" + i)) {
-        Method method = new Method(name: "dummyMethod" + i, description: "dummyDescription", type: "template").save()
+      if (!Method.findByName("method" + i)) {
+        Method method = new Method(name: "method" + i, description: "dummyDescription", type: "template").save()
 
-        method.addToElements(new Element(name: "dummyElement1"))
-        method.addToElements(new Element(name: "dummyElement2"))
-        method.addToElements(new Element(name: "dummyElement3"))
-        method.addToElements(new Element(name: "dummyElement4"))
-        method.addToElements(new Element(name: "dummyElement5"))
+        method.addToElements(new Element(name: "element1"))
+        method.addToElements(new Element(name: "element2"))
+        method.addToElements(new Element(name: "element3"))
+        method.addToElements(new Element(name: "element4"))
+        method.addToElements(new Element(name: "element5"))
       }
     }
 
   }
 
   void createDefaultClientGroups() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy client groups")
+    log.info ("creating " + grailsApplication.config.dummies + " client groups")
     EntityType etGroupClient = metaDataService.etGroupClient
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyClientGroup" + i)) {
-        Entity entity = entityHelperService.createEntity("dummyClientGroup" + i, etGroupClient) {Entity ent ->
+      if (!Entity.findByName("clientGroup" + i)) {
+        Entity entity = entityHelperService.createEntity("clientGroup" + i, etGroupClient) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyClientGroup" + i
+          ent.profile.fullName = "clientGroup " + i
           ent.profile.description = "dummyDescription"
         }
 
@@ -753,7 +725,7 @@ class BootStrap {
           }
         }
         clients.each {
-          new Link(source: Entity.findByName("dummyClient" + it), target: entity, type: metaDataService.ltGroupMemberClient).save()
+          new Link(source: Entity.findByName("client" + it), target: entity, type: metaDataService.ltGroupMemberClient).save()
         }
       }
     }
@@ -761,16 +733,16 @@ class BootStrap {
   }
 
   void createDefaultActivityTemplateGroups() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy activity template groups")
+    log.info ("creating " + grailsApplication.config.dummies + " group activity templates")
     EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
 
     Random generator = new Random()
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyActivityTemplateGroup" + i)) {
-        Entity entity = entityHelperService.createEntity("dummyActivityTemplateGroup" + i, etGroupActivityTemplate) {Entity ent ->
+      if (!Entity.findByName("groupActivityTemplate" + i)) {
+        Entity entity = entityHelperService.createEntity("groupActivityTemplate" + i, etGroupActivityTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyActivityTemplateGroup" + i
+          ent.profile.fullName = "groupActivityTemplate " + i
           ent.profile.description = "dummyDescription"
           ent.profile.realDuration = generator.nextInt(60) + 30
           int random = generator.nextInt(3)
@@ -796,37 +768,41 @@ class BootStrap {
           }
         }
         activitytemplates.each {
-          new Link(source: Entity.findByName("dummyTemplate" + it), target: entity, type: metaDataService.ltGroupMember).save()
-          entity.profile.addToTemplates(Entity.findByName("dummyTemplate" + it).id.toString())
+          new Link(source: Entity.findByName("template" + it), target: entity, type: metaDataService.ltGroupMember).save()
+          entity.profile.addToTemplates(Entity.findByName("template" + it).id.toString())
         }
 
+        // add default profile image
+        File file = ApplicationHolder.application.parentContext.getResource("images/default_groupactivitytemplate.png").getFile()
+        def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+
         // save creator
-        new Link(source: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
+        new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
       }
     }
 
   }
 
   void createDefaultThemes() {
-    log.info ("creating default themes")
+    log.info ("creating themes")
 
     EntityType etTheme = metaDataService.etTheme
 
     Entity theme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Thema 1"
-      ent.profile.description = ""
+      ent.profile.fullName = "Theme 1"
+      ent.profile.description = "dummyDescription"
       ent.profile.startDate = new Date(2011-1900,04,01)
       ent.profile.endDate = new Date(2011-1900,07,01)
     }
 
     // link theme to facility
-    new Link(source: theme, target: Entity.findByName('dummyFacility1'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: theme, target: Entity.findByName('facility1'), type: metaDataService.ltThemeOfFacility).save()
 
     Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.fullName = "Subthema 1"
-      ent.profile.description = ""
+      ent.profile.fullName = "Subtheme 1"
+      ent.profile.description = "dummyDescription"
       ent.profile.startDate = new Date(2011-1900,05,01)
       ent.profile.endDate = new Date(2011-1900,06,01)
     }
@@ -834,33 +810,38 @@ class BootStrap {
     // link subtheme to theme
     new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
     // link subtheme to facility
-    new Link(source: subtheme, target: Entity.findByName('dummyFacility1'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: subtheme, target: Entity.findByName('facility1'), type: metaDataService.ltThemeOfFacility).save()
   }
 
   void createDefaultProjectTemplates() {
-    log.info ("creating " + grailsApplication.config.dummies + " dummy project templates")
+    log.info ("creating " + grailsApplication.config.dummies + " project templates")
     EntityType etProjectTemplate = metaDataService.etProjectTemplate
 
     Random generator = new Random()
     
     for ( i in 1..grailsApplication.config.dummies ) {
-      if (!Entity.findByName("dummyProjectTemplate" + i)) {
-        entityHelperService.createEntity("dummyProjectTemplate" + i, etProjectTemplate) {Entity ent ->
+      if (!Entity.findByName("projectTemplate" + i)) {
+        def entity = entityHelperService.createEntity("projectTemplate" + i, etProjectTemplate) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
-          ent.profile.fullName = "dummyProjectTemplate" + i
+          ent.profile.fullName = "projectTemplate " + i
           ent.profile.description = "dummyDescription"
           if (generator.nextInt(2) == 0)
             ent.profile.status = "done"
           else
             ent.profile.status = "notDone"
         }
+        // add default profile image
+        File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
+        def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
+        // save creator
+        new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save()
       }
     }
         
   }
 
   void createDefaultTags () {
-    log.info ("creating default tags")
+    log.info ("creating tags")
 
     if (!Tag.findByName('abwesend'))
       new Tag(name: 'abwesend').save()
@@ -869,18 +850,18 @@ class BootStrap {
   }
 
   void createDefaultWorkdayCategories () {
-    log.info ("creating default workday categories")
+    log.info ("creating workday categories")
 
-    if (!WorkdayCategory.findByName('Category1'))
-      new WorkdayCategory(name: 'Category1').save()
-    if (!WorkdayCategory.findByName('Category2'))
-      new WorkdayCategory(name: 'Category2').save()
-    if (!WorkdayCategory.findByName('Category3'))
-      new WorkdayCategory(name: 'Category3').save()
+    for ( i in 1..3 ) {
+      if (!WorkdayCategory.findByName('workdayCategory' + i)) {
+        new WorkdayCategory(name: 'workdayCategory' + i).save()
+      }
+    }
+
   }
 
   void createDefaultWorkdayUnits () {
-    log.info ("creating default workday units")
+    log.info ("creating workday units")
 
     // TODO: figure out why saving won't work here
     /*WorkdayUnit wdu1 = new WorkdayUnit(category: WorkdayCategory.findByName('Category1'), description: "bla", date1: new Date(110, 11, 1, 10, 0), date2: new Date(110, 11, 1, 11, 0)).save()
@@ -897,7 +878,7 @@ class BootStrap {
   }
 
   void createDefaultAppointments() {
-    log.info ("creating " + (grailsApplication.config.dummies * 5) + " dummy appointments")
+    log.info ("creating " + (grailsApplication.config.dummies * 5) + " appointments")
     EntityType etAppointment = metaDataService.etAppointment
 
     Random generator = new Random()
@@ -905,7 +886,7 @@ class BootStrap {
     for ( i in 1..(grailsApplication.config.dummies * 5) ) {
       Entity entity = entityHelperService.createEntity("appointment" + i, etAppointment) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "dummyAppointment" + i
+        ent.profile.fullName = "appointment " + i
         use( [groovy.time.TimeCategory] ){
           ent.profile.beginDate = new Date(new Date().getYear(), new Date().getMonth(), generator.nextInt(28) + 1, generator.nextInt(15) + 5, generator.nextInt(59))
           ent.profile.endDate = ent.profile.beginDate.plus((generator.nextInt(5) + 1).hours).plus(generator.nextInt(59).minutes)
@@ -918,22 +899,22 @@ class BootStrap {
       }
 
       // create link to owner
-      new Link(source: entity, target: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltAppointment).save()
+      new Link(source: entity, target: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltAppointment).save()
     }
 
   }
 
   void createDefaultGroupActivities() {
-    log.info ("creating " + (grailsApplication.config.dummies * 5) + " dummy group activities")
+    log.info ("creating " + (grailsApplication.config.dummies * 5) + " group activities")
     EntityType etGroupActivity = metaDataService.etGroupActivity
 
     Random generator = new Random()
 
     for ( i in 1..(grailsApplication.config.dummies * 5) ) {
-      Entity groupActivityTemplate = Entity.findByName("dummyActivityTemplateGroup${generator.nextInt(grailsApplication.config.dummies) + 1}")
-      Entity entity = entityHelperService.createEntity("group", etGroupActivity) {Entity ent ->
+      Entity groupActivityTemplate = Entity.findByName("groupActivityTemplate${generator.nextInt(grailsApplication.config.dummies) + 1}")
+      Entity entity = entityHelperService.createEntity("groupActivity", etGroupActivity) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.fullName = "dummyGroupActivity" + i
+        ent.profile.fullName = "groupActivity " + i
         ent.profile.realDuration = 60
         ent.profile.date = new Date(new Date().getYear(), new Date().getMonth(), generator.nextInt(28) + 1, generator.nextInt(15) + 5, generator.nextInt(59))
         ent.profile.educationalObjective = ""
@@ -943,7 +924,7 @@ class BootStrap {
       }
 
       // save creator
-      new Link(source: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
 
       // find all templates linked to the groupActivityTemplate
       List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
@@ -957,10 +938,10 @@ class BootStrap {
       new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
 
       // link to facility
-      new Link(source: Entity.findByName("dummyFacility${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
+      new Link(source: Entity.findByName("facility${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
 
       // link to educator
-      new Link(source: Entity.findByName("dummyEducator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()
+      new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()
     }
 
   }
