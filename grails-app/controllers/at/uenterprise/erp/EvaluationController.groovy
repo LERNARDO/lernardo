@@ -284,6 +284,8 @@ class EvaluationController {
     List results = []
     results.addAll(entities?.findAll {
       log.info it
+      log.info it.profile.date.getDay()
+      log.info date.getDay()
       it.profile.date.getDay() == date.getDay() && it.profile.date.getDate() == date.getDate() && it.profile.date.getYear() == date.getYear()})
 
     if (results.size() == 0) {
