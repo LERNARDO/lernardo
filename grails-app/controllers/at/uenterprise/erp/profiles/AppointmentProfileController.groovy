@@ -105,7 +105,7 @@ class AppointmentProfileController {
       appointment.profile.beginDate = functionService.convertToUTC(appointment.profile.beginDate)
       appointment.profile.endDate = functionService.convertToUTC(appointment.profile.endDate)
 
-      if (entity.profile.beginDate > entity.profile.endDate) {
+      if (appointment.profile.beginDate > appointment.profile.endDate) {
         render (view: "edit", model: [appointmentProfileInstance: appointment])
         return
       }
