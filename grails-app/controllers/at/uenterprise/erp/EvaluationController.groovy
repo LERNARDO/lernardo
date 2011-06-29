@@ -270,9 +270,7 @@ class EvaluationController {
    * retrieves users matching the search parameter of the instant search
    */
   def searchMe = {
-    log.info params
     Date searchDate = params.myDate
-    log.info searchDate
 
     def c = Entity.createCriteria()
     List entities = c.list {
@@ -283,16 +281,11 @@ class EvaluationController {
     }
     List results = []
     results.addAll(entities?.findAll { entity ->
-      log.info "entity: " + entity
-      log.info "entity profile: " + entity?.profile
-      log.info "entity profile date: " + entity?.profile?.date
-      log.info "entity profile date getDay: " + entity?.profile?.date?.getDay()
-      log.info "search date: " + searchDate?.getDay()
-      entity.profile.date.getDay() == searchDate.getDay() && entity.profile.date.getDate() == searchDate.getDate() && entity.profile.date.getYear() == searchDate.getYear()})
+      entity.profile.date.getDay() == searchDate.getDay() && entity.profile.date.getDate() == searchDate.getDate() && entity.profile.date.getYear() == searchDate.getYear()
+    })
 
     if (results.size() == 0) {
-      // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
       return
     }
     else {
