@@ -272,7 +272,7 @@ class EvaluationController {
   def searchMe = {
     log.info params
     Date searchDate = params.myDate
-    log.info date
+    log.info searchDate
 
     def c = Entity.createCriteria()
     List entities = c.list {
