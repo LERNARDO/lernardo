@@ -123,6 +123,7 @@ class EvaluationController {
 
     // first get all facilities the educator is linked with
     List facilities = functionService.findAllByLink(entity, null, metaDataService.ltWorking)
+    facilities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltLeadEducator))
 
     // for each facility get the clients in that facility
     List clients = []
