@@ -280,7 +280,7 @@ class EvaluationController {
         }
     }
     List results = []
-    results.addAll(entities.findAll {it.profile.date.getDay() == date.getDay() && it.profile.date.getDate() == date.getDate() && it.profile.date.getYear() == date.getYear()})
+    results.addAll(entities?.findAll {it.profile.date.getDay() == date.getDay() && it.profile.date.getDate() == date.getDate() && it.profile.date.getYear() == date.getYear()})
 
     if (results.size() == 0) {
       // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
