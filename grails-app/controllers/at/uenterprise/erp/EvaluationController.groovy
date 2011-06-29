@@ -271,7 +271,7 @@ class EvaluationController {
    */
   def searchMe = {
     log.info params
-    Date date = params.myDate
+    Date searchDate = params.myDate
     log.info date
 
     def c = Entity.createCriteria()
@@ -284,9 +284,11 @@ class EvaluationController {
     List results = []
     results.addAll(entities?.findAll { entity ->
       log.info "entity: " + entity
-      log.info "entity date: " + entity?.profile?.date?.getDay()
-      log.info "search date: " + date?.getDay()
-      entity.profile.date.getDay() == date.getDay() && entity.profile.date.getDate() == date.getDate() && entity.profile.date.getYear() == date.getYear()})
+      log.info "entity profile: " + entity?.profile
+      log.info "entity profile date: " + entity?.profile?.date
+      log.info "entity profile date getDay: " + entity?.profile?.date?.getDay()
+      log.info "search date: " + searchDate?.getDay()
+      entity.profile.date.getDay() == searchDate.getDay() && entity.profile.date.getDate() == searchDate.getDate() && entity.profile.date.getYear() == searchDate.getYear()})
 
     if (results.size() == 0) {
       // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
