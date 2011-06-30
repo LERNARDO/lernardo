@@ -471,6 +471,7 @@ class ProjectProfileController {
             ent.profile.date = functionService.convertToUTC(ent.profile.date)
           }
 
+          // link project day to project
           new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
 
         }

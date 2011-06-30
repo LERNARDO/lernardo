@@ -592,6 +592,19 @@ class HelperTagLib {
   }
 
   /*
+   * finds the project a project unit belongs to
+   */
+  def getProjectOfUnit = {attrs ->
+    // find project day the project unit is linked to
+    Entity projectDay = functionService.findByLink(attrs.unit, null, metaDataService.ltProjectDayUnit)
+
+    // find project the project day is linked to
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+    out << message(code: 'project') + ": " + project.profile.fullName
+  }
+
+  /*
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->
