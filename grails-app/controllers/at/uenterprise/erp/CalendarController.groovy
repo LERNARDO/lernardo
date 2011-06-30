@@ -293,7 +293,7 @@ class CalendarController {
     List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
 
     appointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each { Entity appointment ->
-      def title = appointment.profile.isPrivate && entity.id != currentEntity.id ? "Termin: Nicht verfügbar" : "Termin: ${appointment.profile.fullName}"
+      def title = appointment.profile.isPrivate && entity.id != currentEntity.id ? "${message(code: 'appointment')}: ${message(code: 'notAvailable')}" : "${message(code: 'appointment')}: ${appointment.profile.fullName}"
       def description = appointment.profile.isPrivate && entity.id != currentEntity.id ? "<b>${message(code: 'description')}:</b> ${message(code: 'notAvailable')}" : "<b>${message(code: 'description')}:</b> ${appointment.profile.description}"
       list << [id: appointment.id, title: title, start: functionService.convertFromUTC(appointment.profile.beginDate), end: functionService.convertFromUTC(appointment.profile.endDate), allDay: appointment.profile.allDay, color: color, description: description]
     }
@@ -322,7 +322,7 @@ class CalendarController {
     groupActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity groupActivity ->
       def dateStart = new DateTime(functionService.convertFromUTC(groupActivity.profile.date))
       def dateEnd = dateStart.plusMinutes("$groupActivity.profile.realDuration".toInteger())
-      list << [id: groupActivity.id, title: "Aktivitätsblock: ${groupActivity.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: "<b>Pädagogisches Ziel:</b> " + groupActivity.profile.educationalObjectiveText]
+      list << [id: groupActivity.id, title: "${message(code: 'groupActivity')}: ${groupActivity.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: "<b>${message(code: 'activityTemplate.goal')}:</b> " + groupActivity.profile.educationalObjectiveText]
     }
 
     return list
@@ -355,7 +355,7 @@ class CalendarController {
       def dateStart = new DateTime(functionService.convertFromUTC(themeRoomActivity.profile.date))
       def dateEnd = dateStart.plusMinutes("$themeRoomActivity.profile.duration".toInteger())
       def description = "<b>${message(code: 'duration')}:</b> ${themeRoomActivity.profile.duration} min"
-      list << [id: themeRoomActivity.id, title: "Themenraumaktivität: ${themeRoomActivity.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: description]
+      list << [id: themeRoomActivity.id, title: "${message(code: 'cal.activityInstance')}: ${themeRoomActivity.profile.fullName}", start: dateStart.toDate(), end: dateEnd.toDate(), allDay: false, color: color, description: description]
     }
 
     return list
@@ -405,7 +405,7 @@ class CalendarController {
       def dateEnd = new DateTime(functionService.convertFromUTC(theme.profile.endDate))
       dateEnd = dateEnd.plusHours(12) // workaround for theme duration displayed correctly in calendar
       def description = "<b>${message(code: 'description')}:</b> ${theme.profile.description}"
-      list << [id: theme.id, title: "Thema: ${theme.profile.fullName}", start: functionService.convertFromUTC(theme.profile.startDate), end: dateEnd.toDate(), color: color, description: description]
+      list << [id: theme.id, title: "${message(code: 'theme')}: ${theme.profile.fullName}", start: functionService.convertFromUTC(theme.profile.startDate), end: dateEnd.toDate(), color: color, description: description]
     }
 
     return list
