@@ -20,6 +20,28 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def getBirthdays = {attrs, body ->
+
+    SimpleDateFormat sdf = new SimpleDateFormat("d M")
+    Date date = new Date()
+
+    List results = []
+
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    educators.each { Entity educator ->
+      if (sdf.format(educator.profile.birthDate) == sdf.format(date))
+        results.add(educator)
+    }
+
+    List clients = Entity.findAllByType(metaDataService.etClient)
+    clients.each { Entity client ->
+      if (sdf.format(client.profile.birthDate) == sdf.format(date))
+        results.add(client)
+    }
+
+    results.each {out << body(entities: it)}
+  }
+
   def getEvent = {attrs ->
     Entity who = Entity.get(attrs.event.who)
     def what = Entity.get(attrs.event.what)
