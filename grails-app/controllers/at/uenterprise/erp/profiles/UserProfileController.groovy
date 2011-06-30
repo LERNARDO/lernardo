@@ -49,7 +49,8 @@ class UserProfileController {
     Entity entity = params.entity ? user : entityHelperService.loggedIn
 
     if (!user) {
-      flash.message = "UserProfile not found with id ${params.id}"
+      //flash.message = "UserProfile not found with id ${params.id}"
+      flash.message = message(code: "user.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -97,7 +98,8 @@ class UserProfileController {
       }
     }
     else {
-      flash.message = "UserProfile not found with id ${params.id}"
+      //flash.message = "UserProfile not found with id ${params.id}"
+      flash.message = message(code: "user.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -106,7 +108,8 @@ class UserProfileController {
     Entity user = Entity.get(params.id)
 
     if (!user) {
-      flash.message = "UserProfile not found with id ${params.id}"
+      //flash.message = "UserProfile not found with id ${params.id}"
+      flash.message = message(code: "user.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }

@@ -51,7 +51,8 @@ class ProjectTemplateProfileController {
     Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
-      flash.message = "projectTemplateProfile not found with id ${params.id}"
+      //flash.message = "projectTemplateProfile not found with id ${params.id}"
+      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
       redirect(action: list)
     }
     else {
@@ -107,7 +108,8 @@ class ProjectTemplateProfileController {
       }
     }
     else {
-      flash.message = "projectTemplateProfile not found with id ${params.id}"
+      //flash.message = "projectTemplateProfile not found with id ${params.id}"
+      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -117,7 +119,8 @@ class ProjectTemplateProfileController {
     Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
-      flash.message = "projectTemplateProfile not found with id ${params.id}"
+      //flash.message = "projectTemplateProfile not found with id ${params.id}"
+      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {

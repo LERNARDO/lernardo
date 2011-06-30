@@ -18,7 +18,8 @@ class WorkdayCategoryController {
         def workdayCategoryInstance = WorkdayCategory.get( params.id )
 
         if(!workdayCategoryInstance) {
-            flash.message = "WorkdayCategory not found with id ${params.id}"
+            //flash.message = "WorkdayCategory not found with id ${params.id}"
+            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
             redirect(action:list)
         }
         else {
@@ -40,7 +41,8 @@ class WorkdayCategoryController {
             }
         }
         else {
-            flash.message = "WorkdayCategory not found with id ${params.id}"
+            //flash.message = "WorkdayCategory not found with id ${params.id}"
+            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
             redirect(action:"list")
         }
     }
@@ -49,7 +51,8 @@ class WorkdayCategoryController {
         def workdayCategoryInstance = WorkdayCategory.get( params.id )
 
         if(!workdayCategoryInstance) {
-            flash.message = "WorkdayCategory not found with id ${params.id}"
+            //flash.message = "WorkdayCategory not found with id ${params.id}"
+            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
             redirect action:'list'
         }
         else {
@@ -81,7 +84,8 @@ class WorkdayCategoryController {
             }
         }
         else {
-            flash.message = "WorkdayCategory not found with id ${params.id}"
+            //flash.message = "WorkdayCategory not found with id ${params.id}"
+            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
             redirect action:'list'
         }
     }

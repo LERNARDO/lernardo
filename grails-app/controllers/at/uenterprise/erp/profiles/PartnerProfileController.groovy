@@ -52,7 +52,8 @@ class PartnerProfileController {
     Entity entity = params.entity ? partner : entityHelperService.loggedIn
 
     if (!partner) {
-      flash.message = "PartnerProfile not found with id ${params.id}"
+      //flash.message = "PartnerProfile not found with id ${params.id}"
+      flash.message = message(code: "partner.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -104,7 +105,8 @@ class PartnerProfileController {
       }
     }
     else {
-      flash.message = "PartnerProfile not found with id ${params.id}"
+      //flash.message = "PartnerProfile not found with id ${params.id}"
+      flash.message = message(code: "partner.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -113,7 +115,8 @@ class PartnerProfileController {
     Entity partner = Entity.get(params.id)
 
     if (!partner) {
-      flash.message = "PartnerProfile not found with id ${params.id}"
+      //flash.message = "PartnerProfile not found with id ${params.id}"
+      flash.message = message(code: "partner.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -201,7 +204,8 @@ class PartnerProfileController {
   def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
-      render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      //render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
+      render '<p class="italic red">'+message(code: "partner.profile.name.insert")+'</p>'
       render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
       return
     }

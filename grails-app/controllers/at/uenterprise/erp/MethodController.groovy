@@ -20,7 +20,8 @@ class MethodController {
     def methodInstance = Method.get(params.id)
 
     if (!methodInstance) {
-      flash.message = "Method not found with id ${params.id}"
+      //flash.message = "Method not found with id ${params.id}"
+      flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect(action: list)
     }
     else {
@@ -42,7 +43,8 @@ class MethodController {
       }
     }
     else {
-      flash.message = "Method not found with id ${params.id}"
+      //flash.message = "Method not found with id ${params.id}"
+      flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -51,7 +53,8 @@ class MethodController {
     def methodInstance = Method.get(params.id)
 
     if (!methodInstance) {
-      flash.message = "Method not found with id ${params.id}"
+      //flash.message = "Method not found with id ${params.id}"
+      flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -84,7 +87,8 @@ class MethodController {
       }
     }
     else {
-      flash.message = "Method not found with id ${params.id}"
+      //flash.message = "Method not found with id ${params.id}"
+      flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect action: 'list'
     }
   }

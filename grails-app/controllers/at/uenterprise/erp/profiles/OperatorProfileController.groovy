@@ -49,7 +49,8 @@ class OperatorProfileController {
     Entity entity = params.entity ? operator : entityHelperService.loggedIn
 
     if (!operator) {
-      flash.message = "OperatorProfile not found with id ${params.id}"
+      //flash.message = "OperatorProfile not found with id ${params.id}"
+      flash.message = message(code: "operator.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -101,6 +102,7 @@ class OperatorProfileController {
       }
     }
     else {
+      //flash.message = message(code: "operator.idNotFound", args: [params.id])
       flash.message = "OperatorProfile not found with id ${params.id}"
       redirect(action: "list")
     }
@@ -110,7 +112,8 @@ class OperatorProfileController {
     Entity operator = Entity.get(params.id)
 
     if (!operator) {
-      flash.message = "OperatorProfile not found with id ${params.id}"
+      //flash.message = "OperatorProfile not found with id ${params.id}"
+      flash.message = message(code: "operator.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -164,7 +167,8 @@ class OperatorProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltOperation)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'facilities', model: [facilities: linking.results, operator: linking.target, entity: entityHelperService.loggedIn]
   }
 

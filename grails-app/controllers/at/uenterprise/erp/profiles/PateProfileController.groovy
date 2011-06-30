@@ -49,7 +49,8 @@ class PateProfileController {
     Entity entity = params.entity ? pate : entityHelperService.loggedIn
 
     if (!pate) {
-      flash.message = "PateProfile not found with id ${params.id}"
+      //flash.message = "PateProfile not found with id ${params.id}"
+      flash.message = message(code: "pate.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -99,7 +100,8 @@ class PateProfileController {
       }
     }
     else {
-      flash.message = "PateProfile not found with id ${params.id}"
+      //flash.message = "PateProfile not found with id ${params.id}"
+      flash.message = message(code: "pate.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -108,7 +110,8 @@ class PateProfileController {
     Entity pate = Entity.get(params.id)
 
     if (!pate) {
-      flash.message = "PateProfile not found with id ${params.id}"
+      //flash.message = "PateProfile not found with id ${params.id}"
+      flash.message = message(code: "pate.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -165,7 +168,8 @@ class PateProfileController {
   def addGodchildren = {
     def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template:'godchildren', model: [godchildren: linking.results, pate: linking.target, entity: entityHelperService.loggedIn]
   }
 

@@ -78,7 +78,8 @@ class ProjectProfileController {
     Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
-      flash.message = "projectProfile not found with id ${params.id}"
+      //flash.message = "projectProfile not found with id ${params.id}"
+      flash.message = message(code: "project.idNotFound", args: [params.id])
       redirect(action: list)
     }
     else {
@@ -184,7 +185,8 @@ class ProjectProfileController {
       }
     }
     else {
-      flash.message = "projectProfile not found with id ${params.id}"
+      //flash.message = "projectProfile not found with id ${params.id}"
+      flash.message = message(code: "project.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -194,7 +196,8 @@ class ProjectProfileController {
     Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
-      flash.message = "projectProfile not found with id ${params.id}"
+      //flash.message = "projectProfile not found with id ${params.id}"
+      flash.message = message(code: "project.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -669,7 +672,8 @@ class ProjectProfileController {
   def addFacility = {
     def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'facilities', model: [facilities: linking.results, project: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -688,7 +692,8 @@ class ProjectProfileController {
   def addResource = {
     def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'resources', model: [resources: linking.results, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -700,7 +705,8 @@ class ProjectProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
@@ -714,7 +720,8 @@ class ProjectProfileController {
   def addSubstitute = {
     def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
@@ -728,7 +735,8 @@ class ProjectProfileController {
   def addParent = {
     def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
@@ -744,7 +752,8 @@ class ProjectProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
@@ -760,7 +769,8 @@ class ProjectProfileController {
   def addTheme = {
     def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'themes', model: [themes: linking.results2, project: linking.source, entity: entityHelperService.loggedIn]
   }
 
@@ -819,7 +829,8 @@ class ProjectProfileController {
     log.info "Found " + activities.size() + " existing activities"
 
     if (activities) {
-      render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
+      //render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
+      render "<p>"+message(code: "project.activity.updated", args: [activities.size()])+"</p>"
       activities.each { Entity activity ->
         if (new Date() < activity.profile.date) {
           Link.findAllBySourceOrTarget(it as Entity, it as Entity).each {it.delete()}
@@ -828,7 +839,8 @@ class ProjectProfileController {
       }
     }
     else {
-      render "<p>Es wurden folgende Aktivitäten geplant:</p>"
+      //render "<p>Es wurden folgende Aktivitäten geplant:</p>"
+      render "<p>"+message(code: "project.activity.scheduled")+"</p>"
     }
 
     // then do the big loop
@@ -930,7 +942,9 @@ class ProjectProfileController {
       }
     }
 
-    render "<br/><span class='green'>Projekt wurde geplant!</span>"
+    //render "<br/><span class='green'>Projekt wurde geplant!</span>"
+    render "<br/><span class='green'>"+message(code: "project.scheduled")+"</span>"
+
 
   }
 
@@ -1076,7 +1090,8 @@ class ProjectProfileController {
     if (entity.type.id == metaDataService.etClient.id) {
       def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
-        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
       render template: 'clients', model: [clients: linking.results, project: linking.target, entity: entityHelperService.loggedIn]
     }
     // if the entity is a client group get all clients and add them
@@ -1228,7 +1243,8 @@ class ProjectProfileController {
     if (params.endDate)
         endDate = Date.parse("dd. MM. yy", params.endDate)
     if (!beginDate || !endDate)
-      render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
+      //render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
+      render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
     else {
       List projects = Entity.createCriteria().list {
         eq("type", metaDataService.etProject)
