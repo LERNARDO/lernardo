@@ -14,6 +14,7 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.Publication
+import at.openfactory.ep.Asset
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
@@ -198,6 +199,10 @@ class ProjectTemplateProfileController {
     publications.each { pu ->
       new Publication(entity: entity, type: metaDataService.ptDoc1, asset: pu.asset, name: pu.name).save()
     }
+
+    // copy profile pic
+    Asset asset = Asset.findByEntityAndType(original, "profile")
+    new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
     redirect action: 'show', id: entity.id, params: [entity: entity.id]
