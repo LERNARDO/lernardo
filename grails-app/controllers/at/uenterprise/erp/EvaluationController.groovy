@@ -127,23 +127,25 @@ class EvaluationController {
 
     // for each facility get the clients in that facility
     List clients = []
-    facilities.each { facility ->
-      clients.addAll(functionService.findAllByLink(null, facility as Entity, metaDataService.ltGroupMemberClient))
+    facilities.each { Entity facility ->
+      clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
     }
 
     // get all evaluations for all clients
     List evaluations = []
-    clients.each {
-      evaluations.addAll(Evaluation.findAllByOwner(it))
+    clients.each { Entity client ->
+      evaluations.addAll(Evaluation.findAllByOwner(client))
     }
 
     // for each client get the parents
     List parents = []
     clients.each { Entity client ->
       // find family of client
-      Entity groupFamily =  functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+      Entity groupFamily = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
       // find parents of groupFamily
-      List localParents = functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
+      List localParents = []
+      if (groupFamily)
+        functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
       // add each one to the list if not already in there
       localParents.each {
         if (!parents.contains(it))
@@ -152,13 +154,13 @@ class EvaluationController {
     }
 
     // get all evaluations for all parents
-    parents.each {
-      evaluations.addAll(Evaluation.findAllByOwner(it))
+    parents.each { Entity parent ->
+      evaluations.addAll(Evaluation.findAllByOwner(parent))
     }
 
     return [evaluationInstanceList: evaluations,
-        evaluationInstanceTotal: evaluations.size(),
-        entity: entity]
+            evaluationInstanceTotal: evaluations.size(),
+            entity: entity]
 
   }
 
