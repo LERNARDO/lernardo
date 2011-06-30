@@ -123,26 +123,29 @@ class EvaluationController {
 
     // first get all facilities the educator is linked with
     List facilities = functionService.findAllByLink(entity, null, metaDataService.ltWorking)
+    facilities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltLeadEducator))
 
     // for each facility get the clients in that facility
     List clients = []
-    facilities.each { facility ->
-      clients.addAll(functionService.findAllByLink(null, facility as Entity, metaDataService.ltGroupMemberClient))
+    facilities.each { Entity facility ->
+      clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
     }
 
     // get all evaluations for all clients
     List evaluations = []
-    clients.each {
-      evaluations.addAll(Evaluation.findAllByOwner(it))
+    clients.each { Entity client ->
+      evaluations.addAll(Evaluation.findAllByOwner(client))
     }
 
     // for each client get the parents
     List parents = []
     clients.each { Entity client ->
       // find family of client
-      Entity groupFamily =  functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+      Entity groupFamily = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
       // find parents of groupFamily
-      List localParents = functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
+      List localParents = []
+      if (groupFamily)
+        functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
       // add each one to the list if not already in there
       localParents.each {
         if (!parents.contains(it))
@@ -151,13 +154,13 @@ class EvaluationController {
     }
 
     // get all evaluations for all parents
-    parents.each {
-      evaluations.addAll(Evaluation.findAllByOwner(it))
+    parents.each { Entity parent ->
+      evaluations.addAll(Evaluation.findAllByOwner(parent))
     }
 
     return [evaluationInstanceList: evaluations,
-        evaluationInstanceTotal: evaluations.size(),
-        entity: entity]
+            evaluationInstanceTotal: evaluations.size(),
+            entity: entity]
 
   }
 
@@ -274,9 +277,7 @@ class EvaluationController {
    * retrieves users matching the search parameter of the instant search
    */
   def searchMe = {
-    log.info params
-    Date date = params.myDate
-    log.info date
+    Date searchDate = params.myDate
 
     def c = Entity.createCriteria()
     List entities = c.list {
@@ -287,14 +288,11 @@ class EvaluationController {
     }
     List results = []
     results.addAll(entities?.findAll { entity ->
-      log.info "entity: " + entity
-      log.info "entity date: " + entity?.profile?.date?.getDay()
-      log.info "search date: " + date?.getDay()
-      entity.profile.date.getDay() == date.getDay() && entity.profile.date.getDate() == date.getDate() && entity.profile.date.getYear() == date.getYear()})
+      entity.profile.date.getDay() == searchDate.getDay() && entity.profile.date.getDate() == searchDate.getDate() && entity.profile.date.getYear() == searchDate.getYear()
+    })
 
     if (results.size() == 0) {
-      // render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'    // hafo
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
       return
     }
     else {
@@ -306,7 +304,7 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
 
     def msg = "Auswahl:"
-    render ("<b>${msg}</b> ${entity.profile.fullName}")
+    render ('<b>' + msg + '</b> <a href="' + createLink(controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id) + '">' + entity.profile.fullName + '</a>')
   }
 
   def removeLinkedTo = {

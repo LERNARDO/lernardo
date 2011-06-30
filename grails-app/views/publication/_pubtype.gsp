@@ -18,7 +18,10 @@
     <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
     <td class="action">
       <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${pub}">
-        <g:link action="edit" id="${pub.id}"><g:message code="edit"/></g:link> | <g:link action="delete" id="${pub.id}" onclick="return confirm('Sind Sie sicher?');"><g:message code="delete"/></g:link>
+        <g:form id="${pub.id}">
+          <g:actionSubmit action="edit" value="${message(code: 'edit')}" />
+          <g:actionSubmit action="delete" value="${message(code: 'delete')}" onclick="return confirm('Sind Sie sicher?');" />
+        </g:form>
       </erp:accessCheck>
     </td>
   </tr>

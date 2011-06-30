@@ -20,6 +20,28 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def getBirthdays = {attrs, body ->
+
+    SimpleDateFormat sdf = new SimpleDateFormat("d M")
+    Date date = new Date()
+
+    List results = []
+
+    List educators = Entity.findAllByType(metaDataService.etEducator)
+    educators.each { Entity educator ->
+      if (sdf.format(educator.profile.birthDate) == sdf.format(date))
+        results.add(educator)
+    }
+
+    List clients = Entity.findAllByType(metaDataService.etClient)
+    clients.each { Entity client ->
+      if (sdf.format(client.profile.birthDate) == sdf.format(date))
+        results.add(client)
+    }
+
+    results.each {out << body(entities: it)}
+  }
+
   def getEvent = {attrs ->
     Entity who = Entity.get(attrs.event.who)
     def what = Entity.get(attrs.event.what)
@@ -589,6 +611,19 @@ class HelperTagLib {
   def getGroupClientsCount = {attrs, body ->
     def clients = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberClient)
     out << clients
+  }
+
+  /*
+   * finds the project a project unit belongs to
+   */
+  def getProjectOfUnit = {attrs ->
+    // find project day the project unit is linked to
+    Entity projectDay = functionService.findByLink(attrs.unit, null, metaDataService.ltProjectDayUnit)
+
+    // find project the project day is linked to
+    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+    out << message(code: 'project') + ": " + project.profile.fullName
   }
 
   /*

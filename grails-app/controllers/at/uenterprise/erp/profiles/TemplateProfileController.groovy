@@ -170,9 +170,8 @@ class TemplateProfileController {
     }
 
     // copy profile pic
-    //Asset asset = Asset.findByEntity(original)
-    //new Asset(entity: entity, storage: asset.storage, type: "profile").save()
-    // TODO: figure out why the above won't work - the new asset is created but it shows a wrong asset on the profile
+    Asset asset = Asset.findByEntityAndType(original, "profile")
+    new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "template.copied", args: [entity.profile.fullName])
     redirect action: 'show', id: entity.id, params: [entity: entity.id]
