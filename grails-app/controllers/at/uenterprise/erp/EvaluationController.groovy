@@ -2,6 +2,7 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
+import java.text.SimpleDateFormat
 
 class EvaluationController {
   EntityHelperService entityHelperService
@@ -286,13 +287,16 @@ class EvaluationController {
           eq("type", metaDataService.etProjectUnit)
         }
     }
+
+    SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy")
+
     List results = []
     results.addAll(entities?.findAll { entity ->
-      entity.profile.date.getDay() == searchDate.getDay() && entity.profile.date.getDate() == searchDate.getDate() && entity.profile.date.getYear() == searchDate.getYear()
+      sdf.format(entity.profile.date) == sdf.format(searchDate)
     })
 
     if (results.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render '<span class="italic">' + message(code: "searchMe.empty") + '</span>'
       return
     }
     else {
