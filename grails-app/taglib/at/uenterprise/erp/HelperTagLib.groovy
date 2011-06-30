@@ -621,9 +621,10 @@ class HelperTagLib {
     Entity projectDay = functionService.findByLink(attrs.unit, null, metaDataService.ltProjectDayUnit)
 
     // find project the project day is linked to
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-
-    out << message(code: 'project') + ": " + project.profile.fullName
+    if (projectDay) {
+      Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+      out << message(code: 'project') + ": " + project?.profile?.fullName ?: 'not found'
+    }
   }
 
   /*
