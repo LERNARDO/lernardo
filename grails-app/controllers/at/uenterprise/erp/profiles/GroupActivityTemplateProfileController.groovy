@@ -100,7 +100,6 @@ class GroupActivityTemplateProfileController {
     if (group) {
       // delete all links
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
-      Event.findAllByEntity(group).each {it.delete()}
 
       try {
         flash.message = message(code: "group.deleted", args: [group.profile.fullName])

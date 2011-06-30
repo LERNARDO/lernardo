@@ -69,7 +69,6 @@ class OperatorProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
       Msg.findAllBySenderOrReceiver(operator, operator).each {it.delete()}
-      Event.findAllByEntity(operator).each {it.delete()}
       Publication.findAllByEntity(operator).each {it.delete()}
       Evaluation.findByOwnerOrWriter(operator, operator).each {it.delete()}
       Comment.findAllByCreator(operator.id.toInteger()).each { Comment comment ->

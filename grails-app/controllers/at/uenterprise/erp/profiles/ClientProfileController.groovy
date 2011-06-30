@@ -90,7 +90,6 @@ class ClientProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(client, client).each {it.delete()}
       Msg.findAllBySenderOrReceiver(client, client).each {it.delete()}
-      Event.findAllByEntity(client).each {it.delete()}
       Post.findAllByAuthor(client).each {it.delete()}
       Publication.findAllByEntity(client).each {it.delete()}
       Evaluation.findByOwnerOrWriter(client, client).each {it.delete()}

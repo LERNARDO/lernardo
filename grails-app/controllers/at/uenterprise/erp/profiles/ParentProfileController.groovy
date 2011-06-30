@@ -69,7 +69,6 @@ class ParentProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(parent, parent).each {it.delete()}
       Msg.findAllBySenderOrReceiver(parent, parent).each {it.delete()}
-      Event.findAllByEntity(parent).each {it.delete()}
       Publication.findAllByEntity(parent).each {it.delete()}
       Evaluation.findByOwnerOrWriter(parent, parent).each {it.delete()}
       Comment.findAllByCreator(parent.id.toInteger()).each { Comment comment ->

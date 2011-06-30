@@ -79,7 +79,6 @@ class EducatorProfileController {
       Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
       Msg.findAllBySenderOrReceiver(educator, educator).each {it.delete()}
       Post.findByAuthor(educator).each {it.delete()}
-      Event.findAllByEntity(educator).each {it.delete()}
       Publication.findAllByEntity(educator).each {it.delete()}
       Evaluation.findByOwnerOrWriter(educator, educator).each {it.delete()}
       Comment.findAllByCreator(educator.id.toInteger()).each { Comment comment ->

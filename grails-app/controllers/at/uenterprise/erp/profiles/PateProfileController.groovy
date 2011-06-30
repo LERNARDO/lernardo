@@ -67,7 +67,6 @@ class PateProfileController {
       // delete all links to this entity
       Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
       Msg.findAllBySenderOrReceiver(pate, pate).each {it.delete()}
-      Event.findAllByEntity(pate).each {it.delete()}
       Publication.findAllByEntity(pate).each {it.delete()}
       Evaluation.findByOwnerOrWriter(pate, pate).each {it.delete()}
       Comment.findAllByCreator(pate.id.toInteger()).each { Comment comment ->

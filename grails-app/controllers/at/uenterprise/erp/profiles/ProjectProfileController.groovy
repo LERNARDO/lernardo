@@ -170,9 +170,29 @@ class ProjectProfileController {
   def delete = {
     Entity project = Entity.get(params.id)
     if (project) {
-      // delete all links
+      // find all project days of project
+      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+
+      // find all project units of all project days
+      List projectUnits = []
+      projectDays.each { Entity projectDay ->
+        projectUnits.addAll(functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit))
+      }
+
+      // delete all links to project units and units themselves
+      projectUnits.each { Entity projectUnit ->
+        Link.findAllBySourceOrTarget(projectUnit, projectUnit).each {it.delete()}
+        projectUnit.delete()
+      }
+
+      // delete all links to project days and project days themselves
+      projectDays.each { Entity projectDay ->
+        Link.findAllBySourceOrTarget(projectDay, projectDay).each {it.delete()}
+        projectDay.delete()
+      }
+
+      // delete all links to project itself
       Link.findAllBySourceOrTarget(project, project).each {it.delete()}
-      Event.findAllByEntity(project).each {it.delete()}
 
       try {
         flash.message = message(code: "project.deleted", args: [project.profile.fullName])
