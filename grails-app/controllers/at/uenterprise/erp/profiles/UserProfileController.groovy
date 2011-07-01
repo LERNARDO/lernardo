@@ -49,7 +49,8 @@ class UserProfileController {
     Entity entity = params.entity ? user : entityHelperService.loggedIn
 
     if (!user) {
-      flash.message = "UserProfile not found with id ${params.id}"
+      //flash.message = "UserProfile not found with id ${params.id}"
+      flash.message = message(code: "user.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -64,7 +65,6 @@ class UserProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(user, user).each {it.delete()}
       Msg.findAllBySenderOrReceiver(user, user).each {it.delete()}
-      Event.findAllByEntity(user).each {it.delete()}
       Publication.findAllByEntity(user).each {it.delete()}
       Evaluation.findByOwnerOrWriter(user, user).each {it.delete()}
       Comment.findAllByCreator(user.id.toInteger()).each { Comment comment ->
@@ -97,7 +97,8 @@ class UserProfileController {
       }
     }
     else {
-      flash.message = "UserProfile not found with id ${params.id}"
+      //flash.message = "UserProfile not found with id ${params.id}"
+      flash.message = message(code: "user.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -106,7 +107,8 @@ class UserProfileController {
     Entity user = Entity.get(params.id)
 
     if (!user) {
-      flash.message = "UserProfile not found with id ${params.id}"
+      //flash.message = "UserProfile not found with id ${params.id}"
+      flash.message = message(code: "user.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }

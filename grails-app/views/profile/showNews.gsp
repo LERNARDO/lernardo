@@ -35,6 +35,17 @@
     <div class="cleartop"></div>
 
     <p><span class="strong"><g:message code="today"/> (<g:formatDate date="${Calendar.getInstance().time}" format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>)</span></p>
+
+    <erp:getBirthdays>
+      <g:if test="${entities}">
+        <p>
+          <g:each in="${entities}" var="entity">
+            <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="${message(code:'birthday')}" valign="top"/> <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link> hat heute Geburtstag!<br/>
+          </g:each>
+        </p>
+      </g:if>
+    </erp:getBirthdays>
+
     <p>
       <g:if test="${eventsToday}">
         <g:each in="${eventsToday}" var="event" status="i">

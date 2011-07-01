@@ -2,6 +2,7 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
+import java.text.SimpleDateFormat
 
 class EvaluationController {
   EntityHelperService entityHelperService
@@ -127,23 +128,25 @@ class EvaluationController {
 
     // for each facility get the clients in that facility
     List clients = []
-    facilities.each { facility ->
-      clients.addAll(functionService.findAllByLink(null, facility as Entity, metaDataService.ltGroupMemberClient))
+    facilities.each { Entity facility ->
+      clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
     }
 
     // get all evaluations for all clients
     List evaluations = []
-    clients.each {
-      evaluations.addAll(Evaluation.findAllByOwner(it))
+    clients.each { Entity client ->
+      evaluations.addAll(Evaluation.findAllByOwner(client))
     }
 
     // for each client get the parents
     List parents = []
     clients.each { Entity client ->
       // find family of client
-      Entity groupFamily =  functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+      Entity groupFamily = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
       // find parents of groupFamily
-      List localParents = functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
+      List localParents = []
+      if (groupFamily)
+        functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
       // add each one to the list if not already in there
       localParents.each {
         if (!parents.contains(it))
@@ -152,13 +155,13 @@ class EvaluationController {
     }
 
     // get all evaluations for all parents
-    parents.each {
-      evaluations.addAll(Evaluation.findAllByOwner(it))
+    parents.each { Entity parent ->
+      evaluations.addAll(Evaluation.findAllByOwner(parent))
     }
 
     return [evaluationInstanceList: evaluations,
-        evaluationInstanceTotal: evaluations.size(),
-        entity: entity]
+            evaluationInstanceTotal: evaluations.size(),
+            entity: entity]
 
   }
 
@@ -166,7 +169,8 @@ class EvaluationController {
     Evaluation evaluationInstance = Evaluation.get(params.id)
 
     if (!evaluationInstance) {
-      flash.message = "Evaluation not found with id ${params.id}"
+      //flash.message = "Evaluation not found with id ${params.id}"
+      flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -192,7 +196,8 @@ class EvaluationController {
       }
     }
     else {
-      flash.message = "Evaluation not found with id ${params.id}"
+      //flash.message = "Evaluation not found with id ${params.id}"
+      flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -202,7 +207,8 @@ class EvaluationController {
     Entity entity = Entity.get(params.entity)
 
     if (!evaluationInstance) {
-      flash.message = "Evaluation not found with id ${params.id}"
+      //flash.message = "Evaluation not found with id ${params.id}"
+      flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect action: 'list'
       return
     }
@@ -237,7 +243,8 @@ class EvaluationController {
       }
     }
     else {
-      flash.message = "Evaluation not found with id ${params.id}"
+      //flash.message = "Evaluation not found with id ${params.id}"
+      flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect action: 'list'
     }
   }
@@ -280,13 +287,16 @@ class EvaluationController {
           eq("type", metaDataService.etProjectUnit)
         }
     }
+
+    SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy")
+
     List results = []
     results.addAll(entities?.findAll { entity ->
-      entity.profile.date.getDay() == searchDate.getDay() && entity.profile.date.getDate() == searchDate.getDate() && entity.profile.date.getYear() == searchDate.getYear()
+      sdf.format(entity.profile.date) == sdf.format(searchDate)
     })
 
     if (results.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      render '<span class="italic">' + message(code: "searchMe.empty") + '</span>'
       return
     }
     else {

@@ -14,6 +14,7 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.Publication
+import at.openfactory.ep.Asset
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
@@ -51,7 +52,8 @@ class ProjectTemplateProfileController {
     Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
-      flash.message = "projectTemplateProfile not found with id ${params.id}"
+      //flash.message = "projectTemplateProfile not found with id ${params.id}"
+      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
       redirect(action: list)
     }
     else {
@@ -94,7 +96,6 @@ class ProjectTemplateProfileController {
     if (projectTemplate) {
       // delete all links
       Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
-      Event.findAllByEntity(projectTemplate).each {it.delete()}
 
       try {
         flash.message = message(code: "projectTemplate.deleted", args: [projectTemplate.profile.fullName])
@@ -107,7 +108,8 @@ class ProjectTemplateProfileController {
       }
     }
     else {
-      flash.message = "projectTemplateProfile not found with id ${params.id}"
+      //flash.message = "projectTemplateProfile not found with id ${params.id}"
+      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -117,7 +119,8 @@ class ProjectTemplateProfileController {
     Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
-      flash.message = "projectTemplateProfile not found with id ${params.id}"
+      //flash.message = "projectTemplateProfile not found with id ${params.id}"
+      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -198,6 +201,10 @@ class ProjectTemplateProfileController {
     publications.each { pu ->
       new Publication(entity: entity, type: metaDataService.ptDoc1, asset: pu.asset, name: pu.name).save()
     }
+
+    // copy profile pic
+    Asset asset = Asset.findByEntityAndType(original, "profile")
+    new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "projectTemplate.copied", args: [entity.profile.fullName])
     redirect action: 'show', id: entity.id, params: [entity: entity.id]

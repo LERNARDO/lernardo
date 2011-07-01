@@ -45,7 +45,8 @@ class GroupFamilyProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -93,7 +94,8 @@ class GroupFamilyProfileController {
       }
     }
     else {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -102,7 +104,8 @@ class GroupFamilyProfileController {
     Entity group = Entity.get(params.id)
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {

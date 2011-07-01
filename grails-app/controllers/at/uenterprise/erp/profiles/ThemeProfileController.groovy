@@ -68,7 +68,8 @@ class ThemeProfileController {
     Entity entity = params.entity ? theme : entityHelperService.loggedIn
 
     if (!theme) {
-      flash.message = "themeProfile not found with id ${params.id}"
+      //flash.message = "themeProfile not found with id ${params.id}"
+      flash.message = message(code: "theme.idNotFound", args: [params.id])
       redirect(action: list)
     }
     else {
@@ -117,7 +118,8 @@ class ThemeProfileController {
       }
     }
     else {
-      flash.message = "themeProfile not found with id ${params.id}"
+      //flash.message = "themeProfile not found with id ${params.id}"
+      flash.message = message(code: "theme.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -126,7 +128,8 @@ class ThemeProfileController {
     Entity theme = Entity.get(params.id)
 
     if (!theme) {
-      flash.message = "themeProfile not found with id ${params.id}"
+      //flash.message = "themeProfile not found with id ${params.id}"
+      flash.message = message(code: "theme.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -284,7 +287,8 @@ class ThemeProfileController {
   def addProject = {
     def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'projects', model: [projects: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -296,7 +300,8 @@ class ThemeProfileController {
   def addActivityGroup = {
     def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
     render template: 'activitygroups', model: [activitygroups: linking.results, theme: linking.target, entity: entityHelperService.loggedIn]
   }
 

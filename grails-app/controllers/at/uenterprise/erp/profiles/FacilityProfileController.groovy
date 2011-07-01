@@ -97,7 +97,6 @@ class FacilityProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
       Msg.findAllBySenderOrReceiver(facility, facility).each {it.delete()}
-      Event.findAllByEntity(facility).each {it.delete()}
       Publication.findAllByEntity(facility).each {it.delete()}
       Comment.findAllByCreator(facility.id.toInteger()).each {it.delete()}
       try {

@@ -508,7 +508,7 @@ class AppController {
     entity.removeFromAssets(asset)
     asset.delete()
 
-    flash.message = "Profilbild wurde gelöscht!"
+    flash.message = message(code: 'profile.picture.deleted ')
     redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
   }
 
@@ -569,7 +569,7 @@ class AppController {
         deleted++
       }
     }
-    render "<span class='green'>${deleted} von insgesamt ${total} Kommentaren gelöscht!</span>"
+    render "<span class='green'>${deleted} of a total of ${total} comments deleted!</span>"
   }
 
 /*

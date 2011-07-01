@@ -34,7 +34,8 @@ class LabelController {
   def show = {
     def labelInstance = Label.get(params.id)
     if (!labelInstance) {
-      flash.message = "Label not found with id ${params.id}"
+      //flash.message = "Label not found with id ${params.id}"
+      flash.message = message(code: "label.idNotFound", args: [params.id])
       redirect(action: "list")
     }
     else {
@@ -45,7 +46,8 @@ class LabelController {
   def edit = {
     def labelInstance = Label.get(params.id)
     if (!labelInstance) {
-      flash.message = "Label not found with id ${params.id}"
+      //flash.message = "Label not found with id ${params.id}"
+      flash.message = message(code: "label.idNotFound", args: [params.id])
       redirect(action: "list")
     }
     else {
@@ -75,7 +77,8 @@ class LabelController {
       }
     }
     else {
-      flash.message = "Label not found with id ${params.id}"
+      //flash.message = "Label not found with id ${params.id}"
+      flash.message = message(code: "label.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -94,7 +97,8 @@ class LabelController {
       }
     }
     else {
-      flash.message = "Label not found with id ${params.id}"
+      //flash.message = "Label not found with id ${params.id}"
+      flash.message = message(code: "label.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }

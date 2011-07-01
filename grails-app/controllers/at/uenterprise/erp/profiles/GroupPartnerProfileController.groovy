@@ -44,7 +44,8 @@ class GroupPartnerProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: list)
       return
     }
@@ -76,7 +77,8 @@ class GroupPartnerProfileController {
       }
     }
     else {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }
   }
@@ -85,7 +87,8 @@ class GroupPartnerProfileController {
     Entity group = Entity.get(params.id)
 
     if (!group) {
-      flash.message = "groupProfile not found with id ${params.id}"
+      //flash.message = "groupProfile not found with id ${params.id}"
+      flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {
@@ -131,7 +134,8 @@ class GroupPartnerProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }
 
