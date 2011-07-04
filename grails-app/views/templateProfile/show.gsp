@@ -101,7 +101,7 @@
           <table>
             <tr>
               <td><g:message code="resource.profile.name"/>:</td>
-              <td><g:textField id="resourceName" size="30" name="fullName" value=""/></td>
+              <td><g:textField id="resourceName" size="30" name="name" value=""/></td>
             </tr>
             <tr>
               <td><g:message code="resource.profile.description"/>:</td>
@@ -115,7 +115,7 @@
 
       </div>
       <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[resources: resources, template: template, entity: currentEntity]"/>
+        <g:render template="resources" model="[template: template, entity: currentEntity]"/>
       </div>
     </div>
 

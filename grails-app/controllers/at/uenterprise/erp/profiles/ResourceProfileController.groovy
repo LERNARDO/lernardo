@@ -56,7 +56,8 @@ class ResourceProfileController {
       redirect(action: list)
     }
     else {
-      [resource: resource]
+      Entity location = functionService.findByLink(resource, null, metaDataService.ltResource)
+      [resource: resource, location: location, entity: resource]
     }
   }
 
@@ -91,7 +92,7 @@ class ResourceProfileController {
       redirect action: 'list'
     }
     else {
-      [resource: resource]
+      [resource: resource, entity: resource]
     }
   }
 

@@ -3,6 +3,7 @@ package at.uenterprise.erp.profiles
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Resource
 
 /*
  * used for grouping activity templates together by creating a link from the group to each activity template
@@ -14,7 +15,8 @@ class GroupActivityTemplateProfile extends Profile {
     List templates
     static hasMany = [comments: Comment,
                       labels: Label,
-                      templates: String]
+                      templates: String,
+                      resources: Resource]
 
     String description
     String status

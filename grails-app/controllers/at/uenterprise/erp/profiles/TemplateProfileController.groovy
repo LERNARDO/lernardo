@@ -19,6 +19,7 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
 import at.openfactory.ep.Asset
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.Resource
 
 class TemplateProfileController {
   EntityHelperService entityHelperService
@@ -238,46 +239,27 @@ class TemplateProfileController {
   }
 
   /*
-   * creates a new resource and then links it to the template
+   * adds a resource
    */
   def addResource = {
     Entity template = Entity.get(params.id)
 
-    EntityType etResource = metaDataService.etResource
-    Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
-      ent.profile = profileHelperService.createProfileFor(ent) as Profile
-      ent.profile.properties = params
-      ent.profile.classification = ""
-    }
-    new Link(source: entity, target: template, type: metaDataService.ltResource).save()
+    Resource resource = new Resource(params)
+    template.profile.addToResources(resource)
 
-    // find all resources of this template
-    List resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
-
-    render template: 'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [template: template, entity: entityHelperService.loggedIn]
   }
 
   /*
-   * removes the link to a resource and then deletes the resource
+   * removes a resource
    */
   def removeResource = {
     Entity template = Entity.get(params.id)
 
-    def c = Link.createCriteria()
-    def link = c.get {
-      eq('source', Entity.get(params.resource))
-      eq('target', template)
-      eq('type', metaDataService.ltResource)
-    }
-    link.delete()
+    Resource resource = Resource.get(params.resource)
+    template.profile.removeFromResources(resource)
 
-    // delete resource as well
-    Entity.get(params.resource).delete()
-
-    // find all resources of this template
-    List resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
-
-    render template: 'resources', model: [resources: resources, template: template, entity: entityHelperService.loggedIn]
+    render template: 'resources', model: [template: template, entity: entityHelperService.loggedIn]
   }
 
   /*

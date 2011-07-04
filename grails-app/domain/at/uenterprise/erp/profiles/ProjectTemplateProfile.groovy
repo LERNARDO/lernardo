@@ -3,6 +3,7 @@ package at.uenterprise.erp.profiles
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Resource
 
 class ProjectTemplateProfile extends Profile {
 
@@ -10,7 +11,8 @@ class ProjectTemplateProfile extends Profile {
     List templates
     static hasMany = [comments: Comment,
                       labels: Label,
-                      templates: String]
+                      templates: String,
+                      resources: Resource]
 
     String description
     String status

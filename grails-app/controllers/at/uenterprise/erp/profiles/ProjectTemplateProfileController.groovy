@@ -15,6 +15,7 @@ import at.openfactory.ep.AssetService
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.Publication
 import at.openfactory.ep.Asset
+import at.uenterprise.erp.Resource
 
 class ProjectTemplateProfileController {
   MetaDataService metaDataService
@@ -559,6 +560,30 @@ class ProjectTemplateProfileController {
       }
     }
     render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, entity: entityHelperService.loggedIn, allGroupActivityTemplates: allGroupActivityTemplates]
+  }
+
+  /*
+   * adds a resource
+   */
+  def addResource = {
+    Entity group = Entity.get(params.id)
+
+    Resource resource = new Resource(params)
+    group.profile.addToResources(resource)
+
+    render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * removes a resource
+   */
+  def removeResource = {
+    Entity group = Entity.get(params.id)
+
+    Resource resource = Resource.get(params.resource)
+    group.profile.removeFromResources(resource)
+
+    render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
   }
 }
 

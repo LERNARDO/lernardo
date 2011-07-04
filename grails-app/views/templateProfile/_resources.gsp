@@ -1,14 +1,14 @@
-<g:if test="${resources}">
-  <g:each in="${resources}" var="resource">
+<g:if test="${template.profile.resources}">
+  <g:each in="${template.profile.resources}" var="resource">
     <div style="margin-bottom: 5px;">
       <ul style="padding-bottom: 5px">
-        <li><g:link controller="${resource.type.supertype.name +'Profile'}" action="show" id="${resource.id}" params="[entity:entity.id]">${resource.profile.fullName}</g:link> <erp:accessCheck entity="${entity}" types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><g:remoteLink action="removeResource" update="resources2" id="${template.id}" params="[resource: resource.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
-        <li>${resource.profile.description}</li>
+        <li><g:message code="name"/>: ${resource.name} <erp:accessCheck entity="${entity}" types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><g:remoteLink action="removeResource" update="resources2" id="${template.id}" params="[resource: resource.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
+        <li><g:message code="description"/>: ${resource.description}</li>
       </ul>
     </div>
   </g:each>
 
 </g:if>
 <g:else>
-  <span class="italic red"><g:message code="resource.profile.empty"/> %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="resource.profile.empty"/></span>
 </g:else>

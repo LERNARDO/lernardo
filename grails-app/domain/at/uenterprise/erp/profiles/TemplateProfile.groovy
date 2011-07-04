@@ -4,13 +4,15 @@ import at.openfactory.ep.Profile
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Resource
 
 class TemplateProfile extends Profile {
 
   SortedSet comments
   static hasMany = [methods: Method,
                     comments: Comment,
-                    labels: Label]
+                    labels: Label,
+                    resources: Resource]
 
   String description
   String chosenMaterials

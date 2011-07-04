@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Ressource</title>
+  <title><g:message code="resource"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Ressource</h1>
+    <h1><g:message code="resource"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -13,6 +13,16 @@
     <div>
       <table>
         <tbody>
+
+        <tr class="prop">
+          <td valign="top" class="name-show"><g:message code="location"/></td>
+        </tr>
+
+        <tr class="prop">
+          <td width="540" valign="top" class="value-show">
+            <g:link controller="${location.type.supertype.name +'Profile'}" action="show" id="${resource.id}" params="[entity: resource.id]">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link>
+          </td>
+        </tr>
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="resource.profile.name"/></td>
