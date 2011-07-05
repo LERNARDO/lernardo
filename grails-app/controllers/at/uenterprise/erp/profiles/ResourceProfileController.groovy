@@ -99,16 +99,7 @@ class ResourceProfileController {
   def update = {
     Entity resource = Entity.get(params.id)
 
-    int oldAmount = resource.profile.amount
-
     resource.profile.properties = params
-    resource.profile.free += resource.profile.amount - oldAmount
-
-    // if 'free' is less then 0 don't save and return to edit
-    if (resource.profile.free < 0) {
-      render view: 'edit', model: [resource: resource]
-      return
-    }
 
     if (resource.profile.save() && resource.save()) {
       flash.message = message(code: "resource.updated", args: [resource.profile.fullName])

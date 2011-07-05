@@ -130,7 +130,7 @@ class GroupActivityProfileController {
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
 
     return [group: group,
             entity: entity,
@@ -544,15 +544,13 @@ class GroupActivityProfileController {
     calendar.setTime(group.profile.date)
     calendar.add(Calendar.MINUTE, group.profile.realDuration)
 
-    Link link = linkHelperService.createLink(resource, group, metaDataService.ltResource) {link, dad ->
-      dad.beginDate = group.profile.date
-      dad.endDate = calendar.getTime()
+    Link link = linkHelperService.createLink(resource, group, metaDataService.ltResourcePlanned) {link, dad ->
+      dad.beginDate = group.profile.date.getTime() / 1000
+      dad.endDate = calendar.getTime().getTime() / 1000
       dad.amount = params.amount
     }
-    resource.profile.free -= params.int('amount')
-    resource.save(flush: true)
 
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
     render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
   }
 
@@ -563,14 +561,13 @@ class GroupActivityProfileController {
     def link = Link.createCriteria().get {
       eq('source', resource)
       eq('target', group)
-      eq('type', metaDataService.ltResource)
+      eq('type', metaDataService.ltResourcePlanned)
     }
     if (link) {
-      resource.profile.free += link.das.amount.toInteger()
       link.delete()
     }
 
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
     render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
   }
 

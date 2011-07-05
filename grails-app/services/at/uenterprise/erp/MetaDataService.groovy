@@ -124,6 +124,7 @@ class MetaDataService {
   static final String LT_PATE = "Pate"
   static final String LT_PARTNER = "Partner"
   static final String LT_RESOURCE = "Ressource"
+  static final String LT_RESOURCE_PLANNED = "Ressource geplant"
   static final String LT_ENLISTED = "Angeworben"
   static final String LT_SUBTHEME = "Subthema"
   //static final String LT_SUBTHEME = "Untergeordnetes Thema"
@@ -240,6 +241,7 @@ class MetaDataService {
     getLtPate()
     getLtPartner()
     getLtResource()
+    getLtResourcePlanned()
     getLtEnlisted()
     getLtSubTheme()
     getLtProjectMember()
@@ -360,6 +362,7 @@ class MetaDataService {
   LinkType getLtPate()                   {defaultObjectService.openLT (LT_PATE, lstOther) }
   LinkType getLtPartner()                {defaultObjectService.openLT (LT_PARTNER, lstOther) }
   LinkType getLtResource()               {defaultObjectService.openLT (LT_RESOURCE, lstOther) }
+  LinkType getLtResourcePlanned()        {defaultObjectService.openLT (LT_RESOURCE_PLANNED, lstOther) }
   LinkType getLtEnlisted()               {defaultObjectService.openLT (LT_ENLISTED, lstOther) }
   LinkType getLtSubTheme()               {defaultObjectService.openLT (LT_SUBTHEME, lstOther) }
   LinkType getLtProjectMember()          {defaultObjectService.openLT (LT_PROJECT_MEMBER, lstOther) }

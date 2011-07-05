@@ -53,15 +53,6 @@
         </tr>
 
         <tr class="prop">
-          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.free"/></td>
-        </tr>
-        <tr>
-          <td colspan="2" valign="top" class="value-show-block">
-            ${fieldValue(bean: resource, field: 'profile.free')}
-          </td>
-        </tr>
-
-        <tr class="prop">
           <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.costs"/> <span class="gray">(${grailsApplication.config.currency})</span></td>
         </tr>
         <tr>
