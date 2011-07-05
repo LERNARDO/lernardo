@@ -79,7 +79,7 @@ class BootStrap {
         createDefaultPates()
         //createDefaultAttendances()
         createDefaultFamilies()
-        createDefaultResources()
+        //createDefaultResources()
         createDefaultMethods()
         createDefaultClientGroups()
         createDefaultActivityTemplateGroups()
@@ -510,6 +510,7 @@ class BootStrap {
           ent.profile.fullName = "resource " + i
           ent.profile.description = "dummyDescription"
           ent.profile.classification = "dummyClassification"
+          ent.profile.costsUnit = "perDay"
         }
         new Link(source: resource, target: Entity.findByName("template${i}"), type: metaDataService.ltResource).save()
       }
