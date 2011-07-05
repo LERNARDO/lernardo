@@ -131,14 +131,10 @@ dummies = 5
 defaultpass = "pass"
 
 // custom lists used for selects within the application
-//nationalities = ['germany','england','france','spain','portugal','austria','mexico','italy','canada']
 resourceclasses = ['facility','colony','everywhere']
-//partners = ['projects','services','funding','personnel']
-//maritalstatus = ['unknown','single','married','separated','divorced','widowed','partnership']
-//familyrelations = ['parents','father','mother','other']
-//problems = ['alcoholism','drugs','vandalism','breakup','absence','violence','unemployment','poverty','disability','denial','orphan']
 profiletypes = ['all','operator','facility','educator','client','user','partner','pate','parent','child']
 helpertypes = ['operator','educator','client','partner','pate','parent']
+costsUnit = ['perDay','perHour']
 
 // custom maps to store data
 colors = [0:'#cc4444',1:'#44cc44',2:'#4444cc',3:'#cccc44',4:'#44cccc',5:'#cc44cc',6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5',12:'#408080',13:'#808000',14:'#461B7E',15:'#307D7E',

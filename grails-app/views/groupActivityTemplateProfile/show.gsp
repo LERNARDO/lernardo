@@ -168,6 +168,10 @@
               <td><g:message code="resource.profile.description"/>:</td>
               <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
+            <tr>
+              <td><g:message code="resource.profile.amount"/>:</td>
+              <td><g:textField size="5" name="amount" value="1"/></td>
+            </tr>
           </table>
           <div class="spacer"></div>
           <g:submitButton name="button" value="${message(code:'add')}"/>

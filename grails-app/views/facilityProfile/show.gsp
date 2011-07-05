@@ -180,10 +180,20 @@
               <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>
+              <td><g:message code="resource.profile.amount"/>:</td>
+              <td><g:textField id="resourceAmount" size="5" name="amount" value="1"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.costs"/>:</td>
+              <td><g:textField id="resourceCosts" size="5" name="costs" value="0"/> <span class="gray">${grailsApplication.config.currency}</span></td>
+            </tr>
+            <tr>
+              <td><g:message code="resource.profile.costsUnit"/>:</td>
+              <td><g:select name="costsUnit" from="${grailsApplication.config.costsUnit}" value="" valueMessagePrefix="costsUnit"/></td>
+            </tr>
+            <tr>
               <td><g:message code="resource.profile.classification"/>:</td>
-              <td>
-                <g:select name="classification" from="${grailsApplication.config.resourceclasses}" value="" valueMessagePrefix="resourceclass"/>
-              </td>
+              <td><g:select name="classification" from="${grailsApplication.config.resourceclasses}" value="" valueMessagePrefix="resourceclass"/></td>
             </tr>
           </table>
           <div class="spacer"></div>
