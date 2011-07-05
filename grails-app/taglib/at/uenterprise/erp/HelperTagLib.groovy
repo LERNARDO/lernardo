@@ -20,6 +20,15 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def getPlannedResourceAmount = {attrs ->
+    def link = Link.createCriteria().get {
+      eq('source', attrs.resource)
+      eq('target', attrs.group)
+      eq('type', metaDataService.ltResource)
+    }
+   out << link.das.amount
+  }
+
   def getBirthdays = {attrs, body ->
 
     SimpleDateFormat sdf = new SimpleDateFormat("d M")
@@ -758,7 +767,7 @@ class HelperTagLib {
    * returns all facilities linked to a group
    */
   def getGroupFacilities = {attrs, body ->
-    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
+    def result = Link.countBySourceAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else

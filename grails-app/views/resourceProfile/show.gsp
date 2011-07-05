@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="resource"/></title>
+  <title><g:message code="resource"/> - ${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="resource"/></h1>
+    <h1><g:message code="resource"/> - ${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -20,7 +20,7 @@
 
         <tr class="prop">
           <td width="540" valign="top" class="value-show">
-            <g:link controller="${location.type.supertype.name +'Profile'}" action="show" id="${resource.id}" params="[entity: resource.id]">${fieldValue(bean: resource, field: 'profile.fullName').decodeHTML()}</g:link>
+            <g:link controller="${location.type.supertype.name +'Profile'}" action="show" id="${location.id}" params="[entity: location.id]">${fieldValue(bean: location, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
         </tr>
 
@@ -40,6 +40,51 @@
         <tr>
           <td colspan="2" valign="top" class="value-show-block">
             ${fieldValue(bean: resource, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.amount"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" class="value-show-block">
+            ${fieldValue(bean: resource, field: 'profile.amount')}
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.free"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" class="value-show-block">
+            ${fieldValue(bean: resource, field: 'profile.free')}
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.costs"/> <span class="gray">(${grailsApplication.config.currency})</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" class="value-show-block">
+            ${fieldValue(bean: resource, field: 'profile.costs')}
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.costsUnit"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" class="value-show-block">
+            <g:message code="costsUnit.${resource.profile.costsUnit}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.classification"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" class="value-show-block">
+            <g:message code="resourceclass.${resource.profile.classification}"/>
           </td>
         </tr>
 

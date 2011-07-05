@@ -933,7 +933,7 @@ class BootStrap {
       new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
 
       // link to facility
-      new Link(source: Entity.findByName("facility${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
+      new Link(source: entity, target: Entity.findByName("facility${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltGroupMemberFacility).save()
 
       // link to educator
       new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()

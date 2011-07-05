@@ -8,6 +8,7 @@ class ResourceProfile extends Profile {
   String classification
 
   Integer amount = 1
+  Integer free
   Integer costs = 0
   String costsUnit
 

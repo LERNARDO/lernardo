@@ -9,16 +9,18 @@ import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
-import at.uenterprise.erp.Event
+
 import at.uenterprise.erp.Live
 import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
+import at.openfactory.ep.LinkHelperService
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
   EntityHelperService entityHelperService
   ProfileHelperService profileHelperService
   FunctionService functionService
+  LinkHelperService linkHelperService
 
   def beforeInterceptor = [
           action:{
@@ -85,7 +87,7 @@ class GroupActivityProfileController {
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
 
     List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
+    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
 
     List allPartners = Entity.findAllByType(metaDataService.etPartner)
     List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
@@ -99,12 +101,12 @@ class GroupActivityProfileController {
     def allSubstitutes = Entity.findAllByType(metaDataService.etEducator)
     List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
 
-    List groupTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all grouptemplates linked to this group
+    List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
 
     Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
 
     def calculatedDuration = 0
-    groupTemplates.each {
+    templates.each {
       calculatedDuration += it.profile.duration
     }
 
@@ -113,9 +115,26 @@ class GroupActivityProfileController {
 
     List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
 
+    List requiredResources = []
+    requiredResources.addAll(template.profile.resources)
+    templates.each {
+      requiredResources.addAll(it.profile.resources)
+    }
+
+    List plannableResources = []
+    facilities.each { Entity facility ->
+      // add resources linked to the facility to plannable resources
+      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+      // find colony the facility is linked to and add its resources as well
+      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+    }
+
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+
     return [group: group,
             entity: entity,
-            templates: groupTemplates,
+            templates: templates,
             calculatedDuration: calculatedDuration,
             allEducators: allEducators,
             educators: educators,
@@ -131,7 +150,10 @@ class GroupActivityProfileController {
             clients: clients,
             template: template,
             allThemes: allThemes,
-            themes: themes]
+            themes: themes,
+            requiredResources: requiredResources,
+            plannableResources: plannableResources,
+            resources: resources]
 
   }
 
@@ -310,18 +332,18 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
     def c = Link.createCriteria()
     def result = c.get {
-      eq('target', Entity.get(params.id))
+      eq('source', Entity.get(params.id))
       eq('type', metaDataService.ltGroupMemberFacility)
     }
     if (!result) {
-      def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+      def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
       if (linking.duplicate)
         //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-        render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
-      render template: 'facilities', model: [facilities: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
+        render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render template: 'facilities', model: [facilities: linking.results2, group: linking.source, entity: entityHelperService.loggedIn]
     }
     else {
-      List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
+      List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
       // render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
       render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
       render template: 'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
@@ -330,8 +352,8 @@ class GroupActivityProfileController {
   }
 
   def removeFacility = {
-    def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
-    render template: 'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
+    def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
+    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
@@ -440,7 +462,7 @@ class GroupActivityProfileController {
 
     List activities = params.withTemplates == "" ? functionService.findAllByLink(null, group, metaDataService.ltGroupMember) : null
     List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup) // find all activities linked to this group
-    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
+    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
     List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
     List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
@@ -506,6 +528,66 @@ class GroupActivityProfileController {
     }
     else
       render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+  }
+
+  def planresource = {
+    Entity group = Entity.get(params.id)
+    Entity resource = Entity.get(params.resource)
+    render template: 'planresource', model: [group: group, resource: resource, i: params.i]
+  }
+
+  def planresourcenow = {
+    Entity group = Entity.get(params.id)
+    Entity resource = Entity.get(params.resource)
+
+    Calendar calendar = new GregorianCalendar()
+    calendar.setTime(group.profile.date)
+    calendar.add(Calendar.MINUTE, group.profile.realDuration)
+
+    Link link = linkHelperService.createLink(resource, group, metaDataService.ltResource) {link, dad ->
+      dad.beginDate = group.profile.date
+      dad.endDate = calendar.getTime()
+      dad.amount = params.amount
+    }
+    resource.profile.free -= params.int('amount')
+    resource.save(flush: true)
+
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
+  }
+
+  def unplanresource = {
+    Entity group = Entity.get(params.id)
+    Entity resource = Entity.get(params.resource)
+
+    def link = Link.createCriteria().get {
+      eq('source', resource)
+      eq('target', group)
+      eq('type', metaDataService.ltResource)
+    }
+    if (link) {
+      resource.profile.free += link.das.amount.toInteger()
+      link.delete()
+    }
+
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
+  }
+
+  def refreshplannableresources = {
+    Entity group = Entity.get(params.id)
+    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
+
+    List plannableResources = []
+    facilities.each { Entity facility ->
+      // add resources linked to the facility to plannable resources
+      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+      // find colony the facility is linked to and add its resources as well
+      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+    }
+
+    render template: 'plannableResources', model: [plannableResources: plannableResources, group: group]
   }
 
 }

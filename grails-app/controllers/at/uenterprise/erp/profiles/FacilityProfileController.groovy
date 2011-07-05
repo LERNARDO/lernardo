@@ -71,13 +71,7 @@ class FacilityProfileController {
     List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     // find colonia of this facility
-    List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
-    Entity colony
-    entities.each {
-      if (it.type.id == metaDataService.etGroupColony.id) {
-        colony = it as Entity
-      }
-    }
+    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
     return [facility: facility,
             entity: entity,
@@ -127,13 +121,7 @@ class FacilityProfileController {
     }
 
     // find colonia of this facility
-    List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
-    Entity colony
-    entities.each {
-      if (it.type.id == metaDataService.etGroupColony.id) {
-        colony = it as Entity
-      }
-    }
+    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
     return [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     
@@ -157,13 +145,7 @@ class FacilityProfileController {
     }
     else {
       // find colonia of this facility
-      List entities = functionService.findAllByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      Entity colony
-      entities.each {
-        if (it.type.id == metaDataService.etGroupColony.id) {
-          colony = it as Entity
-        }
-      }
+      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
       render view: 'edit', model: [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
@@ -201,6 +183,7 @@ class FacilityProfileController {
     Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.properties = params
+      ent.profile.free = ent.profile.amount
     }
     new Link(source: entity, target: facility, type: metaDataService.ltResource).save()
 

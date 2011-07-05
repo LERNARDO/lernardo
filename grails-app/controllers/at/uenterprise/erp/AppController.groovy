@@ -120,7 +120,7 @@ class AppController {
         }
       }
       else if (entity.type.id == metaDataService.etFacility.id) {
-        List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberFacility)
+        List temp = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberFacility)
         temp.each {
           if (it.type.id == metaDataService.etGroupActivity.id) groupActivities << it
         }

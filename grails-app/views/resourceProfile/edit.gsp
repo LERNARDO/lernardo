@@ -37,6 +37,46 @@
             </td>
           </tr>
 
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="resource.profile.amount"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td width="540" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: resource, field: 'profile.amount', 'errors')}" size="5" maxlength="5" name="amount" value="${fieldValue(bean: resource, field: 'profile.amount')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="resource.profile.costs"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td width="540" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: resource, field: 'profile.costs', 'errors')}" size="5" maxlength="5" name="costs" value="${fieldValue(bean: resource, field: 'profile.costs')}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="resource.profile.costsUnit"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td width="540" valign="top" class="value">
+              <g:select name="costsUnit" from="${grailsApplication.config.costsUnit}" value="" valueMessagePrefix="costsUnit"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="resource.profile.classification"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td width="540" valign="top" class="value">
+              <g:select name="classification" from="${grailsApplication.config.resourceclasses}" value="" valueMessagePrefix="resourceclass"/>
+            </td>
+          </tr>
+
           </tbody>
         </table>
 

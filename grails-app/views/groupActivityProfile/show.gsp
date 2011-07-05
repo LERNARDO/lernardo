@@ -237,6 +237,33 @@
       </div>
     </div>
 
+    <div class="zusatz">
+      <h5>Eingeplante Ressourcen <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#resources');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+      <div class="zusatz-add" id="resources" style="display:none">
+        <b><g:message code="resources.required"/></b>
+        <g:if test="${requiredResources}">
+          <ul style="margin-left: 5px">
+            <g:each in="${requiredResources}" var="requiredResource">
+              <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'noData') + '</span>'}</li>
+            </g:each>
+          </ul>
+        </g:if>
+        <g:else>
+          <div class="gray" style="margin-bottom: 5px">Keine benötigten Ressourcen!</div>
+        </g:else>
+
+        <b><g:message code="resource.profile"/></b>
+        <div id="plannableresources">
+          <g:render template="plannableresources" model="[plannableResources: plannableResources, group: group]"/>
+        </div>
+      </div>
+      <div class="zusatz-show" id="resources2">
+        <g:render template="resources" model="[resources: resources, entity: currentEntity, group: group]"/>
+      </div>
+    </div>
+
   </div>
 </div>
 

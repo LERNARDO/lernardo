@@ -236,7 +236,7 @@ class FunctionService {
   List findEducators(Entity group) {
 
     // 1. find facility linked to the group
-    Entity facility = findByLink(null, group, metaDataService.ltGroupMemberFacility)
+    Entity facility = findByLink(group, null, metaDataService.ltGroupMemberFacility)
 
     // 2. find all educators linked to the facility
     def allEducators = Link.createCriteria().list {
