@@ -57,7 +57,9 @@ class ResourceProfileController {
     }
     else {
       Entity location = functionService.findByLink(resource, null, metaDataService.ltResource)
-      [resource: resource, location: location, entity: resource]
+      Entity resowner = functionService.findByLink(null, resource, metaDataService.ltOwner)
+      List resresponsible = functionService.findAllByLink(null, resource, metaDataService.ltResponsible)
+      [resource: resource, location: location, entity: resource, resowner: resowner, resresponsible: resresponsible]
     }
   }
 
@@ -130,4 +132,119 @@ class ResourceProfileController {
     }
 
   }
+
+  /*
+   * retrieves all entities matching the search parameter
+   */
+  def remoteOwner = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        eq('type', metaDataService.etOperator)
+        eq('type', metaDataService.etUser)
+        eq('type', metaDataService.etEducator)
+        eq('type', metaDataService.etParent)
+        eq('type', metaDataService.etPate)
+        eq('type', metaDataService.etPartner)
+        eq('type', metaDataService.etFacility)
+        eq('type', metaDataService.etGroupColony)
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'ownerresults', model: [results: results, resource: params.id])
+    }
+  }
+
+  // adds a owner
+  def addOwner = {
+    Entity resource = Entity.get(params.id)
+
+    // make sure there can be only 1 owner
+    Link result = Link.findByTargetAndType(resource, metaDataService.ltOwner)
+    if (!result) {
+      def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render template: 'owner', model: [resowner: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
+    }
+    else {
+      render '<span class="red italic">Es wurde bereits ein Besitzer zugewiesen!</span>'
+      render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resource: resource, entity: entityHelperService.loggedIn]
+    }
+
+  }
+
+  def removeOwner = {
+    def breaking = functionService.breakEntities(params.owner, params.id, metaDataService.ltOwner)
+    render template: 'owner', model: [resowner: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all entities matching the search parameter
+   */
+  def remoteResponsible = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        eq('type', metaDataService.etOperator)
+        eq('type', metaDataService.etUser)
+        eq('type', metaDataService.etEducator)
+        eq('type', metaDataService.etParent)
+        eq('type', metaDataService.etPate)
+        eq('type', metaDataService.etPartner)
+      }
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'responsibleresults', model: [results: results, resource: params.id])
+    }
+  }
+
+  // adds a responsible
+  def addResponsible = {
+    def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
+    if (linking.duplicate)
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+    render template: 'responsible', model: [resresponsible: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
+
+  }
+
+  def removeResponsible = {
+    def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
+    render template: 'responsible', model: [resresponsible: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
 }

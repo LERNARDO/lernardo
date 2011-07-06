@@ -20,7 +20,7 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
-  def getResourceFree = {attrs ->
+  def getResourceFree = {attrs, body ->
     Calendar calendar = new GregorianCalendar()
     calendar.setTime(attrs.entity.profile.date)
     calendar.add(Calendar.MINUTE, attrs.entity.profile.realDuration)
@@ -38,17 +38,12 @@ class HelperTagLib {
       Date resourceEnd = new Date()
       resourceEnd.setTime(link.das.endDate.toLong() * 1000)
 
-      log.info entityBegin
-      log.info entityEnd
-      log.info resourceBegin
-      log.info resourceEnd
-
      if (!(resourceBegin >= entityEnd || resourceEnd <= entityBegin)) {
        free -= link.das.amount.toInteger()
      }
     }
 
-    out << free
+    out << body(resourceFree: free)
   }
 
   def getPlannedResourceAmount = {attrs ->

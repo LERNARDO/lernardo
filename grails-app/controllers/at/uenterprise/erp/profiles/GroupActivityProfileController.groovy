@@ -533,7 +533,7 @@ class GroupActivityProfileController {
   def planresource = {
     Entity group = Entity.get(params.id)
     Entity resource = Entity.get(params.resource)
-    render template: 'planresource', model: [group: group, resource: resource, i: params.i]
+    render template: 'planresource', model: [group: group, resource: resource, i: params.i, resourceFree: params.int('resourceFree')]
   }
 
   def planresourcenow = {

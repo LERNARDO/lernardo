@@ -146,6 +146,8 @@ class MetaDataService {
   static final String LT_TEMPLATE = "Vorlage"
   static final String LT_PROJECT_UNIT_TEMPLATE = "Projekteinheitvorlage"
   static final String LT_APPOINTMENT = "Termin"
+  static final String LT_OWNER = "Besitzer"
+  static final String LT_RESPONSIBLE = "Verantwortlicher"
 
   static final String LT_ABSENT = "Abwesend"
   static final String LT_ILL = "Krank"
@@ -262,6 +264,8 @@ class MetaDataService {
     getLtTemplate()
     getLtProjectUnitTemplate()
     getLtAppointment()
+    getLtOwner()
+    getLtResponsible()
 
     getLtActEducator()
     getLtActClient()
@@ -383,6 +387,8 @@ class MetaDataService {
   LinkType getLtTemplate()               {defaultObjectService.openLT (LT_TEMPLATE, lstOther) }
   LinkType getLtProjectUnitTemplate()    {defaultObjectService.openLT (LT_PROJECT_UNIT_TEMPLATE, lstOther) }
   LinkType getLtAppointment()            {defaultObjectService.openLT (LT_APPOINTMENT, lstOther) }
+  LinkType getLtOwner()                  {defaultObjectService.openLT (LT_OWNER, lstOther) }
+  LinkType getLtResponsible()            {defaultObjectService.openLT (LT_RESPONSIBLE, lstOther) }
 
   // activity links
   LinkType getLtActEducator() {defaultObjectService.openLT (LT_ACT_EDUCATOR, lstOther) }
