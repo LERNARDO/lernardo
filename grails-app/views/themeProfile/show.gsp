@@ -19,8 +19,7 @@
         <div id="remoteCreators"></div>
       </div>
 
-      <table>
-        <tbody>
+      <table style="width: 100%">
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="theme.profile.name"/></td>
@@ -29,21 +28,9 @@
         </tr>
 
         <tr>
-          <td width="300" valign="top" class="value-show">
-            ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}
-          </td>
-          <td width="230" valign="top" class="value-show">
-            %{--
-            <g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
-            --}%
-            <g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" />
-          </td>
-          <td width="230" valign="top" class="value-show">
-            %{--
-            <g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
-            --}%
-            <g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" />
-          </td>
+          <td valign="top" class="value-show">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value-show"><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" /></td>
+          <td valign="top" class="value-show"><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" /></td>
         </tr>
 
         <tr class="prop">
@@ -74,7 +61,6 @@
           </td>
         </tr>
 
-        </tbody>
       </table>
     </div>
 

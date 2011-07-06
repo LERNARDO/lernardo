@@ -23,25 +23,18 @@
         <div id="remoteCreators"></div>
       </div>
 
-      <table>
-        <tr class="prop">
+      <table style="width: 100%">
+
+        <tr>
           <td valign="top" class="name-show"><g:message code="project.profile.name"/></td>
           <td valign="top" class="name-show"><g:message code="project.profile.startDate"/></td>
           <td valign="top" class="name-show"><g:message code="project.profile.endDate"/></td>
         </tr>
+
         <tr>
-          <td width="300" valign="top" class="value-show">
-            ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}
-          </td>
-          <td width="230" valign="top" class="value-show">
-            <g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" />
-          </td>
-          <td width="230" valign="top" class="value-show">
-            %{--
-            <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
-            --}%
-            <g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" />
-          </td>
+          <td valign="top" class="value-show">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value-show"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
+          <td valign="top" class="value-show"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
         </tr>
 
         <tr>

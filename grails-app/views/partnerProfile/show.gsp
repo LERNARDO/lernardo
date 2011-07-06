@@ -13,35 +13,32 @@
   <div class="second">
     <div>
 
-      <table>
+      <table style="width: 100%">
 
         <tr class="prop">
-          <td class="name-show"><g:message code="partner.profile.name"/></td>
-          <td colspan="2" valign="top" class="name-show"><g:message code="partner.profile.description"/></td>
+          <td valign="top" class="name-show"><g:message code="partner.profile.name"/></td>
+          <td valign="top" class="name-show"><g:message code="partner.profile.description"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.website"/></td>
         </tr>
 
+        <tr>
+          <td class="value-show"><g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link></td>
+          <td class="value-show">${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+          <td class="value-show">${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+        </tr>
+
+      </table>
+
+      <table style="width: 100%">
+
         <tr class="prop">
-          <td class="value-show">
-            <g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link>
-          </td>
-          <td colspan="2" class="value-show">
-            ${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}
-          </td>
-          <td class="value-show">
-            ${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}
-          </td>
+          <td valign="top" class="name-show"><g:message code="partner.profile.phone"/></td>
+          <td valign="top" class="name-show"><g:message code="partner.profile.services"/></td>
         </tr>
 
         <tr class="prop">
-          <td class="name-show"><g:message code="partner.profile.phone"/></td>
-          <td colspan="3" valign="top" class="name-show"><g:message code="partner.profile.services"/></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" width="200" class="value-show">
-            ${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td width="421" colspan="3" class="value-show-block">
+          <td valign="top" width="200" class="value-show">${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+          <td valign="top" class="value-show-block">
             <g:if test="${partner.profile.services}">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
@@ -69,18 +66,20 @@
           <td colspan="3" valign="top"></td>
         </tr>--}%
 
-        <tr class="prop">
+      <table style="width: 100%">
+
+        <tr>
           <td valign="top" class="name-show"><g:message code="partner.profile.street"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.zip"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.city"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.country"/></td>
         </tr>
 
-        <tr class="prop">
-          <td width="290" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td width="101" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-          <td width="220" valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td width="210" align="top" class="value-show">${partner.profile.country}</td>
+        <tr>
+          <td valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+          <td valign="top" class="value-show">${partner.profile.country}</td>
         </tr>
 
       </table>

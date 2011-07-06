@@ -3,6 +3,7 @@
   <title><g:message code="groupActivityTemplates"/></title>
 </head>
 <body>
+
 <div class="tabGreen">
   <div class="second">
     <h1><g:message code="groupActivityTemplates"/></h1>

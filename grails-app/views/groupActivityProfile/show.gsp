@@ -20,12 +20,10 @@
         <div id="remoteCreators"></div>
       </div>
 
+      <table style="width: 100%">
 
-      <table>
-        <tbody>
-
-        <tr class="prop">
-          <td height="30" colspan="3" valign="top" class="name">
+        <tr>
+          <td colspan="3" valign="top" class="name">
             <g:if test="${template}">
               <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
             </g:if>
@@ -35,19 +33,19 @@
           </td>
         </tr>
 
-        <tr class="prop">
+        <tr>
           <td valign="top" class="name-show"><g:message code="groupActivity.profile.name"/>:</td>
           <td valign="top" class="name-show"><g:message code="groupActivity.profile.realDuration"/>:</td>
           <td valign="top" class="name-show"><g:message code="groupActivity.profile.date"/>:</td>
         </tr>
 
         <tr>
-          <td width="280" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td width="150" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
-          <td width="300" valign="top" class="value-show"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
+          <td valign="top" class="value-show"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
         </tr>
 
-        <tr class="prop">
+        <tr>
           <td valign="top" class="name-show"><g:message code="groupActivity.profile.educationalObjective"/>:</td>
           <td colspan="2" valign="top" class="name-show"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
         </tr>
@@ -73,11 +71,6 @@
           <td colspan="3" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
-        <tr class="prop"></tr>
-        <tr class="prop"></tr>
-        <tr class="prop"></tr>
-
-        </tbody>
       </table>
     </div>
 

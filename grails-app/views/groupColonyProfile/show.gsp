@@ -11,20 +11,18 @@
 <div class="boxGray">
   <div class="second">
     <div>
-      <table>
-        <tbody>
+      <table style="width: 100%">
 
-        <tr class="prop">
+        <tr>
           <td valign="top" class="name-show"><g:message code="groupColony.profile.name"/>:</td>
           <td valign="top" class="name-show"><g:message code="groupColony.profile.description"/>:</td>
         </tr>
 
-        <tr class="prop">
-          <td width="200px" valign="top" class="value-show"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
-          <td width="500px" valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <tr>
+          <td valign="top" class="value-show"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
-        </tbody>
       </table>
     </div>
 

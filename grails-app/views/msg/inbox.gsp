@@ -11,16 +11,23 @@
     </div>
   </div>
 </g:if>
-<div class="boxHeader">
+
+<div class="tabGreen">
   <div class="second">
     <h1><g:message code="msg.inbox"/></h1>
   </div>
 </div>
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.outbox"/></g:link></h1>
+  </div>
+</div>
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 
     <div class="buttons">
-      <g:link class="buttonGreen" controller="msg" action="outbox" id="${entity.id}"><g:message code="msg.inbox.toOutbox"/></g:link>
       <g:link class="buttonGreen" controller="msg" action="createMany" id="${entity.id}"><g:message code="msg.create"/></g:link>
       <div class="spacer"></div>
     </div>

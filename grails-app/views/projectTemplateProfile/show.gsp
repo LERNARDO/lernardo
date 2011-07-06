@@ -19,8 +19,7 @@
         <div id="remoteCreators"></div>
       </div>
 
-      <table>
-        <tbody>
+      <table style="width: 100%">
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="projectTemplate.profile.name"/></td>
@@ -28,10 +27,10 @@
         </tr>
 
         <tr>
-          <td width="650px" valign="top" class="value-show">
+          <td valign="top" class="value-show">
             <g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
-          <td width="120px" valign="top" class="value-show">
+          <td valign="top" class="value-show">
             <g:message code="status.${projectTemplate.profile.status}"/>
           </td>
         </tr>
@@ -45,7 +44,7 @@
             ${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
           </td>
         </tr>
-        </tbody>
+
       </table>
 
     </div>

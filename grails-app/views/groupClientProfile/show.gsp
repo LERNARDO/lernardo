@@ -12,16 +12,16 @@
 <div class="boxGray">
   <div class="second">
     <div>
-      <table>
+      <table style="width: 100%">
 
-        <tr class="prop">
+        <tr>
           <td valign="top" class="name-show"><g:message code="groupClient.profile.name"/>:</td>
           <td valign="top" class="name-show"><g:message code="groupClient.profile.description"/>:</td>
         </tr>
 
-        <tr class="prop">
-          <td width="200" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td width="500" valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <tr>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
         
       </table>

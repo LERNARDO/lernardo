@@ -21,7 +21,7 @@
     </erp:getTemplate>
     <br/><br/>
 
-    <table>
+    <table style="width: 100%">
 
       <tr>
         <td class="name-show"><g:message code="name"/>:</td>
@@ -30,13 +30,11 @@
       </tr>
 
       <tr>
-        <td width="220" class="value-show">
-          <g:link controller="activityProfile" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link>
-        </td>
-        <td width="300" class="value-show">
+        <td class="value-show"><g:link controller="activityProfile" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link></td>
+        <td class="value-show">
           <g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
         </td>
-        <td width="220" class="value-show">${activity.profile.duration} Minuten</td>
+        <td class="value-show">${activity.profile.duration} Minuten</td>
       </tr>
 
       <tr>

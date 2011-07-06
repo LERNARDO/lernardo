@@ -19,7 +19,7 @@
         <div id="remoteCreators"></div>
       </div>
 
-    <table>
+    <table style="width: 100%">
 
       <tr class="prop">
         <td colspan="2" valign="top" class="name-show"><g:message code="activityTemplate.name"/>:</td>
@@ -36,8 +36,8 @@
       </tr>
 
       <tr class="prop">
-        <td width="210px" valign="top" class="name-show"><g:message code="activityTemplate.socialForm"/>:</td>
-        <td width="190px" valign="top" class="name-show"><g:message code="activityTemplate.status"/>:</td>
+        <td valign="top" class="name-show"><g:message code="activityTemplate.socialForm"/>:</td>
+        <td valign="top" class="name-show"><g:message code="activityTemplate.status"/>:</td>
         <td valign="top" class="name-show"><g:message code="activityTemplate.amountEducators"/>:</td>
       </tr>
 
@@ -60,7 +60,7 @@
 
       <tr>
         <td colspan="2" valign="top" class="value-show-block">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        <td width="390" valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
       <tr class="prop">
@@ -72,7 +72,7 @@
       <tr>
         <td valign="top" class="value-show">${template.profile.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         <td valign="top" class="value-show">${template.profile.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        <td width="390" valign="top" class="value-show-block">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td valign="top" class="value-show-block">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
     </table>
