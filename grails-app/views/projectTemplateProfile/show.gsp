@@ -101,7 +101,7 @@
         </g:formRemote>
       </div>--}%
       <div class="zusatz-show" id="projectunittemplates2">
-        <g:render template="projectUnitTemplates" model="[projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, allGroupActivityTemplates: allGroupActivityTemplates, entity: currentEntity]"/>
+        <g:render template="projectUnitTemplates" model="[projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: currentEntity]"/>
       </div>
     </div>
 
@@ -148,6 +148,23 @@
       <div class="zusatz-show" id="resources2">
         <g:render template="resources" model="[group: projectTemplate, entity: currentEntity]"/>
       </div>
+      <g:if test="${templateResources}">
+          <p>Aus Vorlagen:</p>
+          <div class="zusatz-show">
+            <g:each in="${templateResources}" var="resource">
+              <div style="border: 1px solid #ccc; margin-top: 5px; border-radius: 5px; background: #fefefe; padding: 5px;">
+                <ul>
+                  <li><span class="bold"><g:message code="name"/>:</span> ${resource.name}</li>
+                  <li><g:message code="description"/>: ${resource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+                  <li><g:message code="resource.profile.amount"/>: ${resource.amount}</li>
+                </ul>
+              </div>
+            </g:each>
+  %{--        <g:else>
+            <span class="italic red"><g:message code="noResourcesOfTemplates"/></span>
+          </g:else>--}%
+          </div>
+        </g:if>
     </div>
 
     <div class="zusatz">

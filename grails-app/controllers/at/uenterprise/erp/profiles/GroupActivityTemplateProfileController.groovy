@@ -85,6 +85,12 @@ class GroupActivityTemplateProfileController {
     // find all instances of this template
     List instances = functionService.findAllByLink(group, null, metaDataService.ltTemplate)
 
+    // get all resources of all templates
+    List templateResources = []
+    templates.each {
+      templateResources.addAll(it.profile.resources)
+    }
+
     return [group: group,
             entity: entity,
             allTemplates: allTemplates,
@@ -92,7 +98,8 @@ class GroupActivityTemplateProfileController {
             calculatedDuration: calculatedDuration,
             methods: Method.findAllByType('template'),
             allLabels: Label.findAllByType('template'),
-            instances: instances]
+            instances: instances,
+            templateResources: templateResources]
 
   }
 

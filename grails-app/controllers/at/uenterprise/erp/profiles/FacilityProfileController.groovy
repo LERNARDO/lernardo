@@ -70,7 +70,7 @@ class FacilityProfileController {
     // find all clients linked to the facility
     List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
-    // find colonia of this facility
+    // find colony of this facility
     Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
     return [facility: facility,

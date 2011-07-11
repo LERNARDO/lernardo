@@ -142,7 +142,7 @@
       <h5><g:message code="facility"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#facilities');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
-        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');">
+        <g:formRemote name="formRemote" url="[controller:'groupActivityProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="${remoteFunction(action: 'refreshplannableresources', update: 'plannableresources', id: group.id)}">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <g:submitButton name="button" value="${message(code:'add')}"/>
         </g:formRemote>
@@ -239,7 +239,7 @@
         <g:if test="${requiredResources}">
           <ul style="margin-left: 5px">
             <g:each in="${requiredResources}" var="requiredResource">
-              <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'noData') + '</span>'}</li>
+              <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
             </g:each>
           </ul>
         </g:if>
@@ -247,7 +247,7 @@
           <div class="gray" style="margin-bottom: 5px">Keine benötigten Ressourcen!</div>
         </g:else>
 
-        <b><g:message code="resource.profile"/></b>
+        <b><g:message code="resource.profile"/></b> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
         <div id="plannableresources">
           <g:render template="plannableresources" model="[plannableResources: plannableResources, group: group]"/>
         </div>

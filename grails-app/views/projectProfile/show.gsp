@@ -135,7 +135,7 @@
     <div class="zusatz">
       <h5><g:message code="projectDays"/> (${projectDays.size()})</h5>
       <div id="projectDay">
-        <g:render template="projectdaynav" model="[project: project, projectDays: projectDays, projectDay: day, allResources: allResources, allEducators: allEducators, allParents: allParents, units: units, active: active, entity: currentEntity]"/>
+        <g:render template="projectdaynav" model="[project: project, projectDays: projectDays, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, active: active, entity: currentEntity, plannableResources: plannableResources, requiredResources: requiredResources]"/>
       </div>
     </div>
 

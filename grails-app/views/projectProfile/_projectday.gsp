@@ -52,20 +52,30 @@
     </erp:getProjectDaySubstitutes>
   </div>
 
-  %{--<span class="bold">Resourcen <erp:accessCheck entity="${entity}" types="['Betreiber','Pädagoge']"><a onclick="toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
-  <div id="resources" style="display:none">
-    <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'addResource', id:projectDay.id]" update="resources2" before="showspinner('#resources2')">
-      <g:select name="resource" from="${allResources}" optionKey="id" optionValue="profile"/>
-      <div class="spacer"></div>
-      <g:submitButton name="button" value="${message(code:'add')}"/>
-      <div class="spacer"></div>
-    </g:formRemote>
-  </div>
+  <span class="bold">Eingeplante Ressourcen <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
 
-  <div id="resources2">
-    <erp:getProjectDayResources projectDay="${projectDay}">
-      <g:render template="resources" model="[resources: resources, projectDay: projectDay, entity: entity]"/>
-    </erp:getProjectDayResources>
-  </div>--}%
+      <div class="zusatz-add" id="resources" style="display:none">
+        <b><g:message code="resources.required"/></b>
+        <g:if test="${requiredResources}">
+          <ul style="margin-left: 5px">
+            <g:each in="${requiredResources}" var="requiredResource">
+              <li style="list-style-type: circle">${requiredResource.amount}x "${requiredResource.name}" - ${requiredResource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+            </g:each>
+          </ul>
+        </g:if>
+        <g:else>
+          <div class="gray" style="margin-bottom: 5px">Keine benötigten Ressourcen!</div>
+        </g:else>
+
+        <b><g:message code="resource.profile"/></b> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
+        <div id="plannableresources">
+          <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
+        </div>
+      </div>
+      <div class="zusatz-show" id="resources2">
+        <g:render template="resources" model="[resources: resources, entity: entity, projectDay: projectDay]"/>
+      </div>
+    </div>
 
 </div>

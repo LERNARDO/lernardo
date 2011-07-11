@@ -23,7 +23,18 @@ class HelperTagLib {
   def getResourceFree = {attrs, body ->
     Calendar calendar = new GregorianCalendar()
     calendar.setTime(attrs.entity.profile.date)
-    calendar.add(Calendar.MINUTE, attrs.entity.profile.realDuration)
+
+    if (attrs.entity.type.id == metaDataService.etGroupActivity)
+      calendar.add(Calendar.MINUTE, attrs.entity.profile.realDuration)
+    else {
+      // get all project units of a project day and calculate their duration sum
+      List units = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectDayUnit)
+      int duration = 0
+      units.each {
+        duration += it.profile.duration
+      }
+      calendar.add(Calendar.MINUTE, duration)
+    }
 
     Date entityBegin = attrs.entity.profile.date
     Date entityEnd = calendar.getTime()
@@ -49,7 +60,7 @@ class HelperTagLib {
   def getPlannedResourceAmount = {attrs ->
     def link = Link.createCriteria().get {
       eq('source', attrs.resource)
-      eq('target', attrs.group)
+      eq('target', attrs.entity)
       eq('type', metaDataService.ltResourcePlanned)
     }
    out << link.das.amount

@@ -65,30 +65,34 @@ class ProjectTemplateProfileController {
         projectUnitTemplates.add(Entity.get(it))
       }
 
-      //List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
-
-      // get all groupactivitytemplates that are set to completed
-      def c = Entity.createCriteria()
-      def allGroupActivityTemplates = c.list {
-        eq("type", metaDataService.etGroupActivityTemplate)
-        profile {
-          eq("status", "done")
-        }
-      }
-
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnitTemplates)
 
       // find all instances of this template
       List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
 
+      // get all resources of all templates
+      // get all groupActivityTemplates of all projectUnitTemplates
+      List groupActivityTemplates = []
+      projectUnitTemplates.each { put ->
+        List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+        tempTemplates.each { tt ->
+          if (!groupActivityTemplates.contains(tt))
+            groupActivityTemplates.add(tt)
+        }
+      }
+      List templateResources = []
+      groupActivityTemplates.each {
+        templateResources.addAll(it.profile.resources)
+      }
+
       [projectTemplate: projectTemplate,
               entity: entity,
               projectUnitTemplates: projectUnitTemplates,
-              allGroupActivityTemplates: allGroupActivityTemplates,
               calculatedDuration: calculatedDuration,
               instances: instances,
-              allLabels: Label.findAllByType('template')]
+              allLabels: Label.findAllByType('template'),
+              templateResources: templateResources]
     }
   }
 
