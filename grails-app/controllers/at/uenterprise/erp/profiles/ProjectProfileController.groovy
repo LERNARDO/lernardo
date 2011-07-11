@@ -1405,10 +1405,16 @@ class ProjectProfileController {
 
     calendar.add(Calendar.MINUTE, duration)
 
-    Link link = linkHelperService.createLink(resource, projectDay, metaDataService.ltResourcePlanned) {link, dad ->
-      dad.beginDate = projectDay.profile.date.getTime() / 1000
-      dad.endDate = calendar.getTime().getTime() / 1000
-      dad.amount = params.amount
+    // make sure no resource is planned if the duration is 0 (which means no project unit has been set yet)
+    if (duration > 0) {
+      Link link = linkHelperService.createLink(resource, projectDay, metaDataService.ltResourcePlanned) {link, dad ->
+        dad.beginDate = projectDay.profile.date.getTime() / 1000
+        dad.endDate = calendar.getTime().getTime() / 1000
+        dad.amount = params.amount
+      }
+    }
+    else {
+      render '<span class="italic gray">Es müssen erst Projekteinheiten geplant werden bevor Ressourcen geplant werden können!</span><br/>'
     }
 
     List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
