@@ -95,7 +95,8 @@ class MsgController {
         // not working
         //flash.message = message(code:"msg.deleted", args:[message.subject])
         message.delete(flush:true)
-        redirect action:params.box, id: params.entity
+        //redirect action:params.box, id: params.entity
+        render ""
       }
       catch(org.springframework.dao.DataIntegrityViolationException ex) {
         flash.message = message(code:"msg.notDeleted", args:[message.subject])
@@ -104,7 +105,7 @@ class MsgController {
     }
     else {
       flash.message = message(code:"msg.notFound", args:[params.id])
-      redirect action:params.box, params:[name:params.name]
+      //redirect action:params.box, params:[name:params.name]
     }
   }
 
