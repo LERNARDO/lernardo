@@ -34,7 +34,7 @@
     <div class="buttons">
       %{--reply is only possible when sender account is enabled--}%
       <erp:isEnabled entity="${msgInstance.sender}">
-        <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject]">Antworten</g:link>
+        <g:link class="buttonGreen" controller="msg" action="create" id="${msgInstance.sender.id}" params="[entity:entity.id, subject:'AW: '+msgInstance.subject, reply: 'true']">Antworten</g:link>
       </erp:isEnabled>
       <g:link class="buttonRed" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${msgInstance.id}" params="[entity:entity.id,box:box]"><g:message code="delete"/></g:link>
       <g:link class="buttonGray" action="inbox" id="${entity.id}"><g:message code="back"/></g:link>

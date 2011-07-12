@@ -147,9 +147,10 @@ class MsgController {
       message.subject = params.subject
 
     Entity entity = Entity.get(params.id)
-    return ['msgInstance':message,
-            'receiver':entity,
-            'entity': Entity.get(params.entity)]
+    return [msgInstance:message,
+            receiver:entity,
+            entity: Entity.get(params.entity),
+            reply: params.reply ?: 'false']
   }
 
   def createMany = {
@@ -192,8 +193,11 @@ class MsgController {
      
     flash.message = message(code:"msg.sent", args:[params.subject])
 
-    redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
-    //redirect action:'inbox', id: currentEntity.id
+    if (params.reply == "true")
+      redirect action:'inbox', id: currentEntity.id
+    else
+      redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
+
   }
 
   def remoteReceivers = {
