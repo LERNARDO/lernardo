@@ -53,7 +53,7 @@
         day: 'dddd, d.M.'  // Monday 9/7     
     },
     axisFormat: ' HH:mm', // H (:mm)
-    timeFormat: 'HH:mm',
+    timeFormat: 'HH:mm{ - HH:mm}',
     %{--aspectRatio: 1.34,--}%
     contentHeight: 850,
     editable: false,
