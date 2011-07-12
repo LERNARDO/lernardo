@@ -70,7 +70,14 @@
 
         <b><g:message code="resource.profile"/></b> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
         <div id="plannableresources">
-          <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
+          <erp:getProjectDayUnits projectDay="${projectDay}">
+            <g:if test="${units}">
+              <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
+            </g:if>
+            <g:else>
+              <span class="italic gray">Sie können die Ressourcen erst einplanen, wenn Sie eine Projekteinheit ausgewählt haben!</span><br/>
+            </g:else>
+          </erp:getProjectDayUnits>
         </div>
       </div>
       <div class="zusatz-show" id="resources2">

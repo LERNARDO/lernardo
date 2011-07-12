@@ -589,6 +589,33 @@ class ProjectTemplateProfileController {
 
     render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
   }
+
+  def refreshtemplateresources = {
+    Entity projectTemplate = Entity.get(params.id)
+
+    // find all projectUnitTemplates linked to this projectTemplate
+    List projectUnitTemplates = []
+    projectTemplate.profile.templates.each {
+      projectUnitTemplates.add(Entity.get(it))
+    }
+
+    // get all resources of all templates
+    // get all groupActivityTemplates of all projectUnitTemplates
+    List groupActivityTemplates = []
+    projectUnitTemplates.each { put ->
+      List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+      tempTemplates.each { tt ->
+        if (!groupActivityTemplates.contains(tt))
+          groupActivityTemplates.add(tt)
+      }
+    }
+    List templateResources = []
+    groupActivityTemplates.each {
+      templateResources.addAll(it.profile.resources)
+    }
+
+    render template: 'templateresources', model: [templateResources: templateResources]
+  }
 }
 
 

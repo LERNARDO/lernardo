@@ -687,7 +687,8 @@ class HelperTagLib {
     if (projectDayUnits)
       projectDayUnits.each {out << body(units: it)}
     else
-      out << '<span class="italic red">' + message(code: 'projectUnits.choose') + '</span></span>'
+      out << body(units: null)
+      //out << '<span class="italic red">' + message(code: 'projectUnits.choose') + '</span>'
   }
 
   /*
@@ -698,7 +699,7 @@ class HelperTagLib {
     if (projectDayEducators)
       projectDayEducators.each {out << body(educators: it)}
     else
-      out << '<span class="italic red">' + message(code: 'educators.choose') + '</span></span>'
+      out << '<span class="italic red">' + message(code: 'educators.choose') + '</span>'
   }
 
   /*
@@ -709,7 +710,7 @@ class HelperTagLib {
     if (projectDaySubstitutes)
       projectDaySubstitutes.each {out << body(educators: it)}
     else
-      out << '<span class="italic red">' + message(code: 'substitutes.choose') + '</span></span>'
+      out << '<span class="italic red">' + message(code: 'substitutes.choose') + '</span>'
   }
 
   /*
@@ -742,7 +743,7 @@ class HelperTagLib {
     if (projectUnitParents)
       projectUnitParents.each {out << body(parents: it)}
     else
-      out << '<span class="italic red">' + message(code: 'parents.choose') + '</span></span>'
+      out << '<span class="italic red">' + message(code: 'parents.choose') + '</span>'
   }
 
   /*
@@ -753,7 +754,7 @@ class HelperTagLib {
     if (projectUnitPartners)
       projectUnitPartners.each {out << body(partners: it)}
     else
-      out << '<span class="italic red">' + message(code: 'partners.choose') + '</span></span>'
+      out << '<span class="italic red">' + message(code: 'partners.choose') + '</span>'
   }
 
   /*
@@ -764,7 +765,7 @@ class HelperTagLib {
     if (groupActivityTemplates)
       groupActivityTemplates.each {out << body(groupActivityTemplates: it)}
     else
-      out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'groupActivityTemplates.notAssigned') + '</span></span>'
+      out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'groupActivityTemplates.notAssigned') + '</span>'
   }
 
   /*
