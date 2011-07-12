@@ -1,11 +1,11 @@
 <head>
-  <title>Nachricht senden</title>
+  <title><g:message code="privat.msgCreate"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Nachricht senden</h1>
+    <h1><g:message code="privat.msgCreate"/></h1>
   </div>
 </div>
 <div class="boxGray">
