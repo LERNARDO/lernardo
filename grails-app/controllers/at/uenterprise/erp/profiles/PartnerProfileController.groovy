@@ -6,7 +6,6 @@ import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
 import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import org.springframework.web.servlet.support.RequestContextUtils
 import at.openfactory.ep.EntityType

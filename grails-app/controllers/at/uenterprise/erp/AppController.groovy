@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
 import at.openfactory.ep.AssetStorage
-import grails.util.GrailsUtil
+//import grails.util.GrailsUtil
 
 class AppController {
   SecHelperService secHelperService

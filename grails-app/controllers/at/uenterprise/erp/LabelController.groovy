@@ -51,7 +51,7 @@ class LabelController {
       redirect(action: "list")
     }
     else {
-      return [labelInstance: labelInstance]
+      [labelInstance: labelInstance]
     }
   }
 

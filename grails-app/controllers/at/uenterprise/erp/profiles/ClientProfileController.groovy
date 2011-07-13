@@ -13,7 +13,6 @@ import at.uenterprise.erp.Performances
 import at.uenterprise.erp.Healths
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Event
 import at.uenterprise.erp.Post
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Collector

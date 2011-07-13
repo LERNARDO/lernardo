@@ -10,7 +10,6 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Comment
 

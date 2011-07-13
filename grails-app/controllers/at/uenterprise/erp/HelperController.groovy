@@ -1,7 +1,6 @@
 package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
-import at.openfactory.ep.EntityType
 import at.openfactory.ep.EntityHelperService
 
 class HelperController {

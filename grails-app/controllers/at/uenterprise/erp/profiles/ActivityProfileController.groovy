@@ -161,8 +161,6 @@ class ActivityProfileController {
    * saves a batch of theme room activities between a certain time range
    */
   def save = {ActivityCommand ac ->
-    Entity currentEntity = entityHelperService.loggedIn
-
     if (ac.hasErrors()) {
       render view:'create', model:['ac':ac]
       return
@@ -262,7 +260,6 @@ class ActivityProfileController {
       currentDate += 1
     }
 
-    // flash.message = "Themenraumaktivitäten wurden geplant!"
     flash.message = message(code: "activityInstances.scheduled")
     redirect action: 'list'
   }
@@ -275,9 +272,9 @@ class ActivityProfileController {
     // get a list of facilities the current entity is working in
     def facilities = []
     if (currentEntity.type.name == metaDataService.etEducator.name)
-      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
     else
-      facilities = Entity.findAllByType(metaDataService.etFacility)
+      facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
     def educators = Entity.findAllByType(metaDataService.etEducator)
     def clients = Entity.findAllByType(metaDataService.etClient)
 
@@ -323,9 +320,9 @@ class ActivityProfileController {
       // get a list of facilities the current entity is working in
       def facilities = []
       if (currentEntity.type.name == metaDataService.etEducator.name)
-        facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+        facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
       else
-        facilities = Entity.findAllByType(metaDataService.etFacility)
+        facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
       def educators = Entity.findAllByType(metaDataService.etEducator)
       def clients = Entity.findAllByType(metaDataService.etClient)
 

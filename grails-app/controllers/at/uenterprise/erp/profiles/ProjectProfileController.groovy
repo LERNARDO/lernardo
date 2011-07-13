@@ -6,7 +6,6 @@ import at.openfactory.ep.ProfileHelperService
 import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.Entity
 import at.openfactory.ep.Link
-import at.uenterprise.erp.Event
 
 import java.text.SimpleDateFormat
 import at.openfactory.ep.EntityType
@@ -142,7 +141,7 @@ class ProjectProfileController {
 
       List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
 
-      def projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
+      Entity projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
 
       List requiredResources = []
       requiredResources.addAll(template.profile.resources)
@@ -151,8 +150,8 @@ class ProjectProfileController {
 
       // find all groups linked to all units
       List groups = []
-      pUnits.each {
-        groups.addAll(functionService.findAllByLink(null, it, metaDataService.ltProjectUnit))
+      pUnits.each { Entity pUnit ->
+        groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
       }
 
       // for every group activity template add its resources
@@ -383,7 +382,7 @@ class ProjectProfileController {
       tcalendarStart.add(Calendar.DATE, 1)
     }
 
-    currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    //currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
 
     project.profile.properties = params
@@ -1038,8 +1037,8 @@ class ProjectProfileController {
 
       // find all groups linked to all units
       List groups = []
-      pUnits.each {
-        groups.addAll(functionService.findAllByLink(null, it, metaDataService.ltProjectUnit))
+      pUnits.each { Entity pUnit ->
+        groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
       }
 
       // for every group activity template add its resources

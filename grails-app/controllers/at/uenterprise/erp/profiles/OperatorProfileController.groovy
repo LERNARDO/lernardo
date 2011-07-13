@@ -8,7 +8,6 @@ import at.openfactory.ep.EntityHelperService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Event
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment

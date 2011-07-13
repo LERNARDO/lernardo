@@ -56,7 +56,7 @@ class WorkdayCategoryController {
             redirect action:'list'
         }
         else {
-            return [ workdayCategoryInstance : workdayCategoryInstance ]
+            [ workdayCategoryInstance : workdayCategoryInstance ]
         }
     }
 
