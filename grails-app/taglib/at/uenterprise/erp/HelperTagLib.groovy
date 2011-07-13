@@ -323,22 +323,13 @@ class HelperTagLib {
 
     BigDecimal hours = 0
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
-      log.info workdayUnit
       // check if the workdayunit should be counted
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
-      log.info category
       if (category?.count) {
-        // check if the date of the workdayunit is between date1 and date2
+        // check if the date of the workdayunit the chosen date range
         if (attrs.date1 != null & attrs.date2 != null) {
-          //log.info workdayUnit.date1.getYear() + "/" + date1.getYear() + date2.getYear()
-          //log.info workdayUnit.date1.getMonth() + "/" + date1.getMonth() + date2.getMonth()
-          //log.info workdayUnit.date1.getDate() + "/" + date1.getDate() + date2.getDate()
-          SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy")
-          if (sdf.format(workdayUnit.date1) >= sdf.format(date1) && sdf.format(workdayUnit.date2) <= sdf.format(date2)) {
-          //if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date2.getYear() <= date2.getYear() &&
-          //    workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date2.getMonth() <= date2.getMonth() &&
-          //    workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date2.getDate() <= date2.getDate()) {
-                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+          if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+            hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
         }
         else
