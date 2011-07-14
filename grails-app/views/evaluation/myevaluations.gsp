@@ -6,7 +6,12 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Meine Tagebucheinträge</h1>
+    <h1>Meine Einträge</h1>
+  </div>
+</div>
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="evaluation" action="interestingevaluations" id="${entity.id}">Interessante Einträge</g:link></h1>
   </div>
 </div>
 
@@ -24,13 +29,6 @@
   <div class="second">
 
     <p>Du hast insgesamt ${evaluationInstanceTotal} Tagebucheinträge erstellt.</p>
-
-    <div class="buttons">
-      <g:form id="${entity.id}">
-        <div class="button"><g:actionSubmit class="buttonGreen" action="interestingevaluations" value="Interessante Tagebucheinträge"/></div>
-        <div class="spacer"></div>
-      </g:form>
-    </div>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluation">

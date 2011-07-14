@@ -3,22 +3,24 @@
   <meta name="layout" content="private"/>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGrey">
   <div class="second">
-    <h1>Interessante Tagebucheinträge</h1>
+    <h1><g:link controller="evaluation" action="myevaluations" id="${entity.id}">Meine Einträge</g:link></h1>
   </div>
 </div>
+<div class="tabGreen">
+  <div class="second">
+    <h1>Interessante Einträge</h1>
+  </div>
+</div>
+
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 
     <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten und Erziehungsberechtigten in deinem Umfeld.</p>
-
-    <div class="buttons">
-      <g:form id="${entity.id}">
-        <div class="button"><g:actionSubmit class="buttonGreen" action="myevaluations" value="Meine Tagebucheinträge"/></div>
-        <div class="spacer"></div>
-      </g:form>
-    </div>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluation">
