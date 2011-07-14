@@ -70,12 +70,12 @@ class BootStrap {
         createDefaultTags()
         createDefaultActivityTemplates()
         //createDefaultActivities()
-        createDefaultColonias()
+        createDefaultPartner()
+        createDefaultColonies()
         createDefaultParents()
         createDefaultClients()
         createDefaultChildren()
         createDefaultPosts()
-        createDefaultPartner()
         createDefaultPates()
         //createDefaultAttendances()
         createDefaultFamilies()
@@ -121,7 +121,7 @@ class BootStrap {
     // get or create the setup instance and populate it with dummy data
     def setup = Setup.list()[0]
     if (!setup) {
-      setup = new Setup().save()
+      setup = new Setup().save(failOnError: true)
       setup.addToBloodTypes("dummyBloodType")
       setup.addToEducations("dummyEducation")
       setup.addToEmploymentStatus("dummyEmploymentStatus")
@@ -143,7 +143,7 @@ class BootStrap {
 
     // system admin users
     if (!Entity.findByName('admin')) {
-      ECalendar calendar = new ECalendar().save()
+      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@uenterprise.de", "Admin") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.systemAdminRole)
         ent.user.addToAuthorities(metaDataService.adminRole)
@@ -157,7 +157,7 @@ class BootStrap {
 
     // admin users
     if (!Entity.findByName('patriziarosenkranz')) {
-      ECalendar calendar = new ECalendar().save()
+      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
@@ -169,7 +169,7 @@ class BootStrap {
     }
 
     if (!Entity.findByName('danielszabo')) {
-      ECalendar calendar = new ECalendar().save()
+      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@uenterprise.de", "Daniel Szabo") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
@@ -190,7 +190,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("educator" + i)) {
-        ECalendar calendar = new ECalendar().save()
+        ECalendar calendar = new ECalendar().save(failOnError: true)
         Entity entity = entityHelperService.createEntityWithUserAndProfile("educator" + i, etEducator, "educator" + i + "@domain.org", "educatorFirstName educatorLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           EducatorProfile prf = (EducatorProfile)ent.profile
@@ -225,7 +225,7 @@ class BootStrap {
           prf.hourlyWage = 10
           prf.overtimePay = 15
         }
-        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltWorking).save()
+        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltWorking).save(failOnError: true)
       }
     }
 
@@ -239,7 +239,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("parent" + i)) {
-        ECalendar calendar = new ECalendar().save()
+        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile("parent" + i, etParent, "parent" + i + "@domain.org", "parentFirstName parentLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ParentProfile prf = (ParentProfile)ent.profile
@@ -275,7 +275,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("client" + i)) {
-        ECalendar calendar = new ECalendar().save()
+        ECalendar calendar = new ECalendar().save(failOnError: true)
         Entity entity = entityHelperService.createEntityWithUserAndProfile("client" + i, etClient, "client" + i + "@domain.org", "clientFirstName clientLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ClientProfile prf = (ClientProfile)ent.profile
@@ -303,7 +303,7 @@ class BootStrap {
             prf.supportDescription = "dummyDescription"
           prf.calendar = calendar
         }
-        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltGroupMemberClient).save()
+        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltGroupMemberClient).save(failOnError: true)
       }
     }
 
@@ -317,7 +317,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("child" + i)) {
-        ECalendar calendar = new ECalendar().save()
+        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile("child" + i, etChild, "child" + i + "@domain.org", "childFirstName childLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ChildProfile prf = (ChildProfile)ent.profile
@@ -343,7 +343,7 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     if (!Entity.findByName('operator')) {
-      ECalendar calendar = new ECalendar().save()
+      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "operator@domain.org", "operator") {Entity ent->
         ent.user.locale = new Locale ("de", "DE")
         OperatorProfile prf = (OperatorProfile)ent.profile
@@ -364,7 +364,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("partner" + i)) {
-        ECalendar calendar = new ECalendar().save()
+        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile ("partner" + i, etPartner, "partner" + i + "@domain.org", "partner " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PartnerProfile prf = (PartnerProfile)ent.profile
@@ -388,7 +388,7 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("pate" + i)) {
-        ECalendar calendar = new ECalendar().save()
+        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile ("pate" + i, etPate, "pate" + i + "@domain.org", "pateFirstName pateLastName " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PateProfile prf = (PateProfile)ent.profile
@@ -437,8 +437,8 @@ class BootStrap {
     List users = Entity.list()
     users.each {
       if (it.name != 'admin') {
-        new Link(source: it as Entity, target: admin, type: metaDataService.ltFriendship).save()
-        new Link(source: admin, target: it as Entity, type: metaDataService.ltFriendship).save()
+        new Link(source: it as Entity, target: admin, type: metaDataService.ltFriendship).save(failOnError: true)
+        new Link(source: admin, target: it as Entity, type: metaDataService.ltFriendship).save(failOnError: true)
       }
     }
 
@@ -447,7 +447,7 @@ class BootStrap {
       dad.initiator = "true"
     }
     // back link does not (necessarily) has a dynattr
-    new Link(source:patrizia, target:daniel, type:metaDataService.ltFriendship).save()
+    new Link(source:patrizia, target:daniel, type:metaDataService.ltFriendship).save(failOnError: true)
 
     // here's how we would ask for the a dynattr (given the link)
     if (liap.das.initiator) {
@@ -485,7 +485,7 @@ class BootStrap {
         File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
         assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
         // save creator
-        new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save()
+        new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
       }
     }
 
@@ -494,7 +494,7 @@ class BootStrap {
   void createDefaultComments() {
     log.info ("creating comments")
 
-    Comment comment = new Comment(content: 'dummyComment', creator: Entity.findByName('patriziarosenkranz').id).save()
+    Comment comment = new Comment(content: 'dummyComment', creator: Entity.findByName('patriziarosenkranz').id).save(failOnError: true)
     Entity entity = Entity.findByName("template1")
     entity.profile.addToComments(comment)
 
@@ -512,7 +512,7 @@ class BootStrap {
           ent.profile.classification = "dummyClassification"
           ent.profile.costsUnit = "perDay"
         }
-        new Link(source: resource, target: Entity.findByName("template${i}"), type: metaDataService.ltResource).save()
+        new Link(source: resource, target: Entity.findByName("template${i}"), type: metaDataService.ltResource).save(failOnError: true)
       }
     }
 
@@ -531,11 +531,11 @@ class BootStrap {
         ent.profile.duration = 60
       }
 
-      new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltActEducator).save()
-      new Link(source: Entity.findByName('client1'), target: entity, type: metaDataService.ltActClient).save()
-      new Link(source: Entity.findByName('facility1'), target: entity, type: metaDataService.ltActFacility).save()
-      new Link(source: Entity.findByName('template1'), target: entity, type: metaDataService.ltActTemplate).save()
-      new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltActEducator).save(failOnError: true)
+      new Link(source: Entity.findByName('client1'), target: entity, type: metaDataService.ltActClient).save(failOnError: true)
+      new Link(source: Entity.findByName('facility1'), target: entity, type: metaDataService.ltActFacility).save(failOnError: true)
+      new Link(source: Entity.findByName('template1'), target: entity, type: metaDataService.ltActTemplate).save(failOnError: true)
+      new Link(source: Entity.findByName('educator1'), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
     }
   }
 
@@ -546,7 +546,7 @@ class BootStrap {
       new ArticlePost(title: 'dummyTitle ' + i,
               teaser: 'dummyTeaser ' + i,
               content: 'dummyContent ' + i,
-              author: Entity.findByName('educator1')).save()
+              author: Entity.findByName('educator1')).save(failOnError: true)
     }
 
   }
@@ -557,49 +557,49 @@ class BootStrap {
     new Helper(title: 'Wie kann ich eine Aktivitätsvorlage erstellen?',
                content: '''Um eine Aktivitätsvorlage zu erstellen klicke zuerst auf "Aktivätsvorlagen" in der orangenen
                            Hauptnavigation. Dort findest du dann einen Button "Aktivitätsvorlage erstellen".''',
-               type: metaDataService.etEducator.name).save()
+               type: metaDataService.etEducator.name).save(failOnError: true)
     new Helper(title: 'Wie kann ich eine Aktivität planen?',
                content: '''Aktivitäten beruhen immer auf einer Aktivitätsvorlage. Klicke in der orangenen Hauptnavigation
                            auf "Aktivitätsvorlagen" und wähle dort eine Vorlage aus indem du auf dessen Namen klickst.
                            Im nächsten Schritt kannst du dann über den Button "Neue Aktivität planen" eine konkrete
                            Aktivität planen. Für jede Aktivität must du eine Einrichtung, Pädagogen und Betreute auswählen.''',
-               type: metaDataService.etEducator.name).save()
+               type: metaDataService.etEducator.name).save(failOnError: true)
     new Helper(title: 'Wie kann ich einen Artikel verfassen?',
                content: '''Artikel können direkt auf der Startseite verfasst werden. Klicke auf "Home" in der blauen
                            Navigationsleiste um dorthin zu gelangen und klicke auf den roten Link "Neuen Artikel verfassen".''',
-               type: metaDataService.etEducator.name).save()
+               type: metaDataService.etEducator.name).save(failOnError: true)
     new Helper(title: 'Wie kann ich jemandem eine Nachricht ins Postfach schicken?',
                content: '''Um jemandem eine Nachricht zu schicken musst du zuerst sein/ihr Profil besuchen. Dort findest
                            du dann links in der Seitennavigation den Punkt "Nachricht senden".''',
-               type: metaDataService.etEducator.name).save()
+               type: metaDataService.etEducator.name).save(failOnError: true)
     new Helper(title: 'Was ist das Netzwerk?',
                content: '''Im Netzwerk hast du eine Auflistung aller für dich relevanten User im ERP, wie deine Betreuten,
                            oder andere Pädagogen. Diese Liste kannst du selbst verwalten indem du andere Profile besuchst,
                            und dort Freunde oder Bookmarks hinzufügst.''',
-               type: metaDataService.etEducator.name).save()
+               type: metaDataService.etEducator.name).save(failOnError: true)
     new Helper(title: 'Wie kann ich eine Beurteilung eines Betreuten anlegen?',
                content: '''Besuche zuerst das Profil des Betreuten und klicke dort in der linken Seitennavigation auf
                            "Leistungsfortschritt anlegen".''',
-               type: metaDataService.etEducator.name).save()
+               type: metaDataService.etEducator.name).save(failOnError: true)
 
     new Helper(title: 'Wie kann ich einen Betreuten anlegen?',
                content: '''Betreute können über den Link "Betreuten anlegen" in der Seitennavigation links angelegt werden.
                            Notwendige Angaben müssen unbedingt ausgefüllt werden, zusätzliche Angaben sind optional und
                            können später noch über "Daten ändern" ergänzt oder geändert werden.''',
-               type: metaDataService.etFacility.name).save()
+               type: metaDataService.etFacility.name).save(failOnError: true)
 
     new Helper(title: 'Wie funktioniert die Anwesenheits-/Essensliste? (AE-Liste)',
            content: '''In der AE-Liste werden alle im Hort betreuten Kinder aufgelistet. Für jedes Kind kann die Anwesenheit,
                        sowie die Teilnahme am Mittagessen eingetragen werden. Daraus lässt sich dann die Summe der Anwesenden
                        und die Gesamtsumme der Essenbeiträge ausrechnen. Es besteht außerdem die Möglichkeit diese Liste als
                        PDF anzuzeigen und bequem ausdrucken zu lassen.''',
-           type: metaDataService.etFacility.name).save()
+           type: metaDataService.etFacility.name).save(failOnError: true)
 
     new Helper(title: 'Wo kann ich sämtliche Profile verwalten',
            content: '''Die Verwaltung für Betreiber befindet sich links in der Seitennavigation unter der Gruppe Administration.
                        Dort können folgende Profile verwaltet werden: Einrichtungen, Pädagogen, Betreute, Partner, Paten und
                        Erziehungsberechtigte.''',
-           type: metaDataService.etOperator.name).save()
+           type: metaDataService.etOperator.name).save(failOnError: true)
   }
 
   void createDefaultEvaluations() {
@@ -608,11 +608,11 @@ class BootStrap {
     new Evaluation(owner: Entity.findByName('client1'),
                    description: 'Er zeigt eine leichte Leseschwäche, die besonders beim Lesen quantenphysikalischer Literatur zu bemerken sind.',
                    method: 'Als Maßnahme habe ich ihm mehrere Kinderbücher gegeben, damit tut er sich offensichtlich leichter.',
-                   writer: Entity.findByName('educator1')).save()
+                   writer: Entity.findByName('educator1')).save(failOnError: true)
     new Evaluation(owner: Entity.findByName('client2'),
                    description: 'Sie ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
                    method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
-                   writer: Entity.findByName('educator2')).save()
+                   writer: Entity.findByName('educator2')).save(failOnError: true)
   }
 
   void createDefaultAttendances() {
@@ -621,11 +621,11 @@ class BootStrap {
     new Attendance(client: Entity.findByName('client1'),
                    didAttend: true,
                    didEat: true,
-                   date: new Date(2010-1900,01,07)).save()
+                   date: new Date(2010-1900,01,07)).save(failOnError: true)
     new Attendance(client: Entity.findByName('client2'),
                    didAttend: true,
                    didEat: false,
-                   date: new Date(2010-1900,01,07)).save()
+                   date: new Date(2010-1900,01,07)).save(failOnError: true)
   }
 
   void createDefaultFamilies() {
@@ -647,15 +647,15 @@ class BootStrap {
         }
 
         // create some links to that group
-        new Link(source: Entity.findByName("parent${i}"), target: entity, type: metaDataService.ltGroupMemberParent).save()
-        new Link(source: Entity.findByName("client${i}"), target: entity, type: metaDataService.ltGroupFamily).save()
-        new Link(source: Entity.findByName("child${i}"), target: entity, type: metaDataService.ltGroupMemberChild).save()
+        new Link(source: Entity.findByName("parent${i}"), target: entity, type: metaDataService.ltGroupMemberParent).save(failOnError: true)
+        new Link(source: Entity.findByName("client${i}"), target: entity, type: metaDataService.ltGroupFamily).save(failOnError: true)
+        new Link(source: Entity.findByName("child${i}"), target: entity, type: metaDataService.ltGroupMemberChild).save(failOnError: true)
       }
     }
     
   }
 
-  void createDefaultColonias() {
+  void createDefaultColonies() {
     log.info ("creating " + grailsApplication.config.dummies + " colonies")
     EntityType etGroupColony = metaDataService.etGroupColony
 
@@ -668,8 +668,8 @@ class BootStrap {
         }
 
         // create some links to that group
-        new Link(source: Entity.findByName("facility${i}"), target: entity, type: metaDataService.ltGroupMemberFacility).save()
-        new Link(source: Entity.findByName("partner${i}"), target: entity, type: metaDataService.ltGroupMemberPartner).save()
+        new Link(source: Entity.findByName("facility${i}"), target: entity, type: metaDataService.ltGroupMemberFacility).save(failOnError: true)
+        new Link(source: Entity.findByName("partner${i}"), target: entity, type: metaDataService.ltGroupMemberPartner).save(failOnError: true)
       }
     }
 
@@ -680,7 +680,7 @@ class BootStrap {
 
     for ( i in 1..2 ) {
       if (!Method.findByName("method" + i)) {
-        Method method = new Method(name: "method" + i, description: "dummyDescription", type: "template").save()
+        Method method = new Method(name: "method" + i, description: "dummyDescription", type: "template").save(failOnError: true)
 
         method.addToElements(new Element(name: "element1"))
         method.addToElements(new Element(name: "element2"))
@@ -707,12 +707,12 @@ class BootStrap {
         }
 
         // create some links to that group
-        def links = generator.nextInt(8) + 2 // amount of clients to add
+        def links = 5 // generator.nextInt(8) + 2 // amount of clients to add
         List clients = []
         for ( j in 1..links ) {
           def done = false
           while (!done) {
-            def client = generator.nextInt(20) + 1
+            def client = j //generator.nextInt(5) + 1
             if (!clients.contains(client)) {
               clients << client
               done = true
@@ -720,7 +720,7 @@ class BootStrap {
           }
         }
         clients.each {
-          new Link(source: Entity.findByName("client" + it), target: entity, type: metaDataService.ltGroupMemberClient).save()
+          new Link(source: Entity.findByName("client" + it), target: entity, type: metaDataService.ltGroupMemberClient).save(failOnError: true)
         }
       }
     }
@@ -763,7 +763,7 @@ class BootStrap {
           }
         }
         activitytemplates.each {
-          new Link(source: Entity.findByName("template" + it), target: entity, type: metaDataService.ltGroupMember).save()
+          new Link(source: Entity.findByName("template" + it), target: entity, type: metaDataService.ltGroupMember).save(failOnError: true)
           entity.profile.addToTemplates(Entity.findByName("template" + it).id.toString())
         }
 
@@ -772,7 +772,7 @@ class BootStrap {
         def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
         // save creator
-        new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
+        new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
       }
     }
 
@@ -792,7 +792,7 @@ class BootStrap {
     }
 
     // link theme to facility
-    new Link(source: theme, target: Entity.findByName('facility1'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: theme, target: Entity.findByName('facility1'), type: metaDataService.ltThemeOfFacility).save(failOnError: true)
 
     Entity subtheme = entityHelperService.createEntity("theme", etTheme) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
@@ -803,9 +803,9 @@ class BootStrap {
     }
 
     // link subtheme to theme
-    new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save()
+    new Link(source: subtheme, target: theme, type: metaDataService.ltSubTheme).save(failOnError: true)
     // link subtheme to facility
-    new Link(source: subtheme, target: Entity.findByName('facility1'), type: metaDataService.ltThemeOfFacility).save()
+    new Link(source: subtheme, target: Entity.findByName('facility1'), type: metaDataService.ltThemeOfFacility).save(failOnError: true)
   }
 
   void createDefaultProjectTemplates() {
@@ -829,7 +829,7 @@ class BootStrap {
         File file = ApplicationHolder.application.parentContext.getResource("images/default_projecttemplate.png").getFile()
         def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
         // save creator
-        new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save()
+        new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
       }
     }
         
@@ -839,9 +839,9 @@ class BootStrap {
     log.info ("creating tags")
 
     if (!Tag.findByName('abwesend'))
-      new Tag(name: 'abwesend').save()
+      new Tag(name: 'abwesend').save(failOnError: true)
     if (!Tag.findByName('krank'))
-      new Tag(name: 'krank').save()
+      new Tag(name: 'krank').save(failOnError: true)
   }
 
   void createDefaultWorkdayCategories () {
@@ -849,7 +849,7 @@ class BootStrap {
 
     for ( i in 1..3 ) {
       if (!WorkdayCategory.findByName('workdayCategory' + i)) {
-        new WorkdayCategory(name: 'workdayCategory' + i).save()
+        new WorkdayCategory(name: 'workdayCategory' + i).save(failOnError: true)
       }
     }
 
@@ -859,9 +859,9 @@ class BootStrap {
     log.info ("creating workday units")
 
     // TODO: figure out why saving won't work here
-    /*WorkdayUnit wdu1 = new WorkdayUnit(category: WorkdayCategory.findByName('Category1'), description: "bla", date1: new Date(110, 11, 1, 10, 0), date2: new Date(110, 11, 1, 11, 0)).save()
-    WorkdayUnit wdu2 = new WorkdayUnit(category: WorkdayCategory.findByName('Category2'), description: "bla", date1: new Date(110, 11, 1, 12, 0), date2: new Date(110, 11, 1, 14, 0)).save()
-    WorkdayUnit wdu3 = new WorkdayUnit(category: WorkdayCategory.findByName('Category3'), description: "bla", date1: new Date(110, 11, 1, 15, 0), date2: new Date(110, 11, 1, 18, 0)).save()
+    /*WorkdayUnit wdu1 = new WorkdayUnit(category: WorkdayCategory.findByName('Category1'), description: "bla", date1: new Date(110, 11, 1, 10, 0), date2: new Date(110, 11, 1, 11, 0)).save(failOnError: true)
+    WorkdayUnit wdu2 = new WorkdayUnit(category: WorkdayCategory.findByName('Category2'), description: "bla", date1: new Date(110, 11, 1, 12, 0), date2: new Date(110, 11, 1, 14, 0)).save(failOnError: true)
+    WorkdayUnit wdu3 = new WorkdayUnit(category: WorkdayCategory.findByName('Category3'), description: "bla", date1: new Date(110, 11, 1, 15, 0), date2: new Date(110, 11, 1, 18, 0)).save(failOnError: true)
     if (wdu3.hasErrors())
       log.info "error"
 
@@ -894,7 +894,7 @@ class BootStrap {
       }
 
       // create link to owner
-      new Link(source: entity, target: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltAppointment).save()
+      new Link(source: entity, target: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltAppointment).save(failOnError: true)
     }
 
   }
@@ -919,24 +919,24 @@ class BootStrap {
       }
 
       // save creator
-      new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
 
       // find all templates linked to the groupActivityTemplate
       List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       // and link them to the new groupActivity
       templates.each {
-        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save(failOnError: true)
       }
 
       // link template to instance
-      new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
+      new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save(failOnError: true)
 
       // link to facility
-      new Link(source: entity, target: Entity.findByName("facility${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltGroupMemberFacility).save()
+      new Link(source: entity, target: Entity.findByName("facility${generator.nextInt(grailsApplication.config.dummies) + 1}"), type: metaDataService.ltGroupMemberFacility).save(failOnError: true)
 
       // link to educator
-      new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save()
+      new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save(failOnError: true)
     }
 
   }
