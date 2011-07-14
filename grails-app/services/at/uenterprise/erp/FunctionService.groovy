@@ -14,6 +14,13 @@ class FunctionService {
 
   boolean transactional = true
 
+  /**
+   * Converts a date from UTC
+   *
+   * @author Alexander Zeillinger
+   * @param date the date to convert
+   * @return a date
+   */
   Date convertFromUTC(Date date) {
     if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))
@@ -22,6 +29,13 @@ class FunctionService {
     return calendar.getTime()
   }
 
+  /**
+   * Converts a date to UTC
+   *
+   * @author Alexander Zeillinger
+   * @param date the date to convert
+   * @return a date
+   */
   Date convertToUTC(Date date) {
     if ( !date ) return date
     Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))

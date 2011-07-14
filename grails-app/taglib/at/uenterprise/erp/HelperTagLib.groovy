@@ -20,29 +20,37 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  /**
+   * Checks if a resource is available for planning
+   *
+   * @author Alexander Zeillinger
+   * @attr resource REQUIRED The resource to check
+   * @attr entity REQUIRED The group activity or project to check
+   */
   def getResourceFree = {attrs, body ->
     Calendar calendar = new GregorianCalendar()
     calendar.setTime(attrs.entity.profile.date)
 
-    if (attrs.entity.type.id == metaDataService.etGroupActivity)
+    if (attrs.entity.type.id == metaDataService.etGroupActivity.id)
       calendar.add(Calendar.MINUTE, attrs.entity.profile.realDuration)
     else {
-      // get all project units of a project day and calculate their duration sum
+      // get all project units of a project day and calculate the sum of their durations
       List units = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectDayUnit)
-      int duration = 0
-      units.each {
-        duration += it.profile.duration
-      }
+      int duration = units*.profile.duration.sum(0)
       calendar.add(Calendar.MINUTE, duration)
     }
 
+    // get begin and end date of the group activity or project
     Date entityBegin = attrs.entity.profile.date
     Date entityEnd = calendar.getTime()
 
-
+    // find all links the resource is already planned with
     List links = Link.findAllBySourceAndType(attrs.resource, metaDataService.ltResourcePlanned)
 
+    // set the initial amount of how many units are available to the total amount of the resource
     int free = attrs.resource.profile.amount
+
+    // now check for every link if it falls into the duration of the entity and if yes reduce the available amount
     links.each { Link link ->
       Date resourceBegin = new Date()
       resourceBegin.setTime(link.das.beginDate.toLong() * 1000)
@@ -57,6 +65,13 @@ class HelperTagLib {
     out << body(resourceFree: free)
   }
 
+  /**
+   * Return the amount of units a resource is planned with
+   *
+   * @author Alexander Zeillinger
+   * @attr resource REQUIRED The resource to check
+   * @attr entity REQUIRED The group activity or project to check
+   */
   def getPlannedResourceAmount = {attrs ->
     def link = Link.createCriteria().get {
       eq('source', attrs.resource)
@@ -66,6 +81,11 @@ class HelperTagLib {
    out << link.das.amount
   }
 
+  /**
+   * Returns all entities who have birthday today
+   *
+   * @author Alexander Zeillinger
+   */
   def getBirthdays = {attrs, body ->
 
     SimpleDateFormat sdf = new SimpleDateFormat("d M")
@@ -88,6 +108,12 @@ class HelperTagLib {
     results.each {out << body(entities: it)}
   }
 
+  /**
+   * Renders the text of an event
+   *
+   * @author Alexander Zeillinger
+   * @attr event REQUIRED The event to render
+   */
   def getEvent = {attrs ->
     Entity who = Entity.get(attrs.event.who)
     def what = Entity.get(attrs.event.what)
@@ -114,29 +140,16 @@ class HelperTagLib {
     out << (attrs.string.size() > 20 ? attrs.string.substring(0, 20) + "..." : attrs.string)
   }
 
-  /*
-   * retrieves all online users (activity within the last 5 minutes)
+  /**
+   * Retrieves all online users who where active within the last 5 minutes
+   *
+   * @author Alexander Zeillinger
    */
   def getOnlineUsers = {attrs, body ->
-
-    /*def c = Entity.createCriteria()
-    def userList = c.list {
-      or {
-          eq("type", metaDataService.etUser)
-          eq("type", metaDataService.etOperator)
-          eq("type", metaDataService.etClient)
-          eq("type", metaDataService.etEducator)
-          eq("type", metaDataService.etParent)
-          eq("type", metaDataService.etChild)
-          eq("type", metaDataService.etPate)
-          eq("type", metaDataService.etPartner)
-      }
-    }*/
-
-    List userList = Entity.list()
+    List users = Entity.list()
 
     List onlineUsers = []
-    userList.each { Entity entity ->
+    users.each { Entity entity ->
       if (entity?.user?.lastAction)
         if ((new Date().getTime() - entity.user.lastAction.getTime()) / 1000 / 60 <= 5)
           onlineUsers.add(entity)
@@ -145,6 +158,14 @@ class HelperTagLib {
     onlineUsers.each {out << body(onlineUsers: it)}
   }
 
+  /**
+   * Get all workdayunits of an educator
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   */
   def getWorkdayUnits = { attrs, body ->
     Date date1 = Date.parse("dd. MM. yy", attrs.date1)
     Date date2 = Date.parse("dd. MM. yy", attrs.date2)
@@ -154,15 +175,21 @@ class HelperTagLib {
     List units = []
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the date of the workdayunit is between date1 and date2
-      if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
-          workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
-          workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
-            units.add(workdayUnit)
+      if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+        units.add(workdayUnit)
       }
     }
     out << body(units: units)
   }
 
+  /**
+   * Check if all workdayunits of an educator are confirmed
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   */
   def getHoursConfirmed = { attrs, body ->
     Date date1
     Date date2
@@ -178,12 +205,10 @@ class HelperTagLib {
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the date of the workdayunit is between date1 and date2
       if (attrs.date1 != null & attrs.date2 != null) {
-        if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
-            workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
-            workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
-              if (!workdayUnit.confirmed) {
-                allConfirmed = false
-              }
+        if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+          if (!workdayUnit.confirmed) {
+            allConfirmed = false
+          }
         }
       }
     }
@@ -194,6 +219,14 @@ class HelperTagLib {
         out << "${message(code: 'no')}"
   }
 
+  /**
+   * Calculates the salary of an educator
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   */
   def getSalary = { attrs, body ->
     Date date1 = null
     Date date2 = null
@@ -244,10 +277,8 @@ class HelperTagLib {
       if (category?.count) {
         // check if the date of the workdayunit is between date1 and date2
         if (attrs.date1 != null & attrs.date2 != null) {
-          if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
-              workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
-              workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
-                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+          if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+            hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
         }
         else
@@ -266,6 +297,14 @@ class HelperTagLib {
 
   }
 
+  /**
+   * Calculates the number of hours an educator should have worked
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   */
   def getExpectedHours = { attrs, body ->
     Date date1 = null
     Date date2 = null
@@ -310,6 +349,14 @@ class HelperTagLib {
     out << expectedHours
   }
 
+  /**
+   * Calculates the number of total hours an educator has worked
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   */
   def getTotalHours = { attrs, body ->
     Date date1
     Date date2
@@ -340,8 +387,14 @@ class HelperTagLib {
     out << hours
   }
 
-  /*
-   * used for time evaluation, returns the number of hours of an educator and a given category
+  /**
+   * Calculates the number of hours an educator has worked in a given category
+   *
+   * @author Alexander Zeillinger
+   * @attr educator REQUIRED The educator to find the workdayunits of
+   * @attr date1 REQUIRED The begin of the date range to check
+   * @attr date2 REQUIRED The end of the date range to check
+   * @attr category REQUIRED The category to check
    */
   def getHoursForCategory = { attrs, body ->
     Date date1
@@ -360,11 +413,8 @@ class HelperTagLib {
 
         // check if the date of the workdayunit is between date1 and date2
         if (attrs.date1 != "" & attrs.date2 != "") {
-
-          if (workdayUnit.date1.getYear() >= date1.getYear() && workdayUnit.date1.getYear() <= date2.getYear() &&
-              workdayUnit.date1.getMonth() >= date1.getMonth() && workdayUnit.date1.getMonth() <= date2.getMonth() &&
-              workdayUnit.date1.getDate() >= date1.getDate() && workdayUnit.date1.getDate() <= date2.getDate()) {
-                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+          if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+            hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
         }
         else
@@ -375,8 +425,9 @@ class HelperTagLib {
     out << hours
   }
 
-  /*
+  /**
    * custom tag for as long as the official implementation is broken, see http://jira.codehaus.org/browse/GRAILS-2512--}%
+   * TODO: probably outdated, check if it can be replaced by the official tag again
    */
   def remoteField = { attrs, body ->
     def params = attrs['params']?:null
@@ -391,7 +442,7 @@ class HelperTagLib {
     out << g.remoteField(attrs, body)
   }
 
-  /*
+  /**
    * get the local tags of a given entity
    */
   def getLocalTags = {attrs, body ->
@@ -425,7 +476,7 @@ class HelperTagLib {
     out << body(tags: tags)
   }
 
-  /*
+  /**
    * get the tags of a given entity
    */
   def getTags = {attrs, body ->
@@ -434,7 +485,7 @@ class HelperTagLib {
     out << body(tags: tags)
   }
 
-  /*
+  /**
    * checks whether to render a tag button
    */
   def showTagButton = {attrs, body ->
@@ -444,7 +495,7 @@ class HelperTagLib {
       out << body()
   }
 
-  /*
+  /**
    * before deleting an entity this method finds any links to and from the entity and returns a confirmation message
    */
   def getLinks = {attrs ->
@@ -467,23 +518,20 @@ class HelperTagLib {
       out << "return confirm('${message(code: 'connectionsToAndFrom', args: [sourceNames, targetNames])}')"
   }
 
-  /*
-   * new access control methods, separated for modular usage
+  /**
+   * Modular access check
+   *
+   * @attr entity REQUIRED The entity which should be checked for access
+   * @attr types The types to check against
+   * @attr roles The roles to check against
+   * @attr checkoperator Check if the entity is an operator
+   * @attr creatorof Check if the entity is creator of this
+   * @attr me Check if the entity is the currently logged in entity
+   * @attr checkstatus Check if the entity is open for editing
+   * @attr log Enables logging for current taglib call
    */
   def accessCheck = {attrs, body ->
     Entity entity = attrs.entity
-
-    //log.info "----------"
-
-    //boolean hasRoles = false
-    //if (attrs.roles)
-      //hasRoles = accessHasRoles(entity, attrs.roles)
-    //log.info "${entity.profile} has roles: ${hasRoles}"
-
-    //boolean hasTypes = false
-    //if (attrs.types)
-      //hasTypes = accessHasTypes(entity, attrs.types)
-    //log.info "${entity.profile} has types: ${hasTypes}"
 
     boolean isOpen = true
     if (attrs.checkstatus) {
@@ -597,7 +645,7 @@ class HelperTagLib {
     return hits
   }
 
-  /*
+  /**
    * outputs selectbox items for each language
    */
   def localeSelect = {attrs ->
@@ -612,7 +660,7 @@ class HelperTagLib {
     out << eselect(attrs)
   }
 
-  /*
+  /**
    * returns the filetype of a publication
    * Reference: http://en.wikipedia.org/wiki/Internet_media_type
    */
@@ -641,7 +689,7 @@ class HelperTagLib {
       out << "Unbekannt"
   }
 
-  /*
+  /**
    * finds the number of units linked to a project template
    */
   def getProjectTemplateUnitsCount = {attrs, body ->
@@ -649,7 +697,7 @@ class HelperTagLib {
     out << units
   }
 
-  /*
+  /**
    * finds the number of clients linked to a client group
    */
   def getGroupClientsCount = {attrs, body ->
@@ -657,7 +705,7 @@ class HelperTagLib {
     out << clients
   }
 
-  /*
+  /**
    * finds the project a project unit belongs to
    */
   def getProjectOfUnit = {attrs ->
@@ -671,7 +719,7 @@ class HelperTagLib {
     }
   }
 
-  /*
+  /**
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->
@@ -689,7 +737,7 @@ class HelperTagLib {
       //out << '<span class="italic red">' + message(code: 'projectUnits.choose') + '</span>'
   }
 
-  /*
+  /**
    * finds all educators linked to a project day
    */
   def getProjectDayEducators = {attrs, body ->
@@ -700,7 +748,7 @@ class HelperTagLib {
       out << '<span class="italic red">' + message(code: 'educators.choose') + '</span>'
   }
 
-  /*
+  /**
    * finds all supplemental educators linked to a project day
    */
   def getProjectDaySubstitutes = {attrs, body ->
@@ -711,7 +759,7 @@ class HelperTagLib {
       out << '<span class="italic red">' + message(code: 'substitutes.choose') + '</span>'
   }
 
-  /*
+  /**
    * finds all resources linked to a project day
    */
   def getProjectDayResources = {attrs, body ->
@@ -722,7 +770,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
-  /*
+  /**
    * finds all activity groups linked to a project unit
    */
   def getProjectUnitActivityGroups = {attrs, body ->
@@ -733,7 +781,7 @@ class HelperTagLib {
       out << '<span class="italic">Keine Aktivitätsblockvorlagen gefunden</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
-  /*
+  /**
    * finds all parents linked to a project unit
    */
   def getProjectUnitParents = {attrs, body ->
@@ -744,7 +792,7 @@ class HelperTagLib {
       out << '<span class="italic red">' + message(code: 'parents.choose') + '</span>'
   }
 
-  /*
+  /**
    * finds all partners linked to a project unit
    */
   def getProjectUnitPartners = {attrs, body ->
@@ -755,7 +803,7 @@ class HelperTagLib {
       out << '<span class="italic red">' + message(code: 'partners.choose') + '</span>'
   }
 
-  /*
+  /**
    * finds all group activity templates linked to a project unit
    */
   def getGroupActivityTemplates = {attrs, body ->
@@ -766,7 +814,7 @@ class HelperTagLib {
       out << '<span class="italic red" style="margin-left: 15px">' + message(code: 'groupActivityTemplates.notAssigned') + '</span>'
   }
 
-  /*
+  /**
    * finds all resources linked to an entity
    */
   def getResources = {attrs, body ->
@@ -777,7 +825,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code: 'resources.notAssigned') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/></span>'
   }
 
-  /*
+  /**
    * finds all group members of a given group
    */
   def getGroup = {attrs, body ->
@@ -788,7 +836,7 @@ class HelperTagLib {
       out << '<span class="italic">Diese Gruppe ist leer</span>'
   }
 
-  /*
+  /**
    * returns the size of a group
    */
   def getGroupSize = {attrs, body ->
@@ -799,7 +847,7 @@ class HelperTagLib {
       out << result
   }
 
-  /*
+  /**
    * returns all facilities linked to a group
    */
   def getGroupFacilities = {attrs, body ->
@@ -810,7 +858,7 @@ class HelperTagLib {
       out << result
   }
 
-  /*
+  /**
    * returns all resources linked to a group
    */
   def getGroupResources = {attrs, body ->
@@ -821,7 +869,7 @@ class HelperTagLib {
       out << result
   }
 
-  /*
+  /**
    * returns the total duration of the activities within a group
    */
   def getGroupDuration = {attrs, body ->
@@ -832,7 +880,7 @@ class HelperTagLib {
     out << duration
   }
 
-  /*
+  /**
    * returns the entity a resource is linked to - which is either a facility or colony
    */
   def resourceCreatedIn = {attrs, body ->
@@ -841,7 +889,7 @@ class HelperTagLib {
       out << body(source: result)
   }
 
-  /*
+  /**
    * returns the template to a given activity
    */
   def getTemplate = {attrs, body ->
@@ -852,7 +900,7 @@ class HelperTagLib {
       out << '<span class="italic">keine Vorlage vorhanden</span>'
   }
 
-  /*
+  /**
    * returns all clients to a given activity
    */
   def getClients = {attrs, body ->
@@ -863,7 +911,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code: 'clients.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
 
-  /*
+  /**
    * returns all clients linked to a given pate
    */
   def getPateClients = {attrs, body ->
@@ -874,7 +922,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code: 'clients.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
 
-  /*
+  /**
    * returns all educators linked to a given activity
    */
   def getEducators = {attrs, body ->
@@ -885,7 +933,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code: 'educators.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
   }
 
-  /*
+  /**
    * returns the facility linked to a given activity
    */
   def getFacility = {attrs, body ->
@@ -896,7 +944,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code:'notAssignedToFacility') + '</span>'
   }
 
-  /*
+  /**
    * returns the facility linked to a given activity
    */
   def getFacilityOfProject = {attrs, body ->
@@ -907,7 +955,7 @@ class HelperTagLib {
       out << '<span class="italic">' + message(code:'notAssignedToFacility') + '</span>'
   }
 
-  /*
+  /**
    * returns all subthemes of a given activity
    */
   def getSubThemes = {attrs, body ->
@@ -916,7 +964,7 @@ class HelperTagLib {
       subThemes.each {out << body(subthemes: it)}
   }
 
-  /*
+  /**
    * returns the creator of an entity
    */
   def createdBy = {attrs, body ->
@@ -925,14 +973,14 @@ class HelperTagLib {
       out << body(creator: result)
   }
 
-  /*
+  /**
    * returns the creator (entity) to a given ID
    */
   def getCreator = {attrs, body ->
     out << body(creator: Entity.get(attrs.id))
   }
 
-  /*
+  /**
    * sets the active state of each letter of the glossary
    */
   def active = {attrs ->
@@ -942,14 +990,14 @@ class HelperTagLib {
       out << attrs.letter
   }
 
-  /*
+  /**
    * finds the colony linked to a given entity
    */
   def getColony = {attrs, body ->
     out << body(colony: functionService.findByLink(null, attrs.entity, metaDataService.ltColonia))
   }
 
-  /*
+  /**
    * returns the quote of the day
    */
   def getQuoteOfTheDay = {
@@ -960,7 +1008,7 @@ class HelperTagLib {
     out << '<p class="quoter">' + message(code:"from") + " " + grailsApplication.config.quoterMap[day] + '</p>'
   }
 
-  /*
+  /**
    * returns the pic of the day
    */
   def getPicOfTheDay = { attrs, body ->
@@ -970,7 +1018,7 @@ class HelperTagLib {
     out << body(day)
   }
 
-  /*
+  /**
    * returns the gender
    */
   def showGender = {attrs ->
@@ -980,7 +1028,7 @@ class HelperTagLib {
       out << message(code: 'female')
   }
 
-  /*
+  /**
    * returns the number of new private messages through a service
    */
   def getNewInboxMessages = {attrs ->
@@ -995,7 +1043,7 @@ class HelperTagLib {
       out << "(" + results.size() + ")"
   }
 
-  /*
+  /**
    * returns the number of publications of an entity
    */
   def getPublicationCount = {attrs ->
@@ -1096,14 +1144,14 @@ class HelperTagLib {
     out << "(" + m + ")"
   }
 
-  /*
+  /**
    * returns the link (relationship) type between two given entities
    */
   def getRelationship = {attrs ->
     out << Link.findBySourceAndTarget(Entity.findByName(attrs.source), Entity.findByName(attrs.target)).type.name
   }
 
-  /*
+  /**
    * self explanatory methods below
    */
 
@@ -1214,7 +1262,7 @@ class HelperTagLib {
     return result ? true : false
   }
 
-  /*
+  /**
    * starbox rating used for rating elements of methods
    */
   def starBox = {attrs ->
