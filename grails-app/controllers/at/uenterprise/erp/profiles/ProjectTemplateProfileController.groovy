@@ -82,8 +82,13 @@ class ProjectTemplateProfileController {
         }
       }
       List templateResources = []
-      groupActivityTemplates.each {
-        templateResources.addAll(it.profile.resources)
+      groupActivityTemplates.each { Entity groupActivityTemplate ->
+        templateResources.addAll(groupActivityTemplate.profile.resources)
+        // get all templates linked to the groupActivityTemplate
+        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+        templates.each {
+          templateResources.addAll(it.profile.resources)
+        }
       }
 
       [projectTemplate: projectTemplate,
