@@ -60,8 +60,8 @@ class FunctionService {
       eq('type', type)
       // the link property that is not supplied (i.e. NULL) is the one we are looking for so use it as projection value
       projections {
-        if (!source) distinct('source')
-        if (!target) distinct('target')
+        if (!source) property('source')
+        if (!target) property('target')
       }
     } as Entity
   }
@@ -82,8 +82,8 @@ class FunctionService {
       eq('type', type)
       // the link property that is not supplied (i.e. NULL) is the one we are looking for so use it as projection value
       projections {
-        if (!source) distinct('source')
-        if (!target) distinct('target')
+        if (!source) property('source')
+        if (!target) property('target')
       }
     }
   }
