@@ -25,6 +25,12 @@
       <div id="tables"></div>
     </p>
 
+    <p>
+      Check DB Access Times<br/>
+      <g:remoteLink update="db" action="checkDB" before="showspinner('#db');">Check</g:remoteLink>
+      <div id="db"></div>
+    </p>
+
   </div>
 </div>
 </body>

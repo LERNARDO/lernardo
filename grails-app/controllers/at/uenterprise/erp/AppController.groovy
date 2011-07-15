@@ -650,4 +650,22 @@ class AppController {
     render "Created ${number} table entries in ${groups.size()} project days<br/>"
   }
 
+  def checkDB = {
+    log.info "reading all entities of type facility"
+    Date begin = new Date()
+    List facilities = Entity.findAllByType(metaDataService.etClient)
+    Date end = new Date()
+    int time = (end.getTime() - begin.getTime())
+    log.info "done reading, time: ${time} milliseconds"
+    render "done first check in ${time} milliseconds<br/>"
+
+    log.info "reading all clients linked to a facility"
+    begin = new Date()
+    List clients = functionService.findAllByLink(null, facilities[0], metaDataService.ltGroupMemberClient)
+    end = new Date()
+    time = (end.getTime() - begin.getTime())
+    log.info "done reading, time: ${time} milliseconds"
+    render "done second check in ${time} milliseconds<br/>"
+  }
+
 }
