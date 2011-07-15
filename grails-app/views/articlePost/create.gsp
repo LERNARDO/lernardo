@@ -35,7 +35,7 @@
     </span>
     
     <div class="buttons">
-      <g:submitButton name="submitButton" value="${message(code:'save')}" />
+      <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>
       <g:link class="buttonGray" action="index"><g:message code="cancel"/></g:link>
       <div class="spacer"></div>
     </div>
