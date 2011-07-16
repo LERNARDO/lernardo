@@ -428,16 +428,16 @@ class ProjectTemplateProfileController {
     // find all groupActivityTemplates linked to all projectUnitTemplates of this projectTemplate
     List groupActivityTemplates = []
 
-    projectUnitTemplates.each {
-      def links = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
-      if (links.size() > 0)
-        groupActivityTemplates.addAll(links)
+    projectUnitTemplates.each { Entity put ->
+      List gats = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+      if (gats.size() > 0)
+        groupActivityTemplates.addAll(gats)
     }
 
-    def calculatedDuration = 0
-    groupActivityTemplates.each {
+    int calculatedDuration = groupActivityTemplates*.profile.realDuration.sum(0)
+    /*groupActivityTemplates.each {
       calculatedDuration += it.profile.realDuration
-    }
+    }*/
 
     return calculatedDuration
   }
