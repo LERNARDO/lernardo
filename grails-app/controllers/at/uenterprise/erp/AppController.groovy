@@ -653,7 +653,20 @@ class AppController {
   def checkDB = {
     log.info "reading all entities of type facility"
     Date begin = new Date()
-    List facilities = Entity.findAllByType(metaDataService.etClient)
+    //List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+    List facilities = Entity.createCriteria().list (max: params.max, offset: params.offset) {
+      eq("type", metaDataService.etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+    }
+
     Date end = new Date()
     int time = (end.getTime() - begin.getTime())
     log.info "done reading, time: ${time} milliseconds"
