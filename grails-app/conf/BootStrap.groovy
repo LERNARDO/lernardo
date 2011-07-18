@@ -38,7 +38,6 @@ import at.uenterprise.erp.Setup
 //import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
-import at.uenterprise.erp.Event
 
 class BootStrap {
   DefaultObjectService defaultObjectService
