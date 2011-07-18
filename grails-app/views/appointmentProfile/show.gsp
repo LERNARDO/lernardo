@@ -53,7 +53,7 @@
 
     <div class="buttons">
       <g:form id="${appointment.id}">
-        <erp:isMeOrAdminOrOperator entity="${Entity.get(bla)}" current="${currentEntity}">
+        <erp:isMeOrAdminOrOperator entity="${owner}" current="${currentEntity}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
         </erp:isMeOrAdminOrOperator>
