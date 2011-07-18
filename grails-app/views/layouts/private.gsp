@@ -157,6 +157,10 @@
         document.getElementById(passiv_inhalt).className = "passiv_inhalt";
     }
     -->
+
+    function showBigSpinner() {
+      $('#loading').css('visibility', 'visible');
+    }
   </script>
 
   <ga:trackPageviewAsynch/>
@@ -164,6 +168,9 @@
 
 </head>
 <body>
+
+<div id="loading" style="position:absolute; width:100%; text-align:center; top:50%; visibility: hidden;">
+<img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
 <g:if test="${!entity}">
   <g:set var="entity" value="${currentEntity}"/>
