@@ -169,7 +169,7 @@
 </head>
 <body>
 
-<div id="loading" style="position:absolute; width:100%; text-align:center; top:50%; visibility: hidden;">
+<div id="loading" style="position:absolute; left: 50%; text-align:center; top:50%; visibility: hidden;">
 <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
 <g:if test="${!entity}">

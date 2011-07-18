@@ -130,7 +130,10 @@ class HelperTagLib {
   def profileImage = {attrs ->
     def imgattrs = [:]
     imgattrs['src'] = g.createLink (controller:'app', action:'get', params:[type:'profile', entity:attrs.entity.id])
-    imgattrs['name'] = attrs.entity.name
+    attrs.name = attrs.entity.name
+    attrs.each {key, val ->
+      imgattrs[key] = val
+    }
     def mkp = new groovy.xml.MarkupBuilder(out)
     mkp { img (imgattrs) }
   }
