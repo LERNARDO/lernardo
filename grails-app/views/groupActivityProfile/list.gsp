@@ -20,7 +20,7 @@
   <div class="second">
 
     <div class="info-msg" style="margin-bottom: 5px;">
-      ${groups.totalCount} <g:message code="groupActivities.c_total"/>
+      ${totalGroupActivities} <g:message code="groupActivities.c_total"/>
     </div>
 
     <g:formRemote name="formRemote" url="[action: 'searchbydate']" update="membersearch-results">
@@ -61,7 +61,7 @@
       </table>
 
       <div class="paginateButtons">
-        <g:paginate total="${groups.totalCount}"/>
+        <g:paginate total="${totalGroupActivities}"/>
       </div>
     </g:if>
 

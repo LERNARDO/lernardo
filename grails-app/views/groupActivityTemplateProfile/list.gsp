@@ -20,7 +20,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${groups.totalCount} <g:message code="groupActivityTemplate.c_total"/>
+      ${totalGroupActivityTemplates} <g:message code="groupActivityTemplate.c_total"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
@@ -55,7 +55,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${groups.totalCount}"/>
+      <g:paginate total="${totalGroupActivityTemplates}"/>
     </div>
 
   </div>

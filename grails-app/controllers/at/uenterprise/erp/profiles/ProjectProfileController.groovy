@@ -44,13 +44,16 @@ class ProjectProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def projects = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etProject)
+    EntityType etProject = metaDataService.etProject
+    def projects = Entity.createCriteria().list {
+      eq("type", etProject)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalProjects = Entity.countByType(etProject)
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -71,7 +74,9 @@ class ProjectProfileController {
     else
       themes = Entity.findAllByType(metaDataService.etTheme)
 
-    return [projects: projects, themes: themes]
+    return [projects: projects,
+            totalProjects: totalProjects,
+            themes: themes]
   }
 
   def show = {

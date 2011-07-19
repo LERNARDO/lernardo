@@ -41,13 +41,16 @@ class GroupActivityProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def groupactivities = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etGroupActivity)
+    EntityType etGroupActivity = metaDataService.etGroupActivity
+    def groupActivities = Entity.createCriteria().list {
+      eq("type", etGroupActivity)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalGroupActivities = Entity.countByType(etGroupActivity)
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -69,7 +72,7 @@ class GroupActivityProfileController {
       themes = Entity.findAllByType(metaDataService.etTheme)
 
 
-    return [groups: groupactivities, themes: themes]
+    return [groups: groupActivities, totalGroupActivities: totalGroupActivities, themes: themes]
   }
 
   def show = {

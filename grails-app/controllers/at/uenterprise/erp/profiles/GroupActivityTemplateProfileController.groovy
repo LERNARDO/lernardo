@@ -39,15 +39,18 @@ class GroupActivityTemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def groupactivitytemplates = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etGroupActivityTemplate)
+    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+    def groupActivityTemplates = Entity.createCriteria().list {
+      eq("type", etGroupActivityTemplate)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalGroupActivityTemplates = Entity.countByType(etGroupActivityTemplate)
 
-    return [groups: groupactivitytemplates]
+    return [groups: groupActivityTemplates, totalGroupActivityTemplates: totalGroupActivityTemplates]
   }
 
   def show = {

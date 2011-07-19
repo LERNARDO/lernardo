@@ -31,15 +31,18 @@ class GroupColonyProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def groupcolonies = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etGroupColony)
+    EntityType etGroupColony = metaDataService.etGroupColony
+    def groupColonies = Entity.createCriteria().list {
+      eq("type", etGroupColony)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalGroupColonies = Entity.countByType(etGroupColony)
 
-    return [groups: groupcolonies]
+    return [groups: groupColonies, totalGroupColonies: totalGroupColonies]
   }
 
   def show = {

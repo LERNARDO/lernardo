@@ -29,15 +29,18 @@ class GroupFamilyProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def groupfamilies = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etGroupFamily)
+    EntityType etGroupFamily = metaDataService.etGroupFamily
+    def groupFamilies = Entity.createCriteria().list {
+      eq("type", etGroupFamily)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalGroupFamilies = Entity.countByType(etGroupFamily)
 
-    return [groups: groupfamilies]
+    return [groups: groupFamilies, totalGroupFamilies: totalGroupFamilies]
   }
 
   def show = {

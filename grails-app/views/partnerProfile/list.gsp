@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${partners.totalCount} <g:message code="partner.profile.c_total"/>
+      ${totalPartners} <g:message code="partner.profile.c_total"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
@@ -54,7 +54,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${partners.totalCount}"/>
+      <g:paginate total="${totalPartners}"/>
     </div>
 
   </div>

@@ -72,17 +72,24 @@ class ActivityProfileController {
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
       }
-      else
-      {
-        def c = Entity.createCriteria()
-        activityList = c.list (max: params.max, offset: params.offset) {
-          eq("type", metaDataService.etActivity)
+      else {
+        EntityType etActivity = metaDataService.etActivity
+        activityList = Entity.createCriteria().list {
+          eq("type", etActivity)
           profile {
             eq("type", "Themenraum")
             order("date","desc")
           }
+          maxResults(params.max)
+          firstResult(params.offset)
         }
-        activityCount = activityList.totalCount
+        List totalActivityList = Entity.createCriteria().list {
+          eq("type", etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
+        }
+        activityCount = totalActivityList.size()
       }
 
       return ['activityList': activityList,
@@ -116,17 +123,24 @@ class ActivityProfileController {
           if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1)
             activityList << bla*/
 
-        def c = Entity.createCriteria()
-        activityList = c.list (max: params.max, offset: params.offset) {
-          eq("type", metaDataService.etActivity)
+        EntityType etActivity = metaDataService.etActivity
+        activityList = Entity.createCriteria().list {
+          eq("type", etActivity)
           profile {
             eq("type", "Themenraum")
             between("date", inputDate, inputDate + 1)
             order("date","desc")
           }
+          maxResults(params.max)
+          firstResult(params.offset)
         }
-
-        activityCount = activityList.totalCount
+        List totalActivityList = Entity.createCriteria().list {
+          eq("type", etActivity)
+          profile {
+            eq("type", "Themenraum")
+          }
+        }
+        activityCount = totalActivityList.size()
       }
 
       return ['activityList': activityList,

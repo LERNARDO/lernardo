@@ -52,15 +52,18 @@ class ClientProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def clients = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etClient)
+    EntityType etClient = metaDataService.etClient
+    def clients = Entity.createCriteria().list {
+      eq("type", etClient)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalClients = Entity.countByType(etClient)
 
-    return [clients: clients]
+    return [clients: clients, totalClients: totalClients]
   }
 
   def show = {

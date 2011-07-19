@@ -32,15 +32,18 @@ class OperatorProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def operators = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etOperator)
+    EntityType etOperator = metaDataService.etOperator
+    def operators = Entity.createCriteria().list {
+      eq("type", etOperator)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalOperators = Entity.countByType(etOperator)
 
-    return [operators: operators]
+    return [operators: operators, totalOperators: totalOperators]
   }
 
   def show = {

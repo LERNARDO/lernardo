@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${users.totalCount} <g:message code="user.profile.c_total"/>
+      ${totalUsers} <g:message code="user.profile.c_total"/>
     </div>
 
     <div class="buttons">
@@ -38,7 +38,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${users.totalCount}"/>
+      <g:paginate total="${totalUsers}"/>
     </div>
 
   </div>

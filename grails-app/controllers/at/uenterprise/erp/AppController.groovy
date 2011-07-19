@@ -667,6 +667,24 @@ class AppController {
       }
     }
 
+    log.info facilities
+    log.info "----"
+
+    def etFacility = metaDataService.etFacility
+
+    List facilities2 = Entity.createCriteria().list {
+      eq("type", etFacility)
+      profile {
+        order(params.sort, params.order)
+      }
+      firstResult (params.offset)
+      maxResults (params.max)
+    }
+    def totalCount = Entity.countByType(etFacility)
+
+    log.info facilities2
+    log.info totalCount
+
     Date end = new Date()
     int time = (end.getTime() - begin.getTime())
     log.info "done reading, time: ${time} milliseconds"

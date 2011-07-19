@@ -32,7 +32,7 @@
       <div class="spacer"></div>
     </div>
 
-    <g:if test="${messages.size() == 0}">
+    <g:if test="${totalMessages == 0}">
       <div class="info-msg">
         <g:message code="msg.inbox.emptyMsg"/>
       </div>
@@ -72,9 +72,9 @@
       </div>
     </g:each>
 
-    <g:if test="${messages.totalCount > 0}">
+    <g:if test="${totalMessages > 0}">
       <div class="paginateButtons">
-        <g:paginate total="${messages.totalCount}"/>
+        <g:paginate total="${totalMessages}"/>
       </div>
     </g:if>
 

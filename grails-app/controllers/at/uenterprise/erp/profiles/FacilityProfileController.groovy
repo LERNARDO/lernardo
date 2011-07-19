@@ -33,15 +33,18 @@ class FacilityProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def facilities = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etFacility)
+    EntityType etFacility = metaDataService.etFacility
+    def facilities = Entity.createCriteria().list {
+      eq("type", etFacility)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalFacilities = Entity.countByType(etFacility)
 
-    return [facilities: facilities]
+    return [facilities: facilities, totalFacilities: totalFacilities]
   }
 
   def show = {

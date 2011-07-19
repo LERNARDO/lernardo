@@ -37,15 +37,19 @@ class ProjectTemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def projectTemplates = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etProjectTemplate)
+    EntityType etProjectTemplate = metaDataService.etProjectTemplate
+    def projectTemplates = Entity.createCriteria().list {
+      eq("type", etProjectTemplate)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalProjectTemplates = Entity.countByType(etProjectTemplate)
 
-    return [projectTemplates: projectTemplates]
+    return [projectTemplates: projectTemplates,
+            totalProjectTemplates: totalProjectTemplates]
   }
 
   def show = {

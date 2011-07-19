@@ -29,15 +29,18 @@ class GroupClientProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def groupclients = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etGroupClient)
+    EntityType etGroupClient = metaDataService.etGroupClient
+    def groupClients = Entity.createCriteria().list {
+      eq("type", etGroupClient)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalGroupClients = Entity.countByType(etGroupClient)
 
-    return [groups: groupclients]
+    return [groups: groupClients, totalGroupClients: totalGroupClients]
   }
 
   def show = {

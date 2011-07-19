@@ -41,16 +41,19 @@ class TemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def templates = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etTemplate)
+    EntityType etTemplate = metaDataService.etTemplate
+    def templates = Entity.createCriteria().list {
+      eq("type", etTemplate)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalTemplates = Entity.countByType(etTemplate)
 
     return [allTemplates: templates,
-            totalTemplates: templates.totalCount,
+            totalTemplates: totalTemplates,
             methods: Method.findAllByType('template'),
             allLabels: Label.findAllByType('template'),
             paginate: true]

@@ -32,15 +32,18 @@ class UserProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    def c = Entity.createCriteria()
-    def users = c.list (max: params.max, offset: params.offset) {
-      eq("type", metaDataService.etUser)
+    EntityType etUser = metaDataService.etUser
+    def users = Entity.createCriteria().list {
+      eq("type", etUser)
       profile {
         order(params.sort, params.order)
       }
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalUsers = Entity.countByType(etUser)
 
-    return [users: users]
+    return [users: users, totalUsers: totalUsers]
   }
 
   def show = {

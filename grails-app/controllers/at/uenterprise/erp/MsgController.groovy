@@ -26,16 +26,18 @@ class MsgController {
 
     Entity entity = Entity.get(params.id)
 
-    // get messages
-    def c = Msg.createCriteria()
-    def messages = c.list (max: params.max, offset: params.offset) {
+    def messages = Msg.createCriteria().list {
       eq('entity', entity)
       ne('sender', entity)
       order("dateCreated", "desc")
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
 
-    return ['messages': messages,
-            'entity': entity]
+    return [messages: messages,
+            totalMessages: totalMessages,
+            entity: entity]
   }
 
   /*
@@ -47,16 +49,18 @@ class MsgController {
 
     Entity entity = Entity.get(params.id)
 
-    // get messages
-    def c = Msg.createCriteria()
-    def messages = c.list (max: params.max, offset: params.offset) {
+    def messages = Msg.createCriteria().list {
       eq('entity', entity)
       eq('sender', entity)
       order("dateCreated", "desc")
+      maxResults(params.max)
+      firstResult(params.offset)
     }
+    int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
 
-    return ['messages': messages,
-            'entity': entity]
+    return [messages: messages,
+            totalMessages: totalMessages,
+            entity: entity]
   }
 
   def show = {

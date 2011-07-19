@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${pates.totalCount} <g:message code="pate.profile.c_total"/>
+      ${totalPates} <g:message code="pate.profile.c_total"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
@@ -45,7 +45,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate total="${pates.totalCount}"/>
+      <g:paginate total="${totalPates}"/>
     </div>
 
   </div>
