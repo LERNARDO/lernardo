@@ -54,6 +54,7 @@ class FunctionService {
    * @return an entity
    */
   Entity findByLink(Entity source, Entity target, LinkType type) {
+    /*
     Link.createCriteria().get {
       if (source) eq('source', source)
       if (target) eq('target', target)
@@ -64,6 +65,31 @@ class FunctionService {
         if (!target) property('target')
       }
     } as Entity
+    */
+    def aSourceId
+    def aTargetId
+    def aTypeId = type.id
+    def entA
+    if (target) {
+      aTargetId = target.id
+      entA = Entity.find(
+            'from Entity as ent '+
+            'where ent.id in '+
+             '(select li.source.id from Link as li  '+
+                  'where li.target.id = :targid and li.type.id = :typid) ',
+            [targid: aTargetId, typid: aTypeId]  )
+    }
+    if (source) {
+      aSourceId = source.id
+      entA = Entity.find(
+            'from Entity as ent '+
+            'where ent.id in '+
+             '(select li.target.id from Link as li  '+
+                  'where li.source.id = :sourid and li.type.id = :typid) ',
+            [sourid: aSourceId, typid: aTypeId]  )
+    }
+
+    return entA
   }
 
   /**
@@ -76,6 +102,7 @@ class FunctionService {
    * @return a list of entities
    */
   List findAllByLink(Entity source, Entity target, LinkType type) {
+    /*
     Link.createCriteria().list {
       if (source) eq('source', source)
       if (target) eq('target', target)
@@ -86,6 +113,31 @@ class FunctionService {
         if (!target) property('target')
       }
     }
+    */
+    def aSourceId
+    def aTargetId
+    def aTypeId = type.id
+    def entA = []
+    if (target) {
+      aTargetId = target.id
+      entA = Entity.findAll(
+            'from Entity as ent '+
+            'where ent.id in '+
+             '(select li.source.id from Link as li  '+
+                  'where li.target.id = :targid and li.type.id = :typid) ',
+            [targid: aTargetId, typid: aTypeId]  )
+    }
+    if (source) {
+      aSourceId = source.id
+      entA = Entity.findAll(
+            'from Entity as ent '+
+            'where ent.id in '+
+             '(select li.target.id from Link as li  '+
+                  'where li.source.id = :sourid and li.type.id = :typid) ',
+            [sourid: aSourceId, typid: aTypeId]  )
+    }
+
+    return entA
   }
   
   /**
