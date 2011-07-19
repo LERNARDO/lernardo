@@ -54,6 +54,9 @@ class BootStrap {
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
 
+      servletContext.etUser = metaDataService.etUser
+      servletContext.etFacility = metaDataService.etFacility
+
       log.info "====="
       Date begin = new Date()
 

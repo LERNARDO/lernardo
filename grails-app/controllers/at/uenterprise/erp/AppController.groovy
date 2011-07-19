@@ -652,7 +652,7 @@ class AppController {
 
   def checkDB = {
     log.info "reading all entities of type facility"
-    Date begin = new Date()
+
     //List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     params.offset = params.offset ? params.int('offset') : 0
@@ -670,7 +670,17 @@ class AppController {
     log.info facilities
     log.info "----"
 
-    def etFacility = metaDataService.etFacility
+    Date begin = new Date()
+      def etFacility = metaDataService.etFacility
+    Date end = new Date()
+    int time = (end.getTime() - begin.getTime())
+    log.info "done reading, time: ${time} milliseconds"
+
+    begin = new Date()
+      etFacility = servletContext.etFacility
+    end = new Date()
+    time = (end.getTime() - begin.getTime())
+    log.info "done reading, time: ${time} milliseconds"
 
     List facilities2 = Entity.createCriteria().list {
       eq("type", etFacility)
@@ -685,10 +695,7 @@ class AppController {
     log.info facilities2
     log.info totalCount
 
-    Date end = new Date()
-    int time = (end.getTime() - begin.getTime())
-    log.info "done reading, time: ${time} milliseconds"
-    render "done first check in ${time} milliseconds<br/>"
+
 
     log.info "reading all clients linked to a facility"
     begin = new Date()
@@ -696,7 +703,7 @@ class AppController {
     end = new Date()
     time = (end.getTime() - begin.getTime())
     log.info "done reading, time: ${time} milliseconds"
-    render "done second check in ${time} milliseconds<br/>"
+    render "done"
   }
 
 }
