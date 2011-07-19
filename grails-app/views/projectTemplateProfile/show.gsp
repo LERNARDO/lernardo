@@ -148,7 +148,7 @@
       <div class="zusatz-show" id="resources2">
         <g:render template="resources" model="[group: projectTemplate, entity: currentEntity]"/>
       </div>
-      <p>Aus Vorlagen: <g:remoteLink update="templateresources" action="refreshtemplateresources" id="${projectTemplate.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink></p>
+      <p><span class="bold">Aus Vorlagen:</span> <g:remoteLink update="templateresources" action="refreshtemplateresources" id="${projectTemplate.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink></p>
       <div id="templateresources">
         <g:render template="templateresources" model="[templateResources: templateResources]"/>
       </div>

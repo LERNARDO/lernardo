@@ -57,7 +57,7 @@ class AppointmentProfileController {
       // find owner of appointment
       Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
 
-      return [appointment: appointment, entity: entity, bla: owner.id]
+      return [appointment: appointment, entity: appointment, owner: owner]
     }
 
     def delete = {
@@ -121,33 +121,33 @@ class AppointmentProfileController {
 
     def create = {
       Entity entity = Entity.get(params.id)
-      return [entity:entity]
+      return [entity: entity]
     }
 
     def save = {
       EntityType etAppointment = metaDataService.etAppointment
-      Entity owner = Entity.get(params.id)
+      Entity entity = Entity.get(params.id)
 
       try {
-        Entity entity = entityHelperService.createEntity('appointment', etAppointment) {Entity ent ->
+        Entity appointment = entityHelperService.createEntity('appointment', etAppointment) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
           ent.profile.beginDate = functionService.convertToUTC(ent.profile.beginDate)
           ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
         }
 
-        // create link to owner
-        new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save()
-
-        if (entity.profile.beginDate > entity.profile.endDate) {
-          render (view: "create", model: [appointmentProfileInstance: entity])
+        if (params.beginDate > params.endDate) {
+          render (view: "create", model: [appointmentProfileInstance: appointment, entity: entity])
           return
         }
 
-        flash.message = message(code: "appointment.created", args: [entity.profile.fullName])
-        redirect action: 'show', id: entity.id, params: [entity: owner]
+        // create link to owner
+        new Link(source: appointment, target: entity, type: metaDataService.ltAppointment).save(failOnError: true)
+
+        flash.message = message(code: "appointment.created", args: [appointment.profile.fullName])
+        redirect action: 'show', id: appointment.id, params: [entity: appointment]
       } catch (EntityException ee) {
-        render(view: "create", model: [appointmentProfileInstance: ee.entity])
+        render(view: "create", model: [appointmentProfileInstance: ee.entity, entity: entity])
       }
 
     }

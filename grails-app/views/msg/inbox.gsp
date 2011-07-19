@@ -38,35 +38,37 @@
       </div>
     </g:if>
     <g:each in="${messages}" status="i" var="message">
-      <div class="messagebox" style="${!message.read ? 'background: #fdd; border: 1px solid #dbb' : ''}">
-        <table>
-          <tr>
-            <td style="padding-right: 10px;">
-              <erp:isEnabled entity="${message.sender}">
-                <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}"  params="[entity:message.sender.id]">
-                  <erp:profileImage entity="${message.sender}" width="50" height="50" align="left"/>
-                </g:link>
-              </erp:isEnabled>
-            </td>
-            <td style="padding-right: 10px;">
-              <g:if test="${!message.read}"><div class="new"><g:message code="msg.inbox.newMsg"/></div></g:if>
-              <div class="name">
-                <span class="bold"><g:message code="msg.from"/>:</span>
+      <div id="messagebox${i}">
+        <div class="messagebox" style="${!message.read ? 'background: #fdd; border: 1px solid #dbb' : ''}">
+          <table>
+            <tr>
+              <td style="padding-right: 10px;">
                 <erp:isEnabled entity="${message.sender}">
-                  <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}" params="[entity:message.sender.id]">${message.sender.profile.fullName}</g:link>
+                  <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}"  params="[entity:message.sender.id]">
+                    <erp:profileImage entity="${message.sender}" width="50" height="50" align="left"/>
+                  </g:link>
                 </erp:isEnabled>
-                <erp:notEnabled entity="${message.sender}">
-                  <span class="notEnabled">${message.sender.profile.fullName}</span>
-                </erp:notEnabled>
-              </div>
-              <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></div>
-            </td>
-            <td>
-              <div class="subject-text"><span class="bold"><g:message code="msg.subject"/>:</span> ${message.subject.decodeHTML()}</div>
-              <g:link class="buttonGreen" action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']"><g:message code="msg.show"/></g:link>
-              <g:link class="buttonRed" action="del" onclick="return confirm('Nachricht wirklich löschen?');" id="${message.id}" params="[entity:entity.id,box:'outbox']"><g:message code="delete"/></g:link></td>
-          </tr>
-        </table>
+              </td>
+              <td style="padding-right: 10px;">
+                <g:if test="${!message.read}"><div class="new"><g:message code="msg.inbox.newMsg"/></div></g:if>
+                <div class="name">
+                  <span class="bold"><g:message code="msg.from"/>:</span>
+                  <erp:isEnabled entity="${message.sender}">
+                    <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}" params="[entity:message.sender.id]">${message.sender.profile.fullName}</g:link>
+                  </erp:isEnabled>
+                  <erp:notEnabled entity="${message.sender}">
+                    <span class="notEnabled">${message.sender.profile.fullName}</span>
+                  </erp:notEnabled>
+                </div>
+                <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></div>
+              </td>
+              <td>
+                <div class="subject-text"><span class="bold"><g:message code="msg.subject"/>:</span> ${message.subject.decodeHTML()}</div>
+                <g:link class="buttonGreen" action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']"><g:message code="msg.show"/></g:link>
+                <g:remoteLink class="buttonRed" action="del" update="messagebox${i}" id="${message.id}" before="if(!confirm('Nachricht wirklich löschen?')) return false"><g:message code="delete"/></g:remoteLink>
+            </tr>
+          </table>
+        </div>
       </div>
     </g:each>
 

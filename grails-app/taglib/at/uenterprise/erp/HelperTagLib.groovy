@@ -128,10 +128,12 @@ class HelperTagLib {
   }
 
   def profileImage = {attrs ->
-    attrs.name = attrs.entity.name
     def imgattrs = [:]
     imgattrs['src'] = g.createLink (controller:'app', action:'get', params:[type:'profile', entity:attrs.entity.id])
-    attrs.each {key, val-> imgattrs[key]=val ;}
+    attrs.name = attrs.entity.name
+    attrs.each {key, val ->
+      imgattrs[key] = val
+    }
     def mkp = new groovy.xml.MarkupBuilder(out)
     mkp { img (imgattrs) }
   }
@@ -851,7 +853,7 @@ class HelperTagLib {
    * returns all facilities linked to a group
    */
   def getGroupFacilities = {attrs, body ->
-    def result = Link.countBySourceAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
+    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
