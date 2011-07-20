@@ -67,6 +67,17 @@ class LabelController {
           return
         }
       }
+
+      // update all label instances
+      List labels = Label.findAllByType("instance")
+      labels.each {
+        if (it.name == labelInstance.name) {
+          it.name = params.name
+          it.description = params.description
+          it.save()
+        }
+      }
+
       labelInstance.properties = params
       if (!labelInstance.hasErrors() && labelInstance.save(flush: true)) {
         flash.message = message(code: "label.updated", args: [labelInstance.name])
