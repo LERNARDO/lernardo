@@ -41,7 +41,7 @@ class GroupActivityProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etGroupActivity = metaDataService.etGroupActivity
+    EntityType etGroupActivity = servletContext.etGroupActivity
     def groupActivities = Entity.createCriteria().list {
       eq("type", etGroupActivity)
       profile {
@@ -56,20 +56,20 @@ class GroupActivityProfileController {
 
     // get themes
     List themes = []
-    if (currentEntity.type == metaDataService.etEducator) {
+    if (currentEntity.type == servletContext.etEducator) {
       // find all facilities the current entity is linked to as educator or lead educator
       List facilities = []
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, servletContext.ltWorking))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, servletContext.ltLeadEducator))
 
       // find all themes that are linked to those facilities
 
       facilities.each { facility ->
-        themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
+        themes.addAll(functionService.findAllByLink(null, facility, servletContext.ltThemeOfFacility))
       }
     }
     else
-      themes = Entity.findAllByType(metaDataService.etTheme)
+      themes = Entity.findAllByType(servletContext.etTheme)
 
 
     return [groups: groupActivities, totalGroupActivities: totalGroupActivities, themes: themes]
@@ -86,27 +86,27 @@ class GroupActivityProfileController {
       return
     }
 
-    List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
+    List allClientgroups = Entity.findAllByType(servletContext.etGroupClient)
+    List clients = functionService.findAllByLink(null, group, servletContext.ltGroupMemberClient) // find all clients linked to this group
 
-    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
-    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
+    List allFacilities = Entity.findAllByType(servletContext.etFacility)
+    List facilities = functionService.findAllByLink(group, null, servletContext.ltGroupMemberFacility) // find all facilities linked to this group
 
-    List allPartners = Entity.findAllByType(metaDataService.etPartner)
-    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
+    List allPartners = Entity.findAllByType(servletContext.etPartner)
+    List partners = functionService.findAllByLink(null, group, servletContext.ltGroupMemberPartner) // find all partners linked to this group
 
     def allParents = functionService.findParents(group)
-    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
+    List parents = functionService.findAllByLink(null, group, servletContext.ltGroupMemberParent) // find all parents linked to this group
 
     def allEducators = functionService.findEducators(group)
-    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
+    List educators = functionService.findAllByLink(null, group, servletContext.ltGroupMemberEducator) // find all educators linked to this group
 
-    def allSubstitutes = Entity.findAllByType(metaDataService.etEducator)
-    List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
+    def allSubstitutes = Entity.findAllByType(servletContext.etEducator)
+    List substitutes = functionService.findAllByLink(null, group, servletContext.ltGroupMemberSubstitute) // find all educators linked to this group
 
-    List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
+    List templates = functionService.findAllByLink(null, group, servletContext.ltGroupMember) // find all templates linked to this group
 
-    Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
+    Entity template = functionService.findByLink(null, group, servletContext.ltTemplate) // find template
 
     def calculatedDuration = 0
     templates.each {
@@ -114,9 +114,9 @@ class GroupActivityProfileController {
     }
 
     // find all themes which are at the project time
-    List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= group.profile.date && it.profile.endDate >= group.profile.date}
+    List allThemes = Entity.findAllByType(servletContext.etTheme).findAll {it.profile.startDate <= group.profile.date && it.profile.endDate >= group.profile.date}
 
-    List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
+    List themes = functionService.findAllByLink(group, null, servletContext.ltGroupMemberActivityGroup)
 
     List requiredResources = []
     requiredResources.addAll(template.profile.resources)
@@ -127,13 +127,13 @@ class GroupActivityProfileController {
     List plannableResources = []
     facilities.each { Entity facility ->
       // add resources linked to the facility to plannable resources
-      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+      plannableResources.addAll(functionService.findAllByLink(null, facility, servletContext.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+      Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, servletContext.ltResource))
     }
 
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
+    List resources = functionService.findAllByLink(null, group, servletContext.ltResourcePlanned)
 
     return [group: group,
             entity: entity,
@@ -217,7 +217,7 @@ class GroupActivityProfileController {
     Entity groupActivityTemplate = Entity.get(params.id)
 
     // find all templates linked to this group
-    List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+    List templates = functionService.findAllByLink(null, groupActivityTemplate, servletContext.ltGroupMember)
 
     def calculatedDuration = 0
     templates.each {
@@ -229,7 +229,7 @@ class GroupActivityProfileController {
 
   def save = {
     Entity groupActivityTemplate = Entity.get(params.template)
-    EntityType etGroupActivity = metaDataService.etGroupActivity
+    EntityType etGroupActivity = servletContext.etGroupActivity
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -248,18 +248,18 @@ class GroupActivityProfileController {
       }
 
       // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
       // find all templates linked to the groupActivityTemplate
-      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, servletContext.ltGroupMember)
 
       // and link them to the new groupActivity
       templates.each {
-        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+        new Link(source: it as Entity, target: entity, type: servletContext.ltGroupMember).save()
       }
 
       // link template to instance
-      new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
+      new Link(source: groupActivityTemplate, target: entity, type: servletContext.ltTemplate).save()
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
       flash.message = message(code: "group.created", args: [entity.profile.fullName])
@@ -267,7 +267,7 @@ class GroupActivityProfileController {
     } catch (EntityException ee) {
 
       // find all templates linked to the groupActivityTemplate
-      List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+      List templates = functionService.findAllByLink(null, groupActivityTemplate, servletContext.ltGroupMember)
 
       def calculatedDuration = 0
       templates.each {
@@ -280,7 +280,7 @@ class GroupActivityProfileController {
   }
 
   def addEducator = {
-    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+    def linking = functionService.linkEntities(params.educator, params.id, servletContext.ltGroupMemberEducator)
     if (linking.duplicate)
 //       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -288,12 +288,12 @@ class GroupActivityProfileController {
   }
 
   def removeEducator = {
-    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+    def breaking = functionService.breakEntities(params.educator, params.id, servletContext.ltGroupMemberEducator)
     render template: 'educators', model: [educators: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addSubstitute = {
-    def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
+    def linking = functionService.linkEntities(params.substitute, params.id, servletContext.ltGroupMemberSubstitute)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -301,12 +301,12 @@ class GroupActivityProfileController {
   }
 
   def removeSubstitute = {
-    def breaking = functionService.breakEntities(params.substitute, params.id, metaDataService.ltGroupMemberSubstitute)
+    def breaking = functionService.breakEntities(params.substitute, params.id, servletContext.ltGroupMemberSubstitute)
     render template: 'substitutes', model: [substitutes: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addParent = {
-    def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
+    def linking = functionService.linkEntities(params.parent, params.id, servletContext.ltGroupMemberParent)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -314,12 +314,12 @@ class GroupActivityProfileController {
   }
 
   def removeParent = {
-    def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
+    def breaking = functionService.breakEntities(params.parent, params.id, servletContext.ltGroupMemberParent)
     render template: 'parents', model: [parents: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addPartner = {
-    def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+    def linking = functionService.linkEntities(params.partner, params.id, servletContext.ltGroupMemberPartner)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -327,7 +327,7 @@ class GroupActivityProfileController {
   }
 
   def removePartner = {
-    def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+    def breaking = functionService.breakEntities(params.partner, params.id, servletContext.ltGroupMemberPartner)
     render template: 'partners', model: [partners: linking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -336,17 +336,17 @@ class GroupActivityProfileController {
     def c = Link.createCriteria()
     def result = c.get {
       eq('source', Entity.get(params.id))
-      eq('type', metaDataService.ltGroupMemberFacility)
+      eq('type', servletContext.ltGroupMemberFacility)
     }
     if (!result) {
-      def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
+      def linking = functionService.linkEntities(params.id, params.facility, servletContext.ltGroupMemberFacility)
       if (linking.duplicate)
         //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
         render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       render template: 'facilities', model: [facilities: linking.results2, group: linking.source, entity: entityHelperService.loggedIn]
     }
     else {
-      List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
+      List facilities = functionService.findAllByLink(group, null, servletContext.ltGroupMemberFacility)
       // render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
       render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
       render template: 'facilities', model: [facilities: facilities, group: group, entity: entityHelperService.loggedIn]
@@ -355,14 +355,14 @@ class GroupActivityProfileController {
   }
 
   def removeFacility = {
-    def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
+    def breaking = functionService.breakEntities(params.id, params.facility, servletContext.ltGroupMemberFacility)
     render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
-    functionService.breakEntities(params.client, params.id, metaDataService.ltAbsent)
-    functionService.breakEntities(params.client, params.id, metaDataService.ltIll)
-    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    functionService.breakEntities(params.client, params.id, servletContext.ltAbsent)
+    functionService.breakEntities(params.client, params.id, servletContext.ltIll)
+    def breaking = functionService.breakEntities(params.client, params.id, servletContext.ltGroupMemberClient)
     render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -379,7 +379,7 @@ class GroupActivityProfileController {
   }
 
   def addTheme = {
-    def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
+    def linking = functionService.linkEntities(params.id, params.theme, servletContext.ltGroupMemberActivityGroup)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -387,7 +387,7 @@ class GroupActivityProfileController {
   }
 
   def removeTheme = {
-    def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMemberActivityGroup)
+    def breaking = functionService.breakEntities(params.id, params.theme, servletContext.ltGroupMemberActivityGroup)
     render template: 'themes', model: [themes: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
 
@@ -403,8 +403,8 @@ class GroupActivityProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       or {
-        eq('type', metaDataService.etClient)
-        eq('type', metaDataService.etGroupClient)
+        eq('type', servletContext.etClient)
+        eq('type', servletContext.etGroupClient)
       }
       or {
         ilike('name', "%" + params.value + "%")
@@ -429,25 +429,25 @@ class GroupActivityProfileController {
     def entity = Entity.get(params.client)
 
     // if the entity is a client add it
-    if (entity.type.id == metaDataService.etClient.id) {
-      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    if (entity.type.id == servletContext.etClient.id) {
+      def linking = functionService.linkEntities(params.client, params.id, servletContext.ltGroupMemberClient)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render template: 'clients', model: [clients: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
     }
     // if the entity is a client group get all clients and add them
-    else if (entity.type.id == metaDataService.etGroupClient.id) {
+    else if (entity.type.id == servletContext.etGroupClient.id) {
       // find all clients of the group
-      List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
+      List clients = functionService.findAllByLink(null, entity, servletContext.ltGroupMemberClient)
 
       clients.each {
-        def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
+        def linking = functionService.linkEntities(it.id as String, params.id, servletContext.ltGroupMemberClient)
         if (linking.duplicate)
           render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       }
 
       Entity activitygroup = Entity.get(params.id)
-      List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
+      List clients2 = functionService.findAllByLink(null, activitygroup, servletContext.ltGroupMemberClient)
       render template: 'clients', model: [clients: clients2, group: activitygroup, entity: entityHelperService.loggedIn]
     }
 
@@ -463,15 +463,15 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
 
-    List activities = params.withTemplates == "" ? functionService.findAllByLink(null, group, metaDataService.ltGroupMember) : null
-    List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup) // find all activities linked to this group
-    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
-    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
-    List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
-    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
-    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner) // find all partners linked to this group
-    Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
+    List activities = params.withTemplates == "" ? functionService.findAllByLink(null, group, servletContext.ltGroupMember) : null
+    List themes = functionService.findAllByLink(group, null, servletContext.ltGroupMemberActivityGroup) // find all activities linked to this group
+    List facilities = functionService.findAllByLink(group, null, servletContext.ltGroupMemberFacility) // find all facilities linked to this group
+    List educators = functionService.findAllByLink(null, group, servletContext.ltGroupMemberEducator) // find all educators linked to this group
+    List substitutes = functionService.findAllByLink(null, group, servletContext.ltGroupMemberSubstitute) // find all educators linked to this group
+    List clients = functionService.findAllByLink(null, group, servletContext.ltGroupMemberClient) // find all clients linked to this group
+    List parents = functionService.findAllByLink(null, group, servletContext.ltGroupMemberParent) // find all parents linked to this group
+    List partners = functionService.findAllByLink(null, group, servletContext.ltGroupMemberPartner) // find all partners linked to this group
+    Entity template = functionService.findByLink(null, group, servletContext.ltTemplate) // find template
 
     renderPdf template: 'createpdf', model: [entity: currentEntity,
                                              group: group,
@@ -497,7 +497,7 @@ class GroupActivityProfileController {
       render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
     else {
       List groupActivities = Entity.createCriteria().list {
-        eq("type", metaDataService.etGroupActivity)
+        eq("type", servletContext.etGroupActivity)
         profile {
           ge("date", beginDate)
           le("date", endDate)
@@ -520,7 +520,7 @@ class GroupActivityProfileController {
 
     if (theme) {
       // find all group activities that are linked to this theme
-      List groupActivities = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
+      List groupActivities = functionService.findAllByLink(null, theme, servletContext.ltGroupMemberActivityGroup)
       if (groupActivities.size() == 0) {
         render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
         return
@@ -547,13 +547,13 @@ class GroupActivityProfileController {
     calendar.setTime(group.profile.date)
     calendar.add(Calendar.MINUTE, group.profile.realDuration)
 
-    Link link = linkHelperService.createLink(resource, group, metaDataService.ltResourcePlanned) {link, dad ->
+    Link link = linkHelperService.createLink(resource, group, servletContext.ltResourcePlanned) {link, dad ->
       dad.beginDate = group.profile.date.getTime() / 1000
       dad.endDate = calendar.getTime().getTime() / 1000
       dad.amount = params.amount
     }
 
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
+    List resources = functionService.findAllByLink(null, group, servletContext.ltResourcePlanned)
     render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
   }
 
@@ -564,27 +564,27 @@ class GroupActivityProfileController {
     def link = Link.createCriteria().get {
       eq('source', resource)
       eq('target', group)
-      eq('type', metaDataService.ltResourcePlanned)
+      eq('type', servletContext.ltResourcePlanned)
     }
     if (link) {
       link.delete()
     }
 
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
+    List resources = functionService.findAllByLink(null, group, servletContext.ltResourcePlanned)
     render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, group: group]
   }
 
   def refreshplannableresources = {
     Entity group = Entity.get(params.id)
-    List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility)
+    List facilities = functionService.findAllByLink(group, null, servletContext.ltGroupMemberFacility)
 
     List plannableResources = []
     facilities.each { Entity facility ->
       // add resources linked to the facility to plannable resources
-      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+      plannableResources.addAll(functionService.findAllByLink(null, facility, servletContext.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+      Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, servletContext.ltResource))
     }
 
     render template: 'plannableResources', model: [plannableResources: plannableResources, group: group]

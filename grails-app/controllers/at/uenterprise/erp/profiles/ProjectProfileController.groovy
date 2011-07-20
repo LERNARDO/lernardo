@@ -44,7 +44,7 @@ class ProjectProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etProject = metaDataService.etProject
+    EntityType etProject = servletContext.etProject
     def projects = Entity.createCriteria().list {
       eq("type", etProject)
       profile {
@@ -59,20 +59,20 @@ class ProjectProfileController {
 
     // get themes
     List themes = []
-    if (currentEntity.type == metaDataService.etEducator) {
+    if (currentEntity.type == servletContext.etEducator) {
       // find all facilities the current entity is linked to as educator or lead educator
       List facilities = []
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, servletContext.ltWorking))
+      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, servletContext.ltLeadEducator))
 
       // find all themes that are linked to those facilities
 
       facilities.each { facility ->
-        themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
+        themes.addAll(functionService.findAllByLink(null, facility, servletContext.ltThemeOfFacility))
       }
     }
     else
-      themes = Entity.findAllByType(metaDataService.etTheme)
+      themes = Entity.findAllByType(servletContext.etTheme)
 
     return [projects: projects,
             totalProjects: totalProjects,
@@ -90,73 +90,73 @@ class ProjectProfileController {
     }
     else {
       // find projectTemplate of this project
-      Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
+      Entity template = functionService.findByLink(null, project, servletContext.ltProjectTemplate)
 
       // find all units linked to the template
       List units = []
       if (template)
-        units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+        units = functionService.findAllByLink(null, template, servletContext.ltProjectUnitTemplate)
 
-      def allFacilities = Entity.findAllByType(metaDataService.etFacility)
+      def allFacilities = Entity.findAllByType(servletContext.etFacility)
       // find all facilities linked to this project
-      List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+      List facilities = functionService.findAllByLink(project, null, servletContext.ltGroupMemberFacility)
 
-      //def allClients = Entity.findAllByType(metaDataService.etClient)
-      List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
+      //def allClients = Entity.findAllByType(servletContext.etClient)
+      List allClientgroups = Entity.findAllByType(servletContext.etGroupClient)
       // find all clients linked to this project
-      List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+      List clients = functionService.findAllByLink(null, project, servletContext.ltGroupMemberClient)
 
       // get all educators
-      def allEducators = Entity.findAllByType(metaDataService.etEducator)
+      def allEducators = Entity.findAllByType(servletContext.etEducator)
 
       // get all parents
       def families = []
       clients.each { client ->
         // get all families
-        families.addAll(functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupFamily))
+        families.addAll(functionService.findAllByLink(client as Entity, null, servletContext.ltGroupFamily))
       }
       def allParents = []
       families.each { family ->
         // get all parents
-        def temp = functionService.findAllByLink(null, family as Entity, metaDataService.ltGroupMemberParent)
+        def temp = functionService.findAllByLink(null, family as Entity, servletContext.ltGroupMemberParent)
         temp.each {
           if (!allParents.contains(it))
             allParents << it
         }
       }
-      /*def allParents = Entity.findAllByType(metaDataService.etParent)*/
+      /*def allParents = Entity.findAllByType(servletContext.etParent)*/
 
       // get all partners
-      def allPartners = Entity.findAllByType(metaDataService.etPartner)
+      def allPartners = Entity.findAllByType(servletContext.etPartner)
 
       // find all projectdays linked to this project
-      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+      List projectDays = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
       projectDays.sort {it.profile.date}
 
       // find all projectUnits linked to this project
-      List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
+      List projectUnits = functionService.findAllByLink(null, project, servletContext.ltProjectUnit)
 
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+      List allGroupActivityTemplates = Entity.findAllByType(servletContext.etGroupActivityTemplate)
 
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnits)
 
       // find all themes which are at the project time
-      List allThemes = Entity.findAllByType(metaDataService.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
+      List allThemes = Entity.findAllByType(servletContext.etTheme).findAll {it.profile.startDate <= project.profile.startDate && it.profile.endDate >= project.profile.endDate}
 
-      List themes = functionService.findAllByLink(project, null, metaDataService.ltGroupMember)
+      List themes = functionService.findAllByLink(project, null, servletContext.ltGroupMember)
 
       Entity projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
 
       List requiredResources = []
       requiredResources.addAll(template.profile.resources)
       // find all project units linked to the project day
-      List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+      List pUnits = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
 
       // find all groups linked to all units
       List groups = []
       pUnits.each { Entity pUnit ->
-        groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
+        groups.addAll(functionService.findAllByLink(null, pUnit, servletContext.ltProjectUnit))
       }
 
       // for every group activity template add its resources
@@ -165,7 +165,7 @@ class ProjectProfileController {
       }
       // for every group activity template find its activity templates and add resources as well
       groups.each {
-        List temps = functionService.findAllByLink(null, it, metaDataService.ltGroupMember)
+        List temps = functionService.findAllByLink(null, it, servletContext.ltGroupMember)
         temps.each { temp ->
           temp.profile.resources.each {
             if (!requiredResources.contains(it))
@@ -177,13 +177,13 @@ class ProjectProfileController {
       List plannableResources = []
       facilities.each { Entity facility ->
         // add resources linked to the facility to plannable resources
-        plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+        plannableResources.addAll(functionService.findAllByLink(null, facility, servletContext.ltResource))
         // find colony the facility is linked to and add its resources as well
-        Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-        plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+        Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+        plannableResources.addAll(functionService.findAllByLink(null, colony, servletContext.ltResource))
       }
 
-      List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
+      List resources = functionService.findAllByLink(null, projectDay, servletContext.ltResourcePlanned)
 
       [project: project,
               entity: entity,
@@ -215,12 +215,12 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
     if (project) {
       // find all project days of project
-      List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+      List projectDays = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
 
       // find all project units of all project days
       List projectUnits = []
       projectDays.each { Entity projectDay ->
-        projectUnits.addAll(functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit))
+        projectUnits.addAll(functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit))
       }
 
       // delete all links to project units and units themselves
@@ -276,7 +276,7 @@ class ProjectProfileController {
     //project.profile.description = params.description
 
     // update project days based on the new begin and end date
-    def currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    def currentPDs = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
 
     Date tperiodStart = params.startDate
@@ -302,13 +302,13 @@ class ProjectProfileController {
       }
     }
     toDelete.each { pd ->
-      Link.findBySourceAndType(pd, metaDataService.ltProjectMember)?.delete()
+      Link.findBySourceAndType(pd, servletContext.ltProjectMember)?.delete()
       Link.findAllBySourceOrTarget(pd, pd).each {it.delete()}
       pd.delete()
     }
 
     // get a new list of project days
-    currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    currentPDs = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
 
     // 2. create new project days if any
@@ -370,7 +370,7 @@ class ProjectProfileController {
           }
 
           // create project day
-          EntityType etProjectDay = metaDataService.etProjectDay
+          EntityType etProjectDay = servletContext.etProjectDay
           Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
             ent.profile.date = tcalendarStart.getTime();
@@ -378,7 +378,7 @@ class ProjectProfileController {
             ent.profile.date = functionService.convertToUTC(ent.profile.date)
           }
 
-          new Link(source: projectDay, target: project, type: metaDataService.ltProjectMember).save()
+          new Link(source: projectDay, target: project, type: servletContext.ltProjectMember).save()
 
         }
       }
@@ -387,7 +387,7 @@ class ProjectProfileController {
       tcalendarStart.add(Calendar.DATE, 1)
     }
 
-    //currentPDs = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    //currentPDs = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
     //log.info "current project days: " + currentPDs.size()
 
     project.profile.properties = params
@@ -452,7 +452,7 @@ class ProjectProfileController {
       return
     }
 
-    EntityType etProject = metaDataService.etProject
+    EntityType etProject = servletContext.etProject
 
     try {
       Entity entity = entityHelperService.createEntity("project", etProject) {Entity ent ->
@@ -471,10 +471,10 @@ class ProjectProfileController {
       flash.message = message(code: "project.created", args: [entity.profile.fullName])
 
       // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
       // create link to template
-      new Link(source: projectTemplate, target: entity, type: metaDataService.ltProjectTemplate).save()
+      new Link(source: projectTemplate, target: entity, type: servletContext.ltProjectTemplate).save()
 
       // create project days
       Date periodStart = params.startDate
@@ -530,7 +530,7 @@ class ProjectProfileController {
           }
 
           // create project day
-          EntityType etProjectDay = metaDataService.etProjectDay
+          EntityType etProjectDay = servletContext.etProjectDay
           Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
             ent.profile.date = calendarStart.getTime();
@@ -539,7 +539,7 @@ class ProjectProfileController {
           }
 
           // link project day to project
-          new Link(source: projectDay, target: entity, type: metaDataService.ltProjectMember).save()
+          new Link(source: projectDay, target: entity, type: servletContext.ltProjectMember).save()
 
         }
 
@@ -562,16 +562,16 @@ class ProjectProfileController {
 
     Entity currentEntity = entityHelperService.loggedIn
 
-    def project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
 
     // set the correct time for the new unit
         // find all units linked to this projectDay
-        List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+        List units = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
 
         // find all groups linked to all units
         List groups = []
         units.each {
-          groups.addAll(functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnit))
+          groups.addAll(functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnit))
         }
 
         // calculate total duration of all these groups
@@ -584,7 +584,7 @@ class ProjectProfileController {
         Calendar calendar = new GregorianCalendar()
 
     // find all activity template groups linked to the project unit template
-    groups = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+    groups = functionService.findAllByLink(null, projectUnitTemplate, servletContext.ltProjectUnitMember)
 
     // and link each group to the project unit
     int duration2 = 0
@@ -594,7 +594,7 @@ class ProjectProfileController {
     }
 
     // create a new unit and copy the properties from the unit template
-    EntityType etProjectUnit = metaDataService.etProjectUnit
+    EntityType etProjectUnit = servletContext.etProjectUnit
     Entity projectUnit = entityHelperService.createEntity("projectUnit", etProjectUnit) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.fullName = projectUnitTemplate.profile.fullName
@@ -606,27 +606,27 @@ class ProjectProfileController {
     }
 
     // save creator
-    new Link(source: currentEntity, target: projectUnit, type: metaDataService.ltCreator).save()
+    new Link(source: currentEntity, target: projectUnit, type: servletContext.ltCreator).save()
 
     projectDay.profile.addToUnits(projectUnit.id.toString())
 
     // link the new unit to the project day
-    new Link(source: projectUnit, target: projectDay, type: metaDataService.ltProjectDayUnit).save()
+    new Link(source: projectUnit, target: projectDay, type: servletContext.ltProjectDayUnit).save()
 
     // and link each group to the project unit
     groups.each {
-      new Link(source: it as Entity, target: projectUnit, type: metaDataService.ltProjectUnit).save()
+      new Link(source: it as Entity, target: projectUnit, type: servletContext.ltProjectUnit).save()
     }
 
     // return values for the template
         // find all units linked to this projectDay
-        units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+        units = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
 
         // get all parents
-        def allParents = Entity.findAllByType(metaDataService.etParent)
+        def allParents = Entity.findAllByType(servletContext.etParent)
 
         // get all partners
-        def allPartners = Entity.findAllByType(metaDataService.etPartner)
+        def allPartners = Entity.findAllByType(servletContext.etPartner)
 
     render template: 'units', model: [units: units, project: project, projectDay: projectDay, entity: currentEntity, allParents: allParents, allPartners: allPartners]
 
@@ -641,16 +641,16 @@ class ProjectProfileController {
     def link = c.get {
       eq('source', projectUnit)
       eq('target', projectDay)
-      eq('type', metaDataService.ltProjectDayUnit)
+      eq('type', servletContext.ltProjectDayUnit)
     }
     link.delete()
 
     // find all activities linking to this unit and delete them
-    Link.findAllByTargetAndType(projectUnit, metaDataService.ltProjectUnit).each {it.delete()}
+    Link.findAllByTargetAndType(projectUnit, servletContext.ltProjectUnit).each {it.delete()}
     //List activities = links.collect {it.source}
 
     // delete link to creator
-    Link.findByTargetAndType(projectUnit, metaDataService.ltCreator)?.delete()
+    Link.findByTargetAndType(projectUnit, servletContext.ltCreator)?.delete()
 
     projectDay.profile.removeFromUnits(params.unit)
 
@@ -658,7 +658,7 @@ class ProjectProfileController {
     projectUnit.delete()
 
     // find all project units of this project
-    List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    List units = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
 
     render template: 'units', model: [units: units, projectDay: projectDay, entity: entityHelperService.loggedIn]
   }
@@ -673,14 +673,14 @@ class ProjectProfileController {
     def link = c.get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnit)
-      eq('type', metaDataService.ltProjectUnitMember)
+      eq('type', servletContext.ltProjectUnitMember)
     }
     if (!link)
     // link groupActivityTemplate to projectUnit
-      new Link(source: groupActivityTemplate, target: projectUnit, type: metaDataService.ltProjectUnitMember).save()
+      new Link(source: groupActivityTemplate, target: projectUnit, type: servletContext.ltProjectUnitMember).save()
 
     // find all project units of this project
-    List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
+    List projectUnits = functionService.findAllByLink(null, project, servletContext.ltProjectUnit)
 
     // calculate realDuration
     int calculatedDuration = calculateDuration(projectUnits)
@@ -698,12 +698,12 @@ class ProjectProfileController {
     def link = c.get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnit)
-      eq('type', metaDataService.ltProjectUnitMember)
+      eq('type', servletContext.ltProjectUnitMember)
     }
     link.delete()
 
     // find all projectunits of this project
-    List projectUnits = functionService.findAllByLink(null, project, metaDataService.ltProjectUnit)
+    List projectUnits = functionService.findAllByLink(null, project, servletContext.ltProjectUnit)
 
     // calculate realDuration
     int calculatedDuration = calculateDuration(projectUnits)
@@ -716,7 +716,7 @@ class ProjectProfileController {
     List groupActivityTemplates = []
 
     projectUnits.each {
-      def links = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+      def links = functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnitMember)
       if (links.size() > 0)
         groupActivityTemplates.addAll(links)
     }
@@ -730,12 +730,12 @@ class ProjectProfileController {
   }
 
   def removeClient = {
-    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    def breaking = functionService.breakEntities(params.client, params.id, servletContext.ltGroupMemberClient)
     render template: 'clients', model: [clients: breaking.results, project: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addFacility = {
-    def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
+    def linking = functionService.linkEntities(params.id, params.facility, servletContext.ltGroupMemberFacility)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.target.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -743,19 +743,19 @@ class ProjectProfileController {
   }
 
   def removeFacility = {
-    def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
+    def breaking = functionService.breakEntities(params.id, params.facility, servletContext.ltGroupMemberFacility)
     render template: 'facilities', model: [facilities: breaking.results2, project: breaking.source, entity: entityHelperService.loggedIn]
   }
 
   def updateFacilityButton = {
     Entity project = Entity.get(params.id)
 
-    List facilities = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberFacility)
+    List facilities = functionService.findAllByLink(null, project, servletContext.ltGroupMemberFacility)
     render template: 'facilitybutton', model: [facilities: facilities]
   }
 
   def addResource = {
-    def linking = functionService.linkEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
+    def linking = functionService.linkEntities(params.resource, params.id, servletContext.ltProjectDayResource)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -763,76 +763,76 @@ class ProjectProfileController {
   }
 
   def removeResource = {
-    def breaking = functionService.breakEntities(params.resource, params.id, metaDataService.ltProjectDayResource)
+    def breaking = functionService.breakEntities(params.resource, params.id, servletContext.ltProjectDayResource)
     render template: 'resources', model: [resources: breaking.results, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addEducator = {
-    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
+    def linking = functionService.linkEntities(params.educator, params.id, servletContext.ltProjectDayEducator)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(linking.target as Entity, null, servletContext.ltProjectMember)
     render template: 'educators', model: [educators: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeEducator = {
-    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
-    def project = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectMember)
+    def breaking = functionService.breakEntities(params.educator, params.id, servletContext.ltProjectDayEducator)
+    def project = functionService.findByLink(breaking.target as Entity, null, servletContext.ltProjectMember)
     render template: 'educators', model: [educators: breaking.results, project: project, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addSubstitute = {
-    def linking = functionService.linkEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
+    def linking = functionService.linkEntities(params.substitute, params.id, servletContext.ltProjectDaySubstitute)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(linking.target as Entity, null, servletContext.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeSubstitute = {
-    def breaking = functionService.breakEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
-    def project = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectMember)
+    def breaking = functionService.breakEntities(params.substitute, params.id, servletContext.ltProjectDaySubstitute)
+    def project = functionService.findByLink(breaking.target as Entity, null, servletContext.ltProjectMember)
     render template: 'substitutes', model: [substitutes: breaking.results, project: project, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addParent = {
-    def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
+    def linking = functionService.linkEntities(params.parent, params.id, servletContext.ltProjectUnitParent)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    Entity projectDay = functionService.findByLink(linking.target as Entity, null, servletContext.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
     render template: 'parents', model: [parents: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removeParent = {
-    def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
-    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    def breaking = functionService.breakEntities(params.parent, params.id, servletContext.ltProjectUnitParent)
+    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, servletContext.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
     render template: 'parents', model: [parents: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def addPartner = {
-    def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
+    def linking = functionService.linkEntities(params.partner, params.id, servletContext.ltProjectUnitPartner)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    Entity projectDay = functionService.findByLink(linking.target as Entity, null, servletContext.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
     render template: 'partners', model: [partners: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removePartner = {
-    def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
-    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    def breaking = functionService.breakEntities(params.partner, params.id, servletContext.ltProjectUnitPartner)
+    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, servletContext.ltProjectDayUnit)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
     render template: 'partners', model: [partners: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def addTheme = {
-    def linking = functionService.linkEntities(params.id, params.theme, metaDataService.ltGroupMember)
+    def linking = functionService.linkEntities(params.id, params.theme, servletContext.ltGroupMember)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.target.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -840,7 +840,7 @@ class ProjectProfileController {
   }
 
   def removeTheme = {
-    def breaking = functionService.breakEntities(params.id, params.theme, metaDataService.ltGroupMember)
+    def breaking = functionService.breakEntities(params.id, params.theme, servletContext.ltGroupMember)
     render template: 'themes', model: [themes: breaking.results2, project: breaking.source, entity: entityHelperService.loggedIn]
   }
 
@@ -850,8 +850,8 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
 
     // make sure the project has clients and a facility
-    /*def links = Link.findAllByTargetAndType(project,metaDataService.ltGroupMemberFacility)
-    def links2 = Link.findAllByTargetAndType(project,metaDataService.ltGroupMemberClient)
+    /*def links = Link.findAllByTargetAndType(project,servletContext.ltGroupMemberFacility)
+    def links2 = Link.findAllByTargetAndType(project,servletContext.ltGroupMemberClient)
     if (!links || links2) {
       redirect action: 'show', id: project.id
       return
@@ -861,7 +861,7 @@ class ProjectProfileController {
     // would be nothing to instantiate
 
     // 1. find all projectDays belonging to the project
-    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    List projectDays = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
     log.info "Projekttage: " + projectDays.size()
 
     // 2. loop through each projectDay and find all projectUnits
@@ -869,7 +869,7 @@ class ProjectProfileController {
     List projectUnits = []
     boolean exit = false
     projectDays.each { Entity projectDay ->
-      def projectDayUnits = functionService.findAllByLink(null, it, metaDataService.ltProjectDayUnit)
+      def projectDayUnits = functionService.findAllByLink(null, it, servletContext.ltProjectDayUnit)
       if (projectDayUnits.size() == 0) {
         render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + projectDay.profile.date.format('dd. MM. yyyy') + '!</p>'
         exit = true
@@ -889,7 +889,7 @@ class ProjectProfileController {
     // now we know that every projectDay has projectUnits and templates so we continue
 
     // delete all current project activities that have not started yet
-    List activities = functionService.findAllByLink(null, project, metaDataService.ltActProject)
+    List activities = functionService.findAllByLink(null, project, servletContext.ltActProject)
 
     log.info "Found " + activities.size() + " existing activities"
 
@@ -914,13 +914,13 @@ class ProjectProfileController {
     SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy 'um' hh:mm", new Locale("en"))
 
     projectDays.each { pd ->
-      projectUnits = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayUnit)
+      projectUnits = functionService.findAllByLink(null, pd as Entity, servletContext.ltProjectDayUnit)
 
       log.info "Projekteinheiten: " + projectUnits.size()
 
       // 3. loop through each projectUnit and find all activity template groups
       projectUnits.each { pu ->
-        List groups = functionService.findAllByLink(null, pu as Entity, metaDataService.ltProjectUnit)
+        List groups = functionService.findAllByLink(null, pu as Entity, servletContext.ltProjectUnit)
 
         Date currentDate = pd.profile.date
         Calendar calendar = new GregorianCalendar()
@@ -928,11 +928,11 @@ class ProjectProfileController {
 
         // 4. find all activity templates of each group
         groups.each { pg ->
-          List templates = functionService.findAllByLink(null, pg as Entity, metaDataService.ltGroupMember)
+          List templates = functionService.findAllByLink(null, pg as Entity, servletContext.ltGroupMember)
 
           // 5. instantiate all activities from the list of templates
           templates.each {
-            EntityType etActivity = metaDataService.etActivity
+            EntityType etActivity = servletContext.etActivity
             Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
               ent.profile = profileHelperService.createProfileFor(ent) as Profile
               ent.profile.type = "Projekt"
@@ -942,56 +942,56 @@ class ProjectProfileController {
             }
 
             // link this project activity to the project
-            new Link(source: activity, target: project, type: metaDataService.ltActProject).save()
+            new Link(source: activity, target: project, type: servletContext.ltActProject).save()
 
             // link facility to activity
-            Entity facility = functionService.findByLink(null, project, metaDataService.ltGroupMemberFacility)
+            Entity facility = functionService.findByLink(null, project, servletContext.ltGroupMemberFacility)
             if (facility) {
-              new Link(source: facility, target: activity, type: metaDataService.ltActFacility).save()
+              new Link(source: facility, target: activity, type: servletContext.ltActFacility).save()
               log.info "Facility linked to activity"
             }
 
             // link clients to activity
-            List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+            List clients = functionService.findAllByLink(null, project, servletContext.ltGroupMemberClient)
             if (clients) {
               clients.each {
-                new Link(source: it as Entity, target: activity, type: metaDataService.ltActClient).save()
+                new Link(source: it as Entity, target: activity, type: servletContext.ltActClient).save()
                 log.info "Client linked to activity"
               }
             }
 
             // link resources to activity
-            List resources = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayResource)
+            List resources = functionService.findAllByLink(null, pd as Entity, servletContext.ltProjectDayResource)
             if (resources) {
               resources.each {
-                new Link(source: it as Entity, target: activity, type: metaDataService.ltResource).save()
+                new Link(source: it as Entity, target: activity, type: servletContext.ltResource).save()
                 log.info "Resource linked to activity"
               }
             }
 
             // link educators to activity
-            List educators = functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayEducator)
+            List educators = functionService.findAllByLink(null, pd as Entity, servletContext.ltProjectDayEducator)
             if (educators) {
               educators.each {
-                new Link(source: it as Entity, target: activity, type: metaDataService.ltActEducator).save()
+                new Link(source: it as Entity, target: activity, type: servletContext.ltActEducator).save()
                 log.info "Educator linked to activity"
               }
             }
 
             // link partners to activity
-            List partners = functionService.findAllByLink(null, pu as Entity, metaDataService.ltProjectUnitPartner)
+            List partners = functionService.findAllByLink(null, pu as Entity, servletContext.ltProjectUnitPartner)
             if (partners) {
               partners.each {
-                new Link(source: it as Entity, target: activity, type: metaDataService.ltActPartner).save()
+                new Link(source: it as Entity, target: activity, type: servletContext.ltActPartner).save()
                 log.info "Partner linked to activity"
               }
             }
 
             // link parents to activity
-            List parents = functionService.findAllByLink(null, pu as Entity, metaDataService.ltProjectUnitParent)
+            List parents = functionService.findAllByLink(null, pu as Entity, servletContext.ltProjectUnitParent)
             if (parents) {
               parents.each {
-                new Link(source: it as Entity, target: activity, type: metaDataService.ltActParent).save()
+                new Link(source: it as Entity, target: activity, type: servletContext.ltActParent).save()
                 log.info "Parent linked to activity"
               }
             }
@@ -1018,32 +1018,32 @@ class ProjectProfileController {
     Entity projectDay = Entity.get(params.id)
 
     // find all project days linked to this project
-    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    List projectDays = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
 
     // find projectTemplate of this project
-    Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
+    Entity template = functionService.findByLink(null, project, servletContext.ltProjectTemplate)
 
     // find all units linked to the template
-    List units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+    List units = functionService.findAllByLink(null, template, servletContext.ltProjectUnitTemplate)
 
     // get all parents
-    def allParents = Entity.findAllByType(metaDataService.etParent)
+    def allParents = Entity.findAllByType(servletContext.etParent)
 
     // get all educators
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    def allEducators = Entity.findAllByType(servletContext.etEducator)
 
     // get all plannable resources
-    List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+    List facilities = functionService.findAllByLink(project, null, servletContext.ltGroupMemberFacility)
 
     List requiredResources = []
       requiredResources.addAll(template.profile.resources)
       // find all project units linked to the project day
-      List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+      List pUnits = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
 
       // find all groups linked to all units
       List groups = []
       pUnits.each { Entity pUnit ->
-        groups.addAll(functionService.findAllByLink(null, pUnit, metaDataService.ltProjectUnit))
+        groups.addAll(functionService.findAllByLink(null, pUnit, servletContext.ltProjectUnit))
       }
 
       // for every group activity template add its resources
@@ -1052,7 +1052,7 @@ class ProjectProfileController {
       }
       // for every group activity template find its activity templates and add resources as well
       groups.each {
-        List temps = functionService.findAllByLink(null, it, metaDataService.ltGroupMember)
+        List temps = functionService.findAllByLink(null, it, servletContext.ltGroupMember)
         temps.each { temp ->
           temp.profile.resources.each {
             if (!requiredResources.contains(it))
@@ -1064,13 +1064,13 @@ class ProjectProfileController {
     List plannableResources = []
     facilities.each { Entity facility ->
       // add resources linked to the facility to plannable resources
-      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+      plannableResources.addAll(functionService.findAllByLink(null, facility, servletContext.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+      Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, servletContext.ltResource))
     }
 
-    List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
+    List resources = functionService.findAllByLink(null, projectDay, servletContext.ltResourcePlanned)
 
     render template:'projectdaynav', model:[day: projectDay,
                                          entity: entityHelperService.loggedIn,
@@ -1094,13 +1094,13 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator), projectDay: params.id])
+      render(template: 'educatorresults', model: [results: Entity.findAllByType(servletContext.etEducator), projectDay: params.id])
       return
     }
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etEducator)
+      eq('type', servletContext.etEducator)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -1128,13 +1128,13 @@ class ProjectProfileController {
       return
     }
     else if (params.value == "*") {
-      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator), projectDay: params.id])
+      render(template: 'substituteresults', model: [results: Entity.findAllByType(servletContext.etEducator), projectDay: params.id])
       return
     }
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etEducator)
+      eq('type', servletContext.etEducator)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -1165,8 +1165,8 @@ class ProjectProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       or {
-        eq('type', metaDataService.etClient)
-        eq('type', metaDataService.etGroupClient)
+        eq('type', servletContext.etClient)
+        eq('type', servletContext.etGroupClient)
       }
       or {
         ilike('name', "%" + params.value + "%")
@@ -1191,26 +1191,26 @@ class ProjectProfileController {
     def entity = Entity.get(params.client)
 
     // if the entity is a client add it
-    if (entity.type.id == metaDataService.etClient.id) {
-      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    if (entity.type.id == servletContext.etClient.id) {
+      def linking = functionService.linkEntities(params.client, params.id, servletContext.ltGroupMemberClient)
       if (linking.duplicate)
         //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
         render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
       render template: 'clients', model: [clients: linking.results, project: linking.target, entity: entityHelperService.loggedIn]
     }
     // if the entity is a client group get all clients and add them
-    else if (entity.type.id == metaDataService.etGroupClient.id) {
+    else if (entity.type.id == servletContext.etGroupClient.id) {
       // find all clients of the group
-      List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
+      List clients = functionService.findAllByLink(null, entity, servletContext.ltGroupMemberClient)
 
       clients.each {
-        def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
+        def linking = functionService.linkEntities(it.id as String, params.id, servletContext.ltGroupMemberClient)
         if (linking.duplicate)
           render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       }
 
       Entity project = Entity.get(params.id)
-      List clients2 = functionService.findAllByLink(null, activitygroup, metaDataService.ltGroupMemberClient)
+      List clients2 = functionService.findAllByLink(null, activitygroup, servletContext.ltGroupMemberClient)
       render template: 'clients', model: [clients: clients2, project: project, entity: entityHelperService.loggedIn]
     }
 
@@ -1220,12 +1220,12 @@ class ProjectProfileController {
     Entity project = Entity.get(params.id)
 
     // find all project days of the project
-    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    List projectDays = functionService.findAllByLink(null, project, servletContext.ltProjectMember)
 
     // find all project units of all project days
     List projectUnits = []
     projectDays.each { pd ->
-      projectUnits.addAll(functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayUnit))
+      projectUnits.addAll(functionService.findAllByLink(null, pd as Entity, servletContext.ltProjectDayUnit))
     }
 
     // find all evaluations linked to the project units
@@ -1261,21 +1261,21 @@ class ProjectProfileController {
     }
 
     // find project
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
 
      // find all clients linked to this project
-    List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, project, servletContext.ltGroupMemberClient)
 
     // get all parents
     def families = []
     clients.each { client ->
       // get all families
-      families.addAll(functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupFamily))
+      families.addAll(functionService.findAllByLink(client as Entity, null, servletContext.ltGroupFamily))
     }
     def allParents = []
     families.each { family ->
       // get all parents
-      def temp = functionService.findAllByLink(null, family as Entity, metaDataService.ltGroupMemberParent)
+      def temp = functionService.findAllByLink(null, family as Entity, servletContext.ltGroupMemberParent)
       temp.each {
         if (!allParents.contains(it))
           allParents << it
@@ -1283,7 +1283,7 @@ class ProjectProfileController {
     }
 
     // get all partners
-    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    def allPartners = Entity.findAllByType(servletContext.etPartner)
 
     render template: 'units', model: [projectDay: projectDay, units: units, entity: entityHelperService.loggedIn, project: project, allParents: allParents, allPartners: allPartners]
   }
@@ -1312,21 +1312,21 @@ class ProjectProfileController {
     }
 
     // find project
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
 
      // find all clients linked to this project
-    List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, project, servletContext.ltGroupMemberClient)
 
     // get all parents
     def families = []
     clients.each { client ->
       // get all families
-      families.addAll(functionService.findAllByLink(client as Entity, null, metaDataService.ltGroupFamily))
+      families.addAll(functionService.findAllByLink(client as Entity, null, servletContext.ltGroupFamily))
     }
     def allParents = []
     families.each { family ->
       // get all parents
-      def temp = functionService.findAllByLink(null, family as Entity, metaDataService.ltGroupMemberParent)
+      def temp = functionService.findAllByLink(null, family as Entity, servletContext.ltGroupMemberParent)
       temp.each {
         if (!allParents.contains(it))
           allParents << it
@@ -1334,7 +1334,7 @@ class ProjectProfileController {
     }
 
     // get all partners
-    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    def allPartners = Entity.findAllByType(servletContext.etPartner)
 
     render template: 'units', model: [projectDay: projectDay, units: units, entity: entityHelperService.loggedIn, project: project, allParents: allParents, allPartners: allPartners]
   }
@@ -1351,7 +1351,7 @@ class ProjectProfileController {
       render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
     else {
       List projects = Entity.createCriteria().list {
-        eq("type", metaDataService.etProject)
+        eq("type", servletContext.etProject)
         profile {
           ge("startDate", beginDate)
           le("endDate", endDate)
@@ -1374,7 +1374,7 @@ class ProjectProfileController {
 
     if (theme) {
       // find all projects that are linked to this theme
-      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
+      List projects = functionService.findAllByLink(null, theme, servletContext.ltGroupMember)
       if (projects.size() == 0) {
         render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
         return
@@ -1401,7 +1401,7 @@ class ProjectProfileController {
     calendar.setTime(projectDay.profile.date)
 
     // get all project units of a project day and calculate their duration sum
-    List units = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    List units = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
     int duration = 0
     units.each {
       duration += it.profile.duration
@@ -1411,7 +1411,7 @@ class ProjectProfileController {
 
     // make sure no resource is planned if the duration is 0 (which means no project unit has been set yet)
     if (duration > 0) {
-      Link link = linkHelperService.createLink(resource, projectDay, metaDataService.ltResourcePlanned) {link, dad ->
+      Link link = linkHelperService.createLink(resource, projectDay, servletContext.ltResourcePlanned) {link, dad ->
         dad.beginDate = projectDay.profile.date.getTime() / 1000
         dad.endDate = calendar.getTime().getTime() / 1000
         dad.amount = params.amount
@@ -1421,7 +1421,7 @@ class ProjectProfileController {
       render '<span class="italic gray">Es müssen erst Projekteinheiten geplant werden bevor Ressourcen geplant werden können!</span><br/>'
     }
 
-    List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
+    List resources = functionService.findAllByLink(null, projectDay, servletContext.ltResourcePlanned)
     render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, projectDay: projectDay]
   }
 
@@ -1432,29 +1432,29 @@ class ProjectProfileController {
     def link = Link.createCriteria().get {
       eq('source', resource)
       eq('target', projectDay)
-      eq('type', metaDataService.ltResourcePlanned)
+      eq('type', servletContext.ltResourcePlanned)
     }
     if (link) {
       link.delete()
     }
 
-    List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
+    List resources = functionService.findAllByLink(null, projectDay, servletContext.ltResourcePlanned)
     render template: 'resources', model: [resources: resources, entity: entityHelperService.loggedIn, projectDay: projectDay]
   }
 
   def refreshplannableresources = {
     Entity projectDay = Entity.get(params.id)
     // get project of projectDay
-    Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
-    List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
+    Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
+    List facilities = functionService.findAllByLink(project, null, servletContext.ltGroupMemberFacility)
 
     List plannableResources = []
     facilities.each { Entity facility ->
       // add resources linked to the facility to plannable resources
-      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+      plannableResources.addAll(functionService.findAllByLink(null, facility, servletContext.ltResource))
       // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+      Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, servletContext.ltResource))
     }
 
     render template: 'plannableResources', model: [plannableResources: plannableResources, projectDay: projectDay]

@@ -35,7 +35,7 @@ class PartnerProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etPartner = metaDataService.etPartner
+    EntityType etPartner = servletContext.etPartner
     def partners = Entity.createCriteria().list {
       eq("type", etPartner)
       profile {
@@ -62,7 +62,7 @@ class PartnerProfileController {
 
     // AAZ (01.09.2010): not required anymore by customer
     // find colonia of this partner
-    //Entity colony = functionService.findByLink(partner, null, metaDataService.ltGroupMemberPartner)
+    //Entity colony = functionService.findByLink(partner, null, servletContext.ltGroupMemberPartner)
 
     return [partner: partner, entity: entity/*, colony: colony*/]
 
@@ -81,12 +81,12 @@ class PartnerProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", metaDataService.etActivity)
-                eq("type", metaDataService.etGroupActivity)
-                eq("type", metaDataService.etGroupActivityTemplate)
-                eq("type", metaDataService.etProject)
-                eq("type", metaDataService.etProjectTemplate)
-                eq("type", metaDataService.etTemplate)
+                eq("type", servletContext.etActivity)
+                eq("type", servletContext.etGroupActivity)
+                eq("type", servletContext.etGroupActivityTemplate)
+                eq("type", servletContext.etProject)
+                eq("type", servletContext.etProjectTemplate)
+                eq("type", servletContext.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -122,7 +122,7 @@ class PartnerProfileController {
       return
     }
 
-    return [partner: partner, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [partner: partner, allColonias: Entity.findAllByType(servletContext.etGroupColony)]
 
   }
 
@@ -145,28 +145,28 @@ class PartnerProfileController {
       def link = c.get {
         eq('source', partner)
         eq('target', Entity.get(params.colonia))
-        eq('type', metaDataService.ltGroupMemberPartner)
+        eq('type', servletContext.ltGroupMemberPartner)
       }
       if (link)
         link.delete()
 
       // link facility to colonia
-      new Link(source: partner, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()*/
+      new Link(source: partner, target: Entity.get(params.colonia), type: servletContext.ltGroupMemberPartner).save()*/
 
       flash.message = message(code: "partner.updated", args: [partner.profile.fullName])
       redirect action: 'show', id: partner.id, params: [entity: partner.id]
     }
     else {
-      render view: 'edit', model: [partner: partner/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
+      render view: 'edit', model: [partner: partner/*, allColonias: Entity.findAllByType(servletContext.etGroupColony)*/]
     }
   }
 
   def create = {
-    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
+    return [allColonias: Entity.findAllByType(servletContext.etGroupColony)]
   }
 
   def save = {
-    EntityType etPartner = metaDataService.etPartner
+    EntityType etPartner = servletContext.etPartner
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etPartner, params.email, params.fullName) {Entity ent ->
@@ -179,12 +179,12 @@ class PartnerProfileController {
 
       // AAZ (01.09.2010): not required anymore by customer
       // link partner to colonia
-      //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()
+      //new Link(source: entity, target: Entity.get(params.colonia), type: servletContext.ltGroupMemberPartner).save()
 
       flash.message = message(code: "partner.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [partner: ee.entity/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/])
+      render(view: "create", model: [partner: ee.entity/*, allColonias: Entity.findAllByType(servletContext.etGroupColony)*/])
     }
 
   }

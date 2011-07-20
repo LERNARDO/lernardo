@@ -37,7 +37,7 @@ class ProjectTemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etProjectTemplate = metaDataService.etProjectTemplate
+    EntityType etProjectTemplate = servletContext.etProjectTemplate
     def projectTemplates = Entity.createCriteria().list {
       eq("type", etProjectTemplate)
       profile {
@@ -63,7 +63,7 @@ class ProjectTemplateProfileController {
     }
     else {
       // find all projectUnitTemplates linked to this projectTemplate
-      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnitTemplate)
       List projectUnitTemplates = []
       projectTemplate.profile.templates.each {
         projectUnitTemplates.add(Entity.get(it))
@@ -73,13 +73,13 @@ class ProjectTemplateProfileController {
       int calculatedDuration = calculateDuration(projectUnitTemplates)
 
       // find all instances of this template
-      List instances = functionService.findAllByLink(projectTemplate, null, metaDataService.ltProjectTemplate)
+      List instances = functionService.findAllByLink(projectTemplate, null, servletContext.ltProjectTemplate)
 
       // get all resources of all templates
       // get all groupActivityTemplates of all projectUnitTemplates
       List groupActivityTemplates = []
       projectUnitTemplates.each { put ->
-        List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+        List tempTemplates = functionService.findAllByLink(null, put, servletContext.ltProjectUnitMember)
         tempTemplates.each { tt ->
           if (!groupActivityTemplates.contains(tt))
             groupActivityTemplates.add(tt)
@@ -89,7 +89,7 @@ class ProjectTemplateProfileController {
       groupActivityTemplates.each { Entity groupActivityTemplate ->
         templateResources.addAll(groupActivityTemplate.profile.resources)
         // get all templates linked to the groupActivityTemplate
-        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+        List templates = functionService.findAllByLink(null, groupActivityTemplate, servletContext.ltGroupMember)
         templates.each {
           templateResources.addAll(it.profile.resources)
         }
@@ -157,7 +157,7 @@ class ProjectTemplateProfileController {
   }
 
   def copy = {
-    EntityType etProjectTemplate = metaDataService.etProjectTemplate
+    EntityType etProjectTemplate = servletContext.etProjectTemplate
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -171,14 +171,14 @@ class ProjectTemplateProfileController {
     }
 
     // save creator
-    new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+    new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
     // find project unit templates linked to the original
-    List projectUnitTemplates = functionService.findAllByLink(null, original, metaDataService.ltProjectUnitTemplate)
+    List projectUnitTemplates = functionService.findAllByLink(null, original, servletContext.ltProjectUnitTemplate)
 
     projectUnitTemplates.each {
       // create project unit templates for the copy
-      EntityType etProjectUnitTemplate = metaDataService.etProjectUnitTemplate
+      EntityType etProjectUnitTemplate = servletContext.etProjectUnitTemplate
       Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.duration = it.profile.duration
@@ -186,14 +186,14 @@ class ProjectTemplateProfileController {
       }
 
       // link projectUnitTemplate and projectTemplate
-      new Link(source: projectUnitTemplate, target: entity, type: metaDataService.ltProjectUnitTemplate).save()
+      new Link(source: projectUnitTemplate, target: entity, type: servletContext.ltProjectUnitTemplate).save()
 
       // find group activity templates linked to the original project unit
-      List groupActivityTemplates = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+      List groupActivityTemplates = functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnitMember)
 
       // link group activity templates to the project unit templates of the copy
       groupActivityTemplates.each {
-        new Link(source: it as Entity, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
+        new Link(source: it as Entity, target: projectUnitTemplate, type: servletContext.ltProjectUnitMember).save()
       }
     }
 
@@ -230,7 +230,7 @@ class ProjectTemplateProfileController {
   }
 
   def save = {
-    EntityType etProjectTemplate = metaDataService.etProjectTemplate
+    EntityType etProjectTemplate = servletContext.etProjectTemplate
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -247,7 +247,7 @@ class ProjectTemplateProfileController {
       functionService.createEvent("PROJECT_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
       flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
@@ -273,14 +273,14 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     // find all existing project units of this project template so we can find the unit number
-    List units = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+    List units = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnitTemplate)
     int counter = 1
     if (units)
       counter = units.size() + 1
 
     try {
       // create projectUnitTemplate
-      EntityType etProjectUnitTemplate = metaDataService.etProjectUnitTemplate
+      EntityType etProjectUnitTemplate = servletContext.etProjectUnitTemplate
       Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
@@ -289,12 +289,12 @@ class ProjectTemplateProfileController {
       }
 
       // link projectUnitTemplate and projectTemplate
-      new Link(source: projectUnitTemplate, target: projectTemplate, type: metaDataService.ltProjectUnitTemplate).save()
+      new Link(source: projectUnitTemplate, target: projectTemplate, type: servletContext.ltProjectUnitTemplate).save()
 
       // find all projectUnitTemplates of this projectTemplate
-      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnitTemplate)
 
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+      List allGroupActivityTemplates = Entity.findAllByType(servletContext.etGroupActivityTemplate)
 
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnitTemplates)
@@ -307,13 +307,13 @@ class ProjectTemplateProfileController {
       render '<span class="red">'+message(code: "projectUnitTemplates.notSaved")+'</span><br/>'
 
       // find all projectUnitTemplates of this projectTemplate
-      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnitTemplate)
       List projectUnitTemplates = []
       projectTemplate.profile.templates.each {
         projectUnitTemplates.add(Entity.get(it.toInteger()))
       }
 
-      List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+      List allGroupActivityTemplates = Entity.findAllByType(servletContext.etGroupActivityTemplate)
 
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnitTemplates)
@@ -331,12 +331,12 @@ class ProjectTemplateProfileController {
     def link = c.get {
       eq('source', projectUnitTemplate)
       eq('target', projectTemplate)
-      eq('type', metaDataService.ltProjectUnitTemplate)
+      eq('type', servletContext.ltProjectUnitTemplate)
     }
     link.delete()
 
     // delete links of groupActivityTemplates to projectUnitTemplate
-    Link.findAllByTargetAndType(projectUnitTemplate, metaDataService.ltProjectUnitMember).each {it.delete()}
+    Link.findAllByTargetAndType(projectUnitTemplate, servletContext.ltProjectUnitMember).each {it.delete()}
 
     projectTemplate.profile.removeFromTemplates(params.projectUnitTemplate)
 
@@ -344,7 +344,7 @@ class ProjectTemplateProfileController {
     projectUnitTemplate.delete()
 
     // find all projectUnitTemplates of this projectTemplate
-    //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+    //List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnitTemplate)
     List projectUnitTemplates = []
     projectTemplate.profile.templates.each {
       projectUnitTemplates.add(Entity.get(it.toInteger()))
@@ -368,17 +368,17 @@ class ProjectTemplateProfileController {
     def link = c.get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnitTemplate)
-      eq('type', metaDataService.ltProjectUnitMember)
+      eq('type', servletContext.ltProjectUnitMember)
     }
     if (!link)
       // link groupActivityTemplate to projectUnit
-      new Link(source: groupActivityTemplate, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
+      new Link(source: groupActivityTemplate, target: projectUnitTemplate, type: servletContext.ltProjectUnitMember).save()
 
     // find all groupActivityTemplates linked to the unit
-    List groupActivityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+    List groupActivityTemplates = functionService.findAllByLink(null, projectUnitTemplate, servletContext.ltProjectUnitMember)
 
     // find all projectunits of this projectTemplate
-    //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+    //def links = Link.findAllByTargetAndType(projectTemplate, servletContext.ltProjectUnit)
     // List projectUnits = links.collect {it.source}
 
     // calculate realDuration
@@ -398,15 +398,15 @@ class ProjectTemplateProfileController {
     def link = c.get {
       eq('source', groupActivityTemplate)
       eq('target', projectUnitTemplate)
-      eq('type', metaDataService.ltProjectUnitMember)
+      eq('type', servletContext.ltProjectUnitMember)
     }
     link.delete()
 
     // find all groupActivityTemplates linked to the unit
-    List groupActivityTemplates = functionService.findAllByLink(null, projectUnitTemplate, metaDataService.ltProjectUnitMember)
+    List groupActivityTemplates = functionService.findAllByLink(null, projectUnitTemplate, servletContext.ltProjectUnitMember)
 
     // find all projectunits of this projectTemplate
-    //def links = Link.findAllByTargetAndType(projectTemplate, metaDataService.ltProjectUnit)
+    //def links = Link.findAllByTargetAndType(projectTemplate, servletContext.ltProjectUnit)
     //List projectUnits = links.collect {it.source}
 
     // calculate realDuration
@@ -420,7 +420,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     // find all projectUnitTemplates linked to this projectTemplate
-    List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+    List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnitTemplate)
 
     // calculate realDuration
     int calculatedDuration = calculateDuration(projectUnitTemplates)
@@ -433,7 +433,7 @@ class ProjectTemplateProfileController {
     List groupActivityTemplates = []
 
     projectUnitTemplates.each { Entity put ->
-      List gats = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+      List gats = functionService.findAllByLink(null, put, servletContext.ltProjectUnitMember)
       if (gats.size() > 0)
         groupActivityTemplates.addAll(gats)
     }
@@ -457,7 +457,7 @@ class ProjectTemplateProfileController {
     else if (params.value == "*") {
       def c = Entity.createCriteria()
       def results = c.list {
-        eq("type", metaDataService.etGroupActivityTemplate)
+        eq("type", servletContext.etGroupActivityTemplate)
         profile {
           eq("status", "done")
         }
@@ -468,7 +468,7 @@ class ProjectTemplateProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etGroupActivityTemplate)
+      eq('type', servletContext.etGroupActivityTemplate)
       profile {
         eq('status', "done")
       }
@@ -493,7 +493,7 @@ class ProjectTemplateProfileController {
   def templateHover = {
     Entity entity = Entity.get(params.id)
 
-    def resources = functionService.findAllByLink(null, entity, metaDataService.ltResource)
+    def resources = functionService.findAllByLink(null, entity, servletContext.ltResource)
 
     render template: "hover", model: [entity: entity, resources: resources]
   }
@@ -546,7 +546,7 @@ class ProjectTemplateProfileController {
     // get all groupactivitytemplates that are set to completed
     def c = Entity.createCriteria()
     def allGroupActivityTemplates = c.list {
-      eq("type", metaDataService.etGroupActivityTemplate)
+      eq("type", servletContext.etGroupActivityTemplate)
       profile {
         eq("status", "done")
       }
@@ -567,7 +567,7 @@ class ProjectTemplateProfileController {
     // get all groupactivitytemplates that are set to completed
     def c = Entity.createCriteria()
     def allGroupActivityTemplates = c.list {
-      eq("type", metaDataService.etGroupActivityTemplate)
+      eq("type", servletContext.etGroupActivityTemplate)
       profile {
         eq("status", "done")
       }
@@ -612,7 +612,7 @@ class ProjectTemplateProfileController {
     // get all groupActivityTemplates of all projectUnitTemplates
     List groupActivityTemplates = []
     projectUnitTemplates.each { put ->
-      List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+      List tempTemplates = functionService.findAllByLink(null, put, servletContext.ltProjectUnitMember)
       tempTemplates.each { tt ->
         if (!groupActivityTemplates.contains(tt))
           groupActivityTemplates.add(tt)

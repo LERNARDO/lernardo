@@ -35,7 +35,7 @@ class ChildProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etChild = metaDataService.etChild
+    EntityType etChild = servletContext.etChild
     def children = Entity.createCriteria().list {
       eq("type", etChild)
       profile {
@@ -61,7 +61,7 @@ class ChildProfileController {
     }
 
     // check if the child belongs to a family
-    Entity family = functionService.findByLink(child, null, metaDataService.ltGroupMemberChild)
+    Entity family = functionService.findByLink(child, null, servletContext.ltGroupMemberChild)
 
     return [child: child, family: family, entity: entity]
 
@@ -80,12 +80,12 @@ class ChildProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", metaDataService.etActivity)
-                eq("type", metaDataService.etGroupActivity)
-                eq("type", metaDataService.etGroupActivityTemplate)
-                eq("type", metaDataService.etProject)
-                eq("type", metaDataService.etProjectTemplate)
-                eq("type", metaDataService.etTemplate)
+                eq("type", servletContext.etActivity)
+                eq("type", servletContext.etGroupActivity)
+                eq("type", servletContext.etGroupActivityTemplate)
+                eq("type", servletContext.etProject)
+                eq("type", servletContext.etProjectTemplate)
+                eq("type", servletContext.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -157,7 +157,7 @@ class ChildProfileController {
   def create = {}
 
   def save = {
-    EntityType etChild = metaDataService.etChild
+    EntityType etChild = servletContext.etChild
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etChild, params.email, params.lastName + " " + params.firstName) {Entity ent ->

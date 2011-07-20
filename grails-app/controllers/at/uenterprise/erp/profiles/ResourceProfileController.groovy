@@ -29,12 +29,12 @@ class ResourceProfileController {
     params.order = params.order ?: "asc"
 
     // only list those resources that are linked to a colony or facility but NOT to an activity template
-    List temp = Entity.findAllByType(metaDataService.etResource)
+    List temp = Entity.findAllByType(servletContext.etResource)
 
     List resources = []
     temp.each { resource ->
-      def result = functionService.findByLink(resource, null, metaDataService.ltResource)
-      if (result?.type?.id != metaDataService.etTemplate.id)
+      def result = functionService.findByLink(resource, null, servletContext.ltResource)
+      if (result?.type?.id != servletContext.etTemplate.id)
         resources << resource
     }
 
@@ -56,9 +56,9 @@ class ResourceProfileController {
       redirect(action: list)
     }
     else {
-      Entity location = functionService.findByLink(resource, null, metaDataService.ltResource)
-      Entity resowner = functionService.findByLink(null, resource, metaDataService.ltOwner)
-      List resresponsible = functionService.findAllByLink(null, resource, metaDataService.ltResponsible)
+      Entity location = functionService.findByLink(resource, null, servletContext.ltResource)
+      Entity resowner = functionService.findByLink(null, resource, servletContext.ltOwner)
+      List resresponsible = functionService.findAllByLink(null, resource, servletContext.ltResponsible)
       [resource: resource, location: location, entity: resource, resowner: resowner, resresponsible: resresponsible]
     }
   }
@@ -115,7 +115,7 @@ class ResourceProfileController {
   def create = {}
 
   def save = {
-    EntityType etResource = metaDataService.etResource
+    EntityType etResource = servletContext.etResource
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -145,14 +145,14 @@ class ResourceProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       or {
-        eq('type', metaDataService.etOperator)
-        eq('type', metaDataService.etUser)
-        eq('type', metaDataService.etEducator)
-        eq('type', metaDataService.etParent)
-        eq('type', metaDataService.etPate)
-        eq('type', metaDataService.etPartner)
-        eq('type', metaDataService.etFacility)
-        eq('type', metaDataService.etGroupColony)
+        eq('type', servletContext.etOperator)
+        eq('type', servletContext.etUser)
+        eq('type', servletContext.etEducator)
+        eq('type', servletContext.etParent)
+        eq('type', servletContext.etPate)
+        eq('type', servletContext.etPartner)
+        eq('type', servletContext.etFacility)
+        eq('type', servletContext.etGroupColony)
       }
       or {
         ilike('name', "%" + params.value + "%")
@@ -177,22 +177,22 @@ class ResourceProfileController {
     Entity resource = Entity.get(params.id)
 
     // make sure there can be only 1 owner
-    Link result = Link.findByTargetAndType(resource, metaDataService.ltOwner)
+    Link result = Link.findByTargetAndType(resource, servletContext.ltOwner)
     if (!result) {
-      def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltOwner)
+      def linking = functionService.linkEntities(params.entity, params.id, servletContext.ltOwner)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render template: 'owner', model: [resowner: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
     }
     else {
       render '<span class="red italic">Es wurde bereits ein Besitzer zugewiesen!</span>'
-      render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resource: resource, entity: entityHelperService.loggedIn]
+      render template: 'owner', model: [resowner: functionService.findByLink(null, resource, servletContext.ltOwner), resource: resource, entity: entityHelperService.loggedIn]
     }
 
   }
 
   def removeOwner = {
-    def breaking = functionService.breakEntities(params.owner, params.id, metaDataService.ltOwner)
+    def breaking = functionService.breakEntities(params.owner, params.id, servletContext.ltOwner)
     render template: 'owner', model: [resowner: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -208,12 +208,12 @@ class ResourceProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       or {
-        eq('type', metaDataService.etOperator)
-        eq('type', metaDataService.etUser)
-        eq('type', metaDataService.etEducator)
-        eq('type', metaDataService.etParent)
-        eq('type', metaDataService.etPate)
-        eq('type', metaDataService.etPartner)
+        eq('type', servletContext.etOperator)
+        eq('type', servletContext.etUser)
+        eq('type', servletContext.etEducator)
+        eq('type', servletContext.etParent)
+        eq('type', servletContext.etPate)
+        eq('type', servletContext.etPartner)
       }
       or {
         ilike('name', "%" + params.value + "%")
@@ -235,7 +235,7 @@ class ResourceProfileController {
 
   // adds a responsible
   def addResponsible = {
-    def linking = functionService.linkEntities(params.entity, params.id, metaDataService.ltResponsible)
+    def linking = functionService.linkEntities(params.entity, params.id, servletContext.ltResponsible)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
     render template: 'responsible', model: [resresponsible: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
@@ -243,7 +243,7 @@ class ResourceProfileController {
   }
 
   def removeResponsible = {
-    def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
+    def breaking = functionService.breakEntities(params.responsible, params.id, servletContext.ltResponsible)
     render template: 'responsible', model: [resresponsible: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
   }
 

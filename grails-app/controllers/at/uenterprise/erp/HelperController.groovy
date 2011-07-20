@@ -19,7 +19,7 @@ class HelperController {
     Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
 
     List helpers = []
-    if (entity.type.id == metaDataService.etUser.id)
+    if (entity.type.id == servletContext.etUser.id)
       helpers = Helper.list()
     else {
       Helper.list().each {

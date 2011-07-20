@@ -34,7 +34,7 @@ class AppointmentProfileController {
       params.offset = params.offset ?: 0
       Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
 
-      List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
+      List appointments = functionService.findAllByLink(null, entity, servletContext.ltAppointment)
       def resulttotal = appointments.size()
 
       def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
@@ -55,7 +55,7 @@ class AppointmentProfileController {
       }
 
       // find owner of appointment
-      Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
+      Entity owner = functionService.findByLink(appointment, null, servletContext.ltAppointment)
 
       return [appointment: appointment, entity: appointment, owner: owner]
     }
@@ -125,7 +125,7 @@ class AppointmentProfileController {
     }
 
     def save = {
-      EntityType etAppointment = metaDataService.etAppointment
+      EntityType etAppointment = servletContext.etAppointment
       Entity entity = Entity.get(params.id)
 
       try {
@@ -142,7 +142,7 @@ class AppointmentProfileController {
         }
 
         // create link to owner
-        new Link(source: appointment, target: entity, type: metaDataService.ltAppointment).save(failOnError: true)
+        new Link(source: appointment, target: entity, type: servletContext.ltAppointment).save(failOnError: true)
 
         flash.message = message(code: "appointment.created", args: [appointment.profile.fullName])
         redirect action: 'show', id: appointment.id, params: [entity: appointment]

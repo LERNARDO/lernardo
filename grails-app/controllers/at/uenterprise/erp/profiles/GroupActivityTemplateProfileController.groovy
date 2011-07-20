@@ -39,7 +39,7 @@ class GroupActivityTemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+    EntityType etGroupActivityTemplate = servletContext.etGroupActivityTemplate
     def groupActivityTemplates = Entity.createCriteria().list {
       eq("type", etGroupActivityTemplate)
       profile {
@@ -67,14 +67,14 @@ class GroupActivityTemplateProfileController {
     // get all activity templates that are set to completed
     def c = Entity.createCriteria()
     def allTemplates = c.list {
-      eq("type", metaDataService.etTemplate)
+      eq("type", servletContext.etTemplate)
       profile {
         eq("status", "done")
       }
     }
 
     // find all activity templates linked to this group
-    //List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+    //List templates = functionService.findAllByLink(null, group, servletContext.ltGroupMember)
     List templates = []
     group.profile.templates.each {
       templates.add(Entity.get(it))
@@ -86,7 +86,7 @@ class GroupActivityTemplateProfileController {
     }
 
     // find all instances of this template
-    List instances = functionService.findAllByLink(group, null, metaDataService.ltTemplate)
+    List instances = functionService.findAllByLink(group, null, servletContext.ltTemplate)
 
     // get all resources of all templates
     List templateResources = []
@@ -158,7 +158,7 @@ class GroupActivityTemplateProfileController {
   }
 
   def copy = {
-    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+    EntityType etGroupActivityTemplate = servletContext.etGroupActivityTemplate
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -173,13 +173,13 @@ class GroupActivityTemplateProfileController {
     }
 
     // save creator
-    new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+    new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
     // find all activity templates linked to the original and link them to the copy
-    List templates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)
+    List templates = functionService.findAllByLink(null, original, servletContext.ltGroupMember)
 
     templates.each {
-      new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+      new Link(source: it as Entity, target: entity, type: servletContext.ltGroupMember).save()
     }
 
     // loop through all labels of the original and create them in the copy
@@ -217,7 +217,7 @@ class GroupActivityTemplateProfileController {
   }
 
   def save = {
-    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
+    EntityType etGroupActivityTemplate = servletContext.etGroupActivityTemplate
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -231,7 +231,7 @@ class GroupActivityTemplateProfileController {
       def result = assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
 
       // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">'
               + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
@@ -257,7 +257,7 @@ class GroupActivityTemplateProfileController {
       def bla = params.list('templates')
 
       bla.each {
-        def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMember)
+        def linking = functionService.linkEntities(it.toString(), params.id, servletContext.ltGroupMember)
 
         if (!linking.duplicate)
           groupActivityTemplate.profile.addToTemplates(it)
@@ -283,7 +283,7 @@ class GroupActivityTemplateProfileController {
 
   def removeTemplate = {
     Entity groupActivityTemplate = Entity.get(params.id)
-    def breaking = functionService.breakEntities(params.template, params.id, metaDataService.ltGroupMember)
+    def breaking = functionService.breakEntities(params.template, params.id, servletContext.ltGroupMember)
     groupActivityTemplate.profile.removeFromTemplates(params.template)
 
     List templates = []
@@ -301,7 +301,7 @@ class GroupActivityTemplateProfileController {
 
   def updateselect = {
     //println params
-    //def allTemplates = Entity.findAllByType(metaDataService.etTemplate)
+    //def allTemplates = Entity.findAllByType(servletContext.etTemplate)
     def method1lower = params.list('method1lower')
     def method1upper = params.list('method1upper')
 
@@ -313,7 +313,7 @@ class GroupActivityTemplateProfileController {
 
     def c = Entity.createCriteria()
     def allTemplates = c.list (max: 10000) {
-      eq('type', metaDataService.etTemplate)
+      eq('type', servletContext.etTemplate)
       if (params.name)
         or {
           ilike('name', "%" + params.name + "%")
@@ -500,7 +500,7 @@ class GroupActivityTemplateProfileController {
   def templateHover = {
     Entity entity = Entity.get(params.id)
 
-    def resources = functionService.findAllByLink(null, entity, metaDataService.ltResource)
+    def resources = functionService.findAllByLink(null, entity, servletContext.ltResource)
 
     render template: "hover", model: [entity: entity, resources: resources]
   }

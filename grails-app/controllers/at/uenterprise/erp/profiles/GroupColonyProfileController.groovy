@@ -31,7 +31,7 @@ class GroupColonyProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etGroupColony = metaDataService.etGroupColony
+    EntityType etGroupColony = servletContext.etGroupColony
     def groupColonies = Entity.createCriteria().list {
       eq("type", etGroupColony)
       profile {
@@ -57,26 +57,26 @@ class GroupColonyProfileController {
     }
 
     // only show those facilities that aren't already linked to a colony
-    def tempFacilities = Entity.findAllByType(metaDataService.etFacility)
+    def tempFacilities = Entity.findAllByType(servletContext.etFacility)
     def allFacilities = []
     tempFacilities.each {
-      if (!Link.findBySourceAndType(it as Entity, metaDataService.ltGroupMemberFacility))
+      if (!Link.findBySourceAndType(it as Entity, servletContext.ltGroupMemberFacility))
         allFacilities << it
     }
 
     // find all facilities linked to this group
-    List facilities = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberFacility)
+    List facilities = functionService.findAllByLink(null, group, servletContext.ltGroupMemberFacility)
 
-    def allPartners = Entity.findAllByType(metaDataService.etPartner)
+    def allPartners = Entity.findAllByType(servletContext.etPartner)
     // find all partners linked to this group
-    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberPartner)
+    List partners = functionService.findAllByLink(null, group, servletContext.ltGroupMemberPartner)
 
-    def allEducators = Entity.findAllByType(metaDataService.etEducator)
+    def allEducators = Entity.findAllByType(servletContext.etEducator)
     // find all educators linked to this group
-    List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator)
+    List educators = functionService.findAllByLink(null, group, servletContext.ltGroupMemberEducator)
 
     // find all resources linked to this group
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, group, servletContext.ltResource)
 
     // find colonia
 
@@ -142,11 +142,11 @@ class GroupColonyProfileController {
   }
 
   def create = {
-    return [templates: Entity.findAllByType(metaDataService.etTemplate)]
+    return [templates: Entity.findAllByType(servletContext.etTemplate)]
   }
 
   def save = {
-    EntityType etGroupColony = metaDataService.etGroupColony
+    EntityType etGroupColony = servletContext.etGroupColony
 
     try {
       Entity entity = entityHelperService.createEntity("group", etGroupColony) {Entity ent ->
@@ -165,16 +165,16 @@ class GroupColonyProfileController {
   def addResource = {
     Entity group = Entity.get(params.id)
 
-    EntityType etResource = metaDataService.etResource
+    EntityType etResource = servletContext.etResource
 
     Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.properties = params
     }
-    new Link(source: entity, target: group, type: metaDataService.ltResource).save()
+    new Link(source: entity, target: group, type: servletContext.ltResource).save()
 
     // find all resources linked to this group
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, group, servletContext.ltResource)
 
     render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
@@ -186,7 +186,7 @@ class GroupColonyProfileController {
     def link = c.get {
       eq('source', Entity.get(params.resource))
       eq('target', group)
-      eq('type', metaDataService.ltResource)
+      eq('type', servletContext.ltResource)
     }
     link.delete()
 
@@ -194,7 +194,7 @@ class GroupColonyProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources linked to this group
-    List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, group, servletContext.ltResource)
 
     render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
@@ -246,7 +246,7 @@ class GroupColonyProfileController {
   }
 
   def addFacility = {
-    def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+    def linking = functionService.linkEntities(params.facility, params.id, servletContext.ltGroupMemberFacility)
     if (linking.duplicate)
       // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -254,12 +254,12 @@ class GroupColonyProfileController {
   }
 
   def removeFacility = {
-    def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltGroupMemberFacility)
+    def breaking = functionService.breakEntities(params.facility, params.id, servletContext.ltGroupMemberFacility)
     render template: 'facilities', model: [facilities: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addPartner = {
-    def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+    def linking = functionService.linkEntities(params.partner, params.id, servletContext.ltGroupMemberPartner)
     if (linking.duplicate)
       // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -267,12 +267,12 @@ class GroupColonyProfileController {
   }
 
   def removePartner = {
-    def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMemberPartner)
+    def breaking = functionService.breakEntities(params.partner, params.id, servletContext.ltGroupMemberPartner)
     render template: 'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addEducator = {
-    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+    def linking = functionService.linkEntities(params.educator, params.id, servletContext.ltGroupMemberEducator)
     if (linking.duplicate)
       // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -280,7 +280,7 @@ class GroupColonyProfileController {
   }
 
   def removeEducator = {
-    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltGroupMemberEducator)
+    def breaking = functionService.breakEntities(params.educator, params.id, servletContext.ltGroupMemberEducator)
     render template: 'educators', model: [educators: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 

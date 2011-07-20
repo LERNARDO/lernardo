@@ -52,7 +52,7 @@ class ClientProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etClient = metaDataService.etClient
+    EntityType etClient = servletContext.etClient
     def clients = Entity.createCriteria().list {
       eq("type", etClient)
       profile {
@@ -77,10 +77,10 @@ class ClientProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-    //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
-    Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
-    List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
+    Entity colonia = functionService.findByLink(null, client, servletContext.ltColonia)
+    //Entity school = functionService.findByLink(null, client, servletContext.ltFacility)
+    Entity family = functionService.findByLink(client, null, servletContext.ltGroupFamily)
+    List pates = functionService.findAllByLink(client, null,  servletContext.ltPate)
 
     return [client: client, entity: entity, colonia: colonia, family: family, pates: pates]
 
@@ -100,12 +100,12 @@ class ClientProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", metaDataService.etActivity)
-                eq("type", metaDataService.etGroupActivity)
-                eq("type", metaDataService.etGroupActivityTemplate)
-                eq("type", metaDataService.etProject)
-                eq("type", metaDataService.etProjectTemplate)
-                eq("type", metaDataService.etTemplate)
+                eq("type", servletContext.etActivity)
+                eq("type", servletContext.etGroupActivity)
+                eq("type", servletContext.etGroupActivityTemplate)
+                eq("type", servletContext.etProject)
+                eq("type", servletContext.etProjectTemplate)
+                eq("type", servletContext.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -144,12 +144,12 @@ class ClientProfileController {
       return
     }
 
-    Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-    //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+    Entity colonia = functionService.findByLink(null, client, servletContext.ltColonia)
+    //Entity school = functionService.findByLink(null, client, servletContext.ltFacility)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
-      eq("type", metaDataService.etGroupColony)
+      eq("type", servletContext.etGroupColony)
       profile {
         order(params.sort, params.order)
       }
@@ -157,7 +157,7 @@ class ClientProfileController {
 
     def d = Entity.createCriteria()
     def allFacilities = d.list {
-      eq("type", metaDataService.etFacility)
+      eq("type", servletContext.etFacility)
       profile {
         order(params.sort, params.order)
       }
@@ -207,12 +207,12 @@ class ClientProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
     // update link to colonia
-    Link.findByTargetAndType(client, metaDataService.ltColonia)?.delete()
-    new Link(source: Entity.get(params.currentColonia), target: client, type: metaDataService.ltColonia).save()
+    Link.findByTargetAndType(client, servletContext.ltColonia)?.delete()
+    new Link(source: Entity.get(params.currentColonia), target: client, type: servletContext.ltColonia).save()
 
     // update link to school
-    //Link.findByTargetAndType(client, metaDataService.ltFacility)?.delete()
-    //new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
+    //Link.findByTargetAndType(client, servletContext.ltFacility)?.delete()
+    //new Link(source: Entity.get(params.school), target: client, type: servletContext.ltFacility).save()
 
     if (client.profile.save() && client.user.save() && client.save()) {
       flash.message = message(code: "client.updated", args: [client.profile.fullName])
@@ -221,12 +221,12 @@ class ClientProfileController {
     else {
       params.sort = params.sort ?: "fullName"
       params.order = params.order ?: "asc"
-      Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-      //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
+      Entity colonia = functionService.findByLink(null, client, servletContext.ltColonia)
+      //Entity school = functionService.findByLink(null, client, servletContext.ltFacility)
 
       def c = Entity.createCriteria()
       def allColonies = c.list {
-        eq("type", metaDataService.etGroupColony)
+        eq("type", servletContext.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
@@ -234,7 +234,7 @@ class ClientProfileController {
 
       def d = Entity.createCriteria()
       def allFacilities = d.list {
-        eq("type", metaDataService.etFacility)
+        eq("type", servletContext.etFacility)
         profile {
           order(params.sort, params.order)
         }
@@ -249,7 +249,7 @@ class ClientProfileController {
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
-      eq("type", metaDataService.etGroupColony)
+      eq("type", servletContext.etGroupColony)
       profile {
         order(params.sort, params.order)
       }
@@ -257,7 +257,7 @@ class ClientProfileController {
 
     def d = Entity.createCriteria()
     def allFacilities = d.list {
-      eq("type", metaDataService.etFacility)
+      eq("type", servletContext.etFacility)
       profile {
         order(params.sort, params.order)
       }
@@ -268,7 +268,7 @@ class ClientProfileController {
   }
 
   def save = {
-    EntityType etClient = metaDataService.etClient
+    EntityType etClient = servletContext.etClient
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etClient, params.email, params.lastName + " " + params.firstName) {Entity ent ->
@@ -303,10 +303,10 @@ class ClientProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to colonia
-      new Link(source: Entity.get(params.currentColonia), target: entity, type: metaDataService.ltColonia).save()
+      new Link(source: Entity.get(params.currentColonia), target: entity, type: servletContext.ltColonia).save()
 
       // create link to school
-      //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
+      //new Link(source: Entity.get(params.school), target: entity, type: servletContext.ltFacility).save()
 
       flash.message = message(code: "client.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
@@ -316,7 +316,7 @@ class ClientProfileController {
 
       def c = Entity.createCriteria()
       def allColonies = c.list {
-        eq("type", metaDataService.etGroupColony)
+        eq("type", servletContext.etGroupColony)
         profile {
           order(params.sort, params.order)
         }
@@ -324,7 +324,7 @@ class ClientProfileController {
 
       def d = Entity.createCriteria()
       def allFacilities = d.list {
-        eq("type", metaDataService.etFacility)
+        eq("type", servletContext.etFacility)
         profile {
           order(params.sort, params.order)
         }

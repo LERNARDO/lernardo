@@ -41,7 +41,7 @@ class TemplateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etTemplate = metaDataService.etTemplate
+    EntityType etTemplate = servletContext.etTemplate
     def templates = Entity.createCriteria().list {
       eq("type", etTemplate)
       profile {
@@ -83,8 +83,8 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     Entity entity = params.entity ? template : entityHelperService.loggedIn
 
-    def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
-    def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
+    def commentList = functionService.findAllByLink(null, template, servletContext.ltComment)
+    def resources = functionService.findAllByLink(null, template, servletContext.ltResource)
     def allMethods = Method.findAllByType('template')
     def allLabels = Label.findAllByType('template')
 
@@ -97,11 +97,11 @@ class TemplateProfileController {
   }
 
   def create = {
-    return ['resources': Entity.findAllByType(metaDataService.etResource)]
+    return ['resources': Entity.findAllByType(servletContext.etResource)]
   }
 
   def copy = {
-    EntityType etTemplate = metaDataService.etTemplate
+    EntityType etTemplate = servletContext.etTemplate
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -120,12 +120,12 @@ class TemplateProfileController {
     }
 
     // save creator
-    new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+    new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
     // find all resources created in the original and create them in the copy
-    List resources = functionService.findAllByLink(null, original, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, original, servletContext.ltResource)
 
-    EntityType etResource = metaDataService.etResource
+    EntityType etResource = servletContext.etResource
     resources.each {
 
       Entity resource = entityHelperService.createEntity("resource", etResource) {Entity ent ->
@@ -135,7 +135,7 @@ class TemplateProfileController {
         ent.profile.fullName = it.profile.fullName
       }
 
-      new Link(source: resource, target: entity, type: metaDataService.ltResource).save()
+      new Link(source: resource, target: entity, type: servletContext.ltResource).save()
     }
 
     // loop through all methods of the original and create them in the copy
@@ -182,7 +182,7 @@ class TemplateProfileController {
   }
 
   def save = {
-    EntityType etTemplate = metaDataService.etTemplate
+    EntityType etTemplate = servletContext.etTemplate
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -200,13 +200,13 @@ class TemplateProfileController {
       functionService.createEvent("ACTIVITY_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
-      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
+      new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
 
       flash.message = message(code: "template.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
 
     } catch (at.openfactory.ep.EntityException ee) {
-      render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(metaDataService.etResource)]
+      render view: "create", model: [template: ee.entity, resources: Entity.findAllByType(servletContext.etResource)]
     }
 
   }
@@ -327,11 +327,11 @@ class TemplateProfileController {
     def method3lower = params.list('method3lower')
     def method3upper = params.list('method3upper')
 
-    def numberOfAllTemplates = Entity.countByType(metaDataService.etTemplate)
+    def numberOfAllTemplates = Entity.countByType(servletContext.etTemplate)
 
     def c = Entity.createCriteria()
     def allTemplates = c.list (max: 10000) {
-      eq('type', metaDataService.etTemplate)
+      eq('type', servletContext.etTemplate)
       if (params.name)
         or {
           ilike('name', "%" + params.name + "%")

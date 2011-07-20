@@ -31,11 +31,11 @@ class HelperTagLib {
     Calendar calendar = new GregorianCalendar()
     calendar.setTime(attrs.entity.profile.date)
 
-    if (attrs.entity.type.id == metaDataService.etGroupActivity.id)
+    if (attrs.entity.type.id == servletContext.etGroupActivity.id)
       calendar.add(Calendar.MINUTE, attrs.entity.profile.realDuration)
     else {
       // get all project units of a project day and calculate the sum of their durations
-      List units = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectDayUnit)
+      List units = functionService.findAllByLink(null, attrs.entity, servletContext.ltProjectDayUnit)
       int duration = units*.profile.duration.sum(0)
       calendar.add(Calendar.MINUTE, duration)
     }
@@ -45,7 +45,7 @@ class HelperTagLib {
     Date entityEnd = calendar.getTime()
 
     // find all links the resource is already planned with
-    List links = Link.findAllBySourceAndType(attrs.resource, metaDataService.ltResourcePlanned)
+    List links = Link.findAllBySourceAndType(attrs.resource, servletContext.ltResourcePlanned)
 
     // set the initial amount of how many units are available to the total amount of the resource
     int free = attrs.resource.profile.amount
@@ -76,7 +76,7 @@ class HelperTagLib {
     def link = Link.createCriteria().get {
       eq('source', attrs.resource)
       eq('target', attrs.entity)
-      eq('type', metaDataService.ltResourcePlanned)
+      eq('type', servletContext.ltResourcePlanned)
     }
    out << link.das.amount
   }
@@ -93,13 +93,13 @@ class HelperTagLib {
 
     List results = []
 
-    List educators = Entity.findAllByType(metaDataService.etEducator)
+    List educators = Entity.findAllByType(servletContext.etEducator)
     educators.each { Entity educator ->
       if (sdf.format(educator.profile.birthDate) == sdf.format(date))
         results.add(educator)
     }
 
-    List clients = Entity.findAllByType(metaDataService.etClient)
+    List clients = Entity.findAllByType(servletContext.etClient)
     clients.each { Entity client ->
       if (sdf.format(client.profile.birthDate) == sdf.format(date))
         results.add(client)
@@ -457,7 +457,7 @@ class HelperTagLib {
     def resulta = a.get {
       eq('source', entity)
       eq('target', target)
-      eq('type', metaDataService.ltAbsent)
+      eq('type', servletContext.ltAbsent)
     }
     if (resulta)
       tags.add(true)
@@ -468,7 +468,7 @@ class HelperTagLib {
     def resultb = b.get {
       eq('source', entity)
       eq('target', target)
-      eq('type', metaDataService.ltIll)
+      eq('type', servletContext.ltIll)
     }
     if (resultb)
       tags.add(true)
@@ -563,7 +563,7 @@ class HelperTagLib {
 
     boolean isOperator = false
     if (attrs.checkoperator) {
-      isOperator = entity.type == metaDataService.etOperator
+      isOperator = entity.type == servletContext.etOperator
       if (attrs.log)
         log.info "${entity.profile} is operator: " + isOperator
     }
@@ -619,7 +619,7 @@ class HelperTagLib {
       result = c.get {
         eq('source', entity)
         eq('target', creatorof)
-        eq('type', metaDataService.ltCreator)
+        eq('type', servletContext.ltCreator)
       }
     }
     else if (creatorof instanceof Publication) {
@@ -635,7 +635,7 @@ class HelperTagLib {
   // checks if a given entity is lead educator of a given facility
   boolean accessIsLeadEducator(Entity entity, List facilities) {
 
-    List allFacilities = functionService.findAllByLink(entity, null, metaDataService.ltLeadEducator)
+    List allFacilities = functionService.findAllByLink(entity, null, servletContext.ltLeadEducator)
 
     def hits = false
 
@@ -695,7 +695,7 @@ class HelperTagLib {
    * finds the number of units linked to a project template
    */
   def getProjectTemplateUnitsCount = {attrs, body ->
-    def units = Link.countByTargetAndType(attrs.template, metaDataService.ltProjectUnitTemplate)
+    def units = Link.countByTargetAndType(attrs.template, servletContext.ltProjectUnitTemplate)
     out << units
   }
 
@@ -703,7 +703,7 @@ class HelperTagLib {
    * finds the number of clients linked to a client group
    */
   def getGroupClientsCount = {attrs, body ->
-    def clients = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberClient)
+    def clients = Link.countByTargetAndType(attrs.entity, servletContext.ltGroupMemberClient)
     out << clients
   }
 
@@ -712,11 +712,11 @@ class HelperTagLib {
    */
   def getProjectOfUnit = {attrs ->
     // find project day the project unit is linked to
-    Entity projectDay = functionService.findByLink(attrs.unit, null, metaDataService.ltProjectDayUnit)
+    Entity projectDay = functionService.findByLink(attrs.unit, null, servletContext.ltProjectDayUnit)
 
     // find project the project day is linked to
     if (projectDay) {
-      Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+      Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
       out << message(code: 'project') + ": " + project?.profile?.fullName ?: 'not found'
     }
   }
@@ -725,7 +725,7 @@ class HelperTagLib {
    * finds all project units linked to a project day
    */
   def getProjectDayUnits = {attrs, body ->
-    //List projectDayUnits = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayUnit)
+    //List projectDayUnits = functionService.findAllByLink(null, attrs.projectDay, servletContext.ltProjectDayUnit)
 
     List projectDayUnits = []
     attrs.projectDay.profile.units.each {
@@ -743,7 +743,7 @@ class HelperTagLib {
    * finds all educators linked to a project day
    */
   def getProjectDayEducators = {attrs, body ->
-    List projectDayEducators = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayEducator)
+    List projectDayEducators = functionService.findAllByLink(null, attrs.projectDay, servletContext.ltProjectDayEducator)
     if (projectDayEducators)
       projectDayEducators.each {out << body(educators: it)}
     else
@@ -754,7 +754,7 @@ class HelperTagLib {
    * finds all supplemental educators linked to a project day
    */
   def getProjectDaySubstitutes = {attrs, body ->
-    List projectDaySubstitutes = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDaySubstitute)
+    List projectDaySubstitutes = functionService.findAllByLink(null, attrs.projectDay, servletContext.ltProjectDaySubstitute)
     if (projectDaySubstitutes)
       projectDaySubstitutes.each {out << body(educators: it)}
     else
@@ -765,7 +765,7 @@ class HelperTagLib {
    * finds all resources linked to a project day
    */
   def getProjectDayResources = {attrs, body ->
-    List projectDayResources = functionService.findAllByLink(null, attrs.projectDay, metaDataService.ltProjectDayResource)
+    List projectDayResources = functionService.findAllByLink(null, attrs.projectDay, servletContext.ltProjectDayResource)
     if (projectDayResources)
       projectDayResources.each {out << body(resources: it)}
     else
@@ -776,7 +776,7 @@ class HelperTagLib {
    * finds all activity groups linked to a project unit
    */
   def getProjectUnitActivityGroups = {attrs, body ->
-    List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnit)
+    List projectUnitActivityGroups = functionService.findAllByLink(null, attrs.projectUnit, servletContext.ltProjectUnit)
     if (projectUnitActivityGroups)
       projectUnitActivityGroups.each {out << body(activityGroups: it)}
     else
@@ -787,7 +787,7 @@ class HelperTagLib {
    * finds all parents linked to a project unit
    */
   def getProjectUnitParents = {attrs, body ->
-    List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitParent)
+    List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, servletContext.ltProjectUnitParent)
     if (projectUnitParents)
       projectUnitParents.each {out << body(parents: it)}
     else
@@ -798,7 +798,7 @@ class HelperTagLib {
    * finds all partners linked to a project unit
    */
   def getProjectUnitPartners = {attrs, body ->
-    List projectUnitPartners = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitPartner)
+    List projectUnitPartners = functionService.findAllByLink(null, attrs.projectUnit, servletContext.ltProjectUnitPartner)
     if (projectUnitPartners)
       projectUnitPartners.each {out << body(partners: it)}
     else
@@ -809,7 +809,7 @@ class HelperTagLib {
    * finds all group activity templates linked to a project unit
    */
   def getGroupActivityTemplates = {attrs, body ->
-    List groupActivityTemplates = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitMember)
+    List groupActivityTemplates = functionService.findAllByLink(null, attrs.projectUnit, servletContext.ltProjectUnitMember)
     if (groupActivityTemplates)
       groupActivityTemplates.each {out << body(groupActivityTemplates: it)}
     else
@@ -820,7 +820,7 @@ class HelperTagLib {
    * finds all resources linked to an entity
    */
   def getResources = {attrs, body ->
-    List resources = functionService.findAllByLink(null, attrs.entity, metaDataService.ltResource)
+    List resources = functionService.findAllByLink(null, attrs.entity, servletContext.ltResource)
     if (resources)
       resources.each {out << body(resources: it)}
     else
@@ -831,7 +831,7 @@ class HelperTagLib {
    * finds all group members of a given group
    */
   def getGroup = {attrs, body ->
-    List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
+    List groups = functionService.findAllByLink(null, attrs.entity, servletContext.ltGroupMember)
     if (groups)
       groups.each {out << body(members: it)}
     else
@@ -842,7 +842,7 @@ class HelperTagLib {
    * returns the size of a group
    */
   def getGroupSize = {attrs, body ->
-    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMember)
+    def result = Link.countByTargetAndType(attrs.entity, servletContext.ltGroupMember)
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
@@ -853,7 +853,7 @@ class HelperTagLib {
    * returns all facilities linked to a group
    */
   def getGroupFacilities = {attrs, body ->
-    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
+    def result = Link.countByTargetAndType(attrs.entity, servletContext.ltGroupMemberFacility)
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
@@ -864,7 +864,7 @@ class HelperTagLib {
    * returns all resources linked to a group
    */
   def getGroupResources = {attrs, body ->
-    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltResource)
+    def result = Link.countByTargetAndType(attrs.entity, servletContext.ltResource)
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
@@ -875,7 +875,7 @@ class HelperTagLib {
    * returns the total duration of the activities within a group
    */
   def getGroupDuration = {attrs, body ->
-    List groups = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
+    List groups = functionService.findAllByLink(null, attrs.entity, servletContext.ltGroupMember)
     def duration = 0
     if (groups)
       groups.each {duration += it.profile.duration}
@@ -886,7 +886,7 @@ class HelperTagLib {
    * returns the entity a resource is linked to - which is either a facility or colony
    */
   def resourceCreatedIn = {attrs, body ->
-    def result = functionService.findByLink(attrs.resource, null, metaDataService.ltResource)
+    def result = functionService.findByLink(attrs.resource, null, servletContext.ltResource)
     if (result)
       out << body(source: result)
   }
@@ -895,7 +895,7 @@ class HelperTagLib {
    * returns the template to a given activity
    */
   def getTemplate = {attrs, body ->
-    Entity template = functionService.findByLink(null, attrs.entity, metaDataService.ltActTemplate)
+    Entity template = functionService.findByLink(null, attrs.entity, servletContext.ltActTemplate)
     if (template)
       out << body(template: template)
     else
@@ -906,7 +906,7 @@ class HelperTagLib {
    * returns all clients to a given activity
    */
   def getClients = {attrs, body ->
-    List clients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActClient)
+    List clients = functionService.findAllByLink(null, attrs.entity, servletContext.ltActClient)
     if (clients)
       clients.each {out << body(clients: it)}
     else
@@ -917,7 +917,7 @@ class HelperTagLib {
    * returns all clients linked to a given pate
    */
   def getPateClients = {attrs, body ->
-    List pateClients = functionService.findAllByLink(null, attrs.entity, metaDataService.ltPate)
+    List pateClients = functionService.findAllByLink(null, attrs.entity, servletContext.ltPate)
     if (pateClients)
       pateClients.each {out << body(clients: it)}
     else
@@ -928,7 +928,7 @@ class HelperTagLib {
    * returns all educators linked to a given activity
    */
   def getEducators = {attrs, body ->
-    List educators = functionService.findAllByLink(null, attrs.entity, metaDataService.ltActEducator)
+    List educators = functionService.findAllByLink(null, attrs.entity, servletContext.ltActEducator)
     if (educators)
       educators.each {out << body(educators: it)}
     else
@@ -939,7 +939,7 @@ class HelperTagLib {
    * returns the facility linked to a given activity
    */
   def getFacility = {attrs, body ->
-    Entity facility = functionService.findByLink(null, attrs.entity, metaDataService.ltActFacility)
+    Entity facility = functionService.findByLink(null, attrs.entity, servletContext.ltActFacility)
     if (facility)
       out << body(facility: facility)
     else
@@ -950,7 +950,7 @@ class HelperTagLib {
    * returns the facility linked to a given activity
    */
   def getFacilityOfProject = {attrs, body ->
-    Entity facilityOfProject = functionService.findByLink(null, attrs.entity, metaDataService.ltGroupMemberFacility)
+    Entity facilityOfProject = functionService.findByLink(null, attrs.entity, servletContext.ltGroupMemberFacility)
     if (facilityOfProject)
       out << body(facility: facilityOfProject)
     else
@@ -961,7 +961,7 @@ class HelperTagLib {
    * returns all subthemes of a given activity
    */
   def getSubThemes = {attrs, body ->
-    List subThemes = functionService.findAllByLink(null, attrs.theme, metaDataService.ltSubTheme)
+    List subThemes = functionService.findAllByLink(null, attrs.theme, servletContext.ltSubTheme)
     if (subThemes)
       subThemes.each {out << body(subthemes: it)}
   }
@@ -970,7 +970,7 @@ class HelperTagLib {
    * returns the creator of an entity
    */
   def createdBy = {attrs, body ->
-    def result = functionService.findByLink(null, attrs.entity, metaDataService.ltCreator)
+    def result = functionService.findByLink(null, attrs.entity, servletContext.ltCreator)
     if (result)
       out << body(creator: result)
   }
@@ -996,7 +996,7 @@ class HelperTagLib {
    * finds the colony linked to a given entity
    */
   def getColony = {attrs, body ->
-    out << body(colony: functionService.findByLink(null, attrs.entity, metaDataService.ltColonia))
+    out << body(colony: functionService.findByLink(null, attrs.entity, servletContext.ltColonia))
   }
 
   /**
@@ -1053,7 +1053,7 @@ class HelperTagLib {
 
     // group activity template
     if (attrs.entity.type.name == "Aktivitätsvorlagenblock") {
-      List activitytemplates = functionService.findAllByLink(null, attrs.entity, metaDataService.ltGroupMember)
+      List activitytemplates = functionService.findAllByLink(null, attrs.entity, servletContext.ltGroupMember)
 
       activitytemplates.each {
         m += Publication.countByEntity(it as Entity)
@@ -1062,12 +1062,12 @@ class HelperTagLib {
 
     // group activity
     else if (attrs.entity.type.name == "Aktivitätsblock") {
-      Entity groupactivitytemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltTemplate)
+      Entity groupactivitytemplate = functionService.findByLink(null, attrs.entity, servletContext.ltTemplate)
 
       if (groupactivitytemplate) {
           m += Publication.countByEntity(groupactivitytemplate)
 
-          List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
+          List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, servletContext.ltGroupMember)
 
           activitytemplates.each {
             m += Publication.countByEntity(it as Entity)
@@ -1077,11 +1077,11 @@ class HelperTagLib {
 
     // project template
     else if (attrs.entity.type.name == "Projektvorlage") {
-      List projectUnits = functionService.findAllByLink(null, attrs.entity, metaDataService.ltProjectUnit)
+      List projectUnits = functionService.findAllByLink(null, attrs.entity, servletContext.ltProjectUnit)
 
       List groupactivitytemplates = []
       projectUnits.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnitMember)
         bla.each {
           if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
             groupactivitytemplates << it
@@ -1094,7 +1094,7 @@ class HelperTagLib {
 
       List activitytemplates = []
       groupactivitytemplates.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltGroupMember)
         bla.each {
           if (!activitytemplates.contains(it)) // filter duplicate activity templates
             activitytemplates << it
@@ -1108,16 +1108,16 @@ class HelperTagLib {
 
     // project
     else if (attrs.entity.type.name == "Projekt") {
-      Entity projectTemplate = functionService.findByLink(null, attrs.entity, metaDataService.ltProjectTemplate)
+      Entity projectTemplate = functionService.findByLink(null, attrs.entity, servletContext.ltProjectTemplate)
 
       if (projectTemplate) {
           m += Publication.countByEntity(projectTemplate)
 
-          List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
+          List projectUnits = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnit)
 
           List groupactivitytemplates = []
           projectUnits.each {
-            def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+            def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnitMember)
             bla.each {
               if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
                 groupactivitytemplates << it
@@ -1130,7 +1130,7 @@ class HelperTagLib {
 
           List activitytemplates = []
           groupactivitytemplates.each {
-            def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+            def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltGroupMember)
             bla.each {
               if (!activitytemplates.contains(it)) // filter duplicate activity templates
                 activitytemplates << it
@@ -1213,7 +1213,7 @@ class HelperTagLib {
   }
 
   def isMeOrAdminOrOperator = {attrs, body ->
-    if (attrs.entity.name == attrs.current.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} || attrs.current.type.id == metaDataService.etOperator.id)
+    if (attrs.entity.name == attrs.current.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} || attrs.current.type.id == servletContext.etOperator.id)
       out << body()
   }
 
@@ -1242,7 +1242,7 @@ class HelperTagLib {
     def result = c.get {
       eq("source", currentEntity)
       eq("target", e)
-      eq("type", metaDataService.ltFriendship)
+      eq("type", servletContext.ltFriendship)
     }
     return result ? true : false
   }
@@ -1259,7 +1259,7 @@ class HelperTagLib {
     def result = c.get {
       eq("source", currentEntity)
       eq("target", e)
-      eq("type", metaDataService.ltBookmark)
+      eq("type", servletContext.ltBookmark)
     }
     return result ? true : false
   }
@@ -1282,7 +1282,7 @@ class HelperTagLib {
 
     out << '<div>'
     // if the current entity is admin, operator or the creator display this
-    if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.type.id == metaDataService.etOperator.id || accessIsCreatorOf(currentEntity,attrs.template)) {
+    if (currentEntity.user.authorities.find {it.authority == 'ROLE_ADMIN'} || currentEntity.type.id == servletContext.etOperator.id || accessIsCreatorOf(currentEntity,attrs.template)) {
       out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 1]) { vote > 0 ? star : star_empty }
       out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 2]) { vote > 1 ? star : star_empty }
       out << remoteLink(update: updateDiv, controller: 'templateProfile', action: 'vote', params: [element: element.id, val: 3]) { vote > 2 ? star : star_empty }

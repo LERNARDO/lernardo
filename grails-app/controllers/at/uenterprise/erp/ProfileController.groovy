@@ -43,21 +43,21 @@ class ProfileController {
     def userList = c.list {
       or {
         if (params.user)
-          eq("type", metaDataService.etUser)
+          eq("type", servletContext.etUser)
         if (params.operator)
-          eq("type", metaDataService.etOperator)
+          eq("type", servletContext.etOperator)
         if (params.client)
-          eq("type", metaDataService.etClient)
+          eq("type", servletContext.etClient)
         if (params.educator)
-          eq("type", metaDataService.etEducator)
+          eq("type", servletContext.etEducator)
         if (params.parent)
-          eq("type", metaDataService.etParent)
+          eq("type", servletContext.etParent)
         if (params.child)
-          eq("type", metaDataService.etChild)
+          eq("type", servletContext.etChild)
         if (params.pate)
-          eq("type", metaDataService.etPate)
+          eq("type", servletContext.etPate)
         if (params.partner)
-          eq("type", metaDataService.etPartner)
+          eq("type", servletContext.etPartner)
       }
     }
 
@@ -246,7 +246,7 @@ class ProfileController {
     }
     else {
       // find all clients of a facility
-      clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltClientship)
+      clients = functionService.findAllByLink(null, Entity.get(params.id), servletContext.ltClientship)
     }
 
     return ['entityList': clients,
@@ -335,46 +335,46 @@ class ProfileController {
 
     EntityType entityType = null
     if (params.entityType == 'operator')
-      entityType = metaDataService.etOperator
+      entityType = servletContext.etOperator
     else if (params.entityType == 'facility')
-      entityType = metaDataService.etFacility
+      entityType = servletContext.etFacility
     else if (params.entityType == 'educator')
-      entityType = metaDataService.etEducator
+      entityType = servletContext.etEducator
     else if (params.entityType == 'client')
-      entityType = metaDataService.etClient
+      entityType = servletContext.etClient
     else if (params.entityType == 'user')
-      entityType = metaDataService.etUser
+      entityType = servletContext.etUser
     else if (params.entityType == 'partner')
-      entityType = metaDataService.etPartner
+      entityType = servletContext.etPartner
     else if (params.entityType == 'pate')
-      entityType = metaDataService.etPate
+      entityType = servletContext.etPate
     else if (params.entityType == 'parent')
-      entityType = metaDataService.etParent
+      entityType = servletContext.etParent
     else if (params.entityType == 'child')
-      entityType = metaDataService.etChild
+      entityType = servletContext.etChild
 
     List entities
     int count
     if (params.entityType == 'all') {
       def c = Entity.createCriteria()
       entities = c.list {
-        ne("type", metaDataService.etActivity)
-        ne("type", metaDataService.etTemplate)
-        ne("type", metaDataService.etResource)
-        ne("type", metaDataService.etGroupActivity)
-        ne("type", metaDataService.etGroupActivityTemplate)
-        ne("type", metaDataService.etGroupClient)
-        ne("type", metaDataService.etGroupColony) // TODO: find out why this is ignored on TEST environment?!
-        ne("type", metaDataService.etGroupFamily)
-        ne("type", metaDataService.etGroupPartner)
-        ne("type", metaDataService.etProject)
-        ne("type", metaDataService.etProjectTemplate)
-        ne("type", metaDataService.etTheme)
-        ne("type", metaDataService.etProjectDay)
-        ne("type", metaDataService.etProjectUnit)
+        ne("type", servletContext.etActivity)
+        ne("type", servletContext.etTemplate)
+        ne("type", servletContext.etResource)
+        ne("type", servletContext.etGroupActivity)
+        ne("type", servletContext.etGroupActivityTemplate)
+        ne("type", servletContext.etGroupClient)
+        ne("type", servletContext.etGroupColony) // TODO: find out why this is ignored on TEST environment?!
+        ne("type", servletContext.etGroupFamily)
+        ne("type", servletContext.etGroupPartner)
+        ne("type", servletContext.etProject)
+        ne("type", servletContext.etProjectTemplate)
+        ne("type", servletContext.etTheme)
+        ne("type", servletContext.etProjectDay)
+        ne("type", servletContext.etProjectUnit)
         if (!secHelperService.isAdmin()) {
           ne("name", "admin")
-          ne("type", metaDataService.etUser)
+          ne("type", servletContext.etUser)
         }
       }
 
@@ -401,13 +401,13 @@ class ProfileController {
 
     def linkInstance = new Link()
     linkInstance.source = currentEntity
-    linkInstance.type = metaDataService.ltFriendship
+    linkInstance.type = servletContext.ltFriendship
     linkInstance.target = entity
 
     // for now just create a back-link for mutuality - a more elaborate workflow will be in order later on
     def linkBack = new Link()
     linkBack.source = entity
-    linkBack.type = metaDataService.ltFriendship
+    linkBack.type = servletContext.ltFriendship
     linkBack.target = currentEntity
 
     if (linkInstance.save(flush: true) && linkBack.save(flush: true)) {
@@ -433,13 +433,13 @@ class ProfileController {
     def linkInstance = c.get {
       eq('source', currentEntity)
       eq('target', entity)
-      eq('type', metaDataService.ltFriendship)
+      eq('type', servletContext.ltFriendship)
     }
     def d = Link.createCriteria()
     def linkInstanceBack = d.get {
       eq('source', entity)
       eq('target', currentEntity)
-      eq('type', metaDataService.ltFriendship)
+      eq('type', servletContext.ltFriendship)
     }
     if (linkInstance && linkInstanceBack) {
       try {
@@ -469,7 +469,7 @@ class ProfileController {
 
     Link linkInstance = new Link()
     linkInstance.source = entityHelperService.loggedIn
-    linkInstance.type = metaDataService.ltBookmark
+    linkInstance.type = servletContext.ltBookmark
     linkInstance.target = entity
 
     if (linkInstance.save(flush: true)) {
@@ -492,7 +492,7 @@ class ProfileController {
     def linkInstance = c.get {
       eq('source', entityHelperService.loggedIn)
       eq('target', entity)
-      eq('type', metaDataService.ltBookmark)
+      eq('type', servletContext.ltBookmark)
     }
     if (linkInstance) {
       //def n = linkInstance.target.name

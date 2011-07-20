@@ -24,7 +24,7 @@ class WorkdayUnitController {
       Entity entity = Entity.get(params.id)
 
       List workdayunits = []
-      if (entity.type.id == metaDataService.etEducator.id) {
+      if (entity.type.id == servletContext.etEducator.id) {
         entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             workdayunits << workday
@@ -113,7 +113,7 @@ class WorkdayUnitController {
 
       // check if the to be created workday unit does intersect with an already existing workday unit
       List existingWorkdayunits = []
-      if (entity.type.id == metaDataService.etEducator.id) {
+      if (entity.type.id == servletContext.etEducator.id) {
         entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             existingWorkdayunits << workday
@@ -136,7 +136,7 @@ class WorkdayUnitController {
       }
 
       List workdayunits = []
-      if (entity.type.id == metaDataService.etEducator.id) {
+      if (entity.type.id == servletContext.etEducator.id) {
         entity.profile.workdayunits.each { workday ->
           if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
             workdayunits << workday

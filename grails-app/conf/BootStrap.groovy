@@ -38,6 +38,7 @@ import at.uenterprise.erp.Setup
 //import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
+import at.openfactory.ep.LinkType
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -54,8 +55,88 @@ class BootStrap {
     defaultObjectService.onEmptyDatabase {
       metaDataService.initialize()
 
-      servletContext.etUser = metaDataService.etUser
-      servletContext.etFacility = metaDataService.etFacility
+      servletContext.etUser                   = metaDataService.etUser
+      servletContext.etEducator               = metaDataService.etEducator
+      servletContext.etClient                 = metaDataService.etClient
+      servletContext.etChild                  = metaDataService.etChild
+      servletContext.etOperator               = metaDataService.etOperator
+      servletContext.etFacility               = metaDataService.etFacility
+      servletContext.etTemplate               = metaDataService.etTemplate
+      servletContext.etActivity               = metaDataService.etActivity
+      servletContext.etGroupPartner           = metaDataService.etGroupPartner
+      servletContext.etGroupFamily            = metaDataService.etGroupFamily
+      servletContext.etGroupClient            = metaDataService.etGroupClient
+      servletContext.etGroupColony            = metaDataService.etGroupColony
+      servletContext.etGroupActivityTemplate  = metaDataService.etGroupActivityTemplate
+      servletContext.etGroupActivity          = metaDataService.etGroupActivity
+      servletContext.etPate                   = metaDataService.etPate
+      servletContext.etPartner                = metaDataService.etPartner
+      servletContext.etResource               = metaDataService.etResource
+      servletContext.etParent                 = metaDataService.etParent
+      servletContext.etTheme                  = metaDataService.etTheme
+      servletContext.etProjectTemplate        = metaDataService.etProjectTemplate
+      servletContext.etProject                = metaDataService.etProject
+      servletContext.etProjectDay             = metaDataService.etProjectDay
+      servletContext.etProjectUnit            = metaDataService.etProjectUnit
+      servletContext.etProjectUnitTemplate    = metaDataService.etProjectUnitTemplate
+      servletContext.etAppointment            = metaDataService.etAppointment
+
+      servletContext.ltFriendship               = metaDataService.ltFriendship
+      servletContext.ltSponsorship              = metaDataService.ltSponsorship
+      servletContext.ltOperation                = metaDataService.ltOperation
+      servletContext.ltClientship               = metaDataService.ltClientship
+      servletContext.ltBookmark                 = metaDataService.ltBookmark
+      servletContext.ltWorking                  = metaDataService.ltWorking
+      servletContext.ltGroupMember              = metaDataService.ltGroupMember
+      servletContext.ltGroupMemberParent        = metaDataService.ltGroupMemberParent
+      servletContext.ltGroupMemberClient        = metaDataService.ltGroupMemberClient
+      servletContext.ltGroupMemberChild         = metaDataService.ltGroupMemberChild
+      servletContext.ltGroupMemberEducator      = metaDataService.ltGroupMemberEducator
+      servletContext.ltGroupMemberPartner       = metaDataService.ltGroupMemberPartner
+      servletContext.ltGroupMemberFacility      = metaDataService.ltGroupMemberFacility
+      servletContext.ltGroupMemberClientGroup   = metaDataService.ltGroupMemberClientGroup
+      servletContext.ltGroupMemberActivityGroup = metaDataService.ltGroupMemberActivityGroup
+      servletContext.ltGroupMemberSubstitute    = metaDataService.ltGroupMemberSubstitute
+      servletContext.ltCreator                  = metaDataService.ltCreator
+      servletContext.ltEditor                   = metaDataService.ltEditor
+      servletContext.ltComment                  = metaDataService.ltComment
+      servletContext.ltPate                     = metaDataService.ltPate
+      servletContext.ltPartner                  = metaDataService.ltPartner
+      servletContext.ltResource                 = metaDataService.ltResource
+      servletContext.ltResourcePlanned          = metaDataService.ltResourcePlanned
+      servletContext.ltEnlisted                 = metaDataService.ltEnlisted
+      servletContext.ltSubTheme                 = metaDataService.ltSubTheme
+      servletContext.ltProjectMember            = metaDataService.ltProjectMember
+      servletContext.ltProjectUnit              = metaDataService.ltProjectUnit
+      servletContext.ltProjectUnitMember        = metaDataService.ltProjectUnitMember
+      servletContext.ltProjectUnitParent        = metaDataService.ltProjectUnitParent
+      servletContext.ltProjectUnitPartner       = metaDataService.ltProjectUnitPartner
+      servletContext.ltProjectDayUnit           = metaDataService.ltProjectDayUnit
+      servletContext.ltProjectDayEducator       = metaDataService.ltProjectDayEducator
+      servletContext.ltProjectDaySubstitute     = metaDataService.ltProjectDaySubstitute
+      servletContext.ltProjectDayResource       = metaDataService.ltProjectDayResource
+      servletContext.ltProjectTemplate          = metaDataService.ltProjectTemplate
+      servletContext.ltColonia                  = metaDataService.ltColonia
+      servletContext.ltFacility                 = metaDataService.ltFacility
+      servletContext.ltGroupFamily              = metaDataService.ltGroupFamily
+      servletContext.ltLeadEducator             = metaDataService.ltLeadEducator
+      servletContext.ltThemeOfFacility          = metaDataService.ltThemeOfFacility
+      servletContext.ltTemplate                 = metaDataService.ltTemplate
+      servletContext.ltProjectUnitTemplate      = metaDataService.ltProjectUnitTemplate
+      servletContext.ltAppointment              = metaDataService.ltAppointment
+      servletContext.ltOwner                    = metaDataService.ltOwner
+      servletContext.ltResponsible              = metaDataService.ltResponsible
+
+      servletContext.ltActEducator = metaDataService.ltActEducator
+      servletContext.ltActClient   = metaDataService.ltActClient
+      servletContext.ltActFacility = metaDataService.ltActFacility
+      servletContext.ltActTemplate = metaDataService.ltActTemplate
+      servletContext.ltActProject  = metaDataService.ltActProject
+      servletContext.ltActPartner  = metaDataService.ltActPartner
+      servletContext.ltActParent   = metaDataService.ltActParent
+
+      servletContext.ltAbsent = metaDataService.ltAbsent
+      servletContext.ltIll    = metaDataService.ltIll
 
       log.info "====="
       Date begin = new Date()

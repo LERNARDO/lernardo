@@ -29,7 +29,7 @@ class GroupClientProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etGroupClient = metaDataService.etGroupClient
+    EntityType etGroupClient = servletContext.etGroupClient
     def groupClients = Entity.createCriteria().list {
       eq("type", etGroupClient)
       profile {
@@ -54,11 +54,11 @@ class GroupClientProfileController {
       return
     }
 
-    def allClients = Entity.findAllByType(metaDataService.etClient)
+    def allClients = Entity.findAllByType(servletContext.etClient)
     // find all clients linked to this group
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, group, servletContext.ltGroupMemberClient)
 
-    List allColonias = Entity.findAllByType(metaDataService.etGroupColony)
+    List allColonias = Entity.findAllByType(servletContext.etGroupColony)
 
     return [group: group,
             entity: entity,
@@ -118,11 +118,11 @@ class GroupClientProfileController {
   }
 
   def create = {
-    return [templates: Entity.findAllByType(metaDataService.etTemplate)]
+    return [templates: Entity.findAllByType(servletContext.etTemplate)]
   }
 
   def save = {
-    EntityType etGroupClient = metaDataService.etGroupClient
+    EntityType etGroupClient = servletContext.etGroupClient
 
     try {
       Entity entity = entityHelperService.createEntity("group", etGroupClient) {Entity ent ->
@@ -146,20 +146,20 @@ class GroupClientProfileController {
       def bla = params.list('members')
   
       bla.each {
-        def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
+        def linking = functionService.linkEntities(it.toString(), params.id, servletContext.ltGroupMemberClient)
         if (linking.duplicate)
           //render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
           render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
       }
     }
-    //def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    //def linking = functionService.linkEntities(params.client, params.id, servletContext.ltGroupMemberClient)
     //if (linking.duplicate)
     //  render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
-    render template: 'clients', model: [clients: functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberClient), group: Entity.get(params.id), entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: functionService.findAllByLink(null, Entity.get(params.id), servletContext.ltGroupMemberClient), group: Entity.get(params.id), entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
-    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
+    def breaking = functionService.breakEntities(params.client, params.id, servletContext.ltGroupMemberClient)
     render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -171,8 +171,8 @@ class GroupClientProfileController {
       params.birthDate2.setMonth(11)
     }
     
-    //def allClients = Entity.findAllByType(metaDataService.etClient)
-    params.type = metaDataService.etClient
+    //def allClients = Entity.findAllByType(servletContext.etClient)
+    params.type = servletContext.etClient
 
     def c = Entity.createCriteria()
     def allClients = c.list {
@@ -214,7 +214,7 @@ class GroupClientProfileController {
         def result = d.get {
           eq("source", Entity.get(params.colonia))
           eq("target", client as Entity)
-          eq("type", metaDataService.ltColonia)
+          eq("type", servletContext.ltColonia)
         }
 
         if (result)
@@ -230,7 +230,7 @@ class GroupClientProfileController {
   def createpdf = {
     Entity group = Entity.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
-    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, group, servletContext.ltGroupMemberClient)
     renderPdf template: 'createpdf', model: [entity: currentEntity, group: group, clients: clients], filename: message(code: 'groupClient') + '_' + group.profile.fullName
   }
 

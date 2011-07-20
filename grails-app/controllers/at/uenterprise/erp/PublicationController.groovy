@@ -29,9 +29,9 @@ class PublicationController {
     // (1)
     // if the entity is a group activity template find all documents of the activity templates linked to it
     List activitytemplatesdocuments = []
-    if (entity.type.id == metaDataService.etGroupActivityTemplate.id) {
+    if (entity.type.id == servletContext.etGroupActivityTemplate.id) {
       // find all activity templates linked to the group activity template
-      List activitytemplates = functionService.findAllByLink(null, entity, metaDataService.ltGroupMember)
+      List activitytemplates = functionService.findAllByLink(null, entity, servletContext.ltGroupMember)
 
       // get all documents
       activitytemplates.each {
@@ -46,15 +46,15 @@ class PublicationController {
     // if the entity is a group activity find the group activity template and its documents and then all
     // documents of the activity templates linked to the group activity template
     List groupactivitytemplatesdocuments = []
-    if (entity.type.id == metaDataService.etGroupActivity.id) {
+    if (entity.type.id == servletContext.etGroupActivity.id) {
       // find the group activity template
-      Entity groupactivitytemplate = functionService.findByLink(null, entity, metaDataService.ltTemplate)
+      Entity groupactivitytemplate = functionService.findByLink(null, entity, servletContext.ltTemplate)
 
       // get documents of template
       groupactivitytemplatesdocuments = functionService.findPublicationsOfEntity(groupactivitytemplate)
 
       // find all activity templates linked to the group activity template
-      List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
+      List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, servletContext.ltGroupMember)
 
       // get all documents
       activitytemplates.each {
@@ -68,15 +68,15 @@ class PublicationController {
     // (3)
     // if the entity is a project template find all group activity templates and their documents and then all
     // documents of the activity templates linked to the group activity templates
-    if (entity.type.id == metaDataService.etProjectTemplate.id) {
+    if (entity.type.id == servletContext.etProjectTemplate.id) {
 
       // find all project units linked to the project template
-      List projectUnits = functionService.findAllByLink(null, entity, metaDataService.ltProjectUnit)
+      List projectUnits = functionService.findAllByLink(null, entity, servletContext.ltProjectUnit)
 
       // find all group activity templates
       List groupactivitytemplates = []
       projectUnits.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnitMember)
         bla.each {
           if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
             groupactivitytemplates << it
@@ -94,7 +94,7 @@ class PublicationController {
       // find all activity templates linked to the group activity templates
       List activitytemplates = []
       groupactivitytemplates.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltGroupMember)
         bla.each {
           if (!activitytemplates.contains(it)) // filter duplicate activity templates
             activitytemplates << it
@@ -114,21 +114,21 @@ class PublicationController {
     // if the entity is a project find the project template and its documents then all group activity templates and
     // their documents and then all documents of the activity templates linked to the group activity templates
     List projecttemplatedocuments = []
-    if (entity.type.id == metaDataService.etProject.id) {
+    if (entity.type.id == servletContext.etProject.id) {
 
       // find project template
-      Entity projectTemplate = functionService.findByLink(null, entity, metaDataService.ltProjectTemplate)
+      Entity projectTemplate = functionService.findByLink(null, entity, servletContext.ltProjectTemplate)
 
       // get documents of project template
       projecttemplatedocuments = functionService.findPublicationsOfEntity(projectTemplate)
 
       // find all project units linked to the project template
-      List projectUnits = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnit)
+      List projectUnits = functionService.findAllByLink(null, projectTemplate, servletContext.ltProjectUnit)
 
       // find all group activity templates
       List groupactivitytemplates = []
       projectUnits.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+        def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltProjectUnitMember)
         bla.each {
           if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
             groupactivitytemplates << it
@@ -146,7 +146,7 @@ class PublicationController {
       // find all activity templates linked to the group activity templates
       List activitytemplates = []
       groupactivitytemplates.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+        def bla = functionService.findAllByLink(null, it as Entity, servletContext.ltGroupMember)
         bla.each {
           if (!activitytemplates.contains(it)) // filter duplicate activity templates
             activitytemplates << it

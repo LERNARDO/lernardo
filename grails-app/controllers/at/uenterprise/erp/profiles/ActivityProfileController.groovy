@@ -46,8 +46,8 @@ class ActivityProfileController {
     Entity currentEntity = entityHelperService.loggedIn
 
     // get a list of facilities the current entity is linked to
-    List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
-    facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
+    List facilities = functionService.findAllByLink(currentEntity, null, servletContext.ltWorking)
+    facilities.addAll(functionService.findAllByLink(currentEntity, null, servletContext.ltLeadEducator))
 
     // create empty list for final results
     List activityList = []
@@ -57,10 +57,10 @@ class ActivityProfileController {
     if (params.myDate_year == 'alle') {
 
       // show educator only his own activities
-      if (currentEntity.type.id == metaDataService.etEducator.id) {
+      if (currentEntity.type.id == servletContext.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each { Entity facility ->
-          List activities = functionService.findAllByLink(facility, null, metaDataService.ltActFacility)
+          List activities = functionService.findAllByLink(facility, null, servletContext.ltActFacility)
 
           activities.each { Entity act ->
             // there are 2 types of activities, we only want theme room activities here
@@ -73,7 +73,7 @@ class ActivityProfileController {
         activityList = activityList.subList(params.offset, upperBound)
       }
       else {
-        EntityType etActivity = metaDataService.etActivity
+        EntityType etActivity = servletContext.etActivity
         activityList = Entity.createCriteria().list {
           eq("type", etActivity)
           profile {
@@ -103,10 +103,10 @@ class ActivityProfileController {
       inputDate = new SimpleDateFormat("yyyy/MM/dd", new Locale("en")).parse(input)
 
       // get all activities of the facilities within the timeframe
-      if (currentEntity.type.id == metaDataService.etEducator.id) {
+      if (currentEntity.type.id == servletContext.etEducator.id) {
         // get all activities of the facilities the current entity is linked to
         facilities.each { Entity facility ->
-          List activities = functionService.findAllByLink(facility, null, metaDataService.ltActFacility)
+          List activities = functionService.findAllByLink(facility, null, servletContext.ltActFacility)
 
           activities.each {Entity act ->
             // there are 2 types of activities, we only want theme room activities here
@@ -119,11 +119,11 @@ class ActivityProfileController {
         activityList = activityList.subList(params.offset, upperBound)
       }
       else {
-        /*Entity.findAllByType(metaDataService.etActivity).each {bla ->
+        /*Entity.findAllByType(servletContext.etActivity).each {bla ->
           if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1)
             activityList << bla*/
 
-        EntityType etActivity = metaDataService.etActivity
+        EntityType etActivity = servletContext.etActivity
         activityList = Entity.createCriteria().list {
           eq("type", etActivity)
           profile {
@@ -148,8 +148,8 @@ class ActivityProfileController {
               'dateSelected': inputDate]
     }
     return
-    /*return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
-            'activityCount': Entity.countByType(metaDataService.etActivity)]*/
+    /*return ['activityList': Entity.findAllByType(servletContext.etActivity, params),
+            'activityCount': Entity.countByType(servletContext.etActivity)]*/
   }
 
   /*
@@ -159,7 +159,7 @@ class ActivityProfileController {
     Entity activity = Entity.get(params.id)
     Entity entity = params.entity ? activity : entityHelperService.loggedIn
 
-    List clients = Entity.findAllByType(metaDataService.etClient)
+    List clients = Entity.findAllByType(servletContext.etClient)
 
     return ['activity': activity,
             'entity': entity,
@@ -180,7 +180,7 @@ class ActivityProfileController {
       return
     }
 
-    EntityType etActivity = metaDataService.etActivity
+    EntityType etActivity = servletContext.etActivity
 
     Entity template = Entity.get(params.template)
 
@@ -256,19 +256,19 @@ class ActivityProfileController {
         // create links to educators
         params.list('educators').each {
           Entity educator = Entity.get(it)
-          new Link(source: educator, target: entity, type: metaDataService.ltActEducator).save()
+          new Link(source: educator, target: entity, type: servletContext.ltActEducator).save()
         }
 
         // create links to resources
         params.list('resources').each {
-          new Link(source: Entity.get(it), target: entity, type: metaDataService.ltResource).save()
+          new Link(source: Entity.get(it), target: entity, type: servletContext.ltResource).save()
         }
 
         // create link to facility
-        new Link(source: Entity.get(params.int('facility')), target: entity, type: metaDataService.ltActFacility).save()
+        new Link(source: Entity.get(params.int('facility')), target: entity, type: servletContext.ltActFacility).save()
 
         // create link to template
-        new Link(source: template, target: entity, type: metaDataService.ltActTemplate).save()
+        new Link(source: template, target: entity, type: servletContext.ltActTemplate).save()
       }
 
       currentDate += 1
@@ -285,15 +285,15 @@ class ActivityProfileController {
 
     // get a list of facilities the current entity is working in
     def facilities = []
-    if (currentEntity.type.name == metaDataService.etEducator.name)
-      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+    if (currentEntity.type.name == servletContext.etEducator.name)
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, servletContext.ltWorking))
     else
-      facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
-    def educators = Entity.findAllByType(metaDataService.etEducator)
-    def clients = Entity.findAllByType(metaDataService.etClient)
+      facilities.addAll(Entity.findAllByType(servletContext.etFacility))
+    def educators = Entity.findAllByType(servletContext.etEducator)
+    def clients = Entity.findAllByType(servletContext.etClient)
 
-    List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
-    List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+    List currentEducators = functionService.findAllByLink(null, activity, servletContext.ltActEducator)
+    List currentClients = functionService.findAllByLink(null, activity, servletContext.ltActClient)
 
     return ['activity': activity,
             'facilities': facilities,
@@ -312,18 +312,18 @@ class ActivityProfileController {
     activity.profile.date = functionService.convertToUTC(activity.profile.date)
 
     // delete old links of educators and clients
-    Link.findAllByTargetAndType(activity, metaDataService.ltActEducator).each {it.delete()}
-    Link.findAllByTargetAndType(activity, metaDataService.ltActClient).each {it.delete()}
+    Link.findAllByTargetAndType(activity, servletContext.ltActEducator).each {it.delete()}
+    Link.findAllByTargetAndType(activity, servletContext.ltActClient).each {it.delete()}
 
     // create links to educators
     params.list('educators').each {
       Entity educator = Entity.get(it)
-      new Link(source: educator, target: activity, type: metaDataService.ltActEducator).save()
+      new Link(source: educator, target: activity, type: servletContext.ltActEducator).save()
     }
 
     params.list('clients').each {
       Entity client = Entity.get(it)
-      new Link(source: client, target: activity, type: metaDataService.ltActClient).save()
+      new Link(source: client, target: activity, type: servletContext.ltActClient).save()
     }
 
     if (activity.profile.save() && activity.save()) {
@@ -333,15 +333,15 @@ class ActivityProfileController {
     else {
       // get a list of facilities the current entity is working in
       def facilities = []
-      if (currentEntity.type.name == metaDataService.etEducator.name)
-        facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+      if (currentEntity.type.name == servletContext.etEducator.name)
+        facilities.addAll(functionService.findAllByLink(currentEntity, null, servletContext.ltWorking))
       else
-        facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
-      def educators = Entity.findAllByType(metaDataService.etEducator)
-      def clients = Entity.findAllByType(metaDataService.etClient)
+        facilities.addAll(Entity.findAllByType(servletContext.etFacility))
+      def educators = Entity.findAllByType(servletContext.etEducator)
+      def clients = Entity.findAllByType(servletContext.etClient)
 
-      List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
-      List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+      List currentEducators = functionService.findAllByLink(null, activity, servletContext.ltActEducator)
+      List currentClients = functionService.findAllByLink(null, activity, servletContext.ltActClient)
       render view: 'edit', model: ['activity': activity,
                                    'facilities': facilities,
                                    'educators': educators,
@@ -388,7 +388,7 @@ class ActivityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etTemplate)
+      eq('type', servletContext.etTemplate)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -426,7 +426,7 @@ class ActivityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etFacility)
+      eq('type', servletContext.etFacility)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -461,8 +461,8 @@ class ActivityProfileController {
     List educators = c.list {
       eq('target', facility)
       or {
-        eq('type', metaDataService.ltWorking)
-        eq('type', metaDataService.ltLeadEducator)
+        eq('type', servletContext.ltWorking)
+        eq('type', servletContext.ltLeadEducator)
       }
       projections {
         distinct('source')
