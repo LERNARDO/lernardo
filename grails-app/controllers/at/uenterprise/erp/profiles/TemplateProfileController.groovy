@@ -329,8 +329,7 @@ class TemplateProfileController {
 
     def numberOfAllTemplates = Entity.countByType(servletContext.etTemplate)
 
-    def c = Entity.createCriteria()
-    def allTemplates = c.list (max: 10000) {
+    def allTemplates = Entity.createCriteria().list  {
       eq('type', servletContext.etTemplate)
       if (params.name)
         or {

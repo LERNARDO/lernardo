@@ -311,8 +311,7 @@ class GroupActivityTemplateProfileController {
     def method3lower = params.list('method3lower')
     def method3upper = params.list('method3upper')
 
-    def c = Entity.createCriteria()
-    def allTemplates = c.list (max: 10000) {
+    def allTemplates = Entity.createCriteria().list {
       eq('type', servletContext.etTemplate)
       if (params.name)
         or {
