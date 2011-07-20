@@ -52,6 +52,52 @@ class BootStrap {
   def GrailsApplication
 
   def init = {servletContext ->
+    defaultObjectService.onEmptyDatabase {
+      metaDataService.initialize()
+
+      log.info "====="
+      Date begin = new Date()
+
+      createDefaultUsers()
+
+      if (GrailsUtil.environment == "development") {
+        //importChildren()
+        createSetup()
+        createDefaultOperator()
+        createDefaultFacilities()
+        createDefaultEducators()
+        //createDefaultLinks()
+        createDefaultTags()
+        createDefaultActivityTemplates()
+        //createDefaultActivities()
+        createDefaultPartner()
+        createDefaultColonies()
+        createDefaultParents()
+        createDefaultClients()
+        createDefaultChildren()
+        createDefaultPosts()
+        createDefaultPates()
+        //createDefaultAttendances()
+        createDefaultFamilies()
+        //createDefaultResources()
+        createDefaultMethods()
+        createDefaultClientGroups()
+        createDefaultActivityTemplateGroups()
+        createDefaultThemes()
+        createDefaultComments()
+        createDefaultProjectTemplates()
+        //createDefaultHelpers()
+        createDefaultWorkdayCategories()
+        //createDefaultWorkdayUnits()
+
+        createDefaultAppointments()
+        createDefaultGroupActivities()
+      }
+
+      //createDefaultEvaluations()
+      log.info "====="
+      log.info "created bootstrap data in ${(new Date().getTime() - begin.getTime()) / 1000} seconds"
+    }
 
     servletContext.etUser                   = metaDataService.etUser
     servletContext.etEducator               = metaDataService.etEducator
@@ -135,53 +181,6 @@ class BootStrap {
 
     servletContext.ltAbsent = metaDataService.ltAbsent
     servletContext.ltIll    = metaDataService.ltIll
-
-    defaultObjectService.onEmptyDatabase {
-      metaDataService.initialize()
-
-      log.info "====="
-      Date begin = new Date()
-
-      createDefaultUsers()
-
-      if (GrailsUtil.environment == "development") {
-        //importChildren()
-        createSetup()
-        createDefaultOperator()
-        createDefaultFacilities()
-        createDefaultEducators()
-        //createDefaultLinks()
-        createDefaultTags()
-        createDefaultActivityTemplates()
-        //createDefaultActivities()
-        createDefaultPartner()
-        createDefaultColonies()
-        createDefaultParents()
-        createDefaultClients()
-        createDefaultChildren()
-        createDefaultPosts()
-        createDefaultPates()
-        //createDefaultAttendances()
-        createDefaultFamilies()
-        //createDefaultResources()
-        createDefaultMethods()
-        createDefaultClientGroups()
-        createDefaultActivityTemplateGroups()
-        createDefaultThemes()
-        createDefaultComments()
-        createDefaultProjectTemplates()
-        //createDefaultHelpers()
-        createDefaultWorkdayCategories()
-        //createDefaultWorkdayUnits()
-
-        createDefaultAppointments()
-        createDefaultGroupActivities()
-      }
-
-      //createDefaultEvaluations()
-      log.info "====="
-      log.info "created bootstrap data in ${(new Date().getTime() - begin.getTime()) / 1000} seconds"
-    }
   }
 
   def destroy = {
