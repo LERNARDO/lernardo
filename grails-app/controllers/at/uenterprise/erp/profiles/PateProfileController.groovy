@@ -148,6 +148,7 @@ class PateProfileController {
 
   def save = {
     EntityType etPate = servletContext.etPate
+    if (!etPate.isAttached()) etPate.attach()
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etPate, params.email, params.lastName + " " + params.firstName) {Entity ent ->

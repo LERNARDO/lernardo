@@ -498,10 +498,7 @@ class GroupActivityTemplateProfileController {
 
   def templateHover = {
     Entity entity = Entity.get(params.id)
-
-    def resources = functionService.findAllByLink(null, entity, servletContext.ltResource)
-
-    render template: "hover", model: [entity: entity, resources: resources]
+    render template: "hover", model: [entity: entity]
   }
 
   /*

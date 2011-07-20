@@ -9,6 +9,11 @@
             type: 'GET',
             data: {id : $(this).attr('data-idd')}
           }
+        },
+        position: {
+          my: 'left center',  // Position my top left...
+          at: 'right center', // at the bottom right of...
+          target: $(this) // my target
         }
       });
     });
