@@ -74,7 +74,7 @@
 
     <g:if test="${totalMessages > 0}">
       <div class="paginateButtons">
-        <g:paginate total="${totalMessages}"/>
+        <g:paginate total="${totalMessages}" params="[id: entity.id]"/>
       </div>
     </g:if>
 
