@@ -292,7 +292,11 @@ class ProjectTemplateProfileController {
       new Link(source: projectUnitTemplate, target: projectTemplate, type: metaDataService.ltProjectUnitTemplate).save()
 
       // find all projectUnitTemplates of this projectTemplate
-      List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)
+      /*List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)*/
+      List projectUnitTemplates = []
+      projectTemplate.profile.templates.each {
+        projectUnitTemplates.add(Entity.get(it.toInteger()))
+      }
 
       List allGroupActivityTemplates = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
 
@@ -602,7 +606,7 @@ class ProjectTemplateProfileController {
     // find all projectUnitTemplates linked to this projectTemplate
     List projectUnitTemplates = []
     projectTemplate.profile.templates.each {
-      projectUnitTemplates.add(Entity.get(it))
+      projectUnitTemplates.add(Entity.get(it.toInteger()))
     }
 
     // get all resources of all templates
