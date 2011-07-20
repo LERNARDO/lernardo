@@ -56,7 +56,7 @@ class MsgController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
+    int totalMessages = Msg.countByEntityAndSender(entity, entity)
 
     return [messages: messages,
             totalMessages: totalMessages,
