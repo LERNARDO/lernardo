@@ -288,7 +288,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray">Es ist maximal eine Schulleistung pro Tag erstellbar!</span></td>
             </tr>
           </table>
         </g:formRemote>

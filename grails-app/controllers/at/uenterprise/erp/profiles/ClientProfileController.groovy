@@ -336,7 +336,6 @@ class ClientProfileController {
 
   def addPerformance = {
     Performances performance = new Performances(params)
-    //performance.date = functionService.convertToUTC(performance.date)
     Entity client = Entity.get(params.id)
     client.profile.addToPerformances(performance)
     render template: 'performances', model: [client: client, currentEntity: entityHelperService.loggedIn]
@@ -350,7 +349,6 @@ class ClientProfileController {
 
   def addHealth = {
     Healths health = new Healths(params)
-    // health.date = functionService.convertToUTC(health.date)
     Entity client = Entity.get(params.id)
     client.profile.addToHealths(health)
     render template: 'healths', model: [client: client, currentEntity: entityHelperService.loggedIn]
