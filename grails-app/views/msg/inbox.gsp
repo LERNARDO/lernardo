@@ -37,44 +37,30 @@
         <g:message code="msg.inbox.emptyMsg"/>
       </div>
     </g:if>
-    <g:each in="${messages}" status="i" var="message">
-      <div id="messagebox${i}">
-        <div class="messagebox" style="${!message.read ? 'background: #fdd; border: 1px solid #dbb' : ''}">
-          <table>
-            <tr>
-              <td style="padding-right: 10px;">
-                <erp:isEnabled entity="${message.sender}">
-                  <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}"  params="[entity:message.sender.id]">
-                    <erp:profileImage entity="${message.sender}" width="50" height="50" align="left"/>
-                  </g:link>
-                </erp:isEnabled>
-              </td>
-              <td style="padding-right: 10px;">
-                <g:if test="${!message.read}"><div class="new"><g:message code="msg.inbox.newMsg"/></div></g:if>
-                <div class="name">
-                  <span class="bold"><g:message code="msg.from"/>:</span>
-                  <erp:isEnabled entity="${message.sender}">
-                    <g:link controller="${message.sender.type.supertype.name +'Profile'}" action="show" id="${message.sender.id}" params="[entity:message.sender.id]">${message.sender.profile.fullName}</g:link>
-                  </erp:isEnabled>
-                  <erp:notEnabled entity="${message.sender}">
-                    <span class="notEnabled">${message.sender.profile.fullName}</span>
-                  </erp:notEnabled>
-                </div>
-                <div class="date"><span class="bold"><g:message code="date"/>:</span> <g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></div>
-              </td>
-              <td>
-                <div class="subject-text"><span class="bold"><g:message code="msg.subject"/>:</span> ${message.subject.decodeHTML()}</div>
-                <g:link class="buttonGreen" action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']"><g:message code="msg.show"/></g:link>
-                <g:remoteLink class="buttonRed" action="del" update="messagebox${i}" id="${message.id}" before="if(!confirm('Nachricht wirklich löschen?')) return false"><g:message code="delete"/></g:remoteLink>
+    <g:else>
+      <table class="default-table">
+        <thead>
+          <tr>
+            <g:sortableColumn property="sender" title="${message(code:'msg.from')}"/>
+            <g:sortableColumn property="subject" title="${message(code:'msg.subject')}"/>
+            <g:sortableColumn property="dateCreated" title="${message(code:'date')}"/>
+          </tr>
+        </thead>
+        <tbody>
+          <g:each in="${messages}" status="i" var="message">
+            <tr class="${(i % 2) == 0 ? 'odd' : 'even'}" style="${!message.read ? 'background: #dfd' : ''}">
+              <td><g:if test="${!message.read}"><img src="${g.resource(dir: 'images/icons', file: 'icon_new.png')}" alt="new" valign="top"/></g:if> ${message.receiver.profile.fullName.decodeHTML()}</td>
+              <td><g:link action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']">${message.subject.decodeHTML()}</g:link></td>
+              <td><g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             </tr>
-          </table>
-        </div>
-      </div>
-    </g:each>
+          </g:each>
+        </tbody>
+      </table>
+    </g:else>
 
     <g:if test="${totalMessages > 0}">
       <div class="paginateButtons">
-        <g:paginate total="${totalMessages}"/>
+        <g:paginate total="${totalMessages}" id="${entity.id}"/>
       </div>
     </g:if>
 

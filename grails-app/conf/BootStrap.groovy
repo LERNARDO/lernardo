@@ -92,6 +92,7 @@ class BootStrap {
 
         createDefaultAppointments()
         createDefaultGroupActivities()
+        createDefaultMessages()
       }
 
       //createDefaultEvaluations()
@@ -1022,6 +1023,18 @@ class BootStrap {
       new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltGroupMemberEducator).save(failOnError: true)
     }
 
+  }
+
+  void createDefaultMessages() {
+    log.info ("creating " + (grailsApplication.config.dummies * 5) + " messages")
+
+    Entity first = Entity.findByName("admin")
+    Entity second = Entity.findByName("educator1")
+
+    for ( i in 1..(grailsApplication.config.dummies * 5) ) {
+      functionService.createMessage(first, second, first, "subject${i}", "content", true)
+      functionService.createMessage(first, second, second, "subject${i}", "content")
+    }
   }
 
 
