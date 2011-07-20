@@ -280,7 +280,7 @@ class ProjectTemplateProfileController {
 
     try {
       // create projectUnitTemplate
-      EntityType etProjectUnitTemplate = servletContext.etProjectUnitTemplate
+      EntityType etProjectUnitTemplate = metaDataService.etProjectUnitTemplate
       Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
