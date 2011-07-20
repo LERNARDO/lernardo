@@ -99,7 +99,7 @@ class BootStrap {
       log.info "created bootstrap data in ${(new Date().getTime() - begin.getTime()) / 1000} seconds"
     }
 
-    servletContext.etUser                   = metaDataService.etUser
+    /*servletContext.etUser                   = metaDataService.etUser
     servletContext.etEducator               = metaDataService.etEducator
     servletContext.etClient                 = metaDataService.etClient
     servletContext.etChild                  = metaDataService.etChild
@@ -180,7 +180,7 @@ class BootStrap {
     servletContext.ltActParent   = metaDataService.ltActParent
 
     servletContext.ltAbsent = metaDataService.ltAbsent
-    servletContext.ltIll    = metaDataService.ltIll
+    servletContext.ltIll    = metaDataService.ltIll*/
   }
 
   def destroy = {

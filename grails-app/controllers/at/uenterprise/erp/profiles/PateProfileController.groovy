@@ -32,7 +32,7 @@ class PateProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etPate = servletContext.etPate
+    EntityType etPate = metaDataService.etPate
     def pates = Entity.createCriteria().list {
       eq("type", etPate)
       profile {
@@ -57,9 +57,9 @@ class PateProfileController {
       return
     }
 
-    List godchildren = functionService.findAllByLink(null, pate, servletContext.ltPate)
+    List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
 
-    return [pate: pate, entity: entity, allChildren: Entity.findAllByType(servletContext.etClient), godchildren: godchildren]
+    return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
 
   }
 
@@ -67,7 +67,7 @@ class PateProfileController {
     Entity pate = Entity.get(params.id)
     if (pate) {
       // delete all links to this entity
-      Link.findAllByTargetAndType(pate, servletContext.ltPate).each {it.delete()}
+      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
       Msg.findAllBySenderOrReceiver(pate, pate).each {it.delete()}
       Publication.findAllByEntity(pate).each {it.delete()}
       Evaluation.findByOwnerOrWriter(pate, pate).each {it.delete()}
@@ -76,12 +76,12 @@ class PateProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", servletContext.etActivity)
-                eq("type", servletContext.etGroupActivity)
-                eq("type", servletContext.etGroupActivityTemplate)
-                eq("type", servletContext.etProject)
-                eq("type", servletContext.etProjectTemplate)
-                eq("type", servletContext.etTemplate)
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -117,7 +117,7 @@ class PateProfileController {
       return
     }
 
-    return [pate: pate, clients: Entity.findAllByType(servletContext.etClient)]
+    return [pate: pate, clients: Entity.findAllByType(metaDataService.etClient)]
     
   }
 
@@ -143,11 +143,11 @@ class PateProfileController {
   }
 
   def create = {
-    return [clients: Entity.findAllByType(servletContext.etClient)]
+    return [clients: Entity.findAllByType(metaDataService.etClient)]
   }
 
   def save = {
-    EntityType etPate = servletContext.etPate
+    EntityType etPate = metaDataService.etPate
     if (!etPate.isAttached()) etPate.attach()
 
     try {
@@ -162,13 +162,13 @@ class PateProfileController {
       flash.message = message(code: "pate.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(servletContext.etClient)])
+      render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient)])
     }
 
   }
 
   def addGodchildren = {
-    def linking = functionService.linkEntities(params.child, params.id, servletContext.ltPate)
+    def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltPate)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -176,7 +176,7 @@ class PateProfileController {
   }
 
   def removeGodchildren = {
-    def breaking = functionService.breakEntities(params.child, params.id, servletContext.ltPate)
+    def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltPate)
     render template:'godchildren', model: [godchildren: breaking.results, pate: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -191,7 +191,7 @@ class PateProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etClient)
+      eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
         profile {

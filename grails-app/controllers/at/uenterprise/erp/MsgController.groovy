@@ -75,7 +75,7 @@ class MsgController {
     // flag message as read
     if (!message.read)
       // if viewed by an admin or operator ..
-      if (entityHelperService.loggedIn.type.name == servletContext.etOperator.name || secHelperService.isAdmin())
+      if (entityHelperService.loggedIn.type.name == metaDataService.etOperator.name || secHelperService.isAdmin())
       {
         // .. and it's one of their own messages
         if (message.entity.id == entityHelperService.loggedIn.id)
@@ -213,14 +213,14 @@ class MsgController {
     def c = Entity.createCriteria()
     def results = c.list {
       or {
-        eq('type', servletContext.etClient)
-        eq('type', servletContext.etEducator)
-        eq('type', servletContext.etChild)
-        eq('type', servletContext.etParent)
-        eq('type', servletContext.etPartner)
-        eq('type', servletContext.etPate)
-        eq('type', servletContext.etOperator)
-        eq('type', servletContext.etUser)
+        eq('type', metaDataService.etClient)
+        eq('type', metaDataService.etEducator)
+        eq('type', metaDataService.etChild)
+        eq('type', metaDataService.etParent)
+        eq('type', metaDataService.etPartner)
+        eq('type', metaDataService.etPate)
+        eq('type', metaDataService.etOperator)
+        eq('type', metaDataService.etUser)
       }
       or {
         ilike('name', "%" + params.value + "%")

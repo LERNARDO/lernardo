@@ -36,7 +36,7 @@ class EducatorProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etEducator = servletContext.etEducator
+    EntityType etEducator = metaDataService.etEducator
     def educators = Entity.createCriteria().list {
       eq("type", etEducator)
       profile {
@@ -62,10 +62,10 @@ class EducatorProfileController {
     }
 
     // find if this educator was enlisted
-    Entity enlistedBy = functionService.findByLink(educator, null, servletContext.ltEnlisted)
+    Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
     // find colonia of this educator
-    //Entity colony = functionService.findByLink(educator, null, servletContext.ltGroupMemberEducator)
+    //Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
 
     return [/*colony: colony,*/
             educator: educator,
@@ -87,12 +87,12 @@ class EducatorProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", servletContext.etActivity)
-                eq("type", servletContext.etGroupActivity)
-                eq("type", servletContext.etGroupActivityTemplate)
-                eq("type", servletContext.etProject)
-                eq("type", servletContext.etProjectTemplate)
-                eq("type", servletContext.etTemplate)
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -130,9 +130,9 @@ class EducatorProfileController {
     }
 
     // find if this educator was enlisted
-    Entity enlistedBy = functionService.findByLink(educator, null, servletContext.ltEnlisted)
+    Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator, partner: Entity.findAllByType(servletContext.etPartner), enlistedBy: enlistedBy, entity: entity]
+    return [educator: educator, partner: Entity.findAllByType(metaDataService.etPartner), enlistedBy: enlistedBy, entity: entity]
 
   }
 
@@ -158,9 +158,9 @@ class EducatorProfileController {
     if (educator.profile.save() && educator.user.save() && educator.save()) {
 
       // create link to partner
-      Link.findAllBySourceAndType(educator, servletContext.ltEnlisted).each {it.delete()}
+      Link.findAllBySourceAndType(educator, metaDataService.ltEnlisted).each {it.delete()}
       if (params.enlisted) {
-        new Link(source: educator, target: Entity.get(params.enlisted), type: servletContext.ltEnlisted).save()
+        new Link(source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
       }
 
       /*// delete current link
@@ -168,29 +168,29 @@ class EducatorProfileController {
       def link = c.get {
         eq('source', educator)
         eq('target', Entity.get(params.colonia))
-        eq('type', servletContext.ltGroupMemberEducator)
+        eq('type', metaDataService.ltGroupMemberEducator)
       }
       if (link)
         link.delete()
 
       // link educator to colonia
-      new Link(source: educator, target: Entity.get(params.colonia), type: servletContext.ltGroupMemberEducator).save()*/
+      new Link(source: educator, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()*/
 
       flash.message = message(code: "educator.updated", args: [educator.profile.fullName])
       redirect action: 'show', id: educator.id, params: [entity: educator.id]
     }
     else {
-      render view: 'edit', model: [educator: educator, entity: educator, allColonias: Entity.findAllByType(servletContext.etGroupColony)]
+      render view: 'edit', model: [educator: educator, entity: educator, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
   def create = {
-    return [partner: Entity.findAllByType(servletContext.etPartner),
-            /*allColonias: Entity.findAllByType(servletContext.etGroupColony)*/]
+    return [partner: Entity.findAllByType(metaDataService.etPartner),
+            /*allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
   }
 
   def save = {
-    EntityType etEducator = servletContext.etEducator
+    EntityType etEducator = metaDataService.etEducator
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etEducator, params.email, params.lastName + " " + params.firstName) {Entity ent ->
@@ -207,18 +207,18 @@ class EducatorProfileController {
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
       // create link to partner
-      Link.findAllBySourceAndType(entity, servletContext.ltEnlisted).each {it.delete()}
+      Link.findAllBySourceAndType(entity, metaDataService.ltEnlisted).each {it.delete()}
       if (params.enlisted) {
-        new Link(source: entity, target: Entity.get(params.enlisted), type: servletContext.ltEnlisted).save()
+        new Link(source: entity, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
       }
 
       // link educator to colonia
-      //new Link(source: entity, target: Entity.get(params.colonia), type: servletContext.ltGroupMemberEducator).save()
+      //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
       flash.message = message(code: "educator.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(servletContext.etPartner), allColonias: Entity.findAllByType(servletContext.etGroupColony)])
+      render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
     }
 
   }
@@ -239,13 +239,13 @@ class EducatorProfileController {
   }
 
   def times = {
-    List educators = Entity.findAllByType(servletContext.etEducator)
+    List educators = Entity.findAllByType(metaDataService.etEducator)
     List workdaycategories = WorkdayCategory.list()
     return [educators: educators, workdaycategories: workdaycategories]
   }
 
   def showresult = {
-    List educators = Entity.findAllByType(servletContext.etEducator)
+    List educators = Entity.findAllByType(metaDataService.etEducator)
     List workdaycategories = WorkdayCategory.list()
     render template: 'results', model:[educators: educators, workdaycategories: workdaycategories, date1: params.date1, date2: params.date2, entity: entityHelperService.loggedIn]
   }
@@ -253,14 +253,14 @@ class EducatorProfileController {
   def createpdf = {
     Date date1 = Date.parse("dd. MM. yy", params.date1)
     Date date2 = Date.parse("dd. MM. yy", params.date2)
-    List educators = Entity.findAllByType(servletContext.etEducator)
+    List educators = Entity.findAllByType(metaDataService.etEducator)
     List workdaycategories = WorkdayCategory.list()
     Entity currentEntity = entityHelperService.loggedIn
     renderPdf template: 'createpdf', model: [educators: educators, workdaycategories: workdaycategories, entity: currentEntity, date1: params.date1, date2: params.date2], filename: 'Zeitauswertung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy")
   }
 
   def workhours = {
-    List educators = Entity.findAllByType(servletContext.etEducator)
+    List educators = Entity.findAllByType(metaDataService.etEducator)
     return [educators: educators]
   }
 

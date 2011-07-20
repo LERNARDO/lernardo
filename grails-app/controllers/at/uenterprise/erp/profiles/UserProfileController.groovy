@@ -32,7 +32,7 @@ class UserProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etUser = servletContext.etUser
+    EntityType etUser = metaDataService.etUser
     def users = Entity.createCriteria().list {
       eq("type", etUser)
       profile {
@@ -74,12 +74,12 @@ class UserProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", servletContext.etActivity)
-                eq("type", servletContext.etGroupActivity)
-                eq("type", servletContext.etGroupActivityTemplate)
-                eq("type", servletContext.etProject)
-                eq("type", servletContext.etProjectTemplate)
-                eq("type", servletContext.etTemplate)
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -142,7 +142,7 @@ class UserProfileController {
   def create = {}
 
   def save = {
-    EntityType etUser = servletContext.etUser
+    EntityType etUser = metaDataService.etUser
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName, params.lastName), etUser, params.email, params.lastName + " " + params.firstName) {Entity ent ->

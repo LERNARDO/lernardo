@@ -37,7 +37,7 @@ class ThemeProfileController {
 
     /*def c = Entity.createCriteria()
     def themes = c.list {
-      eq("type", servletContext.etTheme)
+      eq("type", metaDataService.etTheme)
       profile {
         order(params.sort, params.order)
       }
@@ -46,20 +46,20 @@ class ThemeProfileController {
     }*/
 
     Entity currentEntity = entityHelperService.loggedIn
-    List facilities = functionService.findAllByLink(currentEntity, null, servletContext.ltLeadEducator)
+    List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
 
-    List allThemes = Entity.findAllByType(servletContext.etTheme)
+    List allThemes = Entity.findAllByType(metaDataService.etTheme)
     List themes = []
 
     allThemes.each { theme ->
       // search for parent
-      def result = functionService.findByLink(theme, null, servletContext.ltSubTheme)
+      def result = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
       if (!result)
         themes << theme
     }
 
     return [themes: themes,
-            themeTotal: themes.size() /*Entity.countByType(servletContext.etTheme)*/,
+            themeTotal: themes.size() /*Entity.countByType(metaDataService.etTheme)*/,
             facilities: facilities]
   }
 
@@ -74,22 +74,22 @@ class ThemeProfileController {
     }
     else {
       // find all projects which are within the theme duration
-      List allProjects = Entity.findAllByType(servletContext.etProject).findAll {it.profile.startDate >= theme.profile.startDate && it.profile.endDate <= theme.profile.endDate}
+      List allProjects = Entity.findAllByType(metaDataService.etProject).findAll {it.profile.startDate >= theme.profile.startDate && it.profile.endDate <= theme.profile.endDate}
 
       // find all projects currently linked to this theme
-      List projects = functionService.findAllByLink(null, theme, servletContext.ltGroupMember)
+      List projects = functionService.findAllByLink(null, theme, metaDataService.ltGroupMember)
 
       // find all activity groups which are within the theme duration
-      List allActivityGroups = Entity.findAllByType(servletContext.etGroupActivity).findAll {it.profile.date >= theme.profile.startDate && it.profile.date <= theme.profile.endDate}
+      List allActivityGroups = Entity.findAllByType(metaDataService.etGroupActivity).findAll {it.profile.date >= theme.profile.startDate && it.profile.date <= theme.profile.endDate}
 
       // find all activity groups currently linked to this theme
-      List activitygroups = functionService.findAllByLink(null, theme, servletContext.ltGroupMemberActivityGroup)
+      List activitygroups = functionService.findAllByLink(null, theme, metaDataService.ltGroupMemberActivityGroup)
 
       // find the facility linked to this theme
-      Entity facility = functionService.findByLink(theme, null, servletContext.ltThemeOfFacility)
+      Entity facility = functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)
 
       // find parent theme linked to this theme (if any)
-      Entity parenttheme = functionService.findByLink(theme, null, servletContext.ltSubTheme)
+      Entity parenttheme = functionService.findByLink(theme, null, metaDataService.ltSubTheme)
 
       [theme: theme,
        allProjects: allProjects,
@@ -146,7 +146,7 @@ class ThemeProfileController {
         toCheck.addAll(temp)
         temp = []
         toCheck.each { current ->
-          List subthemes = functionService.findAllByLink(null, current, servletContext.ltSubTheme)
+          List subthemes = functionService.findAllByLink(null, current, metaDataService.ltSubTheme)
           if (subthemes) {
             excludedThemes.addAll(subthemes)
             temp.addAll(subthemes)
@@ -155,7 +155,7 @@ class ThemeProfileController {
       }
 
       // get all themes
-      List allThemes = Entity.findAllByType(servletContext.etTheme)
+      List allThemes = Entity.findAllByType(metaDataService.etTheme)
 
       // remove all themes that are excluded
       excludedThemes.each {
@@ -164,10 +164,10 @@ class ThemeProfileController {
       }
 
       [theme: theme,
-       allFacilities: Entity.findAllByType(servletContext.etFacility),
+       allFacilities: Entity.findAllByType(metaDataService.etFacility),
        allThemes: allThemes,
-       parenttheme: functionService.findByLink(theme, null, servletContext.ltSubTheme),
-       facility: functionService.findByLink(theme, null, servletContext.ltThemeOfFacility)]
+       parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme),
+       facility: functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)]
     }
   }
 
@@ -181,17 +181,17 @@ class ThemeProfileController {
     if (theme.profile.save() && theme.save()) {
 
       // delete current link to facility
-      Link.findBySourceAndType(theme, servletContext.ltThemeOfFacility)?.delete()
+      Link.findBySourceAndType(theme, metaDataService.ltThemeOfFacility)?.delete()
 
       // link theme to facility
-      functionService.linkEntities(theme.id.toString(), params.facility, servletContext.ltThemeOfFacility)
+      functionService.linkEntities(theme.id.toString(), params.facility, metaDataService.ltThemeOfFacility)
 
       // delete current link to parent theme if any
-      Link.findBySourceAndType(theme, servletContext.ltSubTheme)?.delete()
+      Link.findBySourceAndType(theme, metaDataService.ltSubTheme)?.delete()
 
       // link theme to new parent if any
       if (params.parenttheme != "null")
-        functionService.linkEntities(theme.id.toString(), params.parenttheme, servletContext.ltSubTheme)
+        functionService.linkEntities(theme.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
       flash.message = message(code: "theme.updated", args: [theme.profile.fullName])
       redirect action: 'show', id: theme.id
@@ -210,7 +210,7 @@ class ThemeProfileController {
         toCheck.addAll(temp)
         temp = []
         toCheck.each { current ->
-          List subthemes = functionService.findAllByLink(null, current, servletContext.ltSubTheme)
+          List subthemes = functionService.findAllByLink(null, current, metaDataService.ltSubTheme)
           if (subthemes) {
             excludedThemes.addAll(subthemes)
             temp.addAll(subthemes)
@@ -219,7 +219,7 @@ class ThemeProfileController {
       }
 
       // get all themes
-      List allThemes = Entity.findAllByType(servletContext.etTheme)
+      List allThemes = Entity.findAllByType(metaDataService.etTheme)
 
       // remove all themes that are excluded
       excludedThemes.each {
@@ -228,10 +228,10 @@ class ThemeProfileController {
       }
 
       render view: 'edit', model: [theme: theme,
-                                   allFacilities: Entity.findAllByType(servletContext.etFacility),
+                                   allFacilities: Entity.findAllByType(metaDataService.etFacility),
                                    allThemes: allThemes,
-                                   parenttheme: functionService.findByLink(theme, null, servletContext.ltSubTheme),
-                                   facility: functionService.findByLink(theme, null, servletContext.ltThemeOfFacility)]
+                                   parenttheme: functionService.findByLink(theme, null, metaDataService.ltSubTheme),
+                                   facility: functionService.findByLink(theme, null, metaDataService.ltThemeOfFacility)]
     }
   }
 
@@ -242,17 +242,17 @@ class ThemeProfileController {
     List allFacilities
 
     // if the current entity is an educator only return facilities he is linked to, else all facilities
-    if (currentEntity.type.id == servletContext.etEducator.id)
-      allFacilities = functionService.findAllByLink(currentEntity, null, servletContext.ltLeadEducator)
+    if (currentEntity.type.id == metaDataService.etEducator.id)
+      allFacilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
     else
-      allFacilities = Entity.findAllByType(servletContext.etFacility)
+      allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
     return [allFacilities: allFacilities,
-            allThemes: Entity.findAllByType(servletContext.etTheme)]
+            allThemes: Entity.findAllByType(metaDataService.etTheme)]
   }
 
   def save = {
-    EntityType etTheme = servletContext.etTheme
+    EntityType etTheme = metaDataService.etTheme
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -265,27 +265,27 @@ class ThemeProfileController {
       }
 
       // link theme to facility
-      new Link(source: entity, target: Entity.get(params.facility), type: servletContext.ltThemeOfFacility).save()
+      new Link(source: entity, target: Entity.get(params.facility), type: metaDataService.ltThemeOfFacility).save()
 
       // link theme to parent theme if one was selected
       if (params.parenttheme != "null")
-        functionService.linkEntities(entity.id.toString(), params.parenttheme, servletContext.ltSubTheme)
+        functionService.linkEntities(entity.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
       functionService.createEvent("THEME_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
-      new Link(source: currentEntity, target: entity, type: servletContext.ltCreator).save()
+      new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
       flash.message = message(code: "theme.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(servletContext.etFacility)])
+      render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)])
     }
 
   }
 
   def addProject = {
-    def linking = functionService.linkEntities(params.project, params.id, servletContext.ltGroupMember)
+    def linking = functionService.linkEntities(params.project, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -293,12 +293,12 @@ class ThemeProfileController {
   }
 
   def removeProject = {
-    def breaking = functionService.breakEntities(params.project, params.id, servletContext.ltGroupMember)
+    def breaking = functionService.breakEntities(params.project, params.id, metaDataService.ltGroupMember)
     render template: 'projects', model: [projects: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addActivityGroup = {
-    def linking = functionService.linkEntities(params.activitygroup, params.id, servletContext.ltGroupMemberActivityGroup)
+    def linking = functionService.linkEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -306,7 +306,7 @@ class ThemeProfileController {
   }
 
   def removeActivityGroup = {
-    def breaking = functionService.breakEntities(params.activitygroup, params.id, servletContext.ltGroupMemberActivityGroup)
+    def breaking = functionService.breakEntities(params.activitygroup, params.id, metaDataService.ltGroupMemberActivityGroup)
     render template: 'activitygroups', model: [activitygroups: breaking.results, theme: breaking.target, entity: entityHelperService.loggedIn]
   }
 }

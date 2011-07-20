@@ -33,7 +33,7 @@ class ParentProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etParent = servletContext.etParent
+    EntityType etParent = metaDataService.etParent
     def parents = Entity.createCriteria().list {
       eq("type", etParent)
       profile {
@@ -59,7 +59,7 @@ class ParentProfileController {
     }
 
     // find family of the parent if there is one
-    Entity family = functionService.findByLink(parent, null, servletContext.ltGroupMemberParent)
+    Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
 
     return [parent: parent, entity: entity, family: family]
 
@@ -78,12 +78,12 @@ class ParentProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", servletContext.etActivity)
-                eq("type", servletContext.etGroupActivity)
-                eq("type", servletContext.etGroupActivityTemplate)
-                eq("type", servletContext.etProject)
-                eq("type", servletContext.etProjectTemplate)
-                eq("type", servletContext.etTemplate)
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -167,7 +167,7 @@ class ParentProfileController {
   def create = {}
 
   def save = {
-    EntityType etParent = servletContext.etParent
+    EntityType etParent = metaDataService.etParent
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.firstName,params.lastName), etParent, params.email, params.lastName + " " + params.firstName) {Entity ent ->

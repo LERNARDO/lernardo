@@ -32,7 +32,7 @@ class OperatorProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etOperator = servletContext.etOperator
+    EntityType etOperator = metaDataService.etOperator
     def operators = Entity.createCriteria().list {
       eq("type", etOperator)
       profile {
@@ -57,9 +57,9 @@ class OperatorProfileController {
       return
     }
 
-    def allFacilities = Entity.findAllByType(servletContext.etFacility)
+    def allFacilities = Entity.findAllByType(metaDataService.etFacility)
     // find all facilities of this operator
-    List facilities = functionService.findAllByLink(null, entity, servletContext.ltOperation)
+    List facilities = functionService.findAllByLink(null, entity, metaDataService.ltOperation)
 
     return [operator: operator, entity: entity, facilities: facilities, allFacilities: allFacilities]
 
@@ -78,12 +78,12 @@ class OperatorProfileController {
           def c = Entity.createCriteria()
           List entities = c.list {
               or {
-                eq("type", servletContext.etActivity)
-                eq("type", servletContext.etGroupActivity)
-                eq("type", servletContext.etGroupActivityTemplate)
-                eq("type", servletContext.etProject)
-                eq("type", servletContext.etProjectTemplate)
-                eq("type", servletContext.etTemplate)
+                eq("type", metaDataService.etActivity)
+                eq("type", metaDataService.etGroupActivity)
+                eq("type", metaDataService.etGroupActivityTemplate)
+                eq("type", metaDataService.etProject)
+                eq("type", metaDataService.etProjectTemplate)
+                eq("type", metaDataService.etTemplate)
               }
           }
           entities.each { Entity entity ->
@@ -146,7 +146,7 @@ class OperatorProfileController {
   def create = {}
 
   def save = {
-    EntityType etOperator = servletContext.etOperator
+    EntityType etOperator = metaDataService.etOperator
 
     try {
       Entity entity = entityHelperService.createEntityWithUserAndProfile(functionService.createNick(params.fullName), etOperator, params.email, params.fullName) {Entity ent ->
@@ -166,7 +166,7 @@ class OperatorProfileController {
   }
 
   def addFacility = {
-    def linking = functionService.linkEntities(params.facility, params.id, servletContext.ltOperation)
+    def linking = functionService.linkEntities(params.facility, params.id, metaDataService.ltOperation)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
@@ -174,7 +174,7 @@ class OperatorProfileController {
   }
 
   def removeFacility = {
-    def breaking = functionService.breakEntities(params.facility, params.id, servletContext.ltOperation)
+    def breaking = functionService.breakEntities(params.facility, params.id, metaDataService.ltOperation)
     render template: 'facilities', model: [facilities: breaking.results, operator: breaking.target, entity: entityHelperService.loggedIn]
   }
 }

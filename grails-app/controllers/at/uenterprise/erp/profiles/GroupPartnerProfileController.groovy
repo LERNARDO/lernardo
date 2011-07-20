@@ -28,7 +28,7 @@ class GroupPartnerProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etGroupPartner = servletContext.etGroupPartner
+    EntityType etGroupPartner = metaDataService.etGroupPartner
     def groupPartners = Entity.createCriteria().list {
       eq("type", etGroupPartner)
       profile {
@@ -53,9 +53,9 @@ class GroupPartnerProfileController {
       return
     }
 
-    def allPartners = Entity.findAllByType(servletContext.etPartner)
+    def allPartners = Entity.findAllByType(metaDataService.etPartner)
     // find all partners linked to this group
-    List partners = functionService.findAllByLink(null, group, servletContext.ltGroupMember)
+    List partners = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
 
     return [group: group,
             entity: entity,
@@ -114,11 +114,11 @@ class GroupPartnerProfileController {
   }
 
   def create = {
-    return [templates: Entity.findAllByType(servletContext.etTemplate)]
+    return [templates: Entity.findAllByType(metaDataService.etTemplate)]
   }
 
   def save = {
-    EntityType etGroupPartner = servletContext.etGroupPartner
+    EntityType etGroupPartner = metaDataService.etGroupPartner
 
     try {
       Entity entity = entityHelperService.createEntity("group", etGroupPartner) {Entity ent ->
@@ -135,7 +135,7 @@ class GroupPartnerProfileController {
   }
 
   def addPartner = {
-    def linking = functionService.linkEntities(params.partner, params.id, servletContext.ltGroupMember)
+    def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -143,7 +143,7 @@ class GroupPartnerProfileController {
   }
 
   def removePartner = {
-    def breaking = functionService.breakEntities(params.partner, params.id, servletContext.ltGroupMember)
+    def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltGroupMember)
     render template: 'partners', model: [partners: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 

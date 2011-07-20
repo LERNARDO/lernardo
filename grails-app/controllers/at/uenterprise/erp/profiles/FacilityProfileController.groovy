@@ -33,7 +33,7 @@ class FacilityProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etFacility = servletContext.etFacility
+    EntityType etFacility = metaDataService.etFacility
     def facilities = Entity.createCriteria().list {
       eq("type", etFacility)
       profile {
@@ -59,21 +59,21 @@ class FacilityProfileController {
     }
 
     // find all resources of this facility
-    List resources = functionService.findAllByLink(null, facility, servletContext.ltResource)
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
-    def allEducators = Entity.findAllByType(servletContext.etEducator)
+    def allEducators = Entity.findAllByType(metaDataService.etEducator)
     // find all educators of this facility
-    List educators = functionService.findAllByLink(null, facility, servletContext.ltWorking)
+    List educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
 
     // find lead educators
-    List leadEducators = functionService.findAllByLink(null, facility, servletContext.ltLeadEducator)
+    List leadEducators = functionService.findAllByLink(null, facility, metaDataService.ltLeadEducator)
 
-    def allClientGroups = Entity.findAllByType(servletContext.etGroupClient)
+    def allClientGroups = Entity.findAllByType(metaDataService.etGroupClient)
     // find all clients linked to the facility
-    List clients = functionService.findAllByLink(null, facility, servletContext.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     // find colony of this facility
-    Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
     return [facility: facility,
             entity: entity,
@@ -123,9 +123,9 @@ class FacilityProfileController {
     }
 
     // find colonia of this facility
-    Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+    Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
-    return [facility: facility, colony: colony, allColonias: Entity.findAllByType(servletContext.etGroupColony)]
+    return [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     
   }
 
@@ -137,28 +137,28 @@ class FacilityProfileController {
     if (facility.profile.save() && facility.save()) {
 
       // delete previously linked colonia
-      Link.findBySourceAndType(facility, servletContext.ltGroupMemberFacility)?.delete()
+      Link.findBySourceAndType(facility, metaDataService.ltGroupMemberFacility)?.delete()
 
       // link new colonia to facility
-      new Link(source: facility, target: Entity.get(params.colonia), type: servletContext.ltGroupMemberFacility).save()
+      new Link(source: facility, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.updated", args: [facility.profile.fullName])
       redirect action: 'show', id: facility.id, params: [entity: facility.id]
     }
     else {
       // find colonia of this facility
-      Entity colony = functionService.findByLink(facility, null, servletContext.ltGroupMemberFacility)
+      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
 
-      render view: 'edit', model: [facility: facility, colony: colony, allColonias: Entity.findAllByType(servletContext.etGroupColony)]
+      render view: 'edit', model: [facility: facility, colony: colony, allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
     }
   }
 
   def create = {
-    return [allColonias: Entity.findAllByType(servletContext.etGroupColony)]
+    return [allColonias: Entity.findAllByType(metaDataService.etGroupColony)]
   }
 
   def save = {
-    EntityType etFacility = servletContext.etFacility
+    EntityType etFacility = metaDataService.etFacility
 
     try {
       Entity entity = entityHelperService.createEntity(functionService.createNick(params.fullName), etFacility) {Entity ent ->
@@ -167,12 +167,12 @@ class FacilityProfileController {
       }
 
       // link facility to colonia
-      new Link(source: entity, target: Entity.get(params.colonia), type: servletContext.ltGroupMemberFacility).save()
+      new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
       flash.message = message(code: "facility.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [facility: ee.entity, allColonias: Entity.findAllByType(servletContext.etGroupColony)])
+      render(view: "create", model: [facility: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])
     }
 
   }
@@ -180,16 +180,16 @@ class FacilityProfileController {
   def addResource = {
     Entity facility = Entity.get(params.id)
 
-    EntityType etResource = servletContext.etResource
+    EntityType etResource = metaDataService.etResource
 
     Entity entity = entityHelperService.createEntity("resource", etResource) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.properties = params
     }
-    new Link(source: entity, target: facility, type: servletContext.ltResource).save()
+    new Link(source: entity, target: facility, type: metaDataService.ltResource).save()
 
     // find all resources of this facility
-    List resources = functionService.findAllByLink(null, facility, servletContext.ltResource)
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -201,7 +201,7 @@ class FacilityProfileController {
     def link = c.get {
       eq('source', Entity.get(params.resource))
       eq('target', facility)
-      eq('type', servletContext.ltResource)
+      eq('type', metaDataService.ltResource)
     }
     link.delete()
 
@@ -209,13 +209,13 @@ class FacilityProfileController {
     Entity.get(params.resource).delete()
 
     // find all resources of this facility
-    List resources = functionService.findAllByLink(null, facility, servletContext.ltResource)
+    List resources = functionService.findAllByLink(null, facility, metaDataService.ltResource)
 
     render template: 'resources', model: [resources: resources, facility: facility, entity: entityHelperService.loggedIn]
   }
 
   def addEducator = {
-    def linking = functionService.linkEntities(params.educator, params.id, servletContext.ltWorking)
+    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
       // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -223,12 +223,12 @@ class FacilityProfileController {
   }
 
   def removeEducator = {
-    def breaking = functionService.breakEntities(params.educator, params.id, servletContext.ltWorking)
+    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltWorking)
     render template: 'educators', model: [educators: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addLeadEducator = {
-    def linking = functionService.linkEntities(params.leadeducator, params.id, servletContext.ltLeadEducator)
+    def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
       // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -236,7 +236,7 @@ class FacilityProfileController {
   }
 
   def removeLeadEducator = {
-    def breaking = functionService.breakEntities(params.leadeducator, params.id, servletContext.ltLeadEducator)
+    def breaking = functionService.breakEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     render template: 'leadeducators', model: [leadeducators: breaking.results, facility: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -245,7 +245,7 @@ class FacilityProfileController {
     Entity clientgroup = Entity.get(params.clientgroup)
 
     // find all clients linked to the clientgroup
-    List clients = functionService.findAllByLink(null, clientgroup, servletContext.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link each client to the facility now
     clients.each { client ->
@@ -253,14 +253,14 @@ class FacilityProfileController {
       def link = c.get {
         eq('source', client)
         eq('target', facility)
-        eq('type', servletContext.ltGroupMemberClient)
+        eq('type', metaDataService.ltGroupMemberClient)
       }
       if (!link)
-        new Link(source: client as Entity, target: facility, type: servletContext.ltGroupMemberClient).save()
+        new Link(source: client as Entity, target: facility, type: metaDataService.ltGroupMemberClient).save()
     }
 
     // find all clients of this facility
-    clients = functionService.findAllByLink(null, facility, servletContext.ltGroupMemberClient)
+    clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -272,12 +272,12 @@ class FacilityProfileController {
     def link = c.get {
       eq('source', Entity.get(params.client))
       eq('target', facility)
-      eq('type', servletContext.ltGroupMemberClient)
+      eq('type', metaDataService.ltGroupMemberClient)
     }
     link.delete()
 
     // find all clients of this facility
-    List clients = functionService.findAllByLink(null, facility, servletContext.ltGroupMemberClient)
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
     render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
   }
@@ -327,7 +327,7 @@ class FacilityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etEducator)
+      eq('type', metaDataService.etEducator)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -357,7 +357,7 @@ class FacilityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etEducator)
+      eq('type', metaDataService.etEducator)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -387,7 +387,7 @@ class FacilityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etGroupClient)
+      eq('type', metaDataService.etGroupClient)
       or {
         ilike('name', "%" + params.value + "%")
         profile {

@@ -13,56 +13,56 @@ class OverviewController {
   def planning = {
     def c = Entity.createCriteria()
     def count = c.list {
-      eq("type", servletContext.etActivity)
+      eq("type", metaDataService.etActivity)
       profile {
         eq("type", "Themenraum")
       }
     }
     def activities = count.size()
 
-    render template: 'planning', model: [allActivityTemplates: Entity.countByType(servletContext.etTemplate),
+    render template: 'planning', model: [allActivityTemplates: Entity.countByType(metaDataService.etTemplate),
                                         allActivities: activities,
-                                        allActivityTemplateGroups: Entity.countByType(servletContext.etGroupActivityTemplate),
-                                        allActivityGroups: Entity.countByType(servletContext.etGroupActivity),
-                                        allProjectTemplates: Entity.countByType(servletContext.etProjectTemplate),
-                                        allProjects: Entity.countByType(servletContext.etProject),
-                                        allThemes: Entity.countByType(servletContext.etTheme)]
+                                        allActivityTemplateGroups: Entity.countByType(metaDataService.etGroupActivityTemplate),
+                                        allActivityGroups: Entity.countByType(metaDataService.etGroupActivity),
+                                        allProjectTemplates: Entity.countByType(metaDataService.etProjectTemplate),
+                                        allProjects: Entity.countByType(metaDataService.etProject),
+                                        allThemes: Entity.countByType(metaDataService.etTheme)]
   }
 
   def groups = {
-    render template: 'groups', model: [allColonias: Entity.countByType(servletContext.etGroupColony),
-                                       allFamilies: Entity.countByType(servletContext.etGroupFamily),
-                                       allPartnerGroups: Entity.countByType(servletContext.etGroupPartner),
-                                       allClientGroups: Entity.countByType(servletContext.etGroupClient)]
+    render template: 'groups', model: [allColonias: Entity.countByType(metaDataService.etGroupColony),
+                                       allFamilies: Entity.countByType(metaDataService.etGroupFamily),
+                                       allPartnerGroups: Entity.countByType(metaDataService.etGroupPartner),
+                                       allClientGroups: Entity.countByType(metaDataService.etGroupClient)]
   }
 
   def other = {
-    List temp = Entity.findAllByType(servletContext.etResource)
+    List temp = Entity.findAllByType(metaDataService.etResource)
 
     def allResources = 0
     temp.each { resource ->
-      def result = functionService.findByLink(resource, null, servletContext.ltResource)
-      if (result && result.type.id != servletContext.etTemplate.id)
+      def result = functionService.findByLink(resource, null, metaDataService.ltResource)
+      if (result && result.type.id != metaDataService.etTemplate.id)
         allResources++
     }
 
-    render template: 'other', model: [allFacilities: Entity.countByType(servletContext.etFacility),
+    render template: 'other', model: [allFacilities: Entity.countByType(metaDataService.etFacility),
                                       allResources: allResources,
                                       allMethods: Method.countByType("template")]
   }
 
   def persons = {
-    render template: 'persons', model: [allClients: Entity.countByType(servletContext.etClient),
-                                        allEducators: Entity.countByType(servletContext.etEducator),
-                                        allParents: Entity.countByType(servletContext.etParent),
-                                        allChilds: Entity.countByType(servletContext.etChild),
-                                        allPates: Entity.countByType(servletContext.etPate),
-                                        allPartners: Entity.countByType(servletContext.etPartner)]
+    render template: 'persons', model: [allClients: Entity.countByType(metaDataService.etClient),
+                                        allEducators: Entity.countByType(metaDataService.etEducator),
+                                        allParents: Entity.countByType(metaDataService.etParent),
+                                        allChilds: Entity.countByType(metaDataService.etChild),
+                                        allPates: Entity.countByType(metaDataService.etPate),
+                                        allPartners: Entity.countByType(metaDataService.etPartner)]
   }
 
   def admin = {
-    render template: 'admin', model: [allOperators: Entity.countByType(servletContext.etOperator),
-                                      allUsers: Entity.countByType(servletContext.etUser)]
+    render template: 'admin', model: [allOperators: Entity.countByType(metaDataService.etOperator),
+                                      allUsers: Entity.countByType(metaDataService.etUser)]
   }
 
    /*
@@ -78,35 +78,35 @@ class OverviewController {
     def users = c.list {
       or {
           if (params.child)
-            eq("type", servletContext.etChild)
+            eq("type", metaDataService.etChild)
           if (params.client)
-            eq("type", servletContext.etClient)
+            eq("type", metaDataService.etClient)
           if (params.educator)
-            eq("type", servletContext.etEducator)
+            eq("type", metaDataService.etEducator)
           if (params.facility)
-            eq("type", servletContext.etFacility)
+            eq("type", metaDataService.etFacility)
           if (params.operator)
-            eq("type", servletContext.etOperator)
+            eq("type", metaDataService.etOperator)
           if (params.parent)
-            eq("type", servletContext.etParent)
+            eq("type", metaDataService.etParent)
           if (params.partner)
-            eq("type", servletContext.etPartner)
+            eq("type", metaDataService.etPartner)
           if (params.pate)
-            eq("type", servletContext.etPate)
+            eq("type", metaDataService.etPate)
           if (params.family)
-            eq("type", servletContext.etGroupFamily)
+            eq("type", metaDataService.etGroupFamily)
           if (params.colony)
-            eq("type", servletContext.etGroupColony)
+            eq("type", metaDataService.etGroupColony)
           if (params.groupClient)
-            eq("type", servletContext.etGroupClient)
+            eq("type", metaDataService.etGroupClient)
           if (params.groupPartner)
-            eq("type", servletContext.etGroupPartner)
+            eq("type", metaDataService.etGroupPartner)
           if (params.projectTemplate)
-            eq("type", servletContext.etProjectTemplate)
+            eq("type", metaDataService.etProjectTemplate)
           if (params.project)
-            eq("type", servletContext.etProject)
+            eq("type", metaDataService.etProject)
           if (params.groupActivity)
-            eq("type", servletContext.etGroupActivity)
+            eq("type", metaDataService.etGroupActivity)
         }
       or {
         ilike('name', "%" + params.name + "%")
@@ -142,14 +142,14 @@ class OverviewController {
       def c = Entity.createCriteria()
       users = c.list {
         or {
-          eq("type", servletContext.etChild)
-          eq("type", servletContext.etClient)
-          eq("type", servletContext.etEducator)
-          eq("type", servletContext.etFacility)
-          eq("type", servletContext.etOperator)
-          eq("type", servletContext.etParent)
-          eq("type", servletContext.etPartner)
-          eq("type", servletContext.etPate)
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etFacility)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etPartner)
+          eq("type", metaDataService.etPate)
         }
         profile {
           order("lastName", "asc")
@@ -164,14 +164,14 @@ class OverviewController {
       def c = Entity.createCriteria()
       users = c.list {
         or {
-          eq("type", servletContext.etChild)
-          eq("type", servletContext.etClient)
-          eq("type", servletContext.etEducator)
-          eq("type", servletContext.etFacility)
-          eq("type", servletContext.etOperator)
-          eq("type", servletContext.etParent)
-          eq("type", servletContext.etPartner)
-          eq("type", servletContext.etPate)
+          eq("type", metaDataService.etChild)
+          eq("type", metaDataService.etClient)
+          eq("type", metaDataService.etEducator)
+          eq("type", metaDataService.etFacility)
+          eq("type", metaDataService.etOperator)
+          eq("type", metaDataService.etParent)
+          eq("type", metaDataService.etPartner)
+          eq("type", metaDataService.etPate)
         }
         profile {
           ilike("fullName", params.glossary + "%")

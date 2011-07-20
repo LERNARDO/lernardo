@@ -6,7 +6,6 @@ import at.openfactory.ep.Link
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.LinkType
 import org.codehaus.groovy.grails.commons.GrailsApplication
-import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 
 class FunctionService {
   MetaDataService metaDataService
@@ -14,8 +13,6 @@ class FunctionService {
   GrailsApplication grailsApplication
 
   boolean transactional = true
-
-  def servletContext = SCH.servletContext
 
   /**
    * Converts a date from UTC
@@ -271,12 +268,12 @@ class FunctionService {
   List findParents(Entity group) {
 
     // 1. find all clients linked to the group
-    List clients = findAllByLink(null, group, servletContext.ltGroupMemberClient)
+    List clients = findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
     // 2. find all families of the clients
     List families = []
     clients.each {
-      List links = findAllByLink(it as Entity, null, servletContext.ltGroupFamily)
+      List links = findAllByLink(it as Entity, null, metaDataService.ltGroupFamily)
       links.each {
         if (!families.contains(it))
           families << it
@@ -286,7 +283,7 @@ class FunctionService {
     // 3. find all parents of the families
     List allParents = []
     families.each {
-      List parents = findAllByLink(null, it as Entity, servletContext.ltGroupMemberParent)
+      List parents = findAllByLink(null, it as Entity, metaDataService.ltGroupMemberParent)
       parents.each {
         allParents.add(it)
       }
@@ -305,14 +302,14 @@ class FunctionService {
   List findEducators(Entity group) {
 
     // 1. find facility linked to the group
-    Entity facility = findByLink(group, null, servletContext.ltGroupMemberFacility)
+    Entity facility = findByLink(group, null, metaDataService.ltGroupMemberFacility)
 
     // 2. find all educators linked to the facility
     def allEducators = Link.createCriteria().list {
       eq('target', facility)
       or {
-        eq('type', servletContext.ltWorking)
-        eq('type', servletContext.ltLeadEducator)
+        eq('type', metaDataService.ltWorking)
+        eq('type', metaDataService.ltLeadEducator)
       }
       projections {
         distinct('source')        
@@ -332,12 +329,12 @@ class FunctionService {
   List findClientsOf(Entity entity, def params = []) {
 
     // 1. find facility the entity is working in
-    def facility = findByLink(entity, null, servletContext.ltWorking)
+    def facility = findByLink(entity, null, metaDataService.ltWorking)
 
     // 2. find clients linked to the facility
     def clients = []
     if (facility) {
-      clients = findAllByLink(null, facility, servletContext.ltClientship)
+      clients = findAllByLink(null, facility, metaDataService.ltClientship)
     }
 
     return clients

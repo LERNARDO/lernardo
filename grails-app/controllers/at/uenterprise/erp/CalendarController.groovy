@@ -30,7 +30,7 @@ class CalendarController {
         def result = c.get {
           eq("source", entity)
           eq("target", currentEntity)
-          eq("type", servletContext.ltAppointment)
+          eq("type", metaDataService.ltAppointment)
         }
         if (result)
           redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: params.id
@@ -42,10 +42,10 @@ class CalendarController {
     }
     else if (entity.type.supertype.name == 'projectUnit') {
         // find projectDay of projectUnit
-        Entity projectDay = functionService.findByLink(entity, null, servletContext.ltProjectDayUnit)
+        Entity projectDay = functionService.findByLink(entity, null, metaDataService.ltProjectDayUnit)
 
         // find project of projectDay
-        Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
+        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
         redirect controller: 'projectProfile', action: 'show', id: project.id, params: [one: projectDay.id]
     }
@@ -63,17 +63,17 @@ class CalendarController {
 
     List educators = []
 
-    if (currentEntity.type.name == servletContext.etEducator) {
+    if (currentEntity.type.name == metaDataService.etEducator) {
       // find facility the educator is working for
-      def facility = functionService.findByLink(currentEntity, null, servletContext.ltWorking)
+      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
 
       if (facility) {
         // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, servletContext.ltWorking) // false IntelliJ warning
+        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking) // false IntelliJ warning
       }
     }
     else
-      educators = Entity.findAllByType(servletContext.etEducator)
+      educators = Entity.findAllByType(metaDataService.etEducator)
 
     return ['educators': educators]
   }
@@ -96,7 +96,7 @@ class CalendarController {
         Entity entity = Entity.get(ed.toInteger())
         println "ENTITY: " + entity
 
-        List educators = Entity.findAllByType(servletContext.etEducator)
+        List educators = Entity.findAllByType(metaDataService.etEducator)
         int index = educators.indexOf(ed.toInteger())
         def color = grailsApplication.config.colors[index]
 
@@ -191,7 +191,7 @@ class CalendarController {
     //log.info currentEntity
     //log.info entity
 
-    List educators = Entity.findAllByType(servletContext.etEducator)
+    List educators = Entity.findAllByType(metaDataService.etEducator)
     int index = educators.indexOf(entity)
     def color = grailsApplication.config.colors[index] ?: '#000000'
     //log.info color
@@ -230,17 +230,17 @@ class CalendarController {
 
     List educators = []
 
-    if (currentEntity.type.name == servletContext.etEducator) {
+    if (currentEntity.type.name == metaDataService.etEducator) {
       // find facility the educator is working for
-      def facility = functionService.findByLink(currentEntity, null, servletContext.ltWorking)
+      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
 
       if (facility) {
         // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, servletContext.ltWorking) // false IntelliJ warning
+        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking) // false IntelliJ warning
       }
     }
     else
-      educators = Entity.findAllByType(servletContext.etEducator)
+      educators = Entity.findAllByType(metaDataService.etEducator)
 
     if (params.visibleEducators)
       params.visibleEducators = params.list('visibleEducators')
@@ -250,7 +250,7 @@ class CalendarController {
     def eventList = []
 
     // get all own appointments
-    if (currentEntity.type.id != servletContext.etEducator.id) {
+    if (currentEntity.type.id != metaDataService.etEducator.id) {
       eventList.addAll(getAppointments(start, end, currentEntity, currentEntity, '#0000ff'))
     }
 
@@ -263,7 +263,7 @@ class CalendarController {
       params.visibleEducators.each { ed ->
         Entity entity = Entity.get(ed)
 
-        educators = Entity.findAllByType(servletContext.etEducator)
+        educators = Entity.findAllByType(metaDataService.etEducator)
         int index = educators.indexOf(entity)
         def color = grailsApplication.config.colors[index] ?: '#000000'
 
@@ -290,7 +290,7 @@ class CalendarController {
     List list = []
 
     // get all appointments
-    List appointments = functionService.findAllByLink(null, entity, servletContext.ltAppointment)
+    List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
 
     appointments?.findAll{(it.profile.beginDate >= start && it.profile.beginDate <= end) || (it.profile.endDate >= start && it.profile.endDate <= end)}?.each { Entity appointment ->
       def title = appointment.profile.isPrivate && entity.id != currentEntity.id ? "${message(code: 'appointment')}: ${message(code: 'notAvailable')}" : "${message(code: 'appointment')}: ${appointment.profile.fullName}"
@@ -305,7 +305,7 @@ class CalendarController {
     List list = []
 
     // get all group activities the educator is part of
-    List temp = Entity.findAllByType(servletContext.etGroupActivity)
+    List temp = Entity.findAllByType(metaDataService.etGroupActivity)
 
     List groupActivities = []
     temp.each { group ->
@@ -313,7 +313,7 @@ class CalendarController {
       def result = c.get {
         eq("source", entity)
         eq("target", group)
-        eq("type", servletContext.ltGroupMemberEducator)
+        eq("type", metaDataService.ltGroupMemberEducator)
       }
       if (result)
         groupActivities.add(group)
@@ -333,7 +333,7 @@ class CalendarController {
 
     def c = Entity.createCriteria()
     def temp = c.list {
-      eq("type", servletContext.etActivity)
+      eq("type", metaDataService.etActivity)
       profile {
         eq("type", "Themenraum")
       }
@@ -345,7 +345,7 @@ class CalendarController {
       def result = d.get {
         eq("source", entity)
         eq("target", activity)
-        eq("type", servletContext.ltActEducator)
+        eq("type", metaDataService.ltActEducator)
       }
       if (result)
         themeRoomActivities.add(activity)
@@ -365,16 +365,16 @@ class CalendarController {
     List list = []
 
     // 1. find all project days the educator is linked to
-    List projectDays = functionService.findAllByLink(entity, null, servletContext.ltProjectDayEducator)
+    List projectDays = functionService.findAllByLink(entity, null, metaDataService.ltProjectDayEducator)
 
     List unitsDone = []
     if (projectDays) {
       projectDays.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity projectDay ->
         // 2. for each project day find the project it belongs to
-        Entity project = functionService.findByLink(projectDay, null, servletContext.ltProjectMember)
+        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
 
         // 3. for each project day get the project unit it is linked to
-        List projectUnits = functionService.findAllByLink(null, projectDay, servletContext.ltProjectDayUnit)
+        List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
         if (projectUnits && project) {
           projectUnits.each { Entity projectUnit ->
@@ -399,7 +399,7 @@ class CalendarController {
   List getThemes(start, end, entity, currentEntity, color) {
     List list = []
 
-    List themes = Entity.findAllByType(servletContext.etTheme)
+    List themes = Entity.findAllByType(metaDataService.etTheme)
 
     themes?.each { Entity theme ->
       def dateEnd = new DateTime(functionService.convertFromUTC(theme.profile.endDate))

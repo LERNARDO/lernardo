@@ -29,7 +29,7 @@ class GroupFamilyProfileController {
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 
-    EntityType etGroupFamily = servletContext.etGroupFamily
+    EntityType etGroupFamily = metaDataService.etGroupFamily
     def groupFamilies = Entity.createCriteria().list {
       eq("type", etGroupFamily)
       profile {
@@ -57,17 +57,17 @@ class GroupFamilyProfileController {
     int totalLinks = 0
 
     // find all parents linked to this group
-    List parents = functionService.findAllByLink(null, group, servletContext.ltGroupMemberParent)
+    List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent)
     totalLinks += parents.size()
 
-    def allClients = Entity.findAllByType(servletContext.etClient)
+    def allClients = Entity.findAllByType(metaDataService.etClient)
     // find all clients linked to this group
-    List clients = functionService.findAllByLink(null, group, servletContext.ltGroupFamily)
+    List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupFamily)
     totalLinks += clients.size()
 
-    def allChilds = Entity.findAllByType(servletContext.etChild)
+    def allChilds = Entity.findAllByType(metaDataService.etChild)
     // find all childs linked to this group
-    List childs = functionService.findAllByLink(null, group, servletContext.ltGroupMemberChild)
+    List childs = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberChild)
     totalLinks += childs.size()
 
     return [group: group,
@@ -131,11 +131,11 @@ class GroupFamilyProfileController {
   }
 
   def create = {
-    return [templates: Entity.findAllByType(servletContext.etTemplate)]
+    return [templates: Entity.findAllByType(metaDataService.etTemplate)]
   }
 
   def save = {
-    EntityType etGroupFamily = servletContext.etGroupFamily
+    EntityType etGroupFamily = metaDataService.etGroupFamily
 
     try {
       Entity entity = entityHelperService.createEntity("group", etGroupFamily) {Entity ent ->
@@ -153,9 +153,9 @@ class GroupFamilyProfileController {
 
   def addParent = {
     // check if the parent hasn't been already added to another family
-    def result = Link.findBySourceAndType(Entity.get(params.parent), servletContext.ltGroupMemberParent)
+    def result = Link.findBySourceAndType(Entity.get(params.parent), metaDataService.ltGroupMemberParent)
     if (!result) {
-      def linking = functionService.linkEntities(params.parent, params.id, servletContext.ltGroupMemberParent)
+      def linking = functionService.linkEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
       if (linking.duplicate)
         //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -165,22 +165,22 @@ class GroupFamilyProfileController {
     else {
       //render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
       render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
-      List parents = functionService.findAllByLink(null, Entity.get(params.id), servletContext.ltGroupMemberParent)
+      List parents = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberParent)
       render template: 'parents', model: [parents: parents, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
 
   }
 
   def removeParent = {
-    def breaking = functionService.breakEntities(params.parent, params.id, servletContext.ltGroupMemberParent)
+    def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltGroupMemberParent)
     render template: 'parents', model: [parents: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addClient = {
     // check if the client hasn't been already added to another family
-    def result = Link.findBySourceAndType(Entity.get(params.client), servletContext.ltGroupFamily)
+    def result = Link.findBySourceAndType(Entity.get(params.client), metaDataService.ltGroupFamily)
     if (!result) {
-      def linking = functionService.linkEntities(params.client, params.id, servletContext.ltGroupFamily)
+      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupFamily)
       if (linking.duplicate)
         //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -190,21 +190,21 @@ class GroupFamilyProfileController {
     else {
       //render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
       render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
-      List clients = functionService.findAllByLink(null, Entity.get(params.id), servletContext.ltGroupFamily)
+      List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
       render template: 'clients', model: [clients: clients, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
   }
 
   def removeClient = {
-    def breaking = functionService.breakEntities(params.client, params.id, servletContext.ltGroupFamily)
+    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltGroupFamily)
     render template: 'clients', model: [clients: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def addChild = {
     // check if the child hasn't been already added to another family
-    def result = Link.findBySourceAndType(Entity.get(params.child), servletContext.ltGroupMemberChild)
+    def result = Link.findBySourceAndType(Entity.get(params.child), metaDataService.ltGroupMemberChild)
     if (!result) {
-      def linking = functionService.linkEntities(params.child, params.id, servletContext.ltGroupMemberChild)
+      def linking = functionService.linkEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
       if (linking.duplicate)
         //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
         render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
@@ -214,13 +214,13 @@ class GroupFamilyProfileController {
     else {
       //render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
       render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
-      List childs = functionService.findAllByLink(null, Entity.get(params.id), servletContext.ltGroupMemberChild)
+      List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
       render template: 'childs', model: [childs: childs, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
   }
 
   def removeChild = {
-    def breaking = functionService.breakEntities(params.child, params.id, servletContext.ltGroupMemberChild)
+    def breaking = functionService.breakEntities(params.child, params.id, metaDataService.ltGroupMemberChild)
     render template: 'childs', model: [childs: breaking.results, group: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -235,7 +235,7 @@ class GroupFamilyProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etParent)
+      eq('type', metaDataService.etParent)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -265,7 +265,7 @@ class GroupFamilyProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etClient)
+      eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -295,7 +295,7 @@ class GroupFamilyProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', servletContext.etChild)
+      eq('type', metaDataService.etChild)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -321,9 +321,9 @@ class GroupFamilyProfileController {
     def results = c.list {
       eq("target", group)
       or {
-        eq("type", servletContext.ltGroupMemberParent)
-        eq("type", servletContext.ltGroupFamily)
-        eq("type", servletContext.ltGroupMemberChild)
+        eq("type", metaDataService.ltGroupMemberParent)
+        eq("type", metaDataService.ltGroupFamily)
+        eq("type", metaDataService.ltGroupMemberChild)
       }
     }
 

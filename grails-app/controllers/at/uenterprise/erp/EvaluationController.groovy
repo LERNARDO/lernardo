@@ -69,7 +69,7 @@ class EvaluationController {
     // find matching educators
     def c = Entity.createCriteria()
     def educators = c.list {
-      eq('type', servletContext.etEducator)
+      eq('type', metaDataService.etEducator)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -100,7 +100,7 @@ class EvaluationController {
     // find matching clients
     def c = Entity.createCriteria()
     def educators = c.list {
-      eq('type', servletContext.etClient)
+      eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -123,13 +123,13 @@ class EvaluationController {
     Entity entity = Entity.get(params.id)
 
     // first get all facilities the educator is linked with
-    List facilities = functionService.findAllByLink(entity, null, servletContext.ltWorking)
-    facilities.addAll(functionService.findAllByLink(entity, null, servletContext.ltLeadEducator))
+    List facilities = functionService.findAllByLink(entity, null, metaDataService.ltWorking)
+    facilities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltLeadEducator))
 
     // for each facility get the clients in that facility
     List clients = []
     facilities.each { Entity facility ->
-      clients.addAll(functionService.findAllByLink(null, facility, servletContext.ltGroupMemberClient))
+      clients.addAll(functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient))
     }
 
     // get all evaluations for all clients
@@ -142,11 +142,11 @@ class EvaluationController {
     List parents = []
     clients.each { Entity client ->
       // find family of client
-      Entity groupFamily = functionService.findByLink(client, null, servletContext.ltGroupFamily)
+      Entity groupFamily = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
       // find parents of groupFamily
       List localParents = []
       if (groupFamily)
-        functionService.findAllByLink(null, groupFamily, servletContext.ltGroupMemberParent)
+        functionService.findAllByLink(null, groupFamily, metaDataService.ltGroupMemberParent)
       // add each one to the list if not already in there
       localParents.each {
         if (!parents.contains(it))
@@ -283,8 +283,8 @@ class EvaluationController {
     def c = Entity.createCriteria()
     List entities = c.list {
       or {
-          eq("type", servletContext.etGroupActivity)
-          eq("type", servletContext.etProjectUnit)
+          eq("type", metaDataService.etGroupActivity)
+          eq("type", metaDataService.etProjectUnit)
         }
     }
 
