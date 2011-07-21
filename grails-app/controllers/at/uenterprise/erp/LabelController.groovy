@@ -10,7 +10,7 @@ class LabelController {
 
   def list = {
     params.max = Math.min(params.max ? params.int('max') : 10, 100)
-    [labelInstanceList: Label.list(params), labelInstanceTotal: Label.count()]
+    [labelInstanceList: Label.findAllByType("template", params), labelInstanceTotal: Label.countByType("template")]
   }
 
   def create = {
