@@ -181,7 +181,31 @@ class ProjectProfileController {
         // find colony the facility is linked to and add its resources as well
         Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
         plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+
+        // find all other facilities linked to the colony and add their resources if marked as available in colony
+        List colonyResources = []
+        List otherFacilities = functionService.findAllByLink(null, colony, metaDataService.ltGroupMemberFacility)
+        otherFacilities.each { Entity of ->
+          List tempResources = functionService.findAllByLink(null, of, metaDataService.ltResource)
+          tempResources.each { Entity tr ->
+            if (tr.profile.classification == "colony") {
+              if (!colonyResources.contains(tr)) {
+                colonyResources.add(tr)
+              }
+            }
+          }
+        }
+        plannableResources.addAll(colonyResources)
       }
+
+      // add all resources that are available everywhere
+      List everywhereResources = Entity.createCriteria().list {
+        eq("type", metaDataService.etResource)
+        profile {
+          eq("classification", "everywhere")
+        }
+      }
+      plannableResources.addAll(everywhereResources)
 
       List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
 
