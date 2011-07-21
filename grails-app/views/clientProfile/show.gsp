@@ -206,7 +206,7 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">${fieldValue(bean: client, field: 'profile.citizenship') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
+            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
             <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
           </tr>
 
