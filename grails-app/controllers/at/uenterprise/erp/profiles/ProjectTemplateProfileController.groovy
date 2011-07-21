@@ -85,9 +85,10 @@ class ProjectTemplateProfileController {
             groupActivityTemplates.add(tt)
         }
       }
+      List groupActivityTemplateResources = []
       List templateResources = []
       groupActivityTemplates.each { Entity groupActivityTemplate ->
-        templateResources.addAll(groupActivityTemplate.profile.resources)
+        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
         // get all templates linked to the groupActivityTemplate
         List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
         templates.each {
@@ -101,6 +102,7 @@ class ProjectTemplateProfileController {
               calculatedDuration: calculatedDuration,
               instances: instances,
               allLabels: Label.findAllByType('template'),
+              groupActivityTemplateResources: groupActivityTemplateResources,
               templateResources: templateResources]
     }
   }
@@ -612,19 +614,25 @@ class ProjectTemplateProfileController {
     // get all resources of all templates
     // get all groupActivityTemplates of all projectUnitTemplates
     List groupActivityTemplates = []
-    projectUnitTemplates.each { put ->
-      List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
-      tempTemplates.each { tt ->
-        if (!groupActivityTemplates.contains(tt))
-          groupActivityTemplates.add(tt)
+      projectUnitTemplates.each { put ->
+        List tempTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
+        tempTemplates.each { tt ->
+          if (!groupActivityTemplates.contains(tt))
+            groupActivityTemplates.add(tt)
+        }
       }
-    }
-    List templateResources = []
-    groupActivityTemplates.each {
-      templateResources.addAll(it.profile.resources)
-    }
+      List groupActivityTemplateResources = []
+      List templateResources = []
+      groupActivityTemplates.each { Entity groupActivityTemplate ->
+        groupActivityTemplateResources.addAll(groupActivityTemplate.profile.resources)
+        // get all templates linked to the groupActivityTemplate
+        List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
+        templates.each {
+          templateResources.addAll(it.profile.resources)
+        }
+      }
 
-    render template: 'templateresources', model: [templateResources: templateResources]
+    render template: 'templateresources', model: [templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]
   }
 }
 
