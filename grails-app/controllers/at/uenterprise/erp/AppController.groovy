@@ -706,4 +706,36 @@ class AppController {
     render "done"
   }
 
+  def removeAssets = {
+
+    List entities = Entity.list()
+
+    // delete duplicate profile assets
+    entities.each { Entity entity ->
+      List assets = Asset.findAllByEntityAndType(entity, "profile", [sort: "dateCreated", order: "desc"])
+      //println "assets of entity: " + entity.profile + ": " + assets
+      if (assets && assets.size() > 1) {
+        for (int i = 1; i < assets.size(); i++) {
+          assets[i].delete(flush: true)
+        }
+      }
+    }
+
+    // delete unused asset storages
+    List ast = AssetStorage.list()
+    ast.each { AssetStorage assetStorage ->
+      //println "assets: " + assetStorage.assets
+      if (assetStorage.assets.size() == 0)
+        assetStorage.delete(flush: true)
+    }
+
+    /*ast = AssetStorage.list()
+    ast.each { AssetStorage assetStorage ->
+      println "assets: " + assetStorage.assets
+    }*/
+
+    render "done"
+
+  }
+
 }

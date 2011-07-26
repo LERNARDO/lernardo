@@ -170,7 +170,7 @@ class HelperTagLib {
    */
   def getWorkdayUnits = { attrs, body ->
     Date date1 = Date.parse("dd. MM. yy", attrs.date1)
-    Date date2 = Date.parse("dd. MM. yy", attrs.date2)
+    Date date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
 
     Entity educator = attrs.educator
 
@@ -198,7 +198,7 @@ class HelperTagLib {
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2)
+      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
     }
 
     Entity educator = attrs.educator
@@ -235,7 +235,7 @@ class HelperTagLib {
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2)
+      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
     }
 
     Entity educator = attrs.educator
@@ -313,7 +313,7 @@ class HelperTagLib {
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2)
+      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
     }
 
     Entity educator = attrs.educator
@@ -365,7 +365,7 @@ class HelperTagLib {
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2)
+      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
     }
 
     Entity educator = attrs.educator
@@ -403,7 +403,7 @@ class HelperTagLib {
     Date date2
     if (attrs.date1 != "" && attrs.date2 != "") {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2)
+      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
     }
 
     Entity educator = attrs.educator

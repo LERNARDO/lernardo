@@ -7,7 +7,7 @@
     <td valign="top">
       <ul>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
-          <li class="icon-person"><g:link controller="profile" action="uploadprf" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
+          <li class="icon-person"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
         </erp:accessCheck>
 
         <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.profile"/></g:link></li>
