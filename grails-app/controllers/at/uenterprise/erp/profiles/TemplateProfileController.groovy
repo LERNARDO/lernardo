@@ -84,20 +84,20 @@ class TemplateProfileController {
     Entity entity = params.entity ? template : entityHelperService.loggedIn
 
     def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
-    def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)
+    /*def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)*/
     def allMethods = Method.findAllByType('template')
     def allLabels = Label.findAllByType('template')
 
     return [template: template,
             commentList: commentList,
             entity: entity,
-            resources: resources,
+            /*resources: resources,*/
             allMethods: allMethods,
             allLabels: allLabels]
   }
 
   def create = {
-    return ['resources': Entity.findAllByType(metaDataService.etResource)]
+    /*return ['resources': Entity.findAllByType(metaDataService.etResource)]*/
   }
 
   def copy = {
@@ -117,12 +117,15 @@ class TemplateProfileController {
       ent.profile.duration = original.profile.duration
       ent.profile.type = original.profile.type
       ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+      ent.profile.goal = original.profile.goal
+      ent.profile.ageFrom = original.profile.ageFrom
+      ent.profile.ageTo = original.profile.ageTo
     }
 
     // save creator
     new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-    // find all resources created in the original and create them in the copy
+    /*// find all resources created in the original and create them in the copy
     List resources = functionService.findAllByLink(null, original, metaDataService.ltResource)
 
     EntityType etResource = metaDataService.etResource
@@ -136,7 +139,7 @@ class TemplateProfileController {
       }
 
       new Link(source: resource, target: entity, type: metaDataService.ltResource).save()
-    }
+    }*/
 
     // loop through all methods of the original and create them in the copy
     original.profile.methods.each { me ->
@@ -175,7 +178,8 @@ class TemplateProfileController {
 
     // copy profile pic
     Asset asset = Asset.findByEntityAndType(original, "profile")
-    new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
+    if (asset)
+      new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "template.copied", args: [entity.profile.fullName])
     redirect action: 'show', id: entity.id, params: [entity: entity.id]
