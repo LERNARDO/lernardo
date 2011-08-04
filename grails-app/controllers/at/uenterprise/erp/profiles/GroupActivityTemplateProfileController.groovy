@@ -203,7 +203,8 @@ class GroupActivityTemplateProfileController {
 
     // copy profile pic
     Asset asset = Asset.findByEntityAndType(original, "profile")
-    new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
+    if (asset)
+      new Asset(entity: entity, storage: asset.storage, type: "profile").save(flush: true)
 
     flash.message = message(code: "group.copied", args: [entity.profile.fullName])
     redirect action: 'show', id: entity.id, params: [entity: entity.id]

@@ -508,24 +508,24 @@ class ProfileController {
     }
   }
 
-  def uploadprf = {
+  def uploadProfileImage = {
     Entity entity = Entity.get(params.id)
 
     return [entity: entity]
     }
 
-  def put = {
+  def savePic = {
     Entity entity = Entity.get(params.id)
 
     MultipartFile asset = request.getFile ('asset')
     if (asset && !asset.empty) {
-      def result = assetService.storeAsset(entity, params.type, asset)
+      def result = functionService.storeAsset(entity, params.type, asset)
       [asset: result, entity: entity]
     }
   }
 
-  def putprf = {
-    forward(action:"put", params:[type:"profile"])
+  def saveProfilePic = {
+    forward(action:"savePic", params:[type:"profile"])
   }
 
 }

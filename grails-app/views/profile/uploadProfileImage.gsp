@@ -17,7 +17,7 @@
         <p><g:message code="profile.picture.selectInfo"/></p>
 
         <div class="buttons">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="putprf" value="${message(code: 'save')}" /></div>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="saveProfilePic" value="${message(code: 'save')}" /></div>
           <g:if test="${entity.assets}">
             <g:link class="buttonRed" controller="app" action="deleteProfilePic" id="${entity.id}"><g:message code="delete"/></g:link>
           </g:if>

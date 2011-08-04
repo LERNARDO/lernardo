@@ -6,6 +6,7 @@ import grails.converters.JSON
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.Link
+import at.openfactory.ep.EntityType
 
 class CalendarController {
   EntityHelperService entityHelperService
@@ -122,7 +123,7 @@ class CalendarController {
   def addOrRemove = {
     //log.info params
     //log.info "toggling"
-
+    ECalendar.withTransaction {
     def result
 
     Entity currentEntity = entityHelperService.loggedIn
@@ -130,16 +131,24 @@ class CalendarController {
     // find out whether to toggle the events of the given entity on or off
     List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
 
+
     if (visibleEducators.contains(params.id)) {
       currentEntity.profile.calendar.removeFromCalendareds(params.id)
+      currentEntity.profile.save(flush: true)
       result = "false"
     }
     else {
       currentEntity.profile.calendar.addToCalendareds(params.id)
+      currentEntity.profile.save(flush: true)
       result = "true"
     }
 
+
+    //currentEntity.save(flush: true)
+
+
     render result
+    }
   }
 
   def toggleT = {
@@ -304,18 +313,13 @@ class CalendarController {
   List getGroupActivities(start, end, entity, currentEntity, color) {
     List list = []
 
-    // get all group activities the educator is part of
-    List temp = Entity.findAllByType(metaDataService.etGroupActivity)
-
     List groupActivities = []
-    temp.each { group ->
-      def c = Link.createCriteria()
-      def result = c.get {
-        eq("source", entity)
-        eq("target", group)
-        eq("type", metaDataService.ltGroupMemberEducator)
-      }
-      if (result)
+
+    // get all group activities the educator is part of
+    List temp = functionService.findAllByLink(entity, null, metaDataService.ltGroupMemberEducator)
+    EntityType etGroupActivity = metaDataService.etGroupActivity
+    temp.each { Entity group ->
+      if (group.type.id == etGroupActivity.id)
         groupActivities.add(group)
     }
 
@@ -331,7 +335,11 @@ class CalendarController {
   List getThemeRoomActivities(start, end, entity, currentEntity, color) {
     List list = []
 
-    def c = Entity.createCriteria()
+    List themeRoomActivities = []
+
+    themeRoomActivities.addAll(functionService.findAllByLink(entity, null, metaDataService.ltActEducator))
+
+    /*def c = Entity.createCriteria()
     def temp = c.list {
       eq("type", metaDataService.etActivity)
       profile {
@@ -339,7 +347,7 @@ class CalendarController {
       }
     }
 
-    List themeRoomActivities = []
+
     temp.each { activity ->
       def d = Link.createCriteria()
       def result = d.get {
@@ -349,7 +357,7 @@ class CalendarController {
       }
       if (result)
         themeRoomActivities.add(activity)
-    }
+    }*/
 
     themeRoomActivities.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity themeRoomActivity ->
       def dateStart = new DateTime(functionService.convertFromUTC(themeRoomActivity.profile.date))

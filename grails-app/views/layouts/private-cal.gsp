@@ -65,6 +65,14 @@
         $(elements[x]).val('');
     };
 
+    function showBigSpinner() {
+        $('#loading').css('visibility', 'visible');
+      }
+
+    function hideBigSpinner() {
+        $('#loading').css('visibility', 'hidden');
+      }
+
   </script>
 
   <ga:trackPageviewAsynch />
@@ -72,6 +80,9 @@
 
 </head>
 <body>
+
+<div id="loading" style="position:absolute; left: 50%; text-align:center; top:50%; visibility: hidden;">
+<img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>
 
 <g:if test="${!entity}">
   <g:set var="entity" value="${currentEntity}"/>
@@ -109,7 +120,7 @@
                 <div class="calendereducator">
                   <table style="width: 100%;">
                     <tr>
-                      <td style="height: 21px"><a style="display: block; color: #000; text-decoration: none;" href="#" onclick="togglePerson('${educator.id}','${i}'); return false"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" align="top"/> <erp:truncate string="${educator.profile.fullName}"/></a><div id="educatorcolor${i}" style="background: ${grailsApplication.config.colors[i]}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></td>
+                      <td style="height: 21px"><a style="display: block; color: #000; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" align="top" onload="showInitialEvents('${educator.id}','${i}','${active}');"/> <erp:truncate string="${educator.profile.fullName}"/></a><div id="educatorcolor${i}" style="background: ${grailsApplication.config.colors[i]}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></td>
                       %{--<td><g:hiddenField name="color" class="colors" size="7" value="${educator?.profile?.color}"/></td>--}%
                     </tr>
                   </table>
@@ -141,6 +152,13 @@
 </body>
 
 <script type="text/javascript">
+
+  showInitialEvents = function(id, i, active){
+    //ftoggle('#educatorcolor' + i);
+    if (active == "true")
+      $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+  };
+
   togglePerson = function(id, i){
     ftoggle('#educatorcolor' + i);
 
@@ -151,9 +169,11 @@
       success: function(result) {
         if (result == "true") {
           $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+          hideBigSpinner();
         }
         else if (result == "false") {
           $('.cal').fullCalendar('removeEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+          hideBigSpinner();
         }
       }
     });
@@ -168,9 +188,11 @@
       success: function(result) {
         if (result == "true") {
           $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"toggleThemes")}');
+          hideBigSpinner();
         }
         else if (result == "false") {
           $('.cal').fullCalendar('removeEventSource', '${createLink (controller:"calendar", action:"toggleThemes")}');
+          hideBigSpinner();
         }
       }
     });

@@ -31,6 +31,12 @@
       <div id="db"></div>
     </p>
 
+    <p>
+      Remove unused assets and assetStorages<br/>
+      <g:remoteLink update="db" action="removeAssets" before="showspinner('#assets');">Remove</g:remoteLink>
+      <div id="assets"></div>
+    </p>
+
   </div>
 </div>
 </body>
