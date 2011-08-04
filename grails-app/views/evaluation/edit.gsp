@@ -37,7 +37,7 @@
         <g:textField name="linkedentity" id="hiddentextfield1" value="0"/>
       </div>
 
-      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}">${evaluationInstance.linkedTo.profile.fullName}</g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></p>
+      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></p>
 
       <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">

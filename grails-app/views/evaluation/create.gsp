@@ -22,7 +22,8 @@
       <div id="select-box">
         <p>Mit Aktivitätsblock oder Projekteinheit verlinken:</p>
         <g:formRemote name="formRemote" update="results" url="[controller:'evaluation', action:'searchMe']" before="showspinner('#results')">
-          <g:datePicker name="myDate" value="" precision="day" years="${2009..new Date().getYear() + 1900}"/>
+          <g:textField class="datepicker-birthday" name="myDate" value=""/>
+          %{--<g:datePicker name="myDate" value="" precision="day" years="${2009..new Date().getYear() + 1900}"/>--}%
           <g:submitButton name="submit" value="OK"/>
         </g:formRemote>
       </div>

@@ -1249,13 +1249,13 @@ class ProjectProfileController {
 
     // find all project units of all project days
     List projectUnits = []
-    projectDays.each { pd ->
-      projectUnits.addAll(functionService.findAllByLink(null, pd as Entity, metaDataService.ltProjectDayUnit))
+    projectDays.each { Entity pd ->
+      projectUnits.addAll(functionService.findAllByLink(null, pd, metaDataService.ltProjectDayUnit))
     }
 
     // find all evaluations linked to the project units
     List evaluations = []
-    projectUnits.each { pu ->
+    projectUnits.each { Entity pu ->
       evaluations.addAll(Evaluation.findAllByLinkedTo(pu))
     }
 

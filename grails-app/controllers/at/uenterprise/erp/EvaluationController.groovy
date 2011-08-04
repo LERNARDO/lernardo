@@ -3,6 +3,7 @@ package at.uenterprise.erp
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
 import java.text.SimpleDateFormat
+import java.util.regex.Pattern
 
 class EvaluationController {
   EntityHelperService entityHelperService
@@ -278,7 +279,9 @@ class EvaluationController {
    * retrieves users matching the search parameter of the instant search
    */
   def searchMe = {
-    Date searchDate = params.myDate
+    Date searchDate = new Date()
+    if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.myDate))
+        searchDate = Date.parse("dd. MM. yy", params.myDate)
 
     def c = Entity.createCriteria()
     List entities = c.list {
