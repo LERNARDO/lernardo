@@ -1043,6 +1043,7 @@ class ProjectProfileController {
 
     // find all project days linked to this project
     List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
+    projectDays.sort {it.profile.date}
 
     // find projectTemplate of this project
     Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
