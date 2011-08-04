@@ -112,7 +112,8 @@
         changeYear: true,
         dateFormat: 'dd. mm. yy',
         minDate: new Date(1900, 1, 1),
-        firstDay: 1});
+        firstDay: 1,
+        autoSize: true});
 
       $('.datetimepicker').datetimepicker({
         dateFormat: 'dd. mm. yy'

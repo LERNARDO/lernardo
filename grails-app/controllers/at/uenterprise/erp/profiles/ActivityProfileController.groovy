@@ -12,6 +12,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.ClientEvaluation
 import at.openfactory.ep.Asset
+import java.util.regex.Pattern
 
 class ActivityProfileController {
 
@@ -41,7 +42,8 @@ class ActivityProfileController {
   def list = {
     params.offset = params.offset ? params.int('offset') : 0
     params.max = params.max ? params.int('max') : 10
-    params.myDate_year = params.myDate_year ?: 'alle'
+    if (!params.myDate)
+      params.myDate = 'all'
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -54,7 +56,7 @@ class ActivityProfileController {
     def activityCount
 
     // get all activities
-    if (params.myDate_year == 'alle') {
+    if (params.myDate == "all") {
 
       // show educator only his own activities
       if (currentEntity.type.id == metaDataService.etEducator.id) {
@@ -97,10 +99,10 @@ class ActivityProfileController {
     }
 
     // get all activities between a given date range
-    if (params.myDate_year && params.myDate_month && params.myDate_day) {
+    else {
       Date inputDate = new Date()
-      String input = "${params.myDate_year}/${params.myDate_month}/${params.myDate_day}"
-      inputDate = new SimpleDateFormat("yyyy/MM/dd", new Locale("en")).parse(input)
+      if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.myDate))
+        inputDate = Date.parse("dd. MM. yy", params.myDate)
 
       // get all activities of the facilities within the timeframe
       if (currentEntity.type.id == metaDataService.etEducator.id) {

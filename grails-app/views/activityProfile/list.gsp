@@ -42,10 +42,10 @@
     <div id="select-box">
       <g:message code="filterBy"/>:
       <g:form>
-        <g:datePicker name="myDate" value="${dateSelected}" precision="day" years="${2009..new Date().getYear() + 1900}"/>
+        <g:textField class="datepicker" name="myDate" value="${formatDate(date: dateSelected, format: 'dd. MM. yyyy' )}"/>
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
-          <div class="button"><g:link class="buttonGreen" action="list" params="[all: 'true']"><g:message code="profiletype.all"/></g:link></div>
+          <div class="button"><g:link class="buttonGreen" action="list" params="[myDate: 'all']"><g:message code="profiletype.all"/></g:link></div>
           <div class="spacer"></div>
         </div>
       </g:form>
