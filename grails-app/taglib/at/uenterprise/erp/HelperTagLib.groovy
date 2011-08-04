@@ -795,6 +795,14 @@ class HelperTagLib {
   }
 
   /**
+   * finds the number of parents linked to a project unit
+   */
+  def getProjectUnitParentsCount = {attrs, body ->
+    List projectUnitParents = functionService.findAllByLink(null, attrs.projectUnit, metaDataService.ltProjectUnitParent)
+    out << "(" + projectUnitParents.size() + ")"
+  }
+
+  /**
    * finds all partners linked to a project unit
    */
   def getProjectUnitPartners = {attrs, body ->
