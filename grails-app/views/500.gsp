@@ -10,6 +10,7 @@
         <img src="${resource(dir: 'images/icons', file: 'icon_alert.png')}" alt="${message(code: 'alert')}"/>
         <h1>We are sorry but something went wrong!</h1>
         <p>A mail has been sent to the developers which will try to fix the problem immediately.</p>
+        <p><b>Timestamp:</b> <g:formatDate date="${new Date()}" format="dd.MM.yyyy - HH:mm"/></p></p>
     </div>
   </body>
 </html>
