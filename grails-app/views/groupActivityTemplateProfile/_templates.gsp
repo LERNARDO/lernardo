@@ -25,7 +25,7 @@
   <p>
     <span class="bold"><g:message code="groupActivityTemplate.profile.totalDuration"/>:</span> ${calculatedDuration} min <g:if test="${calculatedDuration > group.profile.realDuration}">- <span class="red"><g:message code="groupActivityTemplate.profile.durationerror"/></span></g:if>
   </p>
-  
+
   <ol id="templatesOrdered">
     <g:render template="templates2" model="[templates: templates, group: group, entity: entity]"/>
   </ol>

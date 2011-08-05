@@ -2,10 +2,25 @@
 
   <p style="margin-top: 10px"><a href="" onclick="selectall(); return false"><g:message code="select.all"/></a> - <a href="" onclick="deselectall(); return false"><g:message code="select.none"/></a></p>
 
-  <g:each in="${allTemplates}" var="searchInstance">
+  <table>
+    <tr>
+      <td>
+        <g:each in="${allTemplates.size() % 2 == 0 ? allTemplates.subList(0, (allTemplates.size() / 2).toInteger()) : allTemplates.subList(0, ((allTemplates.size() + 1) / 2).toInteger())}" var="searchInstance">
+          <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" /> <g:link controller="templateProfile" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link> <span class="gray">(${searchInstance.profile.duration} min)</span><br/>
+        </g:each>
+      </td>
+      <td valign="top" style="padding-left: 50px;">
+        <g:each in="${allTemplates.size() % 2 == 0 ? allTemplates.subList((allTemplates.size() / 2).toInteger(), allTemplates.size()) : allTemplates.subList(((allTemplates.size() + 1) / 2).toInteger(), allTemplates.size())}" var="searchInstance">
+          <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" /> <g:link controller="templateProfile" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link> <span class="gray">(${searchInstance.profile.duration} min)</span><br/>
+        </g:each>
+      </td>
+    </tr>
+  </table>
+
+  %{--<g:each in="${allTemplates}" var="searchInstance">
     <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" /> <g:link controller="templateProfile" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link> <span class="gray">(${searchInstance.profile.duration} min)</span><br/>
   </g:each>
-  <div class="spacer"></div>
+  <div class="spacer"></div>--}%
 
   <script type="text/javascript">
 

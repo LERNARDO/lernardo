@@ -48,6 +48,7 @@ class GroupActivityTemplateProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
+
     int totalGroupActivityTemplates = Entity.countByType(etGroupActivityTemplate)
 
     return [groups: groupActivityTemplates, totalGroupActivityTemplates: totalGroupActivityTemplates]
@@ -72,6 +73,7 @@ class GroupActivityTemplateProfileController {
         eq("status", "done")
       }
     }
+    allTemplates.sort {it.profile.fullName}
 
     // find all activity templates linked to this group
     //List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
@@ -466,6 +468,7 @@ class GroupActivityTemplateProfileController {
       }
     }
 
+    finalList.sort {it.profile.fullName}
     render(template: 'searchresults', model: [allTemplates: finalList])
   }
 
