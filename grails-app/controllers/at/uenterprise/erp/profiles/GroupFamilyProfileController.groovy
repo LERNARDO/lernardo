@@ -189,7 +189,7 @@ class GroupFamilyProfileController {
     }
     else {
       //render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
-      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
+      render '<span class="red italic">"' + Entity.get(params.client).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List clients = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupFamily)
       render template: 'clients', model: [clients: clients, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
@@ -213,7 +213,7 @@ class GroupFamilyProfileController {
     }
     else {
       //render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" wurde bereits einer anderen Familie zugewiesen!</span>'
-      render '<span class="red italic">"' + Entity.get(params.parent).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
+      render '<span class="red italic">"' + Entity.get(params.child).profile.fullName + '" '+message(code: "alreadyAssignedToFamily")+'</span>'
       List childs = functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberChild)
       render template: 'childs', model: [childs: childs, group: Entity.get(params.id), entity: entityHelperService.loggedIn]
     }
