@@ -49,6 +49,16 @@
           </td>
         </tr>
 
+        <tr>
+          <td colspan="3" valign="top" class="name"><g:message code="groupActivityTemplate.profile.educationalObjectiveText"/></td>
+        </tr>
+        <tr>
+          <td colspan="3" height="60" valign="top" class="value-show-block">
+            ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          </td>
+        </tr>
+
+
       </table>
     </div>
 

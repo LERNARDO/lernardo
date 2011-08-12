@@ -21,6 +21,7 @@ class GroupActivityTemplateProfile extends Profile {
     String description
     String status
     Integer realDuration
+    String educationalObjectiveText
 
     Date dateCreated
     Date lastUpdated
@@ -28,6 +29,7 @@ class GroupActivityTemplateProfile extends Profile {
     static constraints = {
       fullName (blank: false, size: 1..100, maxSize: 100)
       description (blank: true, maxSize: 20000)
+      educationalObjectiveText (blank: true, maxSize: 2000)
     }
 
     String toString(){

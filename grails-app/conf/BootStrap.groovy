@@ -823,6 +823,7 @@ class BootStrap {
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.fullName = "groupActivityTemplate " + i
           ent.profile.description = "dummyDescription"
+          ent.profile.educationalObjectiveText = "dummyEducationalObjective"
           ent.profile.realDuration = generator.nextInt(60) + 30
           int random = generator.nextInt(3)
           if (random == 0)

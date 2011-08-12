@@ -52,7 +52,7 @@
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
               <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-                ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
+                ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
               %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
             </td>
