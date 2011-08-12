@@ -38,44 +38,6 @@
       </tr>
 
       <tr>
-        <td class="name-show"><g:message code="facility"/>:</td>
-        <td valign="bottom" class="label"><g:message code="clients"/>:</td>
-        <td class="name-show"><g:message code="educators"/>:</td>
-      </tr>
-
-      <tr>
-        <td valign="top" class="value-show">
-          <erp:getFacility entity="${activity}">
-            <g:link controller="${facility.type.supertype.name +'Profile'}" action="show" id="${facility.id}">${facility.profile.fullName}</g:link>
-          </erp:getFacility>
-        </td>
-
-        <td valign="top" class="value-show"><erp:getClients entity="${activity}">
-          <g:each in="${clients}" var="client">
-            <erp:isEnabled entity="${client}">
-              <g:link controller="${client.type.supertype.name +'Profile'}" action="show" id="${client.id}">${client.profile.fullName}</g:link>
-            </erp:isEnabled>
-            <erp:notEnabled entity="${client}">
-              <span class="notEnabled">${client.profile.fullName}</span>
-            </erp:notEnabled><br>
-          </g:each>
-        </erp:getClients>
-        </td>
-
-        <td valign="top" class="value-show-block"><erp:getEducators entity="${activity}">
-          <g:each in="${educators}" var="educator">
-            <erp:isEnabled entity="${educator}">
-              <g:link controller="${educator.type.supertype.name +'Profile'}" action="show" id="${educator.id}">${educator.profile.fullName}</g:link>
-            </erp:isEnabled>
-            <erp:notEnabled entity="${educator}">
-              <span class="notEnabled">${educator.profile.fullName}</span>
-            </erp:notEnabled><br>
-          </g:each>
-        </erp:getEducators>
-        </td>
-      </tr>
-
-      <tr>
         <td class="name-show"><g:message code="activityTemplate.description"/>:</td>
       </tr>
       <tr>
@@ -101,10 +63,53 @@
       <div class="spacer"></div>
     </div>
 
+    <div class="zusatz">
+      <h5><g:message code="educators"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#educators');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="educators" style="display:none">
 
-  %{-- this is only valid for theme activities --}%
-    <g:if test="${activity.profile.type == 'theme'}">
-    %{--clients and their status may only be added after the activity has started--}%
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteEducators" action="remoteEducators" id="${activity.id}" before="showspinner('#remoteEducators');"/>
+        <div id="remoteEducators"></div>
+
+      </div>
+      <div class="zusatz-show" id="educators2">
+        <g:render template="educators" model="[educators: educators, entity: currentEntity, activity: activity]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
+      return false" href="#" id="show-clients"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="clients" style="display:none">
+
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${activity.id}" before="showspinner('#remoteClients');"/>
+        <div id="remoteClients"></div>
+
+      </div>
+      <div class="zusatz-show" id="clients2">
+        <g:render template="clients" model="[clients: clients, entity: currentEntity, activity: activity]"/>
+      </div>
+    </div>
+
+    <div class="zusatz">
+      <h5><g:message code="facility"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#facilities');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="facilities" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'activityProfile', action:'addFacility', id: activity.id]" update="facilities2" before="showspinner('#facilities2');">
+          <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+        </g:formRemote>
+      </div>
+      <div class="zusatz-show" id="facilities2">
+        <g:render template="facilities" model="[facilities: facilities, activity: activity, entity: currentEntity]"/>
+      </div>
+    </div>
+
+    %{-- this is only valid for theme activities --}%
+    %{--<g:if test="${activity.profile.type == 'theme'}">
+    --}%%{--clients and their status may only be added after the activity has started--}%%{--
       <g:if test="${new Date() > activity.profile.date}">
         <div>
           <h1><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
@@ -126,7 +131,7 @@
       <g:else>
         <p><g:message code="activity.clients"/></p>
       </g:else>
-    </g:if>
+    </g:if>--}%
 
   </div>
 </div>

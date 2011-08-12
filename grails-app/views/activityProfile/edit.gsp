@@ -40,24 +40,6 @@
           </td>
         </tr>
 
-        <tr>
-          <td valign="bottom" class="label"><g:message code="facility"/>:</td>
-          <td valign="bottom" class="label"><g:message code="clients"/>:</td>
-          <td valign="bottom" class="label"><g:message code="educators"/>:</td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value ${hasErrors(bean: activity, field: 'facility', 'errors')}">
-            <g:select class="drop-down-205" name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
-          </td>
-          <td valign="top" class="value ${hasErrors(bean: activity, field: 'clients', 'errors')}">
-            <g:select multiple="true" optionKey="id" optionValue="profile" from="${clients}" size="10" class="long-field" name="clients" value="${currentClients}"/>
-          </td>
-          <td valign="top" class="value ${hasErrors(bean: activity, field: 'educators', 'errors')}">
-            <g:select multiple="true" optionKey="id" optionValue="profile" from="${educators}" name="educators" value="${currentEducators}"/>
-          </td>
-        </tr>
-
         </tbody>
       </table>
 

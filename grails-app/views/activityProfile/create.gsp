@@ -79,7 +79,7 @@
 
       <p><g:message code="educators"/>: (<g:message code="selectFacility"/>)</p>
       <span id="educators">
-        <g:render template="educators" model="[educators: ac?.educators, currentEntity: currentEntity]"/>
+        <g:render template="educatorsOld" model="[educators: ac?.educators, currentEntity: currentEntity]"/>
       </span>
 
 

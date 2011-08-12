@@ -161,11 +161,17 @@ class ActivityProfileController {
     Entity activity = Entity.get(params.id)
     Entity entity = params.entity ? activity : entityHelperService.loggedIn
 
-    List clients = Entity.findAllByType(metaDataService.etClient)
+    //List clients = Entity.findAllByType(metaDataService.etClient)
 
-    return ['activity': activity,
-            'entity': entity,
-            'clients': clients]
+    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
+
+    return [activity: activity,
+            entity: entity,
+            //clientsOld: clients,
+            educators: functionService.findAllByLink(null, activity, metaDataService.ltActEducator),
+            clients: functionService.findAllByLink(null, activity, metaDataService.ltActClient),
+            facilities: functionService.findAllByLink(null, activity, metaDataService.ltActFacility),
+            allFacilities: allFacilities]
   }
 
   /*
@@ -286,24 +292,25 @@ class ActivityProfileController {
     Entity currentEntity = entityHelperService.loggedIn
 
     // get a list of facilities the current entity is working in
-    def facilities = []
+    /*def facilities = []
     if (currentEntity.type.name == metaDataService.etEducator.name)
       facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
     else
-      facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
-    def educators = Entity.findAllByType(metaDataService.etEducator)
-    educators.sort {it.profile.firstName}
-    def clients = Entity.findAllByType(metaDataService.etClient)
+      facilities.addAll(Entity.findAllByType(metaDataService.etFacility))*/
+    //def educators = Entity.findAllByType(metaDataService.etEducator)
+    //educators.sort {it.profile.firstName}
+    //def clients = Entity.findAllByType(metaDataService.etClient)
 
-    List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
-    List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+    //List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
+    //List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
 
     return ['activity': activity,
-            'facilities': facilities,
-            'educators': educators,
-            'clients': clients,
-            'currentEducators': currentEducators,
-            'currentClients': currentClients]
+            //'facilities': facilities,
+            //'educators': educators,
+            //'clients': clients,
+            //'currentEducators': currentEducators,
+            //'currentClients': currentClients
+            ]
   }
 
   def update = {
@@ -314,28 +321,13 @@ class ActivityProfileController {
     activity.profile.properties = params
     activity.profile.date = functionService.convertToUTC(activity.profile.date)
 
-    // delete old links of educators and clients
-    Link.findAllByTargetAndType(activity, metaDataService.ltActEducator).each {it.delete()}
-    Link.findAllByTargetAndType(activity, metaDataService.ltActClient).each {it.delete()}
-
-    // create links to educators
-    params.list('educators').each {
-      Entity educator = Entity.get(it)
-      new Link(source: educator, target: activity, type: metaDataService.ltActEducator).save()
-    }
-
-    params.list('clients').each {
-      Entity client = Entity.get(it)
-      new Link(source: client, target: activity, type: metaDataService.ltActClient).save()
-    }
-
     if (activity.profile.save() && activity.save()) {
       flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
       redirect action: 'show', id: activity.id, params: [entity: activity.id]
     }
     else {
       // get a list of facilities the current entity is working in
-      def facilities = []
+      /*def facilities = []
       if (currentEntity.type.name == metaDataService.etEducator.name)
         facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
       else
@@ -344,13 +336,13 @@ class ActivityProfileController {
       def clients = Entity.findAllByType(metaDataService.etClient)
 
       List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
-      List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+      List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)*/
       render view: 'edit', model: ['activity': activity,
-                                   'facilities': facilities,
+                                   /*'facilities': facilities,
                                    'educators': educators,
                                    'clients': clients,
                                    'currentEducators': currentEducators,
-                                   'currentClients': currentClients]
+                                   'currentClients': currentClients*/]
     }
 
   }
@@ -366,18 +358,18 @@ class ActivityProfileController {
     redirect action: 'list'
   }
 
-  def addClient = {
+  def addClientOld = {
     ClientEvaluation clientEvaluation = new ClientEvaluation(params)
     Entity activity = Entity.get(params.id)
 
     activity.profile.addToClientEvaluations(clientEvaluation)
-    render template: 'clients', model: [activity: activity, entity: entityHelperService.loggedIn]
+    render template: 'clientsOld', model: [activity: activity, entity: entityHelperService.loggedIn]
   }
 
-  def removeClient = {
+  def removeClientOld = {
     Entity activity = Entity.get(params.id)
     activity.profile.removeFromClientEvaluations(ClientEvaluation.get(params.clientEvaluation))
-    render template: 'clients', model: [activity: activity, entity: entityHelperService.loggedIn]
+    render template: 'clientsOld', model: [activity: activity, entity: entityHelperService.loggedIn]
   }
 
   /*
@@ -448,12 +440,99 @@ class ActivityProfileController {
     }
   }
 
-  def addFacility = {
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteEducators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'educatorresults', model: [results: results, activity: params.id])
+    }
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteClients = {
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'clientresults', model: [results: results, activity: params.id])
+    }
+  }
+
+  def markFacility = {
     Entity facility = Entity.get(params.id)
 
     // render ("<b>Gewählte Einrichtung:</b> ${facility.profile.fullName}")
     def msg = message(code: "facility.profile.selected")
     render ("<b>${msg}</b> ${facility.profile.fullName}")
+  }
+
+  def addEducator = {
+    def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
+    if (linking.duplicate)
+      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+    render template: 'educators', model: [educators: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeEducator = {
+    def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltActEducator)
+    render template: 'educators', model: [educators: breaking.results, activity: breaking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def addClient = {
+    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
+    if (linking.duplicate)
+      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+      render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
+
+    render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
+  }
+
+  def removeClient = {
+    def breaking = functionService.breakEntities(params.client, params.id, metaDataService.ltActClient)
+    render template: 'clients', model: [clients: breaking.results, activity: breaking.target, entity: entityHelperService.loggedIn]
   }
 
   def updateEducators = {
@@ -471,7 +550,35 @@ class ActivityProfileController {
         distinct('source')
       }
     }
-    render template: 'educators', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+    render template: 'educatorsOld', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+  }
+
+  def addFacility = {
+    Entity group = Entity.get(params.id)
+    def c = Link.createCriteria()
+    def result = c.get {
+      eq('source', Entity.get(params.id))
+      eq('type', metaDataService.ltActFacility)
+    }
+    if (!result) {
+      def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
+      if (linking.duplicate)
+        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+        render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
+      render template: 'facilities', model: [facilities: linking.results2, activity: linking.source, entity: entityHelperService.loggedIn]
+    }
+    else {
+      List facilities = functionService.findAllByLink(group, null, metaDataService.ltActFacility)
+      // render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
+      render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
+      render template: 'facilities', model: [facilities: facilities, activity: group, entity: entityHelperService.loggedIn]
+    }
+
+  }
+
+  def removeFacility = {
+    def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltActFacility)
+    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
 }
 
