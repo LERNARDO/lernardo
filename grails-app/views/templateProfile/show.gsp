@@ -70,8 +70,8 @@
       </tr>
 
       <tr>
-        <td valign="top" class="value-show">${template.profile.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        <td valign="top" class="value-show">${template.profile.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td valign="top" class="value-show">${template?.profile?.ageFrom}</td>
+        <td valign="top" class="value-show">${template?.profile?.ageTo}</td>
         <td valign="top" class="value-show-block">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 

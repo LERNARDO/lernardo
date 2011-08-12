@@ -36,7 +36,9 @@ class TemplateProfile extends Profile {
     duration (max: 500)
     goal nullable: true, maxSize: 20000
     ageFrom nullable: true
-    ageTo nullable: true
+    ageTo nullable: true, validator: {at, obj ->
+      return at ? at >= obj.ageFrom : true
+    }
   }
 
   String toString(){

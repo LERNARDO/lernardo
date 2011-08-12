@@ -68,6 +68,10 @@ class TemplateProfileController {
   def update = {
     Entity template = Entity.get(params.id)
     template.profile.properties = params
+    if (!params.ageFrom)
+      template.profile.ageFrom = 0
+    if (!params.ageTo)
+      template.profile.ageTo = 100
 
     if (template.profile.save() && template.save()) {
       flash.message = message(code: "template.updated", args: [template.profile.fullName])
@@ -195,6 +199,10 @@ class TemplateProfileController {
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
         ent.profile.properties = params
         ent.profile.type = "default"
+        if (!params.ageFrom)
+          ent.profile.ageFrom = 0
+        if (!params.ageTo)
+          ent.profile.ageTo = 100
       }
       // add default profile image
       File file = ApplicationHolder.application.parentContext.getResource("images/default_activitytemplate.png").getFile()
@@ -331,6 +339,13 @@ class TemplateProfileController {
     def method3lower = params.list('method3lower')
     def method3upper = params.list('method3upper')
 
+    // swap age values if necessary
+    if (params.int('ageTo') < params.int('ageFrom')) {
+      def temp = params.ageTo
+      params.ageTo = params.ageFrom
+      params.ageFrom = temp
+    }
+
     def numberOfAllTemplates = Entity.countByType(metaDataService.etTemplate)
 
     def allTemplates = Entity.createCriteria().list  {
@@ -345,10 +360,11 @@ class TemplateProfileController {
       profile {
         if (params.duration1 != 'all')
           between('duration', params.duration1.toInteger(), params.duration2.toInteger())
-        if (params.ageFrom)
+        if (params.ageFrom) {
           le('ageFrom', params.ageFrom.toInteger())
+        }
         if (params.ageTo)
-          ge('ageTo', params.ageTo.toInteger())
+            ge('ageTo', params.ageTo.toInteger())
         if (params.sort)
           order(params.sort, params.order)
       }
