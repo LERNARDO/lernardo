@@ -45,6 +45,16 @@
           </td>
         </tr>
 
+        <tr class="prop">
+          <td colspan="2" valign="top" class="name-show"><g:message code="projectTemplate.profile.educationalObjectiveText"/>:</td>
+        </tr>
+
+        <tr>
+          <td colspan="2" valign="top" class="value-show">
+            ${fieldValue(bean: projectTemplate, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          </td>
+        </tr>
+
       </table>
 
     </div>

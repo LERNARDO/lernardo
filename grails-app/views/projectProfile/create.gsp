@@ -61,6 +61,7 @@
           <tr class="prop">
             <td colspan="3" valign="top" class="value">
               <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+                ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
             </td>
           </tr>

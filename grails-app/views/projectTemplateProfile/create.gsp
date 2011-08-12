@@ -43,6 +43,17 @@
             </td>
           </tr>
 
+          <tr class="prop">
+            <td colspan="3" valign="top" class="name"><g:message code="projectTemplate.profile.educationalObjectiveText"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td colspan="3" valign="top" class="value">
+              <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+              </ckeditor:editor>
+            </td>
+          </tr>
+
           </tbody>
         </table>
       </div>

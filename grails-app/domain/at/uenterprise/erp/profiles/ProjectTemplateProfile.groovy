@@ -16,10 +16,12 @@ class ProjectTemplateProfile extends Profile {
 
     String description
     String status
+    String educationalObjectiveText
 
     static constraints = {
       fullName (blank: false, size: 1..100, maxSize: 100)
       description (blank: true, maxSize: 20000)
+      educationalObjectiveText nullable: true, maxSize: 20000
     }
 
     String toString(){
