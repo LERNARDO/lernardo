@@ -36,7 +36,16 @@
       <g:select name="theme" from="${themes}" optionKey="id" optionValue="profile"/>
       <g:submitButton name="submit" value="OK"/>
     </g:formRemote>
-    
+
+
+    %{--
+    TODO: check with ERP-751
+    <g:formRemote name="formRemote2" url="[action: 'searchbylabel']" update="membersearch-results">
+      Suche nach Label:
+      <g:select from="${allLabels}" multiple="true" name="labels" value=""/>
+      <g:submitButton name="submit" value="OK"/>
+    </g:formRemote>--}%
+
     <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
     <g:if test="${projects}">

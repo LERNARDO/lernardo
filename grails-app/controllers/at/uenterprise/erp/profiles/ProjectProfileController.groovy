@@ -15,6 +15,7 @@ import at.uenterprise.erp.Live
 import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
+import at.uenterprise.erp.Label
 
 class ProjectProfileController {
 
@@ -76,7 +77,8 @@ class ProjectProfileController {
 
     return [projects: projects,
             totalProjects: totalProjects,
-            themes: themes]
+            themes: themes,
+            allLabels: Label.findAllByType('template')]
   }
 
   def show = {
@@ -1410,6 +1412,28 @@ class ProjectProfileController {
     }
     else
       render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+  }
+
+  def searchbylabel = {
+    // TODO: check with ERP-751
+    /*List projects = Entity.findAllByType(metaDataService.etProject)
+    List result = []
+    List labels = params.list('labels')
+    projects.each { Entity project ->
+        project.profile.labels.each { Label label ->
+          if (labels.contains(label.name))
+            result.add(template)
+        }
+      }
+    }
+
+    if (result.size() == 0) {
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      return
+    }
+    else {
+        render(template: '/overview/searchresults', model: [searchList: result])
+    }*/
   }
 
   def planresource = {

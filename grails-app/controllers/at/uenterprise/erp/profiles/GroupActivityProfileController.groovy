@@ -100,6 +100,7 @@ class GroupActivityProfileController {
 
     def allEducators = functionService.findEducators(group)
     List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
+    allEducators.sort {it.profile.firstName}
 
     def allSubstitutes = Entity.findAllByType(metaDataService.etEducator)
     List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group

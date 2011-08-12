@@ -292,6 +292,7 @@ class ActivityProfileController {
     else
       facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
     def educators = Entity.findAllByType(metaDataService.etEducator)
+    educators.sort {it.profile.firstName}
     def clients = Entity.findAllByType(metaDataService.etClient)
 
     List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)

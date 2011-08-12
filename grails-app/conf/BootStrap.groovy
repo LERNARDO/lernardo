@@ -280,8 +280,8 @@ class BootStrap {
           EducatorProfile prf = (EducatorProfile)ent.profile
           prf.gender = generator.nextInt(2) + 1
           prf.title = "dummyTitle"
-          prf.firstName = "educatorFirstName"
-          prf.lastName = "educatorLastName"
+          prf.firstName = "educatorFirstName" + i
+          prf.lastName = "educatorLastName" + i
           prf.birthDate = new Date(generator.nextInt(20) + 60, generator.nextInt(12) + 1, generator.nextInt(28) + 1)
           prf.currentCountry = "dummyCountry"
           prf.currentZip = "1234"
