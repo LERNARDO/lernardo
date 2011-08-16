@@ -208,12 +208,12 @@ class GroupClientProfileController {
     List finalClients = []
 
     if (params.colonia != "all") {
-      allClients.each { client ->
+      allClients.each { Entity client ->
 
         def d = Link.createCriteria()
         def result = d.get {
           eq("source", Entity.get(params.colonia))
-          eq("target", client as Entity)
+          eq("target", client)
           eq("type", metaDataService.ltColonia)
         }
 

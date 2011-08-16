@@ -34,8 +34,8 @@ class PublicationController {
       List activitytemplates = functionService.findAllByLink(null, entity, metaDataService.ltGroupMember)
 
       // get all documents
-      activitytemplates.each {
-        def bla = functionService.findPublicationsOfEntity(it as Entity)
+      activitytemplates.each { Entity at ->
+        def bla = functionService.findPublicationsOfEntity(at)
         bla.each {
           activitytemplatesdocuments << it
         }
@@ -57,8 +57,8 @@ class PublicationController {
       List activitytemplates = functionService.findAllByLink(null, groupactivitytemplate, metaDataService.ltGroupMember)
 
       // get all documents
-      activitytemplates.each {
-        def bla = functionService.findPublicationsOfEntity(it as Entity)
+      activitytemplates.each { Entity at ->
+        def bla = functionService.findPublicationsOfEntity(at)
         bla.each {
           activitytemplatesdocuments << it
         }
@@ -75,8 +75,8 @@ class PublicationController {
 
       // find all group activity templates
       List groupactivitytemplates = []
-      projectUnits.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+      projectUnits.each { Entity pu ->
+        def bla = functionService.findAllByLink(null, pu, metaDataService.ltProjectUnitMember)
         bla.each {
           if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
             groupactivitytemplates << it
@@ -84,8 +84,8 @@ class PublicationController {
       }
 
       // get documents of group activity templates
-      groupactivitytemplates.each {
-        def bla = functionService.findPublicationsOfEntity(it as Entity)
+      groupactivitytemplates.each { Entity gat ->
+        def bla = functionService.findPublicationsOfEntity(gat)
         bla.each {
           groupactivitytemplatesdocuments << it
         }
@@ -93,8 +93,8 @@ class PublicationController {
 
       // find all activity templates linked to the group activity templates
       List activitytemplates = []
-      groupactivitytemplates.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+      groupactivitytemplates.each { Entity gat ->
+        def bla = functionService.findAllByLink(null, gat, metaDataService.ltGroupMember)
         bla.each {
           if (!activitytemplates.contains(it)) // filter duplicate activity templates
             activitytemplates << it
@@ -102,8 +102,8 @@ class PublicationController {
       }
 
       // get all documents
-      activitytemplates.each {
-        def bla = functionService.findPublicationsOfEntity(it as Entity)
+      activitytemplates.each { Entity at ->
+        def bla = functionService.findPublicationsOfEntity(at)
         bla.each {
           activitytemplatesdocuments << it
         }
@@ -127,8 +127,8 @@ class PublicationController {
 
       // find all group activity templates
       List groupactivitytemplates = []
-      projectUnits.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+      projectUnits.each { Entity pu ->
+        def bla = functionService.findAllByLink(null, pu, metaDataService.ltProjectUnitMember)
         bla.each {
           if (!groupactivitytemplates.contains(it)) // filter duplicate group activity templates
             groupactivitytemplates << it
@@ -136,8 +136,8 @@ class PublicationController {
       }
 
       // get documents of group activity templates
-      groupactivitytemplates.each {
-        def bla = functionService.findPublicationsOfEntity(it as Entity)
+      groupactivitytemplates.each { Entity gat ->
+        def bla = functionService.findPublicationsOfEntity(gat)
         bla.each {
           groupactivitytemplatesdocuments << it
         }
@@ -145,8 +145,8 @@ class PublicationController {
 
       // find all activity templates linked to the group activity templates
       List activitytemplates = []
-      groupactivitytemplates.each {
-        def bla = functionService.findAllByLink(null, it as Entity, metaDataService.ltGroupMember)
+      groupactivitytemplates.each { Entity gat ->
+        def bla = functionService.findAllByLink(null, gat, metaDataService.ltGroupMember)
         bla.each {
           if (!activitytemplates.contains(it)) // filter duplicate activity templates
             activitytemplates << it
@@ -154,8 +154,8 @@ class PublicationController {
       }
 
       // get all documents
-      activitytemplates.each {
-        def bla = functionService.findPublicationsOfEntity(it as Entity)
+      activitytemplates.each { Entity at ->
+        def bla = functionService.findPublicationsOfEntity(at)
         bla.each {
           activitytemplatesdocuments << it
         }

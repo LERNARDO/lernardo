@@ -279,8 +279,8 @@ class GroupActivityProfileController {
       List templates = functionService.findAllByLink(null, groupActivityTemplate, metaDataService.ltGroupMember)
 
       // and link them to the new groupActivity
-      templates.each {
-        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+      templates.each { Entity template ->
+        new Link(source: template, target: entity, type: metaDataService.ltGroupMember).save()
       }
 
       // link template to instance
@@ -466,7 +466,7 @@ class GroupActivityProfileController {
       List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
 
       clients.each {
-        def linking = functionService.linkEntities(it.id as String, params.id, metaDataService.ltGroupMemberClient)
+        def linking = functionService.linkEntities(it.id, params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
           render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       }

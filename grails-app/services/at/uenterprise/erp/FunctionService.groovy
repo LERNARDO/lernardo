@@ -278,8 +278,8 @@ class FunctionService {
 
     // 2. find all families of the clients
     List families = []
-    clients.each {
-      List links = findAllByLink(it as Entity, null, metaDataService.ltGroupFamily)
+    clients.each { Entity client ->
+      List links = findAllByLink(client, null, metaDataService.ltGroupFamily)
       links.each {
         if (!families.contains(it))
           families << it
@@ -288,8 +288,8 @@ class FunctionService {
 
     // 3. find all parents of the families
     List allParents = []
-    families.each {
-      List parents = findAllByLink(null, it as Entity, metaDataService.ltGroupMemberParent)
+    families.each { Entity family ->
+      List parents = findAllByLink(null, family, metaDataService.ltGroupMemberParent)
       parents.each {
         allParents.add(it)
       }

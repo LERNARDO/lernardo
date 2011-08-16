@@ -521,8 +521,8 @@ class BootStrap {
     List users = Entity.list()
     users.each {
       if (it.name != 'admin') {
-        new Link(source: it as Entity, target: admin, type: metaDataService.ltFriendship).save(failOnError: true)
-        new Link(source: admin, target: it as Entity, type: metaDataService.ltFriendship).save(failOnError: true)
+        new Link(source: it, target: admin, type: metaDataService.ltFriendship).save(failOnError: true)
+        new Link(source: admin, target: it, type: metaDataService.ltFriendship).save(failOnError: true)
       }
     }
 
@@ -1011,7 +1011,7 @@ class BootStrap {
 
       // and link them to the new groupActivity
       templates.each {
-        new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save(failOnError: true)
+        new Link(source: it, target: entity, type: metaDataService.ltGroupMember).save(failOnError: true)
       }
 
       // link template to instance

@@ -181,8 +181,8 @@ class GroupActivityTemplateProfileController {
     // find all activity templates linked to the original and link them to the copy
     List templates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)
 
-    templates.each {
-      new Link(source: it as Entity, target: entity, type: metaDataService.ltGroupMember).save()
+    templates.each { Entity template ->
+      new Link(source: template, target: entity, type: metaDataService.ltGroupMember).save()
     }
 
     // loop through all labels of the original and create them in the copy

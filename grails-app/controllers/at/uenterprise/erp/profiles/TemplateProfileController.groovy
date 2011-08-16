@@ -321,10 +321,10 @@ class TemplateProfileController {
    */
   def vote = {
     Element element = Element.get(params.element)
-    if (element.voting == params.val as Integer)
+    if (element.voting == params.int('val'))
       element.voting = 0
     else
-      element.voting = params.val as Integer
+      element.voting = params.int('val')
 
     render erp.starBox(element: element.id)
   }

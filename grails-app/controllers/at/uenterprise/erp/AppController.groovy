@@ -139,7 +139,7 @@ class AppController {
       if (entity.type.id == metaDataService.etEducator.id) {
         List days = functionService.findAllByLink(entity, null, metaDataService.ltProjectDayEducator)
         days.each {
-          projects << functionService.findByLink(it as Entity, null, metaDataService.ltProjectMember)
+          projects << functionService.findByLink(it, null, metaDataService.ltProjectMember)
         }
       }
       else if (entity.type.id == metaDataService.etFacility.id) {
@@ -161,14 +161,14 @@ class AppController {
         // for each project unit find all project days they are linked to
         List projectDays = []
         projectUnits.each {
-          def result = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
+          def result = functionService.findByLink(it, null, metaDataService.ltProjectDayUnit)
           if (result && !projectDays.contains(result))
             projectDays << result
         }
 
         // for each project day find all projects they are linked to
         projectDays.each {
-          def result = functionService.findByLink(it as Entity, null, metaDataService.ltProjectMember)
+          def result = functionService.findByLink(it, null, metaDataService.ltProjectMember)
           if (result)
             projects.add(result)
         }
@@ -178,13 +178,13 @@ class AppController {
 
         List projectDays = []
         projectUnits.each {
-          def result = functionService.findByLink(it as Entity, null, metaDataService.ltProjectDayUnit)
+          def result = functionService.findByLink(it, null, metaDataService.ltProjectDayUnit)
           if (!projectDays.contains(result))
             projectDays << result
         }
 
         projectDays.each {
-          projects << functionService.findByLink(it as Entity, null, metaDataService.ltProjectMember)
+          projects << functionService.findByLink(it, null, metaDataService.ltProjectMember)
         }
       }
       render template: "/templates/linkscontent", model: [list: projects]
