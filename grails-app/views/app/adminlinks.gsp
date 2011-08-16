@@ -26,6 +26,12 @@
     </p>
 
     <p>
+      Check Tabellen für Aktivitätsblockvorlagen, Projektvorlagen und Projekttage erstellen<br/>
+      <g:remoteLink update="checktables" action="checktables" before="showspinner('#checktables');">Check-Tab</g:remoteLink>
+      <div id="checktables"></div>
+    </p>
+
+    <p>
       Check DB Access Times<br/>
       <g:remoteLink update="db" action="checkDB" before="showspinner('#db');">Check</g:remoteLink>
       <div id="db"></div>

@@ -650,6 +650,81 @@ class AppController {
     render "Created ${number} table entries in ${groups.size()} project days<br/>"
   }
 
+  def checktables = {
+    // group activity templates
+    List groups = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+    log.info "group activity templates size: " + groups?.size()
+    int number = 0
+    groups.each { group ->
+      number++
+      log.info "group activity templates: Entity-No:"+number+" Entity-Id:"+group.id
+      List activityTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+      log.info "group activity templates: activityTemplates-Size:"+activityTemplates?.size()
+      activityTemplates.each { activityTemplate ->
+        log.info "group activity templates: Activity-Template_Id:"+activityTemplate.id
+        if (!group.profile.templates.contains(activityTemplate.id.toString())) {
+          log.info "group activity templates: activityTemplate: "+activityTemplate.id+" for Entity: "+group.id+ " (profile-id: "+group.profile.id+") not in Sort-Table"
+        }
+      }
+      group.profile.templates.each { templ ->
+        def aLink = Link.createCriteria().get {
+          eq('source', Entity.get(Integer.parseInt(templ)))
+          eq('target', group)
+          eq ('type', metaDataService.ltGroupMember)
+        }
+        if (!aLink) {
+          log.info "group activity templates: Entity-Id: "+templ+" for group.profile-ID "+group.profile.id+" not found!!!!!!!!!!!!!!"
+        }
+      }
+    }
+
+    // project templates
+    groups = Entity.findAllByType(metaDataService.etProjectTemplate)
+    log.info "project templates size: " + groups?.size()
+    number = 0
+    groups.each { group ->
+      number++
+      log.info "project templates: Entity-No:"+number+" Entity-Id:"+group.id
+      List projectUnitTemplates = functionService.findAllByLink(null, group, metaDataService.ltProjectUnitTemplate)
+      log.info "project templates: projectUnits-Size:"+projectUnitTemplates?.size()
+      projectUnitTemplates.each { projectUnitTemplate ->
+        log.info "project templates: projectUnitTemplate_Id:"+projectUnitTemplate.id
+        if (!group.profile.templates.contains(projectUnitTemplate.id.toString())) {
+          log.info "project templates: projectUnitTemplate: "+projectUnitTemplate.id+" for Entity "+group.id+" (profile-id: "+group.profile.id+") not in Sort-Table"
+        }
+      }
+      group.profile.templates.each { templ ->
+        def aLink = Link.createCriteria().get {
+          eq('source', Entity.get(Integer.parseInt(templ)))
+          eq('target', group)
+          eq ('type', metaDataService.ltProjectUnitTemplate)
+        }
+        if (!aLink) {
+          log.info "project templates: Entity-Id: "+templ+" for group.profile-ID "+group.profile.id+" not found!!!!!!!!!!!!!!"
+        }
+      }
+    }
+
+    // project days
+    groups = Entity.findAllByType(metaDataService.etProjectDay)
+    log.info "project days size: " + groups?.size()
+    number = 0
+    groups.each { group ->
+      number++
+      log.info "project days: Entity-No:"+number+" Entity-Id:"+group.id
+      List units = functionService.findAllByLink(null, group, metaDataService.ltProjectDayUnit)
+      log.info "project days: Units-Size:"+units?.size()
+      units.each { unit ->
+        log.info "project days: Unit_Id"+unit.id
+        if (!group.profile.units.contains(unit.id.toString())) {
+         log.info "project days: unit: "+unit.id+" for Entity: "+group.id+" (profile-id: "+group.profile.id+") not in Sort-Table"
+        }
+      }
+    }
+    render "Finished <br/>"
+
+  }
+
   def checkDB = {
     log.info "reading all entities of type facility"
 
