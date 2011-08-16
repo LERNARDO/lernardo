@@ -661,9 +661,9 @@ class AppController {
       List activityTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
       log.info "group activity templates: activityTemplates-Size:"+activityTemplates?.size()
       activityTemplates.each { activityTemplate ->
-        log.info "group activity templates: Activity-Template_Id"+activityTemplate.id
+        log.info "group activity templates: Activity-Template_Id:"+activityTemplate.id
         if (!group.profile.templates.contains(activityTemplate.id.toString())) {
-          render "group activity templates: activityTemplate: ${activityTemplate.id} for Entity ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
+          log.info "group activity templates: activityTemplate: "+activityTemplate.id+" for Entity: "+group.id+ " (profile-id: "+group.profile.id+") not in Sort-Table"
         }
       }
     }
@@ -676,11 +676,11 @@ class AppController {
       number++
       log.info "project templates: Entity-No:"+number+" Entity-Id:"+group.id
       List projectUnitTemplates = functionService.findAllByLink(null, group, metaDataService.ltProjectUnitTemplate)
-      log.info "project templates: activityTemplates-Size:"+projectUnitTemplates?.size()
+      log.info "project templates: projectUnits-Size:"+projectUnitTemplates?.size()
       projectUnitTemplates.each { projectUnitTemplate ->
-        log.info "project templates: Activity-Template_Id"+projectUnitTemplate.id
+        log.info "project templates: projectUnitTemplate_Id:"+projectUnitTemplate.id
         if (!group.profile.templates.contains(projectUnitTemplate.id.toString())) {
-          render "project templates: projectUnitTemplate: ${projectUnitTemplate.id} for Entity ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
+          log.info "project templates: projectUnitTemplate: "+projectUnitTemplate.id+" for Entity "+group.id+" (profile-id: "+group.profile.id+") not in Sort-Table"
         }
       }
     }
@@ -697,10 +697,11 @@ class AppController {
       units.each { unit ->
         log.info "project days: Unit_Id"+unit.id
         if (!group.profile.units.contains(unit.id.toString())) {
-          render "project days: unit: ${unit.id} for Entity: ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
+         log.info "project days: unit: "+unit.id+" for Entity: "+group.id+" (profile-id: "+group.profile.id+") not in Sort-Table"
         }
       }
     }
+    render "Finished <br/>"
 
   }
 
