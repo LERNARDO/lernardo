@@ -653,10 +653,15 @@ class AppController {
   def checktables = {
     // group activity templates
     List groups = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+    log.info "group activity templates size: " + groups?.size()
     int number = 0
     groups.each { group ->
+      number++
+      log.info "group activity templates: Entity-No:"+number+" Entity-Id:"+group.id
       List activityTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+      log.info "group activity templates: activityTemplates-Size:"+activityTemplates?.size()
       activityTemplates.each { activityTemplate ->
+        log.info "group activity templates: Activity-Template_Id"+activityTemplate.id
         if (!group.profile.templates.contains(activityTemplate.id.toString())) {
           render "group activity templates: activityTemplate: ${activityTemplate.id} for Entity ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
         }
@@ -665,10 +670,15 @@ class AppController {
 
     // project templates
     groups = Entity.findAllByType(metaDataService.etProjectTemplate)
+    log.info "project templates size: " + groups?.size()
     number = 0
     groups.each { group ->
+      number++
+      log.info "project templates: Entity-No:"+number+" Entity-Id:"+group.id
       List projectUnitTemplates = functionService.findAllByLink(null, group, metaDataService.ltProjectUnitTemplate)
+      log.info "project templates: activityTemplates-Size:"+projectUnitTemplates?.size()
       projectUnitTemplates.each { projectUnitTemplate ->
+        log.info "project templates: Activity-Template_Id"+projectUnitTemplate.id
         if (!group.profile.templates.contains(projectUnitTemplate.id.toString())) {
           render "project templates: projectUnitTemplate: ${projectUnitTemplate.id} for Entity ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
         }
@@ -677,10 +687,15 @@ class AppController {
 
     // project days
     groups = Entity.findAllByType(metaDataService.etProjectDay)
+    log.info "project days size: " + groups?.size()
     number = 0
     groups.each { group ->
+      number++
+      log.info "project days: Entity-No:"+number+" Entity-Id:"+group.id
       List units = functionService.findAllByLink(null, group, metaDataService.ltProjectDayUnit)
+      log.info "project days: Units-Size:"+units?.size()
       units.each { unit ->
+        log.info "project days: Unit_Id"+unit.id
         if (!group.profile.units.contains(unit.id.toString())) {
           render "project days: unit: ${unit.id} for Entity: ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
         }

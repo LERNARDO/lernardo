@@ -27,7 +27,7 @@
 
     <p>
       Check Tabellen für Aktivitätsblockvorlagen, Projektvorlagen und Projekttage erstellen<br/>
-      <g:remoteLink update="checktables" action="checktables" before="showspinner('#checktables');">Erstellen</g:remoteLink>
+      <g:remoteLink update="checktables" action="checktables" before="showspinner('#checktables');">Check-Tab</g:remoteLink>
       <div id="checktables"></div>
     </p>
 
