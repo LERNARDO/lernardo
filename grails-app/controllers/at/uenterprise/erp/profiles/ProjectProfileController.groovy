@@ -798,13 +798,13 @@ class ProjectProfileController {
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeEducator = {
     def breaking = functionService.breakEntities(params.educator, params.id, metaDataService.ltProjectDayEducator)
-    def project = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(breaking.target, null, metaDataService.ltProjectMember)
     render template: 'educators', model: [educators: breaking.results, project: project, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -813,13 +813,13 @@ class ProjectProfileController {
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    def project = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(linking.target, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: linking.results, project: project, projectDay: linking.target, entity: entityHelperService.loggedIn]
   }
 
   def removeSubstitute = {
     def breaking = functionService.breakEntities(params.substitute, params.id, metaDataService.ltProjectDaySubstitute)
-    def project = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectMember)
+    def project = functionService.findByLink(breaking.target, null, metaDataService.ltProjectMember)
     render template: 'substitutes', model: [substitutes: breaking.results, project: project, projectDay: breaking.target, entity: entityHelperService.loggedIn]
   }
 
@@ -828,14 +828,14 @@ class ProjectProfileController {
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removeParent = {
     def breaking = functionService.breakEntities(params.parent, params.id, metaDataService.ltProjectUnitParent)
-    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity projectDay = functionService.findByLink(breaking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'parents', model: [parents: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
@@ -845,14 +845,14 @@ class ProjectProfileController {
     if (linking.duplicate)
       //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
-    Entity projectDay = functionService.findByLink(linking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity projectDay = functionService.findByLink(linking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: linking.results, project: project, unit: linking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
 
   def removePartner = {
     def breaking = functionService.breakEntities(params.partner, params.id, metaDataService.ltProjectUnitPartner)
-    Entity projectDay = functionService.findByLink(breaking.target as Entity, null, metaDataService.ltProjectDayUnit)
+    Entity projectDay = functionService.findByLink(breaking.target, null, metaDataService.ltProjectDayUnit)
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     render template: 'partners', model: [partners: breaking.results, project: project, unit: breaking.target, entity: entityHelperService.loggedIn, i: params.i]
   }
