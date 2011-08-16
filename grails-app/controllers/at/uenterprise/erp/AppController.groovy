@@ -666,6 +666,16 @@ class AppController {
           log.info "group activity templates: activityTemplate: "+activityTemplate.id+" for Entity: "+group.id+ " (profile-id: "+group.profile.id+") not in Sort-Table"
         }
       }
+      group.profile.templates.each { templ ->
+        def aLink = Link.createCriteria().get {
+          eq('source', Entity.get(Integer.parseInt(templ)))
+          eq('target', group)
+          eq ('type', metaDataService.ltGroupMember)
+        }
+        if (!aLink) {
+          log.info "group activity templates: Entity-Id: "+templ+" for group.profile-ID "+group.profile.id+" not found!!!!!!!!!!!!!!"
+        }
+      }
     }
 
     // project templates
@@ -681,6 +691,16 @@ class AppController {
         log.info "project templates: projectUnitTemplate_Id:"+projectUnitTemplate.id
         if (!group.profile.templates.contains(projectUnitTemplate.id.toString())) {
           log.info "project templates: projectUnitTemplate: "+projectUnitTemplate.id+" for Entity "+group.id+" (profile-id: "+group.profile.id+") not in Sort-Table"
+        }
+      }
+      group.profile.templates.each { templ ->
+        def aLink = Link.createCriteria().get {
+          eq('source', Entity.get(Integer.parseInt(templ)))
+          eq('target', group)
+          eq ('type', metaDataService.ltProjectUnitTemplate)
+        }
+        if (!aLink) {
+          log.info "project templates: Entity-Id: "+templ+" for group.profile-ID "+group.profile.id+" not found!!!!!!!!!!!!!!"
         }
       }
     }
