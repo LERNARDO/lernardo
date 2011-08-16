@@ -650,6 +650,45 @@ class AppController {
     render "Created ${number} table entries in ${groups.size()} project days<br/>"
   }
 
+  def checktables = {
+    // group activity templates
+    List groups = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
+    int number = 0
+    groups.each { group ->
+      List activityTemplates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
+      activityTemplates.each { activityTemplate ->
+        if (!group.profile.templates.contains(activityTemplate.id.toString())) {
+          render "group activity templates: activityTemplate: ${activityTemplate.id} for Entity ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
+        }
+      }
+    }
+
+    // project templates
+    groups = Entity.findAllByType(metaDataService.etProjectTemplate)
+    number = 0
+    groups.each { group ->
+      List projectUnitTemplates = functionService.findAllByLink(null, group, metaDataService.ltProjectUnitTemplate)
+      projectUnitTemplates.each { projectUnitTemplate ->
+        if (!group.profile.templates.contains(projectUnitTemplate.id.toString())) {
+          render "project templates: projectUnitTemplate: ${projectUnitTemplate.id} for Entity ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
+        }
+      }
+    }
+
+    // project days
+    groups = Entity.findAllByType(metaDataService.etProjectDay)
+    number = 0
+    groups.each { group ->
+      List units = functionService.findAllByLink(null, group, metaDataService.ltProjectDayUnit)
+      units.each { unit ->
+        if (!group.profile.units.contains(unit.id.toString())) {
+          render "project days: unit: ${unit.id} for Entity: ${group.id} (profile-id: ${group.profile.id}) not in Sort-Table<br/>"
+        }
+      }
+    }
+
+  }
+
   def checkDB = {
     log.info "reading all entities of type facility"
 
