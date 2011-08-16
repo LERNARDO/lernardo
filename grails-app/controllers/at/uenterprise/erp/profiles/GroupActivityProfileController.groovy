@@ -612,7 +612,7 @@ class GroupActivityProfileController {
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 
-    render template: 'plannableResources', model: [plannableResources: plannableResources, group: group]
+    render template: 'plannableresources', model: [plannableResources: plannableResources, group: group]
   }
 
 }

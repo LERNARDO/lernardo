@@ -1506,7 +1506,7 @@ class ProjectProfileController {
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
     }
 
-    render template: 'plannableResources', model: [plannableResources: plannableResources, projectDay: projectDay]
+    render template: 'plannableresources', model: [plannableResources: plannableResources, projectDay: projectDay]
   }
 
 }
