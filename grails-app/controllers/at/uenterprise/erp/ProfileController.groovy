@@ -372,6 +372,8 @@ class ProfileController {
         ne("type", metaDataService.etTheme)
         ne("type", metaDataService.etProjectDay)
         ne("type", metaDataService.etProjectUnit)
+        ne("type", metaDataService.etProjectUnitTemplate)
+        ne("type", metaDataService.etAppointment)
         if (!secHelperService.isAdmin()) {
           ne("name", "admin")
           ne("type", metaDataService.etUser)

@@ -45,7 +45,6 @@
 
 <div class="boxGray">
   <div class="second">
-    <div id="body-list">
       <p>${entityCount} Profile gefunden</p>
 
       <g:form controller="profile" action="attendance" params="[name:currentEntity.name]">
@@ -118,7 +117,6 @@
         </g:pdfForm>
       </g:if>
 
-    </div>
   </div>
 </div>
 
