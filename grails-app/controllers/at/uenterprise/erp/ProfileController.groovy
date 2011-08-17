@@ -332,6 +332,7 @@ class ProfileController {
     params.entityType = params.entityType ?: "all"
     params.offset = params.offset ? params.int('offset') : 0
     params.max = params.max ? params.int('max') : 10
+    params.sort = params.sort ?: "name"
 
     EntityType entityType = null
     if (params.entityType == 'operator')
@@ -362,7 +363,7 @@ class ProfileController {
         ne("type", metaDataService.etTemplate)
         ne("type", metaDataService.etResource)
         ne("type", metaDataService.etGroupActivity)
-        ne("type", metaDataService.etGroupActivityTemplate)
+        ne("type", metaDataService.etGroupActivityTemplate) // TODO: find out why this is ignored on TEST environment?!
         ne("type", metaDataService.etGroupClient)
         ne("type", metaDataService.etGroupColony) // TODO: find out why this is ignored on TEST environment?!
         ne("type", metaDataService.etGroupFamily)
@@ -378,6 +379,7 @@ class ProfileController {
           ne("name", "admin")
           ne("type", metaDataService.etUser)
         }
+        order(params.sort, "desc")
       }
 
       count = entities.size()
