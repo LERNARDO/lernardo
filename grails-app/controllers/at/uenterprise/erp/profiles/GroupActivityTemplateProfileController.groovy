@@ -34,7 +34,7 @@ class GroupActivityTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
+    /*params.offset = params.offset ? params.int('offset') : 0
     params.max = Math.min(params.max ? params.int('max') : 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
@@ -49,9 +49,11 @@ class GroupActivityTemplateProfileController {
       firstResult(params.offset)
     }
 
-    int totalGroupActivityTemplates = Entity.countByType(etGroupActivityTemplate)
+    int totalGroupActivityTemplates = Entity.countByType(etGroupActivityTemplate)*/
 
-    return [groups: groupActivityTemplates, totalGroupActivityTemplates: totalGroupActivityTemplates]
+    return [/*groups: groupActivityTemplates,
+            totalGroupActivityTemplates: totalGroupActivityTemplates,*/
+            allLabels: Label.findAllByType('template')]
   }
 
   def show = {
@@ -589,6 +591,51 @@ class GroupActivityTemplateProfileController {
     group.profile.removeFromResources(resource)
 
     render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
+  }
+
+  def updateselect2 = {
+
+    def numberOfAllTemplates = Entity.countByType(metaDataService.etGroupActivityTemplate)
+
+    def allTemplates = Entity.createCriteria().list  {
+      eq('type', metaDataService.etGroupActivityTemplate)
+      if (params.name)
+        or {
+          ilike('name', "%" + params.name + "%")
+          profile {
+            ilike('fullName', "%" + params.name + "%")
+          }
+        }
+      profile {
+        if (params.duration1 != 'all')
+          between('realDuration', params.duration1.toInteger(), params.duration2.toInteger())
+        if (params.sort)
+          order(params.sort, params.order)
+      }
+    }
+
+    List finalList = []
+
+    if (params.labels) {
+      List labels = params.list('labels')
+      allTemplates.each { Entity template ->
+        template.profile.labels.each { Label label ->
+          if (labels.contains(label.name))
+            finalList.add(template)
+        }
+      }
+    }
+    else
+      finalList = allTemplates
+
+    render(template: 'searchresults2', model: [allTemplates: finalList,
+                                              totalTemplates: finalList.size(),
+                                              numberOfAllTemplates: numberOfAllTemplates,
+                                              currentEntity: entityHelperService.loggedIn,
+                                              paginate: false,
+                                              name: params.name,
+                                              duration1: params.duration1,
+                                              duration2: params.duration2])
   }
 
 }

@@ -32,7 +32,7 @@ class ProjectTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
+    /*params.offset = params.offset ? params.int('offset') : 0
     params.max = Math.min(params.max ? params.int('max') : 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
@@ -46,10 +46,11 @@ class ProjectTemplateProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalProjectTemplates = Entity.countByType(etProjectTemplate)
+    int totalProjectTemplates = Entity.countByType(etProjectTemplate)*/
 
-    return [projectTemplates: projectTemplates,
-            totalProjectTemplates: totalProjectTemplates]
+    return [/*projectTemplates: projectTemplates,
+            totalProjectTemplates: totalProjectTemplates,*/
+            allLabels: Label.findAllByType('template')]
   }
 
   def show = {
@@ -635,6 +636,48 @@ class ProjectTemplateProfileController {
 
     render template: 'templateresources', model: [templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]
   }
+
+def updateselect = {
+
+    def numberOfAllTemplates = Entity.countByType(metaDataService.etProjectTemplate)
+
+    def allTemplates = Entity.createCriteria().list  {
+      eq('type', metaDataService.etProjectTemplate)
+      if (params.name)
+        or {
+          ilike('name', "%" + params.name + "%")
+          profile {
+            ilike('fullName', "%" + params.name + "%")
+          }
+        }
+      profile {
+        if (params.sort)
+          order(params.sort, params.order)
+      }
+    }
+
+    List finalList = []
+
+    if (params.labels) {
+      List labels = params.list('labels')
+      allTemplates.each { Entity template ->
+        template.profile.labels.each { Label label ->
+          if (labels.contains(label.name))
+            finalList.add(template)
+        }
+      }
+    }
+    else
+      finalList = allTemplates
+
+    render(template: 'searchresults', model: [allTemplates: finalList,
+                                              totalTemplates: finalList.size(),
+                                              numberOfAllTemplates: numberOfAllTemplates,
+                                              currentEntity: entityHelperService.loggedIn,
+                                              paginate: false,
+                                              name: params.name])
+  }
+
 }
 
 
