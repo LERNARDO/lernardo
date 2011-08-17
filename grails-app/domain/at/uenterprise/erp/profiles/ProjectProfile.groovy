@@ -20,7 +20,7 @@ class ProjectProfile extends Profile {
       fullName (blank: false, size: 1..100, maxSize: 100)
       description (blank: true, maxSize: 20000)
       educationalObjective nullable: true
-      educationalObjectiveText nullable: true, maxSize: 20000
+      educationalObjectiveText nullable: true, maxSize: 2000
     }
 
     String toString(){

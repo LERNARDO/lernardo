@@ -32,7 +32,7 @@ class ProjectTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
+    /*params.offset = params.offset ? params.int('offset') : 0
     params.max = Math.min(params.max ? params.int('max') : 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
@@ -46,10 +46,11 @@ class ProjectTemplateProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalProjectTemplates = Entity.countByType(etProjectTemplate)
+    int totalProjectTemplates = Entity.countByType(etProjectTemplate)*/
 
-    return [projectTemplates: projectTemplates,
-            totalProjectTemplates: totalProjectTemplates]
+    return [/*projectTemplates: projectTemplates,
+            totalProjectTemplates: totalProjectTemplates,*/
+            allLabels: Label.findAllByType('template')]
   }
 
   def show = {
@@ -178,29 +179,29 @@ class ProjectTemplateProfileController {
     // find project unit templates linked to the original
     List projectUnitTemplates = functionService.findAllByLink(null, original, metaDataService.ltProjectUnitTemplate)
 
-    projectUnitTemplates.each {
+    projectUnitTemplates.each { Entity put ->
       // create project unit templates for the copy
       EntityType etProjectUnitTemplate = metaDataService.etProjectUnitTemplate
       Entity projectUnitTemplate = entityHelperService.createEntity("projectUnitTemplate", etProjectUnitTemplate) {Entity ent ->
         ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.duration = it.profile.duration
-        ent.profile.fullName = it.profile.fullName
+        ent.profile.duration = put.profile.duration
+        ent.profile.fullName = put.profile.fullName
       }
 
       // link projectUnitTemplate and projectTemplate
       new Link(source: projectUnitTemplate, target: entity, type: metaDataService.ltProjectUnitTemplate).save()
 
       // find group activity templates linked to the original project unit
-      List groupActivityTemplates = functionService.findAllByLink(null, it as Entity, metaDataService.ltProjectUnitMember)
+      List groupActivityTemplates = functionService.findAllByLink(null, put, metaDataService.ltProjectUnitMember)
 
       // link group activity templates to the project unit templates of the copy
-      groupActivityTemplates.each {
-        new Link(source: it as Entity, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
+      groupActivityTemplates.each { Entity gat ->
+        new Link(source: gat, target: projectUnitTemplate, type: metaDataService.ltProjectUnitMember).save()
       }
     }
 
     // loop through all labels of the original and create them in the copy
-    original.profile.labels.each { la->
+    original.profile.labels.each { la ->
       Label label = new Label()
 
       label.name = la.name
@@ -635,6 +636,48 @@ class ProjectTemplateProfileController {
 
     render template: 'templateresources', model: [templateResources: templateResources, groupActivityTemplateResources: groupActivityTemplateResources, projectTemplate: projectTemplate]
   }
+
+def updateselect = {
+
+    def numberOfAllTemplates = Entity.countByType(metaDataService.etProjectTemplate)
+
+    def allTemplates = Entity.createCriteria().list  {
+      eq('type', metaDataService.etProjectTemplate)
+      if (params.name)
+        or {
+          ilike('name', "%" + params.name + "%")
+          profile {
+            ilike('fullName', "%" + params.name + "%")
+          }
+        }
+      profile {
+        if (params.sort)
+          order(params.sort, params.order)
+      }
+    }
+
+    List finalList = []
+
+    if (params.labels) {
+      List labels = params.list('labels')
+      allTemplates.each { Entity template ->
+        template.profile.labels.each { Label label ->
+          if (labels.contains(label.name))
+            finalList.add(template)
+        }
+      }
+    }
+    else
+      finalList = allTemplates
+
+    render(template: 'searchresults', model: [allTemplates: finalList,
+                                              totalTemplates: finalList.size(),
+                                              numberOfAllTemplates: numberOfAllTemplates,
+                                              currentEntity: entityHelperService.loggedIn,
+                                              paginate: false,
+                                              name: params.name])
+  }
+
 }
 
 

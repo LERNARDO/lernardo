@@ -332,6 +332,7 @@ class ProfileController {
     params.entityType = params.entityType ?: "all"
     params.offset = params.offset ? params.int('offset') : 0
     params.max = params.max ? params.int('max') : 10
+    params.sort = params.sort ?: "name"
 
     EntityType entityType = null
     if (params.entityType == 'operator')
@@ -358,24 +359,29 @@ class ProfileController {
     if (params.entityType == 'all') {
       def c = Entity.createCriteria()
       entities = c.list {
-        ne("type", metaDataService.etActivity)
-        ne("type", metaDataService.etTemplate)
-        ne("type", metaDataService.etResource)
-        ne("type", metaDataService.etGroupActivity)
-        ne("type", metaDataService.etGroupActivityTemplate)
-        ne("type", metaDataService.etGroupClient)
-        ne("type", metaDataService.etGroupColony) // TODO: find out why this is ignored on TEST environment?!
-        ne("type", metaDataService.etGroupFamily)
-        ne("type", metaDataService.etGroupPartner)
-        ne("type", metaDataService.etProject)
-        ne("type", metaDataService.etProjectTemplate)
-        ne("type", metaDataService.etTheme)
-        ne("type", metaDataService.etProjectDay)
-        ne("type", metaDataService.etProjectUnit)
-        if (!secHelperService.isAdmin()) {
-          ne("name", "admin")
-          ne("type", metaDataService.etUser)
+        and {
+          ne("type", metaDataService.etActivity)
+          ne("type", metaDataService.etTemplate)
+          ne("type", metaDataService.etResource)
+          ne("type", metaDataService.etGroupActivity)
+          ne("type", metaDataService.etGroupActivityTemplate) // TODO: find out why this is ignored on TEST environment?!
+          ne("type", metaDataService.etGroupClient)
+          ne("type", metaDataService.etGroupColony) // TODO: find out why this is ignored on TEST environment?!
+          ne("type", metaDataService.etGroupFamily)
+          ne("type", metaDataService.etGroupPartner)
+          ne("type", metaDataService.etProject)
+          ne("type", metaDataService.etProjectTemplate)
+          ne("type", metaDataService.etTheme)
+          ne("type", metaDataService.etProjectDay)
+          ne("type", metaDataService.etProjectUnit)
+          ne("type", metaDataService.etProjectUnitTemplate)
+          ne("type", metaDataService.etAppointment)
+          if (!secHelperService.isAdmin()) {
+            ne("name", "admin")
+            ne("type", metaDataService.etUser)
+          }
         }
+        order(params.sort, "desc")
       }
 
       count = entities.size()

@@ -248,7 +248,7 @@ class FacilityProfileController {
     List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link each client to the facility now
-    clients.each { client ->
+    clients.each { Entity client ->
       def c = Link.createCriteria()
       def link = c.get {
         eq('source', client)
@@ -256,7 +256,7 @@ class FacilityProfileController {
         eq('type', metaDataService.ltGroupMemberClient)
       }
       if (!link)
-        new Link(source: client as Entity, target: facility, type: metaDataService.ltGroupMemberClient).save()
+        new Link(source: client, target: facility, type: metaDataService.ltGroupMemberClient).save()
     }
 
     // find all clients of this facility

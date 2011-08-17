@@ -10,7 +10,6 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div id="body-list">
 
       <div class="info-msg">
         ${entityCount} <g:message code="profile.list.c_total"/>
@@ -34,7 +33,7 @@
         </script>
       </div>
 
-      <table id="profile-list">
+      <table class="default-table">
         <thead>
         <tr>
           <g:sortableColumn property="name" title="${message(code:'profile.list.name')}" params="[entityType: entityType]"/>
@@ -61,7 +60,6 @@
         </div>
       </g:if>
 
-    </div>
   </div>
 </div>
 </body>

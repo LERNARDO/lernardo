@@ -32,7 +32,9 @@
 
         <tr class="prop">
           <td width="210px" valign="top" class="name"><g:message code="activityTemplate.socialForm"/>:</td>
-          <td width="190px" valign="top" class="name"><g:message code="activityTemplate.status"/>:</td>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
+            <td width="190px" valign="top" class="name"><g:message code="activityTemplate.status"/>:</td>
+          </erp:accessCheck>
           <td valign="top" class="name"><g:message code="activityTemplate.amountEducators"/>:</td>
         </tr>
 
@@ -40,9 +42,11 @@
           <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.socialForm', 'errors')}">
             <g:select name="socialForm" from="['open','single','partner','smallgroup1','smallgroup2','smallgroup3','largegroup1','largegroup2']" value="${template?.profile?.socialForm}" valueMessagePrefix="socialForm"/>
           </td>
-          <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
-            <g:select name="status" from="['done','notDone','notDoneOpen']" value="${template?.profile?.status}" valueMessagePrefix="status"/>
-          </td>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
+            <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.status', 'errors')}">
+              <g:select name="status" from="['done','notDone','notDoneOpen']" value="${template?.profile?.status}" valueMessagePrefix="status"/>
+            </td>
+          </erp:accessCheck>
           <td valign="top" class="value  ${hasErrors(bean: template, field: 'profile.amountEducators', 'errors')}">
             <g:select name="amountEducators" from="${1..5}" value="${template?.profile?.amountEducators}"/> (Vorschlag)
           </td>

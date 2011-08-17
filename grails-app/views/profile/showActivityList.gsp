@@ -19,7 +19,6 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div id="body-list">
       <g:if test="${!activityList}">
         <p>Keine Aktivitäten gefunden.</p>
       </g:if>
@@ -49,7 +48,6 @@
         <g:paginate action="showActivityList" total="${activityCount}" params="[name:entity.name]"/>
       </div>
 
-    </div>
   </div>
 </div>
 </body>

@@ -18,7 +18,39 @@
 <div class="boxGray">
   <div class="second">
 
-    <div class="info-msg">
+    <div class="buttons">
+      <g:form>
+        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'projectTemplate.create')}"/></div>
+          <div class="spacer"></div>
+        </erp:accessCheck>
+      </g:form>
+    </div>
+
+    <div class="frame" style="border: 1px solid #aaa; padding: 5px; margin-bottom: 5px;">
+      <g:formRemote name="formRemote0" url="[controller:'projectTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
+
+        <table>
+          <tr>
+            <td class="bold"><g:message code="name"/>:</td>
+            <td><g:textField name="name" size="30"/></td>
+          </tr>
+          <tr>
+            <td class="bold"><g:message code="labels"/>:</td>
+            <td><g:select from="${allLabels}" multiple="true" name="labels" value=""/></td>
+          </tr>
+        </table>
+
+        <g:submitButton name="button" value="${message(code:'define')}"/>
+        <div class="spacer"></div>
+      </g:formRemote>
+    </div>
+
+    <div id="templateselect">
+      %{--<g:render template="searchresults" model="[allTemplates: allTemplates, currentEntity: currentEntity, paginate: paginate]"/>--}%
+    </div>
+
+    %{--<div class="info-msg">
       ${totalProjectTemplates} <g:message code="projectTemplates.c_total"/>
     </div>
 
@@ -57,7 +89,7 @@
 
     <div class="paginateButtons">
       <g:paginate total="${totalProjectTemplates}"/>
-    </div>
+    </div>--}%
 
   </div>
 </div>

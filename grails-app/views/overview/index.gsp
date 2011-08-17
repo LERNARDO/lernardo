@@ -35,30 +35,28 @@
 <div class="boxGray" id="suche-toggled">
   <div class="second">
 
-    <div id="body-list">
-      <g:message code="profile.overview.searchLabel"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes']]" before="showspinner('#membersearch-results')" />
+    <g:message code="profile.overview.searchLabel"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes']]" before="showspinner('#membersearch-results')" />
 
-      %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
-      
-      %{--<g:formRemote name="searchForm" url="[controller:'profile', action:'searchMe']" class="members-filter" update="membersearch-results">
-        <fieldset>
-          <div class="form-content">
-            <div>
-              <label for="name">Bitte einen Namen eingeben:</label>
-              <input id="name" type="text" name="name"/>
-            </div>
-            <div class="buttons" style="padding-bottom: 5px">
-              <g:submitButton name="button" value="Suchen"/>
-              <div class="clear"></div>
-            </div>
+    %{-- previous implementation - left here in case the instant search runs into performance issues at some point --}%
+
+    %{--<g:formRemote name="searchForm" url="[controller:'profile', action:'searchMe']" class="members-filter" update="membersearch-results">
+      <fieldset>
+        <div class="form-content">
+          <div>
+            <label for="name">Bitte einen Namen eingeben:</label>
+            <input id="name" type="text" name="name"/>
           </div>
-        </fieldset>
-      </g:formRemote>--}%
+          <div class="buttons" style="padding-bottom: 5px">
+            <g:submitButton name="button" value="Suchen"/>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </fieldset>
+    </g:formRemote>--}%
 
-      <div class="membersearch-results" id="membersearch-results">
-      </div>
-
+    <div class="membersearch-results" id="membersearch-results">
     </div>
+
   </div>
 </div>
 
