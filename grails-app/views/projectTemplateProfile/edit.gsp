@@ -18,16 +18,20 @@
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="projectTemplate.profile.name"/></td>
-            <td valign="top" class="name"><g:message code="projectTemplate.profile.status"/></td>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
+              <td valign="top" class="name"><g:message code="projectTemplate.profile.status"/></td>
+            </erp:accessCheck>
           </tr>
 
           <tr>
             <td valign="top" class="value">
               <g:textField class="countable${projectTemplate.profile.constraints.fullName.maxSize} ${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="50" maxlength="50" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
-              <g:select name="status" from="['done','notDone','notDoneOpen']" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}" valueMessagePrefix="status"/>
-            </td>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
+              <td valign="top" class="value">
+                <g:select name="status" from="['done','notDone','notDoneOpen']" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}" valueMessagePrefix="status"/>
+              </td>
+            </erp:accessCheck>
           </tr>
 
           <tr class="prop">

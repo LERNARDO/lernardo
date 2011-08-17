@@ -20,7 +20,9 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.name"/></td>
             <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/> (min)</td>
-            <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.status"/></td>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
+              <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.status"/></td>
+            </erp:accessCheck>
           </tr>
 
           <tr>
@@ -30,9 +32,11 @@
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: group, field: 'profile.realDuration', 'errors')}" size="20" name="realDuration" value="${fieldValue(bean: group, field: 'profile.realDuration').decodeHTML()}"/>
             </td>
-            <td valign="top" class="value">
-              <g:select name="status" from="['done','notDone','notDoneOpen']" value="${group?.profile?.status}" valueMessagePrefix="status"/>
-            </td>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}">
+              <td valign="top" class="value">
+                <g:select name="status" from="['done','notDone','notDoneOpen']" value="${group?.profile?.status}" valueMessagePrefix="status"/>
+              </td>
+            </erp:accessCheck>
           </tr>
 
           <tr class="prop">
