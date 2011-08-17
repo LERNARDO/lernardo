@@ -620,8 +620,10 @@ class GroupActivityTemplateProfileController {
       List labels = params.list('labels')
       allTemplates.each { Entity template ->
         template.profile.labels.each { Label label ->
-          if (labels.contains(label.name))
-            finalList.add(template)
+          if (labels.contains(label.name)) {
+            if (!finalList.contains(template))
+              finalList.add(template)
+          }
         }
       }
     }
