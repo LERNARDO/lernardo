@@ -21,16 +21,11 @@
         </g:form>
 
         <script type="text/javascript">
-          if ($.browser.msie) {
-            $("select[name=entityType]").click(function() {
-              $("form[id=form1]").submit();
-            });
-          }
-
           $("select[name=entityType]").change(function() {
             $("form[id=form1]").submit();
           });
         </script>
+
       </div>
 
       <table class="default-table">
