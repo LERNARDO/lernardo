@@ -114,7 +114,7 @@ class OverviewController {
           ilike('fullName', "%" + params.name + "%")
         }
       }
-      maxResults(15)
+      maxResults(30)
     }
 
     if (users.size() == 0) {
@@ -122,6 +122,7 @@ class OverviewController {
       return
     }
     else {
+
       render(template: 'searchresults', model: [searchList: users])
     }
   }

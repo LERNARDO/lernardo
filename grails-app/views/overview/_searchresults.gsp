@@ -1,3 +1,4 @@
+<p class="gray">Es werden maximal 30 Ergebnisse angezeigt!</p>
 <g:each in="${searchList}" var="searchInstance">
   <div class="member">
 
