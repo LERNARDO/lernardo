@@ -339,6 +339,10 @@ class TemplateProfileController {
     def method3lower = params.list('method3lower')
     def method3upper = params.list('method3upper')
 
+    params.sort = params.sort ?: "fullName"
+    params.order = params.order ?: "asc"
+
+
     // swap age values if necessary
     if (params.int('ageTo') < params.int('ageFrom')) {
       def temp = params.ageTo
