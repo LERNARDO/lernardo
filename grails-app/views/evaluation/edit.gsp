@@ -20,7 +20,8 @@
 
     <div style="background: #fefefe; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
       <div id="select-box">
-        <p>Mit Aktivitätsblock oder Projekteinheit verlinken:</p>
+        %{--<p>Mit Aktivitätsblock oder Projekteinheit verlinken:</p>--}%
+        <p><g:message code="evaluation.linkToActivity"/></p>
         <g:formRemote name="formRemote" update="results" url="[controller:'evaluation', action:'searchMe']" before="showspinner('#results')">
           <g:datePicker name="myDate" value="" precision="day" years="${2009..new Date().getYear() + 1900}"/>
           <g:submitButton name="submit" value="OK"/>
@@ -37,7 +38,7 @@
         <g:textField name="linkedentity" id="hiddentextfield1" value="0"/>
       </div>
 
-      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></p>
+      <p><g:message code="linkedTo"/>: <g:if test="${evaluationInstance.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></p>
 
       <p class="strong"><g:message code="description"/></p>
       <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">

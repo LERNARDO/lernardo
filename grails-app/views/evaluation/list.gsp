@@ -1,18 +1,20 @@
 <head>
-  <title>Tagebucheinträge</title>
+  <title><g:message code="evaluation.evaluation"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>Tagebucheinträge für ${entity.profile.fullName}</h1>
+    %{--<h1>Tagebucheinträge für ${entity.profile.fullName}</h1>--}%
+    <h1><g:message code="evaluation.for" args="[entity.profile.fullName]"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
 
     <div class="info-msg">
-      Es gibt insgesamt ${evaluationInstanceTotal} Tagebucheinträge für ${entity.profile.fullName}
+      %{--Es gibt insgesamt ${evaluationInstanceTotal} Tagebucheinträge für ${entity.profile.fullName}--}%
+      <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile.fullName]"/>
     </div>
 
     <div class="buttons">
@@ -42,7 +44,7 @@
             </tr>
             <tr>
               <td class="bold vtop"><g:message code="linkedTo"/>:</td>
-              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link> <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:isMeOrAdminOrOperator></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
+              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link> <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:isMeOrAdminOrOperator></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></span></td>
             </tr>
           </table>
           <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}">

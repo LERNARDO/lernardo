@@ -1,17 +1,18 @@
 <head>
-  <title>Interessante Tagebucheinträge</title>
+  %{--<title>Interessante Tagebucheinträge</title>--}%
+  <title><g:message code="evaluation.interesting"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="evaluation" action="myevaluations" id="${entity.id}">Meine Einträge</g:link></h1>
+    <h1><g:link controller="evaluation" action="myevaluations" id="${entity.id}"><g:message code="evaluation.myentry"/></g:link></h1>
   </div>
 </div>
 <div class="tabGreen">
   <div class="second">
-    <h1>Interessante Einträge</h1>
+    <h1><g:message code="evaluation.interestentry"/></h1>
   </div>
 </div>
 
@@ -20,7 +21,8 @@
 <div class="boxGray">
   <div class="second">
 
-    <p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten und Erziehungsberechtigten in deinem Umfeld.</p>
+    %{--<p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten und Erziehungsberechtigten in deinem Umfeld.</p>--}%
+    <p><g:message code="evaluation.entrySize" args="[evaluationInstanceList.size()]"/></p>
 
     <ul>
       <g:each in="${evaluationInstanceList}" status="i" var="evaluation">
@@ -48,7 +50,7 @@
             </tr>
             <tr>
               <td class="bold vtop"><g:message code="linkedTo"/>:</td>
-              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link> <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:isMeOrAdminOrOperator></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
+              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}"><g:link controller="${evaluation.linkedTo.type.supertype.name +'Profile'}" action="show" id="${evaluation.linkedTo.id}">${evaluation.linkedTo.profile.fullName}</g:link> <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:isMeOrAdminOrOperator></g:if><g:else><span class="italic"><g:message code="links.notLinked"/></span></g:else></span></td>
             </tr>
           </table>
           <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}">
