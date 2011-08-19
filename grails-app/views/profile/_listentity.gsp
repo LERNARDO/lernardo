@@ -22,9 +22,11 @@
       </erp:notEnabled>
     </g:if>
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-      <g:form controller="${entity.type.supertype.name + 'Profile'}" id="${entity.id}">
-        - <g:actionSubmit  action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" />
-      </g:form>
+      <g:if test="${!entity.user?.authorities*.authority.contains('ROLE_SYSTEMADMIN')}">
+        <g:form controller="${entity.type.supertype.name + 'Profile'}" id="${entity.id}">
+          - <g:actionSubmit  action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" />
+        </g:form>
+      </g:if>
       %{--- <g:link controller="${entity.type.supertype.name +'Profile'}" action="del" id="${entity.id}" onclick="${erp.getLinks(id: entity.id)}">--}%%{--<img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Löschen" align="top"/>--}%%{--<g:message code="profile.list.delete"/></g:link>--}%
     </erp:accessCheck>
   </erp:notMe>
