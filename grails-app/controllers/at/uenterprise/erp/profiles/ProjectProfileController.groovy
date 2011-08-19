@@ -233,7 +233,8 @@ class ProjectProfileController {
               themes: themes,
               resources: resources,
               plannableResources: plannableResources,
-              requiredResources: requiredResources]
+              requiredResources: requiredResources,
+              allLabels: Label.findAllByType('template')]
     }
   }
 
@@ -1415,14 +1416,14 @@ class ProjectProfileController {
   }
 
   def searchbylabel = {
-    // TODO: check with ERP-751
-    /*List projects = Entity.findAllByType(metaDataService.etProject)
+    List projects = Entity.findAllByType(metaDataService.etProject)
     List result = []
     List labels = params.list('labels')
     projects.each { Entity project ->
-        project.profile.labels.each { Label label ->
-          if (labels.contains(label.name))
-            result.add(template)
+      project.profile.labels.each { Label label ->
+        if (labels.contains(label.name)) {
+          if (!result.contains(project))
+            result.add(project)
         }
       }
     }
@@ -1433,7 +1434,7 @@ class ProjectProfileController {
     }
     else {
         render(template: '/overview/searchresults', model: [searchList: result])
-    }*/
+    }
   }
 
   def planresource = {
@@ -1507,6 +1508,41 @@ class ProjectProfileController {
     }
 
     render template: 'plannableresources', model: [plannableResources: plannableResources, projectDay: projectDay]
+  }
+
+  /*
+   * adds a label to the project by creating a new label instance and copying the properties from the given "label template"
+   */
+  def addLabel = {
+    Entity group = Entity.get(params.id)
+    Label labelTemplate = Label.get(params.label)
+
+    // make sure a label can only be added once
+    Boolean canBeAdded = true
+    group.profile.labels.each {
+        if (it.name == labelTemplate.name)
+            canBeAdded = false
+    }
+    if (canBeAdded) {
+        Label label = new Label()
+
+        label.name = labelTemplate.name
+        label.description = labelTemplate.description
+        label.type = "instance"
+
+        group.profile.addToLabels(label)
+    }
+    render template: 'labels', model: [project: group, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * removes a label from a group
+   */
+  def removeLabel = {
+    Entity group = Entity.get(params.id)
+    group.profile.removeFromLabels(Label.get(params.label))
+    Label.get(params.label).delete()
+    render template: 'labels', model: [project: group, entity: entityHelperService.loggedIn]
   }
 
 }

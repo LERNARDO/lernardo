@@ -2,11 +2,13 @@ package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Label
 
 class ProjectProfile extends Profile {
 
     SortedSet comments
-    static hasMany = [comments: Comment]
+    static hasMany = [comments: Comment,
+                      labels: Label]
 
     Date startDate
     Date endDate

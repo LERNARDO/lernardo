@@ -37,6 +37,11 @@
       <g:submitButton name="submit" value="OK"/>
     </g:formRemote>
 
+    <g:formRemote name="formRemote3" url="[action: 'searchbylabel']" update="membersearch-results">
+      Suche nach Label:
+      <g:select multiple="true" name="labels" from="${allLabels}"/>
+      <g:submitButton name="submit" value="OK"/>
+    </g:formRemote>
 
     %{--
     TODO: check with ERP-751

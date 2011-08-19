@@ -503,7 +503,7 @@ class ProjectTemplateProfileController {
     render template: "hover", model: [entity: entity]
   }
 
-/*
+  /*
    * adds a label to the group by creating a new label instance and copying the properties from the given "label template"
    */
   def addLabel = {
