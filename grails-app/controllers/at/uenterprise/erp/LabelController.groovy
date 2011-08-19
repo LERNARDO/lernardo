@@ -113,4 +113,5 @@ class LabelController {
       redirect(action: "list")
     }
   }
+
 }

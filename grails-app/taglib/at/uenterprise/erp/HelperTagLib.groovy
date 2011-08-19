@@ -601,9 +601,9 @@ class HelperTagLib {
   // checks if a given entity has an open status
   boolean accessIsOpen(def checkstatus) {
 
-    def result = false;
+    def result = false
     if (checkstatus instanceof Entity) {
-      if (checkstatus.profile.status == 'notDoneOpen')
+      if (checkstatus.profile.status && checkstatus.profile.status == 'notDoneOpen')
         result = true
     }
 

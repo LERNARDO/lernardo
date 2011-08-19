@@ -532,15 +532,15 @@ class TemplateProfileController {
   }
 
    /*
-   * adds a label to the template by creating a new label instance and copying the properties from the given "label template"
+   * adds a label to an entity by creating a new label instance and copying the properties from the given "label template"
    */
   def addLabel = {
-    Entity template = Entity.get(params.id)
+    Entity entity = Entity.get(params.id)
     Label labelTemplate = Label.get(params.label)
 
     // make sure a label can only be added once
     Boolean canBeAdded = true
-    template.profile.labels.each {
+    entity.profile.labels.each {
         if (it.name == labelTemplate.name)
             canBeAdded = false
     }
@@ -551,9 +551,9 @@ class TemplateProfileController {
         label.description = labelTemplate.description
         label.type = "instance"
 
-        template.profile.addToLabels(label)
+        entity.profile.addToLabels(label)
     }
-    render template: 'labels', model: [template: template, entity: entityHelperService.loggedIn]
+    render template: 'labels', model: [template: entity, entity: entityHelperService.loggedIn]
   }
 
     /*
