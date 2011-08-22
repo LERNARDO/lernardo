@@ -49,7 +49,43 @@ class CommentController {
     Comment comment = Comment.get(params.comment)
     comment.content = params.content
     comment.save()
-    render template:'comment', model:[i:params.i, comment: comment, commented: entity, currentEntity: currentEntity]
+    render template: 'comment', model: [i:params.i, comment: comment, commented: entity, currentEntity: currentEntity]
+  }
+
+  def list = {
+
+  }
+
+  def updatelist = {
+    Date dateFrom = Date.parse("dd. MM. yy", params.dateFrom)
+    Date dateTo = Date.parse("dd. MM. yy", params.dateTo) + 1
+
+    List comments = []
+    List entities = []
+
+    if (params.activitytemplates)
+      entities.addAll(Entity.findAllByType(metaDataService.etTemplate))
+    if (params.activities)
+      entities.addAll(Entity.findAllByType(metaDataService.etActivity))
+    if (params.groupactivitytemplates)
+      entities.addAll(Entity.findAllByType(metaDataService.etGroupActivityTemplate))
+    if (params.groupactivities)
+      entities.addAll(Entity.findAllByType(metaDataService.etGroupActivity))
+    if (params.projecttemplates)
+      entities.addAll(Entity.findAllByType(metaDataService.etProjectTemplate))
+    if (params.projects)
+      entities.addAll(Entity.findAllByType(metaDataService.etProject))
+
+    entities.each { Entity entity ->
+      entity.profile.comments.each { Comment comment ->
+        if (comment.dateCreated >= dateFrom && comment.dateCreated <= dateTo) {
+          comments.add(comment)
+        }
+      }
+    }
+
+    render template: 'results', model: [comments: comments]
+
   }
 
 }

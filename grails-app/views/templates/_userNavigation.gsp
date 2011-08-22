@@ -29,8 +29,6 @@
 
         <li class="icon-appointments"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
 
-        <li class="icon-admin"><g:link controller="evaluation" action="listall" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></li>
-
       </ul>
     </td>
   </tr>
