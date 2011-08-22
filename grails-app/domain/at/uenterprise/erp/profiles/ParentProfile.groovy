@@ -53,6 +53,7 @@ class ParentProfile extends Profile {
       socialSecurityNumber (nullable: true, size: 10..10)
       phone (nullable: true)
       citizenship (nullable: true)
+      birthDate nullable: true
     }
 
     String toString(){
