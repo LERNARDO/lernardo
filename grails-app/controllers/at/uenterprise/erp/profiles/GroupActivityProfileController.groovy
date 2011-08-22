@@ -485,10 +485,11 @@ class GroupActivityProfileController {
   }
 
   def createpdf = {
+    println params
     Entity group = Entity.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
 
-    List activities = params.withTemplates == "" ? functionService.findAllByLink(null, group, metaDataService.ltGroupMember) : null
+    List activities = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
     List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup) // find all activities linked to this group
     List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
     List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
@@ -508,7 +509,8 @@ class GroupActivityProfileController {
                                              clients: clients,
                                              parents: parents,
                                              partners: partners,
-                                             template: template], filename: message(code: 'groupActivity') + '_' + group.profile.fullName
+                                             template: template,
+                                             withTemplates: params.printtemplates == "" ? 'true' : 'false'], filename: message(code: 'groupActivity') + '_' + group.profile.fullName
   }
 
     def searchbydate = {

@@ -63,8 +63,8 @@ class ProjectProfileController {
     if (currentEntity.type == metaDataService.etEducator) {
       // find all facilities the current entity is linked to as educator or lead educator
       List facilities = []
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
 
       // find all themes that are linked to those facilities
 

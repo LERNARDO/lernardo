@@ -76,14 +76,12 @@
 
     </table>
 
-    <g:if test="${activities}">
-      <h2><g:message code="activities"/></h2>
-        <ul>
-          <g:each in="${activities}" var="activity">
-            <li>${activity.profile.fullName} (${activity.profile.duration} min)</li>
-          </g:each>
-        </ul>
-    </g:if>
+    <h2><g:message code="activities"/></h2>
+    <ul>
+      <g:each in="${activities}" var="activity">
+        <li>${activity.profile.fullName} (${activity.profile.duration} min)</li>
+      </g:each>
+    </ul>
 
     <h2><g:message code="themes"/></h2>
     <g:if test="${themes}">
@@ -168,6 +166,94 @@
     <g:else>
       <span class="italic">${message(code:'noData')}</span>
     </g:else>
+
+    ${withTemplates}
+    <g:if test="${withTemplates == 'true'}">
+      <h2><g:message code="activities"/></h2>
+      <g:each in="${activities}" var="activity">
+
+        <table style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+
+          <tr class="prop">
+            <td class="one"><g:message code="activityTemplate"/>:</td>
+            <td class="two">${activity.profile.fullName}</td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="creator"/>:</td>
+            <td class="two"><g:render template="/templates/creator" model="[entity: activity]"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="duration"/>:</td>
+            <td class="two">${fieldValue(bean: activity, field: 'profile.duration')} min</td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="activityTemplate.socialForm"/>:</td>
+            <td class="two"><g:message code="socialForm.${activity.profile.socialForm}"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="activityTemplate.amountEducators"/>:</td>
+            <td class="two">${activity.profile.amountEducators}</td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="activityTemplate.chosenMaterials"/>:</td>
+            <td class="two">${activity.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="resources.required"/>:</td>
+            <td class="two">
+              <g:if test="${activity.profile.resources}">
+                <g:each in="${activity.profile.resources}" var="resource">
+                  <div style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
+                    <ul>
+                      <li><span class="bold"><g:message code="name"/>:</span> ${resource.name}</li>
+                      <li><g:message code="description"/>: ${resource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+                      <li><g:message code="resource.profile.amount"/>: ${resource.amount}</li>
+                    </ul>
+                  </div>
+                </g:each>
+              </g:if>
+              <g:else>
+                <span class="italic red"><g:message code="resource.profile.empty"/></span>
+              </g:else>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="activityTemplate.description"/>:</td>
+            <td class="two">${fieldValue(bean: activity, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          </tr>
+
+          <tr class="prop">
+            <td class="one"><g:message code="vMethods"/>:</td>
+            <td class="two">
+              <g:if test="${activity.profile.methods}">
+                <g:each in="${activity.profile.methods}" var="method">
+                  <ul style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
+                    <li><span class="bold">${method.name}</span></li>
+                    <li>${method.description}</li>
+                    %{--<g:each in="${method.elements}" var="element">
+                      <li>${element.name} <div id="starBox${element.id}" class="starbox">--}%%{--<erp:starBox element="${element.id}" template="${activity}"/>--}%%{--</div></li>
+                    </g:each>--}%
+                  </ul>
+                </g:each>
+              </g:if>
+              <g:else>
+                <span class="italic red"><g:message code="vMethods.empty"/></span>
+              </g:else>
+            </td>
+          </tr>
+
+        </table>
+
+      </g:each>
+
+    </g:if>
 
   </body>
 </html>
