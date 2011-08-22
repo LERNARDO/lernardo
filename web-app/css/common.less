@@ -1331,19 +1331,29 @@ table#msg-composer td {
     padding: 0;
     border-bottom: 1px solid #aaa;
     height: 24px;
-    ul li {
-        list-style-type: none;
-        float: left;
-        border: 1px solid #aaa;
-        padding: 2px 4px;
-        background: #ccc;
-        margin: 0 10px 0 0;
+    ul {
         .active {
             border: 1px solid #888;
             background: #aaa; }
-        a {
-            text-decoration: none;
-            color: #fff; }
+        li {
+            list-style-type: none;
+            float: left;
+            border: 1px solid #aaa;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            padding: 2px 4px;
+            background: #ccc;
+            margin: 0 10px 0 0;
+            &:hover {
+                background-color: #8bf;
+                border: 1px solid #69f;
+            }
+            a {
+                text-decoration: none;
+                color: #fff;
+                display: block;
+            }
+        }
     }
 }
 

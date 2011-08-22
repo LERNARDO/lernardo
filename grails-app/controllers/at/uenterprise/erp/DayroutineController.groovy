@@ -18,7 +18,7 @@ class DayroutineController {
     def day = params.day ?: 'monday'
 
     // find all routines of that day and facility
-    List routines = Dayroutine.findAllByFacilityAndDay(entity, day) //.sort() {it.from}
+    List routines = Dayroutine.findAllByFacilityAndDay(entity, day).sort() {it.dateFrom.getHours()}
 
     return [routines: routines, entity: entity, day: day]
   }
@@ -29,7 +29,7 @@ class DayroutineController {
     def day = params.day ?: 'monday'
 
     // find all routines of that day and facility
-    List routines = Dayroutine.findAllByFacilityAndDay(entity, day) //.sort() {it.from}
+    List routines = Dayroutine.findAllByFacilityAndDay(entity, day).sort() {it.dateFrom.getHours()}
 
     render template: "routineday", model: [routines: routines, entity: entity, day: day]
   }
@@ -37,9 +37,25 @@ class DayroutineController {
   def save = {
     Entity entity = Entity.get(params.id)
 
+    // create a day routine for every day marked
+    if (params.monday) createRoutine(entity, "monday")
+    if (params.tuesday) createRoutine(entity, "tuesday")
+    if (params.wednesday) createRoutine(entity, "wednesday")
+    if (params.thursday) createRoutine(entity, "thursday")
+    if (params.friday) createRoutine(entity, "friday")
+    if (params.saturday) createRoutine(entity, "saturday")
+    if (params.sunday) createRoutine(entity, "sunday")
+
+    // find all routines of that day and facility
+    List routines = Dayroutine.findAllByFacilityAndDay(entity, 'monday').sort() {it.dateFrom.getHours()}
+
+    render template: "routineday", model: [routines: routines, entity: entity, day: 'monday']
+  }
+
+  void createRoutine (entity, day) {
     Dayroutine routine = new Dayroutine(params)
     routine.facility = entity
-    routine.day = params.day
+    routine.day = day
     routine.dateFrom = new Date()
     routine.dateTo = new Date()
 
@@ -53,11 +69,6 @@ class DayroutineController {
     routine.dateTo = functionService.convertToUTC(routine.dateTo)
 
     routine.save(flush: true)
-
-    // find all routines of that day and facility
-    List routines = Dayroutine.findAllByFacilityAndDay(entity, routine.day) //.sort() {it.from}
-
-    render template: "routines", model: [routines: routines]
   }
 
   def editroutine = {

@@ -1,14 +1,18 @@
 <g:formRemote name="formRemote" url="[controller:'dayroutine', action:'updateroutine', id:routine.id, params:[i: i]]" update="routinebox${i}">
-    <table>
-      <tr>
-        <td>
-          <g:message code="name"/>: <g:textField name="title" size="25" value="${routine.title.decodeHTML()}"/><br/>
-          <g:message code="from"/> <g:select name="dateFromHour" from="${0..23}" value="${routine.dateFrom.getHours()}"/>:<g:select name="dateFromMinute" from="${0..59}" value="${routine.dateFrom.getMinutes()}"/> Uhr bis <g:select name="dateToHour" from="${0..23}" value="${routine.dateTo.getHours()}"/>:<g:select name="dateToMinute" from="${0..59}" value="${routine.dateTo.getMinutes()}"/> Uhr</td>
-        <td>
-          <g:textArea name="description" rows="4" cols="50" value="${routine.description.decodeHTML()}"/>
-        </td>
-      </tr>
-    </table>
-    <g:submitButton name="submitButton" value="${message(code:'change')}"/>
-    <div class="clear"></div>
-  </g:formRemote>
+  <table>
+    <tr>
+      <td class="bold">Zeitraum:</td>
+      <td><g:select name="dateFromHour" from="${0..23}" value="${formatDate(date: routine?.dateFrom, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="dateFromMinute" from="${0..59}" value="${formatDate(date: routine?.dateFrom, format: 'mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> bis <g:select name="dateToHour" from="${0..23}" value="${formatDate(date: routine?.dateTo, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="dateToMinute" from="${0..59}" value="${formatDate(date: routine?.dateTo, format: 'mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> Uhr</td>
+    </tr>
+    <tr>
+      <td class="bold" style="width: 150px;">Tätigkeit:</td>
+      <td><g:textField name="title" size="30" value="${routine.title.decodeHTML()}"/></td>
+    </tr>
+    <tr>
+      <td class="bold"><g:message code="description"/>:</td>
+      <td><g:textArea name="description" rows="4" cols="50" value="${routine.description.decodeHTML()}"/></td>
+    </tr>
+  </table>
+  <g:submitButton name="submitButton" value="${message(code:'change')}"/>
+  <div class="clear"></div>
+</g:formRemote>

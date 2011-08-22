@@ -12,25 +12,6 @@
 
 <div class="clear"></div>
 
-<p><g:message code="dayroutine.create"/> <a onclick="toggle('#newroutine');
-return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code:'dayroutine.create')}"/></a></p>
-<div id="newroutine" style="display:none">
-  <g:formRemote name="formRemote" url="[controller:'dayroutine', action:'save', id:entity.id, params:[day: day]]" update="routines" before="showspinner('#routines')">
-    <table>
-      <tr>
-        <td>
-          <g:message code="name"/>: <g:textField name="title" size="25"/><br/>
-          <g:message code="from"/> <g:select name="dateFromHour" from="${0..23}"/>:<g:select name="dateFromMinute" from="${0..59}"/> Uhr bis <g:select name="dateToHour" from="${0..23}"/>:<g:select name="dateToMinute" from="${0..59}"/> Uhr</td>
-        <td>
-          <g:textArea name="description" rows="4" cols="50"/>
-        </td>
-      </tr>
-    </table>
-    <g:submitButton name="submitButton" value="${message(code:'save')}"/>
-    <div class="clear"></div>
-  </g:formRemote>
-</div>
-
 <div id="routines">
   <g:render template="routines" model="[routines: routines]"/>
 </div>
