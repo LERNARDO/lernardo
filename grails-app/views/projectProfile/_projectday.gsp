@@ -1,6 +1,6 @@
 <div class="element-box">
-  <p><span class="bold">Derzeit ausgewählter Projekttag:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
-     <span class="bold">Projektbeginn an diesem Tag:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> Uhr</p>
+  <p><span class="bold"><g:message code="projectDayChosen"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
+     <span class="bold"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/></p>
 
   <span class="bold"><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
   <div id="units" style="display:none">

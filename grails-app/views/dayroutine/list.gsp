@@ -20,7 +20,7 @@
         <table>
           <tr>
             <td class="bold" valign="top">Zeitraum:</td>
-            <td><g:select name="dateFromHour" from="${0..23}"/>:<g:select name="dateFromMinute" from="${0..59}"/> bis <g:select name="dateToHour" from="${0..23}"/>:<g:select name="dateToMinute" from="${0..59}"/> Uhr</td>
+            <td><g:select name="dateFromHour" from="${0..23}"/>:<g:select name="dateFromMinute" from="${0..59}"/> bis <g:select name="dateToHour" from="${0..23}"/>:<g:select name="dateToMinute" from="${0..59}"/> <g:message code="clock"/></td>
           </tr>
           <tr>
             <td class="bold" style="width: 150px;" valign="top">Tätigkeit:</td>

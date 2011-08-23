@@ -51,9 +51,12 @@ class GroupActivityTemplateProfileController {
 
     int totalGroupActivityTemplates = Entity.countByType(etGroupActivityTemplate)*/
 
+    params.sort = params.sort ?: 'name'
+    params.order = params.order ?: 'asc'
+
     return [/*groups: groupActivityTemplates,
             totalGroupActivityTemplates: totalGroupActivityTemplates,*/
-            allLabels: Label.findAllByType('template')]
+            allLabels: Label.findAllByType('template', params)]
   }
 
   def show = {
@@ -98,13 +101,16 @@ class GroupActivityTemplateProfileController {
       templateResources.addAll(it.profile.resources)
     }
 
+    params.sort = params.sort ?: 'name'
+    params.order = params.order ?: 'asc'
+
     return [group: group,
             entity: entity,
             allTemplates: allTemplates,
             templates: templates,
             calculatedDuration: calculatedDuration,
             methods: Method.findAllByType('template'),
-            allLabels: Label.findAllByType('template'),
+            allLabels: Label.findAllByType('template', params),
             instances: instances,
             templateResources: templateResources]
 

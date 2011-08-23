@@ -38,7 +38,7 @@
   </head>
   <body>
     <h1>Export der Zeitaufzeichnungen vom ${date1} bis ${date2}</h1>
-    <p class="gray">Erstellt von ${entity.profile.fullName} am <g:formatDate date="${new Date()}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> um <g:formatDate date="${new Date()}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> Uhr.</p>
+    <p class="gray">Erstellt von ${entity.profile.fullName} am <g:formatDate date="${new Date()}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> um <g:formatDate date="${new Date()}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>.</p>
     <h2>Übersicht</h2>
     <table class="default-table">
       <thead>

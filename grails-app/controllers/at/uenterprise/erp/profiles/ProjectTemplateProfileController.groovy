@@ -48,9 +48,12 @@ class ProjectTemplateProfileController {
     }
     int totalProjectTemplates = Entity.countByType(etProjectTemplate)*/
 
+    params.sort = params.sort ?: 'name'
+    params.order = params.order ?: 'asc'
+
     return [/*projectTemplates: projectTemplates,
             totalProjectTemplates: totalProjectTemplates,*/
-            allLabels: Label.findAllByType('template')]
+            allLabels: Label.findAllByType('template', params)]
   }
 
   def show = {
@@ -97,12 +100,15 @@ class ProjectTemplateProfileController {
         }
       }
 
+      params.sort = params.sort ?: 'name'
+      params.order = params.order ?: 'asc'
+
       [projectTemplate: projectTemplate,
               entity: entity,
               projectUnitTemplates: projectUnitTemplates,
               calculatedDuration: calculatedDuration,
               instances: instances,
-              allLabels: Label.findAllByType('template'),
+              allLabels: Label.findAllByType('template', params),
               groupActivityTemplateResources: groupActivityTemplateResources,
               templateResources: templateResources]
     }

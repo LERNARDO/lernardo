@@ -1,4 +1,4 @@
-<p><span class="bold">Ressourcen aus Aktivitätsblockvorlagen:</span> <g:remoteLink update="templateresources" action="refreshtemplateresources" id="${projectTemplate.id}" before="showspinner('#templateresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink></p>
+<p><span class="bold"><g:message code="resourcesFromGroupActivityTemplates"/>:</span> <g:remoteLink update="templateresources" action="refreshtemplateresources" id="${projectTemplate.id}" before="showspinner('#templateresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink></p>
 <div class="zusatz-show">
   <g:if test="${groupActivityTemplateResources}">
     <g:each in="${groupActivityTemplateResources}" var="resource">
@@ -15,7 +15,7 @@
     <span class="italic red"><g:message code="noResourcesOfTemplates"/></span>
   </g:else>
 </div>
-<p><span class="bold">Ressourcen aus Aktivitätsvorlagen:</span></p>
+<p><span class="bold"><g:message code="resourcesFromActivityTemplates"/>:</span></p>
     <div class="zusatz-show">
   <g:if test="${templateResources}">
     <g:each in="${templateResources}" var="resource">

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="bold"><g:message code="labels"/>:</td>
-            <td><g:select from="${allLabels}" multiple="true" name="labels" value=""/></td>
+            <td><g:select from="${allLabels}" multiple="true" name="labels" value="" style="min-height: 115px;"/></td>
           </tr>
         </table>
 

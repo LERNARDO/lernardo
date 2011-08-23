@@ -23,7 +23,7 @@
     </div>
 
     <g:formRemote name="formRemote" url="[action: 'searchbydate']" update="membersearch-results">
-      Suche nach Datum:
+      <g:message code="searchForDate"/>:
       <g:message code="from"/>: <g:textField class="datepicker" name="beginDate" size="10" value=""/>
       <g:message code="to"/>: <g:textField class="datepicker" name="endDate" size="10" value=""/>
       <g:submitButton name="submit" value="OK"/>
@@ -32,24 +32,16 @@
     <g:message code="searchForName"/>: <g:remoteField size="30" name="instantSearch" update="membersearch-results" paramName="name" url="[controller:'overview', action:'searchMe', params:[project: 'yes']]" before="showspinner('#membersearch-results')" />
     
     <g:formRemote name="formRemote2" url="[action: 'searchbytheme']" update="membersearch-results">
-      Suche nach Thema:
+      <g:message code="searchForTheme"/>:
       <g:select name="theme" from="${themes}" optionKey="id" optionValue="profile"/>
       <g:submitButton name="submit" value="OK"/>
     </g:formRemote>
 
     <g:formRemote name="formRemote3" url="[action: 'searchbylabel']" update="membersearch-results">
-      Suche nach Label:
-      <g:select multiple="true" name="labels" from="${allLabels}"/>
+      <g:message code="searchForLabel"/>:
+      <g:select multiple="true" name="labels" from="${allLabels}" style="min-height: 115px;"/>
       <g:submitButton name="submit" value="OK"/>
     </g:formRemote>
-
-    %{--
-    TODO: check with ERP-751
-    <g:formRemote name="formRemote2" url="[action: 'searchbylabel']" update="membersearch-results">
-      Suche nach Label:
-      <g:select from="${allLabels}" multiple="true" name="labels" value=""/>
-      <g:submitButton name="submit" value="OK"/>
-    </g:formRemote>--}%
 
     <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 

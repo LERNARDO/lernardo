@@ -147,17 +147,13 @@
       });
 
     });
-  </script>
 
-  <script type="text/javascript">
-    <!--
     function changeTab (aktiv_tab, aktiv_inhalt, passiv_tab, passiv_inhalt) {
         document.getElementById(aktiv_tab).className = "aktiv_tab";
         document.getElementById(aktiv_inhalt).className = "aktiv_inhalt";
         document.getElementById(passiv_tab).className = "passiv_tab";
         document.getElementById(passiv_inhalt).className = "passiv_inhalt";
     }
-    -->
 
     function showBigSpinner() {
       $('#loading').css('visibility', 'visible');
