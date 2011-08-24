@@ -24,11 +24,11 @@
               <g:remoteField size="40" name="remoteField" update="remoteReceivers" action="remoteReceivers" before="showspinner('#remoteReceivers')"/>
               <div id="remoteReceivers"></div>
 
-              <div style="visibility: hidden">
+              <div style="visibility: hidden; height: 5px;">
                 <select name="receivers" id="hiddenselect" multiple="true" value="default"></select>
               </div>
 
-              <span class="bold">Gewählte Empfänger:</span>
+              <div class="bold">Gewählte Empfänger:</div>
               <div id="receivers2">
               </div>
             </div>
