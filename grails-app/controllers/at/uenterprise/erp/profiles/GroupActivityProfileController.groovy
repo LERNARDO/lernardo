@@ -14,6 +14,7 @@ import at.uenterprise.erp.Live
 import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
+import at.uenterprise.erp.Label
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -71,8 +72,13 @@ class GroupActivityProfileController {
     else
       themes = Entity.findAllByType(metaDataService.etTheme)
 
+    params.sort = 'name'
+    params.order = 'asc'
 
-    return [groups: groupActivities, totalGroupActivities: totalGroupActivities, themes: themes]
+    return [groups: groupActivities,
+            totalGroupActivities: totalGroupActivities,
+            themes: themes,
+            allLabels: Label.findAllByType('template', params)]
   }
 
   def show = {
@@ -160,6 +166,9 @@ class GroupActivityProfileController {
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
 
+    params.sort = params.sort ?: 'name'
+    params.order = params.order ?: 'asc'
+
     return [group: group,
             entity: entity,
             templates: templates,
@@ -181,7 +190,8 @@ class GroupActivityProfileController {
             themes: themes,
             requiredResources: requiredResources,
             plannableResources: plannableResources,
-            resources: resources]
+            resources: resources,
+            allLabels: Label.findAllByType('template', params)]
 
   }
 
@@ -560,6 +570,29 @@ class GroupActivityProfileController {
       render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
   }
 
+  def searchbylabel = {
+    List entities = Entity.findAllByType(metaDataService.etGroupActivity)
+    List result = []
+    List labels = params.list('labels')
+    entities.each { Entity entity ->
+      entity.profile.labels.each { Label label ->
+        if (labels.contains(label.name)) {
+          if (!result.contains(entity))
+            result.add(entity)
+        }
+      }
+    }
+
+    if (result.size() == 0) {
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      return
+    }
+    else {
+        render(template: '/overview/searchresults', model: [searchList: result])
+    }
+  }
+
+
   def planresource = {
     Entity group = Entity.get(params.id)
     Entity resource = Entity.get(params.resource)
@@ -615,6 +648,41 @@ class GroupActivityProfileController {
     }
 
     render template: 'plannableresources', model: [plannableResources: plannableResources, group: group]
+  }
+
+  /*
+   * adds a label to an entity by creating a new label instance and copying the properties from the given "label template"
+   */
+  def addLabel = {
+    Entity entity = Entity.get(params.id)
+    Label labelTemplate = Label.get(params.label)
+
+    // make sure a label can only be added once
+    Boolean canBeAdded = true
+    entity.profile.labels.each {
+        if (it.name == labelTemplate.name)
+            canBeAdded = false
+    }
+    if (canBeAdded) {
+        Label label = new Label()
+
+        label.name = labelTemplate.name
+        label.description = labelTemplate.description
+        label.type = "instance"
+
+        entity.profile.addToLabels(label)
+    }
+    render template: 'labels', model: [group: entity, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * removes a label from a group
+   */
+  def removeLabel = {
+    Entity group = Entity.get(params.id)
+    group.profile.removeFromLabels(Label.get(params.label))
+    Label.get(params.label).delete()
+    render template: 'labels', model: [group: group, entity: entityHelperService.loggedIn]
   }
 
 }

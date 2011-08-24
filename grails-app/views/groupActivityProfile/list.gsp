@@ -38,6 +38,12 @@
       <g:submitButton name="submit" value="OK"/>
     </g:formRemote>
 
+    <g:formRemote name="formRemote3" url="[action: 'searchbylabel']" update="membersearch-results">
+      <g:message code="searchForLabel"/>:
+      <g:select multiple="true" name="labels" from="${allLabels}" style="min-height: 115px;"/>
+      <g:submitButton name="submit" value="OK"/>
+    </g:formRemote>
+
     <div style="padding-bottom: 5px" class="membersearch-results" id="membersearch-results"></div>
 
     <g:if test="${groups}">

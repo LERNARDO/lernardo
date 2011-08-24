@@ -2,6 +2,7 @@ package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Label
 
 /*
  * used for grouping activities together by creating a link from the group to each activity
@@ -10,7 +11,8 @@ import at.uenterprise.erp.Comment
 class GroupActivityProfile extends Profile {
 
     SortedSet comments
-    static hasMany = [comments: Comment]
+    static hasMany = [comments: Comment,
+                      labels: Label]
 
     Integer realDuration
     Date date
