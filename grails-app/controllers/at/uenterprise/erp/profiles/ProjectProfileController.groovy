@@ -501,6 +501,17 @@ class ProjectProfileController {
         }
       }
 
+      // copy labels from template
+      projectTemplate.profile.labels.each { Label templateLabel ->
+          Label label = new Label()
+
+          label.name = templateLabel.name
+          label.description = templateLabel.description
+          label.type = "instance"
+
+          entity.profile.addToLabels(label)
+      }
+
       flash.message = message(code: "project.created", args: [entity.profile.fullName])
 
       // save creator
