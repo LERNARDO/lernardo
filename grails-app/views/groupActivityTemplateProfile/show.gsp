@@ -193,7 +193,7 @@
         <g:render template="resources" model="[group: group, entity: currentEntity]"/>
       </div>
       <g:if test="${templateResources}">
-        <p><span class="bold">Aus Vorlagen:</span></p>
+        <p><span class="bold"><g:message code="fromTemplates"/>:</span></p>
         <div class="zusatz-show">
           <g:each in="${templateResources}" var="resource">
             <div style="border: 1px solid #ccc; margin-top: 5px; border-radius: 5px; background: #fefefe; padding: 5px;">

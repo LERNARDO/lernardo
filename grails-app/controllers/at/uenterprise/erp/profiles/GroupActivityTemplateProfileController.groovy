@@ -180,7 +180,7 @@ class GroupActivityTemplateProfileController {
       ent.profile.educationalObjectiveText = original.profile.educationalObjectiveText
       ent.profile.status = original.profile.status
       ent.profile.realDuration = original.profile.realDuration
-      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+      ent.profile.fullName = original.profile.fullName + '[' + message(code: "duplicate") + ']'
     }
 
     // save creator

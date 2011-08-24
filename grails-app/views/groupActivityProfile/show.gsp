@@ -231,7 +231,7 @@
     </div>
 
     <div class="zusatz">
-      <h5>Eingeplante Ressourcen <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#resources');
+      <h5><g:message code="resources.planned"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
       <div class="zusatz-add" id="resources" style="display:none">
@@ -244,7 +244,7 @@
           </ul>
         </g:if>
         <g:else>
-          <div class="gray" style="margin-bottom: 5px">Keine benötigten Ressourcen!</div>
+          <div class="gray" style="margin-bottom: 5px"><g:message code="resources.noneRequired"/></div>
         </g:else>
 
         <b><g:message code="resource.profile"/></b> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>

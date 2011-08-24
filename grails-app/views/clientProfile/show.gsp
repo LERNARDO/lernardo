@@ -288,7 +288,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray">Es ist maximal eine Schulleistung pro Tag erstellbar!</span></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
             </tr>
           </table>
         </g:formRemote>
@@ -314,7 +314,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray">Es ist maximal ein Gesundheitseintrag pro Tag erstellbar!</span></td>
+              <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
             </tr>
           </table>
         </g:formRemote>
@@ -341,7 +341,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray">Es ist maximal ein Eintrag pro Tag erstellbar!</span></td>
+                <td><g:submitButton name="button" value="${message(code:'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
               </tr>
             </table>
           </g:formRemote>
@@ -459,7 +459,7 @@
             </ul>
           </g:if>
           <g:else>
-            <span class="italic">Dieser Betreute hat bisher keinen Paten!</span>
+            <span class="italic"><g:message code="client.noPateYet"/></span>
           </g:else>
         </div>
       </div>

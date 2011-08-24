@@ -176,7 +176,7 @@ class ProjectTemplateProfileController {
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.description = original.profile.description
       ent.profile.status = original.profile.status
-      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+      ent.profile.fullName = original.profile.fullName + '[' + message(code: "duplicate") + ']'
     }
 
     // save creator

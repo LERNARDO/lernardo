@@ -52,7 +52,7 @@
     </erp:getProjectDaySubstitutes>
   </div>
 
-  <span class="bold">Eingeplante Ressourcen <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources');
+  <span class="bold"><g:message code="resources.planned"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#resources');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></span>
 
       <div class="zusatz-add" id="resources" style="display:none">
@@ -65,7 +65,7 @@
           </ul>
         </g:if>
         <g:else>
-          <div class="gray" style="margin-bottom: 5px">Keine benötigten Ressourcen!</div>
+          <div class="gray" style="margin-bottom: 5px"><g:message code="resources.noneRequired"/></div>
         </g:else>
 
         <b><g:message code="resource.profile"/></b> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
@@ -75,7 +75,7 @@
               <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
             </g:if>
             <g:else>
-              <span class="italic gray">Sie können die Ressourcen erst einplanen, wenn Sie eine Projekteinheit ausgewählt haben!</span><br/>
+              <span class="italic gray"><g:message code="resources.planInfo"/></span><br/>
             </g:else>
           </erp:getProjectDayUnits>
         </div>

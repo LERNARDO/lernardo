@@ -1,4 +1,4 @@
-<p class="gray">Es werden maximal 30 Ergebnisse angezeigt!</p>
+<p class="gray"><g:message code="maxResultsShown" args="[30]"/></p>
 <g:each in="${searchList}" var="searchInstance">
   <div class="member">
 

@@ -127,7 +127,7 @@ class TemplateProfileController {
       ent.profile.status = original.profile.status
       ent.profile.duration = original.profile.duration
       ent.profile.type = original.profile.type
-      ent.profile.fullName = original.profile.fullName + '[Duplikat]'
+      ent.profile.fullName = original.profile.fullName + '[' + message(code: "duplicate") + ']'
       ent.profile.goal = original.profile.goal
       ent.profile.ageFrom = original.profile.ageFrom
       ent.profile.ageTo = original.profile.ageTo
