@@ -169,7 +169,7 @@ class TemplateProfileController {
     }
 
     // loop through all labels of the original and create them in the copy
-    original.profile.labels.each { la->
+    original.profile.labels.each { la ->
       Label label = new Label()
 
       label.name = la.name

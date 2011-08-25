@@ -1248,8 +1248,8 @@ class ProjectProfileController {
       // find all clients of the group
       List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
 
-      clients.each {
-        def linking = functionService.linkEntities(it.id, params.id, metaDataService.ltGroupMemberClient)
+      clients.each { Entity client ->
+        def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
           render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       }
