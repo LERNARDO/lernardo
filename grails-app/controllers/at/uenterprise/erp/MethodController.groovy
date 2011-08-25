@@ -125,4 +125,25 @@ class MethodController {
     Element.get(params.element).delete()
     render template: 'elements', model: [methodInstance: method, entity: entityHelperService.loggedIn]
   }
+
+  def editElement = {
+    Method method = Method.get(params.id)
+    Element element = Element.get(params.element)
+    render template: 'editelement', model: [methodInstance: method, element: element, i: params.i]
+  }
+
+  def updateElement = {
+    Method method = Method.get(params.id)
+    Element element = Element.get(params.element)
+
+    // find all elements with the same name and rename them
+    Element.findAllByName(element.name).each {
+      it.name = params.name
+      it.save()
+    }
+
+    element.name = params.name
+    element.save(flush: true)
+    render template: 'element', model: [methodInstance: method, element: element, i: params.i, entity: entityHelperService.loggedIn]
+  }
 }
