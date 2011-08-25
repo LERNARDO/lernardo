@@ -98,9 +98,14 @@ class ProjectProfileController {
       Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
 
       // find all units linked to the template
+      //List units = []
+      //if (template)
+        //units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+
       List units = []
-      if (template)
-        units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
+      template.profile.templates.each {
+        units.add(Entity.get(it.toInteger()))
+      }
 
       def allFacilities = Entity.findAllByType(metaDataService.etFacility)
       // find all facilities linked to this project
