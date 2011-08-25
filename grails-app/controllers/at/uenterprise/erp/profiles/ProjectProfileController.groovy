@@ -188,6 +188,7 @@ class ProjectProfileController {
       facilities.each { Entity facility ->
         // add resources linked to the facility to plannable resources
         plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+
         // find colony the facility is linked to and add its resources as well
         Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
         plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
@@ -205,7 +206,11 @@ class ProjectProfileController {
             }
           }
         }
-        plannableResources.addAll(colonyResources)
+        colonyResources.each {
+          if (!plannableResources.contains(it))
+            plannableResources.add(it)
+        }
+        //plannableResources.addAll(colonyResources)
       }
 
       // add all resources that are available everywhere
@@ -215,7 +220,11 @@ class ProjectProfileController {
           eq("classification", "everywhere")
         }
       }
-      plannableResources.addAll(everywhereResources)
+      everywhereResources.each {
+        if (!plannableResources.contains(it))
+          plannableResources.add(it)
+      }
+      //plannableResources.addAll(everywhereResources)
 
       List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
 
@@ -1520,14 +1529,56 @@ class ProjectProfileController {
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
-    List plannableResources = []
+    /*List plannableResources = []
     facilities.each { Entity facility ->
       // add resources linked to the facility to plannable resources
       plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
       // find colony the facility is linked to and add its resources as well
       Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
       plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+    }*/
+
+    List plannableResources = []
+    facilities.each { Entity facility ->
+      // add resources linked to the facility to plannable resources
+      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
+
+      // find colony the facility is linked to and add its resources as well
+      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
+      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
+
+      // find all other facilities linked to the colony and add their resources if marked as available in colony
+      List colonyResources = []
+      List otherFacilities = functionService.findAllByLink(null, colony, metaDataService.ltGroupMemberFacility)
+      otherFacilities.each { Entity of ->
+        List tempResources = functionService.findAllByLink(null, of, metaDataService.ltResource)
+        tempResources.each { Entity tr ->
+          if (tr.profile.classification == "colony") {
+            if (!colonyResources.contains(tr)) {
+              colonyResources.add(tr)
+            }
+          }
+        }
+      }
+      colonyResources.each {
+        if (!plannableResources.contains(it))
+          plannableResources.add(it)
+      }
+      //plannableResources.addAll(colonyResources)
     }
+
+    // add all resources that are available everywhere
+    List everywhereResources = Entity.createCriteria().list {
+      eq("type", metaDataService.etResource)
+      profile {
+        eq("classification", "everywhere")
+      }
+    }
+    everywhereResources.each {
+      if (!plannableResources.contains(it))
+        plannableResources.add(it)
+    }
+    //plannableResources.addAll(everywhereResources)
 
     render template: 'plannableresources', model: [plannableResources: plannableResources, projectDay: projectDay]
   }
