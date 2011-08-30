@@ -34,7 +34,7 @@
     <div class="clear"></div>
 
     <div class="info-msg">
-      ${activityList.size()} <g:message code="themeRooms"/>
+      ${activityCount} <g:message code="themeRooms"/>
       <g:if test="${dateSelected}">am <g:formatDate date="${dateSelected}" format="dd. MM. yyyy"/></g:if>
       <g:message code="found"/>
     </div>
@@ -75,7 +75,7 @@
     </table>
 
     <div class="paginateButtons">
-      <g:paginate action="list" total="${activityList.size()}"/>
+      <g:paginate action="list" total="${activityCount}"/>
     </div>
 
   </div>

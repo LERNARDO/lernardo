@@ -53,7 +53,7 @@ class ActivityProfileController {
 
     // create empty list for final results
     List activityList = []
-    //def activityCount
+    def activityCount
 
     // get all activities
     if (params.myDate == "all") {
@@ -70,7 +70,7 @@ class ActivityProfileController {
               activityList << act
           }
         }
-        //activityCount = activityList.size()
+        activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
       }
@@ -85,17 +85,17 @@ class ActivityProfileController {
           maxResults(params.max)
           firstResult(params.offset)
         }
-        /*List totalActivityList = Entity.createCriteria().list {
+        List totalActivityList = Entity.createCriteria().list {
           eq("type", etActivity)
           profile {
             eq("type", "Themenraum")
           }
         }
-        activityCount = totalActivityList.size()*/
+        activityCount = totalActivityList.size()
       }
 
-      return ['activityList': activityList/*,
-              'activityCount': activityCount*/]
+      return ['activityList': activityList,
+              'activityCount': activityCount]
     }
 
     // get all activities between a given date range
@@ -116,7 +116,7 @@ class ActivityProfileController {
               activityList << act
           }
         }
-        //activityCount = activityList.size()
+        activityCount = activityList.size()
         def upperBound = params.offset + 10 < activityList.size() ? params.offset + 10 : activityList.size()
         activityList = activityList.subList(params.offset, upperBound)
       }
@@ -136,17 +136,18 @@ class ActivityProfileController {
           maxResults(params.max)
           firstResult(params.offset)
         }
-        /*List totalActivityList = Entity.createCriteria().list {
+        List totalActivityList = Entity.createCriteria().list {
           eq("type", etActivity)
           profile {
             eq("type", "Themenraum")
+            between("date", inputDate, inputDate + 1)
           }
         }
-        activityCount = totalActivityList.size()*/
+        activityCount = totalActivityList.size()
       }
 
       return ['activityList': activityList,
-              /*'activityCount': activityCount,*/
+              'activityCount': activityCount,
               'dateSelected': inputDate]
     }
     return
