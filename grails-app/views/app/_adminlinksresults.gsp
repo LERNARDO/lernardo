@@ -1,4 +1,7 @@
+%{--
 <div>Entitäten auf die <span class="bold">${entity.profile.fullName}</span> verlinkt (source):</div>
+--}%
+<div><g:message code="links.toSource" args="[entity.profile.fullName]"/></div>
 <g:if test="${targets}">
     <ul>
         <g:each in="${targets}" var="target" status="i">
@@ -7,9 +10,12 @@
     </ul>
 </g:if>
 <g:else>
-    <p class="red">Keine Verlinkungen gefunden</p>
+    <p class="red"><g:message code="links.notFound"/></p>
 </g:else>
+%{--
 <div>Entitäten die auf <span class="bold">${entity.profile.fullName}</span> verlinken (target):</div>
+--}%
+<div><g:message code="links.toTarget" args="[entity.profile.fullName]"/></div>
 <g:if test="${sources}">
     <ul>
         <g:each in="${sources}" var="source" status="i">
@@ -18,5 +24,5 @@
     </ul>
 </g:if>
 <g:else>
-    <p class="red">Keine Verlinkungen gefunden</p>
+    <p class="red"><g:message code="links.notFound"/></p>
 </g:else>
