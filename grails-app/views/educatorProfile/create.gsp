@@ -218,9 +218,9 @@
           <table>
 
             <tr>
-              <td valign="top" class="name">Telefon #1</td>
-              <td valign="top" class="name">Telefon #2</td>
-              <td valign="top" class="name">Private E-Mail</td>
+              <td valign="top" class="name"><g:message code="educator.profile.Phone1"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.Phone2"/></td>
+              <td valign="top" class="name"><g:message code="educator.profile.privMail"/></td>
             </tr>
 
             <tr>

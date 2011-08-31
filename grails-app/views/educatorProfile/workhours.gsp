@@ -15,7 +15,7 @@
       <thead>
       <tr>
         <th><g:message code="name"/></th>
-        <th>Stunden</th>
+        <th><g:message code="hours"/></th>
         %{--<th>Arbeitstage pro Woche</th>--}%
         <th><g:message code="educator.profile.hourlyWage"/> (${grailsApplication.config.currency})</th>
         <th><g:message code="educator.profile.overtimePay"/> (${grailsApplication.config.currency})</th>

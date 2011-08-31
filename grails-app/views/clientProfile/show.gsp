@@ -135,7 +135,7 @@
             %{--
             <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
             --}%
-            <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy" /></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
+            <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy" /></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
           </g:if>
@@ -152,7 +152,7 @@
             %{--
             <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
             --}%
-            <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy" /></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
+            <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy" /></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
           </g:if>
@@ -201,8 +201,8 @@
           </g:if>
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">Staatsbürgerschaft</g:if></td>
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}"><g:message code="client.profile.citizenship"/></g:if></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}"><g:message code="client.profile.socialSecurityNumber"/></g:if></td>
           </tr>
 
           <tr class="prop">

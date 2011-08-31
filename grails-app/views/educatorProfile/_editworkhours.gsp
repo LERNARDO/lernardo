@@ -1,13 +1,13 @@
 <g:formRemote name="editWorkHours" update="${i}a" url="[action:'updateWorkHours', id: educator.id, params:[i: i]]">
   <table>
     <tr>
-        <td><span class="bold">MO</span></td>
-        <td><span class="bold">DI</span></td>
-        <td><span class="bold">MI</span></td>
-        <td><span class="bold">DO</span></td>
-        <td><span class="bold">FR</span></td>
-        <td><span class="bold">SA</span></td>
-        <td><span class="bold">SO</span></td>
+        <td><span class="bold"><g:message code="wd.mon.short"/></span></td>
+        <td><span class="bold"><g:message code="wd.tue.short"/></span></td>
+        <td><span class="bold"><g:message code="wd.wed.short"/></span></td>
+        <td><span class="bold"><g:message code="wd.thu.short"/></span></td>
+        <td><span class="bold"><g:message code="wd.fri.short"/></span></td>
+        <td><span class="bold"><g:message code="wd.sat.short"/></span></td>
+        <td><span class="bold"><g:message code="wd.sun.short"/></span></td>
         <td></td>
     </tr>
     <tr>

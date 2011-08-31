@@ -14,13 +14,13 @@
 <div class="second">
 
 <erp:isSystemAdmin entity="${currentEntity}">
-  <p><a href="#" onclick="jQuery('#first').toggle(); jQuery('#second').toggle();">Alternative Ansicht</a></p>
+  <p><a href="#" onclick="jQuery('#first').toggle(); jQuery('#second').toggle();"><g:message code="alternate.view"/></a></p>
 </erp:isSystemAdmin>
 
 <div id="first" style="display: none">
 <div style="float: left; margin: 0 10px 10px 0;">
   <div
-      style="color: #555; font-size: 15px; font-weight: bold; margin: 0 0 2px 5px; font-variant: small-caps">Allgemeines</div>
+      style="color: #555; font-size: 15px; font-weight: bold; margin: 0 0 2px 5px; font-variant: small-caps"><g:message code="general"/></div>
 
   <div style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; background: #fefefe;">
     <table>
@@ -460,9 +460,9 @@
     <table>
 
       <tr>
-        <td valign="top" class="name-show">Telefon #1</td>
-        <td valign="top" class="name-show">Telefon #2</td>
-        <td valign="top" class="name-show">Private E-Mail</td>
+        <td valign="top" class="name-show"><g:message code="educator.profile.Phone1"/></td>
+        <td valign="top" class="name-show"><g:message code="educator.profile.Phone2"/></td>
+        <td valign="top" class="name-show"><g:message code="educator.profile.privMail"/></td>
       </tr>
 
       <tr>

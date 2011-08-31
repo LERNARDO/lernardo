@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Betreute</title>
+  <title>${message(code: 'clients')}</title>
 </head>
 <body>
 <div class="boxHeader">

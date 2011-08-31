@@ -1,14 +1,14 @@
 <table class="default-table">
   <thead>
   <tr>
-    <th>Name</th>
+    <th><g:message code="educator.profile.name"/></th>
     <g:each in="${workdaycategories}" var="category">
       <th>${category.name} (h)</th>
     </g:each>
-    <th>Bestätigt</th>
-    <th>Habenstunden</th>
-    <th>Sollstunden</th>
-    <th>Auszahlung (${grailsApplication.config.currency})</th>
+    <th><g:message code="approved"/></th>
+    <th><g:message code="credit.hours"/></th>
+    <th><g:message code="debit.hours"/></th>
+    <th><g:message code="payout"/> (${grailsApplication.config.currency})</th>
   </tr>
   </thead>
   <tbody>

@@ -1,5 +1,6 @@
 <g:if test="${comments}">
-  <p class="italic gray">${comments.size()} Kommentar(e) zu dieser Auswahl gefunden!</p>
+  %{--<p class="italic gray">${comments.size()} Kommentar(e) zu dieser Auswahl gefunden!</p>--}%
+  <p class="italic gray"><g:message code="comment.size.found" args="[comments.size()]"/></p>
   <g:each in="${comments}" var="comment">
     <div class="comment">
       <erp:getCreator id="${comment.creator}">
@@ -35,5 +36,6 @@
   </g:each>
 </g:if>
 <g:else>
-  <span class="italic gray">Keine Kommentare zu dieser Auswahl gefunden!</span>
+  %{--<span class="italic gray">Keine Kommentare zu dieser Auswahl gefunden!</span>--}%
+  <span class="italic gray"><g:message code="comment.size.found" args="[0]"/></span>
 </g:else>

@@ -7,7 +7,7 @@
           <tr>
             <td><erp:profileImage entity="${entity}" width="65"/></td>
             <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><br/>
-            Anzahl Betreute: <erp:getGroupClientsCount entity="${entity}"/></td>
+            <g:message code="facility.client.quantity"/>: <erp:getGroupClientsCount entity="${entity}"/></td>
           </tr>
         </table>
       </div>

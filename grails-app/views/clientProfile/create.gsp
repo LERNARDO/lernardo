@@ -239,8 +239,8 @@
             </tr>
 
             <tr>
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.citizenship}">Staatsbürgerschaft</g:if></td>
-              <td colspan="3" valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.citizenship}"><g:message code="client.profile.citizenship"/></g:if></td>
+              <td colspan="3" valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}"><g:message code="client.profile.socialSecurityNumber"/></g:if></td>
             <tr>
 
             <tr>
