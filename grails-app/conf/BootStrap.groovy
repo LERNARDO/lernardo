@@ -39,6 +39,7 @@ import at.uenterprise.erp.Setup
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
 import at.openfactory.ep.LinkType
+import at.uenterprise.erp.WorkdayUnit
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -88,7 +89,7 @@ class BootStrap {
         createDefaultProjectTemplates()
         //createDefaultHelpers()
         createDefaultWorkdayCategories()
-        //createDefaultWorkdayUnits()
+        createDefaultWorkdayUnits()
 
         createDefaultAppointments()
         createDefaultGroupActivities()
@@ -934,7 +935,7 @@ class BootStrap {
 
     for ( i in 1..3 ) {
       if (!WorkdayCategory.findByName('workdayCategory' + i)) {
-        new WorkdayCategory(name: 'workdayCategory' + i).save(failOnError: true)
+        new WorkdayCategory(name: 'workdayCategory' + i).save(failOnError: true, flush: true)
       }
     }
 
@@ -943,18 +944,15 @@ class BootStrap {
   void createDefaultWorkdayUnits () {
     log.info ("creating workday units")
 
-    // TODO: figure out why saving won't work here
-    /*WorkdayUnit wdu1 = new WorkdayUnit(category: WorkdayCategory.findByName('Category1'), description: "bla", date1: new Date(110, 11, 1, 10, 0), date2: new Date(110, 11, 1, 11, 0)).save(failOnError: true)
-    WorkdayUnit wdu2 = new WorkdayUnit(category: WorkdayCategory.findByName('Category2'), description: "bla", date1: new Date(110, 11, 1, 12, 0), date2: new Date(110, 11, 1, 14, 0)).save(failOnError: true)
-    WorkdayUnit wdu3 = new WorkdayUnit(category: WorkdayCategory.findByName('Category3'), description: "bla", date1: new Date(110, 11, 1, 15, 0), date2: new Date(110, 11, 1, 18, 0)).save(failOnError: true)
-    if (wdu3.hasErrors())
-      log.info "error"
+    WorkdayUnit wdu1 = new WorkdayUnit(category: WorkdayCategory.findByName('workdayCategory1').name, description: "bla", date1: new Date(110, 11, 1, 10, 0), date2: new Date(110, 11, 1, 11, 0)).save(failOnError: true)
+    WorkdayUnit wdu2 = new WorkdayUnit(category: WorkdayCategory.findByName('workdayCategory2').name, description: "bla", date1: new Date(110, 11, 1, 12, 0), date2: new Date(110, 11, 1, 14, 0)).save(failOnError: true)
+    WorkdayUnit wdu3 = new WorkdayUnit(category: WorkdayCategory.findByName('workdayCategory3').name, description: "bla", date1: new Date(110, 11, 1, 15, 0), date2: new Date(110, 11, 1, 18, 0)).save(failOnError: true)
 
-    Entity educator = Entity.findByName("dummyEducator1")
+    Entity educator = Entity.findByName("educator1")
 
     educator.profile.addToWorkdayunits(wdu1)
     educator.profile.addToWorkdayunits(wdu2)
-    educator.profile.addToWorkdayunits(wdu3)*/
+    educator.profile.addToWorkdayunits(wdu3)
   }
 
   void createDefaultAppointments() {

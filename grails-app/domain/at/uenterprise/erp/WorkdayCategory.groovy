@@ -3,11 +3,10 @@ package at.uenterprise.erp
 class WorkdayCategory {
 
     String name
-    boolean count = true
+    Boolean count = true
 
     static constraints = {
-      name: blank:false
-      nullable: false
+      name blank: false, nullable: false
     }
 
     String toString(){
