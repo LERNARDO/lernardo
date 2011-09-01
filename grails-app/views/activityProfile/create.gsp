@@ -83,43 +83,43 @@
       </span>
 
 
-      <table class="${hasErrors(bean: ac, field: 'weekdays', 'errors')}">
+      <table width="100%" class="${hasErrors(bean: ac, field: 'weekdays', 'errors')}">
         <tr>
-          <td colspan="7" width="80" class="label">%{--<g:message code="activityInstance.profile.days"/>--}%<g:message code="chooseDay"/></td>
+          <td colspan="7" class="label"><g:message code="chooseDay"/></td>
         </tr>
         <tr>
-          <td class="activityInstance-top" width="105"><g:message code="wd.mon"/>:&nbsp;
-            <g:checkBox name="monday" value="${ac?.monday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${ac?.monday}"/> <g:message code="monday"/></div>
             <g:select name="mondayStartHour" from="${0..23}" value="${ac?.mondayStartHour}"/>:<g:select name="mondayStartMinute" from="${0..59}" value="${ac?.mondayStartMinute}"/><br/>
             <g:select name="mondayEndHour" from="${0..23}" value="${ac?.mondayEndHour}"/>:<g:select name="mondayEndMinute" from="${0..59}" value="${ac?.mondayEndMinute}"/><br/>
           </td>
-          <td class="activityInstance-top" width="105"><g:message code="wd.tue"/>:&nbsp;
-            <g:checkBox name="tuesday" value="${ac?.tuesday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${ac?.tuesday}"/> <g:message code="tuesday"/></div>
             <g:select name="tuesdayStartHour" from="${0..23}" value="${ac?.tuesdayStartHour}"/>:<g:select name="tuesdayStartMinute" from="${0..59}" value="${ac?.tuesdayStartMinute}"/><br/>
             <g:select name="tuesdayEndHour" from="${0..23}" value="${ac?.tuesdayEndHour}"/>:<g:select name="tuesdayEndMinute" from="${0..59}" value="${ac?.tuesdayEndMinute}" format="mm"/><br/>
           </td>
-          <td class="activityInstance-top" width="105"><g:message code="wd.wed"/>:&nbsp;
-            <g:checkBox name="wednesday" value="${ac?.wednesday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${ac?.wednesday}"/> <g:message code="wednesday"/></div>
             <g:select name="wednesdayStartHour" from="${0..23}" value="${ac?.wednesdayStartHour}"/>:<g:select name="wednesdayStartMinute" from="${0..59}" value="${ac?.wednesdayStartMinute}"/><br/>
             <g:select name="wednesdayEndHour" from="${0..23}" value="${ac?.wednesdayEndHour}"/>:<g:select name="wednesdayEndMinute" from="${0..59}" value="${ac?.wednesdayEndMinute}"/><br/>
           </td>
-          <td class="activityInstance-top" width="105"><g:message code="wd.thu"/>:&nbsp;
-            <g:checkBox name="thursday" value="${ac?.thursday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${ac?.thursday}"/> <g:message code="thursday"/></div>
             <g:select name="thursdayStartHour" from="${0..23}" value="${ac?.thursdayStartHour}"/>:<g:select name="thursdayStartMinute" from="${0..59}" value="${ac?.thursdayStartMinute}"/><br/>
             <g:select name="thursdayEndHour" from="${0..23}" value="${ac?.thursdayEndHour}"/>:<g:select name="thursdayEndMinute" from="${0..59}" value="${ac?.thursdayEndMinute}"/><br/>
           </td>
-          <td class="activityInstance-top" width="105"><g:message code="wd.fri"/>:&nbsp;
-            <g:checkBox name="friday" value="${ac?.friday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${ac?.friday}"/> <g:message code="friday"/></div>
             <g:select name="fridayStartHour" from="${0..23}" value="${ac?.fridayStartHour}"/>:<g:select name="fridayStartMinute" from="${0..59}" value="${ac?.fridayStartMinute}"/><br/>
             <g:select name="fridayEndHour" from="${0..23}" value="${ac?.fridayEndHour}"/>:<g:select name="fridayEndMinute" from="${0..59}" value="${ac?.fridayEndMinute}"/><br/>
           </td>
-          <td class="activityInstance-top" width="105"><g:message code="wd.sat"/>:&nbsp;
-            <g:checkBox name="saturday" value="${ac?.saturday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${ac?.saturday}"/> <g:message code="saturday"/></div>
             <g:select name="saturdayStartHour" from="${0..23}" value="${ac?.saturdayStartHour}"/>:<g:select name="saturdayStartMinute" from="${0..59}" value="${ac?.saturdayStartMinute}"/><br/>
             <g:select name="saturdayEndHour" from="${0..23}" value="${ac?.saturdayEndHour}"/>:<g:select name="saturdayEndMinute" from="${0..59}" value="${ac?.saturdayEndMinute}"/><br/>
           </td>
-          <td class="activityInstance-top" width="105"><g:message code="wd.sun"/>:&nbsp;
-            <g:checkBox name="sunday" value="${ac?.sunday}"/><br/>
+          <td style="padding: 6px;">
+            <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${ac?.sunday}"/> <g:message code="sunday"/></div>
             <g:select name="sundayStartHour" from="${0..23}" value="${ac?.sundayStartHour}"/>:<g:select name="sundayStartMinute" from="${0..59}" value="${ac?.sundayStartMinute}"/><br/>
             <g:select name="sundayEndHour" from="${0..23}" value="${ac?.sundayEndHour}"/>:<g:select name="sundayEndMinute" from="${0..59}" value="${ac?.sundayEndMinute}"/><br/>
           </td>

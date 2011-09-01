@@ -29,21 +29,61 @@
               <g:textField class="countable50 ${hasErrors(bean: pc, field: 'fullName', 'errors')}" size="50" name="fullName" value="${fieldValue(bean: pc, field: 'fullName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              %{--
-              <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
-              --}%
               <g:textField name="startDate" class="datepicker ${hasErrors(bean: pc, field: 'startDate', 'errors')}" value="${formatDate(date: pc?.startDate, format: 'dd. MM. yyyy')}"/>
             </td>
             <td valign="top" class="value">
-              %{--
-              <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
-              --}%
               <g:textField name="endDate" class="datepicker ${hasErrors(bean: pc, field: 'endDate', 'errors')}" value="${formatDate(date: pc?.endDate, format: 'dd. MM. yyyy')}"/>
             </td>
           </tr>
+        </table>
+
+        <table width="100%" class="${hasErrors(bean: pc, field: 'weekdays', 'errors')}">
+          <tr>
+            <td colspan="7" class="bold"><g:message code="project.profile.beginTimes"/></td>
+          </tr>
+          <tr>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${pc?.monday}"/> <g:message code="monday"/></div>
+              <g:select name="mondayStartHour" from="${0..23}" value="${pc?.mondayStartHour}"/>:<g:select name="mondayStartMinute" from="${0..59}" value="${pc?.mondayStartMinute}"/><br/>
+              %{--<g:select name="mondayEndHour" from="${0..23}" value="${project?.mondayEndHour}"/>:<g:select name="mondayEndMinute" from="${0..59}" value="${project?.mondayEndMinute}"/>--}%
+            </td>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${pc?.tuesday}"/> <g:message code="tuesday"/></div>
+              <g:select name="tuesdayStartHour" from="${0..23}" value="${pc?.tuesdayStartHour}"/>:<g:select name="tuesdayStartMinute" from="${0..59}" value="${pc?.tuesdayStartMinute}"/><br/>
+              %{--<g:select name="tuesdayEndHour" from="${0..23}" value="${project?.tuesdayEndHour}"/>:<g:select name="tuesdayEndMinute" from="${0..59}" value="${project?.tuesdayEndMinute}"/>--}%
+            </td>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${pc?.wednesday}"/> <g:message code="wednesday"/></div>
+              <g:select name="wednesdayStartHour" from="${0..23}" value="${pc?.wednesdayStartHour}"/>:<g:select name="wednesdayStartMinute" from="${0..59}" value="${pc?.wednesdayStartMinute}"/><br/>
+              %{--<g:select name="wednesdayEndHour" from="${0..23}" value="${project?.wednesdayEndHour}"/>:<g:select name="wednesdayEndMinute" from="${0..59}" value="${project?.wednesdayEndMinute}"/>--}%
+            </td>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${pc?.thursday}"/> <g:message code="thursday"/></div>
+              <g:select name="thursdayStartHour" from="${0..23}" value="${pc?.thursdayStartHour}"/>:<g:select name="thursdayStartMinute" from="${0..59}" value="${pc?.thursdayStartMinute}"/><br/>
+              %{--<g:select name="thursdayEndHour" from="${0..23}" value="${project?.thursdayEndHour}"/>:<g:select name="thursdayEndMinute" from="${0..59}" value="${project?.thursdayEndMinute}"/>--}%
+            </td>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${pc?.friday}"/> <g:message code="friday"/></div>
+              <g:select name="fridayStartHour" from="${0..23}" value="${pc?.fridayStartHour}"/>:<g:select name="fridayStartMinute" from="${0..59}" value="${pc?.fridayStartMinute}"/><br/>
+              %{--<g:select name="fridayEndHour" from="${0..23}" value="${project?.fridayEndHour}"/>:<g:select name="fridayEndMinute" from="${0..59}" value="${project?.fridayEndMinute}"/>--}%
+            </td>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${pc?.saturday}"/> <g:message code="saturday"/></div>
+              <g:select name="saturdayStartHour" from="${0..23}" value="${pc?.saturdayStartHour}"/>:<g:select name="saturdayStartMinute" from="${0..59}" value="${pc?.saturdayStartMinute}"/><br/>
+              %{--<g:select name="saturdayEndHour" from="${0..23}" value="${project?.saturdayEndHour}"/>:<g:select name="saturdayEndMinute" from="${0..59}" value="${project?.saturdayEndMinute}"/>--}%
+            </td>
+            <td style="padding: 6px;">
+              <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${pc?.sunday}"/> <g:message code="sunday"/></div>
+              <g:select name="sundayStartHour" from="${0..23}" value="${pc?.sundayStartHour}"/>:<g:select name="sundayStartMinute" from="${0..59}" value="${pc?.sundayStartMinute}"/><br/>
+              %{--<g:select name="sundayEndHour" from="${0..23}" value="${project?.sundayEndHour}"/>:<g:select name="sundayEndMinute" from="${0..59}" value="${project?.sundayEndMinute}"/>--}%
+            </td>
+          </tr>
+        </table>
+
+        <table width="100%">
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="project.profile.description"/></td>
+            <td colspan="3" valign="top" class="name bold"><g:message code="project.profile.description"/></td>
           </tr>
 
           <tr class="prop">
@@ -55,7 +95,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="project.profile.educationalObjectiveText"/></td>
+            <td colspan="3" valign="top" class="name bold"><g:message code="project.profile.educationalObjectiveText"/></td>
           </tr>
 
           <tr class="prop">
@@ -66,49 +106,6 @@
             </td>
           </tr>
 
-        </table>
-
-        <table class="${hasErrors(bean: pc, field: 'weekdays', 'errors')}">
-          <tr>
-            <td colspan="7" width="80" class="label"><g:message code="project.profile.startDate"/>:</td>
-          </tr>
-          <tr>
-            <td class="project-top" width="105"><g:message code="wd.mon.short"/>:&nbsp;
-              <g:checkBox name="monday" value="${pc?.monday}"/><br/>
-              <g:select name="mondayStartHour" from="${0..23}" value="${pc?.mondayStartHour}"/>:<g:select name="mondayStartMinute" from="${0..59}" value="${pc?.mondayStartMinute}"/><br/>
-              %{--<g:select name="mondayEndHour" from="${0..23}" value="${project?.mondayEndHour}"/>:<g:select name="mondayEndMinute" from="${0..59}" value="${project?.mondayEndMinute}"/>--}%
-            </td>
-            <td class="project-top" width="105"><g:message code="wd.tue.short"/>:&nbsp;
-              <g:checkBox name="tuesday" value="${pc?.tuesday}"/><br/>
-              <g:select name="tuesdayStartHour" from="${0..23}" value="${pc?.tuesdayStartHour}"/>:<g:select name="tuesdayStartMinute" from="${0..59}" value="${pc?.tuesdayStartMinute}"/><br/>
-              %{--<g:select name="tuesdayEndHour" from="${0..23}" value="${project?.tuesdayEndHour}"/>:<g:select name="tuesdayEndMinute" from="${0..59}" value="${project?.tuesdayEndMinute}"/>--}%
-            </td>
-            <td class="project-top" width="105"><g:message code="wd.wed.short"/>:&nbsp;
-              <g:checkBox name="wednesday" value="${pc?.wednesday}"/><br/>
-              <g:select name="wednesdayStartHour" from="${0..23}" value="${pc?.wednesdayStartHour}"/>:<g:select name="wednesdayStartMinute" from="${0..59}" value="${pc?.wednesdayStartMinute}"/><br/>
-              %{--<g:select name="wednesdayEndHour" from="${0..23}" value="${project?.wednesdayEndHour}"/>:<g:select name="wednesdayEndMinute" from="${0..59}" value="${project?.wednesdayEndMinute}"/>--}%
-            </td>
-            <td class="project-top" width="105"><g:message code="wd.thu.short"/>:&nbsp;
-              <g:checkBox name="thursday" value="${pc?.thursday}"/><br/>
-              <g:select name="thursdayStartHour" from="${0..23}" value="${pc?.thursdayStartHour}"/>:<g:select name="thursdayStartMinute" from="${0..59}" value="${pc?.thursdayStartMinute}"/><br/>
-              %{--<g:select name="thursdayEndHour" from="${0..23}" value="${project?.thursdayEndHour}"/>:<g:select name="thursdayEndMinute" from="${0..59}" value="${project?.thursdayEndMinute}"/>--}%
-            </td>
-            <td class="project-top" width="105"><g:message code="wd.fri.short"/>:&nbsp;
-              <g:checkBox name="friday" value="${pc?.friday}"/><br/>
-              <g:select name="fridayStartHour" from="${0..23}" value="${pc?.fridayStartHour}"/>:<g:select name="fridayStartMinute" from="${0..59}" value="${pc?.fridayStartMinute}"/><br/>
-              %{--<g:select name="fridayEndHour" from="${0..23}" value="${project?.fridayEndHour}"/>:<g:select name="fridayEndMinute" from="${0..59}" value="${project?.fridayEndMinute}"/>--}%
-            </td>
-            <td class="project-top" width="105"><g:message code="wd.sat.short"/>:&nbsp;
-              <g:checkBox name="saturday" value="${pc?.saturday}"/><br/>
-              <g:select name="saturdayStartHour" from="${0..23}" value="${pc?.saturdayStartHour}"/>:<g:select name="saturdayStartMinute" from="${0..59}" value="${pc?.saturdayStartMinute}"/><br/>
-              %{--<g:select name="saturdayEndHour" from="${0..23}" value="${project?.saturdayEndHour}"/>:<g:select name="saturdayEndMinute" from="${0..59}" value="${project?.saturdayEndMinute}"/>--}%
-            </td>
-            <td class="project-top" width="105"><g:message code="wd.sun.short"/>:&nbsp;
-              <g:checkBox name="sunday" value="${pc?.sunday}"/><br/>
-              <g:select name="sundayStartHour" from="${0..23}" value="${pc?.sundayStartHour}"/>:<g:select name="sundayStartMinute" from="${0..59}" value="${pc?.sundayStartMinute}"/><br/>
-              %{--<g:select name="sundayEndHour" from="${0..23}" value="${project?.sundayEndHour}"/>:<g:select name="sundayEndMinute" from="${0..59}" value="${project?.sundayEndMinute}"/>--}%
-            </td>
-          </tr>
         </table>
 
       </div>
