@@ -19,7 +19,7 @@
       });
     </script>
 
-    <ga:trackPageviewAsynch /> 
+    <ga:trackPageview />
   </head>
   <body>
     <div id="public">

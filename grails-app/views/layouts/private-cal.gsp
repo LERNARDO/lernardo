@@ -75,8 +75,8 @@
 
   </script>
 
-  <ga:trackPageviewAsynch />
-  <g:layoutHead/>
+  <ga:trackPageview />
+  <g:layoutHead />
 
 </head>
 <body>
