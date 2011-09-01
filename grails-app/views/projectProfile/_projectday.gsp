@@ -24,8 +24,7 @@
   <div id="educators" style="display:none">
 
     <g:message code="search"/>:<br/>
-    %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
-    <erp:remoteField size="40" name="remoteField" update="educatorresults" action="remoteEducators" id="${projectDay.id}" before="showspinner('#educatorresults')"/>
+    <g:remoteField name="remoteField" size="40" update="educatorresults" action="remoteEducators" id="${projectDay.id}" before="showspinner('#educatorresults')"/>
     <div id="educatorresults"></div>
 
   </div>
@@ -40,8 +39,7 @@
   <div id="substitutes" style="display:none">
 
     <g:message code="search"/>:<br/>
-    %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
-    <erp:remoteField size="40" name="remoteField" update="substituteresults" action="remoteSubstitutes" id="${projectDay.id}" before="showspinner('#substituteresults')"/>
+    <g:remoteField size="40" name="remoteField" update="substituteresults" action="remoteSubstitutes" id="${projectDay.id}" before="showspinner('#substituteresults')"/>
     <div id="substituteresults"></div>
 
   </div>

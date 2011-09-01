@@ -428,8 +428,9 @@ class HelperTagLib {
   }
 
   /**
-   * custom tag for as long as the official implementation is broken, see http://jira.codehaus.org/browse/GRAILS-2512--}%
-   * TODO: probably outdated, check if it can be replaced by the official tag again
+   * custom tag for as long as the official implementation is broken with jQuery, see http://jira.codehaus.org/browse/GRAILS-2512--}%
+   * checked on 01.09.2011, not resolved yet
+   * TODO: check again in the future
    */
   def remoteField = { attrs, body ->
     def params = attrs['params']?:null

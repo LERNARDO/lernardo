@@ -16,8 +16,9 @@
       <div id="groups${i}" style="display:none; margin: 0 0 5px 15px;">
 
         <g:message code="search"/>:<br/>
-        %{--TODO: this uses a custom tag because the official implementation is broken, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
+        %{--TODO: this uses a custom tag because the official implementation is broken with jQuery when using params, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
         <erp:remoteField size="40" name="remoteField${i}" update="remoteGroupActivityTemplate${i}" action="remoteGroupActivityTemplate" id="${projectUnitTemplate.id}" params="[i: i, projectTemplate: projectTemplate.id]" before="showspinner('#remoteGroupActivityTemplate')"/>
+        %{--<g:remoteField size="40" name="remoteField${i}" update="remoteGroupActivityTemplate${i}" action="remoteGroupActivityTemplate" id="${projectUnitTemplate.id}" params="[i: i, projectTemplate: projectTemplate.id]" before="showspinner('#remoteGroupActivityTemplate')"/>--}%
         <div id="remoteGroupActivityTemplate${i}"></div>
 
       </div>
@@ -28,7 +29,7 @@
         </erp:getGroupActivityTemplates>
       </div>
 
-    </div>
+    </div>                                                                                                                                   GRAILSPLUGINS/component/13544
   </g:each>
   
 </g:if>
