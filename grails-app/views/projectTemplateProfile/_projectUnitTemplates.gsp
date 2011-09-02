@@ -29,10 +29,10 @@
         </erp:getGroupActivityTemplates>
       </div>
 
-    </div>                                                                                                                                   GRAILSPLUGINS/component/13544
+    </div>
   </g:each>
   
 </g:if>
 <g:else>
-  <span class="italic red"><g:message code="projectUnits.notAssigned"/> %{--<img src="${g.resource(dir:'images/icons', file:'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="projectUnits.notAssigned"/></span>
 </g:else>

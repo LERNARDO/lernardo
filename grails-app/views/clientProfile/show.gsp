@@ -24,9 +24,6 @@
           <td valign="top" class="value-show"><erp:showGender gender="${client.profile.gender}"/></td>
           <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           <td valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
-          %{--
-          <td valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-          --}%
           <td valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
         </tr>
 
@@ -106,12 +103,6 @@
             </td>
             <td valign="top" class="value-show">
               ${fieldValue(bean: client, field: 'profile.school').decodeHTML() ?: '<span class="italic">'+message(code:'client.noSchoolEntered')+'</span>'}
-              %{--<g:if test="${school}">
-                <g:link controller="${school.type.supertype.name +'Profile'}" action="show" id="${school.id}">${school.profile.fullName}</g:link>
-              </g:if>
-              <g:else>
-                <div class="italic"><g:message code="client.noSchoolEntered"/></div>
-              </g:else>--}%
             </td>
             <td valign="top" class="value-show">
               <g:if test="${client.profile.schoolLevel}">
@@ -132,9 +123,6 @@
 
           <tr class="prop">
             <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            %{--
-            <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
-            --}%
             <td valign="top" class="value-show"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy" /></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
@@ -149,9 +137,6 @@
 
           <tr class="prop">
             <td valign="top" class="value-show"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-            %{--
-            <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></g:if><g:else><div class="italic">kein Datum eingetragen</div></g:else></td>
-            --}%
             <td valign="top" class="value-show"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy" /></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
             <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
@@ -209,40 +194,6 @@
             <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
             <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
           </tr>
-
-          %{--<g:if test="${grailsApplication.config.clientProfile.contact}">
-
-          <tr>
-            <td colspan="4">Kontakt im Notfall</td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name-show">Name:</td>
-            <td valign="top" class="name-show">Land:</td>
-            <td valign="top" class="name-show">PLZ:</td>
-            <td valign="top" class="name-show">Stadt:</td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactCountry') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactZip') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name-show">Straße:</td>
-            <td valign="top" class="name-show">Telefon:</td>
-            <td colspan="2" valign="top" class="name-show">E-Mail:</td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactStreet') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactPhone') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td colspan="2" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.contactMail') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          </tr>
-
-          </g:if>--}%
 
         </table>
       </div>

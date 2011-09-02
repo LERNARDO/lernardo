@@ -1,6 +1,5 @@
 <div class="info-msg">
   ${totalTemplates} <g:message code="groupActivityTemplate.c_total"/>
-  %{--<g:message code="activityTemplate.c_total" args="[totalTemplates, numberOfAllTemplates ?: totalTemplates]"/>--}%
 </div>
 
 <table class="default-table">

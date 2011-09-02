@@ -6,17 +6,3 @@
     ${resource.name},
   </g:each><br/>
 <span class="bold"><g:message code="privat.docs"/>:</span> <erp:getPublicationCount entity="${entity}"/><br/>
-
-%{--
-<span class="bold"><g:message code="resources"/>:</span>
-
-<g:if test="${resources}">
-  <ul>
-    <g:each in="${resources}" var="resource">
-      <li>${resource.profile.fullName}</li>
-    </g:each>
-  </ul>
-</g:if>
-<g:else>
-  <span class="italic"><g:message code="noData"/></span>
-</g:else>--}%

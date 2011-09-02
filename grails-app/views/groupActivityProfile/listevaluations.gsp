@@ -15,11 +15,6 @@
       Es gibt insgesamt ${evaluations.size()} Tagebucheinträge verknüpft mit ${entity.profile.fullName}
     </div>
 
-%{--    <div class="buttons">
-      <g:link class="buttonGreen" action="create" id="${entity.id}"><g:message code="evaluation.create"/></g:link>
-      <div class="spacer"></div>
-    </div>--}%
-
     <ul>
       <g:each in="${evaluations}" status="i" var="evaluation">
         <div class="leistung-item">

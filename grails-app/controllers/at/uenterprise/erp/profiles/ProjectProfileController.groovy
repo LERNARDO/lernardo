@@ -111,7 +111,6 @@ class ProjectProfileController {
       // find all facilities linked to this project
       List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
 
-      //def allClients = Entity.findAllByType(metaDataService.etClient)
       List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
       // find all clients linked to this project
       List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
@@ -134,7 +133,6 @@ class ProjectProfileController {
             allParents << it
         }
       }
-      /*def allParents = Entity.findAllByType(metaDataService.etParent)*/
 
       // get all partners
       def allPartners = Entity.findAllByType(metaDataService.etPartner)
@@ -237,7 +235,6 @@ class ProjectProfileController {
               allGroupActivityTemplates: allGroupActivityTemplates,
               calculatedDuration: calculatedDuration,
               clients: clients,
-              /*allClients: allClients,*/
               allClientGroups: allClientgroups,
               projectDays: projectDays,
               template: template,
@@ -902,175 +899,6 @@ class ProjectProfileController {
     render template: 'themes', model: [themes: breaking.results2, project: breaking.source, entity: entityHelperService.loggedIn]
   }
 
-  // this action takes a project and creates all activities
-  def execute = {
-    //render "<span class='red'>Bitte warten.. Aktivitäten werden instanziert!</span><br/>"
-    Entity project = Entity.get(params.id)
-
-    // make sure the project has clients and a facility
-    /*def links = Link.findAllByTargetAndType(project,metaDataService.ltGroupMemberFacility)
-    def links2 = Link.findAllByTargetAndType(project,metaDataService.ltGroupMemberClient)
-    if (!links || links2) {
-      redirect action: 'show', id: project.id
-      return
-    }*/
-
-    // make sure each unit in each project day has activity template groups added, otherwise there
-    // would be nothing to instantiate
-
-    // 1. find all projectDays belonging to the project
-    List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
-    log.info "Projekttage: " + projectDays.size()
-
-    // 2. loop through each projectDay and find all projectUnits
-
-    List projectUnits = []
-    boolean exit = false
-    projectDays.each { Entity projectDay ->
-      def projectDayUnits = functionService.findAllByLink(null, it, metaDataService.ltProjectDayUnit)
-      if (projectDayUnits.size() == 0) {
-        render '<p class="red">Projekt konnte nicht instanziert werden, es fehlen Projekteinheiten am ' + projectDay.profile.date.format('dd. MM. yyyy') + '!</p>'
-        exit = true
-      }
-      else {
-        projectDayUnits.each {
-          projectUnits << it
-        }
-      }
-      if (exit)
-        return
-    }
-    if (exit)
-        return
-    //log.info "Projekteinheiten: " + projectUnits.size()
-
-    // now we know that every projectDay has projectUnits and templates so we continue
-
-    // delete all current project activities that have not started yet
-    List activities = functionService.findAllByLink(null, project, metaDataService.ltActProject)
-
-    log.info "Found " + activities.size() + " existing activities"
-
-    if (activities) {
-      //render "<p>Es wurden folgende " + activities.size() + " vorhande Aktivitäten aktualisiert:</p>"
-      render "<p>"+message(code: "project.activity.updated", args: [activities.size()])+"</p>"
-      activities.each { Entity activity ->
-        if (new Date() < activity.profile.date) {
-          Link.findAllBySourceOrTarget(activity, activity).each {it.delete()}
-          activity.delete()
-        }
-      }
-    }
-    else {
-      //render "<p>Es wurden folgende Aktivitäten geplant:</p>"
-      render "<p>"+message(code: "project.activity.scheduled")+"</p>"
-    }
-
-    // then do the big loop
-    log.info "Starting big loop"
-
-    SimpleDateFormat df = new SimpleDateFormat("dd. MM. yyyy 'um' hh:mm", new Locale("en"))
-
-    projectDays.each { Entity pd ->
-      projectUnits = functionService.findAllByLink(null, pd, metaDataService.ltProjectDayUnit)
-
-      log.info "Projekteinheiten: " + projectUnits.size()
-
-      // 3. loop through each projectUnit and find all activity template groups
-      projectUnits.each { Entity pu ->
-        List groups = functionService.findAllByLink(null, pu, metaDataService.ltProjectUnit)
-
-        Date currentDate = pd.profile.date
-        Calendar calendar = new GregorianCalendar()
-        calendar.setTime(currentDate)
-
-        // 4. find all activity templates of each group
-        groups.each { Entity pg ->
-          List templates = functionService.findAllByLink(null, pg, metaDataService.ltGroupMember)
-
-          // 5. instantiate all activities from the list of templates
-          templates.each {
-            EntityType etActivity = metaDataService.etActivity
-            Entity activity = entityHelperService.createEntity("activity", etActivity) {Entity ent ->
-              ent.profile = profileHelperService.createProfileFor(ent) as Profile
-              ent.profile.type = "Projekt"
-              ent.profile.date = calendar.getTime()
-              ent.profile.fullName = it.profile.fullName
-              ent.profile.duration = it.profile.duration
-            }
-
-            // link this project activity to the project
-            new Link(source: activity, target: project, type: metaDataService.ltActProject).save()
-
-            // link facility to activity
-            Entity facility = functionService.findByLink(null, project, metaDataService.ltGroupMemberFacility)
-            if (facility) {
-              new Link(source: facility, target: activity, type: metaDataService.ltActFacility).save()
-              log.info "Facility linked to activity"
-            }
-
-            // link clients to activity
-            List clients = functionService.findAllByLink(null, project, metaDataService.ltGroupMemberClient)
-            if (clients) {
-              clients.each { Entity client ->
-                new Link(source: client, target: activity, type: metaDataService.ltActClient).save()
-                log.info "Client linked to activity"
-              }
-            }
-
-            // link resources to activity
-            List resources = functionService.findAllByLink(null, pd, metaDataService.ltProjectDayResource)
-            if (resources) {
-              resources.each { Entity res ->
-                new Link(source: res, target: activity, type: metaDataService.ltResource).save()
-                log.info "Resource linked to activity"
-              }
-            }
-
-            // link educators to activity
-            List educators = functionService.findAllByLink(null, pd, metaDataService.ltProjectDayEducator)
-            if (educators) {
-              educators.each { Entity edu ->
-                new Link(source: edu, target: activity, type: metaDataService.ltActEducator).save()
-                log.info "Educator linked to activity"
-              }
-            }
-
-            // link partners to activity
-            List partners = functionService.findAllByLink(null, pu, metaDataService.ltProjectUnitPartner)
-            if (partners) {
-              partners.each { Entity par ->
-                new Link(source: par, target: activity, type: metaDataService.ltActPartner).save()
-                log.info "Partner linked to activity"
-              }
-            }
-
-            // link parents to activity
-            List parents = functionService.findAllByLink(null, pu, metaDataService.ltProjectUnitParent)
-            if (parents) {
-              parents.each { Entity par ->
-                new Link(source: par, target: activity, type: metaDataService.ltActParent).save()
-                log.info "Parent linked to activity"
-              }
-            }
-
-            log.info "Activity instantiated!"
-
-            render '<img src="' + resource(dir:'images/icons', file: 'icon_tick.png') + '"/> Aktivität <a href="' + createLink(controller:'activity', action: 'show', id: activity.id) + '">' + activity.profile.fullName + '</a> am ' + df.format(calendar.getTime()) + '.<br/>'
-            // get new time for next activity
-            calendar.add(Calendar.MINUTE, activity.profile.duration)
-          }
-
-        }
-      }
-    }
-
-    //render "<br/><span class='green'>Projekt wurde geplant!</span>"
-    render "<br/><span class='green'>"+message(code: "project.scheduled")+"</span>"
-
-
-  }
-
   def updateprojectday = {
     Entity project = Entity.get(params.project)
     Entity projectDay = Entity.get(params.id)
@@ -1528,15 +1356,6 @@ class ProjectProfileController {
     // get project of projectDay
     Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
     List facilities = functionService.findAllByLink(project, null, metaDataService.ltGroupMemberFacility)
-
-    /*List plannableResources = []
-    facilities.each { Entity facility ->
-      // add resources linked to the facility to plannable resources
-      plannableResources.addAll(functionService.findAllByLink(null, facility, metaDataService.ltResource))
-      // find colony the facility is linked to and add its resources as well
-      Entity colony = functionService.findByLink(facility, null, metaDataService.ltGroupMemberFacility)
-      plannableResources.addAll(functionService.findAllByLink(null, colony, metaDataService.ltResource))
-    }*/
 
     List plannableResources = []
     facilities.each { Entity facility ->

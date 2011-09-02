@@ -28,17 +28,6 @@ class ClientProfileController {
   def securityManager
   FunctionService functionService
 
-  /*
-  def beforeInterceptor = [
-          action:{
-            params.date = params.date ? Date.parse("dd. MM. yy", params.date) : null
-            params.schoolDropoutDate = params.schoolDropoutDate ? Date.parse("dd. MM. yy", params.schoolDropoutDate) : null
-            params.schoolRestartDate = params.schoolRestartDate ? Date.parse("dd. MM. yy", params.schoolRestartDate) : null
-            },
-            only:['save','update','addDate']
-  ]
-   */
-
   def index = {
     redirect action: "list", params: params
   }

@@ -91,7 +91,6 @@ class TemplateProfileController {
     Entity entity = params.entity ? template : entityHelperService.loggedIn
 
     def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
-    /*def resources = functionService.findAllByLink(null, template, metaDataService.ltResource)*/
     def allMethods = Method.findAllByType('template')
 
     params.sort = 'name'
@@ -102,14 +101,11 @@ class TemplateProfileController {
     return [template: template,
             commentList: commentList,
             entity: entity,
-            /*resources: resources,*/
             allMethods: allMethods,
             allLabels: allLabels]
   }
 
-  def create = {
-    /*return ['resources': Entity.findAllByType(metaDataService.etResource)]*/
-  }
+  def create = {}
 
   def copy = {
     EntityType etTemplate = metaDataService.etTemplate
@@ -135,22 +131,6 @@ class TemplateProfileController {
 
     // save creator
     new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
-
-    /*// find all resources created in the original and create them in the copy
-    List resources = functionService.findAllByLink(null, original, metaDataService.ltResource)
-
-    EntityType etResource = metaDataService.etResource
-    resources.each {
-
-      Entity resource = entityHelperService.createEntity("resource", etResource) {Entity ent ->
-        ent.profile = profileHelperService.createProfileFor(ent) as Profile
-        ent.profile.classification = it.profile.classification
-        ent.profile.description = it.profile.description
-        ent.profile.fullName = it.profile.fullName
-      }
-
-      new Link(source: resource, target: entity, type: metaDataService.ltResource).save()
-    }*/
 
     // loop through all methods of the original and create them in the copy
     original.profile.methods.each { me ->
@@ -236,14 +216,6 @@ class TemplateProfileController {
       // first delete any comments posted on this template
       Link.findAllBySourceOrTarget(template, template).each {it.delete()}
       Publication.findAllByEntity(template).each {it.delete()}
-      /*if (links) {
-        List commentsToDelete = []
-        links.each {
-          commentsToDelete << it.source
-          it.delete()
-        }
-        commentsToDelete.each {it.delete()}
-      }*/
       try {
         flash.message = message(code: "template.deleted", args: [template.profile.fullName])
         template.delete(flush: true)

@@ -50,7 +50,6 @@ class ClientProfile extends Profile {
     String schoolRestartReason
 
     Boolean job
-    //String jobType
     Integer jobIncome
     String jobFrequency
 
@@ -67,14 +66,6 @@ class ClientProfile extends Profile {
 
     String school // added on 30.05.2011
 
-    //String contactName // added on 27.09.2010 - removed on 15.11.2010
-    //String contactCountry // added on 27.09.2010 - removed on 15.11.2010
-    //String contactZip // added on 27.09.2010 - removed on 15.11.2010
-    //String contactCity // added on 27.09.2010 - removed on 15.11.2010
-    //String contactStreet // added on 27.09.2010 - removed on 15.11.2010
-    //String contactPhone // added on 27.09.2010 - removed on 15.11.2010
-    //String contactMail // added on 27.09.2010 - removed on 15.11.2010
-
     static constraints = {
       fullName (blank: true, size: 1..100, maxSize: 100)
       firstName (blank: false, size: 2..50, maxSize: 50)
@@ -87,7 +78,6 @@ class ClientProfile extends Profile {
       originZip (size: 4..10, nullable: true)
       originCity (size: 2..50, maxSize: 50, nullable: true)
       interests (blank: true, maxSize: 2000)
-      //jobType (nullable: true)
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 50)
       schoolDropoutDate (nullable: true)
@@ -98,13 +88,6 @@ class ClientProfile extends Profile {
 
       citizenship (nullable: true)
       socialSecurityNumber (nullable: true, size: 10..10)
-      //contactName (nullable: true, size: 2..50, maxSize: 50)
-      //contactCountry (nullable: true, size: 2..50, maxSize: 50)
-      //contactZip (nullable: true, size: 4..10)
-      //contactCity (nullable: true, size: 2..50, maxSize: 50)
-      //contactStreet (nullable: true, size: 2..50, maxSize: 50)
-      //contactPhone (nullable: true, size: 2..50, maxSize: 50)
-      //contactMail (nullable: true, size: 2..50, maxSize: 50)
 
       familyStatus (nullable: true)
 

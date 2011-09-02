@@ -16,5 +16,5 @@
   </table>
 </g:if>
 <g:else>
-  <span class="italic red"><g:message code="building.nothing"/> %{--<img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/>--}%</span>
+  <span class="italic red"><g:message code="building.nothing"/></span>
 </g:else>

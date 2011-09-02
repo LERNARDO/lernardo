@@ -1,5 +1,4 @@
 <head>
-  %{--<title>Interessante Tagebucheinträge</title>--}%
   <title><g:message code="evaluation.interesting"/></title>
   <meta name="layout" content="private"/>
 </head>
@@ -21,7 +20,6 @@
 <div class="boxGray">
   <div class="second">
 
-    %{--<p>Es gibt insgesamt ${evaluationInstanceList.size()} Tagebucheinträge zu Betreuten und Erziehungsberechtigten in deinem Umfeld.</p>--}%
     <p><g:message code="evaluation.entrySize" args="[evaluationInstanceList.size()]"/></p>
 
     <ul>

@@ -14,7 +14,6 @@ class ChildProfile extends Profile {
     Byte gender
 
     Boolean job
-    //String jobType
     Integer jobIncome
     String jobFrequency
 
@@ -24,7 +23,6 @@ class ChildProfile extends Profile {
       fullName (blank: true, size: 1..100, maxSize: 100)
       firstName (blank: false, size: 2..50, maxSize: 50)
       lastName (blank: false, size: 2..50, maxSize: 50)
-      //jobType (nullable: true)
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 50)
     }

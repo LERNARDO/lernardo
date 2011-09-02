@@ -25,7 +25,6 @@ class ParentProfile extends Profile {
     String education
 
     Boolean job
-    //String jobType
     Integer jobIncome
     String jobFrequency
 
@@ -44,7 +43,6 @@ class ParentProfile extends Profile {
       currentZip (size: 4..10)
       currentCity (size: 2..50, maxSize: 50)
       currentStreet (size: 2..50, maxSize: 50)
-      //jobType (nullable: true)
       jobIncome (nullable: true)
       jobFrequency (nullable: true, blank: true, maxSize: 50)
       education (nullable: true, blank: true)

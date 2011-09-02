@@ -100,16 +100,10 @@
         return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
         <div class="zusatz-add" id="godchildren" style="display:none">
 
-          <g:message code="search"/>:<br/>
+        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField" update="remoteClients" action="remoteClients" id="${pate.id}" before="showspinner('#remoteClients')"/>
         <div id="remoteClients"></div>
 
-          %{--<g:formRemote name="formRemote" url="[controller:'pateProfile', action:'addGodchildren', id: pate.id]" update="godchildren2" before="showspinner('#godchildren2')">
-            <g:select name="child" from="${allChildren}" optionKey="id" optionValue="profile"/>
-            <div class="spacer"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
-          </g:formRemote>--}%
         </div>
         <div class="zusatz-show" id="godchildren2">
           <g:render template="godchildren" model="[godchildren: godchildren, pate: pate, entity: currentEntity]"/>

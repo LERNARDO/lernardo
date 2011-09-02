@@ -17,11 +17,6 @@
     </tr>
   </table>
 
-  %{--<g:each in="${allTemplates}" var="searchInstance">
-    <g:checkBox name="memberchecked" id="${searchInstance.id}" value="${true}" /> <g:link controller="templateProfile" action="show" id="${searchInstance.id}">${searchInstance.profile.fullName}</g:link> <span class="gray">(${searchInstance.profile.duration} min)</span><br/>
-  </g:each>
-  <div class="spacer"></div>--}%
-
   <script type="text/javascript">
 
   function selectall() {

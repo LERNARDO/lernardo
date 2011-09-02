@@ -30,7 +30,7 @@ class EducatorProfile extends Profile {
     String originCity
     String originStreet
 
-    String contactName // added on 27.09.2010
+    String contactName
     String contactCountry
     String contactZip
     String contactCity
@@ -59,7 +59,7 @@ class EducatorProfile extends Profile {
     Integer hourlyWage = 0
     Integer overtimePay = 0
 
-    String bloodType    // added on 03.03.2011
+    String bloodType
 
     Boolean showTips = true
 

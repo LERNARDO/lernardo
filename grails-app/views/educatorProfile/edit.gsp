@@ -42,9 +42,6 @@
               <g:textField class="countable${educator.profile.constraints.lastName.maxSize} ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
-              %{--
-              <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${formatDate(date: educator?.profile?.birthDate, format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
-              --}%
               <g:textField name="birthDate" size="30" class="datepicker-birthday" value="${formatDate(date: educator?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
             </td>
           </tr>
@@ -88,16 +85,6 @@
             </td>
           </tr>
 
-          %{--<tr class="prop">
-          <td colspan="3" valign="middle" class="name">
-          <g:message code="educator.profile.colonia"/>:
-          </td>
-          </tr>
-          <tr class="prop">
-          <td colspan="3" valign="middle" class="value">
-          <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
-          </td>
-          </tr>--}%
         </table>
 
         <h4><g:message code="educator.profile.curAddress"/></h4>

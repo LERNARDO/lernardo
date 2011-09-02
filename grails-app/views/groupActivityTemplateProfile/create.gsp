@@ -54,20 +54,8 @@
               <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
             </td>
           </tr>
-
-          %{--      <tr class="prop">
-            <td valign="top" class="name">
-              <label for="templates">
-                <g:message code="groupActivityTemplateProfile.description.label" />
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:select multiple="true" name="templates" from="${templates}" optionKey="id" optionValue="profile"/>
-            </td>
-          </tr>--}%
 
         </table>
       </div>

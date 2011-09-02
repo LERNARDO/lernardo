@@ -33,7 +33,6 @@
             </td>
             <td valign="top" class="value">
               <g:textField name="date" class="datetimepicker" value="${formatDate(date: group?.profile?.date, format: 'dd. MM. yyyy HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
-              %{--<g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>--}%
             </td>
           </tr>
 
@@ -56,7 +55,6 @@
               <ckeditor:editor name="educationalObjectiveText" height="200px" width="800px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable${group.profile.constraints.educationalObjectiveText.maxSize} ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="1" cols="80" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
             </td>
           </tr>
 
@@ -69,7 +67,6 @@
               <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="1" cols="75" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>--}%
             </td>
           </tr>
 

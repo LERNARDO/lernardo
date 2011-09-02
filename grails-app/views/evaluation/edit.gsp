@@ -20,7 +20,6 @@
 
     <div style="background: #fefefe; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
       <div id="select-box">
-        %{--<p>Mit Aktivitätsblock oder Projekteinheit verlinken:</p>--}%
         <p><g:message code="evaluation.linkToActivity"/></p>
         <g:formRemote name="formRemote" update="results" url="[controller:'evaluation', action:'searchMe']" before="showspinner('#results')">
           <g:datePicker name="myDate" value="" precision="day" years="${2009..new Date().getYear() + 1900}"/>

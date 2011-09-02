@@ -12,7 +12,6 @@ class Building {
 
     static constraints = {
       name (size: 2..50)
-      // country (size: 2..50)
       zip (size: 4..10)
       city (size: 2..50)
       street (size: 2..50)

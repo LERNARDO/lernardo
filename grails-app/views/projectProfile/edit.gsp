@@ -45,7 +45,6 @@
               <ckeditor:editor name="description" height="200px" width="800px" toolbar="Basic">
                 ${fieldValue(bean:project,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable${project.profile.constraints.description.maxSize} ${hasErrors(bean: project, field: 'profile.description', 'errors')}" rows="1" cols="75" name="description" value="${fieldValue(bean: project, field: 'profile.description').decodeHTML()}"/>
             </td>--}%
           </tr>
 

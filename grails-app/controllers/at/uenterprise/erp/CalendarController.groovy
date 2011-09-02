@@ -80,18 +80,18 @@ class CalendarController {
   }
 
   def getsources = {
-  Entity currentEntity = entityHelperService.loggedIn
+    Entity currentEntity = entityHelperService.loggedIn
 
-  def start = new Date()
-  start.setTime(params.long('start') * 1000)
+    def start = new Date()
+    start.setTime(params.long('start') * 1000)
 
-  def end = new Date()
-  end.setTime(params.long('end') * 1000)
+    def end = new Date()
+    end.setTime(params.long('end') * 1000)
 
-  //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
-  List eventList = []
+    //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
+    List eventList = []
 
-   /* if (visibleEducators) {
+    /* if (visibleEducators) {
       visibleEducators.each { ed ->
 
         Entity entity = Entity.get(ed.toInteger())

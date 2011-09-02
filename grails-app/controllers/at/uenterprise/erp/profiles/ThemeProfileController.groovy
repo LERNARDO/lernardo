@@ -35,16 +35,6 @@ class ThemeProfileController {
     params.sort = params.sort ?: "dateCreated"
     params.order = params.order ?: "desc"
 
-    /*def c = Entity.createCriteria()
-    def themes = c.list {
-      eq("type", metaDataService.etTheme)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }*/
-
     Entity currentEntity = entityHelperService.loggedIn
     List facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
 
@@ -59,7 +49,7 @@ class ThemeProfileController {
     }
 
     return [themes: themes,
-            themeTotal: themes.size() /*Entity.countByType(metaDataService.etTheme)*/,
+            themeTotal: themes.size(),
             facilities: facilities]
   }
 

@@ -32,9 +32,6 @@
             <g:link action="show" id="${parent.id}" params="[entity:parent.id]">${parent.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if>
           </td>
           <td valign="top" class="value-show">
-            %{--
-            <g:formatDate date="${parent.profile.birthDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
-            --}%
             <g:formatDate date="${parent.profile.birthDate}" format="dd. MM. yyyy" />
           </td>
         </tr>

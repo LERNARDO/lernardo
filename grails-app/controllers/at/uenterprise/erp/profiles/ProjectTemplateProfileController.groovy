@@ -32,28 +32,10 @@ class ProjectTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    /*params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    EntityType etProjectTemplate = metaDataService.etProjectTemplate
-    def projectTemplates = Entity.createCriteria().list {
-      eq("type", etProjectTemplate)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-    int totalProjectTemplates = Entity.countByType(etProjectTemplate)*/
-
     params.sort = params.sort ?: 'name'
     params.order = params.order ?: 'asc'
 
-    return [/*projectTemplates: projectTemplates,
-            totalProjectTemplates: totalProjectTemplates,*/
-            allLabels: Label.findAllByType('template', params)]
+    return [allLabels: Label.findAllByType('template', params)]
   }
 
   def show = {
@@ -302,7 +284,6 @@ class ProjectTemplateProfileController {
       new Link(source: projectUnitTemplate, target: projectTemplate, type: metaDataService.ltProjectUnitTemplate).save()
 
       // find all projectUnitTemplates of this projectTemplate
-      /*List projectUnitTemplates = functionService.findAllByLink(null, projectTemplate, metaDataService.ltProjectUnitTemplate)*/
       List projectUnitTemplates = []
       projectTemplate.profile.templates.each {
         projectUnitTemplates.add(Entity.get(it.toInteger()))

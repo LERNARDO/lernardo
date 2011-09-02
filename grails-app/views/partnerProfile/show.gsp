@@ -52,20 +52,6 @@
           </td>
         </tr>
 
-        %{-- AAZ (01.09.2010): not required anymore by customer --}%
-        %{--<tr class="prop">
-          <td colspan="4" valign="top" class="name-show">
-            <g:message code="partner.profile.colonia"/>
-          </td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">
-            <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic"><g:message code="partner.profile.colonia.empty"/> <img src="${g.resource(dir: 'images/icons', file: 'icon_warning.png')}" alt="Achtung" align="top"/></span></g:else>
-          </td>
-          <td colspan="3" valign="top"></td>
-        </tr>--}%
-
       <table style="width: 100%">
 
         <tr>

@@ -7,10 +7,10 @@ class Setup {
                     languages: String,
                     //methods: Method,
                     schoolLevels: String,
-                    workDescriptions: String, // jobs
+                    workDescriptions: String,
                     educations: String,
-                    employmentStatus: String, // employments
-                    responsibilities: String, // in charge of
+                    employmentStatus: String,
+                    responsibilities: String,
                     bloodTypes: String,
                     familyStatus: String,
                     maritalStatus: String,

@@ -804,11 +804,6 @@ class AppController {
         assetStorage.delete(flush: true)
     }
 
-    /*ast = AssetStorage.list()
-    ast.each { AssetStorage assetStorage ->
-      println "assets: " + assetStorage.assets
-    }*/
-
     render "done"
 
   }

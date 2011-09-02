@@ -37,17 +37,6 @@
             </td>
           </tr>
 
-          %{--<tr class="prop">
-            <td valign="top" class="name">
-              <label for="classification">
-                <g:message code="resource.profile.classification"/>
-              </label>
-            </td>
-            <td valign="top" class="value">
-              <g:select name="classification" from="${['Diese Ressource ist nur für diese Einrichtung verfügbar.','Diese Ressource ist für alle Einrichtungen in dieser Colonia verfügbar.','Diese Ressource steht für alle Einrichtungen im Betrieb zur Verfügung.']}" value="${fieldValue(bean:resource,field:'profile.classification')}" />
-            </td>
-          </tr>--}%
-
           <g:hiddenField name="classification" value=""/>
 
           </tbody>

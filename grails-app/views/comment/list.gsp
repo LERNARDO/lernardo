@@ -5,7 +5,6 @@
 <body>
 <div class="boxHeader">
   <div class="second">
-    %{--<h1>Alle Kommentare</h1>--}%
     <h1><g:message code="comments"/></h1>
   </div>
 </div>

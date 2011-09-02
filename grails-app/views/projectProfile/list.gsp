@@ -60,10 +60,6 @@
         <g:each in="${projects}" status="i" var="project">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td><erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><g:link action="del" id="${project.id}" onclick="${erp.getLinks(id: project.id)}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code:'delete')}" valign="top"/></g:link></erp:accessCheck> <g:link action="show" id="${project.id}" params="[entity: project.id]">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</g:link></td>
-            %{--
-            <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-            <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-            --}%
             <td><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy"/></td>
             <td><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
             <td>

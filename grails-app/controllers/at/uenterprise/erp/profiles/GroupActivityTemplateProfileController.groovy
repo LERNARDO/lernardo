@@ -34,29 +34,10 @@ class GroupActivityTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    /*params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
-    params.sort = params.sort ?: "fullName"
-    params.order = params.order ?: "asc"
-
-    EntityType etGroupActivityTemplate = metaDataService.etGroupActivityTemplate
-    def groupActivityTemplates = Entity.createCriteria().list {
-      eq("type", etGroupActivityTemplate)
-      profile {
-        order(params.sort, params.order)
-      }
-      maxResults(params.max)
-      firstResult(params.offset)
-    }
-
-    int totalGroupActivityTemplates = Entity.countByType(etGroupActivityTemplate)*/
-
     params.sort = params.sort ?: 'name'
     params.order = params.order ?: 'asc'
 
-    return [/*groups: groupActivityTemplates,
-            totalGroupActivityTemplates: totalGroupActivityTemplates,*/
-            allLabels: Label.findAllByType('template', params)]
+    return [allLabels: Label.findAllByType('template', params)]
   }
 
   def show = {

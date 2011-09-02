@@ -57,7 +57,6 @@
         <th><g:message code="activity"/></th>
         <th><g:message code="facility"/></th>
         <th><g:message code="date"/></th>
-        %{--<th>Typ</th>--}%
         <th><g:message code="comments"/></th>
       </tr>
       </thead>
@@ -67,7 +66,6 @@
           <td><g:link action="show" id="${activity.id}" params="[name:currentEntity.name]">${activity.profile.fullName}</g:link></td>
           <td><erp:getFacility entity="${activity}">${facility.profile.fullName}</erp:getFacility></td>
           <td><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-          %{--<td>${activity.profile.type}</td>--}%
           <td>${activity.profile.comments.size()}</td>
         </tr>
       </g:each>

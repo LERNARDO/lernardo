@@ -58,7 +58,6 @@
               <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
             </td>
           </tr>
 

@@ -10,7 +10,7 @@ class Dayroutine {
 
     String title
     String description
-    static belongsTo = [facility: Entity] //Entity facility
+    static belongsTo = [facility: Entity]
 
     static constraints = {
       title (blank: false)

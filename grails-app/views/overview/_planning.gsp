@@ -15,7 +15,6 @@
     <div class="bold"><g:message code="activityInstance"/> (${allActivities})</div>
     <g:link controller="activityProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_themenraum.png')}" alt="Notiz" align="top"/></g:link>
     <div><g:link controller="activityProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-    %{--<div><g:link controller="template" action="create"><g:message code="profile.overview.createNew"/></g:link></div>--}%
   </div>
 </g:if>
 <div class="box">
@@ -30,7 +29,6 @@
   <div class="bold"><g:message code="groupActivity"/> (${allActivityGroups})</div>
   <g:link controller="groupActivityProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_aktivitaetsblock.png')}" alt="Notiz" align="top"/></g:link>
   <div><g:link controller="groupActivityProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-  %{--<div><g:link controller="groupActivityProfile" action="create"><g:message code="profile.overview.createNew"/></g:link></div>--}%
 </div>
 <div class="box">
   <div class="bold"><g:message code="projectTemplate"/> (${allProjectTemplates})</div>
@@ -44,7 +42,6 @@
   <div class="bold"><g:message code="projects"/> (${allProjects})</div>
   <g:link controller="projectProfile" action="list"><img src="${g.resource(dir:'images/icons', file:'kf_projekte.png')}" alt="Notiz" align="top"/></g:link>
   <div><g:link controller="projectProfile" action="list"><g:message code="profile.overview.showAll"/></g:link></div>
-  %{--<div><g:message code="profile.overview.createNew"/></div>--}%
 </div>
 <div class="box">
   <div class="bold"><g:message code="themes"/> (${allThemes})</div>

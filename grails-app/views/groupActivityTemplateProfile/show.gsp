@@ -204,9 +204,6 @@
               </ul>
             </div>
           </g:each>
-%{--        <g:else>
-          <span class="italic red"><g:message code="noResourcesOfTemplates"/></span>
-        </g:else>--}%
         </div>
       </g:if>
     </div>

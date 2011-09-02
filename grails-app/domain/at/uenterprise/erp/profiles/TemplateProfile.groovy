@@ -25,9 +25,9 @@ class TemplateProfile extends Profile {
   Date dateCreated
   Date lastUpdated
 
-  String goal     // added on 26.05.2011
-  Integer ageFrom // added on 26.05.2011
-  Integer ageTo   // added on 26.05.2011
+  String goal
+  Integer ageFrom
+  Integer ageTo
 
   static constraints = {
     fullName (blank: false, size: 1..100, maxSize: 100)

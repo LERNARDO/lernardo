@@ -26,9 +26,6 @@
           <td valign="top" class="value-show"><erp:showGender gender="${child.profile.gender}"/></td>
           <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.firstName')}</td>
           <td valign="top" class="value-show"><g:link action="show" id="${child.id}" params="[entity:child.id]">${child.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
-          %{--
-          <td valign="top" class="value-show"><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-          --}%
           <td valign="top" class="value-show"><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy" /></td>
         </tr>
 

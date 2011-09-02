@@ -60,11 +60,7 @@ class PartnerProfileController {
       return
     }
 
-    // AAZ (01.09.2010): not required anymore by customer
-    // find colonia of this partner
-    //Entity colony = functionService.findByLink(partner, null, metaDataService.ltGroupMemberPartner)
-
-    return [partner: partner, entity: entity/*, colony: colony*/]
+    return [partner: partner, entity: entity]
 
   }
 
@@ -138,26 +134,11 @@ class PartnerProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
     if (partner.profile.save() && partner.user.save() && partner.save()) {
-
-      // AAZ (01.09.2010): not required anymore by customer
-      /*// delete current link
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', partner)
-        eq('target', Entity.get(params.colonia))
-        eq('type', metaDataService.ltGroupMemberPartner)
-      }
-      if (link)
-        link.delete()
-
-      // link facility to colonia
-      new Link(source: partner, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()*/
-
       flash.message = message(code: "partner.updated", args: [partner.profile.fullName])
       redirect action: 'show', id: partner.id, params: [entity: partner.id]
     }
     else {
-      render view: 'edit', model: [partner: partner/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
+      render view: 'edit', model: [partner: partner]
     }
   }
 
@@ -175,16 +156,11 @@ class PartnerProfileController {
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
         ent.profile.calendar = new ECalendar().save()
       }
-      //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
-
-      // AAZ (01.09.2010): not required anymore by customer
-      // link partner to colonia
-      //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberPartner).save()
 
       flash.message = message(code: "partner.created", args: [entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
-      render(view: "create", model: [partner: ee.entity/*, allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/])
+      render(view: "create", model: [partner: ee.entity])
     }
 
   }

@@ -115,12 +115,6 @@
         <g:remoteField size="40" name="remoteField" update="remoteChildren" action="remoteChildren" id="${group.id}" before="showspinner('#remoteChildren');"/>
         <div id="remoteChildren"></div>
 
-        %{--<g:formRemote name="formRemote3" url="[controller:'groupFamilyProfile', action:'addChild', id:group.id]" update="childs2" before="showspinner('#childs2')">
-          <g:select name="child" from="${allChilds}" optionKey="id" optionValue="profile"/>
-          <div class="spacer"></div>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
-        </g:formRemote>--}%
       </div>
       <div class="zusatz-show" id="childs2">
         <g:render template="childs" model="[childs: childs, group: group, entity: currentEntity]"/>

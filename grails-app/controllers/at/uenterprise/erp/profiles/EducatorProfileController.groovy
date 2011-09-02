@@ -64,11 +64,7 @@ class EducatorProfileController {
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    // find colonia of this educator
-    //Entity colony = functionService.findByLink(educator, null, metaDataService.ltGroupMemberEducator)
-
-    return [/*colony: colony,*/
-            educator: educator,
+    return [educator: educator,
             entity: entity,
             enlistedBy: enlistedBy]
   }
@@ -163,19 +159,6 @@ class EducatorProfileController {
         new Link(source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
       }
 
-      /*// delete current link
-      def c = Link.createCriteria()
-      def link = c.get {
-        eq('source', educator)
-        eq('target', Entity.get(params.colonia))
-        eq('type', metaDataService.ltGroupMemberEducator)
-      }
-      if (link)
-        link.delete()
-
-      // link educator to colonia
-      new Link(source: educator, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()*/
-
       flash.message = message(code: "educator.updated", args: [educator.profile.fullName])
       redirect action: 'show', id: educator.id, params: [entity: educator.id]
     }
@@ -185,8 +168,7 @@ class EducatorProfileController {
   }
 
   def create = {
-    return [partner: Entity.findAllByType(metaDataService.etPartner),
-            /*allColonias: Entity.findAllByType(metaDataService.etGroupColony)*/]
+    return [partner: Entity.findAllByType(metaDataService.etPartner)]
   }
 
   def save = {

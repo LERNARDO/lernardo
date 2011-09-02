@@ -45,37 +45,30 @@
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${pc?.monday}"/> <g:message code="monday"/></div>
               <g:select name="mondayStartHour" from="${0..23}" value="${pc?.mondayStartHour}"/>:<g:select name="mondayStartMinute" from="${0..59}" value="${pc?.mondayStartMinute}"/><br/>
-              %{--<g:select name="mondayEndHour" from="${0..23}" value="${project?.mondayEndHour}"/>:<g:select name="mondayEndMinute" from="${0..59}" value="${project?.mondayEndMinute}"/>--}%
             </td>
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${pc?.tuesday}"/> <g:message code="tuesday"/></div>
               <g:select name="tuesdayStartHour" from="${0..23}" value="${pc?.tuesdayStartHour}"/>:<g:select name="tuesdayStartMinute" from="${0..59}" value="${pc?.tuesdayStartMinute}"/><br/>
-              %{--<g:select name="tuesdayEndHour" from="${0..23}" value="${project?.tuesdayEndHour}"/>:<g:select name="tuesdayEndMinute" from="${0..59}" value="${project?.tuesdayEndMinute}"/>--}%
             </td>
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${pc?.wednesday}"/> <g:message code="wednesday"/></div>
               <g:select name="wednesdayStartHour" from="${0..23}" value="${pc?.wednesdayStartHour}"/>:<g:select name="wednesdayStartMinute" from="${0..59}" value="${pc?.wednesdayStartMinute}"/><br/>
-              %{--<g:select name="wednesdayEndHour" from="${0..23}" value="${project?.wednesdayEndHour}"/>:<g:select name="wednesdayEndMinute" from="${0..59}" value="${project?.wednesdayEndMinute}"/>--}%
             </td>
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${pc?.thursday}"/> <g:message code="thursday"/></div>
               <g:select name="thursdayStartHour" from="${0..23}" value="${pc?.thursdayStartHour}"/>:<g:select name="thursdayStartMinute" from="${0..59}" value="${pc?.thursdayStartMinute}"/><br/>
-              %{--<g:select name="thursdayEndHour" from="${0..23}" value="${project?.thursdayEndHour}"/>:<g:select name="thursdayEndMinute" from="${0..59}" value="${project?.thursdayEndMinute}"/>--}%
             </td>
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${pc?.friday}"/> <g:message code="friday"/></div>
               <g:select name="fridayStartHour" from="${0..23}" value="${pc?.fridayStartHour}"/>:<g:select name="fridayStartMinute" from="${0..59}" value="${pc?.fridayStartMinute}"/><br/>
-              %{--<g:select name="fridayEndHour" from="${0..23}" value="${project?.fridayEndHour}"/>:<g:select name="fridayEndMinute" from="${0..59}" value="${project?.fridayEndMinute}"/>--}%
             </td>
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${pc?.saturday}"/> <g:message code="saturday"/></div>
               <g:select name="saturdayStartHour" from="${0..23}" value="${pc?.saturdayStartHour}"/>:<g:select name="saturdayStartMinute" from="${0..59}" value="${pc?.saturdayStartMinute}"/><br/>
-              %{--<g:select name="saturdayEndHour" from="${0..23}" value="${project?.saturdayEndHour}"/>:<g:select name="saturdayEndMinute" from="${0..59}" value="${project?.saturdayEndMinute}"/>--}%
             </td>
             <td style="padding: 6px;">
               <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${pc?.sunday}"/> <g:message code="sunday"/></div>
               <g:select name="sundayStartHour" from="${0..23}" value="${pc?.sundayStartHour}"/>:<g:select name="sundayStartMinute" from="${0..59}" value="${pc?.sundayStartMinute}"/><br/>
-              %{--<g:select name="sundayEndHour" from="${0..23}" value="${project?.sundayEndHour}"/>:<g:select name="sundayEndMinute" from="${0..59}" value="${project?.sundayEndMinute}"/>--}%
             </td>
           </tr>
         </table>

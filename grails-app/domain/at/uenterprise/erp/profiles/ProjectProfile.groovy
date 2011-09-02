@@ -15,8 +15,8 @@ class ProjectProfile extends Profile {
 
     String description
 
-    String educationalObjective // added on 26.05.2011
-    String educationalObjectiveText // added on 26.05.2011
+    String educationalObjective
+    String educationalObjectiveText
 
     static constraints = {
       fullName (blank: false, size: 1..100, maxSize: 100)

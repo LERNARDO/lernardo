@@ -5,7 +5,6 @@
 <body>
 <div class="boxHeader">
   <div class="second">
-    %{--<h1>Tagebucheinträge für ${entity.profile.fullName}</h1>--}%
     <h1><g:message code="evaluation.for" args="[entity.profile.fullName]"/></h1>
   </div>
 </div>
@@ -13,7 +12,6 @@
   <div class="second">
 
     <div class="info-msg">
-      %{--Es gibt insgesamt ${evaluationInstanceTotal} Tagebucheinträge für ${entity.profile.fullName}--}%
       <g:message code="evaluation.sizeFor" args="[evaluationInstanceTotal, entity.profile.fullName]"/>
     </div>
 

@@ -26,9 +26,6 @@
                                               method3upper: method3upper, name: name,
                                               duration1: duration1, duration2: duration2,
                                               ageFrom: ageFrom, ageTo: ageTo]"/>
-    %{--<th><g:message code="name"/></th>
-    <th><g:message code="duration"/> (min)</th>
-    <th><g:message code="activityTemplate.socialForm"/></th>--}%
     <th><g:message code="comments"/></th>
     <th><g:message code="creator"/></th>
   </tr>

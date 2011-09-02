@@ -37,9 +37,7 @@
     </style>
   </head>
   <body>
-    %{--<h1>Export der Zeitaufzeichnungen vom ${date1} bis ${date2}</h1>--}%
     <h1><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/></h1>
-    %{--<p class="gray">Erstellt von ${entity.profile.fullName} am <g:formatDate date="${new Date()}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> um <g:formatDate date="${new Date()}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>.</p>--}%
     <p class="gray"><g:message code="educator.timeschedule.export.from" args="[entity.profile.fullName]"/> <g:formatDate date="${new Date()}" format="dd. MM. yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="atTime"/> <g:formatDate date="${new Date()}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>.</p>
     <h2><g:message code="profile.overview"/></h2>
     <table class="default-table">
@@ -70,21 +68,6 @@
       </g:each>
       </tbody>
     </table>
-
-    %{--<table>
-      <g:each in="${educators}" status="i" var="educator">
-        <h2>${educator.profile.fullName}</h2>
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <erp:getWorkdayUnits educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
-            <td>Units: ${units}</td>
-            <g:each in="${units}" var="unit">
-              <td><g:formatDate date="${unit.date1}" format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-              <td><g:formatDate date="${unit.date1}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:formatDate date="${unit.date2}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> ${unit.category} <br/> ${unit.description.decodeHTML()}</td>
-            </g:each>
-          </erp:getWorkdayUnits>
-        </tr>
-      </g:each>
-    </table>--}%
 
     <h2><g:message code="detailed.info"/></h2>
     <g:each in="${educators}" status="i" var="educator">

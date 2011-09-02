@@ -155,10 +155,6 @@
       </div>
     </div>
 
-    %{--<g:remoteLink update="execute-result" class="buttonGray" action="execute" id="${project.id}" before="showspinner('#execute-result')">Projekt einplanen/aktualisieren</g:remoteLink>
-    <div class="clear"></div>
-    <div id="execute-result"></div>--}%
-
   </div>
 </div>
 

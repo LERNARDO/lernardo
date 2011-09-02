@@ -16,16 +16,6 @@
     <g:form params="[template: template.id]">
         <table width="100%">
 
-          %{--<tr class="prop">
-            <td height="30" colspan="3" valign="top" class="name">
-              <label for="fullName">
-                <g:message code="groupActivityTemplate"/>:
-              </label>
-
-              <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${fieldValue(bean: template, field: 'profile.fullName')}</g:link>
-            </td>
-          </tr>--}%
-
           <tr class="prop">
             <td valign="top" class="name"><g:message code="groupActivity.profile.name"/></td>
             <td valign="top" class="name"><g:message code="groupActivity.profile.realDuration"/></td>
@@ -41,7 +31,6 @@
             </td>
             <td valign="top" class="value">
               <g:textField name="date" class="datetimepicker" value="${new Date().format('dd. MM. yyyy hh:mm')}"/>
-              %{--<g:datePicker name="date" value="${group?.profile?.date}" precision="minute"/>--}%
             </td>
           </tr>
 
@@ -54,7 +43,6 @@
               <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
                 ${fieldValue(bean:template,field:'profile.educationalObjectiveText').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.educationalObjectiveText', 'errors')}" rows="5" cols="120" name="educationalObjectiveText" value="${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML()}"/>--}%
             </td>
           </tr>
 
@@ -67,7 +55,6 @@
               <ckeditor:editor name="description" height="200px" toolbar="Basic">
                 ${fieldValue(bean:group,field:'profile.description') ? fieldValue(bean:group,field:'profile.description').decodeHTML() : fieldValue(bean:template,field:'profile.description').decodeHTML()}
               </ckeditor:editor>
-              %{--<g:textArea class="countable2000 ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="5" cols="120" name="description" value="${fieldValue(bean: template, field: 'profile.description').decodeHTML()}"/>--}%
             </td>
           </tr>
 

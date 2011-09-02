@@ -121,10 +121,6 @@ class ActivityProfileController {
         activityList = activityList.subList(params.offset, upperBound)
       }
       else {
-        /*Entity.findAllByType(metaDataService.etActivity).each {bla ->
-          if (bla.profile.date > inputDate && bla.profile.date < inputDate + 1)
-            activityList << bla*/
-
         EntityType etActivity = metaDataService.etActivity
         activityList = Entity.createCriteria().list {
           eq("type", etActivity)
@@ -150,9 +146,6 @@ class ActivityProfileController {
               'activityCount': activityCount,
               'dateSelected': inputDate]
     }
-    return
-    /*return ['activityList': Entity.findAllByType(metaDataService.etActivity, params),
-            'activityCount': Entity.countByType(metaDataService.etActivity)]*/
   }
 
   /*
@@ -289,35 +282,11 @@ class ActivityProfileController {
 
   def edit = {
     Entity activity = Entity.get(params.id)
-
-    Entity currentEntity = entityHelperService.loggedIn
-
-    // get a list of facilities the current entity is working in
-    /*def facilities = []
-    if (currentEntity.type.name == metaDataService.etEducator.name)
-      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
-    else
-      facilities.addAll(Entity.findAllByType(metaDataService.etFacility))*/
-    //def educators = Entity.findAllByType(metaDataService.etEducator)
-    //educators.sort {it.profile.firstName}
-    //def clients = Entity.findAllByType(metaDataService.etClient)
-
-    //List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
-    //List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
-
-    return ['activity': activity,
-            //'facilities': facilities,
-            //'educators': educators,
-            //'clients': clients,
-            //'currentEducators': currentEducators,
-            //'currentClients': currentClients
-            ]
+    return ['activity': activity]
   }
 
   def update = {
     Entity activity = Entity.get(params.id)
-
-    Entity currentEntity = entityHelperService.loggedIn
 
     activity.profile.properties = params
     activity.profile.date = functionService.convertToUTC(activity.profile.date)
@@ -327,23 +296,7 @@ class ActivityProfileController {
       redirect action: 'show', id: activity.id, params: [entity: activity.id]
     }
     else {
-      // get a list of facilities the current entity is working in
-      /*def facilities = []
-      if (currentEntity.type.name == metaDataService.etEducator.name)
-        facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
-      else
-        facilities.addAll(Entity.findAllByType(metaDataService.etFacility))
-      def educators = Entity.findAllByType(metaDataService.etEducator)
-      def clients = Entity.findAllByType(metaDataService.etClient)
-
-      List currentEducators = functionService.findAllByLink(null, activity, metaDataService.ltActEducator)
-      List currentClients = functionService.findAllByLink(null, activity, metaDataService.ltActClient)*/
-      render view: 'edit', model: ['activity': activity,
-                                   /*'facilities': facilities,
-                                   'educators': educators,
-                                   'clients': clients,
-                                   'currentEducators': currentEducators,
-                                   'currentClients': currentClients*/]
+      render view: 'edit', model: ['activity': activity]
     }
 
   }

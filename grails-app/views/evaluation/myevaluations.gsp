@@ -28,7 +28,6 @@
 <div class="boxGray">
   <div class="second">
 
-    %{--<p>Du hast insgesamt ${evaluationInstanceTotal} Tagebucheinträge erstellt.</p>--}%
     <p><g:message code="evaluation.entryinserted" args="[evaluationInstanceTotal]"/></p>
 
     <ul>

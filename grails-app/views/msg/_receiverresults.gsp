@@ -28,7 +28,6 @@
 <g:if test="${results}">
   <div class="remoteresults" style="width: 535px">
     <g:each in="${results}" var="entity">
-      %{--<g:remoteLink url="[controller:'msg', action:'addReceiver', id: entity.id]" update="receivers2" before="kontrolle2('${entity.id}');" after="addReceiver('${entity.profile.fullName}');">--}%
       <div class="remoteresult" onclick="checkIt('${entity.id}','${entity.profile.fullName}');">
         <table>
           <tr>
@@ -37,7 +36,6 @@
           </tr>
         </table>
       </div>
-      %{--</g:remoteLink>--}%
     </g:each>
   </div>
 </g:if>
