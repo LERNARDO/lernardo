@@ -2,21 +2,25 @@ package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
 
+/**
+ * This class represents (existing) resources
+ *
+ * @author  Alexander Zeillinger
+ */
 class ResourceProfile extends Profile {
 
-  String description
-  String classification
-
+  String  description
+  String  classification
+  String  costsUnit
   Integer amount = 1
   Integer costs = 0
-  String costsUnit
 
   static constraints = {
-    fullName (blank: false, size: 1..100, maxSize: 100)
-    description (blank: true, maxSize: 20000)
+    fullName    blank: false, size: 1..100, maxSize: 100
+    description blank: true, maxSize: 20000
   }
 
-  String toString(){
+  String toString() {
     return "${fullName}"
   }
 

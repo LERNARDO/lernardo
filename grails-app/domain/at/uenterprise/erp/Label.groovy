@@ -1,5 +1,10 @@
 package at.uenterprise.erp
 
+/**
+ * This class represents labels that can be given to an entity
+ *
+ * @author  Alexander Zeillinger
+ */
 class Label {
 
   String name
@@ -7,11 +12,12 @@ class Label {
   String type
 
   static constraints = {
-    name maxSize: 50
+    name        maxSize: 50
     description nullable: true, maxSize: 5000
   }
 
-  String toString(){
+  String toString() {
     return "${name}"
   }
+
 }

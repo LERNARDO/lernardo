@@ -2,18 +2,24 @@ package at.uenterprise.erp.profiles
 
 import at.openfactory.ep.Profile
 
+/**
+ * This class represents the profile of project days which are part of projects
+ *
+ * @author  Alexander Zeillinger
+ */
 class ProjectDayProfile extends Profile {
 
-    List units
-    static hasMany = [units: String]
+  List units
+  static hasMany = [units: String]
 
-    Date date
+  Date date
 
-    static constraints = {
-      fullName (blank: false, size: 1..100, maxSize: 100)
-    }
+  static constraints = {
+    fullName blank: false, size: 1..100, maxSize: 100
+  }
 
-    String toString(){
-      return "${fullName}"
-    }
+  String toString() {
+    return "${fullName}"
+  }
+
 }

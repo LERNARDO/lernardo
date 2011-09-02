@@ -1,11 +1,16 @@
 package at.uenterprise.erp
 
+/**
+ * This class represents the application setup
+ * TODO: ideally this should be a singleton like a service class, maybe this can be changed at a later point
+ *
+ * @author  Alexander Zeillinger
+ */
 class Setup {
 
   List bloodTypes, nationalities, languages, schoolLevels, workDescriptions, educations, employmentStatus, responsibilities, familyStatus, maritalStatus, partnerServices, familyProblems
   static hasMany = [nationalities: String,
                     languages: String,
-                    //methods: Method,
                     schoolLevels: String,
                     workDescriptions: String,
                     educations: String,
@@ -18,5 +23,7 @@ class Setup {
                     familyProblems: String]
 
   static constraints = {
+
   }
+
 }

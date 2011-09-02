@@ -5,26 +5,32 @@ import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Label
 import at.uenterprise.erp.Resource
 
+/**
+ * This class represents the profile of project templates
+ *
+ * @author  Alexander Zeillinger
+ */
 class ProjectTemplateProfile extends Profile {
 
-    SortedSet comments
-    List templates
-    static hasMany = [comments: Comment,
-                      labels: Label,
-                      templates: String,
-                      resources: Resource]
+  SortedSet comments
+  List templates
+  static hasMany = [comments: Comment,
+                    labels: Label,
+                    templates: String,
+                    resources: Resource]
 
-    String description
-    String status
-    String educationalObjectiveText
+  String description
+  String status
+  String educationalObjectiveText
 
-    static constraints = {
-      fullName (blank: false, size: 1..100, maxSize: 100)
-      description (blank: true, maxSize: 20000)
-      educationalObjectiveText nullable: true, maxSize: 2000
-    }
+  static constraints = {
+    fullName                  blank: false, size: 1..100, maxSize: 100
+    description               blank: true, maxSize: 20000
+    educationalObjectiveText  nullable: true, maxSize: 2000
+  }
 
-    String toString(){
-      return "${fullName}"
-    }
+  String toString() {
+    return "${fullName}"
+  }
+
 }

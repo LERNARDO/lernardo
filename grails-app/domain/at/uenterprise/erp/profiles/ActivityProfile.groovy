@@ -4,24 +4,29 @@ import at.openfactory.ep.Profile
 import at.uenterprise.erp.ClientEvaluation
 import at.uenterprise.erp.Comment
 
+/**
+ * This class represents the profile of activities
+ *
+ * @author  Alexander Zeillinger
+ */
 class ActivityProfile extends Profile {
 
   SortedSet comments
   static hasMany = [clientEvaluations: ClientEvaluation,
                     comments: Comment]
 
-  Date date
   Integer duration
-  String type
-
-  Date dateCreated
-  Date lastUpdated
+  String  type
+  Date    date
+  Date    dateCreated
+  Date    lastUpdated
 
   static constraints = {
-    fullName (blank: false, size: 1..100, maxSize: 100)
+    fullName blank: false, size: 1..100, maxSize: 100
   }
 
-  String toString(){
-      return "${fullName}"
-    }
+  String toString() {
+    return "${fullName}"
+  }
+
 }

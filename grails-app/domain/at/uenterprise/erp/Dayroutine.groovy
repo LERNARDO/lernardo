@@ -2,17 +2,23 @@ package at.uenterprise.erp
 
 import at.openfactory.ep.Entity
 
+/**
+ * This class represents entries of a dayroutine of a facility
+ *
+ * @author  Alexander Zeillinger
+ */
 class Dayroutine {
 
-    String day
-    Date dateFrom
-    Date dateTo
+  static belongsTo = [facility: Entity]
 
-    String title
-    String description
-    static belongsTo = [facility: Entity]
+  String  day
+  String  title
+  String  description
+  Date    dateFrom
+  Date    dateTo
 
-    static constraints = {
-      title (blank: false)
-    }
+  static constraints = {
+    title blank: false
+  }
+
 }
