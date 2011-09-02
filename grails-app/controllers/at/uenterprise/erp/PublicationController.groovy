@@ -250,13 +250,14 @@ class PublicationController {
 
   def showasset = {
     Publication pub = Publication.get(params.id)
-    if (!pub?.asset) {
+    if (pub?.asset) {
+      assetService.renderStorage (pub.asset?.storage, response)
+    }
+    else {
       flash.message = message(code:"publication.notFound", args:[params.id])
       redirect (action:"list", params:[name:params.name])
     }
-    else {
-      assetService.renderStorage (pub.asset?.storage, response)
-    }
+
   }
 
   def delete = {
@@ -274,15 +275,16 @@ class PublicationController {
   }
 
   def edit = {
-      Publication publication = Publication.get(params.id)
+    Publication publication = Publication.get(params.id)
 
-      if(!publication) {
-          flash.message = message(code:"publication.notFound", args:[params.id])
-          redirect action:'list'
-      }
-      else {
-          [entity: publication.entity, publication: publication]
-      }
+    if(publication) {
+      [entity: publication.entity, publication: publication]
+    }
+    else {
+      flash.message = message(code:"publication.notFound", args:[params.id])
+      redirect action:'list'
+    }
+
   }
 
   def update = {

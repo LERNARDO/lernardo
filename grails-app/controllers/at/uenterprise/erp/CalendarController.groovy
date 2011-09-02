@@ -80,7 +80,7 @@ class CalendarController {
   }
 
   def getsources = {
-    Entity currentEntity = entityHelperService.loggedIn
+    //Entity currentEntity = entityHelperService.loggedIn
 
     def start = new Date()
     start.setTime(params.long('start') * 1000)

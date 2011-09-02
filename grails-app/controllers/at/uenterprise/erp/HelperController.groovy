@@ -36,14 +36,13 @@ class HelperController {
   def show = {
     Helper helperInstance = Helper.get(params.id)
 
-    if (!helperInstance) {
-      //flash.message = "Helper not found with id ${params.id}"
-      flash.message = message(code: "helper.idNotFound", args: [params.id])
-      redirect(action: list)
-      return
+    if (helperInstance) {
+      [helperInstance: helperInstance]
     }
-
-    return [helperInstance: helperInstance]
+    else {
+      flash.message = message(code: "helper.idNotFound", args: [params.id])
+      redirect action: list
+    }
 
   }
 
@@ -53,17 +52,17 @@ class HelperController {
       try {
         helperInstance.delete(flush: true)
         flash.message = message(code: "helper.deleted")
-        redirect(action: "list", id: params.entity)
+        redirect action: "list", id: params.entity
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = "Helper ${params.id} could not be deleted"
-        redirect(action: "show", id: params.id)
+        redirect action: "show", id: params.id
       }
     }
     else {
       //flash.message = "Helper not found with id ${params.id}"
       flash.message = message(code: "helper.idNotFound", args: [params.id])
-      redirect(action: "list")
+      redirect action: "list"
     }
   }
 

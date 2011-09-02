@@ -18,14 +18,12 @@ class MethodController {
 
   def show = {
     def methodInstance = Method.get(params.id)
-
-    if (!methodInstance) {
-      //flash.message = "Method not found with id ${params.id}"
-      flash.message = message(code: "method.idNotFound", args: [params.id])
-      redirect(action: list)
+    if (methodInstance) {
+      [methodInstance: methodInstance]
     }
     else {
-      [methodInstance: methodInstance]
+      flash.message = message(code: "method.idNotFound", args: [params.id])
+      redirect action: list
     }
   }
 
@@ -35,32 +33,30 @@ class MethodController {
       try {
         methodInstance.delete(flush: true)
         flash.message = message(code: "method.deleted", args: [methodInstance.name])
-        redirect(action: "list")
+        redirect action: "list"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "method.notDeleted", args: [params.id])
-        redirect(action: "show", id: params.id)
+        redirect action: "show", id: params.id
       }
     }
     else {
       //flash.message = "Method not found with id ${params.id}"
       flash.message = message(code: "method.idNotFound", args: [params.id])
-      redirect(action: "list")
+      redirect action: "list"
     }
   }
 
   def edit = {
     def methodInstance = Method.get(params.id)
 
-    if (!methodInstance) {
-      //flash.message = "Method not found with id ${params.id}"
+    if (methodInstance) {
+      [methodInstance: methodInstance]
+    }
+    else {
       flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect action: 'list'
-      return
     }
-
-    return [methodInstance: methodInstance]
-
   }
 
   def update = {

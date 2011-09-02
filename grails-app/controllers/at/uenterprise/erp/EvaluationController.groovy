@@ -169,14 +169,13 @@ class EvaluationController {
   def show = {
     Evaluation evaluationInstance = Evaluation.get(params.id)
 
-    if (!evaluationInstance) {
-      //flash.message = "Evaluation not found with id ${params.id}"
-      flash.message = message(code: "evaluation.idNotFound", args: [params.id])
-      redirect(action: list)
-      return
+    if (evaluationInstance) {
+      [evaluationInstance: evaluationInstance]
     }
-
-    return [evaluationInstance: evaluationInstance]
+    else {
+      flash.message = message(code: "evaluation.idNotFound", args: [params.id])
+      redirect action: list
+    }
 
   }
 
@@ -189,17 +188,17 @@ class EvaluationController {
       try {
         evaluationInstance.delete(flush: true)
         flash.message = message(code: "evaluation.deleted")
-        redirect(action: "list", id: entity.id)
+        redirect action: "list", id: entity.id
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = "Evaluation ${params.id} could not be deleted"
-        redirect(action: "show", id: params.id)
+        redirect action: "show", id: params.id
       }
     }
     else {
       //flash.message = "Evaluation not found with id ${params.id}"
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
-      redirect(action: "list")
+      redirect action: "list"
     }
   }
 
@@ -291,7 +290,7 @@ class EvaluationController {
         }
     }
 
-    SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy")
+    SimpleDateFormat sdf = new SimpleDateFormat("d M yyyy", new Locale("en"))
 
     List results = []
     results.addAll(entities?.findAll { entity ->

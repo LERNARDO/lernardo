@@ -88,7 +88,7 @@ class HelperTagLib {
    */
   def getBirthdays = {attrs, body ->
 
-    SimpleDateFormat sdf = new SimpleDateFormat("d M")
+    SimpleDateFormat sdf = new SimpleDateFormat("d M", new Locale("en"))
     Date date = new Date()
 
     List results = []

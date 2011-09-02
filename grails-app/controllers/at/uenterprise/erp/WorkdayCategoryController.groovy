@@ -11,20 +11,20 @@ class WorkdayCategoryController {
 
     def list = {
         params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
-        [ workdayCategoryInstanceList: WorkdayCategory.list( params ), workdayCategoryInstanceTotal: WorkdayCategory.count() ]
+        [workdayCategoryInstanceList: WorkdayCategory.list( params ), workdayCategoryInstanceTotal: WorkdayCategory.count() ]
     }
 
     def show = {
-        def workdayCategoryInstance = WorkdayCategory.get( params.id )
+      def workdayCategoryInstance = WorkdayCategory.get( params.id )
 
-        if(!workdayCategoryInstance) {
-            //flash.message = "WorkdayCategory not found with id ${params.id}"
-            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
-            redirect(action:list)
-        }
-        else {
-            [ workdayCategoryInstance : workdayCategoryInstance ]
-        }
+      if(workdayCategoryInstance) {
+        [workdayCategoryInstance: workdayCategoryInstance]
+      }
+      else {
+        flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
+        redirect action:list
+      }
+
     }
 
     def delete = {
@@ -33,31 +33,30 @@ class WorkdayCategoryController {
             try {
                 workdayCategoryInstance.delete(flush:true)
                 flash.message = message(code:"workdaycategory.deleted", args:[workdayCategoryInstance.name])
-                redirect(action:"list")
+                redirect action:"list"
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
                 flash.message = message(code:"workdaycategory.notDeleted", args:[workdayCategoryInstance.name])
-                redirect(action:"show",id:params.id)
+                redirect action:"show", id:params.id
             }
         }
         else {
-            //flash.message = "WorkdayCategory not found with id ${params.id}"
             flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
-            redirect(action:"list")
+            redirect action:"list"
         }
     }
 
     def edit = {
-        def workdayCategoryInstance = WorkdayCategory.get( params.id )
+      def workdayCategoryInstance = WorkdayCategory.get( params.id )
 
-        if(!workdayCategoryInstance) {
-            //flash.message = "WorkdayCategory not found with id ${params.id}"
-            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
-            redirect action:'list'
-        }
-        else {
-            [ workdayCategoryInstance : workdayCategoryInstance ]
-        }
+      if(workdayCategoryInstance) {
+        [workdayCategoryInstance: workdayCategoryInstance]
+      }
+      else {
+        flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
+        redirect action:'list'
+      }
+
     }
 
     def update = {

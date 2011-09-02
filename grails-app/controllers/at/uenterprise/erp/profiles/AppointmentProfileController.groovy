@@ -45,19 +45,19 @@ class AppointmentProfileController {
 
     def show = {
       Entity appointment = Entity.get(params.id)
-      Entity entity = params.entity ? appointment : entityHelperService.loggedIn
+      //Entity entity = params.entity ? appointment : entityHelperService.loggedIn
 
-      if (!appointment) {
-        // flash.message = "Appointment not found with id ${params.id}"
+      if (appointment) {
+        // find owner of appointment
+        Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
+
+        [appointment: appointment, entity: appointment, owner: owner]
+      }
+      else {
         flash.message = message(code: "appointment.idNotFound", args: [params.id])
-        redirect(action: list)
-        return
+        redirect action: list
       }
 
-      // find owner of appointment
-      Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
-
-      return [appointment: appointment, entity: appointment, owner: owner]
     }
 
     def delete = {
@@ -78,7 +78,6 @@ class AppointmentProfileController {
             }
         }
         else {
-            //flash.message = "Appointment not found with id ${params.id}"
             flash.message = message(code: "appointment.idNotFound", args: [params.id])
             redirect(action:"list")
         }
@@ -88,7 +87,6 @@ class AppointmentProfileController {
       Entity appointment = Entity.get(params.id)
 
     if (!appointment) {
-      //flash.message = "Appointment not found with id ${params.id}"
       flash.message = message(code: "appointment.idNotFound", args: [params.id])
       redirect action: 'list'
       return

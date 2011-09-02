@@ -8,7 +8,7 @@ class SetupController {
       setupInstance = new Setup().save()
     if (!setupInstance) {
       flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'setup.label', default: 'Setup'), params.id])}"
-      redirect(action: "list")
+      redirect action: "list"
     }
     else {
       [setupInstance: setupInstance]

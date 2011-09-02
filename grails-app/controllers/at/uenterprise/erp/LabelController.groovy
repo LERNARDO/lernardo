@@ -5,7 +5,7 @@ class LabelController {
   static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
   def index = {
-    redirect(action: "list", params: params)
+    redirect action: "list", params: params
   }
 
   def list = {
@@ -26,7 +26,7 @@ class LabelController {
     labelInstance.type = "template"
     if (labelInstance.save(flush: true)) {
       flash.message = message(code: "label.created", args: [labelInstance.name])
-      redirect(action: "show", id: labelInstance.id)
+      redirect action: "show", id: labelInstance.id
     }
     else {
       render(view: "create", model: [labelInstance: labelInstance])
@@ -35,25 +35,23 @@ class LabelController {
 
   def show = {
     def labelInstance = Label.get(params.id)
-    if (!labelInstance) {
-      //flash.message = "Label not found with id ${params.id}"
-      flash.message = message(code: "label.idNotFound", args: [params.id])
-      redirect(action: "list")
+    if (labelInstance) {
+      [labelInstance: labelInstance]
     }
     else {
-      [labelInstance: labelInstance]
+      flash.message = message(code: "label.idNotFound", args: [params.id])
+      redirect action: "list"
     }
   }
 
   def edit = {
     def labelInstance = Label.get(params.id)
-    if (!labelInstance) {
-      //flash.message = "Label not found with id ${params.id}"
-      flash.message = message(code: "label.idNotFound", args: [params.id])
-      redirect(action: "list")
+    if (labelInstance) {
+      [labelInstance: labelInstance]
     }
     else {
-      [labelInstance: labelInstance]
+      flash.message = message(code: "label.idNotFound", args: [params.id])
+      redirect action: "list"
     }
   }
 
@@ -83,7 +81,7 @@ class LabelController {
       labelInstance.properties = params
       if (!labelInstance.hasErrors() && labelInstance.save(flush: true)) {
         flash.message = message(code: "label.updated", args: [labelInstance.name])
-        redirect(action: "show", id: labelInstance.id)
+        redirect action: "show", id: labelInstance.id
       }
       else {
         render(view: "edit", model: [labelInstance: labelInstance])
@@ -92,7 +90,7 @@ class LabelController {
     else {
       //flash.message = "Label not found with id ${params.id}"
       flash.message = message(code: "label.idNotFound", args: [params.id])
-      redirect(action: "list")
+      redirect action: "list"
     }
   }
 
@@ -102,17 +100,17 @@ class LabelController {
       try {
         labelInstance.delete(flush: true)
         flash.message = message(code: "label.deleted", args: [labelInstance.name])
-        redirect(action: "list")
+        redirect action: "list"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "label.notDeleted", args: [params.id])
-        redirect(action: "show", id: params.id)
+        redirect action: "show", id: params.id
       }
     }
     else {
       //flash.message = "Label not found with id ${params.id}"
       flash.message = message(code: "label.idNotFound", args: [params.id])
-      redirect(action: "list")
+      redirect action: "list"
     }
   }
 

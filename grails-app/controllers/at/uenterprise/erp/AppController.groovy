@@ -770,15 +770,6 @@ class AppController {
     log.info facilities2
     log.info totalCount
 
-
-
-    log.info "reading all clients linked to a facility"
-    begin = new Date()
-    List clients = functionService.findAllByLink(null, facilities[0], metaDataService.ltGroupMemberClient)
-    end = new Date()
-    time = (end.getTime() - begin.getTime())
-    log.info "done reading, time: ${time} milliseconds"
-    render "done"
   }
 
   def removeAssets = {

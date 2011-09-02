@@ -117,14 +117,14 @@ class GroupColonyProfileController {
   def edit = {
     Entity group = Entity.get(params.id)
 
-    if (!group) {
-      // flash.message = "groupProfile not found with id ${params.id}"
+    if (group) {
+      [group: group]
+    }
+    else {
       flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
-    else {
-      [group: group]
-    }
+
   }
 
   def update = {
