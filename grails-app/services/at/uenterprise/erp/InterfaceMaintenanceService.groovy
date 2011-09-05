@@ -6,6 +6,11 @@ import at.openfactory.ep.Account
 import at.uenterprise.erp.profiles.ChildProfile
 import java.text.SimpleDateFormat
 
+/**
+ * This class currently only contains an import method
+ *
+ * @author  Alexander Zeillinger
+ */
 class InterfaceMaintenanceService {
   MetaDataService metaDataService
   def securityManager
@@ -15,14 +20,13 @@ class InterfaceMaintenanceService {
   boolean transactional = true
 
   /*
-  * this is a simple XML loader that is called on bootstrapping the application
-  * currently it only imports children
+  * This is a simple XML loader that is called on bootstrapping the application.
+  * Currently it only imports children
   */
   def importChildren(def source, boolean fullLoad = false) {
 
     log.info("==> importing children")
 
-    // Basic stuff each entity will use
     EntityType etChild = metaDataService.etChild
 
     def childProfiles = new XmlSlurper().parse(source)

@@ -24,6 +24,9 @@ class AppController {
   MetaDataService metaDataService
   def assetService
 
+  /*
+   * renders an image
+   */
   def get = {
     Entity ent = Entity.get (params.entity)
     if (!ent) {
@@ -33,7 +36,7 @@ class AppController {
 
     AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
     if (!store) {
-//      response.sendError(404, 'no matching asset')
+        // response.sendError(404, 'no matching asset')
         def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
         if (res) {
           response.contentType = "image/jpg"
@@ -99,6 +102,9 @@ class AppController {
 
   }
 
+  /*
+   * finds all links of a certain type to a given entity
+   */
   def updatelinks = {
 
     Entity entity = Entity.get(params.id)
@@ -606,6 +612,9 @@ class AppController {
     }
   }
 
+  /*
+   * populates tables for sorting links
+   */
   def createtables = {
     // group activity templates
     List groups = Entity.findAllByType(metaDataService.etGroupActivityTemplate)
@@ -725,6 +734,9 @@ class AppController {
 
   }
 
+  /*
+   * some speed testing of the DB
+   */
   def checkDB = {
     log.info "reading all entities of type facility"
 
