@@ -11,7 +11,7 @@ class WorkdayCategory {
   Boolean count = true
 
   static constraints = {
-    name blank: false, nullable: false
+    name blank: false
   }
 
   String toString() {

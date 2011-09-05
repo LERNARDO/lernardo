@@ -21,7 +21,6 @@ class Evaluation {
   static constraints = {
     description blank: false
     method      blank: true, maxSize: 2000
-    writer      nullable: false
     linkedTo    nullable: true
   }
 

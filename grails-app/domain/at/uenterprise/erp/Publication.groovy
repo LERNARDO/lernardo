@@ -20,7 +20,6 @@ class Publication {
 
   static constraints = {
     name        blank: false, maxSize: 50
-    asset       nullable: false
     dateCreated nullable: true
   }
 

@@ -13,7 +13,6 @@ import at.uenterprise.erp.ECalendar
 
 /**
  * This class represents the profile of clients (children part of the educational program)
- * TODO: formatting
  *
  * @author  Alexander Zeillinger
  */
@@ -30,11 +29,11 @@ class ClientProfile extends Profile {
                     contacts: Contact]
 
   ECalendar calendar
-  String firstName
-  String lastName
-  String interests
-  Date birthDate
-  Integer gender
+  String    firstName
+  String    lastName
+  String    interests
+  Date      birthDate
+  Integer   gender
 
   String currentCountry
   String currentZip
@@ -49,26 +48,26 @@ class ClientProfile extends Profile {
   String schoolLevel
 
   Boolean schoolDropout = false
-  Date schoolDropoutDate
-  String schoolDropoutReason
+  Date    schoolDropoutDate
+  String  schoolDropoutReason
 
   Boolean schoolRestart = false
-  Date schoolRestartDate
-  String schoolRestartReason
+  Date    schoolRestartDate
+  String  schoolRestartReason
 
   Boolean job
   Integer jobIncome
-  String jobFrequency
+  String  jobFrequency
 
   String familyStatus
 
   Boolean support = false
-  String supportDescription
+  String  supportDescription
 
   Boolean showTips = true
 
   // for Lernardo
-  String citizenship
+  String  citizenship
   Integer socialSecurityNumber
 
   static constraints = {

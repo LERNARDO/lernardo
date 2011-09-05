@@ -24,9 +24,6 @@ class Msg {
     content     blank: false, maxSize: 2000
     dateCreated nullable: true
     lastUpdated nullable: true
-    sender      nullable: false
-    receiver    nullable: false
-    read        nullable: false
   }
 
 }

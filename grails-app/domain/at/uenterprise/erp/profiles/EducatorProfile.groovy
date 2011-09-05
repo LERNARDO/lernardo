@@ -7,7 +7,6 @@ import at.uenterprise.erp.ECalendar
 
 /**
  * This class represents the profile of educators
- * TODO: formatting
  *
  * @author  Alexander Zeillinger
  */
@@ -20,11 +19,11 @@ class EducatorProfile extends Profile {
                     workdayunits: WorkdayUnit]
 
   ECalendar calendar
-  String title
-  String firstName
-  String lastName
-  Date birthDate
-  Byte gender
+  String    title
+  String    firstName
+  String    lastName
+  Date      birthDate
+  Byte      gender
 
   String currentCountry
   String currentZip
@@ -72,41 +71,41 @@ class EducatorProfile extends Profile {
   String color
 
   static constraints = {
-    fullName (blank: true, size: 1..100, maxSize: 100)
-    title (blank: true, maxSize: 50)
-    firstName (blank: false, size: 2..50, maxSize: 50)
-    lastName (blank: false, size: 2..50, maxSize: 50)
-    education (blank: true)
-    interests (blank: true, maxSize: 2000)
+    fullName        blank: true, size: 1..100, maxSize: 100
+    title           blank: true, maxSize: 50
+    firstName       blank: false, size: 2..50, maxSize: 50
+    lastName        blank: false, size: 2..50, maxSize: 50
+    education       blank: true
+    interests       blank: true, maxSize: 2000
 
-    currentCountry (size: 1..50, maxSize: 50)
-    currentZip (size: 4..10)
-    currentCity (size: 2..50, maxSize: 50)
-    currentStreet (size: 2..50, maxSize: 50)
+    currentCountry  size: 1..50, maxSize: 50
+    currentZip      size: 4..10
+    currentCity     size: 2..50, maxSize: 50
+    currentStreet   size: 2..50, maxSize: 50
 
-    originCountry (nullable: true, size: 1..50)
-    originZip (nullable: true, size: 4..10)
-    originCity (nullable: true, size: 2..50, maxSize: 50)
-    originStreet (nullable: true, size: 2..50, maxSize: 50)
+    originCountry   nullable: true, size: 1..50
+    originZip       nullable: true, size: 4..10
+    originCity      nullable: true, size: 2..50, maxSize: 50
+    originStreet    nullable: true, size: 2..50, maxSize: 50
 
-    contactName (nullable: true, size: 2..50, maxSize: 50)
-    contactCountry (nullable: true, size: 2..50, maxSize: 50)
-    contactZip (nullable: true, size: 4..10)
-    contactCity (nullable: true, size: 2..50, maxSize: 50)
-    contactStreet (nullable: true, size: 2..50, maxSize: 50)
-    contactPhone (nullable: true, size: 2..50, maxSize: 50)
-    contactMail (nullable: true, size: 2..50, maxSize: 50)
+    contactName     nullable: true, size: 2..50, maxSize: 50
+    contactCountry  nullable: true, size: 2..50, maxSize: 50
+    contactZip      nullable: true, size: 4..10
+    contactCity     nullable: true, size: 2..50, maxSize: 50
+    contactStreet   nullable: true, size: 2..50, maxSize: 50
+    contactPhone    nullable: true, size: 2..50, maxSize: 50
+    contactMail     nullable: true, size: 2..50, maxSize: 50
 
-    phone1 (nullable: true)
-    phone2 (nullable: true)
-    privEmail (email:true, nullable:true)
+    phone1          nullable: true
+    phone2          nullable: true
+    privEmail       email: true, nullable: true
 
-    hourlyWage nullable: true
-    overtimePay nullable: true
+    hourlyWage      nullable: true
+    overtimePay     nullable: true
 
-    bloodType nullable: true
+    bloodType       nullable: true
 
-    color nullable: true
+    color           nullable: true
   }
 
   String toString() {
