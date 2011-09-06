@@ -61,7 +61,7 @@ class GroupColonyProfileController {
     def allFacilities = []
     tempFacilities.each { Entity tf ->
       if (!Link.findBySourceAndType(tf, metaDataService.ltGroupMemberFacility))
-        allFacilities << it
+        allFacilities << tf
     }
 
     // find all facilities linked to this group
