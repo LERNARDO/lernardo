@@ -78,8 +78,6 @@ class GroupColonyProfileController {
     // find all resources linked to this group
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResource)
 
-    // find colonia
-
     return [group: group,
             entity: entity,
             facilities: facilities,
