@@ -51,7 +51,6 @@ class OperatorProfileController {
     Entity entity = params.entity ? operator : entityHelperService.loggedIn
 
     if (!operator) {
-      //flash.message = "OperatorProfile not found with id ${params.id}"
       flash.message = message(code: "operator.idNotFound", args: [params.id])
       redirect(action: list)
       return
@@ -103,7 +102,6 @@ class OperatorProfileController {
       }
     }
     else {
-      //flash.message = message(code: "operator.idNotFound", args: [params.id])
       flash.message = "OperatorProfile not found with id ${params.id}"
       redirect(action: "list")
     }
@@ -113,7 +111,6 @@ class OperatorProfileController {
     Entity operator = Entity.get(params.id)
 
     if (!operator) {
-      //flash.message = "OperatorProfile not found with id ${params.id}"
       flash.message = message(code: "operator.idNotFound", args: [params.id])
       redirect action: 'list'
       return

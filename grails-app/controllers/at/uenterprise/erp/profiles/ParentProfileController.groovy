@@ -52,7 +52,6 @@ class ParentProfileController {
     Entity entity = params.entity ? parent : entityHelperService.loggedIn
 
     if (!parent) {
-      //flash.message = "ParentProfile not found with id ${params.id}"
       flash.message = message(code: "parent.idNotFound", args: [params.id])
       redirect(action: list)
       return
@@ -103,7 +102,6 @@ class ParentProfileController {
       }
     }
     else {
-      //flash.message = "ParentProfile not found with id ${params.id}"
       flash.message = message(code: "parent.idNotFound", args: [params.id])
       redirect(action: "list")
     }
@@ -113,7 +111,6 @@ class ParentProfileController {
     Entity parent = Entity.get(params.id)
 
     if (!parent) {
-      //flash.message = "ParentProfile not found with id ${params.id}"
       flash.message = message(code: "parent.idNotFound", args: [params.id])
       redirect action: 'list'
       return

@@ -83,7 +83,6 @@ class WorkdayCategoryController {
             }
         }
         else {
-            //flash.message = "WorkdayCategory not found with id ${params.id}"
             flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
             redirect action:'list'
         }

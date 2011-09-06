@@ -51,7 +51,6 @@ class PateProfileController {
     Entity entity = params.entity ? pate : entityHelperService.loggedIn
 
     if (!pate) {
-      //flash.message = "PateProfile not found with id ${params.id}"
       flash.message = message(code: "pate.idNotFound", args: [params.id])
       redirect(action: list)
       return
@@ -101,7 +100,6 @@ class PateProfileController {
       }
     }
     else {
-      //flash.message = "PateProfile not found with id ${params.id}"
       flash.message = message(code: "pate.idNotFound", args: [params.id])
       redirect(action: "list")
     }
@@ -111,7 +109,6 @@ class PateProfileController {
     Entity pate = Entity.get(params.id)
 
     if (!pate) {
-      //flash.message = "PateProfile not found with id ${params.id}"
       flash.message = message(code: "pate.idNotFound", args: [params.id])
       redirect action: 'list'
       return

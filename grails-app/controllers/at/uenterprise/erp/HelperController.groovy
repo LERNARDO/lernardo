@@ -60,7 +60,6 @@ class HelperController {
       }
     }
     else {
-      //flash.message = "Helper not found with id ${params.id}"
       flash.message = message(code: "helper.idNotFound", args: [params.id])
       redirect action: "list"
     }
@@ -71,7 +70,6 @@ class HelperController {
     Entity entity = Entity.get(params.entity)
 
     if (!helperInstance) {
-      //flash.message = "Helper not found with id ${params.id}"
       flash.message = message(code: "helper.idNotFound", args: [params.id])
       redirect action: 'list'
       return
@@ -108,7 +106,6 @@ class HelperController {
       }
     }
     else {
-      //flash.message = "Helper not found with id ${params.id}"
       flash.message = message(code: "helper.idNotFound", args: [params.id])
       redirect action: 'list'
     }

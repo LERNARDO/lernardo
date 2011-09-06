@@ -1312,12 +1312,15 @@ class HelperTagLib {
 
   }
 
+  /**
+   * returns if an educator is active in the calendareds list of an entity
+   */
   def getActiveEducator = {attrs, body ->
 
     // For some weird reason all but the last element in the list are of type String and the last element is not of type String so both types
     // need to be checked... WTF Groovy?!?
 
-      Entity currentEntity = entityHelperService.loggedIn
+    Entity currentEntity = entityHelperService.loggedIn
 
     def result = currentEntity.profile.calendar.calendareds.contains(attrs.id.toString())
 
@@ -1326,12 +1329,17 @@ class HelperTagLib {
     out << body(active: result)
   }
 
+  /**
+   * returns the currently logged in entity
+   */
   def getCurrentEntity = {attrs, body ->
     out << body(currentEntity: entityHelperService.loggedIn)
   }
 
-
-  // modified select used by localeSelect as a temporary workaround until it's fixed
+  /**
+   * this is a modified version of the select tag that is used by the localeselect tag
+   * used as a workaround because the 1.3.7 implementation is broken
+   */
   def eselect = { attrs ->
         def messageSource = grailsAttributes.getApplicationContext().getBean("messageSource")
         def locale = RequestContextUtils.getLocale(request)

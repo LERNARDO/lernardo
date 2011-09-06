@@ -410,6 +410,13 @@ class MetaDataService {
   void setSystemAdminRole()  { openRole (ROLE_SYSTEMADMIN, "system administrator") }
   void setLeadEducatorRole() { openRole (ROLE_LEAD_EDUCATOR, "leading educator") }
 
+  /**
+   * Creates a new EntitySuperType
+   *
+   * @author Alexander Zeillinger
+   * @param name the name of the entity super type
+   * @param profileType the profile type of the entity super type
+   */
   def openEST (String name, String profileType) {
     EntitySuperType est = new EntitySuperType(name: name, profileType: profileType)
     if (!est.save()) {
@@ -418,6 +425,13 @@ class MetaDataService {
     }
   }
   
+  /**
+   * Creates a new EntityType
+   *
+   * @author Alexander Zeillinger
+   * @param name the name of the entity type
+   * @param est the entity super type it belongs to
+   */
   def openET (String name, EntitySuperType est) {
     EntityType et = new EntityType(name: name)
     est?.addToEntityTypes (et)
@@ -428,6 +442,13 @@ class MetaDataService {
     }
   }
   
+  /**
+   * Creates a new LinkSuperType
+   *
+   * @author Alexander Zeillinger
+   * @param name the name of the link super type
+   * @param description the description of the link super type
+   */
   def openLST (String name, String description) {
     LinkSuperType lst = new LinkSuperType(name: name, description: description)
     if (!lst.save()) {
@@ -436,6 +457,13 @@ class MetaDataService {
     }
   }
   
+  /**
+   * Creates a new LinkType
+   *
+   * @author Alexander Zeillinger
+   * @param name the name of the link type
+   * @param lst the link super type it belongs to
+   */
   def openLT (String name, LinkSuperType lst) {
     LinkType lt = new LinkType(name: name)
     lst?.addToTypes (lt)
@@ -446,6 +474,13 @@ class MetaDataService {
     }
   }
   
+  /**
+   * Creates a new PublicationType
+   *
+   * @author Alexander Zeillinger
+   * @param name the name of the publication type
+   * @param description the description of the publication type
+   */
   def openPT (String name, String description) {
     PublicationType pt = new PublicationType(name: name, description:description)
     if (!pt.save()) {
@@ -454,6 +489,13 @@ class MetaDataService {
     }
   }
 
+  /**
+   * Creates a new Role
+   *
+   * @author Alexander Zeillinger
+   * @param auth the name of the role
+   * @param description the description of the role
+   */
   def openRole (String auth, String description) {
     Role role = new Role(authority: auth, description: description)
     if (!role.save()) {

@@ -41,7 +41,6 @@ class MethodController {
       }
     }
     else {
-      //flash.message = "Method not found with id ${params.id}"
       flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect action: "list"
     }
@@ -83,7 +82,6 @@ class MethodController {
       }
     }
     else {
-      //flash.message = "Method not found with id ${params.id}"
       flash.message = message(code: "method.idNotFound", args: [params.id])
       redirect action: 'list'
     }

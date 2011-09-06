@@ -37,13 +37,14 @@ grails.converters.encoding="UTF-8"
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
+// this has to be updated every time a new plugin version of jquery is installed
 grails.views.javascript.library="jquery"
-
 jquery {
     sources = 'jquery' // Holds the value where to store jQuery-js files /web-app/js/
     version = '1.6.1' // The jQuery version in use
 }
 
+// this is the mail plugin configuration
 grails {
   mail {
     host = "smtp.gmail.com"
@@ -62,6 +63,7 @@ secmgr {
   publicurl    = "/"
 }
 
+// this controls the usage of the profiler plugin
 //grails.profiler.disable = true
 
 // log4j configuration
@@ -124,25 +126,26 @@ log4j = {
 
 }
 
-// change this value to control the amount of bootstrapped dummy entities
+// this value controld the amount of bootstrapped dummy entities
 dummies = 5
 
-// the default password used when creating new entity accounts
+// this is the default password used when creating new entity accounts
 defaultpass = "pass"
 
-// custom lists used for selects within the application
+// these are some custom lists used for selects within the application
 resourceclasses = ['facility','colony','everywhere']
 profiletypes = ['all','operator','facility','educator','client','user','partner','pate','parent','child']
 helpertypes = ['operator','educator','client','partner','pate','parent']
 costsUnit = ['perDay','perHour']
 
-// custom maps to store data
+// these are the colors used in the calendar for each educator
 colors = [0:'#cc4444',1:'#44cc44',2:'#4444cc',3:'#cccc44',4:'#44cccc',5:'#cc44cc',6:'#c21200',7:'#00660a',8:'#00b8b1',9:'#c24900',10:'#722e00',11:'#ed00e5',12:'#408080',13:'#808000',14:'#461B7E',15:'#307D7E',
           16:'#348017',17:'#AF7817',18:'#7E2217',19:'#C36241',20:'#C11B17',21:'#817339',22:'#218868',23:'#4A7023',24:'#4B0082',25:'#616161',26:'#9D8851',27:'#B13E0F',28:'#C77826',29:'#CD2626']
 
-// used locales
+// these are the currently used locales in the application
 locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
 
+// these are the quotes that are used on the public start
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',
              '01':'Kinder - die lebenden Botschaften, die wir einer Zeit übermitteln, an der wir selbst nicht mehr teilhaben werden.',
              '02':'Der Erwachsene achtet auf Taten, das Kind auf Liebe.',
@@ -212,4 +215,5 @@ quoterMap = ['00':'Maria Montessori',
              '32':'Rebeca Wild',
              '33':'Rebeca Wild']
 
+// UTC is the default time zone
 TimeZone.setDefault(TimeZone.getTimeZone("UTC"))

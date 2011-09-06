@@ -196,7 +196,6 @@ class EvaluationController {
       }
     }
     else {
-      //flash.message = "Evaluation not found with id ${params.id}"
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect action: "list"
     }
@@ -207,7 +206,6 @@ class EvaluationController {
     Entity entity = Entity.get(params.entity)
 
     if (!evaluationInstance) {
-      //flash.message = "Evaluation not found with id ${params.id}"
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect action: 'list'
       return
@@ -243,7 +241,6 @@ class EvaluationController {
       }
     }
     else {
-      //flash.message = "Evaluation not found with id ${params.id}"
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
       redirect action: 'list'
     }

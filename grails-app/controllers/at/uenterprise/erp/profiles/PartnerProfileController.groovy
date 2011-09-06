@@ -54,7 +54,6 @@ class PartnerProfileController {
     Entity entity = params.entity ? partner : entityHelperService.loggedIn
 
     if (!partner) {
-      //flash.message = "PartnerProfile not found with id ${params.id}"
       flash.message = message(code: "partner.idNotFound", args: [params.id])
       redirect(action: list)
       return
@@ -102,7 +101,6 @@ class PartnerProfileController {
       }
     }
     else {
-      //flash.message = "PartnerProfile not found with id ${params.id}"
       flash.message = message(code: "partner.idNotFound", args: [params.id])
       redirect(action: "list")
     }
@@ -112,7 +110,6 @@ class PartnerProfileController {
     Entity partner = Entity.get(params.id)
 
     if (!partner) {
-      //flash.message = "PartnerProfile not found with id ${params.id}"
       flash.message = message(code: "partner.idNotFound", args: [params.id])
       redirect action: 'list'
       return
@@ -224,15 +221,15 @@ class ContactCommand {
   String function
 
   static constraints = {
-    firstName (blank: false, size: 2..50)
-    lastName (blank: false, size: 2..50)
-    country (size: 2..50)
-    zip (size: 4..10)
-    city (size: 2..50)
-    street (size: 2..50)
-    phone (size: 2..20)
-    email (size: 2..20)
-    function (size: 2..50)
+    firstName blank: false, size: 2..50
+    lastName  blank: false, size: 2..50
+    country   size: 2..50
+    zip       size: 4..10
+    city      size: 2..50
+    street    size: 2..50
+    phone     size: 2..20
+    email     size: 2..20
+    function  size: 2..50
   }
 
 }

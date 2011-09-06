@@ -89,7 +89,6 @@ class ProjectProfileController {
     Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
-      //flash.message = "projectProfile not found with id ${params.id}"
       flash.message = message(code: "project.idNotFound", args: [params.id])
       redirect(action: list)
     }
@@ -293,7 +292,6 @@ class ProjectProfileController {
       }
     }
     else {
-      //flash.message = "projectProfile not found with id ${params.id}"
       flash.message = message(code: "project.idNotFound", args: [params.id])
       redirect(action: "list")
     }
@@ -304,7 +302,6 @@ class ProjectProfileController {
     Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
-      //flash.message = "projectProfile not found with id ${params.id}"
       flash.message = message(code: "project.idNotFound", args: [params.id])
       redirect action: 'list'
     }
@@ -1469,13 +1466,14 @@ class ProjectCommand {
   String sundayStartMinute
 
   static constraints = {
-    fullName(blank: false)
-    startDate(nullable: false)
-    endDate(nullable: false, validator: {ed, pc ->
-      return ed > pc.startDate
-    })
-    weekdays(validator: {wd, pc ->
-      return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)})
+    fullName  blank: false
+    startDate nullable: false
+    endDate   nullable: false, validator: {ed, pc ->
+                                             return ed > pc.startDate
+                                          }
+    weekdays  validator: {wd, pc ->
+                            return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)
+                         }
   }
 
 }

@@ -54,7 +54,6 @@ class ChildProfileController {
     Entity entity = params.entity ? child : entityHelperService.loggedIn
 
     if (!child) {
-      //flash.message = "ChildProfile not found with id ${params.id}"
       flash.message = message(code: "child.idNotFound", args: [params.id])
       redirect(action: list)
       return

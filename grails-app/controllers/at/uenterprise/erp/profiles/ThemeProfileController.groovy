@@ -58,7 +58,6 @@ class ThemeProfileController {
     Entity entity = params.entity ? theme : entityHelperService.loggedIn
 
     if (!theme) {
-      //flash.message = "themeProfile not found with id ${params.id}"
       flash.message = message(code: "theme.idNotFound", args: [params.id])
       redirect(action: list)
     }
@@ -108,7 +107,6 @@ class ThemeProfileController {
       }
     }
     else {
-      //flash.message = "themeProfile not found with id ${params.id}"
       flash.message = message(code: "theme.idNotFound", args: [params.id])
       redirect(action: "list")
     }
@@ -118,7 +116,6 @@ class ThemeProfileController {
     Entity theme = Entity.get(params.id)
 
     if (!theme) {
-      //flash.message = "themeProfile not found with id ${params.id}"
       flash.message = message(code: "theme.idNotFound", args: [params.id])
       redirect action: 'list'
     }

@@ -213,7 +213,6 @@ class GroupActivityProfileController {
       }
     }
     else {
-      //flash.message = "groupProfile not found with id ${params.id}"
       flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect(action: "list")
     }

@@ -60,7 +60,6 @@ class ClientProfileController {
     Entity entity = params.entity ? client : entityHelperService.loggedIn
 
     if (!client) {
-      //flash.message = "ClientProfile not found with id ${params.id}"
       flash.message = message(code: "client.idNotFound", args: [params.id])
       redirect(action: list)
       return

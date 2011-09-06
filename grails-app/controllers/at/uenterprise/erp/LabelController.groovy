@@ -88,7 +88,6 @@ class LabelController {
       }
     }
     else {
-      //flash.message = "Label not found with id ${params.id}"
       flash.message = message(code: "label.idNotFound", args: [params.id])
       redirect action: "list"
     }
@@ -108,7 +107,6 @@ class LabelController {
       }
     }
     else {
-      //flash.message = "Label not found with id ${params.id}"
       flash.message = message(code: "label.idNotFound", args: [params.id])
       redirect action: "list"
     }

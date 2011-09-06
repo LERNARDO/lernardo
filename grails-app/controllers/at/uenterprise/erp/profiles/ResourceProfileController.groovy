@@ -51,7 +51,6 @@ class ResourceProfileController {
     Entity resource = Entity.get(params.id)
 
     if (!resource) {
-      //flash.message = "ResourceProfile not found with id ${params.id}"
       flash.message = message(code: "resource.idNotFound", args: [params.id])
       redirect(action: list)
     }
@@ -79,7 +78,6 @@ class ResourceProfileController {
       }
     }
     else {
-      //flash.message = "ResourceProfile not found with id ${params.id}"
       flash.message = message(code: "resource.idNotFound", args: [params.id])
       redirect(action: "list")
     }
@@ -89,7 +87,6 @@ class ResourceProfileController {
     Entity resource = Entity.get(params.id)
 
     if (!resource) {
-      //flash.message = "ResourceProfile not found with id ${params.id}"
       flash.message = message(code: "resource.idNotFound", args: [params.id])
       redirect action: 'list'
     }
