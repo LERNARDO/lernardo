@@ -1248,8 +1248,35 @@ class ProjectProfileController {
         return
       }
       else {
-        render(template: '/overview/searchresults', model: [searchList: projects])
+        render(template: 'searchresults', model: [projects: projects, currentEntity: entityHelperService.loggedIn])
       }
+    }
+  }
+
+  def searchbyname = {
+    if (!params.name) {
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def users = c.list {
+      eq("type", metaDataService.etProject)
+      or {
+        ilike('name', "%" + params.name + "%")
+        profile {
+          ilike('fullName', "%" + params.name + "%")
+        }
+      }
+      maxResults(30)
+    }
+
+    if (users.size() == 0) {
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      return
+    }
+    else {
+      render(template: 'searchresults', model: [projects: users, currentEntity: entityHelperService.loggedIn])
     }
   }
 
@@ -1264,7 +1291,7 @@ class ProjectProfileController {
         return
       }
       else {
-        render(template: '/overview/searchresults', model: [searchList: projects])
+        render(template: 'searchresults', model: [projects: projects, currentEntity: entityHelperService.loggedIn])
       }
     }
     else
@@ -1289,7 +1316,7 @@ class ProjectProfileController {
       return
     }
     else {
-        render(template: '/overview/searchresults', model: [searchList: result])
+        render(template: 'searchresults', model: [projects: result, currentEntity: entityHelperService.loggedIn])
     }
   }
 

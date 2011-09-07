@@ -28,21 +28,21 @@
       </g:form>
     </div>
 
-    <div class="frame" style="border: 1px solid #aaa; padding: 5px; margin-bottom: 5px;">
-      <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect2']" update="templateselect" before="showspinner('#templateselect')">
+    <div style="margin-bottom: 5px;">
+      <g:formRemote name="formRemote0" url="[controller:'groupActivityTemplateProfile', action:'updateselect2']" update="searchresults" before="showspinner('#searchresults')">
 
         <table>
           <tr>
-            <td class="bold"><g:message code="name"/>:</td>
+            <td class="bold" style="padding-right: 10px;"><g:message code="name"/>:</td>
             <td><g:textField name="name" size="30"/></td>
           </tr>
           <tr>
             <td class="bold"><g:message code="duration"/>:</td>
             <td><g:select from="${1..239}" name="duration1" noSelection="['all':message(code:'any')]" onchange="${remoteFunction(controller:'groupActivityTemplateProfile', action:'secondselect', update:'secondSelect', params:'\'value=\' + this.value+\'&currentvalue=\'+document.getElementById(\'duration2\').value' )}"/>
-              <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> (min)</td>
+              <span id="secondSelect"><span id="duration2" style="display: none">0</span></span> <span class="gray">(<g:message code="minutes"/>)</span></td>
           </tr>
           <tr>
-            <td class="bold"><g:message code="labels"/>:</td>
+            <td class="bold" valign="top"><g:message code="labels"/>:</td>
             <td><g:select from="${allLabels}" multiple="true" name="labels" value="" style="min-height: 115px;"/></td>
           </tr>
         </table>
@@ -52,7 +52,7 @@
       </g:formRemote>
     </div>
 
-    <div id="templateselect">
+    <div id="searchresults">
     </div>
 
   </div>

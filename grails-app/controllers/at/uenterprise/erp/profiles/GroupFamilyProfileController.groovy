@@ -105,7 +105,7 @@ class GroupFamilyProfileController {
     Entity group = Entity.get(params.id)
 
     if (!group) {
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+       flash.message = message(code: "group.idNotFound", args: [params.id])
       redirect action: 'list'
     }
     else {

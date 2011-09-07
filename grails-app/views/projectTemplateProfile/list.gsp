@@ -27,16 +27,16 @@
       </g:form>
     </div>
 
-    <div class="frame" style="border: 1px solid #aaa; padding: 5px; margin-bottom: 5px;">
-      <g:formRemote name="formRemote0" url="[controller:'projectTemplateProfile', action:'updateselect']" update="templateselect" before="showspinner('#templateselect')">
+    <div style="margin-bottom: 5px;">
+      <g:formRemote name="formRemote0" url="[controller:'projectTemplateProfile', action:'updateselect']" update="searchresults" before="showspinner('#searchresults')">
 
         <table>
           <tr>
-            <td class="bold"><g:message code="name"/>:</td>
+            <td class="bold" style="padding-right: 10px;"><g:message code="name"/>:</td>
             <td><g:textField name="name" size="30"/></td>
           </tr>
           <tr>
-            <td class="bold"><g:message code="labels"/>:</td>
+            <td class="bold" valign="top"><g:message code="labels"/>:</td>
             <td><g:select from="${allLabels}" multiple="true" name="labels" value="" style="min-height: 115px;"/></td>
           </tr>
         </table>
@@ -46,7 +46,7 @@
       </g:formRemote>
     </div>
 
-    <div id="templateselect">
+    <div id="searchresults">
     </div>
 
   </div>

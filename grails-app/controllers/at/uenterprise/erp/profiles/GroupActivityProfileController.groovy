@@ -37,7 +37,7 @@ class GroupActivityProfileController {
   }
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
+    /*params.offset = params.offset ? params.int('offset') : 0
     params.max = Math.min(params.max ? params.int('max') : 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
@@ -51,7 +51,7 @@ class GroupActivityProfileController {
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalGroupActivities = Entity.countByType(etGroupActivity)
+    int totalGroupActivities = Entity.countByType(etGroupActivity)*/
 
     Entity currentEntity = entityHelperService.loggedIn
 
@@ -60,8 +60,8 @@ class GroupActivityProfileController {
     if (currentEntity.type == metaDataService.etEducator) {
       // find all facilities the current entity is linked to as educator or lead educator
       List facilities = []
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltWorking))
-      facilities.addAll(functionService.findAllByLink(entityHelperService.loggedIn, null, metaDataService.ltLeadEducator))
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
 
       // find all themes that are linked to those facilities
 
@@ -75,8 +75,8 @@ class GroupActivityProfileController {
     params.sort = 'name'
     params.order = 'asc'
 
-    return [groups: groupActivities,
-            totalGroupActivities: totalGroupActivities,
+    return [/*groups: groupActivities,
+            totalGroupActivities: totalGroupActivities,*/
             themes: themes,
             allLabels: Label.findAllByType('template', params)]
   }
@@ -522,7 +522,7 @@ class GroupActivityProfileController {
                                              withTemplates: params.printtemplates == "" ? 'true' : 'false'], filename: message(code: 'groupActivity') + '_' + group.profile.fullName
   }
 
-    def searchbydate = {
+  def searchbydate = {
     def beginDate = null
     def endDate = null
     if (params.beginDate)
@@ -546,7 +546,7 @@ class GroupActivityProfileController {
         return
       }
       else {
-        render(template: '/overview/searchresults', model: [searchList: groupActivities])
+        render template: 'searchresults', model: [groups: groupActivities]
       }
     }
   }
@@ -562,11 +562,38 @@ class GroupActivityProfileController {
         return
       }
       else {
-        render(template: '/overview/searchresults', model: [searchList: groupActivities])
+        render(template: 'searchresults', model: [groups: groupActivities])
       }
     }
     else
       render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+  }
+
+  def searchbyname = {
+    if (!params.name) {
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def users = c.list {
+      eq("type", metaDataService.etGroupActivity)
+      or {
+        ilike('name', "%" + params.name + "%")
+        profile {
+          ilike('fullName', "%" + params.name + "%")
+        }
+      }
+      maxResults(30)
+    }
+
+    if (users.size() == 0) {
+      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
+      return
+    }
+    else {
+      render(template: 'searchresults', model: [groups: users])
+    }
   }
 
   def searchbylabel = {
@@ -587,7 +614,7 @@ class GroupActivityProfileController {
       return
     }
     else {
-        render(template: '/overview/searchresults', model: [searchList: result])
+        render(template: 'searchresults', model: [groups: result])
     }
   }
 

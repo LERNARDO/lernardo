@@ -122,7 +122,6 @@ class OverviewController {
       return
     }
     else {
-
       render(template: 'searchresults', model: [searchList: users])
     }
   }
