@@ -372,7 +372,7 @@ class ClientProfileController {
     else
       params.date = null
 
-    if ( params.date ) {
+    if (params.date) {
       CDate date = new CDate(params)
       // date.date = functionService.convertToUTC(date.date)
       date.type = client.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'

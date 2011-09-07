@@ -522,18 +522,14 @@
 </div>
 
 <div class="zusatz">
-  <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.projectName]"/> <erp:accessCheck
-      entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#dates');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}"
-                                alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="dates" style="display:none">
-    <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]"
-                  update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
-      <g:datePicker name="date" value="" precision="day"/>
-      <g:submitButton name="button" value="${message(code:'add')}"/>
-    </g:formRemote>
-  </div>
+  <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.projectName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#dates');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+    <div class="zusatz-add" id="dates" style="display:none">
+      <g:formRemote name="formRemote" url="[controller:'educatorProfile', action:'addDate', id:educator.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
+        <g:textField name="date" size="12" class="datepicker" value=""/>
+        <g:submitButton name="button" value="${message(code:'add')}"/>
+      </g:formRemote>
+    </div>
 
   <div class="zusatz-show" id="dates2">
     <g:render template="dates" model="[educator: educator, entity: currentEntity]"/>

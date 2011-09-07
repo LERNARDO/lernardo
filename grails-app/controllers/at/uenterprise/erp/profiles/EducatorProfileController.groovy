@@ -205,11 +205,21 @@ class EducatorProfileController {
   }
 
   def addDate = {
-    CDate date = new CDate(params)
-    // date.date = functionService.convertToUTC(date.date)
     Entity educator = Entity.get(params.id)
-    date.type = educator.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
-    educator.profile.addToDates(date)
+
+    if (params.date && Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.date))
+      params.date = Date.parse("dd. MM. yy", params.date)
+    else if (params.date && Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.date))
+      params.date = Date.parse("dd.MM.yy", params.date)
+    else
+      params.date = null
+
+    if (params.date) {
+      CDate date = new CDate(params)
+      // date.date = functionService.convertToUTC(date.date)
+      date.type = educator.profile.dates.size() % 2 == 0 ? 'entry' : 'exit'
+      educator.profile.addToDates(date)
+    }
     render template: 'dates', model: [educator: educator, entity: entityHelperService.loggedIn]
   }
 
