@@ -133,7 +133,7 @@ class TemplateProfileController {
     new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
     // loop through all methods of the original and create them in the copy
-    original.profile.methods.each { me ->
+    original.profile.methods.each { Method me ->
       Method method = new Method()
 
       method.name = me.name
@@ -149,7 +149,7 @@ class TemplateProfileController {
     }
 
     // loop through all labels of the original and create them in the copy
-    original.profile.labels.each { la ->
+    original.profile.labels.each { Label la ->
       Label label = new Label()
 
       label.name = la.name
@@ -157,6 +157,7 @@ class TemplateProfileController {
       label.type = "instance"
 
       label.save(flush:true, failOnError: true)
+      log.info label
 
       entity.profile.addToLabels(label)
     }
