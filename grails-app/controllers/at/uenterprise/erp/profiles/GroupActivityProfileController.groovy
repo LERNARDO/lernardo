@@ -391,6 +391,12 @@ class GroupActivityProfileController {
   def removeFacility = {
     def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
     render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
+
+    // delete all planned resources
+    // TODO: when a facility is removed the elements in the GSP that show the plannable resources and the currently
+    // planned resources need to be updated as well
+    //Entity group = Entity.get(params.id)
+    //Link.findAllByTargetAndType(group, metaDataService.ltResourcePlanned).each {it.delete()}
   }
 
   def removeClient = {
