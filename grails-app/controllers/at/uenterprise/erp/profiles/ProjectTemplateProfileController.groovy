@@ -280,6 +280,8 @@ class ProjectTemplateProfileController {
       // link projectUnitTemplate and projectTemplate
       new Link(source: projectUnitTemplate, target: projectTemplate, type: metaDataService.ltProjectUnitTemplate).save()
 
+      projectTemplate.profile.addToTemplates(projectUnitTemplate.id.toString())
+
       // find all projectUnitTemplates of this projectTemplate
       List projectUnitTemplates = []
       projectTemplate.profile.templates.each {
@@ -290,8 +292,6 @@ class ProjectTemplateProfileController {
 
       // calculate realDuration
       int calculatedDuration = calculateDuration(projectUnitTemplates)
-
-      projectTemplate.profile.addToTemplates(projectUnitTemplate.id.toString())
 
       render template: 'projectUnitTemplates', model: [allGroupActivityTemplates: allGroupActivityTemplates, projectUnitTemplates: projectUnitTemplates, projectTemplate: projectTemplate, entity: entityHelperService.loggedIn, calculatedDuration: calculatedDuration]
     } catch (at.openfactory.ep.EntityException ee) {
