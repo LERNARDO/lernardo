@@ -462,19 +462,19 @@ class ProjectProfileController {
 
     Date tperiodStart = params.startDate
     Date tperiodEnd = params.endDate
-    params.endDate.setHours(23);
-    params.endDate.setMinutes(59);
+    tperiodEnd.setHours(23)
+    tperiodEnd.setMinutes(59)
 
-    Calendar tcalendarStart = new GregorianCalendar();
-    tcalendarStart.setTime(tperiodStart);
+    Calendar tcalendarStart = new GregorianCalendar()
+    tcalendarStart.setTime(tperiodStart)
 
-    Calendar tcalendarEnd = new GregorianCalendar();
-    tcalendarEnd.setTime(tperiodEnd);
+    Calendar tcalendarEnd = new GregorianCalendar()
+    tcalendarEnd.setTime(tperiodEnd)
 
     SimpleDateFormat tdf = new SimpleDateFormat("EEEE", new Locale("en"))
 
     while (tcalendarStart <= tcalendarEnd) {
-       Date currentDate = tcalendarStart.getTime();
+       Date currentDate = tcalendarStart.getTime()
 
        if ((params.monday && (tdf.format(currentDate) == 'Monday')) ||
            (params.tuesday && (tdf.format(currentDate) == 'Tuesday')) ||
@@ -531,18 +531,20 @@ class ProjectProfileController {
       // create project days
       Date periodStart = params.startDate
       Date periodEnd = params.endDate
+      periodEnd.setHours(23)
+      periodEnd.setMinutes(59)
 
-      Calendar calendarStart = new GregorianCalendar();
-      calendarStart.setTime(periodStart);
+      Calendar calendarStart = new GregorianCalendar()
+      calendarStart.setTime(periodStart)
 
-      Calendar calendarEnd = new GregorianCalendar();
-      calendarEnd.setTime(periodEnd);
+      Calendar calendarEnd = new GregorianCalendar()
+      calendarEnd.setTime(periodEnd)
 
       SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
       // loop through the date range and compare the dates day with the params
       while (calendarStart <= calendarEnd) {
-        Date currentDate = calendarStart.getTime();
+        Date currentDate = calendarStart.getTime()
 
         if ((params.monday && (df.format(currentDate) == 'Monday')) ||
                 (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
