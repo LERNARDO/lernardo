@@ -448,6 +448,7 @@ class ProjectProfileController {
   }
 
   def save = {ProjectCommand pc->
+    log.info params
     Entity currentEntity = entityHelperService.loggedIn
 
     Entity projectTemplate = Entity.get(params.id)
@@ -457,7 +458,7 @@ class ProjectProfileController {
       return
     }
 
-    // first check the number of project days is > 0
+    // first check if the number of project days is > 0
     int checkdays = 0
 
     Date tperiodStart = params.startDate
@@ -493,6 +494,7 @@ class ProjectProfileController {
       return
     }
 
+    // if there is more than 1 project day create project
     EntityType etProject = metaDataService.etProject
 
     try {
@@ -531,8 +533,11 @@ class ProjectProfileController {
       // create project days
       Date periodStart = params.startDate
       Date periodEnd = params.endDate
+
+      log.info periodEnd
       periodEnd.setHours(23)
       periodEnd.setMinutes(59)
+      log.info periodEnd
 
       Calendar calendarStart = new GregorianCalendar()
       calendarStart.setTime(periodStart)
@@ -544,6 +549,8 @@ class ProjectProfileController {
 
       // loop through the date range and compare the dates day with the params
       while (calendarStart <= calendarEnd) {
+        log.info "s:" + calendarStart
+        log.info "e:" + calendarEnd
         Date currentDate = calendarStart.getTime()
 
         if ((params.monday && (df.format(currentDate) == 'Monday')) ||
@@ -587,9 +594,8 @@ class ProjectProfileController {
           EntityType etProjectDay = metaDataService.etProjectDay
           Entity projectDay = entityHelperService.createEntity("projectDay", etProjectDay) {Entity ent ->
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
-            ent.profile.date = calendarStart.getTime();
             ent.profile.fullName = params.fullName
-            ent.profile.date = functionService.convertToUTC(ent.profile.date)
+            ent.profile.date = functionService.convertToUTC(calendarStart.getTime())
           }
 
           // link project day to project
