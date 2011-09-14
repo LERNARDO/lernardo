@@ -63,7 +63,8 @@ class ProfileController {
 
     Entity currentEntity = entityHelperService.loggedIn
     userList.each { Entity user ->
-      functionService.createMessage(currentEntity, user, user, params.subject, params.content)
+      if (currentEntity.id != user.id)
+        functionService.createMessage(currentEntity, user, user, params.subject, params.content)
     }
     flash.message = message(code: "admin.notificationSuccess")
     redirect controller: currentEntity.type.supertype.name + 'Profile', action: "show", id: currentEntity.id
