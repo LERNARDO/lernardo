@@ -448,7 +448,6 @@ class ProjectProfileController {
   }
 
   def save = {ProjectCommand pc->
-    log.info params
     Entity currentEntity = entityHelperService.loggedIn
 
     Entity projectTemplate = Entity.get(params.id)
@@ -534,10 +533,8 @@ class ProjectProfileController {
       Date periodStart = params.startDate
       Date periodEnd = params.endDate
 
-      log.info periodEnd
       periodEnd.setHours(23)
       periodEnd.setMinutes(59)
-      log.info periodEnd
 
       Calendar calendarStart = new GregorianCalendar()
       calendarStart.setTime(periodStart)
@@ -549,9 +546,10 @@ class ProjectProfileController {
 
       // loop through the date range and compare the dates day with the params
       while (calendarStart <= calendarEnd) {
-        log.info "s:" + calendarStart
-        log.info "e:" + calendarEnd
         Date currentDate = calendarStart.getTime()
+
+        log.info "params sunday: " + params.sunday
+        log.info "format: " + df.format(currentDate)
 
         if ((params.monday && (df.format(currentDate) == 'Monday')) ||
                 (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
@@ -586,6 +584,7 @@ class ProjectProfileController {
             calendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
           }
           else if (df.format(currentDate) == 'Sunday') {
+            log.info "sunday is there"
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
           }
@@ -596,6 +595,7 @@ class ProjectProfileController {
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
             ent.profile.fullName = params.fullName
             ent.profile.date = functionService.convertToUTC(calendarStart.getTime())
+            log.info "day created"
           }
 
           // link project day to project
