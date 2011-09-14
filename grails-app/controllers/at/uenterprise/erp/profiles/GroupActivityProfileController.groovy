@@ -111,9 +111,14 @@ class GroupActivityProfileController {
     def allSubstitutes = Entity.findAllByType(metaDataService.etEducator)
     List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
 
-    List templates = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
-
     Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
+
+    List templatesOfGroup = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
+    List templates = []
+    template.profile.templates.each {
+      if (templatesOfGroup.contains(Entity.get(it)))
+        templates.add(Entity.get(it))
+    }
 
     def calculatedDuration = 0
     templates.each {
