@@ -11,7 +11,7 @@
     <p><g:textField name="email" size="40" value="${params.email}"/></p>
 
     <div class="buttons">
-      <g:submitButton name="submitButton" value="Senden"/>
+      <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Senden"/></div>
     </div>
 
   </g:form>
