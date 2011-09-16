@@ -3,11 +3,19 @@
   <title><g:message code="privat.workday"/></title>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGreen">
   <div class="second">
     <h1><g:message code="privat.workday"/></h1>
   </div>
 </div>
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="workdayUnit" action="report" id="${entity.id}"><g:message code="report"/></g:link></h1>
+  </div>
+</div>
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 

@@ -21,6 +21,67 @@ class HelperTagLib {
   static namespace = "erp"
 
   /**
+   * Returns the time evaluations for a given entity
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The group activity or project to check
+   * @attr date1 REQUIRED The beginning of the date range
+   * @attr date2 REQUIRED The end of the date range
+   */
+  def getEvaluation = {attrs, body ->
+    Entity entity = attrs.entity
+
+    Date date1 = attrs.date1
+    Date date2 = attrs.date2
+
+    Calendar calendarStart = new GregorianCalendar()
+    calendarStart.setTime(date1)
+
+    Calendar calendarEnd = new GregorianCalendar()
+    calendarEnd.setTime(date2)
+
+    SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy", new Locale("en"))
+
+    List workdaycategories = WorkdayCategory.list()
+
+    List sums = []
+    workdaycategories.each {
+      sums.add(0)
+    }
+
+    while (calendarStart <= calendarEnd) {
+      BigDecimal total = 0
+      Date currentDate = calendarStart.getTime()
+      out << "<tr>"
+      out << "<td>" + formatDate(date: currentDate, format: "dd.MM.yyyy") + "</td>"
+      workdaycategories.eachWithIndex { wdcat, i ->
+        BigDecimal hours = 0
+        entity.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+          if (workdayUnit.category == wdcat.name) {
+            // check if the date of the workdayunit is between date1 and date2
+            if (df.format(workdayUnit.date1) == df.format(currentDate)) {
+              hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+              total += hours
+              sums[i] += hours
+            }
+          }
+        }
+        out << "<td>" + hours + "</td>"
+      }
+      out << "<td>" + total + "</td>"
+      out << "</tr>"
+      calendarStart.add(Calendar.DATE, 1)
+    }
+    out << "<tr>"
+    out << "<td class='bold'>Gesamt</td>"
+    sums.each {
+      out << "<td class='bold'>" + it + "</td>"
+    }
+    out << "<td class='bold'>" + sums.sum() + "</td>"
+    out << "</tr>"
+  }
+
+  /**
    * Checks if a resource is available for planning
    *
    * @author Alexander Zeillinger

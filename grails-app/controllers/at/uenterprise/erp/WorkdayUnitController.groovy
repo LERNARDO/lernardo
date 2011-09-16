@@ -20,6 +20,27 @@ class WorkdayUnitController {
       return [entity: entity, workdaycategories: workdaycategories]
     }
 
+    def report = {
+      Entity entity = Entity.get(params.id)
+      return [entity: entity]
+    }
+
+    def showreport = {
+      Entity entity = Entity.get(params.id)
+      List workdaycategories = WorkdayCategory.list()
+      Date date1 = Date.parse("dd. MM. yy", params.date1)
+      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      render template: 'results', model:[entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2]
+    }
+
+    def createpdf = {
+      Entity entity = Entity.get(params.id)
+      List workdaycategories = WorkdayCategory.list()
+      Date date1 = Date.parse("dd. MM. yy", params.date1)
+      Date date2 = Date.parse("dd. MM. yy", params.date2)
+      renderPdf template: 'createpdf', model: [entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2], filename: 'Zeitaufzeichnung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy")
+    }
+
     def showunits = {
       Entity entity = Entity.get(params.id)
 
