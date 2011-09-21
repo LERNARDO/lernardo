@@ -17,6 +17,7 @@ class FacilityProfile extends Profile {
   String  zip
   String  city
   String  street
+  String  phone
   Boolean showTips = true
 
   static constraints = {
@@ -26,6 +27,7 @@ class FacilityProfile extends Profile {
     zip         size: 4..10
     city        size: 2..50, maxSize: 50
     street      size: 2..50, maxSize: 50
+    phone       nullable: true
   }
 
   String toString() {

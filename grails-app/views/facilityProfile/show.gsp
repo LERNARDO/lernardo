@@ -24,14 +24,15 @@
         </tr>
 
         <tr>
-          <td colspan="4" valign="top" class="name-show"><g:message code="facility.profile.colony"/>:</td>
+          <td valign="top" class="name-show"><g:message code="facility.profile.colony"/>:</td>
+          <td colspan="3" valign="top" class="name-show"><g:message code="facility.profile.phone"/>:</td>
         </tr>
 
         <tr>
           <td valign="top" class="value-show">
             <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic red"><g:message code="facility.profile.noCol"/></span></g:else>
           </td>
-          <td colspan="3" valign="top"></td>
+          <td colspan="3" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
         </tr>
 
         <tr>

@@ -15,7 +15,7 @@
 
     <g:form>
       <div>
-        <table>
+        <table width="100%">
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="facility.profile.name"/></td>
@@ -40,30 +40,34 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="middle" class="name"><g:message code="facility.profile.colony"/>:</td>
+            <td valign="middle" class="name"><g:message code="facility.profile.colony"/>:</td>
+            <td colspan="3" valign="middle" class="name"><g:message code="facility.profile.phone"/>:</td>
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="top" class="value">
+            <td valign="top" class="value">
               <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile"/>
+            </td>
+            <td colspan="3" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.phone', 'errors')}" size="30" name="phone" value="${fieldValue(bean: facility, field: 'profile.phone').decodeHTML()}"/>
             </td>
           </tr>
 
           <tr class="prop">
-            <td height="25" valign="top" class="name"><g:message code="facility.profile.street"/></td>
+            <td valign="top" class="name"><g:message code="facility.profile.street"/></td>
             <td valign="top" class="name"><g:message code="facility.profile.zip"/></td>
             <td valign="top" class="name"><g:message code="facility.profile.city"/></td>
             <td valign="top" class="name"><g:message code="facility.profile.country"/></td>
           </tr>
 
           <tr class="prop">
-            <td width="290" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.street', 'errors')}" size="41" name="street" value="${fieldValue(bean: facility, field: 'profile.street').decodeHTML()}"/>
             </td>
-            <td width="101" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: facility, field: 'profile.zip', 'errors')}" size="12" name="zip" value="${fieldValue(bean: facility, field: 'profile.zip').decodeHTML()}"/>
             </td>
-            <td width="220" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: facility, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: facility, field: 'profile.city').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">

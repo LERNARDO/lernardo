@@ -40,12 +40,16 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="middle" class="name"><g:message code="facility.profile.colony"/>:</td>
+            <td valign="middle" class="name"><g:message code="facility.profile.colony"/>:</td>
+            <td colspan="3" valign="middle" class="name"><g:message code="facility.profile.phone"/>:</td>
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="top" class="value">
+            <td valign="top" class="value">
               <g:select from="${allColonias}" class="drop-down-240" name="colonia" optionKey="id" optionValue="profile" value="${colony?.id}"/>
+            </td>
+            <td colspan="3" valign="top" class="value">
+              <g:textField class="${hasErrors(bean: facility, field: 'profile.phone', 'errors')}" size="30" name="phone" value="${fieldValue(bean: facility, field: 'profile.phone').decodeHTML()}"/>
             </td>
           </tr>
 
