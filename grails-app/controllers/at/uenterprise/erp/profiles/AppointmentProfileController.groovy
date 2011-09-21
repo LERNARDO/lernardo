@@ -35,6 +35,22 @@ class AppointmentProfileController {
       Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
 
       List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
+
+      if (params.order == "fullName")
+        appointments.sort() {it.profile.fullName}
+      if (params.order == "beginDate")
+        appointments.sort() {it.profile.beginDate}
+      if (params.order == "endDate")
+        appointments.sort() {it.profile.endDate}
+      if (params.order == "allDay")
+        appointments.sort() {it.profile.allDay}
+      if (params.order == "isPrivate")
+        appointments.sort() {it.profile.isPrivate}
+
+      if (params.order == "desc")
+        appointments = appointments.reverse()
+
+
       def resulttotal = appointments.size()
 
       def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
