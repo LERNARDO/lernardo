@@ -136,7 +136,7 @@ class ProjectProfileController {
       // get all partners
       def allPartners = Entity.findAllByType(metaDataService.etPartner)
 
-      // find all projectdays linked to this project
+      // find all project days linked to this project
       List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
       projectDays.sort {it.profile.date}
 
@@ -548,9 +548,6 @@ class ProjectProfileController {
       while (calendarStart <= calendarEnd) {
         Date currentDate = calendarStart.getTime()
 
-        log.info "params sunday: " + params.sunday
-        log.info "format: " + df.format(currentDate)
-
         if ((params.monday && (df.format(currentDate) == 'Monday')) ||
                 (params.tuesday && (df.format(currentDate) == 'Tuesday')) ||
                 (params.wednesday && (df.format(currentDate) == 'Wednesday')) ||
@@ -584,7 +581,6 @@ class ProjectProfileController {
             calendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
           }
           else if (df.format(currentDate) == 'Sunday') {
-            log.info "sunday is there"
             calendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
             calendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
           }
@@ -595,7 +591,6 @@ class ProjectProfileController {
             ent.profile = profileHelperService.createProfileFor(ent) as Profile
             ent.profile.fullName = params.fullName
             ent.profile.date = functionService.convertToUTC(calendarStart.getTime())
-            log.info "day created"
           }
 
           // link project day to project
