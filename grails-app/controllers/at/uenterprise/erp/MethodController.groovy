@@ -110,13 +110,35 @@ class MethodController {
     Element element = new Element(params)
     Method method = Method.get(params.id)
     method.addToElements(element)
+
+    // find all methods that have the same name and add the element each
+    List methods = Method.findAllByNameAndType(method.name, "instance")
+    methods.each { Method meth ->
+      meth.addToElements(new Element(name: element.name))
+    }
+
     render template: 'elements', model: [methodInstance: method, entity: entityHelperService.loggedIn]
   }
 
   def removeElement = {
     Method method = Method.get(params.id)
-    method.removeFromElements(Element.get(params.element))
-    Element.get(params.element).delete()
+    Element element = Element.get(params.element)
+    method.removeFromElements(element)
+
+    // find all methods that have the same name and remove the element each
+    List methods = Method.findAllByNameAndType(method.name, "instance")
+    methods.each { Method meth ->
+      Element elementToDelete = null
+      meth.elements.each { Element el ->
+        if (el.name == element.name)
+          elementToDelete = el
+      }
+      meth.removeFromElements(elementToDelete)
+      elementToDelete.delete()
+    }
+
+    element.delete(flush: true)
+
     render template: 'elements', model: [methodInstance: method, entity: entityHelperService.loggedIn]
   }
 
