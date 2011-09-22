@@ -70,7 +70,7 @@ class AppointmentProfileController {
         [appointment: appointment, entity: appointment, owner: owner]
       }
       else {
-        flash.message = message(code: "appointment.idNotFound", args: [params.id])
+        flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
         redirect action: list
       }
 
@@ -84,17 +84,17 @@ class AppointmentProfileController {
 
         if(appointment) {
             try {
-                flash.message = message(code: "appointment.deleted", args: [appointment.profile.fullName])
+                flash.message = message(code: "object.deleted", args: [message(code: "appointment"), appointment.profile.fullName])
                 appointment.delete(flush:true)
                 redirect(action:"list")
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code: "appointment.notDeleted", args: [appointment.profile.fullName])
+                flash.message = message(code: "object.notDeleted", args: [message(code: "appointment"), appointment.profile.fullName])
                 redirect(action:"show",id:params.id)
             }
         }
         else {
-            flash.message = message(code: "appointment.idNotFound", args: [params.id])
+            flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
             redirect(action:"list")
         }
     }
@@ -103,7 +103,7 @@ class AppointmentProfileController {
       Entity appointment = Entity.get(params.id)
 
     if (!appointment) {
-      flash.message = message(code: "appointment.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
       redirect action: 'list'
       return
     }
@@ -125,7 +125,7 @@ class AppointmentProfileController {
       }
 
       if (appointment.profile.save() && appointment.save()) {
-        flash.message = message(code: "appointment.updated", args: [appointment.profile.fullName])
+        flash.message = message(code: "object.updated", args: [message(code: "appointment"), appointment.profile.fullName])
         redirect action: 'show', id: appointment.id
       }
       else {
@@ -158,7 +158,7 @@ class AppointmentProfileController {
         // create link to owner
         new Link(source: appointment, target: entity, type: metaDataService.ltAppointment).save(failOnError: true)
 
-        flash.message = message(code: "appointment.created", args: [appointment.profile.fullName])
+        flash.message = message(code: "object.created", args: [message(code: "appointment"), appointment.profile.fullName])
         redirect action: 'show', id: appointment.id, params: [entity: appointment]
       } catch (EntityException ee) {
         render(view: "create", model: [appointmentProfileInstance: ee.entity, entity: entity])

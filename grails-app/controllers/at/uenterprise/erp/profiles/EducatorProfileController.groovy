@@ -55,8 +55,7 @@ class EducatorProfileController {
     Entity entity = params.entity ? educator : entityHelperService.loggedIn
 
     if (!educator) {
-      // flash.message = "EducatorProfile not found with id ${params.id}"
-      flash.message = message(code: "educator.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "educator")])
       redirect(action: list)
       return
     }
@@ -98,18 +97,17 @@ class EducatorProfileController {
           }
       }
       try {
-        flash.message = message(code: "educator.deleted", args: [educator.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "educator"), educator.profile.fullName])
         educator.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "educator.notDeleted", args: [educator.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "educator"), educator.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      // flash.message = "EducatorProfile not found with id ${params.id}"
-      flash.message = message(code: "educator.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "educator")])
       redirect(action: "list")
     }
   }
@@ -119,7 +117,7 @@ class EducatorProfileController {
     Entity entity = params.entity ? educator : entityHelperService.loggedIn
 
     if (!educator) {
-      flash.message = message(code: "educator.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "educator")])
       redirect action: 'list'
       return
     }
@@ -158,7 +156,7 @@ class EducatorProfileController {
         new Link(source: educator, target: Entity.get(params.enlisted), type: metaDataService.ltEnlisted).save()
       }
 
-      flash.message = message(code: "educator.updated", args: [educator.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "educator"), educator.profile.fullName])
       redirect action: 'show', id: educator.id, params: [entity: educator.id]
     }
     else {
@@ -196,7 +194,7 @@ class EducatorProfileController {
       // link educator to colonia
       //new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberEducator).save()
 
-      flash.message = message(code: "educator.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "educator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [educator: ee.entity, partner: Entity.findAllByType(metaDataService.etPartner), allColonias: Entity.findAllByType(metaDataService.etGroupColony)])

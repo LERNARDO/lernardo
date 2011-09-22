@@ -51,7 +51,7 @@ class PateProfileController {
     Entity entity = params.entity ? pate : entityHelperService.loggedIn
 
     if (!pate) {
-      flash.message = message(code: "pate.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "pate")])
       redirect(action: list)
       return
     }
@@ -90,17 +90,17 @@ class PateProfileController {
           }
       }
       try {
-        flash.message = message(code: "pate.deleted", args: [pate.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "pate"), pate.profile.fullName])
         pate.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "pate.notDeleted", args: [pate.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "pate"), pate.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "pate.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "pate")])
       redirect(action: "list")
     }
   }
@@ -109,7 +109,7 @@ class PateProfileController {
     Entity pate = Entity.get(params.id)
 
     if (!pate) {
-      flash.message = message(code: "pate.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "pate")])
       redirect action: 'list'
       return
     }
@@ -131,7 +131,7 @@ class PateProfileController {
 
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 
-      flash.message = message(code: "pate.updated", args: [pate.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "pate"), pate.profile.fullName])
       redirect action: 'show', id: pate.id, params: [entity: pate.id]
     }
     else {
@@ -155,7 +155,7 @@ class PateProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
-      flash.message = message(code: "pate.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "pate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [pate: ee.entity, clients: Entity.findAllByType(metaDataService.etClient)])

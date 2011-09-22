@@ -51,7 +51,7 @@ class ResourceProfileController {
     Entity resource = Entity.get(params.id)
 
     if (!resource) {
-      flash.message = message(code: "resource.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "resource")])
       redirect(action: list)
     }
     else {
@@ -68,17 +68,17 @@ class ResourceProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(resource, resource).each {it.delete()}
       try {
-        flash.message = message(code: "resource.deleted", args: [resource.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "resource"), resource.profile.fullName])
         resource.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "resource.notDeleted", args: [resource.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "resource"), resource.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "resource.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "resource")])
       redirect(action: "list")
     }
   }
@@ -87,7 +87,7 @@ class ResourceProfileController {
     Entity resource = Entity.get(params.id)
 
     if (!resource) {
-      flash.message = message(code: "resource.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "resource")])
       redirect action: 'list'
     }
     else {
@@ -101,7 +101,7 @@ class ResourceProfileController {
     resource.profile.properties = params
 
     if (resource.profile.save() && resource.save()) {
-      flash.message = message(code: "resource.updated", args: [resource.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "resource"), resource.profile.fullName])
       redirect action: 'show', id: resource.id
     }
     else {
@@ -122,7 +122,7 @@ class ResourceProfileController {
         ent.profile.properties = params
       }
 
-      flash.message = message(code: "resource.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "resource"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [resource: ee.entity, entity: currentEntity])

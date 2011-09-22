@@ -67,7 +67,7 @@ class MsgController {
     def message = Msg.get(params.id)
 
     if(!message) {
-      flash.message = g.message(code:"msg.notFound", args:[params.id])
+      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
       redirect action:index, params:[name:params.name]
       return
     }
@@ -96,19 +96,18 @@ class MsgController {
     def message = Msg.get( params.id )
     if(message) {
       try {
-        // not working
-        //flash.message = message(code:"msg.deleted", args:[message.subject])
+        flash.message = g.message(code:"object.deleted", args:[g.message(code: "msg"), message.subject])
         message.delete(flush:true)
         redirect action:params.box, id: params.entity
         //render ""
       }
       catch(org.springframework.dao.DataIntegrityViolationException ex) {
-        flash.message = g.message(code:"msg.notDeleted", args:[message.subject])
+        flash.message = g.message(code: "object.notDeleted", args:[g.message(code: "msg"), message.subject])
         redirect action:"show",id:params.id
       }
     }
     else {
-      flash.message = g.message(code:"msg.notFound", args:[params.id])
+      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
       //redirect action:params.box, params:[name:params.name]
     }
   }
@@ -116,7 +115,7 @@ class MsgController {
   def edit = {
     def message = Msg.get( params.id )
     if(!message) {
-      flash.message = g.message(code:"msg.notFound", args:[params.id])
+      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
       redirect action:'index', params:[name:params.name]
       return
     }
@@ -138,7 +137,7 @@ class MsgController {
       }
     }
     else {
-      flash.message = g.message(code:"msg.notFound", args:[params.id])
+      flash.message = g.message(code: "object.notFound", args:[g.message(code: "msg")])
       redirect action:'index', params:[name:params.name]
     }
   }

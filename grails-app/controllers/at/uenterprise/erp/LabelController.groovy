@@ -25,7 +25,7 @@ class LabelController {
     def labelInstance = new Label(params)
     labelInstance.type = "template"
     if (labelInstance.save(flush: true)) {
-      flash.message = message(code: "label.created", args: [labelInstance.name])
+      flash.message = message(code: "object.created", args: [message(code: "label"), labelInstance.name])
       redirect action: "show", id: labelInstance.id
     }
     else {
@@ -39,7 +39,7 @@ class LabelController {
       [labelInstance: labelInstance]
     }
     else {
-      flash.message = message(code: "label.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "label")])
       redirect action: "list"
     }
   }
@@ -50,7 +50,7 @@ class LabelController {
       [labelInstance: labelInstance]
     }
     else {
-      flash.message = message(code: "label.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "label")])
       redirect action: "list"
     }
   }
@@ -80,7 +80,7 @@ class LabelController {
 
       labelInstance.properties = params
       if (!labelInstance.hasErrors() && labelInstance.save(flush: true)) {
-        flash.message = message(code: "label.updated", args: [labelInstance.name])
+        flash.message = message(code: "object.updated", args: [message(code: "label"), labelInstance.name])
         redirect action: "show", id: labelInstance.id
       }
       else {
@@ -88,7 +88,7 @@ class LabelController {
       }
     }
     else {
-      flash.message = message(code: "label.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "label")])
       redirect action: "list"
     }
   }
@@ -98,16 +98,16 @@ class LabelController {
     if (labelInstance) {
       try {
         labelInstance.delete(flush: true)
-        flash.message = message(code: "label.deleted", args: [labelInstance.name])
+        flash.message = message(code: "object.deleted", args: [message(code: "label"), labelInstance.name])
         redirect action: "list"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "label.notDeleted", args: [params.id])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "label"), labelInstance.name])
         redirect action: "show", id: params.id
       }
     }
     else {
-      flash.message = message(code: "label.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "label")])
       redirect action: "list"
     }
   }

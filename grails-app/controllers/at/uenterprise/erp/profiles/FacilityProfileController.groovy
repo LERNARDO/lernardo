@@ -52,8 +52,7 @@ class FacilityProfileController {
     Entity entity = params.entity ? facility : entityHelperService.loggedIn
 
     if (!facility) {
-      // flash.message = "FacilityProfile not found with id ${params.id}"
-      flash.message = message(code: "facility.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "facility")])
       redirect(action: list)
       return
     }
@@ -96,18 +95,17 @@ class FacilityProfileController {
       Publication.findAllByEntity(facility).each {it.delete()}
       Comment.findAllByCreator(facility.id.toInteger()).each {it.delete()}
       try {
-        flash.message = message(code: "facility.deleted", args: [facility.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "facility"), facility.profile.fullName])
         facility.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "facility.notDeleted", args: [facility.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "facility"), facility.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      // flash.message = "FacilityProfile not found with id ${params.id}"
-      flash.message = message(code: "facility.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "facility")])
       redirect(action: "list")
     }
   }
@@ -116,8 +114,7 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
 
     if (!facility) {
-      // flash.message = "FacilityProfile not found with id ${params.id}"
-      flash.message = message(code: "facility.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "facility")])
       redirect action: 'list'
       return
     }
@@ -142,7 +139,7 @@ class FacilityProfileController {
       // link new colonia to facility
       new Link(source: facility, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
-      flash.message = message(code: "facility.updated", args: [facility.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "facility"), facility.profile.fullName])
       redirect action: 'show', id: facility.id, params: [entity: facility.id]
     }
     else {
@@ -169,7 +166,7 @@ class FacilityProfileController {
       // link facility to colonia
       new Link(source: entity, target: Entity.get(params.colonia), type: metaDataService.ltGroupMemberFacility).save()
 
-      flash.message = message(code: "facility.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "facility"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [facility: ee.entity, allColonias: Entity.findAllByType(metaDataService.etGroupColony)])

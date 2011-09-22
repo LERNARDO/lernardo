@@ -21,7 +21,7 @@ class WorkdayCategoryController {
         [workdayCategoryInstance: workdayCategoryInstance]
       }
       else {
-        flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
+        flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
         redirect action:list
       }
 
@@ -32,16 +32,16 @@ class WorkdayCategoryController {
         if(workdayCategoryInstance) {
             try {
                 workdayCategoryInstance.delete(flush:true)
-                flash.message = message(code:"workdaycategory.deleted", args:[workdayCategoryInstance.name])
+                flash.message = message(code: "object.deleted", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
                 redirect action:"list"
             }
             catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code:"workdaycategory.notDeleted", args:[workdayCategoryInstance.name])
+                flash.message = message(code: "object.notDeleted", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
                 redirect action:"show", id:params.id
             }
         }
         else {
-            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
+            flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
             redirect action:"list"
         }
     }
@@ -53,7 +53,7 @@ class WorkdayCategoryController {
         [workdayCategoryInstance: workdayCategoryInstance]
       }
       else {
-        flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
+        flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
         redirect action:'list'
       }
 
@@ -74,8 +74,7 @@ class WorkdayCategoryController {
             }
             workdayCategoryInstance.properties = params
             if(workdayCategoryInstance.save()) {
-                flash.message = message(code:"workdaycategory.updated", args:[workdayCategoryInstance.name])
-
+                flash.message = message(code: "object.updated", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
                 redirect action:'show', id:workdayCategoryInstance.id
             }
             else {
@@ -83,7 +82,7 @@ class WorkdayCategoryController {
             }
         }
         else {
-            flash.message = message(code: "workdaycategory.idNotFound", args: [params.id])
+            flash.message = message(code: "object.notFound", args: [message(code: "workdayCategory")])
             redirect action:'list'
         }
     }
@@ -97,8 +96,7 @@ class WorkdayCategoryController {
     def save = {
         def workdayCategoryInstance = new WorkdayCategory(params)
         if(workdayCategoryInstance.save(flush:true)) {
-            flash.message = message(code:"workdaycategory.created", args:[workdayCategoryInstance.name])
-
+            flash.message = message(code: "object.created", args:[message(code: "workdayCategory"), workdayCategoryInstance.name])
             redirect action:"show", id:workdayCategoryInstance.id
         }
         else {

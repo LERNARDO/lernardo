@@ -52,7 +52,7 @@ class ParentProfileController {
     Entity entity = params.entity ? parent : entityHelperService.loggedIn
 
     if (!parent) {
-      flash.message = message(code: "parent.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "parent")])
       redirect(action: list)
       return
     }
@@ -92,17 +92,17 @@ class ParentProfileController {
           }
       }
       try {
-        flash.message = message(code: "parent.deleted", args: [parent.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "parent"), parent.profile.fullName])
         parent.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "parent.notDeleted", args: [parent.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "parent"), parent.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "parent.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "parent")])
       redirect(action: "list")
     }
   }
@@ -111,7 +111,7 @@ class ParentProfileController {
     Entity parent = Entity.get(params.id)
 
     if (!parent) {
-      flash.message = message(code: "parent.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "parent")])
       redirect action: 'list'
       return
     }
@@ -153,7 +153,7 @@ class ParentProfileController {
     //println parent.profile.errors.each {println it}
 
     if (parent.profile.save() && parent.user.save() && parent.save()) {
-      flash.message = message(code: "parent.updated", args: [parent.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "parent"), parent.profile.fullName])
       redirect action: 'show', id: parent.id, params: [entity: parent.id]
     }
     else {
@@ -180,7 +180,7 @@ class ParentProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
-      flash.message = message(code: "parent.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "parent"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [parent: ee.entity])

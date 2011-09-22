@@ -54,7 +54,7 @@ class PartnerProfileController {
     Entity entity = params.entity ? partner : entityHelperService.loggedIn
 
     if (!partner) {
-      flash.message = message(code: "partner.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "partner")])
       redirect(action: list)
       return
     }
@@ -91,17 +91,17 @@ class PartnerProfileController {
           }
       }
       try {
-        flash.message = message(code: "partner.deleted", args: [partner.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "partner"), partner.profile.fullName])
         partner.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "partner.notDeleted", args: [partner.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "partner"), partner.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "partner.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "partner")])
       redirect(action: "list")
     }
   }
@@ -110,7 +110,7 @@ class PartnerProfileController {
     Entity partner = Entity.get(params.id)
 
     if (!partner) {
-      flash.message = message(code: "partner.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "partner")])
       redirect action: 'list'
       return
     }
@@ -131,7 +131,7 @@ class PartnerProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
     if (partner.profile.save() && partner.user.save() && partner.save()) {
-      flash.message = message(code: "partner.updated", args: [partner.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "partner"), partner.profile.fullName])
       redirect action: 'show', id: partner.id, params: [entity: partner.id]
     }
     else {
@@ -154,7 +154,7 @@ class PartnerProfileController {
         ent.profile.calendar = new ECalendar().save()
       }
 
-      flash.message = message(code: "partner.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [partner: ee.entity])

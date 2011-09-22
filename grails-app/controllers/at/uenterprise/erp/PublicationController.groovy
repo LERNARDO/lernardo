@@ -240,7 +240,7 @@ class PublicationController {
 
     //log.debug "attempt to save publication: $params"
     if(pub.save(flush:true)) {
-      flash.message = message(code:"publication.created", args:[pub.name])
+      flash.message = message(code: "object.created", args:[message(code: "publication"), pub.name])
       redirect (action:"list", id:pub.entity.id)
     }
     else {
@@ -254,7 +254,7 @@ class PublicationController {
       assetService.renderStorage (pub.asset?.storage, response)
     }
     else {
-      flash.message = message(code:"publication.notFound", args:[params.id])
+      flash.message = message(code: "object.notFound", args:[message(code: "publication")])
       redirect (action:"list", params:[name:params.name])
     }
 
@@ -264,10 +264,10 @@ class PublicationController {
     Publication pub = Publication.get(params.id)
     Entity entity = pub.entity
     if (!pub) {
-      flash.message = message(code:"publication.notFound", args:[params.id])
+      flash.message = message(code: "object.notFound", args:[message(code: "publication")])
     }
     else {
-      flash.message = message(code:"publication.deleted", args:[pub.name])
+      flash.message = message(code: "object.deleted", args:[message(code: "publication"), pub.name])
       pub.delete(flush:true)
     }
 
@@ -281,7 +281,7 @@ class PublicationController {
       [entity: publication.entity, publication: publication]
     }
     else {
-      flash.message = message(code:"publication.notFound", args:[params.id])
+      flash.message = message(code: "object.notFound", args:[message(code: "publication")])
       redirect action:'list'
     }
 
@@ -292,7 +292,7 @@ class PublicationController {
       if(publication) {
           publication.name = params.name
           if(publication.save()) {
-              flash.message = message(code:"publication.updated", args:[publication.name])
+              flash.message = message(code: "object.updated", args:[message(code: "publication"), publication.name])
               redirect (action:'list', id:publication.entity.id)
           }
           else {
@@ -300,7 +300,7 @@ class PublicationController {
           }
       }
       else {
-          flash.message = message(code:"publication.notFound", args:[params.id])
+          flash.message = message(code: "object.notFound", args:[message(code: "publication")])
           redirect action:"list", id:publication.entity.id
       }
   }

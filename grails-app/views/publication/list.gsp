@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="publication.docs"/></title>
+  <title><g:message code="publications"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="publication.docs"/></h1>
+    <h1><g:message code="publications"/></h1>
   </div>
 </div>
 <div class="boxGray">

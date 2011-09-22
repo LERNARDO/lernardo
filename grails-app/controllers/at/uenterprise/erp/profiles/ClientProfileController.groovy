@@ -60,13 +60,12 @@ class ClientProfileController {
     Entity entity = params.entity ? client : entityHelperService.loggedIn
 
     if (!client) {
-      flash.message = message(code: "client.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "client")])
       redirect(action: list)
       return
     }
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-    //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
 
@@ -103,18 +102,17 @@ class ClientProfileController {
           }
       }
       try {
-        flash.message = message(code: "client.deleted", args: [client.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "client"), client.profile.fullName])
         client.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "client.notDeleted", args: [client.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "client"), client.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      // flash.message = "ClientProfile not found with id ${params.id}"
-      flash.message = message(code: "client.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "client")])
       redirect(action: "list")
     }
   }
@@ -126,14 +124,12 @@ class ClientProfileController {
     Entity client = Entity.get(params.id)
 
     if (!client) {
-      // flash.message = "ClientProfile not found with id ${params.id}"
-      flash.message = message(code: "client.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "client")])
       redirect action: 'list'
       return
     }
 
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
-    //Entity school = functionService.findByLink(null, client, metaDataService.ltFacility)
 
     def c = Entity.createCriteria()
     def allColonies = c.list {
@@ -154,9 +150,7 @@ class ClientProfileController {
     return [client: client,
             colonia: colonia,
             allColonies: allColonies,
-            allFacilities: allFacilities,
-            //school: school
-            ]
+            allFacilities: allFacilities]
   }
 
   def update = {
@@ -203,7 +197,7 @@ class ClientProfileController {
     //new Link(source: Entity.get(params.school), target: client, type: metaDataService.ltFacility).save()
 
     if (client.profile.save() && client.user.save() && client.save()) {
-      flash.message = message(code: "client.updated", args: [client.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "client"), client.profile.fullName])
       redirect action: 'show', id: client.id, params: [entity: client.id]
     }
     else {
@@ -296,7 +290,7 @@ class ClientProfileController {
       // create link to school
       //new Link(source: Entity.get(params.school), target: entity, type: metaDataService.ltFacility).save()
 
-      flash.message = message(code: "client.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "client"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
       params.sort = params.sort ?: "fullName"

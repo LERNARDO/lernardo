@@ -99,7 +99,7 @@ class ProfileController {
   def disable = {
     Entity entity = Entity.get(params.id)
     if (!entity) {
-      flash.message = message(code: "user.notFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "user")])
       response.sendError(404, "no such entity")
       return;
     }
@@ -117,7 +117,7 @@ class ProfileController {
   def enable = {
     Entity entity = Entity.get(params.id)
     if (!entity) {
-      flash.message = message(code: "user.notFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "user")])
       response.sendError(404, "no such entity")
       return;
     }
@@ -470,7 +470,7 @@ class ProfileController {
   def addBookmark = {
     Entity entity = Entity.get(params.id)
     if (!entity) {
-      flash.message = message(code: "user.notFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "user")])
       return
     }
 

@@ -58,7 +58,7 @@ class ThemeProfileController {
     Entity entity = params.entity ? theme : entityHelperService.loggedIn
 
     if (!theme) {
-      flash.message = message(code: "theme.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "theme")])
       redirect(action: list)
     }
     else {
@@ -97,17 +97,17 @@ class ThemeProfileController {
       // delete all links
       Link.findAllBySourceOrTarget(theme, theme).each {it.delete()}
       try {
-        flash.message = message(code: "theme.deleted", args: [theme.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "theme"), theme.profile.fullName])
         theme.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "theme.notDeleted", args: [theme.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "theme"), theme.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "theme.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "theme")])
       redirect(action: "list")
     }
   }
@@ -116,7 +116,7 @@ class ThemeProfileController {
     Entity theme = Entity.get(params.id)
 
     if (!theme) {
-      flash.message = message(code: "theme.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "theme")])
       redirect action: 'list'
     }
     else {
@@ -180,7 +180,7 @@ class ThemeProfileController {
       if (params.parenttheme != "null")
         functionService.linkEntities(theme.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
-      flash.message = message(code: "theme.updated", args: [theme.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "theme"), theme.profile.fullName])
       redirect action: 'show', id: theme.id
     }
     else {
@@ -263,7 +263,7 @@ class ThemeProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "theme.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "theme"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [theme: ee.entity, allFacilities: Entity.findAllByType(metaDataService.etFacility)])

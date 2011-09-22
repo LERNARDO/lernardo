@@ -51,7 +51,7 @@ class OperatorProfileController {
     Entity entity = params.entity ? operator : entityHelperService.loggedIn
 
     if (!operator) {
-      flash.message = message(code: "operator.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "operator")])
       redirect(action: list)
       return
     }
@@ -92,17 +92,17 @@ class OperatorProfileController {
           }
       }
       try {
-        flash.message = message(code: "operator.deleted", args: [operator.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "operator"), operator.profile.fullName])
         operator.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "operator.notDeleted", args: [operator.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "operator"), operator.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = "OperatorProfile not found with id ${params.id}"
+      flash.message = message(code: "object.notFound", args: [message(code: "operator")])
       redirect(action: "list")
     }
   }
@@ -111,7 +111,7 @@ class OperatorProfileController {
     Entity operator = Entity.get(params.id)
 
     if (!operator) {
-      flash.message = message(code: "operator.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "operator")])
       redirect action: 'list'
       return
     }
@@ -132,7 +132,7 @@ class OperatorProfileController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 
     if (operator.profile.save() && operator.user.save() && operator.save()) {
-      flash.message = message(code: "operator.updated", args: [operator.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "operator"), operator.profile.fullName])
       redirect action: 'show', id: operator.id, params: [entity: operator.id]
     }
     else {
@@ -154,7 +154,7 @@ class OperatorProfileController {
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 
-      flash.message = message(code: "operator.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "operator"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [operator: ee.entity])

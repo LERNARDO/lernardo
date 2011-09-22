@@ -22,7 +22,7 @@ class MethodController {
       [methodInstance: methodInstance]
     }
     else {
-      flash.message = message(code: "method.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "method")])
       redirect action: list
     }
   }
@@ -32,16 +32,16 @@ class MethodController {
     if (methodInstance) {
       try {
         methodInstance.delete(flush: true)
-        flash.message = message(code: "method.deleted", args: [methodInstance.name])
+        flash.message = message(code: "object.deleted", args: [message(code: "method"), methodInstance.name])
         redirect action: "list"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "method.notDeleted", args: [params.id])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "method"), methodInstance.name])
         redirect action: "show", id: params.id
       }
     }
     else {
-      flash.message = message(code: "method.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "method")])
       redirect action: "list"
     }
   }
@@ -53,7 +53,7 @@ class MethodController {
       [methodInstance: methodInstance]
     }
     else {
-      flash.message = message(code: "method.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "method")])
       redirect action: 'list'
     }
   }
@@ -73,8 +73,7 @@ class MethodController {
       }
       methodInstance.properties = params
       if (methodInstance.save()) {
-        flash.message = message(code: "method.updated", args: [methodInstance.name])
-
+        flash.message = message(code: "object.updated", args: [message(code: "method"), methodInstance.name])
         redirect action: 'show', id: methodInstance.id
       }
       else {
@@ -82,7 +81,7 @@ class MethodController {
       }
     }
     else {
-      flash.message = message(code: "method.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "method")])
       redirect action: 'list'
     }
   }
@@ -97,7 +96,7 @@ class MethodController {
     def methodInstance = new Method(params)
     methodInstance.type = "template"
     if (methodInstance.save(flush: true)) {
-      flash.message = message(code: "method.created", args: [methodInstance.name])
+      flash.message = message(code: "object.created", args: [message(code: "method"), methodInstance.name])
 
       redirect action: "show", id: methodInstance.id
     }

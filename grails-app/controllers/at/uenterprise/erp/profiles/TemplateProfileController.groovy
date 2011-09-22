@@ -77,7 +77,7 @@ class TemplateProfileController {
       template.profile.ageTo = 100
 
     if (template.profile.save() && template.save()) {
-      flash.message = message(code: "template.updated", args: [template.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "template"), template.profile.fullName])
       redirect action: 'show', id: template.id, params: [entity: template.id]
     }
     else {
@@ -202,7 +202,7 @@ class TemplateProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "template.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "template"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
 
     } catch (at.openfactory.ep.EntityException ee) {
@@ -218,17 +218,17 @@ class TemplateProfileController {
       Link.findAllBySourceOrTarget(template, template).each {it.delete()}
       Publication.findAllByEntity(template).each {it.delete()}
       try {
-        flash.message = message(code: "template.deleted", args: [template.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "activityTemplate"), template.profile.fullName])
         template.delete(flush: true)
         redirect action: "list"
       }
       catch (org.springframework.dao.DataIntegrityViolationException ex) {
-        flash.message = message(code: "template.notDeleted", args: [template.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "activityTemplate"), template.profile.fullName])
         redirect action: "show", id: params.id
       }
     }
     else {
-      flash.message = message(code: "template.notFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "activityTemplate")])
       redirect action: "list"
     }
   }

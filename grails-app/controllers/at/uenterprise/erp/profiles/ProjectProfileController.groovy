@@ -89,7 +89,7 @@ class ProjectProfileController {
     Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
-      flash.message = message(code: "project.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "project")])
       redirect(action: list)
     }
     else {
@@ -282,17 +282,17 @@ class ProjectProfileController {
       Link.findAllBySourceOrTarget(project, project).each {it.delete()}
 
       try {
-        flash.message = message(code: "project.deleted", args: [project.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "project"), project.profile.fullName])
         project.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "project.notDeleted", args: [project.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "project"), project.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "project.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "project")])
       redirect(action: "list")
     }
   }
@@ -302,7 +302,7 @@ class ProjectProfileController {
     Entity entity = params.entity ? project : entityHelperService.loggedIn
 
     if (!project) {
-      flash.message = message(code: "project.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "project")])
       redirect action: 'list'
     }
     else {
@@ -434,7 +434,7 @@ class ProjectProfileController {
     project.profile.properties = params
 
     if (project.profile.save() && project.save()) {
-      flash.message = message(code: "project.updated", args: [project.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "project"), project.profile.fullName])
       redirect action: 'show', id: project.id, params: [entity: project.id]
     }
     else {
@@ -521,7 +521,7 @@ class ProjectProfileController {
           entity.profile.addToLabels(label)
       }
 
-      flash.message = message(code: "project.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "project"), entity.profile.fullName])
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

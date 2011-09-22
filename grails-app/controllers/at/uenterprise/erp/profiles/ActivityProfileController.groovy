@@ -292,7 +292,7 @@ class ActivityProfileController {
     activity.profile.date = functionService.convertToUTC(activity.profile.date)
 
     if (activity.profile.save() && activity.save()) {
-      flash.message = message(code: "activity.updated", args: [activity.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "activity"), activity.profile.fullName])
       redirect action: 'show', id: activity.id, params: [entity: activity.id]
     }
     else {
@@ -307,7 +307,7 @@ class ActivityProfileController {
     // delete all links to activity
     Link.findAllBySourceOrTarget(activity, activity).each {it.delete()}
 
-    flash.message = message(code: "activity.deleted", args: [activity.profile.fullName])
+    flash.message = message(code: "object.deleted", args: [message(code: "activity"), activity.profile.fullName])
     activity.delete(flush: true)
     redirect action: 'list'
   }

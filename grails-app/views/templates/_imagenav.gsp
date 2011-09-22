@@ -24,8 +24,8 @@
         <li>
           <div class="imgbox">
             <g:link controller="groupActivityTemplateProfile" action="list" onclick="showBigSpinner()">
-              <img src="${g.resource(dir: 'images/icons', file: 'kf_aktivitaetsblockvorlage.png')}" alt="<g:message code="imgmenu.activityTemplate.name"/>"/>
-              <h3><g:message code="imgmenu.activityTemplate.name"/></h3>
+              <img src="${g.resource(dir: 'images/icons', file: 'kf_aktivitaetsblockvorlage.png')}" alt="<g:message code="groupActivity"/>"/>
+              <h3><g:message code="groupActivity"/></h3>
             </g:link>
           </div>
         </li>
@@ -63,8 +63,8 @@
       <li>
         <div class="imgbox">
           <g:link controller="themeProfile" action="list" onclick="showBigSpinner()">
-            <img src="${g.resource(dir: 'images/icons', file: 'kf_themen.png')}" alt="<g:message code="imgmenu.theme.name"/>"/>
-            <h3><g:message code="imgmenu.theme.name"/></h3>
+            <img src="${g.resource(dir: 'images/icons', file: 'kf_themen.png')}" alt="<g:message code="themes"/>"/>
+            <h3><g:message code="themes"/></h3>
           </g:link>
         </div>
       </li>

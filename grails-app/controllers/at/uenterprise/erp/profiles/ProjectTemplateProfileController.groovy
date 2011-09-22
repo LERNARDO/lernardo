@@ -43,7 +43,7 @@ class ProjectTemplateProfileController {
     Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
-      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "projectTemplate")])
       redirect(action: list)
     }
     else {
@@ -102,17 +102,17 @@ class ProjectTemplateProfileController {
       Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
 
       try {
-        flash.message = message(code: "projectTemplate.deleted", args: [projectTemplate.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
         projectTemplate.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "projectTemplate.notDeleted", args: [projectTemplate.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "projectTemplate")])
       redirect(action: "list")
     }
   }
@@ -122,7 +122,7 @@ class ProjectTemplateProfileController {
     Entity entity = params.entity ? projectTemplate : entityHelperService.loggedIn
 
     if (!projectTemplate) {
-      flash.message = message(code: "projectTemplate.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "projectTemplate")])
       redirect action: 'list'
     }
     else {
@@ -136,7 +136,7 @@ class ProjectTemplateProfileController {
     projectTemplate.profile.properties = params
 
     if (projectTemplate.profile.save() && projectTemplate.save()) {
-      flash.message = message(code: "projectTemplate.updated", args: [projectTemplate.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
       redirect action: 'show', id: projectTemplate.id, params: [entity: projectTemplate.id]
     }
     else {
@@ -239,7 +239,7 @@ class ProjectTemplateProfileController {
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
-      flash.message = message(code: "projectTemplate.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "projectTemplate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (at.openfactory.ep.EntityException ee) {
       render(view: "create", model: [projectTemplate: ee.entity])
