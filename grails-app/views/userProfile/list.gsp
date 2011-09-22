@@ -1,23 +1,23 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="user"/></title>
+  <title><g:message code="users"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="user"/></h1>
+    <h1><g:message code="users"/></h1>
   </div>
 </div>
 <div class="boxGray">
   <div class="second">
 
     <div class="info-msg">
-      ${totalUsers} <g:message code="user.profile.c_total"/>
+      <g:message code="object.total" args="[totalUsers, message(code: 'users')]"/>
     </div>
 
     <div class="buttons">
       <g:form>
-        <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'user.profile.create')}"/></div>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'user')])}"/></div>
         <div class="spacer"></div>
       </g:form>
     </div>

@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="appointment.profile.edit"/></title>
+  <title><g:message code="object.edit" args="[message(code: 'appointment')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1 style="float: left"><g:message code="appointment.profile.edit"/></h1>
+    <h1 style="float: left"><g:message code="object.edit" args="[message(code: 'appointment')]"/></h1>
     <div class="icons" style="text-align: right;">
       <g:link action="show" id="${appointmentProfileInstance.id}"><img src="${resource(dir: 'images/icons', file: 'icon_cancel.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
     </div>

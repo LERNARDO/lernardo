@@ -1,12 +1,12 @@
 <%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="partner.profile.edit"/></title>
+  <title><g:message code="object.edit" args="[message(code: 'partner')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="partner.profile.edit"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'partner')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

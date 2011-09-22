@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="method.edit"/></title>
+  <title><g:message code="object.edit" args="[message(code: 'method')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="method.edit"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'method')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

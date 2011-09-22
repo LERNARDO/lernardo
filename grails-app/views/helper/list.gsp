@@ -1,11 +1,11 @@
 <head>
-  <title><g:message code="helper.topic"/></title>
+  <title><g:message code="helpers"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="helper.topic"/> ${helperFor}</h1>
+    <h1><g:message code="helpers"/> ${helperFor}</h1>
   </div>
 </div>
 <div class="boxGray">
@@ -13,7 +13,7 @@
 
     <div class="info-msg">
       <g:if test="${helperInstanceList.size() > 0}">
-        ${helperInstanceList.size()} <g:message code="helper.topic.c_total"/>
+        <g:message code="object.total" args="[helperInstanceList.size(), message(code: 'helpers')]"/>
       </g:if>
       <g:else>
         <g:message code="helper.topic.empty"/>
@@ -23,7 +23,7 @@
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
       <div class="buttons">
         <g:form params="[entity:entity.id]">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'helper.topic.create')}"/></div>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'helper')])}"/></div>
           <div class="spacer"></div>
         </g:form>
       </div>

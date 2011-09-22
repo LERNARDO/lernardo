@@ -1,12 +1,12 @@
 <head>
-  <title><g:message code="article.create"/></title>
+  <title><g:message code="object.create" args="[message(code: 'article')]"/></title>
   <meta name="layout" content="public"/>
 </head>
 
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="article.create"/></h1>
+    <h1><g:message code="object.create" args="[message(code: 'article')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

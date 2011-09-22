@@ -33,8 +33,8 @@
         <li>
           <div class="imgbox">
             <g:link controller="projectTemplateProfile" action="list" onclick="showBigSpinner()">
-              <img src="${g.resource(dir: 'images/icons', file: 'kf_projektvorlage.png')}" alt="<g:message code="imgmenu.projects.name"/>"/>
-              <h3><g:message code="imgmenu.projects.name"/></h3>
+              <img src="${g.resource(dir: 'images/icons', file: 'kf_projektvorlage.png')}" alt="<g:message code="projects"/>"/>
+              <h3><g:message code="projects"/></h3>
             </g:link>
           </div>
         </li>

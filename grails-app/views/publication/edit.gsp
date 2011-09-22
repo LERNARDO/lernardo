@@ -1,12 +1,12 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="publication.profile.edit"/></title>
+  <title><g:message code="object.edit" args="[message(code: 'publication')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="publication.profile.edit"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'publication')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

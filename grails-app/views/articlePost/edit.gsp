@@ -1,12 +1,12 @@
 <head>
-  <title><g:message code="article.edit"/></title>
   <meta name="layout" content="public" />
+  <title><g:message code="object.edit" args="[message(code: 'article')]"/></title>
 </head>
 
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="article.edit"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'article')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

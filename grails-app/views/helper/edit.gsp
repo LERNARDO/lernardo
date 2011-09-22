@@ -1,12 +1,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title><g:message code="helper.topic.edit"/></title>
+  <title><g:message code="object.edit" args="[message(code: 'helper')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="helper.topic.edit"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'helper')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

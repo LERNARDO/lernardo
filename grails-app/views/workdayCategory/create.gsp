@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="workdayCategory.create"/></title>
+  <title><g:message code="object.create" args="[message(code: 'workdayCategory')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="workdayCategory.create"/></h1>
+    <h1><g:message code="object.create" args="[message(code: 'workdayCategory')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

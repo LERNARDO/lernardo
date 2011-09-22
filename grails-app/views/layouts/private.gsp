@@ -246,7 +246,7 @@
                 <div id="inhalt-verwaltung" class="aktiv_inhalt">
                   <ul>
                     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                      <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profiles"/></g:link></li>
+                      <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>
                     </erp:accessCheck>
                     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                       <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>

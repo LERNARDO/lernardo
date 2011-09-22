@@ -12,7 +12,7 @@
   <div class="second">
 
       <div class="info-msg">
-        ${entityCount} <g:message code="profile.list.c_total"/>
+        <g:message code="object.total" args="[entityCount, message(code: 'profiles')]"/>
       </div>
 
       <div id="select-box" style="margin-top: 10px">

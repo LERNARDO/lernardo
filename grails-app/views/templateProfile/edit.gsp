@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="activityTemplate.edit"/></title>
+  <title><g:message code="object.edit" args="[message(code: 'activityTemplate')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="activityTemplate.edit"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'activityTemplate')]"/></h1>
   </div>
 </div>
 <div class="boxGray">

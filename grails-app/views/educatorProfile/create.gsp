@@ -1,12 +1,12 @@
 <%@ page import="at.uenterprise.erp.Setup" %>
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="educator.profile.create"/></title>
+  <title><g:message code="object.create" args="[message(code: 'educator')]"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="educator.profile.create"/></h1>
+    <h1><g:message code="object.create" args="[message(code: 'educator')]"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -153,7 +153,7 @@
           <table>
 
             <tr>
-              <td valign="top" class="name"><g:message code="educator.profile.contactName"/></td>
+              <td valign="top" class="name"><g:message code="name"/></td>
               <td valign="top" class="name"><g:message code="street"/></td>
               <td valign="top" class="name"><g:message code="zip"/></td>
               <td valign="top" class="name"><g:message code="city"/></td>

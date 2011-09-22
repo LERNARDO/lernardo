@@ -183,7 +183,7 @@
       <table style="width: 100%">
 
         <tr style="height: 20px">
-          <td valign="top" style="color: #666; padding-right: 10px;"><g:message code="educator.profile.contactName"/>:</td>
+          <td valign="top" style="color: #666; padding-right: 10px;"><g:message code="name"/>:</td>
           <td valign="top">
             ${fieldValue(bean: educator, field: 'profile.contactName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}
           </td>
@@ -399,7 +399,7 @@
   <table style="width: 100%">
 
     <tr>
-      <td valign="top" class="name-show"><g:message code="educator.profile.contactName"/></td>
+      <td valign="top" class="name-show"><g:message code="name"/></td>
       <td valign="top" class="name-show"><g:message code="street"/></td>
       <td valign="top" class="name-show"><g:message code="zip"/></td>
       <td valign="top" class="name-show"><g:message code="city"/></td>

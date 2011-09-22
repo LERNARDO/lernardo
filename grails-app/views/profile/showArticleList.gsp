@@ -26,7 +26,7 @@
       </div>
     </g:if>
     <g:else>
-      <p>${articleCount} <g:message code="articles.c_total"/></p>
+      <p><g:message code="object.total" args="[articleCount, message(code: 'articles')]"/></p>
       <table class="default-table">
         <thead>
         <tr>

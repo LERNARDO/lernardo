@@ -12,13 +12,13 @@
   <div class="second">
 
     <div class="info-msg">
-      ${totalGroupFamilies} <g:message code="groupFamily.profile.c_total"/>
+      <g:message code="object.total" args="[totalGroupFamilies, message(code: 'groupFamilies')]"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="buttons">
         <g:form>
-          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'groupFamily.profile.create')}"/></div>
+          <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'groupFamily')])}"/></div>
           <div class="spacer"></div>
         </g:form>
       </div>

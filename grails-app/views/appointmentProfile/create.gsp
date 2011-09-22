@@ -1,12 +1,12 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="appointment.profile.create"/></title>
+  <title><g:message code="object.create" args="[message(code: 'appointment')]"/></title>
 </head>
 <body>
 
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="appointment.profile.create"/></h1>
+    <h1><g:message code="object.create" args="[message(code: 'appointment')]"/></h1>
   </div>
 </div>
 <div class="boxGray">
