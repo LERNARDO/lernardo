@@ -143,7 +143,7 @@ colors = [0:'#cc4444',1:'#44cc44',2:'#4444cc',3:'#cccc44',4:'#44cccc',5:'#cc44cc
           16:'#348017',17:'#AF7817',18:'#7E2217',19:'#C36241',20:'#C11B17',21:'#817339',22:'#218868',23:'#4A7023',24:'#4B0082',25:'#616161',26:'#9D8851',27:'#B13E0F',28:'#C77826',29:'#CD2626']
 
 // these are the currently used locales in the application
-locales = [new Locale ("de", "DE"), new Locale ("es", "ES")]
+locales = [new Locale ("de", "DE"), new Locale ("es", "ES"), new Locale ("en", "GB")]
 
 // these are the quotes that are used on the public start
 quotesMap = ['00':'Die Aufgabe der Umgebung ist nicht das Kind zu formen, sondern ihm zu erlauben, sich zu offenbaren.',

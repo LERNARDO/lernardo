@@ -5,7 +5,7 @@
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1 style="float: left"><<g:message code="object.edit" args="[message(code: 'user')]"/></h1>
+    <h1 style="float: left"><g:message code="object.edit" args="[message(code: 'user')]"/></h1>
     <div class="icons" style="text-align: right;">
       <g:link action="show" id="${user.id}"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="${message(code: 'cancel')}" align="top"/></g:link>
     </div>
