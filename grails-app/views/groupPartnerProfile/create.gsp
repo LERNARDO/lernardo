@@ -20,8 +20,8 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="groupPartner.profile.name"/></td>
-            <td valign="top" class="name"><g:message code="groupPartner.profile.description"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
+            <td valign="top" class="name"><g:message code="description"/></td>
           </tr>
 
           <tr class="prop">

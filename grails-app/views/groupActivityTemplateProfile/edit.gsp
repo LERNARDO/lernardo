@@ -18,7 +18,7 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
             <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/> (min)</td>
             <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
               <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.status"/></td>
@@ -40,7 +40,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="groupActivityTemplate.profile.description"/></td>
+            <td colspan="3" valign="top" class="name"><g:message code="description"/></td>
           </tr>
           <tr>
             <td colspan="3" valign="top" class="value">

@@ -30,8 +30,8 @@
     <table class="default-table">
       <thead>
       <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'child.profile.name')}"/>
-        <g:sortableColumn property="birthDate" title="${message(code:'child.profile.birthDate')}"/>
+        <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
+        <g:sortableColumn property="birthDate" title="${message(code:'birthDate')}"/>
       </tr>
       </thead>
       <tbody>

@@ -16,10 +16,10 @@
         <tbody>
 
         <tr>
-          <td width="120" valign="middle" class="name-show"><g:message code="child.profile.gender"/></td>
-          <td width="200" valign="middle" class="name-show"><g:message code="child.profile.firstName"/></td>
-          <td width="280" valign="middle" class="name-show"><g:message code="child.profile.lastName"/></td>
-          <td valign="middle" class="name-show"><g:message code="child.profile.birthDate"/></td>
+          <td width="120" valign="middle" class="name-show"><g:message code="gender"/></td>
+          <td width="200" valign="middle" class="name-show"><g:message code="firstName"/></td>
+          <td width="280" valign="middle" class="name-show"><g:message code="lastName"/></td>
+          <td valign="middle" class="name-show"><g:message code="birthDate"/></td>
         </tr>
 
         <tr>
@@ -62,7 +62,7 @@
           <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
         </erp:accessCheck>
         <td width="60" valign="top">
-          <span class="bold"><g:message code="child.profile.email"/>:</span>
+          <span class="bold"><g:message code="email"/>:</span>
         </td>
         <td valign="top">${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </div>

@@ -38,7 +38,7 @@
             <tbody>
 
             <tr>
-              <td><g:message code="notification.title"/>:</td>
+              <td><g:message code="title"/>:</td>
               <td class="value"><g:textField class="${hasErrors(bean:nc,field:'subject','errors')}" name="subject" size="60" value="${fieldValue(bean:nc,field:'subject')}"/></td>
             </tr>
 

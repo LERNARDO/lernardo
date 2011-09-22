@@ -14,8 +14,8 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="groupPartner.profile.name"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupPartner.profile.description"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="description"/>:</td>
         </tr>
 
         <tr>

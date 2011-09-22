@@ -28,12 +28,12 @@
     <table>
 
       <tr class="prop">
-        <td class="one"><g:message code="groupClient.profile.name"/>:</td>
+        <td class="one"><g:message code="name"/>:</td>
         <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="groupClient.profile.description"/>:</td>
+        <td class="one"><g:message code="description"/>:</td>
         <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
@@ -43,11 +43,11 @@
     <table class="default-table">
         <thead>
         <tr>
-          <th><g:message code="client.profile.name"/></th>
-          <th><g:message code="client.profile.birthDate"/></th>
-          <th><g:message code="client.profile.currentStreet"/></th>
+          <th><g:message code="name"/></th>
+          <th><g:message code="birthDate"/></th>
+          <th><g:message code="street"/></th>
           <th><g:message code="client.profile.currentColonia"/></th>
-          <th><g:message code="client.profile.currentCountry"/></th>
+          <th><g:message code="country"/></th>
         </tr>
         </thead>
         <tbody>

@@ -18,7 +18,7 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="facility.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
           </tr>
 
           <tr>
@@ -28,7 +28,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="4" valign="top" class="name"><g:message code="facility.profile.description"/></td>
+            <td colspan="4" valign="top" class="name"><g:message code="description"/></td>
           </tr>
 
           <tr class="prop">
@@ -41,7 +41,7 @@
 
           <tr class="prop">
             <td valign="middle" class="name"><g:message code="facility.profile.colony"/>:</td>
-            <td colspan="3" valign="middle" class="name"><g:message code="facility.profile.phone"/>:</td>
+            <td colspan="3" valign="middle" class="name"><g:message code="phone"/>:</td>
           </tr>
 
           <tr class="prop">
@@ -54,10 +54,10 @@
           </tr>
 
           <tr class="prop">
-            <td height="25" valign="top" class="name"><g:message code="facility.profile.street"/></td>
-            <td valign="top" class="name"><g:message code="facility.profile.zip"/></td>
-            <td valign="top" class="name"><g:message code="facility.profile.city"/></td>
-            <td valign="top" class="name"><g:message code="facility.profile.country"/></td>
+            <td height="25" valign="top" class="name"><g:message code="street"/></td>
+            <td valign="top" class="name"><g:message code="zip"/></td>
+            <td valign="top" class="name"><g:message code="city"/></td>
+            <td valign="top" class="name"><g:message code="country"/></td>
           </tr>
 
           <tr class="prop">

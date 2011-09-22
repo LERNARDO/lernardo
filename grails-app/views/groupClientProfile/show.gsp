@@ -15,8 +15,8 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="groupClient.profile.name"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupClient.profile.description"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="description"/>:</td>
         </tr>
 
         <tr>
@@ -48,15 +48,15 @@
 
           <table>
             <tr>
-              <td width="180px"><g:message code="client.profile.name"/>:</td>
+              <td width="180px"><g:message code="name"/>:</td>
               <td><g:textField name="name"/></td>
             </tr>
             <tr>
-              <td><g:message code="client.profile.birthDate"/>:</td>
+              <td><g:message code="birthDate"/>:</td>
               <td><g:message code="between"/> <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="[null:message(code:'all')]" value="none"/> - <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="[null:message(code:'all')]" value="none"/></td>
             </tr>
             <tr>
-              <td><g:message code="client.profile.gender"/>:</td>
+              <td><g:message code="gender"/>:</td>
               <td><g:select name="gender" from="${['0':message(code:'all'),'1':message(code:'male'),'2':message(code:'female')]}" optionKey="key" optionValue="value"/></td>
             </tr>
             <tr>

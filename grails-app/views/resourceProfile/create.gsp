@@ -19,7 +19,7 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="resource.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
           </tr>
 
           <tr class="prop">
@@ -29,7 +29,7 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="resource.profile.description"/></td>
+            <td valign="top" class="name"><g:message code="description"/></td>
           </tr>
           <tr>
             <td valign="top" class="value">

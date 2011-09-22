@@ -43,7 +43,7 @@
     <table class="default-table">
       <thead>
       <tr>
-        <th><g:message code="educator.profile.name"/></th>
+        <th><g:message code="name"/></th>
         <g:each in="${workdaycategories}" var="category">
           <th>${category.name} (h)</th>
         </g:each>

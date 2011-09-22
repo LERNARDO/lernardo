@@ -14,10 +14,10 @@
       <table width="100%">
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="client.profile.gender"/></td>
-          <td valign="top" class="name-show"><g:message code="client.profile.firstName"/></td>
-          <td valign="top" class="name-show"><g:message code="client.profile.lastName"/></td>
-          <td valign="top" class="name-show"><g:message code="client.profile.birthDate"/></td>
+          <td valign="top" class="name-show"><g:message code="gender"/></td>
+          <td valign="top" class="name-show"><g:message code="firstName"/></td>
+          <td valign="top" class="name-show"><g:message code="lastName"/></td>
+          <td valign="top" class="name-show"><g:message code="birthDate"/></td>
         </tr>
 
         <tr class="prop">
@@ -43,10 +43,10 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="client.profile.currentStreet"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.currentZip"/></td>
+            <td valign="top" class="name-show"><g:message code="street"/></td>
+            <td valign="top" class="name-show"><g:message code="zip"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.currentColonia"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.currentCountry"/></td>
+            <td valign="top" class="name-show"><g:message code="country"/></td>
           </tr>
 
           <tr class="prop">
@@ -63,9 +63,9 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="client.profile.originCity"/></g:if></td>
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="client.profile.originZip"/></g:if></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.originCountry"/></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="city"/></g:if></td>
+            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="zip"/></g:if></td>
+            <td valign="top" class="name-show"><g:message code="country"/></td>
           </tr>
 
           <tr class="prop">
@@ -205,7 +205,7 @@
               <td width="60" valign="top" class="bold"><g:message code="active"/></td>
               <td width="50" valign="top"><g:formatBoolean boolean="${client.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </erp:accessCheck>
-            <td width="60" valign="top" class="bold"><g:message code="client.profile.email"/>:</td>
+            <td width="60" valign="top" class="bold"><g:message code="email"/>:</td>
             <td valign="top">${fieldValue(bean: client, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </table>
       </div>
@@ -350,35 +350,35 @@
 
             <table>
               <tr>
-                <td><g:message code="contact.firstName"/>:</td>
+                <td><g:message code="firstName"/>:</td>
                 <td><g:textField name="firstName" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.lastName"/>:</td>
+                <td><g:message code="lastName"/>:</td>
                 <td><g:textField name="lastName" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.country"/>:</td>
+                <td><g:message code="country"/>:</td>
                 <td><g:textField name="country" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.zip"/>:</td>
+                <td><g:message code="zip"/>:</td>
                 <td><g:textField name="zip" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.city"/>:</td>
+                <td><g:message code="city"/>:</td>
                 <td><g:textField name="city" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.street"/>:</td>
+                <td><g:message code="street"/>:</td>
                 <td><g:textField name="street" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.phone"/>:</td>
+                <td><g:message code="phone"/>:</td>
                 <td><g:textField name="phone" size="30"/></td>
               </tr>
               <tr>
-                <td><g:message code="contact.email"/>:</td>
+                <td><g:message code="email"/>:</td>
                 <td><g:textField name="email" size="30"/></td>
               </tr>
               <tr>

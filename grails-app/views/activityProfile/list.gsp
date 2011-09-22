@@ -45,7 +45,7 @@
         <g:textField class="datepicker" name="myDate" value="${formatDate(date: dateSelected, format: 'dd. MM. yyyy' )}"/>
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="list" value="OK"/></div>
-          <div class="button"><g:link class="buttonGreen" action="list" params="[myDate: 'all']"><g:message code="profiletype.all"/></g:link></div>
+          <div class="button"><g:link class="buttonGreen" action="list" params="[myDate: 'all']"><g:message code="all"/></g:link></div>
           <div class="spacer"></div>
         </div>
       </g:form>

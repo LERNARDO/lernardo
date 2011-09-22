@@ -20,8 +20,8 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="pate.profile.firstName"/></td>
-            <td valign="top" class="name"><g:message code="pate.profile.lastName"/></td>
+            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="name"><g:message code="lastName"/></td>
             <td valign="top" class="name"><g:message code="pate.profile.motherTongue"/></td>
             <td valign="top" class="name"><g:message code="pate.profile.languages"/></td>
           </tr>
@@ -45,10 +45,10 @@
 
         <table>
           <tr>
-            <td valign="top" class="name"><g:message code="pate.profile.zip"/></td>
-            <td valign="top" class="name"><g:message code="pate.profile.city"/></td>
-            <td valign="top" class="name"><g:message code="pate.profile.street"/></td>
-            <td valign="top" class="name"><g:message code="pate.profile.country"/></td>
+            <td valign="top" class="name"><g:message code="zip"/></td>
+            <td valign="top" class="name"><g:message code="city"/></td>
+            <td valign="top" class="name"><g:message code="street"/></td>
+            <td valign="top" class="name"><g:message code="country"/></td>
           </tr>
 
           <tr>
@@ -82,7 +82,7 @@
               </td>
 
               <td width="280" valign="middle">
-                <g:message code="pate.profile.email"/>:
+                <g:message code="email"/>:
                 <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
               </td>
               <td valign="middle">

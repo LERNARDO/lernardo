@@ -17,7 +17,7 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="projectTemplate.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
             <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
               <td valign="top" class="name"><g:message code="projectTemplate.profile.status"/></td>
             </erp:accessCheck>
@@ -35,7 +35,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="2" valign="top" class="name"><g:message code="projectTemplate.profile.description"/></td>
+            <td colspan="2" valign="top" class="name"><g:message code="description"/></td>
           </tr>
 
           <tr>

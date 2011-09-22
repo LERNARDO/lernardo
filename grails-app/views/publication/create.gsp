@@ -21,7 +21,7 @@
       <g:uploadForm id="${entity.id}">
 
         <div class="text-field">
-          <label for="name"><g:message code="publication.profile.name"/>:</label><br />
+          <label for="name"><g:message code="title"/>:</label><br />
           <g:textField class="${hasErrors(bean: publication, field: 'name', 'errors')} countable${publication.constraints.name.maxSize}" id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
         </div>
 

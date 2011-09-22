@@ -19,12 +19,12 @@
     <g:form id="${appointmentProfileInstance.id}">
 
       <div class="property">
-        <g:message code="appointment.profile.fullName"/> <br/>
+        <g:message code="title"/> <br/>
         <g:textField class="countable50 ${hasErrors(bean:appointmentProfileInstance,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.fullName').decodeHTML()}"/>
       </div>
 
       <div class="property">
-        <g:message code="appointment.profile.description"/> <br/>
+        <g:message code="description"/> <br/>
         <g:textArea class="${hasErrors(bean:appointmentProfileInstance,field:'profile.description','errors')}" rows="5" cols="40" name="description" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.description').decodeHTML()}"/>
       </div>
 

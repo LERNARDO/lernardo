@@ -22,7 +22,7 @@
       <table style="width: 100%">
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="projectTemplate.profile.name"/></td>
+          <td valign="top" class="name-show"><g:message code="name"/></td>
           <td valign="top" class="name-show"><g:message code="projectTemplate.profile.status"/></td>
         </tr>
 
@@ -36,7 +36,7 @@
         </tr>
 
         <tr class="prop">
-          <td colspan="2" valign="top" class="name-show"><g:message code="projectTemplate.profile.description"/></td>
+          <td colspan="2" valign="top" class="name-show"><g:message code="description"/></td>
         </tr>
 
         <tr>
@@ -112,11 +112,11 @@
         <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addResource', id: projectTemplate.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
             <tr>
-              <td><g:message code="resource.profile.name"/>:</td>
+              <td><g:message code="name"/>:</td>
               <td><g:textField id="resourceName" size="30" name="name" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="resource.profile.description"/>:</td>
+              <td><g:message code="description"/>:</td>
               <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>

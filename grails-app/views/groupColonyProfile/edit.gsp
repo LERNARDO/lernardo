@@ -18,8 +18,8 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="groupColony.profile.name"/></td>
-            <td valign="top" class="name"><g:message code="groupColony.profile.description"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
+            <td valign="top" class="name"><g:message code="description"/></td>
           </tr>
 
           <tr class="prop">

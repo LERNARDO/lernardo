@@ -19,8 +19,8 @@
           <tbody>
 
           <tr class="prop">
-            <td  valign="top" class="name"><g:message code="method.name"/></td>
-            <td valign="top" class="name"><g:message code="method.description"/></td>
+            <td  valign="top" class="name"><g:message code="name"/></td>
+            <td valign="top" class="name"><g:message code="description"/></td>
           </tr>
 
           <tr class="prop">

@@ -19,10 +19,10 @@
 
         <table width="100%">
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="client.profile.gender"/></td>
-            <td valign="top" class="name"><g:message code="client.profile.firstName"/></td>
-            <td valign="top" class="name"><g:message code="client.profile.lastName"/></td>
-            <td valign="top" class="name"><g:message code="client.profile.birthDate"/></td>
+            <td valign="top" class="name"><g:message code="gender"/></td>
+            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="name"><g:message code="lastName"/></td>
+            <td valign="top" class="name"><g:message code="birthDate"/></td>
           </tr>
 
           <tr>
@@ -57,10 +57,10 @@
           <table width="100%">
 
             <tr>
-              <td valign="top" class="name"><g:message code="client.profile.currentStreet"/></td>
-              <td valign="top" class="name"><g:message code="client.profile.currentZip"/></td>
+              <td valign="top" class="name"><g:message code="street"/></td>
+              <td valign="top" class="name"><g:message code="zip"/></td>
               <td valign="top" class="name"><g:message code="client.profile.currentColonia"/></td>
-              <td valign="top" class="name"><g:message code="client.profile.currentCountry"/></td>
+              <td valign="top" class="name"><g:message code="country"/></td>
             </tr>
 
             <tr>
@@ -85,9 +85,9 @@
           <table width="100%">
 
             <tr>
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="client.profile.originZip"/></g:if></td>
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="client.profile.originCity"/></g:if></td>
-              <td colspan="2" valign="top" class="name"><g:message code="client.profile.originCountry"/></td>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="zip"/></g:if></td>
+              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="city"/></g:if></td>
+              <td colspan="2" valign="top" class="name"><g:message code="country"/></td>
             </tr>
 
             <tr>
@@ -255,7 +255,7 @@
                 </td>
               </erp:accessCheck>
               <td valign="top">
-                <g:message code="client.profile.email"/>:
+                <g:message code="email"/>:
               </td>
               <td valign="top">
                 <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>

@@ -19,11 +19,11 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="educator.profile.gender"/></td>
-            <td valign="top" class="name"><g:message code="educator.profile.title"/></td>
-            <td valign="top" class="name"><g:message code="educator.profile.firstName"/></td>
-            <td valign="top" class="name"><g:message code="educator.profile.lastName"/></td>
-            <td valign="top" class="name"><g:message code="educator.profile.birthDate"/></td>
+            <td valign="top" class="name"><g:message code="gender"/></td>
+            <td valign="top" class="name"><g:message code="title"/></td>
+            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="name"><g:message code="lastName"/></td>
+            <td valign="top" class="name"><g:message code="birthDate"/></td>
           </tr>
 
           <tr>
@@ -92,10 +92,10 @@
           <table>
 
             <tr>
-              <td valign="top" class="name"><g:message code="educator.profile.currentStreet"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.currentZip"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.currentCity"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.currentCountry"/></td>
+              <td valign="top" class="name"><g:message code="street"/></td>
+              <td valign="top" class="name"><g:message code="zip"/></td>
+              <td valign="top" class="name"><g:message code="city"/></td>
+              <td valign="top" class="name"><g:message code="country"/></td>
             </tr>
 
             <tr>
@@ -122,10 +122,10 @@
           <table>
 
             <tr>
-              <td valign="top" class="name"><g:message code="educator.profile.originStreet"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.originZip"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.originCity"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.originCountry"/></td>
+              <td valign="top" class="name"><g:message code="street"/></td>
+              <td valign="top" class="name"><g:message code="zip"/></td>
+              <td valign="top" class="name"><g:message code="city"/></td>
+              <td valign="top" class="name"><g:message code="country"/></td>
             </tr>
 
             <tr>
@@ -154,9 +154,9 @@
 
             <tr>
               <td valign="top" class="name"><g:message code="educator.profile.contactName"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.contactStreet"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.contactZip"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.contactCity"/></td>
+              <td valign="top" class="name"><g:message code="street"/></td>
+              <td valign="top" class="name"><g:message code="zip"/></td>
+              <td valign="top" class="name"><g:message code="city"/></td>
             </tr>
 
             <tr>
@@ -179,9 +179,9 @@
           <table>
 
             <tr>
-              <td valign="top" class="name"><g:message code="educator.profile.contactCountry"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.contactPhone"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.contactMail"/></td>
+              <td valign="top" class="name"><g:message code="country"/></td>
+              <td valign="top" class="name"><g:message code="phone"/></td>
+              <td valign="top" class="name"><g:message code="email"/></td>
             </tr>
 
             <tr>
@@ -205,8 +205,8 @@
           <table>
 
             <tr>
-              <td valign="top" class="name"><g:message code="educator.profile.Phone1"/></td>
-              <td valign="top" class="name"><g:message code="educator.profile.Phone2"/></td>
+              <td valign="top" class="name"><g:message code="phone"/> #1</td>
+              <td valign="top" class="name"><g:message code="phone"/> #2</td>
               <td valign="top" class="name"><g:message code="educator.profile.privMail"/></td>
             </tr>
 
@@ -247,7 +247,7 @@
                 <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
               </td>
               <td width="350" valign="middle">
-                <g:message code="educator.profile.email"/>:
+                <g:message code="email"/>:
                 <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
               </td>
               <td>

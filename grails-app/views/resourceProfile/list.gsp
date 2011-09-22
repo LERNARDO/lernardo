@@ -18,7 +18,7 @@
     <table class="default-table">
       <thead>
       <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'resource.profile.name')}"/>
+        <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
         <th>Erstellt in</th>
       </tr>
       </thead>

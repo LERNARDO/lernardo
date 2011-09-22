@@ -21,7 +21,7 @@
   <g:form action="update" id="${postInstance.id}">
     <div>
 
-    <p><span class="strong"><g:message code="article.title"/></span><br/>
+    <p><span class="strong"><g:message code="title"/></span><br/>
     <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable${postInstance.constraints.title.maxSize}" name="title" style="width: 100%" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
 
     <p><span class="strong"><g:message code="article.teaser"/></span><br/>

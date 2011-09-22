@@ -16,10 +16,10 @@
 
         <tr class="prop">
           <td valign="top" class="name-show">
-            <g:message code="method.name"/>:
+            <g:message code="name"/>:
           </td>
            <td valign="top" class="name-show">
-            <g:message code="method.description"/>:
+            <g:message code="description"/>:
           </td>
 
         </tr>

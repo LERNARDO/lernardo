@@ -23,7 +23,7 @@
         <tbody>
 
         <tr>
-          <td valign="top" class="label"><g:message code="helper.topic.title"/>:</td>
+          <td valign="top" class="label"><g:message code="title"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="50" value="${fieldValue(bean:helperInstance, field:'title')}"/></td>
         </tr>
 

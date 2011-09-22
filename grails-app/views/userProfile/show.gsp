@@ -18,17 +18,17 @@
       <tbody>
 
       <tr class="prop">
-        <td class="one"><g:message code="user.profile.firstName"/>:</td>
+        <td class="one"><g:message code="firstName"/>:</td>
         <td class="two">${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="user.profile.lastName"/>:</td>
+        <td class="one"><g:message code="lastName"/>:</td>
         <td class="two">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()}</td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="user.profile.email"/>:</td>
+        <td class="one"><g:message code="email"/>:</td>
         <td class="two"><a href="mailto:${fieldValue(bean: user, field: 'user.email').decodeHTML()}">${fieldValue(bean: user, field: 'user.email').decodeHTML()}</a></td>
       </tr>
 

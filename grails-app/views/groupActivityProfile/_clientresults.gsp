@@ -6,7 +6,7 @@
         <table>
           <tr>
             <td><erp:profileImage entity="${entity}" width="65"/></td>
-            <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><g:message code="profiletype.${entity.type.supertype.name}"/></td>
+            <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><g:message code="${entity.type.supertype.name}"/></td>
           </tr>
         </table>
       </div>

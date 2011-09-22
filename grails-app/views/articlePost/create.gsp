@@ -20,7 +20,7 @@
 
   <g:form action="save" id="${postInstance.id}">
 
-    <p><span class="strong"><g:message code="article.title"/></span><br/>
+    <p><span class="strong"><g:message code="title"/></span><br/>
     <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="50" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
 
     <p><span class="strong"><g:message code="article.teaser"/></span><br/>

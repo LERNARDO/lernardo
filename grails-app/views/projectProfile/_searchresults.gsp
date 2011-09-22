@@ -2,7 +2,7 @@
   <table class="default-table">
     <thead>
     <tr>
-      <th><g:message code="project.profile.name"/></th>
+      <th><g:message code="name"/></th>
       <th><g:message code="project.profile.startDate"/></th>
       <th><g:message code="project.profile.endDate"/></th>
       <th><g:message code="facility"/></th>

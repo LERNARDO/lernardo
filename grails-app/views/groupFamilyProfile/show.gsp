@@ -14,7 +14,7 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
           <td valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}"><g:message code="groupFamily.profile.familyIncome"/>:</g:if></td>
           <td valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}"><g:message code="groupFamily.profile.amountHousehold"/>:</g:if></td>
         </tr>

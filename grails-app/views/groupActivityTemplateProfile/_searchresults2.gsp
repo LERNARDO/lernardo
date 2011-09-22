@@ -5,7 +5,7 @@
 <table class="default-table">
   <thead>
   <tr>
-    <util:remoteSortableColumn property="fullName" title="${message(code:'groupActivityTemplate.profile.name')}" action="updateselect2" update="templateselect" params="[name: name,
+    <util:remoteSortableColumn property="fullName" title="${message(code:'name')}" action="updateselect2" update="templateselect" params="[name: name,
                                               duration1: duration1, duration2: duration2]"/>
     <th><g:message code="numberOfActivityTemplates"/></th>
     <util:remoteSortableColumn property="realDuration" title="${message(code:'totalDuration')}" action="updateselect2" update="templateselect" params="[name: name,

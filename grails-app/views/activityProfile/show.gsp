@@ -38,7 +38,7 @@
       </tr>
 
       <tr>
-        <td class="name-show"><g:message code="activityTemplate.description"/>:</td>
+        <td class="name-show"><g:message code="description"/>:</td>
       </tr>
       <tr>
         <td colspan="3" class="value-show">

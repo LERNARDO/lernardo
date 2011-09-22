@@ -27,7 +27,7 @@
     <table class="default-table">
       <thead>
       <tr>
-        <g:sortableColumn property="fullName" title="${message(code:'operator.profile.name')}"/>
+        <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
       </tr>
       </thead>
       <tbody>

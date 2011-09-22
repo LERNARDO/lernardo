@@ -19,7 +19,7 @@
         <table width="100%">
 
           <tr class="prop">
-            <td colspan="2" valign="top" class="name"><g:message code="activityTemplate.name"/>:</td>
+            <td colspan="2" valign="top" class="name"><g:message code="name"/>:</td>
             <td valign="top" class="name"><g:message code="activityTemplate.duration"/>:</td>
           </tr>
 
@@ -51,7 +51,7 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="2" valign="top" class="name"><g:message code="activityTemplate.description"/>:</td>
+            <td colspan="2" valign="top" class="name"><g:message code="description"/>:</td>
             <td valign="top" class="name"><g:message code="activityTemplate.chosenMaterials"/>:</td>
           </tr>
 

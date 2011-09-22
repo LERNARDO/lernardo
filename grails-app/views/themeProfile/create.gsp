@@ -19,7 +19,7 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="theme.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
             <td valign="top" class="name"><g:message code="theme.profile.startDate"/></td>
             <td valign="top" class="name"><g:message code="theme.profile.endDate"/></td>
           </tr>
@@ -51,7 +51,7 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="theme.profile.description"/></td>
+            <td valign="top" class="name"><g:message code="description"/></td>
           </tr>
 
           <tr>

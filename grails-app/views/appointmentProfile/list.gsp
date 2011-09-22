@@ -29,7 +29,7 @@
       <table class="default-table">
         <thead>
         <tr>
-          <g:sortableColumn property="fullName" title="${message(code:'appointment.profile.fullName')}"/>
+          <g:sortableColumn property="fullName" title="${message(code:'title')}"/>
           <g:sortableColumn property="beginDate" title="${message(code:'appointment.profile.beginDate')}"/>
           <g:sortableColumn property="endDate" title="${message(code:'appointment.profile.endDate')}"/>
           <g:sortableColumn property="allDay" title="${message(code:'appointment.profile.allDay')}"/>

@@ -21,10 +21,10 @@
           <tbody>
 
           <tr>
-            <td width="90" valign="middle" class="name"><g:message code="parent.profile.gender"/>:</td>
-            <td width="120" valign="middle" class="name"><g:message code="parent.profile.firstName"/>:</td>
-            <td width="160" valign="middle" class="name"><g:message code="parent.profile.lastName"/>:</td>
-            <td width="210" valign="middle" class="name"><g:message code="parent.profile.birthDate"/>:</td>
+            <td width="90" valign="middle" class="name"><g:message code="gender"/>:</td>
+            <td width="120" valign="middle" class="name"><g:message code="firstName"/>:</td>
+            <td width="160" valign="middle" class="name"><g:message code="lastName"/>:</td>
+            <td width="210" valign="middle" class="name"><g:message code="birthDate"/>:</td>
           </tr>
 
           <tr>
@@ -98,10 +98,10 @@
           </tr>
 
           <tr>
-            <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.currentCountry}"><g:message code="parent.profile.currentCountry"/></g:if></td>
-            <td valign="top" class="name"><g:message code="parent.profile.currentCity"/></td>
-            <td valign="top" class="name"><g:message code="parent.profile.currentStreet"/></td>
-            <td valign="top" class="name"><g:message code="parent.profile.currentZip"/></td>
+            <td valign="top" class="name"><g:if test="${grailsApplication.config.parentProfile.currentCountry}"><g:message code="country"/></g:if></td>
+            <td valign="top" class="name"><g:message code="city"/></td>
+            <td valign="top" class="name"><g:message code="street"/></td>
+            <td valign="top" class="name"><g:message code="zip"/></td>
           </tr>
 
           <tr>
@@ -164,7 +164,7 @@
                 <g:link controller="profile" action="changePassword" id="${parent.id}"><g:message code="change"/></g:link>
               </td>
               <td width="280" valign="middle">
-                <g:message code="parent.profile.email"/>
+                <g:message code="email"/>
                 <g:textField class="${hasErrors(bean: parent, field: 'user.email', 'errors')}" size="30" maxlength="80" name="email" value="${fieldValue(bean: parent, field: 'user.email')}"/>
               </td>
               <td valign="middle">

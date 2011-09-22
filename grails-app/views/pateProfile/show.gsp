@@ -15,8 +15,8 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="pate.profile.firstName"/></td>
-          <td valign="top" class="name-show"><g:message code="pate.profile.lastName"/></td>
+          <td valign="top" class="name-show"><g:message code="firstName"/></td>
+          <td valign="top" class="name-show"><g:message code="lastName"/></td>
           <td valign="top" class="name-show"><g:message code="pate.profile.motherTongue"/></td>
           <td valign="top" class="name-show"><g:message code="pate.profile.languages"/></td>
         </tr>
@@ -44,10 +44,10 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="pate.profile.zip"/></td>
-          <td valign="top" class="name-show"><g:message code="pate.profile.city"/></td>
-          <td valign="top" class="name-show"><g:message code="pate.profile.street"/></td>
-          <td valign="top" class="name-show"><g:message code="pate.profile.country"/></td>
+          <td valign="top" class="name-show"><g:message code="zip"/></td>
+          <td valign="top" class="name-show"><g:message code="city"/></td>
+          <td valign="top" class="name-show"><g:message code="street"/></td>
+          <td valign="top" class="name-show"><g:message code="country"/></td>
         </tr>
 
         <tr>
@@ -75,7 +75,7 @@
               <td width="50" valign="top"><g:formatBoolean boolean="${pate.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </erp:accessCheck>
 
-            <td width="60" valign="top"><span class="bold"><g:message code="pate.profile.email"/>:</span></td>
+            <td width="60" valign="top"><span class="bold"><g:message code="email"/>:</span></td>
             <td valign="top">${fieldValue(bean: pate, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
 
           </tr>

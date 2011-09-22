@@ -22,10 +22,10 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="child.profile.gender"/></td>
-            <td valign="top" class="name"><g:message code="child.profile.firstName"/></td>
-            <td valign="top" class="name"><g:message code="child.profile.lastName"/></td>
-            <td valign="top" class="name"><g:message code="child.profile.birthDate"/></td>
+            <td valign="top" class="name"><g:message code="gender"/></td>
+            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="name"><g:message code="lastName"/></td>
+            <td valign="top" class="name"><g:message code="birthDate"/></td>
           </tr>
 
           <tr>
@@ -72,7 +72,7 @@
           <g:message code="active"/>
           <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <g:message code="child.profile.email"/>:
+          <g:message code="email"/>:
           : &nbsp;
           <g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="60" maxlength="80" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
           &nbsp;&nbsp;

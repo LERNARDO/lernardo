@@ -22,7 +22,7 @@
       <table style="width: 100%">
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="theme.profile.name"/></td>
+          <td valign="top" class="name-show"><g:message code="name"/></td>
           <td valign="top" class="name-show"><g:message code="theme.profile.startDate"/></td>
           <td valign="top" class="name-show"><g:message code="theme.profile.endDate"/></td>
         </tr>
@@ -53,7 +53,7 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show-block"><g:message code="theme.profile.description"/></td>
+          <td valign="top" class="name-show-block"><g:message code="description"/></td>
         </tr>
         <tr>
           <td colspan="3" valign="top" class="value-show-block">

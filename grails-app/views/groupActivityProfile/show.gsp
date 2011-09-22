@@ -34,9 +34,9 @@
         </tr>
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="groupActivity.profile.name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
           <td valign="top" class="name-show"><g:message code="groupActivity.profile.realDuration"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupActivity.profile.date"/>:</td>
+          <td valign="top" class="name-show"><g:message code="date"/>:</td>
         </tr>
 
         <tr>
@@ -65,7 +65,7 @@
         </tr>
 
         <tr>
-          <td class="name-show"><g:message code="groupActivity.profile.description"/>:</td>
+          <td class="name-show"><g:message code="description"/>:</td>
         </tr>
         <tr>
           <td colspan="3" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>

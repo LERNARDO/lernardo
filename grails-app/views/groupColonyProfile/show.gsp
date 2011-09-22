@@ -14,8 +14,8 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="groupColony.profile.name"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupColony.profile.description"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="description"/>:</td>
         </tr>
 
         <tr>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="representantives"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
+      <h5><g:message code="representatives"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="clearElements(['#cFirstName','#cLastName','#cCountry','#cZip','#cCity','#cStreet','#cPhone','#cEmail','#cFunction']); toggle('#representatives');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/>
       </a></erp:accessCheck></h5>
       <div class="zusatz-add" id="representatives" style="display:none">
@@ -46,35 +46,35 @@
 
           <table>
             <tr>
-              <td><g:message code="contact.firstName"/>:</td>
+              <td><g:message code="firstName"/>:</td>
               <td><g:textField id="cFirstName" size="30" name="firstName" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.lastName"/>:</td>
+              <td><g:message code="lastName"/>:</td>
               <td><g:textField id="cLastName" size="30" name="lastName" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.country"/>:</td>
+              <td><g:message code="country"/>:</td>
               <td><g:textField id="cCountry" size="30" name="country" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.zip"/>:</td>
+              <td><g:message code="zip"/>:</td>
               <td><g:textField id="cZip" size="30" name="zip" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.city"/>:</td>
+              <td><g:message code="city"/>:</td>
               <td><g:textField id="cCity" size="30" name="city" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.street"/>:</td>
+              <td><g:message code="street"/>:</td>
               <td><g:textField id="cStreet" size="30" name="street" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.phone"/>:</td>
+              <td><g:message code="phone"/>:</td>
               <td><g:textField id="cPhone" size="30" name="phone" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.email"/>:</td>
+              <td><g:message code="email"/>:</td>
               <td><g:textField id="cEmail" size="30" name="email" value=""/></td>
             </tr>
             <tr>
@@ -99,11 +99,11 @@
         <g:formRemote name="formRemote4" url="[controller:'groupColonyProfile', action:'addResource', id:group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
             <tr>
-              <td><g:message code="resource.profile.name"/>:</td>
+              <td><g:message code="name"/>:</td>
               <td><g:textField id="resourceName" size="30" name="fullName" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="resource.profile.description"/>:</td>
+              <td><g:message code="description"/>:</td>
               <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>

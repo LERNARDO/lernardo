@@ -26,7 +26,7 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="project.profile.name"/></td>
+          <td valign="top" class="name-show"><g:message code="name"/></td>
           <td valign="top" class="name-show"><g:message code="project.profile.startDate"/></td>
           <td valign="top" class="name-show"><g:message code="project.profile.endDate"/></td>
         </tr>
@@ -38,7 +38,7 @@
         </tr>
 
         <tr>
-          <td class="name-show"><g:message code="project.profile.description"/></td>
+          <td class="name-show"><g:message code="description"/></td>
         </tr>
 
         <tr>

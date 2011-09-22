@@ -15,10 +15,10 @@
         <tbody>
 
         <tr>
-          <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.gender"/></td>
-          <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.firstName"/></td>
-          <td width="280" valign="middle" class="name-show"><g:message code="parent.profile.lastName"/></td>
-          <td valign="middle" class="name-show"><g:message code="parent.profile.birthDate"/></td>
+          <td width="120" valign="middle" class="name-show"><g:message code="gender"/></td>
+          <td width="200" valign="middle" class="name-show"><g:message code="firstName"/></td>
+          <td width="280" valign="middle" class="name-show"><g:message code="lastName"/></td>
+          <td valign="middle" class="name-show"><g:message code="birthDate"/></td>
         </tr>
 
         <tr>
@@ -101,10 +101,10 @@
         </g:if>
 
         <tr>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.currentCountry}"><g:message code="parent.profile.currentCountry"/></g:if></td>
-          <td valign="top" class="name-show"><g:message code="parent.profile.currentCity"/></td>
-          <td valign="top" class="name-show"><g:message code="parent.profile.currentStreet"/></td>
-          <td valign="top" class="name-show"><g:message code="parent.profile.currentZip"/></td>
+          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.currentCountry}"><g:message code="country"/></g:if></td>
+          <td valign="top" class="name-show"><g:message code="city"/></td>
+          <td valign="top" class="name-show"><g:message code="street"/></td>
+          <td valign="top" class="name-show"><g:message code="zip"/></td>
         </tr>
 
         <tr>
@@ -162,7 +162,7 @@
             </erp:accessCheck>
 
             <td width="280" valign="middle">
-              <span class="bold"><g:message code="educator.profile.email"/>:</span>
+              <span class="bold"><g:message code="email"/>:</span>
               ${fieldValue(bean: parent, field: 'user.email') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
             </td>
             <td valign="middle">

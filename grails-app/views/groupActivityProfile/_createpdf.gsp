@@ -48,7 +48,7 @@
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="groupActivity.profile.date"/>:</td>
+        <td class="one"><g:message code="date"/>:</td>
         <td class="two"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
       </tr>
 
@@ -70,7 +70,7 @@
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="groupActivity.profile.description"/>:</td>
+        <td class="one"><g:message code="description"/>:</td>
         <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
@@ -225,7 +225,7 @@
           </tr>
 
           <tr class="prop">
-            <td class="one"><g:message code="activityTemplate.description"/>:</td>
+            <td class="one"><g:message code="description"/>:</td>
             <td class="two">${fieldValue(bean: activity, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
 

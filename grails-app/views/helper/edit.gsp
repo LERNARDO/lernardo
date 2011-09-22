@@ -22,7 +22,7 @@
       <table width="100%">
 
         <tr>
-          <td valign="top" class="label"><g:message code="helper.topic.title"/>:</td>
+          <td valign="top" class="label"><g:message code="title"/>:</td>
           <td class="value ${hasErrors(bean: helperInstance, field: 'title', 'errors')}"><g:textField class="countable${helperInstance.constraints.title.maxSize}" name="title" size="70" value="${fieldValue(bean:helperInstance, field:'title').decodeHTML()}"/></td>
         </tr>
 

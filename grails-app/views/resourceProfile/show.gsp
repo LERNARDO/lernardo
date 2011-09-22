@@ -25,7 +25,7 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="resource.profile.name"/></td>
+          <td valign="top" class="name-show"><g:message code="name"/></td>
         </tr>
 
         <tr class="prop">
@@ -35,7 +35,7 @@
         </tr>
 
         <tr class="prop">
-          <td colspan="2" valign="top" class="name-show"><g:message code="resource.profile.description"/></td>
+          <td colspan="2" valign="top" class="name-show"><g:message code="description"/></td>
         </tr>
         <tr>
           <td colspan="2" valign="top" class="value-show-block">

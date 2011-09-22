@@ -21,8 +21,8 @@
         <table>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="partner.profile.name"/>:</td>
-            <td colspan="2" valign="top" class="name"><g:message code="partner.profile.description"/>:</td>
+            <td valign="top" class="name"><g:message code="name"/>:</td>
+            <td colspan="2" valign="top" class="name"><g:message code="description"/>:</td>
             <td valign="top" class="name"><g:message code="partner.profile.website"/>:</td>
           </tr>
 
@@ -39,7 +39,7 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="partner.profile.phone"/>:</td>
+            <td valign="top" class="name"><g:message code="phone"/>:</td>
             <td colspan="3" valign="top" class="name"><g:message code="partner.profile.services"/>:</td>
           </tr>
 
@@ -52,10 +52,10 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="partner.profile.street"/>:</td>
-            <td valign="top" class="name"><g:message code="partner.profile.zip"/>:</td>
-            <td valign="top" class="name"><g:message code="partner.profile.city"/>:</td>
-            <td valign="top" class="name"><g:message code="partner.profile.country"/>:</td>
+            <td valign="top" class="name"><g:message code="street"/>:</td>
+            <td valign="top" class="name"><g:message code="zip"/>:</td>
+            <td valign="top" class="name"><g:message code="city"/>:</td>
+            <td valign="top" class="name"><g:message code="country"/>:</td>
           </tr>
 
           <tr class="prop">
@@ -82,7 +82,7 @@
               <td width="40" valign="top" class="value">
                 <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
               </td>
-              <td width="70" valign="top" class="name"><g:message code="partner.profile.email"/></td>
+              <td width="70" valign="top" class="name"><g:message code="email"/></td>
               <td width="320" valign="top" class="value">
                 <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
               </td>

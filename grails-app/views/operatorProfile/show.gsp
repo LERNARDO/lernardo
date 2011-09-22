@@ -15,37 +15,37 @@
         <tbody>
 
         <tr class="prop">
-          <td valign="top"  class="name-show"><g:message code="operator.profile.name"/>:</td>
+          <td valign="top"  class="name-show"><g:message code="name"/>:</td>
           <td valign="top" width="700" class="value-show"><g:link action="show" id="${operator.id}" params="[entity:operator.id]">${operator.profile.fullName}</g:link></td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="operator.profile.email"/>:</td>
+          <td valign="top" class="name-show"><g:message code="email"/>:</td>
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'user.email')}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="operator.profile.zip"/>:</td>
+          <td valign="top" class="name-show"><g:message code="zip"/>:</td>
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.zip') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="operator.profile.city"/>:</td>
+          <td valign="top" class="name-show"><g:message code="city"/>:</td>
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.city') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="operator.profile.street"/>:</td>
+          <td valign="top" class="name-show"><g:message code="street"/>:</td>
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.street') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="operator.profile.description"/>:</td>
+          <td valign="top" class="name-show"><g:message code="description"/>:</td>
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.description') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="operator.profile.phone"/>:</td>
+          <td valign="top" class="name-show"><g:message code="phone"/>:</td>
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.phone') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 

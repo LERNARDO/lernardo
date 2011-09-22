@@ -23,8 +23,8 @@
           <tbody>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="user.profile.firstName"/></td>
-            <td valign="top" class="name"><g:message code="user.profile.lastName"/></td>
+            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="name"><g:message code="lastName"/></td>
           </tr>
 
           <tr class="prop">
@@ -56,7 +56,7 @@
             </td>
 
             <td width="270" valign="middle">
-              <g:message code="user.profile.email"/>:
+              <g:message code="email"/>:
               <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="30" maxlength="80" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
             </td>
 

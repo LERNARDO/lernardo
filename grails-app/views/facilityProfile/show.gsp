@@ -14,8 +14,8 @@
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="facility.profile.name"/>:</td>
-          <td colspan="3" valign="top" class="name-show"><g:message code="facility.profile.description"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
+          <td colspan="3" valign="top" class="name-show"><g:message code="description"/>:</td>
         </tr>
 
         <tr>
@@ -25,7 +25,7 @@
 
         <tr>
           <td valign="top" class="name-show"><g:message code="facility.profile.colony"/>:</td>
-          <td colspan="3" valign="top" class="name-show"><g:message code="facility.profile.phone"/>:</td>
+          <td colspan="3" valign="top" class="name-show"><g:message code="phone"/>:</td>
         </tr>
 
         <tr>
@@ -36,10 +36,10 @@
         </tr>
 
         <tr>
-          <td valign="bottom" class="name-show"><g:message code="facility.profile.street"/>:</td>
-          <td valign="bottom" class="name-show"><g:message code="facility.profile.zip"/>:</td>
-          <td valign="bottom" class="name-show"><g:message code="facility.profile.city"/>:</td>
-          <td valign="bottom" class="name-show"><g:message code="facility.profile.country"/>:</td>
+          <td valign="bottom" class="name-show"><g:message code="street"/>:</td>
+          <td valign="bottom" class="name-show"><g:message code="zip"/>:</td>
+          <td valign="bottom" class="name-show"><g:message code="city"/>:</td>
+          <td valign="bottom" class="name-show"><g:message code="country"/>:</td>
         </tr>
 
         <tr>
@@ -119,35 +119,35 @@
 
           <table>
             <tr>
-              <td><g:message code="contact.firstName"/>:</td>
+              <td><g:message code="firstName"/>:</td>
               <td><g:textField id="cFirstName" name="firstName" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.lastName"/>:</td>
+              <td><g:message code="lastName"/>:</td>
               <td><g:textField id="cLastName" name="lastName" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.country"/>:</td>
+              <td><g:message code="country"/>:</td>
               <td><g:textField id="cCountry" name="country" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.zip"/>:</td>
+              <td><g:message code="zip"/>:</td>
               <td><g:textField id="cZip" name="zip" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.city"/>:</td>
+              <td><g:message code="city"/>:</td>
               <td><g:textField id="cCity" name="city" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.street"/>:</td>
+              <td><g:message code="street"/>:</td>
               <td><g:textField id="cStreet" name="street" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.phone"/>:</td>
+              <td><g:message code="phone"/>:</td>
               <td><g:textField id="cPhone" name="phone" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="contact.email"/>:</td>
+              <td><g:message code="email"/>:</td>
               <td><g:textField id="cEmail" name="email" size="30"/></td>
             </tr>
             <tr>
@@ -173,11 +173,11 @@
         <g:formRemote name="formRemote2" url="[controller:'facilityProfile', action:'addResource', id: facility.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
             <tr>
-              <td><g:message code="resource.profile.name"/>:</td>
+              <td><g:message code="name"/>:</td>
               <td><g:textField id="resourceName" size="30" name="fullName" value=""/></td>
             </tr>
             <tr>
-              <td><g:message code="resource.profile.description"/>:</td>
+              <td><g:message code="description"/>:</td>
               <td><g:textArea id="resourceDescription" rows="5" cols="50" name="description" value=""/></td>
             </tr>
             <tr>

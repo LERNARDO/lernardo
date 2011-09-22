@@ -16,8 +16,8 @@
       <table style="width: 100%">
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="partner.profile.name"/></td>
-          <td valign="top" class="name-show"><g:message code="partner.profile.description"/></td>
+          <td valign="top" class="name-show"><g:message code="name"/></td>
+          <td valign="top" class="name-show"><g:message code="description"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.website"/></td>
         </tr>
 
@@ -32,7 +32,7 @@
       <table style="width: 100%">
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="partner.profile.phone"/></td>
+          <td valign="top" class="name-show"><g:message code="phone"/></td>
           <td valign="top" class="name-show"><g:message code="partner.profile.services"/></td>
         </tr>
 
@@ -52,13 +52,15 @@
           </td>
         </tr>
 
+      </table>
+
       <table style="width: 100%">
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="partner.profile.street"/></td>
-          <td valign="top" class="name-show"><g:message code="partner.profile.zip"/></td>
-          <td valign="top" class="name-show"><g:message code="partner.profile.city"/></td>
-          <td valign="top" class="name-show"><g:message code="partner.profile.country"/></td>
+          <td valign="top" class="name-show"><g:message code="street"/></td>
+          <td valign="top" class="name-show"><g:message code="zip"/></td>
+          <td valign="top" class="name-show"><g:message code="city"/></td>
+          <td valign="top" class="name-show"><g:message code="country"/></td>
         </tr>
 
         <tr>
@@ -80,7 +82,7 @@
               <td width="50" valign="top"><g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
             </erp:accessCheck>
             <td width="60" valign="top">
-              <span class="bold"><g:message code="facility.profile.email"/>:</span>
+              <span class="bold"><g:message code="email"/>:</span>
             </td>
             <td valign="top">${fieldValue(bean: partner, field: 'user.email') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
           </tr>
@@ -110,35 +112,35 @@
 
           <table>
             <tr>
-              <td><g:message code="partner.profile.contactFirstName"/>:</td>
+              <td><g:message code="firstName"/>:</td>
               <td><g:textField id="cFirstName" name="firstName" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactLastName"/>:</td>
+              <td><g:message code="lastName"/>:</td>
               <td><g:textField id="cLastName" name="lastName" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactCountry"/>:</td>
+              <td><g:message code="country"/>:</td>
               <td><g:textField id="cCountry" name="country" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactZip"/>:</td>
+              <td><g:message code="zip"/>:</td>
               <td><g:textField id="cZip" name="zip" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactCity"/>:</td>
+              <td><g:message code="city"/>:</td>
               <td><g:textField id="cCity" name="city" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactStreet"/>:</td>
+              <td><g:message code="street"/>:</td>
               <td><g:textField id="cStreet" name="street" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactPhone"/>:</td>
+              <td><g:message code="phone"/>:</td>
               <td><g:textField id="cPhone" name="phone" size="30"/></td>
             </tr>
             <tr>
-              <td><g:message code="partner.profile.contactEmail"/>:</td>
+              <td><g:message code="email"/>:</td>
               <td><g:textField id="cEmail" name="email" size="30"/></td>
             </tr>
             <tr>

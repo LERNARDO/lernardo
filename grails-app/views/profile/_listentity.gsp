@@ -8,7 +8,7 @@
   <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link>
 </td>
 %{--<td class="col">${entity.type.name}</td>  --}%
-<td><g:message code="profiletype.${entity.type.supertype.name}"/></td>
+<td><g:message code="${entity.type.supertype.name}"/></td>
 <td id="entity-enabled-${i}"><g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource (dir:'images/icons', file:'icon_tick.png')}" alt="Active" align="top"/></g:if><g:else><img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Inactive" align="top"/></g:else></g:if></td>
 <td id="entity-roles-${i}"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
 <td>

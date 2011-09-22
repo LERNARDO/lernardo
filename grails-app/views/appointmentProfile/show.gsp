@@ -19,12 +19,12 @@
       <tbody>
 
         <tr class="prop">
-          <td class="one"><g:message code="appointment.profile.fullName"/>:</td>
+          <td class="one"><g:message code="title"/>:</td>
           <td class="two">${fieldValue(bean: appointment, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
-          <td class="one"><g:message code="appointment.profile.description"/>:</td>
+          <td class="one"><g:message code="description"/>:</td>
           <td class="two">${fieldValue(bean: appointment, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 

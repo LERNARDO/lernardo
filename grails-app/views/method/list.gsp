@@ -27,7 +27,7 @@
     <table class="default-table">
       <thead>
       <tr>
-        <g:sortableColumn property="name" title="${message(code:'method.name')}"/>
+        <g:sortableColumn property="name" title="${message(code:'name')}"/>
         <th><g:message code="elements"/></th>
       </tr>
       </thead>

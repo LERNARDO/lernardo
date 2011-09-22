@@ -19,7 +19,7 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="project.profile.name"/></td>
+            <td valign="top" class="name"><g:message code="name"/></td>
             <td valign="top" class="name"><g:message code="project.profile.startDate"/></td>
             <td valign="top" class="name"><g:message code="project.profile.endDate"/></td>
           </tr>
@@ -76,7 +76,7 @@
         <table width="100%">
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name bold"><g:message code="project.profile.description"/></td>
+            <td colspan="3" valign="top" class="name bold"><g:message code="description"/></td>
           </tr>
 
           <tr class="prop">

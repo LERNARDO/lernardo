@@ -2,8 +2,8 @@
   <table class="default-table">
     <thead>
     <tr>
-      <th><g:message code="groupActivity.profile.name"/></th>
-      <th><g:message code="groupActivity.profile.date"/></th>
+      <th><g:message code="name"/></th>
+      <th><g:message code="date"/></th>
       <th><g:message code="creator"/></th>
     </tr>
     </thead>
