@@ -135,15 +135,15 @@ class AppointmentProfileController {
 
     def create = {
       Entity entity = Entity.get(params.id)
-      return [entity: entity]
+      return [owner: entity, entity: entity]
     }
 
     def save = {
       EntityType etAppointment = metaDataService.etAppointment
-      Entity entity = Entity.get(params.id)
+      Entity owner = Entity.get(params.id)
 
       try {
-        Entity appointment = entityHelperService.createEntity('appointment', etAppointment) {Entity ent ->
+        Entity entity = entityHelperService.createEntity('appointment', etAppointment) {Entity ent ->
           ent.profile = profileHelperService.createProfileFor(ent) as Profile
           ent.profile.properties = params
           ent.profile.beginDate = functionService.convertToUTC(ent.profile.beginDate)
@@ -151,17 +151,17 @@ class AppointmentProfileController {
         }
 
         if (params.beginDate > params.endDate) {
-          render (view: "create", model: [appointmentProfileInstance: appointment, entity: entity])
-          return
+          render (view: "create", model: [appointmentProfileInstance: entity, owner: owner, currentEntity: entityHelperService.loggedIn])
+          //return
         }
 
         // create link to owner
-        new Link(source: appointment, target: entity, type: metaDataService.ltAppointment).save(failOnError: true)
+        new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save(failOnError: true)
 
-        flash.message = message(code: "object.created", args: [message(code: "appointment"), appointment.profile.fullName])
-        redirect action: 'show', id: appointment.id, params: [entity: appointment]
+        flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile.fullName])
+        redirect action: 'show', id: entity.id, params: [entity: entity]
       } catch (EntityException ee) {
-        render(view: "create", model: [appointmentProfileInstance: ee.entity, entity: entity])
+        render(view: "create", model: [appointmentProfileInstance: ee.entity, owner: owner, currentEntity: entityHelperService.loggedIn])
       }
 
     }
