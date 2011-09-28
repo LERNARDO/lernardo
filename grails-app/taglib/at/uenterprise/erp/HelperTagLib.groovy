@@ -11,6 +11,8 @@ import org.springframework.beans.SimpleTypeConverter
 import org.springframework.context.MessageSourceResolvable
 import org.codehaus.groovy.grails.web.util.StreamCharBuffer
 import org.codehaus.groovy.grails.commons.DomainClassArtefactHandler
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -242,7 +244,99 @@ class HelperTagLib {
         units.add(workdayUnit)
       }
     }
-    out << body(units: units)
+
+    // get all workdayunits for each day
+    Calendar calendarStart = new GregorianCalendar()
+    calendarStart.setTime(date1)
+
+    Calendar calendarEnd = new GregorianCalendar()
+    calendarEnd.setTime(date2)
+
+    SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy", new Locale("en"))
+    NumberFormat nf = new DecimalFormat("##0.00")
+    SimpleDateFormat wdf = new SimpleDateFormat("EEEE", new Locale("en"))
+
+    while (calendarStart <= calendarEnd) {
+
+      List currentUnits = []
+      units.each { unit ->
+        if (df.format(unit.date1) == df.format(calendarStart.getTime()))
+          currentUnits.add(unit)
+      }
+
+      if (currentUnits.size() > 0) {
+        out << "<p>" + formatDate(date: currentUnits[0].date1, format: "EEEE, dd.MM.yyyy") + "</p>"
+        out << "<table style='margin-bottom: 20px'>"
+        out << "<tr>"
+        out << "<th width='40px'>" + message(code: 'from.upper') + "</th>"
+        out << "<th width='40px'>" + message(code: 'to.upper') + "</th>"
+        out << "<th width='80px'>" + message(code: 'credit.hours') + "</th>"
+        out << "<th width='100px'>" + message(code: 'category') + "</th>"
+        out << "<th width='400px'>" + message(code: 'description') + "</th>"
+        out << "</tr>"
+
+        BigDecimal totalCreditHours = 0
+        Date first = null
+        Date last = null
+        currentUnits.eachWithIndex { unit, index ->
+
+          // calculate credit hours
+          BigDecimal creditHours = (unit.date2.getTime() - unit.date1.getTime()) / 1000 / 60 / 60
+
+          totalCreditHours += creditHours
+          if (index == 0)
+            first = unit.date1
+          if (index == currentUnits.size() - 1)
+            last = unit.date2
+          out << "<tr>"
+          out << "<td>" + formatDate(date: unit.date1, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+          out << "<td>" + formatDate(date: unit.date2, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+          out << "<td>" + nf.format(creditHours) + "</td>"
+          out << "<td>" + unit.category + "</td>"
+          out << "<td>" + unit.description.decodeHTML() + "</td>"
+          out << "</tr>"
+        }
+
+        // calculate expected hours
+        BigDecimal expectedHours = 0
+        if (wdf.format(calendarStart.getTime()) == 'Monday')
+          expectedHours += educator.profile.workHoursMonday
+        else if (wdf.format(calendarStart.getTime()) == 'Tuesday')
+          expectedHours += educator.profile.workHoursTuesday
+        else if (wdf.format(calendarStart.getTime()) == 'Wednesday')
+          expectedHours += educator.profile.workHoursWednesday
+        else if (wdf.format(calendarStart.getTime()) == 'Thursday')
+          expectedHours += educator.profile.workHoursThursday
+        else if (wdf.format(calendarStart.getTime()) == 'Friday')
+          expectedHours += educator.profile.workHoursFriday
+        else if (wdf.format(calendarStart.getTime()) == 'Saturday')
+          expectedHours += educator.profile.workHoursSaturday
+        else if (wdf.format(calendarStart.getTime()) == 'Sunday')
+          expectedHours += educator.profile.workHoursSunday
+
+        out << "<tr style='background: #eee; font-weight: bold'>"
+        out << "<td>" + formatDate(date: first, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+        out << "<td>" + formatDate(date: last, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+        out << "<td style='background-color: ${totalCreditHours < expectedHours ? '#f55' : '#5f5'}'>" + nf.format(totalCreditHours) + "</td>"
+        out << "<td></td>"
+        out << "<td>" + message(code: 'debit.hours') + ": " + nf.format(expectedHours) + "</td>"
+        out << "</tr>"
+
+        out << "</table>"
+      }
+
+      calendarStart.add(Calendar.DATE, 1)
+    }
+
+    BigDecimal th = calculateTotalHours(educator, date1, date2)
+    BigDecimal eh = calculateExpectedHours(educator, date1, date2)
+    out << "<table>"
+    out << "<tr style='background: #eee; font-weight: bold'>"
+    out << "<td colspan='2' style='border: 0; width: 85px'>" + message(code: 'total') + "</td>"
+    out << "<td colspan='2' style='border: 0; width: 185px; background-color: ${th < eh ? '#f55' : '#5f5'}'>" + message(code: 'credit.hours') + ": " + nf.format(th) + "</td>"
+    out << "<td width='400px' style='border: 0'>" + message(code: 'debit.hours') + ": " + nf.format(eh) + "</td>"
+    out << "</tr>"
+    out << "</table>"
   }
 
   /**
@@ -296,7 +390,7 @@ class HelperTagLib {
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
     }
 
     Entity educator = attrs.educator
@@ -374,11 +468,17 @@ class HelperTagLib {
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
-      date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
     }
 
     Entity educator = attrs.educator
 
+    BigDecimal hours = calculateExpectedHours(educator, date1, date2)
+    NumberFormat df = new DecimalFormat("##0.00")
+    out << df.format(hours)
+  }
+
+  BigDecimal calculateExpectedHours(educator, date1, date2) {
     BigDecimal expectedHours = 0
     Calendar tcalendarStart = new GregorianCalendar();
     tcalendarStart.setTime(date1);
@@ -409,7 +509,7 @@ class HelperTagLib {
       tcalendarStart.add(Calendar.DATE, 1)
     }
 
-    out << expectedHours
+    return expectedHours
   }
 
   /**
@@ -421,8 +521,8 @@ class HelperTagLib {
    * @attr date2 REQUIRED The end of the date range to check
    */
   def getTotalHours = { attrs, body ->
-    Date date1
-    Date date2
+    Date date1 = null
+    Date date2 = null
 
     if (attrs.date1 != null && attrs.date2 != null) {
       date1 = Date.parse("dd. MM. yy", attrs.date1)
@@ -431,13 +531,19 @@ class HelperTagLib {
 
     Entity educator = attrs.educator
 
+    BigDecimal hours = calculateTotalHours(educator, date1, date2)
+    NumberFormat df = new DecimalFormat("##0.00")
+    out << df.format(hours)
+  }
+
+  BigDecimal calculateTotalHours(educator, date1, date2) {
     BigDecimal hours = 0
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the workdayunit should be counted
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
       if (category?.count) {
         // check if the date of the workdayunit the chosen date range
-        if (attrs.date1 != null & attrs.date2 != null) {
+        if (date1 != null & date2 != null) {
           if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
             hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
@@ -447,7 +553,7 @@ class HelperTagLib {
       }
     }
 
-    out << hours
+    return hours
   }
 
   /**
@@ -485,7 +591,8 @@ class HelperTagLib {
       }
     }
 
-    out << hours
+    NumberFormat df = new DecimalFormat("##0.00")
+    out << df.format(hours)
   }
 
   /**
