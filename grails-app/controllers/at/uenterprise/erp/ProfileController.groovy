@@ -22,6 +22,8 @@ class ProfileController {
   SecHelperService secHelperService
   AssetService assetService
 
+  static allowedMethods = [changePassword: 'POST']
+
   def index = { }
 
   /*
@@ -132,7 +134,7 @@ class ProfileController {
    */
   def changePassword = {
     Entity entity = Entity.get(params.id)
-    return ['entity': entity]
+    return [entity: entity]
   }
 
   /*

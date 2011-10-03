@@ -49,20 +49,35 @@
           <td valign="top" class="value-show">${fieldValue(bean: operator, field: 'profile.phone') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="showTips"/>:</td>
-          <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.profile.showTips}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-        </tr>
-
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-          <tr class="prop">
-            <td valign="top" class="name-show"><g:message code="active"/>:</td>
-            <td valign="top" class="value-show"><g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></td>
-          </tr>
-        </erp:accessCheck>
-
         </tbody>
       </table>
+
+      <div class="email">
+        <table width="100%">
+          <tr>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+              <td>
+                <span class="bold"><g:message code="active"/> </span>
+                <g:formatBoolean boolean="${operator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
+              </td>
+            </erp:accessCheck>
+            <td>
+              <span class="bold"><g:message code="email"/>: </span>
+              ${fieldValue(bean: operator, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+            </td>
+            <erp:isMeOrAdminOrOperator entity="${operator}" current="${currentEntity}">
+              <td>
+                <g:form controller="profile" action="changePassword" id="${operator.id}">
+                  <span class="bold"><g:message code="password"/>: </span>
+                  <g:submitButton name="submit" value="${message(code: 'change')}"/>
+                  <div class="clear"></div>
+                </g:form>
+              </td>
+            </erp:isMeOrAdminOrOperator>
+          </tr>
+        </table>
+      </div>
+
     </div>
 
     <div class="buttons">

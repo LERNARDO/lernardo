@@ -57,14 +57,29 @@
       </table>
 
       <div class="email">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-          <span class="bold"><g:message code="active"/></span>
-          <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
-        </erp:accessCheck>
-        <td width="60" valign="top">
-          <span class="bold"><g:message code="email"/>:</span>
-        </td>
-        <td valign="top">${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <table width="100%">
+          <tr>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+              <td>
+                <span class="bold"><g:message code="active"/> </span>
+                <g:formatBoolean boolean="${child.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
+              </td>
+            </erp:accessCheck>
+            <td>
+              <span class="bold"><g:message code="email"/>: </span>
+              ${fieldValue(bean: child, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+            </td>
+            <erp:isMeOrAdminOrOperator entity="${child}" current="${currentEntity}">
+              <td>
+                <g:form controller="profile" action="changePassword" id="${child.id}">
+                  <span class="bold"><g:message code="password"/>: </span>
+                  <g:submitButton name="submit" value="${message(code: 'change')}"/>
+                  <div class="clear"></div>
+                </g:form>
+              </td>
+            </erp:isMeOrAdminOrOperator>
+          </tr>
+        </table>
       </div>
 
     </div>

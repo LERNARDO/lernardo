@@ -247,38 +247,18 @@
           <table width="100%">
             <tr>
               <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <td valign="top">
-                  <g:message code="active"/>
-                </td>
                 <td>
-                  <g:checkBox name="enabled" value="${client?.user?.enabled}"/>
+                  <g:message code="active"/>
+                  <g:checkBox name="enabled" value="${client?.user?.enabled}" style="vertical-align: bottom"/>
                 </td>
               </erp:accessCheck>
-              <td valign="top">
+              <td>
                 <g:message code="email"/>:
-              </td>
-              <td valign="top">
                 <g:textField class="${hasErrors(bean: client, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: client, field: 'user.email')}"/>
               </td>
-              <td valign="top">
-                <g:message code="languageSelection"/>:
-              </td>
-              <td valign="top">
-                <erp:localeSelect class="drop-down-150" name="locale" value="${client?.user?.locale}"/>
-              </td>
-            </tr>
-            <tr>
-              <td valign="top">
-                <g:message code="showTips"/>
-              </td>
               <td>
-                <g:checkBox name="showTips" value="${client?.profile?.showTips}"/>
-              </td>
-              <td valign="top" class="name">
-                <g:message code="password"/>:
-              </td>
-              <td valign="top" class="value">
-                <g:link controller="profile" action="changePassword" id="${client.id}"><g:message code="change"/></g:link>
+                <g:message code="languageSelection"/>:
+                <erp:localeSelect class="drop-down-150" name="locale" value="${client?.user?.locale}"/>
               </td>
             </tr>
           </table>

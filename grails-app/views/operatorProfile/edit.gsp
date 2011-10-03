@@ -67,38 +67,33 @@
             </td>
           </tr>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="languageSelection"/></td>
-            <td valign="top" class="value">
-              <erp:localeSelect class="drop-down-280" name="locale" value="${operator?.user?.locale}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="showTips"/></td>
-            <td valign="top" class="value">
-              <g:checkBox name="showTips" value="${operator?.profile?.showTips}"/>
-            </td>
-          </tr>
-
-          <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-            <tr class="prop">
-              <td valign="top" class="name"><g:message code="active"/></td>
-              <td valign="top" class="value">
-                <g:checkBox name="enabled" value="${operator?.user?.enabled}"/>
-              </td>
-            </tr>
-          </erp:accessCheck>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="password"/></td>
-            <td valign="top" class="value">
-              <g:link controller="profile" action="changePassword" id="${operator.id}"><g:message code="change"/></g:link>
-            </td>
-          </tr>
-
           </tbody>
         </table>
+
+        <div class="email">
+          <table width="100%">
+            <tr>
+              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+                <td>
+                  <g:message code="active"/>
+                  <g:checkBox name="enabled" value="${operator?.user?.enabled}" style="vertical-align: bottom"/>
+                </td>
+              </erp:accessCheck>
+              <td>
+                <g:message code="email"/>:
+                <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email')}"/>
+              </td>
+              <td>
+                <g:message code="languageSelection"/>:
+                <erp:localeSelect class="drop-down-150" name="locale" value="${operator?.user?.locale}"/>
+              </td>
+              <td>
+                <g:message code="showTips"/>
+                <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
 
       <div class="buttons">

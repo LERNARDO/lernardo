@@ -68,24 +68,19 @@
         </table>
 
         <div class="email">
-          <table>
+          <table width="100%">
             <tr>
               <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <td width="80" valign="middle">
+                <td>
                   <g:message code="active"/>
-                    <g:checkBox name="enabled" value="${pate?.user?.enabled}"/>
+                  <g:checkBox name="enabled" value="${pate?.user?.enabled}" style="vertical-align: bottom"/>
                 </td>
               </erp:accessCheck>
-              <td width="150" valign="middle">
-                <g:message code="password"/>:
-                <g:link controller="profile" action="changePassword" id="${pate.id}"><g:message code="change"/></g:link>
-              </td>
-
-              <td width="280" valign="middle">
+              <td>
                 <g:message code="email"/>:
-                <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="30" maxlength="80" id="email" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
+                <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
               </td>
-              <td valign="middle">
+              <td>
                 <g:message code="languageSelection"/>:
                 <erp:localeSelect class="drop-down-150" name="locale" value="${pate?.user?.locale}"/>
               </td>

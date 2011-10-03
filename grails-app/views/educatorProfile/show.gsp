@@ -478,21 +478,28 @@
 
     <tr>
       <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-        <td valign="middle">
-          <span class="bold"><g:message code="active"/></span>
-          <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}"
-                           false="${message(code:'no')}"/>
+        <td>
+          <span class="bold"><g:message code="active"/> </span>
+          <g:formatBoolean boolean="${educator.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
         </td>
       </erp:accessCheck>
-
-      <td valign="middle">
-        <span class="bold"><g:message code="email"/>:</span>
+      <td>
+        <span class="bold"><g:message code="email"/>: </span>
         ${fieldValue(bean: educator, field: 'user.email') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}
       </td>
-      <td valign="middle">
+      <td>
         <span class="bold"><g:message code="languageSelection"/>:</span>
         ${educator?.user?.locale?.getDisplayLanguage()}
       </td>
+      <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
+        <td>
+          <g:form controller="profile" action="changePassword" id="${educator.id}">
+            <span class="bold"><g:message code="password"/>: </span>
+            <g:submitButton name="submit" value="${message(code: 'change')}"/>
+            <div class="clear"></div>
+          </g:form>
+        </td>
+      </erp:isMeOrAdminOrOperator>
     </tr>
 
   </table>

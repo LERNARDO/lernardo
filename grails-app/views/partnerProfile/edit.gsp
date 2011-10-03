@@ -74,35 +74,21 @@
         </table>
 
         <div class="email">
-          <table>
-
-            <tr class="prop">
+          <table width="100%">
+            <tr>
               <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <td width="90" valign="top" class="name">
+                <td>
                   <g:message code="active"/>
-                </td>
-                <td width="30" valign="top" class="value">
-                  <g:checkBox name="enabled" value="${partner?.user?.enabled}"/>
+                  <g:checkBox name="enabled" value="${partner?.user?.enabled}" style="vertical-align: bottom"/>
                 </td>
               </erp:accessCheck>
-              <td width="70" valign="top" class="name"><g:message code="email"/></td>
-              <td width="320" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="47" maxlength="80" id="email" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
+              <td>
+                <g:message code="email"/>:
+                <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
               </td>
-              <td width="130" valign="top" class="name"><g:message code="languageSelection"/></td>
-              <td valign="top" class="value">
+              <td>
+                <g:message code="languageSelection"/>:
                 <erp:localeSelect class="drop-down-150" name="locale" value="${partner?.user?.locale}"/>
-              </td>
-            </tr>
-
-            <tr>
-              <td valign="top" class="name"><g:message code="showTips"/></td>
-              <td valign="top" class="value">
-                <g:checkBox name="showTips" value="${partner.profile.showTips}"/>
-              </td>
-              <td valign="top" class="name"><g:message code="password"/></td>
-              <td valign="top" class="value">
-                <g:link controller="profile" action="changePassword" id="${partner.id}"><g:message code="change"/></g:link>
               </td>
             </tr>
           </table>

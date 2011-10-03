@@ -41,26 +41,19 @@
       </div>
 
       <div class="email">
-        <table>
+        <table width="100%">
           <tr>
             <erp:isSystemAdmin entity="${currentEntity}">
-              <td width="85" valign="middle">
+              <td>
                 <g:message code="active"/>
                 <g:checkBox name="enabled" value="${user?.user?.enabled}"/>
               </td>
             </erp:isSystemAdmin>
-
-            <td width="150" valign="middle">
-              <g:message code="password"/>:
-              <g:link controller="profile" action="changePassword" id="${user.id}"><g:message code="change"/></g:link>
-            </td>
-
-            <td width="270" valign="middle">
+            <td>
               <g:message code="email"/>:
               <g:textField class="${hasErrors(bean: user, field: 'user.email', 'errors')}" size="30" maxlength="80" name="email" value="${fieldValue(bean: user, field: 'user.email')}"/>
             </td>
-
-            <td valign="middle">
+            <td>
               <g:message code="languageSelection"/>:
               <erp:localeSelect class="drop-down-150" name="locale" value="${user?.user?.locale}"/>
             </td>

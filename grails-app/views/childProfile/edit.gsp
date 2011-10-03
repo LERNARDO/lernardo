@@ -67,18 +67,25 @@
 
         </table>
 
-        <div class="email">         
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-            <g:message code="active"/>
-            <g:checkBox name="enabled" value="${child?.user?.enabled}"/>
-          </erp:accessCheck>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <g:message code="email"/>
-          : &nbsp;
-          <g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="60" maxlength="80" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
-          &nbsp; &nbsp; &nbsp;
-          <g:message code="showTips"/>
-          <g:checkBox name="showTips" value="${child?.profile?.showTips}"/>
+        <div class="email">
+          <table width="100%">
+            <tr>
+              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+                <td>
+                  <g:message code="active"/>
+                  <g:checkBox name="enabled" value="${child?.user?.enabled}" style="vertical-align: bottom"/>
+                </td>
+              </erp:accessCheck>
+              <td>
+                <g:message code="email"/>:
+                <g:textField class="${hasErrors(bean: child, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: child, field: 'user.email')}"/>
+              </td>
+              <td>
+                <g:message code="languageSelection"/>:
+                <erp:localeSelect class="drop-down-150" name="locale" value="${client?.user?.locale}"/>
+              </td>
+            </tr>
+          </table>
         </div>
 
       </div>

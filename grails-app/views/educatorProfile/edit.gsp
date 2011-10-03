@@ -230,30 +230,25 @@
           </div>
 
         <div class="email">
-          <table>
+          <table width="100%">
             <tr>
               <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <td width="80" valign="middle"><g:message code="active"/>
-                  <g:checkBox name="enabled" value="${educator?.user?.enabled}"/>
+                <td>
+                  <g:message code="active"/>
+                  <g:checkBox name="enabled" value="${educator?.user?.enabled}" style="vertical-align: bottom"/>
                </td>
               </erp:accessCheck>
-              <td width="150" valign="middle">
-                <label>
-                  <g:message code="password"/>:
-                </label>
-                <g:link controller="profile" action="changePassword" id="${educator.id}"><g:message code="change"/></g:link>
-              </td>
-
-              <td width="280"  valign="middle">
+              <td>
                 <g:message code="email"/>:
                 <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="30" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
               </td>
-
-              <td valign="middle">
-                <label for="locale">
-                  <g:message code="languageSelection"/>
-                </label>:
+              <td>
+                <g:message code="languageSelection"/>:
                 <erp:localeSelect class="drop-down-150" name="locale" value="${educator?.user?.locale}"/>
+              </td>
+              <td>
+                <g:message code="showTips"/>
+                <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
               </td>
             </tr>
           </table>
