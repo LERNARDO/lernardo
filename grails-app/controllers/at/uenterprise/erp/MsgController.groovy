@@ -181,7 +181,8 @@ class MsgController {
 
     flash.message = message(code:"msg.sent", args:[params.subject])
 
-    redirect controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id, params:[entity: currentEntity]
+    //redirect controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id, params:[entity: currentEntity]
+    redirect action:'inbox', id: currentEntity.id
   }
 
   def save = {
