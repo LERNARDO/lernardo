@@ -14,7 +14,7 @@
 
     <g:render template="/templates/errors" model="[bean: appointmentProfileInstance]"/>
 
-    <g:form id="${entity.id}">
+    <g:form id="${owner.id}">
 
       <div class="property">
         <g:message code="title"/> <br/>
