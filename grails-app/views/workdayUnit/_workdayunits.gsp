@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.timepicker').timepicker();
+  });
+</script>
+
 <g:set var="confirmed" value="true"/>
 
 <g:if test="${workdayunits}">
@@ -41,11 +47,11 @@
           <table>
             <tr>
               <td><g:message code="from"/>:</td>
-              <td><g:select name="fromHour" from="${0..23}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}"/></td>
+              <td><g:textField name="from" class="timepicker" size="4"/></td>
             </tr>
             <tr>
               <td><g:message code="to"/>:</td>
-              <td><g:select name="toHour" from="${0..23}"/>:<g:select name="toMinute" from="${['00','15','30','45']}"/></td>
+              <td><g:textField name="to" class="timepicker" size="4"/></td>
             </tr>
             <tr>
               <td><g:message code="workdayCategory"/>:</td>

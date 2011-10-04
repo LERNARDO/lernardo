@@ -90,15 +90,17 @@ class WorkdayUnitController {
       Calendar calendar = Calendar.getInstance()
 
       // set start
+      Date from = params.from ? Date.parse("HH:mm", params.from) : null
       calendar.setTime(workdayUnit.date1)
-      calendar.set (Calendar.HOUR_OF_DAY, params.int('fromHour'))
-      calendar.set (Calendar.MINUTE, params.int('fromMinute'))
+      calendar.set (Calendar.HOUR_OF_DAY, from.getHours())
+      calendar.set (Calendar.MINUTE, from.getMinutes())
       workdayUnit.date1 = calendar.getTime()
       workdayUnit.date1 = functionService.convertToUTC(workdayUnit.date1)
 
       // set end
-      calendar.set (Calendar.HOUR_OF_DAY, params.int('toHour'))
-      calendar.set (Calendar.MINUTE, params.int('toMinute'))
+      Date to = params.to ? Date.parse("HH:mm", params.to) : null
+      calendar.set (Calendar.HOUR_OF_DAY, to.getHours())
+      calendar.set (Calendar.MINUTE, to.getMinutes())
       workdayUnit.date2 = calendar.getTime()
       workdayUnit.date2 = functionService.convertToUTC(workdayUnit.date2)
 
@@ -115,15 +117,17 @@ class WorkdayUnitController {
       Calendar calendar = Calendar.getInstance()
 
       // set start
+      Date from = params.from ? Date.parse("HH:mm", params.from) : null
       calendar.setTime(params.date)
-      calendar.set (Calendar.HOUR_OF_DAY, params.int('fromHour'))
-      calendar.set (Calendar.MINUTE, params.int('fromMinute'))
+      calendar.set (Calendar.HOUR_OF_DAY, from.getHours())
+      calendar.set (Calendar.MINUTE, from.getMinutes())
       workdayUnit.date1 = calendar.getTime()
       workdayUnit.date1 = functionService.convertToUTC(workdayUnit.date1)
 
       // set end
-      calendar.set (Calendar.HOUR_OF_DAY, params.int('toHour'))
-      calendar.set (Calendar.MINUTE, params.int('toMinute'))
+      Date to = params.to ? Date.parse("HH:mm", params.to) : null
+      calendar.set (Calendar.HOUR_OF_DAY, to.getHours())
+      calendar.set (Calendar.MINUTE, to.getMinutes())
       workdayUnit.date2 = calendar.getTime()
       workdayUnit.date2 = functionService.convertToUTC(workdayUnit.date2)
 

@@ -95,6 +95,8 @@
         }
       });*/
 
+      $('.timepicker').timepicker();
+
       $(".datepicker-birthday").datepicker({
         changeMonth: true,
         changeYear: true,

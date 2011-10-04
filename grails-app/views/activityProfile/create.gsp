@@ -80,38 +80,31 @@
         <tr>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="monday" value="${ac?.monday}"/> <g:message code="monday"/></div>
-            <g:select name="mondayStartHour" from="${0..23}" value="${ac?.mondayStartHour}"/>:<g:select name="mondayStartMinute" from="${0..59}" value="${ac?.mondayStartMinute}"/><br/>
-            <g:select name="mondayEndHour" from="${0..23}" value="${ac?.mondayEndHour}"/>:<g:select name="mondayEndMinute" from="${0..59}" value="${ac?.mondayEndMinute}"/><br/>
+            <g:textField name="mondayStart" class="timepicker ${hasErrors(bean: ac, field: 'mondayStart', 'errors')}" size="4" value="${formatDate(date: ac?.mondayStart, format: 'HH:mm')}"/> - <g:textField name="mondayEnd" class="timepicker ${hasErrors(bean: ac, field: 'mondayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.mondayEnd, format: 'HH:mm')}"/>
           </td>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="tuesday" value="${ac?.tuesday}"/> <g:message code="tuesday"/></div>
-            <g:select name="tuesdayStartHour" from="${0..23}" value="${ac?.tuesdayStartHour}"/>:<g:select name="tuesdayStartMinute" from="${0..59}" value="${ac?.tuesdayStartMinute}"/><br/>
-            <g:select name="tuesdayEndHour" from="${0..23}" value="${ac?.tuesdayEndHour}"/>:<g:select name="tuesdayEndMinute" from="${0..59}" value="${ac?.tuesdayEndMinute}" format="mm"/><br/>
+            <g:textField name="tuesdayStart" class="timepicker ${hasErrors(bean: ac, field: 'tuesdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.tuesdayStart, format: 'HH:mm')}"/> - <g:textField name="tuesdayEnd" class="timepicker ${hasErrors(bean: ac, field: 'tuesdayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.tuesdayEnd, format: 'HH:mm')}"/>
           </td>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="wednesday" value="${ac?.wednesday}"/> <g:message code="wednesday"/></div>
-            <g:select name="wednesdayStartHour" from="${0..23}" value="${ac?.wednesdayStartHour}"/>:<g:select name="wednesdayStartMinute" from="${0..59}" value="${ac?.wednesdayStartMinute}"/><br/>
-            <g:select name="wednesdayEndHour" from="${0..23}" value="${ac?.wednesdayEndHour}"/>:<g:select name="wednesdayEndMinute" from="${0..59}" value="${ac?.wednesdayEndMinute}"/><br/>
+            <g:textField name="wednesdayStart" class="timepicker ${hasErrors(bean: ac, field: 'wednesdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.wednesdayStart, format: 'HH:mm')}"/> - <g:textField name="wednesdayEnd" class="timepicker ${hasErrors(bean: ac, field: 'wednesdayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.wednesdayEnd, format: 'HH:mm')}"/>
           </td>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="thursday" value="${ac?.thursday}"/> <g:message code="thursday"/></div>
-            <g:select name="thursdayStartHour" from="${0..23}" value="${ac?.thursdayStartHour}"/>:<g:select name="thursdayStartMinute" from="${0..59}" value="${ac?.thursdayStartMinute}"/><br/>
-            <g:select name="thursdayEndHour" from="${0..23}" value="${ac?.thursdayEndHour}"/>:<g:select name="thursdayEndMinute" from="${0..59}" value="${ac?.thursdayEndMinute}"/><br/>
+            <g:textField name="thursdayStart" class="timepicker ${hasErrors(bean: ac, field: 'thursdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.thursdayStart, format: 'HH:mm')}"/> - <g:textField name="thursdayEnd" class="timepicker ${hasErrors(bean: ac, field: 'thursdayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.thursdayEnd, format: 'HH:mm')}"/>
           </td>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="friday" value="${ac?.friday}"/> <g:message code="friday"/></div>
-            <g:select name="fridayStartHour" from="${0..23}" value="${ac?.fridayStartHour}"/>:<g:select name="fridayStartMinute" from="${0..59}" value="${ac?.fridayStartMinute}"/><br/>
-            <g:select name="fridayEndHour" from="${0..23}" value="${ac?.fridayEndHour}"/>:<g:select name="fridayEndMinute" from="${0..59}" value="${ac?.fridayEndMinute}"/><br/>
+            <g:textField name="fridayStart" class="timepicker ${hasErrors(bean: ac, field: 'fridayStart', 'errors')}" size="4" value="${formatDate(date: ac?.fridayStart, format: 'HH:mm')}"/> - <g:textField name="fridayEnd" class="timepicker ${hasErrors(bean: ac, field: 'fridayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.fridayEnd, format: 'HH:mm')}"/>
           </td>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="saturday" value="${ac?.saturday}"/> <g:message code="saturday"/></div>
-            <g:select name="saturdayStartHour" from="${0..23}" value="${ac?.saturdayStartHour}"/>:<g:select name="saturdayStartMinute" from="${0..59}" value="${ac?.saturdayStartMinute}"/><br/>
-            <g:select name="saturdayEndHour" from="${0..23}" value="${ac?.saturdayEndHour}"/>:<g:select name="saturdayEndMinute" from="${0..59}" value="${ac?.saturdayEndMinute}"/><br/>
+            <g:textField name="saturdayStart" class="timepicker ${hasErrors(bean: ac, field: 'saturdayStart', 'errors')}" size="4" value="${formatDate(date: ac?.saturdayStart, format: 'HH:mm')}"/> - <g:textField name="saturdayEnd" class="timepicker ${hasErrors(bean: ac, field: 'saturdayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.saturdayEnd, format: 'HH:mm')}"/>
           </td>
           <td style="padding: 6px;">
             <div style="margin-bottom: 3px;"><g:checkBox name="sunday" value="${ac?.sunday}"/> <g:message code="sunday"/></div>
-            <g:select name="sundayStartHour" from="${0..23}" value="${ac?.sundayStartHour}"/>:<g:select name="sundayStartMinute" from="${0..59}" value="${ac?.sundayStartMinute}"/><br/>
-            <g:select name="sundayEndHour" from="${0..23}" value="${ac?.sundayEndHour}"/>:<g:select name="sundayEndMinute" from="${0..59}" value="${ac?.sundayEndMinute}"/><br/>
+            <g:textField name="sundayStart" class="timepicker ${hasErrors(bean: ac, field: 'sundayStart', 'errors')}" size="4" value="${formatDate(date: ac?.sundayStart, format: 'HH:mm')}"/> - <g:textField name="sundayEnd" class="timepicker ${hasErrors(bean: ac, field: 'sundayEnd', 'errors')}" size="4" value="${formatDate(date: ac?.sundayEnd, format: 'HH:mm')}"/>
           </td>
         </tr>
       </table>

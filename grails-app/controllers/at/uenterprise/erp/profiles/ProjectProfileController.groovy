@@ -27,6 +27,14 @@ class ProjectProfileController {
 
   def beforeInterceptor = [
           action:{
+            params.mondayStart = params.mondayStart ? Date.parse("HH:mm", params.mondayStart) : null
+            params.tuesdayStart = params.tuesdayStart ? Date.parse("HH:mm", params.tuesdayStart) : null
+            params.wednesdayStart = params.wednesdayStart ? Date.parse("HH:mm", params.wednesdayStart) : null
+            params.thursdayStart = params.thursdayStart ? Date.parse("HH:mm", params.thursdayStart) : null
+            params.fridayStart = params.fridayStart ? Date.parse("HH:mm", params.fridayStart) : null
+            params.saturdayStart = params.saturdayStart ? Date.parse("HH:mm", params.saturdayStart) : null
+            params.sundayStart = params.sundayStart ? Date.parse("HH:mm", params.sundayStart) : null
+
             params.startDate = params.startDate ? Date.parse("dd. MM. yy", params.startDate) : null
             params.endDate = params.endDate ? Date.parse("dd. MM. yy", params.endDate) : null},
             only:['save','update']
@@ -382,32 +390,32 @@ class ProjectProfileController {
           //log.info "found matching day"
 
           if (tdf.format(currentDate) == 'Monday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('mondayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('mondayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
           }
           else if (tdf.format(currentDate) == 'Tuesday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('tuesdayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('tuesdayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
           }
           else if (tdf.format(currentDate) == 'Wednesday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('wednesdayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('wednesdayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
           }
           else if (tdf.format(currentDate) == 'Thursday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('thursdayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('thursdayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
           }
           else if (tdf.format(currentDate) == 'Friday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('fridayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('fridayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
           }
           else if (tdf.format(currentDate) == 'Saturday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('saturdayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
           }
           else if (tdf.format(currentDate) == 'Sunday') {
-            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
-            tcalendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
+            tcalendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
+            tcalendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
           }
 
           // create project day
@@ -453,7 +461,7 @@ class ProjectProfileController {
     Entity projectTemplate = Entity.get(params.id)
 
     if (pc.hasErrors()) {
-      render view:'create', model:[pc:pc, template: projectTemplate]
+      render view:'create', model:[pc: pc, template: projectTemplate]
       return
     }
 
@@ -557,32 +565,32 @@ class ProjectProfileController {
                 (params.sunday && (df.format(currentDate) == 'Sunday'))) {
 
           if (df.format(currentDate) == 'Monday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('mondayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('mondayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.mondayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.mondayStart.getMinutes())
           }
           else if (df.format(currentDate) == 'Tuesday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('tuesdayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('tuesdayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.tuesdayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.tuesdayStart.getMinutes())
           }
           else if (df.format(currentDate) == 'Wednesday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('wednesdayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('wednesdayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.wednesdayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.wednesdayStart.getMinutes())
           }
           else if (df.format(currentDate) == 'Thursday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('thursdayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('thursdayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.thursdayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.thursdayStart.getMinutes())
           }
           else if (df.format(currentDate) == 'Friday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('fridayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('fridayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.fridayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.fridayStart.getMinutes())
           }
           else if (df.format(currentDate) == 'Saturday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('saturdayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('saturdayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.saturdayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.saturdayStart.getMinutes())
           }
           else if (df.format(currentDate) == 'Sunday') {
-            calendarStart.set(Calendar.HOUR_OF_DAY, params.int('sundayStartHour'))
-            calendarStart.set(Calendar.MINUTE, params.int('sundayStartMinute'))
+            calendarStart.set(Calendar.HOUR_OF_DAY, params.sundayStart.getHours())
+            calendarStart.set(Calendar.MINUTE, params.sundayStart.getMinutes())
           }
 
           // create project day
@@ -1470,6 +1478,15 @@ class ProjectCommand {
   String fullName
   Date startDate
   Date endDate
+
+  Date mondayStart
+  Date tuesdayStart
+  Date wednesdayStart
+  Date thursdayStart
+  Date fridayStart
+  Date saturdayStart
+  Date sundayStart
+
   Boolean monday
   Boolean tuesday
   Boolean wednesday
@@ -1478,22 +1495,6 @@ class ProjectCommand {
   Boolean saturday
   Boolean sunday
   Boolean weekdays
-
-  String mondayStartHour
-  String tuesdayStartHour
-  String wednesdayStartHour
-  String thursdayStartHour
-  String fridayStartHour
-  String saturdayStartHour
-  String sundayStartHour
-
-  String mondayStartMinute
-  String tuesdayStartMinute
-  String wednesdayStartMinute
-  String thursdayStartMinute
-  String fridayStartMinute
-  String saturdayStartMinute
-  String sundayStartMinute
 
   static constraints = {
     fullName  blank: false

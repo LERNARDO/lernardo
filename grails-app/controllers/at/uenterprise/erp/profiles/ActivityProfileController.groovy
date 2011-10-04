@@ -23,6 +23,21 @@ class ActivityProfileController {
 
   def beforeInterceptor = [
           action:{
+            params.mondayStart = params.mondayStart ? Date.parse("HH:mm", params.mondayStart) : null
+            params.mondayEnd = params.mondayEnd ? Date.parse("HH:mm", params.mondayEnd) : null
+            params.tuesdayStart = params.tuesdayStart ? Date.parse("HH:mm", params.tuesdayStart) : null
+            params.tuesdayEnd = params.tuesdayEnd ? Date.parse("HH:mm", params.tuesdayEnd) : null
+            params.wednesdayStart = params.wednesdayStart ? Date.parse("HH:mm", params.wednesdayStart) : null
+            params.wednesdayEnd = params.wednesdayEnd ? Date.parse("HH:mm", params.wednesdayEnd) : null
+            params.thursdayStart = params.thursdayStart ? Date.parse("HH:mm", params.thursdayStart) : null
+            params.thursdayEnd = params.thursdayEnd ? Date.parse("HH:mm", params.thursdayEnd) : null
+            params.fridayStart = params.fridayStart ? Date.parse("HH:mm", params.fridayStart) : null
+            params.fridayEnd = params.fridayEnd ? Date.parse("HH:mm", params.fridayEnd) : null
+            params.saturdayStart = params.saturdayStart ? Date.parse("HH:mm", params.saturdayStart) : null
+            params.saturdayEnd = params.saturdayEnd ? Date.parse("HH:mm", params.saturdayEnd) : null
+            params.sundayStart = params.sundayStart ? Date.parse("HH:mm", params.sundayStart) : null
+            params.sundayEnd = params.sundayEnd ? Date.parse("HH:mm", params.sundayEnd) : null
+
             params.periodStart = params.periodStart ? Date.parse("dd. MM. yy", params.periodStart) : null
             params.periodEnd = params.periodEnd ? Date.parse("dd. MM. yy", params.periodEnd) : null
             params.date = params.date ? Date.parse("dd. MM. yy, HH:mm", params.date) : null},
@@ -177,6 +192,7 @@ class ActivityProfileController {
    * saves a batch of theme room activities between a certain time range
    */
   def save = {ActivityCommand ac ->
+
     if (ac.hasErrors()) {
       render view:'create', model:['ac':ac]
       return
@@ -211,39 +227,39 @@ class ActivityProfileController {
           ent.profile.type = "Themenraum"
           ent.profile.date = currentDate
           if (df.format(currentDate) == 'Monday') {
-            ent.profile.date.setHours(params.int('mondayStartHour'))
-            ent.profile.date.setMinutes(params.int('mondayStartMinute'))
-            ent.profile.duration = (params.int('mondayEndHour') - params.int('mondayStartHour')) * 60 + (params.int('mondayEndMinute') - params.int('mondayStartMinute'))
+            ent.profile.date.setHours(params.mondayStart.getHours())
+            ent.profile.date.setMinutes(params.mondayStart.getMinutes())
+            ent.profile.duration = (params.mondayEnd.getTime() - params.mondayStart.getTime()) / 1000 / 60
           }
           else if (df.format(currentDate) == 'Tuesday') {
-            ent.profile.date.setHours(params.int('tuesdayStartHour'))
-            ent.profile.date.setMinutes(params.int('tuesdayStartMinute'))
-            ent.profile.duration = (params.int('tuesdayEndHour') - params.int('tuesdayStartHour')) * 60 + (params.int('tuesdayEndMinute') - params.int('tuesdayStartMinute'))
+            ent.profile.date.setHours(params.tuesdayStart.getHours())
+            ent.profile.date.setMinutes(params.tuesdayStart.getMinutes())
+            ent.profile.duration = (params.tuesdayEnd.getTime() - params.tuesdayStart.getTime()) / 1000 / 60
           }
           else if (df.format(currentDate) == 'Wednesday') {
-            ent.profile.date.setHours(params.int('wednesdayStartHour'))
-            ent.profile.date.setMinutes(params.int('wednesdayStartMinute'))
-            ent.profile.duration = (params.int('wednesdayEndHour') - params.int('wednesdayStartHour')) * 60 + (params.int('wednesdayEndMinute') - params.int('wednesdayStartMinute'))
+            ent.profile.date.setHours(params.wednesdayStart.getHours())
+            ent.profile.date.setMinutes(params.wednesdayStart.getMinutes())
+            ent.profile.duration = (params.wednesdayEnd.getTime() - params.wednesdayStart.getTime()) / 1000 / 60
           }
           else if (df.format(currentDate) == 'Thursday') {
-            ent.profile.date.setHours(params.int('thursdayStartHour'))
-            ent.profile.date.setMinutes(params.int('thursdayStartMinute'))
-            ent.profile.duration = (params.int('thursdayEndHour') - params.int('thursdayStartHour')) * 60 + (params.int('thursdayEndMinute') - params.int('thursdayStartMinute'))
+            ent.profile.date.setHours(params.thursdayStart.getHours())
+            ent.profile.date.setMinutes(params.thursdayStart.getMinutes())
+            ent.profile.duration = (params.thursdayEnd.getTime() - params.thursdayStart.getTime()) / 1000 / 60
           }
           else if (df.format(currentDate) == 'Friday') {
-            ent.profile.date.setHours(params.int('fridayStartHour'))
-            ent.profile.date.setMinutes(params.int('fridayStartMinute'))
-            ent.profile.duration = (params.int('fridayEndHour') - params.int('fridayStartHour')) * 60 + (params.int('fridayEndMinute') - params.int('fridayStartMinute'))
+            ent.profile.date.setHours(params.fridayStart.getHours())
+            ent.profile.date.setMinutes(params.fridayStart.getMinutes())
+            ent.profile.duration = (params.fridayEnd.getTime() - params.fridayStart.getTime()) / 1000 / 60
           }
           else if (df.format(currentDate) == 'Saturday') {
-            ent.profile.date.setHours(params.int('saturdayStartHour'))
-            ent.profile.date.setMinutes(params.int('saturdayStartMinute'))
-            ent.profile.duration = (params.int('saturdayEndHour') - params.int('saturdayStartHour')) * 60 + (params.int('saturdayEndMinute') - params.int('saturdayStartMinute'))
+            ent.profile.date.setHours(params.saturdayStart.getHours())
+            ent.profile.date.setMinutes(params.saturdayStart.getMinutes())
+            ent.profile.duration = (params.saturdayEnd.getTime() - params.saturdayStart.getTime()) / 1000 / 60
           }
           else if (df.format(currentDate) == 'Sunday') {
-            ent.profile.date.setHours(params.int('sundayStartHour'))
-            ent.profile.date.setMinutes(params.int('sundayStartMinute'))
-            ent.profile.duration = (params.int('sundayEndHour') - params.int('sundayStartHour')) * 60 + (params.int('sundayEndMinute') - params.int('sundayStartMinute'))
+            ent.profile.date.setHours(params.sundayStart.getHours())
+            ent.profile.date.setMinutes(params.sundayStart.getMinutes())
+            ent.profile.duration = (params.sundayEnd.getTime() - params.sundayStart.getTime()) / 1000 / 60
           }
           ent.profile.fullName = params.fullName
           ent.profile.date = functionService.convertToUTC(ent.profile.date)
@@ -541,6 +557,22 @@ class ActivityCommand {
   Date periodStart
   Date periodEnd
 
+  Date mondayStart
+  Date tuesdayStart
+  Date wednesdayStart
+  Date thursdayStart
+  Date fridayStart
+  Date saturdayStart
+  Date sundayStart
+
+  Date mondayEnd
+  Date tuesdayEnd
+  Date wednesdayEnd
+  Date thursdayEnd
+  Date fridayEnd
+  Date saturdayEnd
+  Date sundayEnd
+
   String facility
   String educators
 
@@ -553,69 +585,38 @@ class ActivityCommand {
   Boolean sunday
   Boolean weekdays
 
-  String mondayStartHour
-  String tuesdayStartHour
-  String wednesdayStartHour
-  String thursdayStartHour
-  String fridayStartHour
-  String saturdayStartHour
-  String sundayStartHour
-
-  String mondayEndHour
-  String tuesdayEndHour
-  String wednesdayEndHour
-  String thursdayEndHour
-  String fridayEndHour
-  String saturdayEndHour
-  String sundayEndHour
-
-  String mondayStartMinute
-  String tuesdayStartMinute
-  String wednesdayStartMinute
-  String thursdayStartMinute
-  String fridayStartMinute
-  String saturdayStartMinute
-  String sundayStartMinute
-
-  String mondayEndMinute
-  String tuesdayEndMinute
-  String wednesdayEndMinute
-  String thursdayEndMinute
-  String fridayEndMinute
-  String saturdayEndMinute
-  String sundayEndMinute
-
   static constraints = {
-    fullName(blank: false)
-    periodStart(nullable: false)
-    periodEnd(nullable: false, validator: {pe, ac ->
-      return pe >= ac.periodStart
-    })
-    facility(nullable: false)
-    educators(nullable: false)
-    mondayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.mondayStartHour.toInteger()
-    })
-    tuesdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.tuesdayStartHour.toInteger()
-    })
-    wednesdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.wednesdayStartHour.toInteger()
-    })
-    thursdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.thursdayStartHour.toInteger()
-    })
-    fridayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.fridayStartHour.toInteger()
-    })
-    saturdayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.saturdayStartHour.toInteger()
-    })
-    sundayEndHour(nullable: true, validator: {pe, ac ->
-      return pe.toInteger() >= ac.sundayStartHour.toInteger()
-    })
-    weekdays(validator: {wd, pc ->
-      return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)})
+    fullName      blank: false
+    periodStart   nullable: false
+    facility      nullable: false
+    educators     nullable: false
+    periodEnd     nullable: false, validator: {pe, ac ->
+                    return pe >= ac.periodStart
+                  }
+    mondayEnd     nullable: true, validator: {pe, ac ->
+                    return pe >= ac.mondayStart
+                  }
+    tuesdayEnd    nullable: true, validator: {pe, ac ->
+                    return pe >= ac.tuesdayStart
+                  }
+    wednesdayEnd  nullable: true, validator: {pe, ac ->
+                    return pe >= ac.wednesdayStart
+                  }
+    thursdayEnd   nullable: true, validator: {pe, ac ->
+                    return pe >= ac.thursdayStart
+                  }
+    fridayEnd     nullable: true, validator: {pe, ac ->
+                    return pe >= ac.fridayStart
+                  }
+    saturdayEnd   nullable: true, validator: {pe, ac ->
+                    return pe >= ac.saturdayStart
+                  }
+    sundayEnd     nullable: true, validator: {pe, ac ->
+                    return pe >= ac.sundayStart
+                  }
+    weekdays      validator: {wd, pc ->
+                    return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)
+                  }
   }
 
 }

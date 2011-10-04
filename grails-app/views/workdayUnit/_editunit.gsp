@@ -1,14 +1,21 @@
 <%@ page import="at.uenterprise.erp.WorkdayCategory" %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.timepicker').timepicker();
+  });
+</script>
+
 <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i, entity: entity.id]]" update="unit-${i}" before="showspinner('#unit-${i}')">
 
     <table>
       <tr>
         <td><g:message code="from"/>:</td>
-        <td><g:select name="fromHour" from="${0..23}" value="${formatDate(date: workdayUnit.date1, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}" value="${workdayUnit.date1.getMinutes()}"/></td>
+        <td><g:textField name="from" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date1, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>%{--<g:select name="fromHour" from="${0..23}" value="${formatDate(date: workdayUnit.date1, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}" value="${workdayUnit.date1.getMinutes()}"/>--}%</td>
       </tr>
       <tr>
         <td><g:message code="to"/>:</td>
-        <td><g:select name="toHour" from="${0..23}" value="${formatDate(date: workdayUnit.date2, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="toMinute" from="${['00','15','30','45']}" value="${workdayUnit.date2.getMinutes()}"/></td>
+        <td><g:textField name="to" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date2, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>%{--<g:select name="toHour" from="${0..23}" value="${formatDate(date: workdayUnit.date2, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="toMinute" from="${['00','15','30','45']}" value="${workdayUnit.date2.getMinutes()}"/>--}%</td>
       </tr>
       <tr>
         <td><g:message code="category"/>:</td>
