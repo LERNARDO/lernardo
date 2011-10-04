@@ -45,12 +45,12 @@
 
         <tr class="prop">
           <td class="one"><g:message code="appointment.profile.allDay"/>:</td>
-          <td class="two"><g:formatBoolean boolean="${appointment.profile.allDay}" true="Ja" false="Nein"/></td>
+          <td class="two"><g:formatBoolean boolean="${appointment.profile.allDay}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
         </tr>
 
         <tr class="prop">
           <td class="one"><g:message code="appointment.profile.isPrivate"/>:</td>
-          <td class="two"><g:formatBoolean boolean="${appointment.profile.isPrivate}" true="Ja" false="Nein"/></td>
+          <td class="two"><g:formatBoolean boolean="${appointment.profile.isPrivate}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
         </tr>
 
       </tbody>
