@@ -8,6 +8,7 @@
 
 <g:if test="${workdayunits}">
   <g:if test="${!workdayunits[0].confirmed}">
+    <p class="italic green"><g:message code="workdayUnit.dayNotConfirmed"/></p>
     <g:set var="confirmed" value="false"/>
     <g:if test="${currentEntity.id == entity.id}">
       <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'confirmDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.confirmation')}')) return false">
@@ -26,7 +27,20 @@
 
   </g:if>
   <g:else>
-      <p class="italic red"><g:message code="workdayUnit.dayConfirmed"/></p>
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+
+        <p class="italic red"><g:message code="workdayUnit.dayConfirmed"/></p>
+        <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'cancelDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.cancellation')}')) return false">
+
+          <span style="display: none">
+            <g:datePicker name="date" value="${date}"/>
+          </span>
+
+          <g:submitButton name="button" value="${message(code: 'day.cancel')}"/>
+          <div class="clear"></div>
+        </g:formRemote>
+
+      </erp:accessCheck>
   </g:else>
 </g:if>
 <g:else>

@@ -200,4 +200,25 @@ class WorkdayUnitController {
                                               entity: entity,
                                               currentEntity: entityHelperService.loggedIn]
     }
+
+    def cancelDays = {
+      Entity entity = Entity.get(params.id)
+
+      List workdayunits = []
+      entity.profile.workdayunits.each { workday ->
+        if (workday.date1.getYear() == params.date.getYear() && workday.date1.getMonth() == params.date.getMonth() && workday.date1.getDate() == params.date.getDate()) {
+          workday.confirmed = false
+          workdayunits.add(workday)
+        }
+      }
+
+      List workdaycategories = WorkdayCategory.list()
+
+      render template: 'workdayunits', model:[workdayunits: workdayunits,
+                                              date: params.date,
+                                              workdaycategories: workdaycategories,
+                                              datesOrdered: true,
+                                              entity: entity,
+                                              currentEntity: entityHelperService.loggedIn]
+    }
 }
