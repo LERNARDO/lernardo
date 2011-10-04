@@ -3,6 +3,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title><g:message code="groupClient"/></title>
     <style>
+      @page {
+        size: 297mm 210mm;
+      }
       body {
           font-size: 12px;
       }
@@ -40,7 +43,7 @@
     </table>
 
     <h2><g:message code="clients"/></h2>
-    <table class="default-table">
+    <table style="width: 100%">
         <thead>
         <tr>
           <th><g:message code="name"/></th>
@@ -48,16 +51,18 @@
           <th><g:message code="street"/></th>
           <th><g:message code="client.profile.currentColonia"/></th>
           <th><g:message code="country"/></th>
+          <th><g:message code="parents"/> &amp; <g:message code="phone"/></th>
         </tr>
         </thead>
         <tbody>
         <g:each in="${clients}" status="i" var="client">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-            <td>${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</td>
-            <td><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
-            <td>${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-            <td><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</erp:getColony></td>
-            <td>${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td valign="top">${fieldValue(bean: client, field: 'profile.fullName').decodeHTML()}</td>
+            <td valign="top"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
+            <td valign="top">${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</erp:getColony></td>
+            <td valign="top">${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+            <td valign="top"><erp:getParentsOfClient client="${client}"/></td>
           </tr>
         </g:each>
         </tbody>

@@ -861,6 +861,24 @@ class HelperTagLib {
   }
 
   /**
+   * finds all parents of a given child
+   */
+  def getParentsOfClient = {attrs, body ->
+    def client = attrs.client
+
+    // find family
+    Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
+
+    // if there is a family, find parents
+    List parents = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
+
+    // output each parent
+    parents.each { Entity parent ->
+      out << parent.profile.fullName << ": " << parent.profile.phone << "<br/>"
+    }
+  }
+
+  /**
    * finds the number of units linked to a project template
    */
   def getProjectTemplateUnitsCount = {attrs, body ->
