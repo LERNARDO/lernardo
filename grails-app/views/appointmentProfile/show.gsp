@@ -20,7 +20,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="owner"/>:</td>
-          <td class="two"><g:link action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td class="two"><g:link controller="${belongsTo.type.supertype.name +'Profile'}" action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile.fullName').decodeHTML()}</g:link></td>
         </tr>
 
         <tr class="prop">
