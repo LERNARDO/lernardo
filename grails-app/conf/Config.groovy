@@ -217,3 +217,6 @@ quoterMap = ['00':'Maria Montessori',
 
 // UTC is the default time zone
 TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+
+// application name
+application.name  = "ERP"

@@ -280,7 +280,7 @@ class AppController {
     if (GrailsUtil.environment != "development") {
       sendMail {
         to      "error@uenterprise.de"
-        subject "ERP - Error 500"
+        subject grailsApplication.config.application.name + " - Error 500"
         html    g.render(template:'/errortemplate', model:[request:request, exception: request.exception])
       }
       log.info "Notification email sent to developers!"
@@ -338,7 +338,7 @@ class AppController {
 
       sendMail {
         to "${user.email}"
-        subject "Lernardo - Dein Passwort"
+        subject grailsApplication.config.application.name + " - Dein Passwort"
         html g.render(template: 'passwordemail', model: [entity: e, password: pass])
       }
 

@@ -2,7 +2,7 @@
 
 <html>
   <head>
-	<title>ERP - Error 500</title>
+	<title>${grailsApplication.config.application.name} - Error 500</title>
      <link rel="stylesheet" href="${resource (dir:'css', file:'error.css')}" type="text/css">
   </head>
   <body>

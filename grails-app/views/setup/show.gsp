@@ -1,12 +1,12 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>ERP Setup</title>
+  <title>${grailsApplication.config.application.name} Setup</title>
 </head>
 
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1>ERP Setup</h1>
+    <h1>${grailsApplication.config.application.name} Setup</h1>
   </div>
 </div>
 

@@ -22,7 +22,7 @@ class AppFilters {
     }
 
     // checks if a user is logged in before executing an action
-    loginCheck(controller: "(app|articlePost|security)", invert: true) {
+    loginCheck(controller: "(app|articlePost|security|static)", invert: true) {
     //loginCheck(controller: "(groupActivityProfile|groupActivityTemplateProfile|groupClientProfile|groupColonyProfile|groupFamilyProfile|groupPartnerProfile|projectProfile|projectTemplateProfile|resourceProfile|themeProfile|childProfile|clientProfile|educatorProfile|facilityProfile|operatorProfile|parentProfile|partnerProfile|pateProfile|userProfile|activityProfile|msg|template)", action: "*") {
       before = {
         log.info "called controller: $controllerName, action: $actionName"
