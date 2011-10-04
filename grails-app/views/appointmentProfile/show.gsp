@@ -19,6 +19,11 @@
       <tbody>
 
         <tr class="prop">
+          <td class="one"><g:message code="owner"/>:</td>
+          <td class="two"><g:link action="show" id="${belongsTo.id}" params="[entity: belongsTo.id]">${fieldValue(bean: belongsTo, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        </tr>
+
+        <tr class="prop">
           <td class="one"><g:message code="title"/>:</td>
           <td class="two">${fieldValue(bean: appointment, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
@@ -53,7 +58,7 @@
 
     <div class="buttons">
       <g:form id="${appointment.id}">
-        <erp:isMeOrAdminOrOperator entity="${owner}" current="${currentEntity}">
+        <erp:isMeOrAdminOrOperator entity="${belongsTo}" current="${currentEntity}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" /></div>
         </erp:isMeOrAdminOrOperator>

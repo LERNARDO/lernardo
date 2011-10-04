@@ -57,7 +57,6 @@ class UserProfileController {
     }
 
     return [user: user, entity: entity]
-
   }
 
   def delete = {

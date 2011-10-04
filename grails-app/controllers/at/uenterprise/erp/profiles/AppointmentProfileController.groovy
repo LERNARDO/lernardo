@@ -65,9 +65,9 @@ class AppointmentProfileController {
 
       if (appointment) {
         // find owner of appointment
-        Entity owner = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
+        Entity belongsTo = functionService.findByLink(appointment, null, metaDataService.ltAppointment)
 
-        [appointment: appointment, entity: appointment, owner: owner]
+        [appointment: appointment, entity: appointment, belongsTo: belongsTo]
       }
       else {
         flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
@@ -135,10 +135,11 @@ class AppointmentProfileController {
 
     def create = {
       Entity entity = Entity.get(params.id)
-      return [owner: entity, entity: entity]
+      return [createdFor: entity, entity: entity]
     }
 
     def save = {
+      println params
       EntityType etAppointment = metaDataService.etAppointment
       Entity owner = Entity.get(params.id)
 
