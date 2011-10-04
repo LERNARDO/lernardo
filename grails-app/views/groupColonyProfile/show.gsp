@@ -140,6 +140,7 @@
       <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#facilities');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
+        <p class="gray"><g:message code="groupColony.facilityNote"/></p>
         <g:formRemote name="formRemote3" url="[controller:'groupColonyProfile', action:'addFacility', id: group.id]" update="facilities2" before="showspinner('#facilities2');" after="toggle('#facilities');">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
           <g:submitButton name="button" value="${message(code:'add')}"/>
