@@ -17,7 +17,7 @@
     <g:form id="${educator.id}">
       <div>
 
-        <table>
+        <table width="100%">
           <tbody>
 
             <tr class="prop">
@@ -29,16 +29,16 @@
             </tr>
 
           <tr>
-            <td width="90" height="35" valign="top" class="value">
+            <td valign="top" class="value">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
-            <td width="120" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.title.maxSize} ${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
             </td>
-            <td width="180" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.firstName.maxSize} ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
             </td>
-            <td width="200" valign="top" class="value">
+            <td valign="top" class="value">
               <g:textField class="countable${educator.profile.constraints.lastName.maxSize} ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
             <td valign="top" class="value">
@@ -47,7 +47,7 @@
           </tr>
         </table>
 
-        <table>
+        <table width="100%">
           <tr>
 
             <td class="name"><g:message code="educator.profile.education"/></td>
@@ -55,10 +55,10 @@
             <td valign="top" class="name"><g:if test="${grailsApplication.config.educatorProfile.enlisted}"><g:message code="educator.profile.enlisted"/></g:if></td>
           </tr>
           <tr>
-            <td width="290" height="35" valign="top" class="value">
+            <td height="35" valign="top" class="value">
               <g:select class="drop-down-280" name="education" from="${Setup.list()[0]?.educations}" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]"/>
             </td>
-            <td width="290" valign="top" class="value">
+            <td valign="top" class="value">
               <g:select class="drop-down-280" name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}" noSelection="['': message(code: 'none')]"/>
             </td>
             <td valign="top" class="value">
@@ -89,7 +89,7 @@
 
         <h4><g:message code="educator.profile.curAddress"/></h4>
         <div>
-          <table>
+          <table width="100%">
             <tr>
               <td valign="top" class="name"><g:message code="street"/></td>
               <td valign="top" class="name"><g:message code="zip"/></td>
@@ -97,13 +97,13 @@
               <td valign="top" class="name"><g:message code="country"/></td>
             </tr>
             <tr>
-              <td width="280" height="35" valign="top" class="value">
+              <td height="35" valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.currentStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="41" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
               </td>
-              <td width="210" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.currentCity.maxSize} ${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
@@ -117,7 +117,7 @@
         <g:if test="${grailsApplication.config.educatorProfile.origin}">
         <h4><g:message code="educator.profile.origin"/></h4>
         <div>
-          <table>
+          <table width="100%">
             <tr>
               <td valign="top" class="name"><g:message code="street"/></td>
               <td valign="top" class="name"><g:message code="zip"/></td>
@@ -125,13 +125,13 @@
               <td valign="top" class="name"><g:message code="country"/></td>
             </tr>
             <tr>
-              <td width="280" height="35" valign="top" class="value">
+              <td height="35" valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.originStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="41" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
               </td>
-              <td width="210" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.originCity.maxSize} ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
@@ -146,7 +146,7 @@
         <g:if test="${grailsApplication.config.educatorProfile.contact}">
         <h4><g:message code="educator.profile.emContact"/></h4>
         <div>
-          <table>
+          <table width="100%">
             <tr>
               <td valign="top" class="name"><g:message code="name"/></td>
               <td valign="top" class="name"><g:message code="street"/></td>
@@ -154,22 +154,22 @@
               <td valign="top" class="name"><g:message code="city"/></td>
             </tr>
             <tr>
-              <td width="280" height="35" valign="top" class="value">
+              <td height="35" valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.contactName.maxSize} ${hasErrors(bean: educator, field: 'profile.contactName', 'errors')}" size="30" name="contactName" value="${fieldValue(bean: educator, field: 'profile.contactName').decodeHTML()}"/>
               </td>
-              <td width="280" height="35" valign="top" class="value">
+              <td height="35" valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.contactStreet.maxSize} ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
               </td>
-              <td width="105" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
               </td>
-              <td width="210" valign="top" class="value">
+              <td valign="top" class="value">
                 <g:textField class="countable${educator.profile.constraints.contactCity.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
               </td>
             </tr>
           </table>
 
-          <table>
+          <table width="100%">
             <tr>
               <td valign="top" class="name"><g:message code="country"/></td>
               <td valign="top" class="name"><g:message code="phone"/></td>
@@ -180,10 +180,10 @@
                 <g:textField class="countable${educator.profile.constraints.contactCountry.maxSize} ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
               </td>
               <td width="280" height="35" valign="top" class="value">
-                <g:textField class="countable${educator.profile.constraints.contactPhone.maxSize} ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
+                <g:textField class="countable${educator.profile.constraints.contactPhone.maxSize} ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="30" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
               </td>
               <td valign="top" class="value">
-                <g:textField class="countable${educator.profile.constraints.contactMail.maxSize} ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
+                <g:textField class="countable${educator.profile.constraints.contactMail.maxSize} ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="40" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
               </td>
             </tr>
           </table>
@@ -192,7 +192,7 @@
 
         <g:if test="${grailsApplication.config.educatorProfile.phone}">
           <div>
-            <table>
+            <table width="100%">
 
               <tr>
                 <td valign="top" class="name"><g:message code="phone"/> #1</td>
