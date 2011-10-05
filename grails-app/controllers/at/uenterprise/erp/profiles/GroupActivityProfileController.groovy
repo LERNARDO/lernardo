@@ -92,10 +92,22 @@ class GroupActivityProfileController {
       return
     }
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     List allClientgroups = Entity.findAllByType(metaDataService.etGroupClient)
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient) // find all clients linked to this group
 
-    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
+    // find all facilities the current entity is linked to
+    List allFacilities
+    if (currentEntity.type.id == metaDataService.etEducator.id) {
+      log.info "current entity is educator"
+      allFacilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+      log.info allFacilities
+      allFacilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
+    }
+    else
+      allFacilities = Entity.findAllByType(metaDataService.etFacility)
+
     List facilities = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberFacility) // find all facilities linked to this group
 
     List allPartners = Entity.findAllByType(metaDataService.etPartner)
