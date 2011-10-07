@@ -7,7 +7,7 @@
           <tr>
             <td><erp:profileImage entity="${entity}" width="65"/></td>
             <td style="vertical-align: top; padding-left: 5px;"><span class="bold">${entity.profile.fullName}</span><br/><br/>
-            <g:message code="facility.client.quantity"/>: <erp:getGroupClientsCount entity="${entity}"/></td>
+            <g:if test="${entity.type.supertype.name == 'groupClient'}"><g:message code="facility.client.quantity"/>: <erp:getGroupClientsCount entity="${entity}"/></g:if></td>
           </tr>
         </table>
       </div>

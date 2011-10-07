@@ -134,7 +134,6 @@ class GroupPartnerProfileController {
   def addPartner = {
     def linking = functionService.linkEntities(params.partner, params.id, metaDataService.ltGroupMember)
     if (linking.duplicate)
-      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'partners', model: [partners: linking.results, group: linking.target, entity: entityHelperService.loggedIn]
   }

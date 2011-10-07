@@ -214,7 +214,6 @@ class FacilityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltWorking)
     if (linking.duplicate)
-      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'educators', model: [educators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
   }
@@ -227,7 +226,6 @@ class FacilityProfileController {
   def addLeadEducator = {
     def linking = functionService.linkEntities(params.leadeducator, params.id, metaDataService.ltLeadEducator)
     if (linking.duplicate)
-      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'leadeducators', model: [leadeducators: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
   }
@@ -241,7 +239,30 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
     Entity clientgroup = Entity.get(params.clientgroup)
 
-    // find all clients linked to the clientgroup
+    // if the entity is a client add it
+    if (clientgroup.type.id == metaDataService.etClient.id) {
+      def linking = functionService.linkEntities(params.clientgroup, params.id, metaDataService.ltGroupMemberClient)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+      render template: 'clients', model: [clients: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
+    }
+    // if the entity is a client group get all clients and add them
+    else if (clientgroup.type.id == metaDataService.etGroupClient.id) {
+      // find all clients of the group
+      List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
+
+      clients.each { Entity client ->
+        def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
+        if (linking.duplicate)
+          render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+      }
+
+      List clients2 = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+      render template: 'clients', model: [clients: clients2, facility: facility, entity: entityHelperService.loggedIn]
+    }
+
+
+    /*// find all clients linked to the clientgroup
     List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
 
     // link each client to the facility now
@@ -259,7 +280,7 @@ class FacilityProfileController {
     // find all clients of this facility
     clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
 
-    render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: clients, facility: facility, entity: entityHelperService.loggedIn]*/
   }
 
   def removeClient = {
@@ -374,7 +395,7 @@ class FacilityProfileController {
   }
 
   /*
-   * retrieves all clients matching the search parameter
+   * retrieves all clients and client groups matching the search parameter
    */
   def remoteClients = {
     if (!params.value) {
@@ -384,7 +405,10 @@ class FacilityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etGroupClient)
+      or {
+        eq('type', metaDataService.etClient)
+        eq('type', metaDataService.etGroupClient)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {

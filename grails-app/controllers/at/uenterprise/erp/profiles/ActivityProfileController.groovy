@@ -481,7 +481,6 @@ class ActivityProfileController {
   def addEducator = {
     def linking = functionService.linkEntities(params.educator, params.id, metaDataService.ltActEducator)
     if (linking.duplicate)
-      // render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
     render template: 'educators', model: [educators: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
   }
@@ -494,7 +493,6 @@ class ActivityProfileController {
   def addClient = {
     def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
     if (linking.duplicate)
-      //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
     render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
@@ -533,13 +531,11 @@ class ActivityProfileController {
     if (!result) {
       def linking = functionService.linkEntities(params.id, params.facility, metaDataService.ltActFacility)
       if (linking.duplicate)
-        //render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
         render '<span class="red italic">"' + linking.target.profile.fullName+'" '+message(code: "alreadyAssignedTo")+'</span>'
       render template: 'facilities', model: [facilities: linking.results2, activity: linking.source, entity: entityHelperService.loggedIn]
     }
     else {
       List facilities = functionService.findAllByLink(group, null, metaDataService.ltActFacility)
-      // render '<span class="red italic">Es wurde bereits eine Einrichtung zugewiesen!</span>'
       render '<span class="red italic">' +message(code: "alreadyAssignedToFacility")+'</span>'
       render template: 'facilities', model: [facilities: facilities, activity: group, entity: entityHelperService.loggedIn]
     }

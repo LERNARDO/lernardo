@@ -139,7 +139,6 @@ class GroupClientProfileController {
 
   def addClient = {
     if (!params.members)
-      //render '<p class="italic red">Bitte zumindest einen Betreuten auswählen!</p>'
       render '<p class="italic red">'+message(code: "groupClient.clients.select.least")+'</p>'
     else {
       def bla = params.list('members')
@@ -147,13 +146,10 @@ class GroupClientProfileController {
       bla.each {
         def linking = functionService.linkEntities(it.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
-          //render '<p class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</p>'
           render '<p class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</p>'
       }
     }
-    //def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltGroupMemberClient)
-    //if (linking.duplicate)
-    //  render '<span class="red italic">"' + linking.source.profile.fullName + '" wurde bereits zugewiesen!</span>'
+
     render template: 'clients', model: [clients: functionService.findAllByLink(null, Entity.get(params.id), metaDataService.ltGroupMemberClient), group: Entity.get(params.id), entity: entityHelperService.loggedIn]
   }
 
