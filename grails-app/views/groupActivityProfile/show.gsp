@@ -172,11 +172,9 @@
       <h5><g:message code="educators"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#educators');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="educators" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addEducator', id: group.id]" update="educators2" before="showspinner('#educators2');" after="toggle('#educators');">
-          <div id="educatorselect">
-            <g:render template="educatorselect" model="[allEducators: allEducators, group: group]"/>
-          </div>
-        </g:formRemote>
+        <g:message code="search"/>:<br/>
+        <g:remoteField name="remoteField" size="40" update="educatorresults" action="remoteEducators" id="${group.id}" before="showspinner('#educatorresults')"/>
+        <div id="educatorresults"></div>
       </div>
       <div class="zusatz-show" id="educators2">
         <g:render template="educators" model="[educators: educators, entity: currentEntity]"/>
@@ -187,10 +185,9 @@
       <h5><g:message code="substitute"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}"><a onclick="toggle('#substitutes');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="substitutes" style="display:none">
-        <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addSubstitute', id: group.id]" update="substitutes2" before="showspinner('#substitutes2');" after="toggle('#substitutes');">
-          <g:select name="substitute" from="${allSubstitutes}" optionKey="id" optionValue="profile"/>
-          <g:submitButton name="button" value="${message(code:'add')}"/>
-        </g:formRemote>
+        <g:message code="search"/>:<br/>
+        <g:remoteField name="remoteField" size="40" update="substituteresults" action="remoteSubstitutes" id="${group.id}" before="showspinner('#substituteresults')"/>
+        <div id="substituteresults"></div>
       </div>
       <div class="zusatz-show" id="substitutes2">
         <g:render template="substitutes" model="[substitutes: substitutes, entity: currentEntity]"/>

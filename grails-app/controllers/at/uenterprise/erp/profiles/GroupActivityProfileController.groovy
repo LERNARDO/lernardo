@@ -116,11 +116,8 @@ class GroupActivityProfileController {
     def allParents = functionService.findParents(group)
     List parents = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberParent) // find all parents linked to this group
 
-    def allEducators = functionService.findEducators(group)
     List educators = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberEducator) // find all educators linked to this group
-    allEducators.sort {it.profile.firstName}
 
-    def allSubstitutes = Entity.findAllByType(metaDataService.etEducator)
     List substitutes = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberSubstitute) // find all educators linked to this group
 
     Entity template = functionService.findByLink(null, group, metaDataService.ltTemplate) // find template
@@ -190,9 +187,7 @@ class GroupActivityProfileController {
             entity: entity,
             templates: templates,
             calculatedDuration: calculatedDuration,
-            allEducators: allEducators,
             educators: educators,
-            allSubstitutes: allSubstitutes,
             substitutes: substitutes,
             allParents: allParents,
             parents: parents,
@@ -421,12 +416,6 @@ class GroupActivityProfileController {
     Entity group = Entity.get(params.id)
     def allParents = functionService.findParents(group)
     render template: 'parentselect', model: [allParents: allParents, group: group]
-  }
-
-  def updateeducators = {
-    Entity group = Entity.get(params.id)
-    def allEducators = functionService.findEducators(group)
-    render template: 'educatorselect', model: [allEducators: allEducators, group: group]
   }
 
   def addTheme = {
@@ -725,6 +714,80 @@ class GroupActivityProfileController {
     group.profile.removeFromLabels(Label.get(params.label))
     Label.get(params.label).delete()
     render template: 'labels', model: [group: group, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteEducators = {
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value == "*") {
+      render(template: 'educatorresults', model: [results: Entity.findAllByType(metaDataService.etEducator), group: params.id])
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      def allowedEducators = functionService.findEducators(Entity.get(params.id))
+      List finalResult = []
+      allowedEducators.each { Entity ae ->
+        if (results.contains(ae))
+          finalResult.add(ae)
+      }
+      render(template: 'educatorresults', model: [results: finalResult, group: params.id])
+    }
+  }
+
+  /*
+   * retrieves all educators matching the search parameter
+   */
+  def remoteSubstitutes = {
+    if (!params.value) {
+      render ""
+      return
+    }
+    else if (params.value == "*") {
+      render(template: 'substituteresults', model: [results: Entity.findAllByType(metaDataService.etEducator), group: params.id])
+      return
+    }
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      eq('type', metaDataService.etEducator)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+      maxResults(15)
+    }
+
+    if (results.size() == 0) {
+      render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+      return
+    }
+    else {
+      render(template: 'substituteresults', model: [results: results, group: params.id])
+    }
   }
 
 }
