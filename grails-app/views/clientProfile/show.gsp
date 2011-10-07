@@ -430,6 +430,15 @@
       </div>
     </g:if>
 
+    <g:if test="${grailsApplication.config.project == 'noe'}">
+      <div class="zusatz">
+        <h5>Anwesenheit <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><g:remoteLink action="editAttendance" id="${client.id}" update="attendances"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink></erp:accessCheck></h5>
+        <div id="attendances">
+          <g:render template="showAttendance" model="[client]"/>
+        </div>
+      </div>
+    </g:if>
+
     <g:render template="/templates/links" model="[entity: client]"/>
 
   </div>

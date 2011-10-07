@@ -32,7 +32,7 @@
       <tr>
         <g:sortableColumn property="firstName" title="${message(code:'firstName')}"/>
         <g:sortableColumn property="lastName" title="${message(code:'lastName')}"/>
-        <g:sortableColumn property="birthDate" title="${message(code:'client.profile.birthDate')}"/>
+        <g:sortableColumn property="birthDate" title="${message(code:'birthDate')}"/>
       </tr>
       </thead>
       <tbody>

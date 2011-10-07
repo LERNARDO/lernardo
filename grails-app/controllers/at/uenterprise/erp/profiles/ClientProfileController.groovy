@@ -413,4 +413,32 @@ class ClientProfileController {
     Contact.get(params.contact).delete()
     render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
   }
+
+  def editAttendance = {
+    Entity client = Entity.get(params.id)
+    render template: 'editAttendance', model: [client: client]
+  }
+
+  def updateAttendance = {
+    Entity client = Entity.get(params.id)
+
+    client.profile.mondayFrom = params.mondayFrom ? Date.parse("HH:mm", params.mondayFrom) : null
+    client.profile.tuesdayFrom = params.tuesdayFrom ? Date.parse("HH:mm", params.tuesdayFrom) : null
+    client.profile.wednesdayFrom = params.wednesdayFrom ? Date.parse("HH:mm", params.wednesdayFrom) : null
+    client.profile.thursdayFrom = params.thursdayFrom ? Date.parse("HH:mm", params.thursdayFrom) : null
+    client.profile.fridayFrom = params.fridayFrom ? Date.parse("HH:mm", params.fridayFrom) : null
+    client.profile.saturdayFrom = params.saturdayFrom ? Date.parse("HH:mm", params.saturdayFrom) : null
+    client.profile.sundayFrom = params.sundayFrom ? Date.parse("HH:mm", params.sundayFrom) : null
+
+    client.profile.mondayTo = params.mondayTo ? Date.parse("HH:mm", params.mondayTo) : null
+    client.profile.tuesdayTo = params.tuesdayTo ? Date.parse("HH:mm", params.tuesdayTo) : null
+    client.profile.wednesdayTo = params.wednesdayTo ? Date.parse("HH:mm", params.wednesdayTo) : null
+    client.profile.thursdayTo = params.thursdayTo ? Date.parse("HH:mm", params.thursdayTo) : null
+    client.profile.fridayTo = params.fridayTo ? Date.parse("HH:mm", params.fridayTo) : null
+    client.profile.saturdayTo = params.saturdayTo ? Date.parse("HH:mm", params.saturdayTo) : null
+    client.profile.sundayTo = params.sundayTo ? Date.parse("HH:mm", params.sundayTo) : null
+
+    client.save(flush: true)
+    render template: 'showAttendance', model: [client: client]
+  }
 }

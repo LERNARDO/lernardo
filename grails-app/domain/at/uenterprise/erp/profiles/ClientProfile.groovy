@@ -70,6 +70,22 @@ class ClientProfile extends Profile {
   String  citizenship
   Integer socialSecurityNumber
 
+  Date mondayFrom
+  Date tuesdayFrom
+  Date wednesdayFrom
+  Date thursdayFrom
+  Date fridayFrom
+  Date saturdayFrom
+  Date sundayFrom
+
+  Date mondayTo
+  Date tuesdayTo
+  Date wednesdayTo
+  Date thursdayTo
+  Date fridayTo
+  Date saturdayTo
+  Date sundayTo
+
   static constraints = {
     fullName              blank: true, size: 1..100, maxSize: 100
     firstName             blank: false, size: 2..50, maxSize: 50
@@ -94,6 +110,22 @@ class ClientProfile extends Profile {
     familyStatus          nullable: true
     job                   nullable: true
     school                nullable: true
+
+    mondayFrom            nullable: true
+    tuesdayFrom           nullable: true
+    wednesdayFrom         nullable: true
+    thursdayFrom          nullable: true
+    fridayFrom            nullable: true
+    saturdayFrom          nullable: true
+    sundayFrom            nullable: true
+
+    mondayTo              nullable: true
+    tuesdayTo             nullable: true
+    wednesdayTo           nullable: true
+    thursdayTo            nullable: true
+    fridayTo              nullable: true
+    saturdayTo            nullable: true
+    sundayTo              nullable: true
   }
 
   String toString() {
