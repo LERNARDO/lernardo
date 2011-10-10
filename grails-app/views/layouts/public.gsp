@@ -105,7 +105,7 @@
                 <div class="sideboxcontent" style="text-align: center">
                   <erp:getPicOfTheDay>
                     <g:set var="day" value="${it}.png"/>
-                    <img src='${resource(dir:"images/"+grailsApplication.config.project+"/static/daily_pic",file:day)}' width="235" height="180" alt="bild des tages" id="randomPicture"/>
+                    <img src='${resource(dir:"images/"+grailsApplication.config.customer+"/static/daily_pic",file:day)}' width="235" height="180" alt="picture of the day" id="randomPicture"/>
                   </erp:getPicOfTheDay>
                 </div>
               </div>

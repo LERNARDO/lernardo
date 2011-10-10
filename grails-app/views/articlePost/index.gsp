@@ -9,7 +9,7 @@
  
     <g:if test="${currentEntity}">
       <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker"><g:message code="article.create"/></g:link></p>
+        <p><g:link class="createArticle" controller="articlePost" action="create" fragment="anker"><g:message code="${message(code: 'object.create', args: [message(code: 'article')])}"/></g:link></p>
       </erp:accessCheck>
     </g:if>
 
