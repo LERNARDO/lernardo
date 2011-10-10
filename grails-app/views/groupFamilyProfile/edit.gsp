@@ -20,7 +20,7 @@
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}"><g:message code="groupFamily.profile.familyIncome"/></g:if></td>
+            <td valign="top" class="name"><g:message code="groupFamily.profile.familyIncome"/></td>
             <td valign="top" class="name"><g:message code="groupFamily.profile.amountHousehold"/></td>
           </tr>
 
@@ -29,14 +29,10 @@
               <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="39" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
             </td>
             <td width="265px" valign="top" class="value">
-              <g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}">
-                <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
-              </g:if>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.familyIncome', 'errors')}" size="39" name="familyIncome" value="${fieldValue(bean: group, field: 'profile.familyIncome')}"/>
             </td>
             <td width="265px" valign="top" class="value">
-              <g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}">
-                <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
-              </g:if>
+              <g:textField class="${hasErrors(bean: group, field: 'profile.amountHousehold', 'errors')}" size="39" name="amountHousehold" value="${fieldValue(bean: group, field: 'profile.amountHousehold')}"/>
             </td>
           </tr>
 
@@ -59,14 +55,12 @@
           </tr>
 
           <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}"><g:message code="groupFamily.profile.familyProblems"/></g:if></td>
+            <td colspan="3" valign="top" class="name"><g:message code="groupFamily.profile.familyProblems"/></td>
           </tr>
 
           <tr>
             <td colspan="3" valign="top" class="value">
-              <g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}">
-                <g:select class="max-textbox" name="familyProblems"  from="${Setup.list()[0]?.familyProblems}" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
-              </g:if>
+              <g:select class="max-textbox" name="familyProblems"  from="${Setup.list()[0]?.familyProblems}" value="${group?.profile?.familyProblems}" noSelection="['': message(code: 'none')]"/>
             </td>
           </tr>
           

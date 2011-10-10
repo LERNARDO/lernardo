@@ -77,42 +77,6 @@ if (project == "sueninos") {
     // both ways (i.e emergency disable tracking)
     // google.analytics.enabled = false
 
-    // ---------------------------------------------------------------------------------------------
-    // attribute visibility
-    // ---------------------------------------------------------------------------------------------
-
-    // controls the visibility of attributes
-
-    // ClientProfile
-    clientProfile.citizenship = false
-    clientProfile.socialSecurityNumber = false
-    clientProfile.contact = false
-    clientProfile.job = true
-    clientProfile.originZip = true
-    clientProfile.originCity = true
-    clientProfile.familyStatus = true
-
-    // GroupFamilyProfile
-    groupFamilyProfile.familyIncome = true
-    groupFamilyProfile.familyProblems = true
-    groupFamilyProfile.amountHousehold = true
-    groupFamilyProfile.city = false
-
-    // ParentProfile
-    parentProfile.socialSecurityNumber = false
-    parentProfile.phone = false
-    parentProfile.jobIncome = true
-    parentProfile.jobFrequency = true
-    parentProfile.education = true
-    parentProfile.currentCountry = true
-    parentProfile.citizenship = false
-
-    // EducatorProfile
-    educatorProfile.enlisted = true
-    educatorProfile.origin = true
-    educatorProfile.contact = true
-    educatorProfile.phone = false
-
 }
 
 if (project == "noe") {
@@ -183,42 +147,6 @@ if (project == "noe") {
     // by default, tracking is enabled for the 'production' Env only, but that can be overwritten
     // both ways (i.e emergency disable tracking)
     // google.analytics.enabled = false
-
-    // ---------------------------------------------------------------------------------------------
-    // attribute visibility
-    // ---------------------------------------------------------------------------------------------
-
-    // controls the visibility of attributes
-
-    // ClientProfile
-    clientProfile.citizenship = true
-    clientProfile.socialSecurityNumber = true
-    clientProfile.contact = true
-    clientProfile.job = false
-    clientProfile.originZip = false
-    clientProfile.originCity = false
-    clientProfile.familyStatus = false
-
-    // GroupFamilyProfile
-    groupFamilyProfile.familyIncome = false
-    groupFamilyProfile.familyProblems = false
-    groupFamilyProfile.amountHousehold = false
-    groupFamilyProfile.city = true
-
-    // ParentProfile
-    parentProfile.socialSecurityNumber = true
-    parentProfile.phone = true
-    parentProfile.jobIncome = false
-    parentProfile.jobFrequency = false
-    parentProfile.education = false
-    parentProfile.currentCountry = false
-    parentProfile.citizenship = true
-
-    // EducatorProfile
-    educatorProfile.enlisted = false
-    educatorProfile.origin = false
-    educatorProfile.contact = false
-    educatorProfile.phone = true
 
 }
 

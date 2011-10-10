@@ -63,14 +63,14 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="city"/></g:if></td>
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="zip"/></g:if></td>
+            <td valign="top" class="name-show"><g:message code="city"/></td>
+            <td valign="top" class="name-show"><g:message code="zip"/></td>
             <td valign="top" class="name-show"><g:message code="country"/></td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originCity}">${fieldValue(bean: client, field: 'profile.originCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.originZip}">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</g:if></td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCity') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
             <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
 
@@ -81,14 +81,14 @@
         <table width="100%">
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="client.profile.familyStatus"/></g:if></td>
+            <td valign="top" class="name-show"><g:message code="client.profile.familyStatus"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.languages"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.school"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.schoolLevel"/></td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.familyStatus}">${client.profile.familyStatus}</g:if></td>
+            <td valign="top" class="value-show">${client.profile.familyStatus}</td>
             <td valign="top" class="value-show-block">
               <g:if test="${client.profile.languages}">
               <ul>
@@ -186,13 +186,13 @@
           </g:if>
 
           <tr class="prop">
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}"><g:message code="client.profile.citizenship"/></g:if></td>
-            <td valign="top" class="name-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}"><g:message code="client.profile.socialSecurityNumber"/></g:if></td>
+            <td valign="top" class="name-show"><g:message code="client.profile.citizenship"/></td>
+            <td valign="top" class="name-show"><g:message code="client.profile.socialSecurityNumber"/></td>
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.citizenship}">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
 
         </table>
@@ -355,62 +355,60 @@
       </div>
     </g:if>
 
-    <g:if test="${grailsApplication.config.clientProfile.contact}">
-      <div class="zusatz">
-        <h5>Kontakt im Notfall <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
-        return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-        <div class="zusatz-add" id="contacts" style="display:none">
-          <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addContact', id:client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
+    <div class="zusatz">
+      <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
+      return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="contacts" style="display:none">
+        <g:formRemote name="formRemote" url="[controller:'clientProfile', action:'addContact', id:client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
 
-            <table>
-              <tr>
-                <td><g:message code="firstName"/>:</td>
-                <td><g:textField name="firstName" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="lastName"/>:</td>
-                <td><g:textField name="lastName" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="country"/>:</td>
-                <td><g:textField name="country" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="zip"/>:</td>
-                <td><g:textField name="zip" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="city"/>:</td>
-                <td><g:textField name="city" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="street"/>:</td>
-                <td><g:textField name="street" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="phone"/>:</td>
-                <td><g:textField name="phone" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="email"/>:</td>
-                <td><g:textField name="email" size="30"/></td>
-              </tr>
-              <tr>
-                <td><g:message code="contact.function"/>:</td>
-                <td><g:textField name="function" size="30"/></td>
-              </tr>
-            </table>
+          <table>
+            <tr>
+              <td><g:message code="firstName"/>:</td>
+              <td><g:textField name="firstName" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="lastName"/>:</td>
+              <td><g:textField name="lastName" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="country"/>:</td>
+              <td><g:textField name="country" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="zip"/>:</td>
+              <td><g:textField name="zip" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="city"/>:</td>
+              <td><g:textField name="city" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="street"/>:</td>
+              <td><g:textField name="street" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="phone"/>:</td>
+              <td><g:textField name="phone" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="email"/>:</td>
+              <td><g:textField name="email" size="30"/></td>
+            </tr>
+            <tr>
+              <td><g:message code="contact.function"/>:</td>
+              <td><g:textField name="function" size="30"/></td>
+            </tr>
+          </table>
 
-            <div class="spacer"></div>
-            <g:submitButton name="button" value="${message(code:'add')}"/>
-            <div class="spacer"></div>
-          </g:formRemote>
-        </div>
-        <div class="zusatz-show" id="contacts2">
-          <g:render template="contacts" model="[client: client, entity: currentEntity]"/>
-        </div>
+          <div class="spacer"></div>
+          <g:submitButton name="button" value="${message(code:'add')}"/>
+          <div class="spacer"></div>
+        </g:formRemote>
       </div>
-    </g:if>
+      <div class="zusatz-show" id="contacts2">
+        <g:render template="contacts" model="[client: client, entity: currentEntity]"/>
+      </div>
+    </div>
 
     <g:if test="${grailsApplication.config.project == 'sueninos'}">
       <div class="zusatz">

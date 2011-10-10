@@ -50,7 +50,7 @@
           <tr>
             <td class="name"><g:message code="educator.profile.education"/></td>
             <td valign="top" class="name"><g:message code="educator.profile.employment"/></td>
-            <td valign="top" class="name"><g:if test="${grailsApplication.config.educatorProfile.enlisted}"><g:message code="educator.profile.enlisted"/></g:if></td>
+            <td valign="top" class="name"><g:message code="educator.profile.enlisted"/></td>
           </tr>
 
           <tr>
@@ -61,9 +61,7 @@
               <g:select class="drop-down-280" name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}" noSelection="['': message(code: 'none')]"/>
             </td>
             <td valign="top" class="value">
-              <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
-                <g:select class="drop-down-240" name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
-              </g:if>
+              <g:select class="drop-down-240" name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 
@@ -116,7 +114,6 @@
           </table>
         </div>
 
-        <g:if test="${grailsApplication.config.educatorProfile.origin}">
         <h4><g:message code="educator.profile.origin"/></h4>
         <div>
           <table>
@@ -145,9 +142,7 @@
 
           </table>
         </div>
-        </g:if>
 
-        <g:if test="${grailsApplication.config.educatorProfile.contact}">
         <h4><g:message code="educator.profile.emContact"/></h4>
         <div>
           <table>
@@ -198,9 +193,7 @@
 
           </table>
         </div>
-        </g:if>
 
-        <g:if test="${grailsApplication.config.educatorProfile.phone}">
         <div>
           <table>
 
@@ -224,7 +217,6 @@
 
           </table>
         </div>
-        </g:if>
 
         <div>
           <table>

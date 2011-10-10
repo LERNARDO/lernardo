@@ -40,7 +40,7 @@
           <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.maritalStatus"/></td>
           <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.languages"/></td>
           <td width="220" valign="middle" class="name-show"><g:message code="parent.profile.description"/></td>
-          <td width="250" valign="middle" class="name-show"><g:if test="${grailsApplication.config.parentProfile.education}"><g:message code="parent.profile.education"/></g:if></td>
+          <td width="250" valign="middle" class="name-show"><g:message code="parent.profile.education"/></td>
         </tr>
 
         <tr>
@@ -63,14 +63,12 @@
             ${fieldValue(bean: parent, field: 'profile.comment') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td valign="top" class="value-show">
-            <g:if test="${grailsApplication.config.parentProfile.education}">
-              <g:if test="${parent.profile.education}">
-                ${parent.profile.education}
-              </g:if>
-              <g:else>
-                <div class="italic"><g:message code="none"/></div>
-              </g:else>
+            <g:if test="${parent.profile.education}">
+              ${parent.profile.education}
             </g:if>
+            <g:else>
+              <div class="italic"><g:message code="none"/></div>
+            </g:else>
           </td>
         </tr>
 
@@ -78,8 +76,8 @@
           <tr>
             <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.job"/></td>
             <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.jobType"/></td>
-            <td width="280" valign="middle" class="name-show"><g:if test="${grailsApplication.config.parentProfile.jobIncome}"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency})</g:if></td>
-            <td valign="middle" class="name-show"><g:if test="${grailsApplication.config.parentProfile.jobFrequency}"><g:message code="parent.profile.jobFrequency"/></g:if></td>
+            <td width="280" valign="middle" class="name-show"><g:message code="parent.profile.jobIncome"/> (${grailsApplication.config.currency})</td>
+            <td valign="middle" class="name-show"><g:message code="parent.profile.jobFrequency"/></td>
           </tr>
 
           <tr>
@@ -95,13 +93,13 @@
                 </ul>
               </g:if>
             </td>
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.parentProfile.jobIncome}">${fieldValue(bean: parent, field: 'profile.jobIncome')}</g:if></td>
-            <td valign="top" class="value-show"><g:if test="${grailsApplication.config.parentProfile.jobFrequency}">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</g:if></td>
+            <td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobIncome')}</td>
+            <td valign="top" class="value-show">${fieldValue(bean: parent, field: 'profile.jobFrequency')}</td>
           </tr>
         </g:if>
 
         <tr>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.currentCountry}"><g:message code="country"/></g:if></td>
+          <td valign="top" class="name-show"><g:message code="country"/></td>
           <td valign="top" class="name-show"><g:message code="city"/></td>
           <td valign="top" class="name-show"><g:message code="street"/></td>
           <td valign="top" class="name-show"><g:message code="zip"/></td>
@@ -109,9 +107,7 @@
 
         <tr>
           <td valign="middle" class="value-show">
-            <g:if test="${grailsApplication.config.parentProfile.currentCountry}">
-              ${parent.profile.currentCountry}
-            </g:if>
+            ${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td width="105" valign="middle" class="value-show">
             ${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
@@ -125,26 +121,20 @@
         </tr>
 
         <tr>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">Sozialversicherungsnummer</g:if></td>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.phone}">Telefon</g:if></td>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.parentProfile.citizenship}">Staatsbürgerschaft</g:if></td>
+          <td valign="top" class="name-show"><g:message code="client.profile.socialSecurityNumber"/></td>
+          <td valign="top" class="name-show"><g:message code="phone"/></td>
+          <td valign="top" class="name-show"><g:message code="client.profile.citizenship"/></td>
         </tr>
 
         <tr>
           <td valign="middle" class="value-show">
-            <g:if test="${grailsApplication.config.parentProfile.socialSecurityNumber}">
-              ${fieldValue(bean: parent, field: 'profile.socialSecurityNumber') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-            </g:if>
+            ${fieldValue(bean: parent, field: 'profile.socialSecurityNumber') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td width="105" valign="middle" class="value-show">
-            <g:if test="${grailsApplication.config.parentProfile.phone}">
-              ${fieldValue(bean: parent, field: 'profile.phone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-            </g:if>
+            ${fieldValue(bean: parent, field: 'profile.phone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
           <td width="105" valign="middle" class="value-show">
-            <g:if test="${grailsApplication.config.parentProfile.citizenship}">
-              ${fieldValue(bean: parent, field: 'profile.citizenship') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-            </g:if>
+            ${fieldValue(bean: parent, field: 'profile.citizenship') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
         </tr>
 

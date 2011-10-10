@@ -85,21 +85,17 @@
           <table width="100%">
 
             <tr>
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originZip}"><g:message code="zip"/></g:if></td>
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.originCity}"><g:message code="city"/></g:if></td>
+              <td valign="top" class="name"><g:message code="zip"/></td>
+              <td valign="top" class="name"><g:message code="city"/></td>
               <td colspan="2" valign="top" class="name"><g:message code="country"/></td>
             </tr>
 
             <tr>
               <td class="value">
-                <g:if test="${grailsApplication.config.clientProfile.originZip}">
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
-                </g:if>
+                <g:textField class="${hasErrors(bean: client, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: client, field: 'profile.originZip').decodeHTML()}"/>
               </td>
               <td class="value">
-                <g:if test="${grailsApplication.config.clientProfile.originCity}">
-                  <g:textField class="countable${client.profile.constraints.originCity.maxSize} ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
-                </g:if>
+                <g:textField class="countable${client.profile.constraints.originCity.maxSize} ${hasErrors(bean: client, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: client, field: 'profile.originCity').decodeHTML()}"/>
               </td>
               <td class="value">
                 <g:textField class="countable${client.profile.constraints.originCountry.maxSize} ${hasErrors(bean: client, field: 'profile.originCountry', 'errors')}" size="30" name="originCountry" value="${fieldValue(bean: client, field: 'profile.originCountry').decodeHTML()}"/>
@@ -113,7 +109,7 @@
           <table width="100%">
 
             <tr class="prop">
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.familyStatus}"><g:message code="client.profile.familyStatus"/></g:if></td>
+              <td valign="top" class="name"><g:message code="client.profile.familyStatus"/></td>
               <td valign="top" class="name"><g:message code="client.profile.languages"/></td>
               <td valign="top" class="name"><g:message code="client.profile.school"/></td>
               <td valign="top" class="name"><g:message code="client.profile.schoolLevel"/></td>
@@ -121,9 +117,7 @@
 
             <tr>
               <td class="value">
-                <g:if test="${grailsApplication.config.clientProfile.familyStatus}">
-                  <g:select class="drop-down-150" name="familyStatus" from="${Setup.list()[0]?.familyStatus}" value="${client?.profile?.familyStatus}"/>
-                </g:if>
+                <g:select class="drop-down-150" name="familyStatus" from="${Setup.list()[0]?.familyStatus}" value="${client?.profile?.familyStatus}"/>
               </td>
               <td class="value">
                 <g:select class="liste-210" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${client?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
@@ -223,20 +217,16 @@
             </tr>
 
             <tr>
-              <td valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.citizenship}"><g:message code="client.profile.citizenship"/></g:if></td>
-              <td colspan="3" valign="top" class="name"><g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}"><g:message code="client.profile.socialSecurityNumber"/></g:if></td>
+              <td valign="top" class="name"><g:message code="client.profile.citizenship"/></td>
+              <td colspan="3" valign="top" class="name"><g:message code="client.profile.socialSecurityNumber"/></td>
             <tr>
 
             <tr>
               <td class="value">
-                <g:if test="${grailsApplication.config.clientProfile.citizenship}">
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.citizenship', 'errors')}" size="10" name="citizenship" value="${fieldValue(bean: client, field: 'profile.citizenship')}"/>
-                </g:if>
+                <g:textField class="${hasErrors(bean: client, field: 'profile.citizenship', 'errors')}" size="10" name="citizenship" value="${fieldValue(bean: client, field: 'profile.citizenship')}"/>
               </td>
               <td colspan="3" class="value">
-                <g:if test="${grailsApplication.config.clientProfile.socialSecurityNumber}">
-                  <g:textField class="${hasErrors(bean: client, field: 'profile.socialSecurityNumber', 'errors')}" size="30" name="socialSecurityNumber" value="${fieldValue(bean: client, field: 'profile.socialSecurityNumber')}"/>
-                </g:if>
+                <g:textField class="${hasErrors(bean: client, field: 'profile.socialSecurityNumber', 'errors')}" size="30" name="socialSecurityNumber" value="${fieldValue(bean: client, field: 'profile.socialSecurityNumber')}"/>
               </td>
             </tr>
 

@@ -52,7 +52,7 @@
 
             <td class="name"><g:message code="educator.profile.education"/></td>
             <td valign="top" class="name"><g:message code="educator.profile.employment"/></td>
-            <td valign="top" class="name"><g:if test="${grailsApplication.config.educatorProfile.enlisted}"><g:message code="educator.profile.enlisted"/></g:if></td>
+            <td valign="top" class="name"><g:message code="educator.profile.enlisted"/></td>
           </tr>
           <tr>
             <td height="35" valign="top" class="value">
@@ -62,9 +62,7 @@
               <g:select class="drop-down-280" name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}" noSelection="['': message(code: 'none')]"/>
             </td>
             <td valign="top" class="value">
-              <g:if test="${grailsApplication.config.educatorProfile.enlisted}">
-                <g:select class="drop-down-240" name="enlisted" from="${partner}" value="${enlistedBy}" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
-              </g:if>
+              <g:select class="drop-down-240" name="enlisted" from="${partner}" value="${enlistedBy}" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 
@@ -114,7 +112,6 @@
           </table>
         </div>
 
-        <g:if test="${grailsApplication.config.educatorProfile.origin}">
         <h4><g:message code="educator.profile.origin"/></h4>
         <div>
           <table width="100%">
@@ -141,9 +138,7 @@
 
           </table>
         </div>
-        </g:if>
 
-        <g:if test="${grailsApplication.config.educatorProfile.contact}">
         <h4><g:message code="educator.profile.emContact"/></h4>
         <div>
           <table width="100%">
@@ -188,33 +183,30 @@
             </tr>
           </table>
         </div>
-        </g:if>
 
-        <g:if test="${grailsApplication.config.educatorProfile.phone}">
-          <div>
-            <table width="100%">
+        <div>
+          <table width="100%">
 
-              <tr>
-                <td valign="top" class="name"><g:message code="phone"/> #1</td>
-                <td valign="top" class="name"><g:message code="phone"/> #2</td>
-                <td valign="top" class="name"><g:message code="educator.profile.privMail"/></td>
-              </tr>
+            <tr>
+              <td valign="top" class="name"><g:message code="phone"/> #1</td>
+              <td valign="top" class="name"><g:message code="phone"/> #2</td>
+              <td valign="top" class="name"><g:message code="educator.profile.privMail"/></td>
+            </tr>
 
-              <tr>
-                <td height="35" class="value">
-                  <g:textField class="${hasErrors(bean: educator, field: 'profile.phone1', 'errors')}" size="40" name="phone1" value="${fieldValue(bean: educator, field: 'profile.phone1').decodeHTML()}"/>
-                </td>
-                <td valign="top" class="value">
-                  <g:textField class="${hasErrors(bean: educator, field: 'profile.phone2', 'errors')}" size="40" name="phone2" value="${fieldValue(bean: educator, field: 'profile.phone2').decodeHTML()}"/>
-                </td>
-                <td valign="top" class="value">
-                  <g:textField class="${hasErrors(bean: educator, field: 'profile.privEmail', 'errors')}" size="40" name="privEmail" value="${fieldValue(bean: educator, field: 'profile.privEmail').decodeHTML()}"/>
-                </td>
-              </tr>
+            <tr>
+              <td height="35" class="value">
+                <g:textField class="${hasErrors(bean: educator, field: 'profile.phone1', 'errors')}" size="40" name="phone1" value="${fieldValue(bean: educator, field: 'profile.phone1').decodeHTML()}"/>
+              </td>
+              <td valign="top" class="value">
+                <g:textField class="${hasErrors(bean: educator, field: 'profile.phone2', 'errors')}" size="40" name="phone2" value="${fieldValue(bean: educator, field: 'profile.phone2').decodeHTML()}"/>
+              </td>
+              <td valign="top" class="value">
+                <g:textField class="${hasErrors(bean: educator, field: 'profile.privEmail', 'errors')}" size="40" name="privEmail" value="${fieldValue(bean: educator, field: 'profile.privEmail').decodeHTML()}"/>
+              </td>
+            </tr>
 
-            </table>
-          </div>
-        </g:if>
+          </table>
+        </div>
 
           <div>
             <table>

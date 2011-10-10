@@ -73,12 +73,10 @@
                 <g:select name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" noSelection="['all': message(code: 'all')]"/>
               </td>
             </tr>
-            <g:if test="${grailsApplication.config.clientProfile.job}">
             <tr>
               <td><g:message code="client.profile.job"/>:</td>
               <td><g:select name="job" from="${['0':message(code:'all'),'1':message(code:'yes'),'2':message(code:'no')]}" optionKey="key" optionValue="value"/></td>
             </tr>
-            </g:if>
           </table>
           <g:submitButton name="button" value="${message(code:'groupClient.clients.define')}"/>
           <div class="spacer"></div>

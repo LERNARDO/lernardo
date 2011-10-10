@@ -15,14 +15,14 @@
 
         <tr>
           <td valign="top" class="name-show"><g:message code="name"/>:</td>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}"><g:message code="groupFamily.profile.familyIncome"/>:</g:if></td>
-          <td valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}"><g:message code="groupFamily.profile.amountHousehold"/>:</g:if></td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.familyIncome"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupFamily.profile.amountHousehold"/>:</td>
         </tr>
 
         <tr>
           <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyIncome}">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
-          <td valign="top" class="value-show"><g:if test="${grailsApplication.config.groupFamilyProfile.amountHousehold}">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</g:if></td>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr>
@@ -38,23 +38,21 @@
         </tr>
 
         <tr>
-          <td colspan="3" valign="top" class="name-show"><g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}"><g:message code="groupFamily.profile.familyProblems"/>:</g:if></td>
+          <td colspan="3" valign="top" class="name-show"><g:message code="groupFamily.profile.familyProblems"/>:</td>
         </tr>
 
         <tr class="prop">
           <td colspan="3" valign="top" class="value-show-block">
-            <g:if test="${grailsApplication.config.groupFamilyProfile.familyProblems}">
-              <g:if test="${group.profile.familyProblems}">
-                <ul>
-                  <g:each in="${group.profile.familyProblems}" var="problem">
-                    <li>${problem}</li>
-                  </g:each>
-                </ul>
-              </g:if>
-              <g:else>
-                <div class="italic"><g:message code="noData"/></div>
-              </g:else>
+            <g:if test="${group.profile.familyProblems}">
+              <ul>
+                <g:each in="${group.profile.familyProblems}" var="problem">
+                  <li>${problem}</li>
+                </g:each>
+              </ul>
             </g:if>
+            <g:else>
+              <div class="italic"><g:message code="noData"/></div>
+            </g:else>
           </td>
         </tr>
       </table>
