@@ -182,7 +182,7 @@ class ResourceProfileController {
       render template: 'owner', model: [resowner: linking.results, resource: linking.target, entity: entityHelperService.loggedIn]
     }
     else {
-      render '<span class="red italic">Es wurde bereits ein Besitzer zugewiesen!</span>'
+      render '<span class="red italic">' + message(code: 'alreadyAssignedToOwner') + '</span>'
       render template: 'owner', model: [resowner: functionService.findByLink(null, resource, metaDataService.ltOwner), resource: resource, entity: entityHelperService.loggedIn]
     }
 

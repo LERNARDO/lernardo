@@ -81,8 +81,8 @@
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /> <g:checkBox name="printtemplates" value=""/> mit Aktivitätsvorlagen</div>
-        <div class="spacer"></div>
+        <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div> <div style="float: left; padding: 7px 0 0 0;"><g:checkBox name="printtemplates" value=""/></div><div style="float: left; padding: 7px 0 0 5px;"> <g:message code="activityTemplates.with"/></div>
+        <div class="spacer">
       </g:form>
     </div>
 

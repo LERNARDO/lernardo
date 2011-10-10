@@ -30,15 +30,15 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
                     ]
 
 // The default codec used to encode data with ${}
-grails.views.default.codec="none" // none, html, base64
-grails.views.gsp.encoding="UTF-8"
-grails.converters.encoding="UTF-8"
+grails.views.default.codec = "none" // none, html, base64
+grails.views.gsp.encoding = "UTF-8"
+grails.converters.encoding = "UTF-8"
 
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 
 // this has to be updated every time a new plugin version of jquery is installed
-grails.views.javascript.library="jquery"
+grails.views.javascript.library = "jquery"
 jquery {
     sources = 'jquery' // Holds the value where to store jQuery-js files /web-app/js/
     version = '1.6.1' // The jQuery version in use
@@ -57,6 +57,9 @@ grails {
     "mail.smtp.socketFactory.fallback":"false"]
   }
 }
+
+// this will be used if no "from" is supplied in a mail
+grails.mail.default.from = "lernardomailer@gmail.com"
 
 secmgr {
   starturl     = "/start"

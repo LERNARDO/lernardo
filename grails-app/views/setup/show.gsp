@@ -13,7 +13,7 @@
 <div class="boxGray">
   <div class="second">
 
-    <h6>Allgemeines</h6>
+    <h6><g:message code="general"/></h6>
 
     <div class="zusatz">
       <h5><g:message code="bloodTypes"/> <a onclick="clearElements(['#bloodTypeName']); toggle('#bloodTypes');
@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <h6>Pädagogen</h6>
+    <h6><g:message code="educators"/></h6>
 
     <div class="zusatz">
       <h5><g:message code="educations"/> <a onclick="clearElements(['#educationName']); toggle('#educations');
@@ -129,7 +129,7 @@
       </div>
     </div>
 
-    <h6>Betreute</h6>
+    <h6><g:message code="clients"/></h6>
 
     <div class="zusatz">
       <h5><g:message code="familyStatus"/> <a onclick="clearElements(['#familyStatusName']); toggle('#familyStatus');
@@ -145,7 +145,7 @@
       </div>
     </div>
 
-    <h6>Erziehungsberechtigte</h6>
+    <h6><g:message code="parents"/></h6>
 
     <div class="zusatz">
       <h5><g:message code="maritalStatus"/> <a onclick="clearElements(['#maritalStatusName']); toggle('#maritalStatus');
@@ -161,7 +161,7 @@
       </div>
     </div>
 
-    <h6>Partner</h6>
+    <h6><g:message code="partners"/></h6>
 
     <div class="zusatz">
       <h5><g:message code="partnerServices"/> <a onclick="clearElements(['#partnerServiceName']); toggle('#partnerServices');
@@ -177,7 +177,7 @@
       </div>
     </div>
 
-    <h6>Familien</h6>
+    <h6><g:message code="groupFamilies"/></h6>
 
     <div class="zusatz">
       <h5><g:message code="familyProblems"/> <a onclick="clearElements(['#familyProblemName']); toggle('#familyProblems');

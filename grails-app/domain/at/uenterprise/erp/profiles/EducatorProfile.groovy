@@ -48,7 +48,6 @@ class EducatorProfile extends Profile {
 
   String employment
 
-  // added for NOE
   String phone1
   String phone2
   String privEmail

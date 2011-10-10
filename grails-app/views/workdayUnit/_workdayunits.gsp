@@ -97,7 +97,7 @@
     <div class="red italic">Der Eintrag überschneidet sich mit einem anderen Eintrag!</div>
 </g:if>
 
-<p class="bold">Bereits eingetragene Zeitaufzeichnungen</p>
+<p class="bold"><g:message code="workdayUnit.alreadyEntered"/></p>
 <g:if test="${workdayunits}">
   <g:each in="${workdayunits}" var="unit" status="i">
     %{--TODO: find out why this styling won't work when used in common.less--}%

@@ -1,14 +1,22 @@
-// only change the project name here:
+// only change the customer name here:
 
 // possible values:
 // "sueninos"
 // "noe"
 
-project = "noe"
+customer = "noe"
 
 // nothing needs to be changed below this line
 
-if (project == "sueninos") {
+if (customer == "sueninos") {
+
+    // ---------------------------------------------------------------------------------------------
+    // general configuration
+    // ---------------------------------------------------------------------------------------------
+
+    customerName = "Sueninos" // full customer name
+    currency = "Pesos"
+    timeZone = "America/Guatemala" // UTC-6
 
     // ---------------------------------------------------------------------------------------------
     // database configuration
@@ -53,25 +61,10 @@ if (project == "sueninos") {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // email configuration
-    // ---------------------------------------------------------------------------------------------
-
-    // this will be used if no "from" is supplied in a mail
-    grails.mail.default.from="lernardomailer@gmail.com"
-
-    // ---------------------------------------------------------------------------------------------
-    // layout configuration
-    // ---------------------------------------------------------------------------------------------
-
-    projectName = "Sueninos" // full project name
-    currency = "Pesos"
-    timeZone = "America/Guatemala" // UTC-6
-
-    // ---------------------------------------------------------------------------------------------
     // google analytics tracker
     // ---------------------------------------------------------------------------------------------
 
-    google.analytics.webPropertyID = "UA-17725364-2" // http://sueninos.lernardo.net
+    google.analytics.webPropertyID = "UA-17725364-2"
 
     // by default, tracking is enabled for the 'production' Env only, but that can be overwritten
     // both ways (i.e emergency disable tracking)
@@ -79,7 +72,15 @@ if (project == "sueninos") {
 
 }
 
-if (project == "noe") {
+if (customer == "noe") {
+
+    // ---------------------------------------------------------------------------------------------
+    // general configuration
+    // ---------------------------------------------------------------------------------------------
+
+    customerName = "Lernardo"
+    currency = "Euro"
+    timeZone = "Europe/Vienna" // UTC+1
 
     // ---------------------------------------------------------------------------------------------
     // database configuration
@@ -88,7 +89,7 @@ if (project == "noe") {
     dataSource {
       pooled = false
       driverClassName = "org.postgresql.Driver"
-        dialect = org.hibernate.dialect.PostgreSQLDialect
+      dialect = org.hibernate.dialect.PostgreSQLDialect
       username = "sa_lernardo"
       password = "pw_lernardo"
     }
@@ -124,25 +125,10 @@ if (project == "noe") {
     }
 
     // ---------------------------------------------------------------------------------------------
-    // email configuration
-    // ---------------------------------------------------------------------------------------------
-
-    // this will be used if no "from" is supplied in a mail
-    grails.mail.default.from="lernardomailer@gmail.com"
-
-    // ---------------------------------------------------------------------------------------------
-    // layout configuration
-    // ---------------------------------------------------------------------------------------------
-
-    projectName = "Lernardo"
-    currency = "Euro"
-    timeZone = "Europe/Vienna" // UTC+1
-
-    // ---------------------------------------------------------------------------------------------
     // google analytics tracker
     // ---------------------------------------------------------------------------------------------
 
-    google.analytics.webPropertyID = "UA-17725364-3" // http://noe.lernardo.net
+    google.analytics.webPropertyID = "UA-17725364-3"
 
     // by default, tracking is enabled for the 'production' Env only, but that can be overwritten
     // both ways (i.e emergency disable tracking)
