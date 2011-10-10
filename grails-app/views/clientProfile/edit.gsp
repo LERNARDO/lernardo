@@ -130,7 +130,6 @@
               </td>
             </tr>
 
-            <g:if test="${grailsApplication.config.project == 'sueninos'}">
             <tr class="prop">
               <td></td>
               <td valign="top" class="name"><g:message code="client.profile.schoolDropoutDate"/></td>
@@ -149,9 +148,7 @@
                 <g:textField class="countable${client.profile.constraints.schoolDropoutReason.maxSize} ${hasErrors(bean: client, field: 'profile.schoolDropoutReason', 'errors')}" size="64" name="schoolDropoutReason" value="${fieldValue(bean: client, field: 'profile.schoolDropoutReason').decodeHTML()}"/>
               </td>
             </tr>
-            </g:if>
 
-            <g:if test="${grailsApplication.config.project == 'sueninos'}">
             <tr class="prop">
               <td></td>
               <td valign="top" class="name"><g:message code="client.profile.schoolRestartDate"/></td>
@@ -174,9 +171,7 @@
             <tr>
               <td colspan="4">&nbsp;</td>
             </tr>
-            </g:if>
 
-            <g:if test="${grailsApplication.config.project == 'sueninos'}">
             <tr class="prop">
               <td></td>
               <td><g:message code="client.profile.jobType"/></td>
@@ -199,7 +194,6 @@
                 <g:textField size="28" name="jobFrequency" value="${fieldValue(bean: client, field: 'profile.jobFrequency')}"/>
               </td>
             </tr>
-            </g:if>
 
             <tr class="prop">
               <td></td>

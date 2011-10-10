@@ -39,16 +39,14 @@
           </div>
         </li>
 
-        <g:if test="${grailsApplication.config.project == 'sueninos'}">
-            <li>
-              <div class="imgbox">
-                <g:link controller="activityProfile" action="list" onclick="showBigSpinner()">
-                  <img src="${g.resource(dir: 'images/icons', file: 'kf_themenraum.png')}" alt="<g:message code="imgmenu.activity.name"/>"/>
-                  <h3><g:message code="imgmenu.activity.name"/></h3>
-                </g:link>
-              </div>
-            </li>
-        </g:if>
+        <li>
+          <div class="imgbox">
+            <g:link controller="activityProfile" action="list" onclick="showBigSpinner()">
+              <img src="${g.resource(dir: 'images/icons', file: 'kf_themenraum.png')}" alt="<g:message code="imgmenu.activity.name"/>"/>
+              <h3><g:message code="imgmenu.activity.name"/></h3>
+            </g:link>
+          </div>
+        </li>
       </erp:accessCheck>
 
       <li>

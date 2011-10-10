@@ -93,21 +93,19 @@
       <div class="spacer"></div>
     </div>
 
-    <g:if test="${grailsApplication.config.project == 'noe'}">
-      <div class="zusatz">
-        <h5><g:message code="owner"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#owner'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-        <div class="zusatz-add" id="owner" style="display:none">
+    <div class="zusatz">
+      <h5><g:message code="owner"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#owner'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+      <div class="zusatz-add" id="owner" style="display:none">
 
-          <g:message code="search"/>:<br/>
-          <g:remoteField size="40" name="remoteField" update="remoteOwner" action="remoteOwner" id="${resource.id}" before="showspinner('#remoteOwner');"/>
-          <div id="remoteOwner"></div>
+        <g:message code="search"/>:<br/>
+        <g:remoteField size="40" name="remoteField" update="remoteOwner" action="remoteOwner" id="${resource.id}" before="showspinner('#remoteOwner');"/>
+        <div id="remoteOwner"></div>
 
-        </div>
-        <div class="zusatz-show" id="owner2">
-          <g:render template="owner" model="[resowner: resowner, resource: resource, entity: currentEntity]"/>
-        </div>
       </div>
-    </g:if>
+      <div class="zusatz-show" id="owner2">
+        <g:render template="owner" model="[resowner: resowner, resource: resource, entity: currentEntity]"/>
+      </div>
+    </div>
 
     <div class="zusatz">
       <h5><g:message code="responsible"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#responsible'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>

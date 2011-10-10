@@ -103,7 +103,6 @@
       </div>
     </div>
 
-    <g:if test="${grailsApplication.config.project == 'sueninos'}">
     <div class="zusatz">
       <h5><g:message code="groupFamily.profile.childs"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#childs');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
@@ -118,7 +117,6 @@
         <g:render template="childs" model="[childs: childs, group: group, entity: currentEntity]"/>
       </div>
     </div>
-    </g:if>
 
   </div>
 </div>

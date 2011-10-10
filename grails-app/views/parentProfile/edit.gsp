@@ -76,12 +76,7 @@
               <g:checkBox name="job" value="${parent?.profile?.job}"/>
             </td>
             <td valign="top" class="value">
-              <g:if test="${grailsApplication.config.project == 'noe'}">
-                <g:select name="jobtypes" from="${Setup.list()[0]?.workDescriptions}" value="${parent?.profile?.jobtypes}"/>
-              </g:if>
-              <g:if test="${grailsApplication.config.project == 'sueninos'}">
-                <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
-              </g:if>
+              <g:select name="jobtypes" multiple="true" from="${Setup.list()[0]?.workDescriptions}" value="${parent?.profile?.jobtypes}" noSelection="['': message(code: 'unknown')]"/>
             </td>
             <td valign="top" class="value">
               <g:textField class="${hasErrors(bean: parent, field: 'profile.jobIncome', 'errors')}" size="30" id="jobIncome" name="jobIncome" value="${parent?.profile?.jobIncome?.toInteger()}"/>
