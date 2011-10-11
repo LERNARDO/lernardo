@@ -469,7 +469,7 @@
         <span class="bold"><g:message code="languageSelection"/>:</span>
         ${educator?.user?.locale?.getDisplayLanguage()}
       </td>
-      <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${educator}">
         <td>
           <g:form controller="profile" action="changePassword" id="${educator.id}">
             <span class="bold"><g:message code="password"/>: </span>
@@ -477,7 +477,7 @@
             <div class="clear"></div>
           </g:form>
         </td>
-      </erp:isMeOrAdminOrOperator>
+      </erp:accessCheck>
     </tr>
 
   </table>
@@ -485,9 +485,9 @@
 
 <div class="buttons">
   <g:form id="${educator.id}" params="[entity: educator?.id]">
-    <erp:isMeOrAdminOrOperator entity="${educator}" current="${currentEntity}">
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${educator}">
       <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}"/></div>
-    </erp:isMeOrAdminOrOperator>
+    </erp:accessCheck>
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
       <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}"
                                           onclick="${erp.getLinks(id: educator.id)}"/></div>

@@ -37,12 +37,12 @@
             </tr>
             <tr>
               <td class="bold vtop"><g:message code="linkedTo"/>:</td>
-              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}">${evaluation.linkedTo.profile.fullName} <erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:isMeOrAdminOrOperator></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
+              <td><span id="linkedTo${i}"><g:if test="${evaluation.linkedTo}">${evaluation.linkedTo.profile.fullName} <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${evaluation.writer}"><g:remoteLink action="removeLinkedTo" update="linkedTo${i}" id="${evaluation.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></g:if><g:else><span class="italic">Nicht verlinkt</span></g:else></span></td>
             </tr>
           </table>
-          %{--<erp:isMeOrAdminOrOperator entity="${evaluation.writer}" current="${currentEntity}">
+          %{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${evaluation.writer}">
             <g:link class="helperButton" action="edit" id="${evaluation.id}" params="[entity:entity.id]">${message(code:'edit')}</g:link>
-          </erp:isMeOrAdminOrOperator>--}%
+          </erp:accessCheck>--}%
         </div>
       </g:each>
     </ul>

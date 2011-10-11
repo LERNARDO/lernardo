@@ -55,7 +55,7 @@
               <span class="bold"><g:message code="email"/>: </span>
               ${fieldValue(bean: user, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
-            <erp:isMeOrAdminOrOperator entity="${user}" current="${currentEntity}">
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${user}">
               <td>
                 <g:form controller="profile" action="changePassword" id="${user.id}">
                   <span class="bold"><g:message code="password"/>: </span>
@@ -63,7 +63,7 @@
                   <div class="clear"></div>
                 </g:form>
               </td>
-            </erp:isMeOrAdminOrOperator>
+            </erp:accessCheck>
           </tr>
         </table>
       </div>

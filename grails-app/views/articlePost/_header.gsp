@@ -18,10 +18,10 @@
     <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${article.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
     <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${article.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
     <erp:isLoggedIn>
-      <erp:isMeOrAdminOrOperator entity="${article.author}" current="${currentEntity}">
+      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${article.author}">
         (<g:link class="adminlink" action="edit" id="${article.id}"><g:message code="edit"/></g:link> -
          <g:link class="adminlink" action="delete" onclick="return confirm('Artikel wirklich löschen?');" id="${article.id}"><g:message code="delete"/></g:link>)
-      </erp:isMeOrAdminOrOperator>
+      </erp:accessCheck>
     </erp:isLoggedIn>
   </div>
 </div>

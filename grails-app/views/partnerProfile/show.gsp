@@ -85,7 +85,7 @@
               <span class="bold"><g:message code="email"/>: </span>
               ${fieldValue(bean: partner, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
             </td>
-            <erp:isMeOrAdminOrOperator entity="${partner}" current="${currentEntity}">
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${partner}">
               <td>
                 <g:form controller="profile" action="changePassword" id="${partner.id}">
                   <span class="bold"><g:message code="password"/>: </span>
@@ -93,7 +93,7 @@
                   <div class="clear"></div>
                 </g:form>
               </td>
-            </erp:isMeOrAdminOrOperator>
+            </erp:accessCheck>
           </tr>
         </table>
       </div>
@@ -102,9 +102,9 @@
 
     <div class="buttons">
       <g:form id="${partner.id}">
-        <erp:isMeOrAdminOrOperator entity="${partner}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${partner}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:isMeOrAdminOrOperator>
+        </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: partner.id)}" /></div>
         </erp:accessCheck>

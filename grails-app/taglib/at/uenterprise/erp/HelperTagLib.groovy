@@ -1407,11 +1407,6 @@ class HelperTagLib {
       out << body()
   }
 
-  def isMeOrAdminOrOperator = {attrs, body ->
-    if (attrs.entity.name == attrs.current.name || attrs.current.user.authorities.find {it.authority == 'ROLE_ADMIN'} || attrs.current.type.id == metaDataService.etOperator.id)
-      out << body()
-  }
-
   def notMe = {attrs, body ->
     if (entityHelperService.loggedIn.id != attrs.entity.id)
       out << body()

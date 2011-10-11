@@ -6,16 +6,16 @@
 
     <td valign="top">
       <ul>
-        <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
           <li class="icon-person"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></li>
-        </erp:isMeOrAdminOrOperator>
+        </erp:accessCheck>
 
         <li class="profile-profil"><g:link controller="operatorProfile" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="profile"/></g:link></li>
         <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
 
-        <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
           <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
-        </erp:isMeOrAdminOrOperator>
+        </erp:accessCheck>
 
         <erp:isMeOrAdmin entity="${entity}" current="${currentEntity}">
           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>

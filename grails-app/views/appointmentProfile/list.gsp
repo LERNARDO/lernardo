@@ -16,14 +16,14 @@
       ${appointmentProfileInstanceTotal} <g:message code="appointment.profile.c_total"/>
     </div>
 
-    <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
       <div class="buttons">
         <g:form id="${entity.id}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="create" value="${message(code: 'object.create', args: [message(code: 'appointment')])}"/></div>
           <div class="spacer"></div>
         </g:form>
       </div>
-    </erp:isMeOrAdminOrOperator>
+    </erp:accessCheck>
 
     <g:if test="${appointmentProfileInstanceList}">
       <table class="default-table">
@@ -41,10 +41,10 @@
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td>
               <g:if test="${appointmentProfileInstance.profile.isPrivate}">
-                <erp:isMeOrAdminOrOperator entity="${entity}" current="${currentEntity}">
+                <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
                   <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
                   <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
-                </erp:isMeOrAdminOrOperator>
+                </erp:accessCheck>
                 %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
                 <g:if test="${!negation}">
                   <g:message code="notAvailable"/> %{--${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')} --}%
