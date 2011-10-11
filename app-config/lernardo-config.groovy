@@ -23,11 +23,21 @@ if (customer == "sueninos") {
     // ---------------------------------------------------------------------------------------------
 
     dataSource {
-      pooled = false
+      pooled = true
       driverClassName = "org.postgresql.Driver"
       dialect = org.hibernate.dialect.PostgreSQLDialect
       username = "sa_lernardo"
       password = "pw_lernardo"
+      properties {
+        maxActive = 15
+        maxIdle = 5
+        minIdle = 3
+        initialSize = 3
+        minEvictableIdleTimeMillis = 60000
+        timeBetweenEvictionRunsMillis = 60000
+        numTestsPerEvictionRun = 3
+        maxWait = 10000
+      }
     }
 
     environments {
@@ -46,7 +56,7 @@ if (customer == "sueninos") {
               url = "jdbc:postgresql://localhost:5432/lernardo"
               loggingSql = false
               hibernate.default_schema = 'test'
-              grails.serverURL = "https://lernardo.customer.uenterprise.de/test"
+              grails.serverURL = "http://lernardo.customer.uenterprise.de/test"
         }
       }
       production {
@@ -87,11 +97,21 @@ if (customer == "noe") {
     // ---------------------------------------------------------------------------------------------
 
     dataSource {
-      pooled = false
+      pooled = true
       driverClassName = "org.postgresql.Driver"
       dialect = org.hibernate.dialect.PostgreSQLDialect
       username = "sa_lernardo"
       password = "pw_lernardo"
+      properties {
+        maxActive = 15
+        maxIdle = 5
+        minIdle = 3
+        initialSize = 3
+        minEvictableIdleTimeMillis = 60000
+        timeBetweenEvictionRunsMillis = 60000
+        numTestsPerEvictionRun = 3
+        maxWait = 10000
+      }
     }
 
     environments {
@@ -110,7 +130,7 @@ if (customer == "noe") {
               url = "jdbc:postgresql://localhost:5432/lernardo"
               loggingSql = false
               hibernate.default_schema = 'test'
-              grails.serverURL = "https://lernardo.customer.uenterprise.de/test"
+              grails.serverURL = "http://lernardo.customer.uenterprise.de/test"
         }
       }
       production {
