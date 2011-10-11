@@ -147,7 +147,7 @@ class MsgController {
 
     // if this is an answer to a message use the subject
     if (params.subject)
-      message.subject = params.subject
+      message.subject = params.subject.decodeHTML()
 
     Entity entity = Entity.get(params.id)
     return [msgInstance:message,
