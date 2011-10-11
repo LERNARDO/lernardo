@@ -261,7 +261,7 @@ class GroupActivityTemplateProfileController {
 
     List templates = []
     groupActivityTemplate.profile.templates.each {
-      templates.add(Entity.get(it))
+      templates.add(Entity.get(it.toInteger()))
     }
 
     templates.each {

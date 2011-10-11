@@ -125,8 +125,9 @@ class GroupActivityProfileController {
     List templatesOfGroup = functionService.findAllByLink(null, group, metaDataService.ltGroupMember) // find all templates linked to this group
     List templates = []
     template.profile.templates.each {
-      if (templatesOfGroup.contains(Entity.get(it)))
-        templates.add(Entity.get(it))
+      Entity temp = Entity.get(it.toInteger())
+      if (templatesOfGroup.contains(temp))
+        templates.add(temp)
     }
 
     def calculatedDuration = 0
