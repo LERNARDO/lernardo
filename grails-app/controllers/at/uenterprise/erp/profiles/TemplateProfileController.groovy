@@ -214,8 +214,10 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     if (template) {
       // first delete any comments posted on this template
+      Event.findAllByWhoOrWhat(template.id.toInteger(), template.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(template, template).each {it.delete()}
       Publication.findAllByEntity(template).each {it.delete()}
+
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "activityTemplate"), template.profile.fullName])
         template.delete(flush: true)

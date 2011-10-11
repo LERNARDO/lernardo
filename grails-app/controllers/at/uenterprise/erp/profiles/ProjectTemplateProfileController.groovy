@@ -99,6 +99,7 @@ class ProjectTemplateProfileController {
     Entity projectTemplate = Entity.get(params.id)
     if (projectTemplate) {
       // delete all links
+      Event.findAllByWhoOrWhat(projectTemplate.id.toInteger(), projectTemplate.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
 
       try {

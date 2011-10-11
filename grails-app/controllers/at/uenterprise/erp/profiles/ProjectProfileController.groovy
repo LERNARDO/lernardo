@@ -16,6 +16,7 @@ import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Event
 
 class ProjectProfileController {
 
@@ -110,7 +111,7 @@ class ProjectProfileController {
         //units = functionService.findAllByLink(null, template, metaDataService.ltProjectUnitTemplate)
 
       List units = []
-      template.profile.templates.each {
+      template?.profile?.templates?.each {
         units.add(Entity.get(it.toInteger()))
       }
 
@@ -164,7 +165,8 @@ class ProjectProfileController {
       Entity projectDay = params.one ? projectDays.find {it.id == params.int('one')} : (projectDays[0] ?: null)
 
       List requiredResources = []
-      requiredResources.addAll(template.profile.resources)
+      if (template)
+        requiredResources.addAll(template?.profile?.resources)
       // find all project units linked to the project day
       List pUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
 
@@ -265,6 +267,8 @@ class ProjectProfileController {
   def delete = {
     Entity project = Entity.get(params.id)
     if (project) {
+
+      Event.findAllByWhoOrWhat(project.id.toInteger(), project.id.toInteger()).each {it.delete()}
       // find all project days of project
       List projectDays = functionService.findAllByLink(null, project, metaDataService.ltProjectMember)
 

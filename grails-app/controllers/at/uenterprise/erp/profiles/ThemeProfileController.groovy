@@ -8,6 +8,7 @@ import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Link
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
+import at.uenterprise.erp.Event
 
 class ThemeProfileController {
   MetaDataService metaDataService
@@ -95,7 +96,9 @@ class ThemeProfileController {
     Entity theme = Entity.get(params.id)
     if (theme) {
       // delete all links
+      Event.findAllByWhoOrWhat(theme.id.toInteger(), theme.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(theme, theme).each {it.delete()}
+
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "theme"), theme.profile.fullName])
         theme.delete(flush: true)

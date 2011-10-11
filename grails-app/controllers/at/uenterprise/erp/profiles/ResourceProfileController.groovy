@@ -8,6 +8,7 @@ import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.FunctionService
+import at.uenterprise.erp.Event
 
 class ResourceProfileController {
   MetaDataService metaDataService
@@ -66,7 +67,9 @@ class ResourceProfileController {
     Entity resource = Entity.get(params.id)
     if (resource) {
       // delete all links
+      Event.findAllByWhoOrWhat(resource.id.toInteger(), resource.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(resource, resource).each {it.delete()}
+
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "resource"), resource.profile.fullName])
         resource.delete(flush: true)

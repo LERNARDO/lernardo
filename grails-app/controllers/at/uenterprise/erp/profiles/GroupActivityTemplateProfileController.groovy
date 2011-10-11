@@ -100,6 +100,7 @@ class GroupActivityTemplateProfileController {
     Entity group = Entity.get(params.id)
     if (group) {
       // delete all links
+      Event.findAllByWhoOrWhat(group.id.toInteger(), group.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
 
       try {

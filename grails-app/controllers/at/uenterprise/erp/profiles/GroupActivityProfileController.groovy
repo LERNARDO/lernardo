@@ -15,6 +15,7 @@ import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.Event
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -213,6 +214,7 @@ class GroupActivityProfileController {
     if (group) {
 
       // delete all links to and from this group first
+      Event.findAllByWhoOrWhat(group.id.toInteger(), group.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
 
       try {

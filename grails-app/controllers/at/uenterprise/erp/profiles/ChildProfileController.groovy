@@ -13,6 +13,7 @@ import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 //import java.util.regex.Pattern
 
@@ -70,6 +71,7 @@ class ChildProfileController {
     Entity child = Entity.get(params.id)
     if (child) {
       // delete all links to and from this child
+      Event.findAllByWhoOrWhat(child.id.toInteger(), child.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(child, child).each {it.delete()}
       Msg.findAllBySenderOrReceiver(child, child).each {it.delete()}
       Publication.findAllByEntity(child).each {it.delete()}

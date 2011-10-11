@@ -12,6 +12,7 @@ import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 class UserProfileController {
   MetaDataService metaDataService
@@ -63,6 +64,7 @@ class UserProfileController {
     Entity user = Entity.get(params.id)
     if (user) {
       // delete all links
+      Event.findAllByWhoOrWhat(user.id.toInteger(), user.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(user, user).each {it.delete()}
       Msg.findAllBySenderOrReceiver(user, user).each {it.delete()}
       Publication.findAllByEntity(user).each {it.delete()}

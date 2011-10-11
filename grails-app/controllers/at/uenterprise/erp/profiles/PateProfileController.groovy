@@ -12,6 +12,7 @@ import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 class PateProfileController {
   MetaDataService metaDataService
@@ -66,6 +67,7 @@ class PateProfileController {
     Entity pate = Entity.get(params.id)
     if (pate) {
       // delete all links to this entity
+      Event.findAllByWhoOrWhat(pate.id.toInteger(), pate.id.toInteger()).each {it.delete()}
       Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
       Msg.findAllBySenderOrReceiver(pate, pate).each {it.delete()}
       Publication.findAllByEntity(pate).each {it.delete()}

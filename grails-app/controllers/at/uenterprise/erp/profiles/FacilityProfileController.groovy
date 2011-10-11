@@ -12,6 +12,7 @@ import at.openfactory.ep.Profile
 import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Comment
+import at.uenterprise.erp.Event
 
 class FacilityProfileController {
   MetaDataService metaDataService
@@ -90,6 +91,7 @@ class FacilityProfileController {
     Entity facility = Entity.get(params.id)
     if (facility) {
       // delete all links
+      Event.findAllByWhoOrWhat(facility.id.toInteger(), facility.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
       Msg.findAllBySenderOrReceiver(facility, facility).each {it.delete()}
       Publication.findAllByEntity(facility).each {it.delete()}

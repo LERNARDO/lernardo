@@ -12,6 +12,7 @@ import at.uenterprise.erp.Publication
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 class OperatorProfileController {
   MetaDataService metaDataService
@@ -68,6 +69,7 @@ class OperatorProfileController {
     Entity operator = Entity.get(params.id)
     if (operator) {
       // delete all links
+      Event.findAllByWhoOrWhat(operator.id.toInteger(), operator.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
       Msg.findAllBySenderOrReceiver(operator, operator).each {it.delete()}
       Publication.findAllByEntity(operator).each {it.delete()}

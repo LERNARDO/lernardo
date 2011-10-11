@@ -14,6 +14,7 @@ import at.uenterprise.erp.Contact
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 class PartnerProfileController {
 
@@ -67,6 +68,7 @@ class PartnerProfileController {
     Entity partner = Entity.get(params.id)
     if (partner) {
       // delete all links
+      Event.findAllByWhoOrWhat(partner.id.toInteger(), partner.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(partner, partner).each {it.delete()}
       Msg.findAllBySenderOrReceiver(partner, partner).each {it.delete()}
       Publication.findAllByEntity(partner).each {it.delete()}

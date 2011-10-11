@@ -16,6 +16,7 @@ import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 class EducatorProfileController {
   MetaDataService metaDataService
@@ -72,6 +73,7 @@ class EducatorProfileController {
     Entity educator = Entity.get(params.id)
     if (educator) {
       // delete all links
+      Event.findAllByWhoOrWhat(educator.id.toInteger(), educator.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
       Msg.findAllBySenderOrReceiver(educator, educator).each {it.delete()}
       Post.findByAuthor(educator).each {it.delete()}

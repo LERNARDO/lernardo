@@ -13,6 +13,7 @@ import java.util.regex.Pattern
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
+import at.uenterprise.erp.Event
 
 class ParentProfileController {
   MetaDataService metaDataService
@@ -68,6 +69,7 @@ class ParentProfileController {
     Entity parent = Entity.get(params.id)
     if (parent) {
       // delete all links
+      Event.findAllByWhoOrWhat(parent.id.toInteger(), parent.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(parent, parent).each {it.delete()}
       Msg.findAllBySenderOrReceiver(parent, parent).each {it.delete()}
       Publication.findAllByEntity(parent).each {it.delete()}

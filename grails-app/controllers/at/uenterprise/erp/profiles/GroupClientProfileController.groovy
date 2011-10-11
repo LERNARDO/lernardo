@@ -9,6 +9,7 @@ import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
+import at.uenterprise.erp.Event
 
 class GroupClientProfileController {
   MetaDataService metaDataService
@@ -71,7 +72,9 @@ class GroupClientProfileController {
     Entity group = Entity.get(params.id)
     if (group) {
       // delete all links
+      Event.findAllByWhoOrWhat(group.id.toInteger(), group.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
+
       try {
         flash.message = message(code: "group.deleted", args: [group.profile.fullName])
         group.delete(flush: true)
