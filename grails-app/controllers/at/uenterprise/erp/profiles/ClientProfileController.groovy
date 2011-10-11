@@ -52,7 +52,9 @@ class ClientProfileController {
     }
     int totalClients = Entity.countByType(etClient)
 
-    return [clients: clients, totalClients: totalClients]
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    return [clients: clients, totalClients: totalClients, facilities: facilities]
   }
 
   def show = {
@@ -68,8 +70,9 @@ class ClientProfileController {
     Entity colonia = functionService.findByLink(null, client, metaDataService.ltColonia)
     Entity family = functionService.findByLink(client, null, metaDataService.ltGroupFamily)
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
 
-    return [client: client, entity: entity, colonia: colonia, family: family, pates: pates]
+    return [client: client, entity: entity, colonia: colonia, family: family, pates: pates, facilities: facilities]
 
   }
 

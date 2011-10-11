@@ -221,9 +221,9 @@
 
     <div class="buttons">
       <g:form id="${client?.id}">
-        <erp:isMeOrAdminOrOperator entity="${client}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${client}" facilities="${facilities}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:isMeOrAdminOrOperator>
+        </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: client.id)}" /></div>
         </erp:accessCheck>
