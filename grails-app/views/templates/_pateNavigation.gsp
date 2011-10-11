@@ -17,9 +17,9 @@
           <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
         </erp:accessCheck>
 
-        <erp:isMeOrAdmin entity="${entity}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" me="${entity}">
           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
-        </erp:isMeOrAdmin>
+        </erp:accessCheck>
 
         <erp:notMe entity="${entity}">
           <g:if test="${entity.user.enabled}">

@@ -17,10 +17,10 @@
           <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
         </erp:accessCheck>
 
-        <erp:isMeOrAdmin entity="${entity}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" me="${entity}">
           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
           <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="privat.articleList"/></g:link></li>
-        </erp:isMeOrAdmin>
+        </erp:accessCheck>
 
         <erp:notMe entity="${entity}">
           <g:if test="${entity.user.enabled}">

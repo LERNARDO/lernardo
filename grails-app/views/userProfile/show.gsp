@@ -70,9 +70,9 @@
 
     <div class="buttons">
       <g:form id="${user.id}">
-        <erp:isMeOrAdmin entity="${user}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" me="${user}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:isMeOrAdmin>
+        </erp:accessCheck>
         <erp:isSystemAdmin entity="${currentEntity}">
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: user.id)}" /></div>
         </erp:isSystemAdmin>

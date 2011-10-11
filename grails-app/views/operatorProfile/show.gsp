@@ -82,9 +82,9 @@
 
     <div class="buttons">
       <g:form id="${operator.id}">
-        <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}">
+        <erp:accessCheck entity="${currentEntity}" me="${operator}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:isMeOrAdmin>
+        </erp:accessCheck>
         <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: operator.id)}" /></div>
         </erp:accessCheck>
@@ -94,7 +94,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="facilities"/> <erp:isMeOrAdmin entity="${operator}" current="${currentEntity}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:isMeOrAdmin></h5>
+      <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" me="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
         <g:formRemote  name="formRemote" url="[controller:'operatorProfile', action:'addFacility', id: operator.id]" update="facilities2" before="showspinner('#facilities2')">
           <g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile"/>
