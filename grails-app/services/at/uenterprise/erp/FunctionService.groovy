@@ -267,8 +267,9 @@ class FunctionService {
    * @param read
    * @return the message
    */
-  Msg createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {
-    new Msg(read: read, sender: sender, receiver: receiver, entity: entity, subject: subject, content: content).save()
+  def createMessage(Entity sender, Entity receiver, Entity entity, String subject, String content, Boolean read = false) {
+    def message = new Msg(read: read, sender: sender, receiver: receiver, entity: entity, subject: subject, content: content)//.save()
+    return message
   }
 
   /**

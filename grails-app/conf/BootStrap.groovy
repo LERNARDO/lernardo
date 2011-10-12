@@ -1031,8 +1031,8 @@ class BootStrap {
     Entity second = Entity.findByName("educator1")
 
     for ( i in 1..(grailsApplication.config.dummies * 5) ) {
-      functionService.createMessage(first, second, first, "subject${i}", "content", true)
-      functionService.createMessage(first, second, second, "subject${i}", "content")
+      functionService.createMessage(first, second, first, "subject${i}", "content", true).save()
+      functionService.createMessage(first, second, second, "subject${i}", "content").save()
     }
   }
 

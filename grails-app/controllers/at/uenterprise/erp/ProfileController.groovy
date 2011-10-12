@@ -66,7 +66,7 @@ class ProfileController {
     Entity currentEntity = entityHelperService.loggedIn
     userList.each { Entity user ->
       if (currentEntity.id != user.id)
-        functionService.createMessage(currentEntity, user, user, params.subject, params.content)
+        functionService.createMessage(currentEntity, user, user, params.subject, params.content).save()
     }
     flash.message = message(code: "admin.notificationSuccess")
     redirect controller: currentEntity.type.supertype.name + 'Profile', action: "show", id: currentEntity.id
@@ -79,7 +79,7 @@ class ProfileController {
     Entity entity = Entity.get(params.id)
     entity?.user?.addToAuthorities(metaDataService.adminRole)
     Entity currentEntity = entityHelperService.loggedIn
-    functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.")
+    functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators gegeben.").save()
     render template:'listentity', model:[entity: entity, currentEntity: currentEntity, i: params.i]
   }
 
@@ -91,7 +91,7 @@ class ProfileController {
     def role = entity.user.authorities.find { it.id == (metaDataService.adminRole.id)}
     entity.user.removeFromAuthorities(role)
     Entity currentEntity = entityHelperService.loggedIn
-    functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.")
+    functionService.createMessage(currentEntity, entity, entity, "Rollenänderung", "Dir wurde die Rolle des Administrators genommen.").save()
     render template:'listentity', model:[entity: entity, currentEntity: currentEntity, i: params.i]
   }
 

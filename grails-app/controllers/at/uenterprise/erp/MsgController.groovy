@@ -169,38 +169,49 @@ class MsgController {
 
     params.receivers = params.list('receivers')
 
+    def failed = false
+    def msg
     params.receivers.each { id ->
       Entity entity = Entity.get(id)
 
       // create first instance to be saved in outbox of sender
-      functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
+      msg = functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
+      if (!msg.save()) {
+        failed = true
+      }
 
       // create second instance to be saved in inbox of receiver
-      functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
-   }
+      functionService.createMessage(currentEntity, entity, entity, params.subject, params.content).save()
+    }
 
-    flash.message = message(code:"msg.sent", args:[params.subject])
+    if (!failed) {
+      flash.message = message(code:"msg.sent", args:[params.subject])
+      redirect action:'inbox', id: currentEntity.id
+    }
+    else
+      render view: 'createMany', model: [msgInstance: msg, entity: Entity.get(params.entity.toInteger())]
 
-    //redirect controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id, params:[entity: currentEntity]
-    redirect action:'inbox', id: currentEntity.id
   }
 
   def save = {
-    Entity entity = Entity.get(params.entity)
+    Entity receiver = Entity.get(params.receiver.toInteger())
     Entity currentEntity = entityHelperService.loggedIn
 
     // create first instance to be saved in outbox of sender
-    functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
+    functionService.createMessage(currentEntity, receiver, currentEntity, params.subject, params.content, true).save() // the sender wrote it so it is already read
 
     // create second instance to be saved in inbox of receiver
-    functionService.createMessage(currentEntity, entity, entity, params.subject, params.content)
-     
-    flash.message = message(code:"msg.sent", args:[params.subject])
-
-    if (params.reply == "true")
-      redirect action:'inbox', id: currentEntity.id
-    else
-      redirect controller: entity.type.supertype.name +'Profile', action:'show', id: entity.id, params:[entity: entity]
+    def msg = functionService.createMessage(currentEntity, receiver, receiver, params.subject, params.content)
+    if (msg.save()) {
+      flash.message = message(code:"msg.sent", args:[params.subject])
+      if (params.reply == "true")
+        redirect action:'inbox', id: currentEntity.id
+      else
+        redirect controller: receiver.type.supertype.name +'Profile', action:'show', id: receiver.id, params:[entity: receiver]
+    }
+    else {
+      render view: 'create', model: [msgInstance: msg, receiver: receiver, reply: params.reply, entity: Entity.get(params.entity.toInteger())]
+    }
 
   }
 

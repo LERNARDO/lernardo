@@ -226,7 +226,7 @@ class ClientProfileController {
           order(params.sort, params.order)
         }
       }
-      render view: 'edit', model: [client: client, colonia: colonia, allColonies: allColonies, allFacilities: allFacilities, school: school]
+      render view: 'edit', model: [client: client, colonia: colonia, allColonies: allColonies, allFacilities: allFacilities]
     }
   }
 

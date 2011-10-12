@@ -13,7 +13,7 @@
 
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
 
-    <g:form action="save" params="[entity:receiver.id, reply: reply]" id="${msgInstance.id}">
+    <g:form action="save" params="[receiver: receiver.id, reply: reply, entity: entity.id]" id="${msgInstance.id}">
       <table width="100%">
         <tbody>
 
