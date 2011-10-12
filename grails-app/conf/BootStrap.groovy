@@ -7,9 +7,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.DefaultObjectService
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.ProfileHelperService
-
-import at.uenterprise.erp.Attendance
-import at.uenterprise.erp.Method
+import at.openfactory.ep.AssetService
 
 import at.uenterprise.erp.profiles.ClientProfile
 import at.uenterprise.erp.profiles.FacilityProfile
@@ -18,6 +16,7 @@ import at.uenterprise.erp.profiles.ChildProfile
 
 import grails.util.GrailsUtil
 
+import at.uenterprise.erp.Method
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.WorkdayCategory
 import at.uenterprise.erp.ArticlePost
@@ -34,12 +33,11 @@ import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.InterfaceMaintenanceService
 import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Setup
+import at.uenterprise.erp.WorkdayUnit
 
 //import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder
-import at.openfactory.ep.AssetService
 import at.openfactory.ep.LinkType
-import at.uenterprise.erp.WorkdayUnit
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -78,7 +76,6 @@ class BootStrap {
         createDefaultChildren()
         createDefaultPosts()
         createDefaultPates()
-        //createDefaultAttendances()
         createDefaultFamilies()
         //createDefaultResources()
         createDefaultMethods()
@@ -698,19 +695,6 @@ class BootStrap {
                    description: 'Sie ist ein wahres Genie. Keine Aufgabe macht ihr Probleme und sie hat sehr viel Spaß. Ich glaube aber sie hat Symptome von Hyperaktivität.',
                    method: 'Ich möchte mit ihr verstärkt Interventionen machen, die weniger kopflastig sind.',
                    writer: Entity.findByName('educator2')).save(failOnError: true)
-  }
-
-  void createDefaultAttendances() {
-    log.info ("creating attendances")
-
-    new Attendance(client: Entity.findByName('client1'),
-                   didAttend: true,
-                   didEat: true,
-                   date: new Date(2010-1900,01,07)).save(failOnError: true)
-    new Attendance(client: Entity.findByName('client2'),
-                   didAttend: true,
-                   didEat: false,
-                   date: new Date(2010-1900,01,07)).save(failOnError: true)
   }
 
   void createDefaultFamilies() {
