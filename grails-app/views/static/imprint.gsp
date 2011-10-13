@@ -1,6 +1,6 @@
 <head>
-<title>Lernardo | Impressum</title>
-<meta name="layout" content="public" />
+  <meta name="layout" content="public" />
+  <title>Impressum</title>
 </head>
 
   <body>

@@ -27,7 +27,6 @@
 
         <div id="hd">
           <g:render template="/templates/header"/>
-          <g:render template="/templates/navigation" />
         </div>
 
         <div id="banner"></div>
@@ -66,29 +65,9 @@
                     </g:form>
                     
                   </div>
-                </div><!-- innersidebox -->
-              </div><!-- sidebox -->
-            </erp:isNotLoggedIn>
-
-            %{--<div class="sidebox">
-              <div class="innersidebox">
-                <div class="sideboxheader"><g:message code="sideboxheader.about"/></div>
-                <div class="sideboxcontent">
-                  <ul>
-                    <li><g:link controller="static" action="zielsetzung" fragment="anker">Zielsetzung</g:link></li>
-                    <li><g:link controller="static" action="ueberblick" fragment="anker">Überblick</g:link></li>
-                    <li><g:link controller="static" action="teilleistungstraining" fragment="anker">Teilleistungstraining</g:link></li>
-                    <li><g:link controller="static" action="lernen" fragment="anker">Lernen lernen</g:link></li>
-                    <li><g:link controller="static" action="bewegung" fragment="anker">Bewegung - Ernährung</g:link></li>
-                    <li><g:link controller="static" action="intelligenz" fragment="anker">Soziale & emotionale Intelligenz</g:link></li>
-                    <li><g:link controller="static" action="kompetenz" fragment="anker">Persönliche Kompetenz</g:link></li>
-                    <li><g:link controller="static" action="handwerk" fragment="anker">Handwerk und Kunst</g:link></li>
-                    <li><g:link controller="static" action="impressum" fragment="anker">Impressum</g:link></li>
-                    <li style="border-bottom: none"><g:link controller="static" action="futurewings" fragment="anker">Future Wings</g:link></li>
-                  </ul>
                 </div>
-              </div><!-- innersidebox -->
-            </div><!-- sidebox -->--}%
+              </div>
+            </erp:isNotLoggedIn>
 
             <div class="sidebox">
               <div class="innersidebox">

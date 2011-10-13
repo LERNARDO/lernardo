@@ -92,7 +92,6 @@
 
     <div id="hd">
       <g:render template="/templates/header"/>
-      <g:render template="/templates/navigation"/>
     </div>
 
     <div style="background: #fff;">
