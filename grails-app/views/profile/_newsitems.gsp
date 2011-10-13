@@ -1,20 +1,6 @@
-<head>
-  <title><g:message code="news"/></title>
-  <meta name="layout" content="private"/>
-</head>
-
-<body>
-<div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="news"/></h1>
-  </div>
-</div>
-<div class="boxGray">
-  <div class="second">
-
-  <div id="article-container">
-    <div class="item">
-      <div class="header">
+<g:each in="${news}" var="article">
+  <div class="item">
+    <div class="header">
       <div class="title">
         <g:link controller="articlePost" action="show" id="${article.id}">${article.title}</g:link> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${article.author}">
           <g:link controller="articlePost" action="edit" id="${article.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" /></g:link>
@@ -35,13 +21,28 @@
 
       </div>
     </div>
-      <g:render template="teaser"     model='[article:article]'/>
-      <g:render template="content"    model='[article:article]'/>
-      <div class="links">
-        <g:link controller="profile" action="news">&#187; <g:message code="backToList"/></g:link>
+    <g:if test="${article.teaser}">
+      <div class="teaser">
+        <g:if test="${article.teaser}">
+          <p>${article.teaser.decodeHTML()}</p>
+        </g:if>
       </div>
+    </g:if>
+    <g:else>
+      <div class="content">
+        <g:if test="${article.content}">
+          ${article.content.decodeHTML()}
+        </g:if>
+      </div>
+    </g:else>
+    <div class="links">
+      <g:if test="${article.teaser}">
+        <g:link controller="articlePost" action="show" id="${article.id}">&#187; <g:message code="showMore"/></g:link>
+      </g:if>
     </div>
   </div>
-  </div>
+</g:each>
+
+<div class="paginateButtons">
+  <util:remotePaginate action="getNews" total="${newsCount}" update="article-container" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}"/>
 </div>
-</body>

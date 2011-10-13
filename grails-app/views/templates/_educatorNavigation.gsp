@@ -14,7 +14,7 @@
         <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
 
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
-          <li class="icon-news"><g:link controller="profile" action="showNews" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
+          <li class="icon-news"><g:link controller="profile" action="news" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
         </erp:accessCheck>
 
         <erp:accessCheck entity="${currentEntity}" me="${entity}">

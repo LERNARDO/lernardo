@@ -1,12 +1,12 @@
 <head>
-  <meta name="layout" content="public" />
-  <title><g:message code="object.edit" args="[message(code: 'article')]"/></title>
+  <meta name="layout" content="private" />
+  <title><g:message code="object.edit" args="[message(code: 'news')]"/></title>
 </head>
 
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="object.edit" args="[message(code: 'article')]"/></h1>
+    <h1><g:message code="object.edit" args="[message(code: 'news')]"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -37,7 +37,7 @@
 
     <div class="buttons">
       <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}"/></div>
-      <g:link class="buttonGray" action="index"><g:message code="cancel"/></g:link>
+      <g:link class="buttonGray" controller="profile" action="news"><g:message code="cancel"/></g:link>
       <div class="spacer"></div>
     </div>
 

@@ -161,7 +161,8 @@ class ProfileController {
   /*
    * shows the news page listing events
    */
-  def showNews = {
+  def news = {
+    params.max = 2
     Entity entity = Entity.get(params.id)
 
     Calendar calendar = Calendar.getInstance()
@@ -178,10 +179,21 @@ class ProfileController {
     calendar.add(Calendar.DATE, 2)
     List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
 
+    List news = ArticlePost.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
+
     return ['entity': entity,
             'eventsToday': eventsToday,
             'eventsYesterday': eventsYesterday,
-            'eventsTomorrow': eventsTomorrow]
+            'eventsTomorrow': eventsTomorrow,
+            'news': news,
+            'newsCount': ArticlePost.count()]
+  }
+
+  def getNews = {
+    params.max = 2
+    List news = ArticlePost.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
+
+    render template: "newsitems", model: [news: news, newsCount: ArticlePost.count(), currentEntity: entityHelperService.loggedIn]
   }
 
   /*

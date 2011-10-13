@@ -18,7 +18,7 @@ class ArticlePostController {
     if (article)
       return ['article': article]
     else
-      redirect action: index
+      redirect controller: "profile", action: "news"
     return
   }
 
@@ -39,16 +39,16 @@ class ArticlePostController {
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "article"), article.title])
         article.delete(flush: true)
-        redirect action: "index"
+        redirect controller: "profile", action: "news"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "article"), article.title])
-        redirect action: "index"
+        redirect controller: "profile", action: "news"
       }
     }
     else {
       flash.message = message(code: "object.notFound", args: [message(code: "article")])
-      redirect action: "index"
+      redirect controller: "profile", action: "news"
     }
   }
 
@@ -60,7 +60,7 @@ class ArticlePostController {
     article.author = currentEntity
     if (article.save()) {
       flash.message = message(code: "object.created", args: [message(code: "article"), article.title])
-      redirect action: "index", params: [name: currentEntity.name]
+      redirect controller: "profile", action: "news"
     }
     else {
       render view:"create", model:[postInstance:article]
@@ -73,7 +73,7 @@ class ArticlePostController {
       article.properties = params
       if (article.save()) {
         flash.message = message(code: "object.updated", args: [message(code: "article"), article.title])
-        redirect action: 'index'
+        redirect controller: "profile", action: "news"
       }
       else {
         render view: 'edit', model: [postInstance: article]
@@ -81,7 +81,7 @@ class ArticlePostController {
     }
     else {
       flash.message = message(code: "post.notFound", args: [params.id])
-      redirect action: 'index'
+      redirect controller: "profile", action: "news"
     }
   }
   

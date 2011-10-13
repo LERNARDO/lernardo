@@ -59,9 +59,6 @@
                         <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Anmelden" /></div>
                         <div id="forgot-pwd"><g:link controller="app" action="password">Passwort vergessen?</g:link></div>
                       </div>
-
-
-
                     </g:form>
                     
                   </div>
