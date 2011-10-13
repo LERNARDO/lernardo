@@ -1,10 +1,9 @@
 <head>
-  <title>Lernardo | Datenschutzrichtlinien</title>
-  <meta name="layout" content="public" />
+  <meta name="layout" content="public2" />
+  <title><g:message code="footer.privacy"/></title>
 </head>
 
 <body>
-  <a name="anker"></a>
-  <h1>Datenschutzrichtlinien</h1>
-  <p>In Arbeit..</p>
+  <h1><g:message code="footer.privacy"/></h1>
+  <p class="red">TODO</p>
 </body>

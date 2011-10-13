@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import javax.servlet.http.Cookie
 import at.openfactory.ep.AssetStorage
 import at.uenterprise.erp.logbook.Attendance
+import at.openfactory.ep.security.SecurityManagerException
 //import grails.util.GrailsUtil
 
 class AppController {
@@ -829,5 +830,35 @@ class AppController {
 
     render "done, created " + counter + " attendances"
   }
+
+  def do_login = {
+      if (!params.userid) {
+        flash.message = g.message (code:"security.login.emptyuid");
+        redirect (controller: "static", action:"start", params:params)
+        return
+      }
+      if (!params.password) {
+        flash.message = g.message (code:"security.login.emptypwd");
+        redirect (controller: "static", action:"start", params:params)
+        return
+      }
+
+      // actually do the login
+      log.info ("start login for $params.userid")
+      Entity currentEntity = null ;
+      try {
+        currentEntity = securityManager.login (request, params.userid, params.password)  ;
+      }
+      catch (SecurityManagerException sme) {
+        flash.message =  g.message (code:"security.login.notFound");
+        redirect (controller: "static", action:"start", params:params)
+        return ;
+      }
+
+      log.info "login successful for $params.userid (${currentEntity?.name})"
+      def startUrl = grailsApplication.config.secmgr.starturl ?: "/start"
+      log.debug ("redirecting to 'starturl': $startUrl")
+      redirect (uri:startUrl, args:[entity:currentEntity])
+    }
 
 }

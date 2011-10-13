@@ -1,9 +1,9 @@
 <head>
-  <meta name="layout" content="public" />
-  <title>Lernardo | Nutzungsbedingungen</title>
+  <meta name="layout" content="public2" />
+  <title><g:message code="footer.terms"/></title>
 </head>
 
 <body>
-  <h1>Nutzungsbedingungen</h1>
-  <p>In Arbeit..</p>
+  <h1><g:message code="footer.terms"/></h1>
+  <p class="red">TODO</p>
 </body>

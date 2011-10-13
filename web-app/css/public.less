@@ -1,35 +1,127 @@
-@background-top: #ccc;
-@background-bottom: #555;
+@background-top: #ECECDE;
+@background-bottom: #E2E2CD;
+@box: #F5F5EF;
+@brown: #808372;
+@forgot: #36808E;
 
 html {
     background: #999;
     background: -moz-linear-gradient(-90deg, @background-top, @background-bottom);
     background: -webkit-gradient(linear, left top, left bottom, from(@background-top), to(@background-bottom));
+    height: 100%;
 }
 
 body {
-    font-family: verdana,arial,helvetica,sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 12px;
+}
+
+p {
+    margin: 0 0 10px 0;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 1px solid lighten(@brown, 20%);
+    margin: 0 0 10px 0;
 }
 
 .start {
     margin: 100px auto 0 auto;
+    width: 452px;
     .logo {
-        font-size: 30px;
-        font-weight: bold;
-        padding-bottom: 20px;
-        color: #444;
-        text-shadow: #ccc 1px 1px;
+        color: darken(@brown, 15%);
+        text-shadow: 0 0 10px darken(@brown, 5%);
+        height: 130px;
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            a {
+                color: darken(@brown, 15%);
+                text-decoration: none;
+                &:hover {
+                    color: darken(@brown, 10%);
+                    text-shadow: 0 0 10px @brown;
+                }
+            }
+        }
+        .subtitle {
+            font-size: 16px;
+            margin-left: 50px;
+            font-style: italic;
+        }
+        background: url(../images/erpel.png) 0 0 no-repeat;
     }
-    .loginbox {
+    .mainbox {
         text-align: left;
-        background: #eee;
-        border: 1px solid #fff;
+        background: @box;
+        border: 1px solid darken(@box, 10%);
         border-radius: 10px;
         padding: 40px 80px;
+        color: darken(@brown, 25%);
+        line-height: 20px;
+        a {
+            color: @forgot;
+            text-decoration: none;
+            border-bottom: 1px solid lighten(@forgot, 40%);
+            padding-bottom: 2px;
+            &:hover {
+                color: lighten(@forgot, 10%);
+            }
+        }
     }
     .flags {
         text-align: right;
+        margin-top: -20px;
+    }
+    .footer {
+        color: @brown;
+        line-height: 30px;
+        a {
+            color: @brown;
+            text-decoration: none;
+            border-bottom: 1px solid lighten(@brown, 30%);
+            padding-bottom: 2px;
+            &:hover {
+                color: lighten(@brown, 10%);
+            }
+        }
+        .footerlink {
+            margin: 0 5px;
+        }
+    }
+    .flags {
+        padding: 5px;
+        .flag {
+            margin-left: 5px;
+        }
     }
 }
 
+input[type=text], input[type=password] {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    padding: 3px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+}
+
+input[type=submit] {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    padding: 3px;
+}
+
+#error-msg {
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #944;
+    background-color: #a44;
+    border-radius: 5px;
+}
+
+.red {
+    color: #a44;
+}

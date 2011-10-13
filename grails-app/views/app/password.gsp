@@ -1,18 +1,20 @@
 <head>
   <title><g:message code="pass.forgotten"/></title>
-  <meta name="layout" content="public"/>
+  <meta name="layout" content="public2"/>
 </head>
 
 <body>
-  <h1><g:message code="pass.forgotten"/></h1>
-  <p><g:message code="pass.reset"/></p>
 
-  <g:form action="sendPassword">
-    <p><g:textField name="email" size="40" value="${params.email}"/></p>
+  <div style="text-align: center;">
+    <p><g:message code="pass.reset"/></p>
 
-    <div class="buttons">
-      <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Senden"/></div>
-    </div>
+    <g:form action="sendPassword">
+      <g:textField name="email" size="40" value="${params.email}"/>
 
-  </g:form>
+      <div style="margin-top: 10px;">
+        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Zurücksetzen"/></div>
+      </div>
+
+    </g:form>
+  </div>
 </body>
