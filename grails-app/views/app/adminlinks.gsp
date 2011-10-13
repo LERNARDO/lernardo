@@ -39,8 +39,14 @@
 
     <p>
       Remove unused assets and assetStorages<br/>
-      <g:remoteLink update="db" action="removeAssets" before="showspinner('#assets');">Remove</g:remoteLink>
+      <g:remoteLink update="assets" action="removeAssets" before="showspinner('#assets');">Remove</g:remoteLink>
       <div id="assets"></div>
+    </p>
+
+    <p>
+      Create attendances<br/>
+      <g:remoteLink update="attendences" action="createAttendences" before="showspinner('#attendences');">Create</g:remoteLink>
+      <div id="attendences"></div>
     </p>
 
   </div>

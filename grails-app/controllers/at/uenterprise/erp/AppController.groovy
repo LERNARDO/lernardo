@@ -14,6 +14,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 
 import javax.servlet.http.Cookie
 import at.openfactory.ep.AssetStorage
+import at.uenterprise.erp.logbook.Attendance
 //import grails.util.GrailsUtil
 
 class AppController {
@@ -809,6 +810,23 @@ class AppController {
 
     render "done"
 
+  }
+
+  def createAttendences = {
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    def counter = 0
+    facilities.each { Entity facility ->
+      List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+      clients.each { Entity client ->
+        if (!Attendance.findByClientAndFacility(client, facility)) {
+          if (new Attendance(client: client, facility: facility).save())
+            counter++
+        }
+      }
+    }
+
+    render "done, created " + counter + " attendances"
   }
 
 }

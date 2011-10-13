@@ -13,6 +13,7 @@ import at.uenterprise.erp.Msg
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.logbook.Attendance
 
 class FacilityProfileController {
   MetaDataService metaDataService
@@ -246,6 +247,8 @@ class FacilityProfileController {
       def linking = functionService.linkEntities(params.clientgroup, params.id, metaDataService.ltGroupMemberClient)
       if (linking.duplicate)
         render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+      else
+        new Attendance(client: clientgroup, facility: facility).save(failOnError: true)
       render template: 'clients', model: [clients: linking.results, facility: linking.target, entity: entityHelperService.loggedIn]
     }
     // if the entity is a client group get all clients and add them
@@ -257,6 +260,8 @@ class FacilityProfileController {
         def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltGroupMemberClient)
         if (linking.duplicate)
           render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+        else
+          new Attendance(client: client, facility: facility).save(failOnError: true)
       }
 
       List clients2 = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
@@ -287,14 +292,17 @@ class FacilityProfileController {
 
   def removeClient = {
     Entity facility = Entity.get(params.id)
+    Entity client = Entity.get(params.client)
 
     def c = Link.createCriteria()
     def link = c.get {
-      eq('source', Entity.get(params.client))
+      eq('source', client)
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)
     }
     link.delete()
+
+    Attendance.findByClientAndFacility(client, facility)?.delete()
 
     // find all clients of this facility
     List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)

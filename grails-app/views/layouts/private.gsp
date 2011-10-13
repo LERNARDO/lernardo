@@ -241,6 +241,7 @@
                       <li class="icon-admin"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]">${grailsApplication.config.application.name} Setup</g:link></li>
                       <li class="icon-admin"><g:link controller="evaluation" action="listall" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></li>
                       <li class="icon-admin"><g:link controller="comment" action="list" id="${entity.id}"><g:message code="allComments"/></g:link></li>
+                      <li class="icon-admin"><g:link controller="logBook" action="entries" id="${entity.id}">Logbuch</g:link></li>
                     </erp:accessCheck>
                   </ul>
                 </div>

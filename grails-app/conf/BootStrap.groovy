@@ -38,6 +38,7 @@ import at.uenterprise.erp.WorkdayUnit
 //import org.springframework.core.io.Resource
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.LinkType
+import at.uenterprise.erp.logbook.Attendance
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -73,6 +74,7 @@ class BootStrap {
         createDefaultColonies()
         createDefaultParents()
         createDefaultClients()
+        createDefaultAttendances()
         createDefaultChildren()
         createDefaultPosts()
         createDefaultPates()
@@ -1020,5 +1022,15 @@ class BootStrap {
     }
   }
 
+  void createDefaultAttendances() {
+    log.info ("creating " + grailsApplication.config.dummies + " attendances")
+
+    for ( i in 1..grailsApplication.config.dummies ) {
+      Entity client = Entity.findByName("client" + i)
+      Entity facility = Entity.findByName("facility" + i)
+
+      new Attendance(client: client, facility: facility).save(failOnError: true)
+    }
+  }
 
 }

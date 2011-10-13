@@ -1048,7 +1048,7 @@ class HelperTagLib {
    * returns all facilities linked to a group
    */
   def getGroupFacilities = {attrs, body ->
-    def result = Link.countByTargetAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
+    def result = Link.countBySourceAndType(attrs.entity, metaDataService.ltGroupMemberFacility)
     if (result == 0)
       out << '0 <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
     else
