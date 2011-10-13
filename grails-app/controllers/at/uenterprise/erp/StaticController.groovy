@@ -8,4 +8,5 @@ class StaticController {
 
     def imprint = {}
 
+    def start = { }
 }
