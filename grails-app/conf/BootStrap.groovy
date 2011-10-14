@@ -387,7 +387,7 @@ class BootStrap {
             prf.supportDescription = "dummyDescription"
           prf.calendar = calendar
         }
-        new Link(source: entity, target: Entity.findByName("facility" + i), type: metaDataService.ltGroupMemberClient).save(failOnError: true)
+        new Link(source: entity, target: Entity.findByName("facility1"), type: metaDataService.ltGroupMemberClient).save(failOnError: true)
       }
     }
 

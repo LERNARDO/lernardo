@@ -16,13 +16,13 @@
           </tr>
           <tr>
               <td>Anwesend?</td>
-              <td><g:formatBoolean boolean="${attendance.monday}" true="Ja" false="Nein"/></td>
-              <td><g:formatBoolean boolean="${attendance.tuesday}" true="Ja" false="Nein"/></td>
-              <td><g:formatBoolean boolean="${attendance.wednesday}" true="Ja" false="Nein"/></td>
-              <td><g:formatBoolean boolean="${attendance.thursday}" true="Ja" false="Nein"/></td>
-              <td><g:formatBoolean boolean="${attendance.friday}" true="Ja" false="Nein"/></td>
-              <td><g:formatBoolean boolean="${attendance.saturday}" true="Ja" false="Nein"/></td>
-              <td><g:formatBoolean boolean="${attendance.sunday}" true="Ja" false="Nein"/></td>
+              <td><g:formatBoolean boolean="${attendance.monday}" true="Ja" false="-"/></td>
+              <td><g:formatBoolean boolean="${attendance.tuesday}" true="Ja" false="-"/></td>
+              <td><g:formatBoolean boolean="${attendance.wednesday}" true="Ja" false="-"/></td>
+              <td><g:formatBoolean boolean="${attendance.thursday}" true="Ja" false="-"/></td>
+              <td><g:formatBoolean boolean="${attendance.friday}" true="Ja" false="-"/></td>
+              <td><g:formatBoolean boolean="${attendance.saturday}" true="Ja" false="-"/></td>
+              <td><g:formatBoolean boolean="${attendance.sunday}" true="Ja" false="-"/></td>
           </tr>
           <tr>
               <td><g:message code="from"/></td>

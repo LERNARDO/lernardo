@@ -9,14 +9,16 @@ import at.openfactory.ep.Entity
  */
 class LogEntry {
 
+    List attendees
     static hasMany = [attendees: Attendee]
 
     Entity facility
 
     Date    date
     String  comment
-    Boolean isChecked
+    Boolean isChecked = false
 
     static constraints = {
+      comment nullable: true
     }
 }

@@ -2,16 +2,130 @@ package at.uenterprise.erp.logbook
 
 import at.openfactory.ep.Entity
 import at.uenterprise.erp.MetaDataService
+import at.uenterprise.erp.FunctionService
 
 class LogBookController {
   MetaDataService metaDataService
+  FunctionService functionService
 
-  def entries = { }
+  def entries = {
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    return [facilities: facilities]
+  }
+
+  def showEntry = {
+    Entity facility = Entity.get(params.facility)
+    Date date = Date.parse("dd. MM. yy", params.date)
+
+    LogEntry entry = LogEntry.findByDateAndFacility(date, facility)
+
+    if(!entry) {
+      entry = new LogEntry(date: date, facility: facility).save()
+
+      // find all clients linked to the facility
+      List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+
+      clients.each { Entity client ->
+        Attendee attendee = new Attendee(client: client).save()
+
+        List processes = Process.list()
+        processes.each { Process process ->
+          if (process.facilities.contains(facility) || process.facilities.size() == 0) {
+            ProcessAttended processAttended = new ProcessAttended(process: process).save()
+            attendee.addToProcesses(processAttended)
+          }
+        }
+
+        entry.addToAttendees(attendee)
+      }
+      entry.save(flush: true)
+    }
+
+    render createTimeLine(date, facility)
+    render template: "entry", model: [entry: entry]
+  }
+
+  def updateEntry = {
+    LogEntry entry = LogEntry.get(params.id)
+
+    //entry.isChecked != entry.isChecked
+    if (entry.isChecked)
+      entry.isChecked = false
+    else
+      entry.isChecked = true
+
+    entry.save(flush: true)
+
+    render createTimeLine(entry.date, entry.facility)
+    render template: "entry", model: [entry: entry]
+  }
+
+  def updateEntryProcess = {
+    LogEntry entry = LogEntry.get(params.entry)
+    ProcessAttended process = ProcessAttended.get(params.id)
+
+    if (process.hasParticipated)
+      process.hasParticipated = false
+    else
+      process.hasParticipated = true
+
+    process.save(flush: true)
+
+    render createTimeLine(entry.date, entry.facility)
+    render template: "entry", model: [entry: entry]
+  }
+
+  String createTimeLine(date, facility) {
+
+    Calendar start = new GregorianCalendar()
+    start.setTime(date)
+    start.add(Calendar.DATE, -15)
+
+    Calendar end = new GregorianCalendar()
+    end.setTime(date)
+    end.add(Calendar.DATE, 15)
+
+    StringBuffer timeline = new StringBuffer()
+
+    timeline.append('<p>Einträge: <span class="gray">Nicht angelegt</span> - <span class="green">Bestätigt</span> - <span class="red">Nicht bestätigt</span></p>')
+
+    while (start <= end) {
+      Date currentDate = start.getTime()
+
+      LogEntry someEntry = LogEntry.findByDateAndFacility(currentDate, facility)
+      if (!someEntry)
+        timeline.append('<span style="background: #ccc; float: left; padding: 3px; margin: 0 2px 2px 0;">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+      else {
+        if (someEntry.isChecked)
+          timeline.append('<span style="background: #cfc; float: left; padding: 3px; margin: 0 2px 2px 0; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+        else
+          timeline.append('<span style="background: #fcc; float: left; padding: 3px; margin: 0 2px 2px 0; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+      }
+
+      start.add(Calendar.DATE, 1)
+    }
+    timeline.append('<div class="clear"></div><br/>')
+
+    return timeline.toString()
+  }
+
+  def editEntryComment = {
+    LogEntry entry = LogEntry.get(params.id)
+    render template: "editEntryComment", model: [entry: entry]
+  }
+
+  def updateEntryComment = {
+    println params
+    LogEntry entry = LogEntry.get(params.id)
+    entry.properties = params
+    entry.save(flush: true)
+    render template: "entryComment", model: [entry: entry]
+  }
 
   def evaluation = { }
 
   def processes = {
-    List processes = Process.list()
+    List processes = Process.list(params)
     return [processes: processes]
   }
 

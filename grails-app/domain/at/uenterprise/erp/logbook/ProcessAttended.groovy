@@ -4,7 +4,7 @@ class ProcessAttended {
 
     Process process
 
-    Boolean hasParticipated
+    Boolean hasParticipated = true
 
   static constraints = {
   }

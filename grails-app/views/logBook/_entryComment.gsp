@@ -1,0 +1,1 @@
+${entry.comment ?: '<span class="italic gray">' + message(code:"noData") + '</span>'} <g:remoteLink update="comment" action="editEntryComment" id="${entry.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink>
