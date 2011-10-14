@@ -34,7 +34,29 @@
 <div class="boxGray">
   <div class="second">
 
-    <p class="red">TODO</p>
+    <div class="buttons">
+      <g:form controller="logBook" action="createProcess">
+        <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'process')])}"/></div>
+        <div class="spacer"></div>
+      </g:form>
+    </div>
+
+    <table class="default-table">
+      <thead>
+      <tr>
+        <g:sortableColumn property="name" title="${message(code:'name')}"/>
+        <g:sortableColumn property="costs" title="${message(code:'costs')} (${grailsApplication.config.currency})"/>
+      </tr>
+      </thead>
+      <tbody>
+      <g:each in="${processes}" status="i" var="process">
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+          <td><g:link action="showProcess" id="${process.id}">${fieldValue(bean: process, field: 'name').decodeHTML()}</g:link></td>
+          <td>${process.costs}</td>
+        </tr>
+      </g:each>
+      </tbody>
+    </table>
 
   </div>
 </div>

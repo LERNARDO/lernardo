@@ -7,7 +7,7 @@ class Process {
   static hasMany = [facilities: Entity]
 
   String  name
-  Integer costs
+  Integer costs = 0
 
   static constraints = {
   }

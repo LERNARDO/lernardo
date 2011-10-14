@@ -10,7 +10,54 @@ class LogBookController {
 
   def evaluation = { }
 
-  def processes = { }
+  def processes = {
+    List processes = Process.list()
+    return [processes: processes]
+  }
+
+  def createProcess = {
+    Process process = new Process()
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    return [process: process, facilities: facilities]
+  }
+
+  def saveProcess = {
+    Process process = new Process(params)
+
+    if (process.save()) {
+      flash.message = message(code: "object.created", args: [message(code: "process"), process.name])
+      redirect action: "processes"
+    }
+    else {
+      render view:"create", model:[process: process]
+    }
+  }
+
+  def showProcess = {
+    Process process = Process.get(params.id)
+    return [process: process]
+  }
+
+  def deleteProcess = {
+    Process process = Process.get(params.id)
+    flash.message = message(code: "object.deleted", args: [message(code: "process"), process.name])
+    process.delete()
+    redirect action: "processes"
+  }
+
+  def editProcess = {
+    Process process = Process.get(params.id)
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    return [process: process, facilities: facilities]
+  }
+
+  def updateProcess = {
+    Process process = Process.get(params.id)
+    process.properties = params
+    process.save()
+    flash.message = message(code: "object.updated", args: [message(code: "process"), process.name])
+    redirect action: "showProcess", id: process.id
+  }
 
   def settings = {
     List facilities = Entity.findAllByType(metaDataService.etFacility)

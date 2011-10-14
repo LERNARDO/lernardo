@@ -37,17 +37,17 @@ class ArticlePostController {
     ArticlePost article = ArticlePost.get(params.id)
     if (article) {
       try {
-        flash.message = message(code: "object.deleted", args: [message(code: "article"), article.title])
+        flash.message = message(code: "object.deleted", args: [message(code: "news"), article.title])
         article.delete(flush: true)
         redirect controller: "profile", action: "news"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "object.notDeleted", args: [message(code: "article"), article.title])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "news"), article.title])
         redirect controller: "profile", action: "news"
       }
     }
     else {
-      flash.message = message(code: "object.notFound", args: [message(code: "article")])
+      flash.message = message(code: "object.notFound", args: [message(code: "news")])
       redirect controller: "profile", action: "news"
     }
   }
@@ -59,7 +59,7 @@ class ArticlePostController {
 
     article.author = currentEntity
     if (article.save()) {
-      flash.message = message(code: "object.created", args: [message(code: "article"), article.title])
+      flash.message = message(code: "object.created", args: [message(code: "news"), article.title])
       redirect controller: "profile", action: "news"
     }
     else {
@@ -72,7 +72,7 @@ class ArticlePostController {
     if (article) {
       article.properties = params
       if (article.save()) {
-        flash.message = message(code: "object.updated", args: [message(code: "article"), article.title])
+        flash.message = message(code: "object.updated", args: [message(code: "news"), article.title])
         redirect controller: "profile", action: "news"
       }
       else {

@@ -36,7 +36,7 @@
 
     <g:formRemote name="formRemote" url="[controller:'logBook', action:'showAttendances']" update="attendances" before="showspinner('#attendances');">
       <g:message code="facility"/>: <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
-      <g:submitButton name="button" value="${message(code:'ok')}"/>
+      <g:submitButton name="button" value="OK"/>
     </g:formRemote>
 
     <div id="attendances"></div>
