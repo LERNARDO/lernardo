@@ -16,7 +16,7 @@
 <body>
 <table class="start">
   <tr>
-    <td class="logo"><div class="title"><a href="${g.resource(dir:'')}">erpel</a></div><div class="subtitle"><g:message code="planningTool"/></div></td>
+    <td class="logo"><div class="title"><a href="${g.resource(dir:'')}">erpel</a></div><div class="subtitle">${grailsApplication.config.customerName}</div></td>
   </tr>
   <tr>
     <td>
