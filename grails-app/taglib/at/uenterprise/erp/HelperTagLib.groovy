@@ -63,11 +63,12 @@ class HelperTagLib {
             // check if the date of the workdayunit is between date1 and date2
             if (df.format(workdayUnit.date1) == df.format(currentDate)) {
               hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
-              total += hours
-              sums[i] += hours
+
             }
           }
         }
+        total += hours
+        sums[i] += hours
         out << "<td>" + hours + "</td>"
       }
       out << "<td>" + total + "</td>"
