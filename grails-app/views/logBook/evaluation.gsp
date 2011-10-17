@@ -34,7 +34,13 @@
 <div class="boxGray">
   <div class="second">
 
-    <p class="red">TODO</p>
+    <g:formRemote name="formRemote" url="[controller:'logBook', action:'showEvaluation']" update="evaluation" before="showspinner('#evaluation');">
+      <g:message code="facility"/>: <g:select name="facility" from="${facilities}" optionKey="id" optionValue="profile"/>
+      <g:message code="date"/>: <g:datePicker name="date" precision="month" value="${new Date()}"/>
+      <g:submitButton name="button" value="OK"/>
+    </g:formRemote>
+
+    <div id="evaluation"></div>
 
   </div>
 </div>

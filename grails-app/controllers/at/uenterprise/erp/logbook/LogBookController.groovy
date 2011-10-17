@@ -3,6 +3,7 @@ package at.uenterprise.erp.logbook
 import at.openfactory.ep.Entity
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
+import java.text.SimpleDateFormat
 
 class LogBookController {
   MetaDataService metaDataService
@@ -122,7 +123,144 @@ class LogBookController {
     render template: "entryComment", model: [entry: entry]
   }
 
-  def evaluation = { }
+  def evaluation = {
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    return [facilities: facilities]
+  }
+
+  def showEvaluation = {
+    Entity facility = Entity.get(params.facility)
+    Date date = params.date
+
+    LogMonth logMonth = LogMonth.findByDate(date)
+
+    if (!logMonth) {
+      logMonth = new LogMonth(date: date).save()
+
+      // find all clients linked to the facility
+      List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+
+      clients.each { Entity client ->
+        LogClient logClient = new LogClient(client: client).save()
+
+        List processes = Process.list()
+        processes.each { Process process ->
+          if (process.facilities.contains(facility) || process.facilities.size() == 0) {
+            ProcessPaid processPaid = new ProcessPaid(process: process).save()
+            logClient.addToProcesses(processPaid)
+          }
+        }
+
+        logMonth.addToClients(logClient)
+      }
+      logMonth.save(flush: true)
+    }
+
+    render '<table class="default-table">'
+
+    render '<tr>'
+    render '<th>Name</th>'
+    def processes = logMonth?.clients[0]?.processes
+    processes = processes?.sort {it.process.name}
+    processes?.each { process ->
+      render '<th>' + process.process.name + '</th>'
+    }
+    render '<th>Tage</th>'
+    processes?.each { process ->
+      render '<th>' + process.process.name + ' € </th>'
+    }
+    render '<th>Monatsbeitrag €</th>'
+    render '<th>Gesamt €</th>'
+    render '</tr>'
+
+    logMonth?.clients?.each { client ->
+
+      List participatedTimes = []
+
+      def attendance = Attendance.findByClient(client.client)
+      render '<tr>'
+      render '<td>' + client.client.profile.fullName + '</td>'
+
+      // calculate the amount of participated and total processes
+      client.processes.each { proc ->
+        int total = 0
+        int participated = 0
+
+        List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+
+        entries.each { entry ->
+          Attendee attendee = entry.attendees.find {it.client == client.client}
+          attendee.processes.each { aproc ->
+            if (aproc.process.name == proc.process.name) {
+              total++
+              if (aproc.hasParticipated) {
+                participated++
+              }
+            }
+          }
+        }
+        participatedTimes.add(participated)
+
+        render '<td>' + participated + '/' + total + '</td>'
+      }
+
+      // calculate the days the client should have participated
+      Calendar start = new GregorianCalendar()
+      start.setTime(date)
+
+      Calendar end = new GregorianCalendar()
+      end.setTime(date)
+      end.add(Calendar.MONTH, 1)
+
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
+      int debitDays = 0
+      while (start <= end) {
+        Date currentDate = start.getTime()
+
+        if ((attendance.monday && df.format(currentDate) == 'Monday') ||
+            (attendance.tuesday && df.format(currentDate) == 'Tuesday') ||
+            (attendance.wednesday && df.format(currentDate) == 'Wednesday') ||
+            (attendance.thursday && df.format(currentDate) == 'Thursday') ||
+            (attendance.friday && df.format(currentDate) == 'Friday') ||
+            (attendance.saturday && df.format(currentDate) == 'Saturday') ||
+            (attendance.sunday && df.format(currentDate) == 'Sunday')) {
+          debitDays++
+        }
+        start.add(Calendar.DATE, 1)
+      }
+
+      // calculate days the client has participated
+      int days = 0
+      List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+      entries.each { e ->
+        e.attendees.each { a ->
+          if (a.client == client.client) {
+            def result = a.processes.find {it.hasParticipated}
+            if (result)
+              days++
+          }
+        }
+      }
+      render '<td>' + days + '/' + debitDays + '</td>'
+
+      int totalCosts = 0
+      def cprocesses = client.processes
+      cprocesses = cprocesses?.sort {it.process.name}
+      cprocesses.eachWithIndex { process, i ->
+        render '<td>' + (process.process.costs * participatedTimes[i]) + '</td>'
+        totalCosts += (process.process.costs * participatedTimes[i])
+      }
+      int monthlyCosts = attendance.costs
+      totalCosts += monthlyCosts
+      render '<td>' + monthlyCosts + '</td>'
+      render '<td>' + totalCosts + '</td>'
+      render '</tr>'
+    }
+
+    render '</table>'
+
+  }
 
   def processes = {
     List processes = Process.list(params)

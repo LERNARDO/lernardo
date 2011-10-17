@@ -4,7 +4,7 @@ class ProcessPaid {
 
     Process process
 
-    Boolean isPaid
+    Boolean isPaid = false
 
   static constraints = {
   }

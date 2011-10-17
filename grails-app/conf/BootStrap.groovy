@@ -39,6 +39,7 @@ import at.uenterprise.erp.WorkdayUnit
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.LinkType
 import at.uenterprise.erp.logbook.Attendance
+import at.uenterprise.erp.logbook.Process
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -75,6 +76,7 @@ class BootStrap {
         createDefaultParents()
         createDefaultClients()
         createDefaultAttendances()
+        createDefaultProcesses()
         createDefaultChildren()
         createDefaultPosts()
         createDefaultPates()
@@ -1030,6 +1032,14 @@ class BootStrap {
       Entity facility = Entity.findByName("facility" + i)
 
       new Attendance(client: client, facility: facility).save(failOnError: true)
+    }
+  }
+
+  void createDefaultProcesses() {
+    log.info ("creating " + grailsApplication.config.dummies + " processes")
+
+    for ( i in 1..grailsApplication.config.dummies ) {
+      new Process(name: "process" + i, costs: 0).save(failOnError: true)
     }
   }
 
