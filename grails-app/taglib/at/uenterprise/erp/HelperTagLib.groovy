@@ -13,6 +13,10 @@ import org.codehaus.groovy.grails.web.util.StreamCharBuffer
 import org.codehaus.groovy.grails.commons.DomainClassArtefactHandler
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import at.uenterprise.erp.logbook.Attendee
+import at.uenterprise.erp.logbook.Attendance
+import at.uenterprise.erp.logbook.LogMonth
+import at.uenterprise.erp.logbook.LogEntry
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -22,6 +26,288 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def renderLogMonthEntries = {attrs, body ->
+    Entity facility = attrs.facility
+    Date date = attrs.date
+
+    List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+    entries = entries.sort {it.date}
+
+    entries.each { entry ->
+
+      out << '<p>' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
+      out << '<table class="default-table">'
+      out << '<tr>'
+      out << '<th>Name</th>'
+      entry?.attendees[0]?.processes?.each {
+        out << '<th>' + it.process.name + '</th>'
+      }
+      out << '</tr>'
+      entry?.attendees.each { attendee ->
+        out << '<tr>'
+        out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
+        attendee?.processes.each { process ->
+          out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: "Teilgenommen", false: "Nicht teilgenommen") + '</td>'
+        }
+        out << '</tr>'
+      }
+      out << '</table>'
+
+      out << '<p><span class="bold">' + message(code:"comment") + '</span>'
+      out << '<div id="comment">'
+      out << (entry.comment ?: '<span class="italic gray">' + message(code:"noData") + '</span>')
+      out << '</div></p>'
+
+      out << '<p><span class="bold">' + message(code:"confirmed") + '</span><br/>'
+      out << formatBoolean(boolean: entry.isChecked, true: "Ja", false: "Nein")
+      out << '</p>'
+    }
+  }
+
+  def renderLogMonthPrint = {attrs, body ->
+    LogMonth logMonth = attrs.logMonth
+    Entity facility = attrs.facility
+    Date date = attrs.date
+
+    out << '<table class="default-table">'
+
+    out << '<tr>'
+    out << '<th>Name</th>'
+    def processes = logMonth?.clients[0]?.processes
+    processes = processes?.sort {it.process.name}
+    processes?.each { process ->
+      out << '<th>' + process.process.name + '</th>'
+    }
+    out << '<th>Tage</th>'
+    processes?.each { process ->
+      out << '<th>' + process.process.name + ' € </th>'
+    }
+    out << '<th>Monatsbeitrag €</th>'
+    out << '<th>Gesamt €</th>'
+    out << '</tr>'
+
+    logMonth?.clients?.each { client ->
+
+      def processes2 = client.processes
+      processes2 = processes2?.sort {it.process.name}
+
+      List participatedTimes = []
+
+      def attendance = Attendance.findByClient(client.client)
+      out << '<tr>'
+      out << '<td>' + client.client.profile.fullName + '</td>'
+
+      // calculate the amount of participated and total processes
+      processes2.each { proc ->
+        int total = 0
+        int participated = 0
+
+        List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+
+        entries.each { entry ->
+          Attendee attendee = entry.attendees.find {it.client == client.client}
+          attendee.processes.each { aproc ->
+            if (aproc.process.name == proc.process.name) {
+              total++
+              if (aproc.hasParticipated) {
+                participated++
+              }
+            }
+          }
+        }
+        participatedTimes.add(participated)
+
+        out << '<td>' + participated + '/' + total + '</td>'
+      }
+
+      // calculate the days the client should have participated
+      Calendar start = new GregorianCalendar()
+      start.setTime(date)
+
+      Calendar end = new GregorianCalendar()
+      end.setTime(date)
+      end.add(Calendar.MONTH, 1)
+
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
+      int debitDays = 0
+      while (start <= end) {
+        Date currentDate = start.getTime()
+
+        if ((attendance.monday && df.format(currentDate) == 'Monday') ||
+            (attendance.tuesday && df.format(currentDate) == 'Tuesday') ||
+            (attendance.wednesday && df.format(currentDate) == 'Wednesday') ||
+            (attendance.thursday && df.format(currentDate) == 'Thursday') ||
+            (attendance.friday && df.format(currentDate) == 'Friday') ||
+            (attendance.saturday && df.format(currentDate) == 'Saturday') ||
+            (attendance.sunday && df.format(currentDate) == 'Sunday')) {
+          debitDays++
+        }
+        start.add(Calendar.DATE, 1)
+      }
+
+      // calculate days the client has participated
+      int days = 0
+      List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+      entries.each { e ->
+        e.attendees.each { a ->
+          if (a.client == client.client) {
+            def result = a.processes.find {it.hasParticipated}
+            if (result)
+              days++
+          }
+        }
+      }
+      out << '<td>' + days + '/' + debitDays + '</td>'
+
+      int totalCosts = 0
+      def cprocesses = client.processes
+      cprocesses = cprocesses?.sort {it.process.name}
+      cprocesses.eachWithIndex { process, i ->
+        out << '<td>' + (process.process.costs * participatedTimes[i])
+        if (process.process.costs > 0) {
+          if (process.isPaid)
+            out << '<span style="color: #4c4;"> bezahlt</span>'
+          else
+            out << '<span style="color: #c44;"> offen</span>'
+        }
+        out << '</td>'
+        totalCosts += (process.process.costs * participatedTimes[i])
+      }
+      int monthlyCosts = attendance.costs
+      totalCosts += monthlyCosts
+      out << '<td>' + monthlyCosts + '</td>'
+      out << '<td>' + totalCosts + '</td>'
+      out << '</tr>'
+    }
+
+
+    out << '</table>'
+  }
+
+  def renderLogMonth = {attrs, body ->
+    LogMonth logMonth = attrs.logMonth
+    Entity facility = attrs.facility
+    Date date = attrs.date
+
+    out << '<table class="default-table">'
+
+    out << '<tr>'
+    out << '<th>Name</th>'
+    def processes = logMonth?.clients[0]?.processes
+    processes = processes?.sort {it.process.name}
+    processes?.each { process ->
+      out << '<th>' + process.process.name + '</th>'
+    }
+    out << '<th>Tage</th>'
+    processes?.each { process ->
+      out << '<th>' + process.process.name + ' € </th>'
+    }
+    out << '<th>Monatsbeitrag €</th>'
+    out << '<th>Gesamt €</th>'
+    out << '</tr>'
+
+    logMonth?.clients?.each { client ->
+
+      def processes2 = client.processes
+      processes2 = processes2?.sort {it.process.name}
+
+      List participatedTimes = []
+
+      def attendance = Attendance.findByClient(client.client)
+      out << '<tr>'
+      out << '<td>' + client.client.profile.fullName + '</td>'
+
+      // calculate the amount of participated and total processes
+      processes2.each { proc ->
+        int total = 0
+        int participated = 0
+
+        List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+
+        entries.each { entry ->
+          Attendee attendee = entry.attendees.find {it.client == client.client}
+          attendee.processes.each { aproc ->
+            if (aproc.process.name == proc.process.name) {
+              total++
+              if (aproc.hasParticipated) {
+                participated++
+              }
+            }
+          }
+        }
+        participatedTimes.add(participated)
+
+        out << '<td>' + participated + '/' + total + '</td>'
+      }
+
+      // calculate the days the client should have participated
+      Calendar start = new GregorianCalendar()
+      start.setTime(date)
+
+      Calendar end = new GregorianCalendar()
+      end.setTime(date)
+      end.add(Calendar.MONTH, 1)
+
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
+      int debitDays = 0
+      while (start <= end) {
+        Date currentDate = start.getTime()
+
+        if ((attendance.monday && df.format(currentDate) == 'Monday') ||
+            (attendance.tuesday && df.format(currentDate) == 'Tuesday') ||
+            (attendance.wednesday && df.format(currentDate) == 'Wednesday') ||
+            (attendance.thursday && df.format(currentDate) == 'Thursday') ||
+            (attendance.friday && df.format(currentDate) == 'Friday') ||
+            (attendance.saturday && df.format(currentDate) == 'Saturday') ||
+            (attendance.sunday && df.format(currentDate) == 'Sunday')) {
+          debitDays++
+        }
+        start.add(Calendar.DATE, 1)
+      }
+
+      // calculate days the client has participated
+      int days = 0
+      List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+      entries.each { e ->
+        e.attendees.each { a ->
+          if (a.client == client.client) {
+            def result = a.processes.find {it.hasParticipated}
+            if (result)
+              days++
+          }
+        }
+      }
+      out << '<td>' + days + '/' + debitDays + '</td>'
+
+      int totalCosts = 0
+      def cprocesses = client.processes
+      cprocesses = cprocesses?.sort {it.process.name}
+      cprocesses.eachWithIndex { process, i ->
+        out << '<td>' + (process.process.costs * participatedTimes[i])
+        if (process.process.costs > 0) {
+          out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
+          if (process.isPaid)
+            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
+          else
+            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_red.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
+          }
+        }
+        out << '</td>'
+        totalCosts += (process.process.costs * participatedTimes[i])
+      }
+      int monthlyCosts = attendance.costs
+      totalCosts += monthlyCosts
+      out << '<td>' + monthlyCosts + '</td>'
+      out << '<td>' + totalCosts + '</td>'
+      out << '</tr>'
+    }
+
+    out << '</table>'
+
+    //render (template: "buttons", model: [logMonth: logMonth])
+  }
   /**
    * Returns the time evaluations for a given entity
    *
