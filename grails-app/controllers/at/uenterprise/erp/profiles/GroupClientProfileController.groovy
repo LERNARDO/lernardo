@@ -229,7 +229,7 @@ class GroupClientProfileController {
     Entity group = Entity.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
-    renderPdf template: 'createpdf', model: [entity: currentEntity, group: group, clients: clients], filename: message(code: 'groupClient') + '_' + group.profile.fullName
+    renderPdf template: 'createpdf', model: [entity: currentEntity, group: group, clients: clients], filename: message(code: 'groupClient') + '_' + group.profile.fullName + '.pdf'
   }
 
 }

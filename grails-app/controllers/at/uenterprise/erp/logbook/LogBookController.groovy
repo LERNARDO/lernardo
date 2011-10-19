@@ -181,7 +181,7 @@ class LogBookController {
     Date date = Date.parse("dd. MM. yy", params.date)
     LogMonth logMonth = LogMonth.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
-    renderPdf template: 'printEvaluation', model: [currentEntity: currentEntity, logMonth: logMonth, facility: facility, date: date], filename: "Logbuch"
+    renderPdf template: 'printEvaluation', model: [currentEntity: currentEntity, logMonth: logMonth, facility: facility, date: date], filename: "Logbuch" + '.pdf'
   }
 
   def processes = {

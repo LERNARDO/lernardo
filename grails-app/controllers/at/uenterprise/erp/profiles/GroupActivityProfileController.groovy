@@ -527,7 +527,7 @@ class GroupActivityProfileController {
                                              parents: parents,
                                              partners: partners,
                                              template: template,
-                                             withTemplates: params.printtemplates == "" ? 'true' : 'false'], filename: message(code: 'groupActivity') + '_' + group.profile.fullName
+                                             withTemplates: params.printtemplates == "" ? 'true' : 'false'], filename: message(code: 'groupActivity') + '_' + group.profile.fullName + '.pdf'
   }
 
   def searchbydate = {

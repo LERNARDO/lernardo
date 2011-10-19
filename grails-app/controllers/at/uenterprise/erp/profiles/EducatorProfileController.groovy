@@ -262,7 +262,7 @@ class EducatorProfileController {
 
     List workdaycategories = WorkdayCategory.list()
     Entity currentEntity = entityHelperService.loggedIn
-    renderPdf template: 'createpdf', model: [educators: educators, workdaycategories: workdaycategories, entity: currentEntity, date1: params.date1, date2: params.date2], filename: 'Zeitauswertung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy")
+    renderPdf template: 'createpdf', model: [educators: educators, workdaycategories: workdaycategories, entity: currentEntity, date1: params.date1, date2: params.date2], filename: 'Zeitauswertung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy") + '.pdf'
   }
 
   def workhours = {
