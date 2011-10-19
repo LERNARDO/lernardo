@@ -20,7 +20,7 @@
         <table>
           <tr>
             <td class="bold" valign="top"><g:message code="period"/>:</td>
-            <td><g:select name="dateFromHour" from="${0..23}"/>:<g:select name="dateFromMinute" from="${0..59}"/> <g:message code="to"/> <g:select name="dateToHour" from="${0..23}"/>:<g:select name="dateToMinute" from="${0..59}"/> <g:message code="clock"/></td>
+            <td><g:textField name="dateFrom" class="timepicker" size="4"/> <g:message code="to"/> <g:textField name="dateTo" class="timepicker" size="4"/> <g:message code="clock"/></td>
           </tr>
           <tr>
             <td class="bold" style="width: 150px;" valign="top">Tätigkeit:</td>

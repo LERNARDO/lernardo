@@ -1,8 +1,14 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.timepicker').timepicker();
+  });
+</script>
+
 <g:formRemote name="formRemote" url="[controller:'dayroutine', action:'updateroutine', id:routine.id, params:[i: i]]" update="routinebox${i}">
   <table>
     <tr>
       <td class="bold"><g:message code="period"/>:</td>
-      <td><g:select name="dateFromHour" from="${0..23}" value="${formatDate(date: routine?.dateFrom, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="dateFromMinute" from="${0..59}" value="${formatDate(date: routine?.dateFrom, format: 'mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="to"/> <g:select name="dateToHour" from="${0..23}" value="${formatDate(date: routine?.dateTo, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="dateToMinute" from="${0..59}" value="${formatDate(date: routine?.dateTo, format: 'mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="clock"/></td>
+      <td><g:textField name="dateFrom" class="timepicker" size="4" value="${formatDate(date: routine.dateFrom, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="to"/> <g:textField name="dateTo" class="timepicker" size="4" value="${formatDate(date: routine.dateTo, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="clock"/></td>
     </tr>
     <tr>
       <td class="bold" style="width: 150px;"><g:message code="work"/>:</td>

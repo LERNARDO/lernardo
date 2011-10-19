@@ -38,13 +38,13 @@ class DayroutineController {
     Entity entity = Entity.get(params.id)
 
     // create a day routine for every day marked
-    if (params.monday) createRoutine(entity, "monday")
-    if (params.tuesday) createRoutine(entity, "tuesday")
-    if (params.wednesday) createRoutine(entity, "wednesday")
-    if (params.thursday) createRoutine(entity, "thursday")
-    if (params.friday) createRoutine(entity, "friday")
-    if (params.saturday) createRoutine(entity, "saturday")
-    if (params.sunday) createRoutine(entity, "sunday")
+    if (params.monday) createRoutine(entity, "monday", params.title, params.description, params.dateFrom, params.dateTo)
+    if (params.tuesday) createRoutine(entity, "tuesday", params.title, params.description, params.dateFrom, params.dateTo)
+    if (params.wednesday) createRoutine(entity, "wednesday", params.title, params.description, params.dateFrom, params.dateTo)
+    if (params.thursday) createRoutine(entity, "thursday", params.title, params.description, params.dateFrom, params.dateToo)
+    if (params.friday) createRoutine(entity, "friday", params.title, params.description, params.dateFrom, params.dateTo)
+    if (params.saturday) createRoutine(entity, "saturday", params.title, params.description, params.dateFrom, params.dateTo)
+    if (params.sunday) createRoutine(entity, "sunday", params.title, params.description, params.dateFrom, params.dateTo)
 
     // find all routines of that day and facility
     List routines = Dayroutine.findAllByFacilityAndDay(entity, 'monday').sort() {it.dateFrom.getHours()}
@@ -52,18 +52,15 @@ class DayroutineController {
     render template: "routineday", model: [routines: routines, entity: entity, day: 'monday']
   }
 
-  void createRoutine (entity, day) {
-    Dayroutine routine = new Dayroutine(params)
+  void createRoutine (entity, day, title, description, dateFrom, dateTo) {
+    Dayroutine routine = new Dayroutine()
     routine.facility = entity
     routine.day = day
-    routine.dateFrom = new Date()
-    routine.dateTo = new Date()
+    routine.title = title
+    routine.description = description
 
-    routine.dateFrom.setHours(params.int('dateFromHour'))
-    routine.dateFrom.setMinutes(params.int('dateFromMinute'))
-
-    routine.dateTo.setHours(params.int('dateToHour'))
-    routine.dateTo.setMinutes(params.int('dateToMinute'))
+    routine.dateFrom = Date.parse("HH:mm", params.dateFrom)
+    routine.dateTo = Date.parse("HH:mm", params.dateTo)
 
     routine.dateFrom = functionService.convertToUTC(routine.dateFrom)
     routine.dateTo = functionService.convertToUTC(routine.dateTo)
@@ -81,11 +78,8 @@ class DayroutineController {
     Dayroutine routine = Dayroutine.get(params.id)
     routine.properties = params
 
-    routine.dateFrom.setHours(params.int('dateFromHour'))
-    routine.dateFrom.setMinutes(params.int('dateFromMinute'))
-
-    routine.dateTo.setHours(params.int('dateToHour'))
-    routine.dateTo.setMinutes(params.int('dateToMinute'))
+    routine.dateFrom = Date.parse("HH:mm", params.dateFrom)
+    routine.dateTo = Date.parse("HH:mm", params.dateTo)
 
     routine.dateFrom = functionService.convertToUTC(routine.dateFrom)
     routine.dateTo = functionService.convertToUTC(routine.dateTo)
