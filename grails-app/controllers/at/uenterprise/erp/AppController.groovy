@@ -833,32 +833,30 @@ class AppController {
 
   def do_login = {
       if (!params.userid) {
-        flash.message = g.message (code:"security.login.emptyuid");
-        redirect (controller: "static", action:"start", params:params)
+        flash.message = message(code: "security.login.emptyuid")
+        redirect (controller: "static", action: "start")
         return
       }
       if (!params.password) {
-        flash.message = g.message (code:"security.login.emptypwd");
-        redirect (controller: "static", action:"start", params:params)
+        flash.message = message(code: "security.login.emptypwd")
+        redirect (controller: "static", action: "start")
         return
       }
 
-      // actually do the login
-      log.info ("start login for $params.userid")
-      Entity currentEntity = null ;
+      Entity currentEntity = null
       try {
-        currentEntity = securityManager.login (request, params.userid, params.password)  ;
-      }
-      catch (SecurityManagerException sme) {
-        flash.message =  g.message (code:"security.login.notFound");
-        redirect (controller: "static", action:"start", params:params)
-        return ;
+        currentEntity = securityManager.login (request, params.userid, params.password)
+      } catch (SecurityManagerException sme) {
+        flash.message = message(code: "security.login.notFound")
+        redirect (controller: "static", action: "start")
+        return
       }
 
       log.info "login successful for $params.userid (${currentEntity?.name})"
       def startUrl = grailsApplication.config.secmgr.starturl ?: "/start"
       log.debug ("redirecting to 'starturl': $startUrl")
-      redirect (uri:startUrl, args:[entity:currentEntity])
+
+      redirect (uri: startUrl, args:[entity: currentEntity])
     }
 
 }
