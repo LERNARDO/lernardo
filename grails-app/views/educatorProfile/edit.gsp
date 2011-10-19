@@ -232,7 +232,7 @@
               </erp:accessCheck>
               <td>
                 <g:message code="email"/>:
-                <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="30" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
+                <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="30" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
               </td>
               <td>
                 <g:message code="languageSelection"/>:
