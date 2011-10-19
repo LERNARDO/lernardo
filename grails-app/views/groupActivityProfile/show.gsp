@@ -82,7 +82,7 @@
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div> <div style="float: left; padding: 7px 0 0 0;"><g:checkBox name="printtemplates" value=""/></div><div style="float: left; padding: 7px 0 0 5px;"> <g:message code="activityTemplates.with"/></div>
-        <div class="spacer">
+        <div class="spacer"></div>
       </g:form>
     </div>
 
@@ -125,9 +125,9 @@
       <div class="zusatz-add" id="labels" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'groupActivityProfile', action:'addLabel', id:group.id]" update="labels2" before="showspinner('#labels2');" after="toggle('#labels');">
           <g:select name="label" from="${allLabels}" optionKey="id" optionValue="name"/>
-          <div class="spacer"></div>
+          %{--<div class="spacer"></div>--}%
           <g:submitButton name="button" value="${message(code:'add')}"/>
-          <div class="spacer"></div>
+          %{--<div class="spacer"></div>--}%
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="labels2">
