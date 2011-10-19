@@ -1069,7 +1069,7 @@ class HelperTagLib {
   // checks if a given entity is creator of another given entity
   boolean accessIsCreatorOf(Entity entity, def creatorof) {
 
-    def result = null;
+    def result = null
     if (creatorof instanceof Entity) {
       def c = Link.createCriteria()
       result = c.get {
@@ -1079,7 +1079,7 @@ class HelperTagLib {
       }
     }
     else if (creatorof instanceof Publication) {
-      return (creatorof.entity.id == entity.id)
+      result = (creatorof.entity.id == entity.id)
     }
 
     if (result)

@@ -139,7 +139,6 @@ class AppointmentProfileController {
     }
 
     def save = {
-      println params
       EntityType etAppointment = metaDataService.etAppointment
       Entity owner = Entity.get(params.id)
 
