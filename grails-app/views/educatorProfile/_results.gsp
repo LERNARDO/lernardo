@@ -13,6 +13,7 @@
   </thead>
   <tbody>
   <g:each in="${educators}" status="i" var="educator">
+    <g:if test="${erp.getExpectedHours(educator: educator, date1: date1 ?: null, date2: date2 ?: null) != '0,00'}">
     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
       <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
       <g:each in="${workdaycategories}" var="category">
@@ -23,6 +24,7 @@
       <td><erp:getHoursConfirmed educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
       <td><erp:getSalary educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
     </tr>
+    </g:if>
   </g:each>
   </tbody>
 </table>
@@ -30,7 +32,7 @@
 <br/>
 <div class="buttons">
   <g:form params="[date1: date1, date2: date2]">
-    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="PDF erzeugen" /></div>
+    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
     <div class="spacer"></div>
   </g:form>
 </div>

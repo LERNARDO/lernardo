@@ -63,6 +63,7 @@
       </thead>
       <tbody>
       <g:each in="${educators}" status="i" var="educator">
+        <g:if test="${erp.getExpectedHours(educator: educator, date1: date1 ?: null, date2: date2 ?: null) != '0,00'}">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</td>
           <g:each in="${workdaycategories}" var="category">
@@ -73,6 +74,7 @@
           <td><erp:getSalary educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
           <td><erp:getHoursConfirmed educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
         </tr>
+        </g:if>
       </g:each>
       </tbody>
     </table>
