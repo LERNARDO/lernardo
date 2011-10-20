@@ -1482,27 +1482,6 @@ class HelperTagLib {
   }
 
   /**
-   * returns the quote of the day
-   */
-  def getQuoteOfTheDay = {
-    Date myDate = new Date()
-    SimpleDateFormat df = new SimpleDateFormat("dd", new Locale("en"))
-    String day = df.format(myDate)
-    out << '<span class="quote">"' + grailsApplication.config.quotesMap[day] + '"</span>'
-    out << '<p class="quoter">' + message(code:"from") + " " + grailsApplication.config.quoterMap[day] + '</p>'
-  }
-
-  /**
-   * returns the pic of the day
-   */
-  def getPicOfTheDay = { attrs, body ->
-    Date myDate = new Date()
-    SimpleDateFormat df = new SimpleDateFormat("dd", new Locale("en"))
-    String day = df.format(myDate)
-    out << body(day)
-  }
-
-  /**
    * returns the gender
    */
   def showGender = {attrs ->
