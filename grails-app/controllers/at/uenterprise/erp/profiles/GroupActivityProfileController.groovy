@@ -142,8 +142,8 @@ class GroupActivityProfileController {
     List themes = functionService.findAllByLink(group, null, metaDataService.ltGroupMemberActivityGroup)
 
     List requiredResources = []
-    if (template.profile.resources)
-      requiredResources.addAll(template.profile.resources)
+    if (template?.profile?.resources)
+      requiredResources.addAll(template?.profile?.resources)
     templates.each {
       requiredResources.addAll(it.profile.resources)
     }
