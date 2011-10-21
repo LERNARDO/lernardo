@@ -353,8 +353,10 @@ class HelperTagLib {
             }
           }
         }
-        total += hours
-        sums[i] += hours
+        if (wdcat?.count) {
+          total += hours
+          sums[i] += hours
+        }
         out << "<td>" + hours + "</td>"
       }
       out << "<td>" + total + "</td>"
