@@ -28,12 +28,14 @@ class MsgController {
 
     def messages = Msg.createCriteria().list {
       eq('entity', entity)
-      ne('sender', entity)
+      //ne('sender', entity)
+      eq('receiver', entity)
       order("dateCreated", "desc")
       maxResults(params.max)
       firstResult(params.offset)
     }
-    int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
+    //int totalMessages = Msg.countByEntityAndSenderNotEqual(entity, entity)
+    int totalMessages = Msg.countByEntityAndReceiver(entity, entity)
 
     return [messages: messages,
             totalMessages: totalMessages,
@@ -174,10 +176,14 @@ class MsgController {
     params.receivers.each { id ->
       Entity entity = Entity.get(id)
 
-      // create first instance to be saved in outbox of sender
-      msg = functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
-      if (!msg.save()) {
-        failed = true
+      if (entity != currentEntity) {
+
+        // create first instance to be saved in outbox of sender
+        msg = functionService.createMessage(currentEntity, entity, currentEntity, params.subject, params.content, true) // the sender wrote it so it is already read
+        if (!msg.save()) {
+          failed = true
+        }
+
       }
 
       // create second instance to be saved in inbox of receiver
