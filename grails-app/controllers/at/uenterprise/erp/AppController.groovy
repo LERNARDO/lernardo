@@ -346,7 +346,7 @@ class AppController {
       }
 
       flash.message = message(code: "account.message", args: [params.email])
-      redirect controller: 'articlePost', action: 'index'
+      redirect controller: 'static', action: 'start'
     }
     else {
       flash.message = message(code: "account.notFound", args: [params.email])
