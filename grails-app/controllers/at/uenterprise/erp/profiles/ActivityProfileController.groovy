@@ -451,7 +451,10 @@ class ActivityProfileController {
 
     def c = Entity.createCriteria()
     def results = c.list {
-      eq('type', metaDataService.etClient)
+      or {
+        eq('type', metaDataService.etClient)
+        eq('type', metaDataService.etGroupClient)
+      }
       or {
         ilike('name', "%" + params.value + "%")
         profile {
@@ -491,11 +494,36 @@ class ActivityProfileController {
   }
 
   def addClient = {
-    def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
+    /*def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
     if (linking.duplicate)
       render '<span class="red italic">"' + linking.source.profile.fullName + '" '+message(code: "alreadyAssignedTo")+'</span>'
 
-    render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
+    render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]*/
+
+    Entity activity = Entity.get(params.id)
+    Entity clientgroup = Entity.get(params.client)
+
+    // if the entity is a client add it
+    if (clientgroup.type.id == metaDataService.etClient.id) {
+      def linking = functionService.linkEntities(params.client, params.id, metaDataService.ltActClient)
+      if (linking.duplicate)
+        render '<span class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</span>'
+      render template: 'clients', model: [clients: linking.results, activity: linking.target, entity: entityHelperService.loggedIn]
+    }
+    // if the entity is a client group get all clients and add them
+    else if (clientgroup.type.id == metaDataService.etGroupClient.id) {
+      // find all clients of the group
+      List clients = functionService.findAllByLink(null, clientgroup, metaDataService.ltGroupMemberClient)
+
+      clients.each { Entity client ->
+        def linking = functionService.linkEntities(client.id.toString(), params.id, metaDataService.ltActClient)
+        if (linking.duplicate)
+          render '<div class="red italic">"' + linking.source.profile.fullName + '" ' + message(code: "alreadyAssignedTo") + '</div>'
+      }
+
+      List clients2 = functionService.findAllByLink(null, activity, metaDataService.ltActClient)
+      render template: 'clients', model: [clients: clients2, activity: activity, entity: entityHelperService.loggedIn]
+    }
   }
 
   def removeClient = {

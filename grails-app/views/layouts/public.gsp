@@ -66,7 +66,7 @@
               </div>
             </erp:isNotLoggedIn>
 
-            <div class="sidebox">
+            %{--<div class="sidebox">
               <div class="innersidebox">
                 <div class="sideboxheader"><g:message code="sideboxheader.quote"/></div>
                 <div class="sideboxcontent">
@@ -85,7 +85,7 @@
                   </erp:getPicOfTheDay>
                 </div>
               </div>
-            </div>
+            </div>--}%
 
           </div><!-- yui-b -->
 
