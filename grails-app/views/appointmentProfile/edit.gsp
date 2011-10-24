@@ -29,12 +29,12 @@
       </div>
 
       <div class="property">
-        <g:message code="appointment.profile.beginDate"/> <br/>
+        <g:message code="begin"/> <br/>
         <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.beginDate','errors')}" size="18" name="beginDate" value="${formatDate(date: appointmentProfileInstance?.profile?.beginDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
       </div>
 
       <div class="property">
-        <g:message code="appointment.profile.endDate"/> <br/>
+        <g:message code="end"/> <br/>
         <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.endDate','errors')}" size="18" name="endDate" value="${formatDate(date: appointmentProfileInstance?.profile?.endDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
       </div>
 

@@ -6,7 +6,7 @@
   <thead>
   <tr>
     <util:remoteSortableColumn property="fullName" title="${message(code:'name')}" action="updateselect" update="templateselect" params="[name: name]"/>
-    <util:remoteSortableColumn property="status" title="${message(code:'projectTemplate.profile.status')}" action="updateselect" update="templateselect" params="[name: name]"/>
+    <util:remoteSortableColumn property="status" title="${message(code:'status')}" action="updateselect" update="templateselect" params="[name: name]"/>
     <th><g:message code="projectUnitTemplates"/></th>
     <th><g:message code="creator"/></th>
   </tr>

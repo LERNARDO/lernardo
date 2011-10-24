@@ -30,8 +30,8 @@
         <thead>
         <tr>
           <g:sortableColumn property="fullName" title="${message(code:'title')}"/>
-          <g:sortableColumn property="beginDate" title="${message(code:'appointment.profile.beginDate')}"/>
-          <g:sortableColumn property="endDate" title="${message(code:'appointment.profile.endDate')}"/>
+          <g:sortableColumn property="beginDate" title="${message(code:'begin')}"/>
+          <g:sortableColumn property="endDate" title="${message(code:'end')}"/>
           <g:sortableColumn property="allDay" title="${message(code:'appointment.profile.allDay')}"/>
           <g:sortableColumn property="isPrivate" title="${message(code:'appointment.profile.isPrivate')}"/>
         </tr>

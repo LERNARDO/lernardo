@@ -34,12 +34,12 @@
         </tr>
 
         <tr class="prop">
-          <td class="one"><g:message code="appointment.profile.beginDate"/>:</td>
+          <td class="one"><g:message code="begin"/>:</td>
           <td class="two"><g:formatDate date="${appointment.profile.beginDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
         </tr>
 
         <tr class="prop">
-          <td class="one"><g:message code="appointment.profile.endDate"/>:</td>
+          <td class="one"><g:message code="end"/>:</td>
           <td class="two"><g:formatDate date="${appointment.profile.endDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
         </tr>
 

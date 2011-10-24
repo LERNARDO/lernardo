@@ -20,7 +20,7 @@
           <tr class="prop">
             <td valign="top" class="name"><g:message code="name"/></td>
             <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/></td>
-            <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.status"/></td>
+            <td valign="top" class="name"><g:message code="status"/></td>
           </tr>
 
           <tr>

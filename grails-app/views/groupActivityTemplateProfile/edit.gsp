@@ -21,7 +21,7 @@
             <td valign="top" class="name"><g:message code="name"/></td>
             <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.realDuration"/> (min)</td>
             <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
-              <td valign="top" class="name"><g:message code="groupActivityTemplate.profile.status"/></td>
+              <td valign="top" class="name"><g:message code="status"/></td>
             </erp:accessCheck>
           </tr>
 

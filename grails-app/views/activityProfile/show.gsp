@@ -25,7 +25,7 @@
 
       <tr>
         <td class="name-show"><g:message code="name"/>:</td>
-        <td class="name-show"><g:message code="activityInstance.profile.startDate"/>:</td>
+        <td class="name-show"><g:message code="begin"/>:</td>
         <td class="name-show"><g:message code="duration"/>:</td>
       </tr>
 

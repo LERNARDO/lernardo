@@ -11,15 +11,15 @@
         </erp:accessCheck>
 
         <li class="profile-profil"><g:link controller="educatorProfile" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="profile"/></g:link></li>
-        <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
+        <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
 
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
-          <li class="icon-news"><g:link controller="profile" action="news" id="${entity.id}"><g:message code="privat.events"/></g:link></li>
+          <li class="icon-news"><g:link controller="profile" action="news" id="${entity.id}"><g:message code="events"/></g:link></li>
         </erp:accessCheck>
 
         <erp:accessCheck entity="${currentEntity}" me="${entity}">
           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link> <erp:getNewInboxMessages entity="${entity}"/></li>
-          <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="privat.articleList"/></g:link></li>
+          <li class="profile-activities"><g:link controller="profile" action="showArticleList" id="${entity.id}"><g:message code="articles"/></g:link></li>
         </erp:accessCheck>
 
         <erp:notMe entity="${entity}">

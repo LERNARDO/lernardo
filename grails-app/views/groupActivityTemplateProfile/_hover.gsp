@@ -5,4 +5,4 @@
   <g:each in="${entity.profile.resources}" var="resource">
     ${resource.name},
   </g:each><br/>
-<span class="bold"><g:message code="privat.docs"/>:</span> <erp:getPublicationCount entity="${entity}"/><br/>
+<span class="bold"><g:message code="publications"/>:</span> <erp:getPublicationCount entity="${entity}"/><br/>

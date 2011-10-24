@@ -45,7 +45,7 @@
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="street"/></td>
             <td valign="top" class="name-show"><g:message code="zip"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.currentColonia"/></td>
+            <td valign="top" class="name-show"><g:message code="groupColony"/></td>
             <td valign="top" class="name-show"><g:message code="country"/></td>
           </tr>
 
@@ -82,7 +82,7 @@
 
           <tr class="prop">
             <td valign="top" class="name-show"><g:message code="client.profile.familyStatus"/></td>
-            <td valign="top" class="name-show"><g:message code="client.profile.languages"/></td>
+            <td valign="top" class="name-show"><g:message code="languages"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.school"/></td>
             <td valign="top" class="name-show"><g:message code="client.profile.schoolLevel"/></td>
           </tr>

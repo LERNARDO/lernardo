@@ -24,7 +24,7 @@
         </tr>
 
         <tr>
-          <td valign="top" class="name-show"><g:message code="facility.profile.colony"/>:</td>
+          <td valign="top" class="name-show"><g:message code="groupColony"/>:</td>
           <td colspan="3" valign="top" class="name-show"><g:message code="phone"/>:</td>
         </tr>
 

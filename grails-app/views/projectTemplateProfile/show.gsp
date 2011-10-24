@@ -23,7 +23,7 @@
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="projectTemplate.profile.status"/></td>
+          <td valign="top" class="name-show"><g:message code="status"/></td>
         </tr>
 
         <tr>

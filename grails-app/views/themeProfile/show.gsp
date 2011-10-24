@@ -23,8 +23,8 @@
 
         <tr class="prop">
           <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="theme.profile.startDate"/></td>
-          <td valign="top" class="name-show"><g:message code="theme.profile.endDate"/></td>
+          <td valign="top" class="name-show"><g:message code="begin"/></td>
+          <td valign="top" class="name-show"><g:message code="end"/></td>
         </tr>
 
         <tr>

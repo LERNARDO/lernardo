@@ -49,7 +49,7 @@
           <th><g:message code="name"/></th>
           <th><g:message code="birthDate"/></th>
           <th><g:message code="street"/></th>
-          <th><g:message code="client.profile.currentColonia"/></th>
+          <th><g:message code="groupColony"/></th>
           <th><g:message code="country"/></th>
           <th><g:message code="parents"/> &amp; <g:message code="phone"/></th>
         </tr>

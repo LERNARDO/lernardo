@@ -43,7 +43,7 @@
             </tr>
 
             <tr>
-              <td><g:message code="notification.content"/>:</td>
+              <td><g:message code="content"/>:</td>
               <td class="value ${hasErrors(bean:nc,field:'content','errors')}">
                 <ckeditor:editor name="content" height="200px" toolbar="Basic">
                   ${fieldValue(bean:nc,field:'content').decodeHTML()}

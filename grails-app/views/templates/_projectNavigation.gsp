@@ -11,7 +11,7 @@
         </erp:accessCheck>
 
         <li class="profile-profil"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="profile"/></g:link></li>
-        <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="privat.docs"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
+        <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/></g:link> <erp:getPublicationCount entity="${entity}"/></li>
 
         <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
           <li class="icon-admin"><g:link controller="projectProfile" action="listevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>

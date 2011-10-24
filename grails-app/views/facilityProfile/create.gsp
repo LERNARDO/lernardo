@@ -40,7 +40,7 @@
           </tr>
 
           <tr class="prop">
-            <td valign="middle" class="name"><g:message code="facility.profile.colony"/>:</td>
+            <td valign="middle" class="name"><g:message code="groupColony"/>:</td>
             <td colspan="3" valign="middle" class="name"><g:message code="phone"/>:</td>
           </tr>
 

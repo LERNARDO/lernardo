@@ -23,7 +23,7 @@
 
       <tr class="prop">
         <td colspan="2" valign="top" class="name-show"><g:message code="name"/>:</td>
-        <td valign="top" class="name-show"><g:message code="activityTemplate.duration"/>:</td>
+        <td valign="top" class="name-show"><g:message code="duration"/>:</td>
       </tr>
 
       <tr>
@@ -37,7 +37,7 @@
 
       <tr class="prop">
         <td valign="top" class="name-show"><g:message code="activityTemplate.socialForm"/>:</td>
-        <td valign="top" class="name-show"><g:message code="activityTemplate.status"/>:</td>
+        <td valign="top" class="name-show"><g:message code="status"/>:</td>
         <td valign="top" class="name-show"><g:message code="activityTemplate.amountEducators"/>:</td>
       </tr>
 

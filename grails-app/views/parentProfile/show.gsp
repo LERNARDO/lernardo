@@ -38,7 +38,7 @@
 
         <tr>
           <td width="120" valign="middle" class="name-show"><g:message code="parent.profile.maritalStatus"/></td>
-          <td width="200" valign="middle" class="name-show"><g:message code="parent.profile.languages"/></td>
+          <td width="200" valign="middle" class="name-show"><g:message code="languages"/></td>
           <td width="220" valign="middle" class="name-show"><g:message code="parent.profile.description"/></td>
           <td width="250" valign="middle" class="name-show"><g:message code="parent.profile.education"/></td>
         </tr>

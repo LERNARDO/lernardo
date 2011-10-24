@@ -104,7 +104,7 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupFamily.profile.childs"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#childs');
+      <h5><g:message code="children"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#childs');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="childs" style="display:none">
 

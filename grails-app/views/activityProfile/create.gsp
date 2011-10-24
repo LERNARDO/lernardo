@@ -19,8 +19,8 @@
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="name"/></td>
-          <td valign="top" class="name"><g:message code="activityInstance.profile.startDate"/></td>
-          <td valign="top" class="name"><g:message code="activityInstance.profile.endDate"/></td>
+          <td valign="top" class="name"><g:message code="begin"/></td>
+          <td valign="top" class="name"><g:message code="end"/></td>
         </tr>
 
         <tr>

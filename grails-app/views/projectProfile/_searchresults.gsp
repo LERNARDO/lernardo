@@ -3,8 +3,8 @@
     <thead>
     <tr>
       <th><g:message code="name"/></th>
-      <th><g:message code="project.profile.startDate"/></th>
-      <th><g:message code="project.profile.endDate"/></th>
+      <th><g:message code="begin"/></th>
+      <th><g:message code="end"/></th>
       <th><g:message code="facility"/></th>
       <th><g:message code="creator"/></th>
     </tr>

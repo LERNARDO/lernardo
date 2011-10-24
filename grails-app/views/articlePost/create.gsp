@@ -27,7 +27,7 @@
     <span class="${hasErrors(bean: postInstance, field: 'teaser', 'errors')}"><g:textArea class="countable500" name="teaser" rows="4" cols="10" value="${fieldValue(bean:postInstance,field:'teaser').decodeHTML()}"/></span>
     <br/><span class="gray">(<g:message code="article.teaser.info"/>)</span></p>
     
-    <span class="strong"><g:message code="article.content"/></span>
+    <span class="strong"><g:message code="content"/></span>
     <span class="${hasErrors(bean: postInstance, field: 'content', 'errors')}">
       <ckeditor:editor name="content" height="400px" toolbar="Basic">
         ${fieldValue(bean:postInstance,field:'content').decodeHTML()}

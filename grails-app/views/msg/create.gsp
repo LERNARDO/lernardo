@@ -30,7 +30,7 @@
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="name"><g:message code="msg.content"/>:</td>
+          <td valign="top" class="name"><g:message code="content"/>:</td>
           <td valign="top" class="value">
             <ckeditor:editor name="content" height="200px" toolbar="Basic">
               ${fieldValue(bean:msgInstance,field:'content').decodeHTML()}

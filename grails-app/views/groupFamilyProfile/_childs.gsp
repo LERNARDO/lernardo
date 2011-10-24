@@ -6,5 +6,5 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="italic red"><g:message code="groupFamily.profile.childs.empty"/></span>
+  <span class="italic red"><g:message code="children"/></span>
 </g:else>
