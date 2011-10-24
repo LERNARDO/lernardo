@@ -539,7 +539,7 @@ class GroupActivityProfileController {
     if (params.endDate)
         endDate = Date.parse("dd. MM. yy", params.endDate)
     if (!beginDate || !endDate)
-      render '<span class="red italic">Bitte Von und Bis Datum eingeben</span>'
+      render '<span class="red italic">' + message(code: "date.insert.fromto") +  '</span>'
     else {
       List groupActivities = Entity.createCriteria().list {
         eq("type", metaDataService.etGroupActivity)

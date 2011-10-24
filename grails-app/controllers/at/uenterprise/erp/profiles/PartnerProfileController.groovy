@@ -180,7 +180,6 @@ class PartnerProfileController {
   def addContact = {ContactCommand cc ->
     Entity partner = Entity.get(params.id)
     if (cc.hasErrors()) {
-      //render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
       render '<p class="italic red">'+message(code: "partner.profile.name.insert")+'</p>'
       render template: 'contacts', model: [partner: partner, entity: entityHelperService.loggedIn]
       return

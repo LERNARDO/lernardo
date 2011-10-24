@@ -16,7 +16,7 @@
 <body>
 <table class="start">
   <tr>
-    <td class="logo"><div class="title"><a href="${g.resource(dir:'')}">erpel</a></div><div class="subtitle">${grailsApplication.config.customerName}</div></td>
+    <td class="logo"><div class="title"><a href="${g.resource(dir:'')}">${grailsApplication.config.application.name}</a></div><div class="subtitle">${grailsApplication.config.customerName}</div></td>
   </tr>
   <tr>
     <td>

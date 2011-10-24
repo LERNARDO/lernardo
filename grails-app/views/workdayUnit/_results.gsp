@@ -16,7 +16,7 @@
 <br/>
 <div class="buttons">
   <g:form id="${entity.id}" params="[date1: formatDate(date: date1, format: 'dd. MM. yyyy'), date2: formatDate(date: date2, format: 'dd. MM. yyyy')]">
-    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="PDF erzeugen" /></div>
+    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
     <div class="spacer"></div>
   </g:form>
 </div>

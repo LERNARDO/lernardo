@@ -28,7 +28,7 @@
                 <select name="receivers" id="hiddenselect" multiple="true" value="default"></select>
               </div>
 
-              <div class="bold">Gewählte Empfänger:</div>
+              <div class="bold"><g:message code="chosenRecipients"/>:</div>
               <div id="receivers2">
               </div>
             </div>
@@ -54,8 +54,8 @@
       </table>
 
       <div class="buttons">
-        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="Senden"/></div>
-        <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">Abbrechen</g:link>
+        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code: 'send')}"/></div>
+        <g:link class="buttonGray" controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

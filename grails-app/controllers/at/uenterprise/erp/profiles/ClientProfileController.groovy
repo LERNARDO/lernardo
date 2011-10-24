@@ -402,7 +402,6 @@ class ClientProfileController {
   def addContact = {ContactCommand cc ->
     Entity client = Entity.get(params.id)
     if (cc.hasErrors()) {
-      // render '<p class="italic red">Bitte Vor- und Nachname angeben!</p>'
       render '<p class="italic red">'+message(code: "client.profile.name.insert")+'</p>'
       render template: 'contacts', model: [client: client, entity: entityHelperService.loggedIn]
       return

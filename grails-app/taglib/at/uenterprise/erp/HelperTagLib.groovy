@@ -83,7 +83,7 @@ class HelperTagLib {
       out << '<th>' + process.process.name + ' € </th>'
     }
     out << '<th>Monatsbeitrag €</th>'
-    out << '<th>Gesamt €</th>'
+    out << '<th>' + message(code: "total") + '€</th>'
     out << '</tr>'
 
     logMonth?.clients?.each { client ->
@@ -204,7 +204,7 @@ class HelperTagLib {
       out << '<th>' + process.process.name + ' € </th>'
     }
     out << '<th>Monatsbeitrag €</th>'
-    out << '<th>Gesamt €</th>'
+    out << '<th>' + message(code: "total") + '€</th>'
     out << '</tr>'
 
     logMonth?.clients?.each { client ->
@@ -364,7 +364,7 @@ class HelperTagLib {
       calendarStart.add(Calendar.DATE, 1)
     }
     out << "<tr>"
-    out << "<td class='bold'>Gesamt</td>"
+    out << "<td class='bold'>" + message(code: "total") + "</td>"
     sums.each {
       out << "<td class='bold'>" + it + "</td>"
     }
@@ -1109,12 +1109,14 @@ class HelperTagLib {
    * outputs selectbox items for each language
    */
   def localeSelect = {attrs ->
+    def locale = RequestContextUtils.getLocale(request)
+
     attrs['from'] = grailsApplication.config.locales
     attrs['value'] = (attrs['value'] ?: RequestContextUtils.getLocale(request))?.toString()
     // set the key as a closure that formats the locale
     attrs['optionKey'] = {"${it.language}_${it.country}"}
     // set the option value as a closure that formats the locale for display
-    attrs['optionValue'] = {"${it.displayLanguage}"}
+    attrs['optionValue'] = {"${it.getDisplayLanguage(locale)}"}
 
     // use generic select
     out << eselect(attrs)
