@@ -13,18 +13,18 @@
   </thead>
   <tbody>
   <g:each in="${educators}" status="i" var="educator">
-    <g:if test="${erp.getExpectedHours(educator: educator, date1: date1 ?: null, date2: date2 ?: null) != '0,00'}">
-    <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-      <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
-      <g:each in="${workdaycategories}" var="category">
-        <td><erp:getHoursForCategory category="${category}" educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-      </g:each>
-      <td><erp:getTotalHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-      <td><erp:getExpectedHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-      <td><erp:getHoursConfirmed educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-      <td><erp:getSalary educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
-    </tr>
-    </g:if>
+    <erp:showHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
+      <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+        <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
+        <g:each in="${workdaycategories}" var="category">
+          <td><erp:getHoursForCategory category="${category}" educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+        </g:each>
+        <td><erp:getTotalHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+        <td><erp:getExpectedHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+        <td><erp:getHoursConfirmed educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+        <td><erp:getSalary educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/></td>
+      </tr>
+    </erp:showHours>
   </g:each>
   </tbody>
 </table>

@@ -767,6 +767,21 @@ class HelperTagLib {
     out << df.format(hours)
   }
 
+  def showHours = { attrs, body ->
+    Date date1 = null
+    Date date2 = null
+
+    if (attrs.date1 != null && attrs.date2 != null) {
+      date1 = Date.parse("dd. MM. yy", attrs.date1)
+      date2 = Date.parse("dd. MM. yy", attrs.date2)
+    }
+
+    Entity educator = attrs.educator
+
+    if (calculateExpectedHours(educator, date1, date2) > 0)
+      out << body()
+  }
+
   BigDecimal calculateExpectedHours(educator, date1, date2) {
     BigDecimal expectedHours = 0
     Calendar tcalendarStart = new GregorianCalendar();
