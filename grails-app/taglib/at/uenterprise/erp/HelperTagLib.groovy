@@ -1073,11 +1073,21 @@ class HelperTagLib {
 
     def result = null
     if (creatorof instanceof Entity) {
-      def c = Link.createCriteria()
-      result = c.get {
-        eq('source', entity)
-        eq('target', creatorof)
-        eq('type', metaDataService.ltCreator)
+      if (creatorof.type.id == metaDataService.etAppointment.id) {
+        def c = Link.createCriteria()
+        result = c.get {
+          eq('source', creatorof)
+          eq('target', entity)
+          eq('type', metaDataService.ltAppointment)
+        }
+      }
+      else {
+        def c = Link.createCriteria()
+        result = c.get {
+          eq('source', entity)
+          eq('target', creatorof)
+          eq('type', metaDataService.ltCreator)
+        }
       }
     }
     else if (creatorof instanceof Publication) {

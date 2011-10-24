@@ -42,7 +42,7 @@
             <td>
               <g:if test="${appointmentProfileInstance.profile.isPrivate}">
                 <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
-                  <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
+                  <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
                   <g:set var="negation" value="negation"/> %{-- see below note why this is set --}%
                 </erp:accessCheck>
                 %{-- NOTE: if "negation" does not exist we know the custom tag did not evaluate to true so why can output the following else condition --}%
@@ -51,7 +51,7 @@
                 </g:if>
               </g:if>
               <g:else>
-                <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
+                <g:link action="show" id="${appointmentProfileInstance.id}" params="[entity: appointmentProfileInstance.id]">${fieldValue(bean: appointmentProfileInstance, field: 'profile.fullName')}</g:link>
               </g:else></td>
             <td><g:formatDate date="${appointmentProfileInstance.profile.beginDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             <td><g:formatDate date="${appointmentProfileInstance.profile.endDate}" format="dd. MM. yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
