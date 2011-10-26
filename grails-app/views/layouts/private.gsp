@@ -240,7 +240,6 @@
                       <li class="icon-admin"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]">${grailsApplication.config.application.name} Setup</g:link></li>
                       <li class="icon-admin"><g:link controller="evaluation" action="listall" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></li>
                       <li class="icon-admin"><g:link controller="comment" action="list" id="${entity.id}"><g:message code="allComments"/></g:link></li>
-                      <li class="icon-admin"><g:link controller="logBook" action="entries" id="${entity.id}">Logbuch</g:link></li>
                     </erp:accessCheck>
                   </ul>
                 </div>
@@ -253,8 +252,11 @@
                     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                       <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                       <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
-                      <hr/>
                     </erp:accessCheck>
+                    <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+                      <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}">Logbuch</g:link></li>
+                    </erp:accessCheck>
+                    <hr/>
                     <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
                     <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="clients"/></g:link></li>
                     <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="children"/></g:link></li>

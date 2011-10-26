@@ -17,12 +17,14 @@
         <tr>
           <td valign="top" class="name-show"><g:message code="name"/></td>
           <td valign="top" class="name-show"><g:message code="costs"/> (${grailsApplication.config.currency})</td>
+          <td valign="top" class="name-show"><g:message code="unit"/></td>
           <td valign="top" class="name-show"><g:message code="facilities"/></td>
         </tr>
 
         <tr>
           <td valign="top" class="value-show"><g:link action="showProcess" id="${process.id}">${process.name.decodeHTML()}</g:link></td>
           <td valign="top" class="value-show">${process.costs}</td>
+          <td valign="top" class="value-show"><g:message code="logunit.${process.unit}"/></td>
           <td valign="top" class="value-show-block">
             <g:if test="${process.facilities}">
             <ul>

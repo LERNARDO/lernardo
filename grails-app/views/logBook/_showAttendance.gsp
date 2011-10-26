@@ -36,7 +36,7 @@
           </tr>
           <tr>
               <td><g:message code="to"/></td>
-              <td>${attendance.mondayTo ? formatDate(date: attendancemondayTo, format: 'HH:mm') : '-'}</td>
+              <td>${attendance.mondayTo ? formatDate(date: attendance.mondayTo, format: 'HH:mm') : '-'}</td>
               <td>${attendance.tuesdayTo ? formatDate(date: attendance.tuesdayTo, format: 'HH:mm') : '-'}</td>
               <td>${attendance.wednesdayTo ? formatDate(date: attendance.wednesdayTo, format: 'HH:mm') : '-'}</td>
               <td>${attendance.thursdayTo ? formatDate(date: attendance.thursdayTo, format: 'HH:mm') : '-'}</td>
@@ -45,9 +45,7 @@
               <td>${attendance.sundayTo ? formatDate(date: attendance.sundayTo, format: 'HH:mm') : '-'}</td>
           </tr>
         </table>
-      </td>
-      <td valign="top">${attendance.costs} €
-        <div style="padding: 75px 0 0 145px">
+        <div style="text-align: right; margin-top: 5px;">
           <g:remoteLink update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]">Ändern</g:remoteLink>
         </div>
       </td>

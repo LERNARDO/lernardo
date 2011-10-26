@@ -51,9 +51,7 @@
                 <td><g:textField name="sundayTo" class="timepicker" size="4" value="${formatDate(date: attendance.sundayTo, format: 'HH:mm')}"/></td>
             </tr>
         </table>
-      </td>
-      <td valign="top"><g:textField name="costs" size="5" value="${attendance.costs}"/> €
-        <div style="padding: 70px 0 0 155px">
+        <div style="text-align: right; margin-top: 5px;">
           <g:submitButton name="submit" value="OK"/>
         </div>
       </td>

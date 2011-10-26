@@ -22,6 +22,9 @@
     <p><span class="strong"><g:message code="costs"/> (${grailsApplication.config.currency})</span><br/>
     <span class="${hasErrors(bean: process, field: 'costs', 'errors')}"><g:textField class="countable50" name="costs" size="10" value="${fieldValue(bean:process,field:'costs').decodeHTML()}"/></span></p>
 
+    <p><span class="strong"><g:message code="unit"/></span><br/>
+    <span class="${hasErrors(bean: process, field: 'unit', 'errors')}"><g:select name="unit" from="['perDay','perMonth']" value="${process.unit}" valueMessagePrefix="logunit"/></span></p>
+
     <span class="strong"><g:message code="facilities"/></span><br/>
     <g:select name="facilities" from="${facilities}" optionKey="id" optionValue="profile" multiple="true" value="${process.facilities}"/>
 

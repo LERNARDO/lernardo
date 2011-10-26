@@ -46,6 +46,7 @@
       <tr>
         <g:sortableColumn property="name" title="${message(code:'name')}"/>
         <g:sortableColumn property="costs" title="${message(code:'costs')} (${grailsApplication.config.currency})"/>
+        <g:sortableColumn property="unit" title="${message(code:'unit')}"/>
       </tr>
       </thead>
       <tbody>
@@ -53,6 +54,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="showProcess" id="${process.id}">${fieldValue(bean: process, field: 'name').decodeHTML()}</g:link></td>
           <td>${process.costs}</td>
+          <td><g:message code="logunit.${process.unit}"/></td>
         </tr>
       </g:each>
       </tbody>

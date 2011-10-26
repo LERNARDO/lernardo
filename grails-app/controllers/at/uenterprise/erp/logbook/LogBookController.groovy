@@ -263,8 +263,6 @@ class LogBookController {
 
     //attendance.properties = params
 
-    attendance.costs = params.costs.toInteger()
-
     attendance.monday = params.monday ? true : false
     attendance.tuesday = params.tuesday ? true : false
     attendance.wednesday = params.wednesday ? true : false

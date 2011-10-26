@@ -12,8 +12,6 @@ class Attendance {
   Entity  client
   Entity  facility
 
-  Integer costs = 0
-
   Boolean monday = false
   Boolean tuesday = false
   Boolean wednesday = false

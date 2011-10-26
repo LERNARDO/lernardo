@@ -1038,8 +1038,16 @@ class BootStrap {
   void createDefaultProcesses() {
     log.info ("creating " + grailsApplication.config.dummies + " processes")
 
+    Random generator = new Random()
+
     for ( i in 1..grailsApplication.config.dummies ) {
-      new Process(name: "process" + i, costs: 0).save(failOnError: true)
+      int random = generator.nextInt(2)
+
+      String unit = "perDay"
+      if (random == 0)
+        unit = "perMonth"
+
+      new Process(name: "process" + i, costs: 0, unit: unit).save(failOnError: true)
     }
   }
 

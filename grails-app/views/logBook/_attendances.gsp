@@ -2,7 +2,6 @@
   <tr>
     <th width="250px">Name</th>
     <th width="500px">Stunden</th>
-    <th>Betreuungsbeitrag (monatlich)</th>
   </tr>
 </table>
 

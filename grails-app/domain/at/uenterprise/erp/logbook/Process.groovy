@@ -13,6 +13,6 @@ class Process {
   Integer costs = 0
 
   static constraints = {
-    unit nullable: true, inList: ['perDay','perMonth']
+    inList: ['perDay','perMonth']
   }
 }

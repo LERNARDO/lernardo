@@ -79,10 +79,6 @@ class HelperTagLib {
       out << '<th>' + process.process.name + '</th>'
     }
     out << '<th>Tage</th>'
-    processes?.each { process ->
-      out << '<th>' + process.process.name + ' € </th>'
-    }
-    out << '<th>Monatsbeitrag €</th>'
     out << '<th>' + message(code: "total") + '€</th>'
     out << '</tr>'
 
@@ -91,14 +87,14 @@ class HelperTagLib {
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
 
-      List participatedTimes = []
-
       def attendance = Attendance.findByClient(client.client)
       out << '<tr>'
       out << '<td>' + client.client.profile.fullName + '</td>'
 
+      int totalCosts = 0
+
       // calculate the amount of participated and total processes
-      processes2.each { proc ->
+      processes2.eachWithIndex { proc, i ->
         int total = 0
         int participated = 0
 
@@ -115,9 +111,30 @@ class HelperTagLib {
             }
           }
         }
-        participatedTimes.add(participated)
 
-        out << '<td>' + participated + '/' + total + '</td>'
+        int costs
+        if (proc.process.unit == "perDay")
+          costs = proc.process.costs * participated
+        else
+          costs = proc.process.costs
+
+        totalCosts += costs
+
+        out << '<td>' + participated + 'x/' + total + 'x/' + costs + '€'
+
+        if (proc.process.costs > 0) {
+
+          out << ' ' + checkBox(name: 'checkbox', value: proc.isPaid, onclick: remoteFunction(update: "evaluation", action: "updatePaidProcess", id: proc.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]))
+
+          /*out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
+          if (process.isPaid)
+            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
+          else
+            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_red.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
+          }*/
+
+        }
+        out << '</td>'
       }
 
       // calculate the days the client should have participated
@@ -159,29 +176,9 @@ class HelperTagLib {
         }
       }
       out << '<td>' + days + '/' + debitDays + '</td>'
-
-      int totalCosts = 0
-      def cprocesses = client.processes
-      cprocesses = cprocesses?.sort {it.process.name}
-      cprocesses.eachWithIndex { process, i ->
-        out << '<td>' + (process.process.costs * participatedTimes[i])
-        if (process.process.costs > 0) {
-          if (process.isPaid)
-            out << '<span style="color: #4c4;"> bezahlt</span>'
-          else
-            out << '<span style="color: #c44;"> offen</span>'
-        }
-        out << '</td>'
-        totalCosts += (process.process.costs * participatedTimes[i])
-      }
-      int monthlyCosts = attendance.costs
-      totalCosts += monthlyCosts
-      out << '<td>' + monthlyCosts + '</td>'
       out << '<td>' + totalCosts + '</td>'
       out << '</tr>'
     }
-
-
     out << '</table>'
   }
 
@@ -200,11 +197,7 @@ class HelperTagLib {
       out << '<th>' + process.process.name + '</th>'
     }
     out << '<th>Tage</th>'
-    processes?.each { process ->
-      out << '<th>' + process.process.name + ' € </th>'
-    }
-    out << '<th>Monatsbeitrag €</th>'
-    out << '<th>' + message(code: "total") + '€</th>'
+    out << '<th>' + message(code: "total") + ' €</th>'
     out << '</tr>'
 
     logMonth?.clients?.each { client ->
@@ -212,14 +205,14 @@ class HelperTagLib {
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
 
-      List participatedTimes = []
-
       def attendance = Attendance.findByClient(client.client)
       out << '<tr>'
       out << '<td>' + client.client.profile.fullName + '</td>'
 
+      int totalCosts = 0
+
       // calculate the amount of participated and total processes
-      processes2.each { proc ->
+      processes2.eachWithIndex { proc, i ->
         int total = 0
         int participated = 0
 
@@ -236,9 +229,30 @@ class HelperTagLib {
             }
           }
         }
-        participatedTimes.add(participated)
 
-        out << '<td>' + participated + '/' + total + '</td>'
+        int costs
+        if (proc.process.unit == "perDay")
+          costs = proc.process.costs * participated
+        else
+          costs = proc.process.costs
+
+        totalCosts += costs
+
+        out << '<td>' + participated + 'x/' + total + 'x/' + costs + '€'
+
+        if (proc.process.costs > 0) {
+
+          out << ' ' + checkBox(name: 'checkbox', value: proc.isPaid, onclick: remoteFunction(update: "evaluation", action: "updatePaidProcess", id: proc.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]))
+
+          /*out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
+          if (process.isPaid)
+            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
+          else
+            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_red.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
+          }*/
+
+        }
+        out << '</td>'
       }
 
       // calculate the days the client should have participated
@@ -280,26 +294,6 @@ class HelperTagLib {
         }
       }
       out << '<td>' + days + '/' + debitDays + '</td>'
-
-      int totalCosts = 0
-      def cprocesses = client.processes
-      cprocesses = cprocesses?.sort {it.process.name}
-      cprocesses.eachWithIndex { process, i ->
-        out << '<td>' + (process.process.costs * participatedTimes[i])
-        if (process.process.costs > 0) {
-          out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
-          if (process.isPaid)
-            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
-          else
-            ' <img src="' + resource(dir: 'images/icons', file: 'bullet_red.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'
-          }
-        }
-        out << '</td>'
-        totalCosts += (process.process.costs * participatedTimes[i])
-      }
-      int monthlyCosts = attendance.costs
-      totalCosts += monthlyCosts
-      out << '<td>' + monthlyCosts + '</td>'
       out << '<td>' + totalCosts + '</td>'
       out << '</tr>'
     }
