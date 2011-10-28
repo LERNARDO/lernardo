@@ -437,13 +437,15 @@ class ProfileController {
     Entity entity = Entity.get(params.id)
 
     MultipartFile asset = request.getFile ('asset')
-    if (asset.getSize() / 1024 > 150) {
-      flash.message = message(code: "pictureTooLarge", args: ['150'])
-      redirect action: 'uploadProfileImage', id: params.id
-    }
     if (asset && !asset.empty) {
-      def result = functionService.storeAsset(entity, params.type, asset)
-      [asset: result, entity: entity]
+      if (asset.getSize() / 1024 > 150) {
+        flash.message = message(code: "profile.picture.tooLarge", args: ['150'])
+        redirect action: 'uploadProfileImage', id: params.id
+      }
+      else {
+        def result = functionService.storeAsset(entity, params.type, asset)
+        [asset: result, entity: entity]
+      }
     }
   }
 
