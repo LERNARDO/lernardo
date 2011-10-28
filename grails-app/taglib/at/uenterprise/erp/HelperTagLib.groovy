@@ -26,6 +26,23 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def createLinkFromEvaluation = {attrs, body ->
+    Evaluation evaluation = attrs.evaluation
+
+    if (evaluation.linkedTo.type == metaDataService.etGroupActivity)
+      out << link(controller: evaluation.linkedTo.type.supertype.name + 'Profile', action: 'show', id: evaluation.linkedTo.id) {evaluation.linkedTo.profile.fullName}
+    else {
+      // find project day the project unit is linked to
+      Entity projectDay = functionService.findByLink(evaluation.linkedTo, null, metaDataService.ltProjectDayUnit)
+
+      // find project the project day is linked to
+      if (projectDay) {
+        Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+        out << link(controller: 'projectProfile', action: 'show', id: project.id) {evaluation.linkedTo.profile.fullName + ' (' + message(code: 'project') + ': ' + project.profile.fullName + ')'}
+      }
+    }
+  }
+
   def renderLogMonthEntries = {attrs, body ->
     Entity facility = attrs.facility
     Date date = attrs.date

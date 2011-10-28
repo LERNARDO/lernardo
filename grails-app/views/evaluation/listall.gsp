@@ -21,9 +21,6 @@
 <div class="boxGray">
   <div class="second">
 
-    %{--
-    <p>Es wurden insgesamt <g:remoteLink controller="evaluation" action="showall" update="remoteEvaluations" id="${entity.id}">${totalEvaluations} Einträge</g:remoteLink> gefunden. Du kannst nach PädagogInnen oder nach Betreuten filtern:</p>
-    --}%
     <p><g:message code="evaluation.entrysFound_p1"/> <g:remoteLink controller="evaluation" action="showall" update="remoteEvaluations" id="${entity.id}"><g:message code="evaluation.entrysFound_p2" args="[totalEvaluations]"/></g:remoteLink> <g:message code="evaluation.entrysFound_p3"/></p>
 
     <g:message code="educator"/>:<br/>
