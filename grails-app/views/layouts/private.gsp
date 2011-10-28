@@ -227,7 +227,7 @@
                 <div id="inhalt-admin" class="passiv_inhalt">
                   <ul>
                     <erp:isSystemAdmin entity="${currentEntity}">
-                      <li class="icon-admin"><g:link controller="app" action="adminlinks">Admin Stuff</g:link></li>
+                      <li class="icon-admin"><g:link controller="admin" action="stuff">Admin Stuff</g:link></li>
                     </erp:isSystemAdmin>
                     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                       <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
