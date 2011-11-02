@@ -478,8 +478,8 @@ class NotificationCommand {
   static constraints = {
     subject   blank: false
     content   blank: false
-    selection validator: {sel, nc ->
-                            return !(!nc.user && !nc.operator && !nc.client && !nc.educator && !nc.parent && !nc.child && !nc.pate && !nc.partner)
+    selection validator: {val, obj ->
+                            return !(!obj.user && !obj.operator && !obj.client && !obj.educator && !obj.parent && !obj.child && !obj.pate && !obj.partner)
                          }
   }
 

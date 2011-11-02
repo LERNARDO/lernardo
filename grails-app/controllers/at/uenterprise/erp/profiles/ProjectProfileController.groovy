@@ -1494,11 +1494,11 @@ class ProjectCommand {
   static constraints = {
     fullName  blank: false
     startDate nullable: false
-    endDate   nullable: false, validator: {ed, pc ->
-                                             return ed > pc.startDate
+    endDate   nullable: false, validator: {val, obj ->
+                                             return val > obj.startDate
                                           }
-    weekdays  validator: {wd, pc ->
-                            return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)
+    weekdays  validator: {val, obj ->
+                            return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
                          }
   }
 

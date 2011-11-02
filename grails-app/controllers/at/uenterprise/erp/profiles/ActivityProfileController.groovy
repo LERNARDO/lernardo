@@ -614,32 +614,32 @@ class ActivityCommand {
     periodStart   nullable: false
     facility      nullable: false
     educators     nullable: false
-    periodEnd     nullable: false, validator: {pe, ac ->
-                    return pe >= ac.periodStart
+    periodEnd     nullable: false, validator: {val, obj ->
+                    return val >= obj.periodStart
                   }
-    mondayEnd     nullable: true, validator: {pe, ac ->
-                    return pe >= ac.mondayStart
+    mondayEnd     nullable: true, validator: {val, obj ->
+                    return val >= obj.mondayStart
                   }
-    tuesdayEnd    nullable: true, validator: {pe, ac ->
-                    return pe >= ac.tuesdayStart
+    tuesdayEnd    nullable: true, validator: {val, obj ->
+                    return val >= obj.tuesdayStart
                   }
-    wednesdayEnd  nullable: true, validator: {pe, ac ->
-                    return pe >= ac.wednesdayStart
+    wednesdayEnd  nullable: true, validator: {val, obj ->
+                    return val >= obj.wednesdayStart
                   }
-    thursdayEnd   nullable: true, validator: {pe, ac ->
-                    return pe >= ac.thursdayStart
+    thursdayEnd   nullable: true, validator: {val, obj ->
+                    return val >= obj.thursdayStart
                   }
-    fridayEnd     nullable: true, validator: {pe, ac ->
-                    return pe >= ac.fridayStart
+    fridayEnd     nullable: true, validator: {val, obj ->
+                    return val >= obj.fridayStart
                   }
-    saturdayEnd   nullable: true, validator: {pe, ac ->
-                    return pe >= ac.saturdayStart
+    saturdayEnd   nullable: true, validator: {val, obj ->
+                    return val >= obj.saturdayStart
                   }
-    sundayEnd     nullable: true, validator: {pe, ac ->
-                    return pe >= ac.sundayStart
+    sundayEnd     nullable: true, validator: {val, obj ->
+                    return val >= obj.sundayStart
                   }
-    weekdays      validator: {wd, pc ->
-                    return !(!pc.monday && !pc.tuesday && !pc.wednesday && !pc.thursday && !pc.friday && !pc.saturday && !pc.sunday)
+    weekdays      validator: {val, obj ->
+                    return !(!obj.monday && !obj.tuesday && !obj.wednesday && !obj.thursday && !obj.friday && !obj.saturday && !obj.sunday)
                   }
   }
 
