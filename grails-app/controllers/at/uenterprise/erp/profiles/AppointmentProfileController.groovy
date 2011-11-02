@@ -150,18 +150,13 @@ class AppointmentProfileController {
           ent.profile.endDate = functionService.convertToUTC(ent.profile.endDate)
         }
 
-        if (params.beginDate > params.endDate) {
-          render (view: "create", model: [appointmentProfileInstance: entity, owner: owner, currentEntity: entityHelperService.loggedIn])
-          //return
-        }
-
         // create link to owner
         new Link(source: entity, target: owner, type: metaDataService.ltAppointment).save(failOnError: true)
 
         flash.message = message(code: "object.created", args: [message(code: "appointment"), entity.profile.fullName])
         redirect action: 'show', id: entity.id, params: [entity: entity]
       } catch (EntityException ee) {
-        render(view: "create", model: [appointmentProfileInstance: ee.entity, owner: owner, currentEntity: entityHelperService.loggedIn])
+        render(view: "create", model: [appointmentProfileInstance: ee.entity, createdFor: owner, owner: owner, currentEntity: entityHelperService.loggedIn])
       }
 
     }
