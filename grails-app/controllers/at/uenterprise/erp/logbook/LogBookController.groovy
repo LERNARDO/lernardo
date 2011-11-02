@@ -197,11 +197,33 @@ class LogBookController {
   def createProcess = {
     Process process = new Process()
     List facilities = Entity.findAllByType(metaDataService.etFacility)
-    return [process: process, facilities: facilities]
+
+    List entities = Entity.createCriteria().list {
+      or {
+        eq("type", metaDataService.etUser)
+        eq("type", metaDataService.etOperator)
+        eq("type", metaDataService.etEducator)
+      }
+    }
+    return [process: process, facilities: facilities, entities: entities]
   }
 
   def saveProcess = {
+    println params
+    List entities = params.list('entities')
+    List types = params.list('types')
+
     Process process = new Process(params)
+
+    entities.each { String entity ->
+      if (!process.entities.contains(entity))
+        process.addToEntities(entity)
+    }
+
+    types.each { String type ->
+      if (!process.types.contains(type))
+        process.addToTypes(type)
+    }
 
     if (process.save()) {
       flash.message = message(code: "object.created", args: [message(code: "process"), process.name])
@@ -227,12 +249,37 @@ class LogBookController {
   def editProcess = {
     Process process = Process.get(params.id)
     List facilities = Entity.findAllByType(metaDataService.etFacility)
-    return [process: process, facilities: facilities]
+
+    List entities = Entity.createCriteria().list {
+      or {
+        eq("type", metaDataService.etUser)
+        eq("type", metaDataService.etOperator)
+        eq("type", metaDataService.etEducator)
+      }
+    }
+    return [process: process, facilities: facilities, entities: entities]
   }
 
   def updateProcess = {
     Process process = Process.get(params.id)
     process.properties = params
+
+    List entities = params.list('entities')
+    List types = params.list('types')
+
+    process.entities.clear()
+    process.types.clear()
+
+    entities.each { String entity ->
+      if (!process.entities.contains(entity))
+        process.addToEntities(entity)
+    }
+
+    types.each { String type ->
+      if (!process.types.contains(type))
+        process.addToTypes(type)
+    }
+
     process.save()
     flash.message = message(code: "object.updated", args: [message(code: "process"), process.name])
     redirect action: "showProcess", id: process.id

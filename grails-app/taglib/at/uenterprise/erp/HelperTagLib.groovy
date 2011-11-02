@@ -26,6 +26,11 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  def getEntity = {attrs, body ->
+    Entity entity = Entity.get(attrs.entity)
+    out << body(result: entity)
+  }
+
   def createLinkFromEvaluation = {attrs, body ->
     Evaluation evaluation = attrs.evaluation
 
@@ -204,6 +209,8 @@ class HelperTagLib {
     Entity facility = attrs.facility
     Date date = attrs.date
 
+    Entity currentEntity = entityHelperService.loggedIn
+
     out << '<table class="default-table">'
 
     out << '<tr>'
@@ -259,8 +266,18 @@ class HelperTagLib {
 
         if (proc.process.costs > 0) {
 
-          out << ' ' + checkBox(name: 'checkbox', value: proc.isPaid, onclick: remoteFunction(update: "evaluation", action: "updatePaidProcess", id: proc.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]))
+          // check if the current entity may see the checkbox
+          def typeOK = false
+          if ((currentEntity.type == metaDataService.etEducator && proc.process.types.contains('educator')) ||
+              (currentEntity.type == metaDataService.etOperator && proc.process.types.contains('operator')) ||
+              (functionService.findByLink(currentEntity, null, metaDataService.ltLeadEducator) && proc.process.types.contains('leadEducator')))
+            typeOK = false
 
+          if (proc.process.entities.contains(currentEntity.id.toString()) || typeOK) {
+
+            out << ' ' + checkBox(name: 'checkbox', value: proc.isPaid, onclick: remoteFunction(update: "evaluation", action: "updatePaidProcess", id: proc.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]))
+
+          }
           /*out << '' + remoteLink(update: "evaluation", action: "updatePaidProcess", id: process.id, params: [facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]) {
           if (process.isPaid)
             ' <img src="' + resource(dir: 'images/icons', file: 'bullet_green.png') + '" alt="' + message(code: 'edit') + '" align="top"/>'

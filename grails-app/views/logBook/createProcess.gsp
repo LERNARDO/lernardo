@@ -29,8 +29,14 @@
     <p><span class="strong"><g:message code="unit"/></span><br/>
     <span class="${hasErrors(bean: process, field: 'unit', 'errors')}"><g:select name="unit" from="['perDay','perMonth']" valueMessagePrefix="logunit"/></span></p>
 
-    <span class="strong"><g:message code="facilities"/></span><br/>
-    <g:select name="facilities" from="${facilities}" optionKey="id" optionValue="profile" multiple="true"/>
+    <p><span class="strong"><g:message code="facilities"/></span><br/>
+    <g:select name="facilities" from="${facilities}" optionKey="id" optionValue="profile" multiple="true"/></p>
+
+    <p><span class="strong"><g:message code="types"/></span><br/>
+    <g:select name="types" from="['educator','leadEducator','operator']" multiple="true" valueMessagePrefix="profiletype"/></p>
+
+    <p><span class="strong"><g:message code="users"/></span><br/>
+    <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile"/></p>
 
     <div class="buttons">
       <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>

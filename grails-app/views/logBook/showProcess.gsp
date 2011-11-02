@@ -39,6 +39,38 @@
           </td>
         </tr>
 
+        <tr>
+          <td valign="top" class="name-show"><g:message code="types"/></td>
+          <td valign="top" class="name-show"><g:message code="users"/></td>
+        </tr>
+
+        <tr>
+          <td valign="top" class="value-show-block">
+            <g:if test="${process.types}">
+            <ul>
+              <g:each in="${process.types}" var="type">
+                <li><g:message code="profiletype.${type}"/></li>
+              </g:each>
+            </ul>
+          </g:if>
+          <g:else>
+            <div class="italic">${message(code: 'noData')}</div>
+          </g:else>
+          </td>
+          <td valign="top" class="value-show-block">
+            <g:if test="${process.entities}">
+            <ul>
+              <g:each in="${process.entities}" var="entity">
+                <li><erp:getEntity entity="${entity}"><g:link controller="${result.type.supertype.name +'Profile'}" action="show" id="${result.id}" params="[entity:result.id]">${result.profile.fullName}</g:link></erp:getEntity></li>
+              </g:each>
+            </ul>
+          </g:if>
+          <g:else>
+            <div class="italic">${message(code: 'noData')}</div>
+          </g:else>
+          </td>
+        </tr>
+
       </table>
 
 
