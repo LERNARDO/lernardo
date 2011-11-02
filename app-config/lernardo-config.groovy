@@ -14,7 +14,7 @@ if (customer == "sueninos") {
     // general configuration
     // ---------------------------------------------------------------------------------------------
 
-    customerName = "Sueninos" // full customer name
+    customerName = "Sueniños" // full customer name
     currency = "Pesos"
     timeZone = "America/Guatemala" // UTC-6
 
