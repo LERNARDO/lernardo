@@ -32,7 +32,7 @@
     <g:select name="types" from="['educator','leadEducator','operator']" multiple="true" valueMessagePrefix="profiletype" value="${process.types}"/></p>
 
     <p><span class="strong"><g:message code="users"/></span><br/>
-    <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile"/></p>
+    <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile" value="${currentEntities}"/></p>
 
     <div class="buttons">
       <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>

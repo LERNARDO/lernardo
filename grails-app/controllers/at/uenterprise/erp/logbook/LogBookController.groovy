@@ -82,11 +82,11 @@ class LogBookController {
 
     Calendar start = new GregorianCalendar()
     start.setTime(date)
-    start.add(Calendar.DATE, -15)
+    start.add(Calendar.DATE, -10)
 
     Calendar end = new GregorianCalendar()
     end.setTime(date)
-    end.add(Calendar.DATE, 15)
+    end.add(Calendar.DATE, 10)
 
     StringBuffer timeline = new StringBuffer()
 
@@ -97,12 +97,12 @@ class LogBookController {
 
       LogEntry someEntry = LogEntry.findByDateAndFacility(currentDate, facility)
       if (!someEntry)
-        timeline.append('<span style="background: #ccc; float: left; padding: 3px; margin: 0 2px 2px 0;">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+        timeline.append('<span style="background: #ccc; float: left; padding: 3px; margin: 0 2px 2px 0; text-align: center;">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
       else {
         if (someEntry.isChecked)
-          timeline.append('<span style="background: #cfc; float: left; padding: 3px; margin: 0 2px 2px 0; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+          timeline.append('<span style="background: #cfc; float: left; padding: 3px; margin: 0 2px 2px 0; text-align: center; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
         else
-          timeline.append('<span style="background: #fcc; float: left; padding: 3px; margin: 0 2px 2px 0; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+          timeline.append('<span style="background: #fcc; float: left; padding: 3px; margin: 0 2px 2px 0; text-align: center; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
       }
 
       start.add(Calendar.DATE, 1)
@@ -257,7 +257,12 @@ class LogBookController {
         eq("type", metaDataService.etEducator)
       }
     }
-    return [process: process, facilities: facilities, entities: entities]
+
+    List currentEntities = []
+    process.entities.each {
+      currentEntities.add(Entity.get(it as Integer))
+    }
+    return [process: process, facilities: facilities, entities: entities, currentEntities: currentEntities]
   }
 
   def updateProcess = {
