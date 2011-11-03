@@ -12,26 +12,26 @@
 <div class="boxGray">
   <div class="second">
 
-  <g:hasErrors bean="${postInstance}">
+  <g:hasErrors bean="${news}">
     <div class="errors">
-      <g:renderErrors bean="${postInstance}" as="list"/>
+      <g:renderErrors bean="${news}" as="list"/>
     </div>
   </g:hasErrors>
 
-  <g:form action="update" id="${postInstance.id}">
+  <g:form action="update" id="${news.id}">
     <div>
 
     <p><span class="strong"><g:message code="title"/></span><br/>
-    <span class="${hasErrors(bean: postInstance, field: 'title', 'errors')}"><g:textField class="countable${postInstance.constraints.title.maxSize}" name="title" style="width: 100%" value="${fieldValue(bean:postInstance,field:'title').decodeHTML()}"/></span></p>
+    <span class="${hasErrors(bean: news, field: 'title', 'errors')}"><g:textField class="countable${news.constraints.title.maxSize}" name="title" style="width: 100%" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/></span></p>
 
-    <p><span class="strong"><g:message code="article.teaser"/></span><br/>
-    <span class="${hasErrors(bean: postInstance, field: 'teaser', 'errors')}"><g:textArea class="countable${postInstance.constraints.teaser.maxSize}" name="teaser" rows="4" cols="10" style="width: 100%" value="${fieldValue(bean:postInstance,field:'teaser').decodeHTML()}"/></span>
-    <br/><span class="gray">(<g:message code="article.teaser.info"/>)</span></p>
+    <p><span class="strong"><g:message code="news.teaser"/></span><br/>
+    <span class="${hasErrors(bean: news, field: 'teaser', 'errors')}"><g:textArea class="countable${news.constraints.teaser.maxSize}" name="teaser" rows="4" cols="10" style="width: 100%" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/></span>
+    <br/><span class="gray">(<g:message code="news.teaser.info"/>)</span></p>
     
     <span class="strong">Inhalt</span>
-    <span class="${hasErrors(bean: postInstance, field: 'content', 'errors')}">
+    <span class="${hasErrors(bean: news, field: 'content', 'errors')}">
       <ckeditor:editor name="content" height="400px" width="700px" toolbar="Basic">
-        ${fieldValue(bean:postInstance,field:'content').decodeHTML()}
+        ${fieldValue(bean:news,field:'content').decodeHTML()}
       </ckeditor:editor>
     </span>
 

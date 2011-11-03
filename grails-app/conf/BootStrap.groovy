@@ -19,7 +19,7 @@ import grails.util.GrailsUtil
 import at.uenterprise.erp.Method
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.WorkdayCategory
-import at.uenterprise.erp.ArticlePost
+import at.uenterprise.erp.News
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Element
 import at.uenterprise.erp.Helper
@@ -626,10 +626,10 @@ class BootStrap {
   }
 
   void createDefaultPosts() {
-    log.info ("creating " + grailsApplication.config.dummies + " posts")
+    log.info ("creating " + grailsApplication.config.dummies + " news")
 
     for ( i in 1..grailsApplication.config.dummies ) {
-      new ArticlePost(title: 'dummyTitle ' + i,
+      new News(title: 'dummyTitle ' + i,
               teaser: 'dummyTeaser ' + i,
               content: 'dummyContent ' + i,
               author: Entity.findByName('educator1')).save(failOnError: true)

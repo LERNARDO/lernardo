@@ -3,19 +3,23 @@ package at.uenterprise.erp
 import at.openfactory.ep.Entity
 
 /**
- * This class represents general posts
+ * This class represents news
  *
  * @author  Alexander Zeillinger
  */
-class Post {
+class News {
 
   static belongsTo = [author: Entity]
 
+  String  title
+  String  teaser
   String  content
   Date    dateCreated
   Date    lastUpdated
 
   static constraints = {
+    title       blank: false, maxSize: 50
+    teaser      blank: true, maxSize: 500
     content     blank: false, maxSize: 20000
     dateCreated nullable: true
     lastUpdated nullable: true

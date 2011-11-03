@@ -8,7 +8,7 @@
 %{--<g:if test="${entity.profile.showTips}">
   <div class="toolTip" id="tooltip">
     <div class="second">
-      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> <g:message code="tooltip.news"/>
+      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> <g:message code="tooltip.events"/>
       <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
     </div>
   </div>
@@ -84,14 +84,14 @@
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
       <div class="buttons">
-        <g:form controller="articlePost" action="create">
+        <g:form controller="news" action="create">
           <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'news')])}"/></div>
           <div class="spacer"></div>
         </g:form>
       </div>
     </erp:accessCheck>
 
-    <div id="article-container">
+    <div id="news-container">
       <g:render template="newsitems" model="[news: news, newsCount: newsCount, currentEntity: currentEntity]"/>
     </div>
 

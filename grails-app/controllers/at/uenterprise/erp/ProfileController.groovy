@@ -162,7 +162,6 @@ class ProfileController {
    * shows the news page listing events
    */
   def news = {
-    params.max = 2
     Entity entity = Entity.get(params.id)
 
     Calendar calendar = Calendar.getInstance()
@@ -179,35 +178,35 @@ class ProfileController {
     calendar.add(Calendar.DATE, 2)
     List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
 
-    List news = ArticlePost.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
+    List news = News.list([max: 2, sort: "dateCreated", order: "desc", offset: params.offset])
 
     return ['entity': entity,
             'eventsToday': eventsToday,
             'eventsYesterday': eventsYesterday,
             'eventsTomorrow': eventsTomorrow,
             'news': news,
-            'newsCount': ArticlePost.count()]
+            'newsCount': News.count()]
   }
 
   def getNews = {
     params.max = 2
-    List news = ArticlePost.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
+    List news = News.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
 
-    render template: "newsitems", model: [news: news, newsCount: ArticlePost.count(), currentEntity: entityHelperService.loggedIn]
+    render template: "newsitems", model: [news: news, newsCount: News.count(), currentEntity: entityHelperService.loggedIn]
   }
 
   /*
-   * shows a list of articles the entity has contributed to the front page
+   * shows a list of news the entity has contributed
    */
-  def showArticleList = {
+  def showNewsList = {
     params.offset = params.offset ? params.int('offset') : 0
     params.max = params.max ? params.int('max') : 10
 
     Entity entity = Entity.get(params.id)
-    List articles = ArticlePost.findAllByAuthor(entity, params)
+    List news = News.findAllByAuthor(entity, params)
     return ['entity': entity,
-            'articleList': articles,
-            'articleCount': articles.size()]
+            'news': news,
+            'newsCount': news.size()]
   }
 
   /*

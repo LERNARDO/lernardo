@@ -9,7 +9,7 @@ import at.uenterprise.erp.CDate
 import at.uenterprise.erp.MetaDataService
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Post
+import at.uenterprise.erp.News
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.WorkdayCategory
 import java.util.regex.Pattern
@@ -76,7 +76,7 @@ class EducatorProfileController {
       Event.findAllByWhoOrWhat(educator.id.toInteger(), educator.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(educator, educator).each {it.delete()}
       Msg.findAllBySenderOrReceiver(educator, educator).each {it.delete()}
-      Post.findByAuthor(educator).each {it.delete()}
+      News.findByAuthor(educator).each {it.delete()}
       Publication.findAllByEntity(educator).each {it.delete()}
       Evaluation.findByOwnerOrWriter(educator, educator).each {it.delete()}
       Comment.findAllByCreator(educator.id.toInteger()).each { Comment comment ->

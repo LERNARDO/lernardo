@@ -13,7 +13,7 @@ import at.uenterprise.erp.Performances
 import at.uenterprise.erp.Healths
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Post
+import at.uenterprise.erp.News
 import at.uenterprise.erp.Publication
 import at.uenterprise.erp.Collector
 import at.uenterprise.erp.Contact
@@ -84,7 +84,7 @@ class ClientProfileController {
       Event.findAllByWhoOrWhat(client.id.toInteger(), client.id.toInteger()).each {it.delete()}
       Link.findAllBySourceOrTarget(client, client).each {it.delete()}
       Msg.findAllBySenderOrReceiver(client, client).each {it.delete()}
-      Post.findAllByAuthor(client).each {it.delete()}
+      News.findAllByAuthor(client).each {it.delete()}
       Publication.findAllByEntity(client).each {it.delete()}
       Evaluation.findByOwnerOrWriter(client, client).each {it.delete()}
       Comment.findAllByCreator(client.id.toInteger()).each { Comment comment ->

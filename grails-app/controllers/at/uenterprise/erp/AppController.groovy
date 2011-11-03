@@ -313,7 +313,7 @@ class AppController {
    * this is the public start
    */
   def home = {
-    //redirect controller: 'articlePost', action: 'index'
+    //redirect controller: 'news', action: 'index'
     redirect controller: "static", action: "start"
   }
 
