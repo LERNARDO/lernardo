@@ -2,8 +2,8 @@
   <p class="italic gray"><g:message code="comment.size.found" args="[comments.size()]"/></p>
   <g:each in="${comments}" var="comment">
     <div class="comment">
-      <erp:getCreator id="${comment.creator}">
-        <g:if test="${creator}">
+      <erp:getCreator id="${comment.key.creator}">
+          <g:if test="${creator}">
             <table>
               <tr>
                 <td style="vertical-align: top">
@@ -22,9 +22,9 @@
                   </erp:accessCheck>--}%
                   <div class="infobar">
                     <span class="gray"><g:message code="from"/> <span class="name"><g:link controller="${creator.type.supertype.name +'Profile'}" action="show" id="${creator.id}" params="[entity:creator.id]">${creator.profile.fullName}</g:link></span>
-                    <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></span>
+                    <g:message code="atDate"/> <g:formatDate format="dd. MM. yyyy, HH:mm" date="${comment.key.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> zu <g:link controller="${comment.value.type.supertype.name +'Profile'}" action="show" id="${comment.value.id}" params="[entity:comment.value.id]">${comment.value.profile.fullName}</g:link></span>
                   </div>
-                  <div class="content">${comment.content.decodeHTML()}</div>
+                  <div class="content">${comment.key.content.decodeHTML()}</div>
                 </td>
               </tr>
             </table>

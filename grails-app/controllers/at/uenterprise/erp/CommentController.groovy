@@ -60,7 +60,6 @@ class CommentController {
     Date dateFrom = Date.parse("dd. MM. yy", params.dateFrom)
     Date dateTo = Date.parse("dd. MM. yy", params.dateTo) + 1
 
-    List comments = []
     List entities = []
 
     if (params.activitytemplates)
@@ -76,14 +75,16 @@ class CommentController {
     if (params.projects)
       entities.addAll(Entity.findAllByType(metaDataService.etProject))
 
+    Map comments = [:]
+
     entities.each { Entity entity ->
       entity.profile.comments.each { Comment comment ->
         if (comment.dateCreated >= dateFrom && comment.dateCreated <= dateTo) {
-          comments.add(comment)
+          comments.put(comment, entity)
         }
       }
     }
-
+      
     render template: 'results', model: [comments: comments]
 
   }
