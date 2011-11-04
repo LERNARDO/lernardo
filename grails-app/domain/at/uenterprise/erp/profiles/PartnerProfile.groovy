@@ -14,6 +14,7 @@ class PartnerProfile extends Profile {
   static hasMany = [contacts: Contact,
                     services: String]
 
+  String    color
   ECalendar calendar
   String    description
   String    country
@@ -32,6 +33,7 @@ class PartnerProfile extends Profile {
     street      size: 2..50, maxSize: 50
     phone       size: 2..20
     website     blank: true, size: 2..50
+    color       nullable: true
   }
 
   String toString() {

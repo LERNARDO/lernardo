@@ -242,6 +242,9 @@
                 <g:message code="showTips"/>
                 <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
               </td>
+              <td>
+                <g:textField name="color" value="${educator.profile.color ?: '#FFFFFF'}" class="kolorPicker"/>
+              </td>
             </tr>
           </table>
         </div>

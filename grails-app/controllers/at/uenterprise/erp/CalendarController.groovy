@@ -70,7 +70,7 @@ class CalendarController {
 
       if (facility) {
         // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking) // false IntelliJ warning
+        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
       }
     }
     else
@@ -98,8 +98,7 @@ class CalendarController {
         println "ENTITY: " + entity
 
         List educators = Entity.findAllByType(metaDataService.etEducator)
-        int index = educators.indexOf(ed.toInteger())
-        def color = grailsApplication.config.colors[index]
+        def color = entity.profile.color ?: '#aaa'
 
         // get all appointments
         eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
@@ -200,10 +199,7 @@ class CalendarController {
     //log.info currentEntity
     //log.info entity
 
-    List educators = Entity.findAllByType(metaDataService.etEducator)
-    int index = educators.indexOf(entity)
-    def color = grailsApplication.config.colors[index] ?: '#000000'
-    //log.info color
+    def color = entity.profile.color ?: '#aaa'
 
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
@@ -245,7 +241,7 @@ class CalendarController {
 
       if (facility) {
         // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking) // false IntelliJ warning
+        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
       }
     }
     else
@@ -260,6 +256,7 @@ class CalendarController {
 
     // get all own appointments
     if (currentEntity.type.id != metaDataService.etEducator.id) {
+      log.info "this should show"
       eventList.addAll(getAppointments(start, end, currentEntity, currentEntity, '#0000ff'))
     }
 
@@ -273,8 +270,7 @@ class CalendarController {
         Entity entity = Entity.get(ed)
 
         educators = Entity.findAllByType(metaDataService.etEducator)
-        int index = educators.indexOf(entity)
-        def color = grailsApplication.config.colors[index] ?: '#000000'
+        def color = entity.profile.color ?: '#aaa'
 
         // get all appointments
         eventList.addAll(getAppointments(start, end, entity, currentEntity, color))

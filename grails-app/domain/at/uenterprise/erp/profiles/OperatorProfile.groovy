@@ -10,6 +10,7 @@ import at.uenterprise.erp.ECalendar
  */
 class OperatorProfile extends Profile {
 
+  String    color
   ECalendar calendar
   String    zip
   String    city
@@ -23,6 +24,7 @@ class OperatorProfile extends Profile {
     description maxSize: 20000
     city        size: 2..50, maxSize: 50
     street      size: 2..50, maxSize: 50
+    color       nullable: true
   }
 
   String toString() {

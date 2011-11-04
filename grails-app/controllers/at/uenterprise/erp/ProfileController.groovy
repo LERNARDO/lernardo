@@ -473,7 +473,6 @@ class NotificationCommand {
 
   Boolean selection
 
-  // TODO: wrong IDE warnings of command object constraints will be gone in IDEA 11, see: http://youtrack.jetbrains.net/issue/IDEA-71680
   static constraints = {
     subject   blank: false
     content   blank: false

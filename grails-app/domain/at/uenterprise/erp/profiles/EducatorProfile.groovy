@@ -18,6 +18,7 @@ class EducatorProfile extends Profile {
                     dates: CDate,
                     workdayunits: WorkdayUnit]
 
+  String color
   ECalendar calendar
   String    title
   String    firstName
@@ -66,8 +67,6 @@ class EducatorProfile extends Profile {
   String bloodType
 
   Boolean showTips = true
-
-  String color
 
   static constraints = {
     fullName        blank: true, size: 1..100, maxSize: 100

@@ -17,6 +17,7 @@ import at.uenterprise.erp.ECalendar
 import at.uenterprise.erp.Comment
 import at.uenterprise.erp.Evaluation
 import at.uenterprise.erp.Event
+import java.awt.Color
 
 class EducatorProfileController {
   MetaDataService metaDataService

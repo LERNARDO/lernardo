@@ -10,6 +10,7 @@ import at.uenterprise.erp.ECalendar
  */
 class UserProfile extends Profile {
 
+  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -19,6 +20,7 @@ class UserProfile extends Profile {
     fullName  blank: true, size: 1..100, maxSize: 100
     firstName blank: false, maxSize: 50
     lastName  blank: false, maxSize: 50
+    color     nullable: true
   }
 
   String toString() {

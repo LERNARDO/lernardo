@@ -28,6 +28,7 @@ class ClientProfile extends Profile {
                     collectors: Collector,
                     contacts: Contact]
 
+  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -94,6 +95,7 @@ class ClientProfile extends Profile {
     familyStatus          nullable: true
     job                   nullable: true
     school                nullable: true
+    color                 nullable: true
   }
 
   String toString() {

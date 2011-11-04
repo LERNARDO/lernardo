@@ -242,9 +242,12 @@
                 <g:message code="email"/>:
                 <g:textField class="${hasErrors(bean: educator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: educator, field: 'user.email')}"/>
               </td>
-              <td>
+              <td width="400" valign="middle">
                 <g:message code="languageSelection"/>:
                 <erp:localeSelect class="drop-down-200" name="locale" value="${educator?.user?.locale}"/>
+              </td>
+              <td>
+                <g:textField name="color" value="#FFFFFF" class="kolorPicker"/>
               </td>
             </tr>
           </table>

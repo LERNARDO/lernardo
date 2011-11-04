@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssfonts/fonts.css" type="text/css">
   <link rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css" type="text/css">
   <link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.qtip.min.css')}" type="text/css">
+  <link rel="stylesheet" href="${resource(dir: 'css', file: 'kolorpicker.css')}" type="text/css">
   <g:set var="customer" value="${grailsApplication.config.customer}"/>
   <less:stylesheet name="common" />
   <less:stylesheet name="${customer}" />
@@ -21,6 +22,7 @@
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.periodicalupdater.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.qtip.min.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}" type="text/javascript"></script>
 
   <script type="text/javascript">
     // TODO: the following custom JavaScript functions have to be defined here else Chrome 10 and IE 9 are not able to find them, find out why..

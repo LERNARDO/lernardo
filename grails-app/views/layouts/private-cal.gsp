@@ -16,20 +16,8 @@
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <g:javascript src="jquery/fullcalendar.min.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">
-  %{--<g:javascript src="jquery/jquery.miniColors.min.js"/>
-  <link rel="stylesheet" href="${resource(dir:'css',file:'jquery.miniColors.css')}"/>--}%
 
   <script type="text/javascript">
-    /*$(document).ready( function() {
-      $(".colors").miniColors({
-
-            change: function(hex, rgb) {
-              $("#console").prepend('HEX: ' + hex + ' (RGB: ' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')<br />');
-            }
-
-          });
-    });*/
-
     // hides an element
     hideform = function(id) {
       $(id).hide('slow');
@@ -119,7 +107,7 @@
                 <div class="calendereducator">
                   <table style="width: 100%;">
                     <tr>
-                      <td style="height: 21px"><a style="display: block; color: #000; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" align="top" onload="showInitialEvents('${educator.id}','${i}','${active}');"/> <erp:truncate string="${educator.profile.fullName}"/></a><div id="educatorcolor${i}" style="background: ${grailsApplication.config.colors[i]}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></td>
+                      <td style="height: 21px"><a style="display: block; color: #000; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" align="top" onload="showInitialEvents('${educator.id}','${i}','${active}');"/> <erp:truncate string="${educator.profile.fullName}"/></a><div id="educatorcolor${i}" style="background: ${educator.profile.color ?: '#aaa'}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></td>
                       %{--<td><g:hiddenField name="color" class="colors" size="7" value="${educator?.profile?.color}"/></td>--}%
                     </tr>
                   </table>
@@ -131,6 +119,9 @@
         </div>
         <p>
           <g:checkBox name="showThemes" value="${currentEntity.profile.calendar.showThemes}" onclick="toggleThemes()"/> Zeige Themen
+        </p>
+        <p>
+          <g:checkBox name="showMyAppointments" onclick="togglePerson('${currentEntity.id}','-1');"/> Zeige meine Termine
         </p>
         <div id="console" style="width: 200px; background: #000; color: #fff;"></div>
       </div>
@@ -153,7 +144,6 @@
 <script type="text/javascript">
 
   showInitialEvents = function(id, i, active){
-    //ftoggle('#educatorcolor' + i);
     if (active == "true")
       $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
   };

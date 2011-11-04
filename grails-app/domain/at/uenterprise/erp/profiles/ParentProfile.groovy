@@ -13,6 +13,7 @@ class ParentProfile extends Profile {
   static hasMany = [languages: String,
                     jobtypes: String]
 
+  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -57,6 +58,7 @@ class ParentProfile extends Profile {
     phone                 nullable: true
     citizenship           nullable: true
     birthDate             nullable: true
+    color                 nullable: true
   }
 
   String toString() {
