@@ -55,7 +55,7 @@
 
       <div class="buttons">
         <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="Speichern"/></div>
-        <g:link class="buttonRed" action="del" id="${evaluationInstance.id}" params="[name:entity.name]" onclick="return confirm('${message(code:'delete.warn')}');"><g:message code="delete"/></g:link>
+        <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="return confirm('${message(code:'delete.warn')}');"/></div>
         <g:link class="buttonGray" action="list" id="${entity.id}"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>

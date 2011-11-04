@@ -179,7 +179,7 @@ class EvaluationController {
 
   }
 
-  def del = {
+  def delete = {
     Evaluation evaluationInstance = Evaluation.get(params.id)
 
     Entity entity = evaluationInstance.owner
