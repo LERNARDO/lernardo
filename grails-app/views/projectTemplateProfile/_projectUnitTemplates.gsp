@@ -17,8 +17,15 @@
 
         <g:message code="search"/>:<br/>
         %{--TODO: this uses a custom tag because the official implementation is broken with jQuery when using params, see: http://jira.codehaus.org/browse/GRAILS-2512--}%
-        <erp:remoteField size="40" name="remoteField${i}" update="remoteGroupActivityTemplate${i}" action="remoteGroupActivityTemplate" id="${projectUnitTemplate.id}" params="[i: i, projectTemplate: projectTemplate.id]" before="showspinner('#remoteGroupActivityTemplate')"/>
+        <erp:remoteField size="40" name="remoteField${i}" update="remoteGroupActivityTemplate${i}" action="remoteGroupActivityTemplate" id="${projectUnitTemplate.id}" params="[i: i, projectTemplate: projectTemplate.id]" before="showspinner('#remoteGroupActivityTemplate')"/><br/>
         %{--<g:remoteField size="40" name="remoteField${i}" update="remoteGroupActivityTemplate${i}" action="remoteGroupActivityTemplate" id="${projectUnitTemplate.id}" params="[i: i, projectTemplate: projectTemplate.id]" before="showspinner('#remoteGroupActivityTemplate')"/>--}%
+
+        <g:message code="labels"/>:<br/>
+        <g:formRemote name="bla" url="[action: 'remoteGroupActivityTemplateByLabel', id: projectUnitTemplate.id, params: [i: i, projectTemplate: projectTemplate.id]]" update="remoteGroupActivityTemplate${i}">
+            <g:select from="${allLabels}" multiple="true" name="labels" value="" style="min-height: 115px;"/>
+            <g:submitButton name="bla" value="OK"/>
+        </g:formRemote>
+
         <div id="remoteGroupActivityTemplate${i}"></div>
 
       </div>

@@ -666,6 +666,34 @@ def updateselect = {
                                               name: params.name])
   }
 
+   def remoteGroupActivityTemplateByLabel = {
+     List labels = params.list('labels')
+     
+     List results = []
+
+     List groupActivityTemplates = Entity.createCriteria().list {
+       eq("type", metaDataService.etGroupActivityTemplate)
+       profile {
+         eq("status", "done")
+       }
+     }
+     
+     labels.each { String label ->
+       groupActivityTemplates.each { Entity gat ->
+         if (gat.profile.labels.find {it.name == label})
+           results.add(gat)
+       }
+     }
+     
+     if (results.size() == 0) {
+       render '<span class="italic">'+message(code:'noResultsFound')+'</span>'
+       return
+     }
+     else {
+       render(template: 'groupactivitytemplateresults', model: [results: results, projectUnitTemplate: params.id, i: params.i, projectTemplate: params.projectTemplate])
+     }
+   }
+
 }
 
 
