@@ -1,5 +1,5 @@
 grails.project.plugins.dir="./plugins"
-/* grails.plugin.location.ubase="./plugins/ubase" */
+grails.plugin.location.obase = "./plugins/obase-2.0"
 
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
