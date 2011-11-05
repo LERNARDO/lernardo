@@ -76,7 +76,9 @@ class CalendarController {
 
     educators = educators.sort() {it.profile.firstName}
 
-    return ['educators': educators]
+    List operators = Entity.findAllByType(metaDataService.etOperator)
+
+    return [educators: educators, operators: operators]
   }
 
   def sort = {
@@ -101,49 +103,7 @@ class CalendarController {
     render template: 'educators', model: ['educators': educators]
   }
 
-  def getsources = {
-    //Entity currentEntity = entityHelperService.loggedIn
-
-    def start = new Date()
-    start.setTime(params.long('start') * 1000)
-
-    def end = new Date()
-    end.setTime(params.long('end') * 1000)
-
-    //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
-    List eventList = []
-
-    /* if (visibleEducators) {
-      visibleEducators.each { ed ->
-
-        Entity entity = Entity.get(ed.toInteger())
-        println "ENTITY: " + entity
-
-        List educators = Entity.findAllByType(metaDataService.etEducator)
-        def color = entity.profile.color ?: '#aaa'
-
-        // get all appointments
-        eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
-
-        // get all group activities the educator is part of
-        eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
-
-        // get all themeroom activities the educator is part of
-        eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
-
-        // get all project units the educator is part of
-        eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
-
-      }
-    }*/
-
-    def json = eventList as JSON
-    render json
-  }
-
-  def addOrRemove = {
-    //log.info params
-    //log.info "toggling"
+  def togglePersonInCal = {
     ECalendar.withTransaction {
     def result
 
@@ -164,15 +124,11 @@ class CalendarController {
       result = "true"
     }
 
-
-    //currentEntity.save(flush: true)
-
-
     render result
     }
   }
 
-  def toggleT = {
+  def toggleThemesInCal = {
     def result
 
     Entity currentEntity = entityHelperService.loggedIn
@@ -238,76 +194,6 @@ class CalendarController {
     // get all project units the educator is part of
     eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
     //log.info eventList
-
-    def json = eventList as JSON
-    render json
-  }
-
-  /*
-   * retrieves the entries to display in the calendar
-   */
-  def events = {
-    def start = new Date()
-    start.setTime(params.long('start') * 1000)
-
-    def end = new Date()
-    end.setTime(params.long('end') * 1000)
-
-    Entity currentEntity = entityHelperService.loggedIn
-
-    List educators = []
-
-    if (currentEntity.type.name == metaDataService.etEducator) {
-      // find facility the educator is working for
-      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
-
-      if (facility) {
-        // find all educators working in that facility
-        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
-      }
-    }
-    else
-      educators = Entity.findAllByType(metaDataService.etEducator)
-
-    if (params.visibleEducators)
-      params.visibleEducators = params.list('visibleEducators')
-
-    // get events
-
-    def eventList = []
-
-    // get all own appointments
-    if (currentEntity.type.id != metaDataService.etEducator.id) {
-      log.info "this should show"
-      eventList.addAll(getAppointments(start, end, currentEntity, currentEntity, '#0000ff'))
-    }
-
-    // get all themes
-    if (currentEntity.profile.calendar.showThemes) {
-        eventList.addAll(getThemes(start, end, currentEntity, currentEntity, '#000000'))
-    }
-
-    if (params.visibleEducators) {
-      params.visibleEducators.each { ed ->
-        Entity entity = Entity.get(ed)
-
-        educators = Entity.findAllByType(metaDataService.etEducator)
-        def color = entity.profile.color ?: '#aaa'
-
-        // get all appointments
-        eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
-
-        // get all group activities the educator is part of
-        eventList.addAll(getGroupActivities(start, end, entity, currentEntity, color))
-
-        // get all themeroom activities the educator is part of
-        eventList.addAll(getThemeRoomActivities(start, end, entity, currentEntity, color))
-
-        // get all project units the educator is part of
-        eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
-
-      }
-    }
 
     def json = eventList as JSON
     render json

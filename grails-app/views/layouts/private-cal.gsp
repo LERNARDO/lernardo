@@ -130,7 +130,31 @@
     
         <div style="border-bottom: 1px solid #ddd; margin: 5px 0;"></div>
 
-        <div style="margin-top: 10px; font-size: 12px;">
+        <div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="operators"/></div>
+
+        <g:each in="${operators}" var="operator" status="i">
+          <erp:getActiveCalPerson id="${operator.id}">
+            <div class="calenderperson">
+              <table style="width: 100%;">
+                <tr>
+                  <td>
+                    <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${operator.id}','${i}'); return false;">
+                      <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${operator.id}','${i}','${active}');"/>
+                      <div id="personcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${operator.profile.color ?: '#ccc'}; background-color: ${operator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${operator.profile.fullName}"/></div>
+                      <div id="personcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${operator.profile.fullName}"/></div>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </erp:getActiveCalPerson>
+        </g:each>
+
+        <div style="border-bottom: 1px solid #ddd; margin: 5px 0;"></div>
+
+        <div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="educators"/></div>
+
+        <div style="margin: 10px 0 0 8px; font-size: 12px;">
           <g:formRemote name="form" url="[controller: 'calendar', action: 'sort']" update="results">
             <g:select name="sort" from="['first', 'last']" valueMessagePrefix="sortBy"/>
           </g:formRemote>
@@ -197,7 +221,7 @@
     $('#personcolor' + i + '-2').toggle();
 
     $.ajax({
-      url: '${createLink (controller: "calendar", action: "addOrRemove")}',
+      url: '${createLink (controller: "calendar", action: "togglePersonInCal")}',
       dataType: 'text',
       data: "id="+id,
       success: function(result) {
@@ -219,7 +243,7 @@
     $('#theme2').toggle();
 
     $.ajax({
-      url: '${createLink (controller: "calendar", action: "toggleT")}',
+      url: '${createLink (controller: "calendar", action: "toggleThemesInCal")}',
       dataType: 'text',
       success: function(result) {
         if (result == "true") {
