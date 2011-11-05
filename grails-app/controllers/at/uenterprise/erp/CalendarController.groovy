@@ -60,8 +60,6 @@ class CalendarController {
   def show = {
     Entity currentEntity = entityHelperService.loggedIn
 
-    //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
-
     List educators = []
 
     if (currentEntity.type.name == metaDataService.etEducator) {
@@ -76,7 +74,31 @@ class CalendarController {
     else
       educators = Entity.findAllByType(metaDataService.etEducator)
 
+    educators = educators.sort() {it.profile.firstName}
+
     return ['educators': educators]
+  }
+
+  def sort = {
+    Entity currentEntity = entityHelperService.loggedIn
+
+    List educators = []
+
+    if (currentEntity.type.name == metaDataService.etEducator) {
+      // find facility the educator is working for
+      def facility = functionService.findByLink(currentEntity, null, metaDataService.ltWorking)
+
+      if (facility) {
+        // find all educators working in that facility
+        educators = functionService.findAllByLink(null, facility, metaDataService.ltWorking)
+      }
+    }
+    else
+      educators = Entity.findAllByType(metaDataService.etEducator)
+    
+    educators = educators.sort() {params.sort == "first" ? it.profile.firstName : it.profile.lastName}
+
+    render template: 'educators', model: ['educators': educators]
   }
 
   def getsources = {

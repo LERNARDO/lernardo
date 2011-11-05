@@ -43,6 +43,9 @@
               <g:message code="languageSelection"/>:
               <erp:localeSelect class="drop-down-200" name="locale" value="${user?.user?.locale}"/>
             </td>
+            <td>
+              <g:textField name="color" value="#FFFFFF" class="kolorPicker"/>
+            </td>
           </tr>
 
         </table>

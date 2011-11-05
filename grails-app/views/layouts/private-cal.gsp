@@ -43,9 +43,10 @@
       $(id).toggle(400);
     };
 
-    // fadetoggle element
-    ftoggle = function(id) {
-      $(id).fadeToggle(400);
+    // toggle elements
+    newtoggle = function(id) {
+      $('#personcolor' + id).toggle();
+      $('#personcolor' + id + '-2').toggle();
     };
 
     clearElements = function(elements) {
@@ -95,35 +96,73 @@
       </g:if>
 
       <div class="yui3-u" id="cal-left">
-        <div class="boxHeader">
-          <div class="second">
-            <h1><g:message code="educators"/></h1>
+        
+        <div style="font-size: 18px; margin: 0 0 10px 10px;"><g:message code="imgmenu.calendar.name"/></div>
+
+        <erp:getActiveCalPerson id="${currentEntity.id}">
+          <div class="calenderperson">
+            <table style="width: 100%;">
+              <tr>
+                <td>
+                  <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${currentEntity.id}','-1'); return false;">
+                    <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${currentEntity.id}','${i}','${active}');"/>
+                    <div id="personcolor-1" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${currentEntity.profile.color ?: '#ccc'}; background-color: ${currentEntity.profile.color ?: '#ccc'};"></div> <erp:truncate string="${currentEntity.profile.fullName}"/></div>
+                    <div id="personcolor-1-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${currentEntity.profile.fullName}"/></div>
+                  </a>
+                </td>
+              </tr>
+            </table>
           </div>
+        </erp:getActiveCalPerson>
+        <div class="calenderperson">
+          <table style="width: 100%;">
+            <tr>
+              <td>
+                <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); toggleThemes(); return false;">
+                  <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialThemes('${currentEntity.profile.calendar.showThemes}');"/>
+                  <div id="theme1" style="display: ${currentEntity.profile.calendar.showThemes ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #000; background-color: #000;"></div> <g:message code="themes"/></div>
+                  <div id="theme2" style="display: ${currentEntity.profile.calendar.showThemes ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <g:message code="themes"/></div>
+                </a>
+              </td>
+            </tr>
+          </table>
         </div>
-        <div class="boxGray">
-          <div class="second">
-            <g:each in="${educators}" var="educator" status="i">
-              <erp:getActiveEducator id="${educator.id}">
-                <div class="calendereducator">
-                  <table style="width: 100%;">
-                    <tr>
-                      <td style="height: 21px"><a style="display: block; color: #000; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;"><img src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" align="top" onload="showInitialEvents('${educator.id}','${i}','${active}');"/> <erp:truncate string="${educator.profile.fullName}"/></a><div id="educatorcolor${i}" style="background: ${educator.profile.color ?: '#aaa'}; display: ${active ? 'block' : 'none'}; height: 22px; margin: -22px 0 0 0;"></div></td>
-                      %{--<td><g:hiddenField name="color" class="colors" size="7" value="${educator?.profile?.color}"/></td>--}%
-                    </tr>
-                  </table>
-                </div>
-              </erp:getActiveEducator>
-            </g:each>
-            <div class="clear"></div>
-          </div>
+    
+        <div style="border-bottom: 1px solid #ddd; margin: 5px 0;"></div>
+
+        <div style="margin-top: 10px; font-size: 12px;">
+          <g:formRemote name="form" url="[controller: 'calendar', action: 'sort']" update="results">
+            <g:select name="sort" from="['first', 'last']" valueMessagePrefix="sortBy"/>
+          </g:formRemote>
+
+          <script type="text/javascript">
+            $("select[name=sort]").change(function() {
+              $("form[id=form]").submit();
+            });
+          </script>
+
         </div>
-        <p>
-          <g:checkBox name="showThemes" value="${currentEntity.profile.calendar.showThemes}" onclick="toggleThemes()"/> Zeige Themen
-        </p>
-        <p>
-          <g:checkBox name="showMyAppointments" onclick="togglePerson('${currentEntity.id}','-1');"/> Zeige meine Termine
-        </p>
-        <div id="console" style="width: 200px; background: #000; color: #fff;"></div>
+
+        <div id="results">
+          <g:each in="${educators}" var="educator" status="i">
+            <erp:getActiveCalPerson id="${educator.id}">
+              <div class="calenderperson">
+                <table style="width: 100%;">
+                  <tr>
+                    <td>
+                      <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;">
+                        <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${educator.id}','${i}','${active}');"/>
+                        <div id="personcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${educator.profile.color ?: '#ccc'}; background-color: ${educator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
+                        <div id="personcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </erp:getActiveCalPerson>
+          </g:each>
+        </div>
+        <div class="clear"></div>
       </div>
       <div class="yui3-u" id="main">
         <div id="private-content">
@@ -145,23 +184,29 @@
 
   showInitialEvents = function(id, i, active){
     if (active == "true")
-      $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+      $('.cal').fullCalendar('addEventSource', '${createLink (controller: "calendar", action: "togglePerson")}?id='+id);
   };
 
+  showInitialThemes = function(active){
+      if (active == "true")
+        $('.cal').fullCalendar('addEventSource', '${createLink (controller: "calendar", action: "toggleThemes")}');
+    };
+
   togglePerson = function(id, i){
-    ftoggle('#educatorcolor' + i);
+    $('#personcolor' + i).toggle();
+    $('#personcolor' + i + '-2').toggle();
 
     $.ajax({
-      url: '${createLink (controller:"calendar", action:"addOrRemove")}',
+      url: '${createLink (controller: "calendar", action: "addOrRemove")}',
       dataType: 'text',
       data: "id="+id,
       success: function(result) {
         if (result == "true") {
-          $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+          $('.cal').fullCalendar('addEventSource', '${createLink (controller: "calendar", action: "togglePerson")}?id='+id);
           hideBigSpinner();
         }
         else if (result == "false") {
-          $('.cal').fullCalendar('removeEventSource', '${createLink (controller:"calendar", action:"togglePerson")}?id='+id);
+          $('.cal').fullCalendar('removeEventSource', '${createLink (controller: "calendar", action: "togglePerson")}?id='+id);
           hideBigSpinner();
         }
       }
@@ -170,17 +215,19 @@
   };
 
   toggleThemes = function(){
+    $('#theme1').toggle();
+    $('#theme2').toggle();
 
     $.ajax({
-      url: '${createLink (controller:"calendar", action:"toggleT")}',
+      url: '${createLink (controller: "calendar", action: "toggleT")}',
       dataType: 'text',
       success: function(result) {
         if (result == "true") {
-          $('.cal').fullCalendar('addEventSource', '${createLink (controller:"calendar", action:"toggleThemes")}');
+          $('.cal').fullCalendar('addEventSource', '${createLink (controller: "calendar", action: "toggleThemes")}');
           hideBigSpinner();
         }
         else if (result == "false") {
-          $('.cal').fullCalendar('removeEventSource', '${createLink (controller:"calendar", action:"toggleThemes")}');
+          $('.cal').fullCalendar('removeEventSource', '${createLink (controller: "calendar", action: "toggleThemes")}');
           hideBigSpinner();
         }
       }

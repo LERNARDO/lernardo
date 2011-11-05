@@ -7,16 +7,9 @@
 
 <div id="caltip"></div>
 
-  <div class="boxHeader">
-    <div class="second">
-      <h1><g:message code="imgmenu.calendar.name"/></h1>
-    </div>
-  </div>
-  <div class="boxGray">
-    <div class="second cal" id="calendar">
-        <g:render template="calendar"/>
-    </div>
-  </div>
+<div class="cal" style="margin: 0 0 15px 0;" id="calendar">
+  <g:render template="calendar"/>
+</div>
 
 </body>
 

@@ -1812,18 +1812,13 @@ class HelperTagLib {
   }
 
   /**
-   * returns if an educator is active in the calendareds list of an entity
+   * returns if a person is active in the calendareds list of an entity
    */
-  def getActiveEducator = {attrs, body ->
-
-    // For some weird reason all but the last element in the list are of type String and the last element is not of type String so both types
-    // need to be checked... WTF Groovy?!?
+  def getActiveCalPerson = {attrs, body ->
 
     Entity currentEntity = entityHelperService.loggedIn
 
     def result = currentEntity.profile.calendar.calendareds.contains(attrs.id.toString())
-
-    //def result = attrs.educators.contains(attrs.id.toString()) || attrs.educators.contains(attrs.id)
 
     out << body(active: result)
   }
