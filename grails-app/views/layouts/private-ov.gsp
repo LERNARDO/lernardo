@@ -72,9 +72,9 @@
       <g:render template="/templates/header"/>
     </div>
 
-    <div style="background: #fff;">
+    %{--<div style="background: #fff;">
       <g:render template="/templates/imagenav"/>
-    </div>
+    </div>--}%
 
     <div class="yui3-g" id="grid-single">
 

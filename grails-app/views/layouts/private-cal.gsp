@@ -83,9 +83,9 @@
       <g:render template="/templates/header"/>
     </div>
 
-    <div style="background: #fff;">
+    %{--<div style="background: #fff;">
       <g:render template="/templates/imagenav"/>
-    </div>
+    </div>--}%
 
     <div class="yui3-g" id="grid-cal">
 
@@ -104,7 +104,7 @@
             <table style="width: 100%;">
               <tr>
                 <td>
-                  <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${currentEntity.id}','-1'); return false;">
+                  <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('person','${currentEntity.id}','-1'); return false;">
                     <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${currentEntity.id}','${i}','${active}');"/>
                     <div id="personcolor-1" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${currentEntity.profile.color ?: '#ccc'}; background-color: ${currentEntity.profile.color ?: '#ccc'};"></div> <erp:truncate string="${currentEntity.profile.fullName}"/></div>
                     <div id="personcolor-1-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${currentEntity.profile.fullName}"/></div>
@@ -138,10 +138,10 @@
               <table style="width: 100%;">
                 <tr>
                   <td>
-                    <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${operator.id}','${i}'); return false;">
+                    <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('operator','${operator.id}','${i}'); return false;">
                       <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${operator.id}','${i}','${active}');"/>
-                      <div id="personcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${operator.profile.color ?: '#ccc'}; background-color: ${operator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${operator.profile.fullName}"/></div>
-                      <div id="personcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${operator.profile.fullName}"/></div>
+                      <div id="operatorcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${operator.profile.color ?: '#ccc'}; background-color: ${operator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${operator.profile.fullName}"/></div>
+                      <div id="operatorcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${operator.profile.fullName}"/></div>
                     </a>
                   </td>
                 </tr>
@@ -174,7 +174,7 @@
                 <table style="width: 100%;">
                   <tr>
                     <td>
-                      <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;">
+                      <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('person','${educator.id}','${i}'); return false;">
                         <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${educator.id}','${i}','${active}');"/>
                         <div id="personcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${educator.profile.color ?: '#ccc'}; background-color: ${educator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
                         <div id="personcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
@@ -216,9 +216,9 @@
         $('.cal').fullCalendar('addEventSource', '${createLink (controller: "calendar", action: "toggleThemes")}');
     };
 
-  togglePerson = function(id, i){
-    $('#personcolor' + i).toggle();
-    $('#personcolor' + i + '-2').toggle();
+  togglePerson = function(element, id, i){
+    $('#' + element + 'color' + i).toggle();
+    $('#' + element + 'color' + i + '-2').toggle();
 
     $.ajax({
       url: '${createLink (controller: "calendar", action: "togglePersonInCal")}',

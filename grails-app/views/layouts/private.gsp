@@ -185,9 +185,9 @@
       <g:render template="/templates/header"/>
     </div>
 
-    <div style="background: #fff;">
+    %{--<div style="background: #fff;">
       <g:render template="/templates/imagenav"/>
-    </div>
+    </div>--}%
 
     %{--<div id="bd">--}%
     <div class="yui3-g" id="grid">
@@ -247,30 +247,49 @@
                 </div>
 
                 <div id="inhalt-verwaltung" class="aktiv_inhalt">
+                  <div class="area"><g:message code="organisation"/></div>
+                  <ul>
+                    <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+                      <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}">Logbuch</g:link></li>
+                    </erp:accessCheck>
+                  </ul>
+                  <div class="area"><g:message code="dataCollection"/></div>
                   <ul>
                     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
                       <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>
                     </erp:accessCheck>
                     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-                      <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                       <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
+                      <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
                     </erp:accessCheck>
-                    <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-                      <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}">Logbuch</g:link></li>
-                    </erp:accessCheck>
-                    <hr/>
                     <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
                     <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="clients"/></g:link></li>
                     <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="children"/></g:link></li>
                     <li class="icon-parents"><g:link controller="parentProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="parents"/></g:link></li>
                     <li class="icon-pate"><g:link controller="pateProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="paten"/></g:link></li>
                     <li class="icon-partner"><g:link controller="partnerProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="partners"/></g:link></li>
-                    <hr/>
+                    %{--<hr/>--}%
                     <li class="icon-group"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupFamilies"/></g:link></li>
                     <li class="icon-colony"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupColonies"/></g:link></li>
                     <li class="icon-facility"><g:link controller="facilityProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="facilities"/></g:link></li>
                     <li class="icon-group"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupClients"/></g:link></li>
                     <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupPartners"/></g:link></li>
+                  </ul>
+                  <div class="area"><g:message code="planning"/></div>
+                  <ul>
+                    <li class="icon-admin"><g:link controller="templateProfile" action="index"><g:message code="activityTemplates"/></g:link></li>
+                    <li class="profile-template"><g:link controller="groupActivityTemplateProfile" action="list"><g:message code="groupActivityTemplates"/></g:link></li>
+                    <li class="profile-activities"><g:link controller="groupActivityProfile" action="list"><g:message code="groupActivities"/></g:link></li>
+                    <li class="profile-template"><g:link controller="projectTemplateProfile" action="list"><g:message code="projectTemplates"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="projectProfile" action="list"><g:message code="projects"/></g:link></li>
+                    <li class="profile-activities"><g:link controller="activityProfile" action="list"><g:message code="imgmenu.activity.name"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="themeProfile" action="list"><g:message code="themes"/></g:link></li>
+                  </ul>
+                  <div class="area"><g:message code="other"/></div>
+                  <ul>
+                    <li class="profile-calendar"><g:link controller="calendar" action="show"><g:message code="imgmenu.calendar.name"/></g:link></li>
+                    <li class="icon-admin"><g:link controller="overview" action="index" id="${currentEntity.id}"><g:message code="imgmenu.overview.name"/></g:link></li>
+                    <li class="icon-help"><g:link controller="helper" id="${currentEntity.id}"><g:message code="privat.head.help"/></g:link></li>
                   </ul>
                 </div>
 
@@ -292,19 +311,6 @@
             </ul>
           </div>
         </div>
-
-        %{--<div class="profile-box">
-          <div class="second">
-            <div class="header"><g:message code="privat.head.online"/></div>
-            <ul id="onlineUsers">
-              <erp:getOnlineUsers>
-                <g:each in="${onlineUsers}" var="entity">
-                  <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
-                </g:each>
-              </erp:getOnlineUsers>
-            </ul>
-          </div>
-        </div>--}%
 
       </div>
 

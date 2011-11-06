@@ -34,7 +34,7 @@ body {
 
 #hd {
     height: 87px;
-    background: url(../images/noe/logo.png) #fff no-repeat 15px 15px;
+    background: url(../images/noe/logo.png) lighten(@box-header-gradient-top, 30%) no-repeat 15px 15px; // #fff
     position: relative;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -162,21 +162,34 @@ a {
     margin-bottom: 15px;
     .second {
         padding: 5px;
+        table {
+            width: 100%;
+        }
         .header {
             border-bottom: 1px solid #7b7b7b;
             font-weight: bold;
             padding-bottom: 3px;
             text-align: center;
         }
+        .area {
+            padding: 5px;
+            background: #ddd;
+            color: #333;
+        }
         ul {
-            margin: 3px 0 0 0;
             padding: 0;
             li {
-                list-style-type: none;
                 color: #333;
                 margin: 0;
+                &:hover {
+                    background: lighten(@imagemenu-gradient-top, 25%);
+                }
                 a {
+                    margin-left: 10px;
+                    color: #222;
+                    display: block;
                     &:hover {
+                        color: #000;
                         text-decoration: none;
                     }
                 }
@@ -384,10 +397,6 @@ a {
   padding: 5px;
   background: #fff;
   height: 100px;
-}
-
-.profile-box .second ul li a:hover {
-      color: #29957d !important;
 }
 
 .tabGreen {
