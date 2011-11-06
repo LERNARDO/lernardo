@@ -15,7 +15,7 @@
         <tbody>
 
         <tr class="prop">
-          <td valign="top"  class="name-show"><g:message code="name"/>:</td>
+          <td valign="top" class="name-show"><g:message code="name"/>:</td>
           <td valign="top" width="700" class="value-show"><g:link action="show" id="${operator.id}" params="[entity:operator.id]">${operator.profile.fullName}</g:link></td>
         </tr>
 

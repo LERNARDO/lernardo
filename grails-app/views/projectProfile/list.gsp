@@ -3,18 +3,19 @@
   <title><g:message code="projects"/></title>
 </head>
 <body>
-<div class="tabGrey">
+
+%{--<div class="tabGrey">
   <div class="second">
     <h1><g:link controller="projectTemplateProfile" action="list"><g:message code="projectTemplates"/></g:link></h1>
   </div>
-</div>
+</div>--}%
 
-<div class="tabGreen">
+<div class="boxGreen">
   <div class="second">
     <h1><g:message code="projects"/></h1>
   </div>
 </div>
-<div class="clearFloat"></div>
+%{--<div class="clearFloat"></div>--}%
 <div class="boxGray">
   <div class="second">
 

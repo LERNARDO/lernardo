@@ -4,17 +4,18 @@
 </head>
 <body>
 
-<div class="tabGreen">
+<div class="boxGreen">
   <div class="second">
     <h1><g:message code="groupActivityTemplates"/></h1>
   </div>
 </div>
+%{--
 <div class="tabGrey">
   <div class="second">
     <h1><g:link controller="groupActivityProfile" action="index"><g:message code="groupActivities"/></g:link></h1>
   </div>
 </div>
-<div class="clearFloat"></div>
+<div class="clearFloat"></div>--}%
 
 <div class="boxGray">
   <div class="second">

@@ -97,7 +97,7 @@
 
       <div class="yui3-u" id="cal-left">
         
-        <div style="font-size: 18px; margin: 0 0 10px 10px;"><g:message code="imgmenu.calendar.name"/></div>
+        <h1><g:message code="imgmenu.calendar.name"/></h1>
 
         <erp:getActiveCalPerson id="${currentEntity.id}">
           <div class="calenderperson">

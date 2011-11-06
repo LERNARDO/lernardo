@@ -302,10 +302,10 @@
         <div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="privat.head.online"/></div>
-            <ul id="onlineUsers">
+            <ul>
               <erp:getOnlineUsers>
                 <g:each in="${onlineUsers}" var="entity">
-                  <li><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
+                  <li class="icon-online"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
                 </g:each>
               </erp:getOnlineUsers>
             </ul>

@@ -5,10 +5,10 @@
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1 style="float: left"><g:message code="user"/> - ${user.profile.fullName}</h1>
-    <div class="icons" style="text-align: right;">
+    <h1><g:message code="user"/> - ${user.profile.fullName}</h1>
+    %{--<div class="icons" style="text-align: right;">
       <g:link action="edit" id="${user.id}"><img src="${resource(dir: 'images/icons', file: 'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:link>
-    </div>
+    </div>--}%
   </div>
 </div>
 <div class="boxGray" style="clear: both;">
