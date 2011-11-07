@@ -142,7 +142,7 @@ class HelperTagLib {
 
         totalCosts += costs
 
-        out << '<td>' + participated + 'x/' + total + 'x/' + costs + '€'
+        out << '<td>' + participated + '/' + total + ' - ' + costs + '€'
 
         if (proc.process.costs > 0) {
 
@@ -211,6 +211,8 @@ class HelperTagLib {
 
     Entity currentEntity = entityHelperService.loggedIn
 
+    out << '<p>Die Auswertung zeigt für jeden Betreuten die Anzahl der IST und SOLL Teilnahmen sowie die zu verrechnenden Kosten.</p>'
+    
     out << '<table class="default-table">'
 
     out << '<tr>'
@@ -262,7 +264,7 @@ class HelperTagLib {
 
         totalCosts += costs
 
-        out << '<td>' + participated + 'x/' + total + 'x/' + costs + '€'
+        out << '<td>' + participated + '/' + total + ' - ' + costs + '€'
 
         if (proc.process.costs > 0) {
 
