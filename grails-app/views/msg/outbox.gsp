@@ -4,25 +4,25 @@
 </head>
 <body>
 
-%{--<div class="tabGrey">
+<div class="tabGrey">
   <div class="second">
     <h1><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.inbox"/></g:link></h1>
   </div>
-</div>--}%
-<div class="boxGreen">
+</div>
+<div class="tabGreen">
   <div class="second">
     <h1><g:message code="msg.outbox"/></h1>
   </div>
 </div>
-%{--<div class="clearFloat"></div>--}%
+<div class="clearFloat"></div>
 
 <div class="boxGray">
   <div class="second">
 
-    <div class="buttons">
+    %{--<div class="buttons">
       <g:link class="buttonGreen" controller="msg" action="inbox" id="${entity.id}"><g:message code="msg.inbox"/></g:link>
       <div class="spacer"></div>
-    </div>
+    </div>--}%
 
     <g:if test="${totalMessages == 0}">
       <div class="info-msg">
