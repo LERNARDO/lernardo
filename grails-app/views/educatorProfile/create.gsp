@@ -20,216 +20,230 @@
 
           <tr class="prop">
             <td valign="top" class="name"><g:message code="gender"/></td>
-            <td valign="top" class="name"><g:message code="title"/></td>
-            <td valign="top" class="name"><g:message code="firstName"/></td>
-            <td valign="top" class="name"><g:message code="lastName"/></td>
-            <td valign="top" class="name"><g:message code="birthDate"/></td>
-          </tr>
-
-          <tr>
-            <td width="90" height="35" valign="top" class="value">
+            <td valign="top" class="value">
               <g:select name="gender" from="${['1':message(code:'male'),'2':message(code:'female')]}" value="${fieldValue(bean:educator,field:'profile.gender')}" optionKey="key" optionValue="value"/>
             </td>
-            <td width="120" valign="top" class="value">
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="title"/></td>
+            <td valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.title', 'errors')}" size="15" name="title" value="${fieldValue(bean: educator, field: 'profile.title').decodeHTML()}"/>
             </td>
-            <td width="180" valign="top" class="value">
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="firstName"/></td>
+            <td valign="top" class="value">
               <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: educator, field: 'profile.firstName').decodeHTML()}"/>
             </td>
-            <td width="200" valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="27" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
-            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="lastName"/></td>
             <td valign="top" class="value">
-              <g:textField name="birthDate" size="30" class="datepicker-birthday ${hasErrors(bean: educator, field: 'profile.birthDate', 'errors')}" value="${formatDate(date: educator?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.lastName', 'errors')}" size="25" maxlength="30" name="lastName" value="${fieldValue(bean: educator, field: 'profile.lastName').decodeHTML()}"/>
             </td>
           </tr>
-        </table>
 
-        <table>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="birthDate"/></td>
+            <td valign="top" class="value">
+              <g:textField name="birthDate" class="datepicker-birthday ${hasErrors(bean: educator, field: 'profile.birthDate', 'errors')}" value="${formatDate(date: educator?.profile?.birthDate, format: 'dd. MM. yyyy')}"/>
+            </td>
+          </tr>
 
-          <tr>
-            <td class="name"><g:message code="educator.profile.education"/></td>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="bloodType"/></td>
+            <td valign="top" class="value">
+              <g:select name="bloodType" from="${Setup.list()[0]?.bloodTypes}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
+             </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="educator.profile.education"/></td>
+            <td valign="top" class="value">
+              <g:select name="education" from="${Setup.list()[0]?.educations}" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
             <td valign="top" class="name"><g:message code="educator.profile.employment"/></td>
+            <td valign="top" class="value">
+              <g:select name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}" noSelection="['': message(code: 'none')]"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
             <td valign="top" class="name"><g:message code="educator.profile.enlisted"/></td>
-          </tr>
-
-          <tr>
-            <td width="290" height="35" valign="top" class="value">
-              <g:select class="drop-down-280" name="education" from="${Setup.list()[0]?.educations}" value="${educator?.profile?.education}" noSelection="['': message(code: 'none')]"/>
-            </td>
-            <td width="290" valign="top" class="value">
-              <g:select class="drop-down-280" name="employment" from="${Setup.list()[0]?.employmentStatus}" value="${educator?.profile?.employment}" noSelection="['': message(code: 'none')]"/>
-            </td>
             <td valign="top" class="value">
-              <g:select class="drop-down-240" name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
+              <g:select name="enlisted" from="${partner}" value="" noSelection="['':'kein']" optionKey="id" optionValue="profile"/>
             </td>
           </tr>
 
-          <tr>
+          <tr class="prop">
             <td valign="top" class="name"><g:message code="educator.profile.interests"/></td>
-            <td valign="top" class="name"><g:message code="educator.profile.inChargeOf"/></td>
-            <td valign="top" class="name"><g:message code="educator.profile.languages"/></td>
+            <td valign="top" class="value">
+              <g:textArea rows="3" cols="50" class="countable2000 ${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
+            </td>
           </tr>
 
-          <tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="educator.profile.inChargeOf"/></td>
             <td valign="top" class="value">
-              <g:textArea rows="3" cols="39" class="countable2000 ${hasErrors(bean: educator, field: 'profile.interests', 'errors')}" size="42" name="interests" value="${fieldValue(bean: educator, field: 'profile.interests').decodeHTML()}"/>
+              <g:select name="inChargeOf" multiple="true" from="${Setup.list()[0]?.responsibilities}" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
             </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="educator.profile.languages"/></td>
             <td valign="top" class="value">
-              <g:select class="liste-280" name="inChargeOf" multiple="true" from="${Setup.list()[0]?.responsibilities}" value="${educator?.profile?.inChargeOf}" noSelection="['': message(code: 'none')]"/>
+              <g:select name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
             </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="phone"/> #1</td>
             <td valign="top" class="value">
-              <g:select class="liste-240" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${educator?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.phone1', 'errors')}" size="40" name="phone1" value="${fieldValue(bean: educator, field: 'profile.phone1').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="phone"/> #2</td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.phone2', 'errors')}" size="40" name="phone2" value="${fieldValue(bean: educator, field: 'profile.phone2').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="educator.profile.privMail"/></td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.privEmail', 'errors')}" size="40" name="privEmail" value="${fieldValue(bean: educator, field: 'profile.privEmail').decodeHTML()}"/>
             </td>
           </tr>
 
         </table>
 
         <h4><g:message code="educator.profile.curAddress"/></h4>
-        <div>
-          <table>
+        <table>
 
-            <tr>
-              <td valign="top" class="name"><g:message code="street"/></td>
-              <td valign="top" class="name"><g:message code="zip"/></td>
-              <td valign="top" class="name"><g:message code="city"/></td>
-              <td valign="top" class="name"><g:message code="country"/></td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="street"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="50" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
+            </td>
+          </tr>
 
-            <tr>
-              <td width="280" height="35" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentStreet', 'errors')}" size="41" name="currentStreet" value="${fieldValue(bean: educator, field: 'profile.currentStreet').decodeHTML()}"/>
-              </td>
-              <td width="105" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="12" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
-              </td>
-              <td width="210" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
-              </td>
-              <td valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
-              </td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="zip"/></td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.currentZip', 'errors')}" size="10" name="currentZip" value="${fieldValue(bean: educator, field: 'profile.currentZip').decodeHTML()}"/>
+            </td>
+          </tr>
 
-          </table>
-        </div>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="city"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCity', 'errors')}" size="30" name="currentCity" value="${fieldValue(bean: educator, field: 'profile.currentCity').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="country"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.currentCountry', 'errors')}" size="30" name="currentCountry" value="${fieldValue(bean: educator, field: 'profile.currentCountry').decodeHTML()}"/>
+            </td>
+          </tr>
+
+        </table>
 
         <h4><g:message code="educator.profile.origin"/></h4>
-        <div>
-          <table>
+        <table>
 
-            <tr>
-              <td valign="top" class="name"><g:message code="street"/></td>
-              <td valign="top" class="name"><g:message code="zip"/></td>
-              <td valign="top" class="name"><g:message code="city"/></td>
-              <td valign="top" class="name"><g:message code="country"/></td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="street"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="50" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
+            </td>
+          </tr>
 
-            <tr>
-              <td width="280" height="35" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originStreet', 'errors')}" size="41" name="originStreet" value="${fieldValue(bean: educator, field: 'profile.originStreet').decodeHTML()}"/>
-              </td>
-              <td width="105" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="12" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
-              </td>
-              <td width="210" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
-              </td>
-              <td valign="top" class="value">
-                <g:select name="originCountry" from="${Setup.list()[0]?.nationalities}" value="${educator?.profile?.originCountry}" noSelection="['': message(code: 'unknown')]"/>
-              </td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="zip"/></td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.originZip', 'errors')}" size="10" name="originZip" value="${fieldValue(bean: educator, field: 'profile.originZip').decodeHTML()}"/>
+            </td>
+          </tr>
 
-          </table>
-        </div>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="city"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.originCity', 'errors')}" size="30" name="originCity" value="${fieldValue(bean: educator, field: 'profile.originCity').decodeHTML()}"/>
+            </td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="country"/></td>
+            <td valign="top" class="value">
+              <g:select name="originCountry" from="${Setup.list()[0]?.nationalities}" value="${educator?.profile?.originCountry}" noSelection="['': message(code: 'unknown')]"/>
+            </td>
+          </tr>
+
+        </table>
 
         <h4><g:message code="educator.profile.emContact"/></h4>
-        <div>
-          <table>
+        <table>
 
-            <tr>
-              <td valign="top" class="name"><g:message code="name"/></td>
-              <td valign="top" class="name"><g:message code="street"/></td>
-              <td valign="top" class="name"><g:message code="zip"/></td>
-              <td valign="top" class="name"><g:message code="city"/></td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="name"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactName', 'errors')}" size="50" name="contactName" value="${fieldValue(bean: educator, field: 'profile.contactName').decodeHTML()}"/>
+            </td>
+          </tr>
 
-            <tr>
-              <td width="280" height="35" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactName', 'errors')}" size="30" name="contactName" value="${fieldValue(bean: educator, field: 'profile.contactName').decodeHTML()}"/>
-              </td>
-              <td width="280" height="35" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="41" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
-              </td>
-              <td width="105" valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="12" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
-              </td>
-              <td width="210" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="30" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
-              </td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="street"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactStreet', 'errors')}" size="50" name="contactStreet" value="${fieldValue(bean: educator, field: 'profile.contactStreet').decodeHTML()}"/>
+            </td>
+          </tr>
 
-          </table>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="zip"/></td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: educator, field: 'profile.contactZip', 'errors')}" size="10" name="contactZip" value="${fieldValue(bean: educator, field: 'profile.contactZip').decodeHTML()}"/>
+            </td>
+          </tr>
 
-          <table>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="city"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCity', 'errors')}" size="50" name="contactCity" value="${fieldValue(bean: educator, field: 'profile.contactCity').decodeHTML()}"/>
+            </td>
+          </tr>
 
-            <tr>
-              <td valign="top" class="name"><g:message code="country"/></td>
-              <td valign="top" class="name"><g:message code="phone"/></td>
-              <td valign="top" class="name"><g:message code="email"/></td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="country"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="50" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
+            </td>
+          </tr>
 
-            <tr>
-              <td valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactCountry', 'errors')}" size="30" name="contactCountry" value="${fieldValue(bean: educator, field: 'profile.contactCountry').decodeHTML()}"/>
-              </td>
-              <td width="280" height="35" valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="41" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
-              </td>
-              <td valign="top" class="value">
-                <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="47" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
-              </td>
-            </tr>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="phone"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactPhone', 'errors')}" size="50" name="contactPhone" value="${fieldValue(bean: educator, field: 'profile.contactPhone').decodeHTML()}"/>
+            </td>
+          </tr>
 
-          </table>
-        </div>
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="email"/></td>
+            <td valign="top" class="value">
+              <g:textField class="countable50 ${hasErrors(bean: educator, field: 'profile.contactMail', 'errors')}" size="50" name="contactMail" value="${fieldValue(bean: educator, field: 'profile.contactMail').decodeHTML()}"/>
+            </td>
+          </tr>
 
-        <div>
-          <table>
-
-            <tr>
-              <td valign="top" class="name"><g:message code="phone"/> #1</td>
-              <td valign="top" class="name"><g:message code="phone"/> #2</td>
-              <td valign="top" class="name"><g:message code="educator.profile.privMail"/></td>
-            </tr>
-
-            <tr>
-              <td height="35" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.phone1', 'errors')}" size="40" name="phone1" value="${fieldValue(bean: educator, field: 'profile.phone1').decodeHTML()}"/>
-              </td>
-              <td valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.phone2', 'errors')}" size="40" name="phone2" value="${fieldValue(bean: educator, field: 'profile.phone2').decodeHTML()}"/>
-              </td>
-              <td valign="top" class="value">
-                <g:textField class="${hasErrors(bean: educator, field: 'profile.privEmail', 'errors')}" size="40" name="privEmail" value="${fieldValue(bean: educator, field: 'profile.privEmail').decodeHTML()}"/>
-              </td>
-            </tr>
-
-          </table>
-        </div>
-
-        <div>
-          <table>
-            <tr>
-              <td valign="top" class="name"><g:message code="bloodType"/></td>
-            </tr>
-            <tr>
-              <td valign="top" class="value">
-                <g:select name="bloodType" from="${Setup.list()[0]?.bloodTypes}" value="${educator?.profile?.bloodType}" noSelection="['': message(code: 'none')]"/>
-              </td>
-            </tr>
-          </table>
-        </div>
+        </table>
 
         <div class="email">
           <table>
