@@ -19,6 +19,6 @@ class LogEntry {
     Boolean isChecked = false
 
     static constraints = {
-      comment nullable: true
+      comment nullable: true, maxSize:  20000
     }
 }

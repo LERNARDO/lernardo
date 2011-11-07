@@ -22,8 +22,8 @@ class LogBookController {
 
     LogEntry entry = LogEntry.findByDateAndFacility(date, facility)
 
-    if(!entry) {
-      entry = new LogEntry(date: date, facility: facility).save()
+    //if(!entry) {
+      /*entry = new LogEntry(date: date, facility: facility).save()
 
       // find all clients linked to the facility
       List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
@@ -41,11 +41,53 @@ class LogBookController {
 
         entry.addToAttendees(attendee)
       }
-      entry.save(flush: true)
-    }
+      entry.save(flush: true)*/
+    //}
 
     render createTimeLine(date, facility)
-    render template: "entry", model: [entry: entry]
+
+    if (!entry)
+        render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {'Eintrag anlegen'}}"
+    else
+        render template: "entry", model: [entry: entry, date: params.date, facility: params.facility]
+  }
+
+  def createEntry = {
+    Entity facility = Entity.get(params.facility)
+    Date date = Date.parse("dd. MM. yy", params.date)
+
+    LogEntry entry = new LogEntry(date: date, facility: facility).save()
+
+    // find all clients linked to the facility
+    List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+
+    clients.each { Entity client ->
+      Attendee attendee = new Attendee(client: client).save()
+
+      List processes = Process.list()
+      processes.each { Process process ->
+        if (process.facilities.contains(facility) || process.facilities.size() == 0) {
+          ProcessAttended processAttended = new ProcessAttended(process: process).save()
+          attendee.addToProcesses(processAttended)
+        }
+      }
+
+      entry.addToAttendees(attendee)
+    }
+    entry.save(flush: true)
+
+    render createTimeLine(date, facility)
+    render template: "entry", model: [entry: entry, date: params.date, facility: params.facility]
+  }
+
+  def deleteEntry = {
+    Entity facility = Entity.get(params.facility)
+    Date date = Date.parse("dd. MM. yy", params.date)
+
+    LogEntry.findByDateAndFacility(date, facility)?.delete(flush: true)
+
+    render createTimeLine(date, facility)
+    render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {'Eintrag anlegen'}}"
   }
 
   def updateEntry = {
@@ -97,7 +139,7 @@ class LogBookController {
 
       LogEntry someEntry = LogEntry.findByDateAndFacility(currentDate, facility)
       if (!someEntry)
-        timeline.append('<span style="background: #ccc; float: left; padding: 3px; margin: 0 2px 2px 0; text-align: center;">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
+        timeline.append('<span style="background: #ccc; float: left; padding: 3px; margin: 0 2px 2px 0; text-align: center; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')
       else {
         if (someEntry.isChecked)
           timeline.append('<span style="background: #cfc; float: left; padding: 3px; margin: 0 2px 2px 0; text-align: center; border:' + (currentDate == date ? '2px solid #000' : 'none') + '">' + remoteLink(update: "entry", action: "showEntry", params: [facility: facility.id, date: formatDate(date: currentDate, format: 'dd. MM. yyyy')]) {formatDate(date: currentDate, format: "EE") + '<br/>' + formatDate(date: currentDate, format: "dd.MM")} + '</span>')

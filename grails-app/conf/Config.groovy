@@ -148,4 +148,4 @@ locales = [new Locale ("de", "DE"), new Locale ("es", "ES"), new Locale ("en", "
 TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
 
 // application name
-application.name  = "ERP"
+application.name  = "ERPEL"
