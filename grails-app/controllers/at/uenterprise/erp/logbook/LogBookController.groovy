@@ -124,11 +124,11 @@ class LogBookController {
 
     Calendar start = new GregorianCalendar()
     start.setTime(date)
-    start.add(Calendar.DATE, -10)
+    start.add(Calendar.DATE, -9)
 
     Calendar end = new GregorianCalendar()
     end.setTime(date)
-    end.add(Calendar.DATE, 10)
+    end.add(Calendar.DATE, 9)
 
     StringBuffer timeline = new StringBuffer()
 
