@@ -57,7 +57,7 @@ class HelperTagLib {
 
     entries.each { entry ->
 
-      out << '<p>' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
+      out << '<p style="page-break-before: always">' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
       out << '<table class="default-table">'
       out << '<tr>'
       out << '<th>Name</th>'
