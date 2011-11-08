@@ -69,7 +69,7 @@ class HelperTagLib {
         out << '<tr>'
         out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
         attendee?.processes.each { process ->
-          out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: "Teilgenommen", false: "Nicht teilgenommen") + '</td>'
+          out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: "Ja", false: "<span class='red'>Nein</span>") + '</td>'
         }
         out << '</tr>'
       }
@@ -91,6 +91,19 @@ class HelperTagLib {
     Entity facility = attrs.facility
     Date date = attrs.date
 
+    def entriesConfirmed = 0
+    List monthEntries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+    monthEntries.each { e ->
+      if (e.isChecked)
+        entriesConfirmed++
+    }
+    if (entriesConfirmed == monthEntries.size()) {
+      out << '<p class="green">In diesem Monat wurden alle Einträge bestätigt!</p>'
+    }
+    else {
+      out << '<p class="red">In diesem Monat wurden noch nicht alle Einträge bestätigt!</p>'
+    }
+
     out << '<table class="default-table">'
 
     out << '<tr>'
@@ -101,7 +114,7 @@ class HelperTagLib {
       out << '<th>' + process.process.name + '</th>'
     }
     out << '<th>Tage</th>'
-    out << '<th>' + message(code: "total") + '€</th>'
+    out << '<th>' + message(code: "total") + ' €</th>'
     out << '</tr>'
 
     logMonth?.clients?.each { client ->
@@ -115,6 +128,8 @@ class HelperTagLib {
 
       int totalCosts = 0
 
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
       // calculate the amount of participated and total processes
       processes2.eachWithIndex { proc, i ->
         int total = 0
@@ -126,7 +141,15 @@ class HelperTagLib {
           Attendee attendee = entry.attendees.find {it.client == client.client}
           attendee.processes.each { aproc ->
             if (aproc.process.name == proc.process.name) {
-              total++
+              if ((attendance.monday && df.format(entry.date) == 'Monday') ||
+                  (attendance.tuesday && df.format(entry.date) == 'Tuesday') ||
+                  (attendance.wednesday && df.format(entry.date) == 'Wednesday') ||
+                  (attendance.thursday && df.format(entry.date) == 'Thursday') ||
+                  (attendance.friday && df.format(entry.date) == 'Friday') ||
+                  (attendance.saturday && df.format(entry.date) == 'Saturday') ||
+                  (attendance.sunday && df.format(entry.date) == 'Sunday')) {
+                total++
+              }
               if (aproc.hasParticipated) {
                 participated++
               }
@@ -166,8 +189,6 @@ class HelperTagLib {
       Calendar end = new GregorianCalendar()
       end.setTime(date)
       end.add(Calendar.MONTH, 1)
-
-      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
       int debitDays = 0
       while (start <= end) {
@@ -211,6 +232,19 @@ class HelperTagLib {
 
     Entity currentEntity = entityHelperService.loggedIn
 
+    def entriesConfirmed = 0
+    List monthEntries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
+    monthEntries.each { e ->
+      if (e.isChecked)
+        entriesConfirmed++
+    }
+    if (entriesConfirmed == monthEntries.size()) {
+      out << '<p class="green">In diesem Monat wurden alle Einträge bestätigt!</p>'
+    }
+    else {
+      out << '<p class="red">In diesem Monat wurden noch nicht alle Einträge bestätigt!</p>'
+    }
+
     out << '<p>Die Auswertung zeigt für jeden Betreuten die Anzahl der IST und SOLL Teilnahmen sowie die zu verrechnenden Kosten.</p>'
     
     out << '<table class="default-table">'
@@ -237,6 +271,8 @@ class HelperTagLib {
 
       int totalCosts = 0
 
+      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
+
       // calculate the amount of participated and total processes
       processes2.eachWithIndex { proc, i ->
         int total = 0
@@ -248,7 +284,16 @@ class HelperTagLib {
           Attendee attendee = entry.attendees.find {it.client == client.client}
           attendee.processes.each { aproc ->
             if (aproc.process.name == proc.process.name) {
-              total++
+              // calculate the total amount by checking if the attendee should be attending at this day
+              if ((attendance.monday && df.format(entry.date) == 'Monday') ||
+                  (attendance.tuesday && df.format(entry.date) == 'Tuesday') ||
+                  (attendance.wednesday && df.format(entry.date) == 'Wednesday') ||
+                  (attendance.thursday && df.format(entry.date) == 'Thursday') ||
+                  (attendance.friday && df.format(entry.date) == 'Friday') ||
+                  (attendance.saturday && df.format(entry.date) == 'Saturday') ||
+                  (attendance.sunday && df.format(entry.date) == 'Sunday')) {
+                total++
+              }
               if (aproc.hasParticipated) {
                 participated++
               }
@@ -298,8 +343,6 @@ class HelperTagLib {
       Calendar end = new GregorianCalendar()
       end.setTime(date)
       end.add(Calendar.MONTH, 1)
-
-      SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
       int debitDays = 0
       while (start <= end) {
