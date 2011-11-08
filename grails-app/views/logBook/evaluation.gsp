@@ -25,7 +25,7 @@
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="logBook" action="settings">Einstellungen</g:link></h1>
+    <h1><g:link controller="logBook" action="settings">Anwesenheit</g:link></h1>
   </div>
 </div>
 

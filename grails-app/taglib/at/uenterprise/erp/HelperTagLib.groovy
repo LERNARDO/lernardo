@@ -104,6 +104,8 @@ class HelperTagLib {
       out << '<p class="red">In diesem Monat wurden noch nicht alle Einträge bestätigt!</p>'
     }
 
+    out << '<p>Hier findest du für jede/n Betreute/n den Ist- und Soll-Wert für jeden Vorgang und die sich daraus ergebenden Kosten.</p>'
+
     out << '<table class="default-table">'
 
     out << '<tr>'
@@ -219,7 +221,7 @@ class HelperTagLib {
         }
       }
       out << '<td>' + days + '/' + debitDays + '</td>'
-      out << '<td>' + totalCosts + '</td>'
+      out << '<td>' + totalCosts + '€</td>'
       out << '</tr>'
     }
     out << '</table>'
@@ -245,7 +247,7 @@ class HelperTagLib {
       out << '<p class="red">In diesem Monat wurden noch nicht alle Einträge bestätigt!</p>'
     }
 
-    out << '<p>Die Auswertung zeigt für jeden Betreuten die Anzahl der IST und SOLL Teilnahmen sowie die zu verrechnenden Kosten.</p>'
+    out << '<p>Hier findest du für jede/n Betreute/n den Ist- und Soll-Wert für jeden Vorgang und die sich daraus ergebenden Kosten.</p>'
     
     out << '<table class="default-table">'
 
@@ -373,7 +375,7 @@ class HelperTagLib {
         }
       }
       out << '<td>' + days + '/' + debitDays + '</td>'
-      out << '<td>' + totalCosts + '</td>'
+      out << '<td>' + totalCosts + '€</td>'
       out << '</tr>'
     }
 

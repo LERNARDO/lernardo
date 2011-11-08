@@ -25,7 +25,7 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Einstellungen</h1>
+    <h1>Anwesenheit</h1>
   </div>
 </div>
 
