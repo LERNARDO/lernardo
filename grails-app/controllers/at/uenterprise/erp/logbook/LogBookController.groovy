@@ -159,7 +159,6 @@ class LogBookController {
   }
 
   def updateEntryComment = {
-    println params
     LogEntry entry = LogEntry.get(params.id)
     entry.properties = params
     entry.save(flush: true)
@@ -167,7 +166,17 @@ class LogBookController {
   }
 
   def evaluation = {
-    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    List facilities
+    if (currentEntity.type.id == metaDataService.etEducator.id) {
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+    }
+    else
+      facilities = Entity.findAllByType(metaDataService.etFacility)
+
     return [facilities: facilities]
   }
 
