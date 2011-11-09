@@ -40,7 +40,7 @@
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
       <g:set var="canChange" value="true"/>
     </erp:accessCheck>
-    <g:checkBox name="checkbox" disabled="${canChange == 'true' ? false : true}" value="${entry.isChecked}" onclick="${remoteFunction(update: 'entry', action: 'updateEntry', id: entry.id)}"/>
+    <g:checkBox name="checkbox" disabled="${canChange != 'true'}" value="${entry.isChecked}" onclick="${remoteFunction(update: 'entry', action: 'updateEntry', id: entry.id)}"/>
   </g:if>
   <g:else>
     <g:checkBox name="checkbox" value="${entry.isChecked}" onclick="${remoteFunction(update: 'entry', action: 'updateEntry', id: entry.id)}"/>

@@ -46,6 +46,9 @@ class LogBookController {
     Entity facility = Entity.get(params.facility)
     Date date = Date.parse("dd. MM. yy", params.date)
 
+    Entity currentEntity = entityHelperService.loggedIn
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
     LogEntry entry = new LogEntry(date: date, facility: facility).save()
 
     // find all clients linked to the facility
@@ -67,7 +70,7 @@ class LogBookController {
     entry.save(flush: true)
 
     render createTimeLine(date, facility)
-    render template: "entry", model: [entry: entry, date: params.date, facility: params.facility]
+    render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, currentEntity: currentEntity, facilities: facilities]
   }
 
   def deleteEntry = {
