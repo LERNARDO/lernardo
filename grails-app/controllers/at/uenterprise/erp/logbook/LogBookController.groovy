@@ -11,8 +11,15 @@ class LogBookController {
   FunctionService functionService
   EntityHelperService entityHelperService
 
-  def entries = {
-    List facilities = Entity.findAllByType(metaDataService.etFacility)
+  def entries = {    
+    Entity currentEntity = entityHelperService.loggedIn
+
+    List facilities
+    if (currentEntity.type.id == metaDataService.etEducator.id)
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
+    else
+      facilities = Entity.findAllByType(metaDataService.etFacility)
+
     return [facilities: facilities]
   }
 
@@ -20,36 +27,17 @@ class LogBookController {
     Entity facility = Entity.get(params.facility)
     Date date = Date.parse("dd. MM. yy", params.date)
 
+    Entity currentEntity = entityHelperService.loggedIn
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
     LogEntry entry = LogEntry.findByDateAndFacility(date, facility)
-
-    //if(!entry) {
-      /*entry = new LogEntry(date: date, facility: facility).save()
-
-      // find all clients linked to the facility
-      List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
-
-      clients.each { Entity client ->
-        Attendee attendee = new Attendee(client: client).save()
-
-        List processes = Process.list()
-        processes.each { Process process ->
-          if (process.facilities.contains(facility) || process.facilities.size() == 0) {
-            ProcessAttended processAttended = new ProcessAttended(process: process).save()
-            attendee.addToProcesses(processAttended)
-          }
-        }
-
-        entry.addToAttendees(attendee)
-      }
-      entry.save(flush: true)*/
-    //}
 
     render createTimeLine(date, facility)
 
     if (!entry)
         render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {'Eintrag anlegen'}}"
     else
-        render template: "entry", model: [entry: entry, date: params.date, facility: params.facility]
+        render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, currentEntity: currentEntity, facilities: facilities]
   }
 
   def createEntry = {
@@ -93,6 +81,9 @@ class LogBookController {
   def updateEntry = {
     LogEntry entry = LogEntry.get(params.id)
 
+    Entity currentEntity = entityHelperService.loggedIn
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
     //entry.isChecked != entry.isChecked
     if (entry.isChecked)
       entry.isChecked = false
@@ -102,12 +93,15 @@ class LogBookController {
     entry.save(flush: true)
 
     render createTimeLine(entry.date, entry.facility)
-    render template: "entry", model: [entry: entry]
+    render template: "entry", model: [entry: entry, currentEntity: currentEntity, facilities: facilities]
   }
 
   def updateEntryProcess = {
     LogEntry entry = LogEntry.get(params.entry)
     ProcessAttended process = ProcessAttended.get(params.id)
+
+    Entity currentEntity = entityHelperService.loggedIn
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
 
     if (process.hasParticipated)
       process.hasParticipated = false
@@ -117,7 +111,7 @@ class LogBookController {
     process.save(flush: true)
 
     render createTimeLine(entry.date, entry.facility)
-    render template: "entry", model: [entry: entry]
+    render template: "entry", model: [entry: entry, currentEntity: currentEntity, facilities: facilities]
   }
 
   String createTimeLine(date, facility) {
@@ -233,7 +227,9 @@ class LogBookController {
     params.order = params.order ?: "asc"
 
     List processes = Process.list(params)
-    return [processes: processes]
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    return [processes: processes, facilities: facilities]
   }
 
   def createProcess = {
@@ -278,7 +274,9 @@ class LogBookController {
 
   def showProcess = {
     Process process = Process.get(params.id)
-    return [process: process]
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
+    return [process: process, facilities: facilities]
   }
 
   def deleteProcess = {
@@ -333,17 +331,27 @@ class LogBookController {
   }
 
   def settings = {
-    List facilities = Entity.findAllByType(metaDataService.etFacility)
+    Entity currentEntity = entityHelperService.loggedIn
+
+    List facilities
+    if (currentEntity.type.id == metaDataService.etEducator.id)
+      facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
+    else
+      facilities = Entity.findAllByType(metaDataService.etFacility)
+
     return [facilities: facilities]
   }
 
   def showAttendances = {
+    Entity currentEntity = entityHelperService.loggedIn
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
     Entity facility = Entity.get(params.facility)
 
     // find all attendances of this facility
     List attendances = Attendance.findAllByFacility(facility)
 
-    render template: 'attendances', model: [attendances: attendances]
+    render template: 'attendances', model: [attendances: attendances, currentEntity: currentEntity, facilities: facilities]
   }
 
   def editAttendance = {
@@ -353,6 +361,9 @@ class LogBookController {
   }
 
   def updateAttendance = {
+    Entity currentEntity = entityHelperService.loggedIn
+    List facilities = Entity.findAllByType(metaDataService.etFacility)
+
     Attendance attendance = Attendance.get(params.id)
 
     //attendance.properties = params
@@ -383,6 +394,6 @@ class LogBookController {
 
     attendance.save()
 
-    render template: 'showAttendance', model: [attendance: attendance, i: params.i]
+    render template: 'showAttendance', model: [attendance: attendance, i: params.i, currentEntity: currentEntity, facilities: facilities]
   }
 }

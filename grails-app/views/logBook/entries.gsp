@@ -11,11 +11,13 @@
   </div>
 </div>
 
-<div class="tabGrey">
-  <div class="second">
-    <h1><g:link controller="logBook" action="evaluation">Auswertung</g:link></h1>
+<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+  <div class="tabGrey">
+    <div class="second">
+      <h1><g:link controller="logBook" action="evaluation">Auswertung</g:link></h1>
+    </div>
   </div>
-</div>
+</erp:accessCheck>
 
 <div class="tabGrey">
   <div class="second">

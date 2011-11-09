@@ -6,5 +6,5 @@
 </table>
 
 <g:each in="${attendances}" var="attendance" status="i">
-  <g:render template="showAttendance" model="[attendance: attendance, i: i]"/>
+  <g:render template="showAttendance" model="[attendance: attendance, i: i, currentEntity: currentEntity]"/>
 </g:each>

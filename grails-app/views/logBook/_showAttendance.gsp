@@ -45,9 +45,11 @@
               <td>${attendance.sundayTo ? formatDate(date: attendance.sundayTo, format: 'HH:mm') : '-'}</td>
           </tr>
         </table>
-        <div style="text-align: right; margin-top: 5px;">
-          <g:remoteLink update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]">Ändern</g:remoteLink>
-        </div>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+            <div style="text-align: right; margin-top: 5px;">
+              <g:remoteLink update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]">Ändern</g:remoteLink>
+            </div>
+        </erp:accessCheck>
       </td>
     </tr>
   </table>
