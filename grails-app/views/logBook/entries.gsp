@@ -1,6 +1,6 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="groupActivityTemplates"/></title>
+  <title>Einträge</title>
 </head>
 
 <body>

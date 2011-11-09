@@ -15,8 +15,10 @@ class LogBookController {
     Entity currentEntity = entityHelperService.loggedIn
 
     List facilities
-    if (currentEntity.type.id == metaDataService.etEducator.id)
+    if (currentEntity.type.id == metaDataService.etEducator.id) {
       facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+    }
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
 
@@ -334,8 +336,10 @@ class LogBookController {
     Entity currentEntity = entityHelperService.loggedIn
 
     List facilities
-    if (currentEntity.type.id == metaDataService.etEducator.id)
+    if (currentEntity.type.id == metaDataService.etEducator.id) {
       facilities = functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator)
+      facilities.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking))
+    }
     else
       facilities = Entity.findAllByType(metaDataService.etFacility)
 
