@@ -16,37 +16,51 @@
 
     <g:form action="save" id="${createdFor.id}">
 
-      <div class="property">
-        <g:message code="title"/> <br/>
-        <g:textField class="countable50 ${hasErrors(bean:appointmentProfileInstance,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.fullName').decodeHTML()}"/>
-      </div>
+      <table>
 
-      <div class="property">
-        <g:message code="description"/> <br/>
-        <g:textArea class="${hasErrors(bean:appointmentProfileInstance,field:'profile.description','errors')}" rows="5" cols="40" name="description" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.description').decodeHTML()}"/>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="title"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean:appointmentProfileInstance,field:'profile.fullName','errors')}" size="50" name="fullName" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-      <div class="property">
-        <g:message code="begin"/> <br/>
-        <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.beginDate','errors')}" size="18" name="beginDate" value="${formatDate(date: appointmentProfileInstance?.profile?.beginDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <g:textArea class="${hasErrors(bean:appointmentProfileInstance,field:'profile.description','errors')}" rows="5" cols="50" name="description" value="${fieldValue(bean:appointmentProfileInstance,field:'profile.description').decodeHTML()}"/>
+          </td>
+        </tr>
 
-      <div class="property">
-        <g:message code="end"/> <br/>
-        <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.endDate','errors')}" size="18" name="endDate" value="${formatDate(date: appointmentProfileInstance?.profile?.endDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="begin"/></td>
+          <td valign="top" class="value">
+            <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.beginDate','errors')}" name="beginDate" value="${formatDate(date: appointmentProfileInstance?.profile?.beginDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
+          </td>
+        </tr>
 
-      <div class="property">
-        <g:message code="appointment.profile.allDay"/> <br/>
-        <g:checkBox name="allDay" value="${appointmentProfileInstance?.profile?.allDay}"/>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="end"/></td>
+          <td valign="top" class="value">
+            <g:textField class="datetimepicker2 ${hasErrors(bean:appointmentProfileInstance,field:'profile.endDate','errors')}" name="endDate" value="${formatDate(date: appointmentProfileInstance?.profile?.endDate, format: 'dd. MM. yyyy, HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
+          </td>
+        </tr>
 
-      <div class="property">
-        <g:message code="appointment.profile.isPrivate"/> <br/>
-        <g:checkBox name="isPrivate" value="${appointmentProfileInstance?.profile?.isPrivate}"/>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="appointment.profile.allDay"/></td>
+          <td valign="top" class="value">
+            <g:checkBox name="allDay" value="${appointmentProfileInstance?.profile?.allDay}"/>
+          </td>
+        </tr>
 
-      <div class="clear"></div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="appointment.profile.isPrivate"/></td>
+          <td valign="top" class="value">
+            <g:checkBox name="isPrivate" value="${appointmentProfileInstance?.profile?.isPrivate}"/>
+          </td>
+        </tr>
+
+      </table>
 
       <div class="buttons">
         <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'save')}" /></div>

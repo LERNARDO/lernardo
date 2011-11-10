@@ -14,89 +14,85 @@
     <g:render template="/templates/errors" model="[bean: operator]"/>
 
     <g:form id="${operator.id}">
-      <div>
-        <table>
-          <tbody>
+      <table>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.fullName', 'errors')}" size="103" maxlength="80" name="fullName" value="${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}"/>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.fullName', 'errors')}" size="50" maxlength="80" name="fullName" value="${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="email"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="50" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="zip"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: operator, field: 'profile.zip', 'errors')}" size="10" name="zip" value="${fieldValue(bean: operator, field: 'profile.zip').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="city"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.city', 'errors')}" size="50" name="city" value="${fieldValue(bean: operator, field: 'profile.city').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="street"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.street', 'errors')}" size="50" name="street" value="${fieldValue(bean: operator, field: 'profile.street').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <g:textArea class="countable2000 ${hasErrors(bean: operator, field: 'profile.description', 'errors')}" rows="6" cols="50" name="description" value="${fieldValue(bean: operator, field: 'profile.description').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="phone"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: operator, field: 'profile.phone', 'errors')}" size="25" name="phone" value="${fieldValue(bean: operator, field: 'profile.phone').decodeHTML()}"/>
+          </td>
+        </tr>
+
+      </table>
+
+      <div class="email">
+        <table width="100%">
+          <tr>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+              <td>
+                <g:message code="active"/>
+                <g:checkBox name="enabled" value="${operator?.user?.enabled}" style="vertical-align: bottom"/>
+              </td>
+            </erp:accessCheck>
+            <td>
+              <g:message code="email"/>:
+              <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email')}"/>
+            </td>
+            <td>
+              <g:message code="languageSelection"/>:
+              <erp:localeSelect class="drop-down-150" name="locale" value="${operator?.user?.locale}"/>
+            </td>
+            <td>
+              <g:message code="showTips"/>
+              <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
+            </td>
+            <td>
+              <g:textField name="color" value="${operator.profile.color ?: '#FFFFFF'}" class="kolorPicker"/>
             </td>
           </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="email"/></td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="103" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="zip"/></td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.zip', 'errors')}" size="103" name="zip" value="${fieldValue(bean: operator, field: 'profile.zip').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="city"/></td>
-            <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.city', 'errors')}" size="103" name="city" value="${fieldValue(bean: operator, field: 'profile.city').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="street"/></td>
-            <td valign="top" class="value">
-              <g:textField class="countable50 ${hasErrors(bean: operator, field: 'profile.street', 'errors')}" size="103" name="street" value="${fieldValue(bean: operator, field: 'profile.street').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="description"/></td>
-            <td valign="top" class="value">
-              <g:textArea class="countable2000 ${hasErrors(bean: operator, field: 'profile.description', 'errors')}" rows="6" cols="100" name="description" value="${fieldValue(bean: operator, field: 'profile.description').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="phone"/></td>
-            <td valign="top" class="value">
-              <g:textField class="${hasErrors(bean: operator, field: 'profile.phone', 'errors')}" size="103" name="phone" value="${fieldValue(bean: operator, field: 'profile.phone').decodeHTML()}"/>
-            </td>
-          </tr>
-
-          </tbody>
         </table>
-
-        <div class="email">
-          <table width="100%">
-            <tr>
-              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <td>
-                  <g:message code="active"/>
-                  <g:checkBox name="enabled" value="${operator?.user?.enabled}" style="vertical-align: bottom"/>
-                </td>
-              </erp:accessCheck>
-              <td>
-                <g:message code="email"/>:
-                <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email')}"/>
-              </td>
-              <td>
-                <g:message code="languageSelection"/>:
-                <erp:localeSelect class="drop-down-150" name="locale" value="${operator?.user?.locale}"/>
-              </td>
-              <td>
-                <g:message code="showTips"/>
-                <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
-              </td>
-              <td>
-                <g:textField name="color" value="${operator.profile.color ?: '#FFFFFF'}" class="kolorPicker"/>
-              </td>
-            </tr>
-          </table>
-        </div>
       </div>
 
       <div class="buttons">

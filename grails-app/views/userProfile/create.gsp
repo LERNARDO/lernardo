@@ -15,17 +15,23 @@
 
     <g:form>
 
-      <div class="property">
-        <g:message code="firstName"/> <br/>
-        <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
-      </div>
+      <table>
 
-      <div class="property">
-        <g:message code="lastName"/> <br/>
-        <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="firstName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-      <div class="clear"></div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="lastName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+          </td>
+        </tr>
+
+      </table>
 
       <div class="email">
         <table>

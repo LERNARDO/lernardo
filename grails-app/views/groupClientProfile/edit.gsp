@@ -14,25 +14,24 @@
     <g:render template="/templates/errors" model="[bean: group]"/>
 
     <g:form id="${group.id}">
-      <div>
-        <table>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:message code="description"/></td>
-          </tr>
-          
-          <tr class="prop">
-            <td width="200px" valign="top" class="value">
-              <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="27" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
-            </td>
-            <td valign="top" class="value">
-              <g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="2" cols="93" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
-            </td>
-          </tr>
+      <table>
 
-        </table>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${group.profile.constraints.fullName.maxSize} ${hasErrors(bean: group, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <g:textArea class="countable${group.profile.constraints.description.maxSize} ${hasErrors(bean: group, field: 'profile.description', 'errors')}" rows="3" cols="50" name="description" value="${fieldValue(bean: group, field: 'profile.description').decodeHTML()}"/>
+          </td>
+        </tr>
+
+      </table>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>

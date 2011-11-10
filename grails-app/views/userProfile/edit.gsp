@@ -18,27 +18,23 @@
 
     <g:form id="${user.id}">
 
-      <div>
-        <table>
-          <tbody>
+      <table>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="firstName"/></td>
-            <td valign="top" class="name"><g:message code="lastName"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="firstName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${user.profile.constraints.firstName.maxSize} ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td width="440" valign="top" class="value">
-              <g:textField class="countable${user.profile.constraints.firstName.maxSize} ${hasErrors(bean:user,field:'profile.firstName','errors')}" size="60" name="firstName" value="${fieldValue(bean:user,field:'profile.firstName').decodeHTML()}"/>
-            </td>
-            <td width="440" valign="top" class="value">
-              <g:textField class="countable${user.profile.constraints.lastName.maxSize} ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="lastName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${user.profile.constraints.lastName.maxSize} ${hasErrors(bean:user,field:'profile.lastName','errors')}" size="60" name="lastName" value="${fieldValue(bean:user,field:'profile.lastName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          </tbody>
-        </table>
-      </div>
+      </table>
 
       <div class="email">
         <table width="100%">

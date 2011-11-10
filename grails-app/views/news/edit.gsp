@@ -12,37 +12,49 @@
 <div class="boxGray">
   <div class="second">
 
-  <g:hasErrors bean="${news}">
-    <div class="errors">
-      <g:renderErrors bean="${news}" as="list"/>
-    </div>
-  </g:hasErrors>
+    <g:hasErrors bean="${news}">
+      <div class="errors">
+        <g:renderErrors bean="${news}" as="list"/>
+      </div>
+    </g:hasErrors>
 
-  <g:form action="update" id="${news.id}">
-    <div>
+    <g:form action="update" id="${news.id}">
 
-    <p><span class="strong"><g:message code="title"/></span><br/>
-    <span class="${hasErrors(bean: news, field: 'title', 'errors')}"><g:textField class="countable${news.constraints.title.maxSize}" name="title" style="width: 100%" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/></span></p>
+      <table>
 
-    <p><span class="strong"><g:message code="news.teaser"/></span><br/>
-    <span class="${hasErrors(bean: news, field: 'teaser', 'errors')}"><g:textArea class="countable${news.constraints.teaser.maxSize}" name="teaser" rows="4" cols="10" style="width: 100%" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/></span>
-    <br/><span class="gray">(<g:message code="news.teaser.info"/>)</span></p>
-    
-    <span class="strong">Inhalt</span>
-    <span class="${hasErrors(bean: news, field: 'content', 'errors')}">
-      <ckeditor:editor name="content" height="400px" width="700px" toolbar="Basic">
-        ${fieldValue(bean:news,field:'content').decodeHTML()}
-      </ckeditor:editor>
-    </span>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="title"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${news.constraints.title.maxSize} ${hasErrors(bean: news, field: 'title', 'errors')}" name="title" size="50" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/>
+          </td>
+        </tr>
 
-    <div class="buttons">
-      <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}"/></div>
-      <g:link class="buttonGray" controller="profile" action="news"><g:message code="cancel"/></g:link>
-      <div class="spacer"></div>
-    </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="teaser"/></td>
+          <td valign="top" class="value">
+            <g:textArea class="countable${news.constraints.teaser.maxSize} ${hasErrors(bean: news, field: 'teaser', 'errors')}" name="teaser" rows="3" cols="50" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/>
+            <span class="gray">(<g:message code="teaser.info"/>)</span><br/><br/>
+          </td>
+        </tr>
 
-    </div>
-  </g:form>
-    </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="content"/></td>
+          <td valign="top" class="value ${hasErrors(bean: news, field: 'content', 'errors')}">
+            <ckeditor:editor name="content" height="300px" toolbar="Basic">
+              ${fieldValue(bean:news,field:'content').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
+
+      </table>
+
+      <div class="buttons">
+        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}"/></div>
+        <g:link class="buttonGray" controller="profile" action="news"><g:message code="cancel"/></g:link>
+        <div class="spacer"></div>
+      </div>
+
+    </g:form>
   </div>
+</div>
 </body>
