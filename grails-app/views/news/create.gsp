@@ -24,7 +24,7 @@
     <span class="${hasErrors(bean: news, field: 'title', 'errors')}"><g:textField class="countable50" name="title" size="50" value="${fieldValue(bean:news,field:'title').decodeHTML()}"/></span></p>
 
     <p><span class="strong"><g:message code="news.teaser"/></span><br/>
-    <span class="${hasErrors(bean: news, field: 'teaser', 'errors')}"><g:textArea class="countable500" name="teaser" rows="4" cols="10" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/></span>
+    <span class="${hasErrors(bean: news, field: 'teaser', 'errors')}"><g:textArea class="countable500" name="teaser" rows="3" cols="50" value="${fieldValue(bean:news,field:'teaser').decodeHTML()}"/></span>
     <br/><span class="gray">(<g:message code="news.teaser.info"/>)</span></p>
     
     <span class="strong"><g:message code="content"/></span>
@@ -36,7 +36,7 @@
     
     <div class="buttons">
       <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>
-      <g:link class="buttonGray" action="index"><g:message code="cancel"/></g:link>
+      <div class="button"><g:link class="buttonGray" controller="profile" action="news"><g:message code="cancel"/></g:link></div>
       <div class="spacer"></div>
     </div>
 
