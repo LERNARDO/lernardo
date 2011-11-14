@@ -10,17 +10,19 @@ class EvaluationController {
   FunctionService functionService
   MetaDataService metaDataService
 
+  // the delete, save and update actions only accept POST requests
+  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+
   def index = {
     redirect action: "list", params: params
   }
-
-  // the delete, save and update actions only accept POST requests
-  static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   // shows all evaluations of a given client
   def list = {
     params.max = Math.min(params.max ? params.int('max') : 5, 100)
     params.offset = params.offset ?: 0
+    params.sort = params.sort ?: 'dateCreated'
+    params.order = params.order ?: 'desc'
     Entity entity = Entity.get(params.id)
     List evaluations = Evaluation.findAllByOwner(entity, params)
 
@@ -29,32 +31,29 @@ class EvaluationController {
             entity: entity]
   }
 
-  def listall = {
+  def allevaluations = {
     params.max = Math.min(params.max ? params.int('max') : 5, 100)
     params.offset = params.offset ?: 0
+    params.sort = params.sort ?: 'dateCreated'
+    params.order = params.order ?: 'desc'
+    def show = params.show ?: false
     List evaluations = Evaluation.list(params)
     Entity entity = Entity.get(params.id)
-    return [evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity]
+    return [evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity, show: show]
   }
 
   // shows all evaluations made by a given educator
   def myevaluations = {
     params.max = Math.min(params.max ? params.int('max') : 5, 100)
     params.offset = params.offset ?: 0
+    params.sort = params.sort ?: 'dateCreated'
+    params.order = params.order ?: 'desc'
     Entity entity = Entity.get(params.id)
     List evaluations = Evaluation.findAllByWriter(entity, params)
 
     return [evaluationInstanceList: evaluations,
             evaluationInstanceTotal: Evaluation.countByWriter(entity),
             entity: entity]
-  }
-
-  def showall = {
-    params.max = 5
-    params.offset = params.offset ? params.int('offset'): 0
-    List evaluations = Evaluation.list(params)
-    Entity entity = Entity.get(params.id)
-    render template: "evaluations", model:[evaluations: evaluations, totalEvaluations: Evaluation.count(), entity: entity, currentEntity: entityHelperService.loggedIn]
   }
 
   def showByEducator = {
@@ -79,13 +78,49 @@ class EvaluationController {
       }
     }
 
-    List evaluations = Evaluation.list().findAll {educators.contains(it.writer)}
+    if (educators) {
+      List evaluations = Evaluation.list().findAll {educators.contains(it.writer)}
 
-    def totalEvaluations = evaluations.size()
-    def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
-    evaluations = evaluations.subList(params.offset, upperBound)
+      def totalEvaluations = evaluations.size()
+      def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
+      evaluations = evaluations.subList(params.offset, upperBound)
 
-    render template: "eevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
+      render template: "someevaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
+    }
+    else
+      render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
+  }
+
+  def showMine = {
+
+    Entity entity = Entity.get(params.id)
+
+    if (!params.value) {
+      render ""
+      return
+    }
+
+    // find matching clients
+    def c = Entity.createCriteria()
+    def clients = c.list {
+      eq('type', metaDataService.etClient)
+      or {
+        ilike('name', "%" + params.value + "%")
+        profile {
+          ilike('fullName', "%" + params.value + "%")
+        }
+      }
+    }
+
+    if (clients) {
+      List evaluations = Evaluation.list().findAll {clients.contains(it.owner) && it.writer == entity}
+      if (evaluations)
+        render template: "someevaluations", model:[evaluationInstanceList: evaluations, entity: entity, currentEntity: entityHelperService.loggedIn]
+      else
+        render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
+    }
+    else
+      render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
   }
 
   def showByClient = {
@@ -100,7 +135,7 @@ class EvaluationController {
 
     // find matching clients
     def c = Entity.createCriteria()
-    def educators = c.list {
+    def clients = c.list {
       eq('type', metaDataService.etClient)
       or {
         ilike('name', "%" + params.value + "%")
@@ -110,13 +145,17 @@ class EvaluationController {
       }
     }
 
-    List evaluations = Evaluation.list().findAll {educators.contains(it.owner)}
+    if (clients) {
+      List evaluations = Evaluation.list().findAll {clients.contains(it.owner)}
 
-    def totalEvaluations = evaluations.size()
-    def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
-    evaluations = evaluations.subList(params.offset, upperBound)
+      def totalEvaluations = evaluations.size()
+      def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
+      evaluations = evaluations.subList(params.offset, upperBound)
 
-    render template: "cevaluations", model:[evaluations: evaluations, totalEvaluations: totalEvaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
+      render template: "someevaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
+    }
+    else
+      render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
   }
 
   // show all evaluations of clients and parents linked to a given educator
@@ -168,9 +207,10 @@ class EvaluationController {
 
   def show = {
     Evaluation evaluationInstance = Evaluation.get(params.id)
+    Entity entity = Entity.get(params.entity)
 
     if (evaluationInstance) {
-      [evaluationInstance: evaluationInstance]
+      [evaluation: evaluationInstance, entity: entity]
     }
     else {
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
