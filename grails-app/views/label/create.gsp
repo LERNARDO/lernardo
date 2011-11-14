@@ -14,27 +14,24 @@
     <g:render template="/templates/errors" model="[bean: labelInstance]"/>
 
     <g:form>
-      <div>
-        <table>
-          <tbody>
 
-          <tr class="prop">
-            <td  valign="top" class="name"><g:message code="name"/></td>
-            <td valign="top" class="name"><g:message code="description"/></td>
-          </tr>
+      <table>
 
-          <tr class="prop">
-            <td width="280" valign="top" class="value">
-              <g:textField size="40" class="countable50 ${hasErrors(bean: labelInstance, field: 'name', 'errors')}" name="name" value="${fieldValue(bean: labelInstance, field: 'name').decodeHTML()}"/>
-            </td>
-            <td  width="400" valign="top" class="value">
-              <g:textArea rows="3" cols="80" class="countable5000 ${hasErrors(bean: labelInstance, field: 'description', 'errors')}" name="description" value="${fieldValue(bean: labelInstance, field: 'description').decodeHTML()}"/>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField size="40" class="countable50 ${hasErrors(bean: labelInstance, field: 'name', 'errors')}" name="name" value="${fieldValue(bean: labelInstance, field: 'name').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          </tbody>
-        </table>
-      </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <g:textArea rows="4" cols="50" class="countable5000 ${hasErrors(bean: labelInstance, field: 'description', 'errors')}" name="description" value="${fieldValue(bean: labelInstance, field: 'description').decodeHTML()}"/>
+          </td>
+        </tr>
+
+      </table>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>

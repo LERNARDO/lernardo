@@ -12,7 +12,7 @@ class Label {
   String type
 
   static constraints = {
-    name        maxSize: 50
+    name        blank: false, maxSize: 50
     description nullable: true, maxSize: 5000
   }
 

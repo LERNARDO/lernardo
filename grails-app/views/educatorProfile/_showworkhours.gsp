@@ -1,13 +1,13 @@
 <table>
     <tr>
-        <td><span class="bold"><g:message code="monday.short"/></span></td>
-        <td><span class="bold"><g:message code="tuesday.short"/></span></td>
-        <td><span class="bold"><g:message code="wednesday.short"/></span></td>
-        <td><span class="bold"><g:message code="thursday.short"/></span></td>
-        <td><span class="bold"><g:message code="friday.short"/></span></td>
-        <td><span class="bold"><g:message code="saturday.short"/></span></td>
-        <td><span class="bold"><g:message code="sunday.short"/></span></td>
-        <td><span class="bold">&sum;</span></td>
+        <td><span class="gray"><g:message code="monday.short"/></span></td>
+        <td><span class="gray"><g:message code="tuesday.short"/></span></td>
+        <td><span class="gray"><g:message code="wednesday.short"/></span></td>
+        <td><span class="gray"><g:message code="thursday.short"/></span></td>
+        <td><span class="gray"><g:message code="friday.short"/></span></td>
+        <td><span class="gray"><g:message code="saturday.short"/></span></td>
+        <td><span class="gray"><g:message code="sunday.short"/></span></td>
+        <td><span class="gray">&sum;</span></td>
         <td></td>
     </tr>
     <tr>

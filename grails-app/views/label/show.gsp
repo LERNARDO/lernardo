@@ -1,11 +1,11 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="profile"/> - ${labelInstance.name}</title>
+  <title><g:message code="label"/> - ${labelInstance.name}</title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="profile"/> - ${labelInstance.name}</h1>
+    <h1><g:message code="label"/> - ${labelInstance.name}</h1>
   </div>
 </div>
 <div class="boxGray">
