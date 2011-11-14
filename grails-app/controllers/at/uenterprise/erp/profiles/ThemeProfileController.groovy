@@ -51,7 +51,8 @@ class ThemeProfileController {
 
     return [themes: themes,
             themeTotal: themes.size(),
-            facilities: facilities]
+            facilities: facilities,
+            allThemes: allThemes.size()]
   }
 
   def show = {

@@ -14,7 +14,54 @@
     <g:render template="/templates/errors" model="[bean: theme]"/>
 
     <g:form id="${theme.id}">
-      <div>
+
+      <table>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: theme, field: 'profile.fullName', 'errors')}" size="40" name="fullName" value="${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="begin"/></td>
+          <td valign="top" class="value">
+            <g:textField name="startDate" class="datepicker ${hasErrors(bean: theme, field: 'profile.startDate', 'errors')}" value="${formatDate(date: theme?.profile?.startDate, format: 'dd. MM. yyyy')}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="end"/></td>
+          <td valign="top" class="value">
+            <g:textField name="endDate" class="datepicker ${hasErrors(bean: theme, field: 'profile.endDate', 'errors')}" value="${formatDate(date: theme?.profile?.endDate, format: 'dd. MM. yyyy')}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="themes.superior"/></td>
+          <td valign="top" class="value">
+            <g:select from="${allThemes}" name="parenttheme" optionKey="id" optionValue="profile" noSelection="[null: 'Keines']"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="facility"/></td>
+          <td valign="top" class="value">
+            <g:select class="drop-down-220" from="${allFacilities}" name="facility" optionKey="id" optionValue="profile" value=""/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <g:textArea class="countable2000 ${hasErrors(bean: theme, field: 'profile.description', 'errors')}" rows="4" cols="50" name="description" value="${fieldValue(bean: theme, field: 'profile.description').decodeHTML()}"/>
+          </td>
+        </tr>
+
+      </table>
+
+      %{--<div>
 
         <table>
           <tbody>
@@ -64,7 +111,7 @@
           </tbody>
         </table>
 
-      </div>
+      </div>--}%
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>

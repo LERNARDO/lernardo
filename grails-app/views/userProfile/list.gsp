@@ -31,7 +31,10 @@
       <tbody>
       <g:each in="${users}" status="i" var="user">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${user.id}" params="[entity: user.id]">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()} ${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</g:link></td>
+          <td>
+            <erp:profileImage entity="${user}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+            <g:link action="show" id="${user.id}" params="[entity: user.id]">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()} ${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</g:link>
+          </td>
         </tr>
       </g:each>
       </tbody>

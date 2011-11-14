@@ -36,7 +36,10 @@
       <tbody>
       <g:each in="${parents}" status="i" var="parent">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${parent.id}" params="[entity: parent.id]">${fieldValue(bean: parent, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>
+            <erp:profileImage entity="${parent}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+            <g:link action="show" id="${parent.id}" params="[entity: parent.id]">${fieldValue(bean: parent, field: 'profile.fullName').decodeHTML()}</g:link>
+          </td>
         </tr>
       </g:each>
       </tbody>

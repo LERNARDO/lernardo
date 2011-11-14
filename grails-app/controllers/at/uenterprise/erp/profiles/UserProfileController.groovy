@@ -106,6 +106,7 @@ class UserProfileController {
 
   def edit = {
     Entity user = Entity.get(params.id)
+    Entity entity = params.entity ? user : entityHelperService.loggedIn
 
     if (!user) {
       flash.message = message(code: "object.notFound", args: [message(code: "user")])
@@ -113,7 +114,7 @@ class UserProfileController {
       return
     }
 
-    return [user: user]
+    return [user: user, entity: entity]
 
   }
 

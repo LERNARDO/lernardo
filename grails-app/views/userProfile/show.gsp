@@ -73,7 +73,7 @@
       </div>
 
     <div class="buttons">
-      <g:form id="${user.id}">
+      <g:form id="${user.id}" params="[entity: user.id]">
         <erp:accessCheck entity="${currentEntity}" me="${user}">
           <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
         </erp:accessCheck>

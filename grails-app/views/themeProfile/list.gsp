@@ -21,6 +21,10 @@
       </div>
     </erp:accessCheck>
 
+    <div class="info-msg">
+      ${allThemes} <g:message code="theme.c_total"/>
+    </div>
+
     <div id="themelist">
       <g:render template="themes" model="[themes:themes]"/>
     </div>

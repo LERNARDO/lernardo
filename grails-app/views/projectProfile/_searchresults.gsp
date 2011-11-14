@@ -1,3 +1,7 @@
+<div class="info-msg">
+  ${projects.size()} <g:message code="project.c_total"/>
+</div>
+
 <g:if test="${projects}">
   <table class="default-table">
     <thead>

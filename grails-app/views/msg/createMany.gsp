@@ -14,7 +14,8 @@
     <g:render template="/templates/errors" model="[bean: msgInstance]"/>
 
     <g:form action="saveMany" id="${msgInstance.id}" params="[entity: entity.id]">
-      <table width="100%">
+
+      <table>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="msg.to"/>:</td>

@@ -1,3 +1,7 @@
+<div class="info-msg">
+  ${groups.size()} <g:message code="groupActivities.c_total"/>
+</div>
+
 <g:if test="${groups}">
   <table class="default-table">
     <thead>
