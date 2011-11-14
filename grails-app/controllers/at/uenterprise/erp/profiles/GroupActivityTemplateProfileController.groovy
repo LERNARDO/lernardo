@@ -167,21 +167,33 @@ class GroupActivityTemplateProfileController {
     new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()
 
     // find all activity templates linked to the original and link them to the copy
-    List templates = functionService.findAllByLink(null, original, metaDataService.ltGroupMember)
+    original.profile.templates.each { template ->
+      new Link(source: Entity.get(template.toInteger()), target: entity, type: metaDataService.ltGroupMember).save()
+      entity.profile.addToTemplates(template)
+    }
 
-    templates.each { Entity template ->
-      new Link(source: template, target: entity, type: metaDataService.ltGroupMember).save()
+    // copy all resources
+    original.profile.resources.each { res ->
+      Resource resource = new Resource()
+
+      resource.name = res.name
+      resource.description = res.description
+      resource.amount = res.amount
+
+      resource.save(flush: true)
+
+      entity.profile.addToResources(resource)
     }
 
     // loop through all labels of the original and create them in the copy
-    original.profile.labels.each { la->
+    original.profile.labels.each { la ->
       Label label = new Label()
 
       label.name = la.name
       label.description = la.description
       label.type = "instance"
 
-      label.save(flush:true)
+      label.save(flush: true)
 
       entity.profile.addToLabels(label)
     }
