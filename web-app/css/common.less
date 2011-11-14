@@ -137,7 +137,7 @@ ol li {
     color: #666; }
 
 .red {
-    color: #d00; }
+    color: #d22; }
 
 .green {
     color: #0b0; }
@@ -224,12 +224,14 @@ h4 {
     padding: 0 0 5px 0; }
 
 h5 {
+    text-transform: uppercase;
+    //text-shadow: #ccc 1px 1px 1px;
     margin: 0;
-    color: #003300;
+    color: #444; //#003300;
 	font-size: 12px;
 	font-weight: bold;
-    border-bottom: 1px solid #aaa; /* #fff */
-    padding: 4px; }
+    //border-bottom: 1px solid #ccc; /* #fff */
+    padding: 5px 0 0 0; }
 
 h6 {
     padding: 10px 0 0 5px;
@@ -831,10 +833,10 @@ div.actionlinks div.userlinks a {
 }
 
 .buttons {
-    margin: 5px 0;
+    margin: 10px 0;
     padding: 0;
     .button {
-        margin: 0 5px 0 0;
+        margin: 0 10px 0 0;
         float: left;
     }
     input {
@@ -906,7 +908,7 @@ a {
         color: #fff !important;
         display: block;
         text-decoration: none;
-        margin-right: 5px;
+        margin-right: 10px;
         float: left;
         &:hover {
             background: darken(@button-green, 10%);
@@ -924,7 +926,7 @@ a {
         font-size: 11px;
         text-transform: uppercase;
         padding: 6px;
-        margin-right: 5px;
+        margin-right: 10px;
         border-radius: 3px;
         text-align: center;
         color: #fff !important;
@@ -947,7 +949,7 @@ a {
         font-size: 11px;
         text-transform: uppercase;
         padding: 6px;
-        margin-right: 5px;
+        margin-right: 10px;
         border-radius: 3px;
         text-align: center;
         color: #fff !important;
@@ -1129,23 +1131,20 @@ table#msg-composer td {
     border-top: 1px solid #ccc; }
 
 .comment {
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     background-color: #fdfdfd;
-    padding: 5px;
-    margin-bottom: 10px;
+    padding: 10px 5px;
     .userpic {
-        margin-right: 5px;
+        margin-right: 10px;
     }
     .infobar {
-        border-bottom: 1px solid #ccc;
+        //border-bottom: 1px solid #ccc;
         padding-bottom: 4px;
         .name {
             font-size: 100%;
             font-weight: bold;
+            padding: 0;
         }
-    }
-    .actions {
-        float: right;
     }
     .content {
         padding-top: 3px;
@@ -1153,9 +1152,8 @@ table#msg-composer td {
 }
 
 .add-comment {
-    margin: 10px;
-    font-weight: bold;
-    text-align: center; }
+    margin: 10px 5px;
+    font-weight: bold; }
 
 .errors {
     color: #f00; }
@@ -1336,10 +1334,10 @@ table#msg-composer td {
     margin-top: 12px; }
 
 .zusatz-add {
-    padding: 6px 0 6px 6px; }
+    padding: 5px 0 5px 0; }
 
 .zusatz-show {
-    margin: 5px; }
+    padding: 5px 0 5px 0; }
 
 .zusatz-show ul {
     padding: 0; }

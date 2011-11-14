@@ -1,4 +1,4 @@
-<div class="boxHeader">
+<div class="boxHeader" style="margin-top: 20px;">
   <div class="second">
     <h1><g:message code="comments"/></h1>
   </div>
@@ -14,7 +14,7 @@
         <div>
 
           <div class="value">
-            <g:textArea rows="5" cols="125" name="content" value=""/>
+            <g:textArea rows="5" cols="70" name="content" value=""/>
           </div>
 
         </div>
