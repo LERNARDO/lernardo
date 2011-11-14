@@ -20,7 +20,7 @@
       <div class="spacer"></div>
     </div>
 
-    <g:render template="someevaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
+    <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
 
   </div>
 </div>

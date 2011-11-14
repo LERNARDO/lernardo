@@ -31,7 +31,7 @@
 
     <div class="info-msg"><g:message code="evaluation.entrySize" args="[evaluationInstanceList.size()]"/></div>
     
-    <g:render template="someevaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
+    <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
 
   </div>
 </div>

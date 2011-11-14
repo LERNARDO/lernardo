@@ -37,7 +37,7 @@
 
     <div id="remoteEvaluations">
       <g:if test="${show}">
-        <g:render template="someevaluations" model="[evaluationInstanceList: evaluations, totalEvaluations: totalEvaluations, entity: entity, currentEntity: currentEntity]"/>
+        <g:render template="evaluations" model="[evaluationInstanceList: evaluations, totalEvaluations: totalEvaluations, entity: entity, currentEntity: currentEntity]"/>
       </g:if>
     </div>
 

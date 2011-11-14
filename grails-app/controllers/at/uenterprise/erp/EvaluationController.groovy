@@ -85,7 +85,7 @@ class EvaluationController {
       def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
       evaluations = evaluations.subList(params.offset, upperBound)
 
-      render template: "someevaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
+      render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
     }
     else
       render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
@@ -115,7 +115,7 @@ class EvaluationController {
     if (clients) {
       List evaluations = Evaluation.list().findAll {clients.contains(it.owner) && it.writer == entity}
       if (evaluations)
-        render template: "someevaluations", model:[evaluationInstanceList: evaluations, entity: entity, currentEntity: entityHelperService.loggedIn]
+        render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, currentEntity: entityHelperService.loggedIn]
       else
         render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
     }
@@ -152,7 +152,7 @@ class EvaluationController {
       def upperBound = params.offset + 5 < totalEvaluations ? params.offset + 5 : totalEvaluations
       evaluations = evaluations.subList(params.offset, upperBound)
 
-      render template: "someevaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
+      render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, value: params.value, currentEntity: entityHelperService.loggedIn]
     }
     else
       render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
@@ -228,16 +228,17 @@ class EvaluationController {
       try {
         evaluationInstance.delete(flush: true)
         flash.message = message(code: "evaluation.deleted")
-        redirect action: "list", id: entity.id
+        render ""
+        //redirect action: "list", id: entity.id
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = "Evaluation ${params.id} could not be deleted"
-        redirect action: "show", id: params.id
+        //redirect action: "show", id: params.id
       }
     }
     else {
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
-      redirect action: "list"
+      //redirect action: "list"
     }
   }
 
@@ -274,7 +275,7 @@ class EvaluationController {
         evaluationInstance.linkedTo = linkedEntity
       if (!evaluationInstance.hasErrors() && evaluationInstance.save()) {
         flash.message = message(code: "evaluation.updated")
-        redirect action: 'list', id:  evaluationInstance.owner.id
+        redirect action: 'show', id: evaluationInstance.id, params: [entity: evaluationInstance.owner.id]
       }
       else {
         render view: 'edit', model: [evaluationInstance: evaluationInstance]
