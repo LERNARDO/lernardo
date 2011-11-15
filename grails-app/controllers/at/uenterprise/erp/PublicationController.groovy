@@ -18,6 +18,7 @@ class PublicationController {
 
   def list = {
     params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+    params.sort = params.sort ?: 'dateCreated'
     Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
     if (!entity) {
       response.sendError (404, 'no such profile')
@@ -204,6 +205,9 @@ class PublicationController {
       }
       //pubs = finalMap
     }*/
+
+    publications.sort {it[params.sort]}
+    publications = publications.reverse()
 
     return [entity: entity,
             publications: publications,

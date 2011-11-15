@@ -1,3 +1,4 @@
+<%@ page import="at.openfactory.ep.Entity" %>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
@@ -5,14 +6,6 @@
 </head>
 
 <body>
-%{--<g:if test="${entity.profile.showTips}">
-  <div class="toolTip" id="tooltip">
-    <div class="second">
-      <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> <g:message code="tooltip.events"/>
-      <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
-    </div>
-  </div>
-</g:if>--}%
 
 <div class="boxHeader">
   <div class="second">
@@ -22,7 +15,36 @@
 <div class="boxGray">
   <div class="second">
 
-    <p><span class="strong"><g:message code="tomorrow"/></span></p>
+    <g:if test="${events}">
+      <table class="default-table">
+        <tbody>
+        <erp:getBirthdays>
+          <g:if test="${entities}">
+            <g:each in="${entities}" var="entity">
+              <tr>
+                <td class="gray">
+                  <erp:profileImage entity="${entity}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/> <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><span class="bold">${entity.profile.fullName}</span></g:link> hat heute Geburtstag! <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/><br/>
+                </td>
+              </tr>
+            </g:each>
+          </g:if>
+        </erp:getBirthdays>
+        <g:each in="${events}" status="i" var="event">
+          <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
+            <td class="gray">
+              <erp:profileImage entity="${Entity.get(event.who)}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/> <g:formatDate date="${event.date}" format="EE dd. MMM. yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/>
+            </td>
+          </tr>
+        </g:each>
+        </tbody>
+      </table>
+
+      <div class="paginateButtons">
+        <g:paginate total="${totalEvents}"/>
+      </div>
+    </g:if>
+
+    %{--<p><span class="strong"><g:message code="tomorrow"/></span></p>
     <p>
       <g:if test="${eventsTomorrow}">
         <g:each in="${eventsTomorrow}" var="event" status="i">
@@ -69,7 +91,7 @@
       <g:else>
         <span class="italic"><g:message code="profile.showNews.yesterdayMsg"/></span>
       </g:else>
-    </p>
+    </p>--}%
     
   </div>
 </div>

@@ -9,9 +9,12 @@ class EventController {
    * shows the events page
    */
   def index = {
+    params.sort = 'dateCreated'
+    params.order = 'desc'
+    params.max = params.max ?: 10
     Entity entity = Entity.get(params.id)
 
-    Calendar calendar = Calendar.getInstance()
+    /*Calendar calendar = Calendar.getInstance()
 
     SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"))
 
@@ -23,11 +26,15 @@ class EventController {
     List eventsYesterday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
 
     calendar.add(Calendar.DATE, 2)
-    List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
+    List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}*/
+    
+    List events = Event.list(params)
 
-    return ['entity': entity,
-            'eventsToday': eventsToday,
-            'eventsYesterday': eventsYesterday,
-            'eventsTomorrow': eventsTomorrow]
+    return [entity: entity,
+            events: events,
+            totalEvents: Event.count()]
+            //'eventsToday': eventsToday,
+            //'eventsYesterday': eventsYesterday,
+            //'eventsTomorrow': eventsTomorrow]
   }
 }

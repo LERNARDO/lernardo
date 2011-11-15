@@ -81,21 +81,25 @@
         $('#livetickerbox').empty().append(data);
       });*/
 
-      // should display the image of an entity when hovering link - not working
-      /*$('.hoverImage').qtip({
-         content: {
-            text: 'Loading...', // The text to use whilst the AJAX request is loading
-            ajax: {
-               url: '/lernardo/app/showImage',
-               type: 'GET', // POST or GET
-               data: {name: $(this).find('div').attr('id')},
-              once: false
+      $(document).ready(function() {
+        $('.tooltip').each(function() {
+          $(this).qtip({
+            content: {
+              text: function(api) {
+                 return $(this).attr('data-tooltip');
+              }
+            },
+            position: {
+              my: 'top left',  // Position my top left...
+              at: 'right bottom', // at the bottom right of...
+              target: $(this) // my target
+            },
+            style: {
+              classes: 'ui-tooltip-blue'
             }
-         }
-        style: {
-          classes: 'ui-tooltip-blue'
-        }
-      });*/
+          });
+        });
+      });
 
       $('.timepicker').timepicker();
 
@@ -128,7 +132,7 @@
         timeFormat: 'hh:mm'
       });
 
-      $('#flash-msg').delay(3000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
+      $('#flash-msg').delay(4000).fadeOut(2000); //fadeTo(2000,0).toggle(2000);
 
       $('.countable50').jqEasyCounter({
         'maxChars': 50,
@@ -287,6 +291,7 @@
                   </ul>
                   <div class="area"><g:message code="other"/></div>
                   <ul>
+                    <li class="icon-news"><g:link controller="event" action="index" id="${entity.id}"><g:message code="events"/></g:link></li>
                     <li class="icon-text"><g:link controller="news" action="index"><g:message code="newsp"/></g:link></li>
                     <li class="profile-calendar"><g:link controller="calendar" action="show"><g:message code="imgmenu.calendar.name"/></g:link></li>
                     <li class="icon-admin"><g:link controller="overview" action="index" id="${currentEntity.id}"><g:message code="imgmenu.overview.name"/></g:link></li>

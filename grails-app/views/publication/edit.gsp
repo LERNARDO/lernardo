@@ -25,10 +25,15 @@
 
       <g:form id="${publication.id}">
 
-        <div class="text-field ${hasErrors(bean: publication, field: 'name', 'errors')}">
-          <label for="name">Titel:</label><br />
-          <g:textField id="name" name="name" size="70" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/>
-        </div>
+        <table>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="title"/></td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: publication, field: 'name', 'errors')} countable50" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/></td>
+          </tr>
+
+        </table>
 
         %{--<div>
           <label for="category">Kategorie:</label><br />

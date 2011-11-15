@@ -5,15 +5,15 @@
 </head>
 <body>
 
-<div class="tabGreen">
+<div class="tabGrey">
   <div class="second">
-    <h1>Aktuelle Termine</h1>
+    <h1><g:link controller="appointmentProfile" action="list">Aktuelle Termine</g:link></h1>
   </div>
 </div>
 
-<div class="tabGrey">
+<div class="tabGreen">
   <div class="second">
-    <h1><g:link controller="appointmentProfile" action="listold">Vergangene Termine</g:link></h1>
+    <h1>Vergangene Termine</h1>
   </div>
 </div>
 

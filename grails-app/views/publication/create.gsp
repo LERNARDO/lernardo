@@ -20,10 +20,31 @@
 
       <g:uploadForm id="${entity.id}">
 
-        <div class="text-field">
+        <table>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="title"/></td>
+            <td valign="top" class="value">
+              <g:textField class="${hasErrors(bean: publication, field: 'name', 'errors')} countable50" id="name" name="name" size="50" value="${fieldValue(bean:publication,field:'name').decodeHTML()}"/></td>
+          </tr>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="publication.profile.file"/></td>
+            <td valign="top" class="value">
+              <input size="50" id="file" type="file" name="file"/>
+            </tr>
+
+
+          %{--<div class="file-field">
+                    <label for="file"><g:message code="publication.profile.file"/>:</label><br />
+                    <input size="50" id="file" type="file" name="file"/>
+                  </div>--}%
+        </table>
+
+        %{--<div class="text-field">
           <label for="name"><g:message code="title"/>:</label><br />
           <g:textField class="${hasErrors(bean: publication, field: 'name', 'errors')} countable${publication.constraints.name.maxSize}" id="name" name="name" size="60" value="${fieldValue(bean:publication,field:'name')}"/>
-        </div>
+        </div>--}%
 
         %{-- 06.08.2010: disabled for now --}%
         %{--<div>
@@ -48,10 +69,10 @@
           </g:select>
         </div>--}%
 
-        <div class="file-field">
+        %{--<div class="file-field">
           <label for="file"><g:message code="publication.profile.file"/>:</label><br />
           <input size="50" id="file" type="file" name="file"/>
-        </div>
+        </div>--}%
 
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="save" value="${message(code: 'save')}" /></div>

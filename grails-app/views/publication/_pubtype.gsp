@@ -15,7 +15,7 @@
     %{-- TODO: uncomment when implemented --}%
     %{--<ub:meOrAdmin entityName="${entity}"><td><erp:showAccessLevel accesslevel="${pub.accesslevel}"/></td></ub:meOrAdmin>--}%
     %{--<td><erp:getFileType type="${pub.asset.storage.contentType}"/></td>--}%
-    <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+    <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
     <td class="action">
       <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${pub}">
         <g:form id="${pub.id}">

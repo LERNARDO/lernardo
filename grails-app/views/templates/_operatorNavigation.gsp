@@ -13,9 +13,9 @@
         <li class="profile-profil"><g:link controller="operatorProfile" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="profile"/></g:link></li>
         <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
 
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+        %{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
           <li class="icon-news"><g:link controller="event" action="index" id="${entity.id}"><g:message code="events"/></g:link></li>
-        </erp:accessCheck>
+        </erp:accessCheck>--}%
 
         <erp:accessCheck entity="${currentEntity}" me="${entity}">
           <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>

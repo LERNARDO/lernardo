@@ -32,31 +32,70 @@ class AppointmentProfileController {
 
     def list = {
       params.offset = params.offset ?: 0
+      params.sort = params.sort ?: 'beginDate'
+
       Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
 
       List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
+      appointments = appointments.findAll {it.profile.endDate > new Date()}
 
-      if (params.order == "fullName")
-        appointments.sort() {it.profile.fullName}
-      if (params.order == "beginDate")
-        appointments.sort() {it.profile.beginDate}
-      if (params.order == "endDate")
-        appointments.sort() {it.profile.endDate}
-      if (params.order == "allDay")
-        appointments.sort() {it.profile.allDay}
-      if (params.order == "isPrivate")
-        appointments.sort() {it.profile.isPrivate}
+      appointments.sort {it.profile[params.sort]}
+      /*if (params.sort == "fullName")
+        appointments.sort {it.profile.fullName}
+      else if (params.sort == "beginDate")
+        appointments.sort {it.profile.beginDate}
+      else if (params.sort == "endDate")
+        appointments.sort {it.profile.endDate}
+      else if (params.sort == "allDay")
+        appointments.sort {it.profile.allDay}
+      else if (params.sort == "isPrivate")
+        appointments.sort {it.profile.isPrivate}*/
 
       if (params.order == "desc")
         appointments = appointments.reverse()
-
 
       def resulttotal = appointments.size()
 
       def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
       appointments = appointments.subList(params.offset, upperBound)
 
-      [appointmentProfileInstanceList: appointments, appointmentProfileInstanceTotal: resulttotal, entity: entity]
+      [appointmentProfileInstanceList: appointments,
+       appointmentProfileInstanceTotal: resulttotal,
+       entity: entity]
+    }
+
+    def listold = {
+      params.offset = params.offset ?: 0
+      params.sort = params.sort ?: 'beginDate'
+
+      Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
+
+      List appointments = functionService.findAllByLink(null, entity, metaDataService.ltAppointment)
+      appointments = appointments.findAll {it.profile.endDate < new Date()}
+
+      appointments.sort {it.profile[params.sort]}
+      /*if (params.sort == "fullName")
+        appointments.sort {it.profile.fullName}
+      else if (params.sort == "beginDate")
+        appointments.sort {it.profile.beginDate}
+      else if (params.sort == "endDate")
+        appointments.sort {it.profile.endDate}
+      else if (params.sort == "allDay")
+        appointments.sort {it.profile.allDay}
+      else if (params.sort == "isPrivate")
+        appointments.sort {it.profile.isPrivate}*/
+
+      if (params.order == "desc")
+        appointments = appointments.reverse()
+
+      def resulttotal = appointments.size()
+
+      def upperBound = params.offset + 10 < resulttotal ? params.offset + 10 : resulttotal
+      appointments = appointments.subList(params.offset, upperBound)
+
+      [appointmentProfileInstanceList: appointments,
+       appointmentProfileInstanceTotal: resulttotal,
+       entity: entity]
     }
 
     def show = {

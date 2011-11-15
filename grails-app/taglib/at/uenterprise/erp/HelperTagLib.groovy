@@ -547,11 +547,11 @@ class HelperTagLib {
     if (!what) {
      what = Helper.get(attrs.event.what)
      if (who && what)
-       out << message(code: attrs.event.name, args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '">' + who.profile.fullName + '</a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '">' + what.title + '</a>']).decodeHTML()
+       out << message(code: attrs.event.name, args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
     }
     else
       if (who && what)
-        out << message(code: attrs.event.name, args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '">' + who.profile.fullName + '</a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id) + '">' + what.profile.fullName + '</a>']).decodeHTML()
+        out << message(code: attrs.event.name, args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
   }
 
   def profileImage = {attrs ->
@@ -1622,6 +1622,17 @@ class HelperTagLib {
     def result = c.list {
       ge('dateCreated', lastWeek)
     }
+
+    out << body(result: result.size())
+  }
+
+  /**
+   * returns the number of current appointments
+   */
+  def getCurrentAppointments = {attrs, body ->
+
+    List result = functionService.findAllByLink(null, attrs.entity, metaDataService.ltAppointment)
+    result = result.findAll {it.profile.endDate > new Date()}
 
     out << body(result: result.size())
   }
