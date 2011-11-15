@@ -50,7 +50,13 @@
         <tbody>
           <g:each in="${messages}" status="i" var="message">
             <tr class="${(i % 2) == 0 ? 'odd' : 'even'}" style="${!message.read ? 'background: #dfd' : ''}">
-              <td><g:if test="${!message.read}"><img src="${g.resource(dir: 'images/icons', file: 'icon_new.png')}" alt="new" valign="top"/></g:if> ${message.sender.profile.fullName.decodeHTML()}</td>
+              <td>
+                <g:if test="${!message.read}">
+                  <img src="${g.resource(dir: 'images/icons', file: 'icon_new.png')}" alt="new" valign="top"/>
+                </g:if>
+                <erp:profileImage entity="${message.sender}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+                ${message.sender.profile.fullName.decodeHTML()}
+              </td>
               <td><g:link action="show" id="${message.id}" params="[entity:entity.id,box:'inbox']">${message.subject.decodeHTML()}</g:link></td>
               <td><g:formatDate format="dd.MM.yyyy, HH:mm" date="${message.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
             </tr>

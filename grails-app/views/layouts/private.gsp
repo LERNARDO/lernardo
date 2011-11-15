@@ -64,7 +64,7 @@
 
     $(document).ready(function() {
 
-      $('input:text:visible:first').not('.datepicker, .datepicker-birthday').focus();
+      $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();
 
       // disabled for next release
       /*$.PeriodicalUpdater('${grailsApplication.config.grails.serverURL}/app/liveticker', { // not working in DEV environment

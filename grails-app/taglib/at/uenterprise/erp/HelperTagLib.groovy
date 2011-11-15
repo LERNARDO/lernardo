@@ -1598,16 +1598,17 @@ class HelperTagLib {
   /**
    * returns the number of new private messages through a service
    */
-  def getNewInboxMessages = {attrs ->
+  def getNewInboxMessages = {attrs, body ->
     def c = Msg.createCriteria()
-    def results = c.list {
+    def result = c.list {
       eq('entity', attrs.entity)
       ne('sender', attrs.entity)
       eq('read', false)
     }
 
-    if (results.size() > 0)
-      out << "(" + results.size() + ")"
+    //if (results.size() > 0)
+    //  out << "(" + results.size() + ")"
+    out << body(result: result.size())
   }
 
   /**

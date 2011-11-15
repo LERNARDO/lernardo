@@ -65,67 +65,6 @@ class OverviewController {
                                       allUsers: Entity.countByType(metaDataService.etUser)]
   }
 
-   /*
-   * retrieves users matching the search parameter of the instant search
-   */
-  def searchMe = {
-    if (!params.name) {
-      render ""
-      return
-    }
-
-    def c = Entity.createCriteria()
-    def users = c.list {
-      or {
-          if (params.child)
-            eq("type", metaDataService.etChild)
-          if (params.client)
-            eq("type", metaDataService.etClient)
-          if (params.educator)
-            eq("type", metaDataService.etEducator)
-          if (params.facility)
-            eq("type", metaDataService.etFacility)
-          if (params.operator)
-            eq("type", metaDataService.etOperator)
-          if (params.parent)
-            eq("type", metaDataService.etParent)
-          if (params.partner)
-            eq("type", metaDataService.etPartner)
-          if (params.pate)
-            eq("type", metaDataService.etPate)
-          if (params.family)
-            eq("type", metaDataService.etGroupFamily)
-          if (params.colony)
-            eq("type", metaDataService.etGroupColony)
-          if (params.groupClient)
-            eq("type", metaDataService.etGroupClient)
-          if (params.groupPartner)
-            eq("type", metaDataService.etGroupPartner)
-          if (params.projectTemplate)
-            eq("type", metaDataService.etProjectTemplate)
-          if (params.project)
-            eq("type", metaDataService.etProject)
-          if (params.groupActivity)
-            eq("type", metaDataService.etGroupActivity)
-        }
-      or {
-        ilike('name', "%" + params.name + "%")
-        profile {
-          ilike('fullName', "%" + params.name + "%")
-        }
-      }
-      maxResults(30)
-    }
-
-    if (users.size() == 0) {
-      render '<span class="italic">' + message(code: "searchMe.empty") +  '</span>'
-      return
-    }
-    else {
-      render(template: 'searchresults', model: [searchList: users])
-    }
-  }
-
   /*
    * used by the glossary
    * either retrieves all users or those matching the given glossary letter

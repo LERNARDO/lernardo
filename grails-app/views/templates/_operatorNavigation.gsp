@@ -18,7 +18,7 @@
         </erp:accessCheck>
 
         <erp:accessCheck entity="${currentEntity}" me="${entity}">
-          <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/> <erp:getNewInboxMessages entity="${entity}"/></g:link></li>
+          <li class="profile-nachricht"><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
         </erp:accessCheck>
 
         <erp:notMe entity="${entity}">

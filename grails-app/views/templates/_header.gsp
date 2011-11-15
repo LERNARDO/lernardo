@@ -1,10 +1,30 @@
-<g:link controller="app" action="start"><div id="logo">${grailsApplication.config.application.name}</div><img src="${resource(dir: '/images/' + grailsApplication.config.customer, file:  'logo.png')}" height="70px" alt="${grailsApplication.config.customer}"/></g:link>
+<g:link controller="app" action="start"><div id="logo">${grailsApplication.config.application.name}</div><img src="${resource(dir: '/images/' + grailsApplication.config.customer, file:  'logo.png')}" height="50px" alt="${grailsApplication.config.customer}" style="position: relative; top: 10px;"/></g:link>
 <div id="info">
-    %{--<g:form name="search">
+  <g:form name="searchForm" controller="search" params="[child: 'yes', client: 'yes', educator: 'yes', facility: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes']">
+
+    <erp:getNewInboxMessages entity="${currentEntity}">
+      <g:link controller="msg" action="inbox" id="${currentEntity.id}">
+      <span class="notificationbox ${result > 0 ? 'active' : 'inactive'}">
+        <g:if test="${result > 0}">
+          <span class="white">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_mail.png')}" alt="Mail" style="position: relative; top: 3px;"/>
+        </g:if>
+        <g:else>
+          <span class="gray">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_mail_off.png')}" alt="Mail" style="position: relative; top: 3px;"/>
+        </g:else>
+      </span>
+      </g:link>
+    </erp:getNewInboxMessages>
+
     <g:textField class="search" name="search" size="30" placeholder="${message(code: 'searchWord')}"/>
-    <span class="searchButton"><g:submitButton name="search" class="buttonBlue" value="${message(code: 'search')}"/></span>--}%
-    <a href="?lang=de"><img src="${g.resource(dir:'images/icons', file:'flag_at.png')}" alt="German"/></a> <a href="?lang=es"><img src="${g.resource(dir:'images/icons', file:'flag_mx.png')}" alt="Spanish"/> <a href="?lang=en"><img src="${g.resource(dir:'images/icons', file:'flag_gb.png')}" alt="English"/></a>
-    ${currentEntity?.profile?.fullName}
-    <g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" /></g:link>
-    %{--</g:form>--}%
+    <span class="searchButton"><g:submitButton name="searchButton" class="buttonBlue" value="${message(code: 'search')}"/></span>
+    <span class="box">
+      <a href="?lang=de"><img src="${g.resource(dir:'images/icons', file:'flag_at.png')}" alt="German"/></a> <a href="?lang=es"><img src="${g.resource(dir:'images/icons', file:'flag_mx.png')}" alt="Spanish"/></a> <a href="?lang=en"><img src="${g.resource(dir:'images/icons', file:'flag_gb.png')}" alt="English"/></a>
+    </span>
+    <span class="box">
+      <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[entity:currentEntity.id]"><erp:profileImage entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/> ${currentEntity?.profile?.fullName}</g:link>
+    </span>
+    <span class="box" style="border-right: none;">
+      <g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/></g:link>
+    </span>
+  </g:form>
 </div>

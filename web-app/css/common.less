@@ -13,6 +13,7 @@
 
 @brown: #808372;
 @cyan: #36808E;
+@red: #d22;
 
 body {
     font-family: verdana,arial,helvetica,sans-serif;
@@ -33,10 +34,40 @@ body {
         text-align: right;
         float: right;
         margin: 23px 25px 0 0;
+        .notificationbox {
+            margin: 0 50px 0 0;
+            padding: 5px;
+        }
+        .active {
+            background: lighten(@red, 25%);
+            &:hover {
+                background: lighten(@red, 20%);
+            }
+        }
+        .inactive {
+            background: lighten(@brown, 35%);
+            &:hover {
+                background: lighten(@brown, 30%);
+            }
+        }
+        .box {
+            border-right: 1px solid lighten(@brown, 15%);
+            padding: 5px;
+            background: lighten(@brown, 35%);
+            &:hover {
+                background: lighten(@brown, 30%);
+            }
+        }
         a {
             font-weight: bold;
             text-decoration: none;
             margin: 0 2px 0 2px;
+            &.me {
+                img {
+                    border: 1px solid lighten(@brown, 15%);
+                }
+                padding: 12px 3px;
+            }
         }
         .search {
             padding: 4px;
@@ -48,14 +79,14 @@ body {
         //height: 70px;
         //float: left;
         color: darken(@brown, 15%);
-        text-shadow: 0 0 10px darken(@brown, 5%);
+        text-shadow: 0 0 10px lighten(@brown, 5%);
         font-size: 40px;
-        font-weight: bold;
+        //font-weight: bold;
         float: left;
-        margin: 5px 0 0 10px;
+        padding: 10px 10px 0 20px;
         &:hover {
             color: darken(@brown, 25%);
-            text-shadow: 0 0 10px darken(@brown, 15%);
+            text-shadow: 0 0 10px darken(@brown, 5%);
         }
     }
 }
@@ -141,6 +172,9 @@ ol li {
 
 .green {
     color: #0b0; }
+
+.white {
+    color: #fff; }
 
 .notEnabled {
     color: #f44; }
