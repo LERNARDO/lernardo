@@ -49,7 +49,7 @@ class GroupFamilyProfileController {
     Entity entity = params.entity ? group : entityHelperService.loggedIn
 
     if (!group) {
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupFamily")])
       redirect(action: list)
       return
     }
@@ -89,17 +89,17 @@ class GroupFamilyProfileController {
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
 
       try {
-        flash.message = message(code: "group.deleted", args: [group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupFamily"), group.profile.fullName])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "group.notDeleted", args: [group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupFamily"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupFamily")])
       redirect(action: "list")
     }
   }
@@ -108,7 +108,7 @@ class GroupFamilyProfileController {
     Entity group = Entity.get(params.id)
 
     if (!group) {
-       flash.message = message(code: "group.idNotFound", args: [params.id])
+       flash.message = message(code: "object.notFound", args: [message(code: "groupFamily")])
       redirect action: 'list'
     }
     else {
@@ -122,7 +122,7 @@ class GroupFamilyProfileController {
     group.profile.properties = params
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "group.updated", args: [group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupFamily"), group.profile.fullName])
       redirect action: 'show', id: group.id, params: [entity: group.id]
     }
     else {
@@ -143,7 +143,7 @@ class GroupFamilyProfileController {
         ent.profile.properties = params
       }
 
-      flash.message = message(code: "group.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "groupFamily"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])

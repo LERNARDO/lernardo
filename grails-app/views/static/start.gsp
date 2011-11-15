@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="public2"/>
+  <meta name="layout" content="public"/>
   <title>Login</title>
 </head>
 

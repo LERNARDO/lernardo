@@ -40,7 +40,7 @@
         </thead>
         <tbody>
         <g:each in="${entityList}" var="entity" status="i">
-          <tr id="listentity-${i}" class="row-${entity.type.supertype.name}">
+          <tr id="listentity-${i}">
             <g:render template="listentity" model="[entity: entity, currentEntity: currentEntity, i: i]"/>
           </tr>
         </g:each>

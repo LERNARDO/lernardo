@@ -1,5 +1,5 @@
 <div class="info-msg">
-  ${groups.size()} <g:message code="groupActivities.c_total"/>
+  <g:message code="object.found" args="[groups.size(), message(code: 'groupActivities')]"/>
 </div>
 
 <g:if test="${groups}">

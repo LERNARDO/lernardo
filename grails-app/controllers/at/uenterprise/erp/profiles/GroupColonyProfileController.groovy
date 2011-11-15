@@ -52,7 +52,7 @@ class GroupColonyProfileController {
 
     if (!group) {
       // flash.message = "groupProfile not found with id ${params.id}"
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupColony")])
       redirect(action: list)
       return
     }
@@ -99,18 +99,18 @@ class GroupColonyProfileController {
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
 
       try {
-        flash.message = message(code: "group.deleted", args: [group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupColony"), group.profile.fullName])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "group.notDeleted", args: [group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupColony"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
       // flash.message = "groupProfile not found with id ${params.id}"
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupColony")])
       redirect(action: "list")
     }
   }
@@ -122,7 +122,7 @@ class GroupColonyProfileController {
       [group: group]
     }
     else {
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupColony")])
       redirect action: 'list'
     }
 
@@ -134,7 +134,7 @@ class GroupColonyProfileController {
     group.profile.properties = params
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "group.updated", args: [group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupColony"), group.profile.fullName])
       redirect action: 'show', id: group.id, params: [entity: group.id]
     }
     else {
@@ -155,7 +155,7 @@ class GroupColonyProfileController {
         ent.profile.properties = params
       }
 
-      flash.message = message(code: "group.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "groupColony"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
       render(view: "create", model: [group: ee.entity])

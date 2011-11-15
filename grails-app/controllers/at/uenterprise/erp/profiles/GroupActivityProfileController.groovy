@@ -88,7 +88,7 @@ class GroupActivityProfileController {
 
     if (!group) {
       // flash.message = "groupProfile not found with id ${params.id}"
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupActivity")])
       redirect(action: list)
       return
     }
@@ -219,17 +219,17 @@ class GroupActivityProfileController {
       Link.findAllBySourceOrTarget(group, group).each {it.delete()}
 
       try {
-        flash.message = message(code: "group.deleted", args: [group.profile.fullName])
+        flash.message = message(code: "object.deleted", args: [message(code: "groupActivity"), group.profile.fullName])
         group.delete(flush: true)
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = message(code: "group.notDeleted", args: [group.profile.fullName])
+        flash.message = message(code: "object.notDeleted", args: [message(code: "groupActivity"), group.profile.fullName])
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupActivity")])
       redirect(action: "list")
     }
   }
@@ -240,7 +240,7 @@ class GroupActivityProfileController {
 
     if (!group) {
       // flash.message = "groupProfile not found with id ${params.id}"
-      flash.message = message(code: "group.idNotFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "groupActivity")])
       redirect action: 'list'
     }
     else {
@@ -255,7 +255,7 @@ class GroupActivityProfileController {
     group.profile.date = functionService.convertToUTC(group.profile.date)
 
     if (group.profile.save() && group.save()) {
-      flash.message = message(code: "group.updated", args: [group.profile.fullName])
+      flash.message = message(code: "object.updated", args: [message(code: "groupActivity"), group.profile.fullName])
       redirect action: 'show', id: group.id, params: [entity: group.id]
     }
     else {
@@ -312,7 +312,7 @@ class GroupActivityProfileController {
       new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
 
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
-      flash.message = message(code: "group.created", args: [entity.profile.fullName])
+      flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
     } catch (EntityException ee) {
 

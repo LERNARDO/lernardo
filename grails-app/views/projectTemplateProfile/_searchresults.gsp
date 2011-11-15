@@ -1,5 +1,5 @@
 <div class="info-msg">
-  ${totalTemplates} <g:message code="projectTemplates.c_total"/>
+  <g:message code="object.found" args="[totalTemplates, message(code: 'projectTemplates')]"/>
 </div>
 
 <table class="default-table">

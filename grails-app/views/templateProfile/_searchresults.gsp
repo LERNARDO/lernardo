@@ -1,5 +1,5 @@
 <div class="info-msg">
-  <g:message code="activityTemplate.c_total" args="[totalTemplates, numberOfAllTemplates ?: totalTemplates]"/>
+  <g:message code="object.found" args="[totalTemplates, message(code: 'activityTemplates')]"/>
 </div>
 
 <table class="default-table">

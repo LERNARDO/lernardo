@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="pass.forgotten"/></title>
-  <meta name="layout" content="public2"/>
+  <meta name="layout" content="public"/>
 </head>
 
 <body>

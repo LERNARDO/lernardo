@@ -22,7 +22,7 @@
     </erp:accessCheck>
 
     <div class="info-msg">
-      ${allThemes} <g:message code="theme.c_total"/>
+      <g:message code="object.found" args="[allThemes, message(code: 'themes')]"/>
     </div>
 
     <div id="themelist">

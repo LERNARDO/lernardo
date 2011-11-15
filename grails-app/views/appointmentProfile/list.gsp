@@ -13,7 +13,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${appointmentProfileInstanceTotal} <g:message code="appointment.profile.c_total"/>
+      <g:message code="object.found" args="[appointmentProfileInstanceTotal, message(code: 'appointments')]"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">

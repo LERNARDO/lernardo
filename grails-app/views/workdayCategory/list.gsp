@@ -12,7 +12,7 @@
   <div class="second">
 
     <div class="info-msg">
-      ${workdayCategoryInstanceTotal} <g:message code="workdayCategory.c_total"/>
+      <g:message code="object.found" args="[workdayCategoryInstanceTotal, message(code: 'workdayCategories')]"/>
     </div>
 
     <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
