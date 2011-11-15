@@ -43,6 +43,3 @@
   </div>
 </g:each>
 
-<div class="paginateButtons">
-  <util:remotePaginate action="getNews" total="${newsCount}" update="news-container" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}"/>
-</div>

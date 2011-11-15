@@ -1,20 +1,20 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="private"/>
-  <title><g:message code="news"/></title>
+  <title><g:message code="newsp"/></title>
 </head>
 <body>
-<g:if test="${entity.profile.showTips}">
+%{--<g:if test="${entity.profile.showTips}">
   <div class="toolTip" id="tooltip">
     <div class="second">
       <span class="bold"><img src="${resource(dir: 'images/icons', file: 'icon_template.png')}" alt="toolTip" align="top"/><g:message code="hint"/></span> <g:message code="tooltip.news"/>
       <span style="float: right"><a onclick="toggle('#tooltip'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'cross.png')}" alt="Close"/></a></span>
     </div>
   </div>
-</g:if>
+</g:if>--}%
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="news"/></h1>
+    <h1><g:message code="newsp"/></h1>
   </div>
 </div>
 <div class="boxGray">

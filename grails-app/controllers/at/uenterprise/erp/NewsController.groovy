@@ -6,12 +6,20 @@ import at.openfactory.ep.Entity
 class NewsController {
   EntityHelperService entityHelperService
 
+  def index = {
+    params.max = params.max ?: 5
+    List news = News.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
+
+    return [news: news,
+            newsCount: News.count()]
+  }
+
   def show = {
     News news = News.get(params.id)
     if (news)
       return [news: news]
     else
-      redirect controller: "profile", action: "news"
+      redirect controller: "news", action: "index"
     return
   }
 
@@ -32,16 +40,16 @@ class NewsController {
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "news"), news.title])
         news.delete(flush: true)
-        redirect controller: "profile", action: "news"
+        redirect controller: "news", action: "index"
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = message(code: "object.notDeleted", args: [message(code: "news"), news.title])
-        redirect controller: "profile", action: "news"
+        redirect controller: "news", action: "index"
       }
     }
     else {
       flash.message = message(code: "object.notFound", args: [message(code: "news")])
-      redirect controller: "profile", action: "news"
+      redirect controller: "news", action: "index"
     }
   }
 
@@ -53,7 +61,7 @@ class NewsController {
     news.author = currentEntity
     if (news.save()) {
       flash.message = message(code: "object.created", args: [message(code: "news"), news.title])
-      redirect controller: "profile", action: "news"
+      redirect controller: "news", action: "index"
     }
     else {
       render view:"create", model:[news: news]
@@ -66,7 +74,7 @@ class NewsController {
       news.properties = params
       if (news.save()) {
         flash.message = message(code: "object.updated", args: [message(code: "news"), news.title])
-        redirect controller: "profile", action: "news"
+        redirect controller: "news", action: "index"
       }
       else {
         render view: 'edit', model: [news: news]
@@ -74,7 +82,7 @@ class NewsController {
     }
     else {
       flash.message = message(code: "post.notFound", args: [params.id])
-      redirect controller: "profile", action: "news"
+      redirect controller: "news", action: "index"
     }
   }
   

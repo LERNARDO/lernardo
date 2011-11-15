@@ -20,6 +20,8 @@ body {
     font-size: 12px;
     background: #fff;
     min-width: 1200px;
+    margin: 0;
+    padding: 0;
 }
 
 #hd {
@@ -34,44 +36,49 @@ body {
         text-align: right;
         float: right;
         margin: 23px 25px 0 0;
-        .notificationbox {
+        #notifications {
             margin: 0 50px 0 0;
-            padding: 5px;
-        }
-        .active {
-            background: lighten(@red, 25%);
-            &:hover {
-                background: lighten(@red, 20%);
+            .notificationbox {
+                padding: 5px;
+                border-right: 1px solid lighten(@brown, 15%);
             }
-        }
-        .inactive {
-            background: lighten(@brown, 35%);
-            &:hover {
-                background: lighten(@brown, 30%);
-            }
-        }
-        .box {
-            border-right: 1px solid lighten(@brown, 15%);
-            padding: 5px;
-            background: lighten(@brown, 35%);
-            &:hover {
-                background: lighten(@brown, 30%);
-            }
-        }
-        a {
-            font-weight: bold;
-            text-decoration: none;
-            margin: 0 2px 0 2px;
-            &.me {
-                img {
-                    border: 1px solid lighten(@brown, 15%);
+            .active {
+                background: lighten(@red, 25%);
+                &:hover {
+                    background: lighten(@red, 20%);
                 }
-                padding: 12px 3px;
+            }
+            .inactive {
+                background: lighten(@brown, 35%);
+                &:hover {
+                    background: lighten(@brown, 30%);
+                }
             }
         }
-        .search {
-            padding: 4px;
-            margin: 0 5px 0 0;
+        #other {
+            .box {
+                border-right: 1px solid lighten(@brown, 15%);
+                padding: 5px;
+                background: lighten(@brown, 35%);
+                &:hover {
+                    background: lighten(@brown, 30%);
+                }
+            }
+            a {
+                font-weight: bold;
+                text-decoration: none;
+                padding: 0 2px 0 2px;
+                &.me {
+                    img {
+                        border: 1px solid lighten(@brown, 15%);
+                    }
+                    padding: 12px 3px;
+                }
+            }
+            .search {
+                padding: 4px;
+                margin: 0 5px 0 0;
+            }
         }
     }
     #logo {
@@ -538,6 +545,12 @@ input {
         background: url(../images/icons/icon_news.png) 0 50% no-repeat;
         &:hover {
             background: url(../images/icons/icon_news.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-text {
+        background: url(../images/icons/icon_text.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_text.png) 0 50% no-repeat lighten(@cyan, 50%);
         }
     }
     .icon-document {

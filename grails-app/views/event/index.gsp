@@ -74,27 +74,4 @@
   </div>
 </div>
 
-%{--<div class="boxHeader">
-  <div class="second">
-    <h1><g:message code="nav.news"/></h1>
-  </div>
-</div>
-<div class="boxGray">
-  <div class="second">
-
-    <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-      <div class="buttons">
-        <g:form controller="news" action="create">
-          <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'news')])}"/></div>
-          <div class="spacer"></div>
-        </g:form>
-      </div>
-    </erp:accessCheck>
-
-    <div id="news-container">
-      <g:render template="newsitems" model="[news: news, newsCount: newsCount, currentEntity: currentEntity]"/>
-    </div>
-
-  </div>
-</div>--}%
 </body>

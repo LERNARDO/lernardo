@@ -159,43 +159,6 @@ class ProfileController {
   }
 
   /*
-   * shows the news page listing events
-   */
-  def news = {
-    Entity entity = Entity.get(params.id)
-
-    Calendar calendar = Calendar.getInstance()
-
-    SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"))
-
-    List allEvents = Event.list([sort: 'dateCreated', order: 'desc'])
-
-    List eventsToday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
-
-    calendar.add(Calendar.DATE, -1)
-    List eventsYesterday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
-
-    calendar.add(Calendar.DATE, 2)
-    List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
-
-    List news = News.list([max: 2, sort: "dateCreated", order: "desc", offset: params.offset])
-
-    return ['entity': entity,
-            'eventsToday': eventsToday,
-            'eventsYesterday': eventsYesterday,
-            'eventsTomorrow': eventsTomorrow,
-            'news': news,
-            'newsCount': News.count()]
-  }
-
-  def getNews = {
-    params.max = 2
-    List news = News.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
-
-    render template: "newsitems", model: [news: news, newsCount: News.count(), currentEntity: entityHelperService.loggedIn]
-  }
-
-  /*
    * shows a list of news the entity has contributed
    */
   def showNewsList = {

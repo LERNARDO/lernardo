@@ -1612,6 +1612,21 @@ class HelperTagLib {
   }
 
   /**
+   * returns the number of new news (last 7 days)
+   */
+  def getNewNews = {attrs, body ->
+
+    Date lastWeek = new Date() - 7
+
+    def c = News.createCriteria()
+    def result = c.list {
+      ge('dateCreated', lastWeek)
+    }
+
+    out << body(result: result.size())
+  }
+
+  /**
    * returns the number of publications of an entity
    */
   def getPublicationCount = {attrs ->

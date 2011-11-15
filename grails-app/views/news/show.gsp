@@ -50,7 +50,7 @@
         </div>
       </g:else>
       <div class="links">
-        <g:link controller="profile" action="news">&#187; <g:message code="backToList"/></g:link>
+        <g:link controller="news" action="index">&#187; <g:message code="backToList"/></g:link>
       </div>
     </div>
   </div>

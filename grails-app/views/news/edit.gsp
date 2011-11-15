@@ -50,7 +50,7 @@
 
       <div class="buttons">
         <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}"/></div>
-        <g:link class="buttonGray" controller="profile" action="news"><g:message code="cancel"/></g:link>
+        <g:link class="buttonGray" controller="news" action="index"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

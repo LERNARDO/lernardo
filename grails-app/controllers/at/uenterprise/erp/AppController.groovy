@@ -303,7 +303,7 @@ class AppController {
       if (!currentEntity.profile.calendar)
         currentEntity.profile.calendar = new ECalendar().save()
 
-      redirect controller: 'profile', action: 'news', id: currentEntity.id
+      redirect controller: 'event', action: 'index', id: currentEntity.id
     }
     else
       redirect action: 'home'
@@ -313,7 +313,6 @@ class AppController {
    * this is the public start
    */
   def home = {
-    //redirect controller: 'news', action: 'index'
     redirect controller: "static", action: "start"
   }
 
