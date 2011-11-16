@@ -11,10 +11,21 @@
   <div class="boxGray">
     <div class="second">
       <g:uploadForm id="${entity.id}">
-        <p><g:message code="profile.picture.select"/>:<br/>
-        <input size="40" type="file" name="asset"></p>
 
-        <p><g:message code="profile.picture.selectInfo"/></p>
+        <table>
+
+          <tr class="prop">
+            <td valign="top" class="name"><g:message code="profile.picture.select"/></td>
+            <td valign="top" class="value">
+              <input size="40" type="file" name="asset">
+            </td>
+          </tr>
+
+        </table>
+
+        <div class="info-msg" style="margin-top: 10px;">
+          <g:message code="profile.picture.selectInfo"/>
+        </div>
 
         <div class="buttons">
           <div class="button"><g:actionSubmit class="buttonGreen" action="saveProfilePic" value="${message(code: 'save')}" /></div>

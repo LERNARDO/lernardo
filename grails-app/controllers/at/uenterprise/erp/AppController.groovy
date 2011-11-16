@@ -515,7 +515,7 @@ class AppController {
     entity.removeFromAssets(asset)
     asset.delete()
 
-    flash.message = message(code: 'profile.picture.deleted ')
+    flash.message = message(code: 'profile.picture.deleted')
     redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
   }
 

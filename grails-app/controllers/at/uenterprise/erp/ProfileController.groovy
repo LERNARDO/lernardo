@@ -6,7 +6,6 @@ import at.openfactory.ep.EntityType
 import at.openfactory.ep.EntityHelperService
 import at.openfactory.ep.SecHelperService
 
-import java.text.SimpleDateFormat
 import org.hibernate.SessionFactory
 
 import at.uenterprise.erp.profiles.ActivityProfile
@@ -405,8 +404,9 @@ class ProfileController {
         redirect action: 'uploadProfileImage', id: params.id
       }
       else {
-        def result = functionService.storeAsset(entity, params.type, asset)
-        [asset: result, entity: entity]
+        flash.message = message(code: "profile.picture.select.ok")
+        functionService.storeAsset(entity, params.type, asset)
+        redirect controller: entity.type.supertype.name + 'Profile', action: 'show', id: entity.id, params: [entity: entity.id]
       }
     }
   }
