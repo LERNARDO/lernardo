@@ -12,7 +12,7 @@ class EventController {
     params.sort = 'dateCreated'
     params.order = 'desc'
     params.max = params.max ?: 10
-    Entity entity = Entity.get(params.id)
+    //Entity entity = Entity.get(params.id)
 
     /*Calendar calendar = Calendar.getInstance()
 
@@ -30,11 +30,19 @@ class EventController {
     
     List events = Event.list(params)
 
-    return [entity: entity,
+    return [//entity: entity,
             events: events,
             totalEvents: Event.count()]
             //'eventsToday': eventsToday,
             //'eventsYesterday': eventsYesterday,
             //'eventsTomorrow': eventsTomorrow]
+  }
+  
+  def delete = {
+    Event event = Event.get(params.id)
+    
+    event.delete(flush: true)
+
+    redirect action: 'index'
   }
 }

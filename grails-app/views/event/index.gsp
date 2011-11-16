@@ -32,7 +32,7 @@
         <g:each in="${events}" status="i" var="event">
           <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
             <td class="gray">
-              <erp:profileImage entity="${Entity.get(event.who)}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/> <g:formatDate date="${event.date}" format="EE dd. MMM. yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/>
+              <erp:profileImage entity="${Entity.get(event.who)}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/> <g:formatDate date="${event.date}" format="EE dd. MMM. yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> - <erp:getEvent event="${event}"/> <erp:isSystemAdmin entity="${currentEntity}"><g:link action="delete" id="${event.id}" onclick="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/></g:link></erp:isSystemAdmin>
             </td>
           </tr>
         </g:each>
