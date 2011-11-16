@@ -438,7 +438,7 @@ class HelperTagLib {
       out << "</tr>"
       calendarStart.add(Calendar.DATE, 1)
     }
-    out << "<tr>"
+    out << "<tr style='background: #bdf;'>"
     out << "<td class='bold'>" + message(code: "total") + "</td>"
     sums.each {
       out << "<td class='bold'>" + it + "</td>"

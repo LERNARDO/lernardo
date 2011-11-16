@@ -8,26 +8,12 @@
 
 <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'updateUnit', id: workdayUnit.id, params: [i: i, entity: entity.id]]" update="unit-${i}" before="showspinner('#unit-${i}')">
 
-    <table>
-      <tr>
-        <td><g:message code="from"/>:</td>
-        <td><g:textField name="from" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date1, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>%{--<g:select name="fromHour" from="${0..23}" value="${formatDate(date: workdayUnit.date1, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="fromMinute" from="${['00','15','30','45']}" value="${workdayUnit.date1.getMinutes()}"/>--}%</td>
-      </tr>
-      <tr>
-        <td><g:message code="to"/>:</td>
-        <td><g:textField name="to" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date2, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>%{--<g:select name="toHour" from="${0..23}" value="${formatDate(date: workdayUnit.date2, format: 'HH', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>:<g:select name="toMinute" from="${['00','15','30','45']}" value="${workdayUnit.date2.getMinutes()}"/>--}%</td>
-      </tr>
-      <tr>
-        <td><g:message code="category"/>:</td>
-        <td><g:select from="${workdaycategories}" name="category" value="${WorkdayCategory.findByName(workdayUnit.category)}"/></td>
-      </tr>
-      <tr>
-        <td><g:message code="description"/>:</td>
-        <td><g:textArea rows="3" cols="50" name="description" value="${workdayUnit.description.decodeHTML()}"/></td>
-      </tr>
-    </table>
+  <div class="gray" style="width: 200px; float: left;">
+    <g:message code="from"/>: <g:textField name="from" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date1, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/> <g:message code="to"/>: <g:textField name="to" class="timepicker" size="4" value="${formatDate(date: workdayUnit.date2, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/>
+  </div>
+  <div class="gray" style="width: 300px; float: left;"><g:message code="category"/>: <g:select from="${workdaycategories}" name="category" value="${WorkdayCategory.findByName(workdayUnit.category)}"/></div>
+  <div class="gray" style="float: left; vertical-align: top;"><g:message code="description"/>: <g:textArea style="height: 20px;" rows="1" cols="50" name="description" value="${workdayUnit.description.decodeHTML()}"/></div>
 
-    <div class="spacer"></div>
-    <g:submitButton name="button" value="${message(code:'change')}"/>
-    <div class="spacer"></div>
-  </g:formRemote>
+  <g:submitButton name="button" value="${message(code:'change')}"/>
+
+</g:formRemote>

@@ -27,20 +27,20 @@
 
   </g:if>
   <g:else>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
 
-        <p class="italic red"><g:message code="workdayUnit.dayConfirmed"/></p>
-        <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'cancelDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.cancellation')}')) return false">
+      <p class="italic red"><g:message code="workdayUnit.dayConfirmed"/></p>
+      <g:formRemote name="formRemote" url="[controller:'workdayUnit', action:'cancelDays', id: entity.id]" update="workdayunits" before="if(!confirm('${message(code:'confirm.cancellation')}')) return false">
 
-          <span style="display: none">
-            <g:datePicker name="date" value="${date}"/>
-          </span>
+        <span style="display: none">
+          <g:datePicker name="date" value="${date}"/>
+        </span>
 
-          <g:submitButton name="button" value="${message(code: 'day.cancel')}"/>
-          <div class="clear"></div>
-        </g:formRemote>
+        <g:submitButton name="button" value="${message(code: 'day.cancel')}"/>
+        <div class="clear"></div>
+      </g:formRemote>
 
-      </erp:accessCheck>
+    </erp:accessCheck>
   </g:else>
 </g:if>
 <g:else>
@@ -50,7 +50,7 @@
 <g:if test="${currentEntity.id == entity.id}">
   <g:if test="${confirmed == 'false'}">
     <g:if test="${workdaycategories}">
-      <div style="border: 1px solid #ccc; border-radius: 5px; padding: 5px; margin: 10px 0; background: #fefefe;">
+      <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
         <p><span class="bold"><g:message code="workdayUnit.createEntry"/></span></p>
         <g:formRemote name="formRemote2" url="[controller:'workdayUnit', action:'addWorkdayUnit', id: entity.id]" update="workdayunits" before="showspinner('#workdayunits')">
 
@@ -99,12 +99,13 @@
 
 <p class="bold"><g:message code="workdayUnit.alreadyEntered"/></p>
 <g:if test="${workdayunits}">
+
   <g:each in="${workdayunits}" var="unit" status="i">
-    %{--TODO: find out why this styling won't work when used in common.less--}%
-    <div id="unit-${i}" style="background-color: #dfdfdf; border: 1px solid #ccc; padding: 5px 6px; border-radius: 5px; margin: 5px 0 0 0;">
+    <div id="unit-${i}" style="border-bottom: 1px solid #ccc; padding: 5px; margin: 5px 0 0 0; height: 20px;">
       <g:render template="unit" model="[unit: unit, i: i, entity: entity, currentEntity: currentEntity]"/>
     </div>
   </g:each>
+
 </g:if>
 <g:else>
   <span class="italic red"><g:message code="workdayUnit.noEntries"/></span>
