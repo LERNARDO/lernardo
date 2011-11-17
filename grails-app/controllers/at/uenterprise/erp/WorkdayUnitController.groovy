@@ -38,7 +38,7 @@ class WorkdayUnitController {
       List workdaycategories = WorkdayCategory.list()
       Date date1 = Date.parse("dd. MM. yy", params.date1)
       Date date2 = Date.parse("dd. MM. yy", params.date2)
-      renderPdf template: 'createpdf', model: [entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2], filename: 'Zeitaufzeichnung_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy") + '.pdf'
+      renderPdf template: 'createpdf', model: [entity: entity, workdaycategories: workdaycategories, date1: date1, date2: date2], filename: message(code: 'privat.workday') + '_' + formatDate(date: date1, format: "dd.MM.yyyy") + '-' + formatDate(date: date2, format: "dd.MM.yyyy") + '.pdf'
     }
 
     def showunits = {

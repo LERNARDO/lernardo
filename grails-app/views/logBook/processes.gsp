@@ -1,13 +1,13 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Vorgänge</title>
+  <title><g:message code="processes"/></title>
 </head>
 
 <body>
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="logBook" action="entries">Einträge</g:link></h1>
+    <h1><g:link controller="logBook" action="entries"><g:message code="entries"/></g:link></h1>
   </div>
 </div>
 
@@ -21,13 +21,13 @@
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Vorgänge</h1>
+    <h1><g:message code="processes"/></h1>
   </div>
 </div>
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="logBook" action="settings">Anwesenheit</g:link></h1>
+    <h1><g:link controller="logBook" action="settings"><g:message code="attendance"/></g:link></h1>
   </div>
 </div>
 

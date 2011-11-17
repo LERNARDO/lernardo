@@ -60,7 +60,7 @@ Diese Evaluierungen sind für andere Pädagogen ebenfalls einsehbar.
 
 Pädagogen können ihren Tagesablauf/Zeitaufzeichnung erstellen die dann vom Betreiber ausgewertet werden kann.
 
-### Zeitauswertung (in Arbeit)
+### Zeitauswertung
 
 Der Betreiber kann über die Zeitauswertung die Arbeitszeiten bzw. bei Bedarf die Verrechnung erledigen, inklusive PDF Funktion.
 
@@ -98,9 +98,9 @@ Verfügung stehenden Funktionen hat bzw. Daten sehen darf.
 Paten, Erziehungsberechtigte oder Betreute selbst können sich (nach aktiviertem Account) bei Bedarf ebenfalls im ERP
 einloggen um sich zu informieren.
 
-### Öffentliches Blog
+### Neuigkeiten
 
-Pädagogen haben die Möglichkeit für die Startseite Artikel zu erstellen, um diverse Informationen über Projekte, Berichte
+Pädagogen haben die Möglichkeit interne Artikel zu erstellen, um diverse Informationen über Projekte, Berichte
 oder sonstiges allen Interessierten mitteilen zu können.
 
 ### Dokumente

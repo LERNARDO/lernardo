@@ -254,7 +254,7 @@
                   <div class="area"><g:message code="organisation"/></div>
                   <ul>
                     <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-                      <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}">Logbuch</g:link></li>
+                      <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}"><g:message code="logBook"/></g:link></li>
                     </erp:accessCheck>
                   </ul>
                   <div class="area"><g:message code="dataCollection"/></div>

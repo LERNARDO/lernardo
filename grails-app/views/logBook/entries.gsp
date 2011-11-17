@@ -1,33 +1,33 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>Einträge</title>
+  <title><g:message code="entries"/></title>
 </head>
 
 <body>
 
 <div class="tabGreen">
   <div class="second">
-    <h1>Einträge</h1>
+    <h1><g:message code="entries"/></h1>
   </div>
 </div>
 
 <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
   <div class="tabGrey">
     <div class="second">
-      <h1><g:link controller="logBook" action="evaluation">Auswertung</g:link></h1>
+      <h1><g:link controller="logBook" action="evaluation"><g:message code="evaluation2"/></g:link></h1>
     </div>
   </div>
 </erp:accessCheck>
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="logBook" action="processes">Vorgänge</g:link></h1>
+    <h1><g:link controller="logBook" action="processes"><g:message code="processes"/></g:link></h1>
   </div>
 </div>
 
 <div class="tabGrey">
   <div class="second">
-    <h1><g:link controller="logBook" action="settings">Anwesenheit</g:link></h1>
+    <h1><g:link controller="logBook" action="settings"><g:message code="attendance"/></g:link></h1>
   </div>
 </div>
 

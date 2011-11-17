@@ -130,7 +130,7 @@ class LogBookController {
 
     StringBuffer timeline = new StringBuffer()
 
-    timeline.append('<p>Einträge: <span class="gray">Nicht angelegt</span> - <span class="green">Bestätigt</span> - <span class="red">Nicht bestätigt</span></p>')
+    timeline.append('<p>' + message(code: 'entries') + ': <span class="gray">Nicht angelegt</span> - <span class="green">Bestätigt</span> - <span class="red">Nicht bestätigt</span></p>')
 
     while (start <= end) {
       Date currentDate = start.getTime()
