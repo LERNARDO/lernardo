@@ -98,39 +98,244 @@ body {
     }
 }
 
-#grid-single {
-    padding: 15px 15px 5px 15px;
-    background: #fff;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
 #grid {
-    padding-left: 330px;
-    padding-right: 15px; //330px;
+    padding-left: 298px;
+    padding-right: 228px; // 15px;
     background: #fff;
     padding-top: 15px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-#grid-cal {
-    padding-left: 230px;
-    padding-right: 15px; //330px;
-    background: #fff;
-    padding-top: 15px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 #main {
     width: 100%;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 }
 
-#extra {
-    width: 300px;
-    margin-right: -330px;
-    padding: 0 15px 0 15px;
+#right {
+    width: 188px;
+    margin-right: -228px;
+    padding: 0 15px;  
+    ul {
+      li {
+        margin: 0;
+      }
+    }
+    .icon-online {
+        background: url(../images/icons/online.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/online.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+}
+
+#left {
+    width: 268px;
+    margin-left: -298px;
+    padding: 0 15px;
+    a {
+        text-decoration: none;
+        &:hover {
+            color: #000;
+        }
+    }
+    .profile-profil {
+        background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_profile.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-nachricht {
+        background: url(../images/icons/icon_mail.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_mail.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-telefon {
+        background: url(../images/icons/icon_handy.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_handy.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-leistung {
+        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_star.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-netzwerk {
+        background: url(../images/icons/icon_contact.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_contact.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-galerie {
+        background: url(../images/icons/icon_galerie.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_galerie.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-activities {
+        background: url(../images/icons/icon_activities.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_activities.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-calendar {
+        background: url(../images/icons/icon_calendar.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_calendar.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-location {
+        background: url(../images/icons/icon_location.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_location.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .profile-template {
+        background: url(../images/icons/icon_template.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_template.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-person {
+        background: url(../images/icons/icon_person.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_person.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-edit {
+        background: url(../images/icons/icon_edit.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_edit.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-help {
+        background: url(../images/icons/icon_help.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_help.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-admin {
+        background: url(../images/icons/icon_admin.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_admin.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-news {
+        background: url(../images/icons/icon_news.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_news.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-text {
+        background: url(../images/icons/icon_text.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_text.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-document {
+        background: url(../images/icons/icon_document.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_document.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-group {
+        background: url(../images/icons/icon_group.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_group.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-facility {
+        background: url(../images/icons/icon_facility.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_facility.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-partner {
+        background: url(../images/icons/icon_partner.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_partner.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-pate {
+        background: url(../images/icons/icon_pate.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_pate.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-colony {
+        background: url(../images/icons/icon_colony.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_colony.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-child {
+        background: url(../images/icons/icon_child.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_child.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-grouppartner {
+        background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-all {
+        background: url(../images/icons/icon_all.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_all.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-parents {
+        background: url(../images/icons/icon_parents.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_parents.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-educators {
+        background: url(../images/icons/icon_educators.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_educators.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-methods {
+        background: url(../images/icons/icon_methods.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_methods.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-operator {
+        background: url(../images/icons/icon_operator.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_operator.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-export {
+        background: url(../images/icons/icon_export.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_export.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-time {
+        background: url(../images/icons/icon_time.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_time.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-evaluation {
+        background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-appointments {
+        background: url(../images/icons/icon_appointments.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_appointments.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
 }
 
 /* these selectors are common for all projects */
@@ -441,222 +646,6 @@ input {
 }
 #private-content input[type=text]:hover, #private-content select:hover, #private-content textarea:hover {
      border: 1px solid #666;
-}
-
-#profile-navigation {
-    margin-left: -330px;
-    width: 300px;
-    padding: 0 15px 0 15px;
-    a {
-        text-decoration: none;
-        &:hover {
-            color: #000; /*#46597B; */
-        }
-    }
-    .profile-profil {
-        background: url(../images/icons/icon_profile.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_profile.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-nachricht {
-        background: url(../images/icons/icon_mail.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_mail.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-telefon {
-        background: url(../images/icons/icon_handy.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_handy.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-leistung {
-        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_star.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-netzwerk {
-        background: url(../images/icons/icon_contact.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_contact.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-galerie {
-        background: url(../images/icons/icon_galerie.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_galerie.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-activities {
-        background: url(../images/icons/icon_activities.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_activities.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-calendar {
-        background: url(../images/icons/icon_calendar.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_calendar.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-location {
-        background: url(../images/icons/icon_location.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_location.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .profile-template {
-        background: url(../images/icons/icon_template.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_template.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-person {
-        background: url(../images/icons/icon_person.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_person.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-edit {
-        background: url(../images/icons/icon_edit.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_edit.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-help {
-        background: url(../images/icons/icon_help.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_help.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-admin {
-        background: url(../images/icons/icon_admin.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_admin.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-news {
-        background: url(../images/icons/icon_news.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_news.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-text {
-        background: url(../images/icons/icon_text.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_text.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-document {
-        background: url(../images/icons/icon_document.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_document.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-group {
-        background: url(../images/icons/icon_group.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_group.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-facility {
-        background: url(../images/icons/icon_facility.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_facility.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-partner {
-        background: url(../images/icons/icon_partner.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_partner.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-pate {
-        background: url(../images/icons/icon_pate.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_pate.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-colony {
-        background: url(../images/icons/icon_colony.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_colony.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-child {
-        background: url(../images/icons/icon_child.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_child.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-grouppartner {
-        background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_grouppartner.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-all {
-        background: url(../images/icons/icon_all.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_all.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-parents {
-        background: url(../images/icons/icon_parents.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_parents.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-educators {
-        background: url(../images/icons/icon_educators.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_educators.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-methods {
-        background: url(../images/icons/icon_methods.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_methods.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-operator {
-        background: url(../images/icons/icon_operator.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_operator.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-export {
-        background: url(../images/icons/icon_export.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_export.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-time {
-        background: url(../images/icons/icon_time.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_time.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-evaluation {
-        background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_evaluation.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-appointments {
-        background: url(../images/icons/icon_appointments.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/icon_appointments.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
-    .icon-online {
-        background: url(../images/icons/online.png) 0 50% no-repeat;
-        &:hover {
-            background: url(../images/icons/online.png) 0 50% no-repeat lighten(@cyan, 50%);
-        }
-    }
 }
 
 .innersidebox {

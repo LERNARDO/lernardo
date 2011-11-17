@@ -200,7 +200,7 @@
     %{--<div id="bd">--}%
     <div class="yui3-g" id="grid">
 
-      <div class="yui3-u" id="profile-navigation">
+      <div class="yui3-u" id="left">
         <div class="boxHeader">
           <div class="second">
             <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource(dir: 'images/icons', file: 'icon_enabled.png')}" alt="aktiv" style="top: 3px; position: relative"/></g:if><g:else><img src="${resource(dir: 'images/icons', file: 'icon_disabled.png')}" alt="inaktiv"/></g:else></g:if></h1>
@@ -309,6 +309,28 @@
 
         %{--<div id="livetickerbox"></div>--}%
 
+      </div>
+
+      <div class="yui3-u" id="main">
+        <g:if test="${flash.message}">
+          <div id="flash-msg">
+            <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
+          </div>
+        </g:if>
+        <div style="padding: 0 15px;">
+          <g:layoutBody/>
+        </div>
+      </div>
+
+      <div class="yui3-u" id="right">
+
+        <div class="profile-box">
+          <div class="second">
+            <div class="header">Favoriten</div>
+            <span class="gray">Noch keine Favoriten!</span>
+          </div>
+        </div>
+
         <div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="privat.head.online"/></div>
@@ -323,20 +345,6 @@
         </div>
 
       </div>
-
-      <div class="yui3-u" id="main">
-        <g:if test="${flash.message}">
-          <div id="flash-msg">
-            <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
-          </div>
-        </g:if>
-        <div>
-          <g:layoutBody/>
-        </div>
-      </div>
-
-      %{--<div class="yui3-u" id="extra">
-      </div>--}%
 
     </div>
 
