@@ -96,7 +96,7 @@
       </g:if>
 
       <div class="yui3-u" id="cal-left">
-        
+
         <h1><g:message code="imgmenu.calendar.name"/></h1>
 
         <erp:getActiveCalPerson id="${currentEntity.id}">
@@ -221,9 +221,10 @@
     $('#' + element + 'color' + i + '-2').toggle();
 
     $.ajax({
-      url: '${createLink (controller: "calendar", action: "togglePersonInCal")}',
+      url: '${createLink (controller: "calendar", action: "togglePersonInCal")}?_='+new Date().getTime(),
       dataType: 'text',
       data: "id="+id,
+      //cache: false,
       success: function(result) {
         if (result == "true") {
           $('.cal').fullCalendar('addEventSource', '${createLink (controller: "calendar", action: "togglePerson")}?id='+id);
@@ -243,7 +244,7 @@
     $('#theme2').toggle();
 
     $.ajax({
-      url: '${createLink (controller: "calendar", action: "toggleThemesInCal")}',
+      url: '${createLink (controller: "calendar", action: "toggleThemesInCal")}?_='+new Date().getTime(),
       dataType: 'text',
       success: function(result) {
         if (result == "true") {
