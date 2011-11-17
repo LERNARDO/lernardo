@@ -9,6 +9,7 @@ import at.openfactory.ep.Link
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.EVENT_TYPE
 
 class ThemeProfileController {
   MetaDataService metaDataService
@@ -262,7 +263,7 @@ class ThemeProfileController {
       if (params.parenttheme != "null")
         functionService.linkEntities(entity.id.toString(), params.parenttheme, metaDataService.ltSubTheme)
 
-      functionService.createEvent("THEME_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
+      functionService.createEvent(EVENT_TYPE.THEME_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       // save creator
       new Link(source: currentEntity, target: entity, type: metaDataService.ltCreator).save()

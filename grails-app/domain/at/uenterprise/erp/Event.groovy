@@ -7,7 +7,7 @@ package at.uenterprise.erp
  */
 class Event {
 
-  String  name
+  EVENT_TYPE type
   Integer who
   Integer what
   Date    date
@@ -19,3 +19,10 @@ class Event {
   }
 
 }
+
+enum EVENT_TYPE {ACTIVITY_TEMPLATE_CREATED,
+                 COMMENT_CREATED,
+                 HELPER_CREATED,
+                 GROUP_ACTIVITY_TEMPLATE_CREATED,
+                 PROJECT_TEMPLATE_CREATED,
+                 THEME_CREATED}

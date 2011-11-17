@@ -18,6 +18,7 @@ import at.uenterprise.erp.Label
 import at.uenterprise.erp.Publication
 import at.openfactory.ep.Asset
 import at.uenterprise.erp.Resource
+import at.uenterprise.erp.EVENT_TYPE
 
 class GroupActivityTemplateProfileController {
   MetaDataService metaDataService
@@ -241,7 +242,7 @@ class GroupActivityTemplateProfileController {
               + currentEntity.profile.fullName + '</a> hat die Aktivitätsblockvorlage <a href="'
               + createLink(controller: 'groupActivityTemplateProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> angelegt.').save()
 
-      functionService.createEvent("GROUP_ACTIVITY_TEMPLATE_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
+      functionService.createEvent(EVENT_TYPE.GROUP_ACTIVITY_TEMPLATE_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
       flash.message = message(code: "object.created", args: [message(code: "groupActivityTemplate"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]

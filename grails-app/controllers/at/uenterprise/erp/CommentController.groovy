@@ -32,7 +32,7 @@ class CommentController {
     Comment comment = new Comment(content: params.content, creator: currentEntity.id).save()
     entity.profile.addToComments(comment)
 
-    functionService.createEvent("COMMENT_CREATED", currentEntity.id.toInteger(), entity.id.toInteger())
+    functionService.createEvent(EVENT_TYPE.COMMENT_CREATED, currentEntity.id.toInteger(), entity.id.toInteger())
 
     render template:'comments', model:[commented: entity, currentEntity: currentEntity]
   }

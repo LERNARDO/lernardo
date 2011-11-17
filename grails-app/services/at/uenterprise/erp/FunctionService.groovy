@@ -220,8 +220,8 @@ class FunctionService {
    * @param date
    * @return the event
    */
-  Event createEvent(String name, Integer who, Integer what, Date date = new Date()) {
-    new Event(name: name, who: who, what: what, date: date).save()
+  Event createEvent(EVENT_TYPE type, Integer who, Integer what, Date date = new Date()) {
+    new Event(type: type, who: who, what: what, date: date).save()
   }
 
   /**

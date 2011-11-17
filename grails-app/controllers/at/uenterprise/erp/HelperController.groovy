@@ -131,7 +131,7 @@ class HelperController {
     }
 
     if (helperInstance.save(flush: true)) {
-      functionService.createEvent("HELPER_CREATED", entity.id.toInteger(), helperInstance.id.toInteger())
+      functionService.createEvent(EVENT_TYPE.HELPER_CREATED, entity.id.toInteger(), helperInstance.id.toInteger())
 
       flash.message = message(code: "helper.created")
       redirect action: "list", id: entity.id
