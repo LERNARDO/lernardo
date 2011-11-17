@@ -6,37 +6,53 @@
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     },
-    <g:if test="${RequestContextUtils.getLocale(request).toString() == 'es' || RequestContextUtils.getLocale(request).toString() == 'es_ES'}">
-      monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-	  monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-	  dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
-	  dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-	  dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-      buttonText: {
-        prev: '&nbsp;&#9668;&nbsp;', // left triangle
-        next: '&nbsp;&#9658;&nbsp;', // right triangle
-        today: 'hoy',
-        month: 'mes',
-        week: 'semana',
-        agendaWeek : 'semana',
-        agendaDay: 'dia'
-      },
-    </g:if>
-    <g:if test="${RequestContextUtils.getLocale(request).toString() == 'de' || RequestContextUtils.getLocale(request).toString() == 'de_DE'}">
-      monthNames: ['Jänner','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
-      monthNamesShort: ['Jan','Feb','März','April','Mai','Jun','Jul','Aug','Sept','Okt','Nov','Dez'],
-      dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
-      dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-      buttonText: {
-        prev: '&nbsp;&#9668;&nbsp;', // left triangle
-        next: '&nbsp;&#9658;&nbsp;', // right triangle
-        today: 'Heute',
-        month: 'Monat',
-        week: 'Woche',
-        agendaWeek : 'Woche',
-        agendaDay: 'Tag'
-      },
-    </g:if>
+    monthNames: ['${message(code: "january")}',
+                 '${message(code: "february")}',
+                 '${message(code: "march")}',
+                 '${message(code: "april")}',
+                 '${message(code: "may")}',
+                 '${message(code: "june")}',
+                 '${message(code: "july")}',
+                 '${message(code: "august")}',
+                 '${message(code: "september")}',
+                 '${message(code: "october")}',
+                 '${message(code: "november")}',
+                 '${message(code: "december")}'],
+    monthNamesShort: ['${message(code: "january.short")}',
+                     '${message(code: "february.short")}',
+                     '${message(code: "march.short")}',
+                     '${message(code: "april.short")}',
+                     '${message(code: "may.short")}',
+                     '${message(code: "june.short")}',
+                     '${message(code: "july.short")}',
+                     '${message(code: "august.short")}',
+                     '${message(code: "september.short")}',
+                     '${message(code: "october.short")}',
+                     '${message(code: "november.short")}',
+                     '${message(code: "december.short")}'],
+    dayNames: ['${message(code: "sunday")}',
+               '${message(code: "monday")}',
+               '${message(code: "tuesday")}',
+               '${message(code: "wednesday")}',
+               '${message(code: "thursday")}',
+               '${message(code: "friday")}',
+               '${message(code: "saturday")}'],
+    dayNamesShort: ['${message(code: "sunday.short")}',
+                    '${message(code: "monday.short")}',
+                    '${message(code: "tuesday.short")}',
+                    '${message(code: "wednesday.short")}',
+                    '${message(code: "thursday.short")}',
+                    '${message(code: "friday.short")}',
+                    '${message(code: "saturday.short")}'],
+    buttonText: {
+      prev: '&nbsp;&#9668;&nbsp;', // left triangle
+      next: '&nbsp;&#9658;&nbsp;', // right triangle
+      today: '${message(code: "today")}',
+      month: '${message(code: "month")}',
+      week: '${message(code: "week")}',
+      agendaWeek : '${message(code: "week")}',
+      agendaDay: '${message(code: "day")}'
+    },
     firstDay: 1,
     minTime: 4,
     maxTime: 22,
