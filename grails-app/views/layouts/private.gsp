@@ -166,6 +166,10 @@
     function showBigSpinner() {
       $('#loading').css('visibility', 'visible');
     }
+
+    function hideBigSpinner() {
+      $('#loading').css('visibility', 'hidden');
+    }
   </script>
 
   <ga:trackPageview />
@@ -326,7 +330,7 @@
             <img src="${resource(dir: 'images/icons', file: 'icon_tick.png')}" alt="success" style="top: 3px; position: relative"/> ${flash.message}
           </div>
         </g:if>
-        <div id="private-content">
+        <div>
           <g:layoutBody/>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 <jq:jquery>
-  $('.cal').fullCalendar({
+  $('#calendar').fullCalendar({
     header: {
       left: 'prev,next today',
       center: 'title',
