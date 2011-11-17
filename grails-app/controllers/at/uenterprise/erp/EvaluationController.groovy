@@ -222,23 +222,18 @@ class EvaluationController {
   def delete = {
     Evaluation evaluationInstance = Evaluation.get(params.id)
 
-    Entity entity = evaluationInstance.owner
-
     if (evaluationInstance) {
       try {
         evaluationInstance.delete(flush: true)
         flash.message = message(code: "evaluation.deleted")
         render ""
-        //redirect action: "list", id: entity.id
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
         flash.message = "Evaluation ${params.id} could not be deleted"
-        //redirect action: "show", id: params.id
       }
     }
     else {
       flash.message = message(code: "evaluation.idNotFound", args: [params.id])
-      //redirect action: "list"
     }
   }
 

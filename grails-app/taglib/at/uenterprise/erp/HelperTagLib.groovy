@@ -725,7 +725,7 @@ class HelperTagLib {
     def allConfirmed = true
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the date of the workdayunit is between date1 and date2
-      if (attrs.date1 != null & attrs.date2 != null) {
+      if (attrs.date1 != null && attrs.date2 != null) {
         if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
           if (!workdayUnit.confirmed) {
             allConfirmed = false
@@ -797,7 +797,7 @@ class HelperTagLib {
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
       if (category?.count) {
         // check if the date of the workdayunit is between date1 and date2
-        if (attrs.date1 != null & attrs.date2 != null) {
+        if (attrs.date1 != null && attrs.date2 != null) {
           if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
             hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
@@ -922,7 +922,7 @@ class HelperTagLib {
       WorkdayCategory category = WorkdayCategory.findByName(workdayUnit.category)
       if (category?.count) {
         // check if the date of the workdayunit the chosen date range
-        if (date1 != null & date2 != null) {
+        if (date1 != null && date2 != null) {
           if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
             hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
@@ -960,7 +960,7 @@ class HelperTagLib {
       if (workdayUnit.category == workdayCategory.name) {
 
         // check if the date of the workdayunit is between date1 and date2
-        if (attrs.date1 != "" & attrs.date2 != "") {
+        if (attrs.date1 != "" && attrs.date2 != "") {
           if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
             hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
