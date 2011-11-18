@@ -84,9 +84,11 @@ log4j = {
       'null' name: 'stacktrace'  // turn off stacktrace.log
 
       console(
-             name: 'stdout',
-             threshold: org.apache.log4j.Level.DEBUG,
-             layout: pattern(conversionPattern: "${appName} - %d{HH:mm:ss} - [%p] - %c -> %m%n"))
+         name: 'stdout',
+         threshold: org.apache.log4j.Level.DEBUG,
+         //layout: pattern(conversionPattern: "${appName} - %d{HH:mm:ss} - [%p] - %c -> %m%n")
+         layout: pattern(conversionPattern: "%d{HH:mm:ss} - %p - %c -> %m%n")
+      )
 
       // REFERENCE: http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html
 
