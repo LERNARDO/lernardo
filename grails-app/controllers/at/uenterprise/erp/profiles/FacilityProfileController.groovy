@@ -91,12 +91,7 @@ class FacilityProfileController {
   def delete = {
     Entity facility = Entity.get(params.id)
     if (facility) {
-      // delete all links
-      Event.findAllByWhoOrWhat(facility.id.toInteger(), facility.id.toInteger()).each {it.delete()}
-      Link.findAllBySourceOrTarget(facility, facility).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(facility, facility).each {it.delete()}
-      Publication.findAllByEntity(facility).each {it.delete()}
-      Comment.findAllByCreator(facility.id.toInteger()).each {it.delete()}
+      functionService.deleteReferences(facility)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "facility"), facility.profile.fullName])
         facility.delete(flush: true)

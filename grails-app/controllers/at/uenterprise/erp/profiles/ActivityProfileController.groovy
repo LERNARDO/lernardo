@@ -320,12 +320,22 @@ class ActivityProfileController {
   def delete = {
     Entity activity = Entity.get(params.id)
 
-    // delete all links to activity
-    Link.findAllBySourceOrTarget(activity, activity).each {it.delete()}
-
-    flash.message = message(code: "object.deleted", args: [message(code: "activity"), activity.profile.fullName])
-    activity.delete(flush: true)
-    redirect action: 'list'
+    if (activity) {
+      functionService.deleteReferences(activity)
+      try {
+        flash.message = message(code: "object.deleted", args: [message(code: "activity"), activity.profile.fullName])
+        activity.delete(flush: true)
+        redirect(action: "list")
+      }
+      catch (org.springframework.dao.DataIntegrityViolationException e) {
+        flash.message = message(code: "object.notDeleted", args: [message(code: "activity"), activity.profile.fullName])
+        redirect(action: "show", id: params.id)
+      }
+    }
+    else {
+      flash.message = message(code: "object.notFound", args: [message(code: "activity")])
+      redirect(action: "list")
+    }
   }
 
   def addClientOld = {

@@ -26,6 +26,40 @@ class FunctionService {
   boolean transactional = true
 
   /**
+   * Deletes all references to an entity (used before deleting an entity)
+   *
+   * @author Alexander Zeillinger
+   * @param entity    the entity to delete all links to and from
+   */
+  def deleteReferences(Entity entity) {
+    Link.findAllBySourceOrTarget(entity, entity).each {it.delete()}
+    Event.findAllByWhoOrWhat(entity.id.toInteger(), entity.id.toInteger()).each {it.delete()}
+    Msg.findAllBySenderOrReceiver(entity, entity).each {it.delete()}
+    Publication.findAllByEntity(entity).each {it.delete()}
+    Evaluation.findByOwnerOrWriter(entity, entity).each {it.delete()}
+    News.findAllByAuthor(entity).each {it.delete()}
+
+    Comment.findAllByCreator(entity.id.toInteger()).each { Comment comment ->
+      // find the profile the comment belongs to and delete it from there
+      List entities = Entity.createCriteria().list {
+          or {
+            eq("type", metaDataService.etActivity)
+            eq("type", metaDataService.etGroupActivity)
+            eq("type", metaDataService.etGroupActivityTemplate)
+            eq("type", metaDataService.etProject)
+            eq("type", metaDataService.etProjectTemplate)
+            eq("type", metaDataService.etTemplate)
+          }
+      }
+      entities.each { Entity ent ->
+          Comment profileComment = ent?.profile?.comments?.find {it.id == comment.id} as Comment
+          if (profileComment)
+            ent.profile.removeFromComments(profileComment)
+      }
+    }
+  }
+
+  /**
    * Converts a date from UTC
    *
    * @author Alexander Zeillinger

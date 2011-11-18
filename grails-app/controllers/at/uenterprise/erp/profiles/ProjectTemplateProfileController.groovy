@@ -99,10 +99,7 @@ class ProjectTemplateProfileController {
   def delete = {
     Entity projectTemplate = Entity.get(params.id)
     if (projectTemplate) {
-      // delete all links
-      Event.findAllByWhoOrWhat(projectTemplate.id.toInteger(), projectTemplate.id.toInteger()).each {it.delete()}
-      Link.findAllBySourceOrTarget(projectTemplate, projectTemplate).each {it.delete()}
-
+      functionService.deleteReferences(projectTemplate)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "projectTemplate"), projectTemplate.profile.fullName])
         projectTemplate.delete(flush: true)

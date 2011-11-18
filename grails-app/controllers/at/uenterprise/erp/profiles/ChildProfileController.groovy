@@ -69,32 +69,9 @@ class ChildProfileController {
 
   def delete = {
     Entity child = Entity.get(params.id)
+
     if (child) {
-      // delete all links to and from this child
-      Event.findAllByWhoOrWhat(child.id.toInteger(), child.id.toInteger()).each {it.delete()}
-      Link.findAllBySourceOrTarget(child, child).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(child, child).each {it.delete()}
-      Publication.findAllByEntity(child).each {it.delete()}
-      Evaluation.findByOwnerOrWriter(child, child).each {it.delete()}
-      Comment.findAllByCreator(child.id.toInteger()).each { Comment comment ->
-          // find the profile the comment belongs to and delete it from there
-          def c = Entity.createCriteria()
-          List entities = c.list {
-              or {
-                eq("type", metaDataService.etActivity)
-                eq("type", metaDataService.etGroupActivity)
-                eq("type", metaDataService.etGroupActivityTemplate)
-                eq("type", metaDataService.etProject)
-                eq("type", metaDataService.etProjectTemplate)
-                eq("type", metaDataService.etTemplate)
-              }
-          }
-          entities.each { Entity entity ->
-              Comment profileComment = entity?.profile?.comments?.find {it.id == comment.id} as Comment
-              if (profileComment)
-                entity.profile.removeFromComments(profileComment)
-          }
-      }
+      functionService.deleteReferences(child)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "child"), child.profile.fullName])
         child.delete(flush: true)

@@ -66,31 +66,7 @@ class PateProfileController {
   def delete = {
     Entity pate = Entity.get(params.id)
     if (pate) {
-      // delete all links to this entity
-      Event.findAllByWhoOrWhat(pate.id.toInteger(), pate.id.toInteger()).each {it.delete()}
-      Link.findAllByTargetAndType(pate, metaDataService.ltPate).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(pate, pate).each {it.delete()}
-      Publication.findAllByEntity(pate).each {it.delete()}
-      Evaluation.findByOwnerOrWriter(pate, pate).each {it.delete()}
-      Comment.findAllByCreator(pate.id.toInteger()).each { Comment comment ->
-          // find the profile the comment belongs to and delete it from there
-          def c = Entity.createCriteria()
-          List entities = c.list {
-              or {
-                eq("type", metaDataService.etActivity)
-                eq("type", metaDataService.etGroupActivity)
-                eq("type", metaDataService.etGroupActivityTemplate)
-                eq("type", metaDataService.etProject)
-                eq("type", metaDataService.etProjectTemplate)
-                eq("type", metaDataService.etTemplate)
-              }
-          }
-          entities.each { Entity entity ->
-              Comment profileComment = entity?.profile?.comments?.find {it.id == comment.id} as Comment
-              if (profileComment)
-                entity.profile.removeFromComments(profileComment)
-          }
-      }
+      functionService.deleteReferences(pate)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "pate"), pate.profile.fullName])
         pate.delete(flush: true)

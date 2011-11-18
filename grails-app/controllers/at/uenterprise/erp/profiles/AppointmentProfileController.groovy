@@ -118,24 +118,22 @@ class AppointmentProfileController {
     def delete = {
       Entity appointment = Entity.get(params.id)
 
-      // delete all links to appointment
-      Link.findAllBySourceOrTarget(appointment, appointment).each {it.delete()}
-
-        if(appointment) {
-            try {
-                flash.message = message(code: "object.deleted", args: [message(code: "appointment"), appointment.profile.fullName])
-                appointment.delete(flush:true)
-                redirect(action:"list")
-            }
-            catch(org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = message(code: "object.notDeleted", args: [message(code: "appointment"), appointment.profile.fullName])
-                redirect(action:"show",id:params.id)
-            }
+      if(appointment) {
+        functionService.deleteReferences(appointment)
+        try {
+          flash.message = message(code: "object.deleted", args: [message(code: "appointment"), appointment.profile.fullName])
+          appointment.delete(flush:true)
+          redirect(action:"list")
         }
-        else {
-            flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
-            redirect(action:"list")
+        catch(org.springframework.dao.DataIntegrityViolationException e) {
+          flash.message = message(code: "object.notDeleted", args: [message(code: "appointment"), appointment.profile.fullName])
+          redirect(action:"show",id:params.id)
         }
+      }
+      else {
+        flash.message = message(code: "object.notFound", args: [message(code: "appointment")])
+        redirect(action:"list")
+      }
     }
 
     def edit = {

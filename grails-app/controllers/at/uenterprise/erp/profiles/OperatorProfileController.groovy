@@ -68,31 +68,7 @@ class OperatorProfileController {
   def delete = {
     Entity operator = Entity.get(params.id)
     if (operator) {
-      // delete all links
-      Event.findAllByWhoOrWhat(operator.id.toInteger(), operator.id.toInteger()).each {it.delete()}
-      Link.findAllBySourceOrTarget(operator, operator).each {it.delete()}
-      Msg.findAllBySenderOrReceiver(operator, operator).each {it.delete()}
-      Publication.findAllByEntity(operator).each {it.delete()}
-      Evaluation.findByOwnerOrWriter(operator, operator).each {it.delete()}
-      Comment.findAllByCreator(operator.id.toInteger()).each { Comment comment ->
-          // find the profile the comment belongs to and delete it from there
-          def c = Entity.createCriteria()
-          List entities = c.list {
-              or {
-                eq("type", metaDataService.etActivity)
-                eq("type", metaDataService.etGroupActivity)
-                eq("type", metaDataService.etGroupActivityTemplate)
-                eq("type", metaDataService.etProject)
-                eq("type", metaDataService.etProjectTemplate)
-                eq("type", metaDataService.etTemplate)
-              }
-          }
-          entities.each { Entity entity ->
-              Comment profileComment = entity?.profile?.comments?.find {it.id == comment.id} as Comment
-              if (profileComment)
-                entity.profile.removeFromComments(profileComment)
-          }
-      }
+      functionService.deleteReferences(operator)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "operator"), operator.profile.fullName])
         operator.delete(flush: true)

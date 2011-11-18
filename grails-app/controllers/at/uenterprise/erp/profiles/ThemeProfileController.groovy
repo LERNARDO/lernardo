@@ -97,10 +97,7 @@ class ThemeProfileController {
   def delete = {
     Entity theme = Entity.get(params.id)
     if (theme) {
-      // delete all links
-      Event.findAllByWhoOrWhat(theme.id.toInteger(), theme.id.toInteger()).each {it.delete()}
-      Link.findAllBySourceOrTarget(theme, theme).each {it.delete()}
-
+      functionService.deleteReferences(theme)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "theme"), theme.profile.fullName])
         theme.delete(flush: true)

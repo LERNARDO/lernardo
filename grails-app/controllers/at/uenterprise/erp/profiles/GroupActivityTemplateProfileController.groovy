@@ -100,10 +100,7 @@ class GroupActivityTemplateProfileController {
   def delete = {
     Entity group = Entity.get(params.id)
     if (group) {
-      // delete all links
-      Event.findAllByWhoOrWhat(group.id.toInteger(), group.id.toInteger()).each {it.delete()}
-      Link.findAllBySourceOrTarget(group, group).each {it.delete()}
-
+      functionService.deleteReferences(group)
       try {
         flash.message = message(code: "object.deleted", args: [message(code: "groupActivityTemplate"), group.profile.fullName])
         group.delete(flush: true)
