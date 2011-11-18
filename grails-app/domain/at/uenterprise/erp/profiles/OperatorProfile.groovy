@@ -10,6 +10,9 @@ import at.uenterprise.erp.ECalendar
  */
 class OperatorProfile extends Profile {
 
+  List favorites
+  static hasMany = [favorites: String]
+
   String    color
   ECalendar calendar
   String    zip

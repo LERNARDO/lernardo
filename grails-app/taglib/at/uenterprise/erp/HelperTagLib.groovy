@@ -25,6 +25,13 @@ class HelperTagLib {
   FunctionService functionService
   def securityManager
   static namespace = "erp"
+  
+  def getFavorite = {attrs ->
+    if (entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString()))
+      out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favorites') {'- ' + message(code: 'favorite')}
+    else
+      out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favorites') {'+ ' + message(code: 'favorite')}
+  }
 
   def getEntity = {attrs, body ->
     Entity entity = Entity.get(attrs.entity)

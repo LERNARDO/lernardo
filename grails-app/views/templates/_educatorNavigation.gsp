@@ -38,6 +38,8 @@
           <li class="icon-time"><g:link controller="workdayUnit" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workday"/></g:link></li>
         </erp:accessCheck>
 
+        <li class="profile-calendar"><g:link controller="calendar" action="show"><g:message code="imgmenu.calendar.name"/></g:link></li>
+
       </ul>
     </td>
   </tr>

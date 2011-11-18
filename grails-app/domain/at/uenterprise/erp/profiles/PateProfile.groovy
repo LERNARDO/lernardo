@@ -10,7 +10,9 @@ import at.uenterprise.erp.ECalendar
  */
 class PateProfile extends Profile {
 
-  static hasMany = [languages: String]
+  List favorites
+  static hasMany = [languages: String,
+                    favorites: String]
 
   String    color
   ECalendar calendar

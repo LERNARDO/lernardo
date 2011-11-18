@@ -118,6 +118,7 @@ body {
     ul {
       li {
         margin: 0;
+        padding-left: 15px;
       }
     }
     .icon-online {
@@ -126,12 +127,24 @@ body {
             background: url(../images/icons/online.png) 0 50% no-repeat lighten(@cyan, 50%);
         }
     }
+    .icon-star {
+        background: url(../images/icons/icon_star.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/icon_star.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
 }
 
 #left {
     width: 268px;
     margin-left: -298px;
     padding: 0 15px;
+    ul {
+      li {
+        //margin: 0;
+        padding-left: 15px;
+      }
+    }
     a {
         text-decoration: none;
         &:hover {

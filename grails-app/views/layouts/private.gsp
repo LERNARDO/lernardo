@@ -297,7 +297,6 @@
                   <ul>
                     <li class="icon-news"><g:link controller="event" action="index" id="${entity.id}"><g:message code="events"/></g:link></li>
                     <li class="icon-text"><g:link controller="news" action="index"><g:message code="newsp"/></g:link></li>
-                    <li class="profile-calendar"><g:link controller="calendar" action="show"><g:message code="imgmenu.calendar.name"/></g:link></li>
                     <li class="icon-admin"><g:link controller="overview" action="index" id="${currentEntity.id}"><g:message code="imgmenu.overview.name"/></g:link></li>
                     <li class="icon-help"><g:link controller="helper" id="${currentEntity.id}"><g:message code="privat.head.help"/></g:link></li>
                   </ul>
@@ -326,8 +325,10 @@
 
         <div class="profile-box">
           <div class="second">
-            <div class="header">Favoriten</div>
-            <span class="gray">Noch keine Favoriten!</span>
+            <div class="header"><g:message code="favorites"/></div>
+            <div id="favorites">
+              <g:render template="/profile/favorites" model="[entity: currentEntity]"/>
+            </div>
           </div>
         </div>
 

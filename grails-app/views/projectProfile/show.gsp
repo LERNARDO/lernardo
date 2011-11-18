@@ -75,6 +75,7 @@
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: project.id)}" /></div>
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
+        <erp:getFavorite entity="${project}"/>
       </g:form>
       <div class="spacer"></div>
     </div>

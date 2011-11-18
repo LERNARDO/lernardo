@@ -89,6 +89,7 @@
           <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'activityTemplate.copy')}" /></div>
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
+        <erp:getFavorite entity="${template}"/>
       </g:form>
       <div class="spacer"></div>
     </div>

@@ -414,6 +414,26 @@ class ProfileController {
   def saveProfilePic = {
     forward(action:"savePic", params:[type:"profile"])
   }
+  
+  def addFavorite = {
+    String favorite = params.id.toString()
+
+    Entity currentEntity = entityHelperService.loggedIn
+    
+    if (!currentEntity.profile.favorites.contains(favorite))
+      currentEntity.profile.addToFavorites(favorite)
+    render template: 'favorites', model: [entity: currentEntity]
+  }
+  
+  def removeFavorite = {
+    String favorite = params.id.toString()
+
+    Entity currentEntity = entityHelperService.loggedIn
+
+    if (currentEntity.profile.favorites.contains(favorite))
+      currentEntity.profile.removeFromFavorites(favorite)
+    render template: 'favorites', model: [entity: currentEntity]
+  }
 
 }
 

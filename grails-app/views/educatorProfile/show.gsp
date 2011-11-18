@@ -497,6 +497,7 @@
                                           onclick="${erp.getLinks(id: educator.id)}"/></div>
     </erp:accessCheck>
     <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}"/></div>
+    <erp:getFavorite entity="${educator}"/>
   </g:form>
   <div class="spacer"></div>
 </div>

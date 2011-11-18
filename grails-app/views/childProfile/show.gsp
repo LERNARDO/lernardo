@@ -93,6 +93,7 @@
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: child.id)}" /></div>
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+        <erp:getFavorite entity="${child}"/>
       </g:form>
       <div class="spacer"></div>
     </div>

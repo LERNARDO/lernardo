@@ -19,6 +19,7 @@ import at.uenterprise.erp.ECalendar
 class ClientProfile extends Profile {
 
   SortedSet dates, materials, performances, healths
+  List favorites
   static hasMany = [languages: String,
                     dates: CDate,
                     materials: Materials,
@@ -26,7 +27,8 @@ class ClientProfile extends Profile {
                     healths: Healths,
                     jobtypes: String,
                     collectors: Collector,
-                    contacts: Contact]
+                    contacts: Contact,
+                    favorites: String]
 
   String    color
   ECalendar calendar

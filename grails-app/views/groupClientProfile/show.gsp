@@ -35,6 +35,7 @@
         </erp:accessCheck>
         <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
         <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+        <erp:getFavorite entity="${group}"/>
       </g:form>
       <div class="spacer"></div>
     </div>

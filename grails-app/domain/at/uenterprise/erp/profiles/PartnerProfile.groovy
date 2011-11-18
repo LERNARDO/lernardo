@@ -11,8 +11,10 @@ import at.uenterprise.erp.ECalendar
  */
 class PartnerProfile extends Profile {
 
+  List favorites
   static hasMany = [contacts: Contact,
-                    services: String]
+                    services: String,
+                    favorites: String]
 
   String    color
   ECalendar calendar

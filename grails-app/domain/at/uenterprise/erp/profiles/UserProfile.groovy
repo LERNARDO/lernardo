@@ -10,6 +10,9 @@ import at.uenterprise.erp.ECalendar
  */
 class UserProfile extends Profile {
 
+  List favorites
+  static hasMany = [favorites: String]
+
   String    color
   ECalendar calendar
   String    firstName

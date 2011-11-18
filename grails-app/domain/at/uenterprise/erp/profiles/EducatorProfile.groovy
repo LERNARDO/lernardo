@@ -13,10 +13,12 @@ import at.uenterprise.erp.ECalendar
 class EducatorProfile extends Profile {
 
   SortedSet dates, workdayunits
+  List favorites
   static hasMany = [languages: String,
                     inChargeOf: String,
                     dates: CDate,
-                    workdayunits: WorkdayUnit]
+                    workdayunits: WorkdayUnit,
+                    favorites: String]
 
   String color
   ECalendar calendar

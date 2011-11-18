@@ -10,7 +10,9 @@ import at.uenterprise.erp.ECalendar
  */
 class ChildProfile extends Profile {
 
-  static hasMany = [jobtypes: String]
+  List favorites
+  static hasMany = [jobtypes: String,
+                    favorites: String]
 
   String    color
   ECalendar calendar

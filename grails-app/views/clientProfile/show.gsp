@@ -227,6 +227,7 @@
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
           <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: client.id)}" /></div>
         </erp:accessCheck>
+        <erp:getFavorite entity="${client}"/>
       </g:form>
       <div class="spacer"></div>
     </div>
