@@ -25,7 +25,7 @@ class AppFilters {
     loginCheck(controller: "(app|security|static)", invert: true) {
       before = {
         Entity e = entityHelperService.getLoggedIn()
-        log.info "controller: $controllerName, action: $actionName" (e.name)
+        log.info "controller: $controllerName, action: $actionName ($e.name)"
 
         if (!e) {
           redirect controller: 'app', action: 'home'
