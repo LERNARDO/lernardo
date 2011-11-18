@@ -19,7 +19,7 @@ class Evaluation {
   Date    lastUpdated
 
   static constraints = {
-    description blank: false
+    description blank: false, maxSize: 2000
     method      blank: true, maxSize: 2000
     linkedTo    nullable: true
   }
