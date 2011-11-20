@@ -3,11 +3,27 @@
   <title><g:message code="educator.profile.workHours"/></title>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="educatorProfile" action="times"><g:message code="timeEvaluation"/></g:link></h1>
+  </div>
+</div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="workdayCategory" action="index"><g:message code="privat.workdaycategories"/></g:link></h1>
+  </div>
+</div>
+
+<div class="tabGreen">
   <div class="second">
     <h1><g:message code="educator.profile.workHours"/></h1>
   </div>
 </div>
+
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 
@@ -24,7 +40,10 @@
       <tbody>
       <g:each in="${educators}" status="i" var="educator">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link></td>
+          <td>
+            <erp:profileImage entity="${educator}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+            <g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link>
+          </td>
           <td id="${i}a"><g:render template="showworkhours" model="[educator: educator, i: i]"/></td>
           %{--<td id="${i}b"><g:render template="showworkdays" model="[educator: educator, i: i]"/></td>--}%
           <td id="${i}c"><g:render template="showhourlywage" model="[educator: educator, i: i]"/></td>

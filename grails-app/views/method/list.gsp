@@ -3,11 +3,27 @@
   <title><g:message code="methods"/></title>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="setup" action="show">Setup</g:link></h1>
+  </div>
+</div>
+
+<div class="tabGreen">
   <div class="second">
     <h1><g:message code="methods"/></h1>
   </div>
 </div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="label" action="index"><g:message code="labels"/></g:link></h1>
+  </div>
+</div>
+
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 

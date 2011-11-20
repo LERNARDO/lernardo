@@ -1,13 +1,29 @@
 <head>
   <meta name="layout" content="private"/>
-  <title><g:message code="workdayCategory"/></title>
+  <title><g:message code="workdayCategories"/></title>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGrey">
   <div class="second">
-    <h1><g:message code="workdayCategory"/></h1>
+    <h1><g:link controller="educatorProfile" action="times"><g:message code="timeEvaluation"/></g:link></h1>
   </div>
 </div>
+
+<div class="tabGreen">
+  <div class="second">
+    <h1><g:message code="workdayCategories"/></h1>
+  </div>
+</div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="educatorProfile" action="workhours"><g:message code="educator.profile.workHours"/></g:link></h1>
+  </div>
+</div>
+
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 

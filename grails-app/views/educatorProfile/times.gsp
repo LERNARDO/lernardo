@@ -3,11 +3,27 @@
   <title><g:message code="timeEvaluation"/></title>
 </head>
 <body>
-<div class="boxHeader">
+
+<div class="tabGreen">
   <div class="second">
     <h1><g:message code="timeEvaluation"/></h1>
   </div>
 </div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="workdayCategory" action="index"><g:message code="privat.workdaycategories"/></g:link></h1>
+  </div>
+</div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="educatorProfile" action="workhours"><g:message code="educator.profile.workHours"/></g:link></h1>
+  </div>
+</div>
+
+<div class="clearFloat"></div>
+
 <div class="boxGray">
   <div class="second">
 

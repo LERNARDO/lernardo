@@ -1,14 +1,29 @@
 <head>
   <meta name="layout" content="private"/>
-  <title>${grailsApplication.config.application.name} Setup</title>
+  <title>Setup</title>
 </head>
 
 <body>
-<div class="boxHeader">
+
+<div class="tabGreen">
   <div class="second">
-    <h1>${grailsApplication.config.application.name} Setup</h1>
+    <h1>Setup</h1>
   </div>
 </div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="method" action="index"><g:message code="vMethods"/></g:link></h1>
+  </div>
+</div>
+
+<div class="tabGrey">
+  <div class="second">
+    <h1><g:link controller="label" action="index"><g:message code="labels"/></g:link></h1>
+  </div>
+</div>
+
+<div class="clearFloat"></div>
 
 <div class="boxGray">
   <div class="second">
