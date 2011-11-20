@@ -1,5 +1,5 @@
 <p class="gray"><g:message code="maxResultsShown" args="[30]"/></p>
-<g:each in="${searchList}" var="searchInstance">
+<g:each in="${results}" var="searchInstance">
   <div class="member">
 
     <div class="member-pic">
