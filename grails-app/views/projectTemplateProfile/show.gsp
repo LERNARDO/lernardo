@@ -10,54 +10,39 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: projectTemplate]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
-      <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${projectTemplate.id}" before="showspinner('#remoteCreators');"/>
-        <div id="remoteCreators"></div>
-      </div>
-
-      <table style="width: 100%">
-
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="status"/></td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">
-            <g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link>
-          </td>
-          <td valign="top" class="value-show">
-            <g:message code="status.${projectTemplate.profile.status}"/>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td colspan="2" valign="top" class="name-show"><g:message code="description"/></td>
-        </tr>
-
-        <tr>
-          <td colspan="2" valign="top" class="value-show-block">
-            ${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td colspan="2" valign="top" class="name-show"><g:message code="projectTemplate.profile.educationalObjectiveText"/>:</td>
-        </tr>
-
-        <tr>
-          <td colspan="2" valign="top" class="value-show">
-            ${fieldValue(bean: projectTemplate, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-      </table>
-
+    <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: projectTemplate]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+    <div class="zusatz-add" id="setcreator" style="display:none">
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${projectTemplate.id}" before="showspinner('#remoteCreators');"/>
+      <div id="remoteCreators"></div>
     </div>
+
+    <table>
+      <tbody>
+
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two"><g:link controller="projectTemplateProfile" action="show" id="${projectTemplate.id}" params="[entity: projectTemplate.id]">${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</g:link></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="status"/>:</td>
+        <td class="two"><g:message code="status.${projectTemplate.profile.status}"/></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="projectTemplate.profile.educationalObjectiveText"/>:</td>
+        <td class="two">${fieldValue(bean: projectTemplate, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${projectTemplate.id}" params="[entity: projectTemplate?.id]">

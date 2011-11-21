@@ -10,53 +10,58 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
-      <table style="width: 100%">
 
-        <tr>
-          <td valign="top" class="name-show"><g:message code="name"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.familyIncome"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.amountHousehold"/>:</td>
-        </tr>
+    <table>
+      <tbody>
 
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+      </tr>
 
-        <tr>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.livingConditions"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.socioeconomicData"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupFamily.profile.otherInfo"/>:</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="groupFamily.profile.familyIncome"/> (${grailsApplication.config.currency}):</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.familyIncome') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
 
-        <tr>
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="groupFamily.profile.amountHousehold"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.amountHousehold') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
 
-        <tr>
-          <td colspan="3" valign="top" class="name-show"><g:message code="groupFamily.profile.familyProblems"/>:</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="groupFamily.profile.livingConditions"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.livingConditions').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
 
-        <tr class="prop">
-          <td colspan="3" valign="top" class="value-show-block">
-            <g:if test="${group.profile.familyProblems}">
-              <ul>
-                <g:each in="${group.profile.familyProblems}" var="problem">
-                  <li>${problem}</li>
-                </g:each>
-              </ul>
-            </g:if>
-            <g:else>
-              <div class="italic"><g:message code="noData"/></div>
-            </g:else>
-          </td>
-        </tr>
-      </table>
-    </div>
+      <tr class="prop">
+        <td class="one"><g:message code="groupFamily.profile.socioeconomicData"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.socioeconomicData').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupFamily.profile.otherInfo"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.otherInfo').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupFamily.profile.familyProblems"/>:</td>
+        <td class="two">
+          <g:if test="${group.profile.familyProblems}">
+            <ul>
+              <g:each in="${group.profile.familyProblems}" var="problem">
+                <li>${problem}</li>
+              </g:each>
+            </ul>
+          </g:if>
+          <g:else>
+            <div class="italic"><g:message code="noData"/></div>
+          </g:else>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${group.id}">

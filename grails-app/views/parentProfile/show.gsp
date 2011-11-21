@@ -11,28 +11,79 @@
 <div class="boxGray">
   <div class="second">
     <div>
+
+      <table>
+        <tbody>
+
+        <tr class="prop">
+          <td class="one"><g:message code="gender"/>:</td>
+          <td class="two"><erp:showGender gender="${parent.profile.gender}"/></td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="firstName"/>:</td>
+          <td class="two">${fieldValue(bean: parent, field: 'profile.firstName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="lastName"/>:</td>
+          <td class="two"><g:link action="show" id="${parent.id}" params="[entity:parent.id]">${parent.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="birthDate"/>:</td>
+          <td class="two"><g:formatDate date="${parent.profile.birthDate}" format="dd. MM. yyyy"/></td>
+        </tr>
+
+        </tbody>
+      </table>
+
+      <h4><g:message code="educator.profile.curAddress"/></h4>
+      <table width="100%" border="0" cellspacing="10">
+              <tbody>
+        <tr>
+          <td valign="top" class="name-show"><g:message code="country"/></td>
+          <td valign="top" class="name-show"><g:message code="city"/></td>
+          <td valign="top" class="name-show"><g:message code="street"/></td>
+          <td valign="top" class="name-show"><g:message code="zip"/></td>
+        </tr>
+
+        <tr>
+          <td valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+          </td>
+          <td width="105" valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+          </td>
+          <td width="210" valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+          </td>
+          <td valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
+          </td>
+        </tr>
+
+      </table>
+
+      <h4><g:message code="client.profile.more"/></h4>
       <table width="100%" border="0" cellspacing="10">
         <tbody>
 
         <tr>
-          <td width="120" valign="middle" class="name-show"><g:message code="gender"/></td>
-          <td width="200" valign="middle" class="name-show"><g:message code="firstName"/></td>
-          <td width="280" valign="middle" class="name-show"><g:message code="lastName"/></td>
-          <td valign="middle" class="name-show"><g:message code="birthDate"/></td>
+          <td valign="top" class="name-show"><g:message code="client.profile.socialSecurityNumber"/></td>
+          <td valign="top" class="name-show"><g:message code="phone"/></td>
+          <td valign="top" class="name-show"><g:message code="client.profile.citizenship"/></td>
         </tr>
 
         <tr>
-          <td valign="top" class="value-show">
-            <erp:showGender gender="${parent.profile.gender}"/>
+          <td valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.socialSecurityNumber') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
-          <td valign="top" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.firstName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          <td width="105" valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.phone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
-          <td valign="top" class="value-show-block">
-            <g:link action="show" id="${parent.id}" params="[entity:parent.id]">${parent.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if>
-          </td>
-          <td valign="top" class="value-show">
-            <g:formatDate date="${parent.profile.birthDate}" format="dd. MM. yyyy" />
+          <td width="105" valign="middle" class="value-show">
+            ${fieldValue(bean: parent, field: 'profile.citizenship') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
           </td>
         </tr>
 
@@ -98,46 +149,7 @@
           </tr>
         </g:if>
 
-        <tr>
-          <td valign="top" class="name-show"><g:message code="country"/></td>
-          <td valign="top" class="name-show"><g:message code="city"/></td>
-          <td valign="top" class="name-show"><g:message code="street"/></td>
-          <td valign="top" class="name-show"><g:message code="zip"/></td>
-        </tr>
-
-        <tr>
-          <td valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentCountry') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-          <td width="105" valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentCity') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-          <td width="210" valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentStreet') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-          <td valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.currentZip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="name-show"><g:message code="client.profile.socialSecurityNumber"/></td>
-          <td valign="top" class="name-show"><g:message code="phone"/></td>
-          <td valign="top" class="name-show"><g:message code="client.profile.citizenship"/></td>
-        </tr>
-
-        <tr>
-          <td valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.socialSecurityNumber') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-          <td width="105" valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.phone') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-          <td width="105" valign="middle" class="value-show">
-            ${fieldValue(bean: parent, field: 'profile.citizenship') ?: '<div class="italic">'+message(code:'empty')+'</div>'}
-          </td>
-        </tr>
-
+        </tbody>
       </table>
 
       <div class="email">

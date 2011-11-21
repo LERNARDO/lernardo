@@ -10,59 +10,56 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
-      <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${theme.id}" before="showspinner('#remoteCreators');"/>
-        <div id="remoteCreators"></div>
-      </div>
-
-      <table style="width: 100%">
-
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="begin"/></td>
-          <td valign="top" class="name-show"><g:message code="end"/></td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</td>
-          <td valign="top" class="value-show"><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" /></td>
-          <td valign="top" class="value-show"><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" /></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="themes.superior"/></td>
-          <td colspan="2" valign="top" class="name-show"><g:message code="facility"/></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="value-show">
-            <g:if test="${parenttheme}">
-              <g:link controller="themeProfile" action="show" id="${parenttheme.id}" params="[entity: parenttheme.id]">${parenttheme.profile.fullName}</g:link>
-            </g:if>
-            <g:else>
-              <span class="italic">Keinem übergeordneten Thema zugeordnet!</span>
-            </g:else>
-          </td>
-          <td colspan="2" valign="top" class="value-show">
-            <g:link controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link>
-          </td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name-show-block"><g:message code="description"/></td>
-        </tr>
-        <tr>
-          <td colspan="3" valign="top" class="value-show-block">
-            ${fieldValue(bean: theme, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-      </table>
+    <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+    <div class="zusatz-add" id="setcreator" style="display:none">
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${theme.id}" before="showspinner('#remoteCreators');"/>
+      <div id="remoteCreators"></div>
     </div>
+
+    <table>
+      <tbody>
+
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two">${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="begin"/>:</td>
+        <td class="two"><g:formatDate date="${theme.profile.startDate}" format="dd. MMMM yyyy" /></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="end"/>:</td>
+        <td class="two"><g:formatDate date="${theme.profile.endDate}" format="dd. MMMM yyyy" /></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="themes.superior"/>:</td>
+        <td class="two">
+          <g:if test="${parenttheme}">
+            <g:link controller="themeProfile" action="show" id="${parenttheme.id}" params="[entity: parenttheme.id]">${parenttheme.profile.fullName}</g:link>
+          </g:if>
+          <g:else>
+            <span class="italic">Keinem übergeordneten Thema zugeordnet!</span>
+          </g:else>
+        </td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="facility"/>:</td>
+        <td class="two"><g:link controller="facilityProfile" action="show" id="${facility?.id}">${fieldValue(bean: facility, field: 'profile.fullName')}</g:link></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: theme, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${theme.id}">

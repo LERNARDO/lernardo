@@ -10,57 +10,44 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
-      <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${group.id}" before="showspinner('#remoteCreators');"/>
-        <div id="remoteCreators"></div>
-      </div>
-
-      <table style="width: 100%">
-
-        <tr>
-          <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="groupActivityTemplate.profile.realDuration"/></td>
-          <td valign="top" class="name-show"><g:message code="status"/></td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">
-            <g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link>
-          </td>
-          <td valign="top" class="value-show">
-            ${fieldValue(bean: group, field: 'profile.realDuration')} min
-          </td>
-          <td valign="top" class="value-show">
-            <g:message code="status.${group.profile.status}"/>
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="3" valign="top" class="name"><g:message code="description"/></td>
-        </tr>
-
-        <tr>
-          <td colspan="3" height="60" valign="top" class="value-show-block">
-            ${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-        <tr>
-          <td colspan="3" valign="top" class="name"><g:message code="groupActivityTemplate.profile.educationalObjectiveText"/></td>
-        </tr>
-        <tr>
-          <td colspan="3" height="60" valign="top" class="value-show-block">
-            ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-
-      </table>
+    <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+    <div class="zusatz-add" id="setcreator" style="display:none">
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${group.id}" before="showspinner('#remoteCreators');"/>
+      <div id="remoteCreators"></div>
     </div>
+
+    <table>
+      <tbody>
+
+      <tr class="prop">
+        <td class="one"><g:message code="name"/></td>
+        <td class="two"><g:link controller="${group.type.supertype.name+'Profile'}" action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupActivityTemplate.profile.realDuration"/></td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="status"/></td>
+        <td class="two"><g:message code="status.${group.profile.status}"/></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/></td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupActivityTemplate.profile.educationalObjectiveText"/></td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${group.id}" params="[entity: group?.id]">

@@ -12,22 +12,34 @@
   <div class="second">
     <div>
 
-      <table width="100%" border="0" cellspacing="10">
+      <table>
         <tbody>
 
-        <tr>
-          <td width="120" valign="middle" class="name-show"><g:message code="gender"/></td>
-          <td width="200" valign="middle" class="name-show"><g:message code="firstName"/></td>
-          <td width="280" valign="middle" class="name-show"><g:message code="lastName"/></td>
-          <td valign="middle" class="name-show"><g:message code="birthDate"/></td>
+        <tr class="prop">
+          <td class="one"><g:message code="gender"/>:</td>
+          <td class="two"><erp:showGender gender="${child.profile.gender}"/></td>
         </tr>
 
-        <tr>
-          <td valign="top" class="value-show"><erp:showGender gender="${child.profile.gender}"/></td>
-          <td valign="top" class="value-show">${fieldValue(bean: child, field: 'profile.firstName')}</td>
-          <td valign="top" class="value-show"><g:link action="show" id="${child.id}" params="[entity:child.id]">${child.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
-          <td valign="top" class="value-show"><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy" /></td>
+        <tr class="prop">
+          <td class="one"><g:message code="firstName"/>:</td>
+          <td class="two">${fieldValue(bean: child, field: 'profile.firstName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
         </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="lastName"/>:</td>
+          <td class="two"><g:link action="show" id="${child.id}" params="[entity:child.id]">${child.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="birthDate"/>:</td>
+          <td class="two"><g:formatDate date="${child.profile.birthDate}" format="dd. MM. yyyy"/></td>
+        </tr>
+
+        </tbody>
+      </table>
+
+      <table width="100%" border="0" cellspacing="10">
+        <tbody>
 
         <g:if test="${child.profile.job}">
           <tr>

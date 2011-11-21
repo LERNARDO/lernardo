@@ -11,33 +11,38 @@
 <div class="boxGray">
   <div class="second">
     <div>
-      <table width="100%">
+
+      <table>
+        <tbody>
 
         <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="gender"/></td>
-          <td valign="top" class="name-show"><g:message code="firstName"/></td>
-          <td valign="top" class="name-show"><g:message code="lastName"/></td>
-          <td valign="top" class="name-show"><g:message code="birthDate"/></td>
+          <td class="one"><g:message code="gender"/>:</td>
+          <td class="two"><erp:showGender gender="${client.profile.gender}"/></td>
         </tr>
 
         <tr class="prop">
-          <td valign="top" class="value-show"><erp:showGender gender="${client.profile.gender}"/></td>
-          <td valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-          <td valign="top" class="value-show"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
-          <td valign="top" class="value-show"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>
+          <td class="one"><g:message code="firstName"/>:</td>
+          <td class="two">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
         </tr>
 
         <tr class="prop">
-          <td colspan="4" valign="top" class="name-show">
-            <g:message code="client.profile.interests"/>
-          </td>
+          <td class="one"><g:message code="lastName"/>:</td>
+          <td class="two"><g:link action="show" id="${client.id}" params="[entity:client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show" id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
         </tr>
 
         <tr class="prop">
-          <td colspan="4" valign="top" class="value-show">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td class="one"><g:message code="birthDate"/>:</td>
+          <td class="two"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
         </tr>
 
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.interests"/>:</td>
+          <td class="two">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        </tr>
+
+        </tbody>
       </table>
+
       <h4><g:message code="client.profile.curAddress"/></h4>
       <div>
         <table width="100%">

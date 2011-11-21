@@ -10,31 +10,27 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
-      <table style="width: 100%">
 
-        <tr>
-          <td valign="top" class="name-show"><g:message code="name"/>:</td>
-          <td valign="top" class="name-show"><g:message code="description"/>:</td>
-        </tr>
+    <table>
+      <tbody>
 
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td valign="top" class="value-show-block">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+      </tr>
 
-        <tr>
-          <td valign="top" class="name-show">&nbsp;</td>
-          <td valign="top" class="name-show"><g:message code="groupPartner.profile.service"/>:</td>
-        </tr>
-        
-        <tr>
-          <td valign="top" class="name-show">&nbsp;</td>
-          <td valign="top" class="value-show">${group.profile.service}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
 
-      </table>
-    </div>
+      <tr class="prop">
+        <td class="one"><g:message code="groupPartner.profile.service"/>:</td>
+        <td class="two">${group.profile.service}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${group.id}">

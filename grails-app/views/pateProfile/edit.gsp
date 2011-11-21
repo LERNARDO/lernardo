@@ -16,78 +16,86 @@
     <g:render template="/templates/errors" model="[bean: pate]"/>
 
     <g:form id="${pate.id}">
-      <div>
-        <table>
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="firstName"/></td>
-            <td valign="top" class="name"><g:message code="lastName"/></td>
-            <td valign="top" class="name"><g:message code="pate.profile.motherTongue"/></td>
-            <td valign="top" class="name"><g:message code="pate.profile.languages"/></td>
-          </tr>
+      <table>
 
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="firstName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${pate.profile.constraints.firstName.maxSize} ${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="30" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="lastName"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${pate.profile.constraints.lastName.maxSize} ${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="pate.profile.motherTongue"/></td>
+          <td valign="top" class="value">
+            <g:select name="motherTongue" from="${Setup.list()[0]?.languages}" value="${pate?.profile?.motherTongue}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="pate.profile.languages"/></td>
+          <td valign="top" class="value">
+            <g:select name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${pate?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="zip"/></td>
+          <td valign="top" class="value">
+            <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="city"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${pate.profile.constraints.city.maxSize} ${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="street"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${pate.profile.constraints.street.maxSize} ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="40" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="country"/></td>
+          <td valign="top" class="value">
+            <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
+          </td>
+        </tr>
+
+      </table>
+
+      <div class="email">
+        <table width="100%">
           <tr>
-            <td width="180" valign="top" class="value">
-              <g:textField class="countable${pate.profile.constraints.firstName.maxSize} ${hasErrors(bean: pate, field: 'profile.firstName', 'errors')}" size="25" name="firstName" value="${fieldValue(bean: pate, field: 'profile.firstName').decodeHTML()}"/>
-            </td>
-            <td width="210" valign="top" class="value">
-              <g:textField class="countable${pate.profile.constraints.lastName.maxSize} ${hasErrors(bean: pate, field: 'profile.lastName', 'errors')}" size="30" maxlength="30" name="lastName" value="${fieldValue(bean: pate, field: 'profile.lastName').decodeHTML()}"/>
-            </td>
-            <td width="210" valign="top" class="value">
-              <g:select class="drop-down-205" name="motherTongue" from="${Setup.list()[0]?.languages}" value="${pate?.profile?.motherTongue}"/>
-            </td>
-            <td width="210" valign="top" class="value">
-              <g:select class="liste-200" name="languages" multiple="true" from="${Setup.list()[0]?.languages}" value="${pate?.profile?.languages}" noSelection="['': message(code: 'none')]"/>
-            </td>
-          </tr>
-
-        </table>
-
-        <table>
-          <tr>
-            <td valign="top" class="name"><g:message code="zip"/></td>
-            <td valign="top" class="name"><g:message code="city"/></td>
-            <td valign="top" class="name"><g:message code="street"/></td>
-            <td valign="top" class="name"><g:message code="country"/></td>
-          </tr>
-
-          <tr>
-            <td width="90" valign="top" class="value">
-              <g:textField class="${hasErrors(bean: pate, field: 'profile.zip', 'errors')}" size="10" name="zip" value="${fieldValue(bean: pate, field: 'profile.zip').decodeHTML()}"/>
-            </td>
-            <td width="215" valign="top" class="value">
-              <g:textField class="countable${pate.profile.constraints.city.maxSize} ${hasErrors(bean: pate, field: 'profile.city', 'errors')}" size="30" name="city" value="${fieldValue(bean: pate, field: 'profile.city').decodeHTML()}"/>
-            </td>
-            <td width="295" valign="top" class="value">
-              <g:textField class="countable${pate.profile.constraints.street.maxSize} ${hasErrors(bean: pate, field: 'profile.street', 'errors')}" size="44" name="street" value="${fieldValue(bean: pate, field: 'profile.street').decodeHTML()}"/>
-            </td>
-            <td width="210" height="35" valign="top" class="value">
-              <g:select name="country" from="${Setup.list()[0]?.nationalities}" value="${pate?.profile?.country}" noSelection="['': message(code: 'unknown')]"/>
-            </td>
-          </tr>
-        </table>
-
-        <div class="email">
-          <table width="100%">
-            <tr>
-              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <td>
-                  <g:message code="active"/>
-                  <g:checkBox name="enabled" value="${pate?.user?.enabled}" style="vertical-align: bottom"/>
-                </td>
-              </erp:accessCheck>
+            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
               <td>
-                <g:message code="email"/>:
-                <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
+                <g:message code="active"/>
+                <g:checkBox name="enabled" value="${pate?.user?.enabled}" style="vertical-align: bottom"/>
               </td>
-              <td>
-                <g:message code="languageSelection"/>:
-                <erp:localeSelect class="drop-down-150" name="locale" value="${pate?.user?.locale}"/>
-              </td>
-            </tr>
-          </table>
-        </div>
-
+            </erp:accessCheck>
+            <td>
+              <g:message code="email"/>:
+              <g:textField class="${hasErrors(bean: pate, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: pate, field: 'user.email')}"/>
+            </td>
+            <td>
+              <g:message code="languageSelection"/>:
+              <erp:localeSelect class="drop-down-150" name="locale" value="${pate?.user?.locale}"/>
+            </td>
+          </tr>
+        </table>
       </div>
 
       <div class="buttons">

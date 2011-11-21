@@ -11,93 +11,93 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
 
-      <table style="width: 100%">
+    <table>
+      <tbody>
 
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="description"/></td>
-          <td valign="top" class="name-show"><g:message code="partner.profile.website"/></td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two"><g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link></td>
+      </tr>
 
-        <tr>
-          <td class="value-show"><g:link action="show" id="${partner.id}" params="[entity:partner.id]">${partner.profile.fullName}</g:link></td>
-          <td class="value-show">${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td class="value-show">${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.description') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+      </tr>
 
-      </table>
+      <tr class="prop">
+        <td class="one"><g:message code="partner.profile.website"/>:</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.website') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+      </tr>
 
-      <table style="width: 100%">
+      <tr class="prop">
+        <td class="one"><g:message code="phone"/>:</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+      </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="phone"/></td>
-          <td valign="top" class="name-show"><g:message code="partner.profile.services"/></td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" width="200" class="value-show">${fieldValue(bean: partner, field: 'profile.phone') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td valign="top" class="value-show-block">
-            <g:if test="${partner.profile.services}">
+      <tr class="prop">
+        <td class="one"><g:message code="partner.profile.services"/>:</td>
+        <td class="two">
+          <g:if test="${partner.profile.services}">
             <ul>
               <g:each in="${partner.profile.services}" var="service">
                 <li>${service}</li>
               </g:each>
             </ul>
-            </g:if>
-            <g:else>
-              <div class="italic"><g:message code="none"/></div>
-            </g:else>
-          </td>
-        </tr>
+          </g:if>
+          <g:else>
+            <div class="italic"><g:message code="none"/></div>
+          </g:else>
+        </td>
+      </tr>
 
-      </table>
+      <tr class="prop">
+        <td class="one"><g:message code="street"/>:</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+      </tr>
 
-      <table style="width: 100%">
+      <tr class="prop">
+        <td class="one"><g:message code="zip"/>:</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
+      </tr>
 
+      <tr class="prop">
+        <td class="one"><g:message code="city"/>:</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="country"/>:</td>
+        <td class="two">${partner.profile.country}</td>
+      </tr>
+
+      </tbody>
+    </table>
+
+    <div class="email">
+      <table width="100%">
         <tr>
-          <td valign="top" class="name-show"><g:message code="street"/></td>
-          <td valign="top" class="name-show"><g:message code="zip"/></td>
-          <td valign="top" class="name-show"><g:message code="city"/></td>
-          <td valign="top" class="name-show"><g:message code="country"/></td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.street') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.zip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: partner, field: 'profile.city') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
-          <td valign="top" class="value-show">${partner.profile.country}</td>
-        </tr>
-
-      </table>
-
-      <div class="email">
-        <table width="100%">
-          <tr>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-              <td>
-                <span class="bold"><g:message code="active"/> </span>
-                <g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
-              </td>
-            </erp:accessCheck>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
             <td>
-              <span class="bold"><g:message code="email"/>: </span>
-              ${fieldValue(bean: partner, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+              <span class="bold"><g:message code="active"/> </span>
+              <g:formatBoolean boolean="${partner.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/>
             </td>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${partner}">
-              <td>
-                <g:form controller="profile" action="changePassword" id="${partner.id}">
-                  <span class="bold"><g:message code="password"/>: </span>
-                  <g:submitButton name="submit" value="${message(code: 'change')}"/>
-                  <div class="clear"></div>
-                </g:form>
-              </td>
-            </erp:accessCheck>
-          </tr>
-        </table>
-      </div>
-
+          </erp:accessCheck>
+          <td>
+            <span class="bold"><g:message code="email"/>: </span>
+            ${fieldValue(bean: partner, field: 'user.email') ?: '<span class="italic">'+message(code:'noData')+'</span>'}
+          </td>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${partner}">
+            <td>
+              <g:form controller="profile" action="changePassword" id="${partner.id}">
+                <span class="bold"><g:message code="password"/>: </span>
+                <g:submitButton name="submit" value="${message(code: 'change')}"/>
+                <div class="clear"></div>
+              </g:form>
+            </td>
+          </erp:accessCheck>
+        </tr>
+      </table>
     </div>
 
     <div class="buttons">

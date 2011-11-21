@@ -10,48 +10,59 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
-      <table style="width: 100%">
 
-        <tr>
-          <td valign="top" class="name-show"><g:message code="name"/>:</td>
-          <td colspan="3" valign="top" class="name-show"><g:message code="description"/>:</td>
-        </tr>
+    <table>
+      <tbody>
 
-        <tr>
-          <td valign="top" class="value-show"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
-          <td colspan="3" valign="top" class="value-show-block">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two"><g:link action="show" id="${facility.id}" params="[entity:facility.id]">${facility.profile.fullName}</g:link></td>
+      </tr>
 
-        <tr>
-          <td valign="top" class="name-show"><g:message code="groupColony"/>:</td>
-          <td colspan="3" valign="top" class="name-show"><g:message code="phone"/>:</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: facility, field: 'profile.description').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+      </tr>
 
-        <tr>
-          <td valign="top" class="value-show">
-            <g:if test="${colony}"><g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link></g:if><g:else><span class="italic red"><g:message code="facility.profile.noCol"/></span></g:else>
-          </td>
-          <td colspan="3" valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="groupColony"/>:</td>
+        <td class="two">
+          <g:if test="${colony}">
+            <g:link controller="groupColonyProfile" action="show" id="${colony.id}">${colony.profile.fullName}</g:link>
+          </g:if>
+          <g:else>
+            <span class="italic red"><g:message code="facility.profile.noCol"/></span>
+          </g:else>
+        </td>
+      </tr>
 
-        <tr>
-          <td valign="bottom" class="name-show"><g:message code="street"/>:</td>
-          <td valign="bottom" class="name-show"><g:message code="zip"/>:</td>
-          <td valign="bottom" class="name-show"><g:message code="city"/>:</td>
-          <td valign="bottom" class="name-show"><g:message code="country"/>:</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="phone"/>:</td>
+        <td class="two">${fieldValue(bean: facility, field: 'profile.phone') ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
+      </tr>
 
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="street"/>:</td>
+        <td class="two">${fieldValue(bean: facility, field: 'profile.street') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+      </tr>
 
-      </table>
+      <tr class="prop">
+        <td class="one"><g:message code="zip"/>:</td>
+        <td class="two">${fieldValue(bean: facility, field: 'profile.zip') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+      </tr>
 
-    </div>
+      <tr class="prop">
+        <td class="one"><g:message code="city"/>:</td>
+        <td class="two">${fieldValue(bean: facility, field: 'profile.city') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="country"/>:</td>
+        <td class="two">${fieldValue(bean: facility, field: 'profile.country') ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${facility.id}">

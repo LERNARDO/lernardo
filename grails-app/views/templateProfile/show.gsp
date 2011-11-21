@@ -13,68 +13,66 @@
   <div class="second">
 
     <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: template]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
-      <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${template.id}" before="showspinner('#remoteCreators');"/>
-        <div id="remoteCreators"></div>
-      </div>
+    <div class="zusatz-add" id="setcreator" style="display:none">
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${template.id}" before="showspinner('#remoteCreators');"/>
+      <div id="remoteCreators"></div>
+    </div>
 
-    <table style="width: 100%">
+    <table>
+      <tbody>
 
       <tr class="prop">
-        <td colspan="2" valign="top" class="name-show"><g:message code="name"/>:</td>
-        <td valign="top" class="name-show"><g:message code="duration"/>:</td>
-      </tr>
-
-      <tr>
-        <td colspan="2" valign="top" class="value-show">
-          <g:link controller="templateProfile" action="show" id="${template.id}" params="[entity: template.id]">${template.profile.fullName}</g:link>
-        </td>
-        <td valign="top" class="value-show">
-          ${template.profile.duration} <g:message code="minutes"/>
-        </td>
+        <td class="one"><g:message code="name"/></td>
+        <td class="two"><g:link controller="templateProfile" action="show" id="${template.id}" params="[entity: template.id]">${template.profile.fullName}</g:link></td>
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="name-show"><g:message code="activityTemplate.socialForm"/>:</td>
-        <td valign="top" class="name-show"><g:message code="status"/>:</td>
-        <td valign="top" class="name-show"><g:message code="activityTemplate.amountEducators"/>:</td>
-      </tr>
-
-      <tr>
-        <td valign="top" class="value-show">
-          <g:message code="socialForm.${template.profile.socialForm}"/>
-        </td>
-        <td valign="top" class="value-show">
-          <g:message code="status.${template.profile.status}"/>
-        </td>
-        <td valign="top" class="value-show">
-          ${template.profile.amountEducators}
-        </td>
-      </tr>
-      
-      <tr class="prop">
-        <td colspan="2" valign="top" class="name-show"><g:message code="description"/>:</td>
-        <td valign="top" class="name-show"><g:message code="activityTemplate.chosenMaterials"/>:</td>
-      </tr>
-
-      <tr>
-        <td colspan="2" valign="top" class="value-show-block">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        <td valign="top" class="value-show-block">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="one"><g:message code="duration"/></td>
+        <td class="two">${template.profile.duration} <g:message code="minutes"/></td>
       </tr>
 
       <tr class="prop">
-        <td valign="top" class="name-show"><g:message code="activityTemplate.ageFrom"/>:</td>
-        <td valign="top" class="name-show"><g:message code="activityTemplate.ageTo"/>:</td>
-        <td valign="top" class="name-show"><g:message code="activityTemplate.goal"/>:</td>
+        <td class="one"><g:message code="activityTemplate.socialForm"/></td>
+        <td class="two"><g:message code="socialForm.${template.profile.socialForm}"/></td>
       </tr>
 
-      <tr>
-        <td valign="top" class="value-show">${template?.profile?.ageFrom}</td>
-        <td valign="top" class="value-show">${template?.profile?.ageTo}</td>
-        <td valign="top" class="value-show-block">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      <tr class="prop">
+        <td class="one"><g:message code="status"/></td>
+        <td class="two"><g:message code="status.${template.profile.status}"/></td>
       </tr>
 
+      <tr class="prop">
+        <td class="one"><g:message code="activityTemplate.amountEducators"/></td>
+        <td class="two">${template.profile.amountEducators}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/></td>
+        <td class="two">${template.profile.description.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="activityTemplate.chosenMaterials"/></td>
+        <td class="two">${template.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="activityTemplate.ageFrom"/></td>
+        <td class="two">${template?.profile?.ageFrom ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="activityTemplate.ageTo"/></td>
+        <td class="two">${template?.profile?.ageTo ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="activityTemplate.goal"/></td>
+        <td class="two">${template?.profile?.goal?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      </tbody>
     </table>
 
     <div class="buttons">
