@@ -39,7 +39,13 @@
 
       <tr class="prop">
         <td class="one"><g:message code="groupActivityTemplate"/>:</td>
-        <td class="two">${template.profile.fullName}</td>
+        <td class="two">
+          <g:if test="${template}">
+            ${template.profile.fullName}
+          </g:if>
+          <g:else>
+            <span class="italic"><g:message code="template.notAvailable"/></span>
+          </g:else></td>
       </tr>
 
       <tr class="prop">
@@ -167,7 +173,6 @@
       <span class="italic">${message(code:'noData')}</span>
     </g:else>
 
-    ${withTemplates}
     <g:if test="${withTemplates == 'true'}">
       <h2><g:message code="activities"/></h2>
       <g:each in="${activities}" var="activity">

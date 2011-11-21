@@ -499,7 +499,6 @@ class GroupActivityProfileController {
   }
 
   def createpdf = {
-    println params
     Entity group = Entity.get(params.id)
     Entity currentEntity = entityHelperService.loggedIn
 
