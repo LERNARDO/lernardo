@@ -4,7 +4,7 @@
 // "sueninos"
 // "noe"
 
-customer = "noe"
+customer = "sueninos"
 
 // nothing needs to be changed below this line
 
@@ -15,7 +15,8 @@ if (customer == "sueninos") {
     // ---------------------------------------------------------------------------------------------
 
     customerName = "Sueniños" // full customer name
-    currency = "Pesos"
+    currency = "Peso"
+    currencySymbol  = '''$'''
     timeZone = "America/Guatemala" // UTC-6
 
     // ---------------------------------------------------------------------------------------------
@@ -90,6 +91,7 @@ if (customer == "noe") {
 
     customerName = "Lernardo"
     currency = "Euro"
+    currencySymbol  = '''€'''
     timeZone = "Europe/Vienna" // UTC+1
 
     // ---------------------------------------------------------------------------------------------

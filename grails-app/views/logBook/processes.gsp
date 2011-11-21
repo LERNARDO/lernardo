@@ -14,7 +14,7 @@
 <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
   <div class="tabGrey">
     <div class="second">
-      <h1><g:link controller="logBook" action="evaluation">Auswertung</g:link></h1>
+      <h1><g:link controller="logBook" action="evaluation"><g:message code="evaluation2"/></g:link></h1>
     </div>
   </div>
 </erp:accessCheck>
@@ -57,7 +57,7 @@
       <g:each in="${processes}" status="i" var="process">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="showProcess" id="${process.id}">${fieldValue(bean: process, field: 'name').decodeHTML()}</g:link></td>
-          <td>${process.costs}€</td>
+          <td>${process.costs}${grailsApplication.config.currencySymbol}</td>
           <td><g:message code="logunit.${process.unit}"/></td>
         </tr>
       </g:each>

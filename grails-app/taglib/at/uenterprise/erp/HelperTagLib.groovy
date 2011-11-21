@@ -67,7 +67,7 @@ class HelperTagLib {
       out << '<p style="page-break-before: always">' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
       out << '<table class="default-table">'
       out << '<tr>'
-      out << '<th>Name</th>'
+      out << '<th>' + message(code: 'name') + '</th>'
       entry?.attendees[0]?.processes?.each {
         out << '<th>' + it.process.name + '</th>'
       }
@@ -76,7 +76,7 @@ class HelperTagLib {
         out << '<tr>'
         out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
         attendee?.processes.each { process ->
-          out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: "Ja", false: "<span class='red'>Nein</span>") + '</td>'
+          out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: message(code: 'yes'), false: "<span class='red'>" + message(code: 'no') + "</span>") + '</td>'
         }
         out << '</tr>'
       }
@@ -88,7 +88,7 @@ class HelperTagLib {
       out << '</div></p>'
 
       out << '<p><span class="bold">' + message(code:"confirmed") + '</span><br/>'
-      out << formatBoolean(boolean: entry.isChecked, true: "Ja", false: "Nein")
+      out << formatBoolean(boolean: entry.isChecked, true: message(code: 'yes'), false: message(code: 'no'))
       out << '</p>'
     }
   }
@@ -105,25 +105,25 @@ class HelperTagLib {
         entriesConfirmed++
     }
     if (entriesConfirmed == monthEntries.size()) {
-      out << '<p class="green">In diesem Monat wurden alle Einträge bestätigt!</p>'
+      out << '<p class="green">' + message(code: 'logBook.allEntriesConfirmed') + '</p>'
     }
     else {
-      out << '<p class="red">In diesem Monat wurden noch nicht alle Einträge bestätigt!</p>'
+      out << '<p class="red">' + message(code: 'logBook.notAllEntriesConfirmed') + '</p>'
     }
 
-    out << '<p>Hier findest du für jede/n Betreute/n den Ist- und Soll-Wert für jeden Vorgang und die sich daraus ergebenden Kosten.</p>'
+    out << '<p>' + message(code: 'logBook.info') + '</p>'
 
     out << '<table class="default-table">'
 
     out << '<tr>'
-    out << '<th>Name</th>'
+    out << '<th>' + message(code: 'name') + '</th>'
     def processes = logMonth?.clients[0]?.processes
     processes = processes?.sort {it.process.name}
     processes?.each { process ->
       out << '<th>' + process.process.name + '</th>'
     }
-    out << '<th>Tage</th>'
-    out << '<th>' + message(code: "total") + ' €</th>'
+    out << '<th>' + message(code: 'activityInstance.profile.days') + '</th>'
+    out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
     out << '</tr>'
 
     logMonth?.clients?.each { client ->
@@ -174,7 +174,7 @@ class HelperTagLib {
 
         totalCosts += costs
 
-        out << '<td>' + participated + '/' + total + ' - ' + costs + '€'
+        out << '<td>' + participated + '/' + total + ' - ' + costs + grailsApplication.config.currencySymbol
 
         if (proc.process.costs > 0) {
 
@@ -228,7 +228,7 @@ class HelperTagLib {
         }
       }
       out << '<td>' + days + '/' + debitDays + '</td>'
-      out << '<td>' + totalCosts + '€</td>'
+      out << '<td>' + totalCosts + grailsApplication.config.currencySymbol + '</td>'
       out << '</tr>'
     }
     out << '</table>'
@@ -248,25 +248,25 @@ class HelperTagLib {
         entriesConfirmed++
     }
     if (entriesConfirmed == monthEntries.size()) {
-      out << '<p class="green">In diesem Monat wurden alle Einträge bestätigt!</p>'
+      out << '<p class="green">' + message(code: 'logBook.allEntriesConfirmed') + '</p>'
     }
     else {
-      out << '<p class="red">In diesem Monat wurden noch nicht alle Einträge bestätigt!</p>'
+      out << '<p class="red">' + message(code: 'logBook.notAllEntriesConfirmed') + '</p>'
     }
 
-    out << '<p>Hier findest du für jede/n Betreute/n den Ist- und Soll-Wert für jeden Vorgang und die sich daraus ergebenden Kosten.</p>'
+    out << '<p>' + message(code: 'logBook.info') + '</p>'
     
     out << '<table class="default-table">'
 
     out << '<tr>'
-    out << '<th>Name</th>'
+    out << '<th>' + message(code: 'name') + '</th>'
     def processes = logMonth?.clients[0]?.processes
     processes = processes?.sort {it.process.name}
     processes?.each { process ->
       out << '<th>' + process.process.name + '</th>'
     }
     out << '<th>Tage</th>'
-    out << '<th>' + message(code: "total") + ' €</th>'
+    out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
     out << '</tr>'
 
     logMonth?.clients?.each { client ->
@@ -318,7 +318,7 @@ class HelperTagLib {
 
         totalCosts += costs
 
-        out << '<td>' + participated + '/' + total + ' - ' + costs + '€'
+        out << '<td>' + participated + '/' + total + ' - ' + costs + grailsApplication.config.currencySymbol
 
         if (proc.process.costs > 0) {
 
@@ -382,7 +382,7 @@ class HelperTagLib {
         }
       }
       out << '<td>' + days + '/' + debitDays + '</td>'
-      out << '<td>' + totalCosts + '€</td>'
+      out << '<td>' + totalCosts + grailsApplication.config.currencySymbol + '</td>'
       out << '</tr>'
     }
 

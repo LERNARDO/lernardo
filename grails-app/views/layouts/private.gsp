@@ -136,7 +136,7 @@
 
       $('.countable50').jqEasyCounter({
         'maxChars': 50,
-        'maxCharsWarning': 50
+        'maxCharsWarning': 50,
       });
 
       $('.countable500').jqEasyCounter({
