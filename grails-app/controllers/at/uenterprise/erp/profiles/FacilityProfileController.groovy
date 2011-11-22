@@ -295,7 +295,7 @@ class FacilityProfileController {
       eq('target', facility)
       eq('type', metaDataService.ltGroupMemberClient)
     }
-    link.delete()
+    link?.delete()
 
     Attendance.findByClientAndFacility(client, facility)?.delete()
 
