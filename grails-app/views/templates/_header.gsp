@@ -48,7 +48,7 @@
         <g:link class="tooltip" data-tooltip="${message(code: 'privat.head.help')}" controller="helper" id="${currentEntity.id}"><img src="${g.resource(dir:'images/icons', file:'icon_help.png')}" alt="Help" style="position: relative; top: 2px;"/></g:link>
       </span>
       <span class="box">
-        <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[entity:currentEntity.id]"><erp:profileImage class="tooltip" data-tooltip="${currentEntity.profile.fullName}" entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/>%{-- ${currentEntity?.profile?.fullName}--}%</g:link>
+        <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[entity:currentEntity.id]"><erp:profileImage entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/> ${currentEntity?.profile?.fullName}</g:link>
       </span>
       <span class="box" style="border-right: none;">
         %{--<g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/></g:link>--}%

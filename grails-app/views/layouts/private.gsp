@@ -268,6 +268,17 @@
       <g:render template="/templates/header"/>
     </div>
 
+    %{--<div id="subheader">
+      <ul>
+        <li><g:link controller="dummy">Start</g:link></li>
+        <li><g:link controller="dummy">Datenbank</g:link></li>
+        <li><g:link controller="dummy">Organisation</g:link></li>
+        <li><g:link controller="dummy">Planung</g:link></li>
+        <li style="border-right: none;"><g:link controller="dummy">Administration</g:link></li>
+      </ul>
+      <div class="clear"></div>
+    </div>--}%
+
     %{--<div style="background: #fff;">
       <g:render template="/templates/imagenav"/>
     </div>--}%
