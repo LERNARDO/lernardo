@@ -19,7 +19,7 @@
   <ckeditor:resources />
   %{--<script src="${g.resource(dir: 'js', file: 'erp.js')}" type="text/javascript"></script>--}%
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.jqEasyCharCounter.min.js')}" type="text/javascript"></script>
-  <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon-0.6.2.js')}" type="text/javascript"></script>
+  <script src="${g.resource(dir: 'js/jquery', file: 'jquery-ui-timepicker-addon.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.periodicalupdater.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.qtip.min.js')}" type="text/javascript"></script>
   <script src="${g.resource(dir: 'js/jquery', file: 'jquery.kolorpicker.js')}" type="text/javascript"></script>
@@ -104,6 +104,25 @@
       $('.timepicker').timepicker();
 
       $(".datepicker-birthday").datepicker({
+        monthNamesShort: ['${message(code: "january.short")}',
+                          '${message(code: "february.short")}',
+                          '${message(code: "march.short")}',
+                          '${message(code: "april.short")}',
+                          '${message(code: "may.short")}',
+                          '${message(code: "june.short")}',
+                          '${message(code: "july.short")}',
+                          '${message(code: "august.short")}',
+                          '${message(code: "september.short")}',
+                          '${message(code: "october.short")}',
+                          '${message(code: "november.short")}',
+                          '${message(code: "december.short")}'],
+        dayNamesMin: ['${message(code: "sunday.short")}',
+                      '${message(code: "monday.short")}',
+                      '${message(code: "tuesday.short")}',
+                      '${message(code: "wednesday.short")}',
+                      '${message(code: "thursday.short")}',
+                      '${message(code: "friday.short")}',
+                      '${message(code: "saturday.short")}'],
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd. mm. yy',
@@ -116,6 +135,25 @@
         autoSize: true});
 
       $(".datepicker").datepicker({
+        monthNamesShort: ['${message(code: "january.short")}',
+                          '${message(code: "february.short")}',
+                          '${message(code: "march.short")}',
+                          '${message(code: "april.short")}',
+                          '${message(code: "may.short")}',
+                          '${message(code: "june.short")}',
+                          '${message(code: "july.short")}',
+                          '${message(code: "august.short")}',
+                          '${message(code: "september.short")}',
+                          '${message(code: "october.short")}',
+                          '${message(code: "november.short")}',
+                          '${message(code: "december.short")}'],
+        dayNamesMin: ['${message(code: "sunday.short")}',
+                      '${message(code: "monday.short")}',
+                      '${message(code: "tuesday.short")}',
+                      '${message(code: "wednesday.short")}',
+                      '${message(code: "thursday.short")}',
+                      '${message(code: "friday.short")}',
+                      '${message(code: "saturday.short")}'],
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd. mm. yy',
@@ -124,10 +162,54 @@
         autoSize: true});
 
       $('.datetimepicker').datetimepicker({
+        timeText: '${message(code: "time")}',
+        hourText: '${message(code: "hour")}',
+        minuteText: '${message(code: "minute")}',
+        dayNamesMin: ['${message(code: "sunday.short")}',
+                      '${message(code: "monday.short")}',
+                      '${message(code: "tuesday.short")}',
+                      '${message(code: "wednesday.short")}',
+                      '${message(code: "thursday.short")}',
+                      '${message(code: "friday.short")}',
+                      '${message(code: "saturday.short")}'],
+        monthNames: ['${message(code: "january")}',
+                     '${message(code: "february")}',
+                     '${message(code: "march")}',
+                     '${message(code: "april")}',
+                     '${message(code: "may")}',
+                     '${message(code: "june")}',
+                     '${message(code: "july")}',
+                     '${message(code: "august")}',
+                     '${message(code: "september")}',
+                     '${message(code: "october")}',
+                     '${message(code: "november")}',
+                     '${message(code: "december")}'],
         dateFormat: 'dd. mm. yy'
       });
 
       $('.datetimepicker2').datetimepicker({
+        timeText: '${message(code: "time")}',
+        hourText: '${message(code: "hour")}',
+        minuteText: '${message(code: "minute")}',
+        dayNamesMin: ['${message(code: "sunday.short")}',
+                      '${message(code: "monday.short")}',
+                      '${message(code: "tuesday.short")}',
+                      '${message(code: "wednesday.short")}',
+                      '${message(code: "thursday.short")}',
+                      '${message(code: "friday.short")}',
+                      '${message(code: "saturday.short")}'],
+        monthNames: ['${message(code: "january")}',
+                     '${message(code: "february")}',
+                     '${message(code: "march")}',
+                     '${message(code: "april")}',
+                     '${message(code: "may")}',
+                     '${message(code: "june")}',
+                     '${message(code: "july")}',
+                     '${message(code: "august")}',
+                     '${message(code: "september")}',
+                     '${message(code: "october")}',
+                     '${message(code: "november")}',
+                     '${message(code: "december")}'],
         dateFormat: 'dd. mm. yy,',
         timeFormat: 'hh:mm'
       });
