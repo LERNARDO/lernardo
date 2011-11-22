@@ -43,7 +43,7 @@ grails.enable.native2ascii = true
 grails.views.javascript.library = "jquery"
 jquery {
     sources = 'jquery' // Holds the value where to store jQuery-js files /web-app/js/
-    version = '1.6.1' // The jQuery version in use
+    version = '1.7' // The jQuery version in use
 }
 
 // this is the mail plugin configuration
