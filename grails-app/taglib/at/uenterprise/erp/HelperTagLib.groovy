@@ -17,6 +17,9 @@ import at.uenterprise.erp.logbook.Attendee
 import at.uenterprise.erp.logbook.Attendance
 import at.uenterprise.erp.logbook.LogMonth
 import at.uenterprise.erp.logbook.LogEntry
+import at.uenterprise.erp.logbook.LogClient
+import at.uenterprise.erp.logbook.ProcessPaid
+import at.uenterprise.erp.logbook.ProcessAttended
 
 class HelperTagLib {
   EntityHelperService entityHelperService
@@ -62,7 +65,7 @@ class HelperTagLib {
     List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
     entries = entries.sort {it.date}
 
-    entries.each { entry ->
+    entries.each { LogEntry entry ->
 
       out << '<p style="page-break-before: always">' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
       out << '<table class="default-table">'
@@ -72,10 +75,10 @@ class HelperTagLib {
         out << '<th>' + it.process.name + '</th>'
       }
       out << '</tr>'
-      entry?.attendees.each { attendee ->
+      entry?.attendees?.each { Attendee attendee ->
         out << '<tr>'
         out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
-        attendee?.processes.each { process ->
+        attendee?.processes?.each { ProcessAttended process ->
           out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: message(code: 'yes'), false: "<span class='red'>" + message(code: 'no') + "</span>") + '</td>'
         }
         out << '</tr>'
@@ -119,14 +122,14 @@ class HelperTagLib {
     out << '<th>' + message(code: 'name') + '</th>'
     def processes = logMonth?.clients[0]?.processes
     processes = processes?.sort {it.process.name}
-    processes?.each { process ->
+    processes?.each { ProcessPaid process ->
       out << '<th>' + process.process.name + '</th>'
     }
     out << '<th>' + message(code: 'activityInstance.profile.days') + '</th>'
     out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
     out << '</tr>'
 
-    logMonth?.clients?.each { client ->
+    logMonth?.clients?.each { LogClient client ->
 
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
@@ -140,15 +143,15 @@ class HelperTagLib {
       SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
       // calculate the amount of participated and total processes
-      processes2.eachWithIndex { proc, i ->
+      processes2.eachWithIndex { ProcessPaid proc, i ->
         int total = 0
         int participated = 0
 
         List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
 
-        entries.each { entry ->
+        entries.each { LogEntry entry ->
           Attendee attendee = entry.attendees.find {it.client == client.client}
-          attendee.processes.each { aproc ->
+          attendee.processes.each { ProcessAttended aproc ->
             if (aproc.process.name == proc.process.name) {
               if ((attendance.monday && df.format(entry.date) == 'Monday') ||
                   (attendance.tuesday && df.format(entry.date) == 'Tuesday') ||
@@ -269,7 +272,7 @@ class HelperTagLib {
     out << '<th>' + message(code: "total") + grailsApplication.config.currencySymbol + '</th>'
     out << '</tr>'
 
-    logMonth?.clients?.each { client ->
+    logMonth?.clients?.each { LogClient client ->
 
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
@@ -283,13 +286,13 @@ class HelperTagLib {
       SimpleDateFormat df = new SimpleDateFormat("EEEE", new Locale("en"))
 
       // calculate the amount of participated and total processes
-      processes2.eachWithIndex { proc, i ->
+      processes2?.eachWithIndex { proc, i ->
         int total = 0
         int participated = 0
 
         List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
 
-        entries.each { entry ->
+        entries.each { LogEntry entry ->
           Attendee attendee = entry.attendees.find {it.client == client.client}
           attendee.processes.each { aproc ->
             if (aproc.process.name == proc.process.name) {
