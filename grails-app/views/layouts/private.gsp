@@ -136,7 +136,7 @@
 
       $('.countable50').jqEasyCounter({
         'maxChars': 50,
-        'maxCharsWarning': 50,
+        'maxCharsWarning': 50
       });
 
       $('.countable500').jqEasyCounter({
@@ -281,7 +281,7 @@
               <li class="icon-news"><g:link controller="event" action="index" id="${entity.id}"><g:message code="events"/></g:link></li>
               <li class="icon-text"><g:link controller="news" action="index"><g:message code="newsp"/></g:link></li>
               <li class="icon-all"><g:link controller="overview" action="index" id="${currentEntity.id}"><g:message code="imgmenu.overview.name"/></g:link></li>
-              <li class="icon-help"><g:link controller="helper" id="${currentEntity.id}"><g:message code="privat.head.help"/></g:link></li>
+              %{--<li class="icon-help"><g:link controller="helper" id="${currentEntity.id}"><g:message code="privat.head.help"/></g:link></li>--}%
             </ul>
 
           </div>

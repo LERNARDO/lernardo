@@ -31,7 +31,7 @@
         </erp:notMe>
 
         <li class="icon-appointments"><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
-        <li class="profile-calendar"><g:link controller="calendar" action="show"><g:message code="imgmenu.calendar.name"/></g:link></li>
+        %{--<li class="profile-calendar"><g:link controller="calendar" action="show"><g:message code="imgmenu.calendar.name"/></g:link></li>--}%
 
       </ul>
     </td>

@@ -26,26 +26,35 @@
 
       <erp:getCurrentAppointments entity="${currentEntity}">
         <g:link class="tooltip" data-tooltip="${message(code: 'appointments')}" controller="appointmentProfile" action="list" id="${currentEntity.id}">
-        <span class="notificationbox inactive" style="border-right: none;">
+        <span class="notificationbox inactive">
           <span class="gray">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_appointments.png')}" alt="Appointments" style="position: relative; top: 3px;"/>
         </span>
         </g:link>
       </erp:getCurrentAppointments>
 
+      <g:link class="tooltip" data-tooltip="${message(code: 'imgmenu.calendar.name')}" controller="calendar" action="show">
+      <span class="notificationbox inactive" style="border-right: none;">
+        <img src="${g.resource(dir:'images/icons', file:'icon_calendar.png')}" alt="Calendar" style="position: relative; top: 3px;"/>
+      </span>
+      </g:link>
+
     </span>
 
     <span id="other">
-      <g:textField class="search" name="search" size="30" placeholder="${message(code: 'searchWord')}"/>
+      <g:textField class="search" name="search" size="25" placeholder="${message(code: 'searchWord')}"/>
       <span class="searchButton"><g:submitButton name="searchButton" class="buttonBlue" value="${message(code: 'search')}"/></span>
       <span class="box">
-        <a href="?lang=de"><img src="${g.resource(dir:'images/icons', file:'flag_at.png')}" alt="German"/></a> <a href="?lang=es"><img src="${g.resource(dir:'images/icons', file:'flag_mx.png')}" alt="Spanish"/></a> <a href="?lang=en"><img src="${g.resource(dir:'images/icons', file:'flag_gb.png')}" alt="English"/></a>
+        %{--<a href="?lang=de"><img src="${g.resource(dir:'images/icons', file:'flag_at.png')}" alt="German"/></a> <a href="?lang=es"><img src="${g.resource(dir:'images/icons', file:'flag_mx.png')}" alt="Spanish"/></a> <a href="?lang=en"><img src="${g.resource(dir:'images/icons', file:'flag_gb.png')}" alt="English"/></a>--}%
+        <g:link class="tooltip" data-tooltip="${message(code: 'privat.head.help')}" controller="helper" id="${currentEntity.id}"><img src="${g.resource(dir:'images/icons', file:'icon_help.png')}" alt="Help" style="position: relative; top: 2px;"/></g:link>
       </span>
       <span class="box">
-        <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[entity:currentEntity.id]"><erp:profileImage entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/> ${currentEntity?.profile?.fullName}</g:link>
+        <g:link class="me" controller="${currentEntity.type.supertype.name +'Profile'}" action="show" id="${currentEntity.id}" params="[entity:currentEntity.id]"><erp:profileImage class="tooltip" data-tooltip="${currentEntity.profile.fullName}" entity="${currentEntity}" width="30" height="30" style="vertical-align: middle; margin: 0 10px 3px 10px;"/>%{-- ${currentEntity?.profile?.fullName}--}%</g:link>
       </span>
       <span class="box" style="border-right: none;">
-        <g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/></g:link>
+        %{--<g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/></g:link>--}%
+        <a href="#" onclick="$('#options').toggle(); return false;"><img src="${g.resource(dir:'images/icons', file:'bullet_arrow_down.png')}" alt="Options" style="position: relative; top: 3px;"/></a>
       </span>
+      <div id="options" style="display: none; padding: 5px; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; right: 25px;"><g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/> Abmelden</g:link></div>
     </span>
 
   </g:form>
