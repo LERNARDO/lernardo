@@ -1,10 +1,10 @@
 <head>
-  <title><g:message code="evaluation.allentry"/></title>
+  <title><g:message code="evaluation.allevalentries"/></title>
   <meta name="layout" content="private"/>
 </head>
 <body>
 
-<div class="tabGrey">
+%{--<div class="tabGrey">
   <div class="second">
     <h1><g:link controller="evaluation" action="myevaluations" id="${entity.id}"><g:message code="evaluation.myentry"/></g:link></h1>
   </div>
@@ -14,11 +14,11 @@
   <div class="second">
     <h1><g:link controller="evaluation" action="interestingevaluations" id="${entity.id}"><g:message code="evaluation.interestentry"/></g:link></h1>
   </div>
-</div>
+</div>--}%
 
-<div class="tabGreen">
+<div class="boxHeader">
   <div class="second">
-    <h1><g:message code="evaluation.allentry"/></h1>
+    <h1><g:message code="evaluation.allevalentries"/></h1>
   </div>
 </div>
 
@@ -37,7 +37,7 @@
 
     <div id="remoteEvaluations">
       <g:if test="${show}">
-        <g:render template="evaluations" model="[evaluationInstanceList: evaluations, totalEvaluations: totalEvaluations, entity: entity, currentEntity: currentEntity]"/>
+        <g:render template="evaluations" model="[evaluationInstanceList: evaluations, totalEvaluations: totalEvaluations, entity: entity, currentEntity: currentEntity, paginate: paginate]"/>
       </g:if>
     </div>
 

@@ -1,6 +1,13 @@
 <head>
   <title><g:message code="evaluation.personel"/></title>
   <meta name="layout" content="private"/>
+
+  <script type="text/javascript">
+      $(function() {
+        ${remoteFunction(controller:"evaluation", action: "showMine", update: "remoteEvaluations", id: entity.id, params: [value: ""], before: "showspinner('#remoteEvaluations')")}
+      });
+    </script>
+
 </head>
 <body>
 
@@ -16,13 +23,13 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+%{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></h1>
     </div>
   </div>
-</erp:accessCheck>
+</erp:accessCheck>--}%
 
 <div class="clearFloat"></div>
 

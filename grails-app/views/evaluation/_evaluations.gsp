@@ -25,3 +25,27 @@
     </tbody>
   </table>
 </g:if>
+
+<g:if test="${paginate == 'own'}">
+  <div class="paginateButtons">
+    <util:remotePaginate action="showMine" total="${totalEvaluations}" update="remoteEvaluations" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}" id="${entity.id}" params="[value: value]"/>
+  </div>
+</g:if>
+
+<g:if test="${paginate == 'interesting'}">
+  <div class="paginateButtons">
+    <g:paginate action="interestingevaluations" total="${totalEvaluations}" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}" id="${entity.id}"/>
+  </div>
+</g:if>
+
+<g:if test="${paginate == 'allClient'}">
+  <div class="paginateButtons">
+    <util:remotePaginate action="showByClient" total="${totalEvaluations}" update="remoteEvaluations" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}" id="${entity.id}" params="[value: value]"/>
+  </div>
+</g:if>
+
+<g:if test="${paginate == 'allEducator'}">
+  <div class="paginateButtons">
+    <util:remotePaginate action="showByEducator" total="${totalEvaluations}" update="remoteEvaluations" next="${message(code:'page.next')}" prev="${message(code:'page.prev')}" id="${entity.id}" params="[value: value]"/>
+  </div>
+</g:if>

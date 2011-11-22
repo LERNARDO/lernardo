@@ -16,13 +16,13 @@
   </div>
 </div>
 
-<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+%{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
   <div class="tabGrey">
     <div class="second">
       <h1><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allentry"/></g:link></h1>
     </div>
   </div>
-</erp:accessCheck>
+</erp:accessCheck>--}%
 
 <div class="clearFloat"></div>
 
@@ -31,7 +31,7 @@
 
     <div class="info-msg"><g:message code="evaluation.entrySize" args="[evaluationInstanceList.size()]"/></div>
     
-    <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList]"/>
+    <g:render template="evaluations" model="[evaluationInstanceList: evaluationInstanceList, totalEvaluations: totalEvaluations, paginate: paginate]"/>
 
   </div>
 </div>
