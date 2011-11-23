@@ -194,8 +194,8 @@ class AdminController {
       List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
       clients.each { Entity client ->
         if (!Attendance.findByClientAndFacility(client, facility)) {
-          if (new Attendance(client: client, facility: facility).save())
-            counter++
+          new Attendance(client: client, facility: facility).save()
+          counter++
         }
       }
     }

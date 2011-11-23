@@ -134,7 +134,7 @@ class HelperTagLib {
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
 
-      def attendance = Attendance.findByClient(client.client)
+      def attendance = Attendance.findByClientAndFacility(client.client, facility)
       out << '<tr>'
       out << '<td>' + client.client.profile.fullName + '</td>'
 
@@ -277,7 +277,9 @@ class HelperTagLib {
       def processes2 = client.processes
       processes2 = processes2?.sort {it.process.name}
 
-      def attendance = Attendance.findByClient(client.client)
+      def attendance = Attendance.findByClientAndFacility(client.client, facility)
+      if (!attendance)
+        log.info "no attendance found for client: ${client.client.profile.fullName} and facility: ${facility.profile.fullName} - this should not be possible"
       out << '<tr>'
       out << '<td>' + client.client.profile.fullName + '</td>'
 
@@ -297,13 +299,13 @@ class HelperTagLib {
           attendee?.processes?.each { aproc ->
             if (aproc.process.name == proc.process.name) {
               // calculate the total amount by checking if the attendee should be attending at this day
-              if ((attendance.monday && df.format(entry.date) == 'Monday') ||
-                  (attendance.tuesday && df.format(entry.date) == 'Tuesday') ||
-                  (attendance.wednesday && df.format(entry.date) == 'Wednesday') ||
-                  (attendance.thursday && df.format(entry.date) == 'Thursday') ||
-                  (attendance.friday && df.format(entry.date) == 'Friday') ||
-                  (attendance.saturday && df.format(entry.date) == 'Saturday') ||
-                  (attendance.sunday && df.format(entry.date) == 'Sunday')) {
+              if ((attendance?.monday && df.format(entry.date) == 'Monday') ||
+                  (attendance?.tuesday && df.format(entry.date) == 'Tuesday') ||
+                  (attendance?.wednesday && df.format(entry.date) == 'Wednesday') ||
+                  (attendance?.thursday && df.format(entry.date) == 'Thursday') ||
+                  (attendance?.friday && df.format(entry.date) == 'Friday') ||
+                  (attendance?.saturday && df.format(entry.date) == 'Saturday') ||
+                  (attendance?.sunday && df.format(entry.date) == 'Sunday')) {
                 total++
               }
               if (aproc.hasParticipated) {
