@@ -294,7 +294,7 @@ class HelperTagLib {
 
         entries.each { LogEntry entry ->
           Attendee attendee = entry.attendees.find {it.client == client.client}
-          attendee.processes.each { aproc ->
+          attendee?.processes?.each { aproc ->
             if (aproc.process.name == proc.process.name) {
               // calculate the total amount by checking if the attendee should be attending at this day
               if ((attendance.monday && df.format(entry.date) == 'Monday') ||
