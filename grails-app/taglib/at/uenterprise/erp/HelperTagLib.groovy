@@ -278,8 +278,8 @@ class HelperTagLib {
       processes2 = processes2?.sort {it.process.name}
 
       def attendance = Attendance.findByClientAndFacility(client.client, facility)
-      if (!attendance)
-        log.info "no attendance found for client: ${client.client.profile.fullName} and facility: ${facility.profile.fullName} - this should not be possible"
+      //if (!attendance)
+      //  log.info "no attendance found for client: ${client.client.profile.fullName} and facility: ${facility.profile.fullName} - this should not be possible"
       out << '<tr>'
       out << '<td>' + client.client.profile.fullName + '</td>'
 

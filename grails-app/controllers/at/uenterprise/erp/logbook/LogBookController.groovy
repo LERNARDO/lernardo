@@ -208,6 +208,20 @@ class LogBookController {
       }
       logMonth.save(flush: true)
     }
+    else {
+      // delete all clients in logMonth object that are not linked to the facility anymore
+      List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+      List toRemove = []
+      logMonth.clients.each { LogClient logClient ->
+        if (!clients.contains(logClient.client))
+          toRemove.add(logClient)        
+      }
+      toRemove?.each { LogClient logClient ->
+        logMonth.removeFromClients(logClient)
+        logClient.delete()
+      }
+    }
+    
 
     render template: "showEvaluation", model: [logMonth: logMonth, facility: facility, date: date]
   }
