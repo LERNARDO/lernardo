@@ -162,6 +162,8 @@ class TemplateProfileController {
       entity.profile.addToLabels(label)
     }
 
+    entity.profile.save(flush: true)
+
     // copy publications
     List publications = Publication.findAllByEntity(original)
     publications.each { pu ->
