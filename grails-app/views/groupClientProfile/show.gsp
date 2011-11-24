@@ -42,44 +42,45 @@
     </div>
 
     <div class="zusatz">
-      <h5><g:message code="groupClient.clients.info"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
+      <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-      <div class="zusatz-add" id="clients" style="display:none">
-        <g:message code="clients"/><br/>
+      <div class="zusatz-add" id="clients" style="display:none;">
+        <p class="gray"><g:message code="groupClient.clients.info"/></p>
         <g:formRemote name="formRemote0" url="[controller:'groupClientProfile', action:'updateselect']" update="clientselect" before="showspinner('#clientselect')">
 
           <table>
             <tr>
-              <td width="180px"><g:message code="name"/>:</td>
+              <td class="gray" width="125px"><g:message code="name"/></td>
               <td><g:textField name="name"/></td>
             </tr>
             <tr>
-              <td><g:message code="birthDate"/>:</td>
-              <td><g:message code="between"/> <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="[null:message(code:'all')]" value="none"/> - <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="[null:message(code:'all')]" value="none"/></td>
+              <td class="gray"><g:message code="birthDate"/></td>
+              <td class="gray"><g:message code="between"/> <g:datePicker name="birthDate1" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1900}" noSelection="[null:message(code:'all')]" value="none"/> - <g:datePicker name="birthDate2" precision="year" years="${new Date().getYear()+1800..new Date().getYear()+1901}" noSelection="[null:message(code:'all')]" value="none"/></td>
             </tr>
             <tr>
-              <td><g:message code="gender"/>:</td>
+              <td class="gray"><g:message code="gender"/></td>
               <td><g:select name="gender" from="${['0':message(code:'all'),'1':message(code:'male'),'2':message(code:'female')]}" optionKey="key" optionValue="value"/></td>
             </tr>
             <tr>
-              <td><g:message code="groupColony"/>:</td>
+              <td class="gray"><g:message code="groupColony"/></td>
               <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
             </tr>
             <tr>
-              <td><g:message code="client.profile.school"/>:</td>
+              <td class="gray"><g:message code="client.profile.school"/></td>
               <td><g:textField name="school"/></td>
             </tr>
             <tr>
-              <td><g:message code="client.profile.schoolLevel"/>:</td>
+              <td class="gray"><g:message code="client.profile.schoolLevel"/></td>
               <td>
                 <g:select name="schoolLevel" from="${Setup.list()[0]?.schoolLevels}" noSelection="['all': message(code: 'all')]"/>
               </td>
             </tr>
             <tr>
-              <td><g:message code="client.profile.job"/>:</td>
+              <td class="gray"><g:message code="client.profile.job"/></td>
               <td><g:select name="job" from="${['0':message(code:'all'),'1':message(code:'yes'),'2':message(code:'no')]}" optionKey="key" optionValue="value"/></td>
             </tr>
           </table>
+
           <g:submitButton name="button" value="${message(code:'groupClient.clients.define')}"/>
           <div class="spacer"></div>
         </g:formRemote>

@@ -29,6 +29,5 @@
     </erp:accessCheck>
 
   </div>
-  <div id="linkscontent" style="padding: 5px;">
-  </div>
+  <div id="linkscontent"></div>
 </div>

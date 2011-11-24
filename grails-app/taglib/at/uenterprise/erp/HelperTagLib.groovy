@@ -362,13 +362,13 @@ class HelperTagLib {
       while (start <= end) {
         Date currentDate = start.getTime()
 
-        if ((attendance.monday && df.format(currentDate) == 'Monday') ||
-            (attendance.tuesday && df.format(currentDate) == 'Tuesday') ||
-            (attendance.wednesday && df.format(currentDate) == 'Wednesday') ||
-            (attendance.thursday && df.format(currentDate) == 'Thursday') ||
-            (attendance.friday && df.format(currentDate) == 'Friday') ||
-            (attendance.saturday && df.format(currentDate) == 'Saturday') ||
-            (attendance.sunday && df.format(currentDate) == 'Sunday')) {
+        if ((attendance?.monday && df.format(currentDate) == 'Monday') ||
+            (attendance?.tuesday && df.format(currentDate) == 'Tuesday') ||
+            (attendance?.wednesday && df.format(currentDate) == 'Wednesday') ||
+            (attendance?.thursday && df.format(currentDate) == 'Thursday') ||
+            (attendance?.friday && df.format(currentDate) == 'Friday') ||
+            (attendance?.saturday && df.format(currentDate) == 'Saturday') ||
+            (attendance?.sunday && df.format(currentDate) == 'Sunday')) {
           debitDays++
         }
         start.add(Calendar.DATE, 1)
@@ -559,11 +559,11 @@ class HelperTagLib {
     if (!what) {
      what = Helper.get(attrs.event.what)
      if (who && what)
-       out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
+       out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: 'helper', action: 'list') + '"><span class="bold">' + what.title + '</span></a>']).decodeHTML()
     }
     else
       if (who && what)
-        out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
+        out << message(code: attrs.event.type.toString(), args: ['<a href="' + createLink(controller: who.type.supertype.name +'Profile', action:'show', id: who.id, params:[entity: who.id]) + '"><span class="bold">' + who.profile.fullName + '</span></a>', '<a href="' + createLink(controller: what.type.supertype.name +'Profile', action: 'show', id: what.id, params:[entity: what.id]) + '"><span class="bold">' + what.profile.fullName + '</span></a>']).decodeHTML()
   }
 
   def profileImage = {attrs ->

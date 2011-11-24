@@ -16,31 +16,59 @@
 
     <g:form action="updateProcess" id="${process.id}">
 
-    <p><span class="strong"><g:message code="name"/></span><br/>
-    <span class="${hasErrors(bean: process, field: 'name', 'errors')}"><g:textField class="countable50" name="name" size="50" value="${fieldValue(bean:process,field:'name').decodeHTML()}"/></span></p>
+      <table>
 
-    <p><span class="strong"><g:message code="costs"/> (${grailsApplication.config.currency})</span><br/>
-    <span class="${hasErrors(bean: process, field: 'costs', 'errors')}"><g:textField class="countable50" name="costs" size="10" value="${fieldValue(bean:process,field:'costs').decodeHTML()}"/></span></p>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: process, field: 'name', 'errors')}" name="name" size="50" value="${fieldValue(bean:process,field:'name').decodeHTML()}"/>
+          </td>
+        </tr>
 
-    <p><span class="strong"><g:message code="unit"/></span><br/>
-    <span class="${hasErrors(bean: process, field: 'unit', 'errors')}"><g:select name="unit" from="['perDay','perMonth']" value="${process.unit}" valueMessagePrefix="logunit"/></span></p>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="costs"/> (${grailsApplication.config.currency})</td>
+          <td valign="top" class="value">
+            <g:textField class="countable50 ${hasErrors(bean: process, field: 'costs', 'errors')}" name="costs" size="10" value="${fieldValue(bean:process,field:'costs').decodeHTML()}"/>
+          </td>
+        </tr>
 
-    <p><span class="strong"><g:message code="facilities"/></span><br/>
-    <g:select name="facilities" from="${facilities}" optionKey="id" optionValue="profile" multiple="true" value="${process.facilities}"/></p>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="unit"/></td>
+          <td valign="top" class="value">
+            <g:select name="unit" from="['perDay','perMonth']" value="${process.unit}" valueMessagePrefix="logunit"/>
+          </td>
+        </tr>
 
-    <p><span class="strong"><g:message code="types"/></span><br/>
-    <g:select name="types" from="['educator','leadEducator','operator']" multiple="true" valueMessagePrefix="profiletype" value="${process.types}"/></p>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="facilities"/></td>
+          <td valign="top" class="value">
+            <g:select name="facilities" from="${facilities}" optionKey="id" optionValue="profile" multiple="true" value="${process.facilities}"/>
+          </td>
+        </tr>
 
-    <p><span class="strong"><g:message code="users"/></span><br/>
-    <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile" value="${currentEntities}"/></p>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="types"/></td>
+          <td valign="top" class="value">
+            <g:select name="types" from="['educator','leadEducator','operator']" multiple="true" valueMessagePrefix="profiletype" value="${process.types}"/>
+          </td>
+        </tr>
 
-    <div class="buttons">
-      <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>
-      <g:link class="buttonGray" action="processes"><g:message code="cancel"/></g:link>
-      <div class="spacer"></div>
-    </div>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="users"/></td>
+          <td valign="top" class="value">
+            <g:select name="entities" from="${entities}" multiple="true" optionKey="id" optionValue="profile" value="${currentEntities}"/>
+          </td>
+        </tr>
 
-  </g:form>
+      </table>
+
+      <div class="buttons">
+        <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}" /></div>
+        <g:link class="buttonGray" action="processes"><g:message code="cancel"/></g:link>
+        <div class="spacer"></div>
+      </div>
+
+    </g:form>
   </div>
 </div>
 </body>

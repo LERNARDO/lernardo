@@ -11,68 +11,68 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
-      <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${group.id}" before="showspinner('#remoteCreators');"/>
-        <div id="remoteCreators"></div>
-      </div>
-
-      <table style="width: 100%">
-
-        <tr>
-          <td colspan="3" valign="top" class="name">
-            <g:if test="${template}">
-              <g:message code="groupActivityTemplate"/>: <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
-            </g:if>
-            <g:else>
-              <span class="italic"><g:message code="template.notAvailable"/></span>
-            </g:else>
-          </td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="name-show"><g:message code="name"/>:</td>
-          <td valign="top" class="name-show"><g:message code="groupActivity.profile.realDuration"/>:</td>
-          <td valign="top" class="name-show"><g:message code="date"/>:</td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
-          <td valign="top" class="value-show">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
-          <td valign="top" class="value-show"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="name-show"><g:message code="groupActivity.profile.educationalObjective"/>:</td>
-          <td colspan="2" valign="top" class="name-show"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">
-            <g:if test="${group.profile.educationalObjective}">
-              <g:message code="goal.${group.profile.educationalObjective}"/>
-            </g:if>
-            <g:else>
-              <span class="italic"><g:message code="none"/></span>
-            </g:else>
-          </td>
-          <td colspan="2" valign="top" class="value-show">
-            ${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="name-show"><g:message code="description"/>:</td>
-        </tr>
-        <tr>
-          <td colspan="3" class="value-show">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        </tr>
-
-      </table>
+    <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+    <div class="zusatz-add" id="setcreator" style="display:none">
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${group.id}" before="showspinner('#remoteCreators');"/>
+      <div id="remoteCreators"></div>
     </div>
+
+    <table>
+      <tbody>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupActivityTemplate"/>:</td>
+        <td class="two">
+          <g:if test="${template}">
+            <g:link controller="groupActivityTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName?.decodeHTML()}</g:link>
+          </g:if>
+          <g:else>
+            <span class="italic"><g:message code="template.notAvailable"/></span>
+          </g:else>
+        </td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupActivity.profile.realDuration"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.realDuration')} min</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="date"/>:</td>
+        <td class="two"><g:formatDate date="${group?.profile?.date}" format="dd. MMMM yyyy, HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupActivity.profile.educationalObjective"/>:</td>
+        <td class="two">
+          <g:if test="${group.profile.educationalObjective}">
+            <g:message code="goal.${group.profile.educationalObjective}"/>
+          </g:if>
+          <g:else>
+            <span class="italic"><g:message code="none"/></span>
+          </g:else>
+        </td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${group.id}" params="[entity: group?.id]">

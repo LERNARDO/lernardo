@@ -141,7 +141,7 @@ defaultpass = "pass"
 
 // these are some custom lists used for selects within the application
 resourceclasses = ['facility','colony','everywhere']
-profiletypes = ['all','operator','facility','educator','client','user','partner','pate','parent','child']
+profiletypes = ['all','operator','educator','client','user','partner','pate','parent','child']
 helpertypes = ['operator','educator','client','partner','pate','parent']
 costsUnit = ['perDay','perHour']
 

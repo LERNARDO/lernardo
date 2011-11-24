@@ -1,7 +1,15 @@
 <div id="attendance${i}">
   <table class="default-table">
     <tr>
-      <td valign="top" width="250px">${attendance.client.profile.fullName}</td>
+      <td valign="top" width="250px">
+        <erp:profileImage entity="${client}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
+        ${attendance.client.profile.fullName.decodeHTML()}
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
+          <div style="text-align: right; margin-top: 5px;">
+            <g:remoteLink class="buttonGray" update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]">Ändern</g:remoteLink>
+          </div>
+        </erp:accessCheck>
+      </td>
       <td width="500px">
         <table class="simpleTable">
           <tr>
@@ -15,7 +23,7 @@
               <th><g:message code="sunday.short"/></th>
           </tr>
           <tr>
-              <td>Anwesend?</td>
+              <td><g:message code="attending"/>?</td>
               <td><g:formatBoolean boolean="${attendance.monday}" true="Ja" false="-"/></td>
               <td><g:formatBoolean boolean="${attendance.tuesday}" true="Ja" false="-"/></td>
               <td><g:formatBoolean boolean="${attendance.wednesday}" true="Ja" false="-"/></td>
@@ -45,11 +53,6 @@
               <td>${attendance.sundayTo ? formatDate(date: attendance.sundayTo, format: 'HH:mm') : '-'}</td>
           </tr>
         </table>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
-            <div style="text-align: right; margin-top: 5px;">
-              <g:remoteLink update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]">Ändern</g:remoteLink>
-            </div>
-        </erp:accessCheck>
       </td>
     </tr>
   </table>

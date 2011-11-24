@@ -14,51 +14,44 @@
     <g:render template="/templates/errors" model="[bean: projectTemplate]"/>
 
     <g:form id="${projectTemplate?.id}">
-        <table width="100%">
 
-          <tr class="prop">
-            <td valign="top" class="name"><g:message code="name"/></td>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
-              <td valign="top" class="name"><g:message code="status"/></td>
-            </erp:accessCheck>
-          </tr>
+      <table>
 
-          <tr>
-            <td valign="top" class="value">
-              <g:textField class="countable${projectTemplate.profile.constraints.fullName.maxSize} ${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="50" maxlength="50" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}"/>
-            </td>
-            <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
-              <td valign="top" class="value">
-                <g:select name="status" from="['done','notDone','notDoneOpen']" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}" valueMessagePrefix="status"/>
-              </td>
-            </erp:accessCheck>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="name"/></td>
+          <td valign="top" class="value">
+            <g:textField class="countable${projectTemplate.profile.constraints.fullName.maxSize} ${hasErrors(bean: projectTemplate, field: 'profile.fullName', 'errors')}" size="50" maxlength="50" name="fullName" value="${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}"/>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="2" valign="top" class="name"><g:message code="description"/></td>
-          </tr>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="status"/></td>
+          <td valign="top" class="value">
+            <g:select name="status" from="['done','notDone','notDoneOpen']" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}" valueMessagePrefix="status"/>
+          </td>
+        </tr>
+        </erp:accessCheck>
 
-          <tr>
-            <td colspan="2" valign="top" class="value">
-              <ckeditor:editor name="description" height="200px" toolbar="Basic">
-                ${fieldValue(bean:projectTemplate,field:'profile.description').decodeHTML()}
-              </ckeditor:editor>
-            </td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="description"/></td>
+          <td valign="top" class="value">
+            <ckeditor:editor name="description" height="200px" toolbar="Basic">
+              ${fieldValue(bean:projectTemplate,field:'profile.description').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="name"><g:message code="projectTemplate.profile.educationalObjectiveText"/></td>
-          </tr>
+        <tr class="prop">
+          <td valign="top" class="name"><g:message code="projectTemplate.profile.educationalObjectiveText"/></td>
+          <td valign="top" class="value">
+            <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
+              ${fieldValue(bean:projectTemplate,field:'profile.educationalObjectiveText').decodeHTML()}
+            </ckeditor:editor>
+          </td>
+        </tr>
 
-          <tr class="prop">
-            <td colspan="3" valign="top" class="value">
-              <ckeditor:editor name="educationalObjectiveText" height="200px" toolbar="Basic">
-                ${fieldValue(bean:project,field:'profile.educationalObjectiveText').decodeHTML()}
-              </ckeditor:editor>
-            </td>
-          </tr>
-          
-        </table>
+      </table>
 
       <div class="buttons">
         <div class="button"><g:actionSubmit class="buttonGreen" action="update" value="${message(code: 'save')}" /></div>

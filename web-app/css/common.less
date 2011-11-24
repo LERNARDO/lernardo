@@ -1400,8 +1400,8 @@ table#msg-composer td {
     }
 }
 
-.prop li {
-    list-style: none; }
+//.prop li {
+//    list-style: none; }
 
 .max-textbox {
 	width: 790px; }
@@ -1410,7 +1410,12 @@ table#msg-composer td {
     margin-top: 12px; }
 
 .zusatz-add {
-    padding: 5px 0 5px 0; }
+    //padding: 5px 0 5px 0;
+    background: #eee;
+    padding: 10px;
+    margin: 3px 0 0 0;
+    color: #777;
+    line-height: 16px; }
 
 .zusatz-show {
     padding: 5px 0 5px 0; }
@@ -1553,15 +1558,27 @@ table#msg-composer td {
 .ui-timepicker-div td { font-size: 90%; }
 
 .linkstabs {
-    margin: 5px;
-    a {
-        text-decoration: none;
+    margin: 5px 0 3px 0;
+    .linktab {
+        background: #666;
+        color: #eee;
+        padding: 5px 0;
+        a {
+            padding: 5px 9px;
+            display: inline;
+            color: #ddd;
+            text-decoration: none;
+            &:hover {
+                color: #fff;
+                background: @cyan;
+            }
+        }
     }
 }
 
-.linktab {
-    padding: 3px 5px 3px 0;
-}
+#linkscontent {
+    background: #eee;
+    padding: 10px; }
 
 .property {
     width: 400px;

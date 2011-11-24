@@ -334,16 +334,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="collectors" style="display:none">
         <g:formRemote name="formRemote2" url="[controller:'clientProfile', action:'addCollector', id:client.id]" update="collectors2" before="showspinner('#collectors2');" after="toggle('#collectors');">
-          <table>
-            <tr>
-              <td valign="top"><g:message code="name"/>: </td>
-              <td><g:textField size="30" name="text" value=""/></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><g:submitButton name="button" value="${message(code:'add')}"/></td>
-            </tr>
-          </table>
+          <g:message code="name"/>: <g:textField size="30" name="text" value=""/> <g:submitButton name="button" value="${message(code:'add')}"/>
         </g:formRemote>
       </div>
       <div class="zusatz-show" id="collectors2">
