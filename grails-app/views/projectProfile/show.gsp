@@ -10,63 +10,60 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
 
-      <g:if test="${template}">
-        <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
-      </g:if>
+    <g:if test="${template}">
+      <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
+    </g:if>
 
-      <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: project]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
-      <div class="zusatz-add" id="setcreator" style="display:none">
-        <g:message code="search"/>:<br/>
-        <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${project.id}" before="showspinner('#remoteCreators');"/>
-        <div id="remoteCreators"></div>
-      </div>
-
-      <table style="width: 100%">
-
-        <tr>
-          <td valign="top" class="name-show"><g:message code="name"/></td>
-          <td valign="top" class="name-show"><g:message code="begin"/></td>
-          <td valign="top" class="name-show"><g:message code="end"/></td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</td>
-          <td valign="top" class="value-show"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
-          <td valign="top" class="value-show"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
-        </tr>
-
-        <tr>
-          <td class="name-show"><g:message code="description"/></td>
-        </tr>
-
-        <tr>
-          <td colspan="3" class="value-show">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
-        </tr>
-
-        <tr class="prop">
-          <td valign="top" class="name-show"><g:message code="project.profile.educationalObjective"/>:</td>
-          <td colspan="2" valign="top" class="name-show"><g:message code="project.profile.educationalObjectiveText"/>:</td>
-        </tr>
-
-        <tr>
-          <td valign="top" class="value-show">
-            <g:if test="${project.profile.educationalObjective}">
-              <g:message code="goal.${project.profile.educationalObjective}"/>
-            </g:if>
-            <g:else>
-              <span class="italic"><g:message code="none"/></span>
-            </g:else>
-          </td>
-          <td colspan="2" valign="top" class="value-show">
-            ${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}
-          </td>
-        </tr>
-
-      </table>
-
+    <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: project]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
+    <div class="zusatz-add" id="setcreator" style="display:none">
+      <g:message code="search"/>:<br/>
+      <g:remoteField size="40" name="remoteField" update="remoteCreators" controller="app" action="remoteCreators" id="${project.id}" before="showspinner('#remoteCreators');"/>
+      <div id="remoteCreators"></div>
     </div>
+
+    <table>
+      <tbody>
+
+      <tr class="prop">
+        <td class="one"><g:message code="name"/></td>
+        <td class="two">${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="begin"/></td>
+        <td class="two"><g:formatDate date="${project.profile.startDate}" format="dd. MM. yyyy" /></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="end"/></td>
+        <td class="two"><g:formatDate date="${project.profile.endDate}" format="dd. MM. yyyy" /></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/></td>
+        <td class="two">${fieldValue(bean: project, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="project.profile.educationalObjective"/></td>
+        <td class="two">
+          <g:if test="${project.profile.educationalObjective}">
+            <g:message code="goal.${project.profile.educationalObjective}"/>
+          </g:if>
+          <g:else>
+            <span class="italic"><g:message code="none"/></span>
+          </g:else>
+        </td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="project.profile.educationalObjectiveText"/></td>
+        <td class="two">${fieldValue(bean: project, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+      </tr>
+
+      </tbody>
+    </table>
 
     <div class="buttons">
       <g:form id="${project.id}" params="[entity: project?.id]">
@@ -156,12 +153,11 @@
       </div>
     </div>
 
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
+      <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: project]"/>
+    </erp:accessCheck>
   </div>
 </div>
-
-<erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-  <g:render template="/comment/box" model="[currentEntity: currentEntity, commented: project]"/>
-</erp:accessCheck>
 
 </body>
 
