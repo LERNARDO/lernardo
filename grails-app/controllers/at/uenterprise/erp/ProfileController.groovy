@@ -211,8 +211,6 @@ class ProfileController {
     EntityType entityType = null
     if (params.entityType == 'operator')
       entityType = metaDataService.etOperator
-    else if (params.entityType == 'facility')
-      entityType = metaDataService.etFacility
     else if (params.entityType == 'educator')
       entityType = metaDataService.etEducator
     else if (params.entityType == 'client')
@@ -250,6 +248,7 @@ class ProfileController {
           ne("type", metaDataService.etProjectUnit)
           ne("type", metaDataService.etProjectUnitTemplate)
           ne("type", metaDataService.etAppointment)
+          ne("type", metaDataService.etFacility)
           if (!secHelperService.isAdmin()) {
             ne("name", "admin")
             ne("type", metaDataService.etUser)
