@@ -42,13 +42,11 @@
           </g:if>
         </div>
       </g:if>
-      <g:else>
-        <div class="content">
-          <g:if test="${news.content}">
-            ${news.content.decodeHTML()}
-          </g:if>
-        </div>
-      </g:else>
+      <div class="content">
+        <g:if test="${news.content}">
+          ${news.content.decodeHTML()}
+        </g:if>
+      </div>
       <div class="links">
         <g:link controller="news" action="index">&#187; <g:message code="backToList"/></g:link>
       </div>
