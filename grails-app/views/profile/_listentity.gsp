@@ -38,7 +38,7 @@
       </div>
     </g:if>
     <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-      <g:if test="${!entity.user?.authorities*.authority.contains('ROLE_SYSTEMADMIN')}">
+      <g:if test="${!entity?.user?.authorities*.authority?.contains('ROLE_SYSTEMADMIN')}">
         <g:form controller="${entity.type.supertype.name + 'Profile'}" id="${entity.id}">
           <div class="buttons">
             <g:actionSubmit class="buttonGray" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" />

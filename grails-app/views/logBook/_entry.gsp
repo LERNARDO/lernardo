@@ -3,7 +3,7 @@
   <div class="clear"></div>
 </erp:accessCheck>
 
-<p>
+<p class="gray">
     <g:message code="entryNotice"/>
 </p>
 

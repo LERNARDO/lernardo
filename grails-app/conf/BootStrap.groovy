@@ -40,6 +40,7 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.LinkType
 import at.uenterprise.erp.logbook.Attendance
 import at.uenterprise.erp.logbook.Process
+import at.uenterprise.erp.EVENT_TYPE
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -572,6 +573,7 @@ class BootStrap {
         assetService.storeAsset(entity, "profile", "image/png", file.getBytes())
         // save creator
         new Link(source: Entity.findByName("educator${i}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
+        functionService.createEvent(EVENT_TYPE.ACTIVITY_TEMPLATE_CREATED, Entity.findByName('admin').id.toInteger(), entity.id.toInteger())
       }
     }
 
@@ -847,6 +849,8 @@ class BootStrap {
 
         // save creator
         new Link(source: Entity.findByName("educator${generator.nextInt(grailsApplication.config.dummies) + 1}"), target: entity, type: metaDataService.ltCreator).save(failOnError: true)
+
+        functionService.createEvent(EVENT_TYPE.GROUP_ACTIVITY_TEMPLATE_CREATED, Entity.findByName('admin').id.toInteger(), entity.id.toInteger())
       }
     }
 

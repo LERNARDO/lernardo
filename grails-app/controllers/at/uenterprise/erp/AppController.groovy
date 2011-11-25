@@ -37,17 +37,31 @@ class AppController {
 
     AssetStorage store = assetService.findStorage(ent, params.type, params.select ?: 'latest' )
     if (!store) {
-        // response.sendError(404, 'no matching asset')
-        def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
-        if (res) {
-          response.contentType = "image/jpg"
-          response.outputStream << res.inputStream
-          response.outputStream.flush ()
-        }
+      // response.sendError(404, 'no matching asset')
+      def res = grailsApplication.mainContext.getResource ("images/default_asset.jpg")
+      if (res) {
+        response.contentType = "image/jpg"
+        response.contentLength = res.getFile().size()
+        response.outputStream << res.inputStream
+        response.outputStream.flush()
+      }
       return
     }
 
-    assetService.renderStorage (store, response)
+    try {
+      assetService.withContent(store) {content, contentType->
+        log.debug ("render asset $store.storageId ($store.contentType) to response")
+        response.contentType = contentType
+        response.contentLength = content.size()
+        response.outputStream << content
+        response.outputStream.flush ()
+      }
+    }
+    catch (RuntimeException e) {
+      response.sendError (500, e.message)
+    }
+
+    //assetService.renderStorage (store, response)
   }
 
   def error404 = {

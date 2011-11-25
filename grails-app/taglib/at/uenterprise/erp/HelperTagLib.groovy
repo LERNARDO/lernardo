@@ -114,7 +114,7 @@ class HelperTagLib {
       out << '<p class="red">' + message(code: 'logBook.notAllEntriesConfirmed') + '</p>'
     }
 
-    out << '<p>' + message(code: 'logBook.info') + '</p>'
+    out << '<p class="gray">' + message(code: 'logBook.info') + '</p>'
 
     out << '<table class="default-table">'
 
@@ -257,7 +257,7 @@ class HelperTagLib {
       out << '<p class="red">' + message(code: 'logBook.notAllEntriesConfirmed') + '</p>'
     }
 
-    out << '<p>' + message(code: 'logBook.info') + '</p>'
+    out << '<p class="gray">' + message(code: 'logBook.info') + '</p>'
     
     out << '<table class="default-table">'
 
