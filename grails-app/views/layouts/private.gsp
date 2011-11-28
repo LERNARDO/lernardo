@@ -268,7 +268,7 @@
       <g:render template="/templates/header"/>
     </div>
 
-    %{--<div id="subheader">
+    <div id="subheader">
       <ul>
         <li><g:link controller="dummy">Start</g:link></li>
         <li><g:link controller="dummy">Datenbank</g:link></li>
@@ -277,7 +277,7 @@
         <li style="border-right: none;"><g:link controller="dummy">Administration</g:link></li>
       </ul>
       <div class="clear"></div>
-    </div>--}%
+    </div>
 
     %{--<div style="background: #fff;">
       <g:render template="/templates/imagenav"/>
@@ -318,6 +318,7 @@
                   <li class="icon-admin"><g:link controller="admin" action="stuff">Admin Stuff</g:link></li>
                 </erp:isSystemAdmin>--}%
                 %{--<erp:accessCheck entity="${currentEntity}" types="['Betreiber']">--}%
+                  <li class="icon-setup"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]">Setup</g:link></li>
                   <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                   %{--<li class="icon-methods"><g:link controller="method" action="index" params="[name:entity.name]"><g:message code="vMethods"/></g:link></li>
                   <li class="icon-methods"><g:link controller="label" action="index" params="[name:entity.name]"><g:message code="labels"/></g:link></li>--}%
@@ -325,9 +326,13 @@
                   <li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]"><g:message code="timeEvaluation"/></g:link></li>
                   %{--<li class="icon-time"><g:link controller="workdayCategory" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.workdaycategories"/></g:link></li>
                   <li class="icon-time"><g:link controller="educatorProfile" action="workhours" id="${entity.id}" params="[entity:entity.id]"><g:message code="educator.profile.workHours"/></g:link></li>--}%
-                  <li class="icon-setup"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]">Setup</g:link></li>
+
                   <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allevalentries"/></g:link></li>
                   <li class="profile-netzwerk"><g:link controller="comment" action="list" id="${entity.id}"><g:message code="allComments"/></g:link></li>
+                  <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>
+                  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+                    <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
+                  </erp:accessCheck>
                 %{--</erp:accessCheck>--}%
               </ul>
             </erp:accessCheck>
@@ -340,11 +345,7 @@
             </ul>
             <div class="area"><g:message code="dataCollection"/></div>
             <ul>
-              <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-                <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>
-              </erp:accessCheck>
               <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-                <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
                 <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
               </erp:accessCheck>
               <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
@@ -380,6 +381,19 @@
           </div>
         </div>
 
+        <div class="profile-box">
+          <div class="second">
+            <div class="header"><g:message code="privat.head.online"/></div>
+            <ul>
+              <erp:getOnlineUsers>
+                <g:each in="${onlineUsers}" var="entity">
+                  <li class="icon-online"><g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]">${entity.profile.fullName}</g:link></li>
+                </g:each>
+              </erp:getOnlineUsers>
+            </ul>
+          </div>
+        </div>
+
         %{--<div id="livetickerbox"></div>--}%
 
       </div>
@@ -395,16 +409,16 @@
         </div>
       </div>
 
-      <div class="yui3-u" id="right">
+      %{--<div class="yui3-u" id="right">
 
-        <div class="profile-box">
+        --}%%{--<div class="profile-box">
           <div class="second">
             <div class="header"><g:message code="favorites"/></div>
             <div id="favorites">
               <g:render template="/profile/favorites" model="[entity: currentEntity]"/>
             </div>
           </div>
-        </div>
+        </div>--}%%{--
 
         <div class="profile-box">
           <div class="second">
@@ -419,7 +433,7 @@
           </div>
         </div>
 
-      </div>
+      </div>--}%
 
     </div>
 

@@ -33,10 +33,20 @@
       </erp:getCurrentAppointments>
 
       <g:link class="tooltip" data-tooltip="${message(code: 'imgmenu.calendar.name')}" controller="calendar" action="show">
-      <span class="notificationbox inactive" style="border-right: none;">
-        <img src="${g.resource(dir:'images/icons', file:'icon_calendar.png')}" alt="Calendar" style="position: relative; top: 3px;"/>
-      </span>
+        <span class="notificationbox inactive">
+          <img src="${g.resource(dir:'images/icons', file:'icon_calendar.png')}" alt="Calendar" style="position: relative; top: 3px;"/>
+        </span>
       </g:link>
+
+      <a class="tooltip" data-tooltip="${message(code: 'favorites')}" href="#" onclick="$('#favorites').toggle(); return false;">
+        <span class="notificationbox inactive" style="border-right: none;">
+          <img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="Favorites" style="position: relative; top: 3px;"/>
+        </span>
+      </a>
+
+      <div id="favorites" style="display: none; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; text-align: left;">
+        <g:render template="/profile/favorites" model="[entity: currentEntity]"/>
+      </div>
 
     </span>
 

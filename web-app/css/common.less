@@ -99,23 +99,23 @@ body {
 }
 
 #subheader {
-    background: #333;
-    padding: 6px 0 8px 0;
-    text-transform: uppercase;
+    background: #444;
+    padding: 4px 0 6px 0;
+    //text-transform: uppercase;
     font-size: 13px;
-    text-align: center;
+    //text-align: center;
     ul {
         padding: 0;
         width: 100%;
         li {
-            border-right: 1px solid #666;
+            //border-right: 1px solid #666;
             margin: 0 0 0 -5px;
-            padding: 6px 0 9px 0;
+            padding: 4px 0 7px 0;
             display: inline;
             list-style-type: none;  
             a {
-                background: #444;
-                padding: 6px 50px 9px 50px;
+                //background: #444;
+                padding: 4px 20px 7px 20px;
                 color: #ddd;
                 &:hover {
                     color: #fff;
@@ -128,7 +128,7 @@ body {
 
 #grid {
     padding-left: 298px;
-    padding-right: 228px; // 15px;
+    //padding-right: 15px; // 228px;
     background: #fff;
     padding-top: 15px;
 }
@@ -136,7 +136,7 @@ body {
 #main {
     width: 100%;
     border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    //border-right: 1px solid #ddd;
 }
 
 #right {
@@ -381,6 +381,12 @@ body {
         background: url(../images/icons/icon_setup.png) 0 50% no-repeat;
         &:hover {
             background: url(../images/icons/icon_setup.png) 0 50% no-repeat lighten(@cyan, 50%);
+        }
+    }
+    .icon-online {
+        background: url(../images/icons/online.png) 0 50% no-repeat;
+        &:hover {
+            background: url(../images/icons/online.png) 0 50% no-repeat lighten(@cyan, 50%);
         }
     }
 }
@@ -1803,6 +1809,25 @@ table#msg-composer td {
         &:hover {
             color: #fff !important;
             background: rgba(0,0,0,0.75);
+        }
+    }
+}
+
+#favorites {
+    ul {
+        margin: 0;
+        padding: 0;
+        li {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            a {
+                padding: 5px;
+                display: block;
+            }
+            &:hover {
+                background: #eee;
+            }
         }
     }
 }
