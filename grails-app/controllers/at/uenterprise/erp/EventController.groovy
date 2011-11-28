@@ -12,30 +12,11 @@ class EventController {
     params.sort = 'dateCreated'
     params.order = 'desc'
     params.max = params.max ?: 10
-    //Entity entity = Entity.get(params.id)
-
-    /*Calendar calendar = Calendar.getInstance()
-
-    SimpleDateFormat tdf = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"))
-
-    List allEvents = Event.list([sort: 'dateCreated', order: 'desc'])
-
-    List eventsToday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
-
-    calendar.add(Calendar.DATE, -1)
-    List eventsYesterday = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}
-
-    calendar.add(Calendar.DATE, 2)
-    List eventsTomorrow = allEvents.findAll {tdf.format(it.date) == tdf.format(calendar.getTime())}*/
     
     List events = Event.list(params)
 
-    return [//entity: entity,
-            events: events,
+    return [events: events,
             totalEvents: Event.count()]
-            //'eventsToday': eventsToday,
-            //'eventsYesterday': eventsYesterday,
-            //'eventsTomorrow': eventsTomorrow]
   }
   
   def delete = {
@@ -44,5 +25,19 @@ class EventController {
     event.delete(flush: true)
 
     redirect action: 'index'
+  }
+  
+  def indexNew = {
+    params.sort = 'dateCreated'
+    params.order = 'desc'
+    params.max = params.max ?: 10
+        
+    List events = Event.list(params)
+    List news = News.list([max: 5, sort: "dateCreated", order: "desc", offset: params.offset])
+    
+    return [events: events,
+            totalEvents: Event.count(),
+            news:  news,
+            newsCount: News.count()]
   }
 }
