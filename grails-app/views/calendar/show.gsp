@@ -129,14 +129,8 @@
   <div style="margin: 10px 0 0 8px; font-size: 12px;">
     <g:formRemote name="form" url="[controller: 'calendar', action: 'sort']" update="results">
       <g:select name="sort" from="['first', 'last']" valueMessagePrefix="sortBy"/>
+      <g:submitButton name="submit" value="OK"/>
     </g:formRemote>
-
-    <script type="text/javascript">
-      $("select[name=sort]").change(function() {
-        $("form[id=form]").submit();
-      });
-    </script>
-
   </div>
 
   <div id="results">
