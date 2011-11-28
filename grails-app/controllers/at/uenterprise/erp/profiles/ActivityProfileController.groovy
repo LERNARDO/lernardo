@@ -364,12 +364,12 @@ class ActivityProfileController {
     def c = Entity.createCriteria()
     def results = c.list {
       eq('type', metaDataService.etTemplate)
-      or {
-        ilike('name', "%" + params.value + "%")
+      //or {
+        //ilike('name', "%" + params.value + "%")
         profile {
           ilike('fullName', "%" + params.value + "%")
         }
-      }
+      //}
       maxResults(15)
     }
 
