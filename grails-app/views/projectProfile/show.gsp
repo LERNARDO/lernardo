@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title><g:message code="project"/> - ${fieldValue(bean: project, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 <body>
@@ -10,6 +10,19 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <g:render template="/templates/projectNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+        <erp:accessCheck entity="${currentEntity}" types="['Pädagoge','Betreiber']">
+          <li><g:link style="border-right: none" controller="projectProfile" action="listevaluations" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+        </erp:accessCheck>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
 
     <g:if test="${template}">
       <p><g:message code="projectTemplate"/>: <g:link controller="projectTemplateProfile" action="show" id="${template?.id}">${template?.profile?.fullName}</g:link></p>
@@ -64,18 +77,6 @@
 
       </tbody>
     </table>
-
-    <div class="buttons">
-      <g:form id="${project.id}" params="[entity: project?.id]">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}" creatorof="${project}">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: project.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-        <erp:getFavorite entity="${project}"/>
-      </g:form>
-      <div class="spacer"></div>
-    </div>
 
     <div class="zusatz">
       <h5><g:message code="labels"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${project}" checkoperator="true"><a onclick="toggle('#labels');

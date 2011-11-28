@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="evaluation.allevalentries"/></title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="administration"/>
 </head>
 <body>
 

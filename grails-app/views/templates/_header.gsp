@@ -16,13 +16,13 @@
         </g:link>
       </erp:getNewInboxMessages>
 
-      <erp:getNewNews entity="${currentEntity}">
+      %{--<erp:getNewNews entity="${currentEntity}">
         <g:link class="tooltip" data-tooltip="${message(code: 'newsp')}" controller="news" action="index" id="${currentEntity.id}">
         <span class="notificationbox inactive">
           <span class="gray">${result}</span> <img src="${g.resource(dir:'images/icons', file:'icon_text.png')}" alt="News" style="position: relative; top: 3px;"/>
         </span>
         </g:link>
-      </erp:getNewNews>
+      </erp:getNewNews>--}%
 
       <erp:getCurrentAppointments entity="${currentEntity}">
         <g:link class="tooltip" data-tooltip="${message(code: 'appointments')}" controller="appointmentProfile" action="list" id="${currentEntity.id}">

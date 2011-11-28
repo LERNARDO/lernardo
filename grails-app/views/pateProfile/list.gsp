@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="paten"/></title>
 </head>
 <body>

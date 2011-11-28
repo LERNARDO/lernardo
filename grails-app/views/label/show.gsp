@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="administration"/>
   <title><g:message code="label"/> - ${labelInstance.name}</title>
 </head>
 <body>

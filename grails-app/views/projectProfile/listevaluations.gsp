@@ -1,6 +1,6 @@
 <head>
   <title>Tagebucheinträge</title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
 </head>
 <body>
 <div class="boxHeader">

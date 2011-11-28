@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="partner"/> - ${partner.profile.fullName}</title>
 </head>
 
@@ -12,6 +12,17 @@
 <div class="boxGray">
   <div class="second">
 
+    <g:render template="/templates/partnerNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+        <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
+        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
     <table>
       <tbody>
 
@@ -98,20 +109,6 @@
           </erp:accessCheck>
         </tr>
       </table>
-    </div>
-
-    <div class="buttons">
-      <g:form id="${partner.id}">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${partner}">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:accessCheck>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: partner.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
-        <erp:getFavorite entity="${partner}"/>
-      </g:form>
-      <div class="spacer"></div>
     </div>
 
     <div class="zusatz">

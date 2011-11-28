@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="msg.outbox"/></title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
 </head>
 <body>
 

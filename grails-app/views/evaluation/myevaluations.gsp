@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="evaluation.personel"/></title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="administration"/>
 
   <script type="text/javascript">
       $(function() {

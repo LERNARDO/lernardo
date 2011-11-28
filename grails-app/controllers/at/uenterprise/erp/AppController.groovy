@@ -317,7 +317,7 @@ class AppController {
       if (!currentEntity.profile.calendar)
         currentEntity.profile.calendar = new ECalendar().save()
 
-      redirect controller: 'event', action: 'index', id: currentEntity.id
+      redirect controller: 'event', action: 'indexNew', id: currentEntity.id
     }
     else
       redirect action: 'home'

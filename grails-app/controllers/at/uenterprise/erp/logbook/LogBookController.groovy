@@ -10,7 +10,7 @@ class LogBookController {
   FunctionService functionService
   EntityHelperService entityHelperService
 
-  def entries = {    
+  def entries = {
     Entity currentEntity = entityHelperService.loggedIn
 
     List facilities

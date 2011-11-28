@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="object.create" args="[message(code: 'process')]"/></title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="organisation"/>
 </head>
 
 <body>

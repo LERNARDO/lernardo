@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title><g:message code="groupActivity"/> - ${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 
@@ -11,6 +11,16 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <g:render template="/templates/groupActivityNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link style="border-right: none" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
 
     <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: group]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
     <div class="zusatz-add" id="setcreator" style="display:none">
@@ -73,19 +83,6 @@
 
       </tbody>
     </table>
-
-    <div class="buttons">
-      <g:form id="${group.id}" params="[entity: group?.id]">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div> <div style="float: left; padding: 7px 0 0 0;"><g:checkBox name="printtemplates" value=""/></div><div style="float: left; padding: 7px 0 0 5px;"> <g:message code="activityTemplates.with"/></div>
-        <erp:getFavorite entity="${group}"/>
-      </g:form>
-      <div class="spacer"></div>
-    </div>
 
     <script type="text/javascript">
       $(document).ready(function() {

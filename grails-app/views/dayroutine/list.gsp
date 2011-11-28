@@ -1,13 +1,13 @@
 <head>
-  <meta name="layout" content="private"/>
-  <title><g:message code="dayroutine"/></title>
+  <meta name="layout" content="database"/>
+  <title>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></title>
 </head>
 
 <body>
 
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="dayroutine"/></h1>
+    <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="dayroutine"/></h1>
   </div>
 </div>
 <div class="boxGray">
@@ -31,7 +31,7 @@
             <td><g:textArea name="description" rows="4" cols="50"/></td>
           </tr>
           <tr>
-            <td class="bold" valign="top">Tage</td>
+            <td class="bold" valign="top"><g:message code="activityInstance.profile.days"/></td>
             <td>
               <g:checkBox name="monday"/> <g:message code="monday"/><br/>
               <g:checkBox name="tuesday"/> <g:message code="tuesday"/><br/>

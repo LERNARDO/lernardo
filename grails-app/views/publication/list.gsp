@@ -1,11 +1,11 @@
 <head>
-  <meta name="layout" content="private"/>
-  <title><g:message code="publications"/></title>
+  <meta name="layout" content="database"/>
+  <title>${entity.profile.fullName.decodeHTML()}: <g:message code="publications"/></title>
 </head>
 <body>
 <div class="boxHeader">
   <div class="second">
-    <h1><g:message code="publications"/></h1>
+    <h1>${entity.profile.fullName.decodeHTML()}: <g:message code="publications"/></h1>
   </div>
 </div>
 <div class="boxGray">

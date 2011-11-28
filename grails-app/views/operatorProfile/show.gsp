@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="profile"/> - ${operator.profile.fullName}</title>
 </head>
 <body>
@@ -10,7 +10,19 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <g:render template="/templates/operatorNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+        <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
+        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
+      </ul>
+    </div>
+
     <div>
+      <h4><g:message code="profile"/></h4>
       <table>
         <tbody>
 
@@ -82,20 +94,6 @@
         </table>
       </div>
 
-    </div>
-
-    <div class="buttons">
-      <g:form id="${operator.id}">
-        <erp:accessCheck entity="${currentEntity}" me="${operator}">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:accessCheck>
-        <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: operator.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
-        <erp:getFavorite entity="${operator}"/>
-      </g:form>
-      <div class="spacer"></div>
     </div>
 
     <div class="zusatz">

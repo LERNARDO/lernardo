@@ -268,16 +268,16 @@
       <g:render template="/templates/header"/>
     </div>
 
-    %{--<div id="subheader">
+    <div id="subheader">
       <ul>
         <li><g:link controller="event" action="indexNew" onclick="showBigSpinner()">Start</g:link></li>
-        <li><g:link controller="dummy">Datenbank</g:link></li>
-        <li><g:link controller="dummy">Organisation</g:link></li>
-        <li><g:link controller="dummy">Planung</g:link></li>
-        <li style="border-right: none;"><g:link controller="dummy">Administration</g:link></li>
+        <li><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
+        <li><g:link controller="logBook" action="entries" id="${entity.id}" onclick="showBigSpinner()">Organisation</g:link></li>
+        <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()">Planung</g:link></li>
+        <li style="border-right: none;"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]" onclick="showBigSpinner()">Administration</g:link></li>
       </ul>
       <div class="clear"></div>
-    </div>--}%
+    </div>
 
     <div class="yui3-g" id="grid">
 

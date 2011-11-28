@@ -1,6 +1,6 @@
 <html>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title><g:message code="themeRooms"/></title>
 </head>
 <body>

@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="helpers"/></title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
 </head>
 <body>
 <div class="boxHeader">

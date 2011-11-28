@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="facilities"/></title>
 </head>
 <body>

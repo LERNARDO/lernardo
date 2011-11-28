@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="administration"/>
   <title><g:message code="object.create" args="[message(code: 'method')]"/></title>
 </head>
 <body>

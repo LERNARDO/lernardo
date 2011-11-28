@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="organisation"/>
   <title><g:message code="entries"/></title>
 </head>
 

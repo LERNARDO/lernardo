@@ -1,6 +1,6 @@
 <%@ page import="at.uenterprise.erp.MetaDataService" %>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="appointments"/></title>
 </head>
 <body>

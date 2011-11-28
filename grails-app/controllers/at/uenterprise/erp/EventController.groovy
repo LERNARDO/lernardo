@@ -24,7 +24,7 @@ class EventController {
     
     event.delete(flush: true)
 
-    redirect action: 'index'
+    redirect action: 'indexNew'
   }
   
   def indexNew = {

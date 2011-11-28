@@ -1,6 +1,6 @@
 <%@ page import="at.openfactory.ep.Entity" %>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title><g:message code="activityTemplates"/></title>
 </head>
 

@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="cal.title"/></title>
-  <meta name="layout" content="private" />
+  <meta name="layout" content="database" />
 
   <g:javascript src="jquery/fullcalendar.min.js"/>
   <link rel="stylesheet" href="${resource(dir:'css',file:'fullcalendar.css')}">

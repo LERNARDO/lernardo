@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="msg.inbox"/></title>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
 </head>
 <body>
 %{--<g:if test="${currentEntity.profile.showTips}">

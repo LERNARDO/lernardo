@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title>Aktivität bearbeiten</title>
 </head>
 <body>

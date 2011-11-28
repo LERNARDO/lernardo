@@ -1,12 +1,27 @@
-<div style="width: 130px; margin-left: 5px;" onmouseover="$('#mypic').css('opacity', '1');" onmouseout="$('#mypic').css('opacity', '0');">
-  <erp:profileImage entity="${entity}" width="130"/>
-  <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
-    <div id="mypic"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></div>
-  </erp:accessCheck>
-</div>
-
-<ul style="margin-top: 10px;">
-  <li class="profile-profil"><g:link controller="facilityProfile" action="show" id="${entity.id}" params="[entity: entity.id]"><g:message code="profile"/></g:link></li>
-  <li class="icon-document"><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-  <li class="icon-admin"><g:link controller="dayroutine" action="list" id="${entity.id}" params="[entity:entity.id]"><g:message code="dayroutine"/></g:link></li>
-</ul>
+<table>
+  <tr>
+    <td>
+      <div style="width: 130px;" onmouseover="$('#mypic').css('opacity', '1');" onmouseout="$('#mypic').css('opacity', '0');">
+        <erp:profileImage entity="${entity}" width="130"/>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}">
+          <div id="mypic"><g:link controller="profile" action="uploadProfileImage" id="${entity.id}"><g:message code="privat.picture.change"/></g:link></div>
+        </erp:accessCheck>
+      </div>
+    </td>
+    <td style="padding-left: 10px; vertical-align: bottom;">
+      <div class="buttons">
+        <g:form id="${facility.id}" style="margin-bottom: 0;">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]">
+            <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
+          </erp:accessCheck>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: facility.id)}" /></div>
+          </erp:accessCheck>
+          <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
+          <erp:getFavorite entity="${facility}"/>
+        </g:form>
+        <div class="spacer"></div>
+      </div>
+    </td>
+  </tr>
+</table>

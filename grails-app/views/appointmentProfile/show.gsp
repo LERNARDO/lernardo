@@ -1,6 +1,6 @@
 <%@ page import="at.openfactory.ep.Entity" %>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="appointment"/> - ${appointment.profile.fullName}</title>
 </head>
 <body>

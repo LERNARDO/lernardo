@@ -1,6 +1,6 @@
 <%@ page import="at.uenterprise.erp.Setup" %>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="groupClient"/> - ${group.profile.fullName}</title>
 </head>
 <body>
@@ -12,6 +12,15 @@
 <div class="boxGray">
   <div class="second">
 
+    <g:render template="/templates/defaultNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link style="border-right: none" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
     <table>
       <tbody>
 
@@ -27,19 +36,6 @@
 
       </tbody>
     </table>
-
-    <div class="buttons">
-      <g:form id="${group.id}">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
-        <erp:getFavorite entity="${group}"/>
-      </g:form>
-      <div class="spacer"></div>
-    </div>
 
     <div class="zusatz">
       <h5><g:message code="clients"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#clients');

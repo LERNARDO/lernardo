@@ -1,6 +1,6 @@
 <%@ page import="at.uenterprise.erp.PublicationType" %>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="object.create" args="[message(code: 'publication')]"/></title>
 </head>
 <body>

@@ -13,10 +13,12 @@
   </div>
 
   <ul id="boxes">
-    <li class="redbox"><g:link controller="dummy" onmouseover="jQuery('#reddescription').show();" onmouseout="jQuery('#reddescription').hide();">DATENBANK</g:link></li>
-    <li class="greenbox"><g:link controller="dummy" onmouseover="jQuery('#greendescription').show();" onmouseout="jQuery('#greendescription').hide();">ORGANISATION</g:link></li>
-    <li class="bluebox"><g:link controller="dummy" onmouseover="jQuery('#bluedescription').show();" onmouseout="jQuery('#bluedescription').hide();">PLANUNG</g:link></li>
-    <li class="yellowbox"><g:link controller="dummy" onmouseover="jQuery('#yellowdescription').show();" onmouseout="jQuery('#yellowdescription').hide();">ADMINISTRATION</g:link></li>
+    <li class="redbox"><g:link controller="educatorProfile" action="index" onclick="showBigSpinner()" onmouseover="jQuery('#reddescription').show();" onmouseout="jQuery('#reddescription').hide();">DATENBANK</g:link></li>
+    <li class="greenbox"><g:link controller="logBook" action="entries" onclick="showBigSpinner()" onmouseover="jQuery('#greendescription').show();" onmouseout="jQuery('#greendescription').hide();">ORGANISATION</g:link></li>
+    <li class="bluebox"><g:link controller="templateProfile" action="index" onclick="showBigSpinner()" onmouseover="jQuery('#bluedescription').show();" onmouseout="jQuery('#bluedescription').hide();">PLANUNG</g:link></li>
+    <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+      <li class="yellowbox"><g:link controller="setup" action="show" onclick="showBigSpinner()" onmouseover="jQuery('#yellowdescription').show();" onmouseout="jQuery('#yellowdescription').hide();">ADMINISTRATION</g:link></li>
+    </erp:accessCheck>
   </ul>
 
   <div class="clear"></div>

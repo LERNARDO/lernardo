@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="administration"/>
   <title><g:message code="user"/> - ${user.profile.fullName}</title>
 </head>
 <body>

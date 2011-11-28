@@ -1,9 +1,11 @@
 <%@ page import="at.uenterprise.erp.MetaDataService" %>
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="appointments"/></title>
 </head>
 <body>
+
+%{--<g:render template="/templates/contextEntity" model="[entity: entity]"/>--}%
 
 <div class="tabGreen">
   <div class="second">

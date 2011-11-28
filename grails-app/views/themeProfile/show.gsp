@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title><g:message code="theme"/> - ${fieldValue(bean: theme, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 <body>
@@ -10,6 +10,16 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <g:render template="/templates/themeNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link style="border-right: none" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
 
     <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: theme]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
     <div class="zusatz-add" id="setcreator" style="display:none">
@@ -60,18 +70,6 @@
 
       </tbody>
     </table>
-
-    <div class="buttons">
-      <g:form id="${theme.id}">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${theme}">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: theme.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-        <erp:getFavorite entity="${theme}"/>
-      </g:form>
-      <div class="spacer"></div>
-    </div>
 
     <div class="zusatz">
       <h5><g:message code="projects"/><erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#projects');

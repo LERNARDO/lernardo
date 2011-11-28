@@ -3,7 +3,7 @@
 <head>
   <title><g:message code="activity"/> - ${fieldValue(bean: activity, field: 'profile.fullName').decodeHTML()}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
 </head>
 
 <body>
@@ -15,6 +15,17 @@
 
 <div class="boxGray">
   <div class="second">
+
+    <g:render template="/templates/activityNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link style="border-right: none" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
+
     <g:message code="template"/>:
     <erp:getTemplate entity="${activity}">
       <g:link controller="templateProfile" action="show" id="${template.id}">${template.profile.fullName}</g:link>
@@ -51,18 +62,6 @@
       </tr>
 
     </table>
-
-    <div class="buttons">
-      <g:form id="${activity.id}">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: activity.id)}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-        <erp:getFavorite entity="${activity}"/>
-      </g:form>
-      <div class="spacer"></div>
-    </div>
 
     <div class="zusatz">
       <h5><g:message code="educators"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#educators');

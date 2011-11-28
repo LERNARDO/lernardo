@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="planning"/>
   <title><g:message code="projectTemplate"/> - ${fieldValue(bean: projectTemplate, field: 'profile.fullName').decodeHTML()}</title>
 </head>
 <body>
@@ -10,6 +10,16 @@
 </div>
 <div class="boxGray">
   <div class="second">
+
+    <g:render template="/templates/projectTemplateNavigation" model="[entity: entity]"/>
+
+    <div class="tabnav">
+      <ul>
+        <li><g:link style="border-right: none" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+      </ul>
+    </div>
+
+    <h4><g:message code="profile"/></h4>
 
     <p><g:message code="creator"/>: <span id="creator"><g:render template="/templates/creator" model="[entity: projectTemplate]"/></span> <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']"><a onclick="toggle('#setcreator'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="Ersteller ändern"/></a></erp:accessCheck></p>
     <div class="zusatz-add" id="setcreator" style="display:none">
@@ -43,26 +53,6 @@
 
       </tbody>
     </table>
-
-    <div class="buttons">
-      <g:form id="${projectTemplate.id}" params="[entity: projectTemplate?.id]">
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true">
-          <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-        </erp:accessCheck>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
-          <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: projectTemplate.id)}" /></div>
-        </erp:accessCheck>
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-          <g:if test="${projectTemplate.profile.status == 'done'}">
-            <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate.id}" params="[entity: projectTemplate?.id]"><g:message code="project.plan"/></g:link>
-          </g:if>
-          <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'projectTemplate.duplicate')}" /></div>
-        </erp:accessCheck>
-        <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-        <erp:getFavorite entity="${projectTemplate}"/>
-      </g:form>
-      <div class="spacer"></div>
-    </div>
 
     <g:if test="${projectTemplate.profile.status != 'done'}">
       <div class="italic red"><g:message code="template.statusNotDone"/></div>

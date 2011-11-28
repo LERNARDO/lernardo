@@ -6,6 +6,7 @@
 @button-red: #A05265;
 @button-gray: #AEAEAE;
 @button-blue: #588ABC;
+@button-yellow: #BCBC58;
 
 @live-header-active-border: #3D5E7E;
 @live-header-gradient-top: #4171A1;
@@ -112,17 +113,49 @@ body {
             margin: 0 0 0 -5px;
             padding: 4px 0 7px 0;
             display: inline;
-            list-style-type: none;  
+            list-style-type: none;
             a {
                 //background: #444;
                 padding: 4px 20px 7px 20px;
-                color: #ddd;
+                color: #eee;
                 &:hover {
                     color: #fff;
                     background: #555;
                 }
+                &.activegray {
+                    background: @button-gray;
+                    text-shadow: 1px 1px 3px #000;
+                }
+                &.activered {
+                    background: @button-red;
+                    text-shadow: 1px 1px 3px #000;
+                }
+                &.activegreen {
+                    background: @button-green;
+                    text-shadow: 1px 1px 3px #000;
+                }
+                &.activeblue {
+                    background: @button-blue;
+                    text-shadow: 1px 1px 3px #000;
+                }
+                &.activeyellow {
+                    background: @button-yellow;
+                    text-shadow: 1px 1px 3px #000;
+                }
             }
         }
+    }
+}
+
+#ft {
+    font-size: 11px;
+    text-align: center;
+    margin: 20px 0 0 0;
+    padding: 10px;
+    background: #ddd;
+    a {
+        color: #29957d;
+        margin-left: 20px;
     }
 }
 
@@ -1855,6 +1888,7 @@ table#msg-composer td {
             display:inline-block;
             padding: 20px;
             color: #eee;
+            text-shadow: 1px 1px 3px #000;
         }
         .redbox {
             background: #b77;
@@ -1874,12 +1908,37 @@ table#msg-composer td {
         }
     }
     #descriptions {
+        background: #eee;
         height: 100px;
-        margin: 20px 0;
+        width: 725px;
+        padding: 5px;
+        margin: 20px auto;
         .description {
             font-size: 12px;
             font-weight: normal;
             text-align: center;
+        }
+    }
+}                            
+
+.tabnav {
+    padding: 15px 0 0 4px;
+    ul {
+        margin: 0;
+        li {
+            margin: 0 0 0 -4px;
+            padding: 0;
+            display: inline;
+            a {
+                background: #ddd;
+                padding: 6px 20px;
+                color: #444;
+                border-right: 1px solid #bbb;
+                &:hover {
+                    background: #bbb;
+                    color: #000;
+                }
+            }
         }
     }
 }
