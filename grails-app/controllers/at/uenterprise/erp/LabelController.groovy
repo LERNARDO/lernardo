@@ -10,7 +10,7 @@ class LabelController {
   }
 
   def list = {
-    [labelInstanceList: functionService.getLabels(), labelInstanceTotal: Label.countByType("template")]
+    [labelInstanceList: functionService.getLabels()]
   }
 
   def create = {
