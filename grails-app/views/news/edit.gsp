@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="database" />
+  <meta name="layout" content="start" />
   <title><g:message code="object.edit" args="[message(code: 'news')]"/></title>
 </head>
 
@@ -50,7 +50,7 @@
 
       <div class="buttons">
         <div class="button"><g:submitButton class="buttonGreen" name="submitButton" value="${message(code:'save')}"/></div>
-        <g:link class="buttonGray" controller="news" action="index"><g:message code="cancel"/></g:link>
+        <g:link class="buttonGray" controller="event" action="indexNew"><g:message code="cancel"/></g:link>
         <div class="spacer"></div>
       </div>
 

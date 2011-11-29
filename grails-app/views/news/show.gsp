@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="news"/></title>
-  <meta name="layout" content="database"/>
+  <meta name="layout" content="start"/>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
         </g:if>
       </div>
       <div class="links">
-        <g:link controller="news" action="index">&#187; <g:message code="backToList"/></g:link>
+        <g:link controller="event" action="indexNew">&#187; <g:message code="backToList"/></g:link>
       </div>
     </div>
   </div>

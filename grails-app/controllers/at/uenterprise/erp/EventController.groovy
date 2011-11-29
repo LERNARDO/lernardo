@@ -1,9 +1,10 @@
 package at.uenterprise.erp
 
-import java.text.SimpleDateFormat
 import at.openfactory.ep.Entity
+import at.openfactory.ep.EntityHelperService
 
 class EventController {
+  EntityHelperService entityHelperService
 
   /*
    * shows the events page
@@ -21,23 +22,32 @@ class EventController {
   
   def delete = {
     Event event = Event.get(params.id)
-    
     event.delete(flush: true)
-
     redirect action: 'indexNew'
   }
   
   def indexNew = {
+  }
+  
+  def remoteEvents = {
+    params.max = 10
     params.sort = 'dateCreated'
     params.order = 'desc'
-    params.max = params.max ?: 10
-        
     List events = Event.list(params)
-    List news = News.list([max: 5, sort: "dateCreated", order: "desc", offset: params.offset])
+    def totalEvents = Event.count()
+    Entity currentEntity = entityHelperService.loggedIn
     
-    return [events: events,
-            totalEvents: Event.count(),
-            news:  news,
-            newsCount: News.count()]
+    render template: 'events', model: [events: events, totalEvents: totalEvents, currentEntity: currentEntity]
+  }
+
+  def remoteNews = {
+    params.max = 5
+    params.sort = 'dateCreated'
+    params.order = 'desc'
+    List news = News.list(params)
+    def totalNews= News.count()
+    Entity currentEntity = entityHelperService.loggedIn
+
+    render template: 'news', model: [news: news, totalNews: totalNews, currentEntity: currentEntity]
   }
 }

@@ -3,6 +3,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="layout" content="start"/>
   <title><g:message code="events"/></title>
+
+  <script type="text/javascript">
+      $(function() {
+        ${remoteFunction(controller:"event", action: "remoteEvents", update: "events", before: "showspinner('#events')")}
+        ${remoteFunction(controller:"event", action: "remoteNews", update: "news", before: "showspinner('#news')")}
+      });
+    </script>
+
 </head>
 
 <body>
@@ -51,54 +59,14 @@
 <div class="yui3-g">
 
   <div class="yui3-u-1-2">
-    <div class="boxHeader">
+    <div class="boxHeader" style="padding-right: 20px;">
       <div class="second">
         <h1><g:message code="events"/></h1>
       </div>
     </div>
 
-    <div class="boxGray">
-      <div class="second">
-
-        <g:if test="${events}">
-          <table class="default-table">
-            <tbody>
-            <erp:getBirthdays>
-              <g:if test="${entities}">
-                <g:each in="${entities}" var="entity">
-                  <tr>
-                    <td style="width: 40px;">
-                      <erp:profileImage entity="${entity}" width="30" style="vertical-align: middle;"/>
-                    </td>
-                    <td class="gray">
-                      <g:link controller="${entity.type.supertype.name +'Profile'}" action="show" id="${entity.id}" params="[entity:entity.id]"><span
-                          class="bold">${entity.profile.fullName}</span></g:link> hat heute Geburtstag! <img src="${resource(dir: 'images/icons', file: 'icon_cake.png')}" alt="Birthday"
-                                                                                                             style="position: relative; top: 3px; margin-right: 5px;"/>
-                    </td>
-                  </tr>
-                </g:each>
-              </g:if>
-            </erp:getBirthdays>
-            <g:each in="${events}" status="i" var="event">
-              <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                <td style="width: 40px;">
-                  <erp:profileImage entity="${Entity.get(event.who)}" width="30" style="vertical-align: middle;"/>
-                </td>
-                <td class="gray">
-                  <g:formatDate date="${event.date}" format="EE dd. MMM. yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>
-                  <erp:getEvent event="${event}"/> <erp:isSystemAdmin entity="${currentEntity}"><g:link action="delete" id="${event.id}"
-                                                                                                        onclick="if(!confirm('${message(code:'delete.warn')}')) return false"><img
-                      src="${resource(dir: 'images/icons', file: 'cross.png')}" alt="Birthday" style="position: relative; top: 3px; margin-right: 5px;"/></g:link></erp:isSystemAdmin>
-                </td>
-              </tr>
-            </g:each>
-            </tbody>
-          </table>
-
-          <div class="paginateButtons">
-            <g:paginate total="${totalEvents}"/>
-          </div>
-        </g:if>
+    <div class="boxGray" style="padding-right: 20px;">
+      <div class="second" id="events">
 
       </div>
     </div>
@@ -112,24 +80,7 @@
     </div>
 
     <div class="boxGray">
-      <div class="second">
-
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-          <div class="buttons">
-            <g:form controller="news" action="create">
-              <div class="button"><g:submitButton name="submit" class="buttonGreen" value="${message(code: 'object.create', args: [message(code: 'news')])}"/></div>
-              <div class="spacer"></div>
-            </g:form>
-          </div>
-        </erp:accessCheck>
-
-        <div id="news-container">
-          <g:render template="/news/newsitems" model="[news: news, newsCount: newsCount, currentEntity: currentEntity]"/>
-        </div>
-
-        <div class="paginateButtons">
-          <g:paginate total="${newsCount}"/>
-        </div>
+      <div class="second" id="news">
 
       </div>
     </div>
