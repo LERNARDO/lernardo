@@ -284,4 +284,17 @@ class AdminController {
     render "-Done-"
 
   }
+  
+  def createLabels = {
+    if (Label.labels)
+      Label.labels.clear()
+    else
+       Label.labels = []
+    
+    List labels = Label.findAllByType('template')
+    labels.each {
+      Label.labels.add(it.id.toString())
+    }
+    render "-Done-"
+  }
 }

@@ -29,7 +29,6 @@ class FunctionService {
    * Retrieves all labels in the order they are stored in the static labels property of the Labels class
    *
    * @author Alexander Zeillinger
-   * @param entity    the entity to delete all links to and from
    */
   List getLabels() {
     List labels = []

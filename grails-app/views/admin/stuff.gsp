@@ -55,6 +55,12 @@
       <div class="result" id="attendences"></div>
     </div>
 
+    <div class="adminbox">
+      <div class="bold">Create labels list</div>
+      <g:remoteLink update="labels" action="createLabels" before="showspinner('#labels');">Create</g:remoteLink>
+      <div class="result" id="labels"></div>
+    </div>
+
   </div>
 </div>
 </body>
