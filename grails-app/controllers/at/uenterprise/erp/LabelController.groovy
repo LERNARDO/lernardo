@@ -1,6 +1,7 @@
 package at.uenterprise.erp
 
 class LabelController {
+  FunctionService functionService
 
   static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -9,10 +10,7 @@ class LabelController {
   }
 
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 10, 100)
-    params.sort = params.sort ?: 'name'
-    params.order = params.order ?: 'asc'
-    [labelInstanceList: Label.findAllByType("template", params), labelInstanceTotal: Label.countByType("template")]
+    [labelInstanceList: functionService.getLabels(), labelInstanceTotal: Label.countByType("template")]
   }
 
   def create = {
@@ -25,6 +23,7 @@ class LabelController {
     def labelInstance = new Label(params)
     labelInstance.type = "template"
     if (labelInstance.save(flush: true)) {
+      Label.labels.add(labelInstance.id.toString())
       flash.message = message(code: "object.created", args: [message(code: "label"), labelInstance.name])
       redirect action: "show", id: labelInstance.id
     }
@@ -98,6 +97,7 @@ class LabelController {
     if (labelInstance) {
       try {
         labelInstance.delete(flush: true)
+        Label.labels.remove(labelInstance.id.toString())
         flash.message = message(code: "object.deleted", args: [message(code: "label"), labelInstance.name])
         redirect action: "list"
       }
@@ -111,5 +111,24 @@ class LabelController {
       redirect action: "list"
     }
   }
+
+  def moveUp = {
+      String label = params.id
+      if (Label.labels.indexOf(label) > 0) {
+        int i = Label.labels.indexOf(label)
+        use(Collections){ Label.labels.swap(i, i - 1) }
+      }
+      redirect action: 'list'
+    }
+
+    def moveDown = {
+      String label = params.id
+
+      if (Label.labels.indexOf(label) < (Label.labels.size() - 1)) {
+        int i = Label.labels.indexOf(label)
+        use(Collections){ Label.labels.swap(i, i + 1) }
+      }
+      redirect action: 'list'
+    }
 
 }

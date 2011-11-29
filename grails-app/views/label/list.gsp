@@ -48,8 +48,8 @@
       </thead>
       <tbody>
       <g:each in="${labelInstanceList}" status="i" var="label">
-        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-          <td><g:link action="show" id="${label.id}">${fieldValue(bean: label, field: 'name').decodeHTML()}</g:link></td>
+        <tr class="${(i % 2) == 0 ? 'odd' : 'even'}" onmouseover="$('#arrows${i}').toggle()" onmouseout="$('#arrows${i}').toggle()">
+          <td><span id="arrows${i}" style="display: none;"><g:link action="moveUp" id="${label.id}"><img src="${g.resource(dir: 'images/icons', file: 'arrow_up.png')}" alt="${message(code:'up')}" align="top"/></g:link> <g:link action="moveDown" id="${label.id}"><img src="${g.resource(dir: 'images/icons', file: 'arrow_down.png')}" alt="${message(code:'down')}" align="top"/></g:link></span> <g:link action="show" id="${label.id}">${fieldValue(bean: label, field: 'name').decodeHTML()}</g:link></td>
         </tr>
       </g:each>
       </tbody>
@@ -62,3 +62,4 @@
   </div>
 </div>
 </body>
+

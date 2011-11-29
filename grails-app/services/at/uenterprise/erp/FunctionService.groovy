@@ -26,6 +26,20 @@ class FunctionService {
   boolean transactional = true
 
   /**
+   * Retrieves all labels in the order they are stored in the static labels property of the Labels class
+   *
+   * @author Alexander Zeillinger
+   * @param entity    the entity to delete all links to and from
+   */
+  List getLabels() {
+    List labels = []
+    Label.labels.each {
+      labels.add(Label.get(it.toInteger()))
+    }
+    return labels
+  }
+
+  /**
    * Deletes all references to an entity (used before deleting an entity)
    *
    * @author Alexander Zeillinger

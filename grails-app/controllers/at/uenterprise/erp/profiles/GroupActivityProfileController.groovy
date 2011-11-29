@@ -73,13 +73,10 @@ class GroupActivityProfileController {
     else
       themes = Entity.findAllByType(metaDataService.etTheme)
 
-    params.sort = 'name'
-    params.order = 'asc'
-
     return [/*groups: groupActivities,
             totalGroupActivities: totalGroupActivities,*/
             themes: themes,
-            allLabels: Label.findAllByType('template', params)]
+            allLabels: functionService.getLabels()]
   }
 
   def show = {
@@ -183,9 +180,6 @@ class GroupActivityProfileController {
 
     List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
 
-    params.sort = params.sort ?: 'name'
-    params.order = params.order ?: 'asc'
-
     return [group: group,
             entity: entity,
             templates: templates,
@@ -206,7 +200,7 @@ class GroupActivityProfileController {
             requiredResources: requiredResources,
             plannableResources: plannableResources,
             resources: resources,
-            allLabels: Label.findAllByType('template', params)]
+            allLabels: functionService.getLabels()]
 
   }
 

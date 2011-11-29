@@ -53,13 +53,10 @@ class TemplateProfileController {
     }
     int totalTemplates = Entity.countByType(etTemplate)
 
-    params.sort = 'name'
-    params.order = 'asc'
-
     return [allTemplates: templates,
             totalTemplates: totalTemplates,
             methods: Method.findAllByType('template'),
-            allLabels: Label.findAllByType('template', params),
+            allLabels: functionService.getLabels(),
             paginate: true]
   }
 
@@ -94,16 +91,11 @@ class TemplateProfileController {
     def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
     def allMethods = Method.findAllByType('template')
 
-    params.sort = 'name'
-    params.order = 'asc'
-
-    def allLabels = Label.findAllByType('template', params)
-
     return [template: template,
             commentList: commentList,
             entity: entity,
             allMethods: allMethods,
-            allLabels: allLabels]
+            allLabels: functionService.getLabels()]
   }
 
   def create = {}

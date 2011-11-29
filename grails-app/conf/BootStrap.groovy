@@ -41,6 +41,7 @@ import at.openfactory.ep.LinkType
 import at.uenterprise.erp.logbook.Attendance
 import at.uenterprise.erp.logbook.Process
 import at.uenterprise.erp.EVENT_TYPE
+import at.uenterprise.erp.Label
 
 class BootStrap {
   DefaultObjectService defaultObjectService
@@ -96,6 +97,7 @@ class BootStrap {
         createDefaultAppointments()
         createDefaultGroupActivities()
         createDefaultMessages()
+        createDefaultLabels()
       }
 
       //createDefaultEvaluations()
@@ -1054,5 +1056,14 @@ class BootStrap {
       new Process(name: "process" + i, costs: 0, unit: unit).save(failOnError: true)
     }
   }
+  
+  void createDefaultLabels() {
+      log.info ("creating " + grailsApplication.config.dummies + " labels")
+
+      for ( i in 1..grailsApplication.config.dummies ) {
+        Label label = new Label(name: "label" + i, description: "description" + i, type: "template").save(failOnError: true)
+        Label.labels.add(label.id.toString())
+      }
+    }
 
 }

@@ -33,10 +33,7 @@ class ProjectTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.sort = params.sort ?: 'name'
-    params.order = params.order ?: 'asc'
-
-    return [allLabels: Label.findAllByType('template', params)]
+    return [allLabels: functionService.getLabels()]
   }
 
   def show = {
@@ -82,15 +79,12 @@ class ProjectTemplateProfileController {
         }
       }
 
-      params.sort = params.sort ?: 'name'
-      params.order = params.order ?: 'asc'
-
       [projectTemplate: projectTemplate,
               entity: entity,
               projectUnitTemplates: projectUnitTemplates,
               calculatedDuration: calculatedDuration,
               instances: instances,
-              allLabels: Label.findAllByType('template', params),
+              allLabels: functionService.getLabels(),
               groupActivityTemplateResources: groupActivityTemplateResources,
               templateResources: templateResources]
     }

@@ -7,6 +7,8 @@ package at.uenterprise.erp
  */
 class Label {
 
+  static List labels = []
+
   String name
   String description
   String type

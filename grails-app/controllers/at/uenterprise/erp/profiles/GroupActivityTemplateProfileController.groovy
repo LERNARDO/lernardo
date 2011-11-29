@@ -35,10 +35,7 @@ class GroupActivityTemplateProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.sort = params.sort ?: 'name'
-    params.order = params.order ?: 'asc'
-
-    return [allLabels: Label.findAllByType('template', params)]
+    return [allLabels: functionService.getLabels()]
   }
 
   def show = {
@@ -82,16 +79,13 @@ class GroupActivityTemplateProfileController {
       templateResources.addAll(it.profile.resources)
     }
 
-    params.sort = params.sort ?: 'name'
-    params.order = params.order ?: 'asc'
-
     return [group: group,
             entity: entity,
             allTemplates: allTemplates,
             templates: templates,
             calculatedDuration: calculatedDuration,
             methods: Method.findAllByType('template'),
-            allLabels: Label.findAllByType('template', params),
+            allLabels: functionService.getLabels(),
             instances: instances,
             templateResources: templateResources]
 

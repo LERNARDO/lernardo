@@ -84,13 +84,10 @@ class ProjectProfileController {
     else
       themes = Entity.findAllByType(metaDataService.etTheme)
 
-    params.sort = 'name'
-    params.order = 'asc'
-
     return [projects: projects,
             totalProjects: totalProjects,
             themes: themes,
-            allLabels: Label.findAllByType('template', params)]
+            allLabels: functionService.getLabels()]
   }
 
   def show = {
@@ -235,9 +232,6 @@ class ProjectProfileController {
 
       List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)
 
-      params.sort = 'name'
-      params.order = 'asc'
-
       [project: project,
               entity: entity,
               projectUnits: projectUnits,
@@ -260,7 +254,7 @@ class ProjectProfileController {
               resources: resources,
               plannableResources: plannableResources,
               requiredResources: requiredResources,
-              allLabels: Label.findAllByType('template', params)]
+              allLabels: functionService.getLabels()]
     }
   }
 
