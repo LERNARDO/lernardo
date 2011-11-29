@@ -259,10 +259,6 @@
               </g:form>
             </td>
           </erp:accessCheck>
-          <td>
-            <div class="bold" style="float: left;"><g:message code="color"/>: </div>
-            <div style="margin-left: 5px; height: 20px; width: 20px; background-color: ${educator.profile.color ?: '#aaa'}; float: left;"></div>
-          </td>
         </tr>
 
       </table>

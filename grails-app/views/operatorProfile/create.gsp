@@ -86,13 +86,6 @@
           </td>
         </tr>
 
-        <tr class="prop">
-          <td valign="top" class="name"><g:message code="color"/></td>
-          <td valign="top" class="value">
-            <g:textField name="color" value="#FFFFFF" class="kolorPicker"/>
-          </td>
-        </tr>
-
       </table>
 
       <div class="buttons">

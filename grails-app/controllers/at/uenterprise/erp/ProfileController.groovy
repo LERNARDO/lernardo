@@ -433,6 +433,13 @@ class ProfileController {
       currentEntity.profile.removeFromFavorites(favorite)
     render template: 'favorites', model: [entity: currentEntity]
   }
+  
+  def updateColor = {
+    Entity entity = Entity.get(params.id)
+    entity.profile.color = params.color
+    entity.profile.save()
+    redirect controller: 'calendar'
+  }
 
 }
 
