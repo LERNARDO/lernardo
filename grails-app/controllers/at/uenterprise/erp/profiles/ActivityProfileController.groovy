@@ -194,7 +194,7 @@ class ActivityProfileController {
   def save = {ActivityCommand ac ->
 
     if (ac.hasErrors()) {
-      render view:'create', model:['ac':ac]
+      render view:'create', model:['ac':ac, currentEntity: entityHelperService.loggedIn]
       return
     }
 
@@ -398,17 +398,26 @@ class ActivityProfileController {
       render ""
       return
     }
-
-    def c = Entity.createCriteria()
-    def results = c.list {
-      eq('type', metaDataService.etFacility)
-      or {
-        ilike('name', "%" + params.value + "%")
-        profile {
-          ilike('fullName', "%" + params.value + "%")
+    
+    Entity currentEntity = entityHelperService.loggedIn
+    List results
+    if (currentEntity.type.id == metaDataService.etEducator.id) {
+      results = functionService.findAllByLink(currentEntity, null, metaDataService.ltWorking)
+      results.addAll(functionService.findAllByLink(currentEntity, null, metaDataService.ltLeadEducator))
+      results = results.findAll {it.profile.fullName.contains(params.value)}
+    }
+    else {
+      def c = Entity.createCriteria()
+      results = c.list {
+        eq('type', metaDataService.etFacility)
+        or {
+          ilike('name', "%" + params.value + "%")
+          profile {
+            ilike('fullName', "%" + params.value + "%")
+          }
         }
+        maxResults(15)
       }
-      maxResults(15)
     }
 
     if (results.size() == 0) {

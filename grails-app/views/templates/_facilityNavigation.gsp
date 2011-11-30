@@ -9,7 +9,7 @@
       </div>
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
-      <div class="buttons">
+      <div class="buttons" style="margin-bottom: 0;">
         <g:form id="${facility.id}" style="margin-bottom: 0;">
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
