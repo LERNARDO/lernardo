@@ -1,10 +1,19 @@
 <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
+<div id="loadings" style="position: absolute; left: 50%; text-align: center; top: 50%; display: none;">
+  <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0>
+</div>
 <jq:jquery>
   $('#calendar').fullCalendar({
     header: {
       left: 'prev,next today',
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
+    },
+    loading: function(bool, view) {
+      if (bool)
+        $('#loadings').show();
+      else
+        $('#loadings').hide();
     },
     monthNames: ['${message(code: "january")}',
                  '${message(code: "february")}',
@@ -83,18 +92,23 @@
     },
 
     eventMouseover: function(e,m) {
-				//console.log(e);
-				var tPosX = m.pageX - 5 ;
-				var tPosY = m.pageY + 20 ;
-				$('#caltip').css({top: tPosY, left: tPosX, display: 'block'});
-				var tt = '';
-				tt += e.title+'<br /><br />';
-				tt += e.description+'<br />';
-				$('#caltip').html(tt);
-			},
-			eventMouseout: function() {
-				$('#caltip').css({display: 'none'});
-			},
+      //console.log(e);
+      var tPosX = m.pageX - 5 ;
+      var tPosY = m.pageY + 20 ;
+      $('#caltip').css({top: tPosY, left: tPosX, display: 'block'});
+      var tt = '';
+      tt += e.title+'<br /><br />';
+      tt += e.description+'<br />';
+      $('#caltip').html(tt);
+    },
+    eventMouseout: function() {
+      $('#caltip').css({display: 'none'});
+    },
+
+    eventRender: function(event, element) {
+      if (event.title == "${message (code: 'projectUnits.unplanned')}")
+        element.find(".fc-event-time").prepend("<img src='${resource(dir: 'images/icons', file: 'bullet_error.png')}' height='16' width='16'/>");
+    },
 
     dayClick: function (dayDate, allDay, jsEvent, view) {
       %{--elem = jQuery(view.element).parent().parent();--}%

@@ -198,6 +198,9 @@ class CalendarController {
     eventList.addAll(getProjectUnits(start, end, entity, currentEntity, color))
     //log.info eventList
 
+    // get all project unit placeholders
+    eventList.addAll(getProjectUnitPlaceHolders(start, end, entity, currentEntity, color))
+
     def json = eventList as JSON
     render json
   }
@@ -310,6 +313,33 @@ class CalendarController {
 
     return list
   }
+
+  List getProjectUnitPlaceHolders(start, end, entity, currentEntity, color) {
+      List list = []
+
+      // 1. find all project days the educator is linked to
+      List projectDays = functionService.findAllByLink(entity, null, metaDataService.ltProjectDayEducator)
+
+      List unitsDone = []
+      if (projectDays) {
+        projectDays.findAll{it.profile.date >= start && it.profile.date <= end}?.each { Entity projectDay ->
+          // 2. for each project day find the project it belongs to
+          Entity project = functionService.findByLink(projectDay, null, metaDataService.ltProjectMember)
+
+          // 3. for each project day get the project unit it is linked to
+          List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+
+          if (!projectUnits) {
+            def dateStart = new DateTime(functionService.convertFromUTC(projectDay.profile.date))
+            def dateEnd = dateStart.plusMinutes(60)
+            def description = "${message(code: 'project')}: ${project.profile.fullName}"
+            list << [id: project.id, title: "${message(code: 'projectUnits.unplanned')}", start:dateStart.toDate(), end:dateEnd.toDate(), allDay: false, color: color, description: description, one: projectDay.id]
+          }
+        }
+      }
+
+      return list
+    }
 
   List getThemes(start, end, entity, currentEntity, color) {
     List list = []
