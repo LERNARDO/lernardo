@@ -10,7 +10,7 @@ class LabelController {
   }
 
   def list = {
-    [labelInstanceList: functionService.getLabels()]
+    [labelInstanceList: functionService.getLabels(), labelInstanceTotal: Label.countByType('template')]
   }
 
   def create = {
@@ -113,22 +113,32 @@ class LabelController {
   }
 
   def moveUp = {
-      String label = params.id
-      if (Label.labels.indexOf(label) > 0) {
-        int i = Label.labels.indexOf(label)
-        use(Collections){ Label.labels.swap(i, i - 1) }
-      }
-      redirect action: 'list'
+    String label = params.id
+    if (Label.labels.indexOf(label) > 0) {
+      int i = Label.labels.indexOf(label)
+      use(Collections){ Label.labels.swap(i, i - 1) }
     }
+    redirect action: 'list'
+  }
 
-    def moveDown = {
-      String label = params.id
+  def moveDown = {
+    String label = params.id
 
-      if (Label.labels.indexOf(label) < (Label.labels.size() - 1)) {
-        int i = Label.labels.indexOf(label)
-        use(Collections){ Label.labels.swap(i, i + 1) }
-      }
-      redirect action: 'list'
+    if (Label.labels.indexOf(label) < (Label.labels.size() - 1)) {
+      int i = Label.labels.indexOf(label)
+      use(Collections){ Label.labels.swap(i, i + 1) }
     }
+    redirect action: 'list'
+  }
+  
+  def sortAlphabetical = {
+    List labels = Label.findAllByType('template')
+    labels = labels.sort() {it.name}
+    Label.labels.clear()
+    labels.each {
+      Label.labels.add(it.id.toString())
+    }
+    redirect action: 'list'
+  }
 
 }
