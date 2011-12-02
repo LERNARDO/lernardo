@@ -43,12 +43,10 @@
           </td>
           <td>
             <g:if test="${partner.profile.services}">
-              <g:each in="${partner.profile.services}" var="service">
-                ${service},
-              </g:each>
+              <g:join in="${partner.profile.services}" delimiter=", "/>
             </g:if>
             <g:else>
-              <g:message code="noData"/>
+              <span class="gray"><g:message code="noData"/></span>
             </g:else>
           </td>
         </tr>
