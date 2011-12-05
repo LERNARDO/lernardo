@@ -11,6 +11,16 @@
 %{--<td class="col">${entity.type.name}</td>  --}%
 <td><g:message code="${entity.type.supertype.name}"/></td>
 <td id="entity-enabled-${i}"><g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img src="${resource (dir:'images/icons', file:'icon_tick.png')}" alt="Active" align="top"/></g:if><g:else><img src="${resource (dir:'images/icons', file:'cross.png')}" alt="Inactive" align="top"/></g:else></g:if></td>
+<td>
+  <g:if test="${entity.user}">
+    <g:if test="${entity.user.lastAction}">
+      <g:formatDate date="${entity.user.lastAction}" format="dd.MM.yyyy, HH:mm"/>
+    </g:if>
+    <g:else>
+      <span class="italic"><g:message code="never"/></span>
+    </g:else>
+  </g:if>
+</td>
 <td id="entity-roles-${i}" style="width: 200px;"><g:if test="${entity.user}"><g:join in="${entity?.user?.authorities?.collect {it.authority}}"/></g:if></td>
 <td style="width: 300px;">
   <erp:isSystemAdmin entity="${currentEntity}">

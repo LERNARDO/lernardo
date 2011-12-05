@@ -34,6 +34,7 @@
           <g:sortableColumn property="name" title="${message(code:'name')}" params="[entityType: entityType]"/>
           <g:sortableColumn property="type" title="${message(code:'type')}" params="[entityType: entityType]"/>
           <th><g:message code="profile.list.isActiv"/></th>
+          <th><g:message code="lastOnline"/></th>
           <th><g:message code="profile.list.rights"/></th>
           <th><g:message code="profile.list.options"/></th>
         </tr>
