@@ -78,7 +78,7 @@
               <g:render template="plannableresources" model="[plannableResources: plannableResources, projectDay: projectDay]"/>
             </g:if>
             <g:else>
-              <span class="italic gray"><g:message code="resources.planInfo"/></span><br/>
+              <span class="italic"><g:message code="resources.planInfo"/></span><br/>
             </g:else>
           </erp:getProjectDayUnits>
         </div>

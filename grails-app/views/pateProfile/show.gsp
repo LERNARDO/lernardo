@@ -75,7 +75,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="country"/>:</td>
-          <td class="two">${pate.profile.country}</td>
+          <td class="two">${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         %{-- AAZ (01.09.2010): disabled until this feature is implemented --}%

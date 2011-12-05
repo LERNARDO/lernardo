@@ -87,7 +87,7 @@ class HelperTagLib {
 
       out << '<p><span class="bold">' + message(code:"comment") + '</span>'
       out << '<div id="comment">'
-      out << (entry.comment ?: '<span class="italic gray">' + message(code:"noData") + '</span>')
+      out << (entry.comment ?: '<span class="italic">' + message(code:"noData") + '</span>')
       out << '</div></p>'
 
       out << '<p><span class="bold">' + message(code:"confirmed") + '</span><br/>'

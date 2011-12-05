@@ -79,7 +79,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="country"/>:</td>
-        <td class="two">${partner.profile.country}</td>
+        <td class="two">${fieldValue(bean: partner, field: 'profile.country') ?: '<div class="italic">' + message(code: 'noData') + '</div>'}</td>
       </tr>
 
       </tbody>

@@ -43,14 +43,11 @@
             <g:link action="show" id="${educator.id}" params="[entity: educator.id]">${fieldValue(bean: educator, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
           <td>
-            <g:if test="${educator.profile.education}">
-              ${educator.profile.education}
-            </g:if>
-            <g:else>
-              <div class="italic"><g:message code="noData"/></div>
-            </g:else>
+            ${educator.profile.education.decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '<span>'}
           </td>
-          <td>${educator.profile.employment}</td>
+          <td>
+            ${educator.profile.employment.decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '<span>'}
+          </td>
         </tr>
       </g:each>
       </tbody>

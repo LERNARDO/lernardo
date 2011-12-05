@@ -16,7 +16,6 @@ import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
 import at.uenterprise.erp.Label
-import at.uenterprise.erp.Event
 
 class ProjectProfileController {
 
@@ -77,7 +76,7 @@ class ProjectProfileController {
 
       // find all themes that are linked to those facilities
 
-      facilities.each { facility ->
+      facilities.each { Entity facility ->
         themes.addAll(functionService.findAllByLink(null, facility, metaDataService.ltThemeOfFacility))
       }
     }
@@ -178,8 +177,8 @@ class ProjectProfileController {
         requiredResources.addAll(it.profile.resources)
       }
       // for every group activity template find its activity templates and add resources as well
-      groups.each {
-        List temps = functionService.findAllByLink(null, it, metaDataService.ltGroupMember)
+      groups.each { Entity group ->
+        List temps = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
         temps.each { temp ->
           temp.profile.resources.each {
             if (!requiredResources.contains(it))
@@ -339,13 +338,13 @@ class ProjectProfileController {
     // 1. check if every current project day is within the new date range of the project, if not delete those which aren't
     //log.info "removing days outside the new date range"
     List toDelete = []
-    currentPDs.each { pd ->
+    currentPDs.each { Entity pd ->
       if (pd.profile.date < tcalendarStart.getTime() || pd.profile.date > tcalendarEnd.getTime()) {
         //log.info "found a projectday that is outside the new daterange"
         toDelete.add(pd)
       }
     }
-    toDelete.each { pd ->
+    toDelete.each { Entity pd ->
       Link.findBySourceAndType(pd, metaDataService.ltProjectMember)?.delete()
       Link.findAllBySourceOrTarget(pd, pd).each {it.delete()}
       pd.delete()
@@ -934,8 +933,8 @@ class ProjectProfileController {
         requiredResources.addAll(it.profile.resources)
       }
       // for every group activity template find its activity templates and add resources as well
-      groups.each {
-        List temps = functionService.findAllByLink(null, it, metaDataService.ltGroupMember)
+      groups.each { Entity group ->
+        List temps = functionService.findAllByLink(null, group, metaDataService.ltGroupMember)
         temps.each { temp ->
           temp.profile.resources.each {
             if (!requiredResources.contains(it))
@@ -1348,7 +1347,7 @@ class ProjectProfileController {
       }
     }
     else {
-      render '<span class="italic gray">Es müssen erst Projekteinheiten geplant werden bevor Ressourcen geplant werden können!</span><br/>'
+      render '<span class="italic">Es müssen erst Projekteinheiten geplant werden bevor Ressourcen geplant werden können!</span><br/>'
     }
 
     List resources = functionService.findAllByLink(null, projectDay, metaDataService.ltResourcePlanned)

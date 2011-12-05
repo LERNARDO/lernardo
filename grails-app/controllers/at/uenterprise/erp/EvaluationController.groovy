@@ -89,10 +89,10 @@ class EvaluationController {
         render template: "evaluations", model:[evaluationInstanceList: evaluations, entity: entity, currentEntity: entityHelperService.loggedIn, value: params.value, paginate: 'own', totalEvaluations: totalEvaluations]
       }
       else
-        render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
+        render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
     }
     else
-      render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
+      render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
   }
 
   def showByClient = {
@@ -132,7 +132,7 @@ class EvaluationController {
                                              paginate: 'allClient']
     }
     else
-      render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
+      render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
   }
 
   def showByEducator = {
@@ -172,7 +172,7 @@ class EvaluationController {
                                              paginate: 'allEducator']
     }
     else
-      render '<span class="italic grey">' + message(code: 'searchMe.empty') + '</span>'
+      render '<span class="italic">' + message(code: 'searchMe.empty') + '</span>'
   }
   
   // show all evaluations of clients and parents linked to a given educator

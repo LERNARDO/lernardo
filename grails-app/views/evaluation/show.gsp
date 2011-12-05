@@ -34,7 +34,7 @@
 
     <tr class="prop">
       <td class="one"><g:message code="action"/>:</td>
-      <td class="two">${evaluation.method.decodeHTML() ?: '<span class="italic gray">' + message(code: 'noData') + '</span>'}</td>
+      <td class="two">${evaluation.method.decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
     </tr>
     
     <tr class="prop">

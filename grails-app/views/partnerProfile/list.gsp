@@ -46,7 +46,7 @@
               <g:join in="${partner.profile.services}" delimiter=", "/>
             </g:if>
             <g:else>
-              <span class="gray"><g:message code="noData"/></span>
+              <span class="italic"><g:message code="noData"/></span>
             </g:else>
           </td>
         </tr>

@@ -1,5 +1,5 @@
 <g:if test="${comments}">
-  <p class="italic gray"><g:message code="comment.size.found" args="[comments.size()]"/></p>
+  <p class="italic"><g:message code="comment.size.found" args="[comments.size()]"/></p>
   <g:each in="${comments}" var="comment">
     <div class="comment">
       <erp:getCreator id="${comment.key.creator}">
@@ -35,5 +35,5 @@
   </g:each>
 </g:if>
 <g:else>
-  <span class="italic gray"><g:message code="comment.size.found" args="[0]"/></span>
+  <span class="italic"><g:message code="comment.size.found" args="[0]"/></span>
 </g:else>
