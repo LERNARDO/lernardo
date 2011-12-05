@@ -1,6 +1,53 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.datetimepicker').datetimepicker({
+      timeText: '${message(code: "time")}',
+      hourText: '${message(code: "hour")}',
+      minuteText: '${message(code: "minute")}',
+      dayNamesMin: ['${message(code: "sunday.short")}',
+                    '${message(code: "monday.short")}',
+                    '${message(code: "tuesday.short")}',
+                    '${message(code: "wednesday.short")}',
+                    '${message(code: "thursday.short")}',
+                    '${message(code: "friday.short")}',
+                    '${message(code: "saturday.short")}'],
+      monthNames: ['${message(code: "january")}',
+                   '${message(code: "february")}',
+                   '${message(code: "march")}',
+                   '${message(code: "april")}',
+                   '${message(code: "may")}',
+                   '${message(code: "june")}',
+                   '${message(code: "july")}',
+                   '${message(code: "august")}',
+                   '${message(code: "september")}',
+                   '${message(code: "october")}',
+                   '${message(code: "november")}',
+                   '${message(code: "december")}'],
+      dateFormat: 'dd. mm. yy'
+    });
+  });
+</script>
+
 <div class="element-box">
-  <p>%{--<span class="bold"><g:message code="projectDayChosen"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="EEEE, dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/><br/>--}%
-     <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/></p>
+  <p>
+     <span class="gray"><g:message code="projectDayBegin"/>:</span> <g:formatDate date="${projectDay.profile.date}" format="HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/> <g:message code="clock"/>
+  </p>
+
+  Diesen Projekttag verschieben (Datum und/oder Uhrzeit):
+  <g:formRemote name="formRemote" url="[controller:'projectProfile', action:'moveProjectDay', id: projectDay.id]" update="projectDay" before="showspinner('#projectDay')">
+    <table>
+      <tr>
+        <td style="padding: 5px 10px 0 0;"><g:textField name="date" class="datetimepicker" value="${formatDate(date: projectDay.profile.date, format: 'dd. MM. yyyy HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))}"/></td>
+        <td><g:submitButton name="button" value="${message(code:'change')}"/></td>
+      </tr>
+    </table>
+  </g:formRemote>
+  <g:if test="${outOfRange}">
+    <span class="italic red">Dieses Datum liegt außerhalb des Projektzeitraums!</span>
+  </g:if>
+  <g:if test="${conflictingDate}">
+    <span class="italic red">An diesem Datum gibt es bereits einen anderen Projekttag!</span>
+  </g:if>
 
   <h5><g:message code="projectUnits"/> <erp:accessCheck entity="${entity}" types="['Betreiber']" creatorof="${project}"><a onclick="toggle('#units'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
   <div id="units" style="display:none;">

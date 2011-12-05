@@ -8,7 +8,7 @@
   </div>
 
   <div class="zusatz-show">
-    <g:render template="projectday" model="[project: project, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, entity: entity, plannableResources: plannableResources, requiredResources: requiredResources]"/>
+    <g:render template="projectday" model="[project: project, projectDay: day, resources: resources, allEducators: allEducators, allParents: allParents, units: units, entity: entity, plannableResources: plannableResources, requiredResources: requiredResources, outOfRange: outOfRange, conflictingDate: conflictingDate]"/>
   </div>
 
 </g:if>
