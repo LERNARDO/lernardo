@@ -1580,6 +1580,33 @@ class ProjectProfileController {
                                              conflictingDate: conflictingDate]
   }
 
+  def deleteProjectDay = {
+    Entity projectDay = Entity.get(params.id)
+    Entity project = Entity.get(params.project)
+   
+    // find all project units
+    List projectUnits = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayUnit)
+    
+    projectUnits?.each { Entity pu ->
+      // remove links to creator and group activity templates
+      Link.findAllByTargetAndType(pu, metaDataService.ltCreator).each {it.delete()}
+      Link.findAllByTargetAndType(pu, metaDataService.ltProjectUnit).each {it.delete()}
+    }
+    
+    // delete all links to the project day
+    Link.findAllBySourceOrTarget(projectDay, projectDay).each {it.delete()}
+
+    // delete project units
+    projectUnits?.each { Entity pu ->
+      it.delete()
+    }
+    
+    // delete project day
+    projectDay.delete()
+
+    redirect action: "show", id: project.id
+  }
+
 }
 
 class ProjectCommand {
