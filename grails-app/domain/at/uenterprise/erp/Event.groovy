@@ -25,4 +25,5 @@ enum EVENT_TYPE {ACTIVITY_TEMPLATE_CREATED,
                  HELPER_CREATED,
                  GROUP_ACTIVITY_TEMPLATE_CREATED,
                  PROJECT_TEMPLATE_CREATED,
-                 THEME_CREATED}
+                 THEME_CREATED,
+                 PROJECT_DAY_MOVED}

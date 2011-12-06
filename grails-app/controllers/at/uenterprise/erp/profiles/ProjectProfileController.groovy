@@ -16,6 +16,8 @@ import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
 import at.uenterprise.erp.Label
+import at.uenterprise.erp.EVENT_TYPE
+import at.uenterprise.erp.Msg
 
 class ProjectProfileController {
 
@@ -1501,8 +1503,21 @@ class ProjectProfileController {
         pdu.profile.date = calendar.getTime()
         pdu.profile.save()
       }
-      // TODO: create an event
-      // TODO: inform all participants by PM about the changed project day
+
+      // create an event
+      Entity currentEntity = entityHelperService.loggedIn
+      functionService.createEvent(EVENT_TYPE.PROJECT_DAY_MOVED, currentEntity.id.toInteger(), projectDay.id.toInteger())
+
+      // inform all participants by PM about the changed project day
+      List informedEntities = functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDayEducator)
+      informedEntities.addAll(functionService.findAllByLink(null, projectDay, metaDataService.ltProjectDaySubstitute))
+      
+      informedEntities?.each { Entity ie ->
+        String subject = "Projekttag verschoben, Projekt " + project.profile.fullName.decodeHTML()
+        String content = '<p>Hallo ' + ie.profile.fullName + '!</p>Ich habe einen ' + link(controller: 'projectDayProfile', action: 'show', id: projectDay.id, params: [one: projectDay.id]) {'Projekttag'} + ' vom Projekt ' + project.profile.fullName.decodeHTML() + ' verschoben.'
+        functionService.createMessage(currentEntity, ie, ie, subject, content).save()
+      }
+
     }
 
     Entity template = functionService.findByLink(null, project, metaDataService.ltProjectTemplate)
