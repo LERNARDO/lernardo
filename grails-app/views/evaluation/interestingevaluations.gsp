@@ -1,6 +1,6 @@
 <head>
   <title><g:message code="evaluation.interesting"/></title>
-  <meta name="layout" content="administration"/>
+  <meta name="layout" content="database"/>
 </head>
 <body>
 
