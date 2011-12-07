@@ -10,7 +10,7 @@ class Process {
 
   String  name
   String  unit
-  Integer costs = 0
+  BigDecimal costs = 0
 
   static constraints = {
     unit  inList: ['perDay','perMonth']
