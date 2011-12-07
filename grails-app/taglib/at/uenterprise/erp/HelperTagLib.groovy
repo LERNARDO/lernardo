@@ -319,7 +319,7 @@ class HelperTagLib {
         if (proc.process.unit == "perDay")
           costs = proc.process.costs * participated
         else
-          costs = proc.process.costs
+          costs = proc.process.costs * (participated > 0 ? 1 : 0)
 
         totalCosts += costs
 

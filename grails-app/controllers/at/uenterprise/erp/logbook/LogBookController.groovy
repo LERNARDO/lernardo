@@ -274,7 +274,6 @@ class LogBookController {
   }
 
   def saveProcess = {
-    println params
     List entities = params.list('entities')
     List types = params.list('types')
 
