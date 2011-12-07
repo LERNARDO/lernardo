@@ -73,7 +73,7 @@ class LogBookController {
   }
 
   def deleteEntry = {
-    Entity facility = Entity.get(params.facility)
+    Entity facility = Entity.get(params.facility.toLong())
     Date date = Date.parse("dd. MM. yy", params.date)
 
     LogEntry.findByDateAndFacility(date, facility)?.delete(flush: true)
