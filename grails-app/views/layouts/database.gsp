@@ -324,6 +324,9 @@
               <li class="icon-facility"><g:link controller="facilityProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="facilities"/></g:link></li>
               <li class="icon-group"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupClients"/></g:link></li>
               <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupPartners"/></g:link></li>
+              <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+                <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
+              </erp:accessCheck>
             </ul>
 
           </div>

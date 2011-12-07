@@ -319,9 +319,9 @@
                   <li class="icon-evaluation"><g:link controller="evaluation" action="allevaluations" id="${entity.id}"><g:message code="evaluation.allevalentries"/></g:link></li>
                   <li class="profile-netzwerk"><g:link controller="comment" action="list" id="${entity.id}"><g:message code="allComments"/></g:link></li>
                   <li class="icon-all"><g:link controller="profile" action="list" params="[name:entity.name]"><g:message code="profile.all"/></g:link></li>
-                  <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
+                  %{--<erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                     <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
-                  </erp:accessCheck>
+                  </erp:accessCheck>--}%
               </ul>
             </erp:accessCheck>
 

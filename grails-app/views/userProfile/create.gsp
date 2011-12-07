@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="administration"/>
+  <meta name="layout" content="database"/>
   <title><g:message code="object.create" args="[message(code: 'user')]"/></title>
 </head>
 <body>
