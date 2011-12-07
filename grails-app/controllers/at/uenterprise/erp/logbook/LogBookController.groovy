@@ -209,8 +209,9 @@ class LogBookController {
       logMonth.save(flush: true)
     }
     else {
-      // delete all clients in logMonth object that are not linked to the facility anymore
       List clients = functionService.findAllByLink(null, facility, metaDataService.ltGroupMemberClient)
+      
+      // delete all clients in logMonth object that are not linked to the facility anymore
       List toRemove = []
       logMonth.clients.each { LogClient logClient ->
         if (!clients.contains(logClient.client))
@@ -220,6 +221,25 @@ class LogBookController {
         logMonth.removeFromClients(logClient)
         logClient.delete()
       }
+      
+      // add all clients that are newly linked to the facility
+      clients.each { Entity client ->
+        if (!logMonth.clients.find {it.client == client}) {
+
+          LogClient logClient = new LogClient(client: client).save()
+
+          List processes = Process.list()
+          processes.each { Process process ->
+            if (process.facilities.contains(facility) || process.facilities.size() == 0) {
+              ProcessPaid processPaid = new ProcessPaid(process: process).save()
+              logClient.addToProcesses(processPaid)
+            }
+          }
+
+          logMonth.addToClients(logClient)
+        }
+      }
+      logMonth.save(flush: true)
     }
     
 
