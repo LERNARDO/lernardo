@@ -24,14 +24,12 @@
           </td>
         </tr>
 
-        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
         <tr class="prop">
           <td valign="top" class="name"><g:message code="status"/></td>
           <td valign="top" class="value">
             <g:select name="status" from="['done','notDone','notDoneOpen']" value="" valueMessagePrefix="status"/>
           </td>
         </tr>
-        </erp:accessCheck>
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="description"/></td>
