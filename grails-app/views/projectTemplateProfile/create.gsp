@@ -27,7 +27,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="status"/></td>
           <td valign="top" class="value">
-            <g:select name="status" from="['done','notDone','notDoneOpen']" value="" valueMessagePrefix="status"/>
+            <g:select name="status" from="['done','notDone','notDoneOpen']" value="${fieldValue(bean: projectTemplate, field: 'profile.status')}" valueMessagePrefix="status"/>
           </td>
         </tr>
 
