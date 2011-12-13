@@ -270,11 +270,11 @@
 
     <div id="subheader">
       <ul>
-        <li><g:link controller="event" action="indexNew" onclick="showBigSpinner()">Start</g:link></li>
+        <li><g:link controller="event" action="indexNew" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
         <li><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
-        <li><g:link controller="logBook" action="entries" id="${entity.id}" onclick="showBigSpinner()">Organisation</g:link></li>
-        <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()">Planung</g:link></li>
-        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]" onclick="showBigSpinner()">Administration</g:link></li>
+        <li><g:link controller="logBook" action="entries" id="${entity.id}" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
+        <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
+        <li style="border-right: none;"><g:link class="activeyellow" controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]" onclick="showBigSpinner()"><g:message code="administration"/></g:link></li>
       </ul>
       <div class="clear"></div>
     </div>
