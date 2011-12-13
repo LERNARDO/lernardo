@@ -1,5 +1,5 @@
 <head>
-  <meta name="layout" content="private"/>
+  <meta name="layout" content="administration"/>
   <title>Admin Stuff</title>
 </head>
 <body>
