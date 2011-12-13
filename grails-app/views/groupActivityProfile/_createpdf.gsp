@@ -60,7 +60,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="groupActivity.profile.educationalObjectiveText"/>:</td>
-        <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').encodeAsHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.educationalObjectiveText').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
       <tr class="prop">
@@ -77,7 +77,7 @@
 
       <tr class="prop">
         <td class="one"><g:message code="description"/>:</td>
-        <td class="two">${fieldValue(bean: group, field: 'profile.description').encodeAsHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+        <td class="two">${fieldValue(bean: group, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
     </table>
@@ -206,7 +206,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="activityTemplate.chosenMaterials"/>:</td>
-            <td class="two">${activity.profile.chosenMaterials.encodeAsHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${activity.profile.chosenMaterials.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
 
           <tr class="prop">
@@ -217,7 +217,7 @@
                   <div style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
                     <ul>
                       <li><span class="bold"><g:message code="name"/>:</span> ${resource.name.encodeAsHTML()}</li>
-                      <li><g:message code="description"/>: ${resource.description.encodeAsHTML() ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+                      <li><g:message code="description"/>: ${resource.description.decodeHTML() ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
                       <li><g:message code="resource.profile.amount"/>: ${resource.amount}</li>
                     </ul>
                   </div>
