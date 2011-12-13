@@ -1548,7 +1548,7 @@ class HelperTagLib {
    * returns the facility linked to a given activity
    */
   def getFacilityOfProject = {attrs, body ->
-    Entity facilityOfProject = functionService.findByLink(null, attrs.entity, metaDataService.ltGroupMemberFacility)
+    Entity facilityOfProject = functionService.findByLink(attrs.entity, null, metaDataService.ltGroupMemberFacility)
     if (facilityOfProject)
       out << body(facility: facilityOfProject)
     else
