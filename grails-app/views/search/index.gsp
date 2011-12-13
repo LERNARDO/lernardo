@@ -9,23 +9,28 @@
   </div>
 </div>
 
-<p class="gray"><g:message code="maxResultsShown" args="[30]"/></p>
-<g:each in="${results}" var="searchInstance">
-  <div class="member">
+<g:if test="${results}">
+  <p class="gray"><g:message code="maxResultsShown" args="[30]"/></p>
+  <g:each in="${results}" var="searchInstance">
+    <div class="member">
 
-    <div class="member-pic">
-      <g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">
-        <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
-      </g:link>
-    </div>
+      <div class="member-pic">
+        <g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">
+          <erp:profileImage entity="${searchInstance}" width="50" height="50" align="left"/>
+        </g:link>
+      </div>
 
-    <div class="member-info">
-      <div class="member-name"><g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">${searchInstance.profile.fullName}</g:link></div>
-      <div class="member-uni"><g:message code="${searchInstance.type.supertype.name}"/></div>
+      <div class="member-info">
+        <div class="member-name"><g:link controller="${searchInstance.type.supertype.name +'Profile'}" action="show" id="${searchInstance.id}" params="[entity:searchInstance.id]">${searchInstance.profile.fullName}</g:link></div>
+        <div class="member-uni"><g:message code="${searchInstance.type.supertype.name}"/></div>
+      </div>
+
     </div>
-    
-  </div>
-</g:each>
-<div class="spacer"></div>
+  </g:each>
+  <div class="spacer"></div>
+</g:if>
+<g:else>
+  <span class="italic"><g:message code="noResultsFound"/></span>
+</g:else>
 
 </body>
