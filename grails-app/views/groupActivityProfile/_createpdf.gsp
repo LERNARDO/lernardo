@@ -27,7 +27,7 @@
     </style>
   </head>
   <body>
-    <h1><g:message code="groupActivity"/> "${group.profile.fullName}"</h1>
+    <h1><g:message code="groupActivity"/> "${group.profile.fullName.decodeHTML()}"</h1>
     <p class="gray"><g:message code="createdBy" args="[entity.profile.fullName, formatDate(date: new Date(), format: 'dd. MM. yyyy', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())), formatDate(date: new Date(), format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString()))]"/></p>
     <h2><g:message code="data"/></h2>
     <table>
@@ -41,7 +41,7 @@
         <td class="one"><g:message code="groupActivityTemplate"/>:</td>
         <td class="two">
           <g:if test="${template}">
-            ${template.profile.fullName}
+            ${template.profile.fullName.decodeHTML()}
           </g:if>
           <g:else>
             <span class="italic"><g:message code="template.notAvailable"/></span>
@@ -85,7 +85,7 @@
     <h2><g:message code="activities"/></h2>
     <ul>
       <g:each in="${activities}" var="activity">
-        <li>${activity.profile.fullName} (${activity.profile.duration} min)</li>
+        <li>${activity.profile.fullName.decodeHTML()} (${activity.profile.duration} min)</li>
       </g:each>
     </ul>
 
@@ -93,7 +93,7 @@
     <g:if test="${themes}">
       <ul>
         <g:each in="${themes}" var="theme">
-          <li>${theme.profile.fullName}</li>
+          <li>${theme.profile.fullName.decodeHTML()}</li>
         </g:each>
       </ul>
     </g:if>
@@ -105,7 +105,7 @@
     <g:if test="${facilities}">
       <ul>
         <g:each in="${facilities}" var="facility">
-          <li>${facility.profile.fullName}</li>
+          <li>${facility.profile.fullName.decodeHTML()}</li>
         </g:each>
       </ul>
     </g:if>
@@ -117,7 +117,7 @@
     <g:if test="${educators}">
       <ul>
       <g:each in="${educators}" var="educator">
-        <li>${educator.profile.fullName}</li>
+        <li>${educator.profile.fullName.decodeHTML()}</li>
       </g:each>
     </ul>
     </g:if>
@@ -129,7 +129,7 @@
     <g:if test="${substitutes}">
       <ul>
       <g:each in="${substitutes}" var="substitute">
-        <li>${substitute.profile.fullName}</li>
+        <li>${substitute.profile.fullName.decodeHTML()}</li>
       </g:each>
     </ul>
     </g:if>
@@ -141,7 +141,7 @@
     <g:if test="${clients}">
       <ul>
       <g:each in="${clients}" var="client">
-        <li>${client.profile.fullName}</li>
+        <li>${client.profile.fullName.decodeHTML()}</li>
       </g:each>
     </ul>
     </g:if>
@@ -153,7 +153,7 @@
     <g:if test="${parents}">
       <ul>
       <g:each in="${parents}" var="parent">
-        <li>${parent.profile.fullName}</li>
+        <li>${parent.profile.fullName.decodeHTML()}</li>
       </g:each>
     </ul>
     </g:if>
@@ -165,7 +165,7 @@
     <g:if test="${partners}">
       <ul>
       <g:each in="${partners}" var="partner">
-        <li>${partner.profile.fullName}</li>
+        <li>${partner.profile.fullName.decodeHTML()}</li>
       </g:each>
     </ul>
     </g:if>
@@ -181,7 +181,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="activityTemplate"/>:</td>
-            <td class="two">${activity.profile.fullName}</td>
+            <td class="two">${activity.profile.fullName.decodeHTML()}</td>
           </tr>
 
           <tr class="prop">
@@ -216,8 +216,8 @@
                 <g:each in="${activity.profile.resources}" var="resource">
                   <div style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
                     <ul>
-                      <li><span class="bold"><g:message code="name"/>:</span> ${resource.name}</li>
-                      <li><g:message code="description"/>: ${resource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+                      <li><span class="bold"><g:message code="name"/>:</span> ${resource.name.decodeHTML()}</li>
+                      <li><g:message code="description"/>: ${resource.description.decodeHTML() ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
                       <li><g:message code="resource.profile.amount"/>: ${resource.amount}</li>
                     </ul>
                   </div>
@@ -240,8 +240,8 @@
               <g:if test="${activity.profile.methods}">
                 <g:each in="${activity.profile.methods}" var="method">
                   <ul style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
-                    <li><span class="bold">${method.name}</span></li>
-                    <li>${method.description}</li>
+                    <li><span class="bold">${method.name.decodeHTML()}</span></li>
+                    <li>${method.description.decodeHTML()}</li>
                     %{--<g:each in="${method.elements}" var="element">
                       <li>${element.name} <div id="starBox${element.id}" class="starbox">--}%%{--<erp:starBox element="${element.id}" template="${activity}"/>--}%%{--</div></li>
                     </g:each>--}%
