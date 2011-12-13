@@ -231,7 +231,7 @@
 
           <tr class="prop">
             <td class="one"><g:message code="description"/>:</td>
-            <td class="two">${fieldValue(bean: activity, field: 'profile.description').encodeAsHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+            <td class="two">${fieldValue(bean: activity, field: 'profile.description').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
           </tr>
 
           <tr class="prop">
@@ -241,7 +241,7 @@
                 <g:each in="${activity.profile.methods}" var="method">
                   <ul style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px dashed #ccc;">
                     <li><span class="bold">${method.name.encodeAsHTML()}</span></li>
-                    <li>${method.description.encodeAsHTML()}</li>
+                    <li>${method.description.decodeHTML()}</li>
                     %{--<g:each in="${method.elements}" var="element">
                       <li>${element.name} <div id="starBox${element.id}" class="starbox">--}%%{--<erp:starBox element="${element.id}" template="${activity}"/>--}%%{--</div></li>
                     </g:each>--}%
