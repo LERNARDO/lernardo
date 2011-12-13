@@ -331,7 +331,7 @@
                 <li class="icon-operator"><g:link controller="logBook" action="entries" id="${entity.id}"><g:message code="logBook"/></g:link></li>
               </erp:accessCheck>
             </ul>
-            <div class="area"><g:message code="dataCollection"/></div>
+            <div class="area"><g:message code="database"/></div>
             <ul>
               <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
                 <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>

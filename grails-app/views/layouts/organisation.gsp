@@ -62,6 +62,17 @@
         $(elements[x]).val('');
     };
 
+    // toggles the disabled attribute of an element
+    toggleDisabled = function(id) {
+      var status = $(id).attr('disabled');
+      if (!status) {
+        $(id).attr('disabled', 'disabled');
+        $(id).val('');
+      }
+      else
+        $(id).removeAttr('disabled');
+    };
+
     $(document).ready(function() {
 
       $('input:text:visible:first').not('.datepicker, .datepicker-birthday, .search').focus();

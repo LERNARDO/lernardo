@@ -1633,6 +1633,15 @@ class ProjectCommand {
 
   static constraints = {
     fullName  blank: false
+
+    mondayStart    validator: {val, obj -> return !((val == null) & obj.monday)}
+    tuesdayStart   validator: {val, obj -> return !((val == null) & obj.tuesday)}
+    wednesdayStart validator: {val, obj -> return !((val == null) & obj.wednesday)}
+    thursdayStart  validator: {val, obj -> return !((val == null) & obj.thursday)}
+    fridayStart    validator: {val, obj -> return !((val == null) & obj.friday)}
+    saturdayStart  validator: {val, obj -> return !((val == null) & obj.saturday)}
+    sundayStart    validator: {val, obj -> return !((val == null) & obj.sunday)}
+
     startDate nullable: false
     endDate   nullable: false, validator: {val, obj ->
                                              return val > obj.startDate
