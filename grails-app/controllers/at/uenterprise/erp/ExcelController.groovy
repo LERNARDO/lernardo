@@ -4,6 +4,7 @@ import jxl.*
 import jxl.write.*
 import at.openfactory.ep.Entity
 import at.openfactory.ep.EntityHelperService
+import java.text.SimpleDateFormat
 
 class ExcelController {
   FunctionService functionService
@@ -13,7 +14,7 @@ class ExcelController {
   def report = {
     Entity entity = Entity.get(params.id)
 
-    def file = createReport(entity)
+    def file = createReport(entity, params)
 
     response.setContentType("application/vnd.ms-excel")
     response.setHeader('Content-disposition', 'attachment;filename=' + entity.profile.fullName + '.xls')
@@ -30,7 +31,7 @@ class ExcelController {
     }
   }
 
-  private File createReport(Entity entity) {
+  private File createReport(Entity entity, def params = [:]) {
     Entity currentEntity = entityHelperService.loggedIn
     
     WorkbookSettings workbookSettings = new WorkbookSettings()
@@ -107,6 +108,75 @@ class ExcelController {
         } 
         sheet.addCell(new jxl.write.Label(6, row++, par, format))
       }
+
+    }
+    // educator - personal time evaluation
+    if (entity.type.id == metaDataService.etEducator.id) {
+
+      Date date1 = Date.parse("dd. MM. yy", params.date1)
+      Date date2 = Date.parse("dd. MM. yy", params.date2)
+
+      List workdaycategories = WorkdayCategory.list()
+
+      sheet.addCell(new jxl.write.Label(0, 0, 'Zeitauswertung von ' + entity.profile.fullName + ' für den Zeitraum von', format))
+      sheet.addCell(new jxl.write.Label(0, 1, formatDate(date: date1, format: 'dd. MM. yyyy') + ' bis ' + formatDate(date: date2, format: 'dd. MM. yyyy'), formatBold))
+
+      // column headers
+      sheet.addCell(new jxl.write.Label(0, 3, message(code: 'date'), formatBold))
+      int i = 1
+      workdaycategories.each { wdc ->
+        sheet.addCell(new jxl.write.Label(i++, 3, wdc.name + ' (h)', formatBold))
+      }
+      sheet.addCell(new jxl.write.Label(i, 3, message(code: 'total') + ' (h)', formatBold))
+
+      Calendar calendarStart = new GregorianCalendar()
+      calendarStart.setTime(date1)
+
+      Calendar calendarEnd = new GregorianCalendar()
+      calendarEnd.setTime(date2)
+
+      SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy", new Locale("en"))
+
+      List sums = []
+      workdaycategories.each {
+        sums.add(0)
+      }
+
+      int row = 4
+      int column
+      while (calendarStart <= calendarEnd) {
+        column = 0
+        BigDecimal total = 0
+        Date currentDate = calendarStart.getTime()
+        sheet.addCell(new jxl.write.Label(column, row, formatDate(date: currentDate, format: "dd.MM.yyyy"), format))
+        workdaycategories.eachWithIndex { wdcat, ind ->
+          BigDecimal hours = 0
+          entity.profile.workdayunits.each { WorkdayUnit workdayUnit ->
+            if (workdayUnit.category == wdcat.name) {
+              // check if the date of the workdayunit is between date1 and date2
+              if (df.format(workdayUnit.date1) == df.format(currentDate)) {
+                hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
+
+              }
+            }
+          }
+          if (wdcat?.count) {
+            total += hours
+            sums[ind] += hours
+          }
+          sheet.addCell(new jxl.write.Label(column + 1, row, hours.toString(), format))
+          column++
+        }
+        sheet.addCell(new jxl.write.Label(column + 1, row, total.toString(), format))
+        calendarStart.add(Calendar.DATE, 1)
+        row++
+      }
+      column = 0
+      sheet.addCell(new jxl.write.Label(column++, row, message(code: "total"), formatBold))
+      sums.each {
+        sheet.addCell(new jxl.write.Label(column++, row, it.toString(), formatBold))
+      }
+      sheet.addCell(new jxl.write.Label(column, row, sums.sum().toString(), formatBold))
 
     }
 
