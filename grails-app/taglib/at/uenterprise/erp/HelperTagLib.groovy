@@ -1275,10 +1275,7 @@ class HelperTagLib {
     // if there is a family, find parents
     List parents = functionService.findAllByLink(null, family, metaDataService.ltGroupMemberParent)
 
-    // output each parent
-    parents.each { Entity parent ->
-      out << parent.profile.fullName << ": " << parent.profile.phone << "<br/>"
-    }
+    parents.each {out << body(parents: it)}
   }
 
   /**

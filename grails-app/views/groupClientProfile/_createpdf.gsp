@@ -62,7 +62,13 @@
             <td valign="top">${fieldValue(bean: client, field: 'profile.currentStreet').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
             <td valign="top"><erp:getColony entity="${client}">${fieldValue(bean: colony, field: 'profile.fullName').decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</erp:getColony></td>
             <td valign="top">${fieldValue(bean: client, field: 'profile.currentCountry').decodeHTML() ?: '<div class="italic">'+message(code:'empty')+'</div>'}</td>
-            <td valign="top"><erp:getParentsOfClient client="${client}"/></td>
+            <td valign="top">
+              <erp:getParentsOfClient client="${client}">
+                <g:each in="${parents}" var="parent">
+                  ${parent.profile.fullName}: ${parent.profile.phone}<br/>
+                </g:each>
+              </erp:getParentsOfClient>
+              </td>
           </tr>
         </g:each>
         </tbody>
