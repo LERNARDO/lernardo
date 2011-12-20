@@ -9,6 +9,12 @@ class AppFilters {
     // adds the currently logged in user to the model passed to a GSP after an action has been executed
     // doesn't work when rendering templates because a template is rendered directly to the response
     currentEntity(controller: "*", action: "*") {
+      // IE caching stuff: http://www.dashbay.com/2011/05/internet-explorer-caches-ajax/
+      /*before = {
+        if (request.getHeader('X-Requested-With')?.equals('XMLHttpRequest')) {
+          response.setHeader('Expires', '-1')
+        }
+      }*/
       after = {model ->
         if (model) {
           Entity e = entityHelperService.getLoggedIn()
