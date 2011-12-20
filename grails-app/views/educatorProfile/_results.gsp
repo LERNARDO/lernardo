@@ -30,9 +30,4 @@
 </table>
 
 <br/>
-<div class="buttons">
-  <g:form params="[date1: date1, date2: date2]">
-    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
-    <div class="spacer"></div>
-  </g:form>
-</div>
+<g:link action="createpdf" id="${entity.id}" params="[date1: date1, date2: date2]"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" align="top"/> PDF</g:link>

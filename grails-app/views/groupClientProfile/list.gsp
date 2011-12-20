@@ -40,7 +40,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td><g:link action="show" id="${group.id}" params="[entity: group.id]">${fieldValue(bean: group, field: 'profile.fullName').decodeHTML()}</g:link></td>
           <td><erp:getGroupClientsCount entity="${group}"/></td>
-          <td><g:link action="createpdf" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" align="top"/> PDF</g:link> <g:link controller="excel" action="report" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'icon_xls.png')}" alt="XLS" align="top"/> XLS</g:link></td>
+          <td><g:link action="createpdf" id="${group.id}"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" align="top"/> PDF</g:link> <g:link controller="excel" action="report" id="${group.id}" params="[type: 'clientgroup']"><img src="${g.resource(dir:'images/icons', file:'icon_xls.png')}" alt="XLS" align="top"/> XLS</g:link></td>
         </tr>
       </g:each>
       </tbody>
