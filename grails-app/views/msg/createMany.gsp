@@ -26,7 +26,7 @@
               <div id="remoteReceivers"></div>
 
               <div style="visibility: hidden; height: 5px;">
-                <select name="receivers" id="hiddenselect" multiple="true" value="default"></select>
+                <g:select name="receivers" id="hiddenselect" multiple="true" value="default"/>
               </div>
 
               <div class="bold"><g:message code="chosenRecipients"/>:</div>

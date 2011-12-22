@@ -108,7 +108,7 @@
       return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
       <div class="zusatz-add" id="resources" style="display:none">
-        <b><g:message code="resources.required"/></b>
+        <span class="bold"><g:message code="resources.required"/></span>
         <g:if test="${requiredResources}">
           <ul style="margin-left: 5px">
             <g:each in="${requiredResources}" var="requiredResource">
@@ -120,7 +120,7 @@
           <div class="gray" style="margin-bottom: 5px"><g:message code="resources.noneRequired"/></div>
         </g:else>
 
-        <b><g:message code="resource.profile"/></b> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
+        <span class="bold"><g:message code="resource.profile"/></span> <g:remoteLink update="plannableresources" action="refreshplannableresources" id="${projectDay.id}" before="showspinner('#plannableresources')"><img src="${g.resource(dir:'images/icons', file:'arrow_refresh.png')}" alt="Aktualisieren" align="top"/></g:remoteLink>
         <div id="plannableresources">
           <erp:getProjectDayUnits projectDay="${projectDay}">
             <g:if test="${units}">

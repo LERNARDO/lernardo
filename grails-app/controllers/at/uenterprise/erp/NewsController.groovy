@@ -81,7 +81,7 @@ class NewsController {
       }
     }
     else {
-      flash.message = message(code: "post.notFound", args: [params.id])
+      flash.message = message(code: "object.notFound", args: [message(code: "news")])
       redirect controller: "event", action: "indexNew"
     }
   }

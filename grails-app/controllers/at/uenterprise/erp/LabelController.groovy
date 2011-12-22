@@ -57,15 +57,6 @@ class LabelController {
   def update = {
     def labelInstance = Label.get(params.id)
     if (labelInstance) {
-      if (params.version) {
-        def version = params.version.toLong()
-        if (labelInstance.version > version) {
-
-          labelInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'label.label', default: 'Label')] as Object[], "Another user has updated this Label while you were editing")
-          render(view: "edit", model: [labelInstance: labelInstance])
-          return
-        }
-      }
 
       // update all label instances
       List labels = Label.findAllByType("instance")
