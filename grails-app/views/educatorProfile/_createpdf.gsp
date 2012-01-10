@@ -80,10 +80,12 @@
     </table>
 
     <g:each in="${educators}" status="i" var="educator">
+      <erp:showHours educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}">
       <h1 style="page-break-before: always"><g:message code="educator.timeschedule.export.period" args="[date1, date2]"/></h1>
       <h2><g:message code="detailed.info"/></h2>
       <h3>${educator.profile.fullName}</h3>
       <erp:getWorkdayUnits educator="${educator}" date1="${date1 ?: null}" date2="${date2 ?: null}"/>
+      </erp:showHours>
     </g:each>
 
   </body>

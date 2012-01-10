@@ -609,7 +609,7 @@ class HelperTagLib {
    */
   def getWorkdayUnits = { attrs, body ->
     Date date1 = Date.parse("dd. MM. yy", attrs.date1)
-    Date date2 = Date.parse("dd. MM. yy", attrs.date2) + 1
+    Date date2 = Date.parse("dd. MM. yy", attrs.date2)
 
     Entity educator = attrs.educator
 
