@@ -616,7 +616,7 @@ class HelperTagLib {
     List units = []
     educator.profile.workdayunits.each { WorkdayUnit workdayUnit ->
       // check if the date of the workdayunit is between date1 and date2
-      if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+      if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2 + 1) {
         units.add(workdayUnit)
       }
     }
@@ -641,9 +641,10 @@ class HelperTagLib {
       }
 
       if (currentUnits.size() > 0) {
-        out << "<p>" + formatDate(date: currentUnits[0].date1, format: "EEEE, dd.MM.yyyy") + "</p>"
-        out << "<table style='margin-bottom: 20px'>"
+        //out << "<p>" + formatDate(date: currentUnits[0].date1, format: "EEEE, dd.MM.yyyy") + "</p>"
+        out << "<table>"
         out << "<tr>"
+        out << "<th width='40px'>" + message(code: 'date') + "</th>"
         out << "<th width='40px'>" + message(code: 'from.upper') + "</th>"
         out << "<th width='40px'>" + message(code: 'to.upper') + "</th>"
         out << "<th width='80px'>" + message(code: 'credit.hours') + "</th>"
@@ -665,6 +666,10 @@ class HelperTagLib {
           if (index == currentUnits.size() - 1)
             last = unit.date2
           out << "<tr>"
+          if (index == 0)
+            out << "<td>" + formatDate(date: unit.date1, format: 'dd.MMM', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+          else
+            out << "<td></td>"
           out << "<td>" + formatDate(date: unit.date1, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
           out << "<td>" + formatDate(date: unit.date2, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
           out << "<td>" + nf.format(creditHours) + "</td>"
@@ -690,12 +695,13 @@ class HelperTagLib {
         else if (wdf.format(calendarStart.getTime()) == 'Sunday')
           expectedHours += educator.profile.workHoursSunday
 
-        out << "<tr style='background: #eee; font-weight: bold'>"
-        out << "<td>" + formatDate(date: first, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
-        out << "<td>" + formatDate(date: last, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+        out << "<tr style='background: #eee; font-weight: bold;'>"
+        out << "<td style='background: #ccc;'>" + message(code: 'total') + "</td>"
+        out << "<td style='background: #ccc;'>" + formatDate(date: first, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
+        out << "<td style='background: #ccc;'>" + formatDate(date: last, format: 'HH:mm', timeZone: TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())) + "</td>"
         out << "<td style='background-color: ${totalCreditHours < expectedHours ? '#f55' : '#5f5'}'>" + nf.format(totalCreditHours) + "</td>"
-        out << "<td></td>"
-        out << "<td>" + message(code: 'debit.hours') + ": " + nf.format(expectedHours) + "</td>"
+        out << "<td style='background: #ccc;'></td>"
+        out << "<td style='background: #ccc;'>" + message(code: 'debit.hours') + ": " + nf.format(expectedHours) + "</td>"
         out << "</tr>"
 
         out << "</table>"
@@ -706,7 +712,7 @@ class HelperTagLib {
 
     BigDecimal th = calculateTotalHours(educator, date1, date2)
     BigDecimal eh = calculateExpectedHours(educator, date1, date2)
-    out << "<table>"
+    out << "<table style='margin-top: 20px;'>"
     out << "<tr style='background: #eee; font-weight: bold'>"
     out << "<td colspan='2' style='border: 0; width: 85px'>" + message(code: 'total') + "</td>"
     out << "<td colspan='2' style='border: 0; width: 185px; background-color: ${th < eh ? '#f55' : '#5f5'}'>" + message(code: 'credit.hours') + ": " + nf.format(th) + "</td>"
@@ -935,7 +941,7 @@ class HelperTagLib {
       if (category?.count) {
         // check if the date of the workdayunit the chosen date range
         if (date1 != null && date2 != null) {
-          if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2) {
+          if (workdayUnit.date1 >= date1 && workdayUnit.date2 <= date2 + 1) {
             hours += (workdayUnit.date2.getTime() - workdayUnit.date1.getTime()) / 1000 / 60 / 60
           }
         }
