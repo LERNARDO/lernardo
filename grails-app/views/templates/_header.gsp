@@ -44,7 +44,7 @@
         </span>
       </a>
 
-      <div id="favorites" style="display: none; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; text-align: left;">
+      <div id="favorites" style="display: none;">
         <g:render template="/profile/favorites" model="[entity: currentEntity]"/>
       </div>
 

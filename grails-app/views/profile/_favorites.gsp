@@ -8,5 +8,7 @@
   </ul>
 </g:if>
 <g:else>
-  <span class="gray italic">Noch keine Favoriten!</span>
+  <ul>
+    <li class="icon-start italic">Noch keine Favoriten!</li>
+  </ul>
 </g:else>
