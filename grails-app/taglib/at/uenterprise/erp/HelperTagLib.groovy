@@ -63,36 +63,99 @@ class HelperTagLib {
     Date date = attrs.date
 
     List entries = LogEntry.findAllByFacility(facility).findAll {it.date.getMonth() == date.getMonth()}
-    entries = entries.sort {it.date}
 
-    entries.each { LogEntry entry ->
+    // only render details if there were any log entries this month
+    if (entries) {
+      entries = entries.sort {it.date}
 
-      out << '<p style="page-break-before: always">' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
-      out << '<table class="default-table">'
+      // new
+      List processes = entries[0]?.attendees[0]?.processes
+      List attendees = entries[0]?.attendees
+      List colors = ['#e44','#4e4','#44e','#e4e','#4ee','#ee4','#eee','#444']
+
+      int pages = entries[0]?.attendees?.size() / 5
+
+      for (int page = 0; page <= pages; page++) {
+
+      out << '<div style="page-break-before: always"></div>'
+      processes.eachWithIndex { p, i ->
+        out << '<div style="float: left; width: 50px; color: #fff; padding: 2px 4px; background: ' + colors[i] + '">' + p.process.name + '</div>'
+      }
+      out << '<div class="clear"></div>'
+
+      Calendar start = new GregorianCalendar()
+      start.setTime(date)
+
+      out << '<table style="margin-top: 10px" class="default-table">'
       out << '<tr>'
-      out << '<th>' + message(code: 'name') + '</th>'
-      entry?.attendees[0]?.processes?.each {
-        out << '<th>' + it.process.name + '</th>'
+      out << '<th style="width: 40px;">' + message(code: 'date') + '</th>'
+      attendees.eachWithIndex { Attendee attendee, i ->
+        if (i >= page * 5 && i < page * 5 + 5)
+          out << '<th>' + attendee.client.profile.fullName.decodeHTML() + '</th>'
       }
       out << '</tr>'
-      entry?.attendees?.each { Attendee attendee ->
+      
+      while (start.getTime().getMonth() == date.getMonth()) {
         out << '<tr>'
-        out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
-        attendee?.processes?.each { ProcessAttended process ->
-          out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: message(code: 'yes'), false: "<span class='red'>" + message(code: 'no') + "</span>") + '</td>'
+        out << '<td>' + formatDate(date: start.getTime(), format: 'dd.MM') + '</td>'
+        LogEntry logentry = LogEntry.findAllByFacility(facility).find {it.date.getMonth() == start.getTime().getMonth() && it.date.getDate() == start.getTime().getDate()}// && it.date.getYear() == start.getTime().getYear()}
+        if (logentry) {
+          logentry?.attendees?.eachWithIndex { Attendee attendee, ind ->
+            if (ind >= page * 5 && ind < page * 5 + 5) {
+              out << '<td>'
+              attendee?.processes?.eachWithIndex { ProcessAttended process, i ->
+                if (process.hasParticipated)
+                  out << '<div style="float: left; width: 15px; height: 15px; background: ' + colors[i] + '"></div>'
+                else
+                  out << '<div style="float: left; width: 15px; height: 15px; background: #fff;"></div>'
+              }
+              out << '</td>'
+            }
+          }
+        }
+        else {
+          int times = page == pages ? (entries[0]?.attendees?.size() % 5) : 5
+          for (int j = 0; j < times; j++) {
+            out << '<td></td>'
+          }
         }
         out << '</tr>'
+        start.add(Calendar.DATE, 1)
       }
+
       out << '</table>'
+      }
 
-      out << '<p><span class="bold">' + message(code:"comment") + '</span>'
-      out << '<div id="comment">'
-      out << (entry.comment ?: '<span class="italic">' + message(code:"noData") + '</span>')
-      out << '</div></p>'
+      // old
+      /*entries.each { LogEntry entry ->
 
-      out << '<p><span class="bold">' + message(code:"confirmed") + '</span><br/>'
-      out << formatBoolean(boolean: entry.isChecked, true: message(code: 'yes'), false: message(code: 'no'))
-      out << '</p>'
+        out << '<p style="page-break-before: always">' + message(code: "date") + ": " + formatDate(date: entry.date, format: 'dd. MM. yyyy') + '</p>'
+        out << '<table class="default-table">'
+        out << '<tr>'
+        out << '<th>' + message(code: 'name') + '</th>'
+        entry?.attendees[0]?.processes?.each {
+          out << '<th>' + it.process.name + '</th>'
+        }
+        out << '</tr>'
+        entry?.attendees?.each { Attendee attendee ->
+          out << '<tr>'
+          out << '<td>' + attendee.client.profile.fullName.decodeHTML() + '</td>'
+          attendee?.processes?.each { ProcessAttended process ->
+            out << '<td>' + formatBoolean(boolean: process.hasParticipated, true: message(code: 'yes'), false: "<span class='red'>" + message(code: 'no') + "</span>") + '</td>'
+          }
+          out << '</tr>'
+        }
+        out << '</table>'
+
+        out << '<p><span class="bold">' + message(code:"comment") + '</span>'
+        out << '<div id="comment">'
+        out << (entry.comment ?: '<span class="italic">' + message(code:"noData") + '</span>')
+        out << '</div></p>'
+
+        out << '<p><span class="bold">' + message(code:"confirmed") + '</span><br/>'
+        out << formatBoolean(boolean: entry.isChecked, true: message(code: 'yes'), false: message(code: 'no'))
+        out << '</p>'
+      }*/
     }
   }
 
@@ -153,13 +216,13 @@ class HelperTagLib {
           Attendee attendee = entry.attendees.find {it.client == client.client}
           attendee?.processes?.each { ProcessAttended aproc ->
             if (aproc.process.name == proc.process.name) {
-              if ((attendance.monday && df.format(entry.date) == 'Monday') ||
-                  (attendance.tuesday && df.format(entry.date) == 'Tuesday') ||
-                  (attendance.wednesday && df.format(entry.date) == 'Wednesday') ||
-                  (attendance.thursday && df.format(entry.date) == 'Thursday') ||
-                  (attendance.friday && df.format(entry.date) == 'Friday') ||
-                  (attendance.saturday && df.format(entry.date) == 'Saturday') ||
-                  (attendance.sunday && df.format(entry.date) == 'Sunday')) {
+              if ((attendance?.monday && df.format(entry.date) == 'Monday') ||
+                  (attendance?.tuesday && df.format(entry.date) == 'Tuesday') ||
+                  (attendance?.wednesday && df.format(entry.date) == 'Wednesday') ||
+                  (attendance?.thursday && df.format(entry.date) == 'Thursday') ||
+                  (attendance?.friday && df.format(entry.date) == 'Friday') ||
+                  (attendance?.saturday && df.format(entry.date) == 'Saturday') ||
+                  (attendance?.sunday && df.format(entry.date) == 'Sunday')) {
                 total++
               }
               if (aproc.hasParticipated) {
@@ -206,13 +269,13 @@ class HelperTagLib {
       while (start <= end) {
         Date currentDate = start.getTime()
 
-        if ((attendance.monday && df.format(currentDate) == 'Monday') ||
-            (attendance.tuesday && df.format(currentDate) == 'Tuesday') ||
-            (attendance.wednesday && df.format(currentDate) == 'Wednesday') ||
-            (attendance.thursday && df.format(currentDate) == 'Thursday') ||
-            (attendance.friday && df.format(currentDate) == 'Friday') ||
-            (attendance.saturday && df.format(currentDate) == 'Saturday') ||
-            (attendance.sunday && df.format(currentDate) == 'Sunday')) {
+        if ((attendance?.monday && df.format(currentDate) == 'Monday') ||
+            (attendance?.tuesday && df.format(currentDate) == 'Tuesday') ||
+            (attendance?.wednesday && df.format(currentDate) == 'Wednesday') ||
+            (attendance?.thursday && df.format(currentDate) == 'Thursday') ||
+            (attendance?.friday && df.format(currentDate) == 'Friday') ||
+            (attendance?.saturday && df.format(currentDate) == 'Saturday') ||
+            (attendance?.sunday && df.format(currentDate) == 'Sunday')) {
           debitDays++
         }
         start.add(Calendar.DATE, 1)
