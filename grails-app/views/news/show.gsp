@@ -22,17 +22,12 @@
           </erp:accessCheck>
         </div>
         <div class="info">
-          <g:message code="from"/> <span class="bold">
-              <erp:isEnabled entity="${news.author}">
-                <g:link controller="${news.author.type.supertype.name +'Profile'}" action="show" id="${news.author.id}">${news.author.profile.fullName}</g:link>
-              </erp:isEnabled>
-              <erp:notEnabled entity="${news.author}">
-                <span class="notEnabled">${news.author.profile.fullName}</span>
-              </erp:notEnabled>
-            </span>
+          <g:message code="from"/>
+          <span class="bold">
+            <g:link controller="${news.author.type.supertype.name +'Profile'}" action="show" id="${news.author.id}">${news.author.profile.fullName}</g:link>
+          </span>
           <g:message code="atDate"/> <g:formatDate format="dd. MMM. yyyy" date="${news.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
           <g:message code="atTime"/> <g:formatDate format="HH:mm" date="${news.dateCreated}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
-
         </div>
       </div>
       <g:if test="${news.teaser}">
