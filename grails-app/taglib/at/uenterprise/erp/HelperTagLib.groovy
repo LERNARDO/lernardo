@@ -1585,7 +1585,7 @@ class HelperTagLib {
     if (pateClients)
       pateClients.each {out << body(clients: it)}
     else
-      out << '<span class="italic">' + message(code: 'clients.empty') + '</span> <img src="' + g.resource(dir: 'images/icons', file: 'icon_warning.png') + '" alt="toolTip" align="top"/>'
+      out << '<span class="italic">' + message(code: 'pate.profile.gcs_empty') + '</span>'
   }
 
   /**
