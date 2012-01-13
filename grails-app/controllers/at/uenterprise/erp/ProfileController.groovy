@@ -302,10 +302,15 @@ class ProfileController {
     String favorite = params.id.toString()
 
     Entity currentEntity = entityHelperService.loggedIn
-    
-    if (!currentEntity.profile.favorites.contains(favorite))
+
+    render '<span id="favbutton">'
+    if (!currentEntity.profile.favorites.contains(favorite)) {
       currentEntity.profile.addToFavorites(favorite)
-    render template: 'favorites', model: [entity: currentEntity]
+      render "${remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: favorite, update: 'favbutton', after: 'lightentooltip()') {'- ' + message(code: 'favorite')}}"
+    }
+    else
+      render "${remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: favorite, update: 'favbutton', after: 'lightentooltip()') {'+ ' + message(code: 'favorite')}}"
+    render '</span>'
   }
   
   def removeFavorite = {
@@ -313,8 +318,19 @@ class ProfileController {
 
     Entity currentEntity = entityHelperService.loggedIn
 
-    if (currentEntity.profile.favorites.contains(favorite))
+    render '<span id="favbutton">'
+    if (currentEntity.profile.favorites.contains(favorite)) {
+      log.info "found fav and removing"
       currentEntity.profile.removeFromFavorites(favorite)
+      render "${remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: favorite, update: 'favbutton', after: 'lightentooltip()') {'+ ' + message(code: 'favorite')}}"
+    }
+    else
+      render "${remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: favorite, update: 'favbutton', after: 'lightentooltip()') {'- ' + message(code: 'favorite')}}"
+    render '</span>'
+  }
+
+  def showFavorites = {
+    Entity currentEntity = entityHelperService.loggedIn
     render template: 'favorites', model: [entity: currentEntity]
   }
   

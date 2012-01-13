@@ -38,14 +38,23 @@
         </span>
       </g:link>
 
-      <a class="tooltip" data-tooltip="${message(code: 'favorites')}" href="#" onclick="$('#favorites').toggle(); return false;">
-        <span class="notificationbox inactive" style="border-right: none;">
+      <a class="tooltip" data-tooltip="${message(code: 'favorites')}" href="#" onclick="togglefavs()">
+        <span id="favtooltip" class="notificationbox inactive" style="border-right: none;">
           <img src="${g.resource(dir:'images/icons', file:'icon_star.png')}" alt="Favorites" style="position: relative; top: 3px;"/>
         </span>
       </a>
 
+      <script type="text/javascript">
+        function togglefavs() {
+          var status = $('#favorites').css('display');
+          if (status == 'none') {
+            ${remoteFunction(controller: 'profile', action: 'showFavorites', update: 'favorites')}
+          }
+          $('#favorites').toggle();
+        }
+      </script>
+
       <div id="favorites" style="display: none; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; text-align: left;">
-        <g:render template="/profile/favorites" model="[entity: currentEntity]"/>
       </div>
 
     </span>

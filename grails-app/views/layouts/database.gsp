@@ -26,6 +26,10 @@
 
   <script type="text/javascript">
     // TODO: the following custom JavaScript functions have to be defined here else Chrome 10 and IE 9 are not able to find them, find out why..
+    lightentooltip = function() {
+      $("#favtooltip").effect("highlight", {}, 3000);
+    };
+
     // hides an element
     hideform = function(id) {
       $(id).hide('slow');
