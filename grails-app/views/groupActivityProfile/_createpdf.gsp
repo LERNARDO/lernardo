@@ -117,7 +117,19 @@
     <g:if test="${educators}">
       <ul>
       <g:each in="${educators}" var="educator">
-        <li>${educator.profile.fullName.encodeAsHTML()}</li>
+        <li>
+          ${educator.profile.fullName.encodeAsHTML()}
+          <erp:getLocalTags entity="${educator}" target="${group}">
+            <g:if test="${tags}">
+              <g:if test="${tags[0]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="absent"/></span>
+              </g:if>
+              <g:if test="${tags[1]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="ill"/></span>
+              </g:if>
+            </g:if>
+          </erp:getLocalTags>
+        </li>
       </g:each>
     </ul>
     </g:if>
@@ -129,7 +141,19 @@
     <g:if test="${substitutes}">
       <ul>
       <g:each in="${substitutes}" var="substitute">
-        <li>${substitute.profile.fullName.encodeAsHTML()}</li>
+        <li>
+          ${substitute.profile.fullName.encodeAsHTML()}
+          <erp:getLocalTags entity="${substitute}" target="${group}">
+            <g:if test="${tags}">
+              <g:if test="${tags[0]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="absent"/></span>
+              </g:if>
+              <g:if test="${tags[1]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="ill"/></span>
+              </g:if>
+            </g:if>
+          </erp:getLocalTags>
+        </li>
       </g:each>
     </ul>
     </g:if>
@@ -141,7 +165,19 @@
     <g:if test="${clients}">
       <ul>
       <g:each in="${clients}" var="client">
-        <li>${client.profile.fullName.encodeAsHTML()}</li>
+        <li>
+          ${client.profile.fullName.encodeAsHTML()}
+          <erp:getLocalTags entity="${client}" target="${group}">
+            <g:if test="${tags}">
+              <g:if test="${tags[0]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="absent"/></span>
+              </g:if>
+              <g:if test="${tags[1]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="ill"/></span>
+              </g:if>
+            </g:if>
+          </erp:getLocalTags>
+        </li>
       </g:each>
     </ul>
     </g:if>
@@ -153,7 +189,18 @@
     <g:if test="${parents}">
       <ul>
       <g:each in="${parents}" var="parent">
-        <li>${parent.profile.fullName.encodeAsHTML()}</li>
+        <li>
+          ${parent.profile.fullName.encodeAsHTML()}
+          <erp:getLocalTags entity="${parent}" target="${group}">
+            <g:if test="${tags}">
+              <g:if test="${tags[0]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="absent"/></span>
+              </g:if>
+              <g:if test="${tags[1]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="ill"/></span>
+              </g:if>
+            </g:if>
+          </erp:getLocalTags></li>
       </g:each>
     </ul>
     </g:if>
@@ -165,7 +212,19 @@
     <g:if test="${partners}">
       <ul>
       <g:each in="${partners}" var="partner">
-        <li>${partner.profile.fullName.encodeAsHTML()}</li>
+        <li>
+          ${partner.profile.fullName.encodeAsHTML()}
+          <erp:getLocalTags entity="${partner}" target="${group}">
+            <g:if test="${tags}">
+              <g:if test="${tags[0]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="absent"/></span>
+              </g:if>
+              <g:if test="${tags[1]}">
+                <span style="color: #e44; font-size: 10px;"><g:message code="ill"/></span>
+              </g:if>
+            </g:if>
+          </erp:getLocalTags>
+        </li>
       </g:each>
     </ul>
     </g:if>

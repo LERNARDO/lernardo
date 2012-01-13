@@ -1,8 +1,5 @@
 <erp:renderLogMonth logMonth="${logMonth}" facility="${facility}" date="${date}"/>
 
-<div class="buttons">
-  <g:form id="${logMonth.id}" params="[facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]">
-    <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div>
-  </g:form>
-  <div class="spacer"></div>
-</div>
+<p style="margin-top: 10px;">
+  <g:link action="createpdf" id="${logMonth.id}" params="[facility: facility.id, date: formatDate(date: date, format: 'dd. MM. yyyy')]"><img src="${g.resource(dir:'images/icons', file:'icon_pdf.png')}" alt="PDF" align="top"/> PDF</g:link>
+</p>

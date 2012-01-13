@@ -49,19 +49,19 @@ class ExcelController {
     WritableFont fontBold = new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD);
     WritableCellFormat formatBold = new WritableCellFormat (fontBold);
 
-    WritableSheet sheet = workbook.createSheet('MyTestSheet', 0)
-
-    // auto-size cells
-    for (int x = 0; x < 7; x++)
-    {
-      def cell = sheet.getColumnView(x)
-      cell.setAutosize(true)
-      sheet.setColumnView(x, cell)
-    }
-
     // client group
     if (params.type == 'clientgroup') {
 
+      WritableSheet sheet = workbook.createSheet(entity.profile.fullName, 0)
+
+      // auto-size cells
+      for (int x = 0; x < 7; x++)
+      {
+        def cell = sheet.getColumnView(x)
+        cell.setAutosize(true)
+        sheet.setColumnView(x, cell)
+      }
+      
       // find all clients of group
       List clients = functionService.findAllByLink(null, entity, metaDataService.ltGroupMemberClient)
 
@@ -112,6 +112,16 @@ class ExcelController {
     }
     // educator - personal time evaluation
     if (params.type == 'evaluation') {
+
+      WritableSheet sheet = workbook.createSheet(entity.profile.fullName, 0)
+
+      // auto-size cells
+      for (int x = 0; x < 7; x++)
+      {
+        def cell = sheet.getColumnView(x)
+        cell.setAutosize(true)
+        sheet.setColumnView(x, cell)
+      }
 
       Date date1 = Date.parse("dd. MM. yy", params.date1)
       Date date2 = Date.parse("dd. MM. yy", params.date2)
@@ -181,6 +191,16 @@ class ExcelController {
     }
     // global time evaluation
     if (params.type == 'globalevaluation') {
+
+      WritableSheet sheet = workbook.createSheet('Zeitaufzeichnung', 0)
+
+      // auto-size cells
+      for (int x = 0; x < 7; x++)
+      {
+        def cell = sheet.getColumnView(x)
+        cell.setAutosize(true)
+        sheet.setColumnView(x, cell)
+      }
 
       Date date1 = Date.parse("dd. MM. yy", params.date1)
       Date date2 = Date.parse("dd. MM. yy", params.date2)

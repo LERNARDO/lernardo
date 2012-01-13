@@ -1,4 +1,5 @@
 <g:if test="${clients}">
+  <p><g:message code="total"/>: ${clients.size()}</p>
   <ul>
   <g:each in="${clients}" var="client">
     <li>

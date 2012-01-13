@@ -32,6 +32,7 @@
       <tr>
         <g:sortableColumn property="fullName" title="${message(code:'name')}"/>
         <g:sortableColumn property="country" title="${message(code:'country')}"/>
+        <th><g:message code="pate.profile.gcs"/></th>
       </tr>
       </thead>
       <tbody>
@@ -42,6 +43,15 @@
             <g:link action="show" id="${pate.id}" params="[entity: pate.id]">${fieldValue(bean: pate, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
           <td>${fieldValue(bean: pate, field: 'profile.country') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
+          <td>
+            <erp:getPateClients entity="${pate}">
+              <ul style="margin: 0; padding: 0;">
+                <g:each in="${clients}" var="client">
+                  <li style="line-height: 17px;">${client.profile.fullName}</li>
+                </g:each>
+              </ul>
+            </erp:getPateClients>
+          </td>
         </tr>
       </g:each>
       </tbody>

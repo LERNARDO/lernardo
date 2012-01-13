@@ -14,9 +14,10 @@
           width: 100%;
       }
       .default-table td {
-          padding: 10px 5px;
+          padding: 2px;
           /*border-bottom: 1px solid #9A9A9A;*/
           border-bottom: 1px solid #9a9a9a;
+          border-right: 1px solid #9a9a9a;
       } /*lighten(@button-gray, 20%); //#9a9a9a; //#eee;*/
       .default-table td a {
           text-decoration: none;
@@ -53,6 +54,15 @@
       }
       .green {
         color: #0a0;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      .italic {
+        font-style: italic;
+      }
+      .clear {
+        clear: both;
       }
     </style>
   </head>
