@@ -2,11 +2,11 @@
 
 // variables
 
-@button-green: #41A241;
-@button-red: #A05265;
-@button-gray: #AEAEAE;
-@button-blue: #588ABC;
-@button-yellow: #BCBC58;
+@green: #41A241;
+@red: #A05265;
+@gray: #AEAEAE;
+@blue: #588ABC;
+@yellow: #BCBC58;
 
 @live-header-active-border: #3D5E7E;
 @live-header-gradient-top: #4171A1;
@@ -14,7 +14,20 @@
 
 @brown: #808372;
 @cyan: #36808E;
-@red: #d22;
+@brightred: #d22;
+
+// mixins
+
+.gradient (@origin: top, @start: #ffffff, @stop: #000000) {
+	background-color: @start; // fallback
+	background-image: -webkit-linear-gradient(@origin, @start, @stop); // Chrome, Safari
+	background-image: -moz-linear-gradient(@origin, @start, @stop); // Firefox
+	background-image: -o-linear-gradient(@origin, @start, @stop); // Opera
+	background-image: -ms-linear-gradient(@origin, @start, @stop); // IE
+	background-image: linear-gradient(@origin, @start, @stop); // W3C
+}
+
+// selectors
 
 body {
     font-family: verdana,arial,helvetica,sans-serif;
@@ -27,10 +40,7 @@ body {
 
 #hd {
     height: 70px;
-    //background: url(../images/sueninos/logo.png) lighten(@box-header-gradient-top, 30%) no-repeat 15px 15px;
     background: lighten(@brown, 40%);
-    //background: -moz-linear-gradient(-90deg, lighten(@brown, 45%), lighten(@brown, 40%));
-    //background: -webkit-gradient(linear, left top, left bottom, from(lighten(@brown, 45%)), to(lighten(@brown, 40%)));
     position: relative;
     border-bottom: 1px solid lighten(@brown, 30%);
     #info {
@@ -44,9 +54,9 @@ body {
                 border-right: 1px solid lighten(@brown, 15%);
             }
             .active {
-                background: lighten(@red, 25%);
+                background: lighten(@brightred, 25%);
                 &:hover {
-                    background: lighten(@red, 20%);
+                    background: lighten(@brightred, 20%);
                 }
             }
             .inactive {
@@ -90,13 +100,9 @@ body {
         }
     }
     #logo {
-        //width: 210px;
-        //height: 70px;
-        //float: left;
         color: darken(@brown, 15%);
         text-shadow: 0 0 10px lighten(@brown, 5%);
         font-size: 40px;
-        //font-weight: bold;
         float: left;
         padding: 10px 10px 0 20px;
         &:hover {
@@ -109,20 +115,16 @@ body {
 #subheader {
     background: #444;
     padding: 4px 0 6px 0;
-    //text-transform: uppercase;
     font-size: 13px;
-    //text-align: center;
     ul {
         padding: 0;
         width: 100%;
         li {
-            //border-right: 1px solid #666;
             margin: 0 0 0 -5px;
             padding: 4px 0 7px 0;
             display: inline;
             list-style-type: none;
             a {
-                //background: #444;
                 padding: 4px 20px 7px 20px;
                 color: #eee;
                 &:hover {
@@ -130,23 +132,23 @@ body {
                     background: #555;
                 }
                 &.activegray {
-                    background: @button-gray;
+                    background: @gray;
                     text-shadow: 1px 1px 3px #000;
                 }
                 &.activered {
-                    background: @button-red;
+                    background: @red;
                     text-shadow: 1px 1px 3px #000;
                 }
                 &.activegreen {
-                    background: @button-green;
+                    background: @green;
                     text-shadow: 1px 1px 3px #000;
                 }
                 &.activeblue {
-                    background: @button-blue;
+                    background: @blue;
                     text-shadow: 1px 1px 3px #000;
                 }
                 &.activeyellow {
-                    background: @button-yellow;
+                    background: @yellow;
                     text-shadow: 1px 1px 3px #000;
                 }
             }
@@ -168,7 +170,6 @@ body {
 
 #grid {
     padding-left: 230px;
-    //padding-right: 15px; // 228px;
     background: #fff;
     padding-top: 15px;
 }
@@ -176,7 +177,6 @@ body {
 #main {
     width: 100%;
     border-left: 1px solid #ddd;
-    //border-right: 1px solid #ddd;
 }
 
 #right {
@@ -205,11 +205,10 @@ body {
 
 #left {
     width: 200px;
-    margin-left: -232px; // 298
+    margin-left: -232px;
     padding: 0 15px;
     ul {
       li {
-        //margin: 0;
         padding-left: 15px;
       }
     }
@@ -483,8 +482,8 @@ ol li {
     color: #f44; }
 
 .toolTip {
-    background: #FFE5B2; //#fc6;
-    border: 1px solid #FFC37F; //#fa4;
+    background: #FFE5B2;
+    border: 1px solid #FFC37F;
     border-radius: 5px;
     color: #444;
     font-size: 13px;
@@ -515,28 +514,13 @@ ol li {
     border-bottom: 1px dashed #999;
     padding-bottom: 5px; }
 
-/* used for ajax element headers */
-/*h1 {*/
-    /*color: #444;*/
-    /*font-size: 20px;*/
-    /*font-weight: normal;*/
-    /*margin: 0.8em 0 0.3em;*/
-    /*padding-bottom: 10px;*/
-    /*border-bottom: 1px dashed #ccc;*/
-    /*.subheader {*/
-        /*font-size: 12px;*/
-        /*margin-bottom: 15px;*/
-    /*}*/
-/*}  */
-
 h1 {
-        color: darken(@cyan, 10%); //#fff;
-        margin: 0 0 10px 0; // auto 0;
-        padding: 0 0 5px 0; //0;
-        //border: 0;
+        color: darken(@cyan, 10%);
+        margin: 0 0 10px 0;
+        padding: 0 0 5px 0;
         font-weight: normal;
-        font-size: 20px; // 14px;
-        border-bottom: 1px solid lighten(@cyan, 40%); // none
+        font-size: 20px;
+        border-bottom: 1px solid lighten(@cyan, 40%);
     }
 
 h2 {
@@ -562,12 +546,10 @@ h4 {
 
 h5 {
     text-transform: uppercase;
-    //text-shadow: #ccc 1px 1px 1px;
     margin: 0;
-    color: #444; //#003300;
+    color: #444;
 	font-size: 12px;
 	font-weight: bold;
-    //border-bottom: 1px solid #ccc; /* #fff */
     padding: 5px 0 0 0; }
 
 h6 {
@@ -603,7 +585,6 @@ ul {
 #imgmenu {
     ol {
         height: 115px;
-        //float: left;
         li {
             float: left;
             padding: 0;
@@ -631,7 +612,7 @@ ul {
         margin-top: 3px;
     }
     .name {
-        background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
+        .gradient(top, #789fe8, #567ec6);
         color: #fff;
         width: 180px;
         margin: 0 auto;
@@ -640,7 +621,7 @@ ul {
         }
     }
     .type {
-        background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6;
+        .gradient(top, #789fe8, #567ec6);
         color: #fff;
         width: 180px;
         margin: 0 auto;
@@ -650,42 +631,8 @@ ul {
     }
 }
 
-.profile-group {
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    background: -moz-linear-gradient(-90deg,#dedede,#bcbcbc) #bcbcbc; /*#dfdfdf*/
-    border: 1px solid #9a9a9a;
-    border-bottom: none;
-    font-weight: bold;
-    margin: 15px 0 0 5px;
-    text-align: center;
-    width: 120px;
-    color: #333;
-    -moz-box-shadow: #aaa 2px 2px 4px;
-    &:hover {
-        background: -moz-linear-gradient(-90deg,#789fe8,#567ec6) #567ec6; /*#dfdfdf*/
-        border: 1px solid #55e;
-        border-bottom: none;
-        cursor: pointer;
-        color: #fff;
-    }
-    .second {
-        padding: 2px;
-        -moz-border-radius-topleft: 5px;
-        -moz-border-radius-topright: 5px;
-        border: 1px solid #efefef;
-        border-bottom: none;
-        &:hover {
-            border: 1px solid #ccf;
-            border-bottom: none;
-        }
-    }
-}
-
 .headerBlue {
-    background: #789fe8;
-    background: -moz-linear-gradient(-90deg,#789fe8,#567ec6);
-    background: -webkit-gradient(linear, left top, left bottom, from(#789fe8), to(#567ec6));
+    .gradient(top, #789fe8, #567ec6);
     h1 {
         color: #fff;
         margin: 0;
@@ -819,24 +766,20 @@ input[type=text]:hover, select:hover, textarea:hover {
     border-collapse: separate;
     width: 100%;
     td {
-        //height: 50px;
-        //vertical-align: middle;
         padding: 10px 5px;
-        //border-bottom: 1px solid #9A9A9A;
-        border-bottom: 1px solid lighten(@button-gray, 20%); //#9a9a9a; //#eee;
+        border-bottom: 1px solid lighten(@gray, 20%);
         a {
             text-decoration: none;
         }
     }
     th {
-        background: lighten(@button-gray, 5%); //#9A9A9A;
-        //border-bottom: 1px solid #787878;
+        background: lighten(@gray, 5%);
         color: #fff;
         font-size: 11px;
         font-weight: bold;
         line-height: 17px;
         text-transform: uppercase;
-        padding: 10px; //2px 6px;
+        padding: 10px;
         a {
             color: #fff;
             display: block;
@@ -845,7 +788,7 @@ input[type=text]:hover, select:hover, textarea:hover {
             width: 100%;
         }
         &:hover {
-            background: darken(@button-gray, 5%); //#bbb;
+            background: darken(@gray, 5%);
         }
         &.asc {
             a {
@@ -878,7 +821,6 @@ label {
     padding-right: 5px; }
 
 .paginateButtons {
-    //border-top: 1px solid #eee;
     color: #666;
     font-size: 11px;
     overflow: hidden;
@@ -934,22 +876,16 @@ div.actionlinks div.userlinks a {
         border-radius: 3px;
         text-align: center;
         color: #fff !important;
-        //display: block;
         text-decoration: none;
         &:hover {
             cursor: pointer;
         }
         &.buttonBlue {
-            background: @button-blue;
-            //background: linear-gradient(@button-green, darken(@button-green, 10%)); // TODO: use when supported (official W3C draft)
-            background: -moz-linear-gradient(-90deg, @button-blue, darken(@button-blue, 10%));
-            background: -webkit-gradient(linear, left top, left bottom, from(@button-blue), to(darken(@button-blue, 10%)));
-            border: 1px solid darken(@button-blue, 10%);
+            .gradient(top, @blue, darken(@blue, 10%));
+            border: 1px solid darken(@blue, 10%);
             &:hover {
-                background: darken(@button-blue, 10%);
-                background: -moz-linear-gradient(-90deg, darken(@button-blue, 10%), darken(@button-blue, 20%));
-                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-blue, 10%)), to(darken(@button-blue, 20%)));
-                border: 1px solid darken(@button-blue, 20%);
+                .gradient(top, darken(@blue, 10%), darken(@blue, 20%)); )
+                border: 1px solid darken(@blue, 20%);
             }
         }
     }
@@ -976,40 +912,27 @@ div.actionlinks div.userlinks a {
             cursor: pointer;
         }
         &.buttonGreen {
-            background: @button-green;
-            //background: linear-gradient(@button-green, darken(@button-green, 10%)); // TODO: use when supported (official W3C draft)
-            background: -moz-linear-gradient(-90deg, @button-green, darken(@button-green, 10%));
-            background: -webkit-gradient(linear, left top, left bottom, from(@button-green), to(darken(@button-green, 10%)));
-            border: 1px solid darken(@button-green, 10%);
+            .gradient(top, @green, darken(@green, 10%));
+            border: 1px solid darken(@green, 10%);
             &:hover {
-                background: darken(@button-green, 10%);
-                background: -moz-linear-gradient(-90deg, darken(@button-green, 10%), darken(@button-green, 20%));
-                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green, 10%)), to(darken(@button-green, 20%)));
-                border: 1px solid darken(@button-green, 20%);
+                .gradient(top, darken(@green, 10%), darken(@green, 20%));
+                border: 1px solid darken(@green, 20%);
             }
         }
         &.buttonRed {
-            background: @button-red;
-            background: -moz-linear-gradient(-90deg, @button-red, darken(@button-red, 10%));
-            background: -webkit-gradient(linear, left top, left bottom, from(@button-red), to(darken(@button-red, 10%)));
-            border: 1px solid darken(@button-red, 10%);
+            .gradient(top, @red, darken(@red, 10%));
+            border: 1px solid darken(@red, 10%);
             &:hover {
-                background: darken(@button-red, 10%);
-                background: -moz-linear-gradient(-90deg, darken(@button-red, 10%), darken(@button-red, 20%));
-                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-red, 10%)), to(darken(@button-red, 20%)));
-                border: 1px solid darken(@button-red, 20%);
+                .gradient(top, darken(@red, 10%), darken(@red, 20%));
+                border: 1px solid darken(@red, 20%);
             }
         }
         &.buttonGray {
-            background: @button-gray;
-            background: -moz-linear-gradient(-90deg, @button-gray, darken(@button-gray, 10%));
-            background: -webkit-gradient(linear, left top, left bottom, from(@button-gray), to(darken(@button-gray, 10%)));
-            border: 1px solid darken(@button-gray, 10%);
+            .gradient(top, @gray, darken(@gray, 10%));
+            border: 1px solid darken(@gray, 10%);
             &:hover {
-                background: darken(@button-gray, 10%);
-                background: -moz-linear-gradient(-90deg, darken(@button-gray, 10%), darken(@button-gray, 20%));
-                background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-gray, 10%)), to(darken(@button-gray, 20%)));
-                border: 1px solid darken(@button-gray, 20%);
+                .gradient(top, darken(@gray, 10%), darken(@gray, 20%));
+                border: 1px solid darken(@gray, 20%);
             }
         }
     }
@@ -1017,11 +940,8 @@ div.actionlinks div.userlinks a {
 
 a {
     &.buttonGreen {
-        background: @button-green;
-        //background: linear-gradient(@button-green, darken(@button-green, 10%)); // TODO: use when supported (official W3C draft)
-        background: -moz-linear-gradient(-90deg, @button-green, darken(@button-green, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(@button-green), to(darken(@button-green, 10%)));
-        border: 1px solid darken(@button-green, 10%);
+        .gradient(top, @green, darken(@green, 10%));
+        border: 1px solid darken(@green, 10%);
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 11px;
         text-transform: uppercase;
@@ -1034,17 +954,13 @@ a {
         margin-right: 10px;
         float: left;
         &:hover {
-            background: darken(@button-green, 10%);
-            background: -moz-linear-gradient(-90deg, darken(@button-green, 10%), darken(@button-green, 20%));
-            background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-green, 10%)), to(darken(@button-green, 20%)));
-            border: 1px solid darken(@button-green, 20%);
+            .gradient(top, darken(@green, 10%), darken(@green, 20%));
+            border: 1px solid darken(@green, 20%);
         }
     }
     &.buttonRed {
-        background: @button-red;
-        background: -moz-linear-gradient(-90deg, @button-red, darken(@button-red, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(@button-red), to(darken(@button-red, 10%)));
-        border: 1px solid darken(@button-red, 10%);
+        .gradient(top, @red, darken(@red, 10%));
+        border: 1px solid darken(@red, 10%);
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 11px;
         text-transform: uppercase;
@@ -1057,17 +973,13 @@ a {
         text-decoration: none;
         float: left;
         &:hover {
-            background: darken(@button-red, 10%);
-            background: -moz-linear-gradient(-90deg, darken(@button-red, 10%), darken(@button-red, 20%));
-            background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-red, 10%)), to(darken(@button-red, 20%)));
-            border: 1px solid darken(@button-red, 20%);
+            .gradient(top, darken(@red, 10%), darken(@red, 20%));
+            border: 1px solid darken(@red, 20%);
         }
     }
     &.buttonGray {
-        background: @button-gray;
-        background: -moz-linear-gradient(-90deg, @button-gray, darken(@button-gray, 10%));
-        background: -webkit-gradient(linear, left top, left bottom, from(@button-gray), to(darken(@button-gray, 10%)));
-        border: 1px solid darken(@button-gray, 10%);
+        .gradient(top, @gray, darken(@gray, 10%));
+        border: 1px solid darken(@gray, 10%);
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 11px;
         text-transform: uppercase;
@@ -1080,10 +992,8 @@ a {
         text-decoration: none;
         float: left;
         &:hover {
-            background: darken(@button-gray, 10%);
-            background: -moz-linear-gradient(-90deg, darken(@button-gray, 10%), darken(@button-gray, 20%));
-            background: -webkit-gradient(linear, left top, left bottom, from(darken(@button-gray, 10%)), to(darken(@button-gray, 20%)));
-            border: 1px solid darken(@button-gray, 20%);
+            .gradient(top, darken(@gray, 10%), darken(@gray, 20%));
+            border: 1px solid darken(@gray, 20%);
         }
     }
 }
@@ -1121,8 +1031,6 @@ table#msg-composer td {
 
 .show-msg td.msg-content {
   border-top: 1px solid #999999;
-  //width: 645px;
-  //height: 100px;
   margin-top: 10px;
   padding-top: 10px; }
 
@@ -1163,10 +1071,9 @@ table#msg-composer td {
   font-weight: bold; }
 
 .message-rows .msg-unread {
-  background-color: #d5dce0;
-  /*width: 630px;*/ }
+  background-color: #d5dce0; }
 
-.message-rows .msg-unread .subject{
+.message-rows .msg-unread .subject {
   font-weight: bold; }
 
 .message-rows .subject {
@@ -1226,14 +1133,14 @@ table#msg-composer td {
     font-weight: bold; }
 
 .nav-button {
-    border:1px solid #999999;
-    font-family:Verdana,Arial,Helvetica,sans-serif;
-    font-size:12px;
-    margin:0 0 5px;
-    padding:3px 5px;
+    border: 1px solid #999999;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin: 0 0 5px;
+    padding: 3px 5px;
     background-color: #f0f0f0;
     &:hover {
-        border:1px solid #666666;
+        border: 1px solid #666666;
     }
     a {
         text-decoration: none;
@@ -1261,7 +1168,6 @@ table#msg-composer td {
         margin-right: 10px;
     }
     .infobar {
-        //border-bottom: 1px solid #ccc;
         padding-bottom: 4px;
         .name {
             font-size: 100%;
@@ -1305,11 +1211,7 @@ table#msg-composer td {
     z-index: 200; }
 
 .info-msg {
-    //background-color: #dfdfdf;
-    //border: 1px solid #ccc;
-    //padding: 5px 6px;
-    //border-radius: 5px;
-    color: #777; //#606060;
+    color: #777;
     margin: 0 0 10px 0; }
 
 .vtop {
@@ -1325,9 +1227,7 @@ table#msg-composer td {
 }
 
 .headerGrey {
-    background: #eee;
-    background: -moz-linear-gradient(-90deg,#eee,#999);
-    background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#999));
+    .gradient(top, #eee, #999);
     h1 {
         color: #000;
         margin: 0;
@@ -1352,13 +1252,6 @@ table#msg-composer td {
     color: #777;
  }
 
-.value {
-	//padding-top:1px;
-	//padding-bottom: 6px;
-    //vertical-align: top;
-    //padding: 3px 0;
-}
-
 #jobType {
 	width: 175px; }
 
@@ -1366,9 +1259,6 @@ table#msg-composer td {
 	background-color: #FFF;
 	border: 1px solid #000;
 	padding: 2.5px; }
-
-.profile-group {
-    margin-top: 0; }
 
 .overview {
     float: left;
@@ -1444,9 +1334,6 @@ table#msg-composer td {
     }
 }
 
-//.prop li {
-//    list-style: none; }
-
 .max-textbox {
 	width: 790px; }
 
@@ -1454,7 +1341,6 @@ table#msg-composer td {
     margin-top: 12px; }
 
 .zusatz-add {
-    //padding: 5px 0 5px 0;
     background: #eee;
     padding: 10px;
     margin: 3px 0 0 0;
@@ -1472,27 +1358,8 @@ table#msg-composer td {
 
 .zusatz li { list-style: none; }
 
-#profile-pic .name {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
-#profile-pic .type {
-    background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
-
-.profile-group {
-     background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
-    .profile-group:hover {
-        background: -moz-linear-gradient(-90deg,#009900,#005500) #009900; }
-
 .tabGrey {
-    margin: 0 0 10px 0; // auto 0;
-    //padding: 0 0 5px 0; //0;
-    //border-bottom: 1px solid lighten(@button-gray, 10%); // none
-    //background: @button-gray;
-    //background: -moz-linear-gradient(-90deg, @button-gray, darken(@button-gray, 10%));
-    //background: -webkit-gradient(linear, left top, left bottom, from(@button-gray), to(darken(@button-gray, 10%)));
-    //border-top-left-radius: 5px;
-    //border-top-right-radius: 5px;
-    //border: 1px solid darken(@button-gray, 10%);
-    //margin-right: 1px;
+    margin: 0 0 10px 0;
     h1 {
         margin: 0;
         padding: 0;
@@ -1503,16 +1370,15 @@ table#msg-composer td {
 
     }
     a {
-        color: darken(@button-gray, 10%);
+        color: darken(@gray, 10%);
         text-decoration: none;
         display: block;
-                padding: 0 0 5px 0;
-        //padding: 4px 5px;
-        border-bottom: 1px solid darken(@button-gray, 0%);
+        padding: 0 0 5px 0;
+        border-bottom: 1px solid darken(@gray, 0%);
         &:hover {
             color: #222;
             display: block;
-            border-bottom: 1px solid darken(@button-gray, 20%);
+            border-bottom: 1px solid darken(@gray, 20%);
         }
     }
 }
@@ -1697,8 +1563,6 @@ table#msg-composer td {
 }
 
 .livetickerevent {
-    //border-top: 1px solid #aab;
-    //border-bottom: 1px solid #eef;
     padding: 5px;
     text-align: left;
 }
@@ -1749,8 +1613,7 @@ table#msg-composer td {
     box-shadow: 0px 0px 5px #555;
     position: fixed;
     width: 100%;
-    background: -moz-linear-gradient(-90deg,#0D5BC5,#2B79E3);
-    background: -webkit-gradient(linear, left top, left bottom, from(#0D5BC5), to(#2B79E3));
+    .gradient(top, #0D5BC5, #2B79E3);
     z-index: 200;
     .title {
         color: #fff;
@@ -1762,9 +1625,7 @@ table#msg-composer td {
 }
 
 .liveHeader {
-    background: @live-header-gradient-top;
-    background: -moz-linear-gradient(-90deg, @live-header-gradient-top, @live-header-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@live-header-gradient-top), to(@live-header-gradient-bottom));
+    .gradient(top, @live-header-gradient-top, @live-header-gradient-bottom);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border: 1px solid @live-header-active-border;
