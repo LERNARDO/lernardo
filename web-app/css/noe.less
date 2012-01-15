@@ -13,6 +13,19 @@
 @brown: #808372;
 @cyan: #36808E;
 
+// mixins
+
+.gradient (@origin: top, @start: #ffffff, @stop: #000000) {
+	background-color: @start; // fallback
+	background-image: -webkit-linear-gradient(@origin, @start, @stop); // Chrome, Safari
+	background-image: -moz-linear-gradient(@origin, @start, @stop); // Firefox
+	background-image: -o-linear-gradient(@origin, @start, @stop); // Opera
+	background-image: -ms-linear-gradient(@origin, @start, @stop); // IE
+	background-image: linear-gradient(@origin, @start, @stop); // W3C
+}
+
+// selectors
+
 /* ----- GLOBAL ----- */
 
 html {
@@ -75,9 +88,7 @@ a {
 .imgbox {
    margin: 10px 0 10px 10px;
    border: 1px solid darken(@imagemenu-border, 15%);
-   background: @imagemenu-gradient-bottom;
-   background: -moz-linear-gradient(-90deg, darken(@imagemenu-gradient-top, 10%), darken(@imagemenu-gradient-bottom, 10%));
-   background: -webkit-gradient(linear, left top, left bottom, from(darken(@imagemenu-gradient-top, 10%)), to(darken(@imagemenu-gradient-bottom, 10%)));
+   .gradient(top, darken(@imagemenu-gradient-top, 10%), darken(@imagemenu-gradient-bottom, 10%));
    border-radius: 3px;
    box-shadow: 0 0 5px @imagemenu-border;
    display: block;
@@ -108,9 +119,7 @@ a {
 
 #banner-private {
     height: 100px;
-    background: @imagemenu-gradient-top;
-    background: -moz-linear-gradient(-90deg, @imagemenu-gradient-top, @imagemenu-gradient-bottom);
-    background: -webkit-gradient(linear, left top, left bottom, from(@imagemenu-gradient-top), to(@imagemenu-gradient-bottom));
+    .gradient(top, @imagemenu-gradient-top, @imagemenu-gradient-bottom);
     margin: 0 15px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -120,12 +129,9 @@ a {
 
 .profile-box {
     color: #7b7b7b;
-    //border-radius: 5px;
-    //background: #efefef;
-    //border: 1px solid #ccc;
     margin-bottom: 15px;
     .second {
-        //padding: 5px;
+        padding: 5px;
         table {
             width: 100%;
         }
@@ -140,7 +146,6 @@ a {
         }
         .area {
             padding: 5px;
-            //background: #ddd;
             color: darken(@cyan, 10%);
             font-weight: bold;
             text-transform: uppercase !important;
@@ -165,19 +170,6 @@ a {
         }
     }
 }
-
-/*.boxGray {*/
-    /*border-bottom-left-radius: 5px;*/
-    /*border-bottom-right-radius: 5px;*/
-    /*background: #efefef;*/
-    /*margin-bottom: 10px;*/
-    /*border: 1px solid #ccc;*/
-    /*color: #333;*/
-    /*.second {*/
-        /*padding: 5px;*/
-        /*border-top: none;*/
-    /*}*/
-/*}*/
 
 #profile-content {
     background-color: #efefef;
@@ -255,7 +247,6 @@ a {
         margin-bottom: 30px;
     }
     .item {
-        //margin: 0 0 5px 0;
         border-bottom: 1px solid #ccc;
         padding: 5px;
         &:hover {
@@ -272,7 +263,6 @@ a {
             color: #000;
             font-size: 13pt;
             a {
-                //color: #444;
                 &:hover {
                     color: @cyan;
                     text-decoration: none;
@@ -285,18 +275,12 @@ a {
         }
         a {
             text-decoration: none;
-            //&:hover {
-            //    text-decoration: underline;
-            //}
         }
         .info {
             font-weight: normal;
             padding: 0 0 5px 0;
             color: #7e7e7e;
             font-size: 10px;
-            //a {
-            //    border-bottom: 1px dashed #999;
-            //}
         }
         .teaser {
             padding: 5px 0 0 0;
@@ -313,27 +297,6 @@ a {
         }
     }
 }
-
-//.boxHeader {
-//    background: @box-header-gradient-top;
-//    background: -moz-linear-gradient(-90deg, @box-header-gradient-top, @box-header-gradient-bottom);
-//    background: -webkit-gradient(linear, left top, left bottom, from(@box-header-gradient-top), to(@box-header-gradient-bottom));
-//    border-top-left-radius: 5px;
-//    border-top-right-radius: 5px;
-//    border: 1px solid @box-header-active-border;
-//    h1 {
-//        color: darken(@cyan, 10%); //#fff;
-//        margin: 0 0 10px 0; // auto 0;
-//        padding: 0 0 5px 0; //0;
-//        border: 0;
-//        font-weight: normal;
-//        font-size: 20px; // 14px;
-//        border-bottom: 1px solid @cyan; // none
-//    }
-    //.second {
-    //    padding: 4px 5px;
-    //}
-//}
 
 .value-show-block {
 	background-color: #FFF;
@@ -357,8 +320,7 @@ a {
 
 .name-show {
 	border-right: 20px solid #fff;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding: 3px;
     color: #777;
 }
 	
@@ -373,26 +335,16 @@ a {
 }
 
 .tabGreen {
-    margin: 0 0 10px 0; // auto 0;
-    //background: @box-header-gradient-top;
-    //background: -moz-linear-gradient(-90deg, @box-header-gradient-top, @box-header-gradient-bottom);
-    //background: -webkit-gradient(linear, left top, left bottom, from(@box-header-gradient-top), to(@box-header-gradient-bottom));
-    //border-top-left-radius: 5px;
-    //border-top-right-radius: 5px;
-    //border: 1px solid @box-header-active-border;
-    //margin-right: 1px;
+    margin: 0 0 10px 0;
     h1 {
         color: darken(@cyan, 10%);
         margin: 0;
         padding: 0;
         border: 0;
         font-weight: normal;
-        font-size: 20px; // 14px;
+        font-size: 20px;
         padding: 0 0 5px 0;
         border-bottom: 1px solid lighten(@cyan, 0%);
         text-align: center;
-    }
-    .second {
-        //padding: 4px 5px;
     }
 }
