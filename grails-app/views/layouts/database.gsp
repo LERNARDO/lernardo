@@ -26,9 +26,6 @@
 
   <script type="text/javascript">
     // TODO: the following custom JavaScript functions have to be defined here else Chrome 10 and IE 9 are not able to find them, find out why..
-    lightentooltip = function() {
-      $("#favtooltip").effect("highlight", {}, 3000);
-    };
 
     // hides an element
     hideform = function(id) {
@@ -267,6 +264,8 @@
 
 </head>
 <body>
+
+<div id="debug"></div>
 
 <div id="loading" style="position:absolute; left: 50%; text-align:center; top:50%; visibility: hidden;">
 <img src="${resource(dir: 'images', file: 'big_spinner.gif')}" border=0></div>

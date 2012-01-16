@@ -32,9 +32,9 @@ class HelperTagLib {
   def getFavorite = {attrs ->
     out << '<span id="favbutton">'
     if (entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString()))
-      out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favbutton', after: 'lightentooltip()') {'- ' + message(code: 'favorite')}
+      out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'removeFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'- ' + message(code: 'favorite')}
     else
-      out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favbutton', after: 'lightentooltip()') {'+ ' + message(code: 'favorite')}
+      out << remoteLink(class: 'buttonGreen', controller: 'profile', action: 'addFavorite', id: attrs.entity.id.toString(), update: 'favbutton') {'+ ' + message(code: 'favorite')}
     out << '</span>'
   }
 

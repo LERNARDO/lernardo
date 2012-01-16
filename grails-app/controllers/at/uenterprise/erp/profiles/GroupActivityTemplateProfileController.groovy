@@ -149,7 +149,7 @@ class GroupActivityTemplateProfileController {
     Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.description = original.profile.description
-      ent.profile.educationalObjectiveText = original.profile.educationalObjectiveText
+      ent.profile.educationalObjectiveText = original?.profile?.educationalObjectiveText ?: ""
       ent.profile.status = original.profile.status
       ent.profile.realDuration = original.profile.realDuration
       ent.profile.fullName = original.profile.fullName + '[' + message(code: "duplicate") + ']'
@@ -177,18 +177,22 @@ class GroupActivityTemplateProfileController {
       entity.profile.addToResources(resource)
     }
 
+    entity.profile.save(flush: true)
+
     // loop through all labels of the original and create them in the copy
-    original.profile.labels.each { la ->
+    original.profile.labels.each { Label la ->
       Label label = new Label()
 
       label.name = la.name
       label.description = la.description
       label.type = "instance"
 
-      label.save(flush: true)
+      label.save(flush: true, failOnError: true)
 
       entity.profile.addToLabels(label)
     }
+
+    entity.profile.save(flush: true)
 
     // copy publications
     List publications = Publication.findAllByEntity(original)

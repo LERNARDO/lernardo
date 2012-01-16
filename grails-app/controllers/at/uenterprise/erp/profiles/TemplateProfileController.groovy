@@ -149,7 +149,7 @@ class TemplateProfileController {
       label.description = la.description
       label.type = "instance"
 
-      label.save(flush: true, failOnError: true)
+      label.save(flush: true)
 
       entity.profile.addToLabels(label)
     }
