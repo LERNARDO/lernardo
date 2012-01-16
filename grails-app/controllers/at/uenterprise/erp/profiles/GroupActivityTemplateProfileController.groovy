@@ -178,16 +178,22 @@ class GroupActivityTemplateProfileController {
     }
 
     // loop through all labels of the original and create them in the copy
-    original.profile.labels.each { la ->
+    original.profile.labels.each { Label la ->
+      log.info "copying label: " + la.name
       Label label = new Label()
 
       label.name = la.name
       label.description = la.description
       label.type = "instance"
 
-      label.save(flush: true)
+      label.save(flush: true, failOnError: true)
 
       entity.profile.addToLabels(label)
+    }
+
+    entity.profile.save(flush: true)
+    entity.profile.labels.each { Label la ->
+      log.info "new label: " + la.name
     }
 
     // copy publications
