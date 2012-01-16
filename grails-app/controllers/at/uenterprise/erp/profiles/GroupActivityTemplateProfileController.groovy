@@ -177,9 +177,10 @@ class GroupActivityTemplateProfileController {
       entity.profile.addToResources(resource)
     }
 
+    entity.profile.save(flush: true)
+
     // loop through all labels of the original and create them in the copy
     original.profile.labels.each { Label la ->
-      log.info "copying label: " + la.name
       Label label = new Label()
 
       label.name = la.name
@@ -192,9 +193,6 @@ class GroupActivityTemplateProfileController {
     }
 
     entity.profile.save(flush: true)
-    entity.profile.labels.each { Label la ->
-      log.info "new label: " + la.name
-    }
 
     // copy publications
     List publications = Publication.findAllByEntity(original)
