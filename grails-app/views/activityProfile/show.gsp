@@ -32,33 +32,27 @@
     </erp:getTemplate>
     <br/><br/>
 
-    <table style="width: 100%">
+    <table>
+      <tbody>
 
-      <tr>
-        <td class="name-show"><g:message code="name"/>:</td>
-        <td class="name-show"><g:message code="begin"/>:</td>
-        <td class="name-show"><g:message code="duration"/>:</td>
+      <tr class="prop">
+        <td class="one"><g:message code="name"/></td>
+        <td class="two"><g:link controller="activityProfile" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link></td>
       </tr>
 
-      <tr>
-        <td class="value-show"><g:link controller="activityProfile" action="show" id="${activity.id}" params="[entity: activity.id]">${activity.profile.fullName}</g:link></td>
-        <td class="value-show">
-          <g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/>
-        </td>
-        <td class="value-show">${activity.profile.duration} Minuten</td>
+      <tr class="prop">
+        <td class="one"><g:message code="begin"/></td>
+        <td class="two"><g:formatDate format="dd. MM. yyyy, HH:mm" date="${activity.profile.date}" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
       </tr>
 
-      <tr>
-        <td class="name-show"><g:message code="description"/>:</td>
+      <tr class="prop">
+        <td class="one"><g:message code="duration"/></td>
+        <td class="two">${activity.profile.duration} <g:message code="minutes"/></td>
       </tr>
-      <tr>
-        <td colspan="3" class="value-show">
-          <g:if test="${template?.profile?.description}">
-            ${template?.profile?.description?.decodeHTML()}
-          </g:if>
-          <g:else>
-            <div class="italic"><g:message code="noData"/></div>
-          </g:else> </td>
+
+      <tr class="prop">
+        <td class="one"><g:message code="description"/></td>
+        <td class="two">${template?.profile?.description?.decodeHTML() ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
       </tr>
 
     </table>

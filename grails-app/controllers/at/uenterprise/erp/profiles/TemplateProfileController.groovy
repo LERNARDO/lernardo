@@ -151,7 +151,8 @@ class TemplateProfileController {
 
       label.save(flush: true, failOnError: true)
 
-      entity.profile.addToLabels(label)
+      if (!entity.profile.addToLabels(label))
+        log.info "couldn't add label"
     }
 
     entity.profile.save(flush: true)
