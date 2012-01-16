@@ -166,7 +166,19 @@ class MsgController {
             entity: entity]
   }
 
-  def saveMany = {
+  def saveMany = {MessageCommand mc->
+    Entity entity1 = Entity.get(params.entity)
+
+    if (mc.hasErrors()) {
+      List receivers = []
+      params.receivers = params.list('receivers')
+      params.receivers.each { id ->
+        receivers.add(Entity.get(id))
+      }
+      render view: 'createMany', model:[mc: mc, entity: entity1, receivers: receivers]
+      return
+    }
+
     Entity currentEntity = entityHelperService.loggedIn
 
     params.receivers = params.list('receivers')
@@ -255,6 +267,23 @@ class MsgController {
     else {
       render(template: 'receiverresults', model: [results: results])
     }
+  }
+
+}
+
+/*
+* command object to handle validation of a notification
+*/
+class MessageCommand {
+
+  String subject
+  String content
+  String receivers
+
+  static constraints = {
+    subject   blank: false
+    content   blank: false
+    receivers nullable: false
   }
 
 }
