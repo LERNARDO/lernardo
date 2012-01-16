@@ -194,7 +194,7 @@ class ActivityProfileController {
   def save = {ActivityCommand ac ->
 
     if (ac.hasErrors()) {
-      render view:'create', model:['ac':ac, currentEntity: entityHelperService.loggedIn]
+      render view: 'create', model:['ac':ac, currentEntity: entityHelperService.loggedIn]
       return
     }
 
@@ -275,6 +275,12 @@ class ActivityProfileController {
         params.list('educators').each {
           Entity educator = Entity.get(it)
           new Link(source: educator, target: entity, type: metaDataService.ltActEducator).save()
+        }
+
+        // create links to clients
+        params.list('clients').each {
+          Entity client = Entity.get(it)
+          new Link(source: client, target: entity, type: metaDataService.ltActClient).save()
         }
 
         // create links to resources
@@ -565,7 +571,22 @@ class ActivityProfileController {
         distinct('source')
       }
     }
-    render template: 'educatorsOld', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+    render template: 'educatorsFound', model:[educators: educators, currentEntity: entityHelperService.loggedIn]
+  }
+
+  def updateClients = {
+    Entity facility = Entity.get(params.id)
+
+    // find all clients linked to this facility
+    def c = Link.createCriteria()
+    List clients = c.list {
+      eq('target', facility)
+      eq('type', metaDataService.ltGroupMemberClient)
+      projections {
+        distinct('source')
+      }
+    }
+    render template: 'clientsFound', model:[clients: clients, currentEntity: entityHelperService.loggedIn]
   }
 
   def addFacility = {
@@ -618,6 +639,7 @@ class ActivityCommand {
 
   String facility
   String educators
+  String clients
 
   Boolean monday
   Boolean tuesday
@@ -633,6 +655,7 @@ class ActivityCommand {
     periodStart   nullable: false
     facility      nullable: false
     educators     nullable: false
+    clients       nullable: false
     periodEnd     nullable: false, validator: {val, obj ->
                     return val >= obj.periodStart
                   }

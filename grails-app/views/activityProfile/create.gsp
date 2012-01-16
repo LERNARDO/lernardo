@@ -38,9 +38,8 @@
       </table>
 
       <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
-        <g:message code="activityTemplate"/>
+        <g:message code="activityTemplate"/> <g:message code="search"/>:<br/>
 
-        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField1" update="remoteTemplates" action="remoteTemplates" before="showspinner('#remoteTemplates')"/>
         <div id="remoteTemplates"></div>
 
@@ -53,9 +52,8 @@
       </div>
 
       <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px; padding-bottom: 5px">
-        <g:message code="facility"/>
+        <g:message code="facility"/> <g:message code="search"/>:<br/>
 
-        <g:message code="search"/>:<br/>
         <g:remoteField size="40" name="remoteField2" update="remoteFacilities" action="remoteFacilities" before="showspinner('#remoteFacilities')"/>
         <div id="remoteFacilities"></div>
 
@@ -67,11 +65,17 @@
         </div>
       </div>
 
-      <p><g:message code="educators"/>: (<g:message code="selectFacility"/>)</p>
+      <p><g:message code="educators"/>:</p>
       <span id="educators">
-        <g:render template="educatorsOld" model="[educators: ac?.educators, currentEntity: currentEntity]"/>
+        <p class="gray"><g:message code="selectFacility"/></p>
+        %{--<g:render template="educatorsFound" model="[educators: ac?.educators, currentEntity: currentEntity]"/>--}%
       </span>
 
+      <p><g:message code="clients"/>:</p>
+      <span id="clients">
+        <p class="gray"><g:message code="selectFacility"/></p>
+        %{--<g:render template="clientsFound" model="[clients: ac?.clients, currentEntity: currentEntity]"/>--}%
+      </span>
 
       <table width="100%" class="${hasErrors(bean: ac, field: 'weekdays', 'errors')}">
         <tr>
