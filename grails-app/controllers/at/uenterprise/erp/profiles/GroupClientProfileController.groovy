@@ -59,12 +59,14 @@ class GroupClientProfileController {
     List clients = functionService.findAllByLink(null, group, metaDataService.ltGroupMemberClient)
 
     List allColonias = Entity.findAllByType(metaDataService.etGroupColony)
+    List allFacilities = Entity.findAllByType(metaDataService.etFacility)
 
     return [group: group,
             entity: entity,
             clients: clients,
             allClients: allClients,
-            allColonias: allColonias]
+            allColonias: allColonias,
+            allFacilities: allFacilities]
 
   }
 
@@ -219,7 +221,27 @@ class GroupClientProfileController {
     else
       finalClients = allClients
 
-    render(template: 'searchresults', model: [allClients: finalClients])
+    // perform facility check
+    List finalClients2 = []
+
+    if (params.facility != "all") {
+      finalClients.each { Entity client ->
+
+        def d = Link.createCriteria()
+        def result = d.get {
+          eq("source", client)
+          eq("target", Entity.get(params.facility))
+          eq("type", metaDataService.ltGroupMemberClient)
+        }
+
+        if (result)
+          finalClients2 << client
+      }
+    }
+    else
+      finalClients2 = finalClients
+
+    render(template: 'searchresults', model: [allClients: finalClients2])
   }
 
   def createpdf = {

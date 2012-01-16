@@ -62,6 +62,10 @@
               <td><g:select name="colonia" from="${allColonias}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
             </tr>
             <tr>
+              <td class="gray"><g:message code="facility"/></td>
+              <td><g:select name="facility" from="${allFacilities}" optionKey="id" optionValue="profile" noSelection="['all':message(code:'all')]"/></td>
+            </tr>
+            <tr>
               <td class="gray"><g:message code="client.profile.school"/></td>
               <td><g:textField name="school"/></td>
             </tr>
