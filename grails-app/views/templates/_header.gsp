@@ -48,7 +48,7 @@
         function togglefavs() {
           var status = $('#favorites').css('display');
           if (status == 'none') {
-            ${remoteFunction(controller: 'profile', action: 'showFavorites', update: 'favorites')}
+            ${remoteFunction(controller: 'profile', action: 'updateFavorites', update: 'favorites')}
           }
           $('#favorites').toggle();
         }
