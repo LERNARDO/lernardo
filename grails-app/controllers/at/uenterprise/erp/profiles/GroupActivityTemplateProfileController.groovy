@@ -149,7 +149,7 @@ class GroupActivityTemplateProfileController {
     Entity entity = entityHelperService.createEntity("group", etGroupActivityTemplate) {Entity ent ->
       ent.profile = profileHelperService.createProfileFor(ent) as Profile
       ent.profile.description = original.profile.description
-      ent.profile.educationalObjectiveText = original.profile.educationalObjectiveText
+      ent.profile.educationalObjectiveText = original?.profile?.educationalObjectiveText ?: ""
       ent.profile.status = original.profile.status
       ent.profile.realDuration = original.profile.realDuration
       ent.profile.fullName = original.profile.fullName + '[' + message(code: "duplicate") + ']'
