@@ -301,6 +301,19 @@ class GroupActivityProfileController {
       // link template to instance
       new Link(source: groupActivityTemplate, target: entity, type: metaDataService.ltTemplate).save()
 
+      // loop through all labels of the original and create them in the copy
+      groupActivityTemplate.profile.labels.each { Label la ->
+        Label label = new Label()
+
+        label.name = la.name
+        label.description = la.description
+        label.type = "instance"
+
+        label.save(flush: true)
+
+        entity.profile.addToLabels(label)
+      }
+
       new Live(content: '<a href="' + createLink(controller: currentEntity.type.supertype.name +'Profile', action:'show', id: currentEntity.id) + '">' + currentEntity.profile.fullName + '</a> hat den Aktivitätsblock <a href="' + createLink(controller: 'groupActivityProfile', action: 'show', id: entity.id) + '">' + entity.profile.fullName + '</a> geplant.').save()
       flash.message = message(code: "object.created", args: [message(code: "groupActivity"), entity.profile.fullName])
       redirect action: 'show', id: entity.id, params: [entity: entity.id]
