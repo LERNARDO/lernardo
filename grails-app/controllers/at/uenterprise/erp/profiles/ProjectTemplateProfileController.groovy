@@ -8,7 +8,7 @@ import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.FunctionService
-import at.uenterprise.erp.Event
+
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
@@ -577,30 +577,6 @@ class ProjectTemplateProfileController {
       }
     }
     render template: 'projectUnitTemplates', model: [projectTemplate: group, projectUnitTemplates: templates, entity: entityHelperService.loggedIn, allGroupActivityTemplates: allGroupActivityTemplates]
-  }
-
-  /*
-   * adds a resource
-   */
-  def addResource = {
-    Entity group = Entity.get(params.id)
-
-    Resource resource = new Resource(params)
-    group.profile.addToResources(resource)
-
-    render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
-  }
-
-  /*
-   * removes a resource
-   */
-  def removeResource = {
-    Entity group = Entity.get(params.id)
-
-    Resource resource = Resource.get(params.resource)
-    group.profile.removeFromResources(resource)
-
-    render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
   }
 
   def refreshtemplateresources = {

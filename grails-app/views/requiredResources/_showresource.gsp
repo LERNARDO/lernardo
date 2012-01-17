@@ -1,0 +1,5 @@
+<ul>
+  <li><span class="bold"><g:message code="name"/>:</span> ${resource.name} <erp:accessCheck entity="${entity}" types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><g:remoteLink controller="resourceProfile" action="editResource" update="resource${i}" id="${template.id}" params="[resource: resource.id, i: i]"><img src="${g.resource(dir:'images/icons', file:'icon_edit.png')}" alt="${message(code: 'edit')}" align="top"/></g:remoteLink><g:remoteLink controller="resourceProfile" action="removeResource" update="resources2" id="${template.id}" params="[resource: resource.id]" before="if(!confirm('${message(code:'delete.warn')}')) return false"><img src="${g.resource(dir:'images/icons', file:'icon_remove.png')}" alt="${message(code: 'remove')}" align="top"/></g:remoteLink></erp:accessCheck></li>
+  <li><g:message code="description"/>: ${resource.description ?: '<span class="gray">' + message(code: 'resource.noDescription') + '</span>'}</li>
+  <li><g:message code="resource.profile.amount"/>: ${resource.amount}</li>
+</ul>

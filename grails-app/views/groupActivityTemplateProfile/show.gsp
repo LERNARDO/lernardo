@@ -146,7 +146,7 @@
       <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${group}" checkstatus="${group}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
-        <g:formRemote name="formRemote" url="[controller:'groupActivityTemplateProfile', action:'addResource', id: group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
+        <g:formRemote name="formRemote" url="[controller:'resourceProfile', action:'addResource', id: group.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
             <tr>
               <td><g:message code="name"/>:</td>
@@ -168,7 +168,7 @@
 
       </div>
       <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[group: group, entity: currentEntity]"/>
+        <g:render template="/requiredResources/resources" model="[template: group, entity: currentEntity]"/>
       </div>
       <g:if test="${templateResources}">
         <p><span class="bold"><g:message code="fromTemplates"/>:</span></p>

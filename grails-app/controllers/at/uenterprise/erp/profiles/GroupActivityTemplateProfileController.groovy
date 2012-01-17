@@ -10,7 +10,7 @@ import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
 import at.uenterprise.erp.Method
-import at.uenterprise.erp.Event
+
 import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.openfactory.ep.AssetService
@@ -559,30 +559,6 @@ class GroupActivityTemplateProfileController {
       templates.add(Entity.get(it.toInteger()))
     }
     render template: 'templates2', model: [group: group, templates: templates, entity: entityHelperService.loggedIn]
-  }
-
-  /*
-   * adds a resource
-   */
-  def addResource = {
-    Entity group = Entity.get(params.id)
-
-    Resource resource = new Resource(params)
-    group.profile.addToResources(resource)
-
-    render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
-  }
-
-  /*
-   * removes a resource
-   */
-  def removeResource = {
-    Entity group = Entity.get(params.id)
-
-    Resource resource = Resource.get(params.resource)
-    group.profile.removeFromResources(resource)
-
-    render template: 'resources', model: [group: group, entity: entityHelperService.loggedIn]
   }
 
   def updateselect2 = {

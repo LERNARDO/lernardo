@@ -9,6 +9,7 @@ import at.openfactory.ep.Profile
 import at.openfactory.ep.Link
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.Event
+import at.uenterprise.erp.Resource
 
 class ResourceProfileController {
   MetaDataService metaDataService
@@ -243,5 +244,48 @@ class ResourceProfileController {
     def breaking = functionService.breakEntities(params.responsible, params.id, metaDataService.ltResponsible)
     render template: 'responsible', model: [resresponsible: breaking.results, resource: breaking.target, entity: entityHelperService.loggedIn]
   }
+
+  // Required resources below
+
+  /*
+  * adds a resource
+  */
+  def addResource = {
+    Entity template = Entity.get(params.id)
+
+    Resource resource = new Resource(params)
+    template.profile.addToResources(resource)
+
+    render template: '/requiredResources/resources', model: [template: template, entity: entityHelperService.loggedIn]
+  }
+
+  /*
+   * removes a resource
+   */
+  def removeResource = {
+    Entity template = Entity.get(params.id)
+
+    Resource resource = Resource.get(params.resource)
+    template.profile.removeFromResources(resource)
+
+    render template: '/requiredResources/resources', model: [template: template, entity: entityHelperService.loggedIn]
+  }
+
+  def editResource = {
+    Entity template = Entity.get(params.id)
+
+    Resource resource = Resource.get(params.resource)
+    render template: '/requiredResources/editresource', model: [template: template, resource: resource, i: params.i, entity: entityHelperService.loggedIn]
+  }
+
+  def updateResource = {
+    Entity template = Entity.get(params.id)
+
+    Resource resource = Resource.get(params.resource)
+    resource.properties = params
+    resource.save()
+    render template: '/requiredResources/showresource', model: [template: template, resource: resource, i: params.i, entity: entityHelperService.loggedIn]
+  }
+
 
 }

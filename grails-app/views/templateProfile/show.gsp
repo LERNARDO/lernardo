@@ -89,7 +89,7 @@
       <h5><g:message code="resources.required"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true"><a onclick="clearElements(['#resourceName','#resourceDescription']); toggle('#resources'); return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="resources" style="display:none">
 
-        <g:formRemote name="formRemote" url="[controller:'templateProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
+        <g:formRemote name="formRemote" url="[controller:'resourceProfile', action:'addResource', id: template.id]" update="resources2" before="showspinner('#resources2');" after="toggle('#resources');">
           <table>
             <tr>
               <td><g:message code="name"/>:</td>
@@ -111,7 +111,7 @@
 
       </div>
       <div class="zusatz-show" id="resources2">
-        <g:render template="resources" model="[template: template, entity: currentEntity]"/>
+        <g:render template="/requiredResources/resources" model="[template: template, entity: currentEntity]"/>
       </div>
     </div>
 

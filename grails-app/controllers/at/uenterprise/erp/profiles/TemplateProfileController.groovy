@@ -226,30 +226,6 @@ class TemplateProfileController {
   }
 
   /*
-   * adds a resource
-   */
-  def addResource = {
-    Entity template = Entity.get(params.id)
-
-    Resource resource = new Resource(params)
-    template.profile.addToResources(resource)
-
-    render template: 'resources', model: [template: template, entity: entityHelperService.loggedIn]
-  }
-
-  /*
-   * removes a resource
-   */
-  def removeResource = {
-    Entity template = Entity.get(params.id)
-
-    Resource resource = Resource.get(params.resource)
-    template.profile.removeFromResources(resource)
-
-    render template: 'resources', model: [template: template, entity: entityHelperService.loggedIn]
-  }
-
-  /*
    * adds a method to the template by creating a new method instance and copying the properties from the given "method template"
    */
   def addMethod = {
