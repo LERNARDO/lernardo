@@ -23,7 +23,7 @@ class LabelController {
     def labelInstance = new Label(params)
     labelInstance.type = "template"
     if (labelInstance.save(flush: true)) {
-      Label.labels.add(labelInstance.id.toString())
+      Setup.list()[0].addToLabels(labelInstance.id.toString())
       flash.message = message(code: "object.created", args: [message(code: "label"), labelInstance.name])
       redirect action: "show", id: labelInstance.id
     }
@@ -88,7 +88,7 @@ class LabelController {
     if (labelInstance) {
       try {
         labelInstance.delete(flush: true)
-        Label.labels.remove(labelInstance.id.toString())
+        Setup.list()[0].removeFromLabels(labelInstance.id.toString())
         flash.message = message(code: "object.deleted", args: [message(code: "label"), labelInstance.name])
         redirect action: "list"
       }
@@ -105,9 +105,9 @@ class LabelController {
 
   def moveUp = {
     String label = params.id
-    if (Label.labels.indexOf(label) > 0) {
-      int i = Label.labels.indexOf(label)
-      use(Collections){ Label.labels.swap(i, i - 1) }
+    if (Setup.list()[0].labels.indexOf(label) > 0) {
+      int i = Setup.list()[0].labels.indexOf(label)
+      use(Collections){ Setup.list()[0].labels.swap(i, i - 1) }
     }
     redirect action: 'list'
   }
@@ -115,9 +115,9 @@ class LabelController {
   def moveDown = {
     String label = params.id
 
-    if (Label.labels.indexOf(label) < (Label.labels.size() - 1)) {
-      int i = Label.labels.indexOf(label)
-      use(Collections){ Label.labels.swap(i, i + 1) }
+    if (Setup.list()[0].labels.indexOf(label) < (Setup.list()[0].labels.size() - 1)) {
+      int i = Setup.list()[0].labels.indexOf(label)
+      use(Collections){ Setup.list()[0].labels.swap(i, i + 1) }
     }
     redirect action: 'list'
   }
@@ -125,9 +125,9 @@ class LabelController {
   def sortAlphabetical = {
     List labels = Label.findAllByType('template')
     labels = labels.sort() {it.name}
-    Label.labels.clear()
+    Setup.list()[0].labels.clear()
     labels.each {
-      Label.labels.add(it.id.toString())
+      Setup.list()[0].addToLabels(it.id.toString())
     }
     redirect action: 'list'
   }

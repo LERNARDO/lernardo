@@ -1062,7 +1062,7 @@ class BootStrap {
 
       for ( i in 1..grailsApplication.config.dummies ) {
         Label label = new Label(name: "label" + i, description: "description" + i, type: "template").save(failOnError: true)
-        Label.labels.add(label.id.toString())
+        Setup.list()[0].addToLabels(label.id.toString())
       }
     }
 

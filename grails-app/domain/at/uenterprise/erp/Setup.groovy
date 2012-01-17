@@ -8,7 +8,7 @@ package at.uenterprise.erp
  */
 class Setup {
 
-  List bloodTypes, nationalities, languages, schoolLevels, workDescriptions, educations, employmentStatus, responsibilities, familyStatus, maritalStatus, partnerServices, familyProblems
+  List bloodTypes, nationalities, languages, schoolLevels, workDescriptions, educations, employmentStatus, responsibilities, familyStatus, maritalStatus, partnerServices, familyProblems, labels
   static hasMany = [nationalities: String,
                     languages: String,
                     schoolLevels: String,
@@ -20,7 +20,8 @@ class Setup {
                     familyStatus: String,
                     maritalStatus: String,
                     partnerServices: String,
-                    familyProblems: String]
+                    familyProblems: String,
+                    labels: String]
 
   static constraints = {
 

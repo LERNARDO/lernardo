@@ -32,7 +32,7 @@ class FunctionService {
    */
   List getLabels() {
     List labels = []
-    Label.labels.each {
+    Setup.list()[0].labels.each {
       labels.add(Label.get(it.toInteger()))
     }
     return labels
