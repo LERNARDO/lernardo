@@ -127,7 +127,9 @@ class OverviewController {
   }
   
   def searchMe = {
-  
+
+      List searchStrings = params.name.toString().split(" ")
+
       def c = Entity.createCriteria()
       def results = c.list {
         or {
@@ -165,7 +167,12 @@ class OverviewController {
         or {
           ilike('name', "%" + params.name + "%")
           profile {
-            ilike('fullName', "%" + params.name + "%")
+            //ilike('fullName', "%" + params.name + "%")
+            and {
+              searchStrings.each {String s ->
+                ilike('fullName', "%" + s + "%")
+              }
+            }
           }
         }
         maxResults(30)
