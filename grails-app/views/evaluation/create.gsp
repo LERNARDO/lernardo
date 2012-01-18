@@ -18,7 +18,7 @@
       </div>
     </g:hasErrors>
 
-    <div style="background: #fefefe; border: 1px solid #ccc; border-radius: 5px; padding: 10px;">
+    <div style="background: #eee; padding: 10px; margin: 0 0 10px 0;">
       <div id="select-box">
         <p><g:message code="evaluation.linkToActivity"/></p>
         <g:formRemote name="formRemote" update="results" url="[controller:'evaluation', action:'searchMe']" before="showspinner('#results')">
@@ -28,28 +28,36 @@
       </div>
 
       <div id="results"></div>
-      <div id="selected" style="padding-top: 5px;"></div>
+      %{--<div id="selected" style="padding-top: 5px;"></div>--}%
     </div>
 
     <g:form action="save" params="[entity:entity.id]">
 
-      <div style="visibility: hidden">
-        <g:textField name="linkedentity" id="hiddentextfield1" value="0"/>
-      </div>
+      <p class="gray">
+        <g:message code="linkedTo"/><br/>
+        <g:if test="${target}">
+          <g:select name="linkedentity" id="hiddenselect" from="[target]" optionKey="id" optionValue="profile" value="${target?.id}"/>
+        </g:if>
+        <g:else>
+          <g:select name="linkedentity" id="hiddenselect" />
+        </g:else>
+      </p>
 
-      <p class="strong"><g:message code="description"/></p>
-      <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
-        <ckeditor:editor name="description" height="200px" toolbar="Basic">
-          ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
-        </ckeditor:editor>
-      </span>
+      <p class="gray"><g:message code="description"/><br/>
+        <span class="${hasErrors(bean: evaluationInstance, field: 'description', 'errors')}">
+          <ckeditor:editor name="description" height="200px" toolbar="Basic">
+            ${fieldValue(bean:evaluationInstance,field:'description').decodeHTML()}
+          </ckeditor:editor>
+        </span>
+      </p>
 
-      <p class="strong"><g:message code="action"/></p>
-      <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
-        <ckeditor:editor name="method" height="200px" toolbar="Basic">
-          ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
-        </ckeditor:editor>
-      </span>
+      <p class="gray"><g:message code="action"/><br/>
+        <span class="${hasErrors(bean: evaluationInstance, field: 'method', 'errors')}">
+          <ckeditor:editor name="method" height="200px" toolbar="Basic">
+            ${fieldValue(bean:evaluationInstance,field:'method').decodeHTML()}
+          </ckeditor:editor>
+        </span>
+      </p>
 
       <div class="buttons">
         <div class="button"><g:submitButton name="submitButton" class="buttonGreen" value="${message(code:'save')}"/></div>

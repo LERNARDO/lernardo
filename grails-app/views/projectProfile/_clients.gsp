@@ -8,7 +8,8 @@
           <g:render template="/app/localtags" model="[entity: client, target: project, tags: tags, update: 'tagclient' + i, currentEntity: entity]"/>
         </erp:getLocalTags>
       </span>
-    </li>
+      %{--<span style="font-size: 10px">| <g:link controller="evaluation" action="create" id="${client.id}" params="[target: project.id]"><g:message code="evaluation.create"/></g:link></span>
+    --}%</li>
   </g:each>
   </ul>
 </g:if>

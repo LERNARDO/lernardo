@@ -9,6 +9,7 @@
           <g:render template="/app/localtags" model="[entity: client, target: group, tags: tags, update: 'tagclient' + i, currentEntity: entity]"/>
         </erp:getLocalTags>
       </span>
+      <span style="font-size: 10px">| <g:link controller="evaluation" action="create" id="${client.id}" params="[target: group.id]"><g:message code="evaluation.create"/></g:link></span>
 
       %{-- TODO: global tag example, unused currently but kept here for reference --}%
       %{--<span id="tagclient${i}">

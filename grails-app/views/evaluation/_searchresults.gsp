@@ -7,10 +7,26 @@
 
   </script>
 
+  <script type="text/javascript">
+
+    function checkIt(id, name) {
+      var select = document.getElementById("hiddenselect");
+
+      select.options.length = 0;
+
+      var optn = document.createElement("OPTION");
+      optn.text = name;
+      optn.value = id;
+      optn.selected = true;
+      select.options.add(optn);
+    }
+
+  </script>
+
 <g:if test="${results}">
   <div class="remoteresults">
     <g:each in="${results}" var="entity">
-      <g:remoteLink url="[controller:'evaluation', action:'addResult', id: entity.id]" update="selected" before="kontrolle1('${entity.id}');">
+      <g:remoteLink url="[controller:'evaluation', action:'addResult', id: entity.id]" update="selected" before="checkIt('${entity.id}','${entity.profile.fullName}');">
       <div class="remoteresult">
         <table>
           <tr>

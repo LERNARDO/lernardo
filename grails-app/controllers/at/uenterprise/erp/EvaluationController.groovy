@@ -310,9 +310,11 @@ class EvaluationController {
     Evaluation evaluationInstance = new Evaluation()
     evaluationInstance.properties = params
     Entity entity = Entity.get(params.id)
+    Entity target = Entity.get(params.target)
 
     return [evaluationInstance: evaluationInstance,
-            entity: entity]
+            entity: entity,
+            target: target]
   }
 
   def save = {
