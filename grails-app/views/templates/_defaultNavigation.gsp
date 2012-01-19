@@ -10,13 +10,13 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${group.id}">
+        <g:form id="${entity.id}">
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
-          <erp:getFavorite entity="${group}"/>
+          <erp:getFavorite entity="${entity}"/>
         </g:form>
         <div class="spacer"></div>
       </div>

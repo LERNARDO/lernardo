@@ -10,14 +10,14 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${client?.id}">
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${client}" facilities="${facilities}">
+        <g:form id="${entity?.id}">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${entity}" facilities="${facilities}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           </erp:accessCheck>
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: client.id)}" /></div>
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
-          <erp:getFavorite entity="${client}"/>
+          <erp:getFavorite entity="${entity}"/>
           <erp:notMe entity="${entity}">
             <g:if test="${entity.user.enabled}">
               <g:link class="buttonGreen" controller="msg" action="create" id="${entity.id}" params="[entity:entity.id]"><g:message code="privat.msgCreate"/></g:link>

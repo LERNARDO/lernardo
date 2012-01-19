@@ -10,21 +10,21 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${projectTemplate.id}" params="[entity: projectTemplate?.id]">
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${projectTemplate}" checkstatus="${projectTemplate}" checkoperator="true">
+        <g:form id="${entity.id}" params="[entity: entity?.id]">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${entity}" checkstatus="${entity}" checkoperator="true">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           </erp:accessCheck>
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${projectTemplate}">
-            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: projectTemplate.id)}" /></div>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
-            <g:if test="${projectTemplate.profile.status == 'done'}">
-              <g:link class="buttonGreen" controller="projectProfile" action="create" id="${projectTemplate.id}" params="[entity: projectTemplate?.id]"><g:message code="project.plan"/></g:link>
+            <g:if test="${entity.profile.status == 'done'}">
+              <g:link class="buttonGreen" controller="projectProfile" action="create" id="${entity.id}" params="[entity: entity?.id]"><g:message code="project.plan"/></g:link>
             </g:if>
             <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'projectTemplate.duplicate')}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-          <erp:getFavorite entity="${projectTemplate}"/>
+          <erp:getFavorite entity="${entity}"/>
         </g:form>
         <div class="spacer"></div>
       </div>

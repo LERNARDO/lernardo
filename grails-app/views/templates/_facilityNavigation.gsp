@@ -10,15 +10,15 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${facility.id}" style="margin-bottom: 0;">
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[facility]">
+        <g:form id="${entity.id}" style="margin-bottom: 0;">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="[entity]">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           </erp:accessCheck>
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
-            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: facility.id)}" /></div>
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'back')}" /></div>
-          <erp:getFavorite entity="${facility}"/>
+          <erp:getFavorite entity="${entity}"/>
         </g:form>
         <div class="spacer"></div>
       </div>
