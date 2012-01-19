@@ -17,7 +17,7 @@
     <div class="tabnav">
       <ul>
         <li><g:link controller="templateProfile" action="show" id="${template.id}" params="[entity: template.id]"><g:message code="profile"/></g:link></li>
-        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
           <li><g:remoteLink style="border-right: none" update="content" controller="comment" action="show" id="${entity.id}"><g:message code="comments"/> (${template.profile.comments.size()}) </g:remoteLink></li>
         </erp:accessCheck>

@@ -15,7 +15,7 @@
     %{-- TODO: uncomment when implemented --}%
     %{--<ub:meOrAdmin entityName="${entity}"><td><erp:showAccessLevel accesslevel="${pub.accesslevel}"/></td></ub:meOrAdmin>--}%
     %{--<td><erp:getFileType type="${pub.asset.storage.contentType}"/></td>--}%
-    <td><g:link controller="${pub.entity.type.supertype.name + 'Profile'}" action="show" id="${pub.entity.id}">${pub.entity.profile.fullName}</g:link></td>
+    <td><g:link controller="${pub.entity.type.supertype.name + 'Profile'}" action="show" id="${pub.entity.id}" params="[entity: pub.entity.id]">${pub.entity.profile.fullName}</g:link></td>
     <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
   </tr>
 </g:each>

@@ -18,10 +18,13 @@
     <td><g:formatDate date="${pub.dateCreated}"  format="dd.MM.yyyy - HH:mm" timeZone="${TimeZone.getTimeZone(grailsApplication.config.timeZone.toString())}"/></td>
     <td class="action">
       <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${pub}">
-        <g:form id="${pub.id}">
-          <g:actionSubmit action="edit" value="${message(code: 'edit')}" />
-          <g:actionSubmit action="delete" value="${message(code: 'delete')}" onclick="return confirm('Sind Sie sicher?');" />
-        </g:form>
+        <g:formRemote name="formRemote" url="[controller:'publication', action:'edit', id: pub.id]" update="content" before="showspinner('#content');">
+          <div class="buttons" style="margin: 0;">
+            <div class="button"><g:submitButton class="buttonGray" name="submitButton" action="edit" value="${message(code: 'edit')}" /></div>
+            <div class="button"><g:remoteLink class="buttonGray" update="content" controller="publication" action="delete" method="POST" id="${pub.id}" before="if(!confirm('${message(code:'delete.warn')}')) return false"><g:message code="delete"/></g:remoteLink></div>
+          %{--<g:actionSubmit action="delete" value="${message(code: 'delete')}" onclick="return confirm('Sind Sie sicher?');" />--}%
+          </div>
+        </g:formRemote>
       </erp:accessCheck>
     </td>
   </tr>
