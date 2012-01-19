@@ -86,7 +86,7 @@
             </td>
             <td>
               <g:message code="showTips"/>
-              <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
+              <g:checkBox name="showTips" value="${operator?.profile?.showTips}" style="vertical-align: bottom"/>
             </td>
           </tr>
         </table>

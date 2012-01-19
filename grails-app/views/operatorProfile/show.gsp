@@ -11,13 +11,13 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/operatorNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/operatorNavigation" model="[entity: operator]"/>
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-        <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
+        <li><g:link controller="publication" action="list" id="${operator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${operator}"/></g:link></li>
+        <li><g:link controller="msg" action="inbox" id="${operator.id}"><g:message code="privat.posts"/></g:link></li>
+        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${operator.id}" params="[entity:operator.id]"><g:message code="appointments"/></g:link></li>
       </ul>
     </div>
 
@@ -28,7 +28,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two"><g:link action="show" id="${operator.id}" params="[entity:operator.id]">${operator.profile.fullName}</g:link></td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">

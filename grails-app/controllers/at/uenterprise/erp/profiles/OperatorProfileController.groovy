@@ -49,7 +49,6 @@ class OperatorProfileController {
 
   def show = {
     Entity operator = Entity.get(params.id)
-    Entity entity = params.entity ? operator : entityHelperService.loggedIn
 
     if (!operator) {
       flash.message = message(code: "object.notFound", args: [message(code: "operator")])
@@ -59,9 +58,9 @@ class OperatorProfileController {
 
     def allFacilities = Entity.findAllByType(metaDataService.etFacility)
     // find all facilities of this operator
-    List facilities = functionService.findAllByLink(null, entity, metaDataService.ltOperation)
+    List facilities = functionService.findAllByLink(null, operator, metaDataService.ltOperation)
 
-    return [operator: operator, entity: entity, facilities: facilities, allFacilities: allFacilities]
+    return [operator: operator, facilities: facilities, allFacilities: allFacilities]
 
   }
 

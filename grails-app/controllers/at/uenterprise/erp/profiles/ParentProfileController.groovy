@@ -50,7 +50,6 @@ class ParentProfileController {
 
   def show = {
     Entity parent = Entity.get(params.id)
-    Entity entity = params.entity ? parent : entityHelperService.loggedIn
 
     if (!parent) {
       flash.message = message(code: "object.notFound", args: [message(code: "parent")])
@@ -61,7 +60,7 @@ class ParentProfileController {
     // find family of the parent if there is one
     Entity family = functionService.findByLink(parent, null, metaDataService.ltGroupMemberParent)
 
-    return [parent: parent, entity: entity, family: family]
+    return [parent: parent, family: family]
 
   }
 

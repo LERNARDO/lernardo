@@ -285,7 +285,7 @@
     <div id="subheader">
       <ul>
         <li><g:link controller="event" action="indexNew" onclick="showBigSpinner()"><g:message code="start"/></g:link></li>
-        <li><g:link class="activered" controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
+        <li><g:link class="activered" controller="educatorProfile" action="list" onclick="showBigSpinner()"><g:message code="database"/></g:link></li>
         <li><g:link controller="logBook" action="entries" id="${entity.id}" onclick="showBigSpinner()"><g:message code="organisation"/></g:link></li>
         <li><g:link controller="templateProfile" action="index" onclick="showBigSpinner()"><g:message code="planning"/></g:link></li>
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
@@ -298,48 +298,29 @@
     <div class="yui3-g" id="grid">
 
       <div class="yui3-u" id="left">
-        %{--<div class="boxHeader">
-          <div class="second">
-            <h1>${entity.profile.fullName} <g:if test="${entity.user}"><g:if test="${entity.user.enabled}"><img class="tooltip" data-tooltip="${message(code: 'isActive')}" src="${resource(dir: 'images/icons', file: 'icon_enabled.png')}" alt="aktiv" style="top: 1px; position: relative"/></g:if><g:else><img class="tooltip" data-tooltip="${message(code: 'isInactive')}" src="${resource(dir: 'images/icons', file: 'icon_disabled.png')}" alt="inaktiv"/></g:else></g:if></h1>
-          </div>
-        </div>
-
-        <div class="profile-box" style="border-top-left-radius: 0; border-top-right-radius: 0">
-          <div class="second">
-
-            <g:if test="${entity.type.supertype.name == 'user' || entity.type.supertype.name == 'child' || entity.type.supertype.name == 'client' || entity.type.supertype.name == 'educator' || entity.type.supertype.name == 'parent' || entity.type.supertype.name == 'partner' || entity.type.supertype.name == 'pate' || entity.type.supertype.name == 'operator' || entity.type.supertype.name == 'facility' || entity.type.supertype.name == 'groupActivity' || entity.type.supertype.name == 'project'}">
-              <g:render template="/templates/${entity.type.supertype.name +'Navigation'}" model="[entity: entity]"/>
-            </g:if>
-            <g:else>
-              <g:render template="/templates/defaultNavigation" model="[entity: entity]"/>
-            </g:else>
-
-          </div>
-        </div>--}%
 
         <div class="profile-box">
           <div class="second">
 
             <div class="header"><g:message code="database"/></div>
 
-            %{--<div class="area"><g:message code="database"/></div>--}%
             <ul>
               <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-                <li class="icon-operator"><g:link controller="operatorProfile" action="list" params="[name:entity.name]"><g:message code="operator"/></g:link></li>
+                <li class="icon-operator"><g:link controller="operatorProfile" action="list"><g:message code="operator"/></g:link></li>
               </erp:accessCheck>
-              <li class="icon-educators"><g:link controller="educatorProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
-              <li class="icon-person"><g:link controller="clientProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="clients"/></g:link></li>
-              <li class="icon-child"><g:link controller="childProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="children"/></g:link></li>
-              <li class="icon-parents"><g:link controller="parentProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="parents"/></g:link></li>
-              <li class="icon-pate"><g:link controller="pateProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="paten"/></g:link></li>
-              <li class="icon-partner"><g:link controller="partnerProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="partners"/></g:link></li>
-              <li class="icon-group"><g:link controller="groupFamilyProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupFamilies"/></g:link></li>
-              <li class="icon-colony"><g:link controller="groupColonyProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupColonies"/></g:link></li>
-              <li class="icon-facility"><g:link controller="facilityProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="facilities"/></g:link></li>
-              <li class="icon-group"><g:link controller="groupClientProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupClients"/></g:link></li>
-              <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="index" params="[name:entity.name]" onclick="showBigSpinner()"><g:message code="groupPartners"/></g:link></li>
+              <li class="icon-educators"><g:link controller="educatorProfile" action="list" onclick="showBigSpinner()"><g:message code="educators"/></g:link></li>
+              <li class="icon-person"><g:link controller="clientProfile" action="list" onclick="showBigSpinner()"><g:message code="clients"/></g:link></li>
+              <li class="icon-child"><g:link controller="childProfile" action="list" onclick="showBigSpinner()"><g:message code="children"/></g:link></li>
+              <li class="icon-parents"><g:link controller="parentProfile" action="list" onclick="showBigSpinner()"><g:message code="parents"/></g:link></li>
+              <li class="icon-pate"><g:link controller="pateProfile" action="list" onclick="showBigSpinner()"><g:message code="paten"/></g:link></li>
+              <li class="icon-partner"><g:link controller="partnerProfile" action="list" onclick="showBigSpinner()"><g:message code="partners"/></g:link></li>
+              <li class="icon-group"><g:link controller="groupFamilyProfile" action="list" onclick="showBigSpinner()"><g:message code="groupFamilies"/></g:link></li>
+              <li class="icon-colony"><g:link controller="groupColonyProfile" action="list" onclick="showBigSpinner()"><g:message code="groupColonies"/></g:link></li>
+              <li class="icon-facility"><g:link controller="facilityProfile" action="list" onclick="showBigSpinner()"><g:message code="facilities"/></g:link></li>
+              <li class="icon-group"><g:link controller="groupClientProfile" action="list" onclick="showBigSpinner()"><g:message code="groupClients"/></g:link></li>
+              <li class="icon-grouppartner"><g:link controller="groupPartnerProfile" action="list" onclick="showBigSpinner()"><g:message code="groupPartners"/></g:link></li>
               <erp:accessCheck entity="${currentEntity}" roles="['ROLE_ADMIN']">
-                <li class="icon-admin"><g:link controller="userProfile" action="list" params="[name:entity.name]"><g:message code="user"/></g:link></li>
+                <li class="icon-admin"><g:link controller="userProfile" action="list"><g:message code="user"/></g:link></li>
               </erp:accessCheck>
             </ul>
 

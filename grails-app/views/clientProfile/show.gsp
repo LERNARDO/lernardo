@@ -13,14 +13,14 @@
 <div class="boxGray">
 <div class="second">
 
-<g:render template="/templates/clientNavigation" model="[entity: entity]"/>
+<g:render template="/templates/clientNavigation" model="[entity: client]"/>
 
 <div class="tabnav">
   <ul>
-    <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-    <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity: entity.id]"><g:message code="appointments"/></g:link></li>
-    <li><g:link style="border-right: none" controller="evaluation" action="list" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+    <li><g:link controller="publication" action="list" id="${client.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${client}"/></g:link></li>
+    <li><g:link controller="msg" action="inbox" id="${client.id}"><g:message code="privat.posts"/></g:link></li>
+    <li><g:link controller="appointmentProfile" action="index" id="${client.id}" params="[entity: client.id]"><g:message code="appointments"/></g:link></li>
+    <li><g:link style="border-right: none" controller="evaluation" action="list" id="${client.id}" params="[entity: client.id]"><g:message code="privat.evaluation"/></g:link></li>
   </ul>
 </div>
 
@@ -42,7 +42,7 @@
 
     <tr class="prop">
       <td class="one"><g:message code="lastName"/>:</td>
-      <td class="two"><g:link action="show" id="${client.id}" params="[entity: client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show"
+      <td class="two">${fieldValue(bean: client, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show"
                                                                                                                                                                id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
     </tr>
 

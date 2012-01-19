@@ -13,19 +13,15 @@
 <div class="boxGray">
 <div class="second">
 
-<g:render template="/templates/educatorNavigation" model="[entity: entity]"/>
+<g:render template="/templates/educatorNavigation" model="[entity: educator]"/>
 
 <div class="tabnav">
   <ul>
-    <li><g:link controller="publication" action="list" id="${entity.id}"><g:message
-        code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-    <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity: entity.id]"><g:message
-        code="appointments"/></g:link></li>
-    <li><g:link controller="evaluation" action="myevaluations" id="${entity.id}" params="[entity: entity.id]"><g:message
-        code="privat.evaluation"/></g:link></li>
-    <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${entity.id}"
-                params="[entity: entity.id]"><g:message code="privat.workday"/></g:link></li>
+    <li><g:link controller="publication" action="list" id="${educator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${educator}"/></g:link></li>
+    <li><g:link controller="msg" action="inbox" id="${educator.id}"><g:message code="privat.posts"/></g:link></li>
+    <li><g:link controller="appointmentProfile" action="index" id="${educator.id}" params="[entity: educator.id]"><g:message code="appointments"/></g:link></li>
+    <li><g:link controller="evaluation" action="myevaluations" id="${educator.id}" params="[entity: educator.id]"><g:message code="privat.evaluation"/></g:link></li>
+    <li><g:link style="border-right: none" controller="workdayUnit" action="index" id="${educator.id}" params="[entity: educator.id]"><g:message code="privat.workday"/></g:link></li>
   </ul>
 </div>
 
@@ -53,8 +49,7 @@
 
     <tr class="prop">
       <td class="one"><g:message code="lastName"/>:</td>
-      <td class="two"><g:link action="show" id="${educator.id}"
-                              params="[entity: educator.id]">${educator.profile.lastName}</g:link></td>
+      <td class="two">${fieldValue(bean: educator, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
     </tr>
 
     <tr class="prop">
@@ -270,14 +265,11 @@
 </div>
 
 <div class="zusatz">
-  <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck
-      entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#dates');
-    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}"
-                                alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+  <h5><g:message code="educator.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#dates');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
 
   <div class="zusatz-add" id="dates" style="display:none">
-    <g:formRemote name="formRemote" url="[controller: 'educatorProfile', action: 'addDate', id: educator.id]"
-                  update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
+    <g:formRemote name="formRemote" url="[controller: 'educatorProfile', action: 'addDate', id: educator.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
       <g:textField name="date" size="12" class="datepicker" value=""/>
       <g:submitButton name="button" value="${message(code: 'add')}"/>
     </g:formRemote>

@@ -13,13 +13,13 @@
   <div class="second">
     <div>
 
-      <g:render template="/templates/pateNavigation" model="[entity: entity]"/>
+      <g:render template="/templates/pateNavigation" model="[entity: pate]"/>
 
       <div class="tabnav">
         <ul>
-          <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-          <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-          <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
+          <li><g:link controller="publication" action="list" id="${pate.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${pate}"/></g:link></li>
+          <li><g:link controller="msg" action="inbox" id="${pate.id}"><g:message code="privat.posts"/></g:link></li>
+          <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${pate.id}" params="[entity:pate.id]"><g:message code="appointments"/></g:link></li>
         </ul>
       </div>
 
@@ -34,7 +34,7 @@
 
         <tr class="prop">
           <td class="one"><g:message code="lastName"/>:</td>
-          <td class="two"><g:link action="show" id="${pate.id}" params="[entity:pate.id]">${pate.profile.lastName}</g:link></td>
+          <td class="two">${fieldValue(bean: pate, field: 'profile.lastName') ?: '<span class="italic">'+message(code:'noData')+'</span>'}</td>
         </tr>
 
         <tr class="prop">

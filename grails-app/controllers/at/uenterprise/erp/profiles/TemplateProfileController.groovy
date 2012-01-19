@@ -88,11 +88,9 @@ class TemplateProfileController {
     Entity template = Entity.get(params.id)
     Entity entity = params.entity ? template : entityHelperService.loggedIn
 
-    def commentList = functionService.findAllByLink(null, template, metaDataService.ltComment)
     def allMethods = Method.findAllByType('template')
 
     return [template: template,
-            commentList: commentList,
             entity: entity,
             allMethods: allMethods,
             allLabels: functionService.getLabels()]

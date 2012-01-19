@@ -52,7 +52,6 @@ class PartnerProfileController {
 
   def show = {
     Entity partner = Entity.get(params.id)
-    Entity entity = params.entity ? partner : entityHelperService.loggedIn
 
     if (!partner) {
       flash.message = message(code: "object.notFound", args: [message(code: "partner")])
@@ -60,7 +59,7 @@ class PartnerProfileController {
       return
     }
 
-    return [partner: partner, entity: entity]
+    return [partner: partner]
 
   }
 

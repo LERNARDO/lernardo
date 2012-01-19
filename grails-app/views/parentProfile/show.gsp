@@ -13,14 +13,14 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/parentNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/parentNavigation" model="[entity: parent]"/>
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-        <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-        <li><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity: entity.id]"><g:message code="appointments"/></g:link></li>
-        <li><g:link style="border-right: none" controller="evaluation" action="list" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+        <li><g:link controller="publication" action="list" id="${parent.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${parent}"/></g:link></li>
+        <li><g:link controller="msg" action="inbox" id="${parent.id}"><g:message code="privat.posts"/></g:link></li>
+        <li><g:link controller="appointmentProfile" action="index" id="${parent.id}" params="[entity: parent.id]"><g:message code="appointments"/></g:link></li>
+        <li><g:link style="border-right: none" controller="evaluation" action="list" id="${parent.id}" params="[entity: parent.id]"><g:message code="privat.evaluation"/></g:link></li>
       </ul>
     </div>
 
@@ -42,7 +42,7 @@
 
             <tr class="prop">
               <td class="one"><g:message code="lastName"/>:</td>
-              <td class="two"><g:link action="show" id="${parent.id}" params="[entity: parent.id]">${parent.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show"
+              <td class="two">${fieldValue(bean: parent, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show"
                                                                                                                                                                        id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
             </tr>
 
