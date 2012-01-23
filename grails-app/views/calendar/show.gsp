@@ -69,7 +69,7 @@
 
       <h1><g:message code="imgmenu.calendar.name"/></h1>
 
-      <erp:getActiveCalPerson id="${currentEntity.id}">
+      %{--<erp:getActiveCalPerson id="${currentEntity.id}">
         <div class="calenderperson">
           <table style="width: 100%;">
             <tr>
@@ -92,7 +92,8 @@
             <g:submitButton name="submit" value="OK"/>
           </g:form>
         </div>
-      </erp:getActiveCalPerson>
+      </erp:getActiveCalPerson>--}%
+
       <div class="calenderperson">
         <table style="width: 100%;">
           <tr>
@@ -109,7 +110,7 @@
 
       <div style="border-bottom: 1px solid #ddd; margin: 5px 0;"></div>
 
-      <div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="operators"/></div>
+      %{--<div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="operators"/></div>
 
       <g:each in="${operators}" var="operator" status="i">
         <erp:getActiveCalPerson id="${operator.id}">
@@ -140,42 +141,20 @@
 
       <div style="border-bottom: 1px solid #ddd; margin: 5px 0;"></div>
 
-      <div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="educators"/></div>
+      <div style="font-size: 12px; margin: 0 0 5px 10px;"><g:message code="educators"/></div>--}%
 
-      <div style="margin: 10px 0 0 8px; font-size: 12px;">
+      <g:remoteField style="margin: 10px 0 0 8px; font-size: 12px;" placeholder="Person hinzufügen" size="30" name="instantSearch" update="calender-results" paramName="name" url="[controller:'calendar', action:'search', params:[child: 'yes', client: 'yes', educator: 'yes', operator: 'yes', parent: 'yes', partner: 'yes', pate: 'yes', user: 'yes']]" before="showspinner('#calender-results')" />
+      <div style="margin: 10px 0 0 8px; font-size: 12px;" class="membersearch-results" id="calender-results"></div>
+
+      %{--<div style="margin: 10px 0 0 8px; font-size: 12px;">
         <g:formRemote name="form" url="[controller: 'calendar', action: 'sort']" update="results">
           <g:select name="sort" from="['first', 'last']" valueMessagePrefix="sortBy"/>
           <g:submitButton name="submit" value="OK"/>
         </g:formRemote>
-      </div>
+      </div>--}%
 
       <div id="results">
-        <g:each in="${educators}" var="educator" status="i">
-          <erp:getActiveCalPerson id="${educator.id}">
-            <div class="calenderperson">
-              <table style="width: 100%;">
-                <tr>
-                  <td>
-                    <a style="display: block; text-decoration: none;" href="#" onclick="togglePerson('person','${educator.id}','${i}'); return false;">
-                      <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${educator.id}','${i}','${active}');"/>
-                      <div id="personcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${educator.profile.color ?: '#ccc'}; background-color: ${educator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
-                      <div id="personcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
-                    </a>
-                  </td>
-                  <td width="35">
-                    <a href="#" onclick="$('#colored${i}').toggle();"><img class="calendercolorpicker" src="${resource(dir: 'images/icons', file: 'bullet_arrow_down.png')}" alt="options" style="top: 2px; position: relative"/></a>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div id="colored${i}" style="display: none; background: #eee; padding: 10px;">
-              <g:form controller="profile" action="updateColor" id="${educator.id}">
-                <g:textField name="color" value="${educator.profile.color ?: '#FFFFFF'}" class="kolorPicker"/>
-                <g:submitButton name="submit" value="OK"/>
-              </g:form>
-            </div>
-          </erp:getActiveCalPerson>
-        </g:each>
+        <g:render template="educators" model="[calEntities: calEntities]"/>
       </div>
 
     </td>

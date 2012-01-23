@@ -15,7 +15,6 @@ class ParentProfile extends Profile {
                     jobtypes: String,
                     favorites: String]
 
-  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -60,7 +59,7 @@ class ParentProfile extends Profile {
     phone                 nullable: true
     citizenship           nullable: true
     birthDate             nullable: true
-    color                 nullable: true
+    calendar              nullable: true
   }
 
   String toString() {

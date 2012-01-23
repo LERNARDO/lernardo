@@ -1,16 +1,26 @@
-<g:each in="${educators}" var="educator" status="i">
-  <erp:getActiveCalPerson id="${educator.id}">
-    <div class="calenderperson">
-      <table style="width: 100%;">
-        <tr>
-          <td>
-            <a style="display: block; text-decoration: none;" href="#" onclick="showBigSpinner(); togglePerson('${educator.id}','${i}'); return false;">
-              <div id="personcolor${i}" style="display: ${active ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${educator.profile.color ?: '#ccc'}; background-color: ${educator.profile.color ?: '#ccc'};"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
-              <div id="personcolor${i}-2" style="display: ${active ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${educator.profile.fullName}"/></div>
-            </a>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </erp:getActiveCalPerson>
+<g:each in="${calEntities}" var="calEntity" status="i">
+  <div class="calenderperson">
+    <table style="width: 100%;">
+      <tr>
+        <td>
+          <a style="display: block; text-decoration: none;" href="#" onclick="togglePerson('person','${calEntity.entity.id}','${i}'); return false;">
+            <img style="display: none" src="${resource(dir: 'images/icons', file: 'icon_person.png')}" alt="person" onload="showInitialEvents('${calEntity.entity.id}','${i}','${calEntity.visible}');"/>
+            <div id="personcolor${i}" style="display: ${calEntity.visible ? 'block' : 'none'}; color: #000;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid ${calEntity.color ?: '#ccc'}; background-color: ${calEntity.color ?: '#ccc'};"></div> <erp:truncate string="${calEntity.entity.profile.fullName}"/></div>
+            <div id="personcolor${i}-2" style="display: ${calEntity.visible ? 'none' : 'block'}; color: #555;"><div style="float: left; margin-right: 5px; width: 12px; height: 12px; border: 1px solid #bbb; background-color: #fff;"></div> <erp:truncate string="${calEntity.entity.profile.fullName}"/></div>
+          </a>
+        </td>
+        <td width="35">
+          <a href="#" onclick="$('#colored${i}').toggle();"><img class="calendercolorpicker" src="${resource(dir: 'images/icons', file: 'bullet_arrow_down.png')}" alt="options" style="top: 2px; position: relative"/></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="colored${i}" style="display: none; background: #eee; padding: 10px;">
+    <g:form controller="calendar" action="updateColor" id="${calEntity.id}">
+      <g:textField name="color" value="${calEntity.color ?: '#FFFFFF'}" class="kolorPicker"/>
+      <g:submitButton name="submit" value="OK"/>
+    </g:form>
+    <div class="clear"></div>
+    <g:link controller="calendar" action="removeEntity" id="${calEntity.id}">Person entfernen</g:link>
+  </div>
 </g:each>

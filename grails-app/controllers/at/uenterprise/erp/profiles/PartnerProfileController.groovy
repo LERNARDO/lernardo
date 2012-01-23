@@ -102,8 +102,6 @@ class PartnerProfileController {
     partner.profile.properties = params
     partner.user.properties = params
 
-    if (!partner.profile.calendar) partner.profile.calendar = new ECalendar().save()
-
     if (partner.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
@@ -128,7 +126,6 @@ class PartnerProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.calendar = new ECalendar().save()
       }
 
       flash.message = message(code: "object.created", args: [message(code: "partner"), entity.profile.fullName])

@@ -161,8 +161,6 @@ class ClientProfileController {
 //    if (client.profile.schoolRestartDate)
 //        client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
     client.profile.fullName = params.lastName + " " + params.firstName
-    if (!client.profile.calendar) client.profile.calendar = new ECalendar().save()
-
     client.user.properties = params
     if (client.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
@@ -241,7 +239,6 @@ class ClientProfileController {
         else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.calendar = new ECalendar().save()
         // ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
         if ( params.schoolDropoutDate ) {
           if (Pattern.matches( "\\d{2}\\.\\s\\d{2}\\.\\s\\d{4}", params.schoolDropoutDate))

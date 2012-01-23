@@ -25,6 +25,14 @@ class FunctionService {
 
   boolean transactional = true
 
+  ECalendar createDefaultCalendar(Entity entity) {
+    ECalendar eCalendar = new ECalendar()
+    CalEntity self = new CalEntity(entity: entity, visible: true, color: '#cccccc').save()
+    eCalendar.addToEntities(self)
+    eCalendar.save()
+    return eCalendar
+  }
+  
   /**
    * Retrieves all labels in the order they are stored in the static labels property of the Labels class
    *

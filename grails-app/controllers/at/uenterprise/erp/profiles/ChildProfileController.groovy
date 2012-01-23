@@ -113,8 +113,6 @@ class ChildProfileController {
     child.profile.properties = params
     // child.profile.birthDate = functionService.convertToUTC(child.profile.birthDate)
     child.profile.fullName = params.lastName + " " + params.firstName
-    if (!child.profile.calendar) child.profile.calendar = new ECalendar().save()
-
     child.user.properties = params
 
     if (child.id == entityHelperService.loggedIn.id)
@@ -143,7 +141,6 @@ class ChildProfileController {
         else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.calendar = new ECalendar().save()
         ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)

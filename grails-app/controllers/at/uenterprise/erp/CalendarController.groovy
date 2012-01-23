@@ -60,7 +60,7 @@ class CalendarController {
   def show = {
     Entity currentEntity = entityHelperService.loggedIn
 
-    List educators = []
+    /*List educators = []
     
     if (currentEntity.type.id == metaDataService.etEducator.id) {
       // find facility the educator is working for
@@ -73,20 +73,21 @@ class CalendarController {
       }
     }
     else
-      educators = Entity.findAllByType(metaDataService.etEducator)
+      educators = Entity.findAllByType(metaDataService.etEducator)*/
+    
+    Set calEntities = currentEntity?.profile?.calendar?.entities
 
-    educators = educators.sort() {it.profile.firstName}
+    //calEntities = calEntities.sort() {it.entity.profile.firstName}
 
     List operators = Entity.findAllByType(metaDataService.etOperator)
 
-    return [educators: educators, operators: operators]
+    return [calEntities: calEntities, operators: operators]
   }
 
   def sort = {
-    println params
     Entity currentEntity = entityHelperService.loggedIn
 
-    List educators = []
+    /*List educators = []
 
     if (currentEntity.type.id == metaDataService.etEducator.id) {
       // find facility the educator is working for
@@ -99,11 +100,42 @@ class CalendarController {
       }
     }
     else
-      educators = Entity.findAllByType(metaDataService.etEducator)
-    
-    educators = educators.sort() {params.sort == "first" ? it.profile.firstName : it.profile.lastName}
+      educators = Entity.findAllByType(metaDataService.etEducator)*/
 
-    render template: 'educators', model: [educators: educators]
+    Set calEntities = currentEntity?.profile?.calendar?.entities
+
+    //calEntities = calEntities.sort() {params.sort == "first" ? it.entity.profile.firstName : it.entity.profile.lastName}
+
+    render template: 'educators', model: [calEntities: calEntities]
+  }
+  
+  def addEntity = {
+    Entity currentEntity = entityHelperService.loggedIn
+    Entity entity = Entity.get(params.id)
+    
+    if (!currentEntity.profile.calendar.entities.find {it.entity.id.toString() == params.id.toString()}) {
+      CalEntity calEntity = new CalEntity(entity: entity, visible: true, color: "#cccccc").save()
+      currentEntity.profile.calendar.addToEntities(calEntity)
+      currentEntity.profile.save()
+    }
+
+    //Set calEntities = currentEntity?.profile?.calendar?.entities
+
+    redirect action: "show"
+    //render template: "educators", model: [calEntities: calEntities]
+  }
+
+  def removeEntity = {
+    Entity currentEntity = entityHelperService.loggedIn
+    CalEntity calEntity = CalEntity.get(params.id)
+
+    currentEntity.profile.calendar.removeFromEntities(calEntity)
+    currentEntity.profile.save()
+
+    //Set calEntities = currentEntity?.profile?.calendar?.entities
+
+    redirect action: "show"
+    //render template: "educators", model: [calEntities: calEntities]
   }
 
   def togglePersonInCal = {
@@ -112,11 +144,22 @@ class CalendarController {
 
     Entity currentEntity = entityHelperService.loggedIn
 
+    CalEntity calEntity = currentEntity?.profile?.calendar?.entities?.find {it.entity.id.toString() == params.id.toString()} 
+      
+    if (calEntity.visible) {
+      calEntity.visible = false
+      result = "false"
+    }
+    else {
+      calEntity.visible = true
+      result = "true"
+    }
+    calEntity.save(flush: true)
+
     // find out whether to toggle the events of the given entity on or off
-    List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
+    //List visibleEducators = currentEntity?.profile?.calendar?.calendareds ?: []
 
-
-    if (visibleEducators.contains(params.id)) {
+    /*if (visibleEducators.contains(params.id)) {
       currentEntity.profile.calendar.removeFromCalendareds(params.id)
       currentEntity.profile.save(flush: true)
       result = "false"
@@ -125,7 +168,7 @@ class CalendarController {
       currentEntity.profile.calendar.addToCalendareds(params.id)
       currentEntity.profile.save(flush: true)
       result = "true"
-    }
+    }*/
 
     render result
     }
@@ -180,7 +223,7 @@ class CalendarController {
     //log.info currentEntity
     //log.info entity
 
-    def color = entity.profile.color ?: '#aaa'
+    def color = currentEntity.profile.calendar.entities.find {it.entity.id.toString() == params.id.toString()}.color//entity.profile.color ?: '#aaa'
 
     // get all appointments
     eventList.addAll(getAppointments(start, end, entity, currentEntity, color))
@@ -354,5 +397,86 @@ class CalendarController {
     }
 
     return list
+  }
+
+  def search = {
+
+    if (params.name == "") {
+      render ""
+      return
+    }
+    else if (params.name.size() < 2) {
+      render '<span class="gray">Bitte mindestens 2 Zeichen eingeben!</span>'
+      return
+    }
+
+    List searchStrings = params.name.toString().split(" ")
+
+    def c = Entity.createCriteria()
+    def results = c.list {
+      or {
+        if (params.child)
+          eq("type", metaDataService.etChild)
+        if (params.client)
+          eq("type", metaDataService.etClient)
+        if (params.educator)
+          eq("type", metaDataService.etEducator)
+        if (params.facility)
+          eq("type", metaDataService.etFacility)
+        if (params.operator)
+          eq("type", metaDataService.etOperator)
+        if (params.parent)
+          eq("type", metaDataService.etParent)
+        if (params.partner)
+          eq("type", metaDataService.etPartner)
+        if (params.pate)
+          eq("type", metaDataService.etPate)
+        if (params.family)
+          eq("type", metaDataService.etGroupFamily)
+        if (params.colony)
+          eq("type", metaDataService.etGroupColony)
+        if (params.groupClient)
+          eq("type", metaDataService.etGroupClient)
+        if (params.groupPartner)
+          eq("type", metaDataService.etGroupPartner)
+        if (params.projectTemplate)
+          eq("type", metaDataService.etProjectTemplate)
+        if (params.project)
+          eq("type", metaDataService.etProject)
+        if (params.groupActivity)
+          eq("type", metaDataService.etGroupActivity)
+        if (params.user)
+          eq("type", metaDataService.etUser)
+      }
+      or {
+        ilike('name', "%" + params.name + "%")
+        profile {
+          //ilike('fullName', "%" + params.name + "%")
+          and {
+            searchStrings.each {String s ->
+              ilike('fullName', "%" + s + "%")
+            }
+          }
+        }
+      }
+      maxResults(5)
+    }
+
+    render template: 'searchresults', model: [results: results]
+  }
+
+  def updateColor = {
+    Entity currentEntity = entityHelperService.loggedIn
+
+    CalEntity calEntity = CalEntity.get(params.id)
+    calEntity.color = params.color
+    calEntity.save()
+
+    Set calEntities = currentEntity?.profile?.calendar?.entities
+
+    //calEntities = calEntities.sort() {params.sort == "first" ? it.entity.profile.firstName : it.entity.profile.lastName}
+
+    redirect action: "show"
+    //render template: "educators", model: [calEntities: calEntities]
   }
 }

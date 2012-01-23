@@ -103,8 +103,6 @@ class OperatorProfileController {
     operator.profile.properties = params
     operator.user.properties = params
 
-    if (!operator.profile.calendar) operator.profile.calendar = new ECalendar().save()
-
     if (operator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 
@@ -127,7 +125,6 @@ class OperatorProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.calendar = new ECalendar().save()
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

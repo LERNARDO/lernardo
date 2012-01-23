@@ -314,8 +314,7 @@ class AppController {
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, locale)
 
       // create a calendar object for user if it doesn't exist already (added on 16.02.2011)
-      if (!currentEntity.profile.calendar)
-        currentEntity.profile.calendar = new ECalendar().save()
+      if (!currentEntity.profile.calendar) currentEntity.profile.calendar = functionService.createDefaultCalendar(currentEntity)
 
       redirect controller: 'event', action: 'indexNew', id: currentEntity.id
     }

@@ -116,8 +116,6 @@ class EducatorProfileController {
     educator.profile.properties = params
     // educator.profile.birthDate = functionService.convertToUTC(educator.profile.birthDate)
     educator.profile.fullName = params.lastName + " " + params.firstName
-    if (!educator.profile.calendar) educator.profile.calendar = new ECalendar().save()
-
     educator.user.properties = params
     if (educator.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
@@ -154,7 +152,6 @@ class EducatorProfileController {
         else if (Pattern.matches( "\\d{2}\\.\\d{2}\\.\\d{4}", params.birthDate))
           ent.profile.birthDate = Date.parse("dd.MM.yy", params.birthDate)
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.calendar = new ECalendar().save()
         // ent.profile.birthDate = functionService.convertToUTC(ent.profile.birthDate)
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)

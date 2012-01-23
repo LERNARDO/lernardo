@@ -99,8 +99,6 @@ class UserProfileController {
 
     user.profile.properties = params
     user.profile.fullName = params.lastName + " " + params.firstName
-    if (!user.profile.calendar) user.profile.calendar = new ECalendar().save()
-
     user.user.properties = params
     if (user.id == entityHelperService.loggedIn.id)
       RequestContextUtils.getLocaleResolver(request).setLocale(request, response, user.user.locale)
@@ -124,7 +122,6 @@ class UserProfileController {
         ent.profile.properties = params
         ent.user.properties = params
         ent.user.password = securityManager.encodePassword(grailsApplication.config.defaultpass)
-        ent.profile.calendar = new ECalendar().save()
       }
       //RequestContextUtils.getLocaleResolver(request).setLocale(request, response, entity.user.locale)
 

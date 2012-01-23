@@ -13,7 +13,6 @@ class OperatorProfile extends Profile {
   List favorites
   static hasMany = [favorites: String]
 
-  String    color
   ECalendar calendar
   String    zip
   String    city
@@ -27,7 +26,7 @@ class OperatorProfile extends Profile {
     description maxSize: 20000
     city        size: 2..50, maxSize: 50
     street      size: 2..50, maxSize: 50
-    color       nullable: true
+    calendar    nullable: true
   }
 
   String toString() {

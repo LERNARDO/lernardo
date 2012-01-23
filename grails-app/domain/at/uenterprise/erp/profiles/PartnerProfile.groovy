@@ -16,7 +16,6 @@ class PartnerProfile extends Profile {
                     services: String,
                     favorites: String]
 
-  String    color
   ECalendar calendar
   String    description
   String    country
@@ -35,7 +34,7 @@ class PartnerProfile extends Profile {
     street      size: 2..50, maxSize: 50
     phone       size: 2..20
     website     blank: true, size: 2..50
-    color       nullable: true
+    calendar    nullable: true
   }
 
   String toString() {

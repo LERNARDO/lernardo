@@ -7,9 +7,7 @@ package at.uenterprise.erp
  */
 class ECalendar {
 
-  static hasMany = [calendareds: String]
-
-  List    calendareds
+  static hasMany = [entities: CalEntity]
   Boolean showThemes = true
 
   static constraints = {

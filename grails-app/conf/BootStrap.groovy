@@ -232,7 +232,6 @@ class BootStrap {
 
     // system admin users
     if (!Entity.findByName('admin')) {
-      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile("admin", etUser, "admin@uenterprise.de", "Admin") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.systemAdminRole)
         ent.user.addToAuthorities(metaDataService.adminRole)
@@ -240,32 +239,27 @@ class BootStrap {
         UserProfile prf = (UserProfile)ent.profile
         prf.firstName = "System"
         prf.lastName = "Admin"
-        prf.calendar = calendar
       }
     }
 
     // admin users
     if (!Entity.findByName('patriziarosenkranz')) {
-      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile("patriziarosenkranz", etUser, "pcr@lernardo.at", "Patrizia Rosenkranz") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
         UserProfile prf = (UserProfile)ent.profile
         prf.firstName = "Patrizia"
         prf.lastName = "Rosenkranz"
-        prf.calendar = calendar
       }
     }
 
     if (!Entity.findByName('danielszabo')) {
-      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile("danielszabo", etUser, "dsz@uenterprise.de", "Daniel Szabo") {Entity ent ->
         ent.user.addToAuthorities(metaDataService.adminRole)
         ent.user.locale = new Locale ("de", "DE")
         UserProfile prf = (UserProfile)ent.profile
         prf.firstName = "Daniel"
         prf.lastName = "Szabo"
-        prf.calendar = calendar
       }
     }
 
@@ -279,7 +273,6 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("educator" + i)) {
-        ECalendar calendar = new ECalendar().save(failOnError: true)
         Entity entity = entityHelperService.createEntityWithUserAndProfile("educator" + i, etEducator, "educator" + i + "@domain.org", "educatorFirstName educatorLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           EducatorProfile prf = (EducatorProfile)ent.profile
@@ -305,7 +298,6 @@ class BootStrap {
           prf.education = "dummyEducation"
           prf.interests = "dummyInterests"
           prf.employment = "dummyEmployment"
-          prf.calendar = calendar
           prf.workHoursMonday = 8
           prf.workHoursTuesday = 8
           prf.workHoursWednesday = 8
@@ -328,7 +320,6 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("parent" + i)) {
-        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile("parent" + i, etParent, "parent" + i + "@domain.org", "parentFirstName parentLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ParentProfile prf = (ParentProfile)ent.profile
@@ -349,7 +340,6 @@ class BootStrap {
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "dummyFrequency"
           }
-          prf.calendar = calendar
         }
       }
     }
@@ -364,7 +354,6 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("client" + i)) {
-        ECalendar calendar = new ECalendar().save(failOnError: true)
         Entity entity = entityHelperService.createEntityWithUserAndProfile("client" + i, etClient, "client" + i + "@domain.org", "clientFirstName clientLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ClientProfile prf = (ClientProfile)ent.profile
@@ -390,7 +379,6 @@ class BootStrap {
           prf.support = generator.nextBoolean()
           if (prf.support)
             prf.supportDescription = "dummyDescription"
-          prf.calendar = calendar
         }
         new Link(source: entity, target: Entity.findByName("facility1"), type: metaDataService.ltGroupMemberClient).save(failOnError: true)
       }
@@ -406,7 +394,6 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("child" + i)) {
-        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile("child" + i, etChild, "child" + i + "@domain.org", "childFirstName childLastName " + i) {Entity ent ->
           ent.user.locale = new Locale ("de", "DE")
           ChildProfile prf = (ChildProfile)ent.profile
@@ -420,7 +407,6 @@ class BootStrap {
             prf.jobIncome = generator.nextInt(150) + 50
             prf.jobFrequency = "dummyFrequency"
           }
-          prf.calendar = calendar
         }
       }
     }
@@ -432,7 +418,6 @@ class BootStrap {
     EntityType etOperator = metaDataService.etOperator
 
     if (!Entity.findByName('operator')) {
-      ECalendar calendar = new ECalendar().save(failOnError: true)
       entityHelperService.createEntityWithUserAndProfile ("operator", etOperator, "operator@domain.org", "operator") {Entity ent->
         ent.user.locale = new Locale ("de", "DE")
         OperatorProfile prf = (OperatorProfile)ent.profile
@@ -441,7 +426,6 @@ class BootStrap {
         prf.street = "dummyStreet"
         prf.phone = "dummyPhone"
         prf.description = "dummyDescription"
-        prf.calendar = calendar
       }
     }
 
@@ -453,7 +437,6 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("partner" + i)) {
-        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile ("partner" + i, etPartner, "partner" + i + "@domain.org", "partner " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PartnerProfile prf = (PartnerProfile)ent.profile
@@ -464,7 +447,6 @@ class BootStrap {
           prf.description = "dummyDescription"
           prf.country = "dummyCountry"
           prf.website = "http://www.dummySite.com"
-          prf.calendar = calendar
         }
       }
     }
@@ -477,7 +459,6 @@ class BootStrap {
 
     for ( i in 1..grailsApplication.config.dummies ) {
       if (!Entity.findByName("pate" + i)) {
-        ECalendar calendar = new ECalendar().save(failOnError: true)
         entityHelperService.createEntityWithUserAndProfile ("pate" + i, etPate, "pate" + i + "@domain.org", "pateFirstName pateLastName " + i) {Entity ent->
           ent.user.locale = new Locale ("de", "DE")
           PateProfile prf = (PateProfile)ent.profile
@@ -488,7 +469,6 @@ class BootStrap {
           prf.street = "dummyStreet"
           prf.country = "dummyCountry"
           prf.motherTongue = "dummyMotherTongue"
-          prf.calendar = calendar
         }
       }
     }

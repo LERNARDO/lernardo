@@ -13,7 +13,6 @@ class UserProfile extends Profile {
   List favorites
   static hasMany = [favorites: String]
 
-  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -23,7 +22,7 @@ class UserProfile extends Profile {
     fullName  blank: true, size: 1..100, maxSize: 100
     firstName blank: false, maxSize: 50
     lastName  blank: false, maxSize: 50
-    color     nullable: true
+    calendar  nullable: true
   }
 
   String toString() {

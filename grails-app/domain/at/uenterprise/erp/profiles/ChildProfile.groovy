@@ -14,7 +14,6 @@ class ChildProfile extends Profile {
   static hasMany = [jobtypes: String,
                     favorites: String]
 
-  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -31,7 +30,7 @@ class ChildProfile extends Profile {
     lastName      blank: false, size: 2..50, maxSize: 50
     jobIncome     nullable: true
     jobFrequency  nullable: true, blank: true, maxSize: 50
-    color         nullable: true
+    calendar      nullable: true
   }
 
   String toString() {

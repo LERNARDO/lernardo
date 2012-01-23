@@ -14,7 +14,6 @@ class PateProfile extends Profile {
   static hasMany = [languages: String,
                     favorites: String]
 
-  String    color
   ECalendar calendar
   String    firstName
   String    lastName
@@ -33,7 +32,7 @@ class PateProfile extends Profile {
     zip       size: 4..10
     city      size: 2..50, maxSize: 50
     street    size: 2..50, maxSize: 50
-    color     nullable: true
+    calendar  nullable: true
   }
 
   String toString() {

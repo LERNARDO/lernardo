@@ -20,7 +20,6 @@ class EducatorProfile extends Profile {
                     workdayunits: WorkdayUnit,
                     favorites: String]
 
-  String color
   ECalendar calendar
   String    title
   String    firstName
@@ -105,7 +104,7 @@ class EducatorProfile extends Profile {
 
     bloodType       nullable: true
 
-    color           nullable: true
+    calendar        nullable: true
   }
 
   String toString() {
