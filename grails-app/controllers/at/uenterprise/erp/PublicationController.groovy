@@ -209,17 +209,18 @@ class PublicationController {
     publications.sort {it[params.sort]}
     publications = publications.reverse()
 
-    return [entity: entity,
+    render template: "list", model: [entity: entity,
             publications: publications,
             activitytemplatesdocuments: activitytemplatesdocuments,
             groupactivitytemplatesdocuments: groupactivitytemplatesdocuments,
-            projecttemplatedocuments: projecttemplatedocuments]
+            projecttemplatedocuments: projecttemplatedocuments,
+            currentEntity: entityHelperService.loggedIn]
   }
 
   def create = {
     Entity entity = Entity.get(params.id)
     Publication pub = new Publication()
-    return [entity:entity, publication:pub]
+    render template: "create", model: [entity:entity, publication:pub]
   }
 
   def save = {
@@ -245,7 +246,7 @@ class PublicationController {
     //log.debug "attempt to save publication: $params"
     if(pub.save(flush:true)) {
       flash.message = message(code: "object.created", args:[message(code: "publication"), pub.name])
-      redirect (action:"list", id:pub.entity.id)
+      redirect (controller: pub.entity.type.supertype.name + "Profile", action: "show", id: pub.entity.id, params: [entity: pub.entity.id])
     }
     else {
        render view:'create', model:[entity: entity, publication:pub]
@@ -275,14 +276,14 @@ class PublicationController {
       pub.delete(flush:true)
     }
 
-    redirect (action:"list", id: entity.id)
+    chain (action:"list", id: entity.id)
   }
 
   def edit = {
     Publication publication = Publication.get(params.id)
 
     if(publication) {
-      [entity: publication.entity, publication: publication]
+      render template: "edit", model: [entity: publication.entity, publication: publication]
     }
     else {
       flash.message = message(code: "object.notFound", args:[message(code: "publication")])
@@ -297,7 +298,7 @@ class PublicationController {
           publication.name = params.name
           if(publication.save()) {
               flash.message = message(code: "object.updated", args:[message(code: "publication"), publication.name])
-              redirect (action:'list', id:publication.entity.id)
+              chain (action:'list', id:publication.entity.id)
           }
           else {
               render view:'edit', model:[entity: entityHelperService.loggedIn, publication:publication]

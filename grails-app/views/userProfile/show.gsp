@@ -18,43 +18,46 @@
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
+        <li><g:link controller="userProfile" action="show" id="${user.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:remoteLink></li>
         <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
         <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
       </ul>
     </div>
 
-    <h4><g:message code="profile"/></h4>
+    <div id="content">
 
-    <table>
-      <tbody>
+      <h4><g:message code="profile"/></h4>
 
-      <tr class="prop">
-        <td class="one"><g:message code="firstName"/>:</td>
-        <td class="two">${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</td>
-      </tr>
+      <table>
+        <tbody>
 
-      <tr class="prop">
-        <td class="one"><g:message code="lastName"/>:</td>
-        <td class="two">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()}</td>
-      </tr>
-
-      %{--<tr class="prop">
-        <td class="one"><g:message code="email"/>:</td>
-        <td class="two"><a href="mailto:${fieldValue(bean: user, field: 'user.email').decodeHTML()}">${fieldValue(bean: user, field: 'user.email').decodeHTML()}</a></td>
-      </tr>
-
-      <erp:isSystemAdmin entity="${currentEntity}">
         <tr class="prop">
-          <td class="one"><g:message code="active"/>:</td>
-          <td class="two"><span style="color: ${user.user.enabled ? '#090' : '#900'}"><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></span></td>
+          <td class="one"><g:message code="firstName"/>:</td>
+          <td class="two">${fieldValue(bean: user, field: 'profile.firstName').decodeHTML()}</td>
         </tr>
-      </erp:isSystemAdmin>--}%
 
-      </tbody>
-    </table>
+        <tr class="prop">
+          <td class="one"><g:message code="lastName"/>:</td>
+          <td class="two">${fieldValue(bean: user, field: 'profile.lastName').decodeHTML()}</td>
+        </tr>
 
-    <div class="email">
+        %{--<tr class="prop">
+          <td class="one"><g:message code="email"/>:</td>
+          <td class="two"><a href="mailto:${fieldValue(bean: user, field: 'user.email').decodeHTML()}">${fieldValue(bean: user, field: 'user.email').decodeHTML()}</a></td>
+        </tr>
+
+        <erp:isSystemAdmin entity="${currentEntity}">
+          <tr class="prop">
+            <td class="one"><g:message code="active"/>:</td>
+            <td class="two"><span style="color: ${user.user.enabled ? '#090' : '#900'}"><g:formatBoolean boolean="${user.user.enabled}" true="${message(code:'yes')}" false="${message(code:'no')}"/></span></td>
+          </tr>
+        </erp:isSystemAdmin>--}%
+
+        </tbody>
+      </table>
+
+      <div class="email">
         <table width="100%">
           <tr>
             <erp:isSystemAdmin entity="${currentEntity}">
@@ -79,6 +82,8 @@
           </tr>
         </table>
       </div>
+
+    </div>
 
   </div>
 </div>

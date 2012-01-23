@@ -89,4 +89,9 @@ class CommentController {
 
   }
 
+  def show = {
+    Entity entity = Entity.get(params.id)
+    render template: "box", model: [currentEntity: entityHelperService.loggedIn, commented: entity]
+  }
+
 }

@@ -53,7 +53,6 @@ class EducatorProfileController {
 
   def show = {
     Entity educator = Entity.get(params.id)
-    Entity entity = params.entity ? educator : entityHelperService.loggedIn
 
     if (!educator) {
       flash.message = message(code: "object.notFound", args: [message(code: "educator")])
@@ -64,9 +63,7 @@ class EducatorProfileController {
     // find if this educator was enlisted
     Entity enlistedBy = functionService.findByLink(educator, null, metaDataService.ltEnlisted)
 
-    return [educator: educator,
-            entity: entity,
-            enlistedBy: enlistedBy]
+    return [educator: educator, enlistedBy: enlistedBy]
   }
 
   def delete = {

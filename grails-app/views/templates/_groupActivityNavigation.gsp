@@ -10,14 +10,14 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${group.id}" params="[entity: group?.id]">
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${group}">
+        <g:form id="${entity.id}" params="[entity: entity?.id]">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
-            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: group.id)}" /></div>
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
           <div class="button"><g:actionSubmit class="buttonGreen" action="createpdf" value="${message(code: 'createPDF')}" /></div> <div style="float: left; padding: 7px 0 0 0;"><g:checkBox name="printtemplates" value=""/></div><div style="float: left; padding: 7px 0 0 5px;"> <g:message code="activityTemplates.with"/></div>
-          <erp:getFavorite entity="${group}"/>
+          <erp:getFavorite entity="${entity}"/>
         </g:form>
         <div class="spacer"></div>
       </div>

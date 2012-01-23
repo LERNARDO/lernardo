@@ -11,24 +11,25 @@
 <div class="boxGray">
   <div class="second">
 
-    <g:render template="/templates/operatorNavigation" model="[entity: entity]"/>
+    <g:render template="/templates/operatorNavigation" model="[entity: operator]"/>
 
     <div class="tabnav">
       <ul>
-        <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-        <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${entity.id}" params="[entity:entity.id]"><g:message code="appointments"/></g:link></li>
+        <li><g:link controller="operatorProfile" action="show" id="${operator.id}"><g:message code="profile"/></g:link></li>
+        <li><g:remoteLink update="content" controller="publication" action="list" id="${operator.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${operator}"/></g:remoteLink></li>
+        <li><g:link controller="msg" action="inbox" id="${operator.id}"><g:message code="privat.posts"/></g:link></li>
+        <li><g:link style="border-right: none" controller="appointmentProfile" action="index" id="${operator.id}" params="[entity:operator.id]"><g:message code="appointments"/></g:link></li>
       </ul>
     </div>
 
-    <div>
+    <div id="content">
       <h4><g:message code="profile"/></h4>
       <table>
         <tbody>
 
         <tr class="prop">
           <td class="one"><g:message code="name"/>:</td>
-          <td class="two"><g:link action="show" id="${operator.id}" params="[entity:operator.id]">${operator.profile.fullName}</g:link></td>
+          <td class="two">${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}</td>
         </tr>
 
         <tr class="prop">
@@ -90,8 +91,6 @@
         </table>
       </div>
 
-    </div>
-
     <div class="zusatz">
       <h5><g:message code="facilities"/> <erp:accessCheck entity="${currentEntity}" me="${operator}"><a onclick="toggle('#facilities'); return false" href="#"><img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
       <div class="zusatz-add" id="facilities" style="display:none">
@@ -103,6 +102,8 @@
       <div class="zusatz-show" id="facilities2">
         <g:render template="facilities" model="[facilities: facilities, operator: operator]"/>
       </div>
+    </div>
+
     </div>
 
   </div>

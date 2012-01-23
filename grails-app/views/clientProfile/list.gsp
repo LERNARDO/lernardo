@@ -40,7 +40,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>
             <erp:profileImage entity="${client}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${client.id}" params="[entity: client.id]">${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}</g:link>
+            <g:link action="show" id="${client.id}">${fieldValue(bean: client, field: 'profile.firstName').decodeHTML()}</g:link>
           </td>
           <td>${fieldValue(bean: client, field: 'profile.lastName').decodeHTML()}</td>
           <td><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy" /></td>

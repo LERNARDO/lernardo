@@ -10,18 +10,18 @@
     </td>
     <td style="padding-left: 10px; vertical-align: bottom;">
       <div class="buttons" style="margin-bottom: 0;">
-        <g:form id="${template.id}" params="[entity: template?.id]">
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${template}" checkstatus="${template}" checkoperator="true">
+        <g:form id="${entity.id}" params="[entity: entity?.id]">
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']" creatorof="${entity}" checkstatus="${entity}" checkoperator="true">
             <div class="button"><g:actionSubmit class="buttonGreen" action="edit" value="${message(code: 'edit')}" /></div>
           </erp:accessCheck>
-          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${template}">
-            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: template.id)}" /></div>
+          <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" creatorof="${entity}">
+            <div class="button"><g:actionSubmit class="buttonRed" action="delete" value="${message(code: 'delete')}" onclick="${erp.getLinks(id: entity.id)}" /></div>
           </erp:accessCheck>
           <erp:accessCheck entity="${currentEntity}" types="['Betreiber','Pädagoge']">
             <div class="button"><g:actionSubmit class="buttonGreen" action="copy" value="${message(code: 'activityTemplate.copy')}" /></div>
           </erp:accessCheck>
           <div class="button"><g:actionSubmit class="buttonGray" action="list" value="${message(code: 'backToList')}" /></div>
-          <erp:getFavorite entity="${template}"/>
+          <erp:getFavorite entity="${entity}"/>
         </g:form>
         <div class="spacer"></div>
       </div>

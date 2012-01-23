@@ -10,28 +10,20 @@
 </div>
 <div class="boxGray">
   <div class="second">
-    <div>
-      <table>
-        <tbody>
 
-        <tr class="prop">
-          <td valign="top" class="name-show">
-            <g:message code="name"/>:
-          </td>
-           <td valign="top" class="name-show">
-            <g:message code="description"/>:
-          </td>
+    <table>
 
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="name"/>:</td>
+        <td class="two">${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}</td>
+      </tr>
 
-        <tr class="prop">
-         <td width="280" valign="top" class="value-show">${fieldValue(bean: methodInstance, field: 'name').decodeHTML()}</td>
-          <td width="480" valign="top" class="value-show-block">${fieldValue(bean: methodInstance, field: 'description').decodeHTML() ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
-        </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="description"/>:</td>
+        <td class="two">${fieldValue(bean: methodInstance, field: 'description').decodeHTML() ?: '<div class="italic">'+message(code:'noData')+'</div>'}</td>
+      </tr>
 
-        </tbody>
-      </table>
-    </div>
+    </table>
 
     <div class="buttons">
       <g:form id="${methodInstance.id}">

@@ -23,12 +23,12 @@
           </td>
         </tr>
 
-        <tr class="prop">
+        %{--<tr class="prop">
           <td valign="top" class="name"><g:message code="email"/></td>
           <td valign="top" class="value">
             <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="50" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email').decodeHTML()}"/>
           </td>
-        </tr>
+        </tr>--}%
 
         <tr class="prop">
           <td valign="top" class="name"><g:message code="zip"/></td>
@@ -86,7 +86,7 @@
             </td>
             <td>
               <g:message code="showTips"/>
-              <g:checkBox name="showTips" value="${educator?.profile?.showTips}" style="vertical-align: bottom"/>
+              <g:checkBox name="showTips" value="${operator?.profile?.showTips}" style="vertical-align: bottom"/>
             </td>
           </tr>
         </table>

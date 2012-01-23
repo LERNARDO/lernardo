@@ -28,7 +28,7 @@ class HelperTagLib {
   FunctionService functionService
   def securityManager
   static namespace = "erp"
-  
+
   def getFavorite = {attrs ->
     out << '<span id="favbutton">'
     if (entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString()))

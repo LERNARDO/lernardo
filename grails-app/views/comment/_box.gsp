@@ -1,10 +1,7 @@
-<div class="boxHeader" style="margin-top: 20px;">
-  <div class="second">
-    <h1><g:message code="comments"/></h1>
-  </div>
-</div>
 <div class="boxGray">
   <div class="second">
+
+    <h4><g:message code="comments"/></h4>
 
     <div class="add-comment">
       <a onclick="toggle('#comment-div'); return false" href="#"><g:message code="comment.add"/> <img src="${g.resource(dir:'images/icons', file:'icon_add.png')}" alt="${message(code: 'add')}" /></a>

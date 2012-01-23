@@ -35,7 +35,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>
             <erp:profileImage entity="${operator}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${operator.id}" params="[entity: operator.id]">${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}</g:link>
+            <g:link action="show" id="${operator.id}">${fieldValue(bean: operator, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
         </tr>
       </g:each>

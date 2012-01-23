@@ -39,7 +39,7 @@
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
           <td>
             <erp:profileImage entity="${partner}" width="30" style="vertical-align: middle; margin: 0 10px 0 0;"/>
-            <g:link action="show" id="${partner.id}" params="[entity: partner.id]">${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}</g:link>
+            <g:link action="show" id="${partner.id}">${fieldValue(bean: partner, field: 'profile.fullName').decodeHTML()}</g:link>
           </td>
           <td>
             <g:if test="${partner.profile.services}">

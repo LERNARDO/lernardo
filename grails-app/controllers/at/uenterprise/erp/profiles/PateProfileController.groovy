@@ -49,7 +49,6 @@ class PateProfileController {
 
   def show = {
     Entity pate = Entity.get(params.id)
-    Entity entity = params.entity ? pate : entityHelperService.loggedIn
 
     if (!pate) {
       flash.message = message(code: "object.notFound", args: [message(code: "pate")])
@@ -59,7 +58,7 @@ class PateProfileController {
 
     List godchildren = functionService.findAllByLink(null, pate, metaDataService.ltPate)
 
-    return [pate: pate, entity: entity, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
+    return [pate: pate, allChildren: Entity.findAllByType(metaDataService.etClient), godchildren: godchildren]
 
   }
 

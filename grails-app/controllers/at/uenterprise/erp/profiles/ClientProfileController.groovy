@@ -60,7 +60,6 @@ class ClientProfileController {
 
   def show = {
     Entity client = Entity.get(params.id)
-    Entity entity = params.entity ? client : entityHelperService.loggedIn
 
     if (!client) {
       flash.message = message(code: "object.notFound", args: [message(code: "client")])
@@ -73,7 +72,7 @@ class ClientProfileController {
     List pates = functionService.findAllByLink(client, null,  metaDataService.ltPate)
     List facilities = Entity.findAllByType(metaDataService.etFacility)
 
-    return [client: client, entity: entity, colonia: colonia, family: family, pates: pates, facilities: facilities]
+    return [client: client, colonia: colonia, family: family, pates: pates, facilities: facilities]
 
   }
 

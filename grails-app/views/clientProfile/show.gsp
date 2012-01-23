@@ -13,449 +13,452 @@
 <div class="boxGray">
 <div class="second">
 
-<g:render template="/templates/clientNavigation" model="[entity: entity]"/>
+<g:render template="/templates/clientNavigation" model="[entity: client]"/>
 
 <div class="tabnav">
   <ul>
-    <li><g:link controller="publication" action="list" id="${entity.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${entity}"/></g:link></li>
-    <li><g:link controller="msg" action="inbox" id="${entity.id}"><g:message code="privat.posts"/></g:link></li>
-    <li><g:link controller="appointmentProfile" action="index" id="${entity.id}" params="[entity: entity.id]"><g:message code="appointments"/></g:link></li>
-    <li><g:link style="border-right: none" controller="evaluation" action="list" id="${entity.id}" params="[entity: entity.id]"><g:message code="privat.evaluation"/></g:link></li>
+    <li><g:link controller="clientProfile" action="show" id="${client.id}"><g:message code="profile"/></g:link></li>
+    <li><g:remoteLink update="content" controller="publication" action="list" id="${client.id}"><g:message code="publications"/> <erp:getPublicationCount entity="${client}"/></g:remoteLink></li>
+    <li><g:link controller="msg" action="inbox" id="${client.id}"><g:message code="privat.posts"/></g:link></li>
+    <li><g:link controller="appointmentProfile" action="index" id="${client.id}" params="[entity: client.id]"><g:message code="appointments"/></g:link></li>
+    <li><g:link style="border-right: none" controller="evaluation" action="list" id="${client.id}" params="[entity: client.id]"><g:message code="privat.evaluation"/></g:link></li>
   </ul>
 </div>
 
-<table>
-<tr>
-<td style="padding-right: 40px; vertical-align: top;">
-  <h4><g:message code="profile"/></h4>
+<div id="content">
   <table>
+  <tr>
+  <td style="padding-right: 40px; vertical-align: top;">
+    <h4><g:message code="profile"/></h4>
+    <table>
 
-    <tr class="prop">
-      <td class="one"><g:message code="gender"/>:</td>
-      <td class="two"><erp:showGender gender="${client.profile.gender}"/></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="firstName"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="lastName"/>:</td>
-      <td class="two"><g:link action="show" id="${client.id}" params="[entity: client.id]">${client.profile.lastName}</g:link> <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show"
-                                                                                                                                                               id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="birthDate"/>:</td>
-      <td class="two"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.interests"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-  </table>
-
-  <h4><g:message code="client.profile.curAddress"/></h4>
-  <table>
-
-    <tr class="prop">
-      <td class="one"><g:message code="street"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="zip"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="groupColony"/>:</td>
-      <td class="two"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name + 'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
-          code="noData"/></div></g:else></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="country"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-    </tr>
-
-  </table>
-
-  <h4><g:message code="client.profile.origin"/></h4>
-  <table>
-
-    <tr class="prop">
-      <td class="one"><g:message code="city"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.originCity') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="zip"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="country"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-  </table>
-
-</td>
-<td style="padding-right: 40px; vertical-align: top;">
-
-  <h4><g:message code="client.profile.more"/></h4>
-  <table>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.familyStatus"/>:</td>
-      <td class="two">${client.profile.familyStatus}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="languages"/>:</td>
-      <td class="two">
-        <g:if test="${client.profile.languages}">
-          <ul>
-            <g:each in="${client.profile.languages}" var="language">
-              <li>${language}</li>
-            </g:each>
-          </ul>
-        </g:if>
-        <g:else>
-          <div class="italic"><g:message code="none"/></div>
-        </g:else>
-      </td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.school"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.school').decodeHTML() ?: '<span class="italic">' + message(code: 'client.noSchoolEntered') + '</span>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolLevel"/>:</td>
-      <td class="two">
-        <g:if test="${client.profile.schoolLevel}">
-          ${client.profile.schoolLevel}
-        </g:if>
-        <g:else>
-          <div class="italic"><g:message code="none"/></div>
-        </g:else>
-      </td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolDropout"/>:</td>
-      <td class="two"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolDropoutDate"/>:</td>
-      <td class="two"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolDropoutReason"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolRestart"/>:</td>
-      <td class="two"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolRestartDate"/>:</td>
-      <td class="two"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
-    </tr>
-
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.schoolRestartReason"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
-
-    <g:if test="${client.profile.job}">
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.job"/>:</td>
-        <td class="two"><g:formatBoolean boolean="${client.profile.job}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+        <td class="one"><g:message code="gender"/>:</td>
+        <td class="two"><erp:showGender gender="${client.profile.gender}"/></td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.jobType"/>:</td>
+        <td class="one"><g:message code="firstName"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.firstName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="lastName"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.lastName') ?: '<span class="italic">' + message(code: 'noData') + '</span>'} <g:if test="${family}">(<g:link controller="groupFamilyProfile" action="show"
+                                                                                                                                                                 id="${family.id}">Familie ${family.profile.fullName}</g:link>)</g:if></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="birthDate"/>:</td>
+        <td class="two"><g:formatDate date="${client.profile.birthDate}" format="dd. MM. yyyy"/></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.interests"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.interests') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+    </table>
+
+    <h4><g:message code="client.profile.curAddress"/></h4>
+    <table>
+
+      <tr class="prop">
+        <td class="one"><g:message code="street"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.currentStreet') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="zip"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.currentZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="groupColony"/>:</td>
+        <td class="two"><g:if test="${colonia}"><g:link controller="${colonia.type.supertype.name + 'Profile'}" action="show" id="${colonia.id}">${colonia.profile.fullName}</g:link></g:if><g:else><div class="italic"><g:message
+            code="noData"/></div></g:else></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="country"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.currentCountry') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
+      </tr>
+
+    </table>
+
+    <h4><g:message code="client.profile.origin"/></h4>
+    <table>
+
+      <tr class="prop">
+        <td class="one"><g:message code="city"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.originCity') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="zip"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.originZip') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="country"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.originCountry') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+    </table>
+
+  </td>
+  <td style="padding-right: 40px; vertical-align: top;">
+
+    <h4><g:message code="client.profile.more"/></h4>
+    <table>
+
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.familyStatus"/>:</td>
+        <td class="two">${client.profile.familyStatus}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="languages"/>:</td>
         <td class="two">
-          <g:if test="${client.profile.jobtypes}">
-            <ul style="margin-left: 5px;">
-              <g:each in="${client.profile.jobtypes}" var="jobtype">
-                <li style="list-style-type: disc;">${jobtype}</li>
+          <g:if test="${client.profile.languages}">
+            <ul>
+              <g:each in="${client.profile.languages}" var="language">
+                <li>${language}</li>
               </g:each>
             </ul>
           </g:if>
           <g:else>
-            <div class="italic"><g:message code="client.noWorkEntered"/></div>
+            <div class="italic"><g:message code="none"/></div>
           </g:else>
         </td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.jobIncome"/> (${grailsApplication.config.currency}):</td>
-        <td class="two">${client?.profile?.jobIncome?.toInteger() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        <td class="one"><g:message code="client.profile.school"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.school').decodeHTML() ?: '<span class="italic">' + message(code: 'client.noSchoolEntered') + '</span>'}</td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.jobFrequency"/>:</td>
-        <td class="two">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        <td class="one"><g:message code="client.profile.schoolLevel"/>:</td>
+        <td class="two">
+          <g:if test="${client.profile.schoolLevel}">
+            ${client.profile.schoolLevel}
+          </g:if>
+          <g:else>
+            <div class="italic"><g:message code="none"/></div>
+          </g:else>
+        </td>
       </tr>
-    </g:if>
 
-    <g:if test="${client.profile.support}">
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.support"/> (${grailsApplication.config.currency}):</td>
-        <td class="two"><g:formatBoolean boolean="${client.profile.support}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+        <td class="one"><g:message code="client.profile.schoolDropout"/>:</td>
+        <td class="two"><g:formatBoolean boolean="${client.profile.schoolDropout}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
       </tr>
 
       <tr class="prop">
-        <td class="one"><g:message code="client.profile.supportDescription"/>:</td>
-        <td class="two">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        <td class="one"><g:message code="client.profile.schoolDropoutDate"/>:</td>
+        <td class="two"><g:if test="${client.profile.schoolDropout}"><g:formatDate date="${client.profile.schoolDropoutDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
       </tr>
-    </g:if>
 
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.citizenship"/> (${grailsApplication.config.currency}):</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.schoolDropoutReason"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.schoolDropoutReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
 
-    <tr class="prop">
-      <td class="one"><g:message code="client.profile.socialSecurityNumber"/>:</td>
-      <td class="two">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
-    </tr>
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.schoolRestart"/>:</td>
+        <td class="two"><g:formatBoolean boolean="${client.profile.schoolRestart}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+      </tr>
 
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.schoolRestartDate"/>:</td>
+        <td class="two"><g:if test="${client.profile.schoolRestart}"><g:formatDate date="${client.profile.schoolRestartDate}" format="dd. MM. yyyy"/></g:if><g:else><div class="italic"><g:message code="noDate"/></div></g:else></td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.schoolRestartReason"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.schoolRestartReason') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+      <g:if test="${client.profile.job}">
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.job"/>:</td>
+          <td class="two"><g:formatBoolean boolean="${client.profile.job}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.jobType"/>:</td>
+          <td class="two">
+            <g:if test="${client.profile.jobtypes}">
+              <ul style="margin-left: 5px;">
+                <g:each in="${client.profile.jobtypes}" var="jobtype">
+                  <li style="list-style-type: disc;">${jobtype}</li>
+                </g:each>
+              </ul>
+            </g:if>
+            <g:else>
+              <div class="italic"><g:message code="client.noWorkEntered"/></div>
+            </g:else>
+          </td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.jobIncome"/> (${grailsApplication.config.currency}):</td>
+          <td class="two">${client?.profile?.jobIncome?.toInteger() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.jobFrequency"/>:</td>
+          <td class="two">${fieldValue(bean: client, field: 'profile.jobFrequency') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        </tr>
+      </g:if>
+
+      <g:if test="${client.profile.support}">
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.support"/> (${grailsApplication.config.currency}):</td>
+          <td class="two"><g:formatBoolean boolean="${client.profile.support}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/></td>
+        </tr>
+
+        <tr class="prop">
+          <td class="one"><g:message code="client.profile.supportDescription"/>:</td>
+          <td class="two">${fieldValue(bean: client, field: 'profile.supportDescription') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+        </tr>
+      </g:if>
+
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.citizenship"/> (${grailsApplication.config.currency}):</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.citizenship').decodeHTML() ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+      <tr class="prop">
+        <td class="one"><g:message code="client.profile.socialSecurityNumber"/>:</td>
+        <td class="two">${fieldValue(bean: client, field: 'profile.socialSecurityNumber') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}</td>
+      </tr>
+
+    </table>
+
+  </td>
+  </tr>
   </table>
 
-</td>
-</tr>
-</table>
-
-<div class="email">
-  <table width="100%">
-    <tr>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+  <div class="email">
+    <table width="100%">
+      <tr>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']">
+          <td>
+            <span class="bold"><g:message code="active"/></span>
+            <g:formatBoolean boolean="${client.user.enabled}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/>
+          </td>
+        </erp:accessCheck>
         <td>
-          <span class="bold"><g:message code="active"/></span>
-          <g:formatBoolean boolean="${client.user.enabled}" true="${message(code: 'yes')}" false="${message(code: 'no')}"/>
+          <span class="bold"><g:message code="email"/>:</span>
+          ${fieldValue(bean: client, field: 'user.email') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}
         </td>
-      </erp:accessCheck>
-      <td>
-        <span class="bold"><g:message code="email"/>:</span>
-        ${fieldValue(bean: client, field: 'user.email') ?: '<span class="italic">' + message(code: 'noData') + '</span>'}
-      </td>
-      <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${client}">
-        <td>
-          <g:form controller="profile" action="changePassword" id="${client.id}">
-            <span class="bold"><g:message code="password"/>:</span>
-            <g:submitButton name="submit" value="${message(code: 'change')}"/>
-            <div class="clear"></div>
-          </g:form>
-        </td>
-      </erp:accessCheck>
-    </tr>
-  </table>
+        <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${client}">
+          <td>
+            <g:form controller="profile" action="changePassword" id="${client.id}">
+              <span class="bold"><g:message code="password"/>:</span>
+              <g:submitButton name="submit" value="${message(code: 'change')}"/>
+              <div class="clear"></div>
+            </g:form>
+          </td>
+        </erp:accessCheck>
+      </tr>
+    </table>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="performances" style="display:none">
+      <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addPerformance', id: client.id]" update="performances2" before="showspinner('#performances2');" after="toggle('#performances');">
+        <table>
+          <tr>
+            <td valign="middle"><g:message code="date"/>:</td>
+            <td><g:datePicker name="date" value="" precision="day"/></td>
+          </tr>
+          <tr>
+            <td valign="top"><g:message code="text"/>:</td>
+            <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><g:submitButton name="button" value="${message(code: 'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
+          </tr>
+        </table>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="performances2">
+      <g:render template="performances" model="[client: client, entity: currentEntity]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#healths');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="healths" style="display:none">
+      <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addHealth', id: client.id]" update="healths2" before="showspinner('#healths2');" after="toggle('#healths');">
+        <table>
+          <tr>
+            <td valign="middle"><g:message code="date"/>:</td>
+            <td><g:datePicker name="date" value="" precision="day"/></td>
+          </tr>
+          <tr>
+            <td valign="top"><g:message code="text"/>:</td>
+            <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><g:submitButton name="button" value="${message(code: 'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
+          </tr>
+        </table>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="healths2">
+      <g:render template="healths" model="[client: client, entity: currentEntity]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#materials');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="materials" style="display:none">
+      <g:formRemote name="formRemote3" url="[controller: 'clientProfile', action: 'addMaterial', id: client.id]" update="materials2" before="showspinner('#materials2');" after="toggle('#materials');">
+        <table>
+          <tr>
+            <td valign="middle"><g:message code="date"/>:</td>
+            <td><g:datePicker name="date" value="" precision="day"/></td>
+          </tr>
+          <tr>
+            <td valign="top"><g:message code="text"/>:</td>
+            <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><g:submitButton name="button" value="${message(code: 'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
+          </tr>
+        </table>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="materials2">
+      <g:render template="materials" model="[client: client, entity: currentEntity]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#dates');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="dates" style="display:none">
+      <g:formRemote name="formRemote4" url="[controller: 'clientProfile', action: 'addDate', id: client.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
+        <g:textField name="date" size="12" class="datepicker" value=""/>
+        <g:submitButton name="button" value="${message(code: 'add')}"/>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="dates2">
+      <g:render template="dates" model="[client: client, entity: currentEntity]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#collectors');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="collectors" style="display:none">
+      <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addCollector', id: client.id]" update="collectors2" before="showspinner('#collectors2');" after="toggle('#collectors');">
+        <g:message code="name"/>: <g:textField size="30" name="text" value=""/> <g:submitButton name="button" value="${message(code: 'add')}"/>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="collectors2">
+      <g:render template="collectors" model="[client: client, entity: currentEntity]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
+    return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
+
+    <div class="zusatz-add" id="contacts" style="display:none">
+      <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addContact', id: client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
+
+        <table>
+          <tr>
+            <td><g:message code="firstName"/>:</td>
+            <td><g:textField name="firstName" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="lastName"/>:</td>
+            <td><g:textField name="lastName" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="country"/>:</td>
+            <td><g:textField name="country" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="zip"/>:</td>
+            <td><g:textField name="zip" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="city"/>:</td>
+            <td><g:textField name="city" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="street"/>:</td>
+            <td><g:textField name="street" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="phone"/>:</td>
+            <td><g:textField name="phone" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="email"/>:</td>
+            <td><g:textField name="email" size="30"/></td>
+          </tr>
+          <tr>
+            <td><g:message code="contact.function"/>:</td>
+            <td><g:textField name="function" size="30"/></td>
+          </tr>
+        </table>
+
+        <div class="spacer"></div>
+        <g:submitButton name="button" value="${message(code: 'add')}"/>
+        <div class="spacer"></div>
+      </g:formRemote>
+    </div>
+
+    <div class="zusatz-show" id="contacts2">
+      <g:render template="contacts" model="[client: client, entity: currentEntity]"/>
+    </div>
+  </div>
+
+  <div class="zusatz">
+    <h5><g:message code="paten"/></h5>
+
+    <div class="zusatz-show">
+      <g:if test="${pates}">
+        <ul>
+          <g:each in="${pates}" var="pate">
+            <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}" params="[entity: pate.id]">${pate.profile.fullName}</g:link></li>
+          </g:each>
+        </ul>
+      </g:if>
+      <g:else>
+        <span class="italic"><g:message code="client.noPateYet"/></span>
+      </g:else>
+    </div>
+  </div>
+
+  <g:render template="/templates/links" model="[entity: client]"/>
+
 </div>
-
-<div class="zusatz">
-  <h5><g:message code="client.profile.schoolPerformance"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#performances');
-  return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="performances" style="display:none">
-    <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addPerformance', id: client.id]" update="performances2" before="showspinner('#performances2');" after="toggle('#performances');">
-      <table>
-        <tr>
-          <td valign="middle"><g:message code="date"/>:</td>
-          <td><g:datePicker name="date" value="" precision="day"/></td>
-        </tr>
-        <tr>
-          <td valign="top"><g:message code="text"/>:</td>
-          <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><g:submitButton name="button" value="${message(code: 'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
-        </tr>
-      </table>
-    </g:formRemote>
-  </div>
-
-  <div class="zusatz-show" id="performances2">
-    <g:render template="performances" model="[client: client, entity: currentEntity]"/>
-  </div>
-</div>
-
-<div class="zusatz">
-  <h5><g:message code="client.profile.healthNotes"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#healths');
-  return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="healths" style="display:none">
-    <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addHealth', id: client.id]" update="healths2" before="showspinner('#healths2');" after="toggle('#healths');">
-      <table>
-        <tr>
-          <td valign="middle"><g:message code="date"/>:</td>
-          <td><g:datePicker name="date" value="" precision="day"/></td>
-        </tr>
-        <tr>
-          <td valign="top"><g:message code="text"/>:</td>
-          <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><g:submitButton name="button" value="${message(code: 'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
-        </tr>
-      </table>
-    </g:formRemote>
-  </div>
-
-  <div class="zusatz-show" id="healths2">
-    <g:render template="healths" model="[client: client, entity: currentEntity]"/>
-  </div>
-</div>
-
-<div class="zusatz">
-  <h5><g:message code="client.profile.materials"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#materials');
-  return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="materials" style="display:none">
-    <g:formRemote name="formRemote3" url="[controller: 'clientProfile', action: 'addMaterial', id: client.id]" update="materials2" before="showspinner('#materials2');" after="toggle('#materials');">
-      <table>
-        <tr>
-          <td valign="middle"><g:message code="date"/>:</td>
-          <td><g:datePicker name="date" value="" precision="day"/></td>
-        </tr>
-        <tr>
-          <td valign="top"><g:message code="text"/>:</td>
-          <td><g:textArea rows="5" cols="100" name="text" value=""/></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><g:submitButton name="button" value="${message(code: 'add')}"/> <span class="gray"><g:message code="maxEntryPerDay"/></span></td>
-        </tr>
-      </table>
-    </g:formRemote>
-  </div>
-
-  <div class="zusatz-show" id="materials2">
-    <g:render template="materials" model="[client: client, entity: currentEntity]"/>
-  </div>
-</div>
-
-<div class="zusatz">
-  <h5><g:message code="client.profile.inOut" args="[grailsApplication.config.customerName]"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#dates');
-  return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="dates" style="display:none">
-    <g:formRemote name="formRemote4" url="[controller: 'clientProfile', action: 'addDate', id: client.id]" update="dates2" before="showspinner('#dates2');" after="toggle('#dates');">
-      <g:textField name="date" size="12" class="datepicker" value=""/>
-      <g:submitButton name="button" value="${message(code: 'add')}"/>
-    </g:formRemote>
-  </div>
-
-  <div class="zusatz-show" id="dates2">
-    <g:render template="dates" model="[client: client, entity: currentEntity]"/>
-  </div>
-</div>
-
-<div class="zusatz">
-  <h5><g:message code="client.profile.collectors"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber', 'Pädagoge']"><a onclick="toggle('#collectors');
-  return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="collectors" style="display:none">
-    <g:formRemote name="formRemote2" url="[controller: 'clientProfile', action: 'addCollector', id: client.id]" update="collectors2" before="showspinner('#collectors2');" after="toggle('#collectors');">
-      <g:message code="name"/>: <g:textField size="30" name="text" value=""/> <g:submitButton name="button" value="${message(code: 'add')}"/>
-    </g:formRemote>
-  </div>
-
-  <div class="zusatz-show" id="collectors2">
-    <g:render template="collectors" model="[client: client, entity: currentEntity]"/>
-  </div>
-</div>
-
-<div class="zusatz">
-  <h5><g:message code="educator.profile.emContact"/> <erp:accessCheck entity="${currentEntity}" types="['Betreiber']"><a onclick="toggle('#contacts');
-  return false" href="#"><img src="${g.resource(dir: 'images/icons', file: 'icon_add.png')}" alt="${message(code: 'add')}"/></a></erp:accessCheck></h5>
-
-  <div class="zusatz-add" id="contacts" style="display:none">
-    <g:formRemote name="formRemote" url="[controller: 'clientProfile', action: 'addContact', id: client.id]" update="contacts2" before="showspinner('#contacts2');" after="toggle('#contacts');">
-
-      <table>
-        <tr>
-          <td><g:message code="firstName"/>:</td>
-          <td><g:textField name="firstName" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="lastName"/>:</td>
-          <td><g:textField name="lastName" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="country"/>:</td>
-          <td><g:textField name="country" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="zip"/>:</td>
-          <td><g:textField name="zip" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="city"/>:</td>
-          <td><g:textField name="city" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="street"/>:</td>
-          <td><g:textField name="street" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="phone"/>:</td>
-          <td><g:textField name="phone" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="email"/>:</td>
-          <td><g:textField name="email" size="30"/></td>
-        </tr>
-        <tr>
-          <td><g:message code="contact.function"/>:</td>
-          <td><g:textField name="function" size="30"/></td>
-        </tr>
-      </table>
-
-      <div class="spacer"></div>
-      <g:submitButton name="button" value="${message(code: 'add')}"/>
-      <div class="spacer"></div>
-    </g:formRemote>
-  </div>
-
-  <div class="zusatz-show" id="contacts2">
-    <g:render template="contacts" model="[client: client, entity: currentEntity]"/>
-  </div>
-</div>
-
-<div class="zusatz">
-  <h5><g:message code="paten"/></h5>
-
-  <div class="zusatz-show">
-    <g:if test="${pates}">
-      <ul>
-        <g:each in="${pates}" var="pate">
-          <li style="list-style-type: disc; margin-left: 15px"><g:link controller="pateProfile" action="show" id="${pate.id}" params="[entity: pate.id]">${pate.profile.fullName}</g:link></li>
-        </g:each>
-      </ul>
-    </g:if>
-    <g:else>
-      <span class="italic"><g:message code="client.noPateYet"/></span>
-    </g:else>
-  </div>
-</div>
-
-<g:render template="/templates/links" model="[entity: client]"/>
-
 </div>
 </div>
 </body>

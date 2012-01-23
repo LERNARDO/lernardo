@@ -52,7 +52,6 @@ class ChildProfileController {
 
   def show = {
     Entity child = Entity.get(params.id)
-    Entity entity = params.entity ? child : entityHelperService.loggedIn
 
     if (!child) {
       flash.message = message(code: "object.notFound", args: [message(code: "child")])
@@ -63,7 +62,7 @@ class ChildProfileController {
     // check if the child belongs to a family
     Entity family = functionService.findByLink(child, null, metaDataService.ltGroupMemberChild)
 
-    return [child: child, family: family, entity: entity]
+    return [child: child, family: family]
 
   }
 
