@@ -162,8 +162,8 @@ class ClientProfileController {
 //        client.profile.schoolRestartDate = functionService.convertToUTC(client.profile.schoolRestartDate)
     client.profile.fullName = params.lastName + " " + params.firstName
     client.user.properties = params
-    if (client.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
+    //if (client.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, client.user.locale)
 
     // update link to colonia
     Link.findByTargetAndType(client, metaDataService.ltColonia)?.delete()

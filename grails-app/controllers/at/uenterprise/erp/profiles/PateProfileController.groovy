@@ -97,12 +97,12 @@ class PateProfileController {
 
   def update = {
     Entity pate = Entity.get(params.id)
-
+    
     pate.profile.properties = params
     pate.profile.fullName = params.lastName + " " + params.firstName
     pate.user.properties = params
-    if (pate.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
+    //if (pate.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, pate.user.locale)
 
     if (pate.profile.save() && pate.user.save() && pate.save()) {
 

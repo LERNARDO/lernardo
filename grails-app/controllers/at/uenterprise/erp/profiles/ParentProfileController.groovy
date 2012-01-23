@@ -112,8 +112,8 @@ class ParentProfileController {
     parent.profile.fullName = params.lastName + " " + params.firstName
     parent.user.properties = params
 
-    if (parent.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
+    //if (parent.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, parent.user.locale)
 
     // TODO: find out how to properly handle this cascading validation stuff
     // "parent.hasErrors()" returns false even though properties in the nested class "profile" did not validate

@@ -248,10 +248,10 @@
           <span class="bold"><g:message code="email"/>:</span>
           ${fieldValue(bean: educator, field: 'user.email') ?: '<div class="italic">' + message(code: 'empty') + '</div>'}
         </td>
-        <td>
+        %{--<td>
           <span class="bold"><g:message code="languageSelection"/>:</span>
           ${educator?.user?.locale?.getDisplayLanguage()}
-        </td>
+        </td>--}%
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" me="${educator}">
           <td>
             <g:form controller="profile" action="changePassword" id="${educator.id}">

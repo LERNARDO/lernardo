@@ -102,8 +102,8 @@ class PartnerProfileController {
     partner.profile.properties = params
     partner.user.properties = params
 
-    if (partner.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
+    //if (partner.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, partner.user.locale)
 
     if (partner.profile.save() && partner.user.save() && partner.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "partner"), partner.profile.fullName])

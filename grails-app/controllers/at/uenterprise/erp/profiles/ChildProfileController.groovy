@@ -115,8 +115,8 @@ class ChildProfileController {
     child.profile.fullName = params.lastName + " " + params.firstName
     child.user.properties = params
 
-    if (child.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
+    //if (child.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, child.user.locale)
 
     if (child.profile.save() && child.user.save() && child.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "child"), child.profile.fullName])

@@ -86,10 +86,10 @@
                 <g:message code="email"/>:
                 <g:textField class="${hasErrors(bean: partner, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: partner, field: 'user.email')}"/>
               </td>
-              <td>
+              %{--<td>
                 <g:message code="languageSelection"/>:
                 <erp:localeSelect class="drop-down-150" name="locale" value="${partner?.user?.locale}"/>
-              </td>
+              </td>--}%
             </tr>
           </table>
         </div>

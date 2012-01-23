@@ -103,8 +103,8 @@ class OperatorProfileController {
     operator.profile.properties = params
     operator.user.properties = params
 
-    if (operator.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
+    //if (operator.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, operator.user.locale)
 
     if (operator.profile.save() && operator.user.save() && operator.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "operator"), operator.profile.fullName])

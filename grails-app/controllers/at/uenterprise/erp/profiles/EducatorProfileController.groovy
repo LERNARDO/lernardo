@@ -117,8 +117,8 @@ class EducatorProfileController {
     // educator.profile.birthDate = functionService.convertToUTC(educator.profile.birthDate)
     educator.profile.fullName = params.lastName + " " + params.firstName
     educator.user.properties = params
-    if (educator.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
+    //if (educator.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, educator.user.locale)
 
     if (educator.profile.save() && educator.user.save() && educator.save()) {
 

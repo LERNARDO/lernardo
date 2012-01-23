@@ -80,10 +80,10 @@
               <g:message code="email"/>:
               <g:textField class="${hasErrors(bean: operator, field: 'user.email', 'errors')}" size="40" type="text" maxlength="80" name="email" value="${fieldValue(bean: operator, field: 'user.email')}"/>
             </td>
-            <td>
+            %{--<td>
               <g:message code="languageSelection"/>:
               <erp:localeSelect class="drop-down-150" name="locale" value="${operator?.user?.locale}"/>
-            </td>
+            </td>--}%
             <td>
               <g:message code="showTips"/>
               <g:checkBox name="showTips" value="${operator?.profile?.showTips}" style="vertical-align: bottom"/>

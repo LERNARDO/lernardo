@@ -100,8 +100,8 @@ class UserProfileController {
     user.profile.properties = params
     user.profile.fullName = params.lastName + " " + params.firstName
     user.user.properties = params
-    if (user.id == entityHelperService.loggedIn.id)
-      RequestContextUtils.getLocaleResolver(request).setLocale(request, response, user.user.locale)
+    //if (user.id == entityHelperService.loggedIn.id)
+    //  RequestContextUtils.getLocaleResolver(request).setLocale(request, response, user.user.locale)
 
     if (user.profile.save() && user.user.save() && user.save()) {
       flash.message = message(code: "object.updated", args: [message(code: "user"), user.profile.fullName])

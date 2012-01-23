@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory
 import at.uenterprise.erp.profiles.ActivityProfile
 import org.springframework.web.multipart.MultipartFile
 import at.openfactory.ep.AssetService
+import org.springframework.web.servlet.support.RequestContextUtils
 
 class ProfileController {
   EntityHelperService entityHelperService
@@ -332,6 +333,15 @@ class ProfileController {
     redirect controller: 'calendar'
   }
 
+  def changeLanguage = {
+    Entity currentEntity = entityHelperService.loggedIn
+    
+    currentEntity.user.locale = new Locale(params.locale)
+    currentEntity.user.save(flush: true)
+
+    RequestContextUtils.getLocaleResolver(request).setLocale(request, response, currentEntity.user.locale)
+    redirect controller: "app", action: "start"
+  }
 }
 
 /*
