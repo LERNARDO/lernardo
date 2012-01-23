@@ -403,13 +403,14 @@ class GroupActivityProfileController {
 
   def removeFacility = {
     def breaking = functionService.breakEntities(params.id, params.facility, metaDataService.ltGroupMemberFacility)
-    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
 
     // delete all planned resources
     // TODO: when a facility is removed the elements in the GSP that show the plannable resources and the currently
     // planned resources need to be updated as well
-    //Entity group = Entity.get(params.id)
-    //Link.findAllByTargetAndType(group, metaDataService.ltResourcePlanned).each {it.delete()}
+    Entity group = Entity.get(params.id)
+    Link.findAllByTargetAndType(group, metaDataService.ltResourcePlanned).each {it.delete()}
+
+    render template: 'facilities', model: [facilities: breaking.results2, group: breaking.source, entity: entityHelperService.loggedIn]
   }
 
   def removeClient = {
@@ -685,6 +686,14 @@ class GroupActivityProfileController {
     }
 
     render template: 'plannableresources', model: [plannableResources: plannableResources, group: group]
+  }
+
+  def refreshplannedresources = {
+    Entity group = Entity.get(params.id)
+
+    List resources = functionService.findAllByLink(null, group, metaDataService.ltResourcePlanned)
+    
+    render template: 'resources', model: [resources: resources, group: group, entity: entityHelperService.loggedIn]
   }
 
   /*
