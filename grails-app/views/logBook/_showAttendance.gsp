@@ -6,7 +6,7 @@
         ${attendance.client.profile.fullName.decodeHTML()}
         <erp:accessCheck entity="${currentEntity}" types="['Betreiber']" facilities="${facilities}">
           <div style="text-align: right; margin-top: 5px;">
-            <g:remoteLink class="buttonGray" update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]">Ändern</g:remoteLink>
+            <g:remoteLink class="buttonGray" update="attendance${i}" action="editAttendance" id="${attendance.id}" params="[i: i]"><g:message code="change"/></g:remoteLink>
           </div>
         </erp:accessCheck>
       </td>

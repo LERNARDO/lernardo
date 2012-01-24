@@ -38,7 +38,7 @@
             </td>
           </tr>
         </table>
-        <g:submitButton name="submitButton" value="Anzeigen"/>
+        <g:submitButton name="submitButton" value="${message(code: 'msg.show')}"/>
         <div class="clear"></div>
       </g:formRemote>
     </div>

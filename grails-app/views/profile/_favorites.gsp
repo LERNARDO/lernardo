@@ -9,6 +9,6 @@
 </g:if>
 <g:else>
   <ul>
-    <li class="icon-start italic">Noch keine Favoriten!</li>
+    <li class="icon-start italic"><g:message code="favorites.noneYet"/></li>
   </ul>
 </g:else>

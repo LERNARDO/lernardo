@@ -323,7 +323,7 @@
                 %{--<erp:isSystemAdmin entity="${currentEntity}">
                   <li class="icon-admin"><g:link controller="admin" action="stuff">Admin Stuff</g:link></li>
                 </erp:isSystemAdmin>--}%
-                  <li class="icon-setup"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]">Setup</g:link></li>
+                  <li class="icon-setup"><g:link controller="setup" action="show" id="${entity.id}" params="[entity:entity.id]"><g:message code="setup"/></g:link></li>
                   <li class="profile-nachricht"><g:link controller="profile" action="createNotification"><g:message code="notifications"/></g:link></li>
                   %{--<li class="icon-export"><g:link controller="transfer" action="index" params="[name:entity.name]">Import/Export</g:link></li>--}%
                   <li class="icon-time"><g:link controller="educatorProfile" action="times" params="[name:entity.name]"><g:message code="timeEvaluation"/></g:link></li>

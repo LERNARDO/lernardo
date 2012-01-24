@@ -36,7 +36,7 @@ class LogBookController {
     render createTimeLine(date, facility)
 
     if (!entry)
-        render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {'Eintrag anlegen'}}"
+        render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {message(code: 'logBook.create')}}"
     else
         render template: "entry", model: [entry: entry, date: params.date, facility: params.facility, currentEntity: currentEntity, facilities: facilities]
   }
@@ -79,7 +79,7 @@ class LogBookController {
     LogEntry.findByDateAndFacility(date, facility)?.delete(flush: true)
 
     render createTimeLine(date, facility)
-    render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {'Eintrag anlegen'}}"
+    render "${remoteLink(update: 'entry', class: 'buttonGreen', action: 'createEntry', params: [facility: params.facility, date: params.date]) {message(code: 'logBook.create')}}"
   }
 
   def updateEntry = {
@@ -130,7 +130,7 @@ class LogBookController {
 
     StringBuffer timeline = new StringBuffer()
 
-    timeline.append('<p>' + message(code: 'entries') + ': <span class="gray">Nicht angelegt</span> - <span class="green">Bestätigt</span> - <span class="red">Nicht bestätigt</span></p>')
+    timeline.append('<p>' + message(code: 'entries') + ': <span class="gray">' + message(code: 'logBook.notCreated') + '</span> - <span class="green">' + message(code: 'logBook.confirmed') + '</span> - <span class="red">' + message(code: 'logBook.notConfirmed') + '</span></p>')
 
     while (start <= end) {
       Date currentDate = start.getTime()

@@ -17,7 +17,7 @@
 
 <div id="welcome">
   <div id="head">
-    <span style="color: #aaa;">Willkommen im</span> ERPEL
+    <span style="color: #aaa;"><g:message code="welcomeTo"/></span> ${grailsApplication.config.application.name}
   </div>
 
   <ul id="boxes">

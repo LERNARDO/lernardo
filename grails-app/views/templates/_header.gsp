@@ -74,7 +74,7 @@
         %{--<g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/></g:link>--}%
         <a href="#" onclick="$('#options').toggle(); return false;"><img src="${g.resource(dir:'images/icons', file:'bullet_arrow_down.png')}" alt="Options" style="position: relative; top: 3px;"/></a>
       </span>
-      <div id="options" style="display: none; padding: 5px; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; right: 25px;"><g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/> Abmelden</g:link></div>
+      <div id="options" style="display: none; padding: 5px; background: #ddd; border: 1px solid #bbb; position: absolute; top: 52px; right: 25px;"><g:link controller="security" action='logout'><img src="${g.resource(dir:'images/icons', file:'icon_logout.png')}" alt="Logout" style="position: relative; top: 3px;"/> <g:message code="header.logOut"/></g:link></div>
     </span>
 
   </g:form>
