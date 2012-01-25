@@ -18,8 +18,6 @@ import at.uenterprise.erp.Live
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import at.uenterprise.erp.Label
 import at.openfactory.ep.Asset
-import at.uenterprise.erp.Event
-import at.uenterprise.erp.Resource
 import at.uenterprise.erp.EVENT_TYPE
 
 class TemplateProfileController {
@@ -37,8 +35,8 @@ class TemplateProfileController {
   }
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 

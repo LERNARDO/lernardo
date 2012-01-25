@@ -19,8 +19,8 @@ class EvaluationController {
 
   // shows all evaluations of a given client
   def list = {
-    params.max = Math.min(params.max ? params.int('max') : 5, 100)
-    params.offset = params.offset ?: 0
+    params.max = Math.min(params.int('max') ?: 5, 100)
+    params.offset = params.int('offset') ?: 0
     params.sort = params.sort ?: 'dateCreated'
     params.order = params.order ?: 'desc'
     Entity entity = Entity.get(params.id)
@@ -32,8 +32,8 @@ class EvaluationController {
   }
 
   def allevaluations = {
-    params.max = Math.min(params.max ? params.int('max') : 5, 100)
-    params.offset = params.offset ?: 0
+    params.max = Math.min(params.int('max') ?: 5, 100)
+    params.offset = params.int('offset') ?: 0
     params.sort = params.sort ?: 'dateCreated'
     params.order = params.order ?: 'desc'
     def show = params.show ?: false
@@ -44,8 +44,8 @@ class EvaluationController {
 
   // shows all evaluations made by a given educator
   def myevaluations = {
-    params.max = Math.min(params.max ? params.int('max') : 5, 100)
-    params.offset = params.offset ?: 0
+    params.max = Math.min(params.int('max') ?: 5, 100)
+    params.offset = params.int('offset') ?: 0
     params.sort = params.sort ?: 'dateCreated'
     params.order = params.order ?: 'desc'
     Entity entity = Entity.get(params.id)

@@ -31,7 +31,7 @@ class AppointmentProfileController {
     static allowedMethods = [delete:'POST', save:'POST', update:'POST']
 
     def list = {
-      params.offset = params.offset ?: 0
+      params.offset = params.int('offset') ?: 0
       params.sort = params.sort ?: 'beginDate'
 
       Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn
@@ -65,7 +65,7 @@ class AppointmentProfileController {
     }
 
     def listold = {
-      params.offset = params.offset ?: 0
+      params.offset = params.int('offset') ?: 0
       params.sort = params.sort ?: 'beginDate'
 
       Entity entity = Entity.get(params.id) ?: entityHelperService.loggedIn

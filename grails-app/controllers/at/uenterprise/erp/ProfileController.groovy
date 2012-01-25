@@ -162,8 +162,8 @@ class ProfileController {
    * shows a list of news the entity has contributed
    */
   def showNewsList = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = params.max ? params.int('max') : 10
+    params.offset = params.int('offset') ?: 0
+    params.max = params.int('max') ?: 10
 
     Entity entity = Entity.get(params.id)
     List news = News.findAllByAuthor(entity, params)
@@ -176,8 +176,8 @@ class ProfileController {
    * shows a list of all activites of a given entity
    */
   def showActivityList = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = params.max ? params.int('max') : 10
+    params.offset = params.int('offset') ?: 0
+    params.max = params.int('max') ?: 10
 
     Entity entity = Entity.get(params.id)
 
@@ -205,8 +205,8 @@ class ProfileController {
    */
   def list = {
     params.entityType = params.entityType ?: "all"
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = params.max ? params.int('max') : 10
+    params.offset = params.int('offset') ?: 0
+    params.max = params.int('max') ?: 10
     params.sort = params.sort ?: "name"
 
     EntityType entityType = null

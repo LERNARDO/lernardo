@@ -9,10 +9,6 @@ import at.uenterprise.erp.Contact
 import at.uenterprise.erp.FunctionService
 import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
-import at.uenterprise.erp.Msg
-import at.uenterprise.erp.Publication
-import at.uenterprise.erp.Comment
-import at.uenterprise.erp.Event
 import at.uenterprise.erp.logbook.Attendance
 
 class FacilityProfileController {
@@ -30,8 +26,8 @@ class FacilityProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 

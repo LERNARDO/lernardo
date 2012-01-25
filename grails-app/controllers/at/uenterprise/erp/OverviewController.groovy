@@ -71,8 +71,8 @@ class OverviewController {
    */
   def showUsers = {
     params.glossary = params.glossary ?: 'Alle'
-    params.max = Math.min(params.max ? params.int('max') : 16, 100)
-    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.int('max') ?: 16, 100)
+    params.offset = params.int('offset') ?: 0
 
     List users
     def numUsers

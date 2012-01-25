@@ -9,7 +9,6 @@ import at.uenterprise.erp.MetaDataService
 import at.openfactory.ep.Profile
 import at.uenterprise.erp.FunctionService
 import at.openfactory.ep.EntityException
-import at.uenterprise.erp.Event
 
 class GroupFamilyProfileController {
   MetaDataService metaDataService
@@ -25,8 +24,8 @@ class GroupFamilyProfileController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 

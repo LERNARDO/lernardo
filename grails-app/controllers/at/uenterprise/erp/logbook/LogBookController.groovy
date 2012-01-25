@@ -268,8 +268,8 @@ class LogBookController {
   }
 
   def processes = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
     params.sort = params.sort ?: "name"
     params.order = params.order ?: "asc"
 

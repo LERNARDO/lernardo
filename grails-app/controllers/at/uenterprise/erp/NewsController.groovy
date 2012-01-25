@@ -7,7 +7,8 @@ class NewsController {
   EntityHelperService entityHelperService
 
   def index = {
-    params.max = params.max ?: 5
+    params.max = params.int('max') ?: 5
+    params.offset = params.int('offset') ?: 0
     List news = News.list([max: params.max, sort: "dateCreated", order: "desc", offset: params.offset])
 
     return [news: news,

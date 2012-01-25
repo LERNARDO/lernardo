@@ -11,7 +11,7 @@ class MethodController {
   static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
 
   def list = {
-    params.max = Math.min(params.max ? params.max.toInteger() : 10, 100)
+    params.max = Math.min(params.int('max') ?: 10, 100)
     List methods = Method.findAllByType('template', params)
     [methodInstanceList: methods, methodInstanceTotal: methods.size()]
   }

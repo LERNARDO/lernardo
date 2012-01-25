@@ -25,6 +25,12 @@ class FunctionService {
 
   boolean transactional = true
 
+  /**
+   * Creates a default calendar object
+   *
+   * @author Alexander Zeillinger
+   * @param entity The entity to to create the calendar for
+   */
   ECalendar createDefaultCalendar(Entity entity) {
     ECalendar eCalendar = new ECalendar()
     CalEntity self = new CalEntity(entity: entity, visible: true, color: '#cccccc').save()
@@ -136,7 +142,7 @@ class FunctionService {
     def aSourceId
     def aTargetId
     def aTypeId = type.id
-    def entA
+    def entA = null
     if (target) {
       aTargetId = target.id
       entA = Entity.find(

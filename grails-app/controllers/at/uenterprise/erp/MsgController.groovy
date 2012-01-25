@@ -21,8 +21,8 @@ class MsgController {
    * shows the inbox of a given entity
    */
   def inbox = {
-    params.max = Math.min( params.max ? params.int('max') : 10,  100)
-    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.int('max') ?: 10, 100)
+    params.offset = params.int('offset') ?: 0
 
     Entity entity = Entity.get(params.id)
 
@@ -46,8 +46,8 @@ class MsgController {
    * shows the outbox of a given entity
    */
   def outbox = {
-    params.max = Math.min( params.max ? params.int('max') : 10,  100)
-    params.offset = params.offset ? params.int('offset') : 0
+    params.max = Math.min(params.int('max') ?: 10, 100)
+    params.offset = params.int('offset') ?: 0
 
     Entity entity = Entity.get(params.id)
 

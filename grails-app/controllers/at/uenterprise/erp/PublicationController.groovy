@@ -17,7 +17,7 @@ class PublicationController {
   def index = { }
 
   def list = {
-    params.max = Math.min( params.max ? params.max.toInteger() : 10,  100)
+    params.max = Math.min(params.int('max') ?: 10, 100)
     params.sort = params.sort ?: 'dateCreated'
     Entity entity = params.id ? Entity.get(params.id) : entityHelperService.loggedIn
     if (!entity) {

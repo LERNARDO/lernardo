@@ -15,7 +15,6 @@ import at.openfactory.ep.Asset
 import at.uenterprise.erp.Evaluation
 import at.openfactory.ep.LinkHelperService
 import at.uenterprise.erp.Label
-import at.uenterprise.erp.Event
 
 class GroupActivityProfileController {
   MetaDataService metaDataService
@@ -38,8 +37,8 @@ class GroupActivityProfileController {
   }
 
   def list = {
-    /*params.offset = params.offset ? params.int('offset') : 0
-    params.max = Math.min(params.max ? params.int('max') : 15, 100)
+    /*params.offset = params.int('offset') ?: 0
+    params.max = Math.min(params.int('max') ?: 15, 100)
     params.sort = params.sort ?: "fullName"
     params.order = params.order ?: "asc"
 

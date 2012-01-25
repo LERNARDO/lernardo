@@ -55,8 +55,8 @@ class ActivityProfileController {
    * lists either all activities or only activities of a selected date of a given entity
    */
   def list = {
-    params.offset = params.offset ? params.int('offset') : 0
-    params.max = params.max ? params.int('max') : 10
+    params.offset = params.int('offset') ?: 0
+    params.max = params.int('max') ?: 10
     if (!params.myDate)
       params.myDate = 'all'
 

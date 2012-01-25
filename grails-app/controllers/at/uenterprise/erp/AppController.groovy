@@ -159,8 +159,8 @@ class AppController {
       List projects = []
       if (entity.type.id == metaDataService.etEducator.id) {
         List days = functionService.findAllByLink(entity, null, metaDataService.ltProjectDayEducator)
-        days.each {
-          projects << functionService.findByLink(it, null, metaDataService.ltProjectMember)
+        days.each { Entity day ->
+          projects << functionService.findByLink(day, null, metaDataService.ltProjectMember)
         }
       }
       else if (entity.type.id == metaDataService.etFacility.id) {
@@ -181,15 +181,15 @@ class AppController {
 
         // for each project unit find all project days they are linked to
         List projectDays = []
-        projectUnits.each {
-          def result = functionService.findByLink(it, null, metaDataService.ltProjectDayUnit)
+        projectUnits.each { Entity pu ->
+          def result = functionService.findByLink(pu, null, metaDataService.ltProjectDayUnit)
           if (result && !projectDays.contains(result))
             projectDays << result
         }
 
         // for each project day find all projects they are linked to
-        projectDays.each {
-          def result = functionService.findByLink(it, null, metaDataService.ltProjectMember)
+        projectDays.each { Entity pd ->
+          def result = functionService.findByLink(pd, null, metaDataService.ltProjectMember)
           if (result)
             projects.add(result)
         }
@@ -198,14 +198,14 @@ class AppController {
         List projectUnits = functionService.findAllByLink(entity, null, metaDataService.ltProjectUnitParent)
 
         List projectDays = []
-        projectUnits.each {
-          def result = functionService.findByLink(it, null, metaDataService.ltProjectDayUnit)
+        projectUnits.each { Entity pu ->
+          def result = functionService.findByLink(pu, null, metaDataService.ltProjectDayUnit)
           if (!projectDays.contains(result))
             projectDays << result
         }
 
-        projectDays.each {
-          projects << functionService.findByLink(it, null, metaDataService.ltProjectMember)
+        projectDays.each { Entity pd ->
+          projects << functionService.findByLink(pd, null, metaDataService.ltProjectMember)
         }
       }
       render template: "/templates/linkscontent", model: [list: projects]

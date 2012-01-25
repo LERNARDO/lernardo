@@ -12,7 +12,7 @@ class EventController {
   def index = {
     params.sort = 'dateCreated'
     params.order = 'desc'
-    params.max = params.max ?: 10
+    params.max = params.int('max') ?: 10
     
     List events = Event.list(params)
 

@@ -29,6 +29,12 @@ class HelperTagLib {
   def securityManager
   static namespace = "erp"
 
+  /**
+   * Renders the + or - Favorite button
+   *
+   * @author Alexander Zeillinger
+   * @attr entity REQUIRED The entity to check
+   */
   def getFavorite = {attrs ->
     out << '<span id="favbutton">'
     if (entityHelperService.loggedIn.profile.favorites.contains(attrs.entity.id.toString()))
@@ -1761,8 +1767,8 @@ class HelperTagLib {
         }
       }
 
-      groupactivitytemplates.each {
-        m += Publication.countByEntity(it)
+      groupactivitytemplates.each { Entity gat ->
+        m += Publication.countByEntity(gat)
       }
 
       List activitytemplates = []
@@ -1774,8 +1780,8 @@ class HelperTagLib {
         }
       }
 
-      activitytemplates.each {
-        m += Publication.countByEntity(it) 
+      activitytemplates.each { Entity at ->
+        m += Publication.countByEntity(at)
       }
     }
 
@@ -1797,8 +1803,8 @@ class HelperTagLib {
             }
           }
 
-          groupactivitytemplates.each {
-            m += Publication.countByEntity(it)
+          groupactivitytemplates.each { Entity gat ->
+            m += Publication.countByEntity(gat)
           }
 
           List activitytemplates = []
@@ -1810,8 +1816,8 @@ class HelperTagLib {
             }
           }
 
-          activitytemplates.each {
-            m += Publication.countByEntity(it)
+          activitytemplates.each { Entity at ->
+            m += Publication.countByEntity(at)
           }
       }
     }
